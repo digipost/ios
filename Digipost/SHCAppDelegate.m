@@ -7,11 +7,21 @@
 //
 
 #import "SHCAppDelegate.h"
+#import <HockeySDK/HockeySDK.h>
+
+@interface SHCAppDelegate () <BITHockeyManagerDelegate>
+
+@end
 
 @implementation SHCAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
+                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
+                                                               delegate:self];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
