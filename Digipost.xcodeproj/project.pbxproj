@@ -46,6 +46,12 @@
 		83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9491855C0AD004A7BFB /* InfoPlist.strings */; };
 		83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB94C1855C0AD004A7BFB /* DigipostTests.m */; };
+		83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
+		83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
+		83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
+		83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
+		83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
+		83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +97,10 @@
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
 		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Staging-Enterprise.xcconfig"; sourceTree = "<group>"; };
+		83F7035F1855E7A9003DABE1 /* SHCFoldersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFoldersViewController.h; sourceTree = "<group>"; };
+		83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFoldersViewController.m; sourceTree = "<group>"; };
+		83F703641855E9E0003DABE1 /* SHCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLoginViewController.h; sourceTree = "<group>"; };
+		83F703651855E9E0003DABE1 /* SHCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +246,10 @@
 				83BAB9341855C0AC004A7BFB /* SHCMasterViewController.m */,
 				83BAB9361855C0AC004A7BFB /* SHCDetailViewController.h */,
 				83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */,
+				83F7035F1855E7A9003DABE1 /* SHCFoldersViewController.h */,
+				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
+				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
+				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -482,6 +496,8 @@
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */,
+				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +509,8 @@
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
 				83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */,
+				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +522,8 @@
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83BAB9351855C0AC004A7BFB /* SHCMasterViewController.m in Sources */,
+				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
