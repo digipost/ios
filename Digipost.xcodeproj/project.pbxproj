@@ -165,16 +165,10 @@
 		83BAB9211855C0AC004A7BFB /* Digipost */ = {
 			isa = PBXGroup;
 			children = (
-				83BAB92A1855C0AC004A7BFB /* SHCAppDelegate.h */,
-				83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */,
-				83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */,
-				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
-				83BAB9331855C0AC004A7BFB /* SHCMasterViewController.h */,
-				83BAB9341855C0AC004A7BFB /* SHCMasterViewController.m */,
-				83BAB9361855C0AC004A7BFB /* SHCDetailViewController.h */,
-				83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */,
-				83BAB9391855C0AD004A7BFB /* Images.xcassets */,
+				83F703561855DB2A003DABE1 /* Controllers */,
+				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
+				83BAB9391855C0AD004A7BFB /* Images.xcassets */,
 			);
 			path = Digipost;
 			sourceTree = "<group>";
@@ -182,6 +176,8 @@
 		83BAB9221855C0AC004A7BFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83BAB92A1855C0AC004A7BFB /* SHCAppDelegate.h */,
+				83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */,
 				83BAB9231855C0AC004A7BFB /* Digipost-Info.plist */,
 				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
 				83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */,
@@ -208,6 +204,26 @@
 				83BAB9491855C0AD004A7BFB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83F703551855DB1A003DABE1 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */,
+				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		83F703561855DB2A003DABE1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				83BAB9331855C0AC004A7BFB /* SHCMasterViewController.h */,
+				83BAB9341855C0AC004A7BFB /* SHCMasterViewController.m */,
+				83BAB9361855C0AC004A7BFB /* SHCDetailViewController.h */,
+				83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
