@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Digipost.xcscheme</key>
+		<key>Digipost-Enterprise.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Digipost-Staging.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Digipost.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +22,16 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>8375DD351855C383009435B4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>83A31AF91855D706007045B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>83BAB9171855C0AC004A7BFB</key>
 		<dict>
 			<key>primary</key>

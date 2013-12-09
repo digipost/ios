@@ -7,6 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */; };
+		8375DD381855C383009435B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
+		8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
+		8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9341855C0AC004A7BFB /* SHCMasterViewController.m */; };
+		8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
+		8375DD3D1855C383009435B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
+		8375DD3E1855C383009435B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
+		8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
+		8375DD411855C383009435B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images.xcassets */; };
+		8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
+		8375DD431855C383009435B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
+		83A31AFB1855D706007045B9 /* SHCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */; };
+		83A31AFC1855D706007045B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
+		83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
+		83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9341855C0AC004A7BFB /* SHCMasterViewController.m */; };
+		83A31B001855D706007045B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
+		83A31B011855D706007045B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
+		83A31B021855D706007045B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
+		83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
+		83A31B051855D706007045B9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images.xcassets */; };
+		83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
+		83A31B071855D706007045B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
 		83BAB91C1855C0AC004A7BFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		83BAB91E1855C0AC004A7BFB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
 		83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
@@ -36,6 +58,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8375DD471855C383009435B4 /* Digipost-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
+		83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Staging-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83BAB9181855C0AC004A7BFB /* Digipost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Digipost.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAB91B1855C0AC004A7BFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,6 +87,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8375DD3B1855C383009435B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */,
+				8375DD3D1855C383009435B4 /* UIKit.framework in Frameworks */,
+				8375DD3E1855C383009435B4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A31AFF1855D706007045B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A31B001855D706007045B9 /* CoreGraphics.framework in Frameworks */,
+				83A31B011855D706007045B9 /* UIKit.framework in Frameworks */,
+				83A31B021855D706007045B9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83BAB9151855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -99,6 +145,8 @@
 			children = (
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
 				83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */,
+				8375DD471855C383009435B4 /* Digipost-Staging.app */,
+				83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +183,8 @@
 			isa = PBXGroup;
 			children = (
 				83BAB9231855C0AC004A7BFB /* Digipost-Info.plist */,
+				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
+				83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */,
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83BAB9271855C0AC004A7BFB /* main.m */,
 				83BAB9291855C0AC004A7BFB /* Digipost-Prefix.pch */,
@@ -163,6 +213,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8375DD351855C383009435B4 /* Digipost-Staging Enterprise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging Enterprise" */;
+			buildPhases = (
+				8375DD361855C383009435B4 /* Sources */,
+				8375DD3B1855C383009435B4 /* Frameworks */,
+				8375DD3F1855C383009435B4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Digipost-Staging Enterprise";
+			productName = Digipost;
+			productReference = 8375DD471855C383009435B4 /* Digipost-Staging.app */;
+			productType = "com.apple.product-type.application";
+		};
+		83A31AF91855D706007045B9 /* Digipost-Enterprise */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost-Enterprise" */;
+			buildPhases = (
+				83A31AFA1855D706007045B9 /* Sources */,
+				83A31AFF1855D706007045B9 /* Frameworks */,
+				83A31B031855D706007045B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Digipost-Enterprise";
+			productName = Digipost;
+			productReference = 83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */;
+			productType = "com.apple.product-type.application";
+		};
 		83BAB9171855C0AC004A7BFB /* Digipost */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 83BAB9501855C0AD004A7BFB /* Build configuration list for PBXNativeTarget "Digipost" */;
@@ -208,6 +292,20 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Shortcut;
 				TargetAttributes = {
+					8375DD351855C383009435B4 = {
+						DevelopmentTeam = KMS8B8MK42;
+					};
+					83A31AF91855D706007045B9 = {
+						DevelopmentTeam = KMS8B8MK42;
+					};
+					83BAB9171855C0AC004A7BFB = {
+						DevelopmentTeam = 4E3PDM5H84;
+						SystemCapabilities = {
+							com.apple.DataProtection = {
+								enabled = 1;
+							};
+						};
+					};
 					83BAB93E1855C0AD004A7BFB = {
 						TestTargetID = 83BAB9171855C0AC004A7BFB;
 					};
@@ -227,12 +325,36 @@
 			projectRoot = "";
 			targets = (
 				83BAB9171855C0AC004A7BFB /* Digipost */,
+				83A31AF91855D706007045B9 /* Digipost-Enterprise */,
+				8375DD351855C383009435B4 /* Digipost-Staging Enterprise */,
 				83BAB93E1855C0AD004A7BFB /* DigipostTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8375DD3F1855C383009435B4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
+				8375DD411855C383009435B4 /* Images.xcassets in Resources */,
+				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
+				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A31B031855D706007045B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
+				83A31B051855D706007045B9 /* Images.xcassets in Resources */,
+				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
+				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83BAB9161855C0AC004A7BFB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -255,6 +377,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8375DD361855C383009435B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */,
+				8375DD381855C383009435B4 /* main.m in Sources */,
+				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
+				8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		83A31AFA1855D706007045B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83A31AFB1855D706007045B9 /* SHCDetailViewController.m in Sources */,
+				83A31AFC1855D706007045B9 /* main.m in Sources */,
+				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
+				83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		83BAB9141855C0AC004A7BFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,6 +464,70 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8375DD451855C383009435B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
+				PRODUCT_NAME = "Digipost-Staging";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8375DD461855C383009435B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
+				PRODUCT_NAME = "Digipost-Staging";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		83A31B091855D706007045B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
+				PRODUCT_NAME = "Digipost-Enterprise";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		83A31B0A1855D706007045B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
+				PRODUCT_NAME = "Digipost-Enterprise";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 		83BAB94E1855C0AD004A7BFB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -399,10 +607,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -412,10 +623,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -465,6 +679,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging Enterprise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8375DD451855C383009435B4 /* Debug */,
+				8375DD461855C383009435B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost-Enterprise" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83A31B091855D706007045B9 /* Debug */,
+				83A31B0A1855D706007045B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -481,6 +713,7 @@
 				83BAB9521855C0AD004A7BFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83BAB9531855C0AD004A7BFB /* Build configuration list for PBXNativeTarget "DigipostTests" */ = {
 			isa = XCConfigurationList;
@@ -489,6 +722,7 @@
 				83BAB9551855C0AD004A7BFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
