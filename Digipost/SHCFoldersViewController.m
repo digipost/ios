@@ -8,15 +8,21 @@
 
 #import "SHCFoldersViewController.h"
 
+NSString *const kPushFoldersIdentifier = @"PushFolders";
+
 @interface SHCFoldersViewController ()
 
 @end
 
 @implementation SHCFoldersViewController
 
+#pragma mark - UIViewController
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -100,6 +106,13 @@
     // Pass the selected object to the new view controller.
 }
 
- */
+*/
+
+#pragma mark - IBActions
+
+- (IBAction)didTapLogoutButton:(id)sender
+{
+    
+}
 
 @end

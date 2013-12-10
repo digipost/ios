@@ -8,11 +8,12 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController id="rS3-R9-Ivy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translucent="NO" id="yXu-0R-QUA">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="J0H-vT-0Kh" kind="relationship" relationship="rootViewController" id="4D9-Y1-Qse"/>
+                        <segue destination="2Dt-Hy-BfT" kind="relationship" relationship="rootViewController" id="yj5-wA-9kV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
@@ -60,19 +61,80 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Cn-md-YlS" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1083" y="70"/>
+            <point key="canvasLocation" x="1479" y="70"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pCU-Bh-qnC">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z05-FO-2e6">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="9fB-qu-XvY" kind="relationship" relationship="rootViewController" id="xZ4-Ca-r0Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="On7-mx-Ra5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="476" y="-722"/>
+        </scene>
+        <!--OAuth View Controller-->
+        <scene sceneID="Pcj-pr-X4N">
+            <objects>
+                <viewController id="9fB-qu-XvY" userLabel="OAuth View Controller" customClass="SHCOAuthViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2pb-Qm-yKU"/>
+                        <viewControllerLayoutGuide type="bottom" id="N1L-gO-1VU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZPk-z1-lXj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Php-Un-cUt">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <connections>
+                                    <outlet property="delegate" destination="9fB-qu-XvY" id="D4i-fh-He0"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="N1L-gO-1VU" firstAttribute="top" secondItem="Php-Un-cUt" secondAttribute="bottom" id="Tnf-mx-XoC"/>
+                            <constraint firstAttribute="trailing" secondItem="Php-Un-cUt" secondAttribute="trailing" id="YFt-gT-Scp"/>
+                            <constraint firstItem="Php-Un-cUt" firstAttribute="leading" secondItem="ZPk-z1-lXj" secondAttribute="leading" id="arA-MR-04p"/>
+                            <constraint firstItem="Php-Un-cUt" firstAttribute="top" secondItem="2pb-Qm-yKU" secondAttribute="bottom" id="esh-mt-071"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="LOGIN" id="LAx-R0-fnr">
+                        <barButtonItem key="leftBarButtonItem" title="CANCEL" id="Hnu-zz-RH5" userLabel="Cancel Bar Button Item">
+                            <connections>
+                                <segue destination="jRh-L6-T4p" kind="unwind" unwindAction="unwindToLoginViewController:" id="Afd-7M-whm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="webView" destination="Php-Un-cUt" id="aq9-Dy-1D1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YKy-34-26r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jRh-L6-T4p" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="966" y="-722"/>
         </scene>
         <!--Folders View Controller-->
         <scene sceneID="Ige-oa-FSO">
             <objects>
                 <tableViewController id="J0H-vT-0Kh" customClass="SHCFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qSR-YO-R1z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XYu-L0-Li8">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XYu-L0-Li8" id="Yaj-27-Xs6">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -85,11 +147,17 @@
                             <outlet property="delegate" destination="J0H-vT-0Kh" id="xuo-BN-9sx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="WTX-xU-z3b"/>
+                    <navigationItem key="navigationItem" id="WTX-xU-z3b">
+                        <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="tjP-df-yZW" userLabel="Logout Bar Button Item">
+                            <connections>
+                                <action selector="didTapLogoutButton:" destination="J0H-vT-0Kh" id="Gtd-Il-u4w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472" y="64"/>
+            <point key="canvasLocation" x="966" y="64"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="i79-ks-pOi">
@@ -100,24 +168,15 @@
                         <viewControllerLayoutGuide type="bottom" id="wTy-nL-Oqt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HMF-53-tLU">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
-                                <rect key="frame" x="0.0" y="234" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="197" width="320" height="110"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WIg-Lz-2kk" userLabel="Login TextField">
-                                        <rect key="frame" x="60" y="20" width="200" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="t7y-6H-HSz"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-hy-iNW" userLabel="Login Button">
-                                        <rect key="frame" x="20" y="58" width="280" height="30"/>
+                                        <rect key="frame" x="20" y="20" width="280" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="dVa-a9-1Ws"/>
@@ -126,23 +185,37 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapLoginButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="LGA-8l-cQc"/>
+                                            <segue destination="Mk0-2Z-lkG" kind="modal" identifier="PresentOAuthModally" id="AoO-Z1-Y6r"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fv5-4n-dtY" userLabel="Register Button">
+                                        <rect key="frame" x="20" y="60" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="NNs-tA-AjT"/>
+                                        </constraints>
+                                        <state key="normal" title="REGISTER_BUTTON">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapLoginButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="KQm-Hb-jnR"/>
+                                            <action selector="didTapRegisterButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="dbJ-Tp-Efc"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.8980392157" green="0.1647058824" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="WIg-Lz-2kk" secondAttribute="bottom" constant="8" id="2H0-Qc-oMQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="fv5-4n-dtY" secondAttribute="trailing" constant="20" id="2yi-RN-Cj5"/>
                                     <constraint firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="20" id="9he-GO-0JM"/>
-                                    <constraint firstItem="WIg-Lz-2kk" firstAttribute="leading" secondItem="cSK-Bb-kQC" secondAttribute="leading" constant="60" id="Qp9-5a-lAX"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="20" id="Zo0-FO-TS7"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="cSK-Bb-kQC" secondAttribute="leading" constant="20" id="hXA-n8-PlJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="WIg-Lz-2kk" secondAttribute="trailing" constant="60" id="lAt-G8-Hsa"/>
-                                    <constraint firstAttribute="height" constant="100" id="lbw-lu-dul"/>
-                                    <constraint firstItem="WIg-Lz-2kk" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="20" id="ukW-KW-Oka"/>
+                                    <constraint firstItem="fv5-4n-dtY" firstAttribute="leading" secondItem="cSK-Bb-kQC" secondAttribute="leading" constant="20" id="hbL-1K-Gr2"/>
+                                    <constraint firstAttribute="height" constant="110" id="lbw-lu-dul"/>
+                                    <constraint firstAttribute="bottom" secondItem="fv5-4n-dtY" secondAttribute="bottom" constant="20" id="nxd-Mt-lsl"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.89803921568627454" green="0.16470588235294117" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Uuv-yG-fI2"/>
@@ -150,13 +223,14 @@
                             <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" id="wfj-D3-vFB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="bC4-nA-QU9"/>
                     <connections>
-                        <outlet property="loginTextField" destination="WIg-Lz-2kk" id="WfD-7D-Quc"/>
+                        <segue destination="J0H-vT-0Kh" kind="push" identifier="PushFolders" id="cGz-Ia-Clx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eon-Zr-X9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="472" y="794"/>
+            <point key="canvasLocation" x="476" y="64"/>
         </scene>
         <!--Detail View Controller - Detail-->
         <scene sceneID="Cn3-H9-jdl">
@@ -192,7 +266,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrm-kH-fPn" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="70"/>
+            <point key="canvasLocation" x="1922" y="70"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const kPresentOAuthModallyIdentifier;
+
+@protocol SHCOAuthViewControllerDelegate;
+
 @interface SHCOAuthViewController : UIViewController
+
+@property (weak, nonatomic) id<SHCOAuthViewControllerDelegate> delegate;
+
+@end
+
+@protocol SHCOAuthViewControllerDelegate <NSObject>
+
+@required
+
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController;
 
 @end

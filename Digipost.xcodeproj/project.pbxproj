@@ -52,6 +52,24 @@
 		83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
 		83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
 		83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
+		83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */; };
+		83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */; };
+		83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */; };
+		83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
+		83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
+		83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
+		83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
+		83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
+		83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
+		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
+		83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
+		83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
+		83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* SHCOAuthManager.m */; };
+		83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* SHCOAuthManager.m */; };
+		83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* SHCOAuthManager.m */; };
+		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		83F7038718573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		83F7038818573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +119,18 @@
 		83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFoldersViewController.m; sourceTree = "<group>"; };
 		83F703641855E9E0003DABE1 /* SHCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLoginViewController.h; sourceTree = "<group>"; };
 		83F703651855E9E0003DABE1 /* SHCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLoginViewController.m; sourceTree = "<group>"; };
+		83F7036A1855FE7D003DABE1 /* UIWebView+OAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+OAuth2.h"; sourceTree = "<group>"; };
+		83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+OAuth2.m"; sourceTree = "<group>"; };
+		83F7036F1856340C003DABE1 /* Shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Shared.xcconfig; sourceTree = "<group>"; };
+		83F7037018570234003DABE1 /* NSURLRequest+QueryParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+QueryParameters.h"; sourceTree = "<group>"; };
+		83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+QueryParameters.m"; sourceTree = "<group>"; };
+		83F7037518570542003DABE1 /* NSString+RandomNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RandomNumber.h"; sourceTree = "<group>"; };
+		83F7037618570542003DABE1 /* NSString+RandomNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RandomNumber.m"; sourceTree = "<group>"; };
+		83F7037A18571A7C003DABE1 /* SHCOAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCOAuthViewController.h; sourceTree = "<group>"; };
+		83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthViewController.m; sourceTree = "<group>"; };
+		83F7037F18573641003DABE1 /* SHCOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCOAuthManager.h; sourceTree = "<group>"; };
+		83F7038018573641003DABE1 /* SHCOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthManager.m; sourceTree = "<group>"; };
+		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +216,7 @@
 		83BAB9211855C0AC004A7BFB /* Digipost */ = {
 			isa = PBXGroup;
 			children = (
+				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* Controllers */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
@@ -208,6 +239,8 @@
 				83F703571855DD3A003DABE1 /* Digipost.xcconfig */,
 				83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */,
 				83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */,
+				83F7036F1856340C003DABE1 /* Shared.xcconfig */,
+				83F7038418573C3A003DABE1 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -250,8 +283,25 @@
 				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
+				83F7037A18571A7C003DABE1 /* SHCOAuthViewController.h */,
+				83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */,
+				83F7037F18573641003DABE1 /* SHCOAuthManager.h */,
+				83F7038018573641003DABE1 /* SHCOAuthManager.m */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		83F703691855FE35003DABE1 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				83F7036A1855FE7D003DABE1 /* UIWebView+OAuth2.h */,
+				83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */,
+				83F7037018570234003DABE1 /* NSURLRequest+QueryParameters.h */,
+				83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */,
+				83F7037518570542003DABE1 /* NSString+RandomNumber.h */,
+				83F7037618570542003DABE1 /* NSString+RandomNumber.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +435,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD411855C383009435B4 /* Images.xcassets in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
@@ -396,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7038718573C3A003DABE1 /* Localizable.strings in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B051855D706007045B9 /* Images.xcassets in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
@@ -407,6 +459,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB93A1855C0AD004A7BFB /* Images.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
@@ -492,10 +545,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
+				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */,
+				83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
@@ -505,10 +563,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				83A31AFB1855D706007045B9 /* SHCDetailViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
+				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */,
+				83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
@@ -518,10 +581,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				83BAB9381855C0AD004A7BFB /* SHCDetailViewController.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
+				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83BAB9351855C0AC004A7BFB /* SHCMasterViewController.m in Sources */,
+				83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
@@ -576,6 +644,14 @@
 				83BAB94A1855C0AD004A7BFB /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		83F7038418573C3A003DABE1 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				83F7038518573C3A003DABE1 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

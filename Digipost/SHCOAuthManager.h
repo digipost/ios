@@ -10,4 +10,8 @@
 
 @interface SHCOAuthManager : NSObject
 
++ (instancetype)sharedManager;
+
+- (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+
 @end

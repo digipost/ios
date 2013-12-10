@@ -8,13 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const kOAuth2State;
-
 @interface UIWebView (OAuth2)
 
-- (void)authenticateWithClientID:(NSString *)clientID
-                     redirectURI:(NSString *)redirectURI
-                    responseType:(NSString *)responseType
-                           state:(NSString *)state;
+- (void)authenticateWithParameters:(NSDictionary *)parameters;
 
 @end

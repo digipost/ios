@@ -10,4 +10,25 @@
 
 @implementation SHCOAuthManager
 
+#pragma mark - Public methods
+
++ (instancetype)sharedManager
+{
+    static SHCOAuthManager *sharedInstance;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedInstance = [[SHCOAuthManager alloc] init];
+    });
+
+    return sharedInstance;
+}
+
+- (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    if (success) {
+        success();
+    }
+}
+
 @end
