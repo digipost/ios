@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8375DD351855C383009435B4"
-               BuildableName = "Digipost-Staging.app"
-               BlueprintName = "Digipost-Staging Enterprise"
+               BuildableName = "Digipost-Staging-Enterprise.app"
+               BlueprintName = "Digipost-Staging-Enterprise"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,8 +33,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8375DD351855C383009435B4"
-            BuildableName = "Digipost-Staging.app"
-            BlueprintName = "Digipost-Staging Enterprise"
+            BuildableName = "Digipost-Staging-Enterprise.app"
+            BlueprintName = "Digipost-Staging-Enterprise"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,11 +52,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8375DD351855C383009435B4"
-            BuildableName = "Digipost-Staging.app"
-            BlueprintName = "Digipost-Staging Enterprise"
+            BuildableName = "Digipost-Staging-Enterprise.app"
+            BlueprintName = "Digipost-Staging-Enterprise"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "XcodeColors"
+            value = "YES"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -70,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8375DD351855C383009435B4"
-            BuildableName = "Digipost-Staging.app"
-            BlueprintName = "Digipost-Staging Enterprise"
+            BuildableName = "Digipost-Staging-Enterprise.app"
+            BlueprintName = "Digipost-Staging-Enterprise"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */; };
 		8375DD381855C383009435B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
@@ -86,7 +87,7 @@
 /* Begin PBXFileReference section */
 		1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		8375DD471855C383009435B4 /* Digipost-Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Staging-Enterprise-Info.plist"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 				8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */,
 				8375DD3D1855C383009435B4 /* UIKit.framework in Frameworks */,
 				8375DD3E1855C383009435B4 /* Foundation.framework in Frameworks */,
+				2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +197,7 @@
 			children = (
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
 				83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */,
-				8375DD471855C383009435B4 /* Digipost-Staging.app */,
+				8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */,
 				83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */,
 			);
 			name = Products;
@@ -307,21 +309,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8375DD351855C383009435B4 /* Digipost-Staging Enterprise */ = {
+		8375DD351855C383009435B4 /* Digipost-Staging-Enterprise */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging Enterprise" */;
+			buildConfigurationList = 8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging-Enterprise" */;
 			buildPhases = (
+				2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */,
 				8375DD361855C383009435B4 /* Sources */,
 				8375DD3B1855C383009435B4 /* Frameworks */,
 				8375DD3F1855C383009435B4 /* Resources */,
+				D9DF57046D584E96910A2EF6 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Digipost-Staging Enterprise";
+			name = "Digipost-Staging-Enterprise";
 			productName = Digipost;
-			productReference = 8375DD471855C383009435B4 /* Digipost-Staging.app */;
+			productReference = 8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */;
 			productType = "com.apple.product-type.application";
 		};
 		83A31AF91855D706007045B9 /* Digipost-Enterprise */ = {
@@ -424,7 +428,7 @@
 			targets = (
 				83BAB9171855C0AC004A7BFB /* Digipost */,
 				83A31AF91855D706007045B9 /* Digipost-Enterprise */,
-				8375DD351855C383009435B4 /* Digipost-Staging Enterprise */,
+				8375DD351855C383009435B4 /* Digipost-Staging-Enterprise */,
 				83BAB93E1855C0AD004A7BFB /* DigipostTests */,
 			);
 		};
@@ -478,6 +482,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		5E75E61529884F13ABC62E42 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -521,6 +540,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D9DF57046D584E96910A2EF6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E902CF5D7D404E379E086565 /* Copy Pods Resources */ = {
@@ -668,7 +702,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
-				PRODUCT_NAME = "Digipost-Staging";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -685,7 +719,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
-				PRODUCT_NAME = "Digipost-Staging";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -702,7 +736,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
-				PRODUCT_NAME = "Digipost-Enterprise";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -719,7 +753,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
-				PRODUCT_NAME = "Digipost-Enterprise";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -878,7 +912,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging Enterprise" */ = {
+		8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging-Enterprise" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8375DD451855C383009435B4 /* Debug */,
