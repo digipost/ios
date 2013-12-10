@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Digipost
+
+  Created by Eivind Bohler on 10.12.13.
+  Copyright (c) 2013 Shortcut. All rights reserved.
+*/
+
+/* Error */
+"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_ERROR_TITLE" = "Error";
+
+/* OK */
+"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_OK_BUTTON_TITLE" = "OK";
