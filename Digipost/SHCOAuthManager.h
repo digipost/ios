@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString *const kOAuth2ClientID;
+extern NSString *const kOAuth2RedirectURI;
+extern NSString *const kOAuth2ResponseType;
+extern NSString *const kOAuth2State;
+extern NSString *const kOAuth2Code;
+
 @interface SHCOAuthManager : NSObject
 
 + (instancetype)sharedManager;

@@ -15,12 +15,6 @@
 
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
-NSString *const kOAuth2ClientID = @"client_id";
-NSString *const kOAuth2RedirectURI = @"redirect_uri";
-NSString *const kOAuth2ResponseType = @"response_type";
-NSString *const kOAuth2State = @"state";
-NSString *const kOAuth2Code = @"code";
-
 @interface SHCOAuthViewController () <UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;

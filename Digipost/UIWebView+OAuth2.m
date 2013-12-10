@@ -13,7 +13,7 @@
 
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
-    NSString *URLString = [__SERVER_URL__ stringByAppendingPathComponent:__AUTHENTICATION_URL__];
+    NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
 
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
                                                                           URLString:URLString
