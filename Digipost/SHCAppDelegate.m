@@ -17,6 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:229.0/255.0 green:42.0/255.0 blue:19.0/255.0 alpha:1.0]];
+
     [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
                                                          liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
                                                                delegate:self];
