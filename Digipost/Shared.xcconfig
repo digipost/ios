@@ -1,0 +1,13 @@
+//
+//  Shared.xcconfig
+//  Digipost
+//
+//  Created by Eivind Bohler on 09.12.13.
+//  Copyright (c) 2013 Shortcut. All rights reserved.
+//
+
+#include "Pods/Pods.xcconfig"
+
+AUTHENTICATION_URL = \@\"/post/api/oauth/authorize/new\"
+
+SHARED_GCC_PREPROCESSOR_DEFINITIONS = $(inherited) __AUTHENTICATION_URL__=$(AUTHENTICATION_URL)
