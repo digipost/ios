@@ -24,18 +24,21 @@ PODS:
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
   - HockeySDK (3.5.0)
+  - LUKeychainAccess (1.2.0)
   - UIAlertView+Blocks (0.7)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
   - CocoaLumberjack (~> 1.6.5.1)
   - HockeySDK (~> 3.5.0)
+  - LUKeychainAccess (~> 1.2.0)
   - UIAlertView+Blocks (~> 0.7)
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
   CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
   HockeySDK: 685e6ca0b78668ef8b595fba17fe087ea6074b05
+  LUKeychainAccess: 87c5398528278a5f24956b61bb459ea97bd93b6a
   UIAlertView+Blocks: 7e876c2bace976306640443745b57912565d840d
 
 COCOAPODS: 0.28.0
