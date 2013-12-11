@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		8342EFBA185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
+		8342EFBB185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
+		8342EFBC185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
 		8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */; };
 		8375DD381855C383009435B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
@@ -87,6 +90,8 @@
 /* Begin PBXFileReference section */
 		1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8342EFB8185861A80080A833 /* SHCNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNetworkClient.h; sourceTree = "<group>"; };
+		8342EFB9185861A80080A833 /* SHCNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNetworkClient.m; sourceTree = "<group>"; };
 		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
@@ -289,6 +294,8 @@
 				83F7038018573641003DABE1 /* SHCOAuthManager.m */,
 				83F7037A18571A7C003DABE1 /* SHCOAuthViewController.h */,
 				83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */,
+				8342EFB8185861A80080A833 /* SHCNetworkClient.h */,
+				8342EFB9185861A80080A833 /* SHCNetworkClient.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -587,6 +594,7 @@
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */,
 				83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				8342EFBC185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -605,6 +613,7 @@
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */,
 				83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				8342EFBB185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -623,6 +632,7 @@
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83BAB9351855C0AC004A7BFB /* SHCMasterViewController.m in Sources */,
 				83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
+				8342EFBA185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,

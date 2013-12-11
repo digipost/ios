@@ -7,6 +7,7 @@
 //
 
 #import "SHCFoldersViewController.h"
+#import "SHCNetworkClient.h"
 
 NSString *const kFoldersViewControllerIndetifier = @"FoldersViewController";
 NSString *const kPushFoldersIdentifier = @"PushFolders";
@@ -24,6 +25,12 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
     [super viewDidLoad];
 
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
+
+    [[SHCNetworkClient sharedClient] updateRootResourceWithSuccess:^{
+
+    } failure:^(NSError *error) {
+
+    }];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
