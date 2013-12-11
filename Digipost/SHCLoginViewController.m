@@ -9,6 +9,7 @@
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
 #import "SHCFoldersViewController.h"
+#import "SHCOAuthManager.h"
 
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
@@ -17,6 +18,16 @@
 @implementation SHCLoginViewController
 
 #pragma mark - UIViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    if ([SHCOAuthManager sharedManager].refreshToken) {
+        SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIndetifier];
+        [self.navigationController pushViewController:foldersViewController animated:NO];
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

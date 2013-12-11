@@ -35,8 +35,6 @@ typedef enum {
 @interface SHCOAuthManager ()
 
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
-@property (copy, nonatomic) NSString *accessToken;
-@property (copy, nonatomic) NSString *refreshToken;
 
 @end
 
@@ -95,12 +93,9 @@ typedef enum {
     self.accessToken = nil;
     self.refreshToken = nil;
 
-    NSString *nonce = [NSString randomNumberString];
-
     NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2Code,
                                  kOAuth2Code: code,
-                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__,
-                                 kOAuth2Nonce: nonce};
+                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
 
     NSURLSessionDataTask *task = [self.sessionManager POST:__ACCESS_TOKEN_URI__
                                                 parameters:parameters
@@ -119,6 +114,47 @@ typedef enum {
 
                                                                // We only call the success block if the access token is set.
                                                                // The refresh token is not strictly neccesary at this point.
+                                                               if (success) {
+                                                                   success();
+                                                                   return;
+                                                               }
+                                                           }
+                                                       }
+
+                                                       if (failure) {
+                                                           NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                                                code:SHCOAuthErrorCodeInvalidAccessTokenResponse
+                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_INVALID_ACCESS_TOKEN_RESPONSE", @"Invalid access token response")}];
+                                                           failure(error);
+                                                       }
+
+                                                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                       if (failure) {
+                                                           failure(error);
+                                                       }
+                                                   }];
+    [task resume];
+}
+
+- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    // First, remove previous access token
+    self.accessToken = nil;
+
+    NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2RefreshToken,
+                                 kOAuth2RefreshToken: refreshToken,
+                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
+
+    NSURLSessionDataTask *task = [self.sessionManager POST:__ACCESS_TOKEN_URI__
+                                                parameters:parameters
+                                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                                       NSDictionary *responseDict = (NSDictionary *)responseObject;
+                                                       if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                                                           NSString *accessToken = responseDict[kOAuth2AccessToken];
+                                                           if ([accessToken isKindOfClass:[NSString class]]) {
+                                                               self.accessToken = accessToken;
+
                                                                if (success) {
                                                                    success();
                                                                    return;

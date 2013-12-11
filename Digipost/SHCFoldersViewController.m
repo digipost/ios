@@ -8,6 +8,7 @@
 
 #import "SHCFoldersViewController.h"
 
+NSString *const kFoldersViewControllerIndetifier = @"FoldersViewController";
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 
 @interface SHCFoldersViewController ()
