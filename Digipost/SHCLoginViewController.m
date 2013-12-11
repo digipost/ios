@@ -11,6 +11,8 @@
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
 
+extern NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
+
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
 @end
@@ -23,9 +25,26 @@
 {
     [super viewDidLoad];
 
+    @try {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"%@: %@", @"Caught an exception", exception);
+    }
+
     if ([SHCOAuthManager sharedManager].refreshToken) {
         SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIndetifier];
         [self.navigationController pushViewController:foldersViewController animated:NO];
+    }
+}
+
+- (void)dealloc
+{
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kPopToLoginViewControllerNotificationName object:nil];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"%@: %@", @"Caught an exception", exception);
     }
 }
 
@@ -61,6 +80,11 @@
 - (void)register
 {
     // TODO: open register page in Safari
+}
+
+- (void)popToSelf:(NSNotification *)notification
+{
+    [self.navigationController popToViewController:self animated:YES];
 }
 
 @end

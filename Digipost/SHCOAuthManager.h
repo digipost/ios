@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+// Digipost OAuth2 API consts
 extern NSString *const kOAuth2ClientID;
 extern NSString *const kOAuth2RedirectURI;
 extern NSString *const kOAuth2ResponseType;

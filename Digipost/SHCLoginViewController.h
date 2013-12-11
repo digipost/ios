@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const kPopToLoginViewControllerNotificationName;
+
 @interface SHCLoginViewController : UIViewController
 
 @end

@@ -15,5 +15,14 @@
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
 
-/* Invalid access token response */
-"OAUTH_MANAGER_INVALID_ACCESS_TOKEN_RESPONSE" = "Invalid access token response";
+/* Missing access token response */
+"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Missing access token response";
+
+/* Refresh token invalid title */
+"GENERIC_REFRESH_TOKEN_INVALID_TITLE" = "Session expired";
+
+/* Refresh token invalid message */
+"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE" = "The current session has expired.\nPlease log in again.";
+
+/* OK */
+"GENERIC_ALERT_VIEW_OK_BUTTON_TITLE" = "OK";

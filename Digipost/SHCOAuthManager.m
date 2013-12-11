@@ -10,6 +10,13 @@
 #import "SHCOAuthManager.h"
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
+#import "UIAlertView+Blocks.h"
+#import "SHCLoginViewController.h"
+
+// Custom NSError code enum
+typedef enum {
+    SHCOAuthErrorCodeMissingAccessTokenResponse = 1,
+} SHCOAuthErrorCode;
 
 // Digipost OAuth2 API consts
 NSString *const kOAuth2ClientID = @"client_id";
@@ -27,10 +34,6 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 
 // Custom NSError consts
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
-
-typedef enum {
-    SHCOAuthErrorCodeInvalidAccessTokenResponse = 1
-} SHCOAuthErrorCode;
 
 @interface SHCOAuthManager ()
 
@@ -123,8 +126,8 @@ typedef enum {
 
                                                        if (failure) {
                                                            NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                                                code:SHCOAuthErrorCodeInvalidAccessTokenResponse
-                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_INVALID_ACCESS_TOKEN_RESPONSE", @"Invalid access token response")}];
+                                                                                                code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
                                                            failure(error);
                                                        }
 
@@ -133,6 +136,9 @@ typedef enum {
                                                            failure(error);
                                                        }
                                                    }];
+
+    DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
+
     [task resume];
 }
 
@@ -164,16 +170,43 @@ typedef enum {
 
                                                        if (failure) {
                                                            NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                                                code:SHCOAuthErrorCodeInvalidAccessTokenResponse
-                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_INVALID_ACCESS_TOKEN_RESPONSE", @"Invalid access token response")}];
+                                                                                                code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
                                                            failure(error);
                                                        }
 
                                                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                                       // Check to see if the request failed because the refresh token was denied
+                                                       NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
+                                                       if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                           if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+                                                               self.accessToken = nil;
+                                                               self.refreshToken = nil;
+
+                                                               // The refresh token was rejected, most likely because the user invalidated
+                                                               // the session in the www.digipost.no web settings interface.
+                                                               [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title")
+                                                                                  message:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")
+                                                                        cancelButtonTitle:nil
+                                                                        otherButtonTitles:@[NSLocalizedString(@"GENERIC_ALERT_VIEW_OK_BUTTON_TITLE", @"OK")]
+                                                                                 tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                                                     [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+                                                                                 }];
+
+                                                               if (failure) {
+                                                                   failure(error);
+                                                                   return;
+                                                               }
+                                                           }
+                                                       }
+
                                                        if (failure) {
                                                            failure(error);
                                                        }
                                                    }];
+
+    DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
+
     [task resume];
 }
 
