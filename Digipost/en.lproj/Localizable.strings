@@ -14,3 +14,6 @@
 
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
+
+/* Invalid access token response */
+"OAUTH_MANAGER_INVALID_ACCESS_TOKEN_RESPONSE" = "Invalid access token response";
