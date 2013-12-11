@@ -12,6 +12,9 @@
 		8342EFBA185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
 		8342EFBB185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
 		8342EFBC185861A80080A833 /* SHCNetworkClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCNetworkClient.m */; };
+		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
+		8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
+		8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9371855C0AD004A7BFB /* SHCDetailViewController.m */; };
 		8375DD381855C383009435B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
@@ -92,6 +95,7 @@
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8342EFB8185861A80080A833 /* SHCNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNetworkClient.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* SHCNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNetworkClient.m; sourceTree = "<group>"; };
+		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodeld; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
@@ -186,6 +190,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8342EFBD1858CDA40080A833 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		83BAB90F1855C0AC004A7BFB = {
 			isa = PBXGroup;
 			children = (
@@ -223,6 +234,7 @@
 		83BAB9211855C0AC004A7BFB /* Digipost */ = {
 			isa = PBXGroup;
 			children = (
+				8342EFBD1858CDA40080A833 /* Models */,
 				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* Controllers */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
@@ -248,6 +260,7 @@
 				83F7036F1856340C003DABE1 /* Shared.xcconfig */,
 				83BAB92A1855C0AC004A7BFB /* SHCAppDelegate.h */,
 				83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */,
+				8342EFBE1858CE180080A833 /* Model.xcdatamodeld */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -597,6 +610,7 @@
 				8342EFBC185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,6 +630,7 @@
 				8342EFBB185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,6 +650,7 @@
 				8342EFBA185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
+				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -968,6 +984,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
+			);
+			currentVersion = 8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 83BAB9101855C0AC004A7BFB /* Project object */;
 }
