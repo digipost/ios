@@ -53,6 +53,21 @@
 		83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9491855C0AD004A7BFB /* InfoPlist.strings */; };
 		83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB94C1855C0AD004A7BFB /* DigipostTests.m */; };
+		83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
+		83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
+		83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
+		83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
+		83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
+		83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
+		83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
+		83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
+		83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
+		83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
+		83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
+		83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
+		83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
+		83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
+		83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
 		83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
@@ -95,7 +110,7 @@
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8342EFB8185861A80080A833 /* SHCNetworkClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNetworkClient.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* SHCNetworkClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNetworkClient.m; sourceTree = "<group>"; };
-		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodeld; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
+		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
@@ -122,6 +137,16 @@
 		83BAB9481855C0AD004A7BFB /* DigipostTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DigipostTests-Info.plist"; sourceTree = "<group>"; };
 		83BAB94A1855C0AD004A7BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83BAB94C1855C0AD004A7BFB /* DigipostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DigipostTests.m; sourceTree = "<group>"; };
+		83D75F521858E5790013F8C9 /* SHCDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocument.h; sourceTree = "<group>"; };
+		83D75F531858E5790013F8C9 /* SHCDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocument.m; sourceTree = "<group>"; };
+		83D75F571858E5790013F8C9 /* SHCFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolder.h; sourceTree = "<group>"; };
+		83D75F581858E5790013F8C9 /* SHCFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFolder.m; sourceTree = "<group>"; };
+		83D75F5C1858E5790013F8C9 /* SHCAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAttachment.h; sourceTree = "<group>"; };
+		83D75F5D1858E5790013F8C9 /* SHCAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAttachment.m; sourceTree = "<group>"; };
+		83D75F611858E5790013F8C9 /* SHCMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCMailbox.h; sourceTree = "<group>"; };
+		83D75F621858E5790013F8C9 /* SHCMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCMailbox.m; sourceTree = "<group>"; };
+		83D75F661858E5790013F8C9 /* SHCRootResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCRootResource.h; sourceTree = "<group>"; };
+		83D75F671858E5790013F8C9 /* SHCRootResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCRootResource.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
 		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Staging-Enterprise.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +218,16 @@
 		8342EFBD1858CDA40080A833 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				83D75F661858E5790013F8C9 /* SHCRootResource.h */,
+				83D75F671858E5790013F8C9 /* SHCRootResource.m */,
+				83D75F611858E5790013F8C9 /* SHCMailbox.h */,
+				83D75F621858E5790013F8C9 /* SHCMailbox.m */,
+				83D75F5C1858E5790013F8C9 /* SHCAttachment.h */,
+				83D75F5D1858E5790013F8C9 /* SHCAttachment.m */,
+				83D75F571858E5790013F8C9 /* SHCFolder.h */,
+				83D75F581858E5790013F8C9 /* SHCFolder.m */,
+				83D75F521858E5790013F8C9 /* SHCDocument.h */,
+				83D75F531858E5790013F8C9 /* SHCDocument.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -600,15 +635,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8375DD371855C383009435B4 /* SHCDetailViewController.m in Sources */,
+				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
+				83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				8375DD3A1855C383009435B4 /* SHCMasterViewController.m in Sources */,
+				83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBC185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -620,15 +660,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				83A31AFB1855D706007045B9 /* SHCDetailViewController.m in Sources */,
+				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
+				83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83A31AFE1855D706007045B9 /* SHCMasterViewController.m in Sources */,
+				83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBB185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -640,15 +685,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				83BAB9381855C0AD004A7BFB /* SHCDetailViewController.m in Sources */,
+				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
+				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83BAB9351855C0AC004A7BFB /* SHCMasterViewController.m in Sources */,
+				83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBA185861A80080A833 /* SHCNetworkClient.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
