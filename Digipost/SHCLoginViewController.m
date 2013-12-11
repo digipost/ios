@@ -11,7 +11,11 @@
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
 
-extern NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
+// Notification names
+NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
+
+// Google Analytics screen name
+NSString *const kLoginViewControllerScreenName = @"Login";
 
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
@@ -25,6 +29,8 @@ extern NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginV
 {
     [super viewDidLoad];
 
+    self.screenName = kLoginViewControllerScreenName;
+
     @try {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
     }
@@ -33,7 +39,7 @@ extern NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginV
     }
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
-        SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIndetifier];
+        SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         [self.navigationController pushViewController:foldersViewController animated:NO];
     }
 }

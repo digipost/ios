@@ -14,9 +14,9 @@
 #import "SHCLoginViewController.h"
 
 // Custom NSError code enum
-typedef enum {
+typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
     SHCOAuthErrorCodeMissingAccessTokenResponse = 1,
-} SHCOAuthErrorCode;
+};
 
 // Digipost OAuth2 API consts
 NSString *const kOAuth2ClientID = @"client_id";

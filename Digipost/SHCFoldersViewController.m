@@ -9,8 +9,14 @@
 #import "SHCFoldersViewController.h"
 #import "SHCNetworkClient.h"
 
-NSString *const kFoldersViewControllerIndetifier = @"FoldersViewController";
+// Storyboard identifiers (to enable programmatic storyboard instantiation)
+NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
+
+// Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
+
+// Google Analytics screen name
+NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 @interface SHCFoldersViewController ()
 
@@ -23,6 +29,8 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.screenName = kFoldersViewControllerScreenName;
 
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 
@@ -120,7 +128,7 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 
 - (IBAction)didTapLogoutButton:(id)sender
 {
-    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
