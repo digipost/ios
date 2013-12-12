@@ -7,8 +7,10 @@
 //
 
 #import <AFNetworking/AFHTTPSessionManager.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "SHCNetworkClient.h"
 #import "SHCOAuthManager.h"
+#import "SHCModelManager.h"
 
 @interface SHCNetworkClient ()
 
@@ -24,6 +26,9 @@
 {
     self = [super init];
     if (self) {
+
+        [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
                                                    sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
@@ -62,8 +67,14 @@
         NSURLSessionDataTask *task = [self.sessionManager GET:__ROOT_RESOURCE_URI__
                                                    parameters:nil
                                                       success:^(NSURLSessionDataTask *task, id responseObject) {
-                                                          if (success) {
-                                                              success();
+                                                          NSDictionary *responseDict = (NSDictionary *)responseObject;
+                                                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                                                              [[SHCModelManager sharedManager] updateModelsWithAttributes:responseDict];
+
+                                                              if (success) {
+                                                                  success();
+                                                              }
                                                           }
                                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
                                                           if (failure) {

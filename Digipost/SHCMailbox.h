@@ -15,12 +15,14 @@
 @interface SHCMailbox : NSManagedObject
 
 // Attributes
-@property (strong, nonatomic) NSNumber *order;
+@property (strong, nonatomic) NSString *digipostAddress;
 @property (strong, nonatomic) NSNumber *owner;
 
 // Relationships
 @property (strong, nonatomic) NSSet *folders;
 @property (strong, nonatomic) SHCRootResource *rootResource;
+
++ (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 

@@ -19,6 +19,8 @@
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;
 
++ (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 @end
 
 @interface SHCRootResource (CoreDataGeneratedAccessors)

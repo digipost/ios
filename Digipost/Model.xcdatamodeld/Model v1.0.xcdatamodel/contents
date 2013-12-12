@@ -19,11 +19,12 @@
     </entity>
     <entity name="Folder" representedClassName="SHCFolder" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <entity name="Mailbox" representedClassName="SHCMailbox" syncable="YES">
-        <attribute name="order" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="digipostAddress" attributeType="String" syncable="YES"/>
         <attribute name="owner" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="folders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Folder" inverseName="mailbox" inverseEntity="Folder" syncable="YES"/>
         <relationship name="rootResource" maxCount="1" deletionRule="Nullify" destinationEntity="RootResource" inverseName="mailboxes" inverseEntity="RootResource" syncable="YES"/>

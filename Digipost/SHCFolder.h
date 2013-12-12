@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Hard-coded folder names that we'll use until all folders are made dynamic in the Digipost system
+extern NSString *const kFolderInboxName;
+extern NSString *const kFolderWorkAreaName;
+extern NSString *const kFolderArchiveName;
+
 @class SHCDocument;
 @class SHCMailbox;
 
@@ -16,10 +21,13 @@
 
 // Attributes
 @property (strong, nonatomic) NSString *name;
+@property (strong, nonatomic) NSString *uri;
 
 // Relationships
 @property (strong, nonatomic) NSSet *documents;
 @property (strong, nonatomic) SHCMailbox *mailbox;
+
++ (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 
