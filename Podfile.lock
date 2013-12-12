@@ -26,6 +26,7 @@ PODS:
   - GoogleAnalytics-iOS-SDK (3.0.2)
   - HockeySDK (3.5.0)
   - LUKeychainAccess (1.2.0)
+  - UIActionSheet+Blocks (0.7)
   - UIAlertView+Blocks (0.7)
 
 DEPENDENCIES:
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (~> 3.0.2)
   - HockeySDK (~> 3.5.0)
   - LUKeychainAccess (~> 1.2.0)
+  - UIActionSheet+Blocks (~> 0.7)
   - UIAlertView+Blocks (~> 0.7)
 
 SPEC CHECKSUMS:
@@ -42,6 +44,7 @@ SPEC CHECKSUMS:
   GoogleAnalytics-iOS-SDK: 86393b99f7328ae8d8e975fcaa8632a39dafafe8
   HockeySDK: 685e6ca0b78668ef8b595fba17fe087ea6074b05
   LUKeychainAccess: 87c5398528278a5f24956b61bb459ea97bd93b6a
+  UIActionSheet+Blocks: 18f5e0516e494d005ddafdbaf373edeafd9445c9
   UIAlertView+Blocks: 7e876c2bace976306640443745b57912565d840d
 
 COCOAPODS: 0.28.0
