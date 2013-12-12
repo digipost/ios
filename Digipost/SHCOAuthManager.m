@@ -93,7 +93,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 - (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // First, remove any previous access and refresh tokens
-    self.accessToken = nil;
+    _accessToken = nil;
     self.refreshToken = nil;
 
     NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2Code,
@@ -113,7 +113,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
                                                            NSString *accessToken = responseDict[kOAuth2AccessToken];
                                                            if ([accessToken isKindOfClass:[NSString class]]) {
-                                                               self.accessToken = accessToken;
+                                                               _accessToken = accessToken;
 
                                                                // We only call the success block if the access token is set.
                                                                // The refresh token is not strictly neccesary at this point.
@@ -145,7 +145,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // First, remove previous access token
-    self.accessToken = nil;
+    _accessToken = nil;
 
     NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2RefreshToken,
                                  kOAuth2RefreshToken: refreshToken,
@@ -159,7 +159,9 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
                                                            NSString *accessToken = responseDict[kOAuth2AccessToken];
                                                            if ([accessToken isKindOfClass:[NSString class]]) {
-                                                               self.accessToken = accessToken;
+                                                               _accessToken = accessToken;
+
+                                                               DDLogDebug(@"Access token updated");
 
                                                                if (success) {
                                                                    success();
@@ -180,8 +182,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                        NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
                                                        if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
                                                            if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
-                                                               self.accessToken = nil;
-                                                               self.refreshToken = nil;
+
+                                                               [self removeAllTokens];
 
                                                                // The refresh token was rejected, most likely because the user invalidated
                                                                // the session in the www.digipost.no web settings interface.
@@ -192,11 +194,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                                                      [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
                                                                                  }];
-
-                                                               if (failure) {
-                                                                   failure(error);
-                                                                   return;
-                                                               }
+                                                               return;
                                                            }
                                                        }
 
@@ -208,6 +206,21 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
 
     [task resume];
+}
+
+- (void)removeAccessToken
+{
+    _accessToken = nil;
+
+    DDLogDebug(@"Access token removed");
+}
+
+- (void)removeAllTokens
+{
+    _accessToken = nil;
+    self.refreshToken = nil;
+
+    DDLogDebug(@"All tokens removed");
 }
 
 @end

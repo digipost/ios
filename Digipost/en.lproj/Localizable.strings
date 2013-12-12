@@ -29,3 +29,9 @@
 
 /* Log In */
 "OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE" = "Log In";
+
+/* Register title */
+"LOGIN_VIEW_CONTROLLER_REGISTER_TITLE" = "Do you want to leave the Digipost app and open the registration page in Safari?";
+
+/* Open in Safari */
+"LOGIN_VIEW_CONTROLLER_REGISTER_OPEN_IN_SAFARI_TITLE" = "Open in Safari";

@@ -10,6 +10,7 @@
 #import "SHCOAuthViewController.h"
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
+#import "UIActionSheet+Blocks.h"
 
 // Notification names
 NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
@@ -74,7 +75,19 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapRegisterButton:(UIButton *)sender
 {
-    [self register];
+    [UIActionSheet showFromRect:sender.frame
+                         inView:self.view
+                       animated:YES
+                      withTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_TITLE", @"Register title")
+              cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+         destructiveButtonTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_OPEN_IN_SAFARI_TITLE", @"Open in Safari")
+              otherButtonTitles:nil
+                       tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                           if (buttonIndex == 0) {
+                               NSURL *url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
+                               [[UIApplication sharedApplication] openURL:url];
+                           }
+                       }];
 }
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
@@ -82,11 +95,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 }
 
 #pragma mark - Private methods
-
-- (void)register
-{
-    // TODO: open register page in Safari
-}
 
 - (void)popToSelf:(NSNotification *)notification
 {

@@ -77,6 +77,31 @@
                                                               }
                                                           }
                                                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+                                                          // Check to see if the request failed because the access token was rejected
+                                                          NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
+                                                          if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                              if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+
+                                                                  // The access token was rejected - let's remove it...
+                                                                  [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                                                                  // And recursively call this method to force a renewal of the access token
+                                                                  [self updateRootResourceWithSuccess:^{
+                                                                      if (success) {
+                                                                          success();
+                                                                      }
+                                                                  } failure:^(NSError *error) {
+                                                                      if (failure) {
+                                                                          failure(error);
+                                                                      }
+                                                                  }];
+
+                                                                  return;
+                                                              }
+                                                          }
+
+
                                                           if (failure) {
                                                               failure(error);
                                                           }

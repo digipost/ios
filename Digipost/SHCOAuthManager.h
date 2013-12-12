@@ -17,12 +17,14 @@ extern NSString *const kOAuth2Code;
 
 @interface SHCOAuthManager : NSObject
 
-@property (copy, nonatomic) NSString *accessToken;
-@property (copy, nonatomic) NSString *refreshToken;
+@property (copy, nonatomic, readonly) NSString *accessToken;
+@property (copy, nonatomic, readonly) NSString *refreshToken;
 
 + (instancetype)sharedManager;
 
 - (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)removeAccessToken;
+- (void)removeAllTokens;
 
 @end

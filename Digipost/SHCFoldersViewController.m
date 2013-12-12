@@ -16,6 +16,8 @@
 #import "SHCFolderTableViewCell.h"
 #import "SHCFolder.h"
 #import "UIAlertView+Blocks.h"
+#import "SHCOAuthManager.h"
+#import "SHCLoginViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -163,7 +165,9 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (IBAction)didTapLogoutButton:(id)sender
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    [[SHCOAuthManager sharedManager] removeAllTokens];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
 }
 
 #pragma mark - Private methods
