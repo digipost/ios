@@ -7,10 +7,13 @@
 */
 
 /* Error */
-"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_ERROR_TITLE" = "Error";
+"GENERIC_ERROR_TITLE" = "Error";
 
 /* OK */
-"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_OK_BUTTON_TITLE" = "OK";
+"GENERIC_OK_BUTTON_TITLE" = "OK";
+
+/* Cancel */
+"GENERIC_CANCEL_BUTTON_TITLE" = "Cancel";
 
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
@@ -24,5 +27,5 @@
 /* Refresh token invalid message */
 "GENERIC_REFRESH_TOKEN_INVALID_MESSAGE" = "The current session has expired.\nPlease log in again.";
 
-/* OK */
-"GENERIC_ALERT_VIEW_OK_BUTTON_TITLE" = "OK";
+/* Log In */
+"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE" = "Log In";

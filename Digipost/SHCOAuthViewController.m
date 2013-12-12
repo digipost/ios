@@ -30,6 +30,9 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 {
     [super viewDidLoad];
 
+    self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Log In");
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
+
     [self presentAuthenticationWebView];
 }
 
@@ -72,10 +75,10 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
                 }];
 
             } failure:^(NSError *error) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_ERROR_TITLE", @"Error")
+                [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
                                    message:[error localizedDescription]
                          cancelButtonTitle:nil
-                         otherButtonTitles:@[NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_AUTHENTICATE_WITH_CODE_OK_BUTTON_TITLE", @"OK")]
+                         otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
                                   tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self presentAuthenticationWebView];
                                   }];

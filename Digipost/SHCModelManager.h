@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
 @interface SHCModelManager : NSObject
+
+@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
 + (instancetype)sharedManager;
 
 - (void)updateModelsWithAttributes:(NSDictionary *)attributes;
+- (NSEntityDescription *)folderEntity;
+- (NSDate *)rootResourceCreatedAt;
 
 @end

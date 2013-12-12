@@ -35,7 +35,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
     }
     @catch (NSException *exception) {
-        DDLogWarn(@"%@: %@", @"Caught an exception", exception);
+        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
@@ -50,7 +50,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kPopToLoginViewControllerNotificationName object:nil];
     }
     @catch (NSException *exception) {
-        DDLogWarn(@"%@: %@", @"Caught an exception", exception);
+        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 

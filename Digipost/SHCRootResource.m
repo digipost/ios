@@ -20,6 +20,7 @@ NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
 
 // Attributes
 @dynamic authenticationLevel;
+@dynamic createdAt;
 
 // Relationships
 @dynamic mailboxes;
@@ -36,6 +37,8 @@ NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
     NSNumber *authenticationLevel = attributes[kRootResourceAuthenticationLevelAPIKey];
     rootResource.authenticationLevel = [authenticationLevel isKindOfClass:[NSNumber class]] ? authenticationLevel : nil;
 
+    rootResource.createdAt = [NSDate date];
+
     NSArray *mailboxesArray = attributes[kRootResourceMailboxesAPIKey];
     if ([mailboxesArray isKindOfClass:[NSArray class]]) {
         for (NSDictionary *mailboxDict in mailboxesArray) {
@@ -48,6 +51,29 @@ NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
     }
 
     return rootResource;
+}
+
++ (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:managedObjectContext];
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = entity;
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    }
+
+    for (SHCRootResource *rootResource in results) {
+        [managedObjectContext deleteObject:rootResource];
+    }
+
+    error = nil;
+    if (![managedObjectContext save:&error]) {
+        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+    }
 }
 
 @end

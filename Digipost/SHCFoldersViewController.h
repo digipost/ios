@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GAI.h>
 
 extern NSString *const kFoldersViewControllerIdentifier;
 extern NSString *const kPushFoldersIdentifier;
 
-@interface SHCFoldersViewController : GAITrackedViewController
+@interface SHCFoldersViewController : UITableViewController
 
 @end

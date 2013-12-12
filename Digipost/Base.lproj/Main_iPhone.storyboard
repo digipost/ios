@@ -67,7 +67,9 @@
         <scene sceneID="pCU-Bh-qnC">
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z05-FO-2e6">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -87,11 +89,11 @@
                         <viewControllerLayoutGuide type="bottom" id="N1L-gO-1VU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZPk-z1-lXj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Php-Un-cUt">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <webView contentMode="scaleToFill" misplaced="YES" allowsInlineMediaPlayback="NO" mediaPlaybackRequiresUserAction="NO" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Php-Un-cUt">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <dataDetectorType key="dataDetectorTypes"/>
@@ -101,6 +103,7 @@
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="N1L-gO-1VU" firstAttribute="top" secondItem="Php-Un-cUt" secondAttribute="bottom" id="Tnf-mx-XoC"/>
                             <constraint firstAttribute="trailing" secondItem="Php-Un-cUt" secondAttribute="trailing" id="YFt-gT-Scp"/>
@@ -110,6 +113,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="LOGIN" id="LAx-R0-fnr">
                         <barButtonItem key="leftBarButtonItem" title="CANCEL" id="Hnu-zz-RH5" userLabel="Cancel Bar Button Item">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="jRh-L6-T4p" kind="unwind" unwindAction="unwindToLoginViewController:" id="Afd-7M-whm"/>
                             </connections>
@@ -132,8 +136,9 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="XYu-L0-Li8">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" id="XYu-L0-Li8" customClass="SHCFolderTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XYu-L0-Li8" id="Yaj-27-Xs6">
@@ -149,6 +154,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="WTX-xU-z3b">
                         <barButtonItem key="leftBarButtonItem" title="LOGOUT" id="tjP-df-yZW" userLabel="Logout Bar Button Item">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="didTapLogoutButton:" destination="J0H-vT-0Kh" id="Gtd-Il-u4w"/>
                             </connections>

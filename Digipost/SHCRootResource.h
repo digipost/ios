@@ -9,17 +9,22 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Core Data model entity names
+extern NSString *const kRootResourceEntityName;
+
 @class SHCMailbox;
 
 @interface SHCRootResource : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSNumber *authenticationLevel;
+@property (strong, nonatomic) NSDate *createdAt;
 
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;
 
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 

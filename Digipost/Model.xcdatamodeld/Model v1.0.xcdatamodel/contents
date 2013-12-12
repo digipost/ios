@@ -31,6 +31,7 @@
     </entity>
     <entity name="RootResource" representedClassName="SHCRootResource" syncable="YES">
         <attribute name="authenticationLevel" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>

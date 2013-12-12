@@ -6,16 +6,15 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
 #import "SHCModelManager.h"
 #import "SHCRootResource.h"
+#import "SHCFolder.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
 @interface SHCModelManager ()
 
-@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
@@ -43,12 +42,37 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
 - (void)updateModelsWithAttributes:(NSDictionary *)attributes
 {
+    [SHCRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
+
     [SHCRootResource rootResourceWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
 
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
-        DDLogError(@"Error saving managed object context: %@, %@", error, [error userInfo]);
+        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
     }
+}
+
+- (NSEntityDescription *)folderEntity
+{
+    return [NSEntityDescription entityForName:kFolderEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSDate *)rootResourceCreatedAt
+{
+    NSEntityDescription *entity = [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:self.managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = entity;
+    fetchRequest.fetchLimit = 1;
+
+    NSError *error = nil;
+    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    }
+
+    SHCRootResource *rootResource = [results firstObject];
+
+    return rootResource.createdAt;
 }
 
 #pragma mark - Properties
@@ -105,13 +129,13 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
     if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:options error:&error]) {
 
-		DDLogError(@"Error adding the persistent store to the coordinator: %@, %@", error, [error userInfo]);
+		DDLogError(@"Error adding the persistent store to the coordinator: %@", [error localizedDescription]);
 
         if (retries) {
             // Delete the SQLite database file and try again
             NSError *error = nil;
             if (![[NSFileManager defaultManager] removeItemAtURL:storeUrl error:&error]) {
-                DDLogError(@"Error removing item: %@, %@", error, [error userInfo]);
+                DDLogError(@"Error removing item: %@", [error localizedDescription]);
             }
 
             _persistentStoreCoordinator = [self persistentStoreCoordinatorWithRetries:NO];

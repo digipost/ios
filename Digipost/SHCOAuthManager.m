@@ -188,7 +188,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                                [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title")
                                                                                   message:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")
                                                                         cancelButtonTitle:nil
-                                                                        otherButtonTitles:@[NSLocalizedString(@"GENERIC_ALERT_VIEW_OK_BUTTON_TITLE", @"OK")]
+                                                                        otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
                                                                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                                                      [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
                                                                                  }];
