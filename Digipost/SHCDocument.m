@@ -13,6 +13,7 @@
 // Attributes
 @dynamic createdAt;
 @dynamic creatorName;
+@dynamic location;
 
 // Relationships
 @dynamic attachments;

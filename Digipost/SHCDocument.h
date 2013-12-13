@@ -17,6 +17,7 @@
 // Attributes
 @property (strong, nonatomic) NSDate *createdAt;
 @property (strong, nonatomic) NSString *creatorName;
+@property (strong, nonatomic) NSString *location;
 
 // Relationships
 @property (strong, nonatomic) NSSet *attachments;

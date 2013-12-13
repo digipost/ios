@@ -14,13 +14,14 @@
     <entity name="Document" representedClassName="SHCDocument" syncable="YES">
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="creatorName" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="location" attributeType="String" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
         <relationship name="folder" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName="SHCFolder" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
-        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <entity name="Mailbox" representedClassName="SHCMailbox" syncable="YES">
@@ -35,10 +36,10 @@
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Document" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Folder" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Mailbox" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="RootResource" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Attachment" positionX="439" positionY="-243" width="128" height="180"/>
+        <element name="Document" positionX="252" positionY="-249" width="128" height="118"/>
+        <element name="Folder" positionX="70" positionY="-454" width="128" height="103"/>
+        <element name="Mailbox" positionX="-108" positionY="-459" width="128" height="105"/>
+        <element name="RootResource" positionX="-279" positionY="-459" width="128" height="90"/>
     </elements>
 </model>
