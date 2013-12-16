@@ -56,8 +56,12 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
         [self addObserver:self forKeyPath:NSStringFromSelector(@selector(state)) options:NSKeyValueObservingOptionNew context:kSHCAPIManagerStateContext];
 
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
+
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
+
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
-                                                   sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                                                   sessionConfiguration:configuration];
 
         NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
 

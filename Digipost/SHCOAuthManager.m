@@ -50,8 +50,12 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     self = [super init];
     if (self) {
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
+
+        NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+        configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
+
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
-                                                   sessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+                                                   sessionConfiguration:configuration];
 
         _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:__OAUTH_CLIENT_ID__ password:__OAUTH_SECRET__];
