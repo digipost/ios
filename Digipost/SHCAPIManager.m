@@ -8,17 +8,17 @@
 
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
-#import "SHCNetworkClient.h"
+#import "SHCAPIManager.h"
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
 
-@interface SHCNetworkClient ()
+@interface SHCAPIManager ()
 
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 @end
 
-@implementation SHCNetworkClient
+@implementation SHCAPIManager
 
 #pragma mark - NSObject
 
@@ -49,13 +49,13 @@
 
 #pragma mark - Public methods
 
-+ (instancetype)sharedClient
++ (instancetype)sharedManager
 {
-    static SHCNetworkClient *sharedInstance;
+    static SHCAPIManager *sharedInstance;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[SHCNetworkClient alloc] init];
+        sharedInstance = [[SHCAPIManager alloc] init];
     });
 
     return sharedInstance;

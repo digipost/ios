@@ -11,7 +11,7 @@
 #import <GAIDictionaryBuilder.h>
 #import <CoreData/CoreData.h>
 #import "SHCFoldersViewController.h"
-#import "SHCNetworkClient.h"
+#import "SHCAPIManager.h"
 #import "SHCModelManager.h"
 #import "SHCFolderTableViewCell.h"
 #import "SHCFolder.h"
@@ -174,7 +174,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (void)updateFoldersFromServer
 {
-    [[SHCNetworkClient sharedClient] updateRootResourceWithSuccess:^{
+    [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
     } failure:^(NSError *error) {

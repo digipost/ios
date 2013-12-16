@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SHCNetworkClient : NSObject
+@interface SHCAPIManager : NSObject
 
-+ (instancetype)sharedClient;
++ (instancetype)sharedManager;
 
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
