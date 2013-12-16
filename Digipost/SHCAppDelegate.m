@@ -13,6 +13,7 @@
 #import <GAI.h>
 #import <GAITracker.h>
 #import "SHCAppDelegate.h"
+#import "SHCAPIManager.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
@@ -30,6 +31,8 @@
     [self setupHockeySDK];
 
     [self setupCocoaLumberjack];
+
+    [self setupNetworkingLogging];
 
     [self setupGoogleAnalytics];
 
@@ -94,6 +97,11 @@
     [self.fileLogger rollLogFileWithCompletionBlock:^{
         [DDLog addLogger:self.fileLogger];
     }];
+}
+
+- (void)setupNetworkingLogging
+{
+    [[SHCAPIManager sharedManager] startLogging];
 }
 
 - (void)setupGoogleAnalytics

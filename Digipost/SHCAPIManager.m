@@ -6,14 +6,36 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <objc/runtime.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import "SHCAPIManager.h"
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
 
+typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
+    SHCAPIManagerStateIdle = 0,
+    SHCAPIManagerStateValidatingAccessToken,
+    SHCAPIManagerStateValidatingAccessTokenFinished,
+    SHCAPIManagerStateRefreshingAccessToken,
+    SHCAPIManagerStateRefreshingAccessTokenFinished,
+    SHCAPIManagerStateRefreshingAccessTokenFailed,
+    SHCAPIManagerStateUpdatingRootResource,
+    SHCAPIManagerStateUpdatingRootResourceFinished,
+    SHCAPIManagerStateUpdatingRootResourceFailed
+};
+
+static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
+static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspended;
+
 @interface SHCAPIManager ()
 
+@property (assign, nonatomic) SHCAPIManagerState state;
+@property (copy, nonatomic) void(^lastSuccessBlock)(void);
+@property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
+@property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
+@property (strong, nonatomic) id lastResponseObject;
+@property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 @end
@@ -28,6 +50,10 @@
     if (self) {
 
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+
+        _state = SHCAPIManagerStateIdle;
+
+        [self addObserver:self forKeyPath:NSStringFromSelector(@selector(state)) options:NSKeyValueObservingOptionNew context:kSHCAPIManagerStateContext];
 
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
@@ -47,6 +73,133 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [self stopLogging];
+
+    @try {
+        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(state)) context:kSHCAPIManagerStateContext];
+    } @catch (NSException *exception) {
+        DDLogWarn(@"Caught an exception: %@", exception);
+    }
+}
+
+#pragma mark - NSKeyValueObserving
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == kSHCAPIManagerStateContext && [keyPath isEqualToString:NSStringFromSelector(@selector(state))]) {
+        SHCAPIManagerState state = [change[@"new"] integerValue];
+
+        NSString *stateString = nil;
+        switch (state) {
+            case SHCAPIManagerStateIdle:
+                stateString = @"SHCAPIManagerStateIdle";
+                break;
+            case SHCAPIManagerStateValidatingAccessToken:
+                stateString = @"SHCAPIManagerStateValidatingAccessToken";
+                break;
+            case SHCAPIManagerStateValidatingAccessTokenFinished:
+                stateString = @"SHCAPIManagerStateValidatingAccessTokenFinished";
+                break;
+            case SHCAPIManagerStateRefreshingAccessToken:
+                stateString = @"SHCAPIManagerStateRefreshingAccessToken";
+                break;
+            case SHCAPIManagerStateRefreshingAccessTokenFinished:
+                stateString = @"SHCAPIManagerStateRefreshingAccessTokenFinished";
+                break;
+            case SHCAPIManagerStateRefreshingAccessTokenFailed:
+                stateString = @"SHCAPIManagerStateRefreshingAccessTokenFailed";
+                break;
+            case SHCAPIManagerStateUpdatingRootResource:
+                stateString = @"SHCAPIManagerStateUpdatingRootResource";
+                break;
+            case SHCAPIManagerStateUpdatingRootResourceFinished:
+                stateString = @"SHCAPIManagerStateUpdatingRootResourceFinished";
+                break;
+            case SHCAPIManagerStateUpdatingRootResourceFailed:
+                stateString = @"SHCAPIManagerStateUpdatingRootResourceFailed";
+                break;
+            default:
+                stateString = @"default";
+                break;
+        }
+        DDLogInfo(@"state: %@", stateString);
+
+        switch (state) {
+            case SHCAPIManagerStateValidatingAccessTokenFinished:
+            case SHCAPIManagerStateRefreshingAccessTokenFinished:
+            {
+                if (self.lastSuccessBlock) {
+                    [self updateAuthorizationHeader];
+                    self.lastSuccessBlock();
+                }
+
+                break;
+            }
+            case SHCAPIManagerStateRefreshingAccessTokenFailed:
+            {
+                if (self.lastFailureBlock) {
+                    self.lastFailureBlock(self.lastError);
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdatingRootResourceFinished:
+            {
+                NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
+                if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                    [[SHCModelManager sharedManager] updateModelsWithAttributes:responseDict];
+
+                    if (self.lastSuccessBlock) {
+                        self.lastSuccessBlock();
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdatingRootResourceFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsIn400Range:self.lastSessionDataTask.response]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    // And recursively call the update to force a renewal of the access token
+                    [self updateRootResourceWithSuccess:^{
+                        if (self.lastSuccessBlock) {
+                            self.lastSuccessBlock();
+                        }
+                    } failure:^(NSError *error) {
+                        if (self.lastFailureBlock) {
+                            self.lastFailureBlock(self.lastError);
+                        }
+                    }];
+                } else {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateValidatingAccessToken:
+            case SHCAPIManagerStateUpdatingRootResource:
+            case SHCAPIManagerStateIdle:
+            default:
+                break;
+        }
+    }
+}
+
 #pragma mark - Public methods
 
 + (instancetype)sharedManager
@@ -61,56 +214,37 @@
     return sharedInstance;
 }
 
+- (void)startLogging
+{
+    [self stopLogging];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidStart:) name:AFNetworkingTaskDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidSuspend:) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidFinish:) name:AFNetworkingTaskDidFinishNotification object:nil];
+}
+
+- (void)stopLogging
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
-        NSURLSessionDataTask *task = [self.sessionManager GET:__ROOT_RESOURCE_URI__
-                                                   parameters:nil
-                                                      success:^(NSURLSessionDataTask *task, id responseObject) {
-                                                          NSDictionary *responseDict = (NSDictionary *)responseObject;
-                                                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
-                                                              [[SHCModelManager sharedManager] updateModelsWithAttributes:responseDict];
-
-                                                              if (success) {
-                                                                  success();
-                                                              }
-                                                          }
-                                                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-                                                          // Check to see if the request failed because the access token was rejected
-                                                          NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
-                                                          if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                              if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
-
-                                                                  // The access token was rejected - let's remove it...
-                                                                  [[SHCOAuthManager sharedManager] removeAccessToken];
-
-                                                                  // And recursively call this method to force a renewal of the access token
-                                                                  [self updateRootResourceWithSuccess:^{
-                                                                      if (success) {
-                                                                          success();
-                                                                      }
-                                                                  } failure:^(NSError *error) {
-                                                                      if (failure) {
-                                                                          failure(error);
-                                                                      }
-                                                                  }];
-
-                                                                  return;
-                                                              }
-                                                          }
-
-
-                                                          if (failure) {
-                                                              failure(error);
-                                                          }
-                                                      }];
-
-        DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
-
-        [task resume];
-
+        self.state = SHCAPIManagerStateUpdatingRootResource;
+        [self.sessionManager GET:__ROOT_RESOURCE_URI__
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             self.lastSuccessBlock = success;
+                             self.lastSessionDataTask = task;
+                             self.lastResponseObject = responseObject;
+                             self.state = SHCAPIManagerStateUpdatingRootResourceFinished;
+                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             self.lastFailureBlock = failure;
+                             self.lastSessionDataTask = task;
+                             self.lastError = error;
+                             self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
+                        }];
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);
@@ -122,29 +256,28 @@
 
 - (void)validateTokensWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure
 {
+    self.state = SHCAPIManagerStateValidatingAccessToken;
+
     SHCOAuthManager *OAuthManager = [SHCOAuthManager sharedManager];
 
     // If the OAuth manager already has its access token, we'll go ahead and try an API request using this.
     if (OAuthManager.accessToken) {
-        if (success) {
-            [self updateAuthorizationHeader];
-            success();
-            return;
-        }
+        self.lastSuccessBlock = success;
+        self.state = SHCAPIManagerStateValidatingAccessTokenFinished;
+        return;
     }
 
     // If the OAuth manager has its refresh token, ask it to update its access token first,
     // and then go ahead and try an API request.
     if (OAuthManager.refreshToken) {
+        self.state = SHCAPIManagerStateRefreshingAccessToken;
         [OAuthManager refreshAccessTokenWithRefreshToken:OAuthManager.refreshToken success:^{
-            if (success) {
-                [self updateAuthorizationHeader];
-                success();
-            }
+            self.lastSuccessBlock = success;
+            self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
         } failure:^(NSError *error) {
-            if (failure) {
-                failure(error);
-            }
+            self.lastFailureBlock = failure;
+            self.lastError = error;
+            self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
         }];
     }
 }
@@ -153,6 +286,68 @@
 {
     NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [SHCOAuthManager sharedManager].accessToken];
     [self.sessionManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+}
+
+- (void)networkRequestDidStart:(NSNotification *)notification
+{
+    NSURLRequest *request = [[notification object] originalRequest];
+
+    if (!request) {
+        return;
+    }
+
+    BOOL wasSuspended = [objc_getAssociatedObject([notification object], kSHCAPIManagerRequestWasSuspended) boolValue];
+
+    if (!wasSuspended) {
+        DDLogInfo(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+    }
+}
+
+- (void)networkRequestDidSuspend:(NSNotification *)notification
+{
+    // Because requests are often put in a suspended state right after they've been started,
+    // and then restarted again - we track this fact here, and then only log the requests
+    // when they haven't already been suspended.
+
+    objc_setAssociatedObject([notification object], kSHCAPIManagerRequestWasSuspended, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)networkRequestDidFinish:(NSNotification *)notification
+{
+    NSURLRequest *request = [[notification object] originalRequest];
+    NSURLResponse *response = [[notification object] response];
+    NSError *error = [[notification object] error];
+
+    NSUInteger responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
+
+    if (error) {
+        DDLogError(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
+    } else {
+        DDLogDebug(@"%ld %@", (long)responseStatusCode, [[response URL] absoluteString]);
+    }
+}
+
+- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)self.lastSessionDataTask.response;
+    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+        if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (void)cleanup
+{
+    self.lastSuccessBlock = nil;
+    self.lastFailureBlock = nil;
+    self.lastSessionDataTask = nil;
+    self.lastResponseObject = nil;
+    self.lastError = nil;
+
+    self.state = SHCAPIManagerStateIdle;
 }
 
 @end

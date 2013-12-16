@@ -12,6 +12,8 @@
 
 + (instancetype)sharedManager;
 
+- (void)startLogging;
+- (void)stopLogging;
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

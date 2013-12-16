@@ -100,46 +100,42 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                  kOAuth2Code: code,
                                  kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
 
-    NSURLSessionDataTask *task = [self.sessionManager POST:__ACCESS_TOKEN_URI__
-                                                parameters:parameters
-                                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                                       NSDictionary *responseDict = (NSDictionary *)responseObject;
-                                                       if ([responseDict isKindOfClass:[NSDictionary class]]) {
+    [self.sessionManager POST:__ACCESS_TOKEN_URI__
+                   parameters:parameters
+                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                          NSDictionary *responseDict = (NSDictionary *)responseObject;
+                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                                                           NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-                                                           if ([refreshToken isKindOfClass:[NSString class]]) {
-                                                               self.refreshToken = refreshToken;
-                                                           }
+                              NSString *refreshToken = responseDict[kOAuth2RefreshToken];
+                              if ([refreshToken isKindOfClass:[NSString class]]) {
+                                  self.refreshToken = refreshToken;
+                              }
 
-                                                           NSString *accessToken = responseDict[kOAuth2AccessToken];
-                                                           if ([accessToken isKindOfClass:[NSString class]]) {
-                                                               _accessToken = accessToken;
+                              NSString *accessToken = responseDict[kOAuth2AccessToken];
+                              if ([accessToken isKindOfClass:[NSString class]]) {
+                                  _accessToken = accessToken;
 
-                                                               // We only call the success block if the access token is set.
-                                                               // The refresh token is not strictly neccesary at this point.
-                                                               if (success) {
-                                                                   success();
-                                                                   return;
-                                                               }
-                                                           }
-                                                       }
+                                  // We only call the success block if the access token is set.
+                                  // The refresh token is not strictly neccesary at this point.
+                                  if (success) {
+                                      success();
+                                      return;
+                                  }
+                              }
+                          }
 
-                                                       if (failure) {
-                                                           NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                                                code:SHCOAuthErrorCodeMissingAccessTokenResponse
-                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
-                                                           failure(error);
-                                                       }
+                          if (failure) {
+                              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
+                              failure(error);
+                          }
 
-                                                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                       if (failure) {
-                                                           failure(error);
-                                                       }
-                                                   }];
-
-    DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
-
-    [task resume];
+                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          if (failure) {
+                              failure(error);
+                          }
+                      }];
 }
 
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
@@ -151,68 +147,64 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                  kOAuth2RefreshToken: refreshToken,
                                  kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
 
-    NSURLSessionDataTask *task = [self.sessionManager POST:__ACCESS_TOKEN_URI__
-                                                parameters:parameters
-                                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                                                       NSDictionary *responseDict = (NSDictionary *)responseObject;
-                                                       if ([responseDict isKindOfClass:[NSDictionary class]]) {
+    [self.sessionManager POST:__ACCESS_TOKEN_URI__
+                   parameters:parameters
+                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                          NSDictionary *responseDict = (NSDictionary *)responseObject;
+                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                                                           NSString *accessToken = responseDict[kOAuth2AccessToken];
-                                                           if ([accessToken isKindOfClass:[NSString class]]) {
-                                                               _accessToken = accessToken;
+                              NSString *accessToken = responseDict[kOAuth2AccessToken];
+                              if ([accessToken isKindOfClass:[NSString class]]) {
+                                  _accessToken = accessToken;
 
-                                                               DDLogDebug(@"Access token updated");
+                                  DDLogInfo(@"Access token updated");
 
-                                                               if (success) {
-                                                                   success();
-                                                                   return;
-                                                               }
-                                                           }
-                                                       }
+                                  if (success) {
+                                      success();
+                                      return;
+                                  }
+                              }
+                          }
 
-                                                       if (failure) {
-                                                           NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                                                code:SHCOAuthErrorCodeMissingAccessTokenResponse
-                                                                                            userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
-                                                           failure(error);
-                                                       }
+                          if (failure) {
+                              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
+                              failure(error);
+                          }
 
-                                                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                                                       // Check to see if the request failed because the refresh token was denied
-                                                       NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
-                                                       if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                           if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          // Check to see if the request failed because the refresh token was denied
+                          NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
+                          if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+                              if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
 
-                                                               [self removeAllTokens];
+                                  [self removeAllTokens];
 
-                                                               // The refresh token was rejected, most likely because the user invalidated
-                                                               // the session in the www.digipost.no web settings interface.
-                                                               [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title")
-                                                                                  message:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")
-                                                                        cancelButtonTitle:nil
-                                                                        otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
-                                                                                 tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                                                     [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
-                                                                                 }];
-                                                               return;
-                                                           }
-                                                       }
+                                  // The refresh token was rejected, most likely because the user invalidated
+                                  // the session in the www.digipost.no web settings interface.
+                                  [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title")
+                                                     message:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")
+                                           cancelButtonTitle:nil
+                                           otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
+                                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                        [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+                                                    }];
+                                  return;
+                              }
+                          }
 
-                                                       if (failure) {
-                                                           failure(error);
-                                                       }
-                                                   }];
-
-    DDLogDebug(@"%@", task.currentRequest.URL.absoluteString);
-
-    [task resume];
+                          if (failure) {
+                              failure(error);
+                          }
+                      }];
 }
 
 - (void)removeAccessToken
 {
     _accessToken = nil;
 
-    DDLogDebug(@"Access token removed");
+    DDLogInfo(@"Access token removed");
 }
 
 - (void)removeAllTokens
@@ -220,7 +212,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     _accessToken = nil;
     self.refreshToken = nil;
 
-    DDLogDebug(@"All tokens removed");
+    DDLogInfo(@"All tokens removed");
 }
 
 @end
