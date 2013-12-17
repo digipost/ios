@@ -63,7 +63,20 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
 - (void)updateDocumentsInFolder:(SHCFolder *)folder withAttributes:(NSDictionary *)attributes
 {
-    
+    NSArray *documents = attributes[kDocumentDocumentsAPIKey];
+    if ([documents isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *documentDict in documents) {
+            if ([documentDict isKindOfClass:[NSDictionary class]]) {
+                SHCDocument *document = [SHCDocument documentWithAttributes:documentDict inManagedObjectContext:self.managedObjectContext];
+                document.folder = folder;
+            }
+        }
+    }
+
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+    }
 }
 
 - (NSEntityDescription *)rootResourceEntity
