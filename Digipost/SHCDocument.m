@@ -89,7 +89,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     return document;
 }
 
-+ (void)reconnectDanglingDocuments
++ (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     // At this point, all our Folder objects have been created anew.
     // Because the relationship from Folder to Document is of type Nullify,
@@ -97,12 +97,8 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     // Let's reconnect all Documents to their respective Folders,
     // and delete those that doesn't match.
 
-    NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
-
-    NSEntityDescription *folderEntity = [[SHCModelManager sharedManager] folderEntity];
-
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = folderEntity;
+    fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
 
     NSError *error = nil;
     NSArray *folders = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -110,9 +106,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
         DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
     }
 
-    NSEntityDescription *documentEntity = [[SHCModelManager sharedManager] documentEntity];
-
-    fetchRequest.entity = documentEntity;
+    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
 
     error = nil;
     NSArray *documents = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
@@ -139,10 +133,13 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     }
 }
 
-+ (NSArray *)allDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
+                              [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
+                              folderName];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];

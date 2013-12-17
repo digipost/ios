@@ -54,6 +54,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     self.screenName = kLoginViewControllerScreenName;
 
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+
     @try {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
     }

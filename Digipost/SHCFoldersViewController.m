@@ -15,6 +15,7 @@
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
+#import "SHCRootResource.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -43,8 +44,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.screenName = kFoldersViewControllerScreenName;
 
     [super viewDidLoad];
-
-    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -53,7 +52,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         SHCFolder *folder = (SHCFolder *)sender;
 
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
-        documentsViewController.folder = folder;
+        documentsViewController.folderName = folder.name;
+        documentsViewController.folderUri = folder.uri;
     }
 }
 
@@ -144,6 +144,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 - (void)updateContentsFromServer
 {
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
+        self.rootResource = nil; // To force a refetch of this property
+        [self updateNavbar];
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
     } failure:^(NSError *error) {
@@ -156,6 +158,22 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                  otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
                           tapBlock:nil];
     }];
+}
+
+- (void)updateNavbar
+{
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.rootResource.firstName
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:nil
+                                                                         action:nil];
+
+    [self.navigationItem setBackBarButtonItem:backBarButtonItem];
+
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
+
+    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",
+                                 self.rootResource.firstName,
+                                 self.rootResource.lastName];
 }
 
 @end

@@ -9,15 +9,20 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class SHCRootResource;
+
 @interface SHCBaseTableViewController : UITableViewController
 
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSEntityDescription *baseEntity;
 @property (strong, nonatomic) NSArray *sortDescriptors;
+@property (strong, nonatomic) NSPredicate *predicate;
 @property (copy, nonatomic) NSString *screenName;
+@property (strong, nonatomic) SHCRootResource *rootResource;
 
-// Override this method in subclass
+// Override these methods in subclass
 - (void)updateContentsFromServer;
+- (void)updateNavbar;
 
 - (void)updateFetchedResultsController;
 - (void)programmaticallyEndRefresh;

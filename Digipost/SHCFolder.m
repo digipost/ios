@@ -29,6 +29,22 @@ NSString *const kFolderArchiveName = @"Archive";
 
 #pragma mark - Public methods
 
++ (instancetype)folderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(name)), folderName];
+    fetchRequest.fetchLimit = 1;
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    }
+
+    return [results firstObject];
+}
+
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];

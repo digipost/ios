@@ -13,6 +13,8 @@
 #import "SHCAttachment.h"
 #import "SHCAPIManager.h"
 #import "UIAlertView+Blocks.h"
+#import "SHCRootResource.h"
+#import "SHCFolder.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -34,14 +36,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                            ascending:YES
                                                             selector:@selector(compare:)]];
+    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
+                      [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
+                      self.folderName];
 
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
-
-    self.navigationItem.backBarButtonItem.title = 
-
-    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 }
 
 #pragma mark - UITableViewDataSource
@@ -123,7 +124,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)updateContentsFromServer
 {
-    [[SHCAPIManager sharedManager] updateDocumentsInFolder:self.folder withSuccess:^{
+    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri withSuccess:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
     } failure:^(NSError *error) {
@@ -136,6 +137,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                  otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
                           tapBlock:nil];
     }];
+}
+
+- (void)updateNavbar
+{
+    self.navigationItem.title = self.folderName;
 }
 
 @end

@@ -33,6 +33,21 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 
 #pragma mark - Public methods
 
++ (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] rootResourceEntity];
+    fetchRequest.fetchLimit = 1;
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    }
+
+    return [results firstObject];
+}
+
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] rootResourceEntity];
@@ -74,10 +89,8 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 
 + (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:managedObjectContext];
-
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = entity;
+    fetchRequest.entity = [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:managedObjectContext];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];

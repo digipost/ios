@@ -53,7 +53,7 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
     // Now we need to reconnect "old" documents so they're available to the user
     // before updateDocumentsWithAttribtues: has been called and finished
-    [SHCDocument reconnectDanglingDocuments];
+    [SHCDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
 
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -61,12 +61,15 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     }
 }
 
-- (void)updateDocumentsInFolder:(SHCFolder *)folder withAttributes:(NSDictionary *)attributes
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName withAttributes:(NSDictionary *)attributes
 {
-    // First, get a list of all the old documents
-    NSArray *oldDocuments = [SHCDocument allDocumentsInManagedObjectContext:self.managedObjectContext];
+    // First, find the folder object
+    SHCFolder *folder = [SHCFolder folderWithName:folderName inManagedObjectContext:self.managedObjectContext];
 
-    // Then create all the new documents
+    // Get a list of all the old documents
+    NSArray *oldDocuments = [SHCDocument allDocumentsInFolderWithName:folderName inManagedObjectContext:self.managedObjectContext];
+
+    // Create all the new documents
     NSArray *documents = attributes[kDocumentDocumentsAPIKey];
     if ([documents isKindOfClass:[NSArray class]]) {
         for (NSDictionary *documentDict in documents) {

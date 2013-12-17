@@ -11,6 +11,7 @@
 #import <GAIDictionaryBuilder.h>
 #import "SHCBaseTableViewController.h"
 #import "SHCModelManager.h"
+#import "SHCRootResource.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -18,11 +19,17 @@
 
 @implementation SHCBaseTableViewController
 
+@synthesize rootResource = _rootResource;
+
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+
+    [self updateNavbar];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
@@ -41,12 +48,6 @@
     [self updateFetchedResultsController];
 
     [self updateContentsFromServer];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -136,9 +137,25 @@
 
 */
 
+#pragma mark - Properties
+
+- (SHCRootResource *)rootResource
+{
+    if (!_rootResource) {
+        _rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+    }
+
+    return _rootResource;
+}
+
 #pragma mark - Private methods
 
 - (void)updateContentsFromServer
+{
+    NSAssert(NO, @"This method needs to be overridden in subclass");
+}
+
+- (void)updateNavbar
 {
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
@@ -148,6 +165,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = self.baseEntity;
     fetchRequest.sortDescriptors = self.sortDescriptors;
+    fetchRequest.predicate = self.predicate;
 
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:[SHCModelManager sharedManager].managedObjectContext

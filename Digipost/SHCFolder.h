@@ -30,6 +30,7 @@ extern NSString *const kFolderArchiveName;
 @property (strong, nonatomic) NSSet *documents;
 @property (strong, nonatomic) SHCMailbox *mailbox;
 
++ (instancetype)folderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

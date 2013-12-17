@@ -39,7 +39,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 @property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
 @property (strong, nonatomic) id lastResponseObject;
-@property (strong, nonatomic) SHCFolder *lastFolder;
+@property (copy, nonatomic) NSString *lastFolderName;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
@@ -214,7 +214,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateDocumentsInFolder:self.lastFolder withAttributes:responseDict];
+                    [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName withAttributes:responseDict];
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -291,18 +291,18 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     }];
 }
 
-- (void)updateDocumentsInFolder:(SHCFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateUpdatingDocuments;
 
-        [self.sessionManager GET:folder.uri
+        [self.sessionManager GET:folderUri
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              self.lastSuccessBlock = success;
                              self.lastSessionDataTask = task;
                              self.lastResponseObject = responseObject;
-                             self.lastFolder = folder;
+                             self.lastFolderName = folderName;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFinished;
                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
                              self.lastFailureBlock = failure;
@@ -410,7 +410,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     self.lastFailureBlock = nil;
     self.lastSessionDataTask = nil;
     self.lastResponseObject = nil;
-    self.lastFolder = nil;
+    self.lastFolderName = nil;
     self.lastError = nil;
 
     self.state = SHCAPIManagerStateIdle;

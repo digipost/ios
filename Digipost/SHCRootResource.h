@@ -27,6 +27,7 @@ extern NSString *const kRootResourceEntityName;
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;
 
++ (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 

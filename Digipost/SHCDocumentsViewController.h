@@ -12,10 +12,9 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushDocumentsIdentifier;
 
-@class SHCFolder;
-
 @interface SHCDocumentsViewController : SHCBaseTableViewController
 
-@property (strong, nonatomic) SHCFolder *folder;
+@property (copy, nonatomic) NSString *folderName;
+@property (copy, nonatomic) NSString *folderUri;
 
 @end
