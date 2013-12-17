@@ -19,6 +19,10 @@ extern NSString *const kRootResourceEntityName;
 // Attributes
 @property (strong, nonatomic) NSNumber *authenticationLevel;
 @property (strong, nonatomic) NSDate *createdAt;
+@property (strong, nonatomic) NSString *firstName;
+@property (strong, nonatomic) NSString *fullName;
+@property (strong, nonatomic) NSString *lastName;
+@property (strong, nonatomic) NSString *middleName;
 
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;

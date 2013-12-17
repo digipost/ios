@@ -16,12 +16,17 @@ NSString *const kRootResourceEntityName = @"RootResource";
 // API keys
 NSString *const kRootResourceAuthenticationLevelAPIKey = @"authenticationlevel";
 NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
+NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 
 @implementation SHCRootResource
 
 // Attributes
 @dynamic authenticationLevel;
 @dynamic createdAt;
+@dynamic firstName;
+@dynamic fullName;
+@dynamic lastName;
+@dynamic middleName;
 
 // Relationships
 @dynamic mailboxes;
@@ -37,6 +42,21 @@ NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
     rootResource.authenticationLevel = [authenticationLevel isKindOfClass:[NSNumber class]] ? authenticationLevel : nil;
 
     rootResource.createdAt = [NSDate date];
+
+    NSDictionary *primaryAccount = attributes[kRootResourcePrimaryAccountAPIKey];
+    if ([primaryAccount isKindOfClass:[NSDictionary class]]) {
+        NSString *firstName = primaryAccount[NSStringFromSelector(@selector(firstName))];
+        rootResource.firstName = [firstName isKindOfClass:[NSString class]] ? firstName : nil;
+
+        NSString *fullName = primaryAccount[NSStringFromSelector(@selector(fullName))];
+        rootResource.fullName = [fullName isKindOfClass:[NSString class]] ? fullName : nil;
+
+        NSString *lastName = primaryAccount[NSStringFromSelector(@selector(lastName))];
+        rootResource.lastName = [lastName isKindOfClass:[NSString class]] ? lastName : nil;
+
+        NSString *middleName = primaryAccount[NSStringFromSelector(@selector(middleName))];
+        rootResource.middleName = [middleName isKindOfClass:[NSString class]] ? middleName : nil;
+    }
 
     NSArray *mailboxesArray = attributes[kRootResourceMailboxesAPIKey];
     if ([mailboxesArray isKindOfClass:[NSArray class]]) {
