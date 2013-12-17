@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B40" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="SHCAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -18,7 +18,7 @@
         <attribute name="location" attributeType="String" syncable="YES"/>
         <attribute name="updateUri" attributeType="String" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
-        <relationship name="folder" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName="SHCFolder" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
