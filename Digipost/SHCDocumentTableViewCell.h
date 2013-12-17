@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString *const kDocumentTableViewCellIdentifier;
+
 @interface SHCDocumentTableViewCell : UITableViewCell
 
 @end

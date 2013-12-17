@@ -7,6 +7,18 @@
 //
 
 #import "SHCDocumentsViewController.h"
+#import "SHCModelManager.h"
+#import "SHCDocument.h"
+#import "SHCDocumentTableViewCell.h"
+#import "SHCAttachment.h"
+#import "SHCAPIManager.h"
+#import "UIAlertView+Blocks.h"
+
+// Segue identifiers (to enable programmatic triggering of segues)
+NSString *const kPushDocumentsIdentifier = @"PushDocuments";
+
+// Google Analytics screen name
+NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 @interface SHCDocumentsViewController ()
 
@@ -14,56 +26,42 @@
 
 @implementation SHCDocumentsViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
+    self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
+    self.sortDescriptorKeyPath = NSStringFromSelector(@selector(createdAt));
+
+    self.screenName = kDocumentsViewControllerScreenName;
+
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+//    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
+#pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier forIndexPath:indexPath];
+
+    SHCAttachment *attachment = [document mainDocumentAttachment];
+    cell.textLabel.text = attachment.subject;
+
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        NSDate *object = _objects[indexPath.row];
+//        self.detailViewController.detailItem = object;
+    }
 }
 
 /*
@@ -115,6 +113,25 @@
     // Pass the selected object to the new view controller.
 }
 
- */
+*/
+
+#pragma mark - Private methods
+
+- (void)updateContentsFromServer
+{
+    [[SHCAPIManager sharedManager] updateDocumentsInFolder:self.folder withSuccess:^{
+        [self updateFetchedResultsController];
+        [self programmaticallyEndRefresh];
+    } failure:^(NSError *error) {
+
+        [self programmaticallyEndRefresh];
+
+        [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
+                          tapBlock:nil];
+    }];
+}
 
 @end

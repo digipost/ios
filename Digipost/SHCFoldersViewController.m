@@ -6,10 +6,6 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
-#import <GAI.h>
-#import <GAIFields.h>
-#import <GAIDictionaryBuilder.h>
-#import <CoreData/CoreData.h>
 #import "SHCFoldersViewController.h"
 #import "SHCAPIManager.h"
 #import "SHCModelManager.h"
@@ -18,6 +14,7 @@
 #import "UIAlertView+Blocks.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
+#import "SHCDocumentsViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -28,9 +25,7 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
 
-@interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
-
-@property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
+@interface SHCFoldersViewController ()
 
 @end
 
@@ -40,64 +35,27 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (void)viewDidLoad
 {
+    self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
+    self.sortDescriptorKeyPath = NSStringFromSelector(@selector(name));
+
+    self.screenName = kFoldersViewControllerScreenName;
+
     [super viewDidLoad];
 
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
-
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
-
-    // Set the initial refresh control text
-    [self initializeRefreshControlText];
-    [self updateRefreshControlTextRefreshing:YES];
-
-    self.refreshControl.tintColor = [UIColor whiteColor];
-
-    // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
-    [self.refreshControl beginRefreshing];
-    [self.refreshControl endRefreshing];
-
-    // Present persistent data before updating
-    [self updateFetchedResultsController];
-
-    [self updateFoldersFromServer];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [super viewWillAppear:animated];
+    if ([segue.identifier isEqualToString:kPushDocumentsIdentifier]) {
+        SHCFolder *folder = (SHCFolder *)sender;
 
-    // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
-    // we'll manually track and submit screen hits.
-
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-
-    // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName value:kFoldersViewControllerScreenName];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+        SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
+        documentsViewController.folder = folder;
+    }
 }
 
 #pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSArray *sections = [self.fetchedResultsController sections];
-
-    return [sections count];
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-
-    return [sectionInfo numberOfObjects];
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -108,6 +66,15 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     cell.textLabel.text = folder.name;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:folder];
 }
 
 /*
@@ -172,7 +139,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 #pragma mark - Private methods
 
-- (void)updateFoldersFromServer
+- (void)updateContentsFromServer
 {
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
         [self updateFetchedResultsController];
@@ -187,65 +154,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                  otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
                           tapBlock:nil];
     }];
-}
-
-- (void)updateFetchedResultsController
-{
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
-    NSManagedObjectContext *managedObjectContext = [[SHCModelManager sharedManager] managedObjectContext];
-
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = entity;
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name)) ascending:YES selector:@selector(compare:)]];
-
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    _fetchedResultsController.delegate = self;
-
-    NSError *error = nil;
-    if (![_fetchedResultsController performFetch:&error]) {
-        NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
-    }
-
-    [self.tableView reloadData];
-}
-
-- (void)programmaticallyEndRefresh
-{
-    if (self.refreshControl.isRefreshing) {
-        [self.refreshControl endRefreshing];
-    }
-
-    [self updateRefreshControlTextRefreshing:NO];
-}
-
-- (void)refreshControlDidChangeValue:(UIRefreshControl *)refreshControl
-{
-    [self updateRefreshControlTextRefreshing:YES];
-
-    [self updateFoldersFromServer];
-}
-
-- (void)initializeRefreshControlText
-{
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
-}
-
-- (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
-{
-    NSString *text = nil;
-    if (refreshing) {
-        text = @"Updating...";
-    } else {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-        dateFormatter.timeStyle = NSDateFormatterMediumStyle;
-        text = [NSString stringWithFormat:@"Last updated: %@", [dateFormatter stringFromDate:[[SHCModelManager sharedManager] rootResourceCreatedAt]]];
-    }
-
-    NSDictionary *attributes = [self.refreshControl.attributedTitle attributesAtIndex:0 effectiveRange:NULL];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 @end

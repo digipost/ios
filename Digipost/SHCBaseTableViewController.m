@@ -6,32 +6,62 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
 #import "SHCBaseTableViewController.h"
+#import "SHCModelManager.h"
 
-@interface SHCBaseTableViewController ()
+@interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
 
 @end
 
 @implementation SHCBaseTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+#pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+
+    // Set the initial refresh control text
+    [self initializeRefreshControlText];
+    [self updateRefreshControlTextRefreshing:YES];
+
+    self.refreshControl.tintColor = [UIColor whiteColor];
+
+    // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
+    [self.refreshControl beginRefreshing];
+    [self.refreshControl endRefreshing];
+
+    // Present persistent data before updating
+    [self updateFetchedResultsController];
+
+    [self updateContentsFromServer];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
+
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
+    // we'll manually track and submit screen hits.
+
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
+    // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName value:self.screenName];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,29 +70,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    NSArray *sections = [self.fetchedResultsController sections];
+
+    return [sections count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+
     // Configure the cell...
-    
+
     return cell;
 }
 
@@ -82,10 +112,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
 */
 
@@ -115,6 +145,72 @@
     // Pass the selected object to the new view controller.
 }
 
- */
+*/
+
+#pragma mark - Private methods
+
+- (void)updateContentsFromServer
+{
+    NSAssert(NO, @"This method needs to be overridden in subclass");
+}
+
+- (void)updateFetchedResultsController
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = self.baseEntity;
+    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.sortDescriptorKeyPath ascending:YES selector:@selector(compare:)]];
+
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                                    managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
+                                                                      sectionNameKeyPath:nil
+                                                                               cacheName:nil];
+    _fetchedResultsController.delegate = self;
+
+    NSError *error = nil;
+    if (![_fetchedResultsController performFetch:&error]) {
+        NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
+    }
+
+    [self.tableView reloadData];
+}
+
+- (void)programmaticallyEndRefresh
+{
+    if (self.refreshControl.isRefreshing) {
+        [self.refreshControl endRefreshing];
+    }
+
+    [self updateRefreshControlTextRefreshing:NO];
+}
+
+- (void)refreshControlDidChangeValue:(UIRefreshControl *)refreshControl
+{
+    [self updateRefreshControlTextRefreshing:YES];
+
+    [self updateContentsFromServer];
+}
+
+- (void)initializeRefreshControlText
+{
+    NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
+}
+
+- (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
+{
+    NSString *text = nil;
+    if (refreshing) {
+        text = @"Updating...";
+    } else {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterMediumStyle;
+        text = [NSString stringWithFormat:@"Last updated: %@", [dateFormatter stringFromDate:[[SHCModelManager sharedManager] rootResourceCreatedAt]]];
+    }
+
+    NSDictionary *attributes = [self.refreshControl.attributedTitle attributesAtIndex:0 effectiveRange:NULL];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+}
 
 @end

@@ -24,11 +24,33 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 @implementation SHCLoginViewController
 
+#pragma mark - NSObject
+
+- (void)awakeFromNib
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        self.preferredContentSize = CGSizeMake(320.0, 600.0);
+    }
+    [super awakeFromNib];
+}
+
+- (void)dealloc
+{
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kPopToLoginViewControllerNotificationName object:nil];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"Caught an exception: %@", exception);
+    }
+}
+
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+//    self.detailViewController = (SHCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 
     self.screenName = kLoginViewControllerScreenName;
 
@@ -42,16 +64,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([SHCOAuthManager sharedManager].refreshToken) {
         SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         [self.navigationController pushViewController:foldersViewController animated:NO];
-    }
-}
-
-- (void)dealloc
-{
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kPopToLoginViewControllerNotificationName object:nil];
-    }
-    @catch (NSException *exception) {
-        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 

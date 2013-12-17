@@ -8,6 +8,8 @@
 
 #import "SHCDocumentTableViewCell.h"
 
+NSString *const kDocumentTableViewCellIdentifier = @"DocumentCellIdentifier";
+
 @implementation SHCDocumentTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier

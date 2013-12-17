@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Core Data model entity names
+extern NSString *const kDocumentEntityName;
+
+// API keys
+extern NSString *const kDocumentDocumentsAPIKey;
+
 @class SHCAttachment;
 @class SHCFolder;
 
@@ -17,11 +23,17 @@
 // Attributes
 @property (strong, nonatomic) NSDate *createdAt;
 @property (strong, nonatomic) NSString *creatorName;
+@property (strong, nonatomic) NSString *deleteUri;
 @property (strong, nonatomic) NSString *location;
+@property (strong, nonatomic) NSString *updateUri;
 
 // Relationships
 @property (strong, nonatomic) NSSet *attachments;
 @property (strong, nonatomic) SHCFolder *folder;
+
++ (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)reconnectDanglingDocuments;
+- (SHCAttachment *)mainDocumentAttachment;
 
 @end
 

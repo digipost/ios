@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class SHCFolder;
+
 @interface SHCAPIManager : NSObject
 
 + (instancetype)sharedManager;
@@ -15,5 +17,6 @@
 - (void)startLogging;
 - (void)stopLogging;
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)updateDocumentsInFolder:(SHCFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

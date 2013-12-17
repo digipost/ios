@@ -7,6 +7,7 @@
 //
 
 #import "SHCFolder.h"
+#import "SHCModelManager.h"
 
 // Core Data model entity names
 NSString *const kFolderEntityName = @"Folder";
@@ -30,10 +31,8 @@ NSString *const kFolderArchiveName = @"Archive";
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    SHCFolder *folder = nil;
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kFolderEntityName inManagedObjectContext:managedObjectContext];
-    folder = [[SHCFolder alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
+    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *name = attributes[NSStringFromSelector(@selector(name))];
     folder.name = [name isKindOfClass:[NSString class]] ? name : nil;

@@ -12,6 +12,7 @@
 #import "SHCAPIManager.h"
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
+#import "SHCFolder.h"
 
 typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateIdle = 0,
@@ -22,7 +23,10 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateRefreshingAccessTokenFailed,
     SHCAPIManagerStateUpdatingRootResource,
     SHCAPIManagerStateUpdatingRootResourceFinished,
-    SHCAPIManagerStateUpdatingRootResourceFailed
+    SHCAPIManagerStateUpdatingRootResourceFailed,
+    SHCAPIManagerStateUpdatingDocuments,
+    SHCAPIManagerStateUpdatingDocumentsFinished,
+    SHCAPIManagerStateUpdatingDocumentsFailed
 };
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
@@ -35,6 +39,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 @property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
 @property (strong, nonatomic) id lastResponseObject;
+@property (strong, nonatomic) SHCFolder *lastFolder;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
@@ -124,6 +129,15 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             case SHCAPIManagerStateUpdatingRootResourceFailed:
                 stateString = @"SHCAPIManagerStateUpdatingRootResourceFailed";
                 break;
+            case SHCAPIManagerStateUpdatingDocuments:
+                stateString = @"SHCAPIManagerStateUpdatingDocuments";
+                break;
+            case SHCAPIManagerStateUpdatingDocumentsFinished:
+                stateString = @"SHCAPIManagerStateUpdatingDocumentsFinished";
+                break;
+            case SHCAPIManagerStateUpdatingDocumentsFailed:
+                stateString = @"SHCAPIManagerStateUpdatingDocumentsFailed";
+                break;
             default:
                 stateString = @"default";
                 break;
@@ -156,7 +170,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateModelsWithAttributes:responseDict];
+                    [[SHCModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -195,8 +209,29 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 
                 break;
             }
+            case SHCAPIManagerStateUpdatingDocumentsFinished:
+            {
+                NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
+                if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                    [[SHCModelManager sharedManager] updateDocumentsInFolder:self.lastFolder withAttributes:responseDict];
+
+                    if (self.lastSuccessBlock) {
+                        self.lastSuccessBlock();
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdatingDocumentsFailed:
+            {
+                break;
+            }
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateUpdatingRootResource:
+            case SHCAPIManagerStateUpdatingDocuments:
             case SHCAPIManagerStateIdle:
             default:
                 break;
@@ -249,6 +284,32 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                              self.lastError = error;
                              self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
                         }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)updateDocumentsInFolder:(SHCFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateUpdatingDocuments;
+
+        [self.sessionManager GET:folder.uri
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             self.lastSuccessBlock = success;
+                             self.lastSessionDataTask = task;
+                             self.lastResponseObject = responseObject;
+                             self.lastFolder = folder;
+                             self.state = SHCAPIManagerStateUpdatingDocumentsFinished;
+                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             self.lastFailureBlock = failure;
+                             self.lastSessionDataTask = task;
+                             self.lastError = error;
+                             self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
+                         }];
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);
@@ -349,6 +410,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     self.lastFailureBlock = nil;
     self.lastSessionDataTask = nil;
     self.lastResponseObject = nil;
+    self.lastFolder = nil;
     self.lastError = nil;
 
     self.state = SHCAPIManagerStateIdle;

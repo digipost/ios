@@ -8,13 +8,13 @@
 
 #import "SHCMailbox.h"
 #import "SHCFolder.h"
+#import "SHCModelManager.h"
 
 // Core Data model entity names
 NSString *const kMailboxEntityName = @"Mailbox";
 
 // API keys
 NSString *const kMailboxDigipostAddressAPIKey = @"digipostaddress";
-NSString *const kMailboxOwnerAPIKey = @"owner";
 NSString *const kMailboxLinkDocumentInboxSuffix = @"document_inbox";
 NSString *const kMailboxLinkDocumentWorkAreaSuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
@@ -33,15 +33,13 @@ NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    SHCMailbox *mailbox = nil;
-
-    NSEntityDescription *entity = [NSEntityDescription entityForName:kMailboxEntityName inManagedObjectContext:managedObjectContext];
-    mailbox = [[SHCMailbox alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [[SHCModelManager sharedManager] mailboxEntity];
+    SHCMailbox *mailbox = [[SHCMailbox alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *digipostAddress = attributes[kMailboxDigipostAddressAPIKey];
     mailbox.digipostAddress = [digipostAddress isKindOfClass:[NSString class]] ? digipostAddress : nil;
 
-    NSNumber *owner = attributes[kMailboxOwnerAPIKey];
+    NSNumber *owner = attributes[NSStringFromSelector(@selector(owner))];
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;
 
     NSArray *links = attributes[@"link"];

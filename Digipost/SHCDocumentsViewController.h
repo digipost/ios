@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SHCBaseTableViewController.h"
 
-@interface SHCDocumentsViewController : UITableViewController
+// Segue identifiers (to enable programmatic triggering of segues)
+extern NSString *const kPushDocumentsIdentifier;
+
+@class SHCFolder;
+
+@interface SHCDocumentsViewController : SHCBaseTableViewController
+
+@property (strong, nonatomic) SHCFolder *folder;
 
 @end

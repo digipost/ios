@@ -7,6 +7,14 @@
 //
 
 #import "SHCAttachment.h"
+#import "SHCModelManager.h"
+
+// Core Data model entity names
+NSString *const kAttachmentEntityName = @"Attachment";
+
+// API keys
+NSString *const kAttachmentLinkAPIKey = @"link";
+NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 
 @implementation SHCAttachment
 
@@ -22,5 +30,52 @@
 
 // Relationships
 @dynamic document;
+
+#pragma mark - Public methods
+
++ (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSEntityDescription *entity = [[SHCModelManager sharedManager] attachmentEntity];
+    SHCAttachment *attachment = [[SHCAttachment alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+
+    NSString *authenticationLevel = attributes[NSStringFromSelector(@selector(name))];
+    attachment.authenticationLevel = [authenticationLevel isKindOfClass:[NSString class]] ? authenticationLevel : nil;
+
+    NSNumber *fileSize = attributes[NSStringFromSelector(@selector(fileSize))];
+    attachment.fileSize = [fileSize isKindOfClass:[NSNumber class]] ? fileSize : nil;
+
+    NSString *fileType = attributes[NSStringFromSelector(@selector(fileType))];
+    attachment.fileType = [fileType isKindOfClass:[NSString class]] ? fileType : nil;
+
+    NSNumber *mainDocument = attributes[NSStringFromSelector(@selector(mainDocument))];
+    attachment.mainDocument = [mainDocument isKindOfClass:[NSNumber class]] ? mainDocument : nil;
+
+    NSNumber *read = attributes[NSStringFromSelector(@selector(read))];
+    attachment.read = [read isKindOfClass:[NSNumber class]] ? read : nil;
+
+    NSString *subject = attributes[NSStringFromSelector(@selector(subject))];
+    attachment.subject = [subject isKindOfClass:[NSString class]] ? subject : nil;
+
+    NSString *type = attributes[NSStringFromSelector(@selector(type))];
+    attachment.type = [type isKindOfClass:[NSString class]] ? type : nil;
+
+    NSArray *links = attributes[kAttachmentLinkAPIKey];
+    if ([links isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *link in links) {
+            if ([link isKindOfClass:[NSDictionary class]]) {
+                NSString *rel = link[@"rel"];
+                NSString *uri = link[@"uri"];
+                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+
+                    if ([rel hasSuffix:kAttachmentDocumentContentAPIKey]) {
+                        attachment.uri = uri;
+                    }
+                }
+            }
+        }
+    }
+
+    return attachment;
+}
 
 @end

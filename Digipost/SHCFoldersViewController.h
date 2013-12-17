@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SHCBaseTableViewController.h"
 
 extern NSString *const kFoldersViewControllerIdentifier;
 extern NSString *const kPushFoldersIdentifier;
 
-@interface SHCFoldersViewController : UITableViewController
+@interface SHCFoldersViewController : SHCBaseTableViewController
 
 @end

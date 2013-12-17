@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Core Data model entity names
+extern NSString *const kMailboxEntityName;
+
 @class SHCFolder;
 @class SHCRootResource;
 

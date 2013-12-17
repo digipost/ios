@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Core Data model entity names
+extern NSString *const kAttachmentEntityName;
+
 @class SHCDocument;
 
 @interface SHCAttachment : NSManagedObject
@@ -25,5 +28,7 @@
 
 // Relationships
 @property (strong, nonatomic) SHCDocument *document;
+
++ (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

@@ -8,7 +8,10 @@
 
 #import "SHCModelManager.h"
 #import "SHCRootResource.h"
+#import "SHCMailbox.h"
 #import "SHCFolder.h"
+#import "SHCDocument.h"
+#import "SHCAttachment.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -40,11 +43,17 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     return sharedInstance;
 }
 
-- (void)updateModelsWithAttributes:(NSDictionary *)attributes
+- (void)updateRootResourceWithAttributes:(NSDictionary *)attributes
 {
+    // First, delete the root resource and its cascaded mailboxes and folders
     [SHCRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
 
+    // Then, create a new root resource with related mailboxes and folders
     [SHCRootResource rootResourceWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
+
+    // Now we need to reconnect "old" documents so they're available to the user
+    // before updateDocumentsWithAttribtues: has been called and finished
+    [SHCDocument reconnectDanglingDocuments];
 
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -52,9 +61,34 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     }
 }
 
+- (void)updateDocumentsInFolder:(SHCFolder *)folder withAttributes:(NSDictionary *)attributes
+{
+    
+}
+
+- (NSEntityDescription *)rootResourceEntity
+{
+    return [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSEntityDescription *)mailboxEntity
+{
+    return [NSEntityDescription entityForName:kMailboxEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
 - (NSEntityDescription *)folderEntity
 {
     return [NSEntityDescription entityForName:kFolderEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSEntityDescription *)documentEntity
+{
+    return [NSEntityDescription entityForName:kDocumentEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSEntityDescription *)attachmentEntity
+{
+    return [NSEntityDescription entityForName:kAttachmentEntityName inManagedObjectContext:self.managedObjectContext];
 }
 
 - (NSDate *)rootResourceCreatedAt
