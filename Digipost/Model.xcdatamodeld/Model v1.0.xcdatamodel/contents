@@ -14,7 +14,9 @@
     <entity name="Document" representedClassName="SHCDocument" syncable="YES">
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="creatorName" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="deleteUri" attributeType="String" syncable="YES"/>
         <attribute name="location" attributeType="String" syncable="YES"/>
+        <attribute name="updateUri" attributeType="String" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
         <relationship name="folder" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
@@ -37,7 +39,7 @@
     </entity>
     <elements>
         <element name="Attachment" positionX="439" positionY="-243" width="128" height="180"/>
-        <element name="Document" positionX="252" positionY="-249" width="128" height="118"/>
+        <element name="Document" positionX="252" positionY="-249" width="128" height="148"/>
         <element name="Folder" positionX="70" positionY="-454" width="128" height="103"/>
         <element name="Mailbox" positionX="-108" positionY="-459" width="128" height="105"/>
         <element name="RootResource" positionX="-279" positionY="-459" width="128" height="90"/>
