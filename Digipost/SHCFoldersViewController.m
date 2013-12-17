@@ -36,7 +36,9 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 - (void)viewDidLoad
 {
     self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
-    self.sortDescriptorKeyPath = NSStringFromSelector(@selector(name));
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
+                                                           ascending:YES
+                                                            selector:@selector(compare:)]];
 
     self.screenName = kFoldersViewControllerScreenName;
 

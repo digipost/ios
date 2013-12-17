@@ -49,7 +49,6 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -84,16 +83,6 @@
     id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
 
     return [sectionInfo numberOfObjects];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-
-    // Configure the cell...
-
-    return cell;
 }
 
 /*
@@ -158,16 +147,16 @@
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = self.baseEntity;
-    fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:self.sortDescriptorKeyPath ascending:YES selector:@selector(compare:)]];
+    fetchRequest.sortDescriptors = self.sortDescriptors;
 
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
-    _fetchedResultsController.delegate = self;
+    self.fetchedResultsController.delegate = self;
 
     NSError *error = nil;
-    if (![_fetchedResultsController performFetch:&error]) {
+    if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
     }
 

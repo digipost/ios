@@ -75,7 +75,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     }
 
     NSArray *attachments = attributes[kDocumentAttachmentsAPIKey];
-    if ([attributes isKindOfClass:[NSArray class]]) {
+    if ([attachments isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attachmentDict in attachments) {
             if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
                 SHCAttachment *attachment = [SHCAttachment attachmentWithAttributes:attachmentDict inManagedObjectContext:managedObjectContext];
@@ -137,6 +137,20 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     for (SHCDocument *document in documents) {
         [managedObjectContext deleteObject:document];
     }
+}
+
++ (NSArray *)allDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    }
+
+    return results;
 }
 
 - (SHCAttachment *)mainDocumentAttachment

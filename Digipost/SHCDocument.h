@@ -33,6 +33,7 @@ extern NSString *const kDocumentDocumentsAPIKey;
 
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingDocuments;
++ (NSArray *)allDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (SHCAttachment *)mainDocumentAttachment;
 
 @end

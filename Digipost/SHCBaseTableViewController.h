@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic, readonly) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSEntityDescription *baseEntity;
-@property (copy, nonatomic) NSString *sortDescriptorKeyPath;
+@property (strong, nonatomic) NSArray *sortDescriptors;
 @property (copy, nonatomic) NSString *screenName;
 
 // Override this method in subclass

@@ -31,13 +31,17 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)viewDidLoad
 {
     self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
-    self.sortDescriptorKeyPath = NSStringFromSelector(@selector(createdAt));
+    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
+                                                           ascending:YES
+                                                            selector:@selector(compare:)]];
 
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
 
-//    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
+    self.navigationItem.backBarButtonItem.title = 
+
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 }
 
 #pragma mark - UITableViewDataSource

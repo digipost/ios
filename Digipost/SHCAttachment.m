@@ -13,6 +13,7 @@
 NSString *const kAttachmentEntityName = @"Attachment";
 
 // API keys
+NSString *const kAttachmentAuthenticationLevel = @"authentication-level";
 NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 
@@ -38,7 +39,7 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
     NSEntityDescription *entity = [[SHCModelManager sharedManager] attachmentEntity];
     SHCAttachment *attachment = [[SHCAttachment alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
-    NSString *authenticationLevel = attributes[NSStringFromSelector(@selector(name))];
+    NSString *authenticationLevel = attributes[kAttachmentAuthenticationLevel];
     attachment.authenticationLevel = [authenticationLevel isKindOfClass:[NSString class]] ? authenticationLevel : nil;
 
     NSNumber *fileSize = attributes[NSStringFromSelector(@selector(fileSize))];
