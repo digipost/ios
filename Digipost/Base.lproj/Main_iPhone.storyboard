@@ -148,10 +148,65 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ute-b5-kaJ"/>
+                    <connections>
+                        <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="Kl9-xn-mhN"/>
+                        <segue destination="JNU-sI-t0Q" kind="push" identifier="PushAttachments" id="6gR-yU-rUq"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgJ-0K-g5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1456" y="64"/>
+        </scene>
+        <!--Attachments View Controller-->
+        <scene sceneID="sjq-19-YZ0">
+            <objects>
+                <tableViewController id="JNU-sI-t0Q" customClass="SHCAttachmentsViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="EAR-Z3-7yT">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NZH-uF-sUB">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NZH-uF-sUB" id="QnV-OL-zIf">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JNU-sI-t0Q" id="eFl-F9-KDM"/>
+                            <outlet property="delegate" destination="JNU-sI-t0Q" id="n7j-4V-Nim"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="EeL-BW-yka"/>
+                    <connections>
+                        <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="svS-B5-imh"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRq-wo-j6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1994" y="-481"/>
+        </scene>
+        <!--Letter View Controller-->
+        <scene sceneID="Sbg-cA-T5f">
+            <objects>
+                <viewController id="IOM-jr-kzB" customClass="SHCLetterViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="urQ-nU-4lz"/>
+                        <viewControllerLayoutGuide type="bottom" id="BUU-1z-gTZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OaE-pH-e8d">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="39e-bL-3nq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sAR-h4-ijQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2534" y="64"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="i79-ks-pOi">
@@ -231,4 +286,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Kl9-xn-mhN"/>
+    </inferredMetricsTieBreakers>
 </document>

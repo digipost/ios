@@ -16,6 +16,8 @@
 #import "SHCRootResource.h"
 #import "SHCFolder.h"
 #import "NSError+ExtraInfo.h"
+#import "SHCAttachmentsViewController.h"
+#import "SHCLetterViewController.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -76,6 +78,9 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
 //        NSDate *object = _objects[indexPath.row];
 //        self.detailViewController.detailItem = object;
+    } else {
+        // TODO: check if the document has more than one attachment
+        [self performSegueWithIdentifier:kPushAttachmentsIdentifier sender:nil];
     }
 }
 
