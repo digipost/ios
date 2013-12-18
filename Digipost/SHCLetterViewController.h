@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GAITrackedViewController.h>
 
 extern NSString *const kPushLetterIdentifier;
 
-@interface SHCLetterViewController : UIViewController
+@class SHCAttachment;
+
+@interface SHCLetterViewController : GAITrackedViewController
+
+@property (strong, nonatomic) SHCAttachment *attachment;
 
 @end

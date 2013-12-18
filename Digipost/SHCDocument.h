@@ -28,7 +28,7 @@ extern NSString *const kDocumentDocumentsAPIKey;
 @property (strong, nonatomic) NSString *updateUri;
 
 // Relationships
-@property (strong, nonatomic) NSSet *attachments;
+@property (strong, nonatomic) NSOrderedSet *attachments;
 @property (strong, nonatomic) SHCFolder *folder;
 
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
@@ -42,7 +42,5 @@ extern NSString *const kDocumentDocumentsAPIKey;
 
 - (void)addAttachmentsObject:(SHCAttachment *)value;
 - (void)removeAttachmentsObject:(SHCAttachment *)value;
-- (void)addAttachments:(NSSet *)values;
-- (void)removeAttachments:(NSSet *)values;
 
 @end

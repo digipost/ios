@@ -18,6 +18,7 @@
 #import "NSError+ExtraInfo.h"
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
+#import "SHCAppDelegate.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -75,12 +76,19 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDate *object = _objects[indexPath.row];
-//        self.detailViewController.detailItem = object;
-    } else {
-        // TODO: check if the document has more than one attachment
+    SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier sender:nil];
+    } else {
+
+        SHCAttachment *attachment = [document.attachments firstObject];
+
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+        } else {
+            [self performSegueWithIdentifier:kPushLetterIdentifier sender:nil];
+        }
     }
 }
 

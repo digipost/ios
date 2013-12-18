@@ -14,6 +14,7 @@
 #import <GAITracker.h>
 #import "SHCAppDelegate.h"
 #import "SHCAPIManager.h"
+#import "SHCLetterViewController.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
@@ -43,7 +44,11 @@
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
+
+        UINavigationController *letterNavigationController = splitViewController.viewControllers[1];
+        self.letterViewController = (SHCLetterViewController *)letterNavigationController.topViewController;
     }
+
     return YES;
 }
 							

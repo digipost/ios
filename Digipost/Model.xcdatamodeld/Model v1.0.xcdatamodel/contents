@@ -17,7 +17,7 @@
         <attribute name="deleteUri" attributeType="String" syncable="YES"/>
         <attribute name="location" attributeType="String" syncable="YES"/>
         <attribute name="updateUri" attributeType="String" syncable="YES"/>
-        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
+        <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
         <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName="SHCFolder" syncable="YES">
@@ -35,14 +35,14 @@
     <entity name="RootResource" representedClassName="SHCRootResource" syncable="YES">
         <attribute name="authenticationLevel" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
-        <attribute name="firstName" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" attributeType="String" syncable="YES"/>
-        <attribute name="lastName" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="439" positionY="-243" width="128" height="180"/>
+        <element name="Attachment" positionX="439" positionY="-243" width="128" height="178"/>
         <element name="Document" positionX="252" positionY="-249" width="128" height="148"/>
         <element name="Folder" positionX="70" positionY="-454" width="128" height="103"/>
         <element name="Mailbox" positionX="-108" positionY="-459" width="128" height="105"/>
