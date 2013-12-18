@@ -12,4 +12,6 @@ extern NSString *const kPushAttachmentsIdentifier;
 
 @interface SHCAttachmentsViewController : UITableViewController
 
+@property (strong, nonatomic) NSOrderedSet *attachments;
+
 @end

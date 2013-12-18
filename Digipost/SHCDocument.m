@@ -22,6 +22,27 @@ NSString *const kDocumentDeleteDocumentAPIKey = @"delete_document";
 NSString *const kDocumentUpdateDocumentAPIKey = @"update_document";
 NSString *const kDocumentAttachmentsAPIKey = @"attachment";
 
+// Because of a bug in Core Data, we need to manually implement these methods
+// See: http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors
+
+@implementation SHCDocument (CoreDataGeneratedAccessors)
+
+- (void)addAttachmentsObject:(SHCAttachment *)value
+{
+    NSMutableOrderedSet *attachmentsMutable = [NSMutableOrderedSet orderedSetWithOrderedSet:self.attachments];
+    [attachmentsMutable addObject:value];
+    self.attachments = [NSOrderedSet orderedSetWithOrderedSet:attachmentsMutable];
+}
+
+- (void)removeAttachmentsObject:(SHCAttachment *)value
+{
+    NSMutableOrderedSet *attachmentsMutable = [NSMutableOrderedSet orderedSetWithOrderedSet:self.attachments];
+    [attachmentsMutable removeObject:value];
+    self.attachments = [NSOrderedSet orderedSetWithOrderedSet:attachmentsMutable];
+}
+
+@end
+
 @implementation SHCDocument
 
 // Attributes

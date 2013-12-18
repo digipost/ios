@@ -7,6 +7,8 @@
 //
 
 #import "SHCAttachmentsViewController.h"
+#import "SHCAttachmentTableViewCell.h"
+#import "SHCAttachment.h"
 
 NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
 
@@ -39,24 +41,21 @@ NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    return [self.attachments count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    SHCAttachment *attachment = self.attachments[indexPath.row];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kAttachmentTableViewCellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.textLabel.text = attachment.subject;
     
     return cell;
 }

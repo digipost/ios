@@ -58,6 +58,21 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [super viewWillDisappear:animated];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kPushAttachmentsIdentifier]) {
+        SHCDocument *document = (SHCDocument *)sender;
+
+        SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
+        attachmentsViewController.attachments = document.attachments;
+    } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
+        SHCAttachment *attachment = (SHCAttachment *)sender;
+
+        SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+        letterViewController.attachment = attachment;
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,7 +94,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     if ([document.attachments count] > 1) {
-        [self performSegueWithIdentifier:kPushAttachmentsIdentifier sender:nil];
+        [self performSegueWithIdentifier:kPushAttachmentsIdentifier sender:document];
     } else {
 
         SHCAttachment *attachment = [document.attachments firstObject];
@@ -87,7 +102,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
         } else {
-            [self performSegueWithIdentifier:kPushLetterIdentifier sender:nil];
+            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
         }
     }
 }

@@ -65,6 +65,9 @@
 		83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* SHCLetterViewController.m */; };
 		83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* SHCLetterViewController.m */; };
 		83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* SHCLetterViewController.m */; };
+		83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
+		83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
+		83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
 		83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
 		83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
@@ -163,6 +166,8 @@
 		83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAttachmentsViewController.m; sourceTree = "<group>"; };
 		83D355141861C5EA009EABC6 /* SHCLetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterViewController.h; sourceTree = "<group>"; };
 		83D355151861C5EA009EABC6 /* SHCLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterViewController.m; sourceTree = "<group>"; };
+		83D355191861CDDD009EABC6 /* SHCAttachmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAttachmentTableViewCell.h; sourceTree = "<group>"; };
+		83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAttachmentTableViewCell.m; sourceTree = "<group>"; };
 		83D75F521858E5790013F8C9 /* SHCDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocument.h; sourceTree = "<group>"; };
 		83D75F531858E5790013F8C9 /* SHCDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocument.m; sourceTree = "<group>"; };
 		83D75F571858E5790013F8C9 /* SHCFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolder.h; sourceTree = "<group>"; };
@@ -356,6 +361,8 @@
 				83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */,
 				8364D71C185F2981008DE6CB /* SHCDocumentTableViewCell.h */,
 				8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */,
+				83D355191861CDDD009EABC6 /* SHCAttachmentTableViewCell.h */,
+				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -699,6 +706,7 @@
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBC185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
@@ -730,6 +738,7 @@
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBB185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
@@ -761,6 +770,7 @@
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
 				8342EFBA185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,

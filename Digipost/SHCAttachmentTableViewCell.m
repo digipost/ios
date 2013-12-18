@@ -1,16 +1,16 @@
 //
-//  SHCDocumentTableViewCell.m
+//  SHCAttachmentTableViewCell.m
 //  Digipost
 //
-//  Created by Eivind Bohler on 16.12.13.
+//  Created by Eivind Bohler on 18.12.13.
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
-#import "SHCDocumentTableViewCell.h"
+#import "SHCAttachmentTableViewCell.h"
 
-NSString *const kDocumentTableViewCellIdentifier = @"DocumentCellIdentifier";
+NSString *const kAttachmentTableViewCellIdentifier = @"AttachmentCellIdentifier";
 
-@implementation SHCDocumentTableViewCell
+@implementation SHCAttachmentTableViewCell
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
