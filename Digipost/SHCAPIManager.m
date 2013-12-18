@@ -13,6 +13,8 @@
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
 #import "SHCFolder.h"
+#import "SHCLoginViewController.h"
+#import "NSError+ExtraInfo.h"
 
 typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateIdle = 0,
@@ -40,8 +42,11 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 @property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
 @property (strong, nonatomic) id lastResponseObject;
 @property (copy, nonatomic) NSString *lastFolderName;
+@property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+
+- (void)cancelRequestsWithPath:(NSString *)path;
 
 @end
 
@@ -157,6 +162,16 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             }
             case SHCAPIManagerStateRefreshingAccessTokenFailed:
             {
+                // The refresh token was rejected, most likely because the user invalidated
+                // the session in the www.digipost.no web settings interface.
+
+                [[SHCOAuthManager sharedManager] removeAllTokens];
+
+                self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
+                self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+                };
+
                 if (self.lastFailureBlock) {
                     self.lastFailureBlock(self.lastError);
                 }
@@ -199,7 +214,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                             self.lastFailureBlock(self.lastError);
                         }
                     }];
-                } else {
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -227,6 +242,30 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             }
             case SHCAPIManagerStateUpdatingDocumentsFailed:
             {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsIn400Range:self.lastSessionDataTask.response]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    // And recursively call the update to force a renewal of the access token
+                    [self updateDocumentsInFolderWithName:self.lastFolderName folderUri:self.lastFolderUri withSuccess:^{
+                        if (self.lastSuccessBlock) {
+                            self.lastSuccessBlock();
+                        }
+                    } failure:^(NSError *error) {
+                        if (self.lastFailureBlock) {
+                            self.lastFailureBlock(self.lastError);
+                        }
+                    }];
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
                 break;
             }
             case SHCAPIManagerStateValidatingAccessToken:
@@ -291,10 +330,17 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     }];
 }
 
+- (void)cancelUpdatingRootResource
+{
+    [self cancelRequestsWithPath:__ROOT_RESOURCE_URI__];
+}
+
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateUpdatingDocuments;
+
+        self.lastFolderUri = folderUri;
 
         [self.sessionManager GET:folderUri
                       parameters:nil
@@ -315,6 +361,23 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             failure(error);
         }
     }];
+}
+
+- (void)cancelUpdatingDocuments
+{
+    [self cancelRequestsWithPath:self.lastFolderUri];
+}
+
+- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+        if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+            return YES;
+        }
+    }
+
+    return NO;
 }
 
 #pragma mark - Private methods
@@ -392,18 +455,6 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     }
 }
 
-- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response
-{
-    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)self.lastSessionDataTask.response;
-    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-        if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
-            return YES;
-        }
-    }
-
-    return NO;
-}
-
 - (void)cleanup
 {
     self.lastSuccessBlock = nil;
@@ -411,9 +462,36 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     self.lastSessionDataTask = nil;
     self.lastResponseObject = nil;
     self.lastFolderName = nil;
+    self.lastFolderUri = nil;
     self.lastError = nil;
 
     self.state = SHCAPIManagerStateIdle;
+}
+
+- (void)cancelRequestsWithPath:(NSString *)path
+{
+    NSUInteger counter = 0;
+
+    for (NSURLSessionDataTask *task in self.sessionManager.tasks) {
+        NSString *urlString = [[task.currentRequest URL] absoluteString];
+        if ([urlString length] > 0 && [path length] > 0 && [urlString hasSuffix:path]) {
+            [task cancel];
+            counter++;
+        }
+    }
+
+    if (counter > 0) {
+        DDLogInfo(@"%u requests cancelled", counter);
+    }
+}
+
+- (BOOL)requestWasCancelledWithError:(NSError *)error
+{
+    if ([error code] == -999) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 @end

@@ -15,6 +15,7 @@
 #import "UIAlertView+Blocks.h"
 #import "SHCRootResource.h"
 #import "SHCFolder.h"
+#import "NSError+ExtraInfo.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -43,6 +44,15 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[SHCAPIManager sharedManager] cancelUpdatingDocuments];
+
+    [self programmaticallyEndRefresh];
+
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark - UITableViewDataSource
@@ -131,11 +141,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         [self programmaticallyEndRefresh];
 
-        [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+        [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
-                 otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
-                          tapBlock:nil];
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
     }];
 }
 

@@ -56,6 +56,9 @@
 		83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9491855C0AD004A7BFB /* InfoPlist.strings */; };
 		83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB94C1855C0AD004A7BFB /* DigipostTests.m */; };
+		83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
+		83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
+		83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
 		83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
 		83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
 		83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
@@ -148,6 +151,8 @@
 		83BAB9481855C0AD004A7BFB /* DigipostTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DigipostTests-Info.plist"; sourceTree = "<group>"; };
 		83BAB94A1855C0AD004A7BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83BAB94C1855C0AD004A7BFB /* DigipostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DigipostTests.m; sourceTree = "<group>"; };
+		83D3550518619069009EABC6 /* NSError+ExtraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ExtraInfo.h"; sourceTree = "<group>"; };
+		83D3550618619069009EABC6 /* NSError+ExtraInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ExtraInfo.m"; sourceTree = "<group>"; };
 		83D75F521858E5790013F8C9 /* SHCDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocument.h; sourceTree = "<group>"; };
 		83D75F531858E5790013F8C9 /* SHCDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocument.m; sourceTree = "<group>"; };
 		83D75F571858E5790013F8C9 /* SHCFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolder.h; sourceTree = "<group>"; };
@@ -386,6 +391,8 @@
 				83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */,
 				83F7036A1855FE7D003DABE1 /* UIWebView+OAuth2.h */,
 				83F7036B1855FE7D003DABE1 /* UIWebView+OAuth2.m */,
+				83D3550518619069009EABC6 /* NSError+ExtraInfo.h */,
+				83D3550618619069009EABC6 /* NSError+ExtraInfo.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -673,6 +680,7 @@
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
+				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036E1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
@@ -701,6 +709,7 @@
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
 				83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
+				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036D1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,
@@ -729,6 +738,7 @@
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
+				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */,
 				83F7036C1855FE7D003DABE1 /* UIWebView+OAuth2.m in Sources */,

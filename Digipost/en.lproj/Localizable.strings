@@ -19,7 +19,7 @@
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
 
 /* Missing access token response */
-"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Missing access token response";
+"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Missing access token in response";
 
 /* Refresh token invalid title */
 "GENERIC_REFRESH_TOKEN_INVALID_TITLE" = "Session expired";

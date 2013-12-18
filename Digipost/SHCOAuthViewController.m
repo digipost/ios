@@ -12,6 +12,7 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "SHCOAuthManager.h"
 #import "UIAlertView+Blocks.h"
+#import "NSError+ExtraInfo.h"
 
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
@@ -75,10 +76,10 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
                 }];
 
             } failure:^(NSError *error) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+                [UIAlertView showWithTitle:error.errorTitle
                                    message:[error localizedDescription]
                          cancelButtonTitle:nil
-                         otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
+                         otherButtonTitles:@[error.okButtonTitle]
                                   tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self presentAuthenticationWebView];
                                   }];

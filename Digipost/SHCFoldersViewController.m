@@ -16,6 +16,7 @@
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCRootResource.h"
+#import "NSError+ExtraInfo.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -44,6 +45,15 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.screenName = kFoldersViewControllerScreenName;
 
     [super viewDidLoad];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[SHCAPIManager sharedManager] cancelUpdatingRootResource];
+
+    [self programmaticallyEndRefresh];
+
+    [super viewWillDisappear:animated];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -152,11 +162,11 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
         [self programmaticallyEndRefresh];
 
-        [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+        [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
-                 otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
-                          tapBlock:nil];
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
     }];
 }
 

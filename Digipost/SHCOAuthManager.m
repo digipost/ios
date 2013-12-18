@@ -10,12 +10,12 @@
 #import "SHCOAuthManager.h"
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
-#import "UIAlertView+Blocks.h"
-#import "SHCLoginViewController.h"
+#import "SHCAPIManager.h"
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
     SHCOAuthErrorCodeMissingAccessTokenResponse = 1,
+    SHCOAuthErrorCodeUnauthorizedRefreshTokenResponse
 };
 
 // Digipost OAuth2 API consts
@@ -178,28 +178,18 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                           }
 
                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          // Check to see if the request failed because the refresh token was denied
-                          NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)task.response;
-                          if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-                              if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
-
-                                  [self removeAllTokens];
-
-                                  // The refresh token was rejected, most likely because the user invalidated
-                                  // the session in the www.digipost.no web settings interface.
-                                  [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title")
-                                                     message:NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")
-                                           cancelButtonTitle:nil
-                                           otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
-                                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                        [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
-                                                    }];
-                                  return;
-                              }
-                          }
 
                           if (failure) {
-                              failure(error);
+                              // Check to see if the request failed because the refresh token was denied
+
+                              if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:task.response]) {
+                                  NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                             code:SHCOAuthErrorCodeUnauthorizedRefreshTokenResponse
+                                                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];
+                                  failure(customError);
+                              } else {
+                                  failure(error);
+                              }
                           }
                       }];
 }

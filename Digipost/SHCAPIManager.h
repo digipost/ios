@@ -17,6 +17,9 @@
 - (void)startLogging;
 - (void)stopLogging;
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelUpdatingRootResource;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelUpdatingDocuments;
+- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response;
 
 @end
