@@ -103,7 +103,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     NSError *error = nil;
     NSArray *folders = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
@@ -111,7 +111,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     error = nil;
     NSArray *documents = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     NSMutableArray *remainingDocuments = [NSMutableArray arrayWithArray:documents];
@@ -144,7 +144,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return results;

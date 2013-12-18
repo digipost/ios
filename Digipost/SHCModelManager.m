@@ -57,7 +57,7 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
-        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+        [self logSavingManagedObjectContextWithError:error];
     }
 }
 
@@ -88,7 +88,7 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     // And finally, save changes
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
-        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+        [self logSavingManagedObjectContextWithError:error];
     }
 }
 
@@ -127,12 +127,22 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     NSError *error = nil;
     NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [self logExecuteFetchRequestWithError:error];
     }
 
     SHCRootResource *rootResource = [results firstObject];
 
     return rootResource.createdAt;
+}
+
+- (void)logExecuteFetchRequestWithError:(NSError *)error
+{
+    DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+}
+
+- (void)logSavingManagedObjectContextWithError:(NSError *)error
+{
+    DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
 }
 
 #pragma mark - Properties

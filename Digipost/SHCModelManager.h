@@ -23,5 +23,7 @@
 - (NSEntityDescription *)documentEntity;
 - (NSEntityDescription *)attachmentEntity;
 - (NSDate *)rootResourceCreatedAt;
+- (void)logExecuteFetchRequestWithError:(NSError *)error;
+- (void)logSavingManagedObjectContextWithError:(NSError *)error;
 
 @end

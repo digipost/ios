@@ -42,7 +42,7 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];
@@ -95,7 +95,7 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     for (SHCRootResource *rootResource in results) {
@@ -104,7 +104,7 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 
     error = nil;
     if (![managedObjectContext save:&error]) {
-        DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logSavingManagedObjectContextWithError:error];
     }
 }
 

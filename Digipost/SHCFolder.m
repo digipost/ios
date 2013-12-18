@@ -39,7 +39,7 @@ NSString *const kFolderArchiveName = @"Archive";
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];
