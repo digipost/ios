@@ -56,6 +56,9 @@
 		83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9491855C0AD004A7BFB /* InfoPlist.strings */; };
 		83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB94C1855C0AD004A7BFB /* DigipostTests.m */; };
+		83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
+		83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
+		83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
 		83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
 		83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
 		83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
@@ -160,6 +163,8 @@
 		83BAB9481855C0AD004A7BFB /* DigipostTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DigipostTests-Info.plist"; sourceTree = "<group>"; };
 		83BAB94A1855C0AD004A7BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83BAB94C1855C0AD004A7BFB /* DigipostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DigipostTests.m; sourceTree = "<group>"; };
+		83D2F7E61875578A00344644 /* SHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFileManager.h; sourceTree = "<group>"; };
+		83D2F7E71875578A00344644 /* SHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFileManager.m; sourceTree = "<group>"; };
 		83D3550518619069009EABC6 /* NSError+ExtraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ExtraInfo.h"; sourceTree = "<group>"; };
 		83D3550618619069009EABC6 /* NSError+ExtraInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+ExtraInfo.m"; sourceTree = "<group>"; };
 		83D3550F1861C5D3009EABC6 /* SHCAttachmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAttachmentsViewController.h; sourceTree = "<group>"; };
@@ -399,6 +404,8 @@
 				83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */,
 				83D355141861C5EA009EABC6 /* SHCLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* SHCLetterViewController.m */,
+				83D2F7E61875578A00344644 /* SHCFileManager.h */,
+				83D2F7E71875578A00344644 /* SHCFileManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -695,6 +702,7 @@
 				83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
@@ -727,6 +735,7 @@
 				83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
@@ -759,6 +768,7 @@
 				83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
