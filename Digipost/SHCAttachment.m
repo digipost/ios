@@ -8,6 +8,8 @@
 
 #import "SHCAttachment.h"
 #import "SHCModelManager.h"
+#import "SHCFileManager.h"
+#import "NSString+SHA1String.h"
 
 // Core Data model entity names
 NSString *const kAttachmentEntityName = @"Attachment";
@@ -77,6 +79,22 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
     }
 
     return attachment;
+}
+
+- (NSString *)encryptedFilePath
+{
+    NSString *fileName = [self.uri SHA1String];
+    NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+
+    return filePath;
+}
+
+- (NSString *)decryptedFilePath
+{
+    NSString *fileName = [self.uri SHA1String];
+    NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+
+    return filePath;
 }
 
 @end

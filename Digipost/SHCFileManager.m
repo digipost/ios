@@ -11,8 +11,10 @@
 #import <RNCryptor/RNEncryptor.h>
 #import <RNCryptor/RNDecryptor.h>
 #import "SHCOAuthManager.h"
+#import "SHCAttachment.h"
 
 NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
+NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
 
 @implementation SHCFileManager
 
@@ -30,18 +32,16 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
     return sharedInstance;
 }
 
-- (NSData *)fileDataForUri:(NSString *)uri
+- (NSData *)decryptedDataForAttachment:(SHCAttachment *)attachment
 {
-    NSData *fileData = nil;
+    NSData *decryptedData = nil;
 
-    NSString *fileName = [uri SHA1String];
+    NSString *encryptedFilePath = [attachment encryptedFilePath];
 
-    NSString *filePath = [[self encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
-
-    if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
 
         NSError *error = nil;
-        NSData *encryptedFileData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&error];
+        NSData *encryptedFileData = [NSData dataWithContentsOfFile:encryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
 
         if (error) {
             DDLogError(@"Error reading file: %@", [error localizedDescription]);
@@ -50,10 +50,10 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
             NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
             if (password) {
-                fileData = [RNDecryptor decryptData:encryptedFileData
-                                       withSettings:kRNCryptorAES256Settings
-                                           password:password
-                                              error:&error];
+                decryptedData = [RNDecryptor decryptData:encryptedFileData
+                                            withSettings:kRNCryptorAES256Settings
+                                                password:password
+                                                   error:&error];
                 if (error) {
                     DDLogError(@"Error decrypting file: %@", [error localizedDescription]);
                 }
@@ -61,19 +61,34 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
         }
     }
 
-    return fileData;
+    return decryptedData;
 }
 
-- (BOOL)setFileData:(NSData *)fileData forUri:(NSString *)uri
+- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
     if (!password) {
+        DDLogError(@"Error: Can't encrypt data for attachment without a password");
+        return NO;
+    }
+
+    // First, check if we have the decrypted file data
+    NSString *decryptedFilePath = [attachment decryptedFilePath];
+
+    if (![[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
+        DDLogError(@"Error: Can't encrypt data for attachment without a decrypted file at %@", decryptedFilePath);
         return NO;
     }
 
     NSError *error = nil;
-    NSData *encryptedFileData = [RNEncryptor encryptData:fileData
+    NSData *decryptedFileData = [NSData dataWithContentsOfFile:decryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
+    if (error) {
+        DDLogError(@"Error reading decrypted file: %@", [error localizedDescription]);
+        return NO;
+    }
+
+    NSData *encryptedFileData = [RNEncryptor encryptData:decryptedFileData
                                             withSettings:kRNCryptorAES256Settings
                                                 password:password
                                                    error:&error];
@@ -81,30 +96,84 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
         DDLogError(@"Error encrypting file: %@", [error localizedDescription]);
         return NO;
     } else {
-        NSString *fileName = [uri SHA1String];
 
-        NSString *filePath = [[self encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+        NSString *encryptedFilePath = [attachment encryptedFilePath];
 
         // If we previously haven't done a proper cleanup job and the file still exists,
         // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
-        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-            if (![[NSFileManager defaultManager] removeItemAtPath:filePath error:&error]) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+            if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath error:&error]) {
                 DDLogError(@"Error removing file: %@", [error localizedDescription]);
                 return NO;
             }
         }
 
         error = nil;
-        if (![encryptedFileData writeToFile:filePath options:NSDataWritingAtomic error:&error]) {
+        if (![encryptedFileData writeToFile:encryptedFilePath options:NSDataWritingAtomic error:&error]) {
             DDLogError(@"Error writing to file: %@", [error localizedDescription]);
             return NO;
+        }
+    }
+
+    // Last, but not least - let's remove the decrypted file
+    if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
+        error = nil;
+        if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath error:&error]) {
+            DDLogError(@"Error removing file: %@", [error localizedDescription]);
         }
     }
 
     return YES;
 }
 
+- (BOOL)removeAllDecryptedFiles
+{
+    BOOL success = [self removeAllFilesInFolder:[self decryptedFilesFolderPath]];
+
+    return success;
+}
+
 - (BOOL)removeAllFiles
+{
+    BOOL successfullyRemovedEncryptedFiles = [self removeAllFilesInFolder:[self encryptedFilesFolderPath]];
+    BOOL successfullyRemovedDecryptedFiles = [self removeAllFilesInFolder:[self decryptedFilesFolderPath]];
+
+    return successfullyRemovedEncryptedFiles && successfullyRemovedDecryptedFiles;
+}
+
+- (NSString *)encryptedFilesFolderPath
+{
+    return [self folderPathWithFolderName:kFileManagerEncryptedFilesFolderName];
+}
+
+- (NSString *)decryptedFilesFolderPath
+{
+    return [self folderPathWithFolderName:kFileManagerDecryptedFilesFolderName];
+}
+
+#pragma mark - Private methods
+
+- (NSString *)folderPathWithFolderName:(NSString *)folderName
+{
+    NSString *folderPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:folderName];
+
+    BOOL isFolder = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isFolder]) {
+        if (isFolder) {
+            return folderPath;
+        }
+    }
+
+    NSError *error = nil;
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
+        return nil;
+    }
+
+    return folderPath;
+}
+
+- (BOOL)removeAllFilesInFolder:(NSString *)folder
 {
     NSString *filesFolderPath = [self encryptedFilesFolderPath];
 
@@ -129,30 +198,8 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
             return NO;
         }
     }
-
+    
     return YES;
-}
-
-#pragma mark - Private methods
-
-- (NSString *)encryptedFilesFolderPath
-{
-    NSString *folderPath = [[NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:kFileManagerEncryptedFilesFolderName];
-
-    BOOL isFolder = NO;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isFolder]) {
-        if (isFolder) {
-            return folderPath;
-        }
-    }
-
-    NSError *error = nil;
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
-        return nil;
-    }
-
-    return folderPath;
 }
 
 @end

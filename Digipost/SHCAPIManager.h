@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class SHCFolder;
+@class SHCAttachment;
 
 @interface SHCAPIManager : NSObject
 
@@ -20,6 +21,8 @@
 - (void)cancelUpdatingRootResource;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
+- (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelDownloadingAttachments;
 - (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response;
 
 @end

@@ -30,5 +30,7 @@ extern NSString *const kAttachmentEntityName;
 @property (strong, nonatomic) SHCDocument *document;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (NSString *)encryptedFilePath;
+- (NSString *)decryptedFilePath;
 
 @end

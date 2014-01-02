@@ -15,6 +15,9 @@
 #import "SHCFolder.h"
 #import "SHCLoginViewController.h"
 #import "NSError+ExtraInfo.h"
+#import "SHCAttachment.h"
+#import "SHCFileManager.h"
+#import "NSString+SHA1String.h"
 
 typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateIdle = 0,
@@ -28,7 +31,10 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateUpdatingRootResourceFailed,
     SHCAPIManagerStateUpdatingDocuments,
     SHCAPIManagerStateUpdatingDocumentsFinished,
-    SHCAPIManagerStateUpdatingDocumentsFailed
+    SHCAPIManagerStateUpdatingDocumentsFailed,
+    SHCAPIManagerStateDownloadingAttachment,
+    SHCAPIManagerStateDownloadingAttachmentFinished,
+    SHCAPIManagerStateDownloadingAttachmentFailed
 };
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
@@ -40,10 +46,13 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 @property (copy, nonatomic) void(^lastSuccessBlock)(void);
 @property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
+@property (strong, nonatomic) NSURLSessionDownloadTask *lastSessionDownloadTask;
 @property (strong, nonatomic) id lastResponseObject;
 @property (copy, nonatomic) NSString *lastFolderName;
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
+@property (strong, nonatomic) SHCAttachment *lastAttachment;
+@property (strong, nonatomic) NSProgress *lastProgress;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 - (void)cancelRequestsWithPath:(NSString *)path;
@@ -142,6 +151,15 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                 break;
             case SHCAPIManagerStateUpdatingDocumentsFailed:
                 stateString = @"SHCAPIManagerStateUpdatingDocumentsFailed";
+                break;
+            case SHCAPIManagerStateDownloadingAttachment:
+                stateString = @"SHCAPIManagerStateDownloadingAttachment";
+                break;
+            case SHCAPIManagerStateDownloadingAttachmentFinished:
+                stateString = @"SHCAPIManagerStateDownloadingAttachmentFinished";
+                break;
+            case SHCAPIManagerStateDownloadingAttachmentFailed:
+                stateString = @"SHCAPIManagerStateDownloadingAttachmentFailed";
                 break;
             default:
                 stateString = @"default";
@@ -268,9 +286,48 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 
                 break;
             }
+            case SHCAPIManagerStateDownloadingAttachmentFinished:
+            {
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateDownloadingAttachmentFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsIn400Range:self.lastSessionDownloadTask.response]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    // And recursively call the download to force a renewal of the access token
+                    [self downloadAttachment:self.lastAttachment withProgress:self.lastProgress success:^{
+                        if (self.lastSuccessBlock) {
+                            self.lastSuccessBlock();
+                        }
+                    } failure:^(NSError *error) {
+                        if (self.lastFailureBlock) {
+                            self.lastFailureBlock(self.lastError);
+                        }
+                    }];
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateUpdatingRootResource:
             case SHCAPIManagerStateUpdatingDocuments:
+            case SHCAPIManagerStateDownloadingAttachment:
             case SHCAPIManagerStateIdle:
             default:
                 break;
@@ -368,6 +425,53 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     [self cancelRequestsWithPath:self.lastFolderUri];
 }
 
+- (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateDownloadingAttachment;
+
+        NSString *urlString = [[NSURL URLWithString:attachment.uri relativeToURL:self.sessionManager.baseURL] absoluteString];
+
+        NSMutableURLRequest *urlRequest = [self.sessionManager.requestSerializer requestWithMethod:@"GET" URLString:urlString parameters:nil];
+
+        [self.sessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+            progress.completedUnitCount = totalBytesWritten;
+        }];
+
+        NSURLSessionDownloadTask *task = [self.sessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+            NSString *filePath = [attachment decryptedFilePath];
+            NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
+            return fileUrl;
+        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            if (error) {
+                self.lastFailureBlock = failure;
+                self.lastError = error;
+                self.lastAttachment = attachment;
+                self.lastProgress = progress;
+                self.state = SHCAPIManagerStateDownloadingAttachmentFailed;
+            } else {
+                self.lastSuccessBlock = success;
+                self.state = SHCAPIManagerStateDownloadingAttachmentFinished;
+            }
+        }];
+
+        self.lastSessionDownloadTask = task;
+
+        [task resume];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)cancelDownloadingAttachments
+{
+    for (NSURLSessionDownloadTask *downloadTask in self.sessionManager.downloadTasks) {
+        [downloadTask cancel];
+    }
+}
+
 - (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
@@ -460,10 +564,13 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     self.lastSuccessBlock = nil;
     self.lastFailureBlock = nil;
     self.lastSessionDataTask = nil;
+    self.lastSessionDownloadTask = nil;
     self.lastResponseObject = nil;
     self.lastFolderName = nil;
     self.lastFolderUri = nil;
     self.lastError = nil;
+    self.lastAttachment = nil;
+    self.lastProgress = nil;
 
     self.state = SHCAPIManagerStateIdle;
 }

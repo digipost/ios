@@ -11,6 +11,7 @@
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
 #import "SHCAPIManager.h"
+#import "SHCFileManager.h"
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
@@ -207,6 +208,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     self.refreshToken = nil;
 
     DDLogInfo(@"All tokens removed");
+
+    [[SHCFileManager sharedFileManager] removeAllFiles];
 }
 
 @end

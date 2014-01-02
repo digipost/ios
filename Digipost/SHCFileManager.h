@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class SHCAttachment;
+
 @interface SHCFileManager : NSObject
 
 + (instancetype)sharedFileManager;
-- (NSData *)fileDataForUri:(NSString *)uri;
-- (BOOL)setFileData:(NSData *)fileData forUri:(NSString *)uri;
+- (NSData *)decryptedDataForAttachment:(SHCAttachment *)attachment;
+- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment;
+- (BOOL)removeAllDecryptedFiles;
 - (BOOL)removeAllFiles;
+- (NSString *)encryptedFilesFolderPath;
+- (NSString *)decryptedFilesFolderPath;
 
 @end
