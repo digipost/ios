@@ -7,10 +7,13 @@
 //
 
 #import "SHCLetterViewController.h"
+#import "SHCAttachment.h"
 
 NSString *const kPushLetterIdentifier = @"PushLetter";
 
 @interface SHCLetterViewController ()
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
@@ -21,7 +24,8 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    NSLog(@"Loading %@", self.attachment.uri);
 }
 
 - (void)didReceiveMemoryWarning
