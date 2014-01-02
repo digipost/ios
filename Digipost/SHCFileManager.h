@@ -12,6 +12,7 @@
 
 + (instancetype)sharedFileManager;
 - (NSData *)fileDataForUri:(NSString *)uri;
-- (void)setFileData:(NSData *)fileData forUri:(NSString *)uri;
+- (BOOL)setFileData:(NSData *)fileData forUri:(NSString *)uri;
+- (BOOL)removeAllFiles;
 
 @end
