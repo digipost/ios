@@ -45,8 +45,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 @property (assign, nonatomic) SHCAPIManagerState state;
 @property (copy, nonatomic) void(^lastSuccessBlock)(void);
 @property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
-@property (strong, nonatomic) NSURLSessionDataTask *lastSessionDataTask;
-@property (strong, nonatomic) NSURLSessionDownloadTask *lastSessionDownloadTask;
+@property (strong, nonatomic) NSURLResponse *lastURLResponse;
 @property (strong, nonatomic) id lastResponseObject;
 @property (copy, nonatomic) NSString *lastFolderName;
 @property (copy, nonatomic) NSString *lastFolderUri;
@@ -217,7 +216,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             case SHCAPIManagerStateUpdatingRootResourceFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastSessionDataTask.response]) {
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -261,7 +260,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             case SHCAPIManagerStateUpdatingDocumentsFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastSessionDataTask.response]) {
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -299,7 +298,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             case SHCAPIManagerStateDownloadingAttachmentFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastSessionDownloadTask.response]) {
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -371,12 +370,12 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              self.lastSuccessBlock = success;
-                             self.lastSessionDataTask = task;
+                             self.lastURLResponse = task.response;
                              self.lastResponseObject = responseObject;
                              self.state = SHCAPIManagerStateUpdatingRootResourceFinished;
                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
                              self.lastFailureBlock = failure;
-                             self.lastSessionDataTask = task;
+                             self.lastURLResponse = task.response;
                              self.lastError = error;
                              self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
                         }];
@@ -403,13 +402,13 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              self.lastSuccessBlock = success;
-                             self.lastSessionDataTask = task;
+                             self.lastURLResponse = task.response;
                              self.lastResponseObject = responseObject;
                              self.lastFolderName = folderName;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFinished;
                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
                              self.lastFailureBlock = failure;
-                             self.lastSessionDataTask = task;
+                             self.lastURLResponse = task.response;
                              self.lastError = error;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
                          }];
@@ -444,18 +443,18 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             return fileUrl;
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
             if (error) {
+                self.lastURLResponse = response;
                 self.lastFailureBlock = failure;
                 self.lastError = error;
                 self.lastAttachment = attachment;
                 self.lastProgress = progress;
                 self.state = SHCAPIManagerStateDownloadingAttachmentFailed;
             } else {
+                self.lastURLResponse = response;
                 self.lastSuccessBlock = success;
                 self.state = SHCAPIManagerStateDownloadingAttachmentFinished;
             }
         }];
-
-        self.lastSessionDownloadTask = task;
 
         [task resume];
     } failure:^(NSError *error) {
@@ -563,8 +562,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
 {
     self.lastSuccessBlock = nil;
     self.lastFailureBlock = nil;
-    self.lastSessionDataTask = nil;
-    self.lastSessionDownloadTask = nil;
+    self.lastURLResponse = nil;
     self.lastResponseObject = nil;
     self.lastFolderName = nil;
     self.lastFolderUri = nil;
