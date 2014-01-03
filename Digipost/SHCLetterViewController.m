@@ -16,9 +16,6 @@
 #import "NSError+ExtraInfo.h"
 
 NSString *const kPushLetterIdentifier = @"PushLetter";
-NSString *const kFileTypePDF = @"pdf";
-NSString *const kFileTypePNG = @"png";
-NSString *const kFileTypeJPG = @"jpg";
 
 @interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
