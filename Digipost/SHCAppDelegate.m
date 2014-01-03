@@ -15,6 +15,7 @@
 #import "SHCAppDelegate.h"
 #import "SHCAPIManager.h"
 #import "SHCLetterViewController.h"
+#import "SHCFileManager.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
@@ -58,6 +59,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -70,6 +72,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 #pragma mark - Private methods
