@@ -83,7 +83,7 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 
 - (NSString *)encryptedFilePath
 {
-    NSString *fileName = [self.uri SHA1String];
+    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
     NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
@@ -91,7 +91,7 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 
 - (NSString *)decryptedFilePath
 {
-    NSString *fileName = [self.uri SHA1String];
+    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
     NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
