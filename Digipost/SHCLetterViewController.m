@@ -55,6 +55,10 @@ NSString *const kFileTypeJPG = @"jpg";
 
     [self setProgressBarFraction:0.0];
 
+    if (![self attachmentHasValidFileType]) {
+        [self showInvalidFileTypeView];
+    }
+
     NSString *encryptedFilePath = [self.attachment encryptedFilePath];
     NSString *decryptedFilePath = [self.attachment decryptedFilePath];
 
@@ -137,6 +141,19 @@ NSString *const kFileTypeJPG = @"jpg";
     CGFloat minimumFraction = (2 * barRadius) / barWidth;
 
     self.progressView.progress = MAX(minimumFraction, fraction);
+}
+
+- (BOOL)attachmentHasValidFileType
+{
+    // A list of file types that are tried and tested with UIWebView
+    NSArray *validFilesTypes = @[@"pdf", @"png", @"jpg", @"jpeg", @"gif", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages"];
+
+    return [validFilesTypes containsObject:self.attachment.fileType];
+}
+
+- (void)showInvalidFileTypeView
+{
+    // TODO: implement this.
 }
 
 @end
