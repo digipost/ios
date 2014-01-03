@@ -32,36 +32,56 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     return sharedInstance;
 }
 
-- (NSData *)decryptedDataForAttachment:(SHCAttachment *)attachment
+- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment
 {
-    NSData *decryptedData = nil;
+    NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
+    if (!password) {
+        DDLogError(@"Error: Can't decrypt data for attachment without a password");
+        return NO;
+    }
+
+    // First, ensure that we have the encrypted file
     NSString *encryptedFilePath = [attachment encryptedFilePath];
 
-    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+        DDLogError(@"Error: Can't decrypt data for attachment without an encrypted file at %@", encryptedFilePath);
+        return NO;
+    }
 
-        NSError *error = nil;
-        NSData *encryptedFileData = [NSData dataWithContentsOfFile:encryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
+    NSError *error = nil;
+    NSData *encryptedFileData = [NSData dataWithContentsOfFile:encryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
+    if (error) {
+        DDLogError(@"Error reading encrypted file: %@", [error localizedDescription]);
+        return NO;
+    }
 
-        if (error) {
-            DDLogError(@"Error reading file: %@", [error localizedDescription]);
-        } else {
-
-            NSString *password = [SHCOAuthManager sharedManager].refreshToken;
-
-            if (password) {
-                decryptedData = [RNDecryptor decryptData:encryptedFileData
+    NSData *decryptedFileData = [RNDecryptor decryptData:encryptedFileData
                                             withSettings:kRNCryptorAES256Settings
                                                 password:password
                                                    error:&error];
-                if (error) {
-                    DDLogError(@"Error decrypting file: %@", [error localizedDescription]);
-                }
-            }
+    if (error) {
+        DDLogError(@"Error decrypting file: %@", [error localizedDescription]);
+        return NO;
+    }
+
+    NSString *decryptedFilePath = [attachment decryptedFilePath];
+
+    // If we previously haven't done a proper cleanup job and the decrypted file still exists,
+    // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
+    if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
+        if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath error:&error]) {
+            DDLogError(@"Error removing decrypted file: %@", [error localizedDescription]);
+            return NO;
         }
     }
 
-    return decryptedData;
+    if (![decryptedFileData writeToFile:decryptedFilePath options:NSDataWritingAtomic error:&error]) {
+        DDLogError(@"Error writing decrypted file: %@", [error localizedDescription]);
+        return NO;
+    }
+
+    return YES;
 }
 
 - (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment
@@ -73,7 +93,7 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
         return NO;
     }
 
-    // First, check if we have the decrypted file data
+    // First, ensure htat we have the decrypted file
     NSString *decryptedFilePath = [attachment decryptedFilePath];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
@@ -95,32 +115,23 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     if (error) {
         DDLogError(@"Error encrypting file: %@", [error localizedDescription]);
         return NO;
-    } else {
+    }
 
-        NSString *encryptedFilePath = [attachment encryptedFilePath];
+    NSString *encryptedFilePath = [attachment encryptedFilePath];
 
-        // If we previously haven't done a proper cleanup job and the file still exists,
-        // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
-        if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-            if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath error:&error]) {
-                DDLogError(@"Error removing file: %@", [error localizedDescription]);
-                return NO;
-            }
-        }
-
-        error = nil;
-        if (![encryptedFileData writeToFile:encryptedFilePath options:NSDataWritingAtomic error:&error]) {
-            DDLogError(@"Error writing to file: %@", [error localizedDescription]);
+    // If we previously haven't done a proper cleanup job and the encrypted file still exists,
+    // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
+    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+        if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath error:&error]) {
+            DDLogError(@"Error removing encrypted file: %@", [error localizedDescription]);
             return NO;
         }
     }
 
-    // Last, but not least - let's remove the decrypted file
-    if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
-        error = nil;
-        if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath error:&error]) {
-            DDLogError(@"Error removing file: %@", [error localizedDescription]);
-        }
+    error = nil;
+    if (![encryptedFileData writeToFile:encryptedFilePath options:NSDataWritingAtomic error:&error]) {
+        DDLogError(@"Error writing encrypted file: %@", [error localizedDescription]);
+        return NO;
     }
 
     return YES;
@@ -175,10 +186,8 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
 
 - (BOOL)removeAllFilesInFolder:(NSString *)folder
 {
-    NSString *filesFolderPath = [self encryptedFilesFolderPath];
-
     NSError *error = nil;
-    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:filesFolderPath error:&error];
+    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder error:&error];
     if (error) {
         DDLogError(@"Error getting list of files: %@", [error localizedDescription]);
         return NO;
@@ -186,7 +195,7 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
         NSUInteger failures = 0;
 
         for (NSString *fileName in fileNames) {
-            NSString *filePath = [filesFolderPath stringByAppendingPathComponent:fileName];
+            NSString *filePath = [folder stringByAppendingPathComponent:fileName];
 
             if (![[NSFileManager defaultManager] removeItemAtPath:filePath error:&error]) {
                 DDLogError(@"Error removing file: %@", [error localizedDescription]);

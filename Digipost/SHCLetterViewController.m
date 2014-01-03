@@ -6,12 +6,14 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <UIAlertView+Blocks.h>
+#import <LDProgressView.h>
 #import "SHCLetterViewController.h"
 #import "SHCAttachment.h"
 #import "SHCFileManager.h"
 #import "SHCAPIManager.h"
 #import "NSString+SHA1String.h"
-#import <LDProgressView.h>
+#import "NSError+ExtraInfo.h"
 
 NSString *const kPushLetterIdentifier = @"PushLetter";
 NSString *const kFileTypePDF = @"pdf";
@@ -27,6 +29,13 @@ NSString *const kFileTypeJPG = @"jpg";
 @end
 
 @implementation SHCLetterViewController
+
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+}
 
 #pragma mark - UIViewController
 
@@ -46,19 +55,18 @@ NSString *const kFileTypeJPG = @"jpg";
 
     [self setProgressBarFraction:0.0];
 
-    NSData *decryptedFileData = [[SHCFileManager sharedFileManager] decryptedDataForAttachment:self.attachment];
+    NSString *encryptedFilePath = [self.attachment encryptedFilePath];
+    NSString *decryptedFilePath = [self.attachment decryptedFilePath];
 
-    NSString *MIMEType = nil;
-    if ([self.attachment.fileType isEqualToString:kFileTypePDF]) {
-        MIMEType = @"application/pdf";
-    } else if ([self.attachment.fileType isEqualToString:kFileTypePNG]) {
-        MIMEType = @"image/png";
-    } else if ([self.attachment.fileType isEqualToString:kFileTypeJPG]) {
-        MIMEType = @"image/jpg";
-    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment]) {
+            // TODO: throw an error message to the user here
+            return;
+        }
 
-    if (decryptedFileData) {
-        [self.webView loadData:decryptedFileData MIMEType:MIMEType textEncodingName:@"utf-8" baseURL:nil];
+        NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+        [self.webView loadRequest:request];
     } else {
 
         [UIView animateWithDuration:0.1 delay:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -71,13 +79,20 @@ NSString *const kFileTypeJPG = @"jpg";
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 
-            NSData *freshFileData = [NSData dataWithContentsOfFile:[self.attachment decryptedFilePath]];
+            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment]) {
+                // TODO: maybe display an error message here?
+            }
 
-            [[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment];
-
-            [self.webView loadData:freshFileData MIMEType:MIMEType textEncodingName:@"utf-8" baseURL:nil];
+            NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+            [self.webView loadRequest:request];
         } failure:^(NSError *error) {
 
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
         }];
     }
 }
@@ -93,6 +108,11 @@ NSString *const kFileTypeJPG = @"jpg";
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.progressView.alpha = 0.0;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    DDLogError(@"%@", [error localizedDescription]);
 }
 
 #pragma mark - NSKeyValueObserving

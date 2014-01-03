@@ -13,7 +13,7 @@
 @interface SHCFileManager : NSObject
 
 + (instancetype)sharedFileManager;
-- (NSData *)decryptedDataForAttachment:(SHCAttachment *)attachment;
+- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment;
 - (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment;
 - (BOOL)removeAllDecryptedFiles;
 - (BOOL)removeAllFiles;
