@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <UIAlertView+Blocks.h>
 #import "SHCOAuthViewController.h"
 #import "UIWebView+OAuth2.h"
 #import "NSString+RandomNumber.h"
 #import "NSURLRequest+QueryParameters.h"
 #import "SHCOAuthManager.h"
-#import "UIAlertView+Blocks.h"
 #import "NSError+ExtraInfo.h"
 
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";

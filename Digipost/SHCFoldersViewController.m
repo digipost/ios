@@ -6,12 +6,12 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <UIAlertView+Blocks.h>
 #import "SHCFoldersViewController.h"
 #import "SHCAPIManager.h"
 #import "SHCModelManager.h"
 #import "SHCFolderTableViewCell.h"
 #import "SHCFolder.h"
-#import "UIAlertView+Blocks.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
@@ -182,8 +182,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
 
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",
-                                 self.rootResource.firstName,
-                                 self.rootResource.lastName];
+                                 self.rootResource.firstName ?: @"",
+                                 self.rootResource.lastName ?: @""];
 }
 
 @end
