@@ -20,7 +20,7 @@ NSString *const kFileTypePDF = @"pdf";
 NSString *const kFileTypePNG = @"png";
 NSString *const kFileTypeJPG = @"jpg";
 
-@interface SHCLetterViewController () <UIWebViewDelegate>
+@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet LDProgressView *progressView;
@@ -99,6 +99,22 @@ NSString *const kFileTypeJPG = @"jpg";
                               tapBlock:error.tapBlock];
         }];
     }
+
+    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTapWebView:)];
+    singleTapGestureRecognizer.numberOfTapsRequired = 1;
+    singleTapGestureRecognizer.numberOfTouchesRequired = 1;
+    singleTapGestureRecognizer.delegate = self;
+
+    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTapWebView:)];
+    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    doubleTapGestureRecognizer.numberOfTouchesRequired = 1;
+    doubleTapGestureRecognizer.delegate = self;
+
+    // To make sure this view only responds to single taps
+    [singleTapGestureRecognizer requireGestureRecognizerToFail:doubleTapGestureRecognizer];
+
+    [self.webView addGestureRecognizer:singleTapGestureRecognizer];
+    [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -117,6 +133,13 @@ NSString *const kFileTypeJPG = @"jpg";
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     DDLogError(@"%@", [error localizedDescription]);
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return NO;
 }
 
 #pragma mark - NSKeyValueObserving
@@ -154,6 +177,16 @@ NSString *const kFileTypeJPG = @"jpg";
 - (void)showInvalidFileTypeView
 {
     // TODO: implement this.
+}
+
+- (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    NSLog(@"single tap");
+}
+
+- (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    NSLog(@"double tap");
 }
 
 @end
