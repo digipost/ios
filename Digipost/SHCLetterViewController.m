@@ -8,6 +8,7 @@
 
 #import <UIAlertView+Blocks.h>
 #import <LDProgressView.h>
+#import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCLetterViewController.h"
 #import "SHCAttachment.h"
 #import "SHCFileManager.h"
@@ -54,47 +55,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
-    }
-
-    NSString *encryptedFilePath = [self.attachment encryptedFilePath];
-    NSString *decryptedFilePath = [self.attachment decryptedFilePath];
-
-    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment]) {
-            // TODO: throw an error message to the user here
-            return;
-        }
-
-        NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-        [self.webView loadRequest:request];
-    } else {
-
-        [UIView animateWithDuration:0.1 delay:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            self.progressView.alpha = 1.0;
-        } completion:nil];
-
-        NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
-        progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
-        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:NULL];
-
-        [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
-
-            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment]) {
-                // TODO: maybe display an error message here?
-            }
-
-            NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-            [self.webView loadRequest:request];
-        } failure:^(NSError *error) {
-
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
-        }];
+        return;
     }
 
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTapWebView:)];
@@ -112,6 +73,8 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
     [self.webView addGestureRecognizer:singleTapGestureRecognizer];
     [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
+
+    [self loadContent];
 }
 
 - (void)didReceiveMemoryWarning
@@ -153,6 +116,64 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 }
 
 #pragma mark - Private methods
+
+- (void)loadContent
+{
+    NSString *encryptedFilePath = [self.attachment encryptedFilePath];
+    NSString *decryptedFilePath = [self.attachment decryptedFilePath];
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment]) {
+            // TODO: throw an error message to the user here
+            return;
+        }
+
+        NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+        [self.webView loadRequest:request];
+    } else {
+
+        [UIView animateWithDuration:0.1 delay:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            self.progressView.alpha = 1.0;
+        } completion:nil];
+
+        NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
+        progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
+        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:NULL];
+
+        [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
+
+            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment]) {
+                // TODO: maybe display an error message here?
+            }
+
+            NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+            [self.webView loadRequest:request];
+        } failure:^(NSError *error) {
+
+            if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
+                [error code] == SHCAPIManagerErrorCodeUnauthorized) {
+
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self loadContent];
+                });
+                return;
+            } else {
+
+                [UIAlertView showWithTitle:error.errorTitle
+                                   message:[error localizedDescription]
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@[error.okButtonTitle]
+                                  tapBlock:error.tapBlock];
+            }
+        }];
+    }
+}
 
 - (void)setProgressBarFraction:(CGFloat)fraction
 {

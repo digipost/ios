@@ -16,7 +16,7 @@
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
     SHCOAuthErrorCodeMissingAccessTokenResponse = 1,
-    SHCOAuthErrorCodeUnauthorizedRefreshTokenResponse
+    SHCOAuthErrorCodeInvalidRefreshTokenResponse
 };
 
 // Digipost OAuth2 API consts
@@ -185,7 +185,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
                               if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:task.response]) {
                                   NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                             code:SHCOAuthErrorCodeUnauthorizedRefreshTokenResponse
+                                                                             code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];
                                   failure(customError);
                               } else {

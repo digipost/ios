@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+// Custom NSError code enum
+typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
+    SHCAPIManagerErrorCodeUnauthorized = 1
+};
+
+// Custom NSError consts
+extern NSString *const kAPIManagerErrorDomain;
+
 @class SHCFolder;
 @class SHCAttachment;
 

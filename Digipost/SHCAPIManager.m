@@ -9,6 +9,7 @@
 #import <objc/runtime.h>
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCAPIManager.h"
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
@@ -39,6 +40,9 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
 static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspended;
+
+// Custom NSError consts
+NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 @interface SHCAPIManager ()
 
@@ -221,16 +225,9 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
 
-                    // And recursively call the update to force a renewal of the access token
-                    [self updateRootResourceWithSuccess:^{
-                        if (self.lastSuccessBlock) {
-                            self.lastSuccessBlock();
-                        }
-                    } failure:^(NSError *error) {
-                        if (self.lastFailureBlock) {
-                            self.lastFailureBlock(self.lastError);
-                        }
-                    }];
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
                 } else if (![self requestWasCancelledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
@@ -265,16 +262,9 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
 
-                    // And recursively call the update to force a renewal of the access token
-                    [self updateDocumentsInFolderWithName:self.lastFolderName folderUri:self.lastFolderUri withSuccess:^{
-                        if (self.lastSuccessBlock) {
-                            self.lastSuccessBlock();
-                        }
-                    } failure:^(NSError *error) {
-                        if (self.lastFailureBlock) {
-                            self.lastFailureBlock(self.lastError);
-                        }
-                    }];
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
                 } else if (![self requestWasCancelledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
@@ -303,16 +293,9 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
 
-                    // And recursively call the download to force a renewal of the access token
-                    [self downloadAttachment:self.lastAttachment withProgress:self.lastProgress success:^{
-                        if (self.lastSuccessBlock) {
-                            self.lastSuccessBlock();
-                        }
-                    } failure:^(NSError *error) {
-                        if (self.lastFailureBlock) {
-                            self.lastFailureBlock(self.lastError);
-                        }
-                    }];
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
                 } else if (![self requestWasCancelledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
@@ -324,6 +307,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
                 break;
             }
             case SHCAPIManagerStateValidatingAccessToken:
+            case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateUpdatingRootResource:
             case SHCAPIManagerStateUpdatingDocuments:
             case SHCAPIManagerStateDownloadingAttachment:
@@ -442,7 +426,23 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
             NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
             return fileUrl;
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-            if (error) {
+            BOOL downloadFailure = NO;
+            NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
+            if ([HTTPURLResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+                if ([HTTPURLResponse statusCode] != 200) {
+                    downloadFailure = YES;
+                }
+            }
+            if (error || downloadFailure) {
+
+                // If we're getting a 401 from the server, the error object will be nil.
+                // Let's set it to something more usable that the calling instance can interpret.
+                if (!error) {
+                    error = [NSError errorWithDomain:kAPIManagerErrorDomain
+                                                code:SHCAPIManagerErrorCodeUnauthorized
+                                            userInfo:nil];
+                }
+
                 self.lastURLResponse = response;
                 self.lastFailureBlock = failure;
                 self.lastError = error;
@@ -552,7 +552,7 @@ static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspen
     NSUInteger responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
 
     if (error) {
-        DDLogError(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
+        DDLogDebug(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
     } else {
         DDLogDebug(@"%ld %@", (long)responseStatusCode, [[response URL] absoluteString]);
     }
