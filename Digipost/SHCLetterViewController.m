@@ -7,7 +7,7 @@
 //
 
 #import <UIAlertView+Blocks.h>
-#import <LDProgressView.h>
+#import <THProgressView.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCLetterViewController.h"
 #import "SHCAttachment.h"
@@ -21,19 +21,12 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 @interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet LDProgressView *progressView;
+@property (weak, nonatomic) IBOutlet THProgressView *progressView;
 @property (strong, nonatomic) NSProgress *progress;
 
 @end
 
 @implementation SHCLetterViewController
-
-#pragma mark - NSObject
-
-- (void)dealloc
-{
-    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
-}
 
 #pragma mark - UIViewController
 
@@ -41,22 +34,14 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 {
     [super viewDidLoad];
 
-    self.progressView.color = [UIColor whiteColor];
-    self.progressView.flat = @YES;
-    self.progressView.showStroke = @YES;
-    self.progressView.outerStrokeWidth = @3.0;
-    self.progressView.showBackground = @NO;
-    self.progressView.progressInset = @6.0;
-    self.progressView.progress = 0.0;
-    self.progressView.showText = @NO;
-    self.progressView.animate = @NO;
-
-    [self setProgressBarFraction:0.0];
-
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
         return;
     }
+
+    self.progressView.alpha = 1.0;
+    self.progressView.borderTintColor = [UIColor whiteColor];
+    self.progressView.progressTintColor = [UIColor whiteColor];
 
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTapWebView:)];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
@@ -73,8 +58,20 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
     [self.webView addGestureRecognizer:singleTapGestureRecognizer];
     [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 
     [self loadContent];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [self unloadContent];
+
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -106,11 +103,11 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:NSStringFromSelector(@selector(fractionCompleted))]) {
+    if ([keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
         NSProgress *progress = (NSProgress *)object;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [self setProgressBarFraction:progress.fractionCompleted];
+            self.progressView.progress = progress.fractionCompleted;
         });
     }
 }
@@ -139,7 +136,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
         NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
         progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
-        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:NULL];
+        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:NULL];
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 
@@ -175,13 +172,10 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
     }
 }
 
-- (void)setProgressBarFraction:(CGFloat)fraction
+- (void)unloadContent
 {
-    CGFloat barRadius = [self.progressView.borderRadius floatValue] - [self.progressView.progressInset floatValue];
-    CGFloat barWidth = CGRectGetWidth(self.progressView.frame) - (2 * [self.progressView.progressInset floatValue]);
-    CGFloat minimumFraction = (2 * barRadius) / barWidth;
-
-    self.progressView.progress = MAX(minimumFraction, fraction);
+    [[SHCAPIManager sharedManager] cancelDownloadingAttachments];
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (BOOL)attachmentHasValidFileType
