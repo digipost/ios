@@ -41,7 +41,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:229.0/255.0 green:42.0/255.0 blue:19.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:230.0/255.0 green:43.0/255.0 blue:20.0/255.0 alpha:1.0]];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
