@@ -119,7 +119,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     }
 
     // Delete all remaining documents that we couldn't match
-    for (SHCDocument *document in documents) {
+    for (SHCDocument *document in remainingDocuments) {
         [managedObjectContext deleteObject:document];
     }
 }

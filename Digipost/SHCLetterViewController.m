@@ -54,6 +54,9 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
         self.toolbarHeightConstraint.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 44.0 : 32.0;
     }
 
+    self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
+    self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
+
     self.progressView.borderTintColor = [UIColor whiteColor];
     self.progressView.progressTintColor = [UIColor whiteColor];
 
@@ -106,6 +109,17 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     DDLogError(@"%@", [error localizedDescription]);
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    if ([request.URL isFileURL]) {
+        return YES;
+    } else {
+        [[UIApplication sharedApplication] openURL:request.URL];
+
+        return NO;
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate

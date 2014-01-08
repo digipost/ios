@@ -28,7 +28,10 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
 
-@interface SHCFoldersViewController ()
+@interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
+
+@property (strong, nonatomic) SHCFolder *inboxFolder;
+@property (strong, nonatomic) NSMutableArray *folders;
 
 @end
 
@@ -44,6 +47,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                                                             selector:@selector(compare:)]];
 
     self.screenName = kFoldersViewControllerScreenName;
+
+    self.folders = [NSMutableArray array];
 
     [super viewDidLoad];
 }
@@ -70,24 +75,88 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 2;
+    } else {
+        return [self.folders count];
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSString *folderName = nil;
+    UIImage *iconImage = nil;
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier forIndexPath:indexPath];
-    
-    cell.textLabel.text = folder.name;
-    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            folderName = self.inboxFolder.name;
+            iconImage = [UIImage imageNamed:@"list-icon-folder"];
+        } else {
+            // TODO: implement receipts here
+            folderName = @"Receipts";
+            iconImage = [UIImage imageNamed:@"list-icon-receipt"];
+        }
+    } else {
+        folderName = [self.folders[indexPath.row] name];
+        iconImage = [UIImage imageNamed:@"list-icon-folder"];
+    }
+
+    SHCFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier forIndexPath:indexPath];
+    cell.folderNameLabel.text = folderName;
+    cell.iconImageView.image = iconImage;
+
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *title = nil;
+    if (section == 1) {
+        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE", @"FOLDERS");
+    }
+
+    return title;
 }
 
 #pragma mark - UITableViewDelegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    CGFloat height = 0.0;
+    if (section > 0) {
+        height = self.tableView.sectionHeaderHeight;
+    }
+
+    return height;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    view.tintColor = [UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:1.0];
+
+    UITableViewHeaderFooterView *headerFooterView = (UITableViewHeaderFooterView *)view;
+    headerFooterView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
+    headerFooterView.textLabel.textColor = [UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-    [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:folder];
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.inboxFolder];
+        } else {
+            // TODO: implement receipes-stuff here
+        }
+    } else {
+        [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
+    }
 }
 
 /*
@@ -141,6 +210,33 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 */
 
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self updateFolders];
+}
+
+#pragma mark - Public methods
+
+- (void)updateFolders
+{
+    [self.folders removeAllObjects];
+
+    for (NSInteger section = 0; section < [self.fetchedResultsController.sections count]; section++) {
+        id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
+        for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
+            SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+
+            if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
+                self.inboxFolder = folder;
+            } else {
+                [self.folders addObject:folder];
+            }
+        }
+    }
+}
+
 #pragma mark - IBActions
 
 - (IBAction)didTapLogoutButton:(id)sender
@@ -192,9 +288,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                                                                          target:nil
                                                                          action:nil];
 
-    [self.navigationItem setBackBarButtonItem:backBarButtonItem];
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
 
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
 
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",
                                  self.rootResource.firstName ?: @"",

@@ -42,6 +42,7 @@
 
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:230.0/255.0 green:43.0/255.0 blue:20.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

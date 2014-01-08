@@ -12,4 +12,9 @@ extern NSString *const kFolderTableViewCellIdentifier;
 
 @interface SHCFolderTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
+@property (weak, nonatomic) IBOutlet UIView *selectedView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *folderNameLabel;
+
 @end

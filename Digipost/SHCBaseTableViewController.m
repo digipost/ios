@@ -13,8 +13,9 @@
 #import "SHCModelManager.h"
 #import "SHCRootResource.h"
 #import "UIViewController+NeedsReload.h"
+#import "SHCFoldersViewController.h"
 
-@interface SHCBaseTableViewController ()
+@interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
 
 @end
 
@@ -28,8 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
 
     [self updateNavbar];
 
@@ -179,10 +178,15 @@
                                                                     managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
+    _fetchedResultsController.delegate = self;
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
+    }
+
+    if ([self respondsToSelector:@selector(updateFolders)]) {
+        [self performSelector:@selector(updateFolders)];
     }
 
     [self.tableView reloadData];

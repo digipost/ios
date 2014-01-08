@@ -209,18 +209,25 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             }
             case SHCAPIManagerStateRefreshingAccessTokenFailed:
             {
-                // The refresh token was rejected, most likely because the user invalidated
-                // the session in the www.digipost.no web settings interface.
+                // Check to see if the request failed because the refresh token was rejected
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                    // The refresh token was rejected, most likely because the user invalidated
+                    // the session in the www.digipost.no web settings interface.
 
-                [[SHCOAuthManager sharedManager] removeAllTokens];
+                    [[SHCOAuthManager sharedManager] removeAllTokens];
 
-                self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
-                self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
-                };
+                    self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
+                    self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+                    };
 
-                if (self.lastFailureBlock) {
-                    self.lastFailureBlock(self.lastError);
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
                 }
 
                 [self cleanup];

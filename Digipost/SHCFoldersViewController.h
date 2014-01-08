@@ -14,4 +14,6 @@ extern NSString *const kPushFoldersIdentifier;
 
 @interface SHCFoldersViewController : SHCBaseTableViewController
 
+- (void)updateFolders;
+
 @end

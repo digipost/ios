@@ -33,6 +33,7 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Log In");
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
 
     [self presentAuthenticationWebView];
 }
