@@ -30,6 +30,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarToBottomGuideConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
@@ -47,6 +48,10 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
         return;
+    }
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
+        self.toolbarHeightConstraint.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 44.0 : 32.0;
     }
 
     self.progressView.borderTintColor = [UIColor whiteColor];
@@ -82,6 +87,13 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
+        self.toolbarHeightConstraint.constant = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 44.0 : 32.0;
+    }
 }
 
 #pragma mark - UIWebViewDelegate

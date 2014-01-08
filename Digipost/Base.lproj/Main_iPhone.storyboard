@@ -255,6 +255,7 @@
                         <outlet property="moveBarButtonItem" destination="kcf-Tx-cPf" id="Ha8-Ux-O8L"/>
                         <outlet property="progressView" destination="5vA-Xe-BoE" id="Rs9-5J-D4R"/>
                         <outlet property="toolbar" destination="mcs-8P-uOc" id="2TO-t0-JyY"/>
+                        <outlet property="toolbarHeightConstraint" destination="eQE-cZ-nNM" id="aFL-ms-GzA"/>
                         <outlet property="toolbarToBottomGuideConstraint" destination="6pI-y7-VSX" id="9ae-mm-GAc"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                     </connections>
