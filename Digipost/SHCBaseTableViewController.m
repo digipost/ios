@@ -156,16 +156,6 @@
     return _rootResource;
 }
 
-- (BOOL)previousViewControllerNeedsReload
-{
-    return _previousViewControllerNeedsReload;
-}
-
-- (void)setPreviousViewControllerNeedsReload:(BOOL)previousViewControllerNeedsReload
-{
-    
-}
-
 #pragma mark - Private methods
 
 - (void)updateContentsFromServer
