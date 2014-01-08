@@ -66,8 +66,9 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 
     if (self.needsReload) {
-        [self updateFetchedResultsController];
         self.needsReload = NO;
+        [self updateFetchedResultsController];
+        [self updateContentsFromServer];
     }
 }
 
