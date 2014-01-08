@@ -29,6 +29,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarToBottomGuideConstraint;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
@@ -256,8 +257,11 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    NSLog(@"single tap");
-    [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
+    BOOL barsHidden = self.navigationController.isNavigationBarHidden;
+
+    [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
+
+    self.toolbarToBottomGuideConstraint.constant = barsHidden ? 0.0 : -44.0;
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
