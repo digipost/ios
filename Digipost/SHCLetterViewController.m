@@ -49,7 +49,6 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
         return;
     }
 
-    self.progressView.alpha = 1.0;
     self.progressView.borderTintColor = [UIColor whiteColor];
     self.progressView.progressTintColor = [UIColor whiteColor];
 
@@ -175,6 +174,8 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     } else {
+
+        self.progressView.alpha = 1.0;
 
         [UIView animateWithDuration:0.1 delay:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.progressView.alpha = 1.0;
