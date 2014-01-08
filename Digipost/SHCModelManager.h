@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class SHCDocument;
+
 @interface SHCModelManager : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
@@ -17,6 +19,8 @@
 
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName withAttributes:(NSDictionary *)attributes;
+- (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes;
+- (void)deleteDocument:(SHCDocument *)document;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;
 - (NSEntityDescription *)folderEntity;

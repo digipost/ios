@@ -15,6 +15,9 @@
 /* Cancel */
 "GENERIC_CANCEL_BUTTON_TITLE" = "Cancel";
 
+/* Delete */
+"GENERIC_DELETE_BUTTON_TITLE" = "Delete";
+
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
 

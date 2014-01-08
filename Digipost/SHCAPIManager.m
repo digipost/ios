@@ -14,6 +14,7 @@
 #import "SHCOAuthManager.h"
 #import "SHCModelManager.h"
 #import "SHCFolder.h"
+#import "SHCDocument.h"
 #import "SHCLoginViewController.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCAttachment.h"
@@ -35,7 +36,13 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateUpdatingDocumentsFailed,
     SHCAPIManagerStateDownloadingAttachment,
     SHCAPIManagerStateDownloadingAttachmentFinished,
-    SHCAPIManagerStateDownloadingAttachmentFailed
+    SHCAPIManagerStateDownloadingAttachmentFailed,
+    SHCAPIManagerStateMovingDocument,
+    SHCAPIManagerStateMovingDocumentFinished,
+    SHCAPIManagerStateMovingDocumentFailed,
+    SHCAPIManagerStateDeletingDocument,
+    SHCAPIManagerStateDeletingDocumentFinished,
+    SHCAPIManagerStateDeletingDocumentFailed
 };
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
@@ -56,6 +63,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) SHCAttachment *lastAttachment;
 @property (strong, nonatomic) NSProgress *lastProgress;
+@property (strong, nonatomic) SHCDocument *lastDocument;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 - (void)cancelRequestsWithPath:(NSString *)path;
@@ -163,6 +171,24 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 break;
             case SHCAPIManagerStateDownloadingAttachmentFailed:
                 stateString = @"SHCAPIManagerStateDownloadingAttachmentFailed";
+                break;
+            case SHCAPIManagerStateMovingDocument:
+                stateString = @"SHCAPIManagerStateMovingDocument";
+                break;
+            case SHCAPIManagerStateMovingDocumentFinished:
+                stateString = @"SHCAPIManagerStateMovingDocumentFinished";
+                break;
+            case SHCAPIManagerStateMovingDocumentFailed:
+                stateString = @"SHCAPIManagerStateMovingDocumentFailed";
+                break;
+            case SHCAPIManagerStateDeletingDocument:
+                stateString = @"SHCAPIManagerStateDeletingDocument";
+                break;
+            case SHCAPIManagerStateDeletingDocumentFinished:
+                stateString = @"SHCAPIManagerStateDeletingDocumentFinished";
+                break;
+            case SHCAPIManagerStateDeletingDocumentFailed:
+                stateString = @"SHCAPIManagerStateDeletingDocumentFailed";
                 break;
             default:
                 stateString = @"default";
@@ -306,11 +332,83 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
+            case SHCAPIManagerStateMovingDocumentFinished:
+            {
+                NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
+                if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                    [[SHCModelManager sharedManager] updateDocument:self.lastDocument withAttributes:responseDict];
+
+                    if (self.lastSuccessBlock) {
+                        self.lastSuccessBlock();
+                    }
+                }
+
+                [self cleanup];
+                
+                break;
+            }
+            case SHCAPIManagerStateMovingDocumentFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+                
+                break;
+            }
+            case SHCAPIManagerStateDeletingDocumentFinished:
+            {
+                [[SHCModelManager sharedManager] deleteDocument:self.lastDocument];
+
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateDeletingDocumentFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+                
+                break;
+            }
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateUpdatingRootResource:
             case SHCAPIManagerStateUpdatingDocuments:
             case SHCAPIManagerStateDownloadingAttachment:
+            case SHCAPIManagerStateMovingDocument:
+            case SHCAPIManagerStateDeletingDocument:
             case SHCAPIManagerStateIdle:
             default:
                 break;
@@ -464,6 +562,64 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
+- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    self.state = SHCAPIManagerStateMovingDocument;
+
+    NSString *urlString = document.updateUri;
+
+    AFJSONRequestSerializer *JSONRequestSerializer = [AFJSONRequestSerializer serializerWithWritingOptions:NSJSONWritingPrettyPrinted];
+
+    NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
+    [JSONRequestSerializer setValue:contentType forHTTPHeaderField:@"Accept"];
+
+    NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [SHCOAuthManager sharedManager].accessToken];
+    [JSONRequestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+
+    NSString *subject = [(SHCAttachment *)[document.attachments firstObject] subject];
+
+    NSDictionary *parameters = @{NSStringFromSelector(@selector(subject)): subject,
+                                 NSStringFromSelector(@selector(location)): location};
+
+    NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST" URLString:urlString parameters:parameters];
+    [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
+
+    NSURLSessionDataTask *task = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        if (error) {
+            self.lastFailureBlock = failure;
+            self.lastError = error;
+            self.lastURLResponse = response;
+            self.state = SHCAPIManagerStateMovingDocumentFailed;
+        } else {
+            self.lastSuccessBlock = success;
+            self.lastResponseObject = responseObject;
+            self.lastDocument = document;
+            self.state = SHCAPIManagerStateMovingDocumentFinished;
+        }
+    }];
+
+    [task resume];
+}
+
+- (void)deleteDocument:(SHCDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    self.state = SHCAPIManagerStateDeletingDocument;
+
+    [self.sessionManager DELETE:document.deleteUri
+                     parameters:nil
+                        success:^(NSURLSessionDataTask *task, id responseObject) {
+                            self.lastSuccessBlock = success;
+                            self.lastResponseObject = responseObject;
+                            self.lastDocument = document;
+                            self.state = SHCAPIManagerStateDeletingDocumentFinished;
+                        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                            self.lastFailureBlock = failure;
+                            self.lastError = error;
+                            self.lastURLResponse = task.response;
+                            self.state = SHCAPIManagerStateDeletingDocumentFailed;
+                        }];
+}
+
 - (void)cancelDownloadingAttachments
 {
     for (NSURLSessionDownloadTask *downloadTask in self.sessionManager.downloadTasks) {
@@ -569,6 +725,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     self.lastError = nil;
     self.lastAttachment = nil;
     self.lastProgress = nil;
+    self.lastDocument = nil;
 
     self.state = SHCAPIManagerStateIdle;
 }

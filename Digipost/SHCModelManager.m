@@ -92,6 +92,30 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     }
 }
 
+- (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes
+{
+    [document updateWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
+
+    document.folder = [SHCFolder folderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
+
+    // Save changes
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
+- (void)deleteDocument:(SHCDocument *)document
+{
+    [self.managedObjectContext deleteObject:document];
+
+    // Save changes
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
 - (NSEntityDescription *)rootResourceEntity
 {
     return [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:self.managedObjectContext];

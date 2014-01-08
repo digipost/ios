@@ -33,7 +33,7 @@ NSString *const kFolderArchiveName = @"Archive";
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(name)), folderName];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;

@@ -12,14 +12,16 @@
 #import "SHCBaseTableViewController.h"
 #import "SHCModelManager.h"
 #import "SHCRootResource.h"
+#import "UIViewController+NeedsReload.h"
 
-@interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
+@interface SHCBaseTableViewController ()
 
 @end
 
 @implementation SHCBaseTableViewController
 
 @synthesize rootResource = _rootResource;
+@synthesize previousViewControllerNeedsReload = _previousViewControllerNeedsReload;
 
 #pragma mark - UIViewController
 
@@ -62,6 +64,11 @@
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
     [tracker set:kGAIScreenName value:self.screenName];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+
+    if (self.needsReload) {
+        [self updateFetchedResultsController];
+        self.needsReload = NO;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -148,6 +155,16 @@
     return _rootResource;
 }
 
+- (BOOL)previousViewControllerNeedsReload
+{
+    return _previousViewControllerNeedsReload;
+}
+
+- (void)setPreviousViewControllerNeedsReload:(BOOL)previousViewControllerNeedsReload
+{
+    
+}
+
 #pragma mark - Private methods
 
 - (void)updateContentsFromServer
@@ -171,7 +188,6 @@
                                                                     managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
-    self.fetchedResultsController.delegate = self;
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {

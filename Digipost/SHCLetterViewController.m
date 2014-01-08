@@ -7,14 +7,20 @@
 //
 
 #import <UIAlertView+Blocks.h>
+#import <UIActionSheet+Blocks.h>
 #import <THProgressView.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCLetterViewController.h"
 #import "SHCAttachment.h"
+#import "SHCDocument.h"
+#import "SHCFolder.h"
 #import "SHCFileManager.h"
 #import "SHCAPIManager.h"
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
+#import "SHCBaseTableViewController.h"
+#import "UIViewController+PreviousViewController.h"
+#import "UIViewController+NeedsReload.h"
 
 NSString *const kPushLetterIdentifier = @"PushLetter";
 
@@ -22,6 +28,9 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
 
 @end
@@ -58,11 +67,6 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
     [self.webView addGestureRecognizer:singleTapGestureRecognizer];
     [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
 
     [self loadContent];
 }
@@ -112,6 +116,47 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
     }
 }
 
+#pragma mark - IBActions
+
+- (IBAction)didTapMove:(UIBarButtonItem *)sender
+{
+    NSMutableArray *destinations = [NSMutableArray array];
+    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
+        [destinations addObject:kFolderInboxName];
+    }
+    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
+        [destinations addObject:kFolderWorkAreaName];
+    }
+    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
+        [destinations addObject:kFolderArchiveName];
+    }
+
+    [UIActionSheet showFromToolbar:self.toolbar
+                         withTitle:nil
+                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+            destructiveButtonTitle:nil
+                 otherButtonTitles:destinations
+                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                              if (buttonIndex < [destinations count]) {
+                                  NSString *location = [destinations[buttonIndex] uppercaseString];
+
+                                  [self moveDocumentToLocation:location];
+                              }
+                          }];
+}
+
+- (IBAction)didTapDelete:(UIBarButtonItem *)sender
+{
+    [UIActionSheet showFromToolbar:self.toolbar
+                         withTitle:nil
+                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+            destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
+                 otherButtonTitles:nil
+                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                              [self deleteDocument];
+                          }];
+}
+
 #pragma mark - Private methods
 
 - (void)loadContent
@@ -149,9 +194,21 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
             [self.webView loadRequest:request];
         } failure:^(NSError *error) {
 
+            BOOL unauthorized = NO;
+
             if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
                 [error code] == SHCAPIManagerErrorCodeUnauthorized) {
+                unauthorized = YES;
+            } else {
+                NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                    if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                        unauthorized = YES;
+                    }
+                }
+            }
 
+            if (unauthorized) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 double delayInSeconds = 0.0;
@@ -174,6 +231,12 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)unloadContent
 {
+    @try {
+        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:NULL];
+    } @catch (NSException *exception) {
+        DDLogWarn(@"Caught an exception: %@", exception);
+    }
+
     [[SHCAPIManager sharedManager] cancelDownloadingAttachments];
     [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
@@ -194,11 +257,74 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     NSLog(@"single tap");
+    [self.navigationController setNavigationBarHidden:!self.navigationController.isNavigationBarHidden animated:YES];
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
     NSLog(@"double tap");
+}
+
+- (void)moveDocumentToLocation:(NSString *)location
+{
+    [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location success:^{
+
+        self.previousViewController.needsReload = YES;
+
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self moveDocumentToLocation:location];
+                });
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (void)deleteDocument
+{
+    [[SHCAPIManager sharedManager] deleteDocument:self.attachment.document success:^{
+
+        self.previousViewController.needsReload = YES;
+
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self deleteDocument];
+                });
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
 }
 
 @end

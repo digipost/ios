@@ -215,18 +215,46 @@
                                     <outlet property="delegate" destination="IOM-jr-kzB" id="eYK-Ph-4pS"/>
                                 </connections>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcs-8P-uOc">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="eQE-cZ-nNM"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="MOVE" id="kcf-Tx-cPf" userLabel="Move Bar Button Item">
+                                        <connections>
+                                            <action selector="didTapMove:" destination="IOM-jr-kzB" id="oey-yl-HmQ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5fF-J1-il0"/>
+                                    <barButtonItem title="DELETE" id="Mqj-Bw-Kti" userLabel="Delete Bar Button Item">
+                                        <connections>
+                                            <action selector="didTapDelete:" destination="IOM-jr-kzB" id="pvj-9i-nKx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="BUU-1z-gTZ" firstAttribute="top" secondItem="mcs-8P-uOc" secondAttribute="bottom" id="6jG-NT-vJv"/>
                             <constraint firstItem="zX6-Zm-f5i" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="G9M-PY-Wdb"/>
                             <constraint firstItem="BUU-1z-gTZ" firstAttribute="top" secondItem="zX6-Zm-f5i" secondAttribute="bottom" id="RUj-5m-2hv"/>
                             <constraint firstItem="zX6-Zm-f5i" firstAttribute="top" secondItem="urQ-nU-4lz" secondAttribute="bottom" id="UCb-0S-HpX"/>
+                            <constraint firstAttribute="trailing" secondItem="mcs-8P-uOc" secondAttribute="trailing" id="gUm-DN-4Iy"/>
                             <constraint firstAttribute="trailing" secondItem="zX6-Zm-f5i" secondAttribute="trailing" id="pHO-i5-5n1"/>
+                            <constraint firstItem="mcs-8P-uOc" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="rDU-v0-sdj"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="39e-bL-3nq"/>
                     <connections>
+                        <outlet property="deleteBarButtonItem" destination="Mqj-Bw-Kti" id="MMx-WL-uGw"/>
+                        <outlet property="moveBarButtonItem" destination="kcf-Tx-cPf" id="Ha8-Ux-O8L"/>
                         <outlet property="progressView" destination="5vA-Xe-BoE" id="Rs9-5J-D4R"/>
+                        <outlet property="toolbar" destination="mcs-8P-uOc" id="2TO-t0-JyY"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                     </connections>
                 </viewController>

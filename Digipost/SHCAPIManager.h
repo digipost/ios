@@ -18,6 +18,7 @@ extern NSString *const kAPIManagerErrorDomain;
 
 @class SHCFolder;
 @class SHCAttachment;
+@class SHCDocument;
 
 @interface SHCAPIManager : NSObject
 
@@ -30,6 +31,8 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)deleteDocument:(SHCDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingAttachments;
 - (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response;
 

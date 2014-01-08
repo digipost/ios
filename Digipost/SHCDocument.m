@@ -63,37 +63,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     NSEntityDescription *entity = [[SHCModelManager sharedManager] documentEntity];
     SHCDocument *document = [[SHCDocument alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
-    NSString *createdAtString = attributes[kDocumentCreatedAtAPIKey];
-    if ([createdAtString isKindOfClass:[NSString class]]) {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
-
-        document.createdAt = [dateFormatter dateFromString:createdAtString];
-    }
-
-    NSString *creatorName = attributes[NSStringFromSelector(@selector(creatorName))];
-    document.creatorName = [creatorName isKindOfClass:[NSString class]] ? creatorName : nil;
-
-    NSString *location = attributes[NSStringFromSelector(@selector(location))];
-    document.location = [location isKindOfClass:[NSString class]] ? [location lowercaseString] : nil;
-
-    NSArray *links = attributes[kDocumentLinkAPIKey];
-    if ([links isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *link in links) {
-            if ([link isKindOfClass:[NSDictionary class]]) {
-                NSString *rel = link[@"rel"];
-                NSString *uri = link[@"uri"];
-                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
-                    if ([rel hasSuffix:kDocumentDeleteDocumentAPIKey]) {
-                        document.deleteUri = uri;
-                    } else if ([rel hasSuffix:kDocumentUpdateDocumentAPIKey]) {
-                        document.updateUri = uri;
-                    }
-                }
-            }
-        }
-    }
+    [document updateWithAttributes:attributes inManagedObjectContext:managedObjectContext];
 
     NSArray *attachments = attributes[kDocumentAttachmentsAPIKey];
     if ([attachments isKindOfClass:[NSArray class]]) {
@@ -183,6 +153,44 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     }
 
     return mainDocumentAttachment;
+}
+
+- (void)updateWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSString *createdAtString = attributes[kDocumentCreatedAtAPIKey];
+    if ([createdAtString isKindOfClass:[NSString class]]) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
+
+        self.createdAt = [dateFormatter dateFromString:createdAtString];
+    }
+
+    NSString *creatorName = attributes[NSStringFromSelector(@selector(creatorName))];
+    self.creatorName = [creatorName isKindOfClass:[NSString class]] ? creatorName : nil;
+
+    NSString *location = attributes[NSStringFromSelector(@selector(location))];
+    self.location = [location isKindOfClass:[NSString class]] ? [location lowercaseString] : nil;
+
+    self.deleteUri = nil;
+    self.updateUri = nil;
+
+    NSArray *links = attributes[kDocumentLinkAPIKey];
+    if ([links isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *link in links) {
+            if ([link isKindOfClass:[NSDictionary class]]) {
+                NSString *rel = link[@"rel"];
+                NSString *uri = link[@"uri"];
+                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+
+                    if ([rel hasSuffix:kDocumentDeleteDocumentAPIKey]) {
+                        self.deleteUri = uri;
+                    } else if ([rel hasSuffix:kDocumentUpdateDocumentAPIKey]) {
+                        self.updateUri = uri;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @end
