@@ -248,7 +248,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
     @try {
         [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:NULL];
     } @catch (NSException *exception) {
-        DDLogWarn(@"Caught an exception: %@", exception);
+        DDLogDebug(@"Caught an exception: %@", exception);
     }
 
     [[SHCAPIManager sharedManager] cancelDownloadingAttachments];
