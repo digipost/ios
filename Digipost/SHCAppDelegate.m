@@ -86,6 +86,7 @@
                                                          liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
                                                                delegate:self];
     [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
 - (void)setupCocoaLumberjack
