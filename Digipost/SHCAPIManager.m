@@ -473,6 +473,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             default:
                 break;
         }
+    } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 

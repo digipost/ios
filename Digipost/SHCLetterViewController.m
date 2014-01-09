@@ -22,6 +22,8 @@
 #import "UIViewController+PreviousViewController.h"
 #import "UIViewController+NeedsReload.h"
 
+static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
+
 NSString *const kPushLetterIdentifier = @"PushLetter";
 
 @interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
@@ -34,7 +36,6 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
-@property (assign, nonatomic, getter = isContentLoaded) BOOL contentLoaded;
 
 @end
 
@@ -44,10 +45,10 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)dealloc
 {
-    if (self.isContentLoaded) {
-        self.contentLoaded = NO;
-
-        [self unloadContent];
+    @try {
+        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:kSHCLetterViewControllerKVOContext];
+    } @catch (NSException *exception) {
+        DDLogDebug(@"Caught an exception: %@", exception);
     }
 }
 
@@ -93,11 +94,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    if (self.isContentLoaded) {
-        self.contentLoaded = NO;
-
-        [self unloadContent];
-    }
+    [self unloadContent];
 
     [super viewDidDisappear:animated];
 }
@@ -149,12 +146,14 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
+    if (context == kSHCLetterViewControllerKVOContext && [keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
         NSProgress *progress = (NSProgress *)object;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
             self.progressView.progress = progress.fractionCompleted;
         });
+    } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -225,8 +224,8 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
         NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
         progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
-        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:NULL];
-        self.contentLoaded = YES;
+
+        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 
@@ -276,12 +275,6 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)unloadContent
 {
-    @try {
-        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:NULL];
-    } @catch (NSException *exception) {
-        DDLogDebug(@"Caught an exception: %@", exception);
-    }
-
     [[SHCAPIManager sharedManager] cancelDownloadingAttachments];
     [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
