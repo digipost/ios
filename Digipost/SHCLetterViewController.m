@@ -112,6 +112,14 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
     }
 }
 
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    // Force a redraw of the progress bar
+    self.progressView.progress = self.progressView.progress;
+
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+}
+
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
