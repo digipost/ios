@@ -13,12 +13,6 @@
 #import "SHCAPIManager.h"
 #import "SHCFileManager.h"
 
-// Custom NSError code enum
-typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
-    SHCOAuthErrorCodeMissingAccessTokenResponse = 1,
-    SHCOAuthErrorCodeInvalidRefreshTokenResponse
-};
-
 // Digipost OAuth2 API consts
 NSString *const kOAuth2ClientID = @"client_id";
 NSString *const kOAuth2RedirectURI = @"redirect_uri";
@@ -62,6 +56,12 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
         [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:__OAUTH_CLIENT_ID__ password:__OAUTH_SECRET__];
 
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+
+        _sessionManager.securityPolicy.allowInvalidCertificates = YES;
+
+#endif
     }
 
     return self;

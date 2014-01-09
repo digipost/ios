@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13B42" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C32" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="SHCAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -8,7 +8,7 @@
         <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
-        <attribute name="uri" attributeType="String" syncable="YES"/>
+        <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="document" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="attachments" inverseEntity="Document" syncable="YES"/>
     </entity>
     <entity name="Document" representedClassName="SHCDocument" syncable="YES">
@@ -38,6 +38,7 @@
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoutUri" attributeType="String" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
@@ -46,6 +47,6 @@
         <element name="Document" positionX="252" positionY="-249" width="128" height="148"/>
         <element name="Folder" positionX="70" positionY="-454" width="128" height="103"/>
         <element name="Mailbox" positionX="-108" positionY="-459" width="128" height="105"/>
-        <element name="RootResource" positionX="-279" positionY="-459" width="128" height="148"/>
+        <element name="RootResource" positionX="-279" positionY="-459" width="128" height="163"/>
     </elements>
 </model>

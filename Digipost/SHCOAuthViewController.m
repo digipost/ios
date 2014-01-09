@@ -114,11 +114,11 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+    [UIAlertView showWithTitle:error.errorTitle
                        message:[error localizedDescription]
              cancelButtonTitle:nil
-             otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
-                      tapBlock:nil];
+             otherButtonTitles:@[error.okButtonTitle]
+                      tapBlock:error.tapBlock];
 }
 
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)

@@ -17,6 +17,8 @@ NSString *const kRootResourceEntityName = @"RootResource";
 NSString *const kRootResourceAuthenticationLevelAPIKey = @"authenticationlevel";
 NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
 NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
+NSString *const kRootResourceLinkAPIKey = @"link";
+NSString *const kRootResourceLogoutAPIKey = @"logout";
 
 @implementation SHCRootResource
 
@@ -26,6 +28,7 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 @dynamic firstName;
 @dynamic fullName;
 @dynamic lastName;
+@dynamic logoutUri;
 @dynamic middleName;
 
 // Relationships
@@ -57,6 +60,22 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
     rootResource.authenticationLevel = [authenticationLevel isKindOfClass:[NSNumber class]] ? authenticationLevel : nil;
 
     rootResource.createdAt = [NSDate date];
+
+    NSArray *links = attributes[kRootResourceLinkAPIKey];
+    if ([links isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *link in links) {
+            if ([link isKindOfClass:[NSDictionary class]]) {
+                NSString *rel = link[@"rel"];
+                NSString *uri = link[@"uri"];
+                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+
+                    if ([rel hasSuffix:kRootResourceLogoutAPIKey]) {
+                        rootResource.logoutUri = uri;
+                    }
+                }
+            }
+        }
+    }
 
     NSDictionary *primaryAccount = attributes[kRootResourcePrimaryAccountAPIKey];
     if ([primaryAccount isKindOfClass:[NSDictionary class]]) {

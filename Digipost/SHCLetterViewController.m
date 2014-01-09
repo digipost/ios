@@ -34,10 +34,22 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
+@property (assign, nonatomic, getter = isContentLoaded) BOOL contentLoaded;
 
 @end
 
 @implementation SHCLetterViewController
+
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    if (self.isContentLoaded) {
+        self.contentLoaded = NO;
+
+        [self unloadContent];
+    }
+}
 
 #pragma mark - UIViewController
 
@@ -81,7 +93,11 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [self unloadContent];
+    if (self.isContentLoaded) {
+        self.contentLoaded = NO;
+
+        [self unloadContent];
+    }
 
     [super viewDidDisappear:animated];
 }
@@ -210,6 +226,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
         NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
         progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
         [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:NULL];
+        self.contentLoaded = YES;
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 

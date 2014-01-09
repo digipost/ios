@@ -13,6 +13,7 @@
 #import "SHCModelManager.h"
 #import "SHCFolderTableViewCell.h"
 #import "SHCFolder.h"
+#import "SHCMailbox.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
@@ -45,6 +46,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
                                                            ascending:YES
                                                             selector:@selector(compare:)]];
+
+    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
 
     self.screenName = kFoldersViewControllerScreenName;
 
@@ -241,9 +244,17 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (IBAction)didTapLogoutButton:(id)sender
 {
-    [[SHCOAuthManager sharedManager] removeAllTokens];
-
     [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+
+    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+        [[SHCOAuthManager sharedManager] removeAllTokens];
+    } failure:^(NSError *error) {
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
 }
 
 #pragma mark - Private methods
