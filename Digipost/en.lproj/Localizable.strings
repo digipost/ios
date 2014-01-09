@@ -18,6 +18,9 @@
 /* Delete */
 "GENERIC_DELETE_BUTTON_TITLE" = "Delete";
 
+/* Yesterday */
+"GENERIC_YESTERDAY_TITLE" = "Yesterday";
+
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
 

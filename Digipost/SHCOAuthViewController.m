@@ -7,8 +7,8 @@
 //
 
 #import <UIAlertView+Blocks.h>
+#import <AFNetworking/AFURLRequestSerialization.h>
 #import "SHCOAuthViewController.h"
-#import "UIWebView+OAuth2.h"
 #import "NSString+RandomNumber.h"
 #import "NSURLRequest+QueryParameters.h"
 #import "SHCOAuthManager.h"
@@ -16,10 +16,15 @@
 
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
-@interface SHCOAuthViewController () <UIWebViewDelegate>
+@interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (copy, nonatomic) NSString *stateParameter;
+
+#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+@property (assign, nonatomic, getter = isAuthenticated) BOOL authenticated;
+@property (strong, nonatomic) NSURLRequest *failedURLRequest;
+#endif
 
 @end
 
@@ -93,8 +98,58 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
         return NO;
     }
 
+#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+
+    if (!self.isAuthenticated) {
+        self.failedURLRequest = request;
+        __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    }
+
+    return self.isAuthenticated;
+
+#endif
+
     return YES;
 }
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [UIAlertView showWithTitle:NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error")
+                       message:[error localizedDescription]
+             cancelButtonTitle:nil
+             otherButtonTitles:@[NSLocalizedString(@"GENERIC_OK_BUTTON_TITLE", @"OK")]
+                      tapBlock:nil];
+}
+
+#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+
+#pragma mark - NSURLConnectionDelegate
+
+- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
+{
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+
+        NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
+        if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
+            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+        } else {
+            DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+        }
+    }
+
+    [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    self.authenticated = YES;
+
+    [connection cancel];
+
+    [self.webView loadRequest:self.failedURLRequest];
+}
+
+#endif
 
 #pragma mark - Private methods
 
@@ -107,7 +162,18 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
                                  kOAuth2ResponseType: kOAuth2Code,
                                  kOAuth2State: self.stateParameter};
 
-    [self.webView authenticateWithParameters:parameters];
+    [self authenticateWithParameters:parameters];
 }
+
+- (void)authenticateWithParameters:(NSDictionary *)parameters
+{
+    NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
+
+    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
+                                                                          URLString:URLString
+                                                                         parameters:parameters];
+    [self.webView loadRequest:request];
+}
+
 
 @end

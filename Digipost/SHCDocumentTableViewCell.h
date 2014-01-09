@@ -12,4 +12,8 @@ extern NSString *const kDocumentTableViewCellIdentifier;
 
 @interface SHCDocumentTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *senderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+
 @end

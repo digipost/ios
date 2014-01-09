@@ -8,6 +8,7 @@
 
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
+#import <TTTTimeIntervalFormatter.h>
 #import "SHCDocumentsViewController.h"
 #import "SHCModelManager.h"
 #import "SHCDocument.h"
@@ -29,6 +30,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 @interface SHCDocumentsViewController ()
 
+@property (strong, nonatomic) TTTTimeIntervalFormatter *timeIntervalFormatter;
+@property (strong, nonatomic) NSDateFormatter *dateFormatter;
+@property (strong, nonatomic) NSDateFormatter *weekdayDateFormatter;
+
 @end
 
 @implementation SHCDocumentsViewController
@@ -37,9 +42,17 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)viewDidLoad
 {
+    self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+
+    self.dateFormatter = [[NSDateFormatter alloc] init];
+    self.dateFormatter.dateFormat = @"dd.MM.yy";
+
+    self.weekdayDateFormatter = [[NSDateFormatter alloc] init];
+    self.weekdayDateFormatter.dateFormat = @"EEEE";
+
     self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
-                                                           ascending:YES
+                                                           ascending:NO
                                                             selector:@selector(compare:)]];
     self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
                       [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
@@ -80,10 +93,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier forIndexPath:indexPath];
+    SHCDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier forIndexPath:indexPath];
 
     SHCAttachment *attachment = [document mainDocumentAttachment];
-    cell.textLabel.text = attachment.subject;
+
+    cell.senderLabel.text = attachment.document.creatorName;
+    cell.dateLabel.text = [self stringForDocumentDate:attachment.document.createdAt];
+    cell.subjectLabel.text = attachment.subject;
 
     return cell;
 }
@@ -195,6 +211,23 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)updateNavbar
 {
     self.navigationItem.title = self.folderName;
+}
+
+- (NSString *)stringForDocumentDate:(NSDate *)date
+{
+    NSDate *nowDate = [NSDate date];
+
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:date toDate:nowDate options:0];
+
+    if (dateComponents.day > 6) {
+        return [self.dateFormatter stringFromDate:date];
+    } else if (dateComponents.day > 1) {
+        return [self.weekdayDateFormatter stringFromDate:date];
+    } else if (dateComponents.day == 1) {
+        return NSLocalizedString(@"GENERIC_YESTERDAY_TITLE", @"Yesterday");
+    } else {
+        return [self.timeIntervalFormatter stringForTimeIntervalFromDate:nowDate toDate:date];
+    }
 }
 
 @end

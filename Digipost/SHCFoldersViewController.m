@@ -97,7 +97,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             folderName = self.inboxFolder.name;
-            iconImage = [UIImage imageNamed:@"list-icon-folder"];
+            iconImage = [UIImage imageNamed:@"list-icon-inbox"];
         } else {
             // TODO: implement receipts here
             folderName = @"Receipts";
