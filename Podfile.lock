@@ -23,6 +23,7 @@ PODS:
   - CocoaLumberjack/Core (1.6.5.1)
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
+  - FormatterKit/TimeIntervalFormatter (1.4.0)
   - GoogleAnalytics-iOS-SDK (3.0.2)
   - HockeySDK (3.5.0)
   - LUKeychainAccess (1.2.0)
@@ -34,6 +35,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
   - CocoaLumberjack (~> 1.6.5.1)
+  - FormatterKit/TimeIntervalFormatter (~> 1.4.0)
   - GoogleAnalytics-iOS-SDK (~> 3.0.2)
   - HockeySDK (~> 3.5.0)
   - LUKeychainAccess (~> 1.2.0)
@@ -45,6 +47,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
   CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
+  FormatterKit: 475c602b6098d69c3255c65cfe6cb6a27c175f57
   GoogleAnalytics-iOS-SDK: 86393b99f7328ae8d8e975fcaa8632a39dafafe8
   HockeySDK: 685e6ca0b78668ef8b595fba17fe087ea6074b05
   LUKeychainAccess: 87c5398528278a5f24956b61bb459ea97bd93b6a
