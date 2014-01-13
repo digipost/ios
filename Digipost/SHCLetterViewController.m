@@ -208,7 +208,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
                  otherButtonTitles:nil
                           tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                              [self deleteDocument];
+                              if (buttonIndex == 0) {
+                                  [self deleteDocument];
+                              }
                           }];
 }
 
