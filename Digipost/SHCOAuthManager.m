@@ -20,7 +20,6 @@ NSString *const kOAuth2ResponseType = @"response_type";
 NSString *const kOAuth2State = @"state";
 NSString *const kOAuth2Code = @"code";
 NSString *const kOAuth2GrantType = @"grant_type";
-NSString *const kOAuth2Nonce = @"nonce";
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
 
