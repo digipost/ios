@@ -51,6 +51,17 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
+    if (indexPathForSelectedRow) {
+        SHCDocumentTableViewCell *cell = (SHCDocumentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathForSelectedRow];
+        cell.unreadImageView.hidden = YES;
+    }
+
+    [super viewWillAppear:animated];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[SHCAPIManager sharedManager] cancelUpdatingDocuments];
