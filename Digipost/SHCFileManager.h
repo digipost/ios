@@ -8,13 +8,36 @@
 
 #import <Foundation/Foundation.h>
 
+// Custom NSError code enum
+typedef NS_ENUM(NSUInteger, SHCFileManagerErrorCodeDecrypting) {
+    SHCFileManagerErrorCodeDecryptingNoPassword = 1,
+    SHCFileManagerErrorCodeDecryptingEncryptedFileNotFound,
+    SHCFileManagerErrorCodeDecryptingErrorReadingEncryptedFile,
+    SHCFileManagerErrorCodeDecryptingDecryptionError,
+    SHCFileManagerErrorCodeDecryptingRemovingDecryptedFile,
+    SHCFileManagerErrorCodeDecryptingWritingDecryptedFile
+};
+
+typedef NS_ENUM(NSUInteger, SHCFileManagerErrorCodeEncrypting) {
+    SHCFileManagerErrorCodeEncryptingNoPassword = 1,
+    SHCFileManagerErrorCodeEncryptingDecryptedFileNotFound,
+    SHCFileManagerErrorCodeEncryptingErrorReadingDecryptedFile,
+    SHCFileManagerErrorCodeEncryptingEncryptionError,
+    SHCFileManagerErrorCodeEncryptingRemovingEncryptedFile,
+    SHCFileManagerErrorCodeEncryptingWritingEncryptedFile
+};
+
+// Custom NSError consts
+extern NSString *const kFileManagerDecryptingErrorDomain;
+extern NSString *const kFileManagerEncryptingErrorDomain;
+
 @class SHCAttachment;
 
 @interface SHCFileManager : NSObject
 
 + (instancetype)sharedFileManager;
-- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment;
-- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment;
+- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error;
+- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error;
 - (BOOL)removeAllDecryptedFiles;
 - (BOOL)removeAllFiles;
 - (NSString *)encryptedFilesFolderPath;

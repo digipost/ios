@@ -12,6 +12,11 @@
 #import <RNCryptor/RNDecryptor.h>
 #import "SHCOAuthManager.h"
 #import "SHCAttachment.h"
+#import "NSError+ExtraInfo.h"
+
+// Custom NSError consts
+NSString *const kFileManagerDecryptingErrorDomain = @"FileManagerDecryptingErrorDomain";
+NSString *const kFileManagerEncryptingErrorDomain = @"FileManagerEncryptingErrorDomain";
 
 NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
 NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
@@ -32,12 +37,20 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     return sharedInstance;
 }
 
-- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment
+- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't decrypt data for attachment without a password");
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeDecryptingNoPassword
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_NO_PASSWORD", @"No password")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
@@ -46,22 +59,46 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         DDLogError(@"Error: Can't decrypt data for attachment without an encrypted file at %@", encryptedFilePath);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeDecryptingEncryptedFileNotFound
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_ENCRYPTED_FILE_NOT_FOUND", @"Encrypted file not found")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
-    NSError *error = nil;
-    NSData *encryptedFileData = [NSData dataWithContentsOfFile:encryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
-    if (error) {
-        DDLogError(@"Error reading encrypted file: %@", [error localizedDescription]);
+    NSError *localError = nil;
+    NSData *encryptedFileData = [NSData dataWithContentsOfFile:encryptedFilePath options:NSDataReadingMappedIfSafe error:&localError];
+    if (localError) {
+        DDLogError(@"Error reading encrypted file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeDecryptingErrorReadingEncryptedFile
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_ERROR_READING_ENCRYPTED_FILE", @"Error reading encrypted file")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
     NSData *decryptedFileData = [RNDecryptor decryptData:encryptedFileData
                                             withSettings:kRNCryptorAES256Settings
                                                 password:password
-                                                   error:&error];
-    if (error) {
-        DDLogError(@"Error decrypting file: %@", [error localizedDescription]);
+                                                   error:&localError];
+    if (localError) {
+        DDLogError(@"Error decrypting file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeDecryptingDecryptionError
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_DECRYPTION_ERROR", @"Decryption error")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
@@ -70,26 +107,50 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     // If we previously haven't done a proper cleanup job and the decrypted file still exists,
     // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
     if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
-        if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath error:&error]) {
-            DDLogError(@"Error removing decrypted file: %@", [error localizedDescription]);
+        if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath error:&localError]) {
+            DDLogError(@"Error removing decrypted file: %@", [localError localizedDescription]);
+
+            if (error) {
+                *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                             code:SHCFileManagerErrorCodeDecryptingRemovingDecryptedFile
+                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_REMOVING_DECRYPTED_FILE", @"Error removing decrypted file")}];
+                (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+            }
+
             return NO;
         }
     }
 
-    if (![decryptedFileData writeToFile:decryptedFilePath options:NSDataWritingAtomic error:&error]) {
-        DDLogError(@"Error writing decrypted file: %@", [error localizedDescription]);
+    if (![decryptedFileData writeToFile:decryptedFilePath options:NSDataWritingAtomic error:&localError]) {
+        DDLogError(@"Error writing decrypted file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeDecryptingWritingDecryptedFile
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_DECRYPT_ERROR_WRITING_DECRYPTED_FILE", @"Error writing decrypted file")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
     return YES;
 }
 
-- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment
+- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't encrypt data for attachment without a password");
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeEncryptingNoPassword
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_NO_PASSWORD", @"No password")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
@@ -98,22 +159,46 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
         DDLogError(@"Error: Can't encrypt data for attachment without a decrypted file at %@", decryptedFilePath);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeEncryptingDecryptedFileNotFound
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_DECRYPTED_FILE_NOT_FOUND", @"Decrypted file not found")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
-    NSError *error = nil;
-    NSData *decryptedFileData = [NSData dataWithContentsOfFile:decryptedFilePath options:NSDataReadingMappedIfSafe error:&error];
-    if (error) {
-        DDLogError(@"Error reading decrypted file: %@", [error localizedDescription]);
+    NSError *localError = nil;
+    NSData *decryptedFileData = [NSData dataWithContentsOfFile:decryptedFilePath options:NSDataReadingMappedIfSafe error:&localError];
+    if (localError) {
+        DDLogError(@"Error reading decrypted file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeEncryptingErrorReadingDecryptedFile
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_ERROR_READING_DECRYPTED_FILE", @"Error reading decrypted file")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
     NSData *encryptedFileData = [RNEncryptor encryptData:decryptedFileData
                                             withSettings:kRNCryptorAES256Settings
                                                 password:password
-                                                   error:&error];
-    if (error) {
-        DDLogError(@"Error encrypting file: %@", [error localizedDescription]);
+                                                   error:&localError];
+    if (localError) {
+        DDLogError(@"Error encrypting file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeEncryptingEncryptionError
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_ENCRYPTION_ERROR", @"Encryption error")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 
@@ -122,15 +207,30 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     // If we previously haven't done a proper cleanup job and the encrypted file still exists,
     // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath error:&error]) {
-            DDLogError(@"Error removing encrypted file: %@", [error localizedDescription]);
+        if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath error:&localError]) {
+            DDLogError(@"Error removing encrypted file: %@", [localError localizedDescription]);
+
+            if (error) {
+                *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                             code:SHCFileManagerErrorCodeEncryptingRemovingEncryptedFile
+                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_REMOVING_ENCRYPTED_FILE", @"Error removing encrypted file")}];
+                (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+            }
+
             return NO;
         }
     }
 
-    error = nil;
-    if (![encryptedFileData writeToFile:encryptedFilePath options:NSDataWritingAtomic error:&error]) {
-        DDLogError(@"Error writing encrypted file: %@", [error localizedDescription]);
+    if (![encryptedFileData writeToFile:encryptedFilePath options:NSDataWritingAtomic error:&localError]) {
+        DDLogError(@"Error writing encrypted file: %@", [localError localizedDescription]);
+
+        if (error) {
+            *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
+                                         code:SHCFileManagerErrorCodeEncryptingWritingEncryptedFile
+                                     userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"FILE_MANAGER_ENCRYPT_ERROR_WRITING_ENCRYPTED_FILE", @"Error writing decrypted file")}];
+            (*error).errorTitle = NSLocalizedString(@"GENERIC_ERROR_TITLE", @"Error");
+        }
+
         return NO;
     }
 

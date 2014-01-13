@@ -223,8 +223,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *decryptedFilePath = [self.attachment decryptedFilePath];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment]) {
-            // TODO: throw an error message to the user here
+        NSError *error = nil;
+        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment error:&error]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  [self dismissViewControllerAnimated:YES completion:nil];
+                              }];
             return;
         }
 
@@ -246,7 +253,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 
-            [[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment];
+            NSError *error = nil;
+            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment error:&error]) {
+                [UIAlertView showWithTitle:error.errorTitle
+                                   message:[error localizedDescription]
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@[error.okButtonTitle]
+                                  tapBlock:error.tapBlock];
+            }
 
             NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
             NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];

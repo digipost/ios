@@ -65,3 +65,39 @@
 
 /* Generic validation error message */
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "The letter can't be opened on this device. Please log onto www.digipost.no to read this letter.";
+
+/* No password */
+"FILE_MANAGER_DECRYPT_ERROR_NO_PASSWORD" = "No password";
+
+/* Encrypted file not found */
+"FILE_MANAGER_DECRYPT_ERROR_ENCRYPTED_FILE_NOT_FOUND" = "Encrypted file not found";
+
+/* Error reading encrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_ERROR_READING_ENCRYPTED_FILE" = "Error reading encrypted file";
+
+/* Decryption error */
+"FILE_MANAGER_DECRYPT_ERROR_DECRYPTION_ERROR" = "Decryption error";
+
+/* Error removing decrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_REMOVING_DECRYPTED_FILE" = "Error removing decrypted file";
+
+/* Error writing decrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_WRITING_DECRYPTED_FILE" = "Error writing decrypted file";
+
+/* No password */
+"FILE_MANAGER_ENCRYPT_ERROR_NO_PASSWORD" = "No password";
+
+/* Decrypted file not found */
+"FILE_MANAGER_ENCRYPT_ERROR_DECRYPTED_FILE_NOT_FOUND" = "Decrypted file not found";
+
+/* Error reading decrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_ERROR_READING_DECRYPTED_FILE" = "Error reading decrypted file";
+
+/* Encryption error */
+"FILE_MANAGER_ENCRYPT_ERROR_ENCRYPTION_ERROR" = "Encryption error";
+
+/* Error removing encrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_REMOVING_ENCRYPTED_FILE" = "Error removing encrypted file";
+
+/* Error writing decrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_WRITING_ENCRYPTED_FILE" = "Error writing decrypted file";
