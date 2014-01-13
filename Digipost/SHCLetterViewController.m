@@ -246,9 +246,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
 
-            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment]) {
-                // TODO: maybe display an error message here?
-            }
+            [[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment];
 
             NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
             NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
@@ -319,6 +317,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
 
+    // If the toolbar should be hidden, we place it just below the bottom of its superview.
     self.toolbarToBottomGuideConstraint.constant = barsHidden ? 0.0 : -44.0;
 }
 
