@@ -360,6 +360,16 @@
                                     <outlet property="delegate" destination="IOM-jr-kzB" id="eYK-Ph-4pS"/>
                                 </connections>
                             </webView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-NC-XrA" userLabel="Error Label">
+                                <rect key="frame" x="20" y="242" width="280" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="249" constant="21" id="OY5-X0-I04"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcs-8P-uOc">
                                 <rect key="frame" x="0.0" y="460" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -391,17 +401,21 @@
                             <constraint firstItem="BUU-1z-gTZ" firstAttribute="top" secondItem="mcs-8P-uOc" secondAttribute="bottom" id="6pI-y7-VSX"/>
                             <constraint firstAttribute="trailing" secondItem="5vA-Xe-BoE" secondAttribute="trailing" constant="30" id="Bs0-8q-cdK"/>
                             <constraint firstItem="zX6-Zm-f5i" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="G9M-PY-Wdb"/>
+                            <constraint firstAttribute="trailing" secondItem="xQW-NC-XrA" secondAttribute="trailing" constant="20" id="JhG-Vt-koh"/>
+                            <constraint firstAttribute="centerY" secondItem="xQW-NC-XrA" secondAttribute="centerY" id="MNo-Cf-EwX"/>
                             <constraint firstItem="BUU-1z-gTZ" firstAttribute="top" secondItem="zX6-Zm-f5i" secondAttribute="bottom" id="RUj-5m-2hv"/>
                             <constraint firstItem="zX6-Zm-f5i" firstAttribute="top" secondItem="urQ-nU-4lz" secondAttribute="bottom" id="UCb-0S-HpX"/>
                             <constraint firstAttribute="trailing" secondItem="mcs-8P-uOc" secondAttribute="trailing" id="gUm-DN-4Iy"/>
                             <constraint firstItem="5vA-Xe-BoE" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" constant="30" id="jLX-hz-tEO"/>
                             <constraint firstAttribute="trailing" secondItem="zX6-Zm-f5i" secondAttribute="trailing" id="pHO-i5-5n1"/>
                             <constraint firstItem="mcs-8P-uOc" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="rDU-v0-sdj"/>
+                            <constraint firstItem="xQW-NC-XrA" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" constant="20" id="zee-P1-LyI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="39e-bL-3nq"/>
                     <connections>
                         <outlet property="deleteBarButtonItem" destination="Mqj-Bw-Kti" id="MMx-WL-uGw"/>
+                        <outlet property="errorLabel" destination="xQW-NC-XrA" id="wd5-2F-s8Q"/>
                         <outlet property="moveBarButtonItem" destination="kcf-Tx-cPf" id="Ha8-Ux-O8L"/>
                         <outlet property="progressView" destination="5vA-Xe-BoE" id="Rs9-5J-D4R"/>
                         <outlet property="toolbar" destination="mcs-8P-uOc" id="2TO-t0-JyY"/>

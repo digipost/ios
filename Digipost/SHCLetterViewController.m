@@ -34,6 +34,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarToBottomGuideConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
@@ -305,7 +306,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showInvalidFileTypeView
 {
-    // TODO: implement this.
+    self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
+
+    [UIView animateWithDuration:0.3 animations:^{
+        self.errorLabel.alpha = 1.0;
+    }];
 }
 
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer

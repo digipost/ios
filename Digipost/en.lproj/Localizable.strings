@@ -51,6 +51,9 @@
 /* Delete */
 "LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE" = "Delete";
 
+/* Invalid file type message */
+"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE" = "The app does not support opening this file type.\n\nPlease try opening the file in another app, or use www.digipost.no in your browser.";
+
 /* Insufficient authentication level */
 "ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE" = "Insufficient authentication level";
 
