@@ -225,6 +225,14 @@
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-unread" translatesAutoresizingMaskIntoConstraints="NO" id="pKW-US-Je8" userLabel="Unread Image View">
+                                            <rect key="frame" x="0.0" y="13" width="30" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="eyh-6d-Zdy"/>
+                                                <constraint firstAttribute="height" constant="18" id="wzy-cn-Mbb"/>
+                                            </constraints>
+                                        </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="skL-A1-Mcb" userLabel="Arrow Image View">
                                             <rect key="frame" x="297" y="37" width="8" height="13"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -235,8 +243,10 @@
                                         </imageView>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="kfJ-1t-g98" firstAttribute="centerY" secondItem="pKW-US-Je8" secondAttribute="centerY" id="Hjt-jp-xxr"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="leading" secondItem="kfJ-1t-g98" secondAttribute="trailing" constant="10" id="Lyp-yA-aGh"/>
                                         <constraint firstItem="tKe-Yp-E2z" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" constant="30" id="QRl-Y5-43T"/>
+                                        <constraint firstItem="pKW-US-Je8" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" id="V91-ME-Q7z"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" constant="30" id="Wtl-XU-buN"/>
                                         <constraint firstItem="skL-A1-Mcb" firstAttribute="leading" secondItem="tKe-Yp-E2z" secondAttribute="trailing" constant="10" id="YXH-0Q-aY4"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="top" constant="11" id="bhy-0z-UnJ"/>
@@ -245,12 +255,14 @@
                                         <constraint firstAttribute="bottom" secondItem="skL-A1-Mcb" secondAttribute="bottom" constant="14" id="p48-RY-00a"/>
                                         <constraint firstAttribute="bottom" secondItem="tKe-Yp-E2z" secondAttribute="bottom" constant="10" id="pvj-vB-KBn"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="top" constant="11" id="wGx-ql-5hQ"/>
+                                        <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="pKW-US-Je8" secondAttribute="trailing" id="wau-Vv-Nuw"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dateLabel" destination="4W8-5K-T1U" id="4vp-25-tzw"/>
                                     <outlet property="senderLabel" destination="kfJ-1t-g98" id="fxQ-1Y-pAa"/>
                                     <outlet property="subjectLabel" destination="tKe-Yp-E2z" id="q72-3f-7LC"/>
+                                    <outlet property="unreadImageView" destination="pKW-US-Je8" id="LaN-8i-mgn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -503,6 +515,7 @@
     </scenes>
     <resources>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
+        <image name="list-icon-unread" width="30" height="18"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

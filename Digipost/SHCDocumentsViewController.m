@@ -85,6 +85,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
     SHCAttachment *attachment = [document mainDocumentAttachment];
 
+    cell.unreadImageView.hidden = [attachment.read boolValue];
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [SHCDocument stringForDocumentDate:attachment.document.createdAt];
     cell.subjectLabel.text = attachment.subject;
