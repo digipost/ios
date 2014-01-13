@@ -24,7 +24,11 @@
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
+// Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushLetterIdentifier = @"PushLetter";
+
+// Google Analytics screen name
+NSString *const kLetterViewControllerScreenName = @"Letter";
 
 @interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
 
@@ -57,6 +61,8 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.screenName = kLetterViewControllerScreenName;
 
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];

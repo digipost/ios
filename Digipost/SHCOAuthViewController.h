@@ -7,12 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GAI.h>
 
+// Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPresentOAuthModallyIdentifier;
 
 @protocol SHCOAuthViewControllerDelegate;
 
-@interface SHCOAuthViewController : UIViewController
+@interface SHCOAuthViewController : GAITrackedViewController
 
 @property (weak, nonatomic) id<SHCOAuthViewControllerDelegate> delegate;
 

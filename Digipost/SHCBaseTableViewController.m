@@ -14,6 +14,7 @@
 #import "SHCRootResource.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCFoldersViewController.h"
+#import "SHCDocumentsViewController.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -32,6 +33,9 @@
 
     [self updateNavbar];
 
+    // This line makes the tableview hide its separator lines for empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
 
@@ -39,7 +43,11 @@
     [self initializeRefreshControlText];
     [self updateRefreshControlTextRefreshing:YES];
 
-    self.refreshControl.tintColor = [UIColor whiteColor];
+    if ([self isKindOfClass:[SHCDocumentsViewController class]]) {
+        self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+    } else {
+        self.refreshControl.tintColor = [UIColor whiteColor];
+    }
 
     // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
     [self.refreshControl beginRefreshing];
@@ -55,9 +63,16 @@
 {
     [super viewWillAppear:animated];
 
+    // Sometimes, the previously selected cell isn't properly deselected.
+    // The line below makes sure the cell is deselected, plus it adds a
+    // fancy fading effect when the user swipes back to this view controller
+    NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
+    if (indexPathForSelectedRow) {
+        [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow animated:YES];
+    }
+
     // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
     // we'll manually track and submit screen hits.
-
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
@@ -210,7 +225,12 @@
 
 - (void)initializeRefreshControlText
 {
-    NSDictionary *attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary *attributes = nil;
+    if ([self isKindOfClass:[SHCDocumentsViewController class]]) {
+        attributes = @{NSForegroundColorAttributeName: [UIColor colorWithWhite:0.4 alpha:1.0]};
+    } else {
+        attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    }
 
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
 }

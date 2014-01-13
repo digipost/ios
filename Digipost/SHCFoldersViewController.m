@@ -155,7 +155,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         if (indexPath.row == 0) {
             [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.inboxFolder];
         } else {
-            // TODO: implement receipes-stuff here
+            // TODO: implement receipts-stuff here
         }
     } else {
         [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];

@@ -6,6 +6,7 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <TTTTimeIntervalFormatter.h>
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
 #import "SHCFolder.h"
@@ -139,6 +140,31 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     }
 
     return results;
+}
+
++ (NSString *)stringForDocumentDate:(NSDate *)date
+{
+    NSDate *nowDate = [NSDate date];
+
+    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:date toDate:nowDate options:0];
+
+    if (dateComponents.day > 6) {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"dd.MM.yy";
+
+        return [dateFormatter stringFromDate:date];
+    } else if (dateComponents.day > 1) {
+        NSDateFormatter *weekdayDateFormatter = [[NSDateFormatter alloc] init];
+        weekdayDateFormatter.dateFormat = @"EEEE";
+
+        return [weekdayDateFormatter stringFromDate:date];
+    } else if (dateComponents.day == 1) {
+        return NSLocalizedString(@"GENERIC_YESTERDAY_TITLE", @"Yesterday");
+    } else {
+        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+
+        return [timeIntervalFormatter stringForTimeIntervalFromDate:nowDate toDate:date];
+    }
 }
 
 - (SHCAttachment *)mainDocumentAttachment

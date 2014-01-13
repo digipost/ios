@@ -9,6 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+// Custom NSError code enum
+typedef NS_ENUM(NSUInteger, SHCAttachmentOpeningValidationErrorCode) {
+    SHCAttachmentOpeningValidationErrorCodeWrongAuthenticationLevel = 1,
+    SHCAttachmentOpeningValidationErrorCodeNoAttachmentUri
+};
+
+// Defines what the app considers a valid attachment authentication level
+extern NSString *const kAttachmentOpeningValidAuthenticationLevel;
+
+// Custom NSError consts
+extern NSString *const kAttachmentOpeningValidationErrorDomain;
+
 // Core Data model entity names
 extern NSString *const kAttachmentEntityName;
 

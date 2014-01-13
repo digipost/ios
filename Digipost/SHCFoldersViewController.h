@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SHCBaseTableViewController.h"
 
+// Storyboard identifiers (to enable programmatic storyboard instantiation)
 extern NSString *const kFoldersViewControllerIdentifier;
+
+// Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushFoldersIdentifier;
 
 @interface SHCFoldersViewController : SHCBaseTableViewController

@@ -6,11 +6,24 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <GAI.h>
+#import <GAIFields.h>
+#import <GAIDictionaryBuilder.h>
+#import <UIAlertView+Blocks.h>
 #import "SHCAttachmentsViewController.h"
 #import "SHCAttachmentTableViewCell.h"
 #import "SHCAttachment.h"
+#import "SHCDocument.h"
+#import "SHCAppDelegate.h"
+#import "SHCLetterViewController.h"
+#import "UIViewController+ValidateOpening.h"
+#import "NSError+ExtraInfo.h"
 
+// Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
+
+// Google Analytics screen name
+NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 @interface SHCAttachmentsViewController ()
 
@@ -24,11 +37,41 @@ NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
+                                                                        0.0,
+                                                                        CGRectGetWidth(self.view.frame),
+                                                                        50.0)];
+
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0,
+                                                                     0.0,
+                                                                     CGRectGetWidth(tableHeaderView.frame) - 30.0,
+                                                                     CGRectGetHeight(tableHeaderView.frame))];
+    headerLabel.backgroundColor = [UIColor clearColor];
+    headerLabel.font = [UIFont systemFontOfSize:17.0];
+    headerLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
+
+    SHCAttachment *firstAttachment = [self.attachments firstObject];
+    headerLabel.text = firstAttachment.document.creatorName;
+
+    [tableHeaderView addSubview:headerLabel],
+
+    self.tableView.tableHeaderView = tableHeaderView;
+
+    // This line makes the tableview hide its separator lines for empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
+    // we'll manually track and submit screen hits.
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+
+    // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
+    [tracker set:kGAIScreenName value:kAttachmentsViewControllerScreenName];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,7 +80,17 @@ NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
+        SHCAttachment *attachment = (SHCAttachment *)sender;
+
+        SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+        letterViewController.attachment = attachment;
+    }
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -53,11 +106,34 @@ NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
 {
     SHCAttachment *attachment = self.attachments[indexPath.row];
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kAttachmentTableViewCellIdentifier forIndexPath:indexPath];
+    SHCAttachmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kAttachmentTableViewCellIdentifier forIndexPath:indexPath];
     
-    cell.textLabel.text = attachment.subject;
+    cell.subjectLabel.text = attachment.subject;
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    SHCAttachment *attachment = self.attachments[indexPath.row];
+
+    [self validateOpeningAttachment:attachment success:^{
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+        } else {
+            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+        }
+    } failure:^(NSError *error) {
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                          }];
+    }];
 }
 
 /*

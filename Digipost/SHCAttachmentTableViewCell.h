@@ -12,4 +12,6 @@ extern NSString *const kAttachmentTableViewCellIdentifier;
 
 @interface SHCAttachmentTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+
 @end

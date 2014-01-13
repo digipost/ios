@@ -11,6 +11,12 @@
 #import "SHCFileManager.h"
 #import "NSString+SHA1String.h"
 
+// Defines what the app considers a valid attachment authentication level
+NSString *const kAttachmentOpeningValidAuthenticationLevel = @"PASSWORD";
+
+// Custom NSError consts
+NSString *const kAttachmentOpeningValidationErrorDomain = @"AttachmentOpeningValidationErrorDomain";
+
 // Core Data model entity names
 NSString *const kAttachmentEntityName = @"Attachment";
 
@@ -84,6 +90,11 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 - (NSString *)encryptedFilePath
 {
     NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
+
+    if (!fileName) {
+        return nil;
+    }
+
     NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
@@ -92,6 +103,11 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 - (NSString *)decryptedFilePath
 {
     NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
+
+    if (!fileName) {
+        return nil;
+    }
+
     NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;

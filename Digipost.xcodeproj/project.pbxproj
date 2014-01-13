@@ -32,6 +32,9 @@
 		8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
 		8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
 		8375DD431855C383009435B4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
+		839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
+		839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
+		839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
 		83A31AFC1855D706007045B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
 		83A31B001855D706007045B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
@@ -151,6 +154,8 @@
 		8364D71C185F2981008DE6CB /* SHCDocumentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocumentTableViewCell.h; sourceTree = "<group>"; };
 		8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocumentTableViewCell.m; sourceTree = "<group>"; };
 		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ValidateOpening.h"; sourceTree = "<group>"; };
+		839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ValidateOpening.m"; sourceTree = "<group>"; };
 		83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Staging-Enterprise-Info.plist"; sourceTree = "<group>"; };
@@ -403,12 +408,18 @@
 			children = (
 				8342EFB8185861A80080A833 /* SHCAPIManager.h */,
 				8342EFB9185861A80080A833 /* SHCAPIManager.m */,
+				83D3550F1861C5D3009EABC6 /* SHCAttachmentsViewController.h */,
+				83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */,
 				8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */,
 				8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */,
 				8364D712185F1EB4008DE6CB /* SHCDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */,
+				83D2F7E61875578A00344644 /* SHCFileManager.h */,
+				83D2F7E71875578A00344644 /* SHCFileManager.m */,
 				83F7035F1855E7A9003DABE1 /* SHCFoldersViewController.h */,
 				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
+				83D355141861C5EA009EABC6 /* SHCLetterViewController.h */,
+				83D355151861C5EA009EABC6 /* SHCLetterViewController.m */,
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				83D75F6B1858E9C20013F8C9 /* SHCModelManager.h */,
@@ -417,12 +428,6 @@
 				83F7038018573641003DABE1 /* SHCOAuthManager.m */,
 				83F7037A18571A7C003DABE1 /* SHCOAuthViewController.h */,
 				83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */,
-				83D3550F1861C5D3009EABC6 /* SHCAttachmentsViewController.h */,
-				83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */,
-				83D355141861C5EA009EABC6 /* SHCLetterViewController.h */,
-				83D355151861C5EA009EABC6 /* SHCLetterViewController.m */,
-				83D2F7E61875578A00344644 /* SHCFileManager.h */,
-				83D2F7E71875578A00344644 /* SHCFileManager.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -442,6 +447,8 @@
 				83C22B6F187C3A9F00A6B6F4 /* UIViewController+PreviousViewController.m */,
 				83C22B73187C3B7500A6B6F4 /* UIViewController+NeedsReload.h */,
 				83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */,
+				839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */,
+				839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -731,6 +738,7 @@
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
@@ -766,6 +774,7 @@
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
@@ -801,6 +810,7 @@
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,

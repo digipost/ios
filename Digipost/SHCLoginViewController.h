@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GAI.h>
 
+// Notification names
 extern NSString *const kPopToLoginViewControllerNotificationName;
 
 @interface SHCLoginViewController : GAITrackedViewController

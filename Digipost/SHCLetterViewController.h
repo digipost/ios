@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GAITrackedViewController.h>
 
+// Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;
 
 @class SHCAttachment;

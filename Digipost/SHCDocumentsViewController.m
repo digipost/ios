@@ -8,7 +8,6 @@
 
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
-#import <TTTTimeIntervalFormatter.h>
 #import "SHCDocumentsViewController.h"
 #import "SHCModelManager.h"
 #import "SHCDocument.h"
@@ -21,6 +20,7 @@
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "UIViewController+ValidateOpening.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -30,10 +30,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 @interface SHCDocumentsViewController ()
 
-@property (strong, nonatomic) TTTTimeIntervalFormatter *timeIntervalFormatter;
-@property (strong, nonatomic) NSDateFormatter *dateFormatter;
-@property (strong, nonatomic) NSDateFormatter *weekdayDateFormatter;
-
 @end
 
 @implementation SHCDocumentsViewController
@@ -42,14 +38,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)viewDidLoad
 {
-    self.timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
-
-    self.dateFormatter = [[NSDateFormatter alloc] init];
-    self.dateFormatter.dateFormat = @"dd.MM.yy";
-
-    self.weekdayDateFormatter = [[NSDateFormatter alloc] init];
-    self.weekdayDateFormatter.dateFormat = @"EEEE";
-
     self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                            ascending:NO
@@ -98,7 +86,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     SHCAttachment *attachment = [document mainDocumentAttachment];
 
     cell.senderLabel.text = attachment.document.creatorName;
-    cell.dateLabel.text = [self stringForDocumentDate:attachment.document.createdAt];
+    cell.dateLabel.text = [SHCDocument stringForDocumentDate:attachment.document.createdAt];
     cell.subjectLabel.text = attachment.subject;
 
     return cell;
@@ -116,11 +104,21 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         SHCAttachment *attachment = [document.attachments firstObject];
 
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-        } else {
-            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-        }
+        [self validateOpeningAttachment:attachment success:^{
+            if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+            } else {
+                [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+            }
+        } failure:^(NSError *error) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                              }];
+        }];
     }
 }
 
@@ -211,23 +209,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)updateNavbar
 {
     self.navigationItem.title = self.folderName;
-}
-
-- (NSString *)stringForDocumentDate:(NSDate *)date
-{
-    NSDate *nowDate = [NSDate date];
-
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:date toDate:nowDate options:0];
-
-    if (dateComponents.day > 6) {
-        return [self.dateFormatter stringFromDate:date];
-    } else if (dateComponents.day > 1) {
-        return [self.weekdayDateFormatter stringFromDate:date];
-    } else if (dateComponents.day == 1) {
-        return NSLocalizedString(@"GENERIC_YESTERDAY_TITLE", @"Yesterday");
-    } else {
-        return [self.timeIntervalFormatter stringForTimeIntervalFromDate:nowDate toDate:date];
-    }
 }
 
 @end
