@@ -80,7 +80,16 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    NSUInteger numberOfSections = 0;
+
+    if (self.inboxFolder) {
+        numberOfSections++;
+    }
+    if ([self.folders count] > 0) {
+        numberOfSections++;
+    }
+
+    return numberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
