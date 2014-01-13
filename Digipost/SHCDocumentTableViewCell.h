@@ -13,6 +13,7 @@ extern NSString *const kDocumentTableViewCellIdentifier;
 @interface SHCDocumentTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *unreadImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *attachmentImageView;
 @property (weak, nonatomic) IBOutlet UILabel *senderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
