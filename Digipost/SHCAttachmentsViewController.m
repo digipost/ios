@@ -65,6 +65,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 {
     [super viewWillAppear:animated];
 
+    [self.navigationController setToolbarHidden:YES animated:NO];
+
     // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
     // we'll manually track and submit screen hits.
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

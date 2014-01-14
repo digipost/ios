@@ -35,9 +35,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
-@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarToBottomGuideConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *toolbarHeightConstraint;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
@@ -63,15 +60,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [super viewDidLoad];
 
+    [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
+
     self.screenName = kLetterViewControllerScreenName;
 
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
         return;
-    }
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
-        self.toolbarHeightConstraint.constant = UIInterfaceOrientationIsPortrait(self.interfaceOrientation) ? 44.0 : 32.0;
     }
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
@@ -99,6 +94,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self loadContent];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    [self.navigationController setToolbarHidden:NO animated:NO];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unloadContent];
@@ -110,13 +112,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
-        self.toolbarHeightConstraint.constant = UIInterfaceOrientationIsPortrait(toInterfaceOrientation) ? 44.0 : 32.0;
-    }
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
@@ -187,7 +182,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [destinations addObject:kFolderArchiveName];
     }
 
-    [UIActionSheet showFromToolbar:self.toolbar
+    [UIActionSheet showFromToolbar:self.navigationController.toolbar
                          withTitle:nil
                  cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
             destructiveButtonTitle:nil
@@ -203,7 +198,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
 {
-    [UIActionSheet showFromToolbar:self.toolbar
+    [UIActionSheet showFromToolbar:self.navigationController.toolbar
                          withTitle:nil
                  cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
             destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
@@ -284,11 +279,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             if (unauthorized) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self loadContent];
-                });
+                [self performSelector:@selector(loadContent) withObject:nil afterDelay:0.0];
+
                 return;
             } else {
 
@@ -331,8 +323,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
 
-    // If the toolbar should be hidden, we place it just below the bottom of its superview.
-    self.toolbarToBottomGuideConstraint.constant = barsHidden ? 0.0 : -44.0;
+    [self.navigationController setToolbarHidden:!barsHidden animated:YES];
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -354,11 +345,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self moveDocumentToLocation:location];
-                });
+                [self performSelector:@selector(moveDocumentToLocation:) withObject:location afterDelay:0.0];
+
                 return;
             }
         }
@@ -385,11 +373,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self deleteDocument];
-                });
+                [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];
+
                 return;
             }
         }

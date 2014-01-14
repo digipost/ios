@@ -8,6 +8,7 @@
 
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
+#import <UIActionSheet+Blocks.h>
 #import "SHCDocumentsViewController.h"
 #import "SHCModelManager.h"
 #import "SHCDocument.h"
@@ -30,6 +31,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 @interface SHCDocumentsViewController ()
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+
 @end
 
 @implementation SHCDocumentsViewController
@@ -38,6 +43,14 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)viewDidLoad
 {
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+    [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
+
+    self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
+    self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
+    self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
+
     self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                            ascending:NO
@@ -49,10 +62,14 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
+
+    [self updateToolbarButtonItems];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [self.navigationController setToolbarHidden:YES animated:NO];
+
     NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
     if (indexPathForSelectedRow) {
         SHCDocumentTableViewCell *cell = (SHCDocumentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathForSelectedRow];
@@ -86,6 +103,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     }
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+
+    [self.navigationController setToolbarHidden:!editing animated:animated];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -107,8 +131,19 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 #pragma mark - UITableViewDelegate
 
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.isEditing) {
+        [self updateToolbarButtonItems];
+
+        return;
+    }
+    
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     if ([document.attachments count] > 1) {
@@ -132,6 +167,15 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                                   [tableView deselectRowAtIndexPath:indexPath animated:YES];
                               }];
         }];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isEditing) {
+        [self updateToolbarButtonItems];
+
+        return;
     }
 }
 
@@ -186,6 +230,51 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 */
 
+#pragma mark - IBActions
+
+- (IBAction)didTapSelectionBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    if ([self allRowsSelected]) {
+        [self deselectAllRows];
+    } else {
+        [self selectAllRows];
+    }
+
+    [self updateToolbarButtonItems];
+}
+
+- (IBAction)didTapMoveBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    NSMutableArray *destinations = [NSMutableArray array];
+    if (![[self.folderName lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
+        [destinations addObject:kFolderInboxName];
+    }
+    if (![[self.folderName lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
+        [destinations addObject:kFolderWorkAreaName];
+    }
+    if (![[self.folderName lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
+        [destinations addObject:kFolderArchiveName];
+    }
+
+    [UIActionSheet showFromBarButtonItem:barButtonItem
+                                animated:YES
+                               withTitle:nil
+                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:destinations
+                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    if (buttonIndex < [destinations count]) {
+                                        NSString *location = [destinations[buttonIndex] uppercaseString];
+
+                                        [self moveSelectedDocumentsToLocation:location];
+                                    }
+                                }];
+}
+
+- (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+}
+
 #pragma mark - Private methods
 
 - (void)updateContentsFromServer
@@ -200,11 +289,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
             if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self updateContentsFromServer];
-                });
+                [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
+
                 return;
             }
         }
@@ -222,6 +308,99 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)updateNavbar
 {
     self.navigationItem.title = self.folderName;
+}
+
+- (void)updateToolbarButtonItems
+{
+    if ([self.tableView indexPathsForSelectedRows] > 0) {
+        self.moveBarButtonItem.enabled = YES;
+        self.deleteBarButtonItem.enabled = YES;
+    } else {
+        self.moveBarButtonItem.enabled = NO;
+        self.deleteBarButtonItem.enabled = NO;
+    }
+
+    if ([self allRowsSelected]) {
+        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
+    } else {
+        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
+    }
+}
+
+- (BOOL)allRowsSelected
+{
+    return [[self.tableView indexPathsForSelectedRows] count] == [self numberOfRows];
+}
+
+- (NSInteger)numberOfRows
+{
+    NSInteger numberOfRows = 0;
+    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
+        numberOfRows += [self.tableView numberOfRowsInSection:section];
+    }
+
+    return numberOfRows;
+}
+
+- (void)selectAllRows
+{
+    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
+        for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:section]; row++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+}
+
+- (void)deselectAllRows
+{
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForVisibleRows]) {
+        SHCDocumentTableViewCell *cell = (SHCDocumentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
+
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+}
+
+- (void)moveSelectedDocumentsToLocation:(NSString *)location
+{
+    for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
+        SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
+
+        [self moveDocument:document toLocation:location];
+    }
+}
+
+- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location
+{
+    [[SHCAPIManager sharedManager] moveDocument:document toLocation:location success:^{
+
+        [self updateFetchedResultsController];
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self moveDocument:document toLocation:location];
+                });
+
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
 }
 
 @end

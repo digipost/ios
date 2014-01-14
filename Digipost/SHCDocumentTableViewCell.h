@@ -10,6 +10,8 @@
 
 extern NSString *const kDocumentTableViewCellIdentifier;
 
+@protocol SHCDocumentTableViewCellDelegate;
+
 @interface SHCDocumentTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *unreadImageView;

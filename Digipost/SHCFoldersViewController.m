@@ -282,11 +282,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
             if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self updateContentsFromServer];
-                });
+                [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
+
                 return;
             }
         }

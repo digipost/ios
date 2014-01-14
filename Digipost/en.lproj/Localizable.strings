@@ -101,3 +101,15 @@
 
 /* Error writing decrypted file */
 "FILE_MANAGER_ENCRYPT_ERROR_WRITING_ENCRYPTED_FILE" = "Error writing decrypted file";
+
+/* Select all */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE" = "Select all";
+
+/* Select none */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE" = "Select none";
+
+/* Move */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE" = "Move";
+
+/* Delete */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE" = "Delete";
