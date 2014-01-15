@@ -21,6 +21,15 @@
 /* Yesterday */
 "GENERIC_YESTERDAY_TITLE" = "Yesterday";
 
+/* Updating... */
+"GENERIC_UPDATING_TITLE" = "Updating...";
+
+/* Last updated */
+"GENERIC_LAST_UPDATED_TITLE" = "Last updated";
+
+/* never */
+"GENERIC_UPDATED_NEVER_TITLE" = "never";
+
 /* Log Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Log Out";
 
