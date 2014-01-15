@@ -23,7 +23,6 @@
 @implementation SHCBaseTableViewController
 
 @synthesize rootResource = _rootResource;
-@synthesize previousViewControllerNeedsReload = _previousViewControllerNeedsReload;
 
 #pragma mark - UIViewController
 
@@ -200,6 +199,8 @@
         NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
     }
 
+    // Because we don't know which subclass inherits from the base controller,
+    // let's see if it responds to the updateFolders selector
     if ([self respondsToSelector:@selector(updateFolders)]) {
         [self performSelector:@selector(updateFolders)];
     }

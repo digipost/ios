@@ -11,8 +11,11 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushAttachmentsIdentifier;
 
+@class SHCDocumentsViewController;
+
 @interface SHCAttachmentsViewController : UITableViewController
 
+@property (weak, nonatomic) SHCDocumentsViewController *documentsViewController;
 @property (strong, nonatomic) NSOrderedSet *attachments;
 
 @end

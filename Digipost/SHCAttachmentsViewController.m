@@ -88,6 +88,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
         SHCAttachment *attachment = (SHCAttachment *)sender;
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+        letterViewController.documentsViewController = self.documentsViewController;
         letterViewController.attachment = attachment;
     }
 }

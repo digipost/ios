@@ -12,10 +12,12 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;
 
+@class SHCDocumentsViewController;
 @class SHCAttachment;
 
 @interface SHCLetterViewController : GAITrackedViewController
 
+@property (weak, nonatomic) SHCDocumentsViewController *documentsViewController;
 @property (strong, nonatomic) SHCAttachment *attachment;
 
 @end

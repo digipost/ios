@@ -19,8 +19,8 @@
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCBaseTableViewController.h"
-#import "UIViewController+PreviousViewController.h"
 #import "UIViewController+NeedsReload.h"
+#import "SHCDocumentsViewController.h"
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -335,9 +335,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location success:^{
 
-        self.previousViewController.needsReload = YES;
+        self.documentsViewController.needsReload = YES;
 
-        [self.navigationController popViewControllerAnimated:YES];
+        // Becuase we might have been pushed from the attachments vc, make sure that we pop
+        // all the way back to the documents vc.
+        [self.navigationController popToViewController:self.documentsViewController animated:YES];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -363,9 +365,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [[SHCAPIManager sharedManager] deleteDocument:self.attachment.document success:^{
 
-        self.previousViewController.needsReload = YES;
+        self.documentsViewController.needsReload = YES;
 
-        [self.navigationController popViewControllerAnimated:YES];
+        // Becuase we might have been pushed from the attachments vc, make sure that we pop
+        // all the way back to the documents vc.
+        [self.navigationController popToViewController:self.documentsViewController animated:YES];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];

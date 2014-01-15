@@ -94,11 +94,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         SHCDocument *document = (SHCDocument *)sender;
 
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
+        attachmentsViewController.documentsViewController = self;
         attachmentsViewController.attachments = document.attachments;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         SHCAttachment *attachment = (SHCAttachment *)sender;
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+        letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
     }
 }
@@ -273,6 +275,26 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
+    NSUInteger numberOfLetters = [[self.tableView indexPathsForSelectedRows] count];
+    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") :
+                                                  NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+
+    NSString *deleteString = [NSString stringWithFormat:@"%@ %i %@",
+                              NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
+                              [[self.tableView indexPathsForSelectedRows] count],
+                              letterWord];
+
+    [UIActionSheet showFromBarButtonItem:barButtonItem
+                                animated:YES
+                               withTitle:nil
+                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                  destructiveButtonTitle:deleteString
+                       otherButtonTitles:nil
+                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    if (buttonIndex == 0) {
+                                        [self deleteDocuments];
+                                    }
+                                }];
 }
 
 #pragma mark - Private methods
@@ -371,12 +393,14 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         [self moveDocument:document toLocation:location];
     }
+
+    [self deselectAllRows];
+    [self updateToolbarButtonItems];
 }
 
 - (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location
 {
     [[SHCAPIManager sharedManager] moveDocument:document toLocation:location success:^{
-
         [self updateFetchedResultsController];
     } failure:^(NSError *error) {
 
@@ -390,6 +414,43 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self moveDocument:document toLocation:location];
                 });
+
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (void)deleteDocuments
+{
+    for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
+        SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
+
+        [self deleteDocument:document];
+    }
+
+    [self deselectAllRows];
+    [self updateToolbarButtonItems];
+}
+
+- (void)deleteDocument:(SHCDocument *)document
+{
+    [[SHCAPIManager sharedManager] deleteDocument:document success:^{
+        [self updateFetchedResultsController];
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
 
                 return;
             }

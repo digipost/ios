@@ -19,7 +19,6 @@
 @property (strong, nonatomic) NSPredicate *predicate;
 @property (copy, nonatomic) NSString *screenName;
 @property (strong, nonatomic) SHCRootResource *rootResource;
-@property (assign, nonatomic) BOOL previousViewControllerNeedsReload;
 
 // Override these methods in subclass
 - (void)updateContentsFromServer;
