@@ -64,8 +64,6 @@ NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
 
                     if (folderAttributes) {
                         SHCFolder *folder = [SHCFolder folderWithAttributes:folderAttributes inManagedObjectContext:managedObjectContext];
-                        folder.mailbox = mailbox;
-
                         [mailbox addFoldersObject:folder];
                     }
                 }

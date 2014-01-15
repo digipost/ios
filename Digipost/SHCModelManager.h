@@ -26,6 +26,7 @@
 - (NSEntityDescription *)folderEntity;
 - (NSEntityDescription *)documentEntity;
 - (NSEntityDescription *)attachmentEntity;
+- (NSEntityDescription *)invoiceEntity;
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;

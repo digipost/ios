@@ -10,6 +10,7 @@
 #import "SHCModelManager.h"
 #import "SHCFileManager.h"
 #import "NSString+SHA1String.h"
+#import "SHCInvoice.h"
 
 // Defines what the app considers a valid attachment authentication level
 NSString *const kAttachmentOpeningValidAuthenticationLevel = @"PASSWORD";
@@ -20,10 +21,15 @@ NSString *const kAttachmentOpeningValidationErrorDomain = @"AttachmentOpeningVal
 // Core Data model entity names
 NSString *const kAttachmentEntityName = @"Attachment";
 
+// Defines Digipost attachment types
+NSString *const kAttachmentTypeLetter = @"LETTER";
+NSString *const kAttachmentTypeInvoice = @"INVOICE";
+
 // API keys
 NSString *const kAttachmentAuthenticationLevel = @"authentication-level";
 NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
+NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 @implementation SHCAttachment
 
@@ -39,6 +45,7 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
 
 // Relationships
 @dynamic document;
+@dynamic invoice;
 
 #pragma mark - Public methods
 
@@ -82,6 +89,11 @@ NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
                 }
             }
         }
+    }
+
+    NSDictionary *invoiceDict = attributes[kAttachmentInvoiceAPIKey];
+    if ([invoiceDict isKindOfClass:[NSDictionary class]]) {
+        attachment.invoice = [SHCInvoice invoiceWithAttributes:invoiceDict inManagedObjectContext:managedObjectContext];
     }
 
     return attachment;

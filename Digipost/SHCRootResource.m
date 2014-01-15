@@ -97,7 +97,6 @@ NSString *const kRootResourceLogoutAPIKey = @"logout";
         for (NSDictionary *mailboxDict in mailboxesArray) {
             if ([mailboxDict isKindOfClass:[NSDictionary class]]) {
                 SHCMailbox *mailbox = [SHCMailbox mailboxWithAttributes:mailboxDict inManagedObjectContext:managedObjectContext];
-                mailbox.rootResource = rootResource;
                 [rootResource addMailboxesObject:mailbox];
             }
         }

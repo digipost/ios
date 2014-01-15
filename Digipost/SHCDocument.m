@@ -71,8 +71,6 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
         for (NSDictionary *attachmentDict in attachments) {
             if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
                 SHCAttachment *attachment = [SHCAttachment attachmentWithAttributes:attachmentDict inManagedObjectContext:managedObjectContext];
-                attachment.document = document;
-
                 [document addAttachmentsObject:attachment];
             }
         }
@@ -111,7 +109,6 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     for (SHCDocument *document in documents) {
         for (SHCFolder *folder in folders) {
             if ([document.location compare:folder.name options:NSCaseInsensitiveSearch] == NSOrderedSame) {
-                document.folder = folder;
                 [folder addDocumentsObject:document];
 
                 [remainingDocuments removeObject:document];

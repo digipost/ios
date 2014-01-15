@@ -12,6 +12,7 @@
 #import "SHCFolder.h"
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
+#import "SHCInvoice.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -139,6 +140,11 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 - (NSEntityDescription *)attachmentEntity
 {
     return [NSEntityDescription entityForName:kAttachmentEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSEntityDescription *)invoiceEntity
+{
+    return [NSEntityDescription entityForName:kInvoiceEntityName inManagedObjectContext:self.managedObjectContext];
 }
 
 - (NSDate *)rootResourceCreatedAt

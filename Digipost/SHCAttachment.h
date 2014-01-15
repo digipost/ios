@@ -25,6 +25,7 @@ extern NSString *const kAttachmentOpeningValidationErrorDomain;
 extern NSString *const kAttachmentEntityName;
 
 @class SHCDocument;
+@class SHCInvoice;
 
 @interface SHCAttachment : NSManagedObject
 
@@ -40,6 +41,7 @@ extern NSString *const kAttachmentEntityName;
 
 // Relationships
 @property (strong, nonatomic) SHCDocument *document;
+@property (strong, nonatomic) SHCInvoice *invoice;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)encryptedFilePath;
