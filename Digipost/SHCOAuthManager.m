@@ -182,7 +182,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                           if (failure) {
                               // Check to see if the request failed because the refresh token was denied
 
-                              if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:task.response]) {
+                              if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:task.response]) {
                                   NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                              code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];

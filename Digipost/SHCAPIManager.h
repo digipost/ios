@@ -35,6 +35,6 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)deleteDocument:(SHCDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingAttachments;
-- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response;
+- (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 
 @end

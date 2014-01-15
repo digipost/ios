@@ -308,7 +308,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
@@ -406,7 +406,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 double delayInSeconds = 0.0;
@@ -447,7 +447,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];

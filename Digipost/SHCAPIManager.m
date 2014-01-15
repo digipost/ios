@@ -229,7 +229,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateRefreshingAccessTokenFailed:
             {
                 // Check to see if the request failed because the refresh token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse] ||
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse] ||
                     ([self.lastError.domain isEqualToString:kOAuth2ErrorDomain] &&
                      self.lastError.code == SHCOAuthErrorCodeInvalidRefreshTokenResponse)) {
                     // The refresh token was rejected, most likely because the user invalidated
@@ -274,7 +274,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateUpdatingRootResourceFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -311,7 +311,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateUpdatingDocumentsFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -342,7 +342,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateDownloadingAttachmentFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -379,7 +379,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateMovingDocumentFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -412,7 +412,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateDeletingDocumentFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -443,7 +443,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateLoggingOutFailed:
             {
                 // Check to see if the request failed because the access token was rejected
-                if ([self responseCodeIsIn400Range:self.lastURLResponse]) {
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
 
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
@@ -727,11 +727,12 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }
 }
 
-- (BOOL)responseCodeIsIn400Range:(NSURLResponse *)response
+- (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-        if ([HTTPResponse statusCode] >= 400 && ([HTTPResponse statusCode] < 500)) {
+        if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized
+            [HTTPResponse statusCode] == 401) { // Unauthorized.
             return YES;
         }
     }

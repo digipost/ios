@@ -270,7 +270,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             } else {
                 NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                 if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                    if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+                    if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                         unauthorized = YES;
                     }
                 }
@@ -344,7 +344,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(moveDocumentToLocation:) withObject:location afterDelay:0.0];
@@ -374,7 +374,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];

@@ -279,7 +279,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsIn400Range:response]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
