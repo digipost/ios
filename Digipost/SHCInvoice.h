@@ -17,11 +17,11 @@ extern NSString *const kInvoiceEntityName;
 @interface SHCInvoice : NSManagedObject
 
 // Attributes
-@property (strong, nonatomic) NSNumber *accountNumber;
+@property (strong, nonatomic) NSString *accountNumber;
 @property (strong, nonatomic) NSNumber *amount;
 @property (strong, nonatomic) NSNumber *canBePaidByUser;
 @property (strong, nonatomic) NSDate *dueDate;
-@property (strong, nonatomic) NSNumber *kid;
+@property (strong, nonatomic) NSString *kid;
 @property (strong, nonatomic) NSString *sendToBankUri;
 @property (strong, nonatomic) NSDate *timePaid;
 @property (strong, nonatomic) NSString *bankHomepage;

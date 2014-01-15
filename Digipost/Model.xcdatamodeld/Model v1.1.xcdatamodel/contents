@@ -28,12 +28,12 @@
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <entity name="Invoice" representedClassName="SHCInvoice" syncable="YES">
-        <attribute name="accountNumber" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="accountNumber" attributeType="String" syncable="YES"/>
         <attribute name="amount" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="bankHomepage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="canBePaidByUser" attributeType="Boolean" syncable="YES"/>
         <attribute name="dueDate" attributeType="Date" syncable="YES"/>
-        <attribute name="kid" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="kid" attributeType="String" syncable="YES"/>
         <attribute name="sendToBankUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timePaid" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="attachment" maxCount="1" deletionRule="Nullify" destinationEntity="Attachment" inverseName="invoice" inverseEntity="Attachment" syncable="YES"/>

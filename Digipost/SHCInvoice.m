@@ -42,8 +42,8 @@ NSString *const kInvoicePaymentBankHomepageSuffix = @"bank_homepage";
     NSEntityDescription *entity = [[SHCModelManager sharedManager] invoiceEntity];
     SHCInvoice *invoice = [[SHCInvoice alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
-    NSNumber *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
-    invoice.accountNumber = [accountNumber isKindOfClass:[NSNumber class]] ? accountNumber : nil;
+    NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
+    invoice.accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
 
     NSNumber *amount = attributes[NSStringFromSelector(@selector(amount))];
     invoice.amount = [amount isKindOfClass:[NSNumber class]] ? amount : nil;
@@ -59,8 +59,8 @@ NSString *const kInvoicePaymentBankHomepageSuffix = @"bank_homepage";
         invoice.dueDate = [dateFormatterWithoutTime dateFromString:dueDateString];
     }
 
-    NSNumber *kid = attributes[NSStringFromSelector(@selector(kid))];
-    invoice.kid = [kid isKindOfClass:[NSNumber class]] ? kid : nil;
+    NSString *kid = attributes[NSStringFromSelector(@selector(kid))];
+    invoice.kid = [kid isKindOfClass:[NSString class]] ? kid : nil;
 
     NSArray *links = attributes[kInvoiceLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {
