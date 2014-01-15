@@ -249,9 +249,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.webView loadRequest:request];
     } else {
 
-        self.progressView.alpha = 1.0;
-
-        [UIView animateWithDuration:0.1 delay:0.3 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        [UIView animateWithDuration:0.3 delay:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.progressView.alpha = 1.0;
         } completion:nil];
 
