@@ -48,7 +48,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)dealloc
 {
     @try {
-        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:kSHCLetterViewControllerKVOContext];
+        [self.progress removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:kSHCLetterViewControllerKVOContext];
     } @catch (NSException *exception) {
         DDLogDebug(@"Caught an exception: %@", exception);
     }
@@ -241,12 +241,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             self.progressView.alpha = 1.0;
         } completion:nil];
 
-        NSProgress *progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
-        progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
+        self.progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
+        self.progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
 
-        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
+        [self.progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
 
-        [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:progress success:^{
+        [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:self.progress success:^{
 
             NSError *error = nil;
             if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment error:&error]) {
