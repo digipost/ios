@@ -1,14 +1,36 @@
 {
   "images" : [
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "fill",
+          "height" : 1
+        },
+        "capInsets" : {
+          "top" : 24,
+          "bottom" : 12
+        }
+      },
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "popover-bg.png"
+      "filename" : "popover-bg.png",
+      "scale" : "1x"
     },
     {
+      "resizing" : {
+        "mode" : "3-part-vertical",
+        "center" : {
+          "mode" : "fill",
+          "height" : 2
+        },
+        "capInsets" : {
+          "top" : 48,
+          "bottom" : 24
+        }
+      },
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "popover-bg@2x.png"
+      "filename" : "popover-bg@2x.png",
+      "scale" : "2x"
     }
   ],
   "info" : {
