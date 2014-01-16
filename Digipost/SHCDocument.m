@@ -147,7 +147,8 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
 
     if (dateComponents.day > 6) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"dd.MM.yy";
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.timeStyle = NSDateFormatterNoStyle;
 
         return [dateFormatter stringFromDate:date];
     } else if (dateComponents.day > 1) {

@@ -35,6 +35,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
+@property (weak, nonatomic) IBOutlet UIView *shadowView;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSenderDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSenderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverDateDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
@@ -82,6 +88,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self showInvalidFileTypeView];
         return;
     }
+
+    self.popoverSenderDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From");
+    self.popoverDateDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date");
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
@@ -222,6 +231,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                   [self deleteDocument];
                               }
                           }];
+}
+
+- (IBAction)dismissInfo:(UIGestureRecognizer *)gestureRecognizer
+{
+    [self setInfoViewVisible:NO];
 }
 
 #pragma mark - Private methods
@@ -405,10 +419,49 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapInfo:(UIBarButtonItem *)barButtonItem
 {
+    BOOL shouldBeVisible = (self.shadowView.alpha == 0.0) ? YES : NO;
+
+    [self setInfoViewVisible:shouldBeVisible];
 }
 
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
+    [self setInfoViewVisible:NO];
+}
+
+- (void)setInfoViewVisible:(BOOL)visible
+{
+    if (visible && self.shadowView.alpha == 0.0) {
+
+        self.popoverSubjectLabel.text = self.attachment.subject;
+        self.popoverSenderLabel.text = self.attachment.document.creatorName;
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterShortStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+
+        self.popoverDateLabel.text = [dateFormatter stringFromDate:self.attachment.document.createdAt];
+
+        [UIView animateWithDuration:0.2 animations:^{
+            self.shadowView.alpha = 1.0;
+        }];
+
+        [self.navigationController.navigationBar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
+        [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
+
+        [self.navigationController.navigationBar setUserInteractionEnabled:NO];
+        [self.navigationController.toolbar setUserInteractionEnabled:NO];
+    } else if (!visible && self.shadowView.alpha == 1.0) {
+        [UIView animateWithDuration:0.2 animations:^{
+            self.shadowView.alpha = 0.0;
+        }];
+
+        [self.navigationController.navigationBar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
+        [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
+
+        [self.navigationController.navigationBar setUserInteractionEnabled:YES];
+        [self.navigationController.toolbar setUserInteractionEnabled:YES];
+    }
 }
 
 @end

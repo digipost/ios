@@ -244,7 +244,7 @@
     } else {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
-        dateFormatter.timeStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterShortStyle;
 
         NSString *lastUpdatedText = NSLocalizedString(@"GENERIC_LAST_UPDATED_TITLE", @"Last updated");
 
