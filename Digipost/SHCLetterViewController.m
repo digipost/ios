@@ -30,7 +30,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate>
+@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
@@ -44,6 +44,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
+@property (strong, nonatomic) UIDocumentInteractionController *openInController;
 
 @end
 
@@ -173,6 +174,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     return NO;
+}
+
+#pragma mark - UIDocumentInteractionControllerDelegate
+
+- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
+{
+    self.openInController = nil;
 }
 
 #pragma mark - NSKeyValueObserving
@@ -427,6 +435,39 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
     [self setInfoViewVisible:NO];
+
+    if (!self.openInController) {
+
+        NSString *encryptedFilePath = [self.attachment encryptedFilePath];
+        NSString *decryptedFilePath = [self.attachment decryptedFilePath];
+
+        NSURL *fileURL = nil;
+
+        if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
+            fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+        } else if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+            NSError *error = nil;
+            if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment error:&error]) {
+                [UIAlertView showWithTitle:error.errorTitle
+                                   message:[error localizedDescription]
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@[error.okButtonTitle]
+                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                      [self dismissViewControllerAnimated:YES completion:nil];
+                                  }];
+                return;
+            }
+
+            fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+        } else {
+            return;
+        }
+
+        self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+        self.openInController.delegate = self;
+
+        [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
+    }
 }
 
 - (void)setInfoViewVisible:(BOOL)visible
