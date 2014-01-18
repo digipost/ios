@@ -44,6 +44,7 @@ extern NSString *const kAttachmentEntityName;
 @property (strong, nonatomic) SHCInvoice *invoice;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)encryptedFilePath;
 - (NSString *)decryptedFilePath;
 

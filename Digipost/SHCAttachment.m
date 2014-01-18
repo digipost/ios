@@ -99,6 +99,22 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     return attachment;
 }
 
++ (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] attachmentEntity];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    return [results firstObject];
+}
+
 - (NSString *)encryptedFilePath
 {
     NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];

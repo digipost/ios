@@ -81,7 +81,6 @@
     if (self.needsReload) {
         self.needsReload = NO;
         [self updateFetchedResultsController];
-        [self updateContentsFromServer];
     }
 }
 

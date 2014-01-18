@@ -17,6 +17,10 @@
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
 
+// API keys
+NSString *const kAccountAPIKey = @"account";
+NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
+
 @interface SHCModelManager ()
 
 @property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
@@ -59,6 +63,19 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
+- (void)updateBankAccountWithAttributes:(NSDictionary *)attributes
+{
+    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
+
+    NSDictionary *accountDict = attributes[kAccountAPIKey];
+    if ([accountDict isKindOfClass:[NSDictionary class]]) {
+        NSString *accountNumber = accountDict[kAccountAccountNumberAPIKey];
+        if ([accountNumber isKindOfClass:[NSString class]]) {
+            rootResource.currentBankAccount = accountNumber;
+        }
     }
 }
 

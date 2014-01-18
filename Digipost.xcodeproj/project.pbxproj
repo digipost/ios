@@ -150,6 +150,7 @@
 		835C74E318867603006C6F4F /* SHCInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCInvoice.h; sourceTree = "<group>"; };
 		835C74E418867603006C6F4F /* SHCInvoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCInvoice.m; sourceTree = "<group>"; };
 		835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.1.xcdatamodel"; sourceTree = "<group>"; };
+		835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.2.xcdatamodel"; sourceTree = "<group>"; };
 		8364D712185F1EB4008DE6CB /* SHCDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocumentsViewController.h; sourceTree = "<group>"; };
 		8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocumentsViewController.m; sourceTree = "<group>"; };
 		8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBaseTableViewController.h; sourceTree = "<group>"; };
@@ -1169,10 +1170,11 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */,
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = 835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */;
+			currentVersion = 835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

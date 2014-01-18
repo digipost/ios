@@ -56,6 +56,13 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     [super viewDidLoad];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self updateContentsFromServer];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[SHCAPIManager sharedManager] cancelUpdatingRootResource];
@@ -270,6 +277,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (void)updateContentsFromServer
 {
+    if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
+        return;
+    }
+
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
         self.rootResource = nil; // To force a refetch of this property
         [self updateNavbar];
@@ -307,7 +318,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 
-    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Log Out");
+    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Sign Out");
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
 
     self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",

@@ -32,6 +32,7 @@ extern NSString *const kDocumentDocumentsAPIKey;
 @property (strong, nonatomic) SHCFolder *folder;
 
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForDocumentDate:(NSDate *)date;

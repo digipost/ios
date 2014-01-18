@@ -22,6 +22,7 @@
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "UIViewController+ValidateOpening.h"
+#import "SHCInvoice.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -34,6 +35,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
 
 @end
 
@@ -68,15 +70,16 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setToolbarHidden:YES animated:NO];
-
-    NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
-    if (indexPathForSelectedRow) {
-        SHCDocumentTableViewCell *cell = (SHCDocumentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathForSelectedRow];
-        cell.unreadImageView.hidden = YES;
-    }
-
     [super viewWillAppear:animated];
+
+    [self.navigationController setToolbarHidden:YES animated:NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
+    [self updateContentsFromServer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -92,6 +95,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     if ([segue.identifier isEqualToString:kPushAttachmentsIdentifier]) {
         SHCDocument *document = (SHCDocument *)sender;
+        self.selectedDocumentUpdateUri = document.updateUri;
 
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
@@ -301,9 +305,33 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)updateContentsFromServer
 {
+    if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
+        return;
+    }
+
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri withSuccess:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
+
+        // If the user has just managed to enter a document with attachments _after_ the API call finished,
+        // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
+        // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
+        if ([self.navigationController.topViewController isKindOfClass:[SHCAttachmentsViewController class]]) {
+            SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
+
+            SHCDocument *selectedDocument = [SHCDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+
+            attachmentsViewController.attachments = selectedDocument.attachments;
+        }
+
+        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        if (!rootResource.currentBankAccount) {
+
+            if ([self documentsNeedCurrentBankAccount]) {
+
+                [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
+            }
+        }
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -451,6 +479,48 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
+
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (BOOL)documentsNeedCurrentBankAccount
+{
+    NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
+
+    for (SHCDocument *document in [SHCDocument allDocumentsInFolderWithName:self.folderName inManagedObjectContext:managedObjectContext]) {
+        for (SHCAttachment *attachment in document.attachments) {
+            if (attachment.invoice && [attachment.invoice.canBePaidByUser boolValue] && [attachment.invoice.sendToBankUri length] > 0) {
+                return YES;
+            }
+        }
+    }
+
+    return NO;
+}
+
+- (void)updateCurrentBankAccountWithUri:(NSString *)uri
+{
+    [[SHCAPIManager sharedManager] updateBankAccountWithUri:uri success:nil failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self updateCurrentBankAccountWithUri:uri];
+                });
 
                 return;
             }

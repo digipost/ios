@@ -19,8 +19,12 @@ extern NSString *const kAPIManagerErrorDomain;
 @class SHCFolder;
 @class SHCAttachment;
 @class SHCDocument;
+@class SHCInvoice;
 
 @interface SHCAPIManager : NSObject
+
+@property (assign, nonatomic, getter = isUpdatingRootResource) BOOL updatingRootResource;
+@property (assign, nonatomic, getter = isUpdatingDocuments) BOOL updatingDocuments;
 
 + (instancetype)sharedManager;
 
@@ -28,6 +32,9 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)stopLogging;
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingRootResource;
+- (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelUpdatingBankAccount;
+- (void)sendInvoiceToBank:(SHCInvoice *)invoice success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
@@ -36,5 +43,6 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingAttachments;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
+- (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;
 
 @end

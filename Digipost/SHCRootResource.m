@@ -18,13 +18,17 @@ NSString *const kRootResourceAuthenticationLevelAPIKey = @"authenticationlevel";
 NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
 NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 NSString *const kRootResourceLinkAPIKey = @"link";
-NSString *const kRootResourceLogoutAPIKey = @"logout";
+NSString *const kRootResourceLogoutSuffix = @"logout";
+NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
+NSString *const kRootResourcePrimaryAccountCurrentBankAccountSuffix = @"current_bank_account";
 
 @implementation SHCRootResource
 
 // Attributes
 @dynamic authenticationLevel;
 @dynamic createdAt;
+@dynamic currentBankAccount;
+@dynamic currentBankAccountUri;
 @dynamic firstName;
 @dynamic fullName;
 @dynamic lastName;
@@ -69,7 +73,7 @@ NSString *const kRootResourceLogoutAPIKey = @"logout";
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                    if ([rel hasSuffix:kRootResourceLogoutAPIKey]) {
+                    if ([rel hasSuffix:kRootResourceLogoutSuffix]) {
                         rootResource.logoutUri = uri;
                     }
                 }
@@ -90,6 +94,22 @@ NSString *const kRootResourceLogoutAPIKey = @"logout";
 
         NSString *middleName = primaryAccount[NSStringFromSelector(@selector(middleName))];
         rootResource.middleName = [middleName isKindOfClass:[NSString class]] ? middleName : nil;
+
+        NSArray *links = primaryAccount[kRootResourcePrimaryAccountLinkAPIKey];
+        if ([links isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *link in links) {
+                if ([link isKindOfClass:[NSDictionary class]]) {
+                    NSString *rel = link[@"rel"];
+                    NSString *uri = link[@"uri"];
+                    if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+
+                        if ([rel hasSuffix:kRootResourcePrimaryAccountCurrentBankAccountSuffix]) {
+                            rootResource.currentBankAccountUri = uri;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     NSArray *mailboxesArray = attributes[kRootResourceMailboxesAPIKey];

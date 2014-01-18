@@ -21,6 +21,10 @@
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCDocumentsViewController.h"
+#import "SHCInvoice.h"
+#import "SHCMailbox.h"
+#import "SHCRootResource.h"
+#import "SHCModelManager.h"
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -45,6 +49,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
 @property (strong, nonatomic) UIDocumentInteractionController *openInController;
+@property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
+@property (assign, nonatomic, getter = isSendingInvoice) BOOL sendingInvoice;
 
 @end
 
@@ -92,6 +98,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     self.popoverSenderDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From");
     self.popoverDateDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date");
+
+    if (self.attachment.invoice) {
+        [self updateToolbarItemsWithInvoice];
+    }
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
@@ -470,6 +480,56 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
+- (void)didTapInvoice:(UIBarButtonItem *)barButtonItem
+{
+    NSString *title = nil;
+    NSString *message = nil;
+    NSString *actionButtonTitle = nil;
+    NSString *cancelButtonTitle = nil;
+
+    if (self.attachment.invoice.timePaid) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE", @"The invoice has been registered");
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+        dateFormatter.timeStyle = NSDateFormatterNoStyle;
+
+        NSString *timePaid = [dateFormatter stringFromDate:self.attachment.invoice.timePaid];
+
+        message = [NSString stringWithFormat:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message"), timePaid];
+
+        actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE", @"Go to bank");
+        cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+
+    } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_TITLE", @"Send to bank?");
+
+        NSString *bankAccountNumber = self.attachment.document.folder.mailbox.rootResource.currentBankAccount ?: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER", @"unknown bank account number");
+
+        message = [NSString stringWithFormat:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message"), bankAccountNumber];
+
+        actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
+        cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
+
+    } else {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE", @"Send to bank");
+        message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE", @"Payment tips message");
+
+        actionButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+    }
+
+    [UIAlertView showWithTitle:title message:message cancelButtonTitle:cancelButtonTitle otherButtonTitles:@[actionButtonTitle] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex > 0) {
+            if (self.attachment.invoice.timePaid) {
+                NSURL *url = [NSURL URLWithString:self.attachment.invoice.bankHomepage];
+                [[UIApplication sharedApplication] openURL:url];
+            } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
+                [self sendInvoiceToBank];
+            }
+        }
+    }];
+}
+
 - (void)setInfoViewVisible:(BOOL)visible
 {
     if (visible && self.shadowView.alpha == 0.0) {
@@ -487,22 +547,107 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             self.shadowView.alpha = 1.0;
         }];
 
-        [self.navigationController.navigationBar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
-
-        [self.navigationController.navigationBar setUserInteractionEnabled:NO];
         [self.navigationController.toolbar setUserInteractionEnabled:NO];
+
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2 animations:^{
             self.shadowView.alpha = 0.0;
         }];
 
-        [self.navigationController.navigationBar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
-
-        [self.navigationController.navigationBar setUserInteractionEnabled:YES];
         [self.navigationController.toolbar setUserInteractionEnabled:YES];
     }
+}
+
+- (void)sendInvoiceToBank
+{
+    self.sendingInvoice = YES;
+    [self updateToolbarItemsWithInvoice];
+
+    [[SHCAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice success:^{
+
+        // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
+        // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
+        [self updateDocuments];
+
+    } failure:^(NSError *error) {
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                [self performSelector:@selector(sendInvoiceToBank) withObject:nil afterDelay:0.0];
+
+                return;
+            }
+        }
+
+        self.sendingInvoice = NO;
+        [self updateToolbarItemsWithInvoice];
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (void)updateDocuments
+{
+    NSString *attachmentUri = self.attachment.uri;
+
+    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri withSuccess:^{
+        [self updateAttachmentWithAttachmentUri:attachmentUri];
+        self.sendingInvoice = NO;
+        [self updateToolbarItemsWithInvoice];
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
+
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (void)updateAttachmentWithAttachmentUri:(NSString *)uri
+{
+    self.attachment = [SHCAttachment existingAttachmentWithUri:uri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+}
+
+- (void)updateToolbarItemsWithInvoice
+{
+    NSString *title = nil;
+    if (self.isSendingInvoice) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"Sending...");
+    } else if (self.attachment.invoice.timePaid) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE", @"Sent to bank");
+    } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE", @"Send to bank");
+    } else {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE", @"Payment tips");
+    }
+
+    self.invoiceBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(didTapInvoice:)];
+    self.invoiceBarButtonItem.tintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+    [self.invoiceBarButtonItem setEnabled:!self.isSendingInvoice];
+
+    UIBarButtonItem *flexibleSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    self.toolbarItems = @[self.invoiceBarButtonItem, flexibleSpaceBarButtonItem, self.moveBarButtonItem, flexibleSpaceBarButtonItem, self.deleteBarButtonItem];
 }
 
 @end

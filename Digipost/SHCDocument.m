@@ -79,6 +79,22 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
     return document;
 }
 
++ (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(updateUri)), updateUri];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    return [results firstObject];
+}
+
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     // At this point, all our Folder objects have been created anew.

@@ -67,6 +67,14 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
     [self.navigationController setToolbarHidden:YES animated:NO];
 
+    // Sometimes, the previously selected cell isn't properly deselected.
+    // The line below makes sure all visible cells are deselected, plus it adds a
+    // fancy fading effect when the user swipes back to this view controller
+    NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
+    if (indexPathForSelectedRow) {
+        [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow animated:YES];
+    }
+
     // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
     // we'll manually track and submit screen hits.
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];

@@ -19,6 +19,8 @@ extern NSString *const kRootResourceEntityName;
 // Attributes
 @property (strong, nonatomic) NSNumber *authenticationLevel;
 @property (strong, nonatomic) NSDate *createdAt;
+@property (strong, nonatomic) NSString *currentBankAccount;
+@property (strong, nonatomic) NSString *currentBankAccountUri;
 @property (strong, nonatomic) NSString *firstName;
 @property (strong, nonatomic) NSString *fullName;
 @property (strong, nonatomic) NSString *lastName;

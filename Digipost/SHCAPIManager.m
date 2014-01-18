@@ -21,6 +21,7 @@
 #import "SHCFileManager.h"
 #import "NSString+SHA1String.h"
 #import "SHCRootResource.h"
+#import "SHCInvoice.h"
 
 typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateIdle = 0,
@@ -44,6 +45,12 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateDeletingDocument,
     SHCAPIManagerStateDeletingDocumentFinished,
     SHCAPIManagerStateDeletingDocumentFailed,
+    SHCAPIManagerStateUpdatingBankAccount,
+    SHCAPIManagerStateUpdatingBankAccountFinished,
+    SHCAPIManagerStateUpdatingBankAccountFailed,
+    SHCAPIManagerStateSendingInvoiceToBank,
+    SHCAPIManagerStateSendingInvoiceToBankFinished,
+    SHCAPIManagerStateSendingInvoiceToBankFailed,
     SHCAPIManagerStateLoggingOut,
     SHCAPIManagerStateLoggingOutFailed,
     SHCAPIManagerStateLoggingOutFinished
@@ -69,6 +76,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 @property (strong, nonatomic) NSProgress *lastProgress;
 @property (strong, nonatomic) SHCDocument *lastDocument;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+@property (copy, nonatomic) NSString *lastBankAccountUri;
 
 - (void)cancelRequestsWithPath:(NSString *)path;
 
@@ -200,6 +208,24 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateDeletingDocumentFailed:
                 stateString = @"SHCAPIManagerStateDeletingDocumentFailed";
                 break;
+            case SHCAPIManagerStateUpdatingBankAccount:
+                stateString = @"SHCAPIManagerStateUpdatingBankAccount";
+                break;
+            case SHCAPIManagerStateUpdatingBankAccountFinished:
+                stateString = @"SHCAPIManagerStateUpdatingBankAccountFinished";
+                break;
+            case SHCAPIManagerStateUpdatingBankAccountFailed:
+                stateString = @"SHCAPIManagerStateUpdatingBankAccountFailed";
+                break;
+            case SHCAPIManagerStateSendingInvoiceToBank:
+                stateString = @"SHCAPIManagerStateSendingInvoiceToBank";
+                break;
+            case SHCAPIManagerStateSendingInvoiceToBankFinished:
+                stateString = @"SHCAPIManagerStateSendingInvoiceToBankFinished";
+                break;
+            case SHCAPIManagerStateSendingInvoiceToBankFailed:
+                stateString = @"SHCAPIManagerStateSendingInvoiceToBankFailed";
+                break;
             case SHCAPIManagerStateLoggingOut:
                 stateString = @"SHCAPIManagerStateLoggingOut";
                 break;
@@ -269,6 +295,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.updatingRootResource = NO;
+
                 break;
             }
             case SHCAPIManagerStateUpdatingRootResourceFailed:
@@ -290,6 +318,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.updatingRootResource = NO;
+
                 break;
             }
             case SHCAPIManagerStateUpdatingDocumentsFinished:
@@ -305,6 +335,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
+
+                self.updatingDocuments = NO;
 
                 break;
             }
@@ -326,6 +358,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
+
+                self.updatingDocuments = NO;
 
                 break;
             }
@@ -430,6 +464,74 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 
                 break;
             }
+            case SHCAPIManagerStateUpdatingBankAccountFinished:
+            {
+                NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
+                if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                    [[SHCModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
+
+                    if (self.lastSuccessBlock) {
+                        self.lastSuccessBlock();
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdatingBankAccountFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateSendingInvoiceToBankFinished:
+            {
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateSendingInvoiceToBankFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
             case SHCAPIManagerStateLoggingOutFinished:
             {
                 if (self.lastSuccessBlock) {
@@ -461,13 +563,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
-            case SHCAPIManagerStateValidatingAccessToken:
-            case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateUpdatingRootResource:
             case SHCAPIManagerStateUpdatingDocuments:
+            case SHCAPIManagerStateValidatingAccessToken:
+            case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateDownloadingAttachment:
             case SHCAPIManagerStateMovingDocument:
             case SHCAPIManagerStateDeletingDocument:
+            case SHCAPIManagerStateUpdatingBankAccount:
+            case SHCAPIManagerStateSendingInvoiceToBank:
             case SHCAPIManagerStateLoggingOut:
             case SHCAPIManagerStateIdle:
             default:
@@ -508,6 +612,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.updatingRootResource = YES;
+
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateUpdatingRootResource;
         [self.sessionManager GET:__ROOT_RESOURCE_URI__
@@ -524,6 +630,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                              self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
                         }];
     } failure:^(NSError *error) {
+        self.updatingRootResource = NO;
         if (failure) {
             failure(error);
         }
@@ -535,8 +642,67 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     [self cancelRequestsWithPath:__ROOT_RESOURCE_URI__];
 }
 
+- (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.lastBankAccountUri = uri;
+        self.state = SHCAPIManagerStateUpdatingBankAccount;
+        [self.sessionManager GET:uri
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             self.lastSuccessBlock = success;
+                             self.lastURLResponse = task.response;
+                             self.lastResponseObject = responseObject;
+                             self.state = SHCAPIManagerStateUpdatingBankAccountFinished;
+                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             self.lastFailureBlock = failure;
+                             self.lastURLResponse = task.response;
+                             self.lastError = error;
+                             self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
+                         }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)cancelUpdatingBankAccount
+{
+    if (self.lastBankAccountUri) {
+        NSURL *URL = [NSURL URLWithString:self.lastBankAccountUri];
+        NSString *pathSuffix = [[URL pathComponents] lastObject];
+        [self cancelRequestsWithPath:pathSuffix];
+    }
+}
+
+- (void)sendInvoiceToBank:(SHCInvoice *)invoice success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateSendingInvoiceToBank;
+
+        [self.sessionManager POST:invoice.sendToBankUri
+                       parameters:nil
+                          success:^(NSURLSessionDataTask *task, id responseObject) {
+                              self.lastSuccessBlock = success;
+                              self.state = SHCAPIManagerStateSendingInvoiceToBankFinished;
+                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                              self.lastFailureBlock = failure;
+                              self.lastURLResponse = task.response;
+                              self.lastError = error;
+                              self.state = SHCAPIManagerStateSendingInvoiceToBankFailed;
+                          }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.updatingDocuments = YES;
+
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateUpdatingDocuments;
 
@@ -557,6 +723,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                              self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
                          }];
     } failure:^(NSError *error) {
+        self.updatingDocuments = NO;
         if (failure) {
             failure(error);
         }
@@ -731,6 +898,18 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+        if ([HTTPResponse statusCode] == 401) { // Unauthorized.
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response
+{
+    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
         if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized
             [HTTPResponse statusCode] == 401) { // Unauthorized.
             return YES;
@@ -827,6 +1006,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     self.lastAttachment = nil;
     self.lastProgress = nil;
     self.lastDocument = nil;
+    self.lastBankAccountUri = nil;
 
     self.state = SHCAPIManagerStateIdle;
 }
