@@ -283,9 +283,9 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") :
                                                   NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
 
-    NSString *deleteString = [NSString stringWithFormat:@"%@ %i %@",
+    NSString *deleteString = [NSString stringWithFormat:@"%@ %lu %@",
                               NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
-                              [[self.tableView indexPathsForSelectedRows] count],
+                              (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
                               letterWord];
 
     [UIActionSheet showFromBarButtonItem:barButtonItem

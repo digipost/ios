@@ -1024,7 +1024,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }
 
     if (counter > 0) {
-        DDLogInfo(@"%u requests cancelled", counter);
+        DDLogInfo(@"%lu requests cancelled", (unsigned long)counter);
     }
 }
 
