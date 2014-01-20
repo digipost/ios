@@ -24,36 +24,36 @@ PODS:
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
   - FormatterKit/TimeIntervalFormatter (1.4.0)
-  - GoogleAnalytics-iOS-SDK (3.0.2)
-  - HockeySDK (3.5.0)
+  - GoogleAnalytics-iOS-SDK (3.0.3)
+  - HockeySDK (3.5.1)
   - LUKeychainAccess (1.2.0)
   - RNCryptor (2.2)
   - THProgressView (1.0)
-  - UIActionSheet+Blocks (0.7)
-  - UIAlertView+Blocks (0.7)
+  - UIActionSheet+Blocks (0.8)
+  - UIAlertView+Blocks (0.8)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
   - CocoaLumberjack (~> 1.6.5.1)
   - FormatterKit/TimeIntervalFormatter (~> 1.4.0)
-  - GoogleAnalytics-iOS-SDK (~> 3.0.2)
-  - HockeySDK (~> 3.5.0)
+  - GoogleAnalytics-iOS-SDK (~> 3.0.3)
+  - HockeySDK (~> 3.5.1)
   - LUKeychainAccess (~> 1.2.0)
   - RNCryptor (~> 2.1)
   - THProgressView (~> 1.0)
-  - UIActionSheet+Blocks (~> 0.7)
-  - UIAlertView+Blocks (~> 0.7)
+  - UIActionSheet+Blocks (~> 0.8)
+  - UIAlertView+Blocks (~> 0.8)
 
 SPEC CHECKSUMS:
   AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
   CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
   FormatterKit: 475c602b6098d69c3255c65cfe6cb6a27c175f57
-  GoogleAnalytics-iOS-SDK: 86393b99f7328ae8d8e975fcaa8632a39dafafe8
-  HockeySDK: 685e6ca0b78668ef8b595fba17fe087ea6074b05
+  GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
+  HockeySDK: 7dfbfa6cdbae199d66eef638e9682b93b00acb95
   LUKeychainAccess: 87c5398528278a5f24956b61bb459ea97bd93b6a
   RNCryptor: 1420380792b33758d2414cf37af160ea2495e15c
   THProgressView: 2e19cf950671bb6d5d562433d5b04be93e6ffd35
-  UIActionSheet+Blocks: 18f5e0516e494d005ddafdbaf373edeafd9445c9
-  UIAlertView+Blocks: 7e876c2bace976306640443745b57912565d840d
+  UIActionSheet+Blocks: d3c7515281a4c5c5b9fbf127d8a9220982d4392c
+  UIAlertView+Blocks: 39a1aee8ea75c4f9f877ff0b3734d84bf2009d1f
 
 COCOAPODS: 0.29.0
