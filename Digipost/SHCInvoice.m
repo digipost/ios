@@ -15,10 +15,10 @@ NSString *const kInvoiceEntityName = @"Invoice";
 
 // API keys
 NSString *const kInvoiceLinkAPIKey = @"link";
-NSString *const kInvoiceLinkSendToBankSuffix = @"send_to_bank";
+NSString *const kInvoiceLinkSendToBankAPIKeySuffix = @"send_to_bank";
 NSString *const kInvoicePaymentAPIKey = @"payment";
 NSString *const kInvoicePaymentLinkAPIKey = @"link";
-NSString *const kInvoicePaymentBankHomepageSuffix = @"bank_homepage";
+NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 
 @implementation SHCInvoice
 
@@ -70,7 +70,7 @@ NSString *const kInvoicePaymentBankHomepageSuffix = @"bank_homepage";
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                    if ([rel hasSuffix:kInvoiceLinkSendToBankSuffix]) {
+                    if ([rel hasSuffix:kInvoiceLinkSendToBankAPIKeySuffix]) {
                         invoice.sendToBankUri = uri;
                     }
                 }
@@ -96,7 +96,7 @@ NSString *const kInvoicePaymentBankHomepageSuffix = @"bank_homepage";
                     NSString *uri = link[@"uri"];
                     if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                        if ([rel hasSuffix:kInvoicePaymentBankHomepageSuffix]) {
+                        if ([rel hasSuffix:kInvoicePaymentBankHomepageAPIKeySuffix]) {
                             invoice.bankHomepage = uri;
                         }
                     }

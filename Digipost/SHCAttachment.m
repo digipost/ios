@@ -28,7 +28,7 @@ NSString *const kAttachmentTypeInvoice = @"INVOICE";
 // API keys
 NSString *const kAttachmentAuthenticationLevel = @"authentication-level";
 NSString *const kAttachmentLinkAPIKey = @"link";
-NSString *const kAttachmentDocumentContentAPIKey = @"get_document_content";
+NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 @implementation SHCAttachment
@@ -83,7 +83,7 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                    if ([rel hasSuffix:kAttachmentDocumentContentAPIKey]) {
+                    if ([rel hasSuffix:kAttachmentDocumentContentAPIKeySuffix]) {
                         attachment.uri = uri;
                     }
                 }

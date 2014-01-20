@@ -15,6 +15,7 @@
 #import "UIViewController+NeedsReload.h"
 #import "SHCFoldersViewController.h"
 #import "SHCDocumentsViewController.h"
+#import "SHCReceiptsViewController.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
 
@@ -42,7 +43,8 @@
     [self initializeRefreshControlText];
     [self updateRefreshControlTextRefreshing:YES];
 
-    if ([self isKindOfClass:[SHCDocumentsViewController class]]) {
+    if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
+        [self isKindOfClass:[SHCReceiptsViewController class]]) {
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     } else {
         self.refreshControl.tintColor = [UIColor whiteColor];
@@ -226,7 +228,8 @@
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
-    if ([self isKindOfClass:[SHCDocumentsViewController class]]) {
+    if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
+        [self isKindOfClass:[SHCReceiptsViewController class]]) {
         attributes = @{NSForegroundColorAttributeName: [UIColor colorWithWhite:0.4 alpha:1.0]};
     } else {
         attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};

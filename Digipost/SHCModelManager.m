@@ -13,6 +13,7 @@
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
 #import "SHCInvoice.h"
+#import "SHCReceipt.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -60,6 +61,9 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     // before updateDocumentsWithAttribtues: has been called and finished
     [SHCDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
 
+    // The same goes for the receipts
+    [SHCReceipt reconnectDanglingReceiptsInManagedObjectContext:self.managedObjectContext];
+
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         [self logSavingManagedObjectContextWithError:error];
@@ -79,16 +83,16 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName withAttributes:(NSDictionary *)attributes
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes
 {
     // First, find the folder object
-    SHCFolder *folder = [SHCFolder folderWithName:folderName inManagedObjectContext:self.managedObjectContext];
+    SHCFolder *folder = [SHCFolder existingFolderWithName:folderName inManagedObjectContext:self.managedObjectContext];
 
     // Get a list of all the old documents
     NSArray *oldDocuments = [SHCDocument allDocumentsInFolderWithName:folderName inManagedObjectContext:self.managedObjectContext];
 
     // Create all the new documents
-    NSArray *documents = attributes[kDocumentDocumentsAPIKey];
+    NSArray *documents = attributes[kDocumentDocumentAPIKey];
     if ([documents isKindOfClass:[NSArray class]]) {
         for (NSDictionary *documentDict in documents) {
             if ([documentDict isKindOfClass:[NSDictionary class]]) {
@@ -114,7 +118,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 {
     [document updateWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
 
-    document.folder = [SHCFolder folderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
+    document.folder = [SHCFolder existingFolderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
 
     // Save changes
     NSError *error = nil;
@@ -126,6 +130,48 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (void)deleteDocument:(SHCDocument *)document
 {
     [self.managedObjectContext deleteObject:document];
+
+    // Save changes
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
+- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
+{
+    // First, get the mailbox object
+    SHCMailbox *mailbox = [SHCMailbox existingMailboxWithDigipostAddress:digipostAddress inManagedObjectContext:self.managedObjectContext];
+
+    // Get a list of all old receipts
+    NSArray *oldReceipts = [SHCReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress inManagedObjectContext:self.managedObjectContext];
+
+    NSArray *receipts = attributes[kReceiptReceiptAPIKey];
+    if ([receipts isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *receiptDict in receipts) {
+            if ([receiptDict isKindOfClass:[NSDictionary class]]) {
+                SHCReceipt *receipt = [SHCReceipt receiptWithAttributes:receiptDict inManagedObjectContext:self.managedObjectContext];
+                receipt.mailbox = mailbox;
+                receipt.mailboxDigipostAddress = mailbox.digipostAddress;
+            }
+        }
+    }
+
+    // Delete the old ones
+    for (SHCReceipt *oldReceipt in oldReceipts) {
+        [self.managedObjectContext deleteObject:oldReceipt];
+    }
+
+    // And finally, save changes
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
+- (void)deleteReceipt:(SHCReceipt *)receipt
+{
+    [self.managedObjectContext deleteObject:receipt];
 
     // Save changes
     NSError *error = nil;
@@ -162,6 +208,11 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (NSEntityDescription *)invoiceEntity
 {
     return [NSEntityDescription entityForName:kInvoiceEntityName inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSEntityDescription *)receiptEntity
+{
+    return [NSEntityDescription entityForName:kReceiptEntityName inManagedObjectContext:self.managedObjectContext];
 }
 
 - (NSDate *)rootResourceCreatedAt

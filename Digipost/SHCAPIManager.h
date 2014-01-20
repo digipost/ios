@@ -20,11 +20,13 @@ extern NSString *const kAPIManagerErrorDomain;
 @class SHCAttachment;
 @class SHCDocument;
 @class SHCInvoice;
+@class SHCReceipt;
 
 @interface SHCAPIManager : NSObject
 
 @property (assign, nonatomic, getter = isUpdatingRootResource) BOOL updatingRootResource;
 @property (assign, nonatomic, getter = isUpdatingDocuments) BOOL updatingDocuments;
+@property (assign, nonatomic, getter = isUpdatingReceipts) BOOL updatingReceipts;
 
 + (instancetype)sharedManager;
 
@@ -34,14 +36,17 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)cancelUpdatingRootResource;
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingBankAccount;
-- (void)sendInvoiceToBank:(SHCInvoice *)invoice success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)deleteDocument:(SHCDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingAttachments;
+- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelUpdatingReceipts;
+- (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;
 

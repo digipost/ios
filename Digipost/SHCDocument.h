@@ -13,7 +13,7 @@
 extern NSString *const kDocumentEntityName;
 
 // API keys
-extern NSString *const kDocumentDocumentsAPIKey;
+extern NSString *const kDocumentDocumentAPIKey;
 
 @class SHCAttachment;
 @class SHCFolder;

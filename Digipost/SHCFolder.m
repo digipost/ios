@@ -29,7 +29,21 @@ NSString *const kFolderArchiveName = @"Archive";
 
 #pragma mark - Public methods
 
-+ (instancetype)folderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
+    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+
+    NSString *name = attributes[NSStringFromSelector(@selector(name))];
+    folder.name = [name isKindOfClass:[NSString class]] ? name : nil;
+
+    NSString *uri = attributes[NSStringFromSelector(@selector(uri))];
+    folder.uri = [uri isKindOfClass:[NSString class]] ? uri : nil;
+
+    return folder;
+}
+
++ (instancetype)existingFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
@@ -43,20 +57,6 @@ NSString *const kFolderArchiveName = @"Archive";
     }
 
     return [results firstObject];
-}
-
-+ (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
-    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
-
-    NSString *name = attributes[NSStringFromSelector(@selector(name))];
-    folder.name = [name isKindOfClass:[NSString class]] ? name : nil;
-
-    NSString *uri = attributes[NSStringFromSelector(@selector(uri))];
-    folder.uri = [uri isKindOfClass:[NSString class]] ? uri : nil;
-
-    return folder;
 }
 
 @end

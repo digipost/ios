@@ -19,6 +19,7 @@
 #import "SHCDocumentsViewController.h"
 #import "SHCRootResource.h"
 #import "NSError+ExtraInfo.h"
+#import "SHCReceiptsViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -80,6 +81,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = folder.name;
         documentsViewController.folderUri = folder.uri;
+    } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
+        SHCReceiptsViewController *receiptsViewController = (SHCReceiptsViewController *)segue.destinationViewController;
+        receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
+        receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     }
 }
 
@@ -118,8 +123,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
             folderName = self.inboxFolder.name;
             iconImage = [UIImage imageNamed:@"list-icon-inbox"];
         } else {
-            // TODO: implement receipts here
-            folderName = @"Receipts";
+            folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
             iconImage = [UIImage imageNamed:@"list-icon-receipt"];
         }
     } else {
@@ -171,7 +175,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         if (indexPath.row == 0) {
             [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.inboxFolder];
         } else {
-            // TODO: implement receipts-stuff here
+            [self performSegueWithIdentifier:kPushReceiptsIdentifier sender:nil];
         }
     } else {
         [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];

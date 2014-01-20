@@ -15,15 +15,17 @@ NSString *const kMailboxEntityName = @"Mailbox";
 
 // API keys
 NSString *const kMailboxDigipostAddressAPIKey = @"digipostaddress";
-NSString *const kMailboxLinkDocumentInboxSuffix = @"document_inbox";
-NSString *const kMailboxLinkDocumentWorkAreaSuffix = @"document_workarea";
-NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
+NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
+NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
+NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
+NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 
 @implementation SHCMailbox
 
 // Attributes
 @dynamic digipostAddress;
 @dynamic owner;
+@dynamic receiptsUri;
 
 // Relationships
 @dynamic folders;
@@ -51,15 +53,17 @@ NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
                     NSDictionary *folderAttributes = nil;
-                    if ([rel hasSuffix:kMailboxLinkDocumentInboxSuffix]) {
+                    if ([rel hasSuffix:kMailboxLinkDocumentInboxAPIKeySuffix]) {
                         folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderInboxName,
                                              NSStringFromSelector(@selector(uri)): uri};
-                    } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaSuffix]) {
+                    } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaAPIKeySuffix]) {
                         folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderWorkAreaName,
                                              NSStringFromSelector(@selector(uri)): uri};
-                    } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveSuffix]) {
+                    } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
                         folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderArchiveName,
                                              NSStringFromSelector(@selector(uri)): uri};
+                    } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
+                        mailbox.receiptsUri = uri;
                     }
 
                     if (folderAttributes) {
@@ -72,6 +76,22 @@ NSString *const kMailboxLinkDocumentArchiveSuffix = @"document_archive";
     }
 
     return mailbox;
+}
+
++ (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] mailboxEntity];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(digipostAddress)), digipostAddress];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    return [results firstObject];
 }
 
 @end

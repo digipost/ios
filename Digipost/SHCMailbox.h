@@ -13,6 +13,7 @@
 extern NSString *const kMailboxEntityName;
 
 @class SHCFolder;
+@class SHCReceipt;
 @class SHCRootResource;
 
 @interface SHCMailbox : NSManagedObject
@@ -20,12 +21,14 @@ extern NSString *const kMailboxEntityName;
 // Attributes
 @property (strong, nonatomic) NSString *digipostAddress;
 @property (strong, nonatomic) NSNumber *owner;
+@property (strong, nonatomic) NSString *receiptsUri;
 
 // Relationships
 @property (strong, nonatomic) NSSet *folders;
 @property (strong, nonatomic) SHCRootResource *rootResource;
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 
@@ -35,5 +38,10 @@ extern NSString *const kMailboxEntityName;
 - (void)removeFoldersObject:(SHCFolder *)value;
 - (void)addFolders:(NSSet *)values;
 - (void)removeFolders:(NSSet *)values;
+
+- (void)addReceiptsObject:(SHCReceipt *)value;
+- (void)removeReceiptsObject:(SHCReceipt *)value;
+- (void)addReceipts:(NSSet *)values;
+- (void)removeReceipts:(NSSet *)values;
 
 @end

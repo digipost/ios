@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 
 @class SHCDocument;
+@class SHCReceipt;
 
 @interface SHCModelManager : NSObject
 
@@ -19,15 +20,18 @@
 
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes;
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes;
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName withAttributes:(NSDictionary *)attributes;
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes;
 - (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes;
 - (void)deleteDocument:(SHCDocument *)document;
+- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
+- (void)deleteReceipt:(SHCReceipt *)receipt;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;
 - (NSEntityDescription *)folderEntity;
 - (NSEntityDescription *)documentEntity;
 - (NSEntityDescription *)attachmentEntity;
 - (NSEntityDescription *)invoiceEntity;
+- (NSEntityDescription *)receiptEntity;
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;

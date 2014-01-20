@@ -107,6 +107,15 @@
 		83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
 		83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
 		83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
+		83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
+		83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
+		83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
+		83DB4AEB188D287600515022 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */; };
+		83DB4AEC188D287600515022 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */; };
+		83DB4AED188D287600515022 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */; };
+		83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
+		83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
+		83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
@@ -211,6 +220,13 @@
 		83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCModelManager.m; sourceTree = "<group>"; };
 		83D75F731859B7250013F8C9 /* SHCFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolderTableViewCell.h; sourceTree = "<group>"; };
 		83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFolderTableViewCell.m; sourceTree = "<group>"; };
+		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
+		83DB4AE4188D1F4E00515022 /* SHCReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceipt.h; sourceTree = "<group>"; };
+		83DB4AE5188D1F4E00515022 /* SHCReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceipt.m; sourceTree = "<group>"; };
+		83DB4AE9188D287600515022 /* SHCReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptsViewController.h; sourceTree = "<group>"; };
+		83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptsViewController.m; sourceTree = "<group>"; };
+		83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptTableViewCell.h; sourceTree = "<group>"; };
+		83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptTableViewCell.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
 		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Staging-Enterprise.xcconfig"; sourceTree = "<group>"; };
@@ -292,6 +308,8 @@
 				83D75F581858E5790013F8C9 /* SHCFolder.m */,
 				83D75F521858E5790013F8C9 /* SHCDocument.h */,
 				83D75F531858E5790013F8C9 /* SHCDocument.m */,
+				83DB4AE4188D1F4E00515022 /* SHCReceipt.h */,
+				83DB4AE5188D1F4E00515022 /* SHCReceipt.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -394,6 +412,8 @@
 				8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */,
 				83D355191861CDDD009EABC6 /* SHCAttachmentTableViewCell.h */,
 				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
+				83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */,
+				83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -432,6 +452,8 @@
 				83F7038018573641003DABE1 /* SHCOAuthManager.m */,
 				83F7037A18571A7C003DABE1 /* SHCOAuthViewController.h */,
 				83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */,
+				83DB4AE9188D287600515022 /* SHCReceiptsViewController.h */,
+				83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -732,14 +754,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8364D720185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
+				83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */,
+				83DB4AED188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
@@ -768,14 +793,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8364D71F185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
+				83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */,
+				83DB4AEC188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
@@ -804,14 +832,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				8364D71E185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
+				83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */,
+				83DB4AEB188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
@@ -1170,11 +1201,12 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */,
 				835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */,
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = 835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */;
+			currentVersion = 83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

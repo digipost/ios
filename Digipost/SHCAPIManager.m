@@ -51,6 +51,9 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateSendingInvoiceToBank,
     SHCAPIManagerStateSendingInvoiceToBankFinished,
     SHCAPIManagerStateSendingInvoiceToBankFailed,
+    SHCAPIManagerStateUpdatingReceipts,
+    SHCAPIManagerStateUpdatingReceiptsFinished,
+    SHCAPIManagerStateUpdatingReceiptsFailed,
     SHCAPIManagerStateLoggingOut,
     SHCAPIManagerStateLoggingOutFailed,
     SHCAPIManagerStateLoggingOutFinished
@@ -77,6 +80,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 @property (strong, nonatomic) SHCDocument *lastDocument;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
+@property (copy, nonatomic) NSString *lastReceiptsUri;
+@property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 
 - (void)cancelRequestsWithPath:(NSString *)path;
 
@@ -226,6 +231,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateSendingInvoiceToBankFailed:
                 stateString = @"SHCAPIManagerStateSendingInvoiceToBankFailed";
                 break;
+            case SHCAPIManagerStateUpdatingReceipts:
+                stateString = @"SHCAPIManagerStateUpdatingReceipts";
+                break;
+            case SHCAPIManagerStateUpdatingReceiptsFinished:
+                stateString = @"SHCAPIManagerStateUpdatingReceiptsFinished";
+                break;
+            case SHCAPIManagerStateUpdatingReceiptsFailed:
+                stateString = @"SHCAPIManagerStateUpdatingReceiptsFailed";
+                break;
             case SHCAPIManagerStateLoggingOut:
                 stateString = @"SHCAPIManagerStateLoggingOut";
                 break;
@@ -327,7 +341,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName withAttributes:responseDict];
+                    [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName attributes:responseDict];
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -407,7 +421,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
-                
+
                 break;
             }
             case SHCAPIManagerStateMovingDocumentFailed:
@@ -428,7 +442,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
-                
+
                 break;
             }
             case SHCAPIManagerStateDeletingDocumentFinished:
@@ -461,7 +475,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
-                
+
                 break;
             }
             case SHCAPIManagerStateUpdatingBankAccountFinished:
@@ -532,6 +546,47 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
+            case SHCAPIManagerStateUpdatingReceiptsFinished:
+            {
+                NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
+                if ([responseDict isKindOfClass:[NSDictionary class]]) {
+
+                    [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
+
+                    if (self.lastSuccessBlock) {
+                        self.lastSuccessBlock();
+                    }
+                }
+
+                [self cleanup];
+
+                self.updatingReceipts = NO;
+
+                break;
+            }
+            case SHCAPIManagerStateUpdatingReceiptsFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                self.updatingReceipts = NO;
+
+                break;
+            }
             case SHCAPIManagerStateLoggingOutFinished:
             {
                 if (self.lastSuccessBlock) {
@@ -572,6 +627,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateDeletingDocument:
             case SHCAPIManagerStateUpdatingBankAccount:
             case SHCAPIManagerStateSendingInvoiceToBank:
+            case SHCAPIManagerStateUpdatingReceipts:
             case SHCAPIManagerStateLoggingOut:
             case SHCAPIManagerStateIdle:
             default:
@@ -676,7 +732,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }
 }
 
-- (void)sendInvoiceToBank:(SHCInvoice *)invoice success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateSendingInvoiceToBank;
@@ -699,14 +755,14 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.updatingDocuments = YES;
 
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateUpdatingDocuments;
-
         self.lastFolderUri = folderUri;
+
+        self.state = SHCAPIManagerStateUpdatingDocuments;
 
         [self.sessionManager GET:folderUri
                       parameters:nil
@@ -732,7 +788,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)cancelUpdatingDocuments
 {
-    [self cancelRequestsWithPath:self.lastFolderUri];
+    if (self.lastFolderUri) {
+        NSURL *URL = [NSURL URLWithString:self.lastFolderUri];
+        NSString *pathSuffix = [[URL pathComponents] lastObject];
+        [self cancelRequestsWithPath:pathSuffix];
+    }
 }
 
 - (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
@@ -791,7 +851,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
-- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateMovingDocument;
@@ -837,7 +897,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
-- (void)deleteDocument:(SHCDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateDeletingDocument;
@@ -892,6 +952,50 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     for (NSURLSessionDownloadTask *downloadTask in self.sessionManager.downloadTasks) {
         [downloadTask cancel];
     }
+}
+
+- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    self.updatingReceipts = YES;
+
+    [self validateTokensWithSuccess:^{
+        self.lastReceiptsUri = uri;
+        self.lastMailboxDigipostAddress = digipostAddress;
+
+        self.state = SHCAPIManagerStateUpdatingReceipts;
+
+        [self.sessionManager GET:uri
+                      parameters:nil
+                         success:^(NSURLSessionDataTask *task, id responseObject) {
+                             self.lastSuccessBlock = success;
+                             self.lastURLResponse = task.response;
+                             self.lastResponseObject = responseObject;
+                             self.state = SHCAPIManagerStateUpdatingReceiptsFinished;
+                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                             self.lastFailureBlock = failure;
+                             self.lastURLResponse = task.response;
+                             self.lastError = error;
+                             self.state = SHCAPIManagerStateUpdatingReceiptsFailed;
+                         }];
+    } failure:^(NSError *error) {
+        self.updatingReceipts = NO;
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)cancelUpdatingReceipts
+{
+    if (self.lastReceiptsUri) {
+        NSURL *URL = [NSURL URLWithString:self.lastReceiptsUri];
+        NSString *pathSuffix = [[URL pathComponents] lastObject];
+        [self cancelRequestsWithPath:pathSuffix];
+    }
+}
+
+- (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
 }
 
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response
@@ -1007,6 +1111,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     self.lastProgress = nil;
     self.lastDocument = nil;
     self.lastBankAccountUri = nil;
+    self.lastReceiptsUri = nil;
+    self.lastMailboxDigipostAddress = nil;
 
     self.state = SHCAPIManagerStateIdle;
 }

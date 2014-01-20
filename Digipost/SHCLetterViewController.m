@@ -21,6 +21,7 @@
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCDocumentsViewController.h"
+#import "SHCReceiptsViewController.h"
 #import "SHCInvoice.h"
 #import "SHCMailbox.h"
 #import "SHCRootResource.h"
@@ -30,6 +31,7 @@ static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOCo
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushLetterIdentifier = @"PushLetter";
+NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
@@ -91,11 +93,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     self.screenName = kLetterViewControllerScreenName;
 
-    if (![self attachmentHasValidFileType]) {
-        [self showInvalidFileTypeView];
-        return;
-    }
-
     self.popoverSenderDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From");
     self.popoverDateDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date");
 
@@ -105,6 +102,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
+
+    if (![self attachmentHasValidFileType]) {
+        [self showInvalidFileTypeView];
+        return;
+    }
 
     self.progressView.borderTintColor = [UIColor whiteColor];
     self.progressView.progressTintColor = [UIColor whiteColor];
@@ -377,13 +379,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)moveDocumentToLocation:(NSString *)location
 {
-    [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location success:^{
+    [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location withSuccess:^{
 
-        self.documentsViewController.needsReload = YES;
+        if (self.documentsViewController) {
+            self.documentsViewController.needsReload = YES;
 
-        // Becuase we might have been pushed from the attachments vc, make sure that we pop
-        // all the way back to the documents vc.
-        [self.navigationController popToViewController:self.documentsViewController animated:YES];
+            // Becuase we might have been pushed from the attachments vc, make sure that we pop
+            // all the way back to the documents vc.
+            [self.navigationController popToViewController:self.documentsViewController animated:YES];
+        } else if (self.receiptsViewController) {
+            self.receiptsViewController.needsReload = YES;
+
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -407,13 +416,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)deleteDocument
 {
-    [[SHCAPIManager sharedManager] deleteDocument:self.attachment.document success:^{
+    [[SHCAPIManager sharedManager] deleteDocument:self.attachment.document withSuccess:^{
 
-        self.documentsViewController.needsReload = YES;
+        if (self.documentsViewController) {
+            self.documentsViewController.needsReload = YES;
 
-        // Becuase we might have been pushed from the attachments vc, make sure that we pop
-        // all the way back to the documents vc.
-        [self.navigationController popToViewController:self.documentsViewController animated:YES];
+            // Becuase we might have been pushed from the attachments vc, make sure that we pop
+            // all the way back to the documents vc.
+            [self.navigationController popToViewController:self.documentsViewController animated:YES];
+        } else if (self.receiptsViewController) {
+            self.receiptsViewController.needsReload = YES;
+
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -565,7 +581,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.sendingInvoice = YES;
     [self updateToolbarItemsWithInvoice];
 
-    [[SHCAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice success:^{
+    [[SHCAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice withSuccess:^{
 
         // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
         // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
@@ -598,7 +614,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     NSString *attachmentUri = self.attachment.uri;
 
-    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri withSuccess:^{
+    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri success:^{
         [self updateAttachmentWithAttachmentUri:attachmentUri];
         self.sendingInvoice = NO;
         [self updateToolbarItemsWithInvoice];

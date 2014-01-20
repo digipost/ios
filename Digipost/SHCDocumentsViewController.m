@@ -309,7 +309,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         return;
     }
 
-    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri withSuccess:^{
+    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
 
@@ -428,7 +428,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location
 {
-    [[SHCAPIManager sharedManager] moveDocument:document toLocation:location success:^{
+    [[SHCAPIManager sharedManager] moveDocument:document toLocation:location withSuccess:^{
         [self updateFetchedResultsController];
     } failure:^(NSError *error) {
 
@@ -469,7 +469,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)deleteDocument:(SHCDocument *)document
 {
-    [[SHCAPIManager sharedManager] deleteDocument:document success:^{
+    [[SHCAPIManager sharedManager] deleteDocument:document withSuccess:^{
         [self updateFetchedResultsController];
     } failure:^(NSError *error) {
 

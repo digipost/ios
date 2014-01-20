@@ -16,12 +16,12 @@
 NSString *const kDocumentEntityName = @"Document";
 
 // API keys
-NSString *const kDocumentDocumentsAPIKey = @"document";
+NSString *const kDocumentDocumentAPIKey = @"document";
 NSString *const kDocumentCreatedAtAPIKey = @"created";
 NSString *const kDocumentLinkAPIKey = @"link";
-NSString *const kDocumentDeleteDocumentAPIKey = @"delete_document";
-NSString *const kDocumentUpdateDocumentAPIKey = @"update_document";
-NSString *const kDocumentAttachmentsAPIKey = @"attachment";
+NSString *const kDocumentDeleteDocumentAPIKeySuffix = @"delete_document";
+NSString *const kDocumentUpdateDocumentAPIKeySuffix = @"update_document";
+NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 // Because of a bug in Core Data, we need to manually implement these methods
 // See: http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors
@@ -66,7 +66,7 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
 
     [document updateWithAttributes:attributes inManagedObjectContext:managedObjectContext];
 
-    NSArray *attachments = attributes[kDocumentAttachmentsAPIKey];
+    NSArray *attachments = attributes[kDocumentAttachmentAPIKey];
     if ([attachments isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attachmentDict in attachments) {
             if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
@@ -222,9 +222,9 @@ NSString *const kDocumentAttachmentsAPIKey = @"attachment";
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                    if ([rel hasSuffix:kDocumentDeleteDocumentAPIKey]) {
+                    if ([rel hasSuffix:kDocumentDeleteDocumentAPIKeySuffix]) {
                         self.deleteUri = uri;
-                    } else if ([rel hasSuffix:kDocumentUpdateDocumentAPIKey]) {
+                    } else if ([rel hasSuffix:kDocumentUpdateDocumentAPIKeySuffix]) {
                         self.updateUri = uri;
                     }
                 }

@@ -18,9 +18,9 @@ NSString *const kRootResourceAuthenticationLevelAPIKey = @"authenticationlevel";
 NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
 NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 NSString *const kRootResourceLinkAPIKey = @"link";
-NSString *const kRootResourceLogoutSuffix = @"logout";
+NSString *const kRootResourceLinkLogoutAPIKeySuffix = @"logout";
 NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
-NSString *const kRootResourcePrimaryAccountCurrentBankAccountSuffix = @"current_bank_account";
+NSString *const kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix = @"current_bank_account";
 
 @implementation SHCRootResource
 
@@ -73,7 +73,7 @@ NSString *const kRootResourcePrimaryAccountCurrentBankAccountSuffix = @"current_
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                    if ([rel hasSuffix:kRootResourceLogoutSuffix]) {
+                    if ([rel hasSuffix:kRootResourceLinkLogoutAPIKeySuffix]) {
                         rootResource.logoutUri = uri;
                     }
                 }
@@ -103,7 +103,7 @@ NSString *const kRootResourcePrimaryAccountCurrentBankAccountSuffix = @"current_
                     NSString *uri = link[@"uri"];
                     if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                        if ([rel hasSuffix:kRootResourcePrimaryAccountCurrentBankAccountSuffix]) {
+                        if ([rel hasSuffix:kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix]) {
                             rootResource.currentBankAccountUri = uri;
                         }
                     }
@@ -138,11 +138,6 @@ NSString *const kRootResourcePrimaryAccountCurrentBankAccountSuffix = @"current_
 
     for (SHCRootResource *rootResource in results) {
         [managedObjectContext deleteObject:rootResource];
-    }
-
-    error = nil;
-    if (![managedObjectContext save:&error]) {
-        [[SHCModelManager sharedManager] logSavingManagedObjectContextWithError:error];
     }
 }
 

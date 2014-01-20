@@ -1,16 +1,16 @@
 //
-//  SHCDocumentTableViewCell.m
+//  SHCReceiptTableViewCell.m
 //  Digipost
 //
-//  Created by Eivind Bohler on 16.12.13.
-//  Copyright (c) 2013 Shortcut. All rights reserved.
+//  Created by Eivind Bohler on 20.01.14.
+//  Copyright (c) 2014 Shortcut. All rights reserved.
 //
 
-#import "SHCDocumentTableViewCell.h"
+#import "SHCReceiptTableViewCell.h"
 
-NSString *const kDocumentTableViewCellIdentifier = @"DocumentCellIdentifier";
+NSString *const kReceiptTableViewCellIdentifier = @"ReceiptCellIdentifier";
 
-@implementation SHCDocumentTableViewCell
+@implementation SHCReceiptTableViewCell
 
 #pragma mark - UITableViewCell
 
