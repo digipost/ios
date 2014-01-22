@@ -79,13 +79,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
     UIBarButtonItem *infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
-                                                            landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info"]
+                                                            landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info-iphone-landscape"]
                                                                           style:UIBarButtonItemStyleBordered
                                                                          target:self
                                                                          action:@selector(didTapInfo:)];
 
     UIBarButtonItem *actionBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-action"]
-                                                              landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action"]
+                                                              landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action-iphone-landscape"]
                                                                             style:UIBarButtonItemStyleBordered
                                                                            target:self
                                                                            action:@selector(didTapAction:)];

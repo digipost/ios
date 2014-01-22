@@ -643,6 +643,7 @@
                                             <constraint firstItem="5Ux-bz-uaD" firstAttribute="leading" secondItem="qS7-vf-oBm" secondAttribute="trailing" constant="6" id="ku2-ZB-ogp"/>
                                             <constraint firstAttribute="bottom" secondItem="qS7-vf-oBm" secondAttribute="bottom" constant="20" id="oum-mT-zmx"/>
                                             <constraint firstItem="GWi-rd-gUS" firstAttribute="leading" secondItem="GRH-Ar-m5o" secondAttribute="leading" constant="20" id="pOe-j8-Svn"/>
+                                            <constraint firstAttribute="width" constant="310" id="wYp-GT-w6T"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="70" id="yXT-Qw-RIb"/>
                                         </constraints>
                                     </view>
@@ -651,7 +652,6 @@
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="GRH-Ar-m5o" firstAttribute="top" secondItem="UZq-Nf-q1o" secondAttribute="top" id="JL0-IC-GLl"/>
-                                    <constraint firstItem="GRH-Ar-m5o" firstAttribute="leading" secondItem="UZq-Nf-q1o" secondAttribute="leading" constant="5" id="SWS-Di-2vr"/>
                                     <constraint firstAttribute="trailing" secondItem="GRH-Ar-m5o" secondAttribute="trailing" constant="5" id="wGG-M3-gjb"/>
                                 </constraints>
                                 <connections>
