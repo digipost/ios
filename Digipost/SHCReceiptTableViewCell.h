@@ -14,7 +14,7 @@ extern NSString *const kReceiptTableViewCellIdentifier;
 
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cardLabel;
-@property (weak, nonatomic) IBOutlet UILabel *franchiseLabel;
+@property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

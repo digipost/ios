@@ -381,7 +381,7 @@
                                             <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRANCHISE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB7-qi-OH6" userLabel="Franchise Label">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FRANCHISE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LB7-qi-OH6" userLabel="Store Name Label">
                                             <rect key="frame" x="30" y="33" width="257" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
@@ -421,7 +421,7 @@
                                     <outlet property="amountLabel" destination="tge-o3-yQZ" id="8Z6-ac-igt"/>
                                     <outlet property="cardLabel" destination="iS5-Eg-tOs" id="9Vc-pN-wyZ"/>
                                     <outlet property="dateLabel" destination="ELG-LC-4Gq" id="g4k-Jm-dFo"/>
-                                    <outlet property="franchiseLabel" destination="LB7-qi-OH6" id="Vau-e9-H14"/>
+                                    <outlet property="storeNameLabel" destination="LB7-qi-OH6" id="cnU-RH-anj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

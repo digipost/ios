@@ -110,7 +110,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     cell.amountLabel.text = [SHCReceipt stringForReceiptAmount:receipt.amount];
     cell.cardLabel.text = receipt.card;
-    cell.franchiseLabel.text = receipt.franchiseName;
+    cell.storeNameLabel.text = receipt.storeName;
     cell.dateLabel.text = [SHCDocument stringForDocumentDate:receipt.timeOfPurchase];
 
     return cell;
