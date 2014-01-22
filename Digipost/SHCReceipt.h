@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SHCBaseEncryptedModel.h"
 
 // Core Data model entity names
 extern NSString *const kReceiptEntityName;
@@ -17,7 +18,7 @@ extern NSString *const kReceiptReceiptAPIKey;
 
 @class SHCMailbox;
 
-@interface SHCReceipt : NSManagedObject
+@interface SHCReceipt : SHCBaseEncryptedModel
 
 // Attributes
 @property (strong, nonatomic) NSNumber *amount;

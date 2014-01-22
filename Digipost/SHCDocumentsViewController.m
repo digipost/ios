@@ -45,8 +45,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)viewDidLoad
 {
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
@@ -114,6 +112,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [super setEditing:editing animated:animated];
 
     [self.navigationController setToolbarHidden:!editing animated:animated];
+
+    [self updateNavbar];
 }
 
 #pragma mark - UITableViewDataSource
@@ -240,7 +240,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (IBAction)didTapSelectionBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    if ([self allRowsSelected]) {
+    if ([self someRowsSelected]) {
         [self deselectAllRows];
     } else {
         [self selectAllRows];
@@ -312,7 +312,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
-
+        [self updateNavbar];
+        
         // If the user has just managed to enter a document with attachments _after_ the API call finished,
         // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
         // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
@@ -358,6 +359,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)updateNavbar
 {
     self.navigationItem.title = self.folderName;
+
+    UIBarButtonItem *rightBarButtonItem = nil;
+    if ([self numberOfRows] > 0) {
+        rightBarButtonItem = self.editButtonItem;
+    }
+
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 }
 
 - (void)updateToolbarButtonItems
@@ -370,16 +378,16 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         self.deleteBarButtonItem.enabled = NO;
     }
 
-    if ([self allRowsSelected]) {
+    if ([self someRowsSelected]) {
         self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
     } else {
         self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     }
 }
 
-- (BOOL)allRowsSelected
+- (BOOL)someRowsSelected
 {
-    return [[self.tableView indexPathsForSelectedRows] count] == [self numberOfRows];
+    return [[self.tableView indexPathsForSelectedRows] count] > 0;
 }
 
 - (NSInteger)numberOfRows

@@ -26,6 +26,7 @@
 #import "SHCMailbox.h"
 #import "SHCRootResource.h"
 #import "SHCModelManager.h"
+#import "SHCReceipt.h"
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -167,6 +168,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    self.progressView.alpha = 0.0;
+
     DDLogError(@"%@", [error localizedDescription]);
 }
 
@@ -175,8 +178,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([request.URL isFileURL]) {
         return YES;
     } else {
-        [[UIApplication sharedApplication] openURL:request.URL];
-
+        [UIActionSheet showInView:self.webView
+                        withTitle:[request.URL host]
+                cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+           destructiveButtonTitle:nil
+                otherButtonTitles:@[NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")]
+                         tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                             if (buttonIndex == 0) {
+                                 [[UIApplication sharedApplication] openURL:request.URL];
+                             }
+                         }];
         return NO;
     }
 }
@@ -199,7 +210,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kSHCLetterViewControllerKVOContext && [keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
+    if (context == kSHCLetterViewControllerKVOContext && object == self.progress && [keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
         NSProgress *progress = (NSProgress *)object;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -262,19 +273,22 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)loadContent
 {
-    NSString *encryptedFilePath = [self.attachment encryptedFilePath];
-    NSString *decryptedFilePath = [self.attachment decryptedFilePath];
+    SHCBaseEncryptedModel *baseEncryptionModel = nil;
+
+    if (self.attachment) {
+        baseEncryptionModel = self.attachment;
+    } else if (self.receipt) {
+        baseEncryptionModel = self.receipt;
+    }
+
+    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
+    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
-        if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment error:&error]) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                  [self dismissViewControllerAnimated:YES completion:nil];
-                              }];
+        if (![[SHCFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel error:&error]) {
+            [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
+
             return;
         }
 
@@ -282,72 +296,87 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     } else {
+        [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
+    }
+}
 
+- (void)loadContentFromWebWithBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel
+{
+    NSProgress *progress = nil;
+
+    if ([baseEncryptionModel isKindOfClass:[SHCAttachment class]]) {
         [UIView animateWithDuration:0.3 delay:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
             self.progressView.alpha = 1.0;
         } completion:nil];
 
-        self.progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
-        self.progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
+        progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
+        progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
 
-        [self.progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
+        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
 
-        [[SHCAPIManager sharedManager] downloadAttachment:self.attachment withProgress:self.progress success:^{
+        self.progress = progress;
+    }
 
-            NSError *error = nil;
-            if (![[SHCFileManager sharedFileManager] encryptDataForAttachment:self.attachment error:&error]) {
-                [UIAlertView showWithTitle:error.errorTitle
-                                   message:[error localizedDescription]
-                         cancelButtonTitle:nil
-                         otherButtonTitles:@[error.okButtonTitle]
-                                  tapBlock:error.tapBlock];
-            }
+    [[SHCAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
 
-            NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-            [self.webView loadRequest:request];
-        } failure:^(NSError *error) {
+        NSError *error = nil;
+        if (![[SHCFileManager sharedFileManager] encryptDataForBaseEncryptionModel:baseEncryptionModel error:&error]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
 
-            BOOL unauthorized = NO;
+        NSURL *fileURL = [NSURL fileURLWithPath:[baseEncryptionModel decryptedFilePath]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+        [self.webView loadRequest:request];
+    } failure:^(NSError *error) {
 
-            if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
-                [error code] == SHCAPIManagerErrorCodeUnauthorized) {
-                unauthorized = YES;
-            } else {
-                NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                    if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                        unauthorized = YES;
-                    }
+        BOOL unauthorized = NO;
+
+        if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
+            [error code] == SHCAPIManagerErrorCodeUnauthorized) {
+            unauthorized = YES;
+        } else {
+            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                    unauthorized = YES;
                 }
             }
+        }
 
-            if (unauthorized) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(loadContent) withObject:nil afterDelay:0.0];
+        if (unauthorized) {
+            // We were unauthorized, due to the session being invalid.
+            // Let's retry in the next run loop
+            [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:baseEncryptionModel afterDelay:0.0];
 
-                return;
-            } else {
+            return;
+        } else {
 
-                [UIAlertView showWithTitle:error.errorTitle
-                                   message:[error localizedDescription]
-                         cancelButtonTitle:nil
-                         otherButtonTitles:@[error.okButtonTitle]
-                                  tapBlock:error.tapBlock];
-            }
-        }];
-    }
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
+    }];
 }
 
 - (void)unloadContent
 {
-    [[SHCAPIManager sharedManager] cancelDownloadingAttachments];
+    [[SHCAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
     [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (BOOL)attachmentHasValidFileType
 {
+    // Receipts are always pdf's.
+    if (self.receipt) {
+        return YES;
+    }
+
     // A list of file types that are tried and tested with UIWebView
     NSArray *validFilesTypes = @[@"pdf", @"png", @"jpg", @"jpeg", @"gif", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages"];
 
@@ -464,8 +493,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if (!self.openInController) {
 
-        NSString *encryptedFilePath = [self.attachment encryptedFilePath];
-        NSString *decryptedFilePath = [self.attachment decryptedFilePath];
+        SHCBaseEncryptedModel *baseEncryptionModel = nil;
+
+        if (self.attachment) {
+            baseEncryptionModel = self.attachment;
+        } else if (self.receipt) {
+            baseEncryptionModel = self.receipt;
+        }
+
+        NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
+        NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
         NSURL *fileURL = nil;
 
@@ -473,7 +510,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         } else if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
             NSError *error = nil;
-            if (![[SHCFileManager sharedFileManager] decryptDataForAttachment:self.attachment error:&error]) {
+            if (![[SHCFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel error:&error]) {
                 [UIAlertView showWithTitle:error.errorTitle
                                    message:[error localizedDescription]
                          cancelButtonTitle:nil
@@ -512,7 +549,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         NSString *timePaid = [dateFormatter stringFromDate:self.attachment.invoice.timePaid];
 
-        message = [NSString stringWithFormat:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message"), timePaid];
+        NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
+        message = [NSString stringWithFormat:format, timePaid];
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE", @"Go to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
@@ -522,7 +560,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         NSString *bankAccountNumber = self.attachment.document.folder.mailbox.rootResource.currentBankAccount ?: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER", @"unknown bank account number");
 
-        message = [NSString stringWithFormat:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message"), bankAccountNumber];
+        NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message");
+        message = [NSString stringWithFormat:format, bankAccountNumber];
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");

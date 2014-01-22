@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SHCBaseEncryptedModel.h"
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCAttachmentOpeningValidationErrorCode) {
@@ -27,7 +28,7 @@ extern NSString *const kAttachmentEntityName;
 @class SHCDocument;
 @class SHCInvoice;
 
-@interface SHCAttachment : NSManagedObject
+@interface SHCAttachment : SHCBaseEncryptedModel
 
 // Attributes
 @property (strong, nonatomic) NSString *authenticationLevel;
@@ -45,7 +46,5 @@ extern NSString *const kAttachmentEntityName;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-- (NSString *)encryptedFilePath;
-- (NSString *)decryptedFilePath;
 
 @end

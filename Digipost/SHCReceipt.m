@@ -9,6 +9,8 @@
 #import "SHCReceipt.h"
 #import "SHCModelManager.h"
 #import "SHCMailbox.h"
+#import "NSString+SHA1String.h"
+#import "SHCFileManager.h"
 
 // Core Data model entity names
 NSString *const kReceiptEntityName = @"Receipt";
@@ -20,7 +22,7 @@ NSString *const kReceiptFranchiseNameAPIKey = @"franchiceName"; // [sic]
 NSString *const kReceiptReceiptIdAPIKey = @"id";
 NSString *const kReceiptLinkAPIKey = @"link";
 NSString *const kReceiptLinkDeleteUriAPIKeySuffix = @"delete_receipt";
-NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_pdf";
+NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
 @implementation SHCReceipt
 
@@ -38,6 +40,21 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_pdf";
 
 // Relationships
 @dynamic mailbox;
+
+// Overridden properties
+@synthesize fileType = _fileType;
+
+#pragma mark - NSObject
+
+- (instancetype)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context
+{
+    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+    if (self) {
+        _fileType = @"html";
+    }
+
+    return self;
+}
 
 #pragma mark - Public methods
 

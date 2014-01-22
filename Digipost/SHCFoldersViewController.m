@@ -287,9 +287,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
         self.rootResource = nil; // To force a refetch of this property
-        [self updateNavbar];
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
+        [self updateNavbar];
+
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];

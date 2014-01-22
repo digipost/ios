@@ -36,9 +36,9 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateUpdatingDocuments,
     SHCAPIManagerStateUpdatingDocumentsFinished,
     SHCAPIManagerStateUpdatingDocumentsFailed,
-    SHCAPIManagerStateDownloadingAttachment,
-    SHCAPIManagerStateDownloadingAttachmentFinished,
-    SHCAPIManagerStateDownloadingAttachmentFailed,
+    SHCAPIManagerStateDownloadingBaseEncryptionModel,
+    SHCAPIManagerStateDownloadingBaseEncryptionModelFinished,
+    SHCAPIManagerStateDownloadingBaseEncryptionModelFailed,
     SHCAPIManagerStateMovingDocument,
     SHCAPIManagerStateMovingDocumentFinished,
     SHCAPIManagerStateMovingDocumentFailed,
@@ -75,8 +75,6 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 @property (copy, nonatomic) NSString *lastFolderName;
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
-@property (strong, nonatomic) SHCAttachment *lastAttachment;
-@property (strong, nonatomic) NSProgress *lastProgress;
 @property (strong, nonatomic) SHCDocument *lastDocument;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
@@ -186,14 +184,14 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateUpdatingDocumentsFailed:
                 stateString = @"SHCAPIManagerStateUpdatingDocumentsFailed";
                 break;
-            case SHCAPIManagerStateDownloadingAttachment:
-                stateString = @"SHCAPIManagerStateDownloadingAttachment";
+            case SHCAPIManagerStateDownloadingBaseEncryptionModel:
+                stateString = @"SHCAPIManagerStateDownloadingBaseEncryptionModel";
                 break;
-            case SHCAPIManagerStateDownloadingAttachmentFinished:
-                stateString = @"SHCAPIManagerStateDownloadingAttachmentFinished";
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFinished:
+                stateString = @"SHCAPIManagerStateDownloadingBaseEncryptionModelFinished";
                 break;
-            case SHCAPIManagerStateDownloadingAttachmentFailed:
-                stateString = @"SHCAPIManagerStateDownloadingAttachmentFailed";
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFailed:
+                stateString = @"SHCAPIManagerStateDownloadingBaseEncryptionModelFailed";
                 break;
             case SHCAPIManagerStateMovingDocument:
                 stateString = @"SHCAPIManagerStateMovingDocument";
@@ -377,7 +375,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
-            case SHCAPIManagerStateDownloadingAttachmentFinished:
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFinished:
             {
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
@@ -387,7 +385,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
-            case SHCAPIManagerStateDownloadingAttachmentFailed:
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFailed:
             {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
@@ -492,6 +490,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.lastBankAccountUri = nil;
+
                 break;
             }
             case SHCAPIManagerStateUpdatingBankAccountFailed:
@@ -512,6 +512,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 }
 
                 [self cleanup];
+
+                self.lastBankAccountUri = nil;
 
                 break;
             }
@@ -561,6 +563,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 [self cleanup];
 
                 self.updatingReceipts = NO;
+                self.lastReceiptsUri = nil;
+                self.lastMailboxDigipostAddress = nil;
 
                 break;
             }
@@ -584,6 +588,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 [self cleanup];
 
                 self.updatingReceipts = NO;
+                self.lastReceiptsUri = nil;
+                self.lastMailboxDigipostAddress = nil;
 
                 break;
             }
@@ -622,7 +628,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateUpdatingDocuments:
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
-            case SHCAPIManagerStateDownloadingAttachment:
+            case SHCAPIManagerStateDownloadingBaseEncryptionModel:
             case SHCAPIManagerStateMovingDocument:
             case SHCAPIManagerStateDeletingDocument:
             case SHCAPIManagerStateUpdatingBankAccount:
@@ -729,6 +735,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
         NSURL *URL = [NSURL URLWithString:self.lastBankAccountUri];
         NSString *pathSuffix = [[URL pathComponents] lastObject];
         [self cancelRequestsWithPath:pathSuffix];
+
+        self.lastBankAccountUri = nil;
     }
 }
 
@@ -795,21 +803,36 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }
 }
 
-- (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateDownloadingAttachment;
+        self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
 
-        NSString *urlString = [[NSURL URLWithString:attachment.uri relativeToURL:self.sessionManager.baseURL] absoluteString];
+        NSString *urlString = [[NSURL URLWithString:baseEncryptionModel.uri relativeToURL:self.sessionManager.baseURL] absoluteString];
 
         NSMutableURLRequest *urlRequest = [self.sessionManager.requestSerializer requestWithMethod:@"GET" URLString:urlString parameters:nil];
+
+        // Let's set the correct mime type for this file download.
+
+        // First, grab the UTI
+        CFStringRef pathExtension = (__bridge_retained CFStringRef)baseEncryptionModel.fileType;
+        CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
+        CFRelease(pathExtension);
+
+        // The UTI can be converted to a mime type:
+        NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
+        if (type != NULL) {
+            CFRelease(type);
+        }
+
+        [urlRequest setValue:mimeType forHTTPHeaderField:@"Accept"];
 
         [self.sessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             progress.completedUnitCount = totalBytesWritten;
         }];
 
         NSURLSessionDownloadTask *task = [self.sessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-            NSString *filePath = [attachment decryptedFilePath];
+            NSString *filePath = [baseEncryptionModel decryptedFilePath];
             NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
             return fileUrl;
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -833,13 +856,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 self.lastURLResponse = response;
                 self.lastFailureBlock = failure;
                 self.lastError = error;
-                self.lastAttachment = attachment;
-                self.lastProgress = progress;
-                self.state = SHCAPIManagerStateDownloadingAttachmentFailed;
+                self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFailed;
             } else {
                 self.lastURLResponse = response;
                 self.lastSuccessBlock = success;
-                self.state = SHCAPIManagerStateDownloadingAttachmentFinished;
+                self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
         }];
 
@@ -929,6 +950,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
 
+#warning Don't do this POST if we don't have a root resource, as this will trigger an assertion failure within AFNetworking
         [self.sessionManager POST:rootResource.logoutUri
                        parameters:nil
                           success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -947,7 +969,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
-- (void)cancelDownloadingAttachments
+- (void)cancelDownloadingBaseEncryptionModels
 {
     for (NSURLSessionDownloadTask *downloadTask in self.sessionManager.downloadTasks) {
         [downloadTask cancel];
@@ -991,6 +1013,9 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
         NSURL *URL = [NSURL URLWithString:self.lastReceiptsUri];
         NSString *pathSuffix = [[URL pathComponents] lastObject];
         [self cancelRequestsWithPath:pathSuffix];
+
+        self.lastMailboxDigipostAddress = nil;
+        self.lastReceiptsUri = nil;
     }
 }
 
@@ -1002,7 +1027,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-        if ([HTTPResponse statusCode] == 401) { // Unauthorized.
+        if ([HTTPResponse statusCode] == 401 || // Unauthorized.
+            [HTTPResponse statusCode] == 403) { // Forbidden.
             return YES;
         }
     }
@@ -1014,8 +1040,9 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
     if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-        if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized
-            [HTTPResponse statusCode] == 401) { // Unauthorized.
+        if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized.
+            [HTTPResponse statusCode] == 401 || // Unauthorized.
+            [HTTPResponse statusCode] == 403) { // Forbidden.
             return YES;
         }
     }
@@ -1107,12 +1134,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     self.lastFolderName = nil;
     self.lastFolderUri = nil;
     self.lastError = nil;
-    self.lastAttachment = nil;
-    self.lastProgress = nil;
     self.lastDocument = nil;
-    self.lastBankAccountUri = nil;
-    self.lastReceiptsUri = nil;
-    self.lastMailboxDigipostAddress = nil;
 
     self.state = SHCAPIManagerStateIdle;
 }

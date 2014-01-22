@@ -7,7 +7,38 @@
 //
 
 #import "SHCBaseEncryptedModel.h"
+#import "SHCFileManager.h"
+#import "NSString+SHA1String.h"
 
 @implementation SHCBaseEncryptedModel
+
+@dynamic uri;
+@dynamic fileType;
+
+- (NSString *)encryptedFilePath
+{
+    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
+
+    if (!fileName) {
+        return nil;
+    }
+
+    NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+
+    return filePath;
+}
+
+- (NSString *)decryptedFilePath
+{
+    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
+
+    if (!fileName) {
+        return nil;
+    }
+
+    NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+
+    return filePath;
+}
 
 @end

@@ -8,8 +8,6 @@
 
 #import "SHCAttachment.h"
 #import "SHCModelManager.h"
-#import "SHCFileManager.h"
-#import "NSString+SHA1String.h"
 #import "SHCInvoice.h"
 
 // Defines what the app considers a valid attachment authentication level
@@ -113,32 +111,6 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     }
 
     return [results firstObject];
-}
-
-- (NSString *)encryptedFilePath
-{
-    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
-
-    if (!fileName) {
-        return nil;
-    }
-
-    NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
-
-    return filePath;
-}
-
-- (NSString *)decryptedFilePath
-{
-    NSString *fileName = [[self.uri SHA1String] stringByAppendingString:[NSString stringWithFormat:@".%@", self.fileType]];
-
-    if (!fileName) {
-        return nil;
-    }
-
-    NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
-
-    return filePath;
 }
 
 @end

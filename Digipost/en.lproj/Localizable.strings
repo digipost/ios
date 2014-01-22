@@ -33,6 +33,9 @@
 /* never */
 "GENERIC_UPDATED_NEVER_TITLE" = "never";
 
+/* Open in Safari */
+"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE" = "Open in Safari";
+
 /* Sign Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE" = "Sign Out";
 
@@ -47,12 +50,6 @@
 
 /* Sign In */
 "OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE" = "Sign In";
-
-/* Register title */
-"LOGIN_VIEW_CONTROLLER_REGISTER_TITLE" = "Do you want to leave the Digipost app and open the registration page in Safari?";
-
-/* Open in Safari */
-"LOGIN_VIEW_CONTROLLER_REGISTER_OPEN_IN_SAFARI_TITLE" = "Open in Safari";
 
 /* FOLDERS */
 "FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE" = "FOLDERS";

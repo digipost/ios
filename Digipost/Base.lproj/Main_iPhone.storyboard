@@ -450,7 +450,7 @@
                     <connections>
                         <outlet property="deleteBarButtonItem" destination="ncs-6S-Eoq" id="Eol-gE-35A"/>
                         <outlet property="selectionBarButtonItem" destination="DqK-UA-qVe" id="03n-yP-W3E"/>
-                        <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="6sB-Ci-mbg"/>
+                        <segue destination="IOM-jr-kzB" kind="push" identifier="PushReceipt" id="6sB-Ci-mbg"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32i-4K-2Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>

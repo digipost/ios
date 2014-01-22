@@ -31,13 +31,13 @@ typedef NS_ENUM(NSUInteger, SHCFileManagerErrorCodeEncrypting) {
 extern NSString *const kFileManagerDecryptingErrorDomain;
 extern NSString *const kFileManagerEncryptingErrorDomain;
 
-@class SHCAttachment;
+@class SHCBaseEncryptedModel;
 
 @interface SHCFileManager : NSObject
 
 + (instancetype)sharedFileManager;
-- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error;
-- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error;
+- (BOOL)decryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error;
+- (BOOL)encryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error;
 - (BOOL)removeAllDecryptedFiles;
 - (BOOL)removeAllFiles;
 - (NSString *)encryptedFilesFolderPath;

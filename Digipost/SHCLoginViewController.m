@@ -89,16 +89,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapRegisterButton:(UIButton *)sender
 {
+    NSURL *url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
+
     [UIActionSheet showFromRect:sender.frame
                          inView:self.view
                        animated:YES
-                      withTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_TITLE", @"Register title")
+                      withTitle:[url host]
               cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-         destructiveButtonTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_OPEN_IN_SAFARI_TITLE", @"Open in Safari")
-              otherButtonTitles:nil
+         destructiveButtonTitle:nil
+              otherButtonTitles:@[NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")]
                        tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                            if (buttonIndex == 0) {
-                               NSURL *url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
                                [[UIApplication sharedApplication] openURL:url];
                            }
                        }];

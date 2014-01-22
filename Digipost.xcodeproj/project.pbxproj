@@ -116,6 +116,9 @@
 		83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
+		83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
+		83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
+		83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
 		83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
@@ -227,6 +230,8 @@
 		83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptsViewController.m; sourceTree = "<group>"; };
 		83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptTableViewCell.h; sourceTree = "<group>"; };
 		83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptTableViewCell.m; sourceTree = "<group>"; };
+		83DB4AF3188D963400515022 /* SHCBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBaseEncryptedModel.h; sourceTree = "<group>"; };
+		83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCBaseEncryptedModel.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
 		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Staging-Enterprise.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +315,8 @@
 				83D75F531858E5790013F8C9 /* SHCDocument.m */,
 				83DB4AE4188D1F4E00515022 /* SHCReceipt.h */,
 				83DB4AE5188D1F4E00515022 /* SHCReceipt.m */,
+				83DB4AF3188D963400515022 /* SHCBaseEncryptedModel.h */,
+				83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -766,6 +773,7 @@
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
+				83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
@@ -805,6 +813,7 @@
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
+				83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
@@ -844,6 +853,7 @@
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
+				83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,

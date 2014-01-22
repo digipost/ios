@@ -11,8 +11,8 @@
 #import <RNCryptor/RNEncryptor.h>
 #import <RNCryptor/RNDecryptor.h>
 #import "SHCOAuthManager.h"
-#import "SHCAttachment.h"
 #import "NSError+ExtraInfo.h"
+#import "SHCBaseEncryptedModel.h"
 
 // Custom NSError consts
 NSString *const kFileManagerDecryptingErrorDomain = @"FileManagerDecryptingErrorDomain";
@@ -37,12 +37,12 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     return sharedInstance;
 }
 
-- (BOOL)decryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error
+- (BOOL)decryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
     if (!password) {
-        DDLogError(@"Error: Can't decrypt data for attachment without a password");
+        DDLogError(@"Error: Can't decrypt data without a password");
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -55,10 +55,10 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     }
 
     // First, ensure that we have the encrypted file
-    NSString *encryptedFilePath = [attachment encryptedFilePath];
+    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        DDLogError(@"Error: Can't decrypt data for attachment without an encrypted file at %@", encryptedFilePath);
+        DDLogError(@"Error: Can't decrypt data without an encrypted file at %@", encryptedFilePath);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -102,7 +102,7 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
         return NO;
     }
 
-    NSString *decryptedFilePath = [attachment decryptedFilePath];
+    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
     // If we previously haven't done a proper cleanup job and the decrypted file still exists,
     // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum
@@ -137,12 +137,12 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     return YES;
 }
 
-- (BOOL)encryptDataForAttachment:(SHCAttachment *)attachment error:(NSError *__autoreleasing *)error
+- (BOOL)encryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
     if (!password) {
-        DDLogError(@"Error: Can't encrypt data for attachment without a password");
+        DDLogError(@"Error: Can't encrypt data without a password");
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -155,10 +155,10 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     }
 
     // First, ensure htat we have the decrypted file
-    NSString *decryptedFilePath = [attachment decryptedFilePath];
+    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
-        DDLogError(@"Error: Can't encrypt data for attachment without a decrypted file at %@", decryptedFilePath);
+        DDLogError(@"Error: Can't encrypt data without a decrypted file at %@", decryptedFilePath);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -202,7 +202,7 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
         return NO;
     }
 
-    NSString *encryptedFilePath = [attachment encryptedFilePath];
+    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
 
     // If we previously haven't done a proper cleanup job and the encrypted file still exists,
     // we need to manually remote it before writing a new one, to avoid NSFileManager throwing a tantrum

@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
 extern NSString *const kAPIManagerErrorDomain;
 
 @class SHCFolder;
-@class SHCAttachment;
+@class SHCBaseEncryptedModel;
 @class SHCDocument;
 @class SHCInvoice;
 @class SHCReceipt;
@@ -39,11 +39,11 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
-- (void)downloadAttachment:(SHCAttachment *)attachment withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)cancelDownloadingAttachments;
+- (void)cancelDownloadingBaseEncryptionModels;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingReceipts;
 - (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;

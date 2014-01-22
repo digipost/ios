@@ -10,4 +10,10 @@
 
 @interface SHCBaseEncryptedModel : NSManagedObject
 
+@property (strong, nonatomic) NSString *uri;
+@property (strong, nonatomic) NSString *fileType;
+
+- (NSString *)encryptedFilePath;
+- (NSString *)decryptedFilePath;
+
 @end
