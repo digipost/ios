@@ -114,6 +114,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [self.navigationController setToolbarHidden:!editing animated:animated];
 
     [self updateNavbar];
+
+    self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
 }
 
 #pragma mark - UITableViewDataSource

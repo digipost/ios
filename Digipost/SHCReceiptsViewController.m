@@ -96,6 +96,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [self.navigationController setToolbarHidden:!editing animated:animated];
 
     [self updateNavbar];
+
+    self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
 }
 
 #pragma mark - UITableViewDataSource

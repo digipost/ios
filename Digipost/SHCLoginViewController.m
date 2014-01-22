@@ -54,8 +54,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     self.screenName = kLoginViewControllerScreenName;
 
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-
     @try {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
     }
@@ -67,6 +65,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         [self.navigationController pushViewController:foldersViewController animated:NO];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

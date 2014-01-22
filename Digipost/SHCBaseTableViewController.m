@@ -64,6 +64,8 @@
 {
     [super viewWillAppear:animated];
 
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+
     // Sometimes, the previously selected cell isn't properly deselected.
     // The line below makes sure the cell is deselected, plus it adds a
     // fancy fading effect when the user swipes back to this view controller

@@ -136,6 +136,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewWillAppear:animated];
 
     [self.navigationController setToolbarHidden:NO animated:NO];
+
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
