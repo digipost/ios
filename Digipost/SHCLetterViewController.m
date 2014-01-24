@@ -64,7 +64,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)dealloc
 {
     @try {
-        [self.progress removeObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) context:kSHCLetterViewControllerKVOContext];
+        [self.progress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) context:kSHCLetterViewControllerKVOContext];
     } @catch (NSException *exception) {
         DDLogDebug(@"Caught an exception: %@", exception);
     }
@@ -212,7 +212,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    if (context == kSHCLetterViewControllerKVOContext && object == self.progress && [keyPath isEqualToString:NSStringFromSelector(@selector(completedUnitCount))]) {
+    if (context == kSHCLetterViewControllerKVOContext && object == self.progress && [keyPath isEqualToString:NSStringFromSelector(@selector(fractionCompleted))]) {
         NSProgress *progress = (NSProgress *)object;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -314,15 +314,24 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
         progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
 
-        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(completedUnitCount)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
+        [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
 
         self.progress = progress;
     }
 
+    NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
     [[SHCAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
 
+        // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+        SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+        if (self.attachment) {
+            changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        } else {
+            changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        }
+
         NSError *error = nil;
-        if (![[SHCFileManager sharedFileManager] encryptDataForBaseEncryptionModel:baseEncryptionModel error:&error]) {
+        if (![[SHCFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
             [UIAlertView showWithTitle:error.errorTitle
                                message:[error localizedDescription]
                      cancelButtonTitle:nil
@@ -330,7 +339,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                               tapBlock:error.tapBlock];
         }
 
-        NSURL *fileURL = [NSURL fileURLWithPath:[baseEncryptionModel decryptedFilePath]];
+        NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     } failure:^(NSError *error) {
@@ -350,9 +359,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
 
         if (unauthorized) {
+            // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+            SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+            if (self.attachment) {
+                changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            } else {
+                changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            }
+
             // We were unauthorized, due to the session being invalid.
             // Let's retry in the next run loop
-            [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:baseEncryptionModel afterDelay:0.0];
+            [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
 
             return;
         } else {
@@ -653,6 +670,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)updateDocuments
 {
+    if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
+        return;
+    }
+
     NSString *attachmentUri = self.attachment.uri;
 
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri success:^{

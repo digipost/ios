@@ -22,8 +22,9 @@
 #import "NSString+SHA1String.h"
 #import "SHCRootResource.h"
 #import "SHCInvoice.h"
+#import "SHCReceipt.h"
 
-typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
+typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateIdle = 0,
     SHCAPIManagerStateValidatingAccessToken,
     SHCAPIManagerStateValidatingAccessTokenFinished,
@@ -45,6 +46,9 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateDeletingDocument,
     SHCAPIManagerStateDeletingDocumentFinished,
     SHCAPIManagerStateDeletingDocumentFailed,
+    SHCAPIManagerStateDeletingReceipt,
+    SHCAPIManagerStateDeletingReceiptFinished,
+    SHCAPIManagerStateDeletingReceiptFailed,
     SHCAPIManagerStateUpdatingBankAccount,
     SHCAPIManagerStateUpdatingBankAccountFinished,
     SHCAPIManagerStateUpdatingBankAccountFailed,
@@ -54,6 +58,9 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
     SHCAPIManagerStateUpdatingReceipts,
     SHCAPIManagerStateUpdatingReceiptsFinished,
     SHCAPIManagerStateUpdatingReceiptsFailed,
+    SHCAPIManagerStateUploadingFile,
+    SHCAPIManagerStateUploadingFileFinished,
+    SHCAPIManagerStateUploadingFileFailed,
     SHCAPIManagerStateLoggingOut,
     SHCAPIManagerStateLoggingOutFailed,
     SHCAPIManagerStateLoggingOutFinished
@@ -61,9 +68,15 @@ typedef NS_ENUM( NSInteger, SHCAPIManagerState ) {
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
 static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspended;
+static void *kSHCAPIManagerKVOContext = &kSHCAPIManagerKVOContext;
 
 // Custom NSError consts
 NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
+
+// Notification names
+NSString *const kAPIManagerUploadProgressStartedNotificationName = @"UploadProgressStartedNotification";
+NSString *const kAPIManagerUploadProgressChangedNotificationName = @"UploadProgressChangedNotification";
+NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProgressFinishedNotification";
 
 @interface SHCAPIManager ()
 
@@ -76,12 +89,13 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) SHCDocument *lastDocument;
+@property (strong, nonatomic) SHCReceipt *lastReceipt;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
+@property (strong, nonatomic) AFHTTPSessionManager *fileTransferSessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
 @property (copy, nonatomic) NSString *lastReceiptsUri;
 @property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
-
-- (void)cancelRequestsWithPath:(NSString *)path;
+@property (strong, nonatomic) NSURLSessionDataTask *uploadTask;
 
 @end
 
@@ -105,10 +119,10 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
 
-        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
-                                                   sessionConfiguration:configuration];
-
         NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
+
+        // Default session manager
+        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
 
         _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         [_sessionManager.requestSerializer setValue:contentType forHTTPHeaderField:@"Accept"];
@@ -118,9 +132,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
         [acceptableContentTypesMutable addObject:contentType];
         _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithSet:acceptableContentTypesMutable];
 
+        // File transfer session manager
+        _fileTransferSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
+        _fileTransferSessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        _fileTransferSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
 
         _sessionManager.securityPolicy.allowInvalidCertificates = YES;
+        _fileTransferSessionManager.securityPolicy.allowInvalidCertificates = YES;
 
 #endif
     }
@@ -211,6 +231,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             case SHCAPIManagerStateDeletingDocumentFailed:
                 stateString = @"SHCAPIManagerStateDeletingDocumentFailed";
                 break;
+            case SHCAPIManagerStateDeletingReceipt:
+                stateString = @"SHCAPIManagerStateDeletingReceipt";
+                break;
+            case SHCAPIManagerStateDeletingReceiptFinished:
+                stateString = @"SHCAPIManagerStateDeletingReceiptFinished";
+                break;
+            case SHCAPIManagerStateDeletingReceiptFailed:
+                stateString = @"SHCAPIManagerStateDeletingReceiptFailed";
+                break;
             case SHCAPIManagerStateUpdatingBankAccount:
                 stateString = @"SHCAPIManagerStateUpdatingBankAccount";
                 break;
@@ -237,6 +266,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 break;
             case SHCAPIManagerStateUpdatingReceiptsFailed:
                 stateString = @"SHCAPIManagerStateUpdatingReceiptsFailed";
+                break;
+            case SHCAPIManagerStateUploadingFile:
+                stateString = @"SHCAPIManagerStateUploadingFile";
+                break;
+            case SHCAPIManagerStateUploadingFileFinished:
+                stateString = @"SHCAPIManagerStateUploadingFileFinished";
+                break;
+            case SHCAPIManagerStateUploadingFileFailed:
+                stateString = @"SHCAPIManagerStateUploadingFileFailed";
                 break;
             case SHCAPIManagerStateLoggingOut:
                 stateString = @"SHCAPIManagerStateLoggingOut";
@@ -283,7 +321,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -298,7 +336,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+                    // If the update has been canceled after the network request finished,
+                    // but before we have updated the data model, we need to cancel that as well.
+                    if (self.updatingRootResource) {
+                        [[SHCModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+                    }
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -322,7 +364,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -339,7 +381,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName attributes:responseDict];
+                    // If the update has been canceled after the network request finished,
+                    // but before we have updated the data model, we need to cancel that as well.
+                    if (self.updatingDocuments) {
+                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName attributes:responseDict];
+                    }
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -363,7 +409,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -383,6 +429,8 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.downloadingBaseEncryptionModel = NO;
+
                 break;
             }
             case SHCAPIManagerStateDownloadingBaseEncryptionModelFailed:
@@ -396,13 +444,15 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
                 }
 
                 [self cleanup];
+
+                self.downloadingBaseEncryptionModel = NO;
 
                 break;
             }
@@ -433,7 +483,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -466,7 +516,40 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateDeletingReceiptFinished:
+            {
+                [[SHCModelManager sharedManager] deleteReceipt:self.lastReceipt];
+
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateDeletingReceiptFailed:
+            {
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -481,7 +564,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
+                    // If the update has been canceled after the network request finished,
+                    // but before we have updated the data model, we need to cancel that as well.
+                    if (self.updatingBankAccount) {
+                        [[SHCModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
+                    }
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -490,6 +577,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.updatingBankAccount = NO;
                 self.lastBankAccountUri = nil;
 
                 break;
@@ -505,7 +593,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -513,6 +601,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 [self cleanup];
 
+                self.updatingBankAccount = NO;
                 self.lastBankAccountUri = nil;
 
                 break;
@@ -538,7 +627,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -553,7 +642,11 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
-                    [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
+                    // If the update has been canceled after the network request finished,
+                    // but before we have updated the data model, we need to cancel that as well.
+                    if (self.updatingReceipts) {
+                        [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
+                    }
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -579,7 +672,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -590,6 +683,47 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                 self.updatingReceipts = NO;
                 self.lastReceiptsUri = nil;
                 self.lastMailboxDigipostAddress = nil;
+
+                break;
+            }
+            case SHCAPIManagerStateUploadingFileFinished:
+            {
+                [self.uploadProgress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
+
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+
+                self.uploadingFile = NO;
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
+
+                break;
+            }
+            case SHCAPIManagerStateUploadingFileFailed:
+            {
+                [self.uploadProgress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
+
+                // Check to see if the request failed because the access token was rejected
+                if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+                    // The access token was rejected - let's remove it...
+                    [[SHCOAuthManager sharedManager] removeAccessToken];
+
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
+                    if (self.lastFailureBlock) {
+                        self.lastFailureBlock(self.lastError);
+                    }
+                }
+
+                [self cleanup];
+
+                self.uploadingFile = NO;
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
 
                 break;
             }
@@ -614,7 +748,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
-                } else if (![self requestWasCancelledWithError:self.lastError]) {
+                } else if (![self requestWasCanceledWithError:self.lastError]) {
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -624,21 +758,49 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
                 break;
             }
+            case SHCAPIManagerStateUploadingFile:
+            {
+                self.uploadingFile = YES;
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressStartedNotificationName object:nil];
+                break;
+            }
             case SHCAPIManagerStateUpdatingRootResource:
+            {
+                self.updatingRootResource = YES;
+                break;
+            }
+            case SHCAPIManagerStateUpdatingBankAccount:
+            {
+                self.updatingBankAccount = YES;
+                break;
+            }
             case SHCAPIManagerStateUpdatingDocuments:
+            {
+                self.updatingDocuments = YES;
+                break;
+            }
+            case SHCAPIManagerStateDownloadingBaseEncryptionModel:
+            {
+                self.downloadingBaseEncryptionModel = YES;
+                break;
+            }
+            case SHCAPIManagerStateUpdatingReceipts:
+            {
+                self.updatingReceipts = YES;
+                break;
+            }
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
-            case SHCAPIManagerStateDownloadingBaseEncryptionModel:
             case SHCAPIManagerStateMovingDocument:
             case SHCAPIManagerStateDeletingDocument:
-            case SHCAPIManagerStateUpdatingBankAccount:
             case SHCAPIManagerStateSendingInvoiceToBank:
-            case SHCAPIManagerStateUpdatingReceipts:
             case SHCAPIManagerStateLoggingOut:
             case SHCAPIManagerStateIdle:
             default:
                 break;
         }
+    } else if (context == kSHCAPIManagerKVOContext && object == self.uploadProgress && [keyPath isEqualToString:NSStringFromSelector(@selector(fractionCompleted))]) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressChangedNotificationName object:[NSNumber numberWithDouble:self.uploadProgress.fractionCompleted]];
     } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
@@ -674,10 +836,9 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    self.updatingRootResource = YES;
+    self.state = SHCAPIManagerStateUpdatingRootResource;
 
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateUpdatingRootResource;
         [self.sessionManager GET:__ROOT_RESOURCE_URI__
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -701,14 +862,19 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)cancelUpdatingRootResource
 {
-    [self cancelRequestsWithPath:__ROOT_RESOURCE_URI__];
+    NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
+    NSString *pathSuffix = [URL lastPathComponent];
+    [self cancelRequestsWithPathSuffix:pathSuffix];
+
+    self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
 }
 
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateUpdatingBankAccount;
+
     [self validateTokensWithSuccess:^{
         self.lastBankAccountUri = uri;
-        self.state = SHCAPIManagerStateUpdatingBankAccount;
         [self.sessionManager GET:uri
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -723,6 +889,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
                              self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
                          }];
     } failure:^(NSError *error) {
+        self.updatingBankAccount = NO;
         if (failure) {
             failure(error);
         }
@@ -733,17 +900,20 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     if (self.lastBankAccountUri) {
         NSURL *URL = [NSURL URLWithString:self.lastBankAccountUri];
-        NSString *pathSuffix = [[URL pathComponents] lastObject];
-        [self cancelRequestsWithPath:pathSuffix];
+        NSString *pathSuffix = [URL lastPathComponent];
+        [self cancelRequestsWithPathSuffix:pathSuffix];
 
         self.lastBankAccountUri = nil;
+
+        self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
     }
 }
 
 - (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateSendingInvoiceToBank;
+
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateSendingInvoiceToBank;
 
         [self.sessionManager POST:invoice.sendToBankUri
                        parameters:nil
@@ -765,12 +935,10 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    self.updatingDocuments = YES;
+    self.state = SHCAPIManagerStateUpdatingDocuments;
 
     [self validateTokensWithSuccess:^{
         self.lastFolderUri = folderUri;
-
-        self.state = SHCAPIManagerStateUpdatingDocuments;
 
         [self.sessionManager GET:folderUri
                       parameters:nil
@@ -798,41 +966,46 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     if (self.lastFolderUri) {
         NSURL *URL = [NSURL URLWithString:self.lastFolderUri];
-        NSString *pathSuffix = [[URL pathComponents] lastObject];
-        [self cancelRequestsWithPath:pathSuffix];
+        NSString *pathSuffix = [URL lastPathComponent];
+        [self cancelRequestsWithPathSuffix:pathSuffix];
+
+        self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
     }
 }
 
 - (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
+
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
 
-        NSString *urlString = [[NSURL URLWithString:baseEncryptionModel.uri relativeToURL:self.sessionManager.baseURL] absoluteString];
-
-        NSMutableURLRequest *urlRequest = [self.sessionManager.requestSerializer requestWithMethod:@"GET" URLString:urlString parameters:nil];
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModel.uri parameters:nil];
 
         // Let's set the correct mime type for this file download.
+        [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
 
-        // First, grab the UTI
-        CFStringRef pathExtension = (__bridge_retained CFStringRef)baseEncryptionModel.fileType;
-        CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
-        CFRelease(pathExtension);
-
-        // The UTI can be converted to a mime type:
-        NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
-        if (type != NULL) {
-            CFRelease(type);
-        }
-
-        [urlRequest setValue:mimeType forHTTPHeaderField:@"Accept"];
-
-        [self.sessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
+        [self.fileTransferSessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             progress.completedUnitCount = totalBytesWritten;
         }];
 
-        NSURLSessionDownloadTask *task = [self.sessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-            NSString *filePath = [baseEncryptionModel decryptedFilePath];
+        NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+        BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[SHCAttachment class]];
+        NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+
+            // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+            SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+            if (baseEncryptionModelIsAttachment) {
+                changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            } else {
+                changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            }
+
+            NSString *filePath = [changedBaseEncryptionModel decryptedFilePath];
+
+            if (!filePath) {
+                return nil;
+            }
+
             NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
             return fileUrl;
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
@@ -846,7 +1019,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
             if (error || downloadFailure) {
 
                 // If we're getting a 401 from the server, the error object will be nil.
-                // Let's set it to something more usable that the calling instance can interpret.
+                // Let's set it to something more usable that the caller can interpret.
                 if (!error) {
                     error = [NSError errorWithDomain:kAPIManagerErrorDomain
                                                 code:SHCAPIManagerErrorCodeUnauthorized
@@ -866,16 +1039,33 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
         [task resume];
     } failure:^(NSError *error) {
+        self.downloadingBaseEncryptionModel = NO;
         if (failure) {
             failure(error);
         }
     }];
 }
 
+- (void)cancelDownloadingBaseEncryptionModels
+{
+    NSUInteger counter = 0;
+
+    for (NSURLSessionDownloadTask *downloadTask in self.fileTransferSessionManager.downloadTasks) {
+        [downloadTask cancel];
+        counter++;
+    }
+
+    if (counter > 0) {
+        NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
+        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
+    }
+}
+
 - (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateMovingDocument;
+
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateMovingDocument;
 
         NSString *urlString = document.updateUri;
 
@@ -920,8 +1110,9 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateDeletingDocument;
+
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateDeletingDocument;
 
         [self.sessionManager DELETE:document.deleteUri
                          parameters:nil
@@ -945,12 +1136,23 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateLoggingOut;
+
     [self validateTokensWithSuccess:^{
-        self.state = SHCAPIManagerStateLoggingOut;
 
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
 
-#warning Don't do this POST if we don't have a root resource, as this will trigger an assertion failure within AFNetworking
+        // If we don't have a root resource yet, there's nothing to log out of - let's just return successfully
+        if (!rootResource) {
+            if (success) {
+                success();
+
+                self.state = SHCAPIManagerStateLoggingOutFinished;
+
+                return;
+            }
+        }
+
         [self.sessionManager POST:rootResource.logoutUri
                        parameters:nil
                           success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -969,22 +1171,13 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     }];
 }
 
-- (void)cancelDownloadingBaseEncryptionModels
-{
-    for (NSURLSessionDownloadTask *downloadTask in self.sessionManager.downloadTasks) {
-        [downloadTask cancel];
-    }
-}
-
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    self.updatingReceipts = YES;
+    self.state = SHCAPIManagerStateUpdatingReceipts;
 
     [self validateTokensWithSuccess:^{
         self.lastReceiptsUri = uri;
         self.lastMailboxDigipostAddress = digipostAddress;
-
-        self.state = SHCAPIManagerStateUpdatingReceipts;
 
         [self.sessionManager GET:uri
                       parameters:nil
@@ -1011,9 +1204,10 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     if (self.lastReceiptsUri) {
         NSURL *URL = [NSURL URLWithString:self.lastReceiptsUri];
-        NSString *pathSuffix = [[URL pathComponents] lastObject];
-        [self cancelRequestsWithPath:pathSuffix];
+        NSString *pathSuffix = [URL lastPathComponent];
+        [self cancelRequestsWithPathSuffix:pathSuffix];
 
+        self.state = SHCAPIManagerStateUpdatingReceiptsFailed;
         self.lastMailboxDigipostAddress = nil;
         self.lastReceiptsUri = nil;
     }
@@ -1021,6 +1215,203 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 
 - (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    self.state = SHCAPIManagerStateDeletingReceipt;
+
+    [self validateTokensWithSuccess:^{
+
+        [self.sessionManager DELETE:receipt.deleteUri
+                         parameters:nil
+                            success:^(NSURLSessionDataTask *task, id responseObject) {
+                                self.lastSuccessBlock = success;
+                                self.lastResponseObject = responseObject;
+                                self.lastReceipt = receipt;
+                                self.state = SHCAPIManagerStateDeletingReceiptFinished;
+                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                self.lastFailureBlock = failure;
+                                self.lastError = error;
+                                self.lastURLResponse = task.response;
+                                self.state = SHCAPIManagerStateDeletingReceiptFailed;
+                            }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    // Let's do a couple of checks before kicking off the upload
+
+    // First, check if the file exists
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:fileURL.path]) {
+
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadFileDoesNotExist userInfo:nil];
+
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    // Then, check if the file is too big
+    unsigned long long maxFileSize = (unsigned long long)(pow(2, 20) * 10); // Max filesize dictated by Digipost (10 MB)
+
+    NSError *error = nil;
+    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:fileURL.path error:&error];
+    if (error) {
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    unsigned long long fileSize = [fileAttributes fileSize];
+    if (fileSize > maxFileSize) {
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadFileTooBig userInfo:nil];
+
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    // The file is good - next, check if we have our upload documents link
+    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+    if (![rootResource.uploadDocumentUri length] > 0) {
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource userInfo:nil];
+
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
+    if (self.isUploadingFile) {
+        [self cancelUploadingFiles];
+    }
+
+    [self removeTemporaryUploadFiles];
+
+    // Move the file to our special uploads folder
+    NSString *uploadsFolderPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
+
+    NSString *fileName = [fileURL lastPathComponent];
+    NSString *filePath = [uploadsFolderPath stringByAppendingPathComponent:fileName];
+    NSURL *uploadURL = [NSURL fileURLWithPath:filePath];
+
+    if (![fileManager moveItemAtURL:fileURL toURL:uploadURL error:&error]) {
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    [self removeTemporaryInboxFiles];
+
+    // Ready!
+    self.state = SHCAPIManagerStateUploadingFile;
+
+    [self validateTokensWithSuccess:^{
+
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:rootResource.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+            // Subject
+            NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
+            NSString *subject = [fileName substringToIndex:rangeOfExtension.location];
+            [formData appendPartWithFormData:[subject dataUsingEncoding:NSASCIIStringEncoding] name:@"subject"];
+
+            NSError *error = nil;
+            NSData *fileData = [NSData dataWithContentsOfURL:uploadURL options:NSDataReadingMappedIfSafe error:&error];
+            if (error) {
+                DDLogError(@"Error reading data: %@", [error localizedDescription]);
+            }
+            [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"application/pdf"];
+        }];
+
+        [urlRequest setValue:@"*/*" forHTTPHeaderField:@"Accept"];
+
+        self.uploadProgress = [[NSProgress alloc] initWithParent:nil userInfo:@{@"fileName": fileName}];
+        self.uploadProgress.totalUnitCount = (int64_t)fileSize;
+
+        [self.uploadProgress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:kSHCAPIManagerKVOContext];
+
+        __weak typeof(self.uploadProgress) weakUploadProgress = self.uploadProgress;
+        [self.fileTransferSessionManager setTaskDidSendBodyDataBlock:^(NSURLSession *session, NSURLSessionTask *task, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
+            weakUploadProgress.completedUnitCount = totalBytesSent;
+        }];
+
+        self.uploadTask = [self.fileTransferSessionManager dataTaskWithRequest:urlRequest completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+
+            BOOL uploadFailure = NO;
+            NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
+            if ([HTTPURLResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+                if ([HTTPURLResponse statusCode] != 200) {
+                    uploadFailure = YES;
+                }
+            }
+            if (error || uploadFailure) {
+
+                // In case we're not actually getting an error object, let's create one
+                // and set it to something more usable that the caller can interpret.
+                if (!error) {
+                    error = [NSError errorWithDomain:kAPIManagerErrorDomain
+                                                code:SHCAPIManagerErrorCodeUploadFailed
+                                            userInfo:nil];
+                }
+
+                self.lastURLResponse = response;
+                self.lastFailureBlock = failure;
+                self.lastError = error;
+                self.state = SHCAPIManagerStateUploadingFileFailed;
+            } else {
+                self.lastURLResponse = response;
+                self.lastSuccessBlock = success;
+                self.state = SHCAPIManagerStateUploadingFileFinished;
+            }
+        }];
+
+        [self.uploadTask resume];
+    } failure:^(NSError *error) {
+        self.uploadingFile = NO;
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)cancelUploadingFiles
+{
+    NSUInteger counter = 0;
+
+    for (NSURLSessionUploadTask *uploadTask in self.fileTransferSessionManager.uploadTasks) {
+        [uploadTask cancel];
+        counter++;
+    }
+
+    if (counter > 0) {
+        NSString *uploadWord = counter > 1 ? @"uploads" : @"upload";
+        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, uploadWord);
+    }
+}
+
+- (void)removeTemporaryUploadFiles
+{
+    NSString *uploadsPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
+
+    if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:uploadsPath]) {
+        return;
+    }
+}
+
+- (void)removeTemporaryInboxFiles
+{
+    NSString *inboxPath = [[SHCFileManager sharedFileManager] inboxFolderPath];
+
+    if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:inboxPath]) {
+        return;
+    }
 }
 
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response
@@ -1084,6 +1475,7 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
 {
     NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [SHCOAuthManager sharedManager].accessToken];
     [self.sessionManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+    [self.fileTransferSessionManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
 }
 
 - (void)networkRequestDidStart:(NSNotification *)notification
@@ -1139,30 +1531,47 @@ NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
     self.state = SHCAPIManagerStateIdle;
 }
 
-- (void)cancelRequestsWithPath:(NSString *)path
+- (void)cancelRequestsWithPathSuffix:(NSString *)pathSuffix
 {
     NSUInteger counter = 0;
 
     for (NSURLSessionDataTask *task in self.sessionManager.tasks) {
         NSString *urlString = [[task.currentRequest URL] absoluteString];
-        if ([urlString length] > 0 && [path length] > 0 && [urlString hasSuffix:path]) {
+        if ([urlString length] > 0 && [pathSuffix length] > 0 && [urlString hasSuffix:pathSuffix]) {
             [task cancel];
             counter++;
         }
     }
 
     if (counter > 0) {
-        DDLogInfo(@"%lu requests cancelled", (unsigned long)counter);
+        NSString *requestWord = counter > 1 ? @"requests" : @"request";
+        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, requestWord);
     }
 }
 
-- (BOOL)requestWasCancelledWithError:(NSError *)error
+- (BOOL)requestWasCanceledWithError:(NSError *)error
 {
     if ([error code] == -999) {
         return YES;
     } else {
         return NO;
     }
+}
+
+- (NSString *)mimeTypeForFileType:(NSString *)fileType
+{
+    // First, grab the UTI
+    CFStringRef pathExtension = (__bridge_retained CFStringRef)fileType;
+    CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
+    CFRelease(pathExtension);
+
+    // The UTI can be converted to a mime type:
+    NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
+    if (type != NULL) {
+        CFRelease(type);
+    }
+
+    return mimeType;
 }
 
 @end

@@ -40,7 +40,10 @@ extern NSString *const kFileManagerEncryptingErrorDomain;
 - (BOOL)encryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error;
 - (BOOL)removeAllDecryptedFiles;
 - (BOOL)removeAllFiles;
+- (BOOL)removeAllFilesInFolder:(NSString *)folder;
 - (NSString *)encryptedFilesFolderPath;
 - (NSString *)decryptedFilesFolderPath;
+- (NSString *)uploadsFolderPath;
+- (NSString *)inboxFolderPath;
 
 @end

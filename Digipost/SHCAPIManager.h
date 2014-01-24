@@ -10,11 +10,20 @@
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
-    SHCAPIManagerErrorCodeUnauthorized = 1
+    SHCAPIManagerErrorCodeUnauthorized = 1,
+    SHCAPIManagerErrorCodeUploadFileDoesNotExist,
+    SHCAPIManagerErrorCodeUploadFileTooBig,
+    SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource,
+    SHCAPIManagerErrorCodeUploadFailed
 };
 
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
+
+// Notification names
+extern NSString *const kAPIManagerUploadProgressStartedNotificationName;
+extern NSString *const kAPIManagerUploadProgressChangedNotificationName;
+extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 @class SHCFolder;
 @class SHCBaseEncryptedModel;
@@ -25,8 +34,12 @@ extern NSString *const kAPIManagerErrorDomain;
 @interface SHCAPIManager : NSObject
 
 @property (assign, nonatomic, getter = isUpdatingRootResource) BOOL updatingRootResource;
+@property (assign, nonatomic, getter = isUpdatingBankAccount) BOOL updatingBankAccount;
 @property (assign, nonatomic, getter = isUpdatingDocuments) BOOL updatingDocuments;
 @property (assign, nonatomic, getter = isUpdatingReceipts) BOOL updatingReceipts;
+@property (assign, nonatomic, getter = isDownloadingBaseEncryptionModel) BOOL downloadingBaseEncryptionModel;
+@property (assign, nonatomic, getter = isUploadingFile) BOOL uploadingFile;
+@property (strong, nonatomic) NSProgress *uploadProgress;
 
 + (instancetype)sharedManager;
 
@@ -47,6 +60,8 @@ extern NSString *const kAPIManagerErrorDomain;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingReceipts;
 - (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)cancelUploadingFiles;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;
 

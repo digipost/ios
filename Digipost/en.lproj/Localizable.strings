@@ -188,3 +188,12 @@
 
 /* receipts */
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "receipts";
+
+/* Do you want to upload the file %@ to Digipost? */
+"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to Digipost?";
+
+/* Upload file */
+"APPDELEGATE_UPLOAD_FILE_TITLE" = "Upload file";
+
+/* Upload */
+"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE" = "Upload";

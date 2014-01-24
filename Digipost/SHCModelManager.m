@@ -285,7 +285,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithRetries:(BOOL)retries
 {
-    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 	NSString *storePath = [documentsDirectory stringByAppendingPathComponent:[kSQLiteDatabaseName stringByAppendingFormat:@".%@", kSQLiteDatabaseExtension]];
 	NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
 

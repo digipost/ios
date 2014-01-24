@@ -36,6 +36,7 @@ extern NSString *const kReceiptReceiptAPIKey;
 @property (strong, nonatomic) SHCMailbox *mailbox;
 
 + (instancetype)receiptWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (instancetype)existingReceiptWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allReceiptsWithMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForReceiptAmount:(NSNumber *)amount;

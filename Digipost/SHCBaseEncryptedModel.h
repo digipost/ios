@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 
+extern NSString *const kBaseEncryptionModelEntityName;
+
 @interface SHCBaseEncryptedModel : NSManagedObject
 
 @property (strong, nonatomic) NSString *uri;

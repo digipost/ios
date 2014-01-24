@@ -12,6 +12,7 @@
 #import <DDFileLogger.h>
 #import <GAI.h>
 #import <GAITracker.h>
+#import <UIAlertView+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "SHCAPIManager.h"
 #import "SHCLetterViewController.h"
@@ -77,6 +78,26 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString *fileName = [url lastPathComponent];
+    NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
+    [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
+                       message:[NSString stringWithFormat:format, fileName]
+             cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+             otherButtonTitles:@[NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload")]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == 1) {
+                              [[SHCAPIManager sharedManager] uploadFileWithURL:url success:^{
+
+                              } failure:^(NSError *error) {
+
+                              }];
+                          }
+                      }];
+    return YES;
 }
 
 #pragma mark - Private methods

@@ -115,6 +115,22 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     return receipt;
 }
 
++ (instancetype)existingReceiptWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.fetchLimit = 1;
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    return [results firstObject];
+}
+
 + (void)reconnectDanglingReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     // At this point, all our Mailbox objects have been created anew.

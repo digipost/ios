@@ -55,6 +55,8 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.folders = [NSMutableArray array];
 
     [super viewDidLoad];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -326,9 +328,23 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Sign Out");
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
 
-    self.navigationItem.title = [NSString stringWithFormat:@"%@ %@",
-                                 self.rootResource.firstName ?: @"",
-                                 self.rootResource.lastName ?: @""];
+    self.navigationItem.title = self.rootResource.firstName ?: @"";
+}
+
+- (void)uploadProgressDidStart:(NSNotification *)notification
+{
+    UIViewController *topViewController = [self.navigationController topViewController];
+    SHCDocumentsViewController *archiveViewController = (SHCDocumentsViewController *)topViewController;
+    if (!([topViewController isKindOfClass:[SHCDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {
+
+        [self.navigationController popToViewController:self animated:YES];
+
+        for (SHCFolder *folder in self.folders) {
+            if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
+                [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:folder];
+            }
+        }
+    }
 }
 
 @end

@@ -12,7 +12,7 @@
 
 + (NSString *)randomNumberString
 {
-    return [NSString stringWithFormat:@"%ui", arc4random() % UINT32_MAX];
+    return [NSString stringWithFormat:@"%u", arc4random() % UINT32_MAX];
 }
 
 @end

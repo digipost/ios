@@ -8,6 +8,8 @@
 
 #import "SHCBaseEncryptedModel.h"
 #import "SHCFileManager.h"
+#import "SHCModelManager.h"
+#import "SHCBaseEncryptedModel.h"
 #import "NSString+SHA1String.h"
 
 @implementation SHCBaseEncryptedModel

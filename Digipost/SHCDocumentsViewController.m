@@ -23,6 +23,7 @@
 #import "SHCAppDelegate.h"
 #import "UIViewController+ValidateOpening.h"
 #import "SHCInvoice.h"
+#import "SHCUploadTableViewCell.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -71,6 +72,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     [super viewWillAppear:animated];
 
     [self.navigationController setToolbarHidden:YES animated:NO];
+
+    if ([self.folderName isEqualToString:kFolderArchiveName]) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidChange:) name:kAPIManagerUploadProgressChangedNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidFinish:) name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -83,6 +89,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[SHCAPIManager sharedManager] cancelUpdatingDocuments];
+
+    if ([self.folderName isEqualToString:kFolderArchiveName]) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressChangedNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
+    }
 
     [self programmaticallyEndRefresh];
 
@@ -120,8 +131,34 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
+
+    if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
+        number++;
+    }
+
+    return number;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
+
+        if (indexPath.row == 0) {
+            SHCUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier forIndexPath:indexPath];
+            cell.progressView.progress = [SHCAPIManager sharedManager].uploadProgress.fractionCompleted;
+            cell.dateLabel.text = [SHCDocument stringForDocumentDate:[NSDate date]];
+            cell.fileNameLabel.text = [[SHCAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+
+            return cell;
+        }
+
+        // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
+    }
+
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     SHCDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier forIndexPath:indexPath];
@@ -519,6 +556,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
+    if ([SHCAPIManager sharedManager].isUpdatingBankAccount) {
+        return;
+    }
+
     [[SHCAPIManager sharedManager] updateBankAccountWithUri:uri success:nil failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -542,6 +583,51 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                  otherButtonTitles:@[error.okButtonTitle]
                           tapBlock:error.tapBlock];
     }];
+}
+
+- (void)uploadProgressDidChange:(NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+
+        // Don't do anything if this view controller isn't visible
+        if (!(self.isViewLoaded && self.view.window)) {
+            return;
+        }
+
+        // Try to find our upload cell
+        SHCUploadTableViewCell *uploadCell = nil;
+
+        for (UITableViewCell *cell in [self.tableView visibleCells]) {
+            if ([cell isKindOfClass:[SHCUploadTableViewCell class]]) {
+                uploadCell = (SHCUploadTableViewCell *)cell;
+                break;
+            }
+        }
+
+        if (uploadCell) {
+            uploadCell.progressView.progress = [SHCAPIManager sharedManager].uploadProgress.fractionCompleted;
+            NSLog(@"fractionCompleted = %f", [SHCAPIManager sharedManager].uploadProgress.fractionCompleted);
+        } else {
+            // We've not found the upload cell - let's check if the topmost cell is visible.
+            // If it is, that means we're missing the upload cell and we need to insert it.
+            NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            if ([[self.tableView indexPathsForVisibleRows] containsObject:firstIndexPath]) {
+                [self.tableView reloadData];
+            }
+        }
+    });
+}
+
+- (void)uploadProgressDidFinish:(NSNotification *)notification
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // Don't do anything if this view controller isn't visible
+        if (!(self.isViewLoaded && self.view.window)) {
+            return;
+        }
+
+        [self updateContentsFromServer];
+    });
 }
 
 @end

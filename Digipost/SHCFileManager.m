@@ -20,6 +20,7 @@ NSString *const kFileManagerEncryptingErrorDomain = @"FileManagerEncryptingError
 
 NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
 NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
+NSString *const kFileManagerUploadsFolderName = @"uploads";
 
 @implementation SHCFileManager
 
@@ -252,38 +253,6 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
     return successfullyRemovedEncryptedFiles && successfullyRemovedDecryptedFiles;
 }
 
-- (NSString *)encryptedFilesFolderPath
-{
-    return [self folderPathWithFolderName:kFileManagerEncryptedFilesFolderName];
-}
-
-- (NSString *)decryptedFilesFolderPath
-{
-    return [self folderPathWithFolderName:kFileManagerDecryptedFilesFolderName];
-}
-
-#pragma mark - Private methods
-
-- (NSString *)folderPathWithFolderName:(NSString *)folderName
-{
-    NSString *folderPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:folderName];
-
-    BOOL isFolder = NO;
-    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isFolder]) {
-        if (isFolder) {
-            return folderPath;
-        }
-    }
-
-    NSError *error = nil;
-    if (![[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error]) {
-        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
-        return nil;
-    }
-
-    return folderPath;
-}
-
 - (BOOL)removeAllFilesInFolder:(NSString *)folder
 {
     NSError *error = nil;
@@ -307,8 +276,50 @@ NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
             return NO;
         }
     }
-    
+
     return YES;
+}
+
+- (NSString *)encryptedFilesFolderPath
+{
+    return [self folderPathWithFolderName:kFileManagerEncryptedFilesFolderName];
+}
+
+- (NSString *)decryptedFilesFolderPath
+{
+    return [self folderPathWithFolderName:kFileManagerDecryptedFilesFolderName];
+}
+
+- (NSString *)uploadsFolderPath
+{
+    return [self folderPathWithFolderName:kFileManagerUploadsFolderName];
+}
+
+- (NSString *)inboxFolderPath
+{
+    return [self folderPathWithFolderName:@"Inbox"];
+}
+
+#pragma mark - Private methods
+
+- (NSString *)folderPathWithFolderName:(NSString *)folderName
+{
+    NSString *folderPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingPathComponent:folderName];
+
+    BOOL isFolder = NO;
+    if ([[NSFileManager defaultManager] fileExistsAtPath:folderPath isDirectory:&isFolder]) {
+        if (isFolder) {
+            return folderPath;
+        }
+    }
+
+    NSError *error = nil;
+    if (![[NSFileManager defaultManager] createDirectoryAtPath:folderPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
+        return nil;
+    }
+
+    return folderPath;
 }
 
 @end

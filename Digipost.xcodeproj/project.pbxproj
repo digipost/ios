@@ -27,6 +27,9 @@
 		8364D71E185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */; };
 		8364D71F185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */; };
 		8364D720185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */; };
+		837574BA1891041C00902218 /* SHCUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* SHCUploadTableViewCell.m */; };
+		837574BB1891041C00902218 /* SHCUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* SHCUploadTableViewCell.m */; };
+		837574BC1891041C00902218 /* SHCUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* SHCUploadTableViewCell.m */; };
 		8375DD381855C383009435B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
 		8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
@@ -169,6 +172,8 @@
 		8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCBaseTableViewController.m; sourceTree = "<group>"; };
 		8364D71C185F2981008DE6CB /* SHCDocumentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocumentTableViewCell.h; sourceTree = "<group>"; };
 		8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocumentTableViewCell.m; sourceTree = "<group>"; };
+		837574B81891041C00902218 /* SHCUploadTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCUploadTableViewCell.h; sourceTree = "<group>"; };
+		837574B91891041C00902218 /* SHCUploadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCUploadTableViewCell.m; sourceTree = "<group>"; };
 		8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Staging-Enterprise.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ValidateOpening.h"; sourceTree = "<group>"; };
 		839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ValidateOpening.m"; sourceTree = "<group>"; };
@@ -197,6 +202,7 @@
 		83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NeedsReload.m"; sourceTree = "<group>"; };
 		83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Staging.xcassets"; sourceTree = "<group>"; };
 		83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
+		83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
 		83D2F7E61875578A00344644 /* SHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFileManager.h; sourceTree = "<group>"; };
 		83D2F7E71875578A00344644 /* SHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFileManager.m; sourceTree = "<group>"; };
 		83D2F7EB18755AAA00344644 /* NSString+SHA1String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1String.h"; sourceTree = "<group>"; };
@@ -223,7 +229,7 @@
 		83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCModelManager.m; sourceTree = "<group>"; };
 		83D75F731859B7250013F8C9 /* SHCFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolderTableViewCell.h; sourceTree = "<group>"; };
 		83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFolderTableViewCell.m; sourceTree = "<group>"; };
-		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
+		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
 		83DB4AE4188D1F4E00515022 /* SHCReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceipt.h; sourceTree = "<group>"; };
 		83DB4AE5188D1F4E00515022 /* SHCReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceipt.m; sourceTree = "<group>"; };
 		83DB4AE9188D287600515022 /* SHCReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptsViewController.h; sourceTree = "<group>"; };
@@ -421,6 +427,8 @@
 				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
 				83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */,
 				83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */,
+				837574B81891041C00902218 /* SHCUploadTableViewCell.h */,
+				837574B91891041C00902218 /* SHCUploadTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -789,6 +797,7 @@
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				837574BC1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -829,6 +838,7 @@
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				837574BB1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -869,6 +879,7 @@
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				837574BA1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
@@ -1211,12 +1222,13 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */,
 				83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */,
 				835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */,
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = 83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */;
+			currentVersion = 83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

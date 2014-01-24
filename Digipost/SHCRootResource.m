@@ -20,7 +20,8 @@ NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 NSString *const kRootResourceLinkAPIKey = @"link";
 NSString *const kRootResourceLinkLogoutAPIKeySuffix = @"logout";
 NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
-NSString *const kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix = @"current_bank_account";
+NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = @"current_bank_account";
+NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"upload_document";
 
 @implementation SHCRootResource
 
@@ -34,6 +35,7 @@ NSString *const kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix = @"cu
 @dynamic lastName;
 @dynamic logoutUri;
 @dynamic middleName;
+@dynamic uploadDocumentUri;
 
 // Relationships
 @dynamic mailboxes;
@@ -103,8 +105,10 @@ NSString *const kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix = @"cu
                     NSString *uri = link[@"uri"];
                     if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
 
-                        if ([rel hasSuffix:kRootResourcePrimaryAccountCurrentBankAccountAPIKeySuffix]) {
+                        if ([rel hasSuffix:kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix]) {
                             rootResource.currentBankAccountUri = uri;
+                        } else if ([rel hasSuffix:kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix]) {
+                            rootResource.uploadDocumentUri = uri;
                         }
                     }
                 }

@@ -47,6 +47,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
 
     [self presentAuthenticationWebView];
+
+    [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
 #pragma mark - UIWebViewDelegate
