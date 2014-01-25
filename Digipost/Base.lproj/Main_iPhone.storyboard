@@ -383,12 +383,59 @@
                     <connections>
                         <outlet property="deleteBarButtonItem" destination="pMp-66-eox" id="BpO-DB-SVQ"/>
                         <outlet property="moveBarButtonItem" destination="JFk-Mc-Ora" id="Hjx-KS-gi3"/>
+                        <outlet property="noDocumentsLabel" destination="bjg-Ch-dqM" id="jur-Xs-98Q"/>
                         <outlet property="selectionBarButtonItem" destination="CkA-Mv-XSE" id="UhB-zs-Iau"/>
+                        <outlet property="tableViewBackgroundView" destination="lbj-84-Fde" id="Ni0-TT-Uiw"/>
                         <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="Kl9-xn-mhN"/>
                         <segue destination="JNU-sI-t0Q" kind="push" identifier="PushAttachments" id="6gR-yU-rUq"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgJ-0K-g5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view hidden="YES" contentMode="scaleToFill" id="lbj-84-Fde" userLabel="Table View Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MKg-wJ-kWG" userLabel="No Documents View">
+                            <rect key="frame" x="0.0" y="138" width="320" height="184"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="TxU-9E-z1W" userLabel="No Documents Image View">
+                                    <rect key="frame" x="85" y="0.0" width="151" height="133"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="133" id="39G-B4-CeT"/>
+                                        <constraint firstAttribute="width" constant="151" id="aJ8-76-X8M"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="bjg-Ch-dqM" userLabel="No Documents Label">
+                                    <rect key="frame" x="30" y="143" width="260" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" priority="249" constant="21" id="dd0-zg-yps"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="bjg-Ch-dqM" firstAttribute="top" secondItem="TxU-9E-z1W" secondAttribute="bottom" constant="10" id="BOd-HF-Iwx"/>
+                                <constraint firstAttribute="centerX" secondItem="TxU-9E-z1W" secondAttribute="centerX" id="IOT-Yy-PNF"/>
+                                <constraint firstItem="TxU-9E-z1W" firstAttribute="top" secondItem="MKg-wJ-kWG" secondAttribute="top" id="MZa-CB-Iqg"/>
+                                <constraint firstAttribute="bottom" secondItem="bjg-Ch-dqM" secondAttribute="bottom" constant="20" id="V8C-Gs-SsB"/>
+                                <constraint firstAttribute="trailing" secondItem="bjg-Ch-dqM" secondAttribute="trailing" constant="30" id="YqZ-vv-HYt"/>
+                                <constraint firstItem="bjg-Ch-dqM" firstAttribute="leading" secondItem="MKg-wJ-kWG" secondAttribute="leading" constant="30" id="cAu-8g-T03"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="MKg-wJ-kWG" firstAttribute="leading" secondItem="lbj-84-Fde" secondAttribute="leading" id="75Y-d3-Zak"/>
+                        <constraint firstAttribute="centerY" secondItem="MKg-wJ-kWG" secondAttribute="centerY" id="Enh-6P-DFH"/>
+                        <constraint firstAttribute="trailing" secondItem="MKg-wJ-kWG" secondAttribute="trailing" id="umX-98-GM6"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1508" y="64"/>
         </scene>
@@ -641,7 +688,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="134"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </imageView>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="sou-c7-l6X" userLabel="Subject Label">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="270" translatesAutoresizingMaskIntoConstraints="NO" id="sou-c7-l6X" userLabel="Subject Label">
                                                 <rect key="frame" x="20" y="33" width="270" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
@@ -715,7 +762,7 @@
                                             <constraint firstAttribute="bottom" secondItem="qS7-vf-oBm" secondAttribute="bottom" constant="20" id="oum-mT-zmx"/>
                                             <constraint firstItem="GWi-rd-gUS" firstAttribute="leading" secondItem="GRH-Ar-m5o" secondAttribute="leading" constant="20" id="pOe-j8-Svn"/>
                                             <constraint firstAttribute="width" constant="310" id="wYp-GT-w6T"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="70" id="yXT-Qw-RIb"/>
+                                            <constraint firstAttribute="height" priority="249" constant="70" id="yXT-Qw-RIb"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -862,6 +909,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="empty-folder-fly" width="151" height="133"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-attachment" width="30" height="18"/>
         <image name="list-icon-padlock" width="30" height="18"/>

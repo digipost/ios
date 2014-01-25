@@ -36,6 +36,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *noDocumentsLabel;
 @property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
 
 @end
@@ -131,6 +133,17 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 #pragma mark - UITableViewDataSource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger number = [super numberOfSectionsInTableView:tableView];
+
+    if (number == 0) {
+        [self showTableViewBackgroundView:YES];
+    }
+
+    return number;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
@@ -138,6 +151,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
         number++;
     }
+
+    [self showTableViewBackgroundView:(number == 0)];
 
     return number;
 }
@@ -229,57 +244,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         return;
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-
-*/
 
 #pragma mark - IBActions
 
@@ -636,6 +600,18 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
         [self updateContentsFromServer];
     });
+}
+
+- (void)showTableViewBackgroundView:(BOOL)showTableViewBackgroundView
+{
+    if (!self.tableViewBackgroundView.superview) {
+        self.tableView.backgroundView = self.tableViewBackgroundView;
+
+        NSString *format = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no letters in the folder %@.");
+        self.noDocumentsLabel.text = [NSString stringWithFormat:format, self.folderName];
+    }
+
+    self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
 
 @end

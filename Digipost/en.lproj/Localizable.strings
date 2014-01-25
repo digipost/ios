@@ -180,6 +180,9 @@
 /* letters */
 "DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "letters";
 
+/* You have no documents in this folder. */
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "You have no documents\nin this folder.";
+
 /* Receipts */
 "RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Receipts";
 
