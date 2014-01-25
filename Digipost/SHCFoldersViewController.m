@@ -318,12 +318,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (void)updateNavbar
 {
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:self.rootResource.firstName
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:nil
-                                                                         action:nil];
-
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    [super updateNavbar];
 
     self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Sign Out");
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];

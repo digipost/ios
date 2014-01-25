@@ -37,6 +37,13 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 {
     [super viewDidLoad];
 
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:nil
+                                                                         action:nil];
+
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
+
     UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
                                                                         0.0,
                                                                         CGRectGetWidth(self.view.frame),

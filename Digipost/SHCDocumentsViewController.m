@@ -397,6 +397,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)updateNavbar
 {
+    [super updateNavbar];
+
     self.navigationItem.title = self.folderName;
 
     UIBarButtonItem *rightBarButtonItem = nil;

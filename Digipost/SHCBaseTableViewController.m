@@ -181,7 +181,12 @@
 
 - (void)updateNavbar
 {
-    NSAssert(NO, @"This method needs to be overridden in subclass");
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                          style:UIBarButtonItemStyleBordered
+                                                                         target:nil
+                                                                         action:nil];
+
+    self.navigationItem.backBarButtonItem = backBarButtonItem;
 }
 
 - (void)updateFetchedResultsController
