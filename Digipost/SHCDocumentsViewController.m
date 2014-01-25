@@ -165,7 +165,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
     SHCAttachment *attachment = [document mainDocumentAttachment];
 
-    cell.unreadImageView.hidden = [attachment.read boolValue];
+    if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
+        cell.unreadImageView.hidden = [attachment.read boolValue];
+        cell.lockedImageView.hidden = YES;
+    } else {
+        cell.unreadImageView.hidden = YES;
+        cell.lockedImageView.hidden = NO;
+    }
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [SHCDocument stringForDocumentDate:attachment.document.createdAt];
