@@ -94,7 +94,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSUInteger numberOfSections = 0;
+    NSUInteger numberOfSections = 1; // We always want the Settings section
 
     if (self.inboxFolder) {
         numberOfSections++;
@@ -108,8 +108,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 2;
+    if (section == 0 && self.inboxFolder) {
+        return 2; // Inbox and Receipts
+    } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
+        return 1; // Only Sign Out for now
     } else {
         return [self.folders count];
     }
@@ -117,10 +119,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *folderName = nil;
-    UIImage *iconImage = nil;
+    NSString *folderName;
+    UIImage *iconImage;
 
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
             folderName = self.inboxFolder.name;
             iconImage = [UIImage imageNamed:@"list-icon-inbox"];
@@ -128,6 +130,9 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
             folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
             iconImage = [UIImage imageNamed:@"list-icon-receipt"];
         }
+    } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
+        folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign Out");
+        iconImage = [UIImage imageNamed:@"list-icon-logout"];
     } else {
         folderName = [self.folders[indexPath.row] name];
         iconImage = [UIImage imageNamed:@"list-icon-folder"];
@@ -142,8 +147,12 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSString *title = nil;
-    if (section == 1) {
+    NSString *title;
+    if (section == 0 && self.inboxFolder) {
+        title = nil;
+    } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
+        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE", @"SETTINGS");
+    } else {
         title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE", @"FOLDERS");
     }
 
@@ -154,8 +163,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    CGFloat height = 0.0;
-    if (section > 0) {
+    CGFloat height;
+    if (section == 0 && self.inboxFolder) {
+        height = 0.0;
+    } else {
         height = self.tableView.sectionHeaderHeight;
     }
 
@@ -173,12 +184,25 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
             [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.inboxFolder];
         } else {
             [self performSegueWithIdentifier:kPushReceiptsIdentifier sender:nil];
         }
+    } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+
+        [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+            [[SHCOAuthManager sharedManager] removeAllTokens];
+        } failure:^(NSError *error) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }];
     } else {
         [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
     }
@@ -209,23 +233,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
             }
         }
     }
-}
-
-#pragma mark - IBActions
-
-- (IBAction)didTapLogoutButton:(id)sender
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
-
-    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
-        [[SHCOAuthManager sharedManager] removeAllTokens];
-    } failure:^(NSError *error) {
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
-    }];
 }
 
 #pragma mark - Private methods
@@ -269,8 +276,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 {
     [super updateNavbar];
 
-    self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_BUTTON_TITLE", @"Sign Out");
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
+    [self.navigationItem setHidesBackButton:YES];
 
     self.navigationItem.title = self.rootResource.firstName ?: @"";
 }
