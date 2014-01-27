@@ -11,4 +11,4 @@ pod 'LUKeychainAccess', '~> 1.2.0'
 pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.3'
 pod 'RNCryptor', '~> 2.1'
 pod 'THProgressView', '~> 1.0'
-pod 'FormatterKit/TimeIntervalFormatter', '~> 1.4.0'
+
