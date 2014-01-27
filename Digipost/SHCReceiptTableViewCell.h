@@ -13,7 +13,6 @@ extern NSString *const kReceiptTableViewCellIdentifier;
 @interface SHCReceiptTableViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *amountLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cardLabel;
 @property (weak, nonatomic) IBOutlet UILabel *storeNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 

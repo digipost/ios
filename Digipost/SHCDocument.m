@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
-#import <TTTTimeIntervalFormatter.h>
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
 #import "SHCFolder.h"
@@ -159,25 +158,31 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 {
     NSDate *nowDate = [NSDate date];
 
-    NSDateComponents *dateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:date toDate:nowDate options:0];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
 
-    if (dateComponents.day > 6) {
+    NSInteger fromDay = [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:date];
+    NSInteger toDay = [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:nowDate];
+
+    NSInteger dayDiff = abs((int)toDay - (int)fromDay);
+
+    if (dayDiff > 6) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterShortStyle;
         dateFormatter.timeStyle = NSDateFormatterNoStyle;
 
         return [dateFormatter stringFromDate:date];
-    } else if (dateComponents.day > 1) {
+    } else if (dayDiff > 1) {
         NSDateFormatter *weekdayDateFormatter = [[NSDateFormatter alloc] init];
         weekdayDateFormatter.dateFormat = @"EEEE";
 
         return [weekdayDateFormatter stringFromDate:date];
-    } else if (dateComponents.day == 1) {
+    } else if (dayDiff == 1) {
         return NSLocalizedString(@"GENERIC_YESTERDAY_TITLE", @"Yesterday");
     } else {
-        TTTTimeIntervalFormatter *timeIntervalFormatter = [[TTTTimeIntervalFormatter alloc] init];
+        NSDateFormatter *hoursDateFormatter = [[NSDateFormatter alloc] init];
+        hoursDateFormatter.dateFormat = @"HH:mm";
 
-        return [timeIntervalFormatter stringForTimeIntervalFromDate:nowDate toDate:date];
+        return [hoursDateFormatter stringFromDate:date];
     }
 }
 
