@@ -195,6 +195,21 @@
 /* receipts */
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "receipts";
 
+/* No cards */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Get your receipts electronically through Digipost when shopping with your debit and credit cards.\n\nSet up your payment cards on digipost.no to get started.";
+
+/* Cards ready */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Your payment cards are set up.\n\nThe next time you pay in a store that uses electronic receipts, the receipts will appear here.";
+
+/* Receipts hidden */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ hidden.\nTo show these, please verify your payment cards on digipost.no.";
+
+/* receipt is */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "receipt is";
+
+/* receipts are */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL" = "receipts are";
+
 /* Do you want to upload the file %@ to Digipost? */
 "APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to Digipost?";
 

@@ -83,6 +83,20 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
+- (void)updateCardAttributes:(NSDictionary *)attributes
+{
+    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
+
+    NSNumber *numberOfCards = attributes[NSStringFromSelector(@selector(numberOfCards))];
+    rootResource.numberOfCards = [numberOfCards isKindOfClass:[NSNumber class]] ? numberOfCards : @0;
+
+    NSNumber *numberOfCardsReadyForVerification = attributes[NSStringFromSelector(@selector(numberOfCardsReadyForVerification))];
+    rootResource.numberOfCardsReadyForVerification = [numberOfCardsReadyForVerification isKindOfClass:[NSNumber class]] ? numberOfCardsReadyForVerification : @0;
+
+    NSNumber *numberOfReceiptsHiddenUntilVerification = attributes[NSStringFromSelector(@selector(numberOfReceiptsHiddenUntilVerification))];
+    rootResource.numberOfReceiptsHiddenUntilVerification = [numberOfReceiptsHiddenUntilVerification isKindOfClass:[NSNumber class]] ? numberOfReceiptsHiddenUntilVerification : @0;
+}
+
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes
 {
     // First, find the folder object

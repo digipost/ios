@@ -404,7 +404,7 @@
                                     <rect key="frame" x="30" y="143" width="260" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" priority="249" constant="21" id="dd0-zg-yps"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="dd0-zg-yps"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -560,10 +560,57 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="deleteBarButtonItem" destination="ncs-6S-Eoq" id="Eol-gE-35A"/>
+                        <outlet property="noReceiptsLabel" destination="x2V-fX-zry" id="xZe-EE-eO3"/>
                         <outlet property="selectionBarButtonItem" destination="DqK-UA-qVe" id="03n-yP-W3E"/>
+                        <outlet property="tableViewBackgroundView" destination="xH6-3G-Zyg" id="xVZ-cT-FRs"/>
                         <segue destination="IOM-jr-kzB" kind="push" identifier="PushReceipt" id="6sB-Ci-mbg"/>
                     </connections>
                 </tableViewController>
+                <view hidden="YES" contentMode="scaleToFill" id="xH6-3G-Zyg" userLabel="Table View Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sMd-p1-eeM" userLabel="No Receipts View">
+                            <rect key="frame" x="0.0" y="148" width="320" height="164"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="Vlv-Ne-qMt" userLabel="No Receipts Image View">
+                                    <rect key="frame" x="85" y="0.0" width="151" height="143"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="151" id="L89-Z5-Wze"/>
+                                        <constraint firstAttribute="height" constant="133" id="MLW-EY-dI5"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="x2V-fX-zry" userLabel="No Receipts Label">
+                                    <rect key="frame" x="30" y="143" width="260" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="pvw-Pj-GJ4"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="x2V-fX-zry" firstAttribute="leading" secondItem="sMd-p1-eeM" secondAttribute="leading" constant="30" id="12S-a6-af0"/>
+                                <constraint firstAttribute="trailing" secondItem="x2V-fX-zry" secondAttribute="trailing" constant="30" id="D0z-0e-EXB"/>
+                                <constraint firstItem="x2V-fX-zry" firstAttribute="top" secondItem="Vlv-Ne-qMt" secondAttribute="bottom" constant="10" id="Sal-n2-eDk"/>
+                                <constraint firstAttribute="centerX" secondItem="Vlv-Ne-qMt" secondAttribute="centerX" id="knl-rp-FZH"/>
+                                <constraint firstAttribute="bottom" secondItem="x2V-fX-zry" secondAttribute="bottom" id="ktq-Vj-WTe"/>
+                                <constraint firstItem="Vlv-Ne-qMt" firstAttribute="top" secondItem="sMd-p1-eeM" secondAttribute="top" id="w8l-f8-qr4"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="sMd-p1-eeM" secondAttribute="centerY" id="PZd-mN-arq"/>
+                        <constraint firstItem="sMd-p1-eeM" firstAttribute="leading" secondItem="xH6-3G-Zyg" secondAttribute="leading" id="bKe-Nn-xbk"/>
+                        <constraint firstAttribute="trailing" secondItem="sMd-p1-eeM" secondAttribute="trailing" id="t53-aL-d9J"/>
+                    </constraints>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32i-4K-2Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1508" y="810"/>
@@ -915,6 +962,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="6sB-Ci-mbg"/>
     </inferredMetricsTieBreakers>
 </document>

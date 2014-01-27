@@ -20,6 +20,7 @@
 
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes;
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes;
+- (void)updateCardAttributes:(NSDictionary *)attributes;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes;
 - (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes;
 - (void)deleteDocument:(SHCDocument *)document;

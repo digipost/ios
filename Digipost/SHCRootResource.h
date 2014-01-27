@@ -26,6 +26,9 @@ extern NSString *const kRootResourceEntityName;
 @property (strong, nonatomic) NSString *lastName;
 @property (strong, nonatomic) NSString *logoutUri;
 @property (strong, nonatomic) NSString *middleName;
+@property (strong, nonatomic) NSNumber *numberOfCards;
+@property (strong, nonatomic) NSNumber *numberOfCardsReadyForVerification;
+@property (strong, nonatomic) NSNumber *numberOfReceiptsHiddenUntilVerification;
 @property (strong, nonatomic) NSString *uploadDocumentUri;
 
 // Relationships

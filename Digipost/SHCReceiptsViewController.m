@@ -18,6 +18,7 @@
 #import "SHCAppDelegate.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCDocument.h"
+#import "SHCRootResource.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
@@ -29,6 +30,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *noReceiptsLabel;
 
 @end
 
@@ -101,6 +104,26 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 }
 
 #pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    NSInteger number = [super numberOfSectionsInTableView:tableView];
+
+    if (number == 0) {
+        [self showTableViewBackgroundView:YES];
+    }
+
+    return number;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
+
+    [self showTableViewBackgroundView:(number == 0)];
+
+    return number;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -321,6 +344,31 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                  otherButtonTitles:@[error.okButtonTitle]
                           tapBlock:error.tapBlock];
     }];
+}
+
+- (void)showTableViewBackgroundView:(BOOL)showTableViewBackgroundView
+{
+    if (!self.tableViewBackgroundView.superview && showTableViewBackgroundView) {
+        self.tableView.backgroundView = self.tableViewBackgroundView;
+    }
+
+    if (showTableViewBackgroundView) {
+        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+
+        if ([rootResource.numberOfCards integerValue] == 0) {
+            self.noReceiptsLabel.text = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", @"No cards");
+        } else if ([rootResource.numberOfCardsReadyForVerification integerValue] == 0) {
+            self.noReceiptsLabel.text = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE", @"Cards ready");
+        } else {
+            NSString *format = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE", @"Receipts hidden");
+            NSInteger numberOfReceiptsHidden = [rootResource.numberOfReceiptsHiddenUntilVerification integerValue];
+            NSString *receiptWord = numberOfReceiptsHidden == 1 ? NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", @"receipt is") :
+                                                                  NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", @"receipts are");
+            self.noReceiptsLabel.text = [NSString stringWithFormat:format, numberOfReceiptsHidden, receiptWord];
+        }
+    }
+
+    self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
 
 @end

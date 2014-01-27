@@ -604,11 +604,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 - (void)showTableViewBackgroundView:(BOOL)showTableViewBackgroundView
 {
-    if (!self.tableViewBackgroundView.superview) {
+    if (!self.tableViewBackgroundView.superview && showTableViewBackgroundView) {
         self.tableView.backgroundView = self.tableViewBackgroundView;
 
-        NSString *format = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no letters in the folder %@.");
-        self.noDocumentsLabel.text = [NSString stringWithFormat:format, self.folderName];
+        self.noDocumentsLabel.text = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no documents in this folder.");
     }
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;

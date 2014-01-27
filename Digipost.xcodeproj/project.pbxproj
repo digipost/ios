@@ -159,6 +159,7 @@
 /* Begin PBXFileReference section */
 		1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* SHCAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAPIManager.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* SHCAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAPIManager.m; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
@@ -1222,13 +1223,14 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */,
 				83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */,
 				83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */,
 				835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */,
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = 83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */;
+			currentVersion = 833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

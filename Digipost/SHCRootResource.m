@@ -35,6 +35,9 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
 @dynamic lastName;
 @dynamic logoutUri;
 @dynamic middleName;
+@dynamic numberOfCards;
+@dynamic numberOfCardsReadyForVerification;
+@dynamic numberOfReceiptsHiddenUntilVerification;
 @dynamic uploadDocumentUri;
 
 // Relationships

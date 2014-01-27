@@ -645,6 +645,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingReceipts) {
+                        [[SHCModelManager sharedManager] updateCardAttributes:responseDict];
                         [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
                     }
 
