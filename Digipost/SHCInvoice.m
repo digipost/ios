@@ -45,8 +45,12 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
     invoice.accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
 
+    // Because amount is given as a decimal number from the API, and we don't want to risk floating points
+    // inaccuracies, we convert to 100th's and store as an integer in Core Data.
     NSNumber *amount = attributes[NSStringFromSelector(@selector(amount))];
-    invoice.amount = [amount isKindOfClass:[NSNumber class]] ? amount : nil;
+    if ([amount isKindOfClass:[NSNumber class]]) {
+        invoice.amount = [NSNumber numberWithInteger:round([amount doubleValue] * 100.0)];
+    }
 
     NSNumber *canBePaidByUser = attributes[NSStringFromSelector(@selector(canBePaidByUser))];
     invoice.canBePaidByUser = [canBePaidByUser isKindOfClass:[NSNumber class]] ? canBePaidByUser : nil;

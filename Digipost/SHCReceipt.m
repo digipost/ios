@@ -63,8 +63,12 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     NSEntityDescription *entity = [[SHCModelManager sharedManager] receiptEntity];
     SHCReceipt *receipt = [[SHCReceipt alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
 
+    // Because amount is given as a decimal number from the API, and we don't want to risk floating points
+    // inaccuracies, we convert to 100th's and store as an integer in Core Data.
     NSNumber *amount = attributes[NSStringFromSelector(@selector(amount))];
-    receipt.amount = [amount isKindOfClass:[NSNumber class]] ? amount : nil;
+    if ([amount isKindOfClass:[NSNumber class]]) {
+        receipt.amount = [NSNumber numberWithInteger:round([amount doubleValue] * 100.0)];
+    }
 
     NSArray *cards = attributes[kReceiptCardAPIKey];
     if ([cards isKindOfClass:[NSArray class]]) {
@@ -191,14 +195,14 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
 + (NSString *)stringForReceiptAmount:(NSNumber *)amount
 {
-    CGFloat decimalAmount = [amount floatValue] / 100.0;
-
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [numberFormatter setLocale:[NSLocale currentLocale]];
 
-    NSString *decimalAmountString = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:decimalAmount]];
-    NSString *string = [NSString stringWithFormat:@"%@ kr", decimalAmountString];
+    NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 100.0];
+
+    NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
+    NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
 
     return string;
 }
