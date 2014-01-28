@@ -17,7 +17,7 @@ extern NSString *const kLoginViewControllerIdentifier;
 extern NSString *const kPresentLoginModallyIdentifier;
 
 // Notification names
-extern NSString *const kPopToLoginViewControllerNotificationName;
+extern NSString *const kShowLoginViewControllerNotificationName;
 
 @interface SHCLoginViewController : GAITrackedViewController
 

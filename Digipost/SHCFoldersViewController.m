@@ -7,6 +7,7 @@
 //
 
 #import <UIAlertView+Blocks.h>
+#import <UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
 #import "SHCAPIManager.h"
@@ -194,17 +195,32 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         }
     } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:kPopToLoginViewControllerNotificationName object:nil];
+        CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
 
-        [[SHCAPIManager sharedManager] logoutWithSuccess:^{
-            [[SHCOAuthManager sharedManager] removeAllTokens];
-        } failure:^(NSError *error) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
-        }];
+        [UIActionSheet showFromRect:[tableView convertRect:rect toView:self.view]
+                             inView:self.view
+                           animated:YES
+                          withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
+                  cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+             destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
+                  otherButtonTitles:nil
+                           tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                               if (buttonIndex == 0) {
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+
+                                   [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+                                       [[SHCOAuthManager sharedManager] removeAllTokens];
+                                   } failure:^(NSError *error) {
+                                       [UIAlertView showWithTitle:error.errorTitle
+                                                          message:[error localizedDescription]
+                                                cancelButtonTitle:nil
+                                                otherButtonTitles:@[error.okButtonTitle]
+                                                         tapBlock:error.tapBlock];
+                                   }];
+                               }
+
+                               [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                           }];
     } else {
         [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
     }

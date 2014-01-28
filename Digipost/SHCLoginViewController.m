@@ -21,7 +21,7 @@ NSString *const kLoginViewControllerIdentifier = @"LoginViewController";
 NSString *const kPresentLoginModallyIdentifier = @"PresentLoginModally";
 
 // Notification names
-NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
+NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewControllerNotification";
 
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
@@ -37,10 +37,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 @implementation SHCLoginViewController
 
+#pragma mark - NSObject
+
 - (void)dealloc
 {
     @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kPopToLoginViewControllerNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kShowLoginViewControllerNotificationName object:nil];
     }
     @catch (NSException *exception) {
         DDLogWarn(@"Caught an exception: %@", exception);
@@ -56,7 +58,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kPopToLoginViewControllerNotificationName object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kShowLoginViewControllerNotificationName object:nil];
     }
     @catch (NSException *exception) {
         DDLogWarn(@"Caught an exception: %@", exception);
@@ -162,7 +164,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)popToSelf:(NSNotification *)notification
 {
-    [self.navigationController popToViewController:self animated:YES];
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        [self.navigationController popToViewController:self animated:YES];
+    }
 }
 
 @end

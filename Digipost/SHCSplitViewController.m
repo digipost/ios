@@ -16,6 +16,32 @@
 
 @implementation SHCSplitViewController
 
+#pragma mark - NSObject
+
+- (void)dealloc
+{
+    @try {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:kShowLoginViewControllerNotificationName object:nil];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"Caught an exception: %@", exception);
+    }
+}
+
+#pragma mark - UIViewController
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    @try {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(presentLoginViewController:) name:kShowLoginViewControllerNotificationName object:nil];
+    }
+    @catch (NSException *exception) {
+        DDLogWarn(@"Caught an exception: %@", exception);
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     if (![SHCOAuthManager sharedManager].refreshToken) {
@@ -31,6 +57,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private methods
+
+- (void)presentLoginViewController:(NSNotification *)notification
+{
+    [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
 }
 
 @end

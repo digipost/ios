@@ -39,6 +39,9 @@
 /* Sign Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE" = "Sign Out";
 
+/* You you sure you want to sign out? */
+"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "You you sure you want to sign out?";
+
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Missing access token in response";
 
