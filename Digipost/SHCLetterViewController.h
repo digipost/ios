@@ -18,7 +18,7 @@ extern NSString *const kPushReceiptIdentifier;
 @class SHCAttachment;
 @class SHCReceipt;
 
-@interface SHCLetterViewController : GAITrackedViewController
+@interface SHCLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) SHCDocumentsViewController *documentsViewController;
 @property (weak, nonatomic) SHCReceiptsViewController *receiptsViewController;

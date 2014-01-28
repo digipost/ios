@@ -16,5 +16,8 @@ extern NSString *const kFolderTableViewCellIdentifier;
 @property (weak, nonatomic) IBOutlet UIView *selectedView;
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *folderNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *unreadCounterImageView;
+@property (weak, nonatomic) IBOutlet UILabel *unreadCounterLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 
 @end

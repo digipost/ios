@@ -123,11 +123,14 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 {
     NSString *folderName;
     UIImage *iconImage;
+    BOOL arrowHidden = NO;
+    BOOL unreadCounterHidden = YES;
 
     if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
             folderName = self.inboxFolder.name;
             iconImage = [UIImage imageNamed:@"list-icon-inbox"];
+            unreadCounterHidden = NO;
         } else {
             folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
             iconImage = [UIImage imageNamed:@"list-icon-receipt"];
@@ -135,6 +138,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
         folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign Out");
         iconImage = [UIImage imageNamed:@"list-icon-logout"];
+        arrowHidden = YES;
     } else {
         folderName = [self.folders[indexPath.row] name];
         iconImage = [UIImage imageNamed:@"list-icon-folder"];
@@ -144,6 +148,14 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     cell.backgroundColor = [UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:1.0];
     cell.folderNameLabel.text = folderName;
     cell.iconImageView.image = iconImage;
+    cell.arrowImageView.hidden = arrowHidden;
+    cell.unreadCounterImageView.hidden = unreadCounterHidden;
+    cell.unreadCounterLabel.hidden = unreadCounterHidden;
+
+    if (!unreadCounterHidden) {
+        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
+    }
 
     return cell;
 }

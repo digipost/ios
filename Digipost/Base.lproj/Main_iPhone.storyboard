@@ -112,7 +112,7 @@
                                         <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vmT-Vr-PVY" userLabel="Selected View">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" red="0.31764705882352939" green="0.70196078431372544" blue="0.94901960784313721" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.19607843137254902" green="0.20784313725490194" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-mi-dzV" userLabel="Icon Image View">
                                             <rect key="frame" x="15" y="19" width="15" height="12"/>
@@ -132,6 +132,33 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-unread-counter" translatesAutoresizingMaskIntoConstraints="NO" id="O2Y-vy-HSD" userLabel="Unread Counter Image View">
+                                            <rect key="frame" x="257" y="13" width="23" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="23" id="EiZ-Ub-U9n"/>
+                                                <constraint firstAttribute="height" constant="23" id="Qk1-9P-GyQ"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aua-uF-gO9" userLabel="Unread Counter Label">
+                                            <rect key="frame" x="257" y="14" width="23" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="23" id="Jlq-4x-yHl"/>
+                                                <constraint firstAttribute="width" constant="23" id="cMt-7H-Hlh"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-white" translatesAutoresizingMaskIntoConstraints="NO" id="LLD-bN-g7Z" userLabel="Arrow Image View">
+                                            <rect key="frame" x="297" y="19" width="8" height="13"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="13" id="KaP-0m-kbX"/>
+                                                <constraint firstAttribute="width" constant="8" id="pOs-hY-SKW"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="vhx-hr-I5w" secondAttribute="trailing" id="0Wa-JV-7J2"/>
@@ -141,19 +168,28 @@
                                         <constraint firstAttribute="centerY" secondItem="r0R-mi-dzV" secondAttribute="centerY" id="5W8-Qg-pFU"/>
                                         <constraint firstItem="o8S-n8-YQk" firstAttribute="leading" secondItem="Yaj-27-Xs6" secondAttribute="leading" constant="40" id="6Vi-Pu-91E"/>
                                         <constraint firstAttribute="trailing" secondItem="vmT-Vr-PVY" secondAttribute="trailing" id="Au5-Fw-XJM"/>
+                                        <constraint firstAttribute="centerY" secondItem="aua-uF-gO9" secondAttribute="centerY" id="GBq-He-7t0"/>
+                                        <constraint firstAttribute="centerY" secondItem="LLD-bN-g7Z" secondAttribute="centerY" id="HLl-8o-Jhk"/>
+                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="O2Y-vy-HSD" secondAttribute="trailing" constant="17" id="KPh-MG-DSl"/>
+                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="aua-uF-gO9" secondAttribute="trailing" constant="17" id="LrN-Hl-A9u"/>
+                                        <constraint firstAttribute="trailing" secondItem="LLD-bN-g7Z" secondAttribute="trailing" constant="15" id="QLd-7C-BaU"/>
                                         <constraint firstItem="vhx-hr-I5w" firstAttribute="leading" secondItem="Yaj-27-Xs6" secondAttribute="leading" constant="15" id="YzC-ys-K6t"/>
                                         <constraint firstItem="vmT-Vr-PVY" firstAttribute="top" secondItem="Yaj-27-Xs6" secondAttribute="top" id="cm6-kO-h1X"/>
                                         <constraint firstAttribute="trailing" secondItem="o8S-n8-YQk" secondAttribute="trailing" constant="54" id="dgu-bz-A44"/>
+                                        <constraint firstAttribute="centerY" secondItem="O2Y-vy-HSD" secondAttribute="centerY" id="eiX-jh-cZM"/>
                                         <constraint firstAttribute="bottom" secondItem="vhx-hr-I5w" secondAttribute="bottom" id="rQn-6X-acd"/>
                                         <constraint firstAttribute="centerY" secondItem="o8S-n8-YQk" secondAttribute="centerY" id="tGX-mR-QlP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="arrowImageView" destination="LLD-bN-g7Z" id="MTF-Xm-Bih"/>
                                     <outlet property="folderNameLabel" destination="o8S-n8-YQk" id="R2o-xR-SFR"/>
                                     <outlet property="iconImageView" destination="r0R-mi-dzV" id="uTC-Lj-UCt"/>
                                     <outlet property="selectedView" destination="vmT-Vr-PVY" id="Wfq-Cn-Si6"/>
                                     <outlet property="separatorView" destination="vhx-hr-I5w" id="5u1-Sl-P6y"/>
+                                    <outlet property="unreadCounterImageView" destination="O2Y-vy-HSD" id="DGD-Eq-TvB"/>
+                                    <outlet property="unreadCounterLabel" destination="aua-uF-gO9" id="WJi-iz-hy2"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -974,9 +1010,11 @@
     <resources>
         <image name="empty-folder-fly" width="151" height="133"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
+        <image name="list-icon-arrow-white" width="8" height="13"/>
         <image name="list-icon-attachment" width="30" height="18"/>
         <image name="list-icon-padlock" width="30" height="18"/>
         <image name="list-icon-unread" width="30" height="18"/>
+        <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-logo" width="159" height="38"/>
         <image name="popover-bg" width="310" height="37"/>
     </resources>
@@ -986,6 +1024,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6sB-Ci-mbg"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>

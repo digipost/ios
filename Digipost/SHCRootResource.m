@@ -38,6 +38,7 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
 @dynamic numberOfCards;
 @dynamic numberOfCardsReadyForVerification;
 @dynamic numberOfReceiptsHiddenUntilVerification;
+@dynamic unreadItemsInInbox;
 @dynamic uploadDocumentUri;
 
 // Relationships
@@ -99,6 +100,9 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
 
         NSString *middleName = primaryAccount[NSStringFromSelector(@selector(middleName))];
         rootResource.middleName = [middleName isKindOfClass:[NSString class]] ? middleName : nil;
+
+        NSNumber *unreadItemsInInbox = primaryAccount[NSStringFromSelector(@selector(unreadItemsInInbox))];
+        rootResource.unreadItemsInInbox = [unreadItemsInInbox isKindOfClass:[NSNumber class]] ? unreadItemsInInbox : nil;
 
         NSArray *links = primaryAccount[kRootResourcePrimaryAccountLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {

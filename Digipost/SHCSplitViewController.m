@@ -9,6 +9,8 @@
 #import "SHCSplitViewController.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
+#import "SHCLetterViewController.h"
+#import "SHCAppDelegate.h"
 
 @interface SHCSplitViewController ()
 
@@ -40,12 +42,22 @@
     @catch (NSException *exception) {
         DDLogWarn(@"Caught an exception: %@", exception);
     }
+
+    UINavigationController *detailNavigationController = [self.viewControllers lastObject];
+    if ([detailNavigationController isKindOfClass:[UINavigationController class]]) {
+        SHCLetterViewController *letterViewController = (SHCLetterViewController *)detailNavigationController.topViewController;
+        if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
+            self.delegate = letterViewController;
+
+            SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+            appDelegate.letterViewController = letterViewController;
+        }
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     if (![SHCOAuthManager sharedManager].refreshToken) {
-//        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
         UINavigationController *loginNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:kLoginNavigationControllerIdentifier];
         [self presentViewController:loginNavigationController animated:NO completion:nil];
     }

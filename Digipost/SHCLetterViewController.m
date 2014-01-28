@@ -40,8 +40,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate,
-                                       UISplitViewControllerDelegate, UIDocumentInteractionControllerDelegate>
+@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
@@ -54,6 +53,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIImageView *emptyLetterViewImageView;
+@property (strong, nonatomic) UIBarButtonItem *infoBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *actionBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
 @property (strong, nonatomic) UIDocumentInteractionController *openInController;
 @property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
@@ -62,6 +64,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @end
 
 @implementation SHCLetterViewController
+
+@synthesize attachment = _attachment;
 
 #pragma mark - NSObject
 
@@ -82,41 +86,25 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
-    UIBarButtonItem *infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
-                                                            landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info-iphone-landscape"]
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:self
-                                                                         action:@selector(didTapInfo:)];
+    self.infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
+                                                landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info-iphone-landscape"]
+                                                              style:UIBarButtonItemStyleBordered
+                                                             target:self
+                                                             action:@selector(didTapInfo:)];
 
-    UIBarButtonItem *actionBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-action"]
-                                                              landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action-iphone-landscape"]
-                                                                            style:UIBarButtonItemStyleBordered
-                                                                           target:self
-                                                                           action:@selector(didTapAction:)];
-
-    self.navigationItem.rightBarButtonItems = @[actionBarButtonItem, infoBarButtonItem];
+    self.actionBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-action"]
+                                                  landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action-iphone-landscape"]
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(didTapAction:)];
 
     self.screenName = kLetterViewControllerScreenName;
 
     self.popoverSenderDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From");
     self.popoverDateDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date");
 
-    if (self.attachment.invoice) {
-        [self updateToolbarItemsWithInvoice];
-    }
-
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && !self.attachment && !self.receipt) {
-        [self showEmptyView];
-        return;
-    }
-
-    if (![self attachmentHasValidFileType]) {
-        [self showInvalidFileTypeView];
-        return;
-    }
 
     self.progressView.borderTintColor = [UIColor whiteColor];
     self.progressView.progressTintColor = [UIColor whiteColor];
@@ -137,7 +125,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.webView addGestureRecognizer:singleTapGestureRecognizer];
     [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
 
-    [self loadContent];
+    [self reloadFromMetadata];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -152,6 +140,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController setToolbarHidden:toolbarHidden animated:NO];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+
+    [self updateNavbar];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -256,6 +246,22 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         });
     } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+#pragma mark - Properties
+
+- (SHCAttachment *)attachment
+{
+    return _attachment;
+}
+
+- (void)setAttachment:(SHCAttachment *)attachment
+{
+    _attachment = attachment;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self reloadFromMetadata];
     }
 }
 
@@ -787,9 +793,50 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
 }
 
-- (void)showEmptyView
+- (void)showEmptyView:(BOOL)showEmptyView
 {
+    self.emptyLetterViewImageView.hidden = !showEmptyView;
 
+    [self.navigationController setToolbarHidden:showEmptyView animated:YES];
+}
+
+- (void)updateNavbar
+{
+    NSMutableArray *rightBarButtonItems = [NSMutableArray array];
+
+    if (self.attachment || self.receipt) {
+        [rightBarButtonItems addObjectsFromArray:@[self.actionBarButtonItem, self.infoBarButtonItem]];
+    }
+
+    self.navigationItem.rightBarButtonItems = [rightBarButtonItems count] > 0 ? rightBarButtonItems : nil;
+}
+
+- (void)reloadFromMetadata
+{
+    [self updateNavbar];
+
+    if (self.attachment.invoice) {
+        [self updateToolbarItemsWithInvoice];
+    }
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+
+        if (!self.attachment && !self.receipt) {
+            [self showEmptyView:YES];
+            return;
+        } else {
+            [self showEmptyView:NO];
+        }
+    }
+
+    if (![self attachmentHasValidFileType]) {
+        [self showInvalidFileTypeView];
+        return;
+    }
+
+    [self loadContent];
 }
 
 @end

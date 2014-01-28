@@ -29,6 +29,7 @@ extern NSString *const kRootResourceEntityName;
 @property (strong, nonatomic) NSNumber *numberOfCards;
 @property (strong, nonatomic) NSNumber *numberOfCardsReadyForVerification;
 @property (strong, nonatomic) NSNumber *numberOfReceiptsHiddenUntilVerification;
+@property (strong, nonatomic) NSNumber *unreadItemsInInbox;
 @property (strong, nonatomic) NSString *uploadDocumentUri;
 
 // Relationships
