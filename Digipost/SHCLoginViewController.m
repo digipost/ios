@@ -28,6 +28,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *privacyButton;
+@property (strong, nonatomic) UIImageView *titleImageView;
+
 @end
 
 @implementation SHCLoginViewController
@@ -56,6 +61,15 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     @catch (NSException *exception) {
         DDLogWarn(@"Caught an exception: %@", exception);
     }
+
+    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
+    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+    self.navigationItem.titleView = self.titleImageView;
+
+    [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In") forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user") forState:UIControlStateNormal];
+    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy") forState:UIControlStateNormal];
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
@@ -89,6 +103,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
+- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        UIImage *titleImage;
+        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+            titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+        } else {
+            titleImage = [UIImage imageNamed:@"navbar-icon-posten-iphone-landscape"];
+        }
+        self.titleImageView.image = titleImage;
+        self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+        self.navigationItem.titleView = self.titleImageView;
+    }
+}
+
 #pragma mark - SHCOAuthViewControllerDelegate
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
@@ -102,12 +131,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 #pragma mark - IBActions
 
-- (IBAction)didTapRegisterButton:(UIButton *)sender
+- (IBAction)didTapSecondaryButton:(UIButton *)sender
 {
-    NSURL *url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
+    NSURL *url;
+    if (sender == self.registerButton) {
+        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
+    } else {
+        url = [NSURL URLWithString:@"https://www.digipost.no/juridisk/#personvern"];
+    }
 
     [UIActionSheet showFromRect:sender.frame
-                         inView:self.view
+                         inView:[sender superview]
                        animated:YES
                       withTitle:[url host]
               cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")

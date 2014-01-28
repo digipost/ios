@@ -1,14 +1,10 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "icon-navbar-export-landscape.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "icon-navbar-export-landscape@2x.png"
+      "idiom" : "iphone",
+      "filename" : "icon-navbar-export-landscape@2x.png",
+      "subtype" : "retina4",
+      "scale" : "2x"
     }
   ],
   "info" : {

@@ -861,15 +861,26 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
-                                <rect key="frame" x="0.0" y="197" width="320" height="110"/>
+                                <rect key="frame" x="0.0" y="122" width="320" height="261"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-hy-iNW" userLabel="Login Button">
-                                        <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
+                                        <rect key="frame" x="81" y="0.0" width="159" height="38"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="dVa-a9-1Ws"/>
+                                            <constraint firstAttribute="width" constant="159" id="Dil-29-21f"/>
+                                            <constraint firstAttribute="height" constant="38" id="hFg-3N-hll"/>
                                         </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-hy-iNW" userLabel="Login Button">
+                                        <rect key="frame" x="30" y="82" width="260" height="52"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.8901960784313725" green="0.1764705882352941" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="RzA-H8-ORX"/>
+                                            <constraint firstAttribute="height" constant="52" id="dVa-a9-1Ws"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="LOGIN_BUTTON">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -878,34 +889,70 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fv5-4n-dtY" userLabel="Register Button">
-                                        <rect key="frame" x="20" y="60" width="280" height="30"/>
+                                        <rect key="frame" x="30" y="172" width="260" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="NNs-tA-AjT"/>
+                                            <constraint firstAttribute="height" constant="44" id="NNs-tA-AjT"/>
+                                            <constraint firstAttribute="width" constant="260" id="wDz-x2-BV6"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="REGISTER_BUTTON">
+                                            <color key="titleColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="didTapRegisterButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="dbJ-Tp-Efc"/>
+                                            <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="CCB-a5-3Zp"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Y4-hX-QRK" userLabel="Separator View">
+                                        <rect key="frame" x="30" y="216" width="260" height="1"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="EI8-PF-qgj"/>
+                                            <constraint firstAttribute="width" constant="260" id="U4N-NM-kCl"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qBu-VV-6Ae" userLabel="Privacy Button">
+                                        <rect key="frame" x="30" y="217" width="260" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="7wp-Cg-t4S"/>
+                                            <constraint firstAttribute="height" constant="44" id="zM1-nW-jma"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="PRIVACY_BUTTON">
+                                            <color key="titleColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="u2s-jA-5bC"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="fv5-4n-dtY" secondAttribute="trailing" constant="20" id="2yi-RN-Cj5"/>
-                                    <constraint firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="20" id="9he-GO-0JM"/>
-                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="20" id="Zo0-FO-TS7"/>
-                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="cSK-Bb-kQC" secondAttribute="leading" constant="20" id="hXA-n8-PlJ"/>
-                                    <constraint firstItem="fv5-4n-dtY" firstAttribute="leading" secondItem="cSK-Bb-kQC" secondAttribute="leading" constant="20" id="hbL-1K-Gr2"/>
-                                    <constraint firstAttribute="height" constant="110" id="lbw-lu-dul"/>
-                                    <constraint firstAttribute="bottom" secondItem="fv5-4n-dtY" secondAttribute="bottom" constant="20" id="nxd-Mt-lsl"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="zFK-Fz-dSN" secondAttribute="bottom" constant="44" id="193-84-FJa"/>
+                                    <constraint firstAttribute="bottom" secondItem="qBu-VV-6Ae" secondAttribute="bottom" id="3ph-Md-fbw"/>
+                                    <constraint firstItem="fv5-4n-dtY" firstAttribute="top" relation="lessThanOrEqual" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="38" id="9Vb-Oj-EBw"/>
+                                    <constraint firstItem="qBu-VV-6Ae" firstAttribute="top" secondItem="6Y4-hX-QRK" secondAttribute="bottom" id="GAn-v9-qI0"/>
+                                    <constraint firstAttribute="centerX" secondItem="fv5-4n-dtY" secondAttribute="centerX" id="Hbi-51-OX9"/>
+                                    <constraint firstAttribute="centerX" secondItem="GTu-hy-iNW" secondAttribute="centerX" id="He0-dm-pNc"/>
+                                    <constraint firstAttribute="centerX" secondItem="qBu-VV-6Ae" secondAttribute="centerX" id="Yt0-SD-Aci"/>
+                                    <constraint firstItem="zFK-Fz-dSN" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" id="ckD-zd-F9X"/>
+                                    <constraint firstAttribute="centerX" secondItem="zFK-Fz-dSN" secondAttribute="centerX" id="dtd-8r-jjI"/>
+                                    <constraint firstAttribute="centerX" secondItem="6Y4-hX-QRK" secondAttribute="centerX" id="ga9-Bt-4jc"/>
+                                    <constraint firstAttribute="height" priority="249" constant="261" id="lbw-lu-dul"/>
+                                    <constraint firstItem="6Y4-hX-QRK" firstAttribute="top" secondItem="fv5-4n-dtY" secondAttribute="bottom" id="nsP-xN-VAu"/>
+                                    <constraint firstItem="qBu-VV-6Ae" firstAttribute="top" secondItem="6Y4-hX-QRK" secondAttribute="bottom" id="pxF-gh-LqR"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="wTy-nL-Oqt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cSK-Bb-kQC" secondAttribute="bottom" constant="20" id="8aT-tv-VDs"/>
+                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="20" id="Jii-Da-De3"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Uuv-yG-fI2"/>
                             <constraint firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" id="vTp-sf-v1c"/>
                             <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" id="wfj-D3-vFB"/>
@@ -913,6 +960,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="bC4-nA-QU9"/>
                     <connections>
+                        <outlet property="loginButton" destination="GTu-hy-iNW" id="Nai-w8-tgq"/>
+                        <outlet property="privacyButton" destination="qBu-VV-6Ae" id="cDs-8j-p7g"/>
+                        <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
                         <segue destination="J0H-vT-0Kh" kind="push" identifier="PushFolders" id="cGz-Ia-Clx"/>
                     </connections>
                 </viewController>
@@ -927,6 +977,7 @@
         <image name="list-icon-attachment" width="30" height="18"/>
         <image name="list-icon-padlock" width="30" height="18"/>
         <image name="list-icon-unread" width="30" height="18"/>
+        <image name="login-logo" width="159" height="38"/>
         <image name="popover-bg" width="310" height="37"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -71,9 +71,9 @@
 		83C22B79187EC52800A6B6F4 /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		83C22B7A187EC52900A6B6F4 /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */; };
-		83C22B7F187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */; };
-		83C22B80187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */; };
-		83C22B81187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */; };
+		83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
+		83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
+		83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
 		83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
 		83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
 		83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
@@ -207,7 +207,7 @@
 		83C22B73187C3B7500A6B6F4 /* UIViewController+NeedsReload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NeedsReload.h"; sourceTree = "<group>"; };
 		83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NeedsReload.m"; sourceTree = "<group>"; };
 		83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Staging.xcassets"; sourceTree = "<group>"; };
-		83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
+		83C5719818984111000C61E7 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
 		83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
 		83D2F7E61875578A00344644 /* SHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFileManager.h; sourceTree = "<group>"; };
 		83D2F7E71875578A00344644 /* SHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFileManager.m; sourceTree = "<group>"; };
@@ -377,8 +377,8 @@
 				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
 				83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */,
+				83C5719818984111000C61E7 /* Images-Shared.xcassets */,
 				83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */,
-				83C22B7E187EC6D800A6B6F4 /* Images-Shared.xcassets */,
 			);
 			path = Digipost;
 			sourceTree = "<group>";
@@ -635,7 +635,7 @@
 			files = (
 				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
-				83C22B81187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */,
+				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
@@ -648,7 +648,7 @@
 			files = (
 				83F7038718573C3A003DABE1 /* Localizable.strings in Resources */,
 				83C22B7A187EC52900A6B6F4 /* Images-Prod.xcassets in Resources */,
-				83C22B80187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */,
+				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
@@ -661,7 +661,7 @@
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				83C22B79187EC52800A6B6F4 /* Images-Prod.xcassets in Resources */,
-				83C22B7F187EC6D800A6B6F4 /* Images-Shared.xcassets in Resources */,
+				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
