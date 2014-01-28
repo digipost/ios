@@ -2,9 +2,13 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "icon-navbar-info-landscape@2x.png",
-      "subtype" : "retina4",
-      "scale" : "2x"
+      "scale" : "1x",
+      "filename" : "icon-navbar-info-landscape.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "icon-navbar-info-landscape@2x.png"
     }
   ],
   "info" : {
