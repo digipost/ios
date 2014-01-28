@@ -27,6 +27,9 @@
 #import "SHCRootResource.h"
 #import "SHCModelManager.h"
 #import "SHCReceipt.h"
+#import "SHCFoldersViewController.h"
+#import "SHCAttachmentsViewController.h"
+#import "SHCDocumentsViewController.h"
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -37,7 +40,8 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, UIDocumentInteractionControllerDelegate>
+@interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate,
+                                       UISplitViewControllerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet THProgressView *progressView;
@@ -104,6 +108,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
 
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && !self.attachment && !self.receipt) {
+        [self showEmptyView];
+        return;
+    }
+
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
         return;
@@ -135,7 +144,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [super viewWillAppear:animated];
 
-    [self.navigationController setToolbarHidden:NO animated:NO];
+    BOOL toolbarHidden = NO;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && !self.attachment && !self.receipt) {
+        toolbarHidden = YES;
+    }
+
+    [self.navigationController setToolbarHidden:toolbarHidden animated:NO];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
@@ -206,6 +220,28 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
 {
     self.openInController = nil;
+}
+
+#pragma mark - UISplitViewControllerDelegate
+
+- (BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
+{
+    UIViewController *topViewController = viewController;
+    if ([viewController isKindOfClass:[UINavigationController class]]) {
+        topViewController = ((UINavigationController *)viewController).topViewController;
+    }
+
+    [self updateLeftBarButtonItem:barButtonItem forViewController:topViewController];
+}
+
+- (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
 #pragma mark - NSKeyValueObserving
@@ -418,6 +454,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
 
     [self.navigationController setToolbarHidden:!barsHidden animated:YES];
+
+    UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -726,6 +765,31 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIBarButtonItem *flexibleSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
     self.toolbarItems = @[self.invoiceBarButtonItem, flexibleSpaceBarButtonItem, self.moveBarButtonItem, flexibleSpaceBarButtonItem, self.deleteBarButtonItem];
+}
+
+- (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController
+{
+    if (!leftBarButtonItem) {
+        leftBarButtonItem = self.navigationItem.leftBarButtonItem;
+    }
+
+    if ([viewController isKindOfClass:[SHCFoldersViewController class]]) {
+        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        leftBarButtonItem.title = rootResource.firstName ?: @"";
+    } else if ([viewController isKindOfClass:[SHCDocumentsViewController class]]) {
+        leftBarButtonItem.title = ((SHCDocumentsViewController *)viewController).folderName;
+    } else if ([viewController isKindOfClass:[SHCAttachmentsViewController class]]) {
+        leftBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE", @"Attachments");
+    } else {
+        leftBarButtonItem.title = @"";
+    }
+
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
+}
+
+- (void)showEmptyView
+{
+
 }
 
 @end

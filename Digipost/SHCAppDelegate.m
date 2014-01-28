@@ -46,15 +46,6 @@
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
 
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-
-        UINavigationController *letterNavigationController = splitViewController.viewControllers[1];
-        self.letterViewController = (SHCLetterViewController *)letterNavigationController.topViewController;
-    }
-
     return YES;
 }
 							

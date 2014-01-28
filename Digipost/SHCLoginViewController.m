@@ -11,6 +11,14 @@
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
+#import "SHCSplitViewController.h"
+
+// Storyboard identifiers (to enable programmatic storyboard instantiation)
+NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";
+NSString *const kLoginViewControllerIdentifier = @"LoginViewController";
+
+// Segue identifiers (to enable programmatic triggering of segues)
+NSString *const kPresentLoginModallyIdentifier = @"PresentLoginModally";
 
 // Notification names
 NSString *const kPopToLoginViewControllerNotificationName = @"PopToLoginViewControllerNotification";
@@ -23,16 +31,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 @end
 
 @implementation SHCLoginViewController
-
-#pragma mark - NSObject
-
-- (void)awakeFromNib
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        self.preferredContentSize = CGSizeMake(320.0, 600.0);
-    }
-    [super awakeFromNib];
-}
 
 - (void)dealloc
 {
@@ -50,8 +48,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
-//    self.detailViewController = (SHCDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
-
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
@@ -62,8 +58,18 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
-        SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-        [self.navigationController pushViewController:foldersViewController animated:NO];
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+            [self.navigationController pushViewController:foldersViewController animated:NO];
+        }
+    }
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                              style:UIBarButtonItemStyleBordered
+                                                                             target:nil
+                                                                             action:nil];
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 
@@ -87,7 +93,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
 {
-    [self performSegueWithIdentifier:kPushFoldersIdentifier sender:nil];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self performSegueWithIdentifier:kPushFoldersIdentifier sender:nil];
+    }
 }
 
 #pragma mark - IBActions

@@ -91,6 +91,24 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        UISplitViewController *splitViewController = (UISplitViewController *)self.view.window.rootViewController;
+        if ([splitViewController isKindOfClass:[UISplitViewController class]]) {
+            UINavigationController *navigationController = (UINavigationController *)[splitViewController.viewControllers lastObject];
+            if ([navigationController isKindOfClass:[UINavigationController class]]) {
+                SHCLetterViewController *letterViewController = (SHCLetterViewController *)navigationController.topViewController;
+                if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
+                    [letterViewController updateLeftBarButtonItem:nil forViewController:self];
+                }
+            }
+        }
+    }
+
+    [super viewWillDisappear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

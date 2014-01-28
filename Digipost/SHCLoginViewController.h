@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <GAI.h>
 
+// Storyboard identifiers (to enable programmatic storyboard instantiation)
+extern NSString *const kLoginNavigationControllerIdentifier;
+extern NSString *const kLoginViewControllerIdentifier;
+
+// Segue identifiers (to enable programmatic triggering of segues)
+extern NSString *const kPresentLoginModallyIdentifier;
+
 // Notification names
 extern NSString *const kPopToLoginViewControllerNotificationName;
 

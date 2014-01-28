@@ -25,4 +25,6 @@ extern NSString *const kPushReceiptIdentifier;
 @property (strong, nonatomic) SHCAttachment *attachment;
 @property (strong, nonatomic) SHCReceipt *receipt;
 
+- (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
+
 @end
