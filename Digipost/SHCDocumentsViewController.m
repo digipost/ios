@@ -266,11 +266,12 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
         [destinations addObject:inboxLocalizedName];
-        
     }
+    
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
         [destinations addObject:workAreaLocalizedName];
     }
+    
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
         [destinations addObject:archiveLocalizedName];
     }
@@ -283,7 +284,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                        otherButtonTitles:destinations
                                 tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                                     if (buttonIndex < [destinations count]) {
-                                        NSString *location = [destinations[buttonIndex] uppercaseString];
+                                        NSString *location = destinations[buttonIndex] ;
                                         if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
                                             [self moveSelectedDocumentsToLocation:[kFolderInboxName uppercaseString]];
                                         }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
