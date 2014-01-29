@@ -1,0 +1,234 @@
+/* Localizable.strings
+  Digipost
+
+  Created by Eivind Bohler on 10.12.13.
+  Copyright (c) 2013 Shortcut. All rights reserved. */
+
+/* Error */
+"GENERIC_ERROR_TITLE" = "Feil";
+
+/* OK */
+"GENERIC_OK_BUTTON_TITLE" = "OK";
+
+/* Cancel */
+"GENERIC_CANCEL_BUTTON_TITLE" = "Avbryt";
+
+/* Delete */
+"GENERIC_DELETE_BUTTON_TITLE" = "Slett";
+
+/* Close */
+"GENERIC_CLOSE_BUTTON_TITLE" = "Lukk";
+
+/* Yesterday */
+"GENERIC_YESTERDAY_TITLE" = "I går";
+
+/* Updating... */
+"GENERIC_UPDATING_TITLE" = "Oppdaterer";
+
+/* Last updated */
+"GENERIC_LAST_UPDATED_TITLE" = "Sist oppdatert";
+
+/* never */
+"GENERIC_UPDATED_NEVER_TITLE" = "aldri";
+
+/* Open in Safari */
+"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE" = "Åpne i Safari";
+
+/* Sign Out */
+"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE" = "Logg ut";
+
+/* Are you sure you want to sign out? */
+"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "Er du sikker på at du vil logge ut?";
+
+/* Missing access token response */
+"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Mangler accesstoken i svaret fra server";
+
+/* Refresh token invalid title */
+"GENERIC_REFRESH_TOKEN_INVALID_TITLE" = "Sesjonen har utløpt";
+
+/* Refresh token invalid message */
+"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE" = "Nåværende sesjon har utløpt. Logg inn igjen";
+
+/* Sign In */
+"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE" = "Logg inn";
+
+/* FOLDERS */
+"FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE" = "Mapper";
+
+/* SETTINGS */
+"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "Innstillinger";
+
+/* Receipts */
+"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "Kvitteringer";
+
+/* From */
+"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE" = "Fra";
+
+/* Date */
+"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE" = "Dato";
+
+/* Sent to bank */
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE" = "Sent til bank";
+
+/* Send to bank */
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE" = "Send til bank";
+
+/* Payment tips */
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE" = "Betalingstips";
+
+/* Sending... */
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE" = "Sender";
+
+/* The invoice has been registered */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE" = "Fakturaen er registert";
+
+/* Paid message */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE" = "Denne fakturaen ble sendt til nettbanken %@.\n\nFor å se detaljer for betalingen kan du logge inn i din nettbank.";
+
+/* Send to bank? */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_TITLE" = "Send til bank?";
+
+/* Send message */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE" = "Fakturaen sendes til din bank og vil bli betalt på forfallsdatoen. Ønsker du å endre betalingen senere,\nmå du logge inn i nettbanken.\n\nFølgende konto vil bli belastet: %@";
+
+/* Send to bank */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE" = "Send til bank";
+
+/* Payment tips message */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "Hvis din bank støtter fakturabetaling via Digipost,\nkan du sende fakturaer rett til forfallsregisteret.\n\nLogg inn på digipost.no med din datamaskin for å velge bankkonto. Du trenger kun å gjøre dette én gang.";
+
+/* Go to bank */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE" = "Gå til bank";
+
+/* Send to bank */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE" = "Send til bank";
+
+/* unknown bank account number */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER" = "ukjent bankkontonummer";
+
+/* Move */
+"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE" = "Flytt";
+
+/* Delete */
+"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE" = "Slett";
+
+/* Invalid file type message */
+"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE" = "Digipost-appen støtter ikke åpning av denne filtypen. \n Forsøk å åpne filen med en annen app, eller via digipost.no";
+
+/* Attachments */
+"LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE" = "Vedlegg";
+
+/* Insufficient authentication level */
+"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE" = "For lavt autentiseringsnivå";
+
+/* Unable to open letter */
+"ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE" = "Kan ikke åpne brevet";
+
+/* Wrong authentication level validation error message */
+"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "For å kunne lese brevet, logg inn på www.digipost.no og autentiser med BankID eller Buypass";
+
+/* Generic validation error message */
+"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "Brevet kan ikke åpnes på denne enheten. Logg inn på www.digipost.no for å lese brevet.";
+
+/* No password */
+"FILE_MANAGER_DECRYPT_ERROR_NO_PASSWORD" = "Ikke passord";
+
+/* Encrypted file not found */
+"FILE_MANAGER_DECRYPT_ERROR_ENCRYPTED_FILE_NOT_FOUND" = "Fant ikke den krypterte filen";
+
+/* Error reading encrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_ERROR_READING_ENCRYPTED_FILE" = "Greide ikke lese kryptert fil";
+
+/* Decryption error */
+"FILE_MANAGER_DECRYPT_ERROR_DECRYPTION_ERROR" = "Dekrypteringsfeil";
+
+/* Error removing decrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_REMOVING_DECRYPTED_FILE" = "Error removing decrypted file";
+
+/* Error writing decrypted file */
+"FILE_MANAGER_DECRYPT_ERROR_WRITING_DECRYPTED_FILE" = "Error writing decrypted file";
+
+/* No password */
+"FILE_MANAGER_ENCRYPT_ERROR_NO_PASSWORD" = "Mangler passord";
+
+/* Decrypted file not found */
+"FILE_MANAGER_ENCRYPT_ERROR_DECRYPTED_FILE_NOT_FOUND" = "Decrypted file not found";
+
+/* Error reading decrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_ERROR_READING_DECRYPTED_FILE" = "Error reading decrypted file";
+
+/* Encryption error */
+"FILE_MANAGER_ENCRYPT_ERROR_ENCRYPTION_ERROR" = "Encryption error";
+
+/* Error removing encrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_REMOVING_ENCRYPTED_FILE" = "Feil ved fjerning av kryptert fil";
+
+/* Error writing decrypted file */
+"FILE_MANAGER_ENCRYPT_ERROR_WRITING_ENCRYPTED_FILE" = "Feil ved skriving til kryptert fil";
+
+/* Select all */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE" = "Velg alle";
+
+/* Select none */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE" = "Velg ingen";
+
+/* Move */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE" = "Flytt";
+
+/* Delete */
+"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE" = "Slett";
+
+/* Delete */
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE" = "Slett";
+
+/* letter */
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "brev";
+
+/* letters */
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "brev";
+
+/* You have no documents in this folder. */
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "Du har ingen dokumenter i denne mappen";
+
+/* Receipts */
+"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Kvittering";
+
+/* receipt */
+"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "kvittering";
+
+/* receipts */
+"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "kvitteringer";
+
+/* No cards */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Motta elektroniske kvitteringer direkte i Digipost når du handler med dine bank- og kredittkort.\nRegistrer dine betalingskort på digipost.no for å komme i gang.";
+
+/* Cards ready */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Du har registrert dine betalingskort.\n\nNeste gang du handler i en butikk som støtter elektronisk kvittering, vil kvitteringen dukke opp her.";
+
+/* Receipts hidden */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ er skjult.\nFor å vise disse må du verifisere dine betalingskort på digipost.no";
+
+/* receipt is */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "kvtteringen er";
+
+/* receipts are */
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL" = "kvitteringer er";
+
+/* Do you want to upload the file %@ to Digipost? */
+"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to Digipost?";
+
+/* Upload file */
+"APPDELEGATE_UPLOAD_FILE_TITLE" = "Last opp fil";
+
+/* Upload */
+"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE" = "Last opp";
+
+/* Sign In */
+"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE" = "Logg inn";
+
+/* New user */
+"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "Ny bruker";
+
+/* Privacy */
+"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
+
