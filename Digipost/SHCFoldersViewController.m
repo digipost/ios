@@ -81,9 +81,9 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 {
     if ([segue.identifier isEqualToString:kPushDocumentsIdentifier]) {
         SHCFolder *folder = (SHCFolder *)sender;
-
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = folder.name;
+        documentsViewController.folderDisplayName = folder.displayName;
         documentsViewController.folderUri = folder.uri;
     } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
         SHCReceiptsViewController *receiptsViewController = (SHCReceiptsViewController *)segue.destinationViewController;
@@ -128,7 +128,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
     if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
-            folderName = self.inboxFolder.name;
+            folderName = [self.inboxFolder displayName];
             iconImage = [UIImage imageNamed:@"list-icon-inbox"];
             unreadCounterHidden = NO;
         } else {
@@ -140,7 +140,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         iconImage = [UIImage imageNamed:@"list-icon-logout"];
         arrowHidden = YES;
     } else {
-        folderName = [self.folders[indexPath.row] name];
+        folderName = [self.folders[indexPath.row] displayName];
         iconImage = [UIImage imageNamed:@"list-icon-folder"];
     }
 

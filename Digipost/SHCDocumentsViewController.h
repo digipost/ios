@@ -15,6 +15,7 @@ extern NSString *const kPushDocumentsIdentifier;
 @interface SHCDocumentsViewController : SHCBaseTableViewController
 
 @property (copy, nonatomic) NSString *folderName;
+@property (copy, nonatomic) NSString *folderDisplayName;
 @property (copy, nonatomic) NSString *folderUri;
 
 @end
