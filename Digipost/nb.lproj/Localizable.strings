@@ -232,3 +232,12 @@
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
 
+/* Archive */
+"FOLDER_NAME_ARCHIVE" = "Arkiv";
+
+/* Inbox */
+"FOLDER_NAME_INBOX" = "Inboks";
+
+/* Workarea */
+"FOLDER_NAME_WORKAREA" = "Kjøkkenbenk";
+
