@@ -32,7 +32,7 @@ extern NSString *const kFolderArchiveName;
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
+- (NSString * )displayName;
 @end
 
 @interface SHCFolder (CoreDataGeneratedAccessors)

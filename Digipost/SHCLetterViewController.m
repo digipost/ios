@@ -309,29 +309,40 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (IBAction)didTapMove:(UIBarButtonItem *)sender
 {
     NSMutableArray *destinations = [NSMutableArray array];
-    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
-        [destinations addObject:kFolderInboxName];
+    NSString *inboxLocalizedName = NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
+    NSString *workAreaLocalizedName =  NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
+    NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
+    NSString *documentLocation = self.attachment.document.location;
+    if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
+        [destinations addObject:inboxLocalizedName];
     }
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
-        [destinations addObject:kFolderWorkAreaName];
+        [destinations addObject:workAreaLocalizedName];
     }
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-        [destinations addObject:kFolderArchiveName];
+        [destinations addObject:archiveLocalizedName];
     }
-
-    [UIActionSheet showFromBarButtonItem:sender
-                                animated:YES
+    
+    [UIActionSheet showFromToolbar:self.navigationController.toolbar
                                withTitle:nil
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:nil
                        otherButtonTitles:destinations
                                 tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                                     if (buttonIndex < [destinations count]) {
-                                        NSString *location = [destinations[buttonIndex] uppercaseString];
-
-                                        [self moveDocumentToLocation:location];
+                                        NSString *location = destinations[buttonIndex] ;
+                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
+                                            [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
+                                        }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
+                                            [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
+                                        }else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
+                                            [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
+                                        }else {
+                                            NSAssert(NO, @"Wrong index tapped");
+                                        }
                                     }
                                 }];
+                          }];
 }
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
@@ -524,6 +535,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)moveDocumentToLocation:(NSString *)location
 {
+    NSAssert(self.attachment.document != nil, @"no document");
     [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location withSuccess:^{
 
         if (self.documentsViewController) {

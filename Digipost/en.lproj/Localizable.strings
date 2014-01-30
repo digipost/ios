@@ -1,10 +1,8 @@
-/* 
-  Localizable.strings
+/* Localizable.strings
   Digipost
 
   Created by Eivind Bohler on 10.12.13.
-  Copyright (c) 2013 Shortcut. All rights reserved.
-*/
+  Copyright (c) 2013 Shortcut. All rights reserved. */
 
 /* Error */
 "GENERIC_ERROR_TITLE" = "Error";
@@ -39,8 +37,8 @@
 /* Sign Out */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE" = "Sign Out";
 
-/* You you sure you want to sign out? */
-"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "You you sure you want to sign out?";
+/* Are you sure you want to sign out? */
+"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "Are you sure you want to sign out?";
 
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Missing access token in response";
@@ -233,3 +231,13 @@
 
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Privacy";
+
+/* Archive */
+"FOLDER_NAME_ARCHIVE" = "Archive";
+
+/* Inbox */
+"FOLDER_NAME_INBOX" = "Inbox";
+
+/* Workarea */
+"FOLDER_NAME_WORKAREA" = "Workarea";
+

@@ -59,4 +59,17 @@ NSString *const kFolderArchiveName = @"Archive";
     return [results firstObject];
 }
 
+- (NSString *)displayName
+{
+    if (self.name){
+        if ([self.name isEqualToString:kFolderInboxName]){
+            return NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
+        }else if ([self.name isEqualToString:kFolderWorkAreaName]){
+            return NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
+        }else if ([self.name isEqualToString:kFolderArchiveName]){
+            return  NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
+        }
+    }
+    return nil;
+}
 @end

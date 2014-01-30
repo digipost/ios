@@ -262,6 +262,11 @@
 		83F7037F18573641003DABE1 /* SHCOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* SHCOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -615,6 +620,7 @@
 			knownRegions = (
 				en,
 				Base,
+				nb,
 			);
 			mainGroup = 83BAB90F1855C0AC004A7BFB;
 			productRefGroup = 83BAB9191855C0AC004A7BFB /* Products */;
@@ -922,6 +928,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83BAB9251855C0AC004A7BFB /* en */,
+				ECA1A9F81898FFDF00408CD5 /* nb */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -930,6 +937,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83BAB92E1855C0AC004A7BFB /* Base */,
+				ECA1A9F61898FFDE00408CD5 /* nb */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -938,6 +946,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83BAB9311855C0AC004A7BFB /* Base */,
+				ECA1A9F71898FFDF00408CD5 /* nb */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -946,6 +955,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83BAB94A1855C0AD004A7BFB /* en */,
+				ECA1A9FA1898FFDF00408CD5 /* nb */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -954,6 +964,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				83F7038518573C3A003DABE1 /* en */,
+				ECA1A9F91898FFDF00408CD5 /* nb */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

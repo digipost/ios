@@ -248,14 +248,19 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (IBAction)didTapMoveBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSMutableArray *destinations = [NSMutableArray array];
+    NSString *inboxLocalizedName = NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
+    NSString *workAreaLocalizedName =  NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
+    NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
-        [destinations addObject:kFolderInboxName];
+        [destinations addObject:inboxLocalizedName];
     }
+    
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
-        [destinations addObject:kFolderWorkAreaName];
+        [destinations addObject:workAreaLocalizedName];
     }
+    
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-        [destinations addObject:kFolderArchiveName];
+        [destinations addObject:archiveLocalizedName];
     }
 
     [UIActionSheet showFromBarButtonItem:barButtonItem
@@ -266,9 +271,16 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                        otherButtonTitles:destinations
                                 tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                                     if (buttonIndex < [destinations count]) {
-                                        NSString *location = [destinations[buttonIndex] uppercaseString];
-
-                                        [self moveSelectedDocumentsToLocation:location];
+                                        NSString *location = destinations[buttonIndex] ;
+                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
+                                            [self moveSelectedDocumentsToLocation:[kFolderInboxName uppercaseString]];
+                                        }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
+                                            [self moveSelectedDocumentsToLocation:[kFolderWorkAreaName uppercaseString]];
+                                        }else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
+                                            [self moveSelectedDocumentsToLocation:[kFolderArchiveName uppercaseString]];
+                                        }else {
+                                            NSAssert(NO, @"Wrong index tapped");
+                                        }
                                     }
                                 }];
 }
@@ -360,7 +372,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     [super updateNavbar];
 
-    self.navigationItem.title = self.folderName;
+    self.navigationItem.title = self.folderDisplayName;
 
     UIBarButtonItem *rightBarButtonItem = nil;
     if ([self numberOfRows] > 0) {
