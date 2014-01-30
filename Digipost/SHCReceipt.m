@@ -178,6 +178,22 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     }
 }
 
++ (void)deleteAllReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    for (SHCReceipt *receipt in results) {
+        [managedObjectContext deleteObject:receipt];
+    }
+}
+
 + (NSArray *)allReceiptsWithMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

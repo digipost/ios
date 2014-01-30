@@ -26,6 +26,7 @@
 - (void)deleteDocument:(SHCDocument *)document;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
 - (void)deleteReceipt:(SHCReceipt *)receipt;
+- (void)deleteAllObjects;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;
 - (NSEntityDescription *)folderEntity;

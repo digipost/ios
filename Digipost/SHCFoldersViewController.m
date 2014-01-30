@@ -231,8 +231,15 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                                    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
                                    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+
                                        [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[SHCModelManager sharedManager] deleteAllObjects];
+
                                    } failure:^(NSError *error) {
+
+                                       [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[SHCModelManager sharedManager] deleteAllObjects];
+
                                        [UIAlertView showWithTitle:error.errorTitle
                                                           message:[error localizedDescription]
                                                 cancelButtonTitle:nil

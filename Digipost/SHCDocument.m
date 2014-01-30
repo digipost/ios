@@ -137,6 +137,22 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     }
 }
 
++ (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    for (SHCDocument *document in results) {
+        [managedObjectContext deleteObject:document];
+    }
+}
+
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

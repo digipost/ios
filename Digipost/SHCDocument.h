@@ -34,6 +34,7 @@ extern NSString *const kDocumentDocumentAPIKey;
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForDocumentDate:(NSDate *)date;
 - (SHCAttachment *)mainDocumentAttachment;

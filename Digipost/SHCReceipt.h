@@ -38,6 +38,7 @@ extern NSString *const kReceiptReceiptAPIKey;
 + (instancetype)receiptWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingReceiptWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)deleteAllReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allReceiptsWithMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForReceiptAmount:(NSNumber *)amount;
 
