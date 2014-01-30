@@ -47,7 +47,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 {
     self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
-                                                           ascending:YES
+                                                           ascending:NO
                                                             selector:@selector(compare:)]];
 
     self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
