@@ -282,6 +282,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                                             NSAssert(NO, @"Wrong index tapped");
                                         }
                                     }
+                                    [self setEditing:NO animated:YES];
                                 }];
 }
 
@@ -306,6 +307,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                                     if (buttonIndex == 0) {
                                         [self deleteDocuments];
                                     }
+                                    [self setEditing:NO animated:YES];
                                 }];
 }
 
