@@ -147,6 +147,12 @@
 		83F7038718573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		83F7038818573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,11 +268,15 @@
 		83F7037F18573641003DABE1 /* SHCOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* SHCOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
+		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
+		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +500,10 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */,
+				EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */,
+				ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */,
+				ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */,
 				83F7037518570542003DABE1 /* NSString+RandomNumber.h */,
 				83F7037618570542003DABE1 /* NSString+RandomNumber.m */,
 				83F7037018570234003DABE1 /* NSURLRequest+QueryParameters.h */,
@@ -783,6 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D720185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
 				83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
@@ -813,6 +828,7 @@
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BC1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
@@ -825,6 +841,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D71F185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
 				83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
@@ -855,6 +872,7 @@
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BB1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
@@ -867,6 +885,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D71E185F2981008DE6CB /* SHCDocumentTableViewCell.m in Sources */,
 				83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
@@ -897,6 +916,7 @@
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
+				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BA1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
