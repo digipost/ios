@@ -241,3 +241,12 @@
 /* Workarea */
 "FOLDER_NAME_WORKAREA" = "Kitchen counter";
 
+/* Fra */
+"GENERIC_FROM_LABEL" = "From";
+
+/* Til */
+"GENERIC_TO_LABEL" = "To";
+
+/* Dato */
+"GENERIC_DATE_LABEL" = "Date";
+
