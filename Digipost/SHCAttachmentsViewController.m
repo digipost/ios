@@ -50,13 +50,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
     [self generateTableViewHeader];
 }
-- (void)viewWillLayoutSubviews
-{
-    [super viewWillLayoutSubviews];
-    
-//    [self.tableView.tableHeaderView setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [self.tableView.tableHeaderView addSizeConstraint:CGSizeMake(320,743)];
-}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -121,7 +114,10 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [tableHeaderView addSubview:headerFromTextLabel];
     
     UILabel *headerDateTextLabel = [UILabel tableViewRegularHeaderLabel];
-    headerDateTextLabel.text = [NSString stringWithFormat:@"%@", firstAttachment.document.createdAt];
+    // Dateformatter for format: 2013-02-15 09:49
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.YYYY 'kl.' hh:mm"];
+    headerDateTextLabel.text = [dateFormatter stringFromDate:firstAttachment.document.createdAt];
     [tableHeaderView addSubview:headerDateTextLabel];
     
     [headerFromLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -140,7 +136,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     
     [tableHeaderView addOriginConstraintForOrigin:CGPointMake(80, 35) containedView:headerDateTextLabel];
     [headerDateTextLabel addSizeConstraint:CGSizeMake(210, 30)];
-    
     
     [self.tableView setTableHeaderView:tableHeaderView];
     // This line makes the tableview hide its separator lines for empty cells
