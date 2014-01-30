@@ -322,7 +322,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
         [destinations addObject:archiveLocalizedName];
     }
-    
+
     [UIActionSheet showFromBarButtonItem:sender
                                 animated:YES
                                withTitle:nil
@@ -334,11 +334,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         NSString *location = destinations[buttonIndex] ;
                                         if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
                                             [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
-                                        }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
+                                        } else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
                                             [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
-                                        }else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
+                                        } else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
                                             [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
-                                        }else {
+                                        } else {
                                             NSAssert(NO, @"Wrong index tapped");
                                         }
                                     }
