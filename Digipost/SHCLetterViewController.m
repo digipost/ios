@@ -323,9 +323,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [destinations addObject:archiveLocalizedName];
     }
 
+    NSString *title = nil;
+    if ([self.attachment.document.attachments count] > 1) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
+    }
+
     [UIActionSheet showFromBarButtonItem:sender
                                 animated:YES
-                               withTitle:nil
+                               withTitle:title
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:nil
                        otherButtonTitles:destinations
@@ -347,9 +352,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
 {
+    NSString *title = nil;
+    if ([self.attachment.document.attachments count] > 1) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE", @"Delete warning");
+    }
+
     [UIActionSheet showFromBarButtonItem:sender
                                 animated:YES
-                               withTitle:nil
+                               withTitle:title
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
                        otherButtonTitles:nil

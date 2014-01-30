@@ -118,6 +118,12 @@
 /* Attachments */
 "LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE" = "Vedlegg";
 
+/* Move warning */
+"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE" = "Dette dokumentet hører til et brev med mer innhold, som også vil flyttes.";
+
+/* Delete warning */
+"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "Dette dokumentet hører til et brev med mer innhold, som også vil slettes.";
+
 /* Insufficient authentication level */
 "ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE" = "For lavt autentiseringsnivå";
 
