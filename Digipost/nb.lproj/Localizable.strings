@@ -259,3 +259,6 @@
 /* Dato */
 "GENERIC_DATE_LABEL" = "Dato";
 
+/* dd.MM.YYYY 'kl.' hh:mm */
+"ATTACHMENTS_DATE_FORMAT" = "dd.MM.YYYY 'kl.' hh:mm";
+
