@@ -144,7 +144,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
+    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
 
