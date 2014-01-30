@@ -323,7 +323,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [destinations addObject:archiveLocalizedName];
     }
     
-    [UIActionSheet showFromToolbar:self.navigationController.toolbar
+    [UIActionSheet showFromBarButtonItem:sender
+                                animated:YES
                                withTitle:nil
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:nil
@@ -342,7 +343,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         }
                                     }
                                 }];
-                          }];
 }
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
