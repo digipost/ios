@@ -124,6 +124,9 @@
 /* Delete warning */
 "LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "This document belongs to a letter containing multiple documents.\nThese will be deleted as well.";
 
+/* Move to */
+"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE" = "Move to";
+
 /* Insufficient authentication level */
 "ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE" = "Insufficient authentication level";
 

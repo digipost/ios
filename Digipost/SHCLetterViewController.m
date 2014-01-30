@@ -308,10 +308,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapMove:(UIBarButtonItem *)sender
 {
+    NSString *moveTo = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE", @"Move to");
+
     NSMutableArray *destinations = [NSMutableArray array];
-    NSString *inboxLocalizedName = NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-    NSString *workAreaLocalizedName =  NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-    NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
+
+    NSString *inboxLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox")];
+    NSString *workAreaLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea")];
+    NSString *archiveLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive")];
+
     NSString *documentLocation = self.attachment.document.location;
     if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
         [destinations addObject:inboxLocalizedName];

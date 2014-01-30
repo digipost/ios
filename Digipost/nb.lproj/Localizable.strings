@@ -124,6 +124,9 @@
 /* Delete warning */
 "LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "Dette dokumentet hører til et brev med mer innhold, som også vil slettes.";
 
+/* Move to */
+"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE" = "Flytt til";
+
 /* Insufficient authentication level */
 "ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE" = "For lavt autentiseringsnivå";
 
