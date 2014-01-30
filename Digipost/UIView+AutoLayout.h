@@ -10,4 +10,7 @@
 
 @interface UIView (AutoLayout)
 
+- (void)addHeightConstraint: (CGFloat)height;
+- (void)addSizeConstraint: (CGSize) size;
+- (void)addOriginConstraintForOrigin:(CGPoint)origin containedView:(UIView*)view;
 @end

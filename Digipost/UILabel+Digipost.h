@@ -10,4 +10,6 @@
 
 @interface UILabel (Digipost)
 
++ (UILabel *)tableViewMediumHeaderLabel;
++ (UILabel *)tableViewRegularHeaderLabel;
 @end

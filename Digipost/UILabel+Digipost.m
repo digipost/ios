@@ -10,4 +10,21 @@
 
 @implementation UILabel (Digipost)
 
++ (UILabel *)tableViewMediumHeaderLabel
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+    [label setFont:[UIFont fontWithName:@"HelveticaNeue-Medium" size:17]];
+    [label setTextColor:RGB(64, 66, 69)];
+    [label setBackgroundColor:[UIColor clearColor]];
+    return label;
+}
+
++ (UILabel *)tableViewRegularHeaderLabel
+{
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectZero];
+    [label setFont:[UIFont fontWithName:@"HelveticaNeue-Regular" size:17]];
+    [label setTextColor:RGB(64, 66, 69)];
+    [label setBackgroundColor:[UIColor clearColor]];
+    return label;
+}
 @end

@@ -78,7 +78,6 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
                 NSString *rel = link[@"rel"];
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                     if ([rel hasSuffix:kRootResourceLinkLogoutAPIKeySuffix]) {
                         rootResource.logoutUri = uri;
                     }
@@ -111,7 +110,6 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
                     NSString *rel = link[@"rel"];
                     NSString *uri = link[@"uri"];
                     if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                         if ([rel hasSuffix:kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix]) {
                             rootResource.currentBankAccountUri = uri;
                         } else if ([rel hasSuffix:kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix]) {

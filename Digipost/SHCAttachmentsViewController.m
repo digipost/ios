@@ -18,6 +18,8 @@
 #import "SHCLetterViewController.h"
 #import "UIViewController+ValidateOpening.h"
 #import "NSError+ExtraInfo.h"
+#import "UIView+AutoLayout.h"
+#import "UILabel+Digipost.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushAttachmentsIdentifier = @"PushAttachments";
@@ -44,28 +46,16 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
     self.navigationItem.backBarButtonItem = backBarButtonItem;
 
-    UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
-                                                                        0.0,
-                                                                        CGRectGetWidth(self.view.frame),
-                                                                        50.0)];
 
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(15.0,
-                                                                     0.0,
-                                                                     CGRectGetWidth(tableHeaderView.frame) - 30.0,
-                                                                     CGRectGetHeight(tableHeaderView.frame))];
-    headerLabel.backgroundColor = [UIColor clearColor];
-    headerLabel.font = [UIFont systemFontOfSize:17.0];
-    headerLabel.textColor = [UIColor colorWithWhite:0.6 alpha:1.0];
 
-    SHCAttachment *firstAttachment = [self.attachments firstObject];
-    headerLabel.text = firstAttachment.document.creatorName;
-
-    [tableHeaderView addSubview:headerLabel],
-
-    self.tableView.tableHeaderView = tableHeaderView;
-
-    // This line makes the tableview hide its separator lines for empty cells
-    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    [self generateTableViewHeader];
+}
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+//    [self.tableView.tableHeaderView setTranslatesAutoresizingMaskIntoConstraints:NO];
+//    [self.tableView.tableHeaderView addSizeConstraint:CGSizeMake(320,743)];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -107,6 +97,55 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     }
 
     [super viewWillDisappear:animated];
+}
+
+#pragma mark UI generation
+
+- (void)generateTableViewHeader
+{
+    SHCAttachment *firstAttachment = [self.attachments firstObject];
+    UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
+                                                                        0.0,
+                                                                        CGRectGetWidth(self.view.frame),
+                                                                        75.0)];
+    UILabel *headerFromLabel = [UILabel tableViewMediumHeaderLabel];
+    [tableHeaderView addSubview:headerFromLabel];
+    headerFromLabel.text = NSLocalizedString(@"GENERIC_FROM_LABEL", @"Fra");
+    
+    UILabel *headerDateTitleLabel = [UILabel tableViewMediumHeaderLabel];
+    headerDateTitleLabel.text = NSLocalizedString(@"GENERIC_DATE_LABEL", @"Dato");
+    [tableHeaderView addSubview:headerDateTitleLabel];
+    
+    UILabel *headerFromTextLabel = [UILabel tableViewRegularHeaderLabel];
+    headerFromTextLabel.text = firstAttachment.document.creatorName;
+    [tableHeaderView addSubview:headerFromTextLabel];
+    
+    UILabel *headerDateTextLabel = [UILabel tableViewRegularHeaderLabel];
+    headerDateTextLabel.text = [NSString stringWithFormat:@"%@", firstAttachment.document.createdAt];
+    [tableHeaderView addSubview:headerDateTextLabel];
+    
+    [headerFromLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [headerDateTitleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [headerDateTextLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [headerFromTextLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    [tableHeaderView addOriginConstraintForOrigin:CGPointMake(15, 10) containedView:headerFromLabel];
+    [headerFromLabel addSizeConstraint:CGSizeMake(60, 30)];
+    
+    [tableHeaderView addOriginConstraintForOrigin:CGPointMake(15, 35) containedView:headerDateTitleLabel];
+    [headerDateTitleLabel addSizeConstraint:CGSizeMake(60, 30)];
+    
+    [tableHeaderView addOriginConstraintForOrigin:CGPointMake(80, 10) containedView:headerFromTextLabel];
+    [headerFromTextLabel addSizeConstraint:CGSizeMake(210, 30)];
+    
+    [tableHeaderView addOriginConstraintForOrigin:CGPointMake(80, 35) containedView:headerDateTextLabel];
+    [headerDateTextLabel addSizeConstraint:CGSizeMake(210, 30)];
+    
+    
+    [self.tableView setTableHeaderView:tableHeaderView];
+    // This line makes the tableview hide its separator lines for empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
 }
 
 - (void)didReceiveMemoryWarning
