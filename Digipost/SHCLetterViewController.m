@@ -8,7 +8,6 @@
 
 #import <UIAlertView+Blocks.h>
 #import <UIActionSheet+Blocks.h>
-#import <THProgressView.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCLetterViewController.h"
 #import "SHCAttachment.h"
@@ -43,7 +42,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @interface SHCLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
-@property (weak, nonatomic) IBOutlet THProgressView *progressView;
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
 @property (weak, nonatomic) IBOutlet UILabel *popoverSubjectLabel;
@@ -51,8 +50,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UILabel *popoverSenderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *popoverDateDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIImageView *emptyLetterViewImageView;
 @property (strong, nonatomic) UIBarButtonItem *infoBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *actionBarButtonItem;
@@ -60,12 +59,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (strong, nonatomic) UIDocumentInteractionController *openInController;
 @property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
 @property (assign, nonatomic, getter = isSendingInvoice) BOOL sendingInvoice;
+@property (strong, nonatomic) UIBarButtonItem *leftBarButtonItem;
 
 @end
 
 @implementation SHCLetterViewController
 
 @synthesize attachment = _attachment;
+@synthesize receipt = _receipt;
 
 #pragma mark - NSObject
 
@@ -106,9 +107,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
 
-    self.progressView.borderTintColor = [UIColor whiteColor];
-    self.progressView.progressTintColor = [UIColor whiteColor];
-
     UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTapWebView:)];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
     singleTapGestureRecognizer.numberOfTouchesRequired = 1;
@@ -144,6 +142,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self updateNavbar];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
+        [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    }
+
+    [super viewDidAppear:animated];
+}
+
 - (void)viewDidDisappear:(BOOL)animated
 {
     [self unloadContent];
@@ -157,31 +164,27 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     // Dispose of any resources that can be recreated.
 }
 
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    // Force a redraw of the progress bar
-    self.progressView.progress = self.progressView.progress;
-
-    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
-}
-
 #pragma mark - UIWebViewDelegate
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
     self.progressView.alpha = 0.0;
+    self.webView.alpha = 1.0;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
     self.progressView.alpha = 0.0;
+    self.webView.alpha = 1.0;
 
     DDLogError(@"%@", [error localizedDescription]);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if ([request.URL isFileURL]) {
+    if ([[request.URL absoluteString] isEqualToString:@"about:blank"]) {
+        return YES;
+    } else if ([request.URL isFileURL]) {
         return YES;
     } else {
         [UIActionSheet showInView:self.webView
@@ -202,7 +205,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
-    return NO;
+    return YES;
 }
 
 #pragma mark - UIDocumentInteractionControllerDelegate
@@ -221,6 +224,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController
 {
+    self.masterViewControllerPopoverController = popoverController;
+
     UIViewController *topViewController = viewController;
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         topViewController = ((UINavigationController *)viewController).topViewController;
@@ -231,6 +236,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)splitViewController:(UISplitViewController *)splitController willShowViewController:(UIViewController *)viewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
+    self.masterViewControllerPopoverController = nil;
+
+    [self setInfoViewVisible:NO];
+
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 
@@ -242,7 +251,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSProgress *progress = (NSProgress *)object;
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-            self.progressView.progress = progress.fractionCompleted;
+            [self.progressView setProgress:progress.fractionCompleted animated:YES];
         });
     } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -258,9 +267,39 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(SHCAttachment *)attachment
 {
+    BOOL new = attachment != _attachment;
+
     _attachment = attachment;
+    _receipt = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (self.masterViewControllerPopoverController) {
+            [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
+        }
+
+        [self showEmptyView:new];
+        [self reloadFromMetadata];
+    }
+}
+
+- (SHCReceipt *)receipt
+{
+    return _receipt;
+}
+
+- (void)setReceipt:(SHCReceipt *)receipt
+{
+    BOOL new = receipt != _receipt;
+
+    _receipt = receipt;
+    _attachment = nil;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (self.masterViewControllerPopoverController) {
+            [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
+        }
+
+        [self showEmptyView:new];
         [self reloadFromMetadata];
     }
 }
@@ -280,32 +319,38 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [destinations addObject:kFolderArchiveName];
     }
 
-    [UIActionSheet showFromToolbar:self.navigationController.toolbar
-                         withTitle:nil
-                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-            destructiveButtonTitle:nil
-                 otherButtonTitles:destinations
-                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                              if (buttonIndex < [destinations count]) {
-                                  NSString *location = [destinations[buttonIndex] uppercaseString];
+    [UIActionSheet showFromBarButtonItem:sender
+                                animated:YES
+                               withTitle:nil
+                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                  destructiveButtonTitle:nil
+                       otherButtonTitles:destinations
+                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    if (buttonIndex < [destinations count]) {
+                                        NSString *location = [destinations[buttonIndex] uppercaseString];
 
-                                  [self moveDocumentToLocation:location];
-                              }
-                          }];
+                                        [self moveDocumentToLocation:location];
+                                    }
+                                }];
 }
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
 {
-    [UIActionSheet showFromToolbar:self.navigationController.toolbar
-                         withTitle:nil
-                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-            destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
-                 otherButtonTitles:nil
-                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                              if (buttonIndex == 0) {
-                                  [self deleteDocument];
-                              }
-                          }];
+    [UIActionSheet showFromBarButtonItem:sender
+                                animated:YES
+                               withTitle:nil
+                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                  destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
+                       otherButtonTitles:nil
+                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    if (buttonIndex == 0) {
+                                        if (self.attachment) {
+                                            [self deleteDocument];
+                                        } else if (self.receipt) {
+                                            [self deleteReceipt];
+                                        }
+                                    }
+                                }];
 }
 
 - (IBAction)dismissInfo:(UIGestureRecognizer *)gestureRecognizer
@@ -339,6 +384,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
+
+        [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
@@ -347,6 +394,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContentFromWebWithBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel
 {
     NSProgress *progress = nil;
+    self.progressView.progress = 0.0;
 
     if ([baseEncryptionModel isKindOfClass:[SHCAttachment class]]) {
         [UIView animateWithDuration:0.3 delay:0.6 options:UIViewAnimationOptionCurveEaseInOut animations:^{
@@ -384,6 +432,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
+
+        [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
     } failure:^(NSError *error) {
 
         BOOL unauthorized = NO;
@@ -455,14 +505,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    BOOL barsHidden = self.navigationController.isNavigationBarHidden;
-
-    [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
+    BOOL barsHidden = self.navigationController.isToolbarHidden;
 
     [self.navigationController setToolbarHidden:!barsHidden animated:YES];
 
-    UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
+
+        UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+        [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
+    }
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -477,13 +529,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if (self.documentsViewController) {
             self.documentsViewController.needsReload = YES;
 
-            // Becuase we might have been pushed from the attachments vc, make sure that we pop
-            // all the way back to the documents vc.
-            [self.navigationController popToViewController:self.documentsViewController animated:YES];
-        } else if (self.receiptsViewController) {
-            self.receiptsViewController.needsReload = YES;
-
-            [self.navigationController popViewControllerAnimated:YES];
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                self.attachment = nil;
+                [self showEmptyView:YES];
+            } else {
+                // Becuase we might have been pushed from the attachments vc, make sure that we pop
+                // all the way back to the documents vc.
+                [self.navigationController popToViewController:self.documentsViewController animated:YES];
+            }
         }
 
     } failure:^(NSError *error) {
@@ -517,12 +570,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             // Becuase we might have been pushed from the attachments vc, make sure that we pop
             // all the way back to the documents vc.
             [self.navigationController popToViewController:self.documentsViewController animated:YES];
-        } else if (self.receiptsViewController) {
-            self.receiptsViewController.needsReload = YES;
-
-            [self.navigationController popViewControllerAnimated:YES];
         }
-
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -531,6 +579,38 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];
+
+                return;
+            }
+        }
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
+- (void)deleteReceipt
+{
+    [[SHCAPIManager sharedManager] deleteReceipt:self.receipt withSuccess:^{
+
+        if (self.receiptsViewController) {
+            self.receiptsViewController.needsReload = YES;
+
+            // Becuase we might have been pushed from the attachments vc, make sure that we pop
+            // all the way back to the documents vc.
+            [self.navigationController popToViewController:self.receiptsViewController animated:YES];
+        }
+    } failure:^(NSError *error) {
+
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                [self performSelector:@selector(deleteReceipt) withObject:nil afterDelay:0.0];
 
                 return;
             }
@@ -653,6 +733,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     if (visible && self.shadowView.alpha == 0.0) {
 
+        NSString *subject;
+        NSString *sender;
+        if (self.attachment) {
+            subject = self.attachment.subject;
+            sender = self.attachment.document.creatorName;
+        } else if (self.receipt) {
+//            subject = self.receipt.
+        }
+
         self.popoverSubjectLabel.text = self.attachment.subject;
         self.popoverSenderLabel.text = self.attachment.document.creatorName;
 
@@ -682,7 +771,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)sendInvoiceToBank
 {
     self.sendingInvoice = YES;
-    [self updateToolbarItemsWithInvoice];
+    [self updateToolbarItemsWithInvoice:YES];
 
     [[SHCAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice withSuccess:^{
 
@@ -703,7 +792,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
 
         self.sendingInvoice = NO;
-        [self updateToolbarItemsWithInvoice];
+        [self updateToolbarItemsWithInvoice:YES];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
@@ -724,7 +813,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri success:^{
         [self updateAttachmentWithAttachmentUri:attachmentUri];
         self.sendingInvoice = NO;
-        [self updateToolbarItemsWithInvoice];
+        [self updateToolbarItemsWithInvoice:YES];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -751,26 +840,43 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.attachment = [SHCAttachment existingAttachmentWithUri:uri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
 }
 
-- (void)updateToolbarItemsWithInvoice
+- (void)updateToolbarItemsWithInvoice:(BOOL)invoice
 {
-    NSString *title = nil;
-    if (self.isSendingInvoice) {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"Sending...");
-    } else if (self.attachment.invoice.timePaid) {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE", @"Sent to bank");
-    } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE", @"Send to bank");
-    } else {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE", @"Payment tips");
-    }
-
-    self.invoiceBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(didTapInvoice:)];
-    self.invoiceBarButtonItem.tintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
-    [self.invoiceBarButtonItem setEnabled:!self.isSendingInvoice];
-
     UIBarButtonItem *flexibleSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-    self.toolbarItems = @[self.invoiceBarButtonItem, flexibleSpaceBarButtonItem, self.moveBarButtonItem, flexibleSpaceBarButtonItem, self.deleteBarButtonItem];
+    NSMutableArray *items = [NSMutableArray array];
+
+    if (invoice) {
+        NSString *title = nil;
+        if (self.isSendingInvoice) {
+            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"Sending...");
+        } else if (self.attachment.invoice.timePaid) {
+            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE", @"Sent to bank");
+        } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
+            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE", @"Send to bank");
+        } else {
+            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE", @"Payment tips");
+        }
+
+        self.invoiceBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:title style:UIBarButtonItemStyleBordered target:self action:@selector(didTapInvoice:)];
+        self.invoiceBarButtonItem.tintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
+        [self.invoiceBarButtonItem setEnabled:!self.isSendingInvoice];
+
+        [items addObjectsFromArray:@[self.invoiceBarButtonItem, flexibleSpaceBarButtonItem]];
+        if (self.attachment) {
+            [items addObject:self.moveBarButtonItem];
+        }
+        [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+
+        self.toolbarItems = items;
+    } else {
+        if (self.attachment) {
+            [items addObject:self.moveBarButtonItem];
+        }
+        [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+
+        self.toolbarItems = items;
+    }
 }
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController
@@ -795,9 +901,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showEmptyView:(BOOL)showEmptyView
 {
-    self.emptyLetterViewImageView.hidden = !showEmptyView;
+    if (showEmptyView) {
+        self.webView.alpha = 0.0;
+    }
 
-    [self.navigationController setToolbarHidden:showEmptyView animated:YES];
+    self.emptyLetterViewImageView.hidden = !showEmptyView;
 }
 
 - (void)updateNavbar
@@ -815,13 +923,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self updateNavbar];
 
-    if (self.attachment.invoice) {
-        [self updateToolbarItemsWithInvoice];
-    }
-
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
 
         if (!self.attachment && !self.receipt) {
             [self showEmptyView:YES];

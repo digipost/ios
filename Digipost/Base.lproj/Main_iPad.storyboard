@@ -91,14 +91,12 @@
                                     <constraint firstAttribute="width" constant="154" id="TaK-cX-XHM"/>
                                 </constraints>
                             </imageView>
-                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irc-Jh-EMg" customClass="THProgressView">
-                                <rect key="frame" x="30" y="460" width="708" height="40"/>
+                            <progressView opaque="NO" alpha="0.0" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ucd-IK-YkZ">
+                                <rect key="frame" x="100" y="479" width="548" height="2"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="noi-Gu-fd2"/>
-                                </constraints>
-                            </view>
+                                <color key="progressTintColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                             <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yW3-Fy-eNQ">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -224,18 +222,18 @@
                             <constraint firstAttribute="bottom" secondItem="yW3-Fy-eNQ" secondAttribute="bottom" id="007-Hu-3hy"/>
                             <constraint firstItem="yW3-Fy-eNQ" firstAttribute="top" secondItem="U99-DD-r9a" secondAttribute="bottom" id="0Zn-mX-CR2"/>
                             <constraint firstItem="xHm-UB-Jqi" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" id="2Kt-ES-HF4"/>
+                            <constraint firstAttribute="trailing" secondItem="Ucd-IK-YkZ" secondAttribute="trailing" constant="120" id="56U-gR-Wg4"/>
                             <constraint firstAttribute="centerY" secondItem="nNg-2N-bBs" secondAttribute="centerY" id="Ot7-qO-Bon"/>
                             <constraint firstAttribute="centerX" secondItem="WCB-cn-t5M" secondAttribute="centerX" id="QRg-eO-Z5w"/>
                             <constraint firstItem="nNg-2N-bBs" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" constant="20" id="RWN-35-pOY"/>
                             <constraint firstAttribute="bottom" secondItem="xHm-UB-Jqi" secondAttribute="bottom" id="SGZ-u6-eub"/>
-                            <constraint firstAttribute="centerY" secondItem="irc-Jh-EMg" secondAttribute="centerY" id="cAQ-Qq-OJn"/>
+                            <constraint firstAttribute="centerY" secondItem="Ucd-IK-YkZ" secondAttribute="centerY" id="Wgo-06-dGE"/>
                             <constraint firstAttribute="trailing" secondItem="xHm-UB-Jqi" secondAttribute="trailing" id="dyN-Ei-Phh"/>
-                            <constraint firstItem="irc-Jh-EMg" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" constant="30" id="ilC-i7-DJJ"/>
                             <constraint firstItem="yW3-Fy-eNQ" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" id="jXd-52-LDL"/>
                             <constraint firstItem="xHm-UB-Jqi" firstAttribute="top" secondItem="U99-DD-r9a" secondAttribute="bottom" id="lcB-Go-3lQ"/>
                             <constraint firstAttribute="centerY" secondItem="WCB-cn-t5M" secondAttribute="centerY" id="lfT-om-LpH"/>
-                            <constraint firstAttribute="trailing" secondItem="irc-Jh-EMg" secondAttribute="trailing" constant="30" id="qxf-hi-5nA"/>
                             <constraint firstAttribute="trailing" secondItem="yW3-Fy-eNQ" secondAttribute="trailing" id="rLc-hY-gT2"/>
+                            <constraint firstItem="Ucd-IK-YkZ" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" constant="100" id="wfh-gf-9SF"/>
                             <constraint firstAttribute="trailing" secondItem="nNg-2N-bBs" secondAttribute="trailing" constant="20" id="zBA-C2-dgH"/>
                         </constraints>
                     </view>
@@ -266,7 +264,7 @@
                         <outlet property="popoverSenderDescriptionLabel" destination="o0l-RQ-yZF" id="34A-Yo-8Fy"/>
                         <outlet property="popoverSenderLabel" destination="mf2-hQ-YbA" id="09w-e9-QFL"/>
                         <outlet property="popoverSubjectLabel" destination="X55-WU-upr" id="q7a-oY-gPm"/>
-                        <outlet property="progressView" destination="irc-Jh-EMg" id="4oq-QJ-tn9"/>
+                        <outlet property="progressView" destination="Ucd-IK-YkZ" id="jRL-VP-BST"/>
                         <outlet property="shadowView" destination="xHm-UB-Jqi" id="lSw-3z-9AE"/>
                         <outlet property="webView" destination="yW3-Fy-eNQ" id="S0L-0e-pT3"/>
                     </connections>

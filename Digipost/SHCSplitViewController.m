@@ -14,6 +14,8 @@
 
 @interface SHCSplitViewController ()
 
+@property (weak, nonatomic, readonly) SHCLetterViewController *letterViewController;
+
 @end
 
 @implementation SHCSplitViewController
@@ -43,15 +45,12 @@
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 
-    UINavigationController *detailNavigationController = [self.viewControllers lastObject];
-    if ([detailNavigationController isKindOfClass:[UINavigationController class]]) {
-        SHCLetterViewController *letterViewController = (SHCLetterViewController *)detailNavigationController.topViewController;
-        if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
-            self.delegate = letterViewController;
+    SHCLetterViewController *letterViewController = self.letterViewController;
+    if (letterViewController) {
+        self.delegate = letterViewController;
 
-            SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-            appDelegate.letterViewController = letterViewController;
-        }
+        SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        appDelegate.letterViewController = letterViewController;
     }
 }
 
@@ -71,10 +70,32 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Properties
+
+- (SHCLetterViewController *)letterViewController
+{
+    SHCLetterViewController *letterViewController = nil;
+
+    UINavigationController *detailNavigationController = [self.viewControllers lastObject];
+    if ([detailNavigationController isKindOfClass:[UINavigationController class]]) {
+        UIViewController *topViewController = detailNavigationController.topViewController;
+        if ([topViewController isKindOfClass:[SHCLetterViewController class]]) {
+            letterViewController = (SHCLetterViewController *)topViewController;
+        }
+    }
+
+    return letterViewController;
+}
+
 #pragma mark - Private methods
 
 - (void)presentLoginViewController:(NSNotification *)notification
 {
+    SHCLetterViewController *letterViewController = self.letterViewController;
+    if (letterViewController) {
+        [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
+    }
+
     [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
 }
 

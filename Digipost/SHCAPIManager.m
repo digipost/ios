@@ -978,9 +978,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
 
+    NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+
     [self validateTokensWithSuccess:^{
 
-        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModel.uri parameters:nil];
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil];
 
         // Let's set the correct mime type for this file download.
         [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
@@ -989,7 +991,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             progress.completedUnitCount = totalBytesWritten;
         }];
 
-        NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
         BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[SHCAttachment class]];
         NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
 

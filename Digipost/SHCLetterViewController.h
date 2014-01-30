@@ -24,6 +24,7 @@ extern NSString *const kPushReceiptIdentifier;
 @property (weak, nonatomic) SHCReceiptsViewController *receiptsViewController;
 @property (strong, nonatomic) SHCAttachment *attachment;
 @property (strong, nonatomic) SHCReceipt *receipt;
+@property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 

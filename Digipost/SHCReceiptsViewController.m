@@ -221,6 +221,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         [self programmaticallyEndRefresh];
         [self updateNavbar];
 
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -235,6 +237,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         }
 
         [self programmaticallyEndRefresh];
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
@@ -324,6 +328,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 {
     [[SHCAPIManager sharedManager] deleteReceipt:receipt withSuccess:^{
         [self updateFetchedResultsController];
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -336,6 +342,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                 return;
             }
         }
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]

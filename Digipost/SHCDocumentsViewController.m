@@ -133,17 +133,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 #pragma mark - UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger number = [super numberOfSectionsInTableView:tableView];
-
-    if (number == 0) {
-        [self showTableViewBackgroundView:YES];
-    }
-
-    return number;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
@@ -151,8 +140,6 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
         number++;
     }
-
-    [self showTableViewBackgroundView:(number == 0)];
 
     return number;
 }
@@ -322,7 +309,9 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-        
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+
         // If the user has just managed to enter a document with attachments _after_ the API call finished,
         // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
         // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
@@ -356,6 +345,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         }
 
         [self programmaticallyEndRefresh];
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
@@ -449,6 +440,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     [[SHCAPIManager sharedManager] moveDocument:document toLocation:location withSuccess:^{
         [self updateFetchedResultsController];
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -465,6 +458,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 return;
             }
         }
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
@@ -490,6 +485,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     [[SHCAPIManager sharedManager] deleteDocument:document withSuccess:^{
         [self updateFetchedResultsController];
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     } failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -502,6 +499,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 return;
             }
         }
+
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]

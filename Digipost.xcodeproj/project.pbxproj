@@ -208,7 +208,7 @@
 		83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NeedsReload.m"; sourceTree = "<group>"; };
 		83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Staging.xcassets"; sourceTree = "<group>"; };
 		83C5719818984111000C61E7 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
-		83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Model v1.6.xcdatamodel"; sourceTree = "<group>"; };
+		83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.6.xcdatamodel"; sourceTree = "<group>"; };
 		83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
 		83D2F7E61875578A00344644 /* SHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFileManager.h; sourceTree = "<group>"; };
 		83D2F7E71875578A00344644 /* SHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFileManager.m; sourceTree = "<group>"; };
@@ -974,7 +974,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3A91C9D3-8CE2-4AB7-9BD7-01187E133616";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1006,7 +1006,7 @@
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
