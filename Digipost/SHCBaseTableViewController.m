@@ -57,8 +57,6 @@
 
     // Present persistent data before updating
     [self updateFetchedResultsController];
-
-    [self updateContentsFromServer];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -194,6 +194,19 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
+- (void)deleteAllObjects
+{
+    [SHCRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
+    [SHCReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
+    [SHCDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
+
+    // Save changes
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
 - (NSEntityDescription *)rootResourceEntity
 {
     return [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:self.managedObjectContext];

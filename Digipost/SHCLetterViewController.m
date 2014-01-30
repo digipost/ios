@@ -144,7 +144,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
+    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
     }
 
@@ -308,10 +308,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapMove:(UIBarButtonItem *)sender
 {
+    NSString *moveTo = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE", @"Move to");
+
     NSMutableArray *destinations = [NSMutableArray array];
-    NSString *inboxLocalizedName = NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-    NSString *workAreaLocalizedName =  NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-    NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
+
+    NSString *inboxLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox")];
+    NSString *workAreaLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea")];
+    NSString *archiveLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive")];
+
     NSString *documentLocation = self.attachment.document.location;
     if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
         [destinations addObject:inboxLocalizedName];
@@ -322,10 +326,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
         [destinations addObject:archiveLocalizedName];
     }
-    
+
+    NSString *title = nil;
+    if ([self.attachment.document.attachments count] > 1) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
+    }
+
     [UIActionSheet showFromBarButtonItem:sender
                                 animated:YES
-                               withTitle:nil
+                               withTitle:title
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:nil
                        otherButtonTitles:destinations
@@ -334,11 +343,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         NSString *location = destinations[buttonIndex] ;
                                         if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
                                             [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
-                                        }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
+                                        } else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
                                             [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
-                                        }else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
+                                        } else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
                                             [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
-                                        }else {
+                                        } else {
                                             NSAssert(NO, @"Wrong index tapped");
                                         }
                                     }
@@ -347,9 +356,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
 {
+    NSString *title = nil;
+    if ([self.attachment.document.attachments count] > 1) {
+        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE", @"Delete warning");
+    }
+
     [UIActionSheet showFromBarButtonItem:sender
                                 animated:YES
-                               withTitle:nil
+                               withTitle:title
                        cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
                   destructiveButtonTitle:NSLocalizedString(@"GENERIC_DELETE_BUTTON_TITLE", @"Delete")
                        otherButtonTitles:nil

@@ -316,6 +316,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
                     self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
                         [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+
+                        [[SHCOAuthManager sharedManager] removeAllTokens];
+                        [[SHCModelManager sharedManager] deleteAllObjects];
                     };
 
                     if (self.lastFailureBlock) {

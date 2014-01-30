@@ -47,7 +47,7 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 {
     self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
-                                                           ascending:YES
+                                                           ascending:NO
                                                             selector:@selector(compare:)]];
 
     self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
@@ -160,20 +160,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    NSString *title;
-    if (section == 0 && self.inboxFolder) {
-        title = nil;
-    } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
-        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE", @"SETTINGS");
-    } else {
-        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE", @"FOLDERS");
-    }
-
-    return title;
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -188,13 +174,37 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     return height;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    view.tintColor = [UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:1.0];
+    CGFloat labelHeight = 21.0;
+    CGFloat labelOriginX = 15.0;
+    CGFloat headerHeight = [self tableView:tableView heightForHeaderInSection:section];
 
-    UITableViewHeaderFooterView *headerFooterView = (UITableViewHeaderFooterView *)view;
-    headerFooterView.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
-    headerFooterView.textLabel.textColor = [UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0];
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelOriginX,
+                                                                     headerHeight - labelHeight,
+                                                                     CGRectGetWidth(tableView.frame) - labelOriginX,
+                                                                     labelHeight)];
+    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
+    headerLabel.textColor = [UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0];
+
+    NSString *title;
+    if (section == 0 && self.inboxFolder) {
+        title = nil;
+    } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
+        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE", @"SETTINGS");
+    } else {
+        title = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE", @"FOLDERS");
+    }
+
+    headerLabel.text = title;
+
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0.0,
+                                                            0.0,
+                                                            CGRectGetWidth(tableView.frame),
+                                                            headerHeight)];
+    [view addSubview:headerLabel];
+
+    return view;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -221,8 +231,15 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
                                    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
                                    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+
                                        [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[SHCModelManager sharedManager] deleteAllObjects];
+
                                    } failure:^(NSError *error) {
+
+                                       [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[SHCModelManager sharedManager] deleteAllObjects];
+
                                        [UIAlertView showWithTitle:error.errorTitle
                                                           message:[error localizedDescription]
                                                 cancelButtonTitle:nil
