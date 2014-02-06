@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C44" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -295,6 +295,7 @@
                                         <constraint firstItem="uUo-YN-s20" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" id="2H2-NV-eJQ"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="centerY" secondItem="pKW-US-Je8" secondAttribute="centerY" id="Hjt-jp-xxr"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="leading" secondItem="kfJ-1t-g98" secondAttribute="trailing" constant="10" id="Lyp-yA-aGh"/>
+                                        <constraint firstItem="tKe-Yp-E2z" firstAttribute="top" secondItem="4W8-5K-T1U" secondAttribute="bottom" constant="1" id="PYh-Lv-wEu"/>
                                         <constraint firstItem="tKe-Yp-E2z" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" constant="30" id="QRl-Y5-43T"/>
                                         <constraint firstItem="pKW-US-Je8" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" id="V91-ME-Q7z"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="uUo-YN-s20" secondAttribute="trailing" id="VrW-qu-QFF"/>
@@ -306,7 +307,6 @@
                                         <constraint firstItem="tKe-Yp-E2z" firstAttribute="centerY" secondItem="HcC-gk-Zok" secondAttribute="centerY" id="jeO-eY-mGh"/>
                                         <constraint firstAttribute="trailing" secondItem="4W8-5K-T1U" secondAttribute="trailing" constant="15" id="nJR-Lz-sjC"/>
                                         <constraint firstAttribute="bottom" secondItem="skL-A1-Mcb" secondAttribute="bottom" constant="14" id="p48-RY-00a"/>
-                                        <constraint firstAttribute="bottom" secondItem="tKe-Yp-E2z" secondAttribute="bottom" constant="10" id="pvj-vB-KBn"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="top" constant="11" id="wGx-ql-5hQ"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="pKW-US-Je8" secondAttribute="trailing" id="wau-Vv-Nuw"/>
                                     </constraints>
@@ -868,6 +868,7 @@
                         <outlet property="popoverSenderDescriptionLabel" destination="GWi-rd-gUS" id="UVa-HP-w38"/>
                         <outlet property="popoverSenderLabel" destination="h2s-qk-gs7" id="C3q-yR-i6g"/>
                         <outlet property="popoverSubjectLabel" destination="sou-c7-l6X" id="m8w-gG-Q52"/>
+                        <outlet property="popoverView" destination="GRH-Ar-m5o" id="tJk-Ze-FwK"/>
                         <outlet property="progressView" destination="hqz-1p-hA0" id="qaE-ag-UKL"/>
                         <outlet property="shadowView" destination="UZq-Nf-q1o" id="ehi-lv-bNn"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>

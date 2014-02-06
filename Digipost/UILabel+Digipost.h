@@ -12,4 +12,6 @@
 
 + (UILabel *)tableViewMediumHeaderLabel;
 + (UILabel *)tableViewRegularHeaderLabel;
++ (UILabel *)popoverViewDescriptionLabel;
++ (UILabel *)popoverViewLabel;
 @end

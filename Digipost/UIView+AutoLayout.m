@@ -15,10 +15,12 @@
     NSLayoutConstraint *oldConstraint = nil;
     for (NSLayoutConstraint *constraint in view.constraints) {
         if ([constraint.firstItem isEqual:view]){
-            if (constraint.firstAttribute == newCostraint.firstAttribute) {
-                if (constraint.relation == newCostraint.relation) {
-                    oldConstraint = constraint;
-                    break;
+            if (constraint.firstItem == newCostraint.firstItem) {
+                if (constraint.firstAttribute == newCostraint.firstAttribute) {
+                    if (constraint.relation == newCostraint.relation) {
+                        oldConstraint = constraint;
+                        break;
+                    }
                 }
             }
         }
@@ -26,6 +28,19 @@
     
     [view removeConstraint:oldConstraint];
     [view addConstraint:newCostraint];
+}
+
+- (void)addVerticalSpaceBottomConstraintForBottom:(CGFloat)bottom fromView:(UIView*)fromView toView:(UIView*)toView
+{
+    [self replaceIfExistsConstraintForContainingView:self
+                                           costraint:[NSLayoutConstraint constraintWithItem:fromView
+                                                                                  attribute:NSLayoutAttributeBottom
+                                                                                  relatedBy:NSLayoutRelationEqual
+                                                                                     toItem: toView
+                                                                                  attribute:NSLayoutAttributeBottom
+                                                                                 multiplier:1.0
+                                                                                   constant:bottom]];
+    
 }
 
 - (void)addOriginConstraintForOrigin:(CGPoint)origin containedView:(UIView*)view
@@ -41,7 +56,7 @@
                                                     multiplier:1.0
                                                       constant:origin.x]];
     
-    [self addConstraint:[NSLayoutConstraint constraintWithItem:view
+    [self replaceIfExistsConstraintForContainingView:self costraint:[NSLayoutConstraint constraintWithItem:view
                                                      attribute:NSLayoutAttributeTop
                                                      relatedBy:NSLayoutRelationEqual
                                                         toItem:self
@@ -62,6 +77,7 @@
     
     
 }
+
 - (void)addSizeConstraint: (CGSize) size
 {
     [self replaceIfExistsConstraintForContainingView:self costraint: [NSLayoutConstraint constraintWithItem:self
@@ -79,4 +95,5 @@
                                                                                                  multiplier:1.0
                                                                                                    constant:size.height]];
 }
+
 @end

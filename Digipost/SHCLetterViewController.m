@@ -29,7 +29,8 @@
 #import "SHCFoldersViewController.h"
 #import "SHCAttachmentsViewController.h"
 #import "SHCDocumentsViewController.h"
-
+#import "UILabel+Digipost.h"
+#import "UIView+AutoLayout.h"
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -45,11 +46,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSubjectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSenderDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSenderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverDateDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIImageView *emptyLetterViewImageView;
@@ -60,6 +56,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
 @property (assign, nonatomic, getter = isSendingInvoice) BOOL sendingInvoice;
 @property (strong, nonatomic) UIBarButtonItem *leftBarButtonItem;
+
+@property (weak, nonatomic) IBOutlet UIView *popoverView;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSubjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSenderDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverSenderLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverDateDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
+@property (weak, nonatomic) UILabel *popoverAmountLabel;
+@property (weak, nonatomic) UILabel *popoverAmountDescriptionLabel;
+@property (weak, nonatomic) UILabel *popoverCardLabel;
+@property (weak, nonatomic) UILabel *popoverCardDescriptionLabel;
 
 @end
 
@@ -765,11 +772,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             subject = self.attachment.subject;
             sender = self.attachment.document.creatorName;
         } else if (self.receipt) {
-//            subject = self.receipt.
+            subject = self.receipt.storeName;
+            sender = self.receipt.franchiseName;
+            [self shwoPopoverForReceipt];
         }
 
-        self.popoverSubjectLabel.text = self.attachment.subject;
-        self.popoverSenderLabel.text = self.attachment.document.creatorName;
+        self.popoverSubjectLabel.text = subject;
+        self.popoverSenderLabel.text = sender;
 
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterShortStyle;
@@ -792,6 +801,18 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
         [self.navigationController.toolbar setUserInteractionEnabled:YES];
     }
+}
+
+- (void)shwoPopoverForReceipt
+{
+    if (self.popoverAmountLabel == nil ) {
+        self.popoverAmountLabel = [UILabel popoverViewLabel];
+        [self.popoverView addSubview:self.popoverAmountLabel];
+        [self.popoverAmountLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [self.popoverAmountLabel addSizeConstraint:CGSizeMake(30, 30)];
+        [self.popoverView addVerticalSpaceBottomConstraintForBottom:30 fromView:self.popoverAmountLabel toView:self.popoverSubjectLabel];
+    }
+    
 }
 
 - (void)sendInvoiceToBank
