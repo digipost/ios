@@ -59,6 +59,10 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     [super viewDidLoad];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
+    
+    if (self.inboxFolder){
+        [self performSegueWithIdentifier:@"PushDocuments" sender:self.inboxFolder];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
