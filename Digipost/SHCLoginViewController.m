@@ -77,6 +77,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
             [self.navigationController pushViewController:foldersViewController animated:NO];
+            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
         }
     }
 

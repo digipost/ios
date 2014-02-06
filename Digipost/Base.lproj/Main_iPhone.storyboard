@@ -202,11 +202,12 @@
                     <connections>
                         <segue destination="mgI-2c-YJ5" kind="push" identifier="PushDocuments" id="j20-qk-TDu"/>
                         <segue destination="CQ6-bh-m2j" kind="push" identifier="PushReceipts" id="5tq-Sj-onf"/>
+                        <segue destination="mgI-2c-YJ5" kind="push" identifier="goToInboxFolderAtStartupSegue" id="nJS-Zx-WgQ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="966" y="64"/>
+            <point key="canvasLocation" x="985" y="47"/>
         </scene>
         <!--Documents View Controller-->
         <scene sceneID="ch1-fS-EKn">
@@ -1023,6 +1024,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="nJS-Zx-WgQ"/>
         <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>

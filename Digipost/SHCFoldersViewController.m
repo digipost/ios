@@ -32,10 +32,13 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
 
+NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue";
+
+
 @interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
 
-@property (strong, nonatomic) SHCFolder *inboxFolder;
 @property (strong, nonatomic) NSMutableArray *folders;
+@property (strong, nonatomic) SHCFolder *inboxFolder;
 
 @end
 
@@ -59,10 +62,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
     [super viewDidLoad];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
-    
-    if (self.inboxFolder){
-        [self performSegueWithIdentifier:@"PushDocuments" sender:self.inboxFolder];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -93,6 +92,9 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
         SHCReceiptsViewController *receiptsViewController = (SHCReceiptsViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
         receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
+    } else if ( [segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]){
+        SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
+        documentsViewController.folderName = kFolderInboxName;
     }
 }
 
