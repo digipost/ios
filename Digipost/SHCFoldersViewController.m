@@ -338,10 +338,11 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     UIViewController *topViewController = [self.navigationController topViewController];
     SHCDocumentsViewController *archiveViewController = (SHCDocumentsViewController *)topViewController;
+    
     if (!([topViewController isKindOfClass:[SHCDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {
-
-        [self.navigationController popToViewController:self animated:YES];
-
+    
+        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:NO];
+        // @TODO  enure you got the correct VC !!!!!!!!
         for (SHCFolder *folder in self.folders) {
             if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
                 [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:folder];
