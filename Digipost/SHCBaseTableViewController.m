@@ -182,6 +182,7 @@
     }
 
     [self.tableView reloadData];
+    [self updateNavbar];
 }
 
 - (void)programmaticallyEndRefresh
