@@ -49,11 +49,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)viewDidLoad
 {
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
-
+    
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
-
+    
     self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                            ascending:NO
@@ -61,20 +61,20 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
                       [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
                       self.folderName];
-
+    
     self.screenName = kDocumentsViewControllerScreenName;
-
+    
     [super viewDidLoad];
-
+    
     [self updateToolbarButtonItems];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
     [self.navigationController setToolbarHidden:YES animated:NO];
-
+    
     if ([self.folderName isEqualToString:kFolderArchiveName]) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidChange:) name:kAPIManagerUploadProgressChangedNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidFinish:) name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
@@ -84,21 +84,26 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
+    if (self.folderUri ==  nil) {
+        SHCFolder *folder = [SHCFolder existingFolderWithName:self.folderName inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        self.folderUri = folder.uri;
+        self.folderDisplayName = folder.displayName;
+        [self updateNavbar];
+    }
     [self updateContentsFromServer];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [[SHCAPIManager sharedManager] cancelUpdatingDocuments];
-
+    
     if ([self.folderName isEqualToString:kFolderArchiveName]) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressChangedNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
     }
-
+    
     [self programmaticallyEndRefresh];
-
+    
     [super viewWillDisappear:animated];
 }
 
@@ -107,13 +112,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([segue.identifier isEqualToString:kPushAttachmentsIdentifier]) {
         SHCDocument *document = (SHCDocument *)sender;
         self.selectedDocumentUpdateUri = document.updateUri;
-
+        
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
         attachmentsViewController.attachments = document.attachments;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         SHCAttachment *attachment = (SHCAttachment *)sender;
-
+        
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
@@ -123,11 +128,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-
+    
     [self.navigationController setToolbarHidden:!editing animated:animated];
-
+    
     [self updateNavbar];
-
+    
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
 }
 
@@ -136,37 +141,37 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
-
+    
     if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
         number++;
     }
-
+    
     return number;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
-
+        
         if (indexPath.row == 0) {
             SHCUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier forIndexPath:indexPath];
             cell.progressView.progress = [SHCAPIManager sharedManager].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [SHCDocument stringForDocumentDate:[NSDate date]];
             cell.fileNameLabel.text = [[SHCAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
-
+            
             return cell;
         }
-
+        
         // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
         indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:indexPath.section];
     }
-
+    
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+    
     SHCDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier forIndexPath:indexPath];
-
+    
     SHCAttachment *attachment = [document mainDocumentAttachment];
-
+    
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         cell.unreadImageView.hidden = [attachment.read boolValue];
         cell.lockedImageView.hidden = YES;
@@ -178,7 +183,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [SHCDocument stringForDocumentDate:attachment.document.createdAt];
     cell.subjectLabel.text = attachment.subject;
-
+    
     return cell;
 }
 
@@ -193,18 +198,18 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
+        
         return;
     }
     
     SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
+    
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier sender:document];
     } else {
-
+        
         SHCAttachment *attachment = [document.attachments firstObject];
-
+        
         [self validateOpeningAttachment:attachment success:^{
             if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
@@ -227,7 +232,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
+        
         return;
     }
 }
@@ -241,7 +246,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     } else {
         [self selectAllRows];
     }
-
+    
     [self updateToolbarButtonItems];
 }
 
@@ -262,7 +267,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if (![[self.folderName lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
         [destinations addObject:archiveLocalizedName];
     }
-
+    
     [UIActionSheet showFromBarButtonItem:barButtonItem
                                 animated:YES
                                withTitle:nil
@@ -290,13 +295,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     NSUInteger numberOfLetters = [[self.tableView indexPathsForSelectedRows] count];
     NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") :
-                                                  NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
-
+    NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+    
     NSString *deleteString = [NSString stringWithFormat:@"%@ %lu %@",
                               NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
                               (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
                               letterWord];
-
+    
     [UIActionSheet showFromBarButtonItem:barButtonItem
                                 animated:YES
                                withTitle:nil
@@ -318,50 +323,50 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
         return;
     }
-
+    
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
+        
         // If the user has just managed to enter a document with attachments _after_ the API call finished,
         // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
         // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
         if ([self.navigationController.topViewController isKindOfClass:[SHCAttachmentsViewController class]]) {
             SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
-
+            
             SHCDocument *selectedDocument = [SHCDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
-
+            
             attachmentsViewController.attachments = selectedDocument.attachments;
         }
-
+        
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
         if (!rootResource.currentBankAccount) {
-
+            
             if ([self documentsNeedCurrentBankAccount]) {
-
+                
                 [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
             }
         }
     } failure:^(NSError *error) {
-
+        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
-
+                
                 return;
             }
         }
-
+        
         [self programmaticallyEndRefresh];
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
+        
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
@@ -373,14 +378,14 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)updateNavbar
 {
     [super updateNavbar];
-
+    
     self.navigationItem.title = self.folderDisplayName;
-
+    
     UIBarButtonItem *rightBarButtonItem = nil;
     if ([self numberOfRows] > 0) {
         rightBarButtonItem = self.editButtonItem;
     }
-
+    
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 }
 
@@ -393,7 +398,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         self.moveBarButtonItem.enabled = NO;
         self.deleteBarButtonItem.enabled = NO;
     }
-
+    
     if ([self someRowsSelected]) {
         self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
     } else {
@@ -412,7 +417,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
         numberOfRows += [self.tableView numberOfRowsInSection:section];
     }
-
+    
     return numberOfRows;
 }
 
@@ -432,7 +437,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         SHCDocumentTableViewCell *cell = (SHCDocumentTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
-
+    
     for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
@@ -442,10 +447,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-
+        
         [self moveDocument:document toLocation:location];
     }
-
+    
     [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
@@ -454,10 +459,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     [[SHCAPIManager sharedManager] moveDocument:document toLocation:location withSuccess:^{
         [self updateFetchedResultsController];
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     } failure:^(NSError *error) {
-
+        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -468,13 +473,13 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self moveDocument:document toLocation:location];
                 });
-
+                
                 return;
             }
         }
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
+        
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
@@ -487,10 +492,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-
+        
         [self deleteDocument:document];
     }
-
+    
     [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
@@ -499,23 +504,23 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     [[SHCAPIManager sharedManager] deleteDocument:document withSuccess:^{
         [self updateFetchedResultsController];
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     } failure:^(NSError *error) {
-
+        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
-
+                
                 return;
             }
         }
-
+        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
+        
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
@@ -527,7 +532,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (BOOL)documentsNeedCurrentBankAccount
 {
     NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
-
+    
     for (SHCDocument *document in [SHCDocument allDocumentsInFolderWithName:self.folderName inManagedObjectContext:managedObjectContext]) {
         for (SHCAttachment *attachment in document.attachments) {
             if (attachment.invoice && [attachment.invoice.canBePaidByUser boolValue] && [attachment.invoice.sendToBankUri length] > 0) {
@@ -535,7 +540,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
             }
         }
     }
-
+    
     return NO;
 }
 
@@ -544,9 +549,9 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([SHCAPIManager sharedManager].isUpdatingBankAccount) {
         return;
     }
-
+    
     [[SHCAPIManager sharedManager] updateBankAccountWithUri:uri success:nil failure:^(NSError *error) {
-
+        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -557,11 +562,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                     [self updateCurrentBankAccountWithUri:uri];
                 });
-
+                
                 return;
             }
         }
-
+        
         [UIAlertView showWithTitle:error.errorTitle
                            message:[error localizedDescription]
                  cancelButtonTitle:nil
@@ -573,22 +578,22 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 - (void)uploadProgressDidChange:(NSNotification *)notification
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-
+        
         // Don't do anything if this view controller isn't visible
         if (!(self.isViewLoaded && self.view.window)) {
             return;
         }
-
+        
         // Try to find our upload cell
         SHCUploadTableViewCell *uploadCell = nil;
-
+        
         for (UITableViewCell *cell in [self.tableView visibleCells]) {
             if ([cell isKindOfClass:[SHCUploadTableViewCell class]]) {
                 uploadCell = (SHCUploadTableViewCell *)cell;
                 break;
             }
         }
-
+        
         if (uploadCell) {
             uploadCell.progressView.progress = [SHCAPIManager sharedManager].uploadProgress.fractionCompleted;
             NSLog(@"fractionCompleted = %f", [SHCAPIManager sharedManager].uploadProgress.fractionCompleted);
@@ -610,7 +615,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         if (!(self.isViewLoaded && self.view.window)) {
             return;
         }
-
+        
         [self updateContentsFromServer];
     });
 }
@@ -619,10 +624,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 {
     if (!self.tableViewBackgroundView.superview && showTableViewBackgroundView) {
         self.tableView.backgroundView = self.tableViewBackgroundView;
-
+        
         self.noDocumentsLabel.text = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no documents in this folder.");
     }
-
+    
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
 
