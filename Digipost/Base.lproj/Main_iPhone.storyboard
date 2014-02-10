@@ -207,7 +207,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="985" y="47"/>
+            <point key="canvasLocation" x="869" y="636"/>
         </scene>
         <!--Documents View Controller-->
         <scene sceneID="ch1-fS-EKn">
@@ -467,7 +467,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1508" y="64"/>
+            <point key="canvasLocation" x="1351" y="120"/>
         </scene>
         <!--Receipts View Controller-->
         <scene sceneID="9Tp-Ze-jon">
@@ -721,7 +721,7 @@
                                     <constraint firstAttribute="height" priority="249" constant="21" id="OY5-X0-I04"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZq-Nf-q1o" userLabel="Shadow View">
@@ -1024,7 +1024,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="nJS-Zx-WgQ"/>
+        <segue reference="j20-qk-TDu"/>
         <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
