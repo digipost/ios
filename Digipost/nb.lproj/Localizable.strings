@@ -262,3 +262,6 @@
 /* dd.MM.YYYY 'kl.' hh:mm */
 "ATTACHMENTS_DATE_FORMAT" = "dd.MM.YYYY 'kl.' hh:mm";
 
+/* Opplastet */
+"GENERIC_DOCUMENT_IS_UPLOADED_TITLE" = "Opplastet";
+

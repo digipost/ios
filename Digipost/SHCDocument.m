@@ -232,6 +232,11 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     NSString *location = attributes[NSStringFromSelector(@selector(location))];
     self.location = [location isKindOfClass:[NSString class]] ? [location lowercaseString] : nil;
 
+    NSString *origin = attributes[@"origin"];
+    if ([[origin lowercaseString] isEqualToString:@"uploaded"]) {
+        self.creatorName = NSLocalizedString(@"GENERIC_DOCUMENT_IS_UPLOADED_TITLE", @"Opplastet");
+    }
+
     self.deleteUri = nil;
     self.updateUri = nil;
 
