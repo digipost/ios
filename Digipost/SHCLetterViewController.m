@@ -31,6 +31,7 @@
 #import "SHCDocumentsViewController.h"
 #import "UILabel+Digipost.h"
 #import "UIView+AutoLayout.h"
+
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -84,6 +85,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } @catch (NSException *exception) {
         DDLogDebug(@"Caught an exception: %@", exception);
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
 }
 
 #pragma mark - UIViewController
@@ -138,17 +140,23 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewWillAppear:animated];
 
     BOOL toolbarHidden = NO;
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && !self.attachment && !self.receipt) {
-        toolbarHidden = NO;
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
     }
 
     [self.navigationController setToolbarHidden:toolbarHidden animated:NO];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    
-    
 
     [self updateNavbar];
+}
+
+- (void)didChangeEditingStatus: (NSNotification* )notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSNumber *isEditing = userInfo[kEditingStatusKey];
+    [self.navigationController setToolbarHidden:[isEditing boolValue] animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -291,7 +299,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self showEmptyView:new];
         [self reloadFromMetadata];
             // update the read status for ipad view
-       
     }
 }
 
@@ -415,7 +422,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSError *error = nil;
         if (![[SHCFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel error:&error]) {
             [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
-
             return;
         }
 
@@ -996,7 +1002,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if (![self attachmentHasValidFileType]) {
         [self showInvalidFileTypeView];
-        return;
     }
 
     [self loadContent];

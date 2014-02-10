@@ -12,6 +12,8 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushDocumentsIdentifier;
 extern NSString *const kRefreshDocumentsContentNotificationName;
+extern NSString *const kDocumentsViewEditingStatusChangedNotificationName;
+extern NSString *const kEditingStatusKey;
 
 @interface SHCDocumentsViewController : SHCBaseTableViewController
 

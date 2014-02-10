@@ -33,6 +33,9 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
 NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
 
+NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documentsViewEditingStatusChangedNotificationName";
+NSString *const kEditingStatusKey = @"editingStatusKey";
+
 @interface SHCDocumentsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
@@ -137,6 +140,7 @@ NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsCon
     [self updateNavbar];
     
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
 }
 
 #pragma mark - UITableViewDataSource
