@@ -139,12 +139,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     BOOL toolbarHidden = NO;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad && !self.attachment && !self.receipt) {
-        toolbarHidden = YES;
+        toolbarHidden = NO;
     }
 
     [self.navigationController setToolbarHidden:toolbarHidden animated:NO];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    
+    
 
     [self updateNavbar];
 }
@@ -177,6 +179,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.progressView.alpha = 0.0;
     self.webView.alpha = 1.0;
+    
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -274,6 +277,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(SHCAttachment *)attachment
 {
+    self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
 
     _attachment = attachment;
@@ -286,6 +290,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         [self showEmptyView:new];
         [self reloadFromMetadata];
+            // update the read status for ipad view
+       
     }
 }
 
@@ -327,13 +333,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
         [destinations addObject:inboxLocalizedName];
     }
+    NSLog(@"location: %@",self.attachment.document.location);
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
         [destinations addObject:workAreaLocalizedName];
     }
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
         [destinations addObject:archiveLocalizedName];
     }
-
     NSString *title = nil;
     if ([self.attachment.document.attachments count] > 1) {
         title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
@@ -466,6 +472,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.webView loadRequest:request];
 
         [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
+        
+        if ([_attachment.read boolValue] == NO ) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+        }
     } failure:^(NSError *error) {
 
         BOOL unauthorized = NO;
@@ -539,10 +549,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     BOOL barsHidden = self.navigationController.isToolbarHidden;
 
-    [self.navigationController setToolbarHidden:!barsHidden animated:YES];
-
+    
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self.navigationController setNavigationBarHidden:!barsHidden animated:YES];
+        [self.navigationController setToolbarHidden:!barsHidden animated:YES];
 
         UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
         [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle animated:YES];
@@ -570,6 +580,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 // all the way back to the documents vc.
                 [self.navigationController popToViewController:self.documentsViewController animated:YES];
             }
+        }
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+            [self showEmptyView:YES];
         }
 
     } failure:^(NSError *error) {
@@ -697,7 +711,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                   }];
                 return;
             }
-
+            
             fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         } else {
             return;

@@ -31,6 +31,8 @@ NSString *const kPushDocumentsIdentifier = @"PushDocuments";
 // Google Analytics screen name
 NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
+NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
+
 @interface SHCDocumentsViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
@@ -79,6 +81,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidChange:) name:kAPIManagerUploadProgressChangedNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidFinish:) name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshContent) name:kRefreshDocumentsContentNotificationName object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -101,6 +105,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressChangedNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] removeObserver:self name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
     }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:kRefreshDocumentsContentNotificationName object:nil];
     
     [self programmaticallyEndRefresh];
     
@@ -112,13 +117,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
     if ([segue.identifier isEqualToString:kPushAttachmentsIdentifier]) {
         SHCDocument *document = (SHCDocument *)sender;
         self.selectedDocumentUpdateUri = document.updateUri;
-        
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
         attachmentsViewController.attachments = document.attachments;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         SHCAttachment *attachment = (SHCAttachment *)sender;
-        
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
@@ -315,7 +318,10 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
                                     [self setEditing:NO animated:YES];
                                 }];
 }
-
+- (void)refreshContent
+{
+    [self updateContentsFromServer];
+}
 #pragma mark - Private methods
 
 - (void)updateContentsFromServer

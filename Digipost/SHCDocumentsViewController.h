@@ -11,6 +11,7 @@
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushDocumentsIdentifier;
+extern NSString *const kRefreshDocumentsContentNotificationName;
 
 @interface SHCDocumentsViewController : SHCBaseTableViewController
 
@@ -18,4 +19,5 @@ extern NSString *const kPushDocumentsIdentifier;
 @property (copy, nonatomic) NSString *folderDisplayName;
 @property (copy, nonatomic) NSString *folderUri;
 
+- (void)refreshContent;
 @end
