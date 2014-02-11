@@ -21,10 +21,11 @@
 @property (strong, nonatomic) SHCRootResource *rootResource;
 
 // Override these methods in subclass
-- (void)updateContentsFromServer;
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *) userDidInititateRequest;
 - (void)updateNavbar;
 
 - (void)updateFetchedResultsController;
 - (void)programmaticallyEndRefresh;
+
 
 @end

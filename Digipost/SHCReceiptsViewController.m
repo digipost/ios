@@ -69,7 +69,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 {
     [super viewDidAppear:animated];
 
-    [self updateContentsFromServer];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -210,7 +210,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 #pragma mark - Private methods
 
-- (void)updateContentsFromServer
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *) userDidInititateRequest
 {
     if ([SHCAPIManager sharedManager].isUpdatingReceipts) {
         return;
@@ -230,7 +230,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
+                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
 
                 return;
             }
@@ -239,12 +239,13 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         [self programmaticallyEndRefresh];
 
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
+        if ([userDidInititateRequest boolValue]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
     }];
 }
 

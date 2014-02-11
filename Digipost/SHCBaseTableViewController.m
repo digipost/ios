@@ -142,7 +142,7 @@
 
 #pragma mark - Private methods
 
-- (void)updateContentsFromServer
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
 {
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
@@ -198,7 +198,7 @@
 {
     [self updateRefreshControlTextRefreshing:YES];
 
-    [self updateContentsFromServer];
+    [self updateContentsFromServerUserInitiatedRequest:@YES];
 }
 
 - (void)initializeRefreshControlText

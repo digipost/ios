@@ -68,6 +68,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) UILabel *popoverAmountDescriptionLabel;
 @property (weak, nonatomic) UILabel *popoverCardLabel;
 @property (weak, nonatomic) UILabel *popoverCardDescriptionLabel;
+@property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
 
 @end
 
@@ -725,8 +726,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-
         [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
+    }else {
+        [self.openInController dismissMenuAnimated:YES];
     }
 }
 
@@ -929,10 +931,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         self.invoiceBarButtonItem.tintColor = [[UIColor whiteColor] colorWithAlphaComponent:0.8];
         [self.invoiceBarButtonItem setEnabled:!self.isSendingInvoice];
 
-        [items addObjectsFromArray:@[self.invoiceBarButtonItem, flexibleSpaceBarButtonItem]];
         if (self.attachment) {
-            [items addObject:self.moveBarButtonItem];
+            [items addObjectsFromArray:@[self.moveBarButtonItem, flexibleSpaceBarButtonItem]];
         }
+        [items addObjectsFromArray:@[self.invoiceBarButtonItem]];
         [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
 
         self.toolbarItems = items;

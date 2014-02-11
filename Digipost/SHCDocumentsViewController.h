@@ -21,5 +21,6 @@ extern NSString *const kEditingStatusKey;
 @property (copy, nonatomic) NSString *folderDisplayName;
 @property (copy, nonatomic) NSString *folderUri;
 
-- (void)refreshContent;
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *) userDidInititateRequest;
+
 @end

@@ -97,7 +97,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.folderDisplayName = folder.displayName;
         [self updateNavbar];
     }
-    [self updateContentsFromServer];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -324,11 +324,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 }
 - (void)refreshContent
 {
-    [self updateContentsFromServer];
+    [self updateContentsFromServerUserInitiatedRequest:@YES];
 }
 #pragma mark - Private methods
 
-- (void)updateContentsFromServer
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *) userDidInititateRequest
 {
     if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
         return;
@@ -367,7 +367,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
+                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
                 
                 return;
             }
@@ -376,12 +376,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self programmaticallyEndRefresh];
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-        
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
+        if ([userDidInititateRequest boolValue]){
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
     }];
 }
 
@@ -626,7 +627,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             return;
         }
         
-        [self updateContentsFromServer];
+        [self updateContentsFromServerUserInitiatedRequest:@YES];
     });
 }
 

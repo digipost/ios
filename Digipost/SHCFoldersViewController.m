@@ -68,7 +68,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     [super viewDidAppear:animated];
 
-    [self updateContentsFromServer];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -160,7 +160,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
     if (!unreadCounterHidden) {
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox ];
     }
 
     return cell;
@@ -290,7 +290,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 #pragma mark - Private methods
 
-- (void)updateContentsFromServer
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
 {
     if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
         return;
@@ -309,19 +309,20 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServer) withObject:nil afterDelay:0.0];
+                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
 
                 return;
             }
         }
 
         [self programmaticallyEndRefresh];
-
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
+        if ([userDidInititateRequest boolValue]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
     }];
 }
 
