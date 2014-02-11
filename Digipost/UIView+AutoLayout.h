@@ -13,7 +13,6 @@
 - (void)addHeightConstraint: (CGFloat)height;
 - (void)addSizeConstraint: (CGSize) size;
 - (void)addOriginConstraintForOrigin:(CGPoint)origin containedView:(UIView*)view;
-- (void)addLeftConstraintWithLeft:(CGFloat)left containedView:(UIView*)view;
 - (void)addVerticalSpaceBottomConstraintForBottom:(CGFloat)bottom fromView:(UIView*)fromView toView:(UIView*)toView;
 
 @end
