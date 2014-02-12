@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SHCLetterPopoverView : UIView
-
+@property (weak,nonatomic) IBOutlet NSLayoutConstraint *popoverViewHeightConstraint;
 @end

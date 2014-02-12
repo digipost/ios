@@ -9,5 +9,11 @@
 #import "SHCLetterPopoverTableViewMobelObject.h"
 
 @implementation SHCLetterPopoverTableViewMobelObject
-
++ (SHCLetterPopoverTableViewMobelObject *)initWithTitle:(NSString *)title description:(NSString *)description
+{
+    SHCLetterPopoverTableViewMobelObject *ptvmo = [[SHCLetterPopoverTableViewMobelObject alloc] init];
+    ptvmo.title = title;
+    ptvmo.description = description;
+    return ptvmo;
+}
 @end

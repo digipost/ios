@@ -31,6 +31,8 @@
 #import "SHCDocumentsViewController.h"
 #import "UILabel+Digipost.h"
 #import "UIView+AutoLayout.h"
+#import "SHCLetterPopoverTableViewDataSourceAndDelegate.h"
+#import "SHCLetterPopoverTableViewMobelObject.h"
 
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -59,17 +61,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (strong, nonatomic) UIBarButtonItem *leftBarButtonItem;
 
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSubjectLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSenderDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverSenderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverDateDescriptionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *popoverDateLabel;
-@property (weak, nonatomic) UILabel *popoverAmountLabel;
-@property (weak, nonatomic) UILabel *popoverAmountDescriptionLabel;
-@property (weak, nonatomic) UILabel *popoverCardLabel;
-@property (weak, nonatomic) UILabel *popoverCardDescriptionLabel;
 @property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
-
+@property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
+- (IBAction)didTapClosePopoverButton:(id)sender;
+@property (nonatomic,strong) SHCLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSource;
 @end
 
 @implementation SHCLetterViewController
@@ -111,8 +106,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     self.screenName = kLetterViewControllerScreenName;
 
-    self.popoverSenderDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From");
-    self.popoverDateDescriptionLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date");
+
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
@@ -786,27 +780,42 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setInfoViewVisible:(BOOL)visible
 {
+    
     if (visible && self.shadowView.alpha == 0.0) {
-
-        NSString *subject;
-        NSString *sender;
-        if (self.attachment) {
-            subject = self.attachment.subject;
-            sender = self.attachment.document.creatorName;
-        } else if (self.receipt) {
-            subject = self.receipt.storeName;
-            sender = self.receipt.franchiseName;
-            [self shwoPopoverForReceipt];
+        
+        if (self.popoverTableViewDataSource == nil) {
+            self.popoverTableViewDataSource = [[SHCLetterPopoverTableViewDataSourceAndDelegate alloc]init];
         }
-
-        self.popoverSubjectLabel.text = subject;
-        self.popoverSenderLabel.text = sender;
-
+        
+        NSMutableArray *mutableObjectsInMetadata = [NSMutableArray array];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterShortStyle;
         dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        self.popoverTitleLabel.text = self.attachment.subject;
+        if (self.attachment) {
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From") description:self.attachment.document.creatorName]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date") description:[dateFormatter stringFromDate:self.attachment.document.createdAt]]];
+            
+        } else if (self.receipt) {
+            self.popoverTitleLabel.text = self.receipt.storeName;
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date") description:[dateFormatter stringFromDate:self.receipt.timeOfPurchase]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"kr. %@",self.receipt.amount]]];
+            
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort") description:[NSString stringWithFormat:@"%@",self.receipt.card]]];
+        }
+        
+        if (self.attachment.invoice){
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"%@",self.attachment.invoice.amount]]];
+            
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_DUEDATE", @"Forfallsdato") description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto") description:self.attachment.invoice.accountNumber]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID") description:[NSString stringWithFormat:@"%@",self.attachment.invoice.kid]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_STATUS", @"Status") description:[NSString stringWithFormat:@" "]]];
+        }
 
-        self.popoverDateLabel.text = [dateFormatter stringFromDate:self.attachment.document.createdAt];
+        self.popoverTableView.delegate = self.popoverTableViewDataSource;
+        self.popoverTableView.dataSource = self.popoverTableViewDataSource;
+        self.popoverTableViewDataSource.lineObjects = mutableObjectsInMetadata;
 
         [UIView animateWithDuration:0.2 animations:^{
             self.shadowView.alpha = 1.0;
@@ -814,6 +823,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
         [self.navigationController.toolbar setUserInteractionEnabled:NO];
+        [self.popoverTableView reloadData];
 
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2 animations:^{
@@ -823,18 +833,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
         [self.navigationController.toolbar setUserInteractionEnabled:YES];
     }
-}
-
-- (void)shwoPopoverForReceipt
-{
-    if (self.popoverAmountLabel == nil ) {
-        self.popoverAmountLabel = [UILabel popoverViewLabel];
-        [self.popoverView addSubview:self.popoverAmountLabel];
-        [self.popoverAmountLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.popoverAmountLabel addSizeConstraint:CGSizeMake(30, 30)];
-        [self.popoverView addVerticalSpaceBottomConstraintForBottom:30 fromView:self.popoverAmountLabel toView:self.popoverSubjectLabel];
-    }
-    
 }
 
 - (void)sendInvoiceToBank
@@ -1009,4 +1007,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self loadContent];
 }
 
+- (IBAction)didTapClosePopoverButton:(id)sender {
+    [UIView animateWithDuration:0.2 animations:^{
+        self.shadowView.alpha = 0.0;
+    }];
+    
+    [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
+    [self.navigationController.toolbar setUserInteractionEnabled:YES];
+}
 @end

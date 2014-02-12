@@ -10,4 +10,8 @@
 
 @interface SHCLetterPopoverTableViewMobelObject : NSObject
 
+@property (strong,nonatomic) NSString *title;
+@property (strong,nonatomic) NSString *description;
+
++ (SHCLetterPopoverTableViewMobelObject*)initWithTitle:(NSString*)title description:(NSString*)description;
 @end

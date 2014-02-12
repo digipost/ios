@@ -150,10 +150,21 @@
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
-		EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSource.m */; };
+		EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
+		EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
+		EC68C07518AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
+		EC68C07818AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
+		EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
+		EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
+		EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECFB85C018AA599100F31B1A /* SHCLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFB85BF18AA599100F31B1A /* SHCLetterPopoverView.m */; };
+		ECFB85C118AA599100F31B1A /* SHCLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFB85BF18AA599100F31B1A /* SHCLetterPopoverView.m */; };
+		ECFB85C218AA599100F31B1A /* SHCLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFB85BF18AA599100F31B1A /* SHCLetterPopoverView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -271,8 +282,12 @@
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
-		EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHCLetterPopoverTableViewDataSource.h; path = Digipost/SHCLetterPopoverTableViewDataSource.h; sourceTree = "<group>"; };
-		EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHCLetterPopoverTableViewDataSource.m; path = Digipost/SHCLetterPopoverTableViewDataSource.m; sourceTree = "<group>"; };
+		EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
+		EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
+		EC68C07118AA2BE300A94770 /* SHCLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
+		EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewCell.m; sourceTree = "<group>"; };
+		EC68C07618AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewMobelObject.h; sourceTree = "<group>"; };
+		EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewMobelObject.m; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -280,6 +295,8 @@
 		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
+		ECFB85BE18AA599100F31B1A /* SHCLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverView.h; sourceTree = "<group>"; };
+		ECFB85BF18AA599100F31B1A /* SHCLetterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -355,8 +372,8 @@
 		83BAB90F1855C0AC004A7BFB = {
 			isa = PBXGroup;
 			children = (
-				EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSource.h */,
-				EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSource.m */,
+				ECFB85BE18AA599100F31B1A /* SHCLetterPopoverView.h */,
+				ECFB85BF18AA599100F31B1A /* SHCLetterPopoverView.m */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				83BAB9461855C0AD004A7BFB /* DigipostTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
@@ -486,6 +503,12 @@
 				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
 				83D355141861C5EA009EABC6 /* SHCLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* SHCLetterViewController.m */,
+				EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */,
+				EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */,
+				EC68C07618AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.h */,
+				EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */,
+				EC68C07118AA2BE300A94770 /* SHCLetterPopoverTableViewCell.h */,
+				EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */,
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				83D75F6B1858E9C20013F8C9 /* SHCModelManager.h */,
@@ -809,13 +832,16 @@
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
+				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */,
 				83DB4AED188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECFB85C218AA599100F31B1A /* SHCLetterPopoverView.m in Sources */,
 				83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */,
+				EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
@@ -832,6 +858,7 @@
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */,
+				EC68C07518AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BC1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
@@ -853,13 +880,16 @@
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
+				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */,
 				83DB4AEC188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECFB85C118AA599100F31B1A /* SHCLetterPopoverView.m in Sources */,
 				83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */,
+				EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
@@ -876,6 +906,7 @@
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */,
+				EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BB1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
@@ -901,8 +932,10 @@
 				83DB4AEB188D287600515022 /* SHCReceiptsViewController.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
+				EC68C07818AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECFB85C018AA599100F31B1A /* SHCLetterPopoverView.m in Sources */,
 				83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
@@ -912,6 +945,7 @@
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
+				EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */,
@@ -925,7 +959,7 @@
 				837574BA1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
 				83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
-				EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSource.m in Sources */,
+				EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				83D75F6D1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
 			);

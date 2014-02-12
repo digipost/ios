@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SHCLetterPopoverTableViewDataSource : NSObject<UITableViewDataSource>
-
+@interface SHCLetterPopoverTableViewDataSourceAndDelegate : NSObject<UITableViewDataSource,UITableViewDelegate>
+@property (strong,nonatomic) NSArray *lineObjects;
 @end
