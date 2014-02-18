@@ -56,12 +56,12 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    [super viewDidAppear:animated];
     if (![SHCOAuthManager sharedManager].refreshToken) {
         UINavigationController *loginNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:kLoginNavigationControllerIdentifier];
         [self presentViewController:loginNavigationController animated:NO completion:nil];
     }
 
-    [super viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
