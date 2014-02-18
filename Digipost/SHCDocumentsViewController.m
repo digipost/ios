@@ -34,6 +34,8 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
 
 NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documentsViewEditingStatusChangedNotificationName";
+//NSString *const kDocumentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName =@"documentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName";
+
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
 @interface SHCDocumentsViewController ()
@@ -472,6 +474,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateFetchedResultsController];
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            
+            SHCDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            if ([currentOpenDocument isEqual:document]){
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+            }
+        }
     } failure:^(NSError *error) {
         
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -503,10 +513,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-        
         [self deleteDocument:document];
     }
-    
     [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
@@ -517,6 +525,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateFetchedResultsController];
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            
+            SHCDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            if ([currentOpenDocument isEqual:document]){
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+            }
+        }
+        
     } failure:^(NSError *error) {
         
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
