@@ -30,5 +30,6 @@ extern NSString *const kInvoiceEntityName;
 @property (strong, nonatomic) SHCAttachment *attachment;
 
 + (instancetype)invoiceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
++ (NSString *)stringForInvoiceAmount:(NSNumber *)amount;
+- (NSString*)statusDescriptionText;
 @end

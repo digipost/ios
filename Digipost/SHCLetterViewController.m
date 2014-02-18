@@ -789,8 +789,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         NSMutableArray *mutableObjectsInMetadata = [NSMutableArray array];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateFormatterShortStyle;
-        dateFormatter.timeStyle = NSDateFormatterShortStyle;
+        // Dateformatter for format: 2013-02-15 09:49
+        [dateFormatter setDateFormat:@"dd.MM.YYYY 'kl.' hh.mm"];
         self.popoverTitleLabel.text = self.attachment.subject;
         if (self.attachment) {
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From") description:self.attachment.document.creatorName]];
@@ -799,18 +799,24 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } else if (self.receipt) {
             self.popoverTitleLabel.text = self.receipt.storeName;
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date") description:[dateFormatter stringFromDate:self.receipt.timeOfPurchase]]];
-            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"kr. %@",self.receipt.amount]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"kr. %@",[SHCReceipt stringForReceiptAmount: self.receipt.amount]]]];
             
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort") description:[NSString stringWithFormat:@"%@",self.receipt.card]]];
         }
         
         if (self.attachment.invoice){
-            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"%@",self.attachment.invoice.amount]]];
-            
+        
+            NSString *invoiceAmount = [SHCInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:invoiceAmount]];
+             
+             [dateFormatter setDateFormat:@"dd.MM.YYYY"];
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_DUEDATE", @"Forfallsdato") description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto") description:self.attachment.invoice.accountNumber]];
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID") description:[NSString stringWithFormat:@"%@",self.attachment.invoice.kid]]];
-            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_STATUS", @"Status") description:[NSString stringWithFormat:@" "]]];
+            NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
+            if (statusDescriptionText) {
+                [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_STATUS", @"Status") description:statusDescriptionText]];
+            }
         }
 
         self.popoverTableView.delegate = self.popoverTableViewDataSource;

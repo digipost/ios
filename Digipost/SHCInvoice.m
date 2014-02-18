@@ -112,4 +112,29 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     return invoice;
 }
 
+- (NSString*)statusDescriptionText
+{
+    if (self.sendToBankUri) {
+        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbank");
+    } else {
+        return nil;
+        
+    }
+    return nil;
+}
+
++ (NSString *)stringForInvoiceAmount:(NSNumber *)amount
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setLocale:[NSLocale currentLocale]];
+    
+    NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 100.0];
+    
+    NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
+    NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
+    
+    return string;
+}
+
 @end
