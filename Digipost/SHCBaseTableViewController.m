@@ -163,7 +163,7 @@
     fetchRequest.entity = self.baseEntity;
     fetchRequest.sortDescriptors = self.sortDescriptors;
     fetchRequest.predicate = self.predicate;
-
+    NSAssert(self.sortDescriptors != nil, @"No sort descriptors present");
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil

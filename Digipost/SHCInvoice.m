@@ -88,7 +88,6 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
         if ([timePaidString isKindOfClass:[NSString class]]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
-
             invoice.timePaid = [dateFormatter dateFromString:timePaidString];
         }
 
@@ -99,7 +98,6 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
                     NSString *rel = link[@"rel"];
                     NSString *uri = link[@"uri"];
                     if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                         if ([rel hasSuffix:kInvoicePaymentBankHomepageAPIKeySuffix]) {
                             invoice.bankHomepage = uri;
                         }
@@ -115,10 +113,9 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 - (NSString*)statusDescriptionText
 {
     if (self.sendToBankUri) {
-        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbank");
+        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbanken");
     } else {
         return nil;
-        
     }
     return nil;
 }

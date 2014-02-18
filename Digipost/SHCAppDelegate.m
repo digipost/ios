@@ -45,7 +45,7 @@
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:227.0/255.0 green:45.0/255.0 blue:34.0/255.0 alpha:1.0]];
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-
+    
     return YES;
 }
 							
@@ -60,10 +60,12 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -1115,6 +1115,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    NSParameterAssert(document);
     self.state = SHCAPIManagerStateDeletingDocument;
 
     [self validateTokensWithSuccess:^{
