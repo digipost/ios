@@ -22,6 +22,7 @@ NSString *const kRootResourceLinkLogoutAPIKeySuffix = @"logout";
 NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
 NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = @"current_bank_account";
 NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"upload_document";
+NSString *const kRootResourceNoticeAPIKey = @"notice";
 
 @implementation SHCRootResource
 
@@ -40,9 +41,11 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
 @dynamic numberOfReceiptsHiddenUntilVerification;
 @dynamic unreadItemsInInbox;
 @dynamic uploadDocumentUri;
-
 // Relationships
 @dynamic mailboxes;
+
+// not stored in core data
+@synthesize notice = _notice;
 
 #pragma mark - Public methods
 
@@ -130,7 +133,10 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
             }
         }
     }
-
+//    NSDictionary *noticeDictionary = attributes[kRootResourceNoticeAPIKey];
+//    if (noticeDictionary != nil) {
+//        rootResource.notice = [SHCNotice noticeWithAttributes:noticeDictionary];
+//    }
     return rootResource;
 }
 
@@ -149,5 +155,4 @@ NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"uploa
         [managedObjectContext deleteObject:rootResource];
     }
 }
-
 @end

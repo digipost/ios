@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SHCNotice.h"
 
 // Core Data model entity names
 extern NSString *const kRootResourceEntityName;
@@ -31,15 +32,19 @@ extern NSString *const kRootResourceEntityName;
 @property (strong, nonatomic) NSNumber *numberOfReceiptsHiddenUntilVerification;
 @property (strong, nonatomic) NSNumber *unreadItemsInInbox;
 @property (strong, nonatomic) NSString *uploadDocumentUri;
-
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;
+/**
+ *  Attribute not stored in core data, should only be shown when once.
+ */
+@property (nonatomic,strong) SHCNotice *notice;
 
 + (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
+
 
 @interface SHCRootResource (CoreDataGeneratedAccessors)
 
