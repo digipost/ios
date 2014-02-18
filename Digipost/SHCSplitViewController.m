@@ -58,8 +58,7 @@
 {
     [super viewDidAppear:animated];
     if (![SHCOAuthManager sharedManager].refreshToken) {
-        UINavigationController *loginNavigationController = [self.storyboard instantiateViewControllerWithIdentifier:kLoginNavigationControllerIdentifier];
-        [self presentViewController:loginNavigationController animated:NO completion:nil];
+        [self presentLoginViewController];
     }
 
 }
@@ -91,12 +90,17 @@
 
 - (void)presentLoginViewController:(NSNotification *)notification
 {
-    SHCLetterViewController *letterViewController = self.letterViewController;
+    [self presentLoginViewController];
+}
+
+- (void)presentLoginViewController
+{
+       SHCLetterViewController *letterViewController = self.letterViewController;
     if (letterViewController) {
         [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
     }
-
     [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
+    
+    
 }
-
 @end
