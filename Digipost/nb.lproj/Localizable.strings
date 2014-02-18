@@ -68,10 +68,10 @@
 "LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE" = "Dato";
 
 /* Sent to bank */
-"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE" = "Sent til bank";
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE" = "Sent til nettbank";
 
 /* Send to bank */
-"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE" = "Send til bank";
+"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE" = "Send til nettbank";
 
 /* Payment tips */
 "LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE" = "Betalingstips";
@@ -80,22 +80,22 @@
 "LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE" = "Sender";
 
 /* The invoice has been registered */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE" = "Fakturaen er registert";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE" = "Sendt til nettbanken";
 
 /* Paid message */
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE" = "Denne fakturaen ble sendt til nettbanken %@.\n\nFor å se detaljer for betalingen kan du logge inn i din nettbank.";
 
 /* Send to bank? */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_TITLE" = "Send til bank?";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_TITLE" = "Send til nettbank?";
 
 /* Send message */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE" = "Fakturaen sendes til din bank og vil bli betalt på forfallsdatoen. Ønsker du å endre betalingen senere,\nmå du logge inn i nettbanken.\n\nFølgende konto vil bli belastet: %@";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE" = "Fakturaen sendes til din nettbank og vil bli betalt på forfallsdatoen. Ønsker du å endre betalingen senere,\nmå du logge inn i nettbanken.\n\nFølgende konto vil bli belastet: %@";
 
 /* Send to bank */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE" = "Send til bank";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE" = "Betalingstips";
 
 /* Payment tips message */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "Hvis din bank støtter fakturabetaling via Digipost,\nkan du sende fakturaer rett til forfallsregisteret.\n\nLogg inn på digipost.no med din datamaskin for å velge bankkonto. Du trenger kun å gjøre dette én gang.";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "Hvis din bank støtter fakturabetaling via Digipost, kan du sende fakturaer rett til forfallsregisteret.\n\nLogg inn på digipost.no med din datamaskin for å velge bankkonto. Du trenger kun å gjøre dette én gang.";
 
 /* Go to bank */
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE" = "Gå til bank";
@@ -146,28 +146,28 @@
 "FILE_MANAGER_DECRYPT_ERROR_ENCRYPTED_FILE_NOT_FOUND" = "Fant ikke den krypterte filen";
 
 /* Error reading encrypted file */
-"FILE_MANAGER_DECRYPT_ERROR_ERROR_READING_ENCRYPTED_FILE" = "Greide ikke lese kryptert fil";
+"FILE_MANAGER_DECRYPT_ERROR_ERROR_READING_ENCRYPTED_FILE" = "Kunne ikke lese kryptert fil";
 
 /* Decryption error */
 "FILE_MANAGER_DECRYPT_ERROR_DECRYPTION_ERROR" = "Dekrypteringsfeil";
 
 /* Error removing decrypted file */
-"FILE_MANAGER_DECRYPT_ERROR_REMOVING_DECRYPTED_FILE" = "Error removing decrypted file";
+"FILE_MANAGER_DECRYPT_ERROR_REMOVING_DECRYPTED_FILE" = "Kunne ikke fjerne dekryptert fil";
 
 /* Error writing decrypted file */
-"FILE_MANAGER_DECRYPT_ERROR_WRITING_DECRYPTED_FILE" = "Error writing decrypted file";
+"FILE_MANAGER_DECRYPT_ERROR_WRITING_DECRYPTED_FILE" = "Kunne ikke skrive til dekryptert fil";
 
 /* No password */
 "FILE_MANAGER_ENCRYPT_ERROR_NO_PASSWORD" = "Mangler passord";
 
 /* Decrypted file not found */
-"FILE_MANAGER_ENCRYPT_ERROR_DECRYPTED_FILE_NOT_FOUND" = "Decrypted file not found";
+"FILE_MANAGER_ENCRYPT_ERROR_DECRYPTED_FILE_NOT_FOUND" = "Fant ikke dekryptert fil";
 
 /* Error reading decrypted file */
-"FILE_MANAGER_ENCRYPT_ERROR_ERROR_READING_DECRYPTED_FILE" = "Error reading decrypted file";
+"FILE_MANAGER_ENCRYPT_ERROR_ERROR_READING_DECRYPTED_FILE" = "Kunne ikke lese dekryptert fil";
 
 /* Encryption error */
-"FILE_MANAGER_ENCRYPT_ERROR_ENCRYPTION_ERROR" = "Encryption error";
+"FILE_MANAGER_ENCRYPT_ERROR_ENCRYPTION_ERROR" = "Krypteringsfeil";
 
 /* Error removing encrypted file */
 "FILE_MANAGER_ENCRYPT_ERROR_REMOVING_ENCRYPTED_FILE" = "Feil ved fjerning av kryptert fil";
@@ -209,22 +209,22 @@
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "kvitteringer";
 
 /* No cards */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Motta elektroniske kvitteringer direkte i Digipost når du handler med dine bank- og kredittkort.\nRegistrer dine betalingskort på digipost.no for å komme i gang.";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Motta elektroniske kvitteringer direkte i Digipost når du handler med dine bank- og kredittkort.\nRegistrer dine betalingskort på www.digipost.no for å komme i gang.";
 
 /* Cards ready */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Du har registrert dine betalingskort.\n\nNeste gang du handler i en butikk som støtter elektronisk kvittering, vil kvitteringen dukke opp her.";
 
 /* Receipts hidden */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ er skjult.\nFor å vise disse må du verifisere dine betalingskort på digipost.no";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ er skjult.\nFor å vise disse må du verifisere dine betalingskort på www.digipost.no";
 
 /* receipt is */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "kvtteringen er";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "kvitteringen er";
 
 /* receipts are */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL" = "kvitteringer er";
 
 /* Do you want to upload the file %@ to Digipost? */
-"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to Digipost?";
+"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Vil du laste opp filen %@ til arkivet ditt i Digipost?";
 
 /* Upload file */
 "APPDELEGATE_UPLOAD_FILE_TITLE" = "Last opp fil";
@@ -242,13 +242,13 @@
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
 
 /* Archive */
-"FOLDER_NAME_ARCHIVE" = "Arkiv";
+"FOLDER_NAME_ARCHIVE" = "Arkivet";
 
 /* Inbox */
-"FOLDER_NAME_INBOX" = "Innboks";
+"FOLDER_NAME_INBOX" = "Postkassen";
 
 /* Workarea */
-"FOLDER_NAME_WORKAREA" = "Kjøkkenbenk";
+"FOLDER_NAME_WORKAREA" = "Kjøkkenbenken";
 
 /* Fra */
 "GENERIC_FROM_LABEL" = "Fra";
