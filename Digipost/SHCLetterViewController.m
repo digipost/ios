@@ -64,7 +64,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
 @property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
 - (IBAction)didTapClosePopoverButton:(id)sender;
-@property (nonatomic,strong) SHCLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSource;
+@property (nonatomic,strong) SHCLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSourceAndDelegate;
 @end
 
 @implementation SHCLetterViewController
@@ -89,7 +89,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
     self.infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
@@ -127,6 +126,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.webView addGestureRecognizer:singleTapGestureRecognizer];
     [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
 
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
+        
+    }
     [self reloadFromMetadata];
 }
 
@@ -135,10 +138,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewWillAppear:animated];
 
     BOOL toolbarHidden = NO;
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
-    }
 
     [self.navigationController setToolbarHidden:toolbarHidden animated:NO];
 
@@ -187,8 +186,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    self.progressView.alpha = 0.0;
-    self.webView.alpha = 1.0;
+//    self.progressView.alpha = 0.0;
+//    self.webView.alpha = 1.0;
 
     DDLogError(@"%@", [error localizedDescription]);
 }
@@ -335,7 +334,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
         [destinations addObject:inboxLocalizedName];
     }
-    NSLog(@"location: %@",self.attachment.document.location);
     if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
         [destinations addObject:workAreaLocalizedName];
     }
@@ -532,7 +530,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     // A list of file types that are tried and tested with UIWebView
-    NSArray *validFilesTypes = @[@"pdf", @"png", @"jpg", @"jpeg", @"gif", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages"];
+    NSArray *validFilesTypes = @[@"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages"];
 
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
@@ -540,7 +538,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
-
+    self.webView.alpha = 0;
     [UIView animateWithDuration:0.3 animations:^{
         self.errorLabel.alpha = 1.0;
     }];
@@ -610,14 +608,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)deleteDocument
 {
+    
+    NSAssert(self.attachment != nil, @"no attachment document to delete");
     [[SHCAPIManager sharedManager] deleteDocument:self.attachment.document withSuccess:^{
 
         if (self.documentsViewController) {
-            self.documentsViewController.needsReload = YES;
 
+            self.documentsViewController.needsReload = YES;
             // Becuase we might have been pushed from the attachments vc, make sure that we pop
             // all the way back to the documents vc.
             [self.navigationController popToViewController:self.documentsViewController animated:YES];
+        }
+        _attachment = nil;
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+            [self showEmptyView:YES];
         }
     } failure:^(NSError *error) {
 
@@ -783,8 +788,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     
     if (visible && self.shadowView.alpha == 0.0) {
         
-        if (self.popoverTableViewDataSource == nil) {
-            self.popoverTableViewDataSource = [[SHCLetterPopoverTableViewDataSourceAndDelegate alloc]init];
+        if (self.popoverTableViewDataSourceAndDelegate == nil) {
+            self.popoverTableViewDataSourceAndDelegate = [[SHCLetterPopoverTableViewDataSourceAndDelegate alloc]init];
         }
         
         NSMutableArray *mutableObjectsInMetadata = [NSMutableArray array];
@@ -819,9 +824,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }
         }
 
-        self.popoverTableView.delegate = self.popoverTableViewDataSource;
-        self.popoverTableView.dataSource = self.popoverTableViewDataSource;
-        self.popoverTableViewDataSource.lineObjects = mutableObjectsInMetadata;
+        self.popoverTableView.delegate = self.popoverTableViewDataSourceAndDelegate;
+        self.popoverTableView.dataSource = self.popoverTableViewDataSourceAndDelegate;
+        self.popoverTableViewDataSourceAndDelegate.lineObjects = mutableObjectsInMetadata;
 
         [UIView animateWithDuration:0.2 animations:^{
             self.shadowView.alpha = 1.0;
@@ -945,8 +950,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         if (self.attachment) {
             [items addObject:self.moveBarButtonItem];
+            [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+        }else {
+            [items addObject:flexibleSpaceBarButtonItem];
         }
-        [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
 
         self.toolbarItems = items;
     }
@@ -979,6 +986,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     self.emptyLetterViewImageView.hidden = !showEmptyView;
+    [self updateToolbarItemsWithInvoice:NO];
 }
 
 - (void)updateNavbar
