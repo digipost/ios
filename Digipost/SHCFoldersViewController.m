@@ -22,6 +22,7 @@
 #import "NSError+ExtraInfo.h"
 #import "SHCReceiptsViewController.h"
 #import "SHCLetterViewController.h"
+#import "SHCAppDelegate.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -235,6 +236,10 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                   otherButtonTitles:nil
                            tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                                if (buttonIndex == 0) {
+                                   SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
+                                   SHCLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
+                                   letterViewConctroller.attachment = nil;
+                                   letterViewConctroller.receipt = nil;
                                    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
                                    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
@@ -332,6 +337,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     [super updateNavbar];
 
     [self.navigationItem setHidesBackButton:YES];
+    [self.navigationItem setTitle:@""];
 
     self.navigationItem.title = self.rootResource.firstName ?: @"";
 }
