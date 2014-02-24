@@ -33,6 +33,7 @@
 #import "UIView+AutoLayout.h"
 #import "SHCLetterPopoverTableViewDataSourceAndDelegate.h"
 #import "SHCLetterPopoverTableViewMobelObject.h"
+#import "UIBarButtonItem+DigipostBarButtonItems.h"
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -90,21 +91,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewDidLoad];
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
-    self.infoBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
-                                                landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info-iphone-landscape"]
-                                                              style:UIBarButtonItemStyleBordered
-                                                             target:self
-                                                             action:@selector(didTapInfo:)];
+    self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self action:@selector(didTapInfo:)];
 
-    self.actionBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-action"]
-                                                  landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action-iphone-landscape"]
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(didTapAction:)];
+    self.actionBarButtonItem = [UIBarButtonItem barButtonItemWithActionImageForTarget:self action:@selector(didTapAction:)];
 
     self.screenName = kLetterViewControllerScreenName;
-
-
 
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
@@ -127,9 +118,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
-        
     }
-    
 
     [self reloadFromMetadata];
 }
@@ -805,9 +794,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } else if (self.receipt) {
             self.popoverTitleLabel.text = self.receipt.storeName;
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date") description:[dateFormatter stringFromDate:self.receipt.timeOfPurchase]]];
-            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"kr. %@",[SHCReceipt stringForReceiptAmount: self.receipt.amount]]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp") description:[NSString stringWithFormat:@"%@",[SHCReceipt stringForReceiptAmount: self.receipt.amount]]]];
             
-            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort") description:[NSString stringWithFormat:@"%@",self.receipt.card]]];
+            [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort") description: [NSString stringWithFormat:@"%@",self.receipt.card]]];
         }
         
         if (self.attachment.invoice){
@@ -952,6 +941,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if (self.attachment) {
             [items addObject:self.moveBarButtonItem];
             [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+        }else if (self.receipt)  {
+            [items addObject:self.moveBarButtonItem];
+            [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+            
         }else {
             [items addObject:flexibleSpaceBarButtonItem];
         }
