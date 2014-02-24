@@ -215,12 +215,21 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     if ([SHCAPIManager sharedManager].isUpdatingReceipts) {
         return;
     }
+    SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
+    SHCLetterViewController *letterViewConctroller = appDelegate.letterViewController;
+    NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
 
     [[SHCAPIManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
 
+        if (letterViewConctroller.receipt) {
+            if (letterViewConctroller.receipt.uri == nil) {
+                SHCReceipt *refetchedObject = [SHCReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                [letterViewConctroller setReceiptDoNotDismissPopover:refetchedObject];
+            }
+        }
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
 
     } failure:^(NSError *error) {

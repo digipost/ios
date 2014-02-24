@@ -119,7 +119,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
     }
-    
+    [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem forViewController:self];
     [self reloadFromMetadata];
 }
 
@@ -320,6 +320,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         [self showEmptyView:new];
         [self reloadFromMetadata];
+    }
+}
+
+- (void)setReceiptDoNotDismissPopover:(SHCReceipt *)receipt
+{
+    BOOL new = receipt != _receipt;
+    
+    _receipt = receipt;
+    _attachment = nil;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        
+        [self showEmptyView:new];
+        [self reloadFromMetadata];
+        // update the read status for ipad view
     }
 }
 
@@ -975,21 +990,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (!leftBarButtonItem) {
         leftBarButtonItem = self.navigationItem.leftBarButtonItem;
     }
-////    
-//    if ([viewController isKindOfClass:[SHCFoldersViewController class]]) {
-//        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
-//        leftBarButtonItem.title = @"";
-//        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-//    } else if ([viewController isKindOfClass:[SHCDocumentsViewController class]]) {
-//        leftBarButtonItem.title = ((SHCDocumentsViewController *)viewController).folderName;
-//    } else if ([viewController isKindOfClass:[SHCAttachmentsViewController class]]) {
-//        leftBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE", @"Attachments");
-//    } else {
-//        leftBarButtonItem.title = @"";
-//    }
-//    
     [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-    leftBarButtonItem.title = @"";
+    
+    leftBarButtonItem.title = @" ";
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
 }
 

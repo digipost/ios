@@ -17,6 +17,7 @@
 #import "SHCAPIManager.h"
 #import "SHCRootResource.h"
 #import "SHCFolder.h"
+#import "SHCReceipt.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
@@ -72,7 +73,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.screenName = kDocumentsViewControllerScreenName;
     
     [super viewDidLoad];
-    [self setMenuButton];
     
     [self updateToolbarButtonItems];
 }
@@ -100,7 +100,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateNavbar];
     }
     [self updateContentsFromServerUserInitiatedRequest:@NO];
-    [self setMenuButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -336,7 +335,17 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
         return;
     }
-    
+    // @TODO refactor this
+    // Saving uri for the open document in case we need to re fetch it later
+    SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
+    SHCLetterViewController *letterViewConctroller = appDelegate.letterViewController;
+    NSString *openedAttachmentURI;
+    NSString *openedReceiptURI;
+    if ([letterViewConctroller isViewLoaded]) {
+        openedAttachmentURI = letterViewConctroller.attachment.uri;
+        if (openedAttachmentURI == nil) {
+        }
+    }
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
@@ -354,11 +363,20 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             attachmentsViewController.attachments = selectedDocument.attachments;
         }
         
+        // quickfix for a bug that causes attachments document to become nil
+        // Refetches the showing attachment that lost its link to its document
+        SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
+        SHCLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
+        if (letterViewConctroller.attachment) {
+            if (letterViewConctroller.attachment.uri == nil ) {
+                SHCAttachment *refetchedObject = [SHCAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
+            }
+        }
+        
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
         if (!rootResource.currentBankAccount) {
-            
             if ([self documentsNeedCurrentBankAccount]) {
-                
                 [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
             }
         }
@@ -402,12 +420,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
     UIBarButtonItem *backBarButtonItem = self.navigationItem.leftBarButtonItem;
-    [self.navigationItem.backBarButtonItem setBackgroundImage:[UIImage imageNamed:@"icon-navbar-drawer"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [backBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
     [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
-//    self.navigationItem.backBarButtonItem = backBarButtonItem;
-    
-//    self.navigationItem.leftBarButtonItem = backBarButtonItem;
 }
 
 - (void)updateToolbarButtonItems
