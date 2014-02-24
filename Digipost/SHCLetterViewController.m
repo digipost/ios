@@ -33,7 +33,6 @@
 #import "UIView+AutoLayout.h"
 #import "SHCLetterPopoverTableViewDataSourceAndDelegate.h"
 #import "SHCLetterPopoverTableViewMobelObject.h"
-
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -130,6 +129,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didChangeEditingStatus:) name:kDocumentsViewEditingStatusChangedNotificationName object:nil];
         
     }
+    
+
     [self reloadFromMetadata];
 }
 
@@ -968,6 +969,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([viewController isKindOfClass:[SHCFoldersViewController class]]) {
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
         leftBarButtonItem.title = rootResource.firstName ?: @"";
+        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
     } else if ([viewController isKindOfClass:[SHCDocumentsViewController class]]) {
         leftBarButtonItem.title = ((SHCDocumentsViewController *)viewController).folderName;
     } else if ([viewController isKindOfClass:[SHCAttachmentsViewController class]]) {

@@ -16,6 +16,7 @@
 #import "SHCFoldersViewController.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCReceiptsViewController.h"
+#import "UIViewController+BackButton.h"
 #import "SHCLetterViewController.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
@@ -87,6 +88,7 @@
         self.needsReload = NO;
         [self updateFetchedResultsController];
     }
+    [self updateNavbar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -151,10 +153,20 @@
 {
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                           style:UIBarButtonItemStyleBordered
-                                                                         target:nil
-                                                                         action:nil];
+                                                                         target:self
+                                                                         action:@selector(popViewController)];
 
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    if ([self isKindOfClass:[SHCFoldersViewController class]]) {
+        self.navigationItem.backBarButtonItem = backBarButtonItem;
+    } else {
+        [backBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+        self.navigationItem.leftBarButtonItem = backBarButtonItem;
+    }
+}
+- (void)popViewController
+{
+    NSAssert(self.navigationController != nil, @"no nav controller");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)updateFetchedResultsController

@@ -24,6 +24,7 @@
 #import "UIViewController+ValidateOpening.h"
 #import "SHCInvoice.h"
 #import "SHCUploadTableViewCell.h"
+#import "UIViewController+BackButton.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
@@ -56,7 +57,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)viewDidLoad
 {
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
-    
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
@@ -72,6 +72,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.screenName = kDocumentsViewControllerScreenName;
     
     [super viewDidLoad];
+    [self setMenuButton];
     
     [self updateToolbarButtonItems];
 }
@@ -86,7 +87,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidChange:) name:kAPIManagerUploadProgressChangedNotificationName object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidFinish:) name:kAPIManagerUploadProgressFinishedNotificationName object:nil];
     }
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshContent) name:kRefreshDocumentsContentNotificationName object:nil];
 }
 
@@ -100,6 +100,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateNavbar];
     }
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+    [self setMenuButton];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -340,7 +341,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-        
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         
         // If the user has just managed to enter a document with attachments _after_ the API call finished,
@@ -400,6 +400,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
     
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+    
+    UIBarButtonItem *backBarButtonItem = self.navigationItem.leftBarButtonItem;
+    [self.navigationItem.backBarButtonItem setBackgroundImage:[UIImage imageNamed:@"icon-navbar-drawer"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    [backBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
+//    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    
+//    self.navigationItem.leftBarButtonItem = backBarButtonItem;
 }
 
 - (void)updateToolbarButtonItems

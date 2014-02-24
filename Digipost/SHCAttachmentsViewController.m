@@ -38,15 +38,18 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:nil
-                                                                         action:nil];
-
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
-
-
+//
+//    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+//                                                                          style:UIBarButtonItemStyleBordered
+//                                                                         target:nil
+//                                                                         action:nil];
+//
+//    self.navigationItem.backBarButtonItem = backBarButtonItem;
+    
+    UIBarButtonItem *backButton = nil;
+    UIImageView *menuImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+    backButton = [[UIBarButtonItem alloc]initWithCustomView:menuImageView];
+    [self.navigationItem setBackBarButtonItem:backButton];
 
     [self generateTableViewHeader];
 }

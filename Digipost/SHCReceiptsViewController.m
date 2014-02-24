@@ -251,6 +251,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)updateNavbar
 {
+    [super updateNavbar];
     self.navigationItem.title = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", @"Receipts");
 
     UIBarButtonItem *rightBarButtonItem = nil;
