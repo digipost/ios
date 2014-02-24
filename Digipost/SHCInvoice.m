@@ -126,10 +126,10 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [numberFormatter setLocale:[NSLocale currentLocale]];
     
-    NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 100.0];
+    NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 10000.0];
     
     NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
-    NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
+    NSString *string = [NSString stringWithFormat:@"%@ kroner", amountString];
     
     return string;
 }
