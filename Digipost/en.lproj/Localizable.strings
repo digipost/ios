@@ -89,13 +89,13 @@
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_TITLE" = "Send to bank?";
 
 /* Send message */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE" = "The invoice will be sent to your bank and paid at the due date. If you want to edit this payment later, please sign into your online bank.\n\nThe following account will be debited: %@";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE" = "The invoice will be sent to your bank and paid at due date. If you want to edit this payment later, please sign into your online bank.\n\nThe following account will be debited: %@";
 
 /* Send to bank */
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE" = "Payment tips";
 
 /* Payment tips message */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "You can pay your invoices directly in Digipost if your bank supports this feature.\n\Sign into www.digipost.no on your computer and setup your bank account. You only have to do this once.";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "You can pay your invoices directly from Digipost if your bank supports this feature.\n\Sign into digipost.no to set up your bank account. You only have to do this once.";
 
 /* Go to bank */
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE" = "Go to bank";
@@ -113,16 +113,16 @@
 "LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE" = "Delete";
 
 /* Invalid file type message */
-"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE" = "The app does not support opening this file type.\n\nPlease try opening the file in another app, or use www.digipost.no in your browser.";
+"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE" = "The app does not support opening this file type.\n\nPlease try opening the file in another app or visit digipost.no.";
 
 /* Attachments */
 "LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE" = "Attachments";
 
 /* Move warning */
-"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE" = "This document belongs to a letter containing multiple documents.\nThese will be moved as well.";
+"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE" = "This document is attached to another document.\nAll related documents will be moved as well.";
 
 /* Delete warning */
-"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "This document belongs to a letter containing multiple documents.\nThese will be deleted as well.";
+"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "This document is attached to another document.\nAll related documents will be deleted as well.";
 
 /* Move to */
 "LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE" = "Move to";
@@ -134,10 +134,10 @@
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE" = "Unable to open letter";
 
 /* Wrong authentication level validation error message */
-"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "To read this letter, sign into www.digipost.no and authenticate with BankID or Buypass.";
+"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "Sign in on digipost.no with BankID or Buypass to read this document.";
 
 /* Generic validation error message */
-"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "This letter can't be opened on this device. Please sign into www.digipost.no to read this letter.";
+"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "This document can not be opened on this device. Please sign in on digipost.no to read this document.";
 
 /* No password */
 "FILE_MANAGER_DECRYPT_ERROR_NO_PASSWORD" = "No password";
@@ -209,13 +209,13 @@
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "receipts";
 
 /* No cards */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Get your receipts electronically through Digipost when shopping with your debit and credit cards.\n\nSet up your payment cards on www.digipost.no to get started.";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Get your receipts electronically in Digipost when shopping with your debit and credit cards.\n\nSet up your cards on digipost.no to get started.";
 
 /* Cards ready */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Your payment cards are set up.\n\nThe next time you pay in a store that uses electronic receipts, the receipts will appear here.";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Your payment cards are set up.\n\nThe next time you pay in a store that supports electronic receipts, the receipts will appear here.";
 
 /* Receipts hidden */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ hidden.\nTo show these, please verify your payment cards on www.digipost.no.";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ hidden.\nTo show these, please verify your payment cards on digipost.no.";
 
 /* receipt is */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "receipt is";
@@ -224,7 +224,7 @@
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL" = "receipts are";
 
 /* Do you want to upload the file %@ to Digipost? */
-"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to Digipost?";
+"APPDELEGATE_UPLOAD_FILE_MESSAGE" = "Do you want to upload the file %@ to your archive in Digipost?";
 
 /* Upload file */
 "APPDELEGATE_UPLOAD_FILE_TITLE" = "Upload file";
