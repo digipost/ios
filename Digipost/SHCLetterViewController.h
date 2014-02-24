@@ -27,5 +27,7 @@ extern NSString *const kPushReceiptIdentifier;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
+- (void)reloadFromMetadata;
 
+- (void)setAttachmentDoNotDismissPopover:(SHCAttachment *)attachment;
 @end

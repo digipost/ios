@@ -158,9 +158,6 @@
 
     if ([self isKindOfClass:[SHCFoldersViewController class]]) {
         self.navigationItem.backBarButtonItem = backBarButtonItem;
-    } else {
-        [backBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-        self.navigationItem.leftBarButtonItem = backBarButtonItem;
     }
 }
 - (void)popViewController

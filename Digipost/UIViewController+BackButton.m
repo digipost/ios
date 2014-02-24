@@ -11,9 +11,9 @@
 @implementation UIViewController (BackButton)
 - (void)setMenuButton
 {
-    UIBarButtonItem *backButton = self.navigationItem.backBarButtonItem;
+//    UIBarButtonItem *backButton = self.navigationItem.backBarButtonItem;
     
-    [backButton setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-    [self.navigationItem setBackBarButtonItem:backButton];
+//    [backButton setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+//    [self.navigationItem setBackBarButtonItem:backButton];
 }
 @end
