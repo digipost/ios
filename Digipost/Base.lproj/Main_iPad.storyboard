@@ -193,24 +193,9 @@
                                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwB-RG-LqV">
-                                                <rect key="frame" x="253" y="23" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="46" id="jgj-MO-9Ze"/>
-                                                </constraints>
-                                                <state key="normal" title="Lukk">
-                                                    <color key="titleColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="didTapClosePopoverButton:" destination="9Yb-L2-1ej" eventType="touchUpInside" id="lij-ls-gve"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="jwB-RG-LqV" firstAttribute="leading" secondItem="3E3-PH-Wwt" secondAttribute="trailing" constant="1" id="4tv-kC-V4i"/>
                                             <constraint firstAttribute="height" priority="249" constant="340" id="5Fg-Za-n0u"/>
                                             <constraint firstItem="Ojy-uA-5c0" firstAttribute="top" secondItem="J38-2R-Moe" secondAttribute="top" id="64u-5h-d0V"/>
                                             <constraint firstAttribute="width" constant="310" id="75K-4G-e6I"/>
@@ -218,12 +203,10 @@
                                             <constraint firstItem="gwt-jT-s9X" firstAttribute="top" secondItem="3E3-PH-Wwt" secondAttribute="bottom" constant="7" id="8IV-UE-XLh"/>
                                             <constraint firstAttribute="trailing" secondItem="Ojy-uA-5c0" secondAttribute="trailing" id="Ngf-Rt-auX"/>
                                             <constraint firstAttribute="bottom" secondItem="gwt-jT-s9X" secondAttribute="bottom" constant="5" id="PX9-M3-JKH"/>
-                                            <constraint firstAttribute="trailing" secondItem="jwB-RG-LqV" secondAttribute="trailing" constant="11" id="RS9-r4-jhF"/>
                                             <constraint firstItem="Ojy-uA-5c0" firstAttribute="centerX" secondItem="3E3-PH-Wwt" secondAttribute="centerX" id="m7w-zH-FVR"/>
                                             <constraint firstAttribute="bottom" secondItem="Ojy-uA-5c0" secondAttribute="bottom" id="r0e-Cy-5a9"/>
                                             <constraint firstItem="3E3-PH-Wwt" firstAttribute="top" secondItem="J38-2R-Moe" secondAttribute="top" constant="19" id="saO-2n-36m"/>
                                             <constraint firstItem="Ojy-uA-5c0" firstAttribute="leading" secondItem="gwt-jT-s9X" secondAttribute="leading" id="xJ2-jh-Ncw"/>
-                                            <constraint firstItem="gwt-jT-s9X" firstAttribute="top" secondItem="jwB-RG-LqV" secondAttribute="bottom" constant="5" id="zTK-MM-Fke"/>
                                         </constraints>
                                     </view>
                                 </subviews>
