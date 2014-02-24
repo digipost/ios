@@ -586,6 +586,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)moveDocumentToLocation:(NSString *)location
 {
     NSAssert(self.attachment.document != nil, @"no document");
+    
     [[SHCAPIManager sharedManager] moveDocument:self.attachment.document toLocation:location withSuccess:^{
         _attachment = nil;
         if (self.documentsViewController) {
@@ -945,7 +946,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIBarButtonItem *flexibleSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
     NSMutableArray *items = [NSMutableArray array];
-    
     if (invoice) {
         NSString *title = nil;
         if (self.isSendingInvoice) {
@@ -976,11 +976,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }else if (self.receipt)  {
             [items addObject:self.moveBarButtonItem];
             [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
+            
         }else {
             // no point showing empty toolbar
             [self.navigationController setToolbarHidden:YES animated:YES];
         }
-        
         self.toolbarItems = items;
     }
 }

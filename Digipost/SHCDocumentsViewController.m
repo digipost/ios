@@ -340,7 +340,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
     SHCLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedAttachmentURI;
-    NSString *openedReceiptURI;
     if ([letterViewConctroller isViewLoaded]) {
         openedAttachmentURI = letterViewConctroller.attachment.uri;
         if (openedAttachmentURI == nil) {

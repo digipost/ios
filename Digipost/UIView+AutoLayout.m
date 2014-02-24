@@ -29,7 +29,6 @@
     [view removeConstraint:oldConstraint];
     [view addConstraint:newCostraint];
 }
-
 - (void)addVerticalSpaceBottomConstraintForBottom:(CGFloat)bottom fromView:(UIView*)fromView toView:(UIView*)toView
 {
     [self replaceIfExistsConstraintForContainingView:self
