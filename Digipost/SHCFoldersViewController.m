@@ -61,8 +61,11 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     self.folders = [NSMutableArray array];
 
     [super viewDidLoad];
+    
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
+    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
     [self.navigationItem setHidesBackButton:YES];
 }
 
@@ -336,8 +339,8 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     [super updateNavbar];
 
-    [self.navigationItem setHidesBackButton:YES];
     [self.navigationItem setTitle:@""];
+    [self.navigationItem setHidesBackButton:YES];
 
     self.navigationItem.title = self.rootResource.firstName ?: @"";
 }
