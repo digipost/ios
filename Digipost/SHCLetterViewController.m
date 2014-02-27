@@ -974,7 +974,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [items addObject:self.moveBarButtonItem];
             [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
         }else if (self.receipt)  {
-            [items addObject:self.moveBarButtonItem];
             [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
             
         }else {
