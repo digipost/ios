@@ -218,7 +218,7 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 100.0];
 
     NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
-    NSString *string = [NSString stringWithFormat:@"%@ kroner", amountString];
+    NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
 
     return string;
 }
