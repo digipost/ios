@@ -490,10 +490,10 @@
 			isa = PBXGroup;
 			children = (
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
-				EC1A6C2E18BBA30900269428 /* Documents */,
-				EC1A6C3018BBA36100269428 /* Document detail */,
-				EC1A6C3118BBA37300269428 /* Folder view */,
 				EC1A6C3218BBA39500269428 /* Login */,
+				EC1A6C3118BBA37300269428 /* Folder view */,
+				EC1A6C2E18BBA30900269428 /* Document lists */,
+				EC1A6C3018BBA36100269428 /* Document detail */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -542,7 +542,7 @@
 			name = "Base classes";
 			sourceTree = "<group>";
 		};
-		EC1A6C2E18BBA30900269428 /* Documents */ = {
+		EC1A6C2E18BBA30900269428 /* Document lists */ = {
 			isa = PBXGroup;
 			children = (
 				8364D712185F1EB4008DE6CB /* SHCDocumentsViewController.h */,
@@ -554,7 +554,7 @@
 				837574B81891041C00902218 /* SHCUploadTableViewCell.h */,
 				837574B91891041C00902218 /* SHCUploadTableViewCell.m */,
 			);
-			name = Documents;
+			name = "Document lists";
 			sourceTree = "<group>";
 		};
 		EC1A6C2F18BBA32100269428 /* Client */ = {
