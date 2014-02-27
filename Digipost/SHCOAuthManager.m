@@ -209,7 +209,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     DDLogInfo(@"All tokens removed");
     NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
     NSAssert(refreshToken == nil, @"refresh token not nil!");
-
+    refreshToken = nil;
     [[SHCFileManager sharedFileManager] removeAllFiles];
 }
 
