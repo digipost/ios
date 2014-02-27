@@ -19,7 +19,7 @@
 #import "NSError+ExtraInfo.h"
 #import "SHCDocument.h"
 #import "SHCRootResource.h"
-
+#import "SHCDocumentsViewController.h"
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
 
@@ -101,6 +101,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [self updateNavbar];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
 }
 
 #pragma mark - UITableViewDataSource
@@ -231,16 +233,13 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             }
         }
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
     } failure:^(NSError *error) {
-
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-
                 return;
             }
         }
