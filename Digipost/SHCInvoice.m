@@ -1,0 +1,137 @@
+//
+//  SHCInvoice.m
+//  Digipost
+//
+//  Created by Eivind Bohler on 15.01.14.
+//  Copyright (c) 2014 Shortcut. All rights reserved.
+//
+
+#import "SHCInvoice.h"
+#import "SHCAttachment.h"
+#import "SHCModelManager.h"
+
+// Core Data model entity names
+NSString *const kInvoiceEntityName = @"Invoice";
+
+// API keys
+NSString *const kInvoiceLinkAPIKey = @"link";
+NSString *const kInvoiceLinkSendToBankAPIKeySuffix = @"send_to_bank";
+NSString *const kInvoicePaymentAPIKey = @"payment";
+NSString *const kInvoicePaymentLinkAPIKey = @"link";
+NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
+
+@implementation SHCInvoice
+
+// Attributes
+@dynamic accountNumber;
+@dynamic amount;
+@dynamic canBePaidByUser;
+@dynamic dueDate;
+@dynamic kid;
+@dynamic sendToBankUri;
+@dynamic timePaid;
+@dynamic bankHomepage;
+
+// Relationships
+@dynamic attachment;
+
+#pragma mark - Public methods
+
++ (instancetype)invoiceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSEntityDescription *entity = [[SHCModelManager sharedManager] invoiceEntity];
+    SHCInvoice *invoice = [[SHCInvoice alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+
+    NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
+    invoice.accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
+
+    // Because amount is given as a decimal number from the API, and we don't want to risk floating points
+    // inaccuracies, we convert to 100th's and store as an integer in Core Data.
+    NSNumber *amount = attributes[NSStringFromSelector(@selector(amount))];
+    if ([amount isKindOfClass:[NSNumber class]]) {
+        invoice.amount = [NSNumber numberWithInteger:round([amount doubleValue] * 100.0)];
+    }
+
+    NSNumber *canBePaidByUser = attributes[NSStringFromSelector(@selector(canBePaidByUser))];
+    invoice.canBePaidByUser = [canBePaidByUser isKindOfClass:[NSNumber class]] ? canBePaidByUser : nil;
+
+    NSString *dueDateString = attributes[NSStringFromSelector(@selector(dueDate))];
+    if ([dueDateString isKindOfClass:[NSString class]]) {
+        NSDateFormatter *dateFormatterWithoutTime = [[NSDateFormatter alloc] init];
+        dateFormatterWithoutTime.dateFormat = @"yyyy-MM-dd";
+
+        invoice.dueDate = [dateFormatterWithoutTime dateFromString:dueDateString];
+    }
+
+    NSString *kid = attributes[NSStringFromSelector(@selector(kid))];
+    invoice.kid = [kid isKindOfClass:[NSString class]] ? kid : nil;
+
+    NSArray *links = attributes[kInvoiceLinkAPIKey];
+    if ([links isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *link in links) {
+            if ([link isKindOfClass:[NSDictionary class]]) {
+                NSString *rel = link[@"rel"];
+                NSString *uri = link[@"uri"];
+                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+
+                    if ([rel hasSuffix:kInvoiceLinkSendToBankAPIKeySuffix]) {
+                        invoice.sendToBankUri = uri;
+                    }
+                }
+            }
+        }
+    }
+
+    NSDictionary *paymentDict = attributes[kInvoicePaymentAPIKey];
+    if ([paymentDict isKindOfClass:[NSDictionary class]]) {
+        NSString *timePaidString = paymentDict[NSStringFromSelector(@selector(timePaid))];
+        if ([timePaidString isKindOfClass:[NSString class]]) {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
+            invoice.timePaid = [dateFormatter dateFromString:timePaidString];
+        }
+
+        NSArray *links = paymentDict[kInvoicePaymentLinkAPIKey];
+        if ([links isKindOfClass:[NSArray class]]) {
+            for (NSDictionary *link in links) {
+                if ([link isKindOfClass:[NSDictionary class]]) {
+                    NSString *rel = link[@"rel"];
+                    NSString *uri = link[@"uri"];
+                    if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+                        if ([rel hasSuffix:kInvoicePaymentBankHomepageAPIKeySuffix]) {
+                            invoice.bankHomepage = uri;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return invoice;
+}
+
+- (NSString*)statusDescriptionText
+{
+    if (self.sendToBankUri) {
+        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbanken");
+    } else {
+        return nil;
+    }
+    return nil;
+}
+
++ (NSString *)stringForInvoiceAmount:(NSNumber *)amount
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [numberFormatter setLocale:[NSLocale currentLocale]];
+    
+    NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 10000.0];
+    
+    NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
+    NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
+    
+    return string;
+}
+
+@end

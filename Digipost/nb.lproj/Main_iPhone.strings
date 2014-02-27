@@ -1,0 +1,93 @@
+
+/* Class = "IBUILabel"; text = "DATE"; ObjectID = "4W8-5K-T1U"; */
+"4W8-5K-T1U.text" = "DATE";
+
+/* Class = "IBUILabel"; text = "DATE AND TIME"; ObjectID = "5Ux-bz-uaD"; */
+"5Ux-bz-uaD.text" = "DATE AND TIME";
+
+/* Class = "IBUIBarButtonItem"; title = "SELECTION"; ObjectID = "CkA-Mv-XSE"; */
+"CkA-Mv-XSE.title" = "SELECTION";
+
+/* Class = "IBUIBarButtonItem"; title = "SELECTION"; ObjectID = "DqK-UA-qVe"; */
+"DqK-UA-qVe.title" = "SELECTION";
+
+/* Class = "IBUILabel"; text = "DATE"; ObjectID = "ELG-LC-4Gq"; */
+"ELG-LC-4Gq.text" = "DATE";
+
+/* Class = "IBUILabel"; text = "FILE NAME"; ObjectID = "GCA-tU-ofW"; */
+"GCA-tU-ofW.text" = "FILE NAME";
+
+/* Class = "IBUIButton"; normalTitle = "LOGIN_BUTTON"; ObjectID = "GTu-hy-iNW"; */
+"GTu-hy-iNW.normalTitle" = "LOGIN_BUTTON";
+
+/* Class = "IBUILabel"; text = "FROM"; ObjectID = "GWi-rd-gUS"; */
+"GWi-rd-gUS.text" = "FROM";
+
+/* Class = "IBUIBarButtonItem"; title = "CANCEL"; ObjectID = "Hnu-zz-RH5"; */
+"Hnu-zz-RH5.title" = "CANCEL";
+
+/* Class = "IBUILabel"; text = "DATE"; ObjectID = "Izz-NB-Oe7"; */
+"Izz-NB-Oe7.text" = "DATE";
+
+/* Class = "IBUIBarButtonItem"; title = "MOVE"; ObjectID = "JFk-Mc-Ora"; */
+"JFk-Mc-Ora.title" = "MOVE";
+
+/* Class = "IBUINavigationItem"; title = "LOGIN"; ObjectID = "LAx-R0-fnr"; */
+"LAx-R0-fnr.title" = "LOGIN";
+
+/* Class = "IBUILabel"; text = "STORE_NAME"; ObjectID = "LB7-qi-OH6"; */
+"LB7-qi-OH6.text" = "STORE_NAME";
+
+/* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "Mqj-Bw-Kti"; */
+"Mqj-Bw-Kti.title" = "DELETE";
+
+/* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "WVS-VF-bHU"; */
+"WVS-VF-bHU.text" = "SUBJECT";
+
+/* Class = "IBUILabel"; text = "1"; ObjectID = "aua-uF-gO9"; */
+"aua-uF-gO9.text" = "1";
+
+/* Class = "IBUILabel"; text = "NO_DOCUMENTS"; ObjectID = "bjg-Ch-dqM"; */
+"bjg-Ch-dqM.text" = "NO_DOCUMENTS";
+
+/* Class = "IBUIButton"; normalTitle = "REGISTER_BUTTON"; ObjectID = "fv5-4n-dtY"; */
+"fv5-4n-dtY.normalTitle" = "REGISTER_BUTTON";
+
+/* Class = "IBUILabel"; text = "SENDER"; ObjectID = "h2s-qk-gs7"; */
+"h2s-qk-gs7.text" = "SENDER";
+
+/* Class = "IBUIBarButtonItem"; title = "MOVE"; ObjectID = "kcf-Tx-cPf"; */
+"kcf-Tx-cPf.title" = "MOVE";
+
+/* Class = "IBUILabel"; text = "SENDER"; ObjectID = "kfJ-1t-g98"; */
+"kfJ-1t-g98.text" = "SENDER";
+
+/* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "ncs-6S-Eoq"; */
+"ncs-6S-Eoq.title" = "DELETE";
+
+/* Class = "IBUILabel"; text = "FOLDER_NAME"; ObjectID = "o8S-n8-YQk"; */
+"o8S-n8-YQk.text" = "FOLDER_NAME";
+
+/* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "pMp-66-eox"; */
+"pMp-66-eox.title" = "DELETE";
+
+/* Class = "IBUIButton"; normalTitle = "PRIVACY_BUTTON"; ObjectID = "qBu-VV-6Ae"; */
+"qBu-VV-6Ae.normalTitle" = "PRIVACY_BUTTON";
+
+/* Class = "IBUILabel"; text = "DATE"; ObjectID = "qS7-vf-oBm"; */
+"qS7-vf-oBm.text" = "DATE";
+
+/* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "sou-c7-l6X"; */
+"sou-c7-l6X.text" = "SUBJECT";
+
+/* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "tKe-Yp-E2z"; */
+"tKe-Yp-E2z.text" = "SUBJECT";
+
+/* Class = "IBUILabel"; text = "AMOUNT"; ObjectID = "tge-o3-yQZ"; */
+"tge-o3-yQZ.text" = "AMOUNT";
+
+/* Class = "IBUILabel"; text = "NO_DOCUMENTS"; ObjectID = "x2V-fX-zry"; */
+"x2V-fX-zry.text" = "NO_DOCUMENTS";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "xQW-NC-XrA"; */
+"xQW-NC-XrA.text" = "Label";

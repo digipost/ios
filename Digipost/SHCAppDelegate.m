@@ -6,46 +6,138 @@
 //  Copyright (c) 2013 Shortcut. All rights reserved.
 //
 
+#import <HockeySDK/HockeySDK.h>
+#import <DDASLLogger.h>
+#import <DDTTYLogger.h>
+#import <DDFileLogger.h>
+#import <GAI.h>
+#import <GAITracker.h>
+#import <UIAlertView+Blocks.h>
 #import "SHCAppDelegate.h"
+#import "SHCAPIManager.h"
+#import "SHCLetterViewController.h"
+#import "SHCFileManager.h"
+
+@interface SHCAppDelegate () <BITHockeyManagerDelegate>
+
+@property (strong, nonatomic) DDFileLogger *fileLogger;
+@property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
+
+@end
 
 @implementation SHCAppDelegate
 
+#pragma mark - UIApplicationDelegate
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-    }
+    [self setupHockeySDK];
+
+    [self setupCocoaLumberjack];
+
+    [self setupNetworkingLogging];
+
+    [self setupGoogleAnalytics];
+
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
+    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:227.0/255.0 green:45.0/255.0 blue:34.0/255.0 alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
+    
     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSString *fileName = [url lastPathComponent];
+    NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
+    [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
+                       message:[NSString stringWithFormat:format, fileName]
+             cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+             otherButtonTitles:@[NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload")]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          if (buttonIndex == 1) {
+                              [[SHCAPIManager sharedManager] uploadFileWithURL:url success:^{
+
+                              } failure:^(NSError *error) {
+
+                              }];
+                          }
+                      }];
+    return YES;
+}
+
+#pragma mark - Private methods
+
+- (void)setupHockeySDK
+{
+    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
+                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
+                                                               delegate:self];
+    [[BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+}
+
+- (void)setupCocoaLumberjack
+{
+    // Enable Apple System Logger (log messages appear in the Console.app)
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+
+    // Enable Xcode debugger console (TTY) logger
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+
+    // If you want nice colors in Xcode's debugger console,
+    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
+    // on how to install the neccesary Xcode plugin.
+    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+
+    // Enable logging to file
+    self.fileLogger = [[DDFileLogger alloc] init];
+    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    [self.fileLogger rollLogFileWithCompletionBlock:^{
+        [DDLog addLogger:self.fileLogger];
+    }];
+}
+
+- (void)setupNetworkingLogging
+{
+    [[SHCAPIManager sharedManager] startLogging];
+}
+
+- (void)setupGoogleAnalytics
+{
+    [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
+
+    // Initialize tracker.
+    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-1"];
+    [GAI sharedInstance].dispatchInterval = 5.0;
 }
 
 @end
