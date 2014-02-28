@@ -817,8 +817,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         NSMutableArray *mutableObjectsInMetadata = [NSMutableArray array];
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        // Dateformatter for format: 2013-02-15 09:49
+        // Dateformatter for format: 13.02.2013 kl. 09.49 - Digipost format
         [dateFormatter setDateFormat:@"dd.MM.YYYY 'kl.' hh.mm"];
+        
         self.popoverTitleLabel.text = self.attachment.subject;
         if (self.attachment) {
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From") description:self.attachment.document.creatorName]];

@@ -289,12 +289,14 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 stateString = @"default";
                 break;
         }
+        
         DDLogInfo(@"state: %@", stateString);
 
         switch (state) {
             case SHCAPIManagerStateValidatingAccessTokenFinished:
             case SHCAPIManagerStateRefreshingAccessTokenFinished:
             {
+                
                 if (self.lastSuccessBlock) {
                     [self updateAuthorizationHeader];
                     self.lastSuccessBlock();

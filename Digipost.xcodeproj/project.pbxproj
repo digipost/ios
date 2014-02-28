@@ -304,6 +304,7 @@
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB3A64D18B379F8002D8C22 /* SHCNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* SHCNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
@@ -443,6 +444,7 @@
 		83BAB9221855C0AC004A7BFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ECAB707918C0997A009731FF /* oauth.h */,
 				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
 				83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */,
 				83BAB9231855C0AC004A7BFB /* Digipost-Info.plist */,
@@ -575,9 +577,9 @@
 				83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */,
 				83D355141861C5EA009EABC6 /* SHCLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* SHCLetterViewController.m */,
-				EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */,
 				EC29512718BF7FDB00A80C28 /* SHCLetterPopoverView.h */,
 				EC29512818BF7FDB00A80C28 /* SHCLetterPopoverView.m */,
+				EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */,
 				EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */,
 				EC68C07618AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.h */,
 				EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */,
