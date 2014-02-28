@@ -13,6 +13,7 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "SHCOAuthManager.h"
 #import "NSError+ExtraInfo.h"
+#import "oauth.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
@@ -168,8 +169,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 {
     self.stateParameter = [NSString randomNumberString];
 
-    NSDictionary *parameters = @{kOAuth2ClientID: __OAUTH_CLIENT_ID__,
-                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__,
+    NSDictionary *parameters = @{kOAuth2ClientID: OAUTH_CLIENT_ID,
+                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType: kOAuth2Code,
                                  kOAuth2State: self.stateParameter};
 

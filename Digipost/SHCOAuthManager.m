@@ -4,7 +4,7 @@
 //
 //  Created by Eivind Bohler on 10.12.13.
 //  Copyright (c) 2013 Shortcut. All rights reserved.
-//
+
 
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "SHCOAuthManager.h"
@@ -12,6 +12,7 @@
 #import "LUKeychainAccess.h"
 #import "SHCAPIManager.h"
 #import "SHCFileManager.h"
+#import "oauth.h"
 
 // Digipost OAuth2 API consts
 NSString *const kOAuth2ClientID = @"client_id";
@@ -52,7 +53,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                    sessionConfiguration:configuration];
 
         _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:__OAUTH_CLIENT_ID__ password:__OAUTH_SECRET__];
+        [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:OAUTH_CLIENT_ID password:OAUTH_SECRET];
 
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 
@@ -102,7 +103,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
     NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2Code,
                                  kOAuth2Code: code,
-                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
+                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
                    parameters:parameters
@@ -149,7 +150,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
     NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2RefreshToken,
                                  kOAuth2RefreshToken: refreshToken,
-                                 kOAuth2RedirectURI: __OAUTH_REDIRECT_URI__};
+                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
                    parameters:parameters
