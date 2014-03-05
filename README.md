@@ -2,7 +2,7 @@
 
 [![Digipost for iOS](https://i.imgur.com/vce3NJf.png)](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4)
 
-Digipost for iOS er en app for iOS på iPhone og iPad som gir tilgang til brukerens sikre digitale postkasse i Digipost. For å logge inn i appen trenger du en konto i Digipost, dette kan du opprette på [digipost.no](https://www.digipost.no/).
+Digipost for iOS er en app for iOS på iPhone, iPad og iPod Touch som gir tilgang til brukerens sikre digitale postkasse i Digipost. For å logge inn i appen trenger du en konto i Digipost, dette kan du opprette på [digipost.no](https://www.digipost.no/).
 
 App-en i ferdig bygd versjon kan [lastes ned fra App Store](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4).
 
@@ -26,3 +26,7 @@ Straks Cocoapods er installert, gå til prosjektets mappe i terminalen og skriv
 pod install
 ```
 Etter pod-ene er installert, åpne *.xcworkspace*-filen i Xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
+
+### 3. Systemkrav
+
+Digipost for iOS er bygget for iOS versjon 7.
