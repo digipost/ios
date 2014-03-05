@@ -27,6 +27,6 @@ pod install
 ```
 Etter pod-ene er installert, åpne *.xcworkspace*-filen i Xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
 
-### 3. Systemkrav
+## Systemkrav
 
 Digipost for iOS er bygget for iOS versjon 7.
