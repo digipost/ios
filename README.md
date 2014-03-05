@@ -18,10 +18,12 @@ Denne applikasjonen bruker Digipost's OAuth API. For å kunne bruke dette API'et
 
 Når du har registrert denne applikasjonen, og fått en client-id og en oauth-secret, så lager du en kopi av filen `oauth.example.h`, fyller ut med dine verdier og navngir filen `oauth.h`.
 
-### 2. Sette opp prosjekt i XCode
+### 2. Sette opp prosjekt
 
-...mer info kommer
+Digipost for iOS bruker Cocoapods, du må ha dette installert for å kunne bygge prosjektet. Installasjonsguide finnes [her](http://guides.cocoapods.org/using/getting-started.html).
+Etter det er installert, gå til prosjektets mappe i terminalen og skriv
+```
+pod install
+```
 
-### 3. Bygging og CocoaPods
 
-...mer info kommer
