@@ -8,22 +8,21 @@ App-en i ferdig bygd versjon kan [lastes ned fra App Store](http://itunes.apple.
 
 Kildekoden er her tilgjengelig som fri programvare under lisensen *Apache License, Version 2.0*, som beskrevet i [lisensfilen](https://github.com/digipost/ios/blob/master/LICENSE "LICENSE").
 
-Bilder og logoer for Posten og Digipost er (C) Posten Norge AS og er ikke lisensiert under Apache Licence, Versjon 2.0.
+Bilder og logoer for Posten og Digipost er (C) Posten Norge AS og er ikke lisensiert under *Apache Licence, Versjon 2.0*.
 
-## Hvordan komme i gang
+## Kom i gang
 
-### 1. Skaffe tilgang til OAuth API
+### 1. Tilgang til OAuth API
 
-Denne applikasjonen bruker Digipost's OAuth API. For å kunne bruke dette API'et må du registrere en OAuth Consumer. Les mer om hvordan du gjør dette i [Digipost' API-dokumentasjon](https://www.digipost.no/plattform/privat/).
+Digipost for iOS bruker Digiposts OAuth API. For å kunne bruke dette API-et må du registrere en *OAuth Consumer*. Informasjon om hvordan du gjør dette finner du i [Digiposts API-dokumentasjon](https://www.digipost.no/plattform/privat/).
 
-Når du har registrert denne applikasjonen, og fått en client-id og en oauth-secret, så lager du en kopi av filen `oauth.example.h`, fyller ut med dine verdier og navngir filen `oauth.h`.
+Når du har registrert din nye applikasjon, og fått en *client-id* og en *oauth-secret*, lager du en kopi av filen `oauth.example.h`, fyller ut med dine verdier og lagrer filen som `oauth.h`.
 
-### 2. Sette opp prosjekt
+### 2. Sett opp ditt prosjekt
 
-Digipost for iOS bruker Cocoapods, du må ha dette installert for å kunne bygge prosjektet. Installasjonsguide finnes [her](http://guides.cocoapods.org/using/getting-started.html).
-Etter det er installert, gå til prosjektets mappe i terminalen og skriv
+Digipost for iOS bruker Cocoapods. Du må ha Cocoapods installert for å kunne bygge prosjektet. Installasjonsguide finnes [her](http://guides.cocoapods.org/using/getting-started.html).
+Straks Cocoapods er installert, gå til prosjektets mappe i terminalen og skriv
 ```
 pod install
 ```
-Etter pod-ene er installert, åpne .xcworkspace-fila i xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
-
+Etter pod-ene er installert, åpne *.xcworkspace*-filen i Xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
