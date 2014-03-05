@@ -60,11 +60,6 @@
 		83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
 		83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
 		83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
-		83BAB9411855C0AD004A7BFB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB9401855C0AD004A7BFB /* XCTest.framework */; };
-		83BAB9421855C0AD004A7BFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
-		83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
-		83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9491855C0AD004A7BFB /* InfoPlist.strings */; };
-		83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB94C1855C0AD004A7BFB /* DigipostTests.m */; };
 		83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
 		83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
 		83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
@@ -176,16 +171,6 @@
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		83BAB9441855C0AD004A7BFB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83BAB9171855C0AC004A7BFB;
-			remoteInfo = Digipost;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,11 +211,7 @@
 		83BAB92E1855C0AC004A7BFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		83BAB9311855C0AC004A7BFB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Prod.xcassets"; sourceTree = "<group>"; };
-		83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		83BAB9401855C0AD004A7BFB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		83BAB9481855C0AD004A7BFB /* DigipostTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DigipostTests-Info.plist"; sourceTree = "<group>"; };
-		83BAB94A1855C0AD004A7BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		83BAB94C1855C0AD004A7BFB /* DigipostTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DigipostTests.m; sourceTree = "<group>"; };
 		83C22B73187C3B7500A6B6F4 /* UIViewController+NeedsReload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NeedsReload.h"; sourceTree = "<group>"; };
 		83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NeedsReload.m"; sourceTree = "<group>"; };
 		83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Staging.xcassets"; sourceTree = "<group>"; };
@@ -303,7 +284,6 @@
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB3A64D18B379F8002D8C22 /* SHCNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* SHCNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNotice.m; sourceTree = "<group>"; };
@@ -349,16 +329,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83BAB93C1855C0AD004A7BFB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83BAB9411855C0AD004A7BFB /* XCTest.framework in Frameworks */,
-				83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */,
-				83BAB9421855C0AD004A7BFB /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -395,7 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				83BAB9211855C0AC004A7BFB /* Digipost */,
-				83BAB9461855C0AD004A7BFB /* DigipostTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
 				1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */,
@@ -406,7 +375,6 @@
 			isa = PBXGroup;
 			children = (
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
-				83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */,
 				8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */,
 				83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */,
 			);
@@ -457,24 +425,6 @@
 				83BAB9271855C0AC004A7BFB /* main.m */,
 				83F7036F1856340C003DABE1 /* Shared.xcconfig */,
 				8342EFBE1858CE180080A833 /* Model.xcdatamodeld */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		83BAB9461855C0AD004A7BFB /* DigipostTests */ = {
-			isa = PBXGroup;
-			children = (
-				83BAB94C1855C0AD004A7BFB /* DigipostTests.m */,
-				83BAB9471855C0AD004A7BFB /* Supporting Files */,
-			);
-			path = DigipostTests;
-			sourceTree = "<group>";
-		};
-		83BAB9471855C0AD004A7BFB /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				83BAB9481855C0AD004A7BFB /* DigipostTests-Info.plist */,
-				83BAB9491855C0AD004A7BFB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -671,24 +621,6 @@
 			productReference = 83BAB9181855C0AC004A7BFB /* Digipost.app */;
 			productType = "com.apple.product-type.application";
 		};
-		83BAB93E1855C0AD004A7BFB /* DigipostTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 83BAB9531855C0AD004A7BFB /* Build configuration list for PBXNativeTarget "DigipostTests" */;
-			buildPhases = (
-				83BAB93B1855C0AD004A7BFB /* Sources */,
-				83BAB93C1855C0AD004A7BFB /* Frameworks */,
-				83BAB93D1855C0AD004A7BFB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				83BAB9451855C0AD004A7BFB /* PBXTargetDependency */,
-			);
-			name = DigipostTests;
-			productName = DigipostTests;
-			productReference = 83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -713,9 +645,6 @@
 							};
 						};
 					};
-					83BAB93E1855C0AD004A7BFB = {
-						TestTargetID = 83BAB9171855C0AC004A7BFB;
-					};
 				};
 			};
 			buildConfigurationList = 83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */;
@@ -735,7 +664,6 @@
 				83BAB9171855C0AC004A7BFB /* Digipost */,
 				83A31AF91855D706007045B9 /* Digipost-Enterprise */,
 				8375DD351855C383009435B4 /* Digipost-Staging-Enterprise */,
-				83BAB93E1855C0AD004A7BFB /* DigipostTests */,
 			);
 		};
 /* End PBXProject section */
@@ -777,14 +705,6 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		83BAB93D1855C0AD004A7BFB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1037,23 +957,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		83BAB93B1855C0AD004A7BFB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		83BAB9451855C0AD004A7BFB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83BAB9171855C0AC004A7BFB /* Digipost */;
-			targetProxy = 83BAB9441855C0AD004A7BFB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
@@ -1081,15 +985,6 @@
 				ECA1A9F71898FFDF00408CD5 /* nb */,
 			);
 			name = Main_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		83BAB9491855C0AD004A7BFB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				83BAB94A1855C0AD004A7BFB /* en */,
-				ECA1A9FA1898FFDF00408CD5 /* nb */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		83F7038418573C3A003DABE1 /* Localizable.strings */ = {
@@ -1277,48 +1172,6 @@
 			};
 			name = Release;
 		};
-		83BAB9541855C0AD004A7BFB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "DigipostTests/DigipostTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		83BAB9551855C0AD004A7BFB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
-				INFOPLIST_FILE = "DigipostTests/DigipostTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1354,15 +1207,6 @@
 			buildConfigurations = (
 				83BAB9511855C0AD004A7BFB /* Debug */,
 				83BAB9521855C0AD004A7BFB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		83BAB9531855C0AD004A7BFB /* Build configuration list for PBXNativeTarget "DigipostTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				83BAB9541855C0AD004A7BFB /* Debug */,
-				83BAB9551855C0AD004A7BFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
