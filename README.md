@@ -25,5 +25,5 @@ Etter det er installert, gå til prosjektets mappe i terminalen og skriv
 ```
 pod install
 ```
-
+Etter pod-ene er installert, åpne .xcworkspace-fila i xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
 
