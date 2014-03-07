@@ -6,10 +6,6 @@ Digipost for iOS er en app for iOS på iPhone, iPad og iPod Touch som gir tilgan
 
 App-en i ferdig bygget versjon kan [lastes ned fra App Store](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4).
 
-Kildekoden er her tilgjengelig som fri programvare under lisensen *Apache License, Version 2.0*, som beskrevet i [lisensfilen](https://github.com/digipost/ios/blob/master/LICENSE "LICENSE").
-
-Bilder og logoer for Posten og Digipost er (C) Posten Norge AS og er ikke lisensiert under *Apache Licence, Versjon 2.0*.
-
 ## Kom i gang
 
 ### 1. Tilgang til OAuth API
@@ -30,3 +26,10 @@ Etter pod-ene er installert, åpne *.xcworkspace*-filen i Xcode. Prosjektet er n
 ## Systemkrav
 
 Digipost for iOS er bygget for iOS versjon 7.
+
+
+## Lisens
+
+Kildekoden til Digipost for iOS er tilgjengelig som fri programvare under lisensen *Apache License, Version 2.0*, som beskrevet i [lisensfilen](https://github.com/digipost/ios/blob/master/LICENSE "LICENSE").
+
+Bilder og logoer for Posten og Digipost er (C) Posten Norge AS og er ikke lisensiert under *Apache Licence, Versjon 2.0*.
