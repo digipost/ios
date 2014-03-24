@@ -299,3 +299,6 @@ limitations under the License.
 /* Kort */
 "LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT" = "Kort";
 
+/* Sendt til nettbanken */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION" = "Sendt til nettbanken";
+
