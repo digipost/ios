@@ -162,6 +162,60 @@
 		EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
 		EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		ECA571E518E046E800AC54AA /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECA571E618E046E800AC54AA /* SHCDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */; };
+		ECA571E718E046E800AC54AA /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
+		ECA571E818E046E800AC54AA /* SHCLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* SHCLetterViewController.m */; };
+		ECA571E918E046E800AC54AA /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
+		ECA571EA18E046E800AC54AA /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
+		ECA571EB18E046E800AC54AA /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
+		ECA571EC18E046E800AC54AA /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
+		ECA571ED18E046E800AC54AA /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
+		ECA571EE18E046E800AC54AA /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsViewController.m */; };
+		ECA571EF18E046E800AC54AA /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
+		ECA571F018E046E800AC54AA /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
+		ECA571F118E046E800AC54AA /* SHCDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */; };
+		ECA571F218E046E800AC54AA /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
+		ECA571F318E046E800AC54AA /* SHCSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B6BE9B1897A987006D9B20 /* SHCSplitViewController.m */; };
+		ECA571F418E046E800AC54AA /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
+		ECA571F518E046E800AC54AA /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		ECA571F618E046E800AC54AA /* SHCInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* SHCInvoice.m */; };
+		ECA571F718E046E800AC54AA /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
+		ECA571F818E046E800AC54AA /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
+		ECA571F918E046E800AC54AA /* SHCAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */; };
+		ECA571FA18E046E800AC54AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
+		ECA571FB18E046E800AC54AA /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
+		ECA571FC18E046E800AC54AA /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
+		ECA571FD18E046E800AC54AA /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
+		ECA571FE18E046E800AC54AA /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
+		ECA571FF18E046E800AC54AA /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
+		ECA5720018E046E800AC54AA /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
+		ECA5720118E046E800AC54AA /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
+		ECA5720218E046E800AC54AA /* SHCAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* SHCAPIManager.m */; };
+		ECA5720318E046E800AC54AA /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
+		ECA5720418E046E800AC54AA /* SHCOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* SHCOAuthManager.m */; };
+		ECA5720518E046E800AC54AA /* SHCLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* SHCLetterPopoverView.m */; };
+		ECA5720618E046E800AC54AA /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
+		ECA5720718E046E800AC54AA /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
+		ECA5720818E046E800AC54AA /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
+		ECA5720918E046E800AC54AA /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		ECA5720A18E046E800AC54AA /* SHCUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* SHCUploadTableViewCell.m */; };
+		ECA5720B18E046E800AC54AA /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
+		ECA5720C18E046E800AC54AA /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
+		ECA5720D18E046E800AC54AA /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
+		ECA5720E18E046E800AC54AA /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
+		ECA5720F18E046E800AC54AA /* SHCModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */; };
+		ECA5721018E046E800AC54AA /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
+		ECA5721218E046E800AC54AA /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
+		ECA5721318E046E800AC54AA /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
+		ECA5721418E046E800AC54AA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
+		ECA5721518E046E800AC54AA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		ECA5721718E046E800AC54AA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		ECA5721818E046E800AC54AA /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
+		ECA5721918E046E800AC54AA /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
+		ECA5721A18E046E800AC54AA /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
+		ECA5721B18E046E800AC54AA /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
+		ECA5721C18E046E800AC54AA /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
 		ECB3A64F18B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
 		ECB3A65018B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
 		ECB3A65118B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
@@ -304,6 +358,8 @@
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA1A9FA1898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		ECA5722118E046E800AC54AA /* Digipost-Enterprise copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Enterprise copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		ECA5722218E046E800AC54AA /* Digipost-Enterprise copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost-Enterprise copy-Info.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost-Enterprise copy-Info.plist"; sourceTree = "<absolute>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB3A64D18B379F8002D8C22 /* SHCNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* SHCNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNotice.m; sourceTree = "<group>"; };
@@ -359,6 +415,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ECA5721118E046E800AC54AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA5721218E046E800AC54AA /* CoreGraphics.framework in Frameworks */,
+				ECA5721318E046E800AC54AA /* UIKit.framework in Frameworks */,
+				ECA5721418E046E800AC54AA /* Foundation.framework in Frameworks */,
+				ECA5721518E046E800AC54AA /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -399,6 +466,7 @@
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
 				1FD5CFF6E9D640CFA120A746 /* Pods.xcconfig */,
+				ECA5722218E046E800AC54AA /* Digipost-Enterprise copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -409,6 +477,7 @@
 				83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */,
 				8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */,
 				83A31B0B1855D706007045B9 /* Digipost-Enterprise.app */,
+				ECA5722118E046E800AC54AA /* Digipost-Enterprise copy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -614,9 +683,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8375DD351855C383009435B4 /* Digipost-Staging-Enterprise */ = {
+		8375DD351855C383009435B4 /* Digipost-Test-Dpost */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging-Enterprise" */;
+			buildConfigurationList = 8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Test-Dpost" */;
 			buildPhases = (
 				2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */,
 				8375DD361855C383009435B4 /* Sources */,
@@ -628,7 +697,7 @@
 			);
 			dependencies = (
 			);
-			name = "Digipost-Staging-Enterprise";
+			name = "Digipost-Test-Dpost";
 			productName = Digipost;
 			productReference = 8375DD471855C383009435B4 /* Digipost-Staging-Enterprise.app */;
 			productType = "com.apple.product-type.application";
@@ -689,6 +758,25 @@
 			productReference = 83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		ECA571E218E046E800AC54AA /* Digipost-QA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ECA5721E18E046E800AC54AA /* Build configuration list for PBXNativeTarget "Digipost-QA" */;
+			buildPhases = (
+				ECA571E318E046E800AC54AA /* Check Pods Manifest.lock */,
+				ECA571E418E046E800AC54AA /* Sources */,
+				ECA5721118E046E800AC54AA /* Frameworks */,
+				ECA5721618E046E800AC54AA /* Resources */,
+				ECA5721D18E046E800AC54AA /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Digipost-QA";
+			productName = Digipost;
+			productReference = ECA5722118E046E800AC54AA /* Digipost-Enterprise copy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -734,8 +822,9 @@
 			targets = (
 				83BAB9171855C0AC004A7BFB /* Digipost */,
 				83A31AF91855D706007045B9 /* Digipost-Enterprise */,
-				8375DD351855C383009435B4 /* Digipost-Staging-Enterprise */,
+				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
 				83BAB93E1855C0AD004A7BFB /* DigipostTests */,
+				ECA571E218E046E800AC54AA /* Digipost-QA */,
 			);
 		};
 /* End PBXProject section */
@@ -785,6 +874,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA5721618E046E800AC54AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA5721718E046E800AC54AA /* Localizable.strings in Resources */,
+				ECA5721818E046E800AC54AA /* Images-Prod.xcassets in Resources */,
+				ECA5721918E046E800AC54AA /* Images-Shared.xcassets in Resources */,
+				ECA5721A18E046E800AC54AA /* Main_iPad.storyboard in Resources */,
+				ECA5721B18E046E800AC54AA /* Main_iPhone.storyboard in Resources */,
+				ECA5721C18E046E800AC54AA /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,6 +969,36 @@
 			showEnvVarsInLog = 0;
 		};
 		E902CF5D7D404E379E086565 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA571E318E046E800AC54AA /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ECA5721D18E046E800AC54AA /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1042,6 +1174,57 @@
 			buildActionMask = 2147483647;
 			files = (
 				83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ECA571E418E046E800AC54AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ECA571E518E046E800AC54AA /* UILabel+Digipost.m in Sources */,
+				ECA571E618E046E800AC54AA /* SHCDocumentTableViewCell.m in Sources */,
+				ECA571E718E046E800AC54AA /* SHCReceiptTableViewCell.m in Sources */,
+				ECA571E818E046E800AC54AA /* SHCLetterViewController.m in Sources */,
+				ECA571E918E046E800AC54AA /* NSString+RandomNumber.m in Sources */,
+				ECA571EA18E046E800AC54AA /* SHCAttachment.m in Sources */,
+				ECA571EB18E046E800AC54AA /* UIViewController+NeedsReload.m in Sources */,
+				ECA571EC18E046E800AC54AA /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
+				ECA571ED18E046E800AC54AA /* SHCFileManager.m in Sources */,
+				ECA571EE18E046E800AC54AA /* SHCReceiptsViewController.m in Sources */,
+				ECA571EF18E046E800AC54AA /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				ECA571F018E046E800AC54AA /* SHCOAuthViewController.m in Sources */,
+				ECA571F118E046E800AC54AA /* SHCDocumentsViewController.m in Sources */,
+				ECA571F218E046E800AC54AA /* SHCRootResource.m in Sources */,
+				ECA571F318E046E800AC54AA /* SHCSplitViewController.m in Sources */,
+				ECA571F418E046E800AC54AA /* SHCReceipt.m in Sources */,
+				ECA571F518E046E800AC54AA /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				ECA571F618E046E800AC54AA /* SHCInvoice.m in Sources */,
+				ECA571F718E046E800AC54AA /* SHCBaseEncryptedModel.m in Sources */,
+				ECA571F818E046E800AC54AA /* UIViewController+ValidateOpening.m in Sources */,
+				ECA571F918E046E800AC54AA /* SHCAttachmentsViewController.m in Sources */,
+				ECA571FA18E046E800AC54AA /* main.m in Sources */,
+				ECA571FB18E046E800AC54AA /* SHCAppDelegate.m in Sources */,
+				ECA571FC18E046E800AC54AA /* SHCFolder.m in Sources */,
+				ECA571FD18E046E800AC54AA /* SHCFolderTableViewCell.m in Sources */,
+				ECA571FE18E046E800AC54AA /* NSError+ExtraInfo.m in Sources */,
+				ECA571FF18E046E800AC54AA /* NSURLRequest+QueryParameters.m in Sources */,
+				ECA5720018E046E800AC54AA /* SHCDocument.m in Sources */,
+				ECA5720118E046E800AC54AA /* SHCAttachmentTableViewCell.m in Sources */,
+				ECA5720218E046E800AC54AA /* SHCAPIManager.m in Sources */,
+				ECA5720318E046E800AC54AA /* NSString+SHA1String.m in Sources */,
+				ECA5720418E046E800AC54AA /* SHCOAuthManager.m in Sources */,
+				ECA5720518E046E800AC54AA /* SHCLetterPopoverView.m in Sources */,
+				ECA5720618E046E800AC54AA /* SHCMailbox.m in Sources */,
+				ECA5720718E046E800AC54AA /* SHCLetterPopoverTableViewCell.m in Sources */,
+				ECA5720818E046E800AC54AA /* SHCBaseTableViewController.m in Sources */,
+				ECA5720918E046E800AC54AA /* UIView+AutoLayout.m in Sources */,
+				ECA5720A18E046E800AC54AA /* SHCUploadTableViewCell.m in Sources */,
+				ECA5720B18E046E800AC54AA /* SHCFoldersViewController.m in Sources */,
+				ECA5720C18E046E800AC54AA /* Model.xcdatamodeld in Sources */,
+				ECA5720D18E046E800AC54AA /* SHCLoginViewController.m in Sources */,
+				ECA5720E18E046E800AC54AA /* SHCNotice.m in Sources */,
+				ECA5720F18E046E800AC54AA /* SHCModelManager.m in Sources */,
+				ECA5721018E046E800AC54AA /* UIViewController+BackButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1341,10 +1524,66 @@
 			};
 			name = Release;
 		};
+		ECA5721F18E046E800AC54AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(SHARED_GCC_PREPROCESSOR_DEFINITIONS)",
+					"__ACCEPT_SELF_SIGNED_CERTIFICATES__=$(ACCEPT_SELF_SIGNED_CERTIFICATES)",
+					"__SERVER_URI__=$(SERVER_URI)",
+					"__API_VERSION__=$(API_VERSION)",
+					"__HOCKEY_BETA_IDENTIFIER__=$(HOCKEY_BETA_IDENTIFIER)",
+					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
+					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
+					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
+					STAGING,
+				);
+				INFOPLIST_FILE = "Digipost-Enterprise copy-Info.plist";
+				PRODUCT_NAME = "Digipost-Enterprise copy";
+				PROVISIONING_PROFILE = "";
+				SERVER_URI = "\\@\\\"https:\\/\\/qa.digipost.no\\\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		ECA5722018E046E800AC54AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(SHARED_GCC_PREPROCESSOR_DEFINITIONS)",
+					"__ACCEPT_SELF_SIGNED_CERTIFICATES__=$(ACCEPT_SELF_SIGNED_CERTIFICATES)",
+					"__SERVER_URI__=$(SERVER_URI)",
+					"__API_VERSION__=$(API_VERSION)",
+					"__HOCKEY_BETA_IDENTIFIER__=$(HOCKEY_BETA_IDENTIFIER)",
+					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
+					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
+					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
+					STAGING,
+				);
+				INFOPLIST_FILE = "Digipost-Enterprise copy-Info.plist";
+				PRODUCT_NAME = "Digipost-Enterprise copy";
+				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
+				SERVER_URI = "\\@\\\"https:\\/\\/qa.digipost.no\\\"";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Staging-Enterprise" */ = {
+		8375DD441855C383009435B4 /* Build configuration list for PBXNativeTarget "Digipost-Test-Dpost" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8375DD451855C383009435B4 /* Debug */,
@@ -1385,6 +1624,15 @@
 			buildConfigurations = (
 				83BAB9541855C0AD004A7BFB /* Debug */,
 				83BAB9551855C0AD004A7BFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ECA5721E18E046E800AC54AA /* Build configuration list for PBXNativeTarget "Digipost-QA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ECA5721F18E046E800AC54AA /* Debug */,
+				ECA5722018E046E800AC54AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
