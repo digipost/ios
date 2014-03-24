@@ -611,7 +611,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
             [self showEmptyView:YES];
-            [self updateToolbarItemsWithInvoice:self.attachment.invoice != nil];
+            
         }
         
     } failure:^(NSError *error) {
@@ -985,8 +985,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }else if (self.receipt)  {
             [items addObjectsFromArray:@[flexibleSpaceBarButtonItem, self.deleteBarButtonItem]];
             
-        }else {
-            // no point showing empty toolbar
+        }
+        if ([items count] > 0) {
+            [self.navigationController setToolbarHidden:NO animated:YES];
+        } else {
             [self.navigationController setToolbarHidden:YES animated:YES];
         }
         self.toolbarItems = items;
