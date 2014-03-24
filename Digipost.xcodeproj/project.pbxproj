@@ -385,6 +385,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83BAB9411855C0AD004A7BFB /* XCTest.framework in Frameworks */,
+				83BAB9431855C0AD004A7BFB /* UIKit.framework in Frameworks */,
+				83BAB9421855C0AD004A7BFB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA5721118E046E800AC54AA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -690,6 +699,23 @@
 			productReference = 83BAB9181855C0AC004A7BFB /* Digipost.app */;
 			productType = "com.apple.product-type.application";
 		};
+			isa = PBXNativeTarget;
+			buildConfigurationList = 83BAB9531855C0AD004A7BFB /* Build configuration list for PBXNativeTarget "DigipostTests" */;
+			buildPhases = (
+				83BAB93B1855C0AD004A7BFB /* Sources */,
+				83BAB93C1855C0AD004A7BFB /* Frameworks */,
+				83BAB93D1855C0AD004A7BFB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				83BAB9451855C0AD004A7BFB /* PBXTargetDependency */,
+			);
+			name = DigipostTests;
+			productName = DigipostTests;
+			productReference = 83BAB93F1855C0AD004A7BFB /* DigipostTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		ECA571E218E046E800AC54AA /* Digipost-QA */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = ECA5721E18E046E800AC54AA /* Build configuration list for PBXNativeTarget "Digipost-QA" */;
@@ -795,6 +821,13 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83BAB94B1855C0AD004A7BFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1090,6 +1123,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83BAB94D1855C0AD004A7BFB /* DigipostTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		ECA571E418E046E800AC54AA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1378,6 +1418,47 @@
 			};
 			name = Release;
 		};
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "DigipostTests/DigipostTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		83BAB9551855C0AD004A7BFB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				INFOPLIST_FILE = "DigipostTests/DigipostTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		ECA5721F18E046E800AC54AA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */;
@@ -1469,6 +1550,14 @@
 			buildConfigurations = (
 				83BAB9511855C0AD004A7BFB /* Debug */,
 				83BAB9521855C0AD004A7BFB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83BAB9541855C0AD004A7BFB /* Debug */,
+				83BAB9551855C0AD004A7BFB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
