@@ -17,8 +17,19 @@
 #ifndef Digipost_id_h_example_h
 #define Digipost_id_h_example_h
 
+#ifdef STAGING
+
 // Remove the .example in this files name to include it in the project
-#define OAUTH_SECRET        @"Your app secret here"
-#define OAUTH_CLIENT_ID     @"Your client ID here"
+#define OAUTH_SECRET        @"Your staging app secret here"
+#define OAUTH_CLIENT_ID     @"Your staging client ID here"
 #define OAUTH_REDIRECT_URI  @"http://localhost:7890"
+
+#else
+// Remove the .example in this files name to include it in the project
+#define OAUTH_SECRET        @"Your production app secret here"
+#define OAUTH_CLIENT_ID     @"Your production client ID here"
+#define OAUTH_REDIRECT_URI  @"http://localhost:7890"
+
+#endif
+
 #endif
