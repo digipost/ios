@@ -175,6 +175,15 @@
 		ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5519238E68003BD200 /* POSReceiptFolderTableViewCell.m */; };
 		ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5519238E68003BD200 /* POSReceiptFolderTableViewCell.m */; };
 		ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5519238E68003BD200 /* POSReceiptFolderTableViewCell.m */; };
+		ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
+		ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
+		ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
+		ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
+		ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
+		ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
+		ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
+		ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
+		ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
@@ -306,6 +315,12 @@
 		ECF06D50192382EF003BD200 /* SHCReceiptFolderTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptFolderTableViewDataSource.m; sourceTree = "<group>"; };
 		ECF06D5419238E68003BD200 /* POSReceiptFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptFolderTableViewCell.h; sourceTree = "<group>"; };
 		ECF06D5519238E68003BD200 /* POSReceiptFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptFolderTableViewCell.m; sourceTree = "<group>"; };
+		ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+Additions.h"; sourceTree = "<group>"; };
+		ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+Additions.m"; sourceTree = "<group>"; };
+		ECF06D5E19239537003BD200 /* UIViewController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Additions.h"; sourceTree = "<group>"; };
+		ECF06D5F19239537003BD200 /* UIViewController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Additions.m"; sourceTree = "<group>"; };
+		ECF06D63192395A5003BD200 /* UIRefreshControl+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIRefreshControl+Additions.h"; sourceTree = "<group>"; };
+		ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+Additions.m"; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -505,6 +520,12 @@
 				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
 				8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */,
 				8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */,
+				ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */,
+				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
+				ECF06D5E19239537003BD200 /* UIViewController+Additions.h */,
+				ECF06D5F19239537003BD200 /* UIViewController+Additions.m */,
+				ECF06D63192395A5003BD200 /* UIRefreshControl+Additions.h */,
+				ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -834,6 +855,7 @@
 				83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
@@ -845,6 +867,7 @@
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
@@ -854,6 +877,7 @@
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
+				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
@@ -888,6 +912,7 @@
 				83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
@@ -899,6 +924,7 @@
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
@@ -908,6 +934,7 @@
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
+				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
@@ -942,6 +969,7 @@
 				83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */,
@@ -953,6 +981,7 @@
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
@@ -962,6 +991,7 @@
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
+				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
