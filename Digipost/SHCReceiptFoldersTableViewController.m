@@ -29,9 +29,11 @@
 #import "SHCRootResource.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCReceiptFolderTableViewDataSource.h"
+#import "SHCReceiptsViewController.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
+NSString *const kFolderSelectedSegueIdentifier = @"folderSelectedSegue";
 
 // Google Analytics screen name
 NSString *const kReceiptsViewControllerScreenName = @"Receipts";
@@ -104,6 +106,11 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         letterViewController.receiptsViewController = self;
         letterViewController.receipt = receipt;
+    }else if ([segue.identifier isEqualToString:kFolderSelectedSegueIdentifier]){
+        NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
+        NSString *storeName =[self.receiptFolderTableViewDataSource storeNameAtIndexPath:selectedRowIndexPath];
+        SHCReceiptsViewController *receiptsViewController = (id) segue.destinationViewController;
+        receiptsViewController.storeName = storeName;
     }
 }
 
@@ -141,7 +148,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
     } else {
-        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:receipt];
+//        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:receipt];
     }
 }
 

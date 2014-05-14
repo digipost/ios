@@ -14,9 +14,8 @@
 @import CoreData;
 @interface SHCReceiptFolderTableViewDataSource()
 
-@property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
-
 @property (nonatomic,strong) NSMutableDictionary *receiptGroups;
+@property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
 
 @end
 
@@ -45,6 +44,11 @@
     self.receiptGroups = mutableReceipts;
 }
 
+- (NSString*)storeNameAtIndexPath:(NSIndexPath* )indexPath
+{
+    return self.receiptGroups.allKeys[indexPath.row];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -61,14 +65,13 @@
     return self.receiptGroups.count;
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *storeName = self.receiptGroups.allKeys[indexPath.row];
-
+    NSArray *receipts =  self.receiptGroups[storeName];
     POSReceiptFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"receiptFolderCell" forIndexPath:indexPath];
-    cell.textLabel.text = storeName;
-//    cell.dateLabel.text = [SHCDocument stringForDocumentDate:receipt.timeOfPurchase];
+    cell.franchiseNameLabel.text = storeName;
+    cell.numberOfReceiptsLabel.text = [NSString stringWithFormat:NSLocalizedString(@"RECEIPTS_FOLDER_NUMBER_OF_RECEIPTS_LABEL", @"%i kvitteringer"),[receipts count]];
     
     return cell;
 }

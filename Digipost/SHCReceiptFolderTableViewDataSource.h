@@ -10,4 +10,7 @@
 
 @interface SHCReceiptFolderTableViewDataSource : NSObject<UITableViewDataSource>
 - (void)refreshContent;
+
+- (NSString*)storeNameAtIndexPath:(NSIndexPath* )indexPath;
+
 @end

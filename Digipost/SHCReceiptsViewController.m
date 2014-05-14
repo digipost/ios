@@ -7,8 +7,14 @@
 //
 
 #import "SHCReceiptsViewController.h"
+#import "UIRefreshControl+Additions.h"
+#import "POSReceiptsTableViewDataSource.h"
+#import "UIViewController+Additions.h"
 
 @interface SHCReceiptsViewController ()
+@property (nonatomic,strong)UIRefreshControl *refreshControl;
+@property (nonatomic,strong)POSReceiptsTableViewDataSource *receiptsTableViewDataSource;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -26,7 +32,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.navigationController setTitle:self.storeName];
+    self.receiptsTableViewDataSource = [POSReceiptsTableViewDataSource new];
+    self.receiptsTableViewDataSource.storeName = self.storeName;
+    self.tableView.dataSource = self.receiptsTableViewDataSource;
+    
+    [self updateNavbar];
+
+    // This line makes the tableview hide its separator lines for empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+
+    // Set the initial refresh control text
+    [self.refreshControl initializeRefreshControlText];
+    [self.refreshControl updateRefreshControlTextRefreshing:YES];
+
+        self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+
+    // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
+    [self.refreshControl beginRefreshing];
+    [self.refreshControl endRefreshing];
+
+    // Present persistent data before updating
+//    [self updateFetchedResultsController];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning

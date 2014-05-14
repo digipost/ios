@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+@interface POSReceiptsTableViewDataSource : NSObject<UITableViewDataSource>
 
-@interface POSReceiptsTableViewDataSource : NSInteger
+
+@property (nonatomic,strong) NSString *storeName;
 @end

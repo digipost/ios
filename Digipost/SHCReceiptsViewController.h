@@ -10,4 +10,6 @@
 
 @interface SHCReceiptsViewController : UIViewController
 
+@property (nonatomic,strong) NSString *storeName;
+
 @end
