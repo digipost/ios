@@ -28,7 +28,7 @@
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCDocumentsViewController.h"
-#import "SHCReceiptsViewController.h"
+#import "SHCReceiptsTableViewController.h"
 #import "SHCInvoice.h"
 #import "SHCMailbox.h"
 #import "SHCRootResource.h"
@@ -257,6 +257,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    NSParameterAssert(object);
+    NSParameterAssert(keyPath);
+    NSParameterAssert(change);
     if (context == kSHCLetterViewControllerKVOContext && object == self.progress && [keyPath isEqualToString:NSStringFromSelector(@selector(fractionCompleted))]) {
         NSProgress *progress = (NSProgress *)object;
         
@@ -264,6 +267,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.progressView setProgress:progress.fractionCompleted animated:YES];
         });
     } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
+        
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
@@ -428,6 +432,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)loadContent
 {
+
     SHCBaseEncryptedModel *baseEncryptionModel = nil;
     
     if (self.attachment) {
@@ -452,12 +457,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
     } else {
+        
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
 }
 
 - (void)loadContentFromWebWithBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel
 {
+    NSParameterAssert(baseEncryptionModel);
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
     
@@ -467,7 +474,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } completion:nil];
         
         progress = [[NSProgress alloc] initWithParent:nil userInfo:nil];
-        progress.totalUnitCount = (int64_t)[self.attachment.fileSize integerValue];
+        NSInteger fileSize = [self.attachment.fileSize integerValue];
+        progress.totalUnitCount = (int64_t) fileSize;
         
         [progress addObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted)) options:NSKeyValueObservingOptionNew context:kSHCLetterViewControllerKVOContext];
         
@@ -475,6 +483,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+    
     [[SHCAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
         
         // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
