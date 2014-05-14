@@ -28,6 +28,8 @@
 #import "SHCDocument.h"
 #import "SHCRootResource.h"
 #import "SHCDocumentsViewController.h"
+#import "SHCReceiptFolderTableViewDataSource.h"
+
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
 
@@ -41,6 +43,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *noReceiptsLabel;
+@property (nonatomic,strong) SHCReceiptFolderTableViewDataSource *receiptFolderTableViewDataSource;
 
 @end
 
@@ -61,10 +64,11 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                                                             selector:@selector(compare:)]];
 
     self.screenName = kReceiptsViewControllerScreenName;
+    self.receiptFolderTableViewDataSource = [[SHCReceiptFolderTableViewDataSource alloc] init];
+    self.tableView.dataSource = self.receiptFolderTableViewDataSource;
+    [self.receiptFolderTableViewDataSource refreshContent];
 
     [super viewDidLoad];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    UINavigationBar *navbar = self.navigationController.navigationBar;
 
     [self updateToolbarButtonItems];
 }
@@ -116,40 +120,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    NSInteger number = [super numberOfSectionsInTableView:tableView];
-
-    if (number == 0) {
-        [self showTableViewBackgroundView:YES];
-    }
-
-    return number;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    NSInteger number = [super tableView:tableView numberOfRowsInSection:section];
-
-    [self showTableViewBackgroundView:(number == 0)];
-
-    return number;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-    SHCReceiptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kReceiptTableViewCellIdentifier forIndexPath:indexPath];
-
-    cell.amountLabel.text = [SHCReceipt stringForReceiptAmount:receipt.amount];
-    cell.storeNameLabel.text = receipt.storeName;
-    cell.dateLabel.text = [SHCDocument stringForDocumentDate:receipt.timeOfPurchase];
-
-    return cell;
-}
 
 #pragma mark - UITableViewDelegate
 
@@ -232,6 +202,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     SHCLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
 
+    
+    
     [[SHCAPIManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^{
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
