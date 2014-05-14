@@ -28,7 +28,7 @@
 #import "SHCDocumentsViewController.h"
 #import "SHCRootResource.h"
 #import "NSError+ExtraInfo.h"
-#import "SHCReceiptsTableViewController.h"
+#import "SHCReceiptFoldersTableViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
 
@@ -102,7 +102,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         documentsViewController.folderDisplayName = folder.displayName;
         documentsViewController.folderUri = folder.uri;
     } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
-        SHCReceiptsTableViewController *receiptsViewController = (SHCReceiptsTableViewController *)segue.destinationViewController;
+        SHCReceiptFoldersTableViewController *receiptsViewController = (SHCReceiptFoldersTableViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
         receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     } else if ( [segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]){

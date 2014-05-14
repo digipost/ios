@@ -28,7 +28,7 @@
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCDocumentsViewController.h"
-#import "SHCReceiptsTableViewController.h"
+#import "SHCReceiptFoldersTableViewController.h"
 #import "SHCInvoice.h"
 #import "SHCMailbox.h"
 #import "SHCRootResource.h"

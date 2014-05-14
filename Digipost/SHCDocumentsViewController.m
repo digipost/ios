@@ -377,7 +377,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (letterViewConctroller.attachment) {
             if (letterViewConctroller.attachment.uri == nil ) {
                 SHCAttachment *refetchedObject = [SHCAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
-                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
+//                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
             }
         }
         

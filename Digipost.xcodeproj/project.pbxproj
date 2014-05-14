@@ -111,9 +111,9 @@
 		83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
 		83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
 		83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
-		83DB4AEB188D287600515022 /* SHCReceiptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsTableViewController.m */; };
-		83DB4AEC188D287600515022 /* SHCReceiptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsTableViewController.m */; };
-		83DB4AED188D287600515022 /* SHCReceiptsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptsTableViewController.m */; };
+		83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
+		83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
+		83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
 		83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
@@ -166,6 +166,9 @@
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECF06D4C192363EF003BD200 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* SHCReceiptsViewController.m */; };
+		ECF06D4D192363EF003BD200 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* SHCReceiptsViewController.m */; };
+		ECF06D4E192363EF003BD200 /* SHCReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* SHCReceiptsViewController.m */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
@@ -247,8 +250,8 @@
 		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
 		83DB4AE4188D1F4E00515022 /* SHCReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceipt.h; sourceTree = "<group>"; };
 		83DB4AE5188D1F4E00515022 /* SHCReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceipt.m; sourceTree = "<group>"; };
-		83DB4AE9188D287600515022 /* SHCReceiptsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptsTableViewController.h; sourceTree = "<group>"; };
-		83DB4AEA188D287600515022 /* SHCReceiptsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptsTableViewController.m; sourceTree = "<group>"; };
+		83DB4AE9188D287600515022 /* SHCReceiptFoldersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptFoldersTableViewController.h; sourceTree = "<group>"; };
+		83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptFoldersTableViewController.m; sourceTree = "<group>"; };
 		83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptTableViewCell.h; sourceTree = "<group>"; };
 		83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptTableViewCell.m; sourceTree = "<group>"; };
 		83DB4AF3188D963400515022 /* SHCBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBaseEncryptedModel.h; sourceTree = "<group>"; };
@@ -291,6 +294,8 @@
 		ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButton.m"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
+		ECF06D4A192363EF003BD200 /* SHCReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptsViewController.h; sourceTree = "<group>"; };
+		ECF06D4B192363EF003BD200 /* SHCReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptsViewController.m; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -501,8 +506,10 @@
 				8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */,
 				8364D71C185F2981008DE6CB /* SHCDocumentTableViewCell.h */,
 				8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */,
-				83DB4AE9188D287600515022 /* SHCReceiptsTableViewController.h */,
-				83DB4AEA188D287600515022 /* SHCReceiptsTableViewController.m */,
+				83DB4AE9188D287600515022 /* SHCReceiptFoldersTableViewController.h */,
+				83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */,
+				ECF06D4A192363EF003BD200 /* SHCReceiptsViewController.h */,
+				ECF06D4B192363EF003BD200 /* SHCReceiptsViewController.m */,
 				837574B81891041C00902218 /* SHCUploadTableViewCell.h */,
 				837574B91891041C00902218 /* SHCUploadTableViewCell.m */,
 			);
@@ -817,7 +824,7 @@
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */,
-				83DB4AED188D287600515022 /* SHCReceiptsTableViewController.m in Sources */,
+				83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
@@ -827,6 +834,7 @@
 				EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
+				ECF06D4E192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
@@ -868,7 +876,7 @@
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */,
-				83DB4AEC188D287600515022 /* SHCReceiptsTableViewController.m in Sources */,
+				83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
@@ -878,6 +886,7 @@
 				EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
+				ECF06D4D192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
@@ -918,7 +927,7 @@
 				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */,
-				83DB4AEB188D287600515022 /* SHCReceiptsTableViewController.m in Sources */,
+				83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
@@ -929,6 +938,7 @@
 				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
 				83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
+				ECF06D4C192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,

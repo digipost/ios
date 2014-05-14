@@ -22,14 +22,14 @@ extern NSString *const kPushLetterIdentifier;
 extern NSString *const kPushReceiptIdentifier;
 
 @class SHCDocumentsViewController;
-@class SHCReceiptsTableViewController;
+@class SHCReceiptFoldersTableViewController;
 @class SHCAttachment;
 @class SHCReceipt;
 
 @interface SHCLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) SHCDocumentsViewController *documentsViewController;
-@property (weak, nonatomic) SHCReceiptsTableViewController *receiptsViewController;
+@property (weak, nonatomic) SHCReceiptFoldersTableViewController *receiptsViewController;
 @property (strong, nonatomic) SHCAttachment *attachment;
 @property (strong, nonatomic) SHCReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;

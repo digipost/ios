@@ -17,7 +17,7 @@
 #import <UIActionSheet+Blocks.h>
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
-#import "SHCReceiptsViewController.h"
+#import "SHCReceiptFoldersTableViewController.h"
 #import "SHCModelManager.h"
 #import "SHCReceipt.h"
 #import "SHCAPIManager.h"
@@ -34,8 +34,9 @@ NSString *const kPushReceiptsIdentifier = @"PushReceipts";
 // Google Analytics screen name
 NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
-@interface SHCReceiptsViewController ()
+@interface SHCReceiptFoldersTableViewController ()<UIScrollViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
@@ -43,7 +44,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 @end
 
-@implementation SHCReceiptsViewController
+@implementation SHCReceiptFoldersTableViewController
 
 #pragma mark - UIViewController
 
@@ -62,6 +63,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     self.screenName = kReceiptsViewControllerScreenName;
 
     [super viewDidLoad];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    UINavigationBar *navbar = self.navigationController.navigationBar;
 
     [self updateToolbarButtonItems];
 }
@@ -395,5 +398,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
+
 
 @end

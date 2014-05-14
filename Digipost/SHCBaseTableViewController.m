@@ -23,7 +23,7 @@
 #import "UIViewController+NeedsReload.h"
 #import "SHCFoldersViewController.h"
 #import "SHCDocumentsViewController.h"
-#import "SHCReceiptsTableViewController.h"
+#import "SHCReceiptFoldersTableViewController.h"
 #import "UIViewController+BackButton.h"
 #import "SHCLetterViewController.h"
 
@@ -54,7 +54,7 @@
     [self updateRefreshControlTextRefreshing:YES];
 
     if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
-        [self isKindOfClass:[SHCReceiptsTableViewController class]]) {
+        [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
     } else {
         self.refreshControl.tintColor = [UIColor whiteColor];
@@ -222,7 +222,7 @@
 {
     NSDictionary *attributes = nil;
     if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
-        [self isKindOfClass:[SHCReceiptsTableViewController class]]) {
+        [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
         attributes = @{NSForegroundColorAttributeName: [UIColor colorWithWhite:0.4 alpha:1.0]};
     } else {
         attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};

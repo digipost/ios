@@ -20,7 +20,7 @@
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushReceiptsIdentifier;
 
-@interface SHCReceiptsViewController : SHCBaseTableViewController
+@interface SHCReceiptFoldersTableViewController : SHCBaseTableViewController
 
 @property (copy, nonatomic) NSString *mailboxDigipostAddress;
 @property (copy, nonatomic) NSString *receiptsUri;
