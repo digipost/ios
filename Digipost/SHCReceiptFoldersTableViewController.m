@@ -114,18 +114,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     }
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
 
-    [self.navigationController setToolbarHidden:!editing animated:animated];
-
-    [self updateNavbar];
-
-    self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
-}
 
 
 #pragma mark - UITableViewDelegate
@@ -156,7 +145,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
         return;
     }
 }
@@ -173,29 +161,26 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     [self updateToolbarButtonItems];
 }
-
-- (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
+- (void)selectAllRows
 {
-    NSUInteger numberOfReceipts = [[self.tableView indexPathsForSelectedRows] count];
-    NSString *receiptWord = numberOfReceipts == 1 ? NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"receipt") :
-                                                    NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"receipts");
+    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
+        for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:section]; row++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+    }
+}
 
-    NSString *deleteString = [NSString stringWithFormat:@"%@ %lu %@",
-                              NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
-                              (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
-                              receiptWord];
-
-    [UIActionSheet showFromBarButtonItem:barButtonItem
-                                animated:YES
-                               withTitle:nil
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:deleteString
-                       otherButtonTitles:nil
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                    if (buttonIndex == 0) {
-                                        [self deleteReceipts];
-                                    }
-                                }];
+- (void)deselectAllRows
+{
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForVisibleRows]) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    }
+    
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
 }
 
 #pragma mark - Private methods
@@ -251,13 +236,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 {
     [super updateNavbar];
     self.navigationItem.title = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", @"Receipts");
-
-    UIBarButtonItem *rightBarButtonItem = nil;
-    if ([self numberOfRows] > 0) {
-        rightBarButtonItem = self.editButtonItem;
-    }
-
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 }
 
 - (void)updateToolbarButtonItems
@@ -288,69 +266,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     }
 
     return numberOfRows;
-}
-
-- (void)selectAllRows
-{
-    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
-        for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:section]; row++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        }
-    }
-}
-
-- (void)deselectAllRows
-{
-    for (NSIndexPath *indexPath in [self.tableView indexPathsForVisibleRows]) {
-        SHCReceiptTableViewCell *cell = (SHCReceiptTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    }
-
-    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    }
-}
-
-- (void)deleteReceipts
-{
-    for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
-        SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-
-        [self deleteReceipt:receipt];
-    }
-
-    [self deselectAllRows];
-    [self updateToolbarButtonItems];
-}
-
-- (void)deleteReceipt:(SHCReceipt *)receipt
-{
-    [[SHCAPIManager sharedManager] deleteReceipt:receipt withSuccess:^{
-        [self updateFetchedResultsController];
-
-        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-    } failure:^(NSError *error) {
-
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(deleteReceipt:) withObject:receipt afterDelay:0.0];
-
-                return;
-            }
-        }
-
-        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
-    }];
 }
 
 - (void)showTableViewBackgroundView:(BOOL)showTableViewBackgroundView

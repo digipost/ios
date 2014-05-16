@@ -10,7 +10,7 @@
 #import "SHCModelManager.h"
 #import "SHCReceiptTableViewCell.h"
 #import "SHCReceipt.h"
-
+#import "SHCDocument.h"
 @import CoreData;
 
 @interface POSReceiptsTableViewDataSource ()
@@ -26,8 +26,8 @@
     SHCReceiptTableViewCell *receiptTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"ReceiptCellIdentifier" forIndexPath:indexPath];
     SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;
-    receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"Kr %@",receipt.amount ];
-    
+    receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@",[SHCReceipt stringForReceiptAmount:receipt.amount]];
+    receiptTableViewCell.dateLabel.text = [SHCDocument stringForDocumentDate:receipt.timeOfPurchase];
     return receiptTableViewCell;
 }
 
@@ -41,6 +41,17 @@
     id<NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
+
+- (void)resetFetchedResultsController
+{
+    self.fetchedResultsController = nil;
+}
+
+- (SHCReceipt *)receiptAtIndexPath:(NSIndexPath* )indexPath
+{
+    return [self.fetchedResultsController objectAtIndexPath:indexPath];
+}
+
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
@@ -61,7 +72,6 @@
     fetchRequest.predicate = predicate;
     
     NSError *error;
-    NSArray *arr = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:&error];
     
     // Create and initialize the fetch results controller.
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[SHCModelManager sharedManager].managedObjectContext sectionNameKeyPath:nil cacheName:@"cache"];
