@@ -13,6 +13,7 @@
 #import "NSError+ExtraInfo.h"
 #import "UIViewController+Additions.h"
 #import <AFNetworking.h>
+#import "SHCLetterViewController.h"
 #import "SHCAPIManager.h"
 #import "UIViewController+Additions.h"
 #import "SHCReceiptTableViewCell.h"
@@ -20,11 +21,14 @@
 #import "SHCDocumentsViewController.h"
 #import <UIAlertView+Blocks.h>
 
+NSString *const kPushReceiptIdentifier = @"PushReceipt";
+
 @interface SHCReceiptsViewController ()
 @property (nonatomic,strong)UIRefreshControl *refreshControl;
 @property (nonatomic,strong)POSReceiptsTableViewDataSource *receiptsTableViewDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @end
 
 @implementation SHCReceiptsViewController
@@ -41,9 +45,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
+    self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
     [self.navigationItem setTitle:self.storeName];
     self.receiptsTableViewDataSource = [POSReceiptsTableViewDataSource new];
     self.receiptsTableViewDataSource.storeName = self.storeName;
+    self.tableView.delegate = self;
     self.tableView.dataSource = self.receiptsTableViewDataSource;
     
     [self updateNavbar];
@@ -74,7 +81,24 @@
     [super viewDidAppear:animated];
     
 }
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    if (self.isEditing) {
+        return NO;
+    }
+    return YES;
+}
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kPushReceiptIdentifier] ){
+        SHCReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
+
+        SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+//        letterViewController.receiptsViewController = self;
+        letterViewController.receipt = receipt;
+    }
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,10 +112,22 @@
     [self.navigationController setToolbarHidden:!editing animated:animated];
     
     [self updateNavbar];
+    [self.tableView setEditing:editing animated:animated];
     
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
+}
+
+- (IBAction)didTapSelectionBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    if ([self someRowsSelected]) {
+        [self deselectAllRows];
+    } else {
+        [self selectAllRows];
+    }
+
+    [self updateToolbarButtonItems];
 }
 
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -170,7 +206,31 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isEditing) {
+        [self updateToolbarButtonItems];
+        return;
+    }
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.isEditing) {
+        
+        [self updateToolbarButtonItems];
 
+        return;
+    }
+    
+
+//    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
+    } else {
+        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:self];
+    }
+}
 
 - (void)deleteReceipts
 {
@@ -186,30 +246,40 @@
 
 - (void)updateToolbarButtonItems
 {
-//    if ([self.tableView indexPathsForSelectedRows] > 0) {
-//        self.moveBarButtonItem.enabled = YES;
-//        self.deleteBarButtonItem.enabled = YES;
-//    } else {
-//        self.moveBarButtonItem.enabled = NO;
-//        self.deleteBarButtonItem.enabled = NO;
-//    }
-//    
-//    if ([self someRowsSelected]) {
-//        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
-//    } else {
-//        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
-//    }
+    if ([self.tableView indexPathsForSelectedRows] > 0) {
+        self.deleteBarButtonItem.enabled = YES;
+    } else {
+        self.deleteBarButtonItem.enabled = NO;
+    }
+
+    if ([self someRowsSelected]) {
+        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
+    } else {
+        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
+    }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    return YES;
 }
-*/
+- (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 20;
+}
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)someRowsSelected
+{
+    return [[self.tableView indexPathsForSelectedRows] count] > 0;
+}
 
 @end

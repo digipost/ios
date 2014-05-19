@@ -220,7 +220,7 @@
                         <color key="backgroundColor" red="0.92549019607843142" green="0.93333333333333335" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DocumentCellIdentifier" id="CMb-9s-72X" userLabel="Document Table View Cell" customClass="SHCDocumentTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DocumentCellIdentifier" editingAccessoryType="disclosureIndicator" id="CMb-9s-72X" userLabel="Document Table View Cell" customClass="SHCDocumentTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CMb-9s-72X" id="vgs-qF-9a9">
@@ -482,16 +482,16 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iv4-xS-7F6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iv4-xS-7F6">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ReceiptCellIdentifier" rowHeight="66" id="wjG-b1-IBv" customClass="SHCReceiptTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCellIdentifier" rowHeight="66" id="wjG-b1-IBv" customClass="SHCReceiptTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wjG-b1-IBv" id="Jen-yF-hBV">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="65"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tge-o3-yQZ" userLabel="Amount Label">
@@ -508,33 +508,74 @@
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5Z-Ac-fZW">
+                                                    <rect key="frame" x="167" y="11" width="136" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="136" id="UxY-w1-WRA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="dj1-1s-4fK">
+                                                    <rect key="frame" x="295" y="37" width="8" height="13"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="8" id="bI6-2S-qYZ"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="leading" secondItem="Jen-yF-hBV" secondAttribute="leading" constant="30" id="8mO-ZK-GNQ"/>
-                                                <constraint firstAttribute="trailing" secondItem="tge-o3-yQZ" secondAttribute="trailing" id="WYQ-m1-fHd"/>
-                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="leading" secondItem="tge-o3-yQZ" secondAttribute="leading" id="nIZ-1i-Ilr"/>
-                                                <constraint firstItem="tge-o3-yQZ" firstAttribute="top" secondItem="LB7-qi-OH6" secondAttribute="bottom" constant="1" id="p42-qX-uuX"/>
-                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="centerX" secondItem="Jen-yF-hBV" secondAttribute="centerX" id="ryC-qS-biJ"/>
-                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="top" secondItem="Jen-yF-hBV" secondAttribute="top" constant="11" id="uLk-ut-TLU"/>
+                                                <constraint firstAttribute="trailing" secondItem="N5Z-Ac-fZW" secondAttribute="trailing" constant="17" id="7pJ-xG-VHu"/>
+                                                <constraint firstItem="tge-o3-yQZ" firstAttribute="top" secondItem="LB7-qi-OH6" secondAttribute="bottom" constant="1" id="KLP-mO-QuS"/>
+                                                <constraint firstItem="tge-o3-yQZ" firstAttribute="centerY" secondItem="dj1-1s-4fK" secondAttribute="centerY" id="SG4-9x-VUL"/>
+                                                <constraint firstItem="dj1-1s-4fK" firstAttribute="leading" secondItem="tge-o3-yQZ" secondAttribute="trailing" constant="8" symbolic="YES" id="T2Z-rg-I2G"/>
+                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="top" secondItem="Jen-yF-hBV" secondAttribute="top" constant="11" id="cfN-Gd-asb"/>
+                                                <constraint firstAttribute="trailing" secondItem="LB7-qi-OH6" secondAttribute="trailing" constant="63" id="dte-Nd-UEh"/>
+                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="leading" secondItem="tge-o3-yQZ" secondAttribute="leading" id="ogA-z0-O8x"/>
+                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="top" secondItem="LB7-qi-OH6" secondAttribute="top" id="phS-Z4-FKa"/>
+                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="bottom" secondItem="LB7-qi-OH6" secondAttribute="bottom" id="rP1-ei-7ZY"/>
+                                                <constraint firstItem="dj1-1s-4fK" firstAttribute="trailing" secondItem="N5Z-Ac-fZW" secondAttribute="trailing" id="wXA-p1-8uo"/>
+                                                <constraint firstItem="LB7-qi-OH6" firstAttribute="leading" secondItem="Jen-yF-hBV" secondAttribute="leading" constant="30" id="ycj-Bv-uHh"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="amountLabel" destination="tge-o3-yQZ" id="8Z6-ac-igt"/>
+                                            <outlet property="dateLabel" destination="N5Z-Ac-fZW" id="QWJ-ZM-G8K"/>
                                             <outlet property="storeNameLabel" destination="LB7-qi-OH6" id="cnU-RH-anj"/>
-                                            <segue destination="IOM-jr-kzB" kind="push" identifier="PushReceipt" id="Ohm-dn-stG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="delegate" destination="pYf-ua-Cki" id="hNG-f3-gxP"/>
+                                    <outlet property="delegate" destination="pYf-ua-Cki" id="hdI-8g-Lne"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem title="SELECTION" id="DqK-UA-qVe" userLabel="Selection Bar Button Item">
+                            <color key="tintColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didTapSelectionBarButtonItem:" destination="pYf-ua-Cki" id="T1F-h7-ESc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="915-AQ-bV8"/>
+                        <barButtonItem title="DELETE" id="ncs-6S-Eoq" userLabel="Delete Bar Button Item">
+                            <color key="tintColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="didTapDeleteBarButtonItem:" destination="pYf-ua-Cki" id="7Fq-Ju-Oxt"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" id="Y5O-9Z-arN"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="deleteBarButtonItem" destination="ncs-6S-Eoq" id="SSB-dZ-P3p"/>
+                        <outlet property="selectionBarButtonItem" destination="DqK-UA-qVe" id="Psn-FT-1ZW"/>
                         <outlet property="tableView" destination="iv4-xS-7F6" id="0eu-nh-2s0"/>
+                        <segue destination="IOM-jr-kzB" kind="push" identifier="PushReceipt" id="geX-1f-yyf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmx-Ps-3SI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -594,27 +635,11 @@
                             <outlet property="delegate" destination="CQ6-bh-m2j" id="l4d-5k-fRW"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="SELECTION" id="DqK-UA-qVe" userLabel="Selection Bar Button Item">
-                            <color key="tintColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="didTapSelectionBarButtonItem:" destination="CQ6-bh-m2j" id="ZXF-3e-J3y"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem style="plain" systemItem="flexibleSpace" id="915-AQ-bV8"/>
-                        <barButtonItem title="DELETE" id="ncs-6S-Eoq" userLabel="Delete Bar Button Item">
-                            <color key="tintColor" white="1" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="didTapDeleteBarButtonItem:" destination="CQ6-bh-m2j" id="BZs-is-APJ"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Buq-4h-iFM"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="deleteBarButtonItem" destination="ncs-6S-Eoq" id="Eol-gE-35A"/>
                         <outlet property="noReceiptsLabel" destination="x2V-fX-zry" id="xZe-EE-eO3"/>
-                        <outlet property="selectionBarButtonItem" destination="DqK-UA-qVe" id="03n-yP-W3E"/>
                         <outlet property="tableViewBackgroundView" destination="xH6-3G-Zyg" id="xVZ-cT-FRs"/>
                     </connections>
                 </tableViewController>
@@ -665,7 +690,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32i-4K-2Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1508" y="810"/>
+            <point key="canvasLocation" x="1351" y="809"/>
         </scene>
         <!--Attachments View Controller-->
         <scene sceneID="sjq-19-YZ0">
@@ -1070,6 +1095,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="j20-qk-TDu"/>
-        <segue reference="Ohm-dn-stG"/>
+        <segue reference="geX-1f-yyf"/>
     </inferredMetricsTieBreakers>
 </document>

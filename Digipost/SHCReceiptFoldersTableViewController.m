@@ -41,8 +41,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 @interface SHCReceiptFoldersTableViewController ()<UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *tableHeaderView;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *noReceiptsLabel;
 @property (nonatomic,strong) SHCReceiptFolderTableViewDataSource *receiptFolderTableViewDataSource;
@@ -57,8 +55,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 {
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:0.95]];
 
-    self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
-    self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
 
     self.baseEntity = [[SHCModelManager sharedManager] receiptEntity];
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(timeOfPurchase))
@@ -72,7 +68,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     [super viewDidLoad];
 
-    [self updateToolbarButtonItems];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,11 +96,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
-        SHCReceipt *receipt = (SHCReceipt *)sender;
-
-        SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
-        letterViewController.receiptsViewController = self;
-        letterViewController.receipt = receipt;
+        
     }else if ([segue.identifier isEqualToString:kFolderSelectedSegueIdentifier]){
         NSIndexPath *selectedRowIndexPath = [self.tableView indexPathForSelectedRow];
         NSString *storeName =[self.receiptFolderTableViewDataSource storeNameAtIndexPath:selectedRowIndexPath];
@@ -126,41 +117,26 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.isEditing) {
-        [self updateToolbarButtonItems];
-
-        return;
-    }
-
-    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
-    } else {
-//        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:receipt];
-    }
+//    if (self.isEditing) {
+//        [self updateToolbarButtonItems];
+//
+//        return;
+//    }
+//
+//    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+//
+//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
+//    } else {
+////        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:receipt];
+//    }
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.isEditing) {
-        [self updateToolbarButtonItems];
-        return;
-    }
-}
+
 
 #pragma mark - IBActions
 
-- (IBAction)didTapSelectionBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    if ([self someRowsSelected]) {
-        [self deselectAllRows];
-    } else {
-        [self selectAllRows];
-    }
 
-    [self updateToolbarButtonItems];
-}
 - (void)selectAllRows
 {
     for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
@@ -238,20 +214,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     self.navigationItem.title = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", @"Receipts");
 }
 
-- (void)updateToolbarButtonItems
-{
-    if ([self.tableView indexPathsForSelectedRows] > 0) {
-        self.deleteBarButtonItem.enabled = YES;
-    } else {
-        self.deleteBarButtonItem.enabled = NO;
-    }
-
-    if ([self someRowsSelected]) {
-        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", @"Select none");
-    } else {
-        self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
-    }
-}
 
 - (BOOL)someRowsSelected
 {

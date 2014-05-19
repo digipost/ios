@@ -42,6 +42,11 @@
     return [sectionInfo numberOfObjects];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
 - (void)resetFetchedResultsController
 {
     self.fetchedResultsController = nil;

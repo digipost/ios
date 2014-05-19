@@ -46,7 +46,6 @@ static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOCo
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushLetterIdentifier = @"PushLetter";
-NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
@@ -457,7 +456,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
     } else {
-        
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
 }
