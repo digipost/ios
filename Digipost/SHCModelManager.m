@@ -17,7 +17,6 @@
 #import "SHCModelManager.h"
 #import "SHCRootResource.h"
 #import "SHCMailbox.h"
-#import "SHCFolder.h"
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
 #import "SHCInvoice.h"
@@ -120,6 +119,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
             if ([documentDict isKindOfClass:[NSDictionary class]]) {
                 SHCDocument *document = [SHCDocument documentWithAttributes:documentDict inManagedObjectContext:self.managedObjectContext];
                 document.folder = folder;
+                [folder addDocumentsObject:document];
             }
         }
     }
@@ -314,6 +314,24 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 
     return _persistentStoreCoordinator;
+}
+
+#pragma mark - Predicates
+- (NSPredicate *)predicateWithFoldersForSelectedMailBox
+{
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", self.selectedMailboxDigipostAddress];
+    return p1;
+}
+
+- (NSPredicate *)predicateWithDocumentsForSelectedMailBoxInFolderWithName:(NSString *)folderName
+{
+    NSParameterAssert(folderName);
+    NSAssert(self.selectedMailboxDigipostAddress != nil, @"no adress set");
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"folder.mailbox.digipostAddress == %@", self.selectedMailboxDigipostAddress];
+
+    NSPredicate *p2 = [NSPredicate predicateWithFormat:@"%K == %@", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],folderName];
+    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates: @[p1, p2]];
+    return predicate;
 }
 
 #pragma mark - Private methods

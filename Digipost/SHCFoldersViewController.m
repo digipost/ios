@@ -62,19 +62,18 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                                            ascending:NO
                                                             selector:@selector(compare:)]];
 
-    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
-
-    self.screenName = kFoldersViewControllerScreenName;
-
-    self.folders = [NSMutableArray array];
-
-    [super viewDidLoad];
+//    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
     
+    self.predicate =  [[SHCModelManager sharedManager] predicateWithFoldersForSelectedMailBox];
+    self.screenName = kFoldersViewControllerScreenName;
+    self.folders = [NSMutableArray array];
+    [super viewDidLoad];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
-    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-    [self.navigationItem setHidesBackButton:YES];
+    
+//    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+//    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
+//    [self.navigationItem setHidesBackButton:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -101,6 +100,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         documentsViewController.folderName = folder.name;
         documentsViewController.folderDisplayName = folder.displayName;
         documentsViewController.folderUri = folder.uri;
+        documentsViewController.selectedFolder = folder;
     } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
         SHCReceiptFoldersTableViewController *receiptsViewController = (SHCReceiptFoldersTableViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
@@ -348,9 +348,9 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     [super updateNavbar];
 
     [self.navigationItem setTitle:@""];
-    [self.navigationItem setHidesBackButton:YES];
+//    [self.navigationItem setHidesBackButton:YES];
 
-    self.navigationItem.title = self.rootResource.firstName ?: @"";
+    self.navigationItem.title = self.selectedMailBoxDigipostAdress ?: @"";
 }
 
 - (void)uploadProgressDidStart:(NSNotification *)notification

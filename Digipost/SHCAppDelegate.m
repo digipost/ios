@@ -25,6 +25,7 @@
 #import "SHCAPIManager.h"
 #import "SHCLetterViewController.h"
 #import "SHCFileManager.h"
+#import "oauth.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
@@ -39,6 +40,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
     [self setupHockeySDK];
 
     [self setupCocoaLumberjack];

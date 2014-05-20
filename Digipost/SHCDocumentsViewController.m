@@ -23,6 +23,7 @@
 #import "SHCDocumentTableViewCell.h"
 #import "SHCAttachment.h"
 #import "SHCAPIManager.h"
+#import "SHCMailbox.h"
 #import "SHCRootResource.h"
 #import "SHCFolder.h"
 #import "SHCReceipt.h"
@@ -74,9 +75,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                            ascending:NO
                                                             selector:@selector(compare:)]];
-    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
-                      [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
-                      self.folderName];
+
+    self.predicate = [[SHCModelManager sharedManager] predicateWithDocumentsForSelectedMailBoxInFolderWithName:self.folderName];
+//    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
+//                     [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
+//                      self.folderName];
     
     self.screenName = kDocumentsViewControllerScreenName;
     

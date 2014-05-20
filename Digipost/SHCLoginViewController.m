@@ -83,10 +83,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-            [self.navigationController pushViewController:foldersViewController animated:NO];
+//            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+//            [self.navigationController pushViewController:foldersViewController animated:NO];
             // @ TODO WILL BUG fIRST TIME
-            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
+//            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
+            [self performSegueWithIdentifier:@"accountSegue" sender:self];
         }
     }
 
@@ -137,7 +138,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     } else {
-        [self performSegueWithIdentifier:kPushFoldersIdentifier sender:nil];
+        [self performSegueWithIdentifier:@"accountSegue" sender:nil];
     }
 }
 

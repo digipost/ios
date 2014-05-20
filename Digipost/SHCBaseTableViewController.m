@@ -156,7 +156,7 @@
 {
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
-
+// done
 - (void)updateNavbar
 {
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
@@ -168,12 +168,14 @@
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
+// done
 - (void)popViewController
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+// DONE
 - (void)updateFetchedResultsController
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -186,6 +188,8 @@
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
+    
+    NSArray *results = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:nil];
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -217,7 +221,7 @@
 
     [self updateContentsFromServerUserInitiatedRequest:@YES];
 }
-
+// done
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
@@ -230,7 +234,7 @@
 
     self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
 }
-
+// done
 - (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
 {
     NSString *text = nil;

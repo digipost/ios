@@ -15,6 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SHCMailbox.h"
 #import "SHCBaseTableViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
@@ -29,5 +30,6 @@ extern NSString *const kGoToInboxFolderAtStartupSegue;
 @interface SHCFoldersViewController : SHCBaseTableViewController
 
 - (void)updateFolders;
+@property (strong, nonatomic) NSString *selectedMailBoxDigipostAdress;
 
 @end
