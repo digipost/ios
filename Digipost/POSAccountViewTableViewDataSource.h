@@ -11,6 +11,9 @@
 @interface POSAccountViewTableViewDataSource : NSObject<UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 // designated initalizer
-- (id)initAsDelegateForTableView:(UITableView *)tableView;
+- (id)initAsDataSourceForTableView:(UITableView *)tableView;
+
+// convenience method for fetching objects at index path from the database
+- (id)managedObjectAtIndexPath:(NSIndexPath *) indexPath;
 
 @end

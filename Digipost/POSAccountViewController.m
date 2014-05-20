@@ -7,8 +7,18 @@
 //
 
 #import "POSAccountViewController.h"
+#import "POSAccountViewTableViewDataSource.h"
+#import "SHCFoldersViewController.h"
+#import "SHCAPIManager.h"
+#import <AFNetworking/AFNetworking.h>
+#import "UIRefreshControl+Additions.m"
+#import "SHCMailbox.h"
 
 @interface POSAccountViewController ()
+
+@property (nonatomic,strong) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) POSAccountViewTableViewDataSource *dataSource;
 
 @end
 
@@ -26,24 +36,66 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.refreshControl = [[UIRefreshControl alloc]  init];
+    [self.tableView addSubview:self.refreshControl];
+    
+    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
+    [self.navigationItem setHidesBackButton:YES];
+    
+    self.dataSource = [[POSAccountViewTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
-/*
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
+{
+    if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
+        return;
+    }
+    
+    [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
+        
+    } failure:^(NSError *error) {
+        
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
+                
+                return;
+            }
+        }
+        
+//        [self programmaticallyEndRefresh];
+        if ([userDidInititateRequest boolValue]) {
+//            [UIAlertView showWithTitle:error.errorTitle
+//                               message:[error localizedDescription]
+//                     cancelButtonTitle:nil
+//                     otherButtonTitles:@[error.okButtonTitle]
+//                              tapBlock:error.tapBlock];
+        }
+    }];
+}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"PushFolders"]){
+        SHCMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        SHCFoldersViewController *folderViewController = (id) segue.destinationViewController;
+        folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+        [SHCModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
+    }
 }
-*/
 
 @end

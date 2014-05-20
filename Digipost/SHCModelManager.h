@@ -16,13 +16,22 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "SHCFolder.h"
 
+@class SHCMailbox;
 @class SHCDocument;
 @class SHCReceipt;
 
 @interface SHCModelManager : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+
+/**
+ *  helpers used in predicates when traveling down the hierarchy
+ */
+@property (nonatomic, strong) NSString *selectedMailboxDigipostAddress;
+
+
 
 + (instancetype)sharedManager;
 
@@ -45,5 +54,6 @@
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;
-
+- (NSPredicate *)predicateWithDocumentsForSelectedMailBoxInFolderWithName:(NSString *)folderName;
+- (NSPredicate *)predicateWithFoldersForSelectedMailBox;
 @end

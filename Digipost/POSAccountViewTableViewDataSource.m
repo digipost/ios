@@ -6,9 +6,10 @@
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
+#import "SHCMailbox.h"
 #import "POSAccountViewTableViewDataSource.h"
 #import <CoreData/CoreData.h>
-
+#import "SHCModelManager.h"
 @interface POSAccountViewTableViewDataSource()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -19,13 +20,13 @@
 @implementation POSAccountViewTableViewDataSource
 
 
-- (id)initAsDelegateForTableView:(UITableView*) tableView
+- (id)initAsDataSourceForTableView:(UITableView*) tableView
 {
     self = [super init];
     if (self){
         self.tableView = tableView;
         tableView.dataSource = self;
-        _fetchedResultsController.delegate = self;
+        self.fetchedResultsController.delegate = self;
     }
     return self;
 }
@@ -45,7 +46,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#(NSString *)#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mailboxCell" forIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -54,30 +55,35 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
     
     // Configure the cell with objects from your store
-    id objectInFetchedResultsController = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
+    SHCMailbox *mailbox = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = mailbox.digipostAddress;
 }
+
+- (id)managedObjectAtIndexPath:(NSIndexPath *) indexPath
+{
+    id managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    return managedObject;
+}
+
 - (NSFetchedResultsController *)fetchedResultsController
 {
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
+    
     // Create and configure a fetch request with the Book entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *managedObjectContext = <#NSManagedObjectContext context#>;
+    NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
     
-    NSEntityDescription *entity = [NSEntityDescription entityForName:<#EntityName#> inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Mailbox" inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
     
 	// Order the events by creation date, most recent first.
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:<#AttributeName#> ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner" ascending:YES];
     [fetchRequest setSortDescriptors:@[nameDescriptor]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:<#Predicate#>];
-    fetchRequest.predicate = predicate;
-    
     // Create and initialize the fetch results controller.
-    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:<#cacheName#>];
+    _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:managedObjectContext sectionNameKeyPath:nil cacheName:@"test"];
     NSError *error;
     [_fetchedResultsController performFetch:&error];
     
@@ -102,11 +108,11 @@
     switch(type) {
             
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
             
         case NSFetchedResultsChangeUpdate:
@@ -114,8 +120,8 @@
             break;
             
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
 }
