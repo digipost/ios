@@ -39,7 +39,7 @@ extern NSString *const kFolderArchiveName;
 @property (strong, nonatomic) SHCMailbox *mailbox;
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (instancetype)existingFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString * )displayName;
 @end
 

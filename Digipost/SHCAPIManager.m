@@ -1,10 +1,10 @@
-// 
-// Copyright (C) Posten Norge AS
-// 
 //
-// 
+// Copyright (C) Posten Norge AS
+//
+//
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -92,6 +92,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @property (strong, nonatomic) NSURLResponse *lastURLResponse;
 @property (strong, nonatomic) id lastResponseObject;
 @property (copy, nonatomic) NSString *lastFolderName;
+@property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) SHCDocument *lastDocument;
@@ -100,7 +101,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @property (strong, nonatomic) AFHTTPSessionManager *fileTransferSessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
 @property (copy, nonatomic) NSString *lastReceiptsUri;
-@property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 @property (strong, nonatomic) NSURLSessionDataTask *uploadTask;
 
 @end
@@ -142,6 +142,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         _fileTransferSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
         _fileTransferSessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _fileTransferSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
         
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
         
@@ -296,7 +297,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
         }
         
-        DDLogInfo(@"state: %@", stateString);
+        //        DDLogInfo(@"state: %@", stateString);
         
         switch (state) {
             case SHCAPIManagerStateValidatingAccessTokenFinished:
@@ -395,7 +396,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingDocuments) {
-                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName attributes:responseDict];
+                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName  mailboxDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
                     }
                     
                     if (self.lastSuccessBlock) {
@@ -471,7 +472,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-                    
+#warning  broken until fixed
                     [[SHCModelManager sharedManager] updateDocument:self.lastDocument withAttributes:responseDict];
                     
                     if (self.lastSuccessBlock) {
@@ -953,9 +954,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }
     }];
 }
-
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    NSParameterAssert(digipostAddress);
+    NSParameterAssert(folderName);
+    NSParameterAssert(folderUri);
     self.state = SHCAPIManagerStateUpdatingDocuments;
     
     [self validateTokensWithSuccess:^{
@@ -968,6 +971,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                              self.lastURLResponse = task.response;
                              self.lastResponseObject = responseObject;
                              self.lastFolderName = folderName;
+                             self.lastMailboxDigipostAddress = digipostAddress;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFinished;
                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
                              self.lastFailureBlock = failure;
@@ -1006,12 +1010,12 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         
         // Let's set the correct mime type for this file download.
         [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
-        
         [self.fileTransferSessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             progress.completedUnitCount = totalBytesWritten;
         }];
         
         BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[SHCAttachment class]];
+        
         NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
             
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
@@ -1058,8 +1062,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
         }];
-        
+        //        NSLog(@"operation queue %@",self.fileTransferSessionManager.downloadTasks);
+        //        [self.fileTransferSessionManager.operationQueue cancelAllOperations];
+//        [self cancelDownloadingBaseEncryptionModels];
         [task resume];
+        
     } failure:^(NSError *error) {
         self.downloadingBaseEncryptionModel = NO;
         if (failure) {
@@ -1071,9 +1078,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)cancelDownloadingBaseEncryptionModels
 {
     NSUInteger counter = 0;
-    
     for (NSURLSessionDownloadTask *downloadTask in self.fileTransferSessionManager.downloadTasks) {
-        [downloadTask cancel];
+        [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {
+            
+        }];
         counter++;
     }
     
@@ -1547,6 +1555,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     self.lastURLResponse = nil;
     self.lastResponseObject = nil;
     self.lastFolderName = nil;
+    self.lastMailboxDigipostAddress = nil;
     self.lastFolderUri = nil;
     self.lastError = nil;
     self.lastDocument = nil;

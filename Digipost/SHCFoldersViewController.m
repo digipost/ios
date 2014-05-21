@@ -101,6 +101,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         documentsViewController.folderDisplayName = folder.displayName;
         documentsViewController.folderUri = folder.uri;
         documentsViewController.selectedFolder = folder;
+        documentsViewController.mailboxDigipostAddress = self.selectedMailBoxDigipostAdress;
     } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
         SHCReceiptFoldersTableViewController *receiptsViewController = (SHCReceiptFoldersTableViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
@@ -320,7 +321,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         [self updateNavbar];
 
     } failure:^(NSError *error) {
-
+        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {

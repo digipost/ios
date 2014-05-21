@@ -105,7 +105,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     [super viewDidAppear:animated];
     if (self.folderUri ==  nil) {
-        SHCFolder *folder = [SHCFolder existingFolderWithName:self.folderName inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        SHCFolder *folder = [SHCFolder existingFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
         [self updateNavbar];
@@ -356,7 +356,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
-    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName folderUri:self.folderUri success:^{
+        [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress folderUri:self.folderUri success:^{
+            
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
@@ -592,7 +593,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
     
-    for (SHCDocument *document in [SHCDocument allDocumentsInFolderWithName:self.folderName inManagedObjectContext:managedObjectContext]) {
+    NSArray *alldocuments = [SHCDocument allDocumentsInFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress inManagedObjectContext:managedObjectContext];
+    for (SHCDocument *document in alldocuments) {
         for (SHCAttachment *attachment in document.attachments) {
             if (attachment.invoice && [attachment.invoice.canBePaidByUser boolValue] && [attachment.invoice.sendToBankUri length] > 0) {
                 return YES;

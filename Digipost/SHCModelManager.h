@@ -38,7 +38,7 @@
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes;
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes;
 - (void)updateCardAttributes:(NSDictionary *)attributes;
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes;
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
 - (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes;
 - (void)deleteDocument:(SHCDocument *)document;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
@@ -54,6 +54,4 @@
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;
-- (NSPredicate *)predicateWithDocumentsForSelectedMailBoxInFolderWithName:(NSString *)folderName;
-- (NSPredicate *)predicateWithFoldersForSelectedMailBox;
 @end

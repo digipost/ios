@@ -26,6 +26,7 @@ extern NSString *const kEditingStatusKey;
 
 @interface SHCDocumentsViewController : SHCBaseTableViewController
 
+@property (copy, nonatomic) NSString *mailboxDigipostAddress;
 @property (copy, nonatomic) NSString *folderName;
 @property (copy, nonatomic) NSString *folderDisplayName;
 @property (copy, nonatomic) NSString *folderUri;

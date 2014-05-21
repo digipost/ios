@@ -51,11 +51,12 @@ NSString *const kFolderArchiveName = @"Archive";
     return folder;
 }
 
-+ (instancetype)existingFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
+//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
+    fetchRequest.predicate = [[SHCModelManager sharedManager] folderWithName:folderName mailboxDigipostAddressPredicate:mailboxDigipostAddress];
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;

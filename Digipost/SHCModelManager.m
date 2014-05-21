@@ -63,14 +63,14 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     // Then, create a new root resource with related mailboxes and folders
     [SHCRootResource rootResourceWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
-
-    // Now we need to reconnect "old" documents so they're available to the user
-    // before updateDocumentsWithAttribtues: has been called and finished
+//
+//    // Now we need to reconnect "old" documents so they're available to the user
+//    // before updateDocumentsWithAttribtues: has been called and finished
     [SHCDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
-
-    // The same goes for the receipts
+//
+//    // The same goes for the receipts
     [SHCReceipt reconnectDanglingReceiptsInManagedObjectContext:self.managedObjectContext];
-
+//
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         [self logSavingManagedObjectContextWithError:error];
@@ -104,22 +104,27 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     rootResource.numberOfReceiptsHiddenUntilVerification = [numberOfReceiptsHiddenUntilVerification isKindOfClass:[NSNumber class]] ? numberOfReceiptsHiddenUntilVerification : @0;
 }
 
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName attributes:(NSDictionary *)attributes
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
 {
+    NSParameterAssert(digipostAddress);
+    NSParameterAssert(folderName);
+    
     // First, find the folder object
-    SHCFolder *folder = [SHCFolder existingFolderWithName:folderName inManagedObjectContext:self.managedObjectContext];
+    SHCFolder *folder = [SHCFolder existingFolderWithName:folderName mailboxDigipostAddress:digipostAddress inManagedObjectContext:self.managedObjectContext];
 
     // Get a list of all the old documents
-    NSArray *oldDocuments = [SHCDocument allDocumentsInFolderWithName:folderName inManagedObjectContext:self.managedObjectContext];
+    NSArray *oldDocuments = [SHCDocument allDocumentsInFolderWithName:folderName mailboxDigipostAddress:digipostAddress  inManagedObjectContext:self.managedObjectContext];
 
-    // Create all the new documents
+// Create all the new documents
     NSArray *documents = attributes[kDocumentDocumentAPIKey];
     if ([documents isKindOfClass:[NSArray class]]) {
         for (NSDictionary *documentDict in documents) {
             if ([documentDict isKindOfClass:[NSDictionary class]]) {
                 SHCDocument *document = [SHCDocument documentWithAttributes:documentDict inManagedObjectContext:self.managedObjectContext];
                 document.folder = folder;
+                document.folderUri = folder.uri;
                 [folder addDocumentsObject:document];
+                NSLog(@"adding %@ to %@,mailbox: %@",document.creatorName,folderName,folder.mailbox.digipostAddress);
             }
         }
     }
@@ -140,9 +145,9 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 {
     [document updateWithAttributes:attributes inManagedObjectContext:self.managedObjectContext];
 
-    document.folder = [SHCFolder existingFolderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
-
-    // Save changes
+//    document.folder = [SHCFolder existingFolderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
+#warning fix
+    // Save changes#
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         [self logSavingManagedObjectContextWithError:error];
@@ -315,25 +320,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     return _persistentStoreCoordinator;
 }
-
-#pragma mark - Predicates
-- (NSPredicate *)predicateWithFoldersForSelectedMailBox
-{
-    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", self.selectedMailboxDigipostAddress];
-    return p1;
-}
-
-- (NSPredicate *)predicateWithDocumentsForSelectedMailBoxInFolderWithName:(NSString *)folderName
-{
-    NSParameterAssert(folderName);
-    NSAssert(self.selectedMailboxDigipostAddress != nil, @"no adress set");
-    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"folder.mailbox.digipostAddress == %@", self.selectedMailboxDigipostAddress];
-
-    NSPredicate *p2 = [NSPredicate predicateWithFormat:@"%K == %@", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],folderName];
-    NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates: @[p1, p2]];
-    return predicate;
-}
-
 #pragma mark - Private methods
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithRetries:(BOOL)retries
@@ -368,5 +354,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     return _persistentStoreCoordinator;
 }
+
 
 @end
