@@ -18,6 +18,7 @@
 #import <UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
+#import "NSPredicate+CommonPredicates.h"
 #import "SHCAPIManager.h"
 #import "SHCModelManager.h"
 #import "SHCFolderTableViewCell.h"
@@ -64,7 +65,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 //    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
     
-    self.predicate =  [[SHCModelManager sharedManager] predicateWithFoldersForSelectedMailBox];
+    self.predicate =  [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
     [super viewDidLoad];

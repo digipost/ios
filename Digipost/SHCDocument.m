@@ -17,6 +17,7 @@
 #import "SHCDocument.h"
 #import "SHCAttachment.h"
 #import "SHCFolder.h"
+#import "NSPredicate+CommonPredicates.h"
 #import "SHCModelManager.h"
 
 // Core Data model entity names
@@ -168,7 +169,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     NSLog(@"%s",__PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
-    fetchRequest.predicate = [[SHCModelManager sharedManager] predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
+    fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
                               //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
                               //folderName];
 

@@ -16,6 +16,7 @@
 
 #import "SHCFolder.h"
 #import "SHCModelManager.h"
+#import "NSPredicate+CommonPredicates.h"
 
 // Core Data model entity names
 NSString *const kFolderEntityName = @"Folder";
@@ -56,7 +57,7 @@ NSString *const kFolderArchiveName = @"Archive";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
 //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
-    fetchRequest.predicate = [[SHCModelManager sharedManager] folderWithName:folderName mailboxDigipostAddressPredicate:mailboxDigipostAddress];
+    fetchRequest.predicate = [NSPredicate folderWithName:folderName mailboxDigipostAddressPredicate:mailboxDigipostAddress];
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;

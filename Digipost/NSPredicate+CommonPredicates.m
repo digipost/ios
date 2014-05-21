@@ -11,9 +11,9 @@
 @implementation NSPredicate (CommonPredicates)
 
 #pragma mark - Predicates
-+ (NSPredicate *)predicateWithFoldersForSelectedMailBox
++ (NSPredicate *)predicateWithFoldersInMailbox:(NSString *)mailboxDigipostAddress
 {
-    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", self.selectedMailboxDigipostAddress];
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", mailboxDigipostAddress];
     return p1;
 }
 

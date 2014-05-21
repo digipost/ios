@@ -33,6 +33,7 @@
 #import "SHCAppDelegate.h"
 #import "UIViewController+ValidateOpening.h"
 #import "SHCInvoice.h"
+#import "NSPredicate+CommonPredicates.h"
 #import "SHCUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
 
@@ -76,7 +77,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                            ascending:NO
                                                             selector:@selector(compare:)]];
 
-    self.predicate = [[SHCModelManager sharedManager] predicateWithDocumentsForSelectedMailBoxInFolderWithName:self.folderName];
+    self.predicate = [NSPredicate predicateWithDocumentsForSelectedMailBoxInFolderWithName:self.folderName];
 //    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
 //                     [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
 //                      self.folderName];

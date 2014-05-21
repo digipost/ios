@@ -138,6 +138,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
             if ([mailboxDict isKindOfClass:[NSDictionary class]]) {
                 SHCMailbox *mailbox = [SHCMailbox mailboxWithAttributes:mailboxDict inManagedObjectContext:managedObjectContext];
                 [rootResource addMailboxesObject:mailbox];
+                mailbox.rootResource = rootResource;
             }
         }
     }

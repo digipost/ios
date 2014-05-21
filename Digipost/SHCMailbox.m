@@ -59,7 +59,6 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                 NSString *rel = link[@"rel"];
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                     NSDictionary *folderAttributes = nil;
                     if ([rel hasSuffix:kMailboxLinkDocumentInboxAPIKeySuffix]) {
                         folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderInboxName,
@@ -77,6 +76,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                     if (folderAttributes) {
                         SHCFolder *folder = [SHCFolder folderWithAttributes:folderAttributes inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
+                        folder.mailbox = mailbox;
                     }
                 }
             }

@@ -190,6 +190,8 @@
     _fetchedResultsController.delegate = self;
     
     NSArray *results = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    NSLog(@"%@, results: %i",self.predicate,[results count]);
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {

@@ -59,6 +59,7 @@
     cell.textLabel.text = mailbox.digipostAddress;
 }
 
+// convenience method for fetching objects at index path from the database
 - (id)managedObjectAtIndexPath:(NSIndexPath *) indexPath
 {
     id managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
