@@ -30,21 +30,24 @@
         text = [NSString stringWithFormat:@"%@: %@", lastUpdatedText, lastUpdatedDate];
     }
 
-    NSDictionary *attributes = [self.attributedTitle attributesAtIndex:0 effectiveRange:NULL];
-    self.attributedTitle = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    NSDictionary *attributes = [self.attributedTitle attributesAtIndex:0
+                                                        effectiveRange:NULL];
+    self.attributedTitle = [[NSAttributedString alloc] initWithString:text
+                                                           attributes:attributes];
 }
-
 
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
     if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
         [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
-        attributes = @{NSForegroundColorAttributeName: [UIColor colorWithWhite:0.4 alpha:1.0]};
+        attributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:0.4
+                                                                          alpha:1.0]};
     } else {
-        attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     }
 
-    self.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
+    self.attributedTitle = [[NSAttributedString alloc] initWithString:@" "
+                                                           attributes:attributes];
 }
 @end

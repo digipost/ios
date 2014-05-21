@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,11 +17,11 @@
 #import <Foundation/Foundation.h>
 
 @interface SHCNotice : NSObject
-@property (nonatomic,strong) NSString *messageHeader;
-@property (nonatomic,strong) NSString *messageText;
-@property (nonatomic,strong) NSString *dismissText;
-@property (nonatomic,strong) NSString *moreInfoLink;
-@property (nonatomic,strong) NSString *dismissNoticeLink;
+@property (nonatomic, strong) NSString *messageHeader;
+@property (nonatomic, strong) NSString *messageText;
+@property (nonatomic, strong) NSString *dismissText;
+@property (nonatomic, strong) NSString *moreInfoLink;
+@property (nonatomic, strong) NSString *dismissNoticeLink;
 
 + (instancetype)noticeWithAttributes:(NSDictionary *)attributes;
 @end

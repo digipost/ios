@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,8 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] mailboxEntity];
-    SHCMailbox *mailbox = [[SHCMailbox alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCMailbox *mailbox = [[SHCMailbox alloc] initWithEntity:entity
+                              insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *digipostAddress = attributes[kMailboxDigipostAddressAPIKey];
     mailbox.digipostAddress = [digipostAddress isKindOfClass:[NSString class]] ? digipostAddress : nil;
@@ -61,20 +62,21 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
                     NSDictionary *folderAttributes = nil;
                     if ([rel hasSuffix:kMailboxLinkDocumentInboxAPIKeySuffix]) {
-                        folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderInboxName,
-                                             NSStringFromSelector(@selector(uri)): uri};
+                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderInboxName,
+                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaAPIKeySuffix]) {
-                        folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderWorkAreaName,
-                                             NSStringFromSelector(@selector(uri)): uri};
+                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderWorkAreaName,
+                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
-                        folderAttributes = @{NSStringFromSelector(@selector(name)): kFolderArchiveName,
-                                             NSStringFromSelector(@selector(uri)): uri};
+                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderArchiveName,
+                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
                     }
 
                     if (folderAttributes) {
-                        SHCFolder *folder = [SHCFolder folderWithAttributes:folderAttributes inManagedObjectContext:managedObjectContext];
+                        SHCFolder *folder = [SHCFolder folderWithAttributes:folderAttributes
+                                                     inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
                         folder.mailbox = mailbox;
                     }
@@ -94,7 +96,8 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(digipostAddress)), digipostAddress];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }

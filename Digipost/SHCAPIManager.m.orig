@@ -1,10 +1,16 @@
-//
+// 
 // Copyright (C) Posten Norge AS
+// 
+<<<<<<< HEAD
 //
-//
-//
+=======
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+>>>>>>> Legger på riktig lisensheader på alle filer
+// 
 //         http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -87,12 +93,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @interface SHCAPIManager ()
 
 @property (assign, nonatomic) SHCAPIManagerState state;
-@property (copy, nonatomic) void (^lastSuccessBlock)(void);
-@property (copy, nonatomic) void (^lastFailureBlock)(NSError *);
+@property (copy, nonatomic) void(^lastSuccessBlock)(void);
+@property (copy, nonatomic) void(^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLResponse *lastURLResponse;
 @property (strong, nonatomic) id lastResponseObject;
 @property (copy, nonatomic) NSString *lastFolderName;
-@property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) SHCDocument *lastDocument;
@@ -101,6 +106,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @property (strong, nonatomic) AFHTTPSessionManager *fileTransferSessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
 @property (copy, nonatomic) NSString *lastReceiptsUri;
+@property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 @property (strong, nonatomic) NSURLSessionDataTask *uploadTask;
 
 @end
@@ -113,65 +119,54 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     self = [super init];
     if (self) {
-
+        
         [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-
+        
         _state = SHCAPIManagerStateIdle;
-
-        [self addObserver:self
-               forKeyPath:NSStringFromSelector(@selector(state))
-                  options:NSKeyValueObservingOptionNew
-                  context:kSHCAPIManagerStateContext];
-
+        
+        [self addObserver:self forKeyPath:NSStringFromSelector(@selector(state)) options:NSKeyValueObservingOptionNew context:kSHCAPIManagerStateContext];
+        
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
-
+        
         NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
         configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalAndRemoteCacheData;
-
+        
         NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
-
+        
         // Default session manager
-        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
-                                                   sessionConfiguration:configuration];
-
+        _sessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
+        
         _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [_sessionManager.requestSerializer setValue:contentType
-                                 forHTTPHeaderField:@"Accept"];
-
+        [_sessionManager.requestSerializer setValue:contentType forHTTPHeaderField:@"Accept"];
+        
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
         NSMutableSet *acceptableContentTypesMutable = [NSMutableSet setWithSet:_sessionManager.responseSerializer.acceptableContentTypes];
         [acceptableContentTypesMutable addObject:contentType];
         _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithSet:acceptableContentTypesMutable];
-
+        
         // File transfer session manager
-        _fileTransferSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL
-                                                               sessionConfiguration:configuration];
+        _fileTransferSessionManager = [[AFHTTPSessionManager alloc] initWithBaseURL:baseURL sessionConfiguration:configuration];
         _fileTransferSessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
         _fileTransferSessionManager.responseSerializer = [AFHTTPResponseSerializer serializer];
-
+        
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
-
+        
         _sessionManager.securityPolicy.allowInvalidCertificates = YES;
         _fileTransferSessionManager.securityPolicy.allowInvalidCertificates = YES;
-
+        
 #endif
     }
-
+    
     return self;
 }
 
 - (void)dealloc
 {
     [self stopLogging];
-
-    @try
-    {
-        [self removeObserver:self
-                  forKeyPath:NSStringFromSelector(@selector(state))
-                     context:kSHCAPIManagerStateContext];
-    }
-    @catch (NSException *exception)
-    {
+    
+    @try {
+        [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(state)) context:kSHCAPIManagerStateContext];
+    } @catch (NSException *exception) {
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
@@ -182,7 +177,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     if (context == kSHCAPIManagerStateContext && [keyPath isEqualToString:NSStringFromSelector(@selector(state))]) {
         SHCAPIManagerState state = [change[@"new"] integerValue];
-
+        
         NSString *stateString = nil;
         switch (state) {
             case SHCAPIManagerStateIdle:
@@ -306,79 +301,83 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 stateString = @"default";
                 break;
         }
-
-        //        DDLogInfo(@"state: %@", stateString);
-
+        
+        DDLogInfo(@"state: %@", stateString);
+        
         switch (state) {
             case SHCAPIManagerStateValidatingAccessTokenFinished:
-            case SHCAPIManagerStateRefreshingAccessTokenFinished: {
-
+            case SHCAPIManagerStateRefreshingAccessTokenFinished:
+            {
+                
                 if (self.lastSuccessBlock) {
                     [self updateAuthorizationHeader];
                     self.lastSuccessBlock();
                 }
-
+                
                 break;
             }
-            case SHCAPIManagerStateRefreshingAccessTokenFailed: {
+            case SHCAPIManagerStateRefreshingAccessTokenFailed:
+            {
                 // Check to see if the request failed because the refresh token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse] ||
                     ([self.lastError.domain isEqualToString:kOAuth2ErrorDomain] &&
                      self.lastError.code == SHCOAuthErrorCodeInvalidRefreshTokenResponse)) {
-                    // The refresh token was rejected, most likely because the user invalidated
-                    // the session in the www.digipost.no web settings interface.
-
-                    [[SHCOAuthManager sharedManager] removeAllTokens];
-
-                    self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
-                    self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
+                        // The refresh token was rejected, most likely because the user invalidated
+                        // the session in the www.digipost.no web settings interface.
+                        
+                        [[SHCOAuthManager sharedManager] removeAllTokens];
+                        
+                        self.lastError.errorTitle = NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_TITLE", @"Refresh token invalid title");
+                        self.lastError.tapBlock = ^(UIAlertView *alertView, NSInteger buttonIndex) {
                             [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
                             
                             [[SHCOAuthManager sharedManager] removeAllTokens];
                             [[SHCModelManager sharedManager] deleteAllObjects];
-                    };
-
-                    if (self.lastFailureBlock) {
-                        self.lastFailureBlock(self.lastError);
+                        };
+                        
+                        if (self.lastFailureBlock) {
+                            self.lastFailureBlock(self.lastError);
+                        }
+                    } else if (![self requestWasCanceledWithError:self.lastError]) {
+                        if (self.lastFailureBlock) {
+                            self.lastFailureBlock(self.lastError);
+                        }
                     }
-                } else if (![self requestWasCanceledWithError:self.lastError]) {
-                    if (self.lastFailureBlock) {
-                        self.lastFailureBlock(self.lastError);
-                    }
-                }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingRootResourceFinished: {
+            case SHCAPIManagerStateUpdatingRootResourceFinished:
+            {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
+                    
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingRootResource) {
                         [[SHCModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
                     }
-
+                    
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingRootResource = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingRootResourceFailed: {
+            case SHCAPIManagerStateUpdatingRootResourceFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -387,43 +386,43 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingRootResource = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingDocumentsFinished: {
+            case SHCAPIManagerStateUpdatingDocumentsFinished:
+            {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
+                    
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingDocuments) {
-                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName
-                                                                  mailboxDigipostAddress:self.lastMailboxDigipostAddress
-                                                                              attributes:responseDict];
+                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName attributes:responseDict];
                     }
-
+                    
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingDocuments = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingDocumentsFailed: {
+            case SHCAPIManagerStateUpdatingDocumentsFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -432,31 +431,33 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingDocuments = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateDownloadingBaseEncryptionModelFinished: {
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFinished:
+            {
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 self.downloadingBaseEncryptionModel = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateDownloadingBaseEncryptionModelFailed: {
+            case SHCAPIManagerStateDownloadingBaseEncryptionModelFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -465,36 +466,37 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.downloadingBaseEncryptionModel = NO;
-
+                
                 break;
             }
-            case SHCAPIManagerStateMovingDocumentFinished: {
+            case SHCAPIManagerStateMovingDocumentFinished:
+            {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-#warning broken until fixed
-                    [[SHCModelManager sharedManager] updateDocument:self.lastDocument
-                                                     withAttributes:responseDict];
-
+                    
+                    [[SHCModelManager sharedManager] updateDocument:self.lastDocument withAttributes:responseDict];
+                    
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateMovingDocumentFailed: {
+            case SHCAPIManagerStateMovingDocumentFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -503,29 +505,31 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateDeletingDocumentFinished: {
+            case SHCAPIManagerStateDeletingDocumentFinished:
+            {
                 [[SHCModelManager sharedManager] deleteDocument:self.lastDocument];
-
+                
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateDeletingDocumentFailed: {
+            case SHCAPIManagerStateDeletingDocumentFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -534,29 +538,31 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateDeletingReceiptFinished: {
+            case SHCAPIManagerStateDeletingReceiptFinished:
+            {
                 [[SHCModelManager sharedManager] deleteReceipt:self.lastReceipt];
-
+                
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateDeletingReceiptFailed: {
+            case SHCAPIManagerStateDeletingReceiptFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -565,40 +571,42 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingBankAccountFinished: {
+            case SHCAPIManagerStateUpdatingBankAccountFinished:
+            {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
+                    
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingBankAccount) {
                         [[SHCModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
                     }
-
+                    
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingBankAccount = NO;
                 self.lastBankAccountUri = nil;
-
+                
                 break;
             }
-            case SHCAPIManagerStateUpdatingBankAccountFailed: {
+            case SHCAPIManagerStateUpdatingBankAccountFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -607,39 +615,43 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingBankAccount = NO;
                 self.lastBankAccountUri = nil;
-
+                
                 break;
             }
-            case SHCAPIManagerStateSendingInvoiceToBankFinished: {
+            case SHCAPIManagerStateSendingInvoiceToBankFinished:
+            {
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateSendingInvoiceToBankFailed: {
+            case SHCAPIManagerStateSendingInvoiceToBankFailed:
+            {
                 [self stateSendingInvoiceToBankFailed];
                 break;
             }
-            case SHCAPIManagerStateUpdatingReceiptsFinished: {
+            case SHCAPIManagerStateUpdatingReceiptsFinished:
+            {
                 [self stateUpdatingReceiptsFinished];
                 break;
             }
-            case SHCAPIManagerStateUpdatingReceiptsFailed: {
+            case SHCAPIManagerStateUpdatingReceiptsFailed:
+            {
                 //                [self updatingReceiptsFailed];
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -648,41 +660,40 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.updatingReceipts = NO;
                 self.lastReceiptsUri = nil;
                 self.lastMailboxDigipostAddress = nil;
-
+                
                 break;
             }
-            case SHCAPIManagerStateUploadingFileFinished: {
-                [self.uploadProgress removeObserver:self
-                                         forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
-
+            case SHCAPIManagerStateUploadingFileFinished:
+            {
+                [self.uploadProgress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
+                
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 self.uploadingFile = NO;
-                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName
-                                                                    object:nil];
-
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
+                
                 break;
             }
-            case SHCAPIManagerStateUploadingFileFailed: {
-                [self.uploadProgress removeObserver:self
-                                         forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
-
+            case SHCAPIManagerStateUploadingFileFailed:
+            {
+                [self.uploadProgress removeObserver:self forKeyPath:NSStringFromSelector(@selector(fractionCompleted))];
+                
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -691,31 +702,32 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 self.uploadingFile = NO;
-                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName
-                                                                    object:nil];
-
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
+                
                 break;
             }
-            case SHCAPIManagerStateLoggingOutFinished: {
+            case SHCAPIManagerStateLoggingOutFinished:
+            {
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateLoggingOutFailed: {
+            case SHCAPIManagerStateLoggingOutFailed:
+            {
                 // Check to see if the request failed because the access token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+                    
                     // The access token was rejected - let's remove it...
                     [[SHCOAuthManager sharedManager] removeAccessToken];
-
+                    
                     if (self.lastFailureBlock) {
                         self.lastFailureBlock(self.lastError);
                     }
@@ -724,34 +736,39 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                         self.lastFailureBlock(self.lastError);
                     }
                 }
-
+                
                 [self cleanup];
-
+                
                 break;
             }
-            case SHCAPIManagerStateUploadingFile: {
+            case SHCAPIManagerStateUploadingFile:
+            {
                 self.uploadingFile = YES;
-                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressStartedNotificationName
-                                                                    object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressStartedNotificationName object:nil];
                 break;
             }
-            case SHCAPIManagerStateUpdatingRootResource: {
+            case SHCAPIManagerStateUpdatingRootResource:
+            {
                 self.updatingRootResource = YES;
                 break;
             }
-            case SHCAPIManagerStateUpdatingBankAccount: {
+            case SHCAPIManagerStateUpdatingBankAccount:
+            {
                 self.updatingBankAccount = YES;
                 break;
             }
-            case SHCAPIManagerStateUpdatingDocuments: {
+            case SHCAPIManagerStateUpdatingDocuments:
+            {
                 self.updatingDocuments = YES;
                 break;
             }
-            case SHCAPIManagerStateDownloadingBaseEncryptionModel: {
+            case SHCAPIManagerStateDownloadingBaseEncryptionModel:
+            {
                 self.downloadingBaseEncryptionModel = YES;
                 break;
             }
-            case SHCAPIManagerStateUpdatingReceipts: {
+            case SHCAPIManagerStateUpdatingReceipts:
+            {
                 self.updatingReceipts = YES;
                 break;
             }
@@ -766,16 +783,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
         }
     } else if (context == kSHCAPIManagerKVOContext && object == self.uploadProgress && [keyPath isEqualToString:NSStringFromSelector(@selector(fractionCompleted))]) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressChangedNotificationName
-                                                            object:[NSNumber numberWithDouble:self.uploadProgress.fractionCompleted]];
-    } else if ([super respondsToSelector:@selector(observeValueForKeyPath:
-                                                                 ofObject:
-                                                                   change:
-                                                                  context:)]) {
-        [super observeValueForKeyPath:keyPath
-                             ofObject:object
-                               change:change
-                              context:context];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressChangedNotificationName object:[NSNumber numberWithDouble:self.uploadProgress.fractionCompleted]];
+    } else if ([super respondsToSelector:@selector(observeValueForKeyPath:ofObject:change:context:)]) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
     }
 }
 
@@ -783,10 +793,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     // Check to see if the request failed because the access token was rejected
     if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
-
+        
         // The access token was rejected - let's remove it...
         [[SHCOAuthManager sharedManager] removeAccessToken];
-
+        
         if (self.lastFailureBlock) {
             self.lastFailureBlock(self.lastError);
         }
@@ -795,7 +805,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             self.lastFailureBlock(self.lastError);
         }
     }
-
+    
     [self cleanup];
 }
 
@@ -803,22 +813,21 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
     if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
+        
         // If the update has been canceled after the network request finished,
         // but before we have updated the data model, we need to cancel that as well.
         if (self.updatingReceipts) {
             [[SHCModelManager sharedManager] updateCardAttributes:responseDict];
-            [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress
-                                                                             attributes:responseDict];
+            [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress attributes:responseDict];
         }
-
+        
         if (self.lastSuccessBlock) {
             self.lastSuccessBlock();
         }
     }
-
+    
     [self cleanup];
-
+    
     self.updatingReceipts = NO;
     self.lastReceiptsUri = nil;
     self.lastMailboxDigipostAddress = nil;
@@ -829,31 +838,22 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 + (instancetype)sharedManager
 {
     static SHCAPIManager *sharedInstance;
-
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [[SHCAPIManager alloc] init];
     });
-
+    
     return sharedInstance;
 }
 
 - (void)startLogging
 {
     [self stopLogging];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkRequestDidStart:)
-                                                 name:AFNetworkingTaskDidStartNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkRequestDidSuspend:)
-                                                 name:AFNetworkingTaskDidSuspendNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkRequestDidFinish:)
-                                                 name:AFNetworkingTaskDidFinishNotification
-                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidStart:) name:AFNetworkingTaskDidStartNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidSuspend:) name:AFNetworkingTaskDidSuspendNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkRequestDidFinish:) name:AFNetworkingTaskDidFinishNotification object:nil];
 }
 
 - (void)stopLogging
@@ -864,7 +864,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateUpdatingRootResource;
-
+    
     [self validateTokensWithSuccess:^{
         [self.sessionManager GET:__ROOT_RESOURCE_URI__
                       parameters:nil
@@ -892,14 +892,14 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
     NSString *pathSuffix = [URL lastPathComponent];
     [self cancelRequestsWithPathSuffix:pathSuffix];
-
+    
     self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
 }
 
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateUpdatingBankAccount;
-
+    
     [self validateTokensWithSuccess:^{
         self.lastBankAccountUri = uri;
         [self.sessionManager GET:uri
@@ -929,9 +929,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSURL *URL = [NSURL URLWithString:self.lastBankAccountUri];
         NSString *pathSuffix = [URL lastPathComponent];
         [self cancelRequestsWithPathSuffix:pathSuffix];
-
+        
         self.lastBankAccountUri = nil;
-
+        
         self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
     }
 }
@@ -939,7 +939,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateSendingInvoiceToBank;
-
+    
     [self validateTokensWithSuccess:^{
         
         [self.sessionManager POST:invoice.sendToBankUri
@@ -959,13 +959,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }
     }];
 }
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
-{
-    NSParameterAssert(digipostAddress);
-    NSParameterAssert(folderName);
-    NSParameterAssert(folderUri);
-    self.state = SHCAPIManagerStateUpdatingDocuments;
 
+- (void)updateDocumentsInFolderWithName:(NSString *)folderName folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    self.state = SHCAPIManagerStateUpdatingDocuments;
+    
     [self validateTokensWithSuccess:^{
         self.lastFolderUri = folderUri;
         
@@ -976,7 +974,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                              self.lastURLResponse = task.response;
                              self.lastResponseObject = responseObject;
                              self.lastFolderName = folderName;
-                             self.lastMailboxDigipostAddress = digipostAddress;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFinished;
                          } failure:^(NSURLSessionDataTask *task, NSError *error) {
                              self.lastFailureBlock = failure;
@@ -998,7 +995,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSURL *URL = [NSURL URLWithString:self.lastFolderUri];
         NSString *pathSuffix = [URL lastPathComponent];
         [self cancelRequestsWithPathSuffix:pathSuffix];
-
+        
         self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
     }
 }
@@ -1006,21 +1003,21 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
-
+    
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
-
+    
     [self validateTokensWithSuccess:^{
         
         NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil];
         
         // Let's set the correct mime type for this file download.
         [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
+        
         [self.fileTransferSessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             progress.completedUnitCount = totalBytesWritten;
         }];
         
         BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[SHCAttachment class]];
-        
         NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
             
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
@@ -1067,9 +1064,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
         }];
-        //        NSLog(@"operation queue %@",self.fileTransferSessionManager.downloadTasks);
-        //        [self.fileTransferSessionManager.operationQueue cancelAllOperations];
-//        [self cancelDownloadingBaseEncryptionModels];
+        
         [task resume];
     } failure:^(NSError *error) {
         self.downloadingBaseEncryptionModel = NO;
@@ -1082,11 +1077,12 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)cancelDownloadingBaseEncryptionModels
 {
     NSUInteger counter = 0;
+    
     for (NSURLSessionDownloadTask *downloadTask in self.fileTransferSessionManager.downloadTasks) {
-        [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
+        [downloadTask cancel];
         counter++;
     }
-
+    
     if (counter > 0) {
         NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
         DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
@@ -1096,7 +1092,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateMovingDocument;
-
+    
     [self validateTokensWithSuccess:^{
         
         NSString *urlString = document.updateUri;
@@ -1132,6 +1128,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }];
         
         [task resume];
+        
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);
@@ -1143,7 +1140,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     NSParameterAssert(document);
     self.state = SHCAPIManagerStateDeletingDocument;
-
+    
     [self validateTokensWithSuccess:^{
         
         [self.sessionManager DELETE:document.deleteUri
@@ -1169,7 +1166,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateLoggingOut;
-
+    
     [self validateTokensWithSuccess:^{
         
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
@@ -1206,7 +1203,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateUpdatingReceipts;
-
+    
     [self validateTokensWithSuccess:^{
         self.lastReceiptsUri = uri;
         self.lastMailboxDigipostAddress = digipostAddress;
@@ -1238,7 +1235,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSURL *URL = [NSURL URLWithString:self.lastReceiptsUri];
         NSString *pathSuffix = [URL lastPathComponent];
         [self cancelRequestsWithPathSuffix:pathSuffix];
-
+        
         self.state = SHCAPIManagerStateUpdatingReceiptsFailed;
         self.lastMailboxDigipostAddress = nil;
         self.lastReceiptsUri = nil;
@@ -1248,7 +1245,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateDeletingReceipt;
-
+    
     [self validateTokensWithSuccess:^{
         
         [self.sessionManager DELETE:receipt.deleteUri
@@ -1274,87 +1271,78 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // Let's do a couple of checks before kicking off the upload
-
+    
     // First, check if the file exists
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:fileURL.path]) {
-
-        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
-                                             code:SHCAPIManagerErrorCodeUploadFileDoesNotExist
-                                         userInfo:nil];
-
+        
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadFileDoesNotExist userInfo:nil];
+        
         if (failure) {
             failure(error);
         }
         return;
     }
-
+    
     // Then, check if the file is too big
     unsigned long long maxFileSize = (unsigned long long)(pow(2, 20) * 10); // Max filesize dictated by Digipost (10 MB)
-
+    
     NSError *error = nil;
-    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:fileURL.path
-                                                                 error:&error];
+    NSDictionary *fileAttributes = [fileManager attributesOfItemAtPath:fileURL.path error:&error];
     if (error) {
         if (failure) {
             failure(error);
         }
         return;
     }
-
+    
     unsigned long long fileSize = [fileAttributes fileSize];
     if (fileSize > maxFileSize) {
-        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
-                                             code:SHCAPIManagerErrorCodeUploadFileTooBig
-                                         userInfo:nil];
-
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadFileTooBig userInfo:nil];
+        
         if (failure) {
             failure(error);
         }
         return;
     }
-
+    
     // The file is good - next, check if we have our upload documents link
     SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
     if (![rootResource.uploadDocumentUri length] > 0) {
-        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
-                                             code:SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource
-                                         userInfo:nil];
-
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain code:SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource userInfo:nil];
+        
         if (failure) {
             failure(error);
         }
         return;
     }
-
+    
     // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
     if (self.isUploadingFile) {
         [self cancelUploadingFiles];
     }
-
+    
     [self removeTemporaryUploadFiles];
-
+    
     // Move the file to our special uploads folder
     NSString *uploadsFolderPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
-
+    
     NSString *fileName = [fileURL lastPathComponent];
     NSString *filePath = [uploadsFolderPath stringByAppendingPathComponent:fileName];
     NSURL *uploadURL = [NSURL fileURLWithPath:filePath];
-
-    if (![fileManager moveItemAtURL:fileURL
-                              toURL:uploadURL
-                              error:&error]) {
+    
+    if (![fileManager moveItemAtURL:fileURL toURL:uploadURL error:&error]) {
         if (failure) {
             failure(error);
         }
         return;
     }
-
+    
     [self removeTemporaryInboxFiles];
-
+    
     // Ready!
     self.state = SHCAPIManagerStateUploadingFile;
-
+    
     [self validateTokensWithSuccess:^{
         
         NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:rootResource.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
@@ -1425,12 +1413,12 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)cancelUploadingFiles
 {
     NSUInteger counter = 0;
-
+    
     for (NSURLSessionUploadTask *uploadTask in self.fileTransferSessionManager.uploadTasks) {
         [uploadTask cancel];
         counter++;
     }
-
+    
     if (counter > 0) {
         NSString *uploadWord = counter > 1 ? @"uploads" : @"upload";
         DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, uploadWord);
@@ -1440,7 +1428,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)removeTemporaryUploadFiles
 {
     NSString *uploadsPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
-
+    
     if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:uploadsPath]) {
         return;
     }
@@ -1449,7 +1437,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)removeTemporaryInboxFiles
 {
     NSString *inboxPath = [[SHCFileManager sharedFileManager] inboxFolderPath];
-
+    
     if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:inboxPath]) {
         return;
     }
@@ -1464,7 +1452,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             return YES;
         }
     }
-
+    
     return NO;
 }
 
@@ -1478,7 +1466,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             return YES;
         }
     }
-
+    
     return NO;
 }
 
@@ -1487,52 +1475,48 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)validateTokensWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure
 {
     self.state = SHCAPIManagerStateValidatingAccessToken;
-
+    
     SHCOAuthManager *OAuthManager = [SHCOAuthManager sharedManager];
-
+    
     // If the OAuth manager already has its access token, we'll go ahead and try an API request using this.
     if (OAuthManager.accessToken) {
         self.lastSuccessBlock = success;
         self.state = SHCAPIManagerStateValidatingAccessTokenFinished;
         return;
     }
-
+    
     // If the OAuth manager has its refresh token, ask it to update its access token first,
     // and then go ahead and try an API request.
     if (OAuthManager.refreshToken) {
         self.state = SHCAPIManagerStateRefreshingAccessToken;
-        [OAuthManager refreshAccessTokenWithRefreshToken:OAuthManager.refreshToken
-            success:^{
+        [OAuthManager refreshAccessTokenWithRefreshToken:OAuthManager.refreshToken success:^{
             self.lastSuccessBlock = success;
             self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
-            }
-            failure:^(NSError *error) {
+        } failure:^(NSError *error) {
             self.lastFailureBlock = failure;
             self.lastError = error;
             self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
-            }];
+        }];
     }
 }
 
 - (void)updateAuthorizationHeader
 {
     NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [SHCOAuthManager sharedManager].accessToken];
-    [self.sessionManager.requestSerializer setValue:bearer
-                                 forHTTPHeaderField:@"Authorization"];
-    [self.fileTransferSessionManager.requestSerializer setValue:bearer
-                                             forHTTPHeaderField:@"Authorization"];
+    [self.sessionManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
+    [self.fileTransferSessionManager.requestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
 }
 
 - (void)networkRequestDidStart:(NSNotification *)notification
 {
     NSURLRequest *request = [[notification object] originalRequest];
-
+    
     if (!request) {
         return;
     }
-
+    
     BOOL wasSuspended = [objc_getAssociatedObject([notification object], kSHCAPIManagerRequestWasSuspended) boolValue];
-
+    
     if (!wasSuspended) {
         DDLogInfo(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
     }
@@ -1543,7 +1527,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     // Because requests are often put in a suspended state right after they've been started,
     // and then restarted again - we track this fact here, and then only log the requests
     // when they haven't already been suspended.
-
+    
     objc_setAssociatedObject([notification object], kSHCAPIManagerRequestWasSuspended, @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -1552,9 +1536,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     NSURLRequest *request = [[notification object] originalRequest];
     NSURLResponse *response = [[notification object] response];
     NSError *error = [[notification object] error];
-
+    
     NSUInteger responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
-
+    
     if (error) {
         DDLogDebug(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
     } else {
@@ -1569,18 +1553,17 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     self.lastURLResponse = nil;
     self.lastResponseObject = nil;
     self.lastFolderName = nil;
-    self.lastMailboxDigipostAddress = nil;
     self.lastFolderUri = nil;
     self.lastError = nil;
     self.lastDocument = nil;
-
+    
     self.state = SHCAPIManagerStateIdle;
 }
 
 - (void)cancelRequestsWithPathSuffix:(NSString *)pathSuffix
 {
     NSUInteger counter = 0;
-
+    
     for (NSURLSessionDataTask *task in self.sessionManager.tasks) {
         NSString *urlString = [[task.currentRequest URL] absoluteString];
         if ([urlString length] > 0 && [pathSuffix length] > 0 && [urlString hasSuffix:pathSuffix]) {
@@ -1588,7 +1571,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             counter++;
         }
     }
-
+    
     if (counter > 0) {
         NSString *requestWord = counter > 1 ? @"requests" : @"request";
         DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, requestWord);
@@ -1610,13 +1593,13 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     CFStringRef pathExtension = (__bridge_retained CFStringRef)fileType;
     CFStringRef type = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension, NULL);
     CFRelease(pathExtension);
-
+    
     // The UTI can be converted to a mime type:
     NSString *mimeType = (__bridge_transfer NSString *)UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType);
     if (type != NULL) {
         CFRelease(type);
     }
-
+    
     return mimeType;
 }
 

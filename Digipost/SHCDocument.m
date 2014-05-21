@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,15 +71,18 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] documentEntity];
-    SHCDocument *document = [[SHCDocument alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCDocument *document = [[SHCDocument alloc] initWithEntity:entity
+                                 insertIntoManagedObjectContext:managedObjectContext];
 
-    [document updateWithAttributes:attributes inManagedObjectContext:managedObjectContext];
+    [document updateWithAttributes:attributes
+            inManagedObjectContext:managedObjectContext];
 
     NSArray *attachments = attributes[kDocumentAttachmentAPIKey];
     if ([attachments isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attachmentDict in attachments) {
             if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
-                SHCAttachment *attachment = [SHCAttachment attachmentWithAttributes:attachmentDict inManagedObjectContext:managedObjectContext];
+                SHCAttachment *attachment = [SHCAttachment attachmentWithAttributes:attachmentDict
+                                                             inManagedObjectContext:managedObjectContext];
                 [document addAttachmentsObject:attachment];
             }
         }
@@ -96,7 +99,8 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(updateUri)), updateUri];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -106,7 +110,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     // At this point, all our Folder objects have been created anew.
     // Because the relationship from Folder to Document is of type Nullify,
     // this means that all Documents have their folder property set to nil.
@@ -117,7 +121,8 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
 
     NSError *error = nil;
-    NSArray *folders = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *folders = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -125,7 +130,8 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
 
     error = nil;
-    NSArray *documents = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *documents = [managedObjectContext executeFetchRequest:fetchRequest
+                                                             error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -134,9 +140,10 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
     for (SHCDocument *document in documents) {
         for (SHCFolder *folder in folders) {
-            if ([document.folderUri compare:folder.uri options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            if ([document.folderUri compare:folder.uri
+                                    options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 [folder addDocumentsObject:document];
-                
+
                 [remainingDocuments removeObject:document];
             }
         }
@@ -150,12 +157,13 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -166,15 +174,17 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 }
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s",__PRETTY_FUNCTION__);
+    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
-    fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
-                              //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
-                              //folderName];
+    fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress
+                                                                         inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
+                                                                                                       //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
+                                                                                                       //folderName];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -188,8 +198,12 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
 
-    NSInteger fromDay = [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:date];
-    NSInteger toDay = [calendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSEraCalendarUnit forDate:nowDate];
+    NSInteger fromDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                            inUnit:NSEraCalendarUnit
+                                           forDate:date];
+    NSInteger toDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                          inUnit:NSEraCalendarUnit
+                                         forDate:nowDate];
 
     NSInteger dayDiff = abs((int)toDay - (int)fromDay);
 

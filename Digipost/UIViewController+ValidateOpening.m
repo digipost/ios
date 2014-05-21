@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -26,7 +26,7 @@
         if (failure) {
             NSError *error = [NSError errorWithDomain:kAttachmentOpeningValidAuthenticationLevel
                                                  code:SHCAttachmentOpeningValidationErrorCodeWrongAuthenticationLevel
-                                             userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE", @"Wrong authentication level validation error message")}];
+                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE", @"Wrong authentication level validation error message") }];
             error.errorTitle = NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE", @"Insufficient authentication level");
             failure(error);
         }
@@ -37,7 +37,7 @@
         if (failure) {
             NSError *error = [NSError errorWithDomain:kAttachmentOpeningValidAuthenticationLevel
                                                  code:SHCAttachmentOpeningValidationErrorCodeNoAttachmentUri
-                                             userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE", @"Generic validation error message")}];
+                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE", @"Generic validation error message") }];
             error.errorTitle = NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE", @"Unable to open letter");
             failure(error);
         }

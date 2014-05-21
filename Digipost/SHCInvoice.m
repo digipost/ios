@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,7 +48,8 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 + (instancetype)invoiceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] invoiceEntity];
-    SHCInvoice *invoice = [[SHCInvoice alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCInvoice *invoice = [[SHCInvoice alloc] initWithEntity:entity
+                              insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
     invoice.accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
@@ -118,7 +119,7 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     return invoice;
 }
 
-- (NSString*)statusDescriptionText
+- (NSString *)statusDescriptionText
 {
     if (self.sendToBankUri) {
         return nil;
@@ -133,12 +134,12 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
     [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [numberFormatter setLocale:[NSLocale currentLocale]];
-    
+
     NSNumber *decimalNumber = [NSNumber numberWithDouble:[amount doubleValue] / 10000.0];
-    
+
     NSString *amountString = [numberFormatter stringFromNumber:decimalNumber];
     NSString *string = [NSString stringWithFormat:@"%@ kr", amountString];
-    
+
     return string;
 }
 

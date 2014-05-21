@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -49,10 +49,14 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)dealloc
 {
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self name:kShowLoginViewControllerNotificationName object:nil];
+    @try
+    {
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:kShowLoginViewControllerNotificationName
+                                                      object:nil];
     }
-    @catch (NSException *exception) {
+    @catch (NSException *exception)
+    {
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
@@ -65,10 +69,15 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     self.screenName = kLoginViewControllerScreenName;
 
-    @try {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(popToSelf:) name:kShowLoginViewControllerNotificationName object:nil];
+    @try
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(popToSelf:)
+                                                     name:kShowLoginViewControllerNotificationName
+                                                   object:nil];
     }
-    @catch (NSException *exception) {
+    @catch (NSException *exception)
+    {
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 
@@ -77,17 +86,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
     self.navigationItem.titleView = self.titleImageView;
 
-    [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In") forState:UIControlStateNormal];
-    [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user") forState:UIControlStateNormal];
-    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy") forState:UIControlStateNormal];
+    [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
+                      forState:UIControlStateNormal];
+    [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user")
+                         forState:UIControlStateNormal];
+    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
+                        forState:UIControlStateNormal];
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-//            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-//            [self.navigationController pushViewController:foldersViewController animated:NO];
+            //            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+            //            [self.navigationController pushViewController:foldersViewController animated:NO];
             // @ TODO WILL BUG fIRST TIME
-//            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
-            [self performSegueWithIdentifier:@"accountSegue" sender:self];
+            //            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
+            [self performSegueWithIdentifier:@"accountSegue"
+                                      sender:self];
         }
     }
 
@@ -136,9 +149,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
 {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController dismissViewControllerAnimated:YES
+                                                      completion:nil];
     } else {
-        [self performSegueWithIdentifier:@"accountSegue" sender:nil];
+        [self performSegueWithIdentifier:@"accountSegue"
+                                  sender:nil];
     }
 }
 
@@ -159,7 +174,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                       withTitle:[url host]
               cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
          destructiveButtonTitle:nil
-              otherButtonTitles:@[NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")]
+              otherButtonTitles:@[ NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari") ]
                        tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                            if (buttonIndex == 0) {
                                [[UIApplication sharedApplication] openURL:url];
@@ -176,7 +191,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)popToSelf:(NSNotification *)notification
 {
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        [self.navigationController popToViewController:self animated:YES];
+        [self.navigationController popToViewController:self
+                                              animated:YES];
     }
 }
 

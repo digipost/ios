@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -56,7 +56,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
 - (instancetype)initWithEntity:(NSEntityDescription *)entity insertIntoManagedObjectContext:(NSManagedObjectContext *)context
 {
-    self = [super initWithEntity:entity insertIntoManagedObjectContext:context];
+    self = [super initWithEntity:entity
+        insertIntoManagedObjectContext:context];
     if (self) {
         _fileType = @"html";
     }
@@ -69,7 +70,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 + (instancetype)receiptWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] receiptEntity];
-    SHCReceipt *receipt = [[SHCReceipt alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCReceipt *receipt = [[SHCReceipt alloc] initWithEntity:entity
+                              insertIntoManagedObjectContext:managedObjectContext];
 
     // Because amount is given as a decimal number from the API, and we don't want to risk floating points
     // inaccuracies, we convert to 100th's and store as an integer in Core Data.
@@ -135,7 +137,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -155,7 +158,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     fetchRequest.entity = [[SHCModelManager sharedManager] mailboxEntity];
 
     NSError *error = nil;
-    NSArray *mailboxes = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *mailboxes = [managedObjectContext executeFetchRequest:fetchRequest
+                                                             error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -163,7 +167,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
 
     error = nil;
-    NSArray *receipts = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *receipts = [managedObjectContext executeFetchRequest:fetchRequest
+                                                            error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -172,7 +177,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
     for (SHCReceipt *receipt in receipts) {
         for (SHCMailbox *mailbox in mailboxes) {
-            if ([receipt.mailboxDigipostAddress compare:mailbox.digipostAddress options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            if ([receipt.mailboxDigipostAddress compare:mailbox.digipostAddress
+                                                options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 [mailbox addReceiptsObject:receipt];
 
                 [remainingReceipts removeObject:receipt];
@@ -192,7 +198,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -209,7 +216,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(mailboxDigipostAddress)), digipostAddress];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }

@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SHCReceiptFolderTableViewDataSource : NSObject<UITableViewDataSource>
+@interface SHCReceiptFolderTableViewDataSource : NSObject <UITableViewDataSource>
 - (void)refreshContent;
 
-- (NSString*)storeNameAtIndexPath:(NSIndexPath* )indexPath;
+- (NSString *)storeNameAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

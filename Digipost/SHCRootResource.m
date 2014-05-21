@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -64,7 +64,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -75,7 +76,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] rootResourceEntity];
-    SHCRootResource *rootResource = [[SHCRootResource alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCRootResource *rootResource = [[SHCRootResource alloc] initWithEntity:entity
+                                             insertIntoManagedObjectContext:managedObjectContext];
 
     NSNumber *authenticationLevel = attributes[kRootResourceAuthenticationLevelAPIKey];
     rootResource.authenticationLevel = [authenticationLevel isKindOfClass:[NSNumber class]] ? authenticationLevel : nil;
@@ -136,30 +138,33 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
     if ([mailboxesArray isKindOfClass:[NSArray class]]) {
         for (NSDictionary *mailboxDict in mailboxesArray) {
             if ([mailboxDict isKindOfClass:[NSDictionary class]]) {
-                SHCMailbox *mailbox = [SHCMailbox mailboxWithAttributes:mailboxDict inManagedObjectContext:managedObjectContext];
+                SHCMailbox *mailbox = [SHCMailbox mailboxWithAttributes:mailboxDict
+                                                 inManagedObjectContext:managedObjectContext];
                 [rootResource addMailboxesObject:mailbox];
                 mailbox.rootResource = rootResource;
             }
         }
     }
-    
+
     /**
      *   for future use when notices are delivered
      */
-//    NSDictionary *noticeDictionary = attributes[kRootResourceNoticeAPIKey];
-//    if (noticeDictionary != nil) {
-//        rootResource.notice = [SHCNotice noticeWithAttributes:noticeDictionary];
-//    }
+    //    NSDictionary *noticeDictionary = attributes[kRootResourceNoticeAPIKey];
+    //    if (noticeDictionary != nil) {
+    //        rootResource.notice = [SHCNotice noticeWithAttributes:noticeDictionary];
+    //    }
     return rootResource;
 }
 
 + (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [NSEntityDescription entityForName:kRootResourceEntityName inManagedObjectContext:managedObjectContext];
+    fetchRequest.entity = [NSEntityDescription entityForName:kRootResourceEntityName
+                                      inManagedObjectContext:managedObjectContext];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }

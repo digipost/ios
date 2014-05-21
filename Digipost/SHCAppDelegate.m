@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,7 +40,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+
     [self setupHockeySDK];
 
     [self setupCocoaLumberjack];
@@ -52,13 +52,17 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
     [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:227.0/255.0 green:45.0/255.0 blue:34.0/255.0 alpha:1.0]];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0 alpha:0.8]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor]}];
-    
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:227.0 / 255.0
+                                                                  green:45.0 / 255.0
+                                                                   blue:34.0 / 255.0
+                                                                  alpha:1.0]];
+    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0
+                                                                 alpha:0.8]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 }
@@ -70,12 +74,10 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -90,7 +92,7 @@
     [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
                        message:[NSString stringWithFormat:format, fileName]
              cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-             otherButtonTitles:@[NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload")]
+             otherButtonTitles:@[ NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload") ]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                           if (buttonIndex == 1) {
                               [[SHCAPIManager sharedManager] uploadFileWithURL:url success:^{

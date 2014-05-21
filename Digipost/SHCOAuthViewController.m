@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 @property (copy, nonatomic) NSString *stateParameter;
 
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
-@property (assign, nonatomic, getter = isAuthenticated) BOOL authenticated;
+@property (assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
 @property (strong, nonatomic) NSURLRequest *failedURLRequest;
 #endif
 
@@ -55,7 +55,9 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor colorWithWhite:1.0 alpha:0.8]} forState:UIControlStateNormal];
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                            alpha:0.8] }
+                                                             forState:UIControlStateNormal];
     }
 
     [self presentAuthenticationWebView];
@@ -80,7 +82,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             self.stateParameter = nil;
 
             if (![state isEqualToString:currentState]) {
-                
+
                 [self presentAuthenticationWebView];
                 return NO;
             }
@@ -90,7 +92,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
         }
 
         if (parameters[kOAuth2Code]) {
-            [[SHCOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code] success:^{
+            [[SHCOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+                success:^{
 
                 // The OAuth manager has successfully authenticated with code - which means we've
                 // got an access code and a refresh code, and can dismiss this view controller
@@ -100,8 +103,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                         [self.delegate OAuthViewControllerDidAuthenticate:self];
                     }
                 }];
-
-            } failure:^(NSError *error) {
+                }
+                failure:^(NSError *error) {
                 [UIAlertView showWithTitle:error.errorTitle
                                    message:[error localizedDescription]
                          cancelButtonTitle:nil
@@ -109,8 +112,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                   tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self presentAuthenticationWebView];
                                   }];
-
-            }];
+                }];
         } else {
             NSAssert(NO, @"No code parameter sent, this should not happen");
         }
@@ -122,7 +124,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     if (!self.isAuthenticated) {
         self.failedURLRequest = request;
-        __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+        __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
+                                                                               delegate:self];
     }
 
     return self.isAuthenticated;
@@ -137,7 +140,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     [UIAlertView showWithTitle:error.errorTitle
                        message:[error localizedDescription]
              cancelButtonTitle:nil
-             otherButtonTitles:@[error.okButtonTitle]
+             otherButtonTitles:@[ error.okButtonTitle ]
                       tapBlock:error.tapBlock];
 }
 
@@ -151,7 +154,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
-            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+            [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
+                 forAuthenticationChallenge:challenge];
         } else {
             DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
@@ -177,10 +181,10 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 {
     self.stateParameter = [NSString randomNumberString];
 
-    NSDictionary *parameters = @{kOAuth2ClientID: OAUTH_CLIENT_ID,
-                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI,
-                                 kOAuth2ResponseType: kOAuth2Code,
-                                 kOAuth2State: self.stateParameter};
+    NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
+                                 kOAuth2ResponseType : kOAuth2Code,
+                                 kOAuth2State : self.stateParameter};
 
     [self authenticateWithParameters:parameters];
 }
@@ -194,6 +198,5 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                                                          parameters:parameters];
     [self.webView loadRequest:request];
 }
-
 
 @end

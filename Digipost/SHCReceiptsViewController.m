@@ -24,8 +24,8 @@
 NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 @interface SHCReceiptsViewController ()
-@property (nonatomic,strong)UIRefreshControl *refreshControl;
-@property (nonatomic,strong)POSReceiptsTableViewDataSource *receiptsTableViewDataSource;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) POSReceiptsTableViewDataSource *receiptsTableViewDataSource;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteBarButtonItem;
@@ -35,7 +35,8 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -52,20 +53,23 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.receiptsTableViewDataSource.storeName = self.storeName;
     self.tableView.delegate = self;
     self.tableView.dataSource = self.receiptsTableViewDataSource;
-    
+
     [self updateNavbar];
 
     // This line makes the tableview hide its separator lines for empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshControlDidChangeValue:)
+                  forControlEvents:UIControlEventValueChanged];
 
     // Set the initial refresh control text
     [self.refreshControl initializeRefreshControlText];
     [self.refreshControl updateRefreshControlTextRefreshing:YES];
 
-    self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+    self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
+                                                      alpha:1.0];
 
     // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
     [self.refreshControl beginRefreshing];
@@ -73,13 +77,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     // Present persistent data before updating
-//    [self updateFetchedResultsController];
+    //    [self updateFetchedResultsController];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
 }
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
@@ -89,13 +92,13 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     return YES;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kPushReceiptIdentifier] ){
+    if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
         SHCReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
-//        letterViewController.receiptsViewController = self;
+        //        letterViewController.receiptsViewController = self;
         letterViewController.receipt = receipt;
     }
 }
@@ -107,16 +110,21 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    [super setEditing:editing animated:animated];
-    
-    [self.navigationController setToolbarHidden:!editing animated:animated];
-    
+    [super setEditing:editing
+             animated:animated];
+
+    [self.navigationController setToolbarHidden:!editing
+                                       animated:animated];
+
     [self updateNavbar];
-    [self.tableView setEditing:editing animated:animated];
-    
+    [self.tableView setEditing:editing
+                      animated:animated];
+
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName object:self userInfo:@{  kEditingStatusKey: [NSNumber numberWithBool:editing]}];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName
+                                                        object:self
+                                                      userInfo:@{kEditingStatusKey : [NSNumber numberWithBool:editing]}];
 }
 
 - (IBAction)didTapSelectionBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -133,13 +141,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSUInteger numberOfReceipts = [[self.tableView indexPathsForSelectedRows] count];
-    NSString *receiptWord = numberOfReceipts == 1 ? NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"receipt") :
-                                                    NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"receipts");
+    NSString *receiptWord = numberOfReceipts == 1 ? NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"receipt") : NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"receipts");
 
     NSString *deleteString = [NSString stringWithFormat:@"%@ %lu %@",
-                              NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
-                              (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
-                              receiptWord];
+                                                        NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
+                                                        (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
+                                                        receiptWord];
 
     [UIActionSheet showFromBarButtonItem:barButtonItem
                                 animated:YES
@@ -154,15 +161,16 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                                 }];
 }
 
-
 - (void)deleteReceipt:(SHCReceipt *)receipt
 {
-    [[SHCAPIManager sharedManager] deleteReceipt:receipt withSuccess:^{
+    [[SHCAPIManager sharedManager] deleteReceipt:receipt
+        withSuccess:^{
         [self.receiptsTableViewDataSource resetFetchedResultsController];
         [self.tableView reloadData];
 
-//        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-    } failure:^(NSError *error) {
+            //        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        }
+        failure:^(NSError *error) {
 
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -182,15 +190,18 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                  cancelButtonTitle:nil
                  otherButtonTitles:@[error.okButtonTitle]
                           tapBlock:error.tapBlock];
-    }];
+        }];
 }
 
 - (void)selectAllRows
 {
     for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
         for (NSInteger row = 0; row < [self.tableView numberOfRowsInSection:section]; row++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-            [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row
+                                                        inSection:section];
+            [self.tableView selectRowAtIndexPath:indexPath
+                                        animated:NO
+                                  scrollPosition:UITableViewScrollPositionNone];
         }
     }
 }
@@ -203,7 +214,8 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     }
 
     for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+        [self.tableView deselectRowAtIndexPath:indexPath
+                                      animated:NO];
     }
 }
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -216,19 +228,19 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isEditing) {
-        
+
         [self updateToolbarButtonItems];
 
         return;
     }
-    
 
-//    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    //    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
+        //        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
     } else {
-        [self performSegueWithIdentifier:kPushReceiptIdentifier sender:self];
+        [self performSegueWithIdentifier:kPushReceiptIdentifier
+                                  sender:self];
     }
 }
 
@@ -272,7 +284,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     return YES;
 }
 
--(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleNone;
 }

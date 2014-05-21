@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -61,7 +61,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                    sessionConfiguration:configuration];
 
         _sessionManager.requestSerializer = [AFHTTPRequestSerializer serializer];
-        [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:OAUTH_CLIENT_ID password:OAUTH_SECRET];
+        [_sessionManager.requestSerializer setAuthorizationHeaderFieldWithUsername:OAUTH_CLIENT_ID
+                                                                          password:OAUTH_SECRET];
 
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 
@@ -86,7 +87,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 - (void)setRefreshToken:(NSString *)refreshToken
 {
-    [[LUKeychainAccess standardKeychainAccess] setString:refreshToken forKey:kKeychainAccessRefreshTokenKey];
+    [[LUKeychainAccess standardKeychainAccess] setString:refreshToken
+                                                  forKey:kKeychainAccessRefreshTokenKey];
 }
 
 #pragma mark - Public methods
@@ -109,13 +111,13 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     _accessToken = nil;
     self.refreshToken = nil;
 
-    NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2Code,
-                                 kOAuth2Code: code,
-                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI};
+    NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
+                                 kOAuth2Code : code,
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
-                   parameters:parameters
-                      success:^(NSURLSessionDataTask *task, id responseObject) {
+        parameters:parameters
+        success:^(NSURLSessionDataTask *task, id responseObject) {
                           NSDictionary *responseDict = (NSDictionary *)responseObject;
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
@@ -143,12 +145,12 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                                userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
                               failure(error);
                           }
-
-                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+        failure:^(NSURLSessionDataTask *task, NSError *error) {
                           if (failure) {
                               failure(error);
                           }
-                      }];
+        }];
 }
 
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
@@ -156,13 +158,13 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     // First, remove previous access token
     _accessToken = nil;
 
-    NSDictionary *parameters = @{kOAuth2GrantType: kOAuth2RefreshToken,
-                                 kOAuth2RefreshToken: refreshToken,
-                                 kOAuth2RedirectURI: OAUTH_REDIRECT_URI};
+    NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2RefreshToken,
+                                 kOAuth2RefreshToken : refreshToken,
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
-                   parameters:parameters
-                      success:^(NSURLSessionDataTask *task, id responseObject) {
+        parameters:parameters
+        success:^(NSURLSessionDataTask *task, id responseObject) {
                           NSDictionary *responseDict = (NSDictionary *)responseObject;
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
@@ -185,8 +187,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                                userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
                               failure(error);
                           }
-
-                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        }
+        failure:^(NSURLSessionDataTask *task, NSError *error) {
 
                           if (failure) {
                               // Check to see if the request failed because the refresh token was denied
@@ -200,7 +202,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                   failure(error);
                               }
                           }
-                      }];
+        }];
 }
 
 - (void)removeAccessToken

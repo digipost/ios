@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SHCReceiptsViewController : UIViewController<UITableViewDelegate>
+@interface SHCReceiptsViewController : UIViewController <UITableViewDelegate>
 
-@property (nonatomic,strong) NSString *storeName;
+@property (nonatomic, strong) NSString *storeName;
 
 @end

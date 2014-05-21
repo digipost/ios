@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -44,7 +44,6 @@ NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue";
 
-
 @interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
@@ -59,22 +58,25 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 - (void)viewDidLoad
 {
     self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
-    self.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
-                                                           ascending:NO
-                                                            selector:@selector(compare:)]];
+    self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
+                                                            ascending:NO
+                                                             selector:@selector(compare:)] ];
 
-//    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
-    
-    self.predicate =  [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
+    //    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
+
+    self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
     [super viewDidLoad];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(uploadProgressDidStart:) name:kAPIManagerUploadProgressStartedNotificationName object:nil];
-    
-//    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-//    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-//    [self.navigationItem setHidesBackButton:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadProgressDidStart:)
+                                                 name:kAPIManagerUploadProgressStartedNotificationName
+                                               object:nil];
+
+    //    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+    //    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
+    //    [self.navigationItem setHidesBackButton:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -107,7 +109,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         SHCReceiptFoldersTableViewController *receiptsViewController = (SHCReceiptFoldersTableViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
         receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
-    } else if ( [segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]){
+    } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
     }
@@ -165,8 +167,12 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         iconImage = [UIImage imageNamed:@"list-icon-folder"];
     }
 
-    SHCFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor colorWithRed:64.0/255.0 green:66.0/255.0 blue:69.0/255.0 alpha:1.0];
+    SHCFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier
+                                                                   forIndexPath:indexPath];
+    cell.backgroundColor = [UIColor colorWithRed:64.0 / 255.0
+                                           green:66.0 / 255.0
+                                            blue:69.0 / 255.0
+                                           alpha:1.0];
     cell.folderNameLabel.text = folderName;
     cell.iconImageView.image = iconImage;
     cell.arrowImageView.hidden = arrowHidden;
@@ -175,7 +181,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
     if (!unreadCounterHidden) {
         SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox ];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
     }
 
     return cell;
@@ -199,14 +205,19 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     CGFloat labelHeight = 21.0;
     CGFloat labelOriginX = 15.0;
-    CGFloat headerHeight = [self tableView:tableView heightForHeaderInSection:section];
+    CGFloat headerHeight = [self tableView:tableView
+                  heightForHeaderInSection:section];
 
     UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelOriginX,
                                                                      headerHeight - labelHeight,
                                                                      CGRectGetWidth(tableView.frame) - labelOriginX,
                                                                      labelHeight)];
-    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:15.0];
-    headerLabel.textColor = [UIColor colorWithRed:160.0/255.0 green:160.0/255.0 blue:160.0/255.0 alpha:1.0];
+    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light"
+                                       size:15.0];
+    headerLabel.textColor = [UIColor colorWithRed:160.0 / 255.0
+                                            green:160.0 / 255.0
+                                             blue:160.0 / 255.0
+                                            alpha:1.0];
 
     NSString *title;
     if (section == 0 && self.inboxFolder) {
@@ -232,15 +243,18 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
-            [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.inboxFolder];
+            [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                      sender:self.inboxFolder];
         } else {
-            [self performSegueWithIdentifier:kPushReceiptsIdentifier sender:nil];
+            [self performSegueWithIdentifier:kPushReceiptsIdentifier
+                                      sender:nil];
         }
     } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
 
         CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
 
-        [UIActionSheet showFromRect:[tableView convertRect:rect toView:self.view]
+        [UIActionSheet showFromRect:[tableView convertRect:rect
+                                                    toView:self.view]
                              inView:self.view
                            animated:YES
                           withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
@@ -276,7 +290,8 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                [tableView deselectRowAtIndexPath:indexPath animated:YES];
                            }];
     } else {
-        [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
+        [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                  sender:self.folders[indexPath.row]];
     }
 }
 
@@ -296,7 +311,8 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     for (NSInteger section = 0; section < [self.fetchedResultsController.sections count]; section++) {
         id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
         for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
-            SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
+            SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
+                                                                                                    inSection:section]];
 
             if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
                 self.inboxFolder = folder;
@@ -309,7 +325,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 #pragma mark - Private methods
 
-- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
     if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
         return;
@@ -320,7 +336,6 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-
     } failure:^(NSError *error) {
         
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -350,7 +365,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     [super updateNavbar];
 
     [self.navigationItem setTitle:@""];
-//    [self.navigationItem setHidesBackButton:YES];
+    //    [self.navigationItem setHidesBackButton:YES];
 
     self.navigationItem.title = self.selectedMailBoxDigipostAdress ?: @"";
 }
@@ -359,14 +374,16 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 {
     UIViewController *topViewController = [self.navigationController topViewController];
     SHCDocumentsViewController *archiveViewController = (SHCDocumentsViewController *)topViewController;
-    
+
     if (!([topViewController isKindOfClass:[SHCDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {
-    
-        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:NO];
+
+        [self.navigationController popToViewController:self.navigationController.viewControllers[1]
+                                              animated:NO];
         // @TODO  enure you got the correct VC !!!!!!!!
         for (SHCFolder *folder in self.folders) {
             if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-                [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:folder];
+                [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                          sender:folder];
             }
         }
     }

@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -58,7 +58,8 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] attachmentEntity];
-    SHCAttachment *attachment = [[SHCAttachment alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCAttachment *attachment = [[SHCAttachment alloc] initWithEntity:entity
+                                       insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *authenticationLevel = attributes[kAttachmentAuthenticationLevel];
     attachment.authenticationLevel = [authenticationLevel isKindOfClass:[NSString class]] ? authenticationLevel : nil;
@@ -99,7 +100,8 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
     NSDictionary *invoiceDict = attributes[kAttachmentInvoiceAPIKey];
     if ([invoiceDict isKindOfClass:[NSDictionary class]]) {
-        attachment.invoice = [SHCInvoice invoiceWithAttributes:invoiceDict inManagedObjectContext:managedObjectContext];
+        attachment.invoice = [SHCInvoice invoiceWithAttributes:invoiceDict
+                                        inManagedObjectContext:managedObjectContext];
     }
 
     return attachment;
@@ -113,7 +115,8 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }

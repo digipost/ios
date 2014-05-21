@@ -16,9 +16,9 @@
 
 @interface POSAccountViewController ()
 
-@property (nonatomic,strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic,strong) POSAccountViewTableViewDataSource *dataSource;
+@property (nonatomic, strong) POSAccountViewTableViewDataSource *dataSource;
 
 @end
 
@@ -26,7 +26,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -36,15 +37,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.refreshControl = [[UIRefreshControl alloc]  init];
+    self.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:self.refreshControl];
-    
-    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+
+    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:nil
+                                                                          action:nil];
     [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
     [self.navigationItem setHidesBackButton:YES];
-    
+
     self.dataSource = [[POSAccountViewTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -53,14 +56,13 @@
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
-- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
     if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
         return;
     }
-    
+
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
-        
     } failure:^(NSError *error) {
         
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -90,9 +92,9 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"PushFolders"]){
+    if ([segue.identifier isEqualToString:@"PushFolders"]) {
         SHCMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        SHCFoldersViewController *folderViewController = (id) segue.destinationViewController;
+        SHCFoldersViewController *folderViewController = (id)segue.destinationViewController;
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
         [SHCModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
     }

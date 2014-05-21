@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,8 @@ NSString *const kFolderArchiveName = @"Archive";
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
-    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity insertIntoManagedObjectContext:managedObjectContext];
+    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity
+                           insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *name = attributes[NSStringFromSelector(@selector(name))];
     folder.name = [name isKindOfClass:[NSString class]] ? name : nil;
@@ -56,12 +57,14 @@ NSString *const kFolderArchiveName = @"Archive";
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
-//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
-    fetchRequest.predicate = [NSPredicate folderWithName:folderName mailboxDigipostAddressPredicate:mailboxDigipostAddress];
+    //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
+    fetchRequest.predicate = [NSPredicate folderWithName:folderName
+                         mailboxDigipostAddressPredicate:mailboxDigipostAddress];
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
     if (error) {
         [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
@@ -71,13 +74,13 @@ NSString *const kFolderArchiveName = @"Archive";
 
 - (NSString *)displayName
 {
-    if (self.name){
-        if ([self.name isEqualToString:kFolderInboxName]){
+    if (self.name) {
+        if ([self.name isEqualToString:kFolderInboxName]) {
             return NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-        }else if ([self.name isEqualToString:kFolderWorkAreaName]){
+        } else if ([self.name isEqualToString:kFolderWorkAreaName]) {
             return NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-        }else if ([self.name isEqualToString:kFolderArchiveName]){
-            return  NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
+        } else if ([self.name isEqualToString:kFolderArchiveName]) {
+            return NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
         }
     }
     return nil;

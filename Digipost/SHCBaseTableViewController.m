@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -47,7 +47,9 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(refreshControlDidChangeValue:) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshControlDidChangeValue:)
+                  forControlEvents:UIControlEventValueChanged];
 
     // Set the initial refresh control text
     [self initializeRefreshControlText];
@@ -55,7 +57,8 @@
 
     if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
         [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
-        self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
+        self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
+                                                          alpha:1.0];
     } else {
         self.refreshControl.tintColor = [UIColor whiteColor];
     }
@@ -74,14 +77,16 @@
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 
-    [self setEditing:NO animated:NO];
+    [self setEditing:NO
+            animated:NO];
 
     // Sometimes, the previously selected cell isn't properly deselected.
     // The line below makes sure the cell is deselected, plus it adds a
     // fancy fading effect when the user swipes back to this view controller
     NSIndexPath *indexPathForSelectedRow = [self.tableView indexPathForSelectedRow];
     if (indexPathForSelectedRow) {
-        [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow animated:YES];
+        [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow
+                                      animated:YES];
     }
 
     // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
@@ -89,7 +94,8 @@
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
 
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
-    [tracker set:kGAIScreenName value:self.screenName];
+    [tracker set:kGAIScreenName
+           value:self.screenName];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 
     if (self.needsReload) {
@@ -108,7 +114,8 @@
             if ([navigationController isKindOfClass:[UINavigationController class]]) {
                 SHCLetterViewController *letterViewController = (SHCLetterViewController *)navigationController.topViewController;
                 if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
-                    [letterViewController updateLeftBarButtonItem:nil forViewController:self];
+                    [letterViewController updateLeftBarButtonItem:nil
+                                                forViewController:self];
                 }
             }
         }
@@ -152,7 +159,7 @@
 
 #pragma mark - Private methods
 
-- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber*) userDidInititateRequest
+- (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
@@ -188,10 +195,11 @@
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
-    
-    NSArray *results = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    NSLog(@"%@, results: %i",self.predicate,[results count]);
+
+    NSArray *results = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
+                                                                                           error:nil];
+
+    NSLog(@"%@, results: %i", self.predicate, [results count]);
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
@@ -229,12 +237,14 @@
     NSDictionary *attributes = nil;
     if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
         [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
-        attributes = @{NSForegroundColorAttributeName: [UIColor colorWithWhite:0.4 alpha:1.0]};
+        attributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:0.4
+                                                                          alpha:1.0]};
     } else {
-        attributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        attributes = @{NSForegroundColorAttributeName : [UIColor whiteColor]};
     }
 
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" " attributes:attributes];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@" "
+                                                                          attributes:attributes];
 }
 // done
 - (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
@@ -255,8 +265,10 @@
         text = [NSString stringWithFormat:@"%@: %@", lastUpdatedText, lastUpdatedDate];
     }
 
-    NSDictionary *attributes = [self.refreshControl.attributedTitle attributesAtIndex:0 effectiveRange:NULL];
-    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:text attributes:attributes];
+    NSDictionary *attributes = [self.refreshControl.attributedTitle attributesAtIndex:0
+                                                                       effectiveRange:NULL];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:text
+                                                                          attributes:attributes];
 }
 
 @end

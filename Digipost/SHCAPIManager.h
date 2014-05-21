@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,12 +41,12 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 @interface SHCAPIManager : NSObject
 
-@property (assign, nonatomic, getter = isUpdatingRootResource) BOOL updatingRootResource;
-@property (assign, nonatomic, getter = isUpdatingBankAccount) BOOL updatingBankAccount;
-@property (assign, nonatomic, getter = isUpdatingDocuments) BOOL updatingDocuments;
-@property (assign, nonatomic, getter = isUpdatingReceipts) BOOL updatingReceipts;
-@property (assign, nonatomic, getter = isDownloadingBaseEncryptionModel) BOOL downloadingBaseEncryptionModel;
-@property (assign, nonatomic, getter = isUploadingFile) BOOL uploadingFile;
+@property (assign, nonatomic, getter=isUpdatingRootResource) BOOL updatingRootResource;
+@property (assign, nonatomic, getter=isUpdatingBankAccount) BOOL updatingBankAccount;
+@property (assign, nonatomic, getter=isUpdatingDocuments) BOOL updatingDocuments;
+@property (assign, nonatomic, getter=isUpdatingReceipts) BOOL updatingReceipts;
+@property (assign, nonatomic, getter=isDownloadingBaseEncryptionModel) BOOL downloadingBaseEncryptionModel;
+@property (assign, nonatomic, getter=isUploadingFile) BOOL uploadingFile;
 @property (strong, nonatomic) NSProgress *uploadProgress;
 
 + (instancetype)sharedManager;

@@ -9,11 +9,11 @@
 #import "SHCReceipt.h"
 #import <Foundation/Foundation.h>
 
-@interface POSReceiptsTableViewDataSource : NSObject<UITableViewDataSource>
+@interface POSReceiptsTableViewDataSource : NSObject <UITableViewDataSource>
 
 - (void)resetFetchedResultsController;
-- (SHCReceipt *)receiptAtIndexPath:(NSIndexPath* )indexPath;
+- (SHCReceipt *)receiptAtIndexPath:(NSIndexPath *)indexPath;
 
-@property (nonatomic,strong) NSString *storeName;
+@property (nonatomic, strong) NSString *storeName;
 
 @end

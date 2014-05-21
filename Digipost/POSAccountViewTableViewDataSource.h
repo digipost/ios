@@ -8,12 +8,12 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface POSAccountViewTableViewDataSource : NSObject<UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface POSAccountViewTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 // designated initalizer
 - (id)initAsDataSourceForTableView:(UITableView *)tableView;
 
 // convenience method for fetching objects at index path from the database
-- (id)managedObjectAtIndexPath:(NSIndexPath *) indexPath;
+- (id)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -10,7 +10,7 @@
 #import "SHCModelManager.h"
 
 @implementation NSFetchedResultsController (Additions)
-+ (NSFetchedResultsController*)fetchedResultsControllerWithEntity:(NSEntityDescription*)entity sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate*)predicate delegate:(id)delegate
++ (NSFetchedResultsController *)fetchedResultsControllerWithEntity:(NSEntityDescription *)entity sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)predicate delegate:(id)delegate
 {
     NSParameterAssert(entity);
     NSParameterAssert(sortDescriptors);
@@ -21,9 +21,9 @@
     fetchRequest.predicate = predicate;
     NSAssert(sortDescriptors != nil, @"No sort descriptors present");
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
-                                                                      sectionNameKeyPath:nil
-                                                                               cacheName:nil];
+                                                                                               managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
+                                                                                                 sectionNameKeyPath:nil
+                                                                                                          cacheName:nil];
     fetchedResultsController.delegate = delegate;
     NSError *error = nil;
     if (![fetchedResultsController performFetch:&error]) {
@@ -32,13 +32,13 @@
 
     return fetchedResultsController;
 #warning potential bug prone
-//    [self.tableView reloadData];
-//    [self updateNavbar]
+    //    [self.tableView reloadData];
+    //    [self updateNavbar]
     // Because we don't know which subclass inherits from the base controller,
     // let's see if it responds to the updateFolders selector
-//    if ([self respondsToSelector:@selector(updateFolders)]) {
-//        [self performSelector:@selector(updateFolders)];
-//    }
+    //    if ([self respondsToSelector:@selector(updateFolders)]) {
+    //        [self performSelector:@selector(updateFolders)];
+    //    }
 }
 
 @end
