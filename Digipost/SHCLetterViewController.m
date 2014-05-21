@@ -996,31 +996,34 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     NSString *attachmentUri = self.attachment.uri;
-#warning just  temporary
 
-    //    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name folderUri:self.attachment.document.folder.uri success:^{
-    //        [self updateAttachmentWithAttachmentUri:attachmentUri];
-    //        self.sendingInvoice = NO;
-    //        [self updateToolbarItemsWithInvoice:YES];
-    //    } failure:^(NSError *error) {
-    //
-    //        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-    //        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-    //            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-    //                // We were unauthorized, due to the session being invalid.
-    //                // Let's retry in the next run loop
-    //                [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
-    //
-    //                return;
-    //            }
-    //        }
-    //
-    //        [UIAlertView showWithTitle:error.errorTitle
-    //                           message:[error localizedDescription]
-    //                 cancelButtonTitle:nil
-    //                 otherButtonTitles:@[error.okButtonTitle]
-    //                          tapBlock:error.tapBlock];
-    //    }];
+    [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
+        mailboxDigipostAddress:@""
+        folderUri:self.attachment.document.folder.uri
+        success:^{
+            [self updateAttachmentWithAttachmentUri:attachmentUri];
+            self.sendingInvoice = NO;
+            [self updateToolbarItemsWithInvoice:YES];
+        }
+        failure:^(NSError *error) {
+    
+           NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+           if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+               if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                  // We were unauthorized, due to the session being invalid.
+                  // Let's retry in the next run loop
+                  [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
+   
+                 return;
+            }
+       }
+
+       [UIAlertView showWithTitle:error.errorTitle
+                         message:[error localizedDescription]
+                cancelButtonTitle:nil
+                otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+        }];
 }
 
 - (void)updateAttachmentWithAttachmentUri:(NSString *)uri

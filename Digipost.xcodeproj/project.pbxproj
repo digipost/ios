@@ -145,6 +145,12 @@
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
+		EC181DB0192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
+		EC181DB1192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
+		EC181DB2192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
+		EC181DB5192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
+		EC181DB6192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
+		EC181DB7192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
@@ -303,6 +309,10 @@
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
+		EC181DAE192CC0430054C0E8 /* SHCDocument+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SHCDocument+Methods.h"; path = "../SHCDocument+Methods.h"; sourceTree = "<group>"; };
+		EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SHCDocument+Methods.m"; path = "../SHCDocument+Methods.m"; sourceTree = "<group>"; };
+		EC181DB3192CC47B0054C0E8 /* SHCFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCFolder+Methods.h"; sourceTree = "<group>"; };
+		EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCFolder+Methods.m"; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* SHCLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverView.h; sourceTree = "<group>"; };
@@ -400,8 +410,12 @@
 				83D75F621858E5790013F8C9 /* SHCMailbox.m */,
 				83D75F5C1858E5790013F8C9 /* SHCAttachment.h */,
 				83D75F5D1858E5790013F8C9 /* SHCAttachment.m */,
+				EC181DB3192CC47B0054C0E8 /* SHCFolder+Methods.h */,
+				EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */,
 				83D75F571858E5790013F8C9 /* SHCFolder.h */,
 				83D75F581858E5790013F8C9 /* SHCFolder.m */,
+				EC181DAE192CC0430054C0E8 /* SHCDocument+Methods.h */,
+				EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */,
 				83D75F521858E5790013F8C9 /* SHCDocument.h */,
 				83D75F531858E5790013F8C9 /* SHCDocument.m */,
 				83DB4AE4188D1F4E00515022 /* SHCReceipt.h */,
@@ -917,6 +931,7 @@
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
+				EC181DB2192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
 				83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
@@ -941,6 +956,7 @@
 				ECB3A65118B379F8002D8C22 /* SHCNotice.m in Sources */,
 				83D75F6F1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
 				ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				EC181DB7192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -978,6 +994,7 @@
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
 				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
+				EC181DB1192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
 				83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */,
 				EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
@@ -1002,6 +1019,7 @@
 				ECB3A65018B379F8002D8C22 /* SHCNotice.m in Sources */,
 				83D75F6E1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				EC181DB6192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1057,7 @@
 				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
+				EC181DB0192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
 				83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
@@ -1063,6 +1082,7 @@
 				ECB3A64F18B379F8002D8C22 /* SHCNotice.m in Sources */,
 				83D75F6D1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				EC181DB5192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

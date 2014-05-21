@@ -10,9 +10,8 @@
 
 @interface NSPredicate (CommonPredicates)
 
-+ (NSPredicate *)predicateWithDocumentsForSelectedMailBoxInFolderWithName:(NSString *)folderName;
 + (NSPredicate *)predicateWithDocumentsForMailBoxDigipostAddress:(NSString *)mailboxDigipostAddress inFolderWithName:(NSString *)folderName;
 + (NSPredicate *)predicateWithFoldersInMailbox:(NSString *)mailboxDigipostAddress;
 + (NSPredicate *)folderWithName:(NSString *)folderName mailboxDigipostAddressPredicate:(NSString *)mailboxDigipostAddress;
-
++ (NSPredicate *)predicateForFolderWithUri:(NSString *)uri;
 @end

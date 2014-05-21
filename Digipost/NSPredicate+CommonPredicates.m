@@ -27,6 +27,7 @@
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[ p1, p2 ]];
     return predicate;
 }
+
 + (NSPredicate *)predicateWithDocumentsForMailBoxDigipostAddress:(NSString *)mailboxDigipostAddress inFolderWithName:(NSString *)folderName
 {
     NSParameterAssert(folderName);
@@ -48,4 +49,9 @@
     return predicate;
 }
 
++ (NSPredicate *)predicateForFolderWithUri:(NSString *)uri
+{
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"uri == %@", uri];
+    return p1;
+}
 @end

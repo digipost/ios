@@ -18,6 +18,7 @@
 #import "SHCRootResource.h"
 #import "SHCMailbox.h"
 #import "SHCDocument.h"
+#import "SHCFolder+Methods.h"
 #import "SHCAttachment.h"
 #import "SHCInvoice.h"
 #import "SHCReceipt.h"
@@ -152,8 +153,8 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     [document updateWithAttributes:attributes
             inManagedObjectContext:self.managedObjectContext];
 
-//    document.folder = [SHCFolder existingFolderWithName:attributes[NSStringFromSelector(@selector(location))] inManagedObjectContext:self.managedObjectContext];
-#warning fix
+    document.folder = [SHCFolder pos_existingFolderWithUri:document.folderUri
+                                inManagedObjectContext:self.managedObjectContext];
     // Save changes#
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {

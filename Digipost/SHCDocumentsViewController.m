@@ -80,7 +80,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
 
-    self.predicate = [NSPredicate predicateWithDocumentsForSelectedMailBoxInFolderWithName:self.folderName];
+    self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
+                                                                 inFolderWithName:self.folderName];
     //    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
     //                     [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
     //                      self.folderName];
@@ -367,10 +368,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     [self setEditing:NO animated:YES];
                                 }];
 }
+
 - (void)refreshContent
 {
     [self updateContentsFromServerUserInitiatedRequest:@YES];
 }
+
 #pragma mark - Private methods
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
