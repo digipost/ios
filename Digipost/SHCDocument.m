@@ -59,6 +59,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 @dynamic deleteUri;
 @dynamic location;
 @dynamic updateUri;
+@dynamic folderUri;
 
 // Relationships
 @dynamic attachments;
@@ -104,6 +105,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     // At this point, all our Folder objects have been created anew.
     // Because the relationship from Folder to Document is of type Nullify,
     // this means that all Documents have their folder property set to nil.
@@ -131,9 +133,9 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
     for (SHCDocument *document in documents) {
         for (SHCFolder *folder in folders) {
-            if ([document.location compare:folder.name options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+            if ([document.folderUri compare:folder.uri options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 [folder addDocumentsObject:document];
-
+                
                 [remainingDocuments removeObject:document];
             }
         }
@@ -147,6 +149,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
 
@@ -160,14 +163,14 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
         [managedObjectContext deleteObject:document];
     }
 }
-
-+ (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
++ (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSLog(@"%s",__PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
-                              [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
-                              folderName];
+    fetchRequest.predicate = [[SHCModelManager sharedManager] predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
+                              //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
+                              //folderName];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:&error];

@@ -16,6 +16,7 @@
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="creatorName" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="deleteUri" attributeType="String" syncable="YES"/>
+        <attribute name="folderUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" attributeType="String" syncable="YES"/>
         <attribute name="updateUri" attributeType="String" syncable="YES"/>
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
@@ -78,7 +79,7 @@
     </entity>
     <elements>
         <element name="Attachment" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Document" positionX="313" positionY="-198" width="128" height="148"/>
+        <element name="Document" positionX="313" positionY="-198" width="128" height="165"/>
         <element name="Folder" positionX="0" positionY="0" width="128" height="105"/>
         <element name="Invoice" positionX="0" positionY="0" width="128" height="180"/>
         <element name="Mailbox" positionX="0" positionY="0" width="128" height="135"/>

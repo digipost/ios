@@ -34,6 +34,7 @@ extern NSString *const kDocumentDocumentAPIKey;
 @property (strong, nonatomic) NSString *deleteUri;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *updateUri;
+@property (nonatomic, retain) NSString * folderUri;
 
 // Relationships
 @property (strong, nonatomic) NSOrderedSet *attachments;
@@ -43,7 +44,7 @@ extern NSString *const kDocumentDocumentAPIKey;
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForDocumentDate:(NSDate *)date;
 - (SHCAttachment *)mainDocumentAttachment;
 - (void)updateWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
