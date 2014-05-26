@@ -1,46 +1,25 @@
 //
-// Copyright (C) Posten Norge AS
+//  POSFolder.h
+//  Digipost
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//         http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  Created by Håkon Bogen on 26.05.14.
+//  Copyright (c) 2014 Posten. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-// Core Data model entity names
-NSString *const kFolderEntityName;
-
-// Hard-coded folder names that we'll use until all folders are made dynamic in the Digipost system
-extern NSString *const kFolderInboxName;
-extern NSString *const kFolderWorkAreaName;
-extern NSString *const kFolderArchiveName;
-
-@class POSDocument;
-@class POSMailbox;
+@class POSDocument, POSMailbox;
 
 @interface POSFolder : NSManagedObject
 
-// Attributes
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *uri;
-
-// Relationships
-@property (strong, nonatomic) NSSet *documents;
-@property (strong, nonatomic) POSMailbox *mailbox;
-
-+ (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-- (NSString *)displayName;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *uri;
+@property (nonatomic, retain) NSString *changeFolderUri;
+@property (nonatomic, retain) NSString *deletefolderUri;
+@property (nonatomic, retain) NSString *iconName;
+@property (nonatomic, retain) NSSet *documents;
+@property (nonatomic, retain) POSMailbox *mailbox;
 @end
 
 @interface POSFolder (CoreDataGeneratedAccessors)

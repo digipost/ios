@@ -25,6 +25,7 @@ NSString *const kDocumentEntityName = @"Document";
 
 // API keys
 NSString *const kDocumentDocumentAPIKey = @"document";
+NSString *const kDocumentDocumentsAPIKey = @"documents";
 NSString *const kDocumentCreatedAtAPIKey = @"created";
 NSString *const kDocumentLinkAPIKey = @"link";
 NSString *const kDocumentDeleteDocumentAPIKeySuffix = @"delete_document";

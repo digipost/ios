@@ -22,4 +22,5 @@
 + (UILabel *)tableViewRegularHeaderLabel;
 + (UILabel *)popoverViewDescriptionLabel;
 + (UILabel *)popoverViewLabel;
++ (UILabel *)folderSectionHeaderTitleLabelWithFrame:(CGRect)frame;
 @end

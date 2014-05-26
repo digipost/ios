@@ -23,6 +23,8 @@ extern NSString *const kDocumentEntityName;
 // API keys
 extern NSString *const kDocumentDocumentAPIKey;
 
+extern NSString *const kDocumentDocumentsAPIKey;
+
 @class POSAttachment;
 @class POSFolder;
 

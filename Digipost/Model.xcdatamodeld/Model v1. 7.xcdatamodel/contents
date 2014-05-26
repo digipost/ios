@@ -23,6 +23,9 @@
         <relationship name="folder" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
     <entity name="Folder" representedClassName="POSFolder" syncable="YES">
+        <attribute name="changeFolderUri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="deletefolderUri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="iconName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
@@ -78,12 +81,12 @@
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Document" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Folder" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Invoice" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Mailbox" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Receipt" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="RootResource" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Attachment" positionX="36" positionY="-9" width="128" height="195"/>
+        <element name="Document" positionX="27" positionY="-207" width="128" height="165"/>
+        <element name="Folder" positionX="304" positionY="57" width="128" height="148"/>
+        <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
+        <element name="Mailbox" positionX="79" positionY="207" width="128" height="135"/>
+        <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
+        <element name="RootResource" positionX="-360" positionY="27" width="128" height="270"/>
     </elements>
 </model>

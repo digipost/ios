@@ -7,6 +7,7 @@
 //
 
 #import "POSMailbox+Methods.h"
+#import "POSFolder+Methods.h"
 #import "POSModelManager.h"
 
 // API keys
@@ -15,6 +16,9 @@ NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
 NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
+
+NSString *const kMailboxLinkFoldersAPIKeySuffix = @"folders";
+NSString *const kMailboxLinkFolderAPIKeySuffix = @"folder";
 
 @implementation POSMailbox (Methods)
 
@@ -44,11 +48,11 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                         folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderInboxName,
                                               NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaAPIKeySuffix]) {
-                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderWorkAreaName,
-                                              NSStringFromSelector(@selector(uri)) : uri };
+                        //                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderWorkAreaName,
+                        //                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
-                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderArchiveName,
-                                              NSStringFromSelector(@selector(uri)) : uri };
+                        //                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderArchiveName,
+                        //                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
                     }
@@ -63,6 +67,18 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
             }
         }
     }
+
+    NSDictionary *folders = attributes[kMailboxLinkFoldersAPIKeySuffix];
+    NSArray *foldersForMailbox = folders[kMailboxLinkFolderAPIKeySuffix];
+
+    [foldersForMailbox enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        
+        POSFolder *folder = [POSFolder userMadeFolderWithAttributes:obj
+                                     inManagedObjectContext:managedObjectContext];
+        
+        [mailbox addFoldersObject:folder];
+        folder.mailbox = mailbox;
+    }];
 
     return mailbox;
 }
@@ -83,6 +99,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 
     return [results firstObject];
 }
+
 + (POSMailbox *)mailboxInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];

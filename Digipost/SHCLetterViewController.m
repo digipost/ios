@@ -20,7 +20,7 @@
 #import "SHCLetterViewController.h"
 #import "POSAttachment.h"
 #import "POSDocument.h"
-#import "POSFolder.h"
+#import "POSFolder+Methods.h"
 #import "POSFileManager.h"
 #import "SHCAPIManager.h"
 #import "NSString+SHA1String.h"
@@ -998,7 +998,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *attachmentUri = self.attachment.uri;
 
     [[SHCAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
-        mailboxDigipostAddress:@""
+        mailboxDigipostAddress:nil
         folderUri:self.attachment.document.folder.uri
         success:^{
             [self updateAttachmentWithAttachmentUri:attachmentUri];

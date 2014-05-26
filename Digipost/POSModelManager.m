@@ -123,18 +123,22 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
                                                inManagedObjectContext:self.managedObjectContext];
 
     // Create all the new documents
-    NSArray *documents = attributes[kDocumentDocumentAPIKey];
-    if ([documents isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *documentDict in documents) {
-            if ([documentDict isKindOfClass:[NSDictionary class]]) {
-                POSDocument *document = [POSDocument documentWithAttributes:documentDict
+    NSDictionary *documents = attributes[kDocumentDocumentsAPIKey];
+    NSArray *documentsArray = documents[kDocumentDocumentAPIKey];
+
+    // used for the main mailbox json structure, not custom folders
+    if (documentsArray == nil) {
+        documentsArray = attributes[kDocumentDocumentAPIKey];
+    }
+    if ([documentsArray isKindOfClass:[NSArray class]]) {
+        [documentsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            POSDocument *document = [POSDocument documentWithAttributes:obj
                                                      inManagedObjectContext:self.managedObjectContext];
                 document.folder = folder;
                 document.folderUri = folder.uri;
                 [folder addDocumentsObject:document];
                 NSLog(@"adding %@ to %@,mailbox: %@", document.creatorName, folderName, folder.mailbox.digipostAddress);
-            }
-        }
+        }];
     }
 
     // Delete the old ones

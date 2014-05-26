@@ -154,6 +154,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
     //    if (noticeDictionary != nil) {
     //        rootResource.notice = [SHCNotice noticeWithAttributes:noticeDictionary];
     //    }
+
     return rootResource;
 }
 

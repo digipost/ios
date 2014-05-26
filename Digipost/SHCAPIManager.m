@@ -307,7 +307,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
         }
 
-        //        DDLogInfo(@"state: %@", stateString);
+        DDLogInfo(@"state: %@", stateString);
 
         switch (state) {
             case SHCAPIManagerStateValidatingAccessTokenFinished:
@@ -958,6 +958,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }
     }];
 }
+
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSParameterAssert(digipostAddress);

@@ -14,6 +14,7 @@
 // limitations under the License.
 //
 
+#import "POSFolder+Methods.h"
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
@@ -21,6 +22,7 @@
 #import "SHCAPIManager.h"
 #import "POSModelManager.h"
 #import "SHCFolderTableViewCell.h"
+#import "UILabel+Digipost.h"
 #import "POSFolder.h"
 #import "POSMailbox+Methods.h"
 #import "POSMailbox.h"
@@ -74,6 +76,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     self.folders = [NSMutableArray array];
     [super viewDidLoad];
 
+    [self.navigationItem setRightBarButtonItem:self.editButtonItem];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadProgressDidStart:)
                                                  name:kAPIManagerUploadProgressStartedNotificationName
@@ -229,6 +232,28 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     return height;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 1:
+            return YES;
+            break;
+        default:
+            break;
+    }
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     CGFloat labelHeight = 21.0;
@@ -236,16 +261,10 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     CGFloat headerHeight = [self tableView:tableView
                   heightForHeaderInSection:section];
 
-    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelOriginX,
-                                                                     headerHeight - labelHeight,
-                                                                     CGRectGetWidth(tableView.frame) - labelOriginX,
-                                                                     labelHeight)];
-    headerLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light"
-                                       size:15.0];
-    headerLabel.textColor = [UIColor colorWithRed:160.0 / 255.0
-                                            green:160.0 / 255.0
-                                             blue:160.0 / 255.0
-                                            alpha:1.0];
+    UILabel *headerLabel = [UILabel folderSectionHeaderTitleLabelWithFrame:CGRectMake(labelOriginX,
+                                                                                      headerHeight - labelHeight,
+                                                                                      CGRectGetWidth(tableView.frame) - labelOriginX,
+                                                                                      labelHeight)];
 
     NSString *title;
     if (section == 0 && self.inboxFolder) {

@@ -48,6 +48,18 @@
     return label;
 }
 
++ (UILabel *)folderSectionHeaderTitleLabelWithFrame:(CGRect)frame
+{
+    UILabel *label = [[UILabel alloc] initWithFrame:frame];
+
+    label.font = [UIFont fontWithName:@"HelveticaNeue-Light"
+                                 size:15.0];
+    label.textColor = [UIColor colorWithRed:160.0 / 255.0
+                                      green:160.0 / 255.0
+                                       blue:160.0 / 255.0
+                                      alpha:1.0];
+    return label;
+}
 + (UILabel *)popoverViewLabel
 {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
