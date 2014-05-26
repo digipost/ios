@@ -10,4 +10,5 @@
 
 @interface POSAccountViewController : UIViewController
 
+extern NSString *const kAccountViewControllerIdentifier;
 @end

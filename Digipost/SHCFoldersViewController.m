@@ -15,7 +15,6 @@
 //
 
 #import <UIAlertView+Blocks.h>
-#import <UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
@@ -33,6 +32,7 @@
 #import "SHCReceiptFoldersTableViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "POSAccountViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -63,8 +63,6 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
 
-    //    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
-
     if (self.selectedMailBoxDigipostAdress == nil) {
         POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
@@ -80,15 +78,33 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                              selector:@selector(uploadProgressDidStart:)
                                                  name:kAPIManagerUploadProgressStartedNotificationName
                                                object:nil];
-    if ([self.navigationController.viewControllers[0] isMemberOfClass:[SHCLoginViewController class]]) {
 
-        UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                               style:UIBarButtonItemStyleDone
-                                                                              target:nil
-                                                                              action:nil];
-        [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-        [self.navigationItem setHidesBackButton:YES];
+    if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
+        POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+        NSInteger index = 0;
+        // add account vc as second view controller in navigation controller
+        for (UIViewController *viewController in self.navigationController.viewControllers) {
+            [newViewControllerArray addObject:viewController];
+            if (index == 0) {
+                [newViewControllerArray addObject:accountViewController];
+            }
+            index++;
+        }
+        [self.navigationController setViewControllers:newViewControllerArray
+                                             animated:YES];
     }
+    //    NSInteger viewControllerCount = [self.navigationController.viewControllers count];
+
+    //    if ([self.navigationController.viewControllers[viewControllerCount - 1] isMemberOfClass:[SHCLoginViewController class]]) {
+
+    //    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+    //                                                                           style:UIBarButtonItemStyleDone
+    //                                                                          target:nil
+    //                                                                          action:nil];
+    //    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
+    //        [self.navigationItem setHidesBackButton:YES];
+    //    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -262,45 +278,6 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                       sender:nil];
         }
     } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
-
-        CGRect rect = [tableView rectForRowAtIndexPath:indexPath];
-
-        [UIActionSheet showFromRect:[tableView convertRect:rect
-                                                    toView:self.view]
-                             inView:self.view
-                           animated:YES
-                          withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
-                  cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-             destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
-                  otherButtonTitles:nil
-                           tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                               if (buttonIndex == 0) {
-                                   SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
-                                   SHCLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
-                                   letterViewConctroller.attachment = nil;
-                                   letterViewConctroller.receipt = nil;
-                                   [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
-
-                                   [[SHCAPIManager sharedManager] logoutWithSuccess:^{
-
-                                       [[SHCOAuthManager sharedManager] removeAllTokens];
-                                       [[POSModelManager sharedManager] deleteAllObjects];
-
-                                   } failure:^(NSError *error) {
-
-                                       [[SHCOAuthManager sharedManager] removeAllTokens];
-                                       [[POSModelManager sharedManager] deleteAllObjects];
-
-                                       [UIAlertView showWithTitle:error.errorTitle
-                                                          message:[error localizedDescription]
-                                                cancelButtonTitle:nil
-                                                otherButtonTitles:@[error.okButtonTitle]
-                                                         tapBlock:error.tapBlock];
-                                   }];
-                               }
-
-                               [tableView deselectRowAtIndexPath:indexPath animated:YES];
-                           }];
     } else {
         [self performSegueWithIdentifier:kPushDocumentsIdentifier
                                   sender:self.folders[indexPath.row]];

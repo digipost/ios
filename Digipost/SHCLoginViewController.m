@@ -83,11 +83,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 
-    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
-    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-    self.navigationItem.titleView = self.titleImageView;
-
     [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
                       forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user")
@@ -103,6 +98,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             if ([resource.mailboxes.allObjects count] == 1) {
                 [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
                                           sender:self];
+                //                [self performSegueWithIdentifier:@"accountSegue"
+                //                                          sender:self];
             } else {
                 [self performSegueWithIdentifier:@"accountSegue"
                                           sender:self];
@@ -123,6 +120,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewWillAppear:animated];
 
+    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
+    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+    self.navigationItem.titleView = self.titleImageView;
+    self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 

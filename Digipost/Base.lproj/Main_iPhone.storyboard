@@ -468,7 +468,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1351" y="120"/>
+            <point key="canvasLocation" x="1416" y="-43"/>
         </scene>
         <!--Receipts View Controller-->
         <scene sceneID="di7-tb-Lyr">
@@ -1075,12 +1075,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eon-Zr-X9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="-14"/>
+            <point key="canvasLocation" x="361" y="-43"/>
         </scene>
-        <!--Account View Controller-->
+        <!--Account View Controller - Kontoer-->
         <scene sceneID="SnP-zZ-sOg">
             <objects>
-                <viewController id="8hc-kI-yQH" customClass="POSAccountViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountViewController" id="8hc-kI-yQH" customClass="POSAccountViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hCg-TJ-MuE"/>
                         <viewControllerLayoutGuide type="bottom" id="dz9-ZL-349"/>
@@ -1119,14 +1119,31 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="vHD-b2-5cA"/>
+                    <navigationItem key="navigationItem" title="Kontoer" id="vHD-b2-5cA">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="835-WA-l70">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8XQ-uL-n1w">
+                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Logg ut">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logoutButtonTapped:" destination="8hc-kI-yQH" eventType="touchUpInside" id="4yB-6o-3Ng"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="logoutBarButtonItem" destination="835-WA-l70" id="xoD-Nc-4YH"/>
+                        <outlet property="logoutButton" destination="8XQ-uL-n1w" id="LhA-8q-t57"/>
                         <outlet property="tableView" destination="tCK-qk-wlS" id="i6v-Yf-ljf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-e3-7mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="-137"/>
+            <point key="canvasLocation" x="872" y="-43"/>
         </scene>
     </scenes>
     <resources>
@@ -1146,8 +1163,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="nJS-Zx-WgQ"/>
-        <segue reference="geX-1f-yyf"/>
+        <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
