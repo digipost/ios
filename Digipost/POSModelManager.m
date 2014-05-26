@@ -22,6 +22,7 @@
 #import "POSAttachment.h"
 #import "POSInvoice.h"
 #import "POSReceipt.h"
+#import "POSMailbox+Methods.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -223,6 +224,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
     [POSReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
     [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
+    [POSMailbox deleteAllMailboxesInManagedObjectContext:self.managedObjectContext];
 
     // Save changes
     NSError *error = nil;

@@ -17,6 +17,7 @@
 #import "POSRootResource.h"
 #import "POSMailbox.h"
 #import "POSModelManager.h"
+#import "POSMailbox+Methods.h"
 
 // Core Data model entity names
 NSString *const kRootResourceEntityName = @"RootResource";

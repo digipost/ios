@@ -172,6 +172,9 @@
 		EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
 		EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
+		EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
+		EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
@@ -327,6 +330,8 @@
 		EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewCell.m; sourceTree = "<group>"; };
 		EC68C07618AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewMobelObject.h; sourceTree = "<group>"; };
 		EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewMobelObject.m; sourceTree = "<group>"; };
+		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
+		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -406,6 +411,8 @@
 				835C74E418867603006C6F4F /* POSInvoice.m */,
 				83D75F661858E5790013F8C9 /* POSRootResource.h */,
 				83D75F671858E5790013F8C9 /* POSRootResource.m */,
+				EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */,
+				EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */,
 				83D75F611858E5790013F8C9 /* POSMailbox.h */,
 				83D75F621858E5790013F8C9 /* POSMailbox.m */,
 				83D75F5C1858E5790013F8C9 /* POSAttachment.h */,
@@ -913,6 +920,7 @@
 				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7EA1875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
+				EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
@@ -976,6 +984,7 @@
 				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7E91875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
+				EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
@@ -1039,6 +1048,7 @@
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
+				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				EC68C07818AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,

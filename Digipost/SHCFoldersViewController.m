@@ -23,6 +23,7 @@
 #import "POSModelManager.h"
 #import "SHCFolderTableViewCell.h"
 #import "POSFolder.h"
+#import "POSMailbox+Methods.h"
 #import "POSMailbox.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
@@ -64,6 +65,12 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
     //    self.predicate = [NSPredicate predicateWithFormat:@"%K == YES", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(mailbox)), NSStringFromSelector(@selector(owner))]];
 
+    if (self.selectedMailBoxDigipostAdress == nil) {
+        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        self.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+        NSAssert(self.selectedMailBoxDigipostAdress != nil, @"No mailbox stored");
+    }
+
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
@@ -74,8 +81,11 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                                  name:kAPIManagerUploadProgressStartedNotificationName
                                                object:nil];
     if ([self.navigationController.viewControllers[0] isMemberOfClass:[SHCLoginViewController class]]) {
-        
-        UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+
+        UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+                                                                               style:UIBarButtonItemStyleDone
+                                                                              target:nil
+                                                                              action:nil];
         [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
         [self.navigationItem setHidesBackButton:YES];
     }

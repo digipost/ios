@@ -35,9 +35,6 @@ extern NSString *const kMailboxEntityName;
 @property (strong, nonatomic) NSSet *folders;
 @property (strong, nonatomic) POSRootResource *rootResource;
 
-+ (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-+ (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
-
 @end
 
 @interface POSMailbox (CoreDataGeneratedAccessors)

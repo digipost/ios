@@ -91,7 +91,7 @@
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
                                                                     managedObjectContext:managedObjectContext
                                                                       sectionNameKeyPath:nil
-                                                                               cacheName:@"test"];
+                                                                               cacheName:nil];
     NSError *error;
     [_fetchedResultsController performFetch:&error];
 
