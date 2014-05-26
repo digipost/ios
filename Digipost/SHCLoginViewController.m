@@ -14,8 +14,10 @@
 // limitations under the License.
 //
 
+#import "SHCRootResource.h"
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
+#import "SHCModelManager.h"
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
@@ -95,12 +97,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([SHCOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            //            SHCFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-            //            [self.navigationController pushViewController:foldersViewController animated:NO];
             // @ TODO WILL BUG fIRST TIME
-            //            [foldersViewController performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue sender:foldersViewController];
-            [self performSegueWithIdentifier:@"accountSegue"
-                                      sender:self];
+            SHCRootResource *resource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+
+            if ([resource.mailboxes.allObjects count] == 1) {
+                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                                          sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"accountSegue"
+                                          sender:self];
+            }
         }
     }
 
@@ -152,8 +158,18 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self.navigationController dismissViewControllerAnimated:YES
                                                       completion:nil];
     } else {
-        [self performSegueWithIdentifier:@"accountSegue"
-                                  sender:nil];
+        SHCRootResource *resource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+
+        if ([resource.mailboxes.allObjects count] == 1) {
+            [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                                      sender:self];
+        } else {
+            [self performSegueWithIdentifier:@"accountSegue"
+                                      sender:self];
+        }
+
+        //        [self performSegueWithIdentifier:@"accountSegue"
+        //                                  sender:nil];
     }
 }
 
