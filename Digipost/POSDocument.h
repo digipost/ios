@@ -23,10 +23,10 @@ extern NSString *const kDocumentEntityName;
 // API keys
 extern NSString *const kDocumentDocumentAPIKey;
 
-@class SHCAttachment;
-@class SHCFolder;
+@class POSAttachment;
+@class POSFolder;
 
-@interface SHCDocument : NSManagedObject
+@interface POSDocument : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSDate *createdAt;
@@ -38,7 +38,7 @@ extern NSString *const kDocumentDocumentAPIKey;
 
 // Relationships
 @property (strong, nonatomic) NSOrderedSet *attachments;
-@property (strong, nonatomic) SHCFolder *folder;
+@property (strong, nonatomic) POSFolder *folder;
 
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
@@ -46,14 +46,14 @@ extern NSString *const kDocumentDocumentAPIKey;
 + (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForDocumentDate:(NSDate *)date;
-- (SHCAttachment *)mainDocumentAttachment;
+- (POSAttachment *)mainDocumentAttachment;
 - (void)updateWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 
-@interface SHCDocument (CoreDataGeneratedAccessors)
+@interface POSDocument (CoreDataGeneratedAccessors)
 
-- (void)addAttachmentsObject:(SHCAttachment *)value;
-- (void)removeAttachmentsObject:(SHCAttachment *)value;
+- (void)addAttachmentsObject:(POSAttachment *)value;
+- (void)removeAttachmentsObject:(POSAttachment *)value;
 
 @end

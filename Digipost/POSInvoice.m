@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "SHCInvoice.h"
-#import "SHCAttachment.h"
-#import "SHCModelManager.h"
+#import "POSInvoice.h"
+#import "POSAttachment.h"
+#import "POSModelManager.h"
 
 // Core Data model entity names
 NSString *const kInvoiceEntityName = @"Invoice";
@@ -28,7 +28,7 @@ NSString *const kInvoicePaymentAPIKey = @"payment";
 NSString *const kInvoicePaymentLinkAPIKey = @"link";
 NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 
-@implementation SHCInvoice
+@implementation POSInvoice
 
 // Attributes
 @dynamic accountNumber;
@@ -47,8 +47,8 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 
 + (instancetype)invoiceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] invoiceEntity];
-    SHCInvoice *invoice = [[SHCInvoice alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] invoiceEntity];
+    POSInvoice *invoice = [[POSInvoice alloc] initWithEntity:entity
                               insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];

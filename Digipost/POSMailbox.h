@@ -20,11 +20,11 @@
 // Core Data model entity names
 extern NSString *const kMailboxEntityName;
 
-@class SHCFolder;
-@class SHCReceipt;
-@class SHCRootResource;
+@class POSFolder;
+@class POSReceipt;
+@class POSRootResource;
 
-@interface SHCMailbox : NSManagedObject
+@interface POSMailbox : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSString *digipostAddress;
@@ -33,22 +33,22 @@ extern NSString *const kMailboxEntityName;
 
 // Relationships
 @property (strong, nonatomic) NSSet *folders;
-@property (strong, nonatomic) SHCRootResource *rootResource;
+@property (strong, nonatomic) POSRootResource *rootResource;
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
 
-@interface SHCMailbox (CoreDataGeneratedAccessors)
+@interface POSMailbox (CoreDataGeneratedAccessors)
 
-- (void)addFoldersObject:(SHCFolder *)value;
-- (void)removeFoldersObject:(SHCFolder *)value;
+- (void)addFoldersObject:(POSFolder *)value;
+- (void)removeFoldersObject:(POSFolder *)value;
 - (void)addFolders:(NSSet *)values;
 - (void)removeFolders:(NSSet *)values;
 
-- (void)addReceiptsObject:(SHCReceipt *)value;
-- (void)removeReceiptsObject:(SHCReceipt *)value;
+- (void)addReceiptsObject:(POSReceipt *)value;
+- (void)removeReceiptsObject:(POSReceipt *)value;
 - (void)addReceipts:(NSSet *)values;
 - (void)removeReceipts:(NSSet *)values;
 

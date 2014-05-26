@@ -16,14 +16,14 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SHCNotice.h"
+#import "POSNotice.h"
 
 // Core Data model entity names
 extern NSString *const kRootResourceEntityName;
 
-@class SHCMailbox;
+@class POSMailbox;
 
-@interface SHCRootResource : NSManagedObject
+@interface POSRootResource : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSNumber *authenticationLevel;
@@ -45,7 +45,7 @@ extern NSString *const kRootResourceEntityName;
 /**
  *  Attribute not stored in core data, should only be shown when once.
  */
-@property (nonatomic,strong) SHCNotice *notice;
+@property (nonatomic,strong) POSNotice *notice;
 
 + (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
@@ -54,10 +54,10 @@ extern NSString *const kRootResourceEntityName;
 @end
 
 
-@interface SHCRootResource (CoreDataGeneratedAccessors)
+@interface POSRootResource (CoreDataGeneratedAccessors)
 
-- (void)addMailboxesObject:(SHCMailbox *)value;
-- (void)removeMailboxesObject:(SHCMailbox *)value;
+- (void)addMailboxesObject:(POSMailbox *)value;
+- (void)removeMailboxesObject:(POSMailbox *)value;
 - (void)addMailboxes:(NSSet *)values;
 - (void)removeMailboxes:(NSSet *)values;
 

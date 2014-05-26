@@ -15,7 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SHCMailbox.h"
+#import "POSMailbox.h"
 #import "SHCBaseTableViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)

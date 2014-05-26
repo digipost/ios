@@ -1070,11 +1070,12 @@
                         <outlet property="privacyButton" destination="qBu-VV-6Ae" id="cDs-8j-p7g"/>
                         <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
                         <segue destination="8hc-kI-yQH" kind="push" identifier="accountSegue" id="8sB-AL-W3R"/>
+                        <segue destination="J0H-vT-0Kh" kind="push" identifier="goToInboxFolderAtStartupSegue" id="eDA-DZ-Lcc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eon-Zr-X9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="339" y="24"/>
+            <point key="canvasLocation" x="360" y="-14"/>
         </scene>
         <!--Account View Controller-->
         <scene sceneID="SnP-zZ-sOg">
@@ -1125,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-e3-7mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="732" y="-18"/>
+            <point key="canvasLocation" x="1009" y="-137"/>
         </scene>
     </scenes>
     <resources>
@@ -1145,6 +1146,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="nJS-Zx-WgQ"/>
         <segue reference="geX-1f-yyf"/>
     </inferredMetricsTieBreakers>

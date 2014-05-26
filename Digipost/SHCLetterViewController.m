@@ -18,10 +18,10 @@
 #import <UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCLetterViewController.h"
-#import "SHCAttachment.h"
-#import "SHCDocument.h"
-#import "SHCFolder.h"
-#import "SHCFileManager.h"
+#import "POSAttachment.h"
+#import "POSDocument.h"
+#import "POSFolder.h"
+#import "POSFileManager.h"
 #import "SHCAPIManager.h"
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
@@ -29,11 +29,11 @@
 #import "UIViewController+NeedsReload.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCReceiptFoldersTableViewController.h"
-#import "SHCInvoice.h"
-#import "SHCMailbox.h"
-#import "SHCRootResource.h"
-#import "SHCModelManager.h"
-#import "SHCReceipt.h"
+#import "POSInvoice.h"
+#import "POSMailbox.h"
+#import "POSRootResource.h"
+#import "POSModelManager.h"
+#import "POSReceipt.h"
 #import "SHCFoldersViewController.h"
 #import "SHCAttachmentsViewController.h"
 #import "SHCDocumentsViewController.h"
@@ -302,12 +302,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 #pragma mark - Properties
 
-- (SHCAttachment *)attachment
+- (POSAttachment *)attachment
 {
     return _attachment;
 }
 
-- (void)setAttachment:(SHCAttachment *)attachment
+- (void)setAttachment:(POSAttachment *)attachment
 {
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
@@ -326,7 +326,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (void)setAttachmentDoNotDismissPopover:(SHCAttachment *)attachment
+- (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment
 {
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
@@ -342,12 +342,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (SHCReceipt *)receipt
+- (POSReceipt *)receipt
 {
     return _receipt;
 }
 
-- (void)setReceipt:(SHCReceipt *)receipt
+- (void)setReceipt:(POSReceipt *)receipt
 {
     BOOL new = receipt != _receipt;
 
@@ -364,7 +364,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (void)setReceiptDoNotDismissPopover:(SHCReceipt *)receipt
+- (void)setReceiptDoNotDismissPopover:(POSReceipt *)receipt
 {
     BOOL new = receipt != _receipt;
 
@@ -462,7 +462,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContent
 {
 
-    SHCBaseEncryptedModel *baseEncryptionModel = nil;
+    POSBaseEncryptedModel *baseEncryptionModel = nil;
 
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
@@ -475,7 +475,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
-        if (![[SHCFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
+        if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
                                                                              error:&error]) {
             [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
             return;
@@ -491,13 +491,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (void)loadContentFromWebWithBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel
+- (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
 {
     NSParameterAssert(baseEncryptionModel);
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
 
-    if ([baseEncryptionModel isKindOfClass:[SHCAttachment class]]) {
+    if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.3
                               delay:0.6
                             options:UIViewAnimationOptionCurveEaseInOut
@@ -526,15 +526,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         success:^{
         
         // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-        SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+        POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
         if (self.attachment) {
-            changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         } else {
-            changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         }
         
         NSError *error = nil;
-        if (![[SHCFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+        if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
             [UIAlertView showWithTitle:error.errorTitle
                                message:[error localizedDescription]
                      cancelButtonTitle:nil
@@ -570,11 +570,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         
         if (unauthorized) {
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-            SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+            POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
             if (self.attachment) {
-                changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             } else {
-                changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             }
             
             // We were unauthorized, due to the session being invalid.
@@ -596,7 +596,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)unloadContent
 {
     [[SHCAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
-    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+    [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (BOOL)attachmentHasValidFileType
@@ -778,7 +778,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if (!self.openInController) {
 
-        SHCBaseEncryptedModel *baseEncryptionModel = nil;
+        POSBaseEncryptedModel *baseEncryptionModel = nil;
 
         if (self.attachment) {
             baseEncryptionModel = self.attachment;
@@ -796,7 +796,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         } else if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
             NSError *error = nil;
-            if (![[SHCFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
+            if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
                                                                                  error:&error]) {
                 [UIAlertView showWithTitle:error.errorTitle
                                    message:[error localizedDescription]
@@ -904,7 +904,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
                                                                                         description:[dateFormatter stringFromDate:self.receipt.timeOfPurchase]]];
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp")
-                                                                                        description:[NSString stringWithFormat:@"%@", [SHCReceipt stringForReceiptAmount:self.receipt.amount]]]];
+                                                                                        description:[NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:self.receipt.amount]]]];
 
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort")
                                                                                         description:[NSString stringWithFormat:@"%@", self.receipt.card]]];
@@ -912,7 +912,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         if (self.attachment.invoice) {
 
-            NSString *invoiceAmount = [SHCInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
+            NSString *invoiceAmount = [POSInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
             [mutableObjectsInMetadata addObject:[SHCLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp")
                                                                                         description:invoiceAmount]];
 
@@ -1028,8 +1028,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)updateAttachmentWithAttachmentUri:(NSString *)uri
 {
-    self.attachment = [SHCAttachment existingAttachmentWithUri:uri
-                                        inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+    self.attachment = [POSAttachment existingAttachmentWithUri:uri
+                                        inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 }
 
 - (void)updateToolbarItemsWithInvoice:(BOOL)invoice

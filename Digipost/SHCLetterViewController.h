@@ -23,21 +23,21 @@ extern NSString *const kPushReceiptIdentifier;
 
 @class SHCDocumentsViewController;
 @class SHCReceiptFoldersTableViewController;
-@class SHCAttachment;
-@class SHCReceipt;
+@class POSAttachment;
+@class POSReceipt;
 
 @interface SHCLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate>
 
 @property (weak, nonatomic) SHCDocumentsViewController *documentsViewController;
 @property (weak, nonatomic) SHCReceiptFoldersTableViewController *receiptsViewController;
-@property (strong, nonatomic) SHCAttachment *attachment;
-@property (strong, nonatomic) SHCReceipt *receipt;
+@property (strong, nonatomic) POSAttachment *attachment;
+@property (strong, nonatomic) POSReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 - (void)reloadFromMetadata;
 
 // reloads current open document without dimsissing popover on ipad portrait
-- (void)setAttachmentDoNotDismissPopover:(SHCAttachment *)attachment;
-- (void)setReceiptDoNotDismissPopover:(SHCReceipt *)receipt;
+- (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment;
+- (void)setReceiptDoNotDismissPopover:(POSReceipt *)receipt;
 @end

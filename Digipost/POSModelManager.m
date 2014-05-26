@@ -14,14 +14,14 @@
 // limitations under the License.
 //
 
-#import "SHCModelManager.h"
-#import "SHCRootResource.h"
-#import "SHCMailbox.h"
-#import "SHCDocument.h"
-#import "SHCFolder+Methods.h"
-#import "SHCAttachment.h"
-#import "SHCInvoice.h"
-#import "SHCReceipt.h"
+#import "POSModelManager.h"
+#import "POSRootResource.h"
+#import "POSMailbox.h"
+#import "POSDocument.h"
+#import "POSFolder+Methods.h"
+#import "POSAttachment.h"
+#import "POSInvoice.h"
+#import "POSReceipt.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -30,14 +30,14 @@ NSString *const kSQLiteDatabaseExtension = @"sqlite";
 NSString *const kAccountAPIKey = @"account";
 NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
-@interface SHCModelManager ()
+@interface POSModelManager ()
 
 @property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end
 
-@implementation SHCModelManager
+@implementation POSModelManager
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
@@ -47,11 +47,11 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 + (instancetype)sharedManager
 {
-    static SHCModelManager *sharedInstance;
+    static POSModelManager *sharedInstance;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[SHCModelManager alloc] init];
+        sharedInstance = [[POSModelManager alloc] init];
     });
 
     return sharedInstance;
@@ -60,18 +60,18 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes
 {
     // First, delete the root resource and its cascaded mailboxes and folders
-    [SHCRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
+    [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
 
     // Then, create a new root resource with related mailboxes and folders
-    [SHCRootResource rootResourceWithAttributes:attributes
+    [POSRootResource rootResourceWithAttributes:attributes
                          inManagedObjectContext:self.managedObjectContext];
     //
     //    // Now we need to reconnect "old" documents so they're available to the user
     //    // before updateDocumentsWithAttribtues: has been called and finished
-    [SHCDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
+    [POSDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
     //
     //    // The same goes for the receipts
-    [SHCReceipt reconnectDanglingReceiptsInManagedObjectContext:self.managedObjectContext];
+    [POSReceipt reconnectDanglingReceiptsInManagedObjectContext:self.managedObjectContext];
     //
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -81,7 +81,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes
 {
-    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
+    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
 
     NSDictionary *accountDict = attributes[kAccountAPIKey];
     if ([accountDict isKindOfClass:[NSDictionary class]]) {
@@ -94,7 +94,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (void)updateCardAttributes:(NSDictionary *)attributes
 {
-    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
+    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
 
     NSNumber *numberOfCards = attributes[NSStringFromSelector(@selector(numberOfCards))];
     rootResource.numberOfCards = [numberOfCards isKindOfClass:[NSNumber class]] ? numberOfCards : @0;
@@ -112,12 +112,12 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     NSParameterAssert(folderName);
 
     // First, find the folder object
-    SHCFolder *folder = [SHCFolder existingFolderWithName:folderName
+    POSFolder *folder = [POSFolder existingFolderWithName:folderName
                                    mailboxDigipostAddress:digipostAddress
                                    inManagedObjectContext:self.managedObjectContext];
 
     // Get a list of all the old documents
-    NSArray *oldDocuments = [SHCDocument allDocumentsInFolderWithName:folderName
+    NSArray *oldDocuments = [POSDocument allDocumentsInFolderWithName:folderName
                                                mailboxDigipostAddress:digipostAddress
                                                inManagedObjectContext:self.managedObjectContext];
 
@@ -126,7 +126,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     if ([documents isKindOfClass:[NSArray class]]) {
         for (NSDictionary *documentDict in documents) {
             if ([documentDict isKindOfClass:[NSDictionary class]]) {
-                SHCDocument *document = [SHCDocument documentWithAttributes:documentDict
+                POSDocument *document = [POSDocument documentWithAttributes:documentDict
                                                      inManagedObjectContext:self.managedObjectContext];
                 document.folder = folder;
                 document.folderUri = folder.uri;
@@ -137,7 +137,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 
     // Delete the old ones
-    for (SHCDocument *oldDocument in oldDocuments) {
+    for (POSDocument *oldDocument in oldDocuments) {
         [self.managedObjectContext deleteObject:oldDocument];
     }
 
@@ -148,13 +148,13 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes
+- (void)updateDocument:(POSDocument *)document withAttributes:(NSDictionary *)attributes
 {
     [document updateWithAttributes:attributes
             inManagedObjectContext:self.managedObjectContext];
 
-    document.folder = [SHCFolder pos_existingFolderWithUri:document.folderUri
-                                inManagedObjectContext:self.managedObjectContext];
+    document.folder = [POSFolder pos_existingFolderWithUri:document.folderUri
+                                    inManagedObjectContext:self.managedObjectContext];
     // Save changes#
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -162,7 +162,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)deleteDocument:(SHCDocument *)document
+- (void)deleteDocument:(POSDocument *)document
 {
     [self.managedObjectContext deleteObject:document];
 
@@ -176,18 +176,18 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
 {
     // First, get the mailbox object
-    SHCMailbox *mailbox = [SHCMailbox existingMailboxWithDigipostAddress:digipostAddress
+    POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:digipostAddress
                                                   inManagedObjectContext:self.managedObjectContext];
 
     // Get a list of all old receipts
-    NSArray *oldReceipts = [SHCReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress
+    NSArray *oldReceipts = [POSReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress
                                                           inManagedObjectContext:self.managedObjectContext];
 
     NSArray *receipts = attributes[kReceiptReceiptAPIKey];
     if ([receipts isKindOfClass:[NSArray class]]) {
         for (NSDictionary *receiptDict in receipts) {
             if ([receiptDict isKindOfClass:[NSDictionary class]]) {
-                SHCReceipt *receipt = [SHCReceipt receiptWithAttributes:receiptDict
+                POSReceipt *receipt = [POSReceipt receiptWithAttributes:receiptDict
                                                  inManagedObjectContext:self.managedObjectContext];
                 receipt.mailbox = mailbox;
                 receipt.mailboxDigipostAddress = mailbox.digipostAddress;
@@ -196,7 +196,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 
     // Delete the old ones
-    for (SHCReceipt *oldReceipt in oldReceipts) {
+    for (POSReceipt *oldReceipt in oldReceipts) {
         [self.managedObjectContext deleteObject:oldReceipt];
     }
 
@@ -207,7 +207,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)deleteReceipt:(SHCReceipt *)receipt
+- (void)deleteReceipt:(POSReceipt *)receipt
 {
     [self.managedObjectContext deleteObject:receipt];
 
@@ -220,9 +220,9 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (void)deleteAllObjects
 {
-    [SHCRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
-    [SHCReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
-    [SHCDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
+    [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
+    [POSReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
+    [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
 
     // Save changes
     NSError *error = nil;
@@ -288,7 +288,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
         [self logExecuteFetchRequestWithError:error];
     }
 
-    SHCRootResource *rootResource = [results firstObject];
+    POSRootResource *rootResource = [results firstObject];
 
     return rootResource.createdAt;
 }

@@ -18,17 +18,17 @@
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCAPIManager.h"
 #import "SHCOAuthManager.h"
-#import "SHCModelManager.h"
-#import "SHCFolder.h"
-#import "SHCDocument.h"
+#import "POSModelManager.h"
+#import "POSFolder.h"
+#import "POSDocument.h"
 #import "SHCLoginViewController.h"
 #import "NSError+ExtraInfo.h"
-#import "SHCAttachment.h"
-#import "SHCFileManager.h"
+#import "POSAttachment.h"
+#import "POSFileManager.h"
 #import "NSString+SHA1String.h"
-#import "SHCRootResource.h"
-#import "SHCInvoice.h"
-#import "SHCReceipt.h"
+#import "POSRootResource.h"
+#import "POSInvoice.h"
+#import "POSReceipt.h"
 
 typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateIdle = 0,
@@ -95,8 +95,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @property (copy, nonatomic) NSString *lastMailboxDigipostAddress;
 @property (copy, nonatomic) NSString *lastFolderUri;
 @property (strong, nonatomic) NSError *lastError;
-@property (strong, nonatomic) SHCDocument *lastDocument;
-@property (strong, nonatomic) SHCReceipt *lastReceipt;
+@property (strong, nonatomic) POSDocument *lastDocument;
+@property (strong, nonatomic) POSReceipt *lastReceipt;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (strong, nonatomic) AFHTTPSessionManager *fileTransferSessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
@@ -335,7 +335,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                             [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
                             
                             [[SHCOAuthManager sharedManager] removeAllTokens];
-                            [[SHCModelManager sharedManager] deleteAllObjects];
+                            [[POSModelManager sharedManager] deleteAllObjects];
                     };
 
                     if (self.lastFailureBlock) {
@@ -358,7 +358,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingRootResource) {
-                        [[SHCModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+                        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
                     }
 
                     if (self.lastSuccessBlock) {
@@ -401,7 +401,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingDocuments) {
-                        [[SHCModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName
+                        [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.lastFolderName
                                                                   mailboxDigipostAddress:self.lastMailboxDigipostAddress
                                                                               attributes:responseDict];
                     }
@@ -475,8 +475,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             case SHCAPIManagerStateMovingDocumentFinished: {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-#warning broken until fixed
-                    [[SHCModelManager sharedManager] updateDocument:self.lastDocument
+                    [[POSModelManager sharedManager] updateDocument:self.lastDocument
                                                      withAttributes:responseDict];
 
                     if (self.lastSuccessBlock) {
@@ -509,7 +508,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
             }
             case SHCAPIManagerStateDeletingDocumentFinished: {
-                [[SHCModelManager sharedManager] deleteDocument:self.lastDocument];
+                [[POSModelManager sharedManager] deleteDocument:self.lastDocument];
 
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
@@ -540,7 +539,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
             }
             case SHCAPIManagerStateDeletingReceiptFinished: {
-                [[SHCModelManager sharedManager] deleteReceipt:self.lastReceipt];
+                [[POSModelManager sharedManager] deleteReceipt:self.lastReceipt];
 
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
@@ -577,7 +576,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     // If the update has been canceled after the network request finished,
                     // but before we have updated the data model, we need to cancel that as well.
                     if (self.updatingBankAccount) {
-                        [[SHCModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
+                        [[POSModelManager sharedManager] updateBankAccountWithAttributes:responseDict];
                     }
 
                     if (self.lastSuccessBlock) {
@@ -807,8 +806,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         // If the update has been canceled after the network request finished,
         // but before we have updated the data model, we need to cancel that as well.
         if (self.updatingReceipts) {
-            [[SHCModelManager sharedManager] updateCardAttributes:responseDict];
-            [[SHCModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress
+            [[POSModelManager sharedManager] updateCardAttributes:responseDict];
+            [[POSModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.lastMailboxDigipostAddress
                                                                              attributes:responseDict];
         }
 
@@ -936,7 +935,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 }
 
-- (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)sendInvoiceToBank:(POSInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateSendingInvoiceToBank;
 
@@ -1003,7 +1002,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 }
 
-- (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
 
@@ -1019,16 +1018,16 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             progress.completedUnitCount = totalBytesWritten;
         }];
         
-        BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[SHCAttachment class]];
+        BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[POSAttachment class]];
         
         NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
             
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-            SHCBaseEncryptedModel *changedBaseEncryptionModel = nil;
+            POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
             if (baseEncryptionModelIsAttachment) {
-                changedBaseEncryptionModel = [SHCAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             } else {
-                changedBaseEncryptionModel = [SHCReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             }
             
             NSString *filePath = [changedBaseEncryptionModel decryptedFilePath];
@@ -1093,7 +1092,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 }
 
-- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)moveDocument:(POSDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateMovingDocument;
 
@@ -1109,7 +1108,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [SHCOAuthManager sharedManager].accessToken];
         [JSONRequestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
         
-        NSString *subject = [(SHCAttachment *)[document.attachments firstObject] subject];
+        NSString *subject = [(POSAttachment *)[document.attachments firstObject] subject];
         
         NSDictionary *parameters = @{NSStringFromSelector(@selector(subject)): subject,
                                      NSStringFromSelector(@selector(location)): location};
@@ -1139,7 +1138,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
-- (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)deleteDocument:(POSDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSParameterAssert(document);
     self.state = SHCAPIManagerStateDeletingDocument;
@@ -1172,7 +1171,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self validateTokensWithSuccess:^{
         
-        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         
         // If we don't have a root resource yet, there's nothing to log out of - let's just return successfully
         if (!rootResource) {
@@ -1245,7 +1244,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 }
 
-- (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)deleteReceipt:(POSReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateDeletingReceipt;
 
@@ -1315,7 +1314,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 
     // The file is good - next, check if we have our upload documents link
-    SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     if (![rootResource.uploadDocumentUri length] > 0) {
         NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
                                              code:SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource
@@ -1335,7 +1334,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     [self removeTemporaryUploadFiles];
 
     // Move the file to our special uploads folder
-    NSString *uploadsFolderPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
+    NSString *uploadsFolderPath = [[POSFileManager sharedFileManager] uploadsFolderPath];
 
     NSString *fileName = [fileURL lastPathComponent];
     NSString *filePath = [uploadsFolderPath stringByAppendingPathComponent:fileName];
@@ -1439,18 +1438,18 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)removeTemporaryUploadFiles
 {
-    NSString *uploadsPath = [[SHCFileManager sharedFileManager] uploadsFolderPath];
+    NSString *uploadsPath = [[POSFileManager sharedFileManager] uploadsFolderPath];
 
-    if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:uploadsPath]) {
+    if (![[POSFileManager sharedFileManager] removeAllFilesInFolder:uploadsPath]) {
         return;
     }
 }
 
 - (void)removeTemporaryInboxFiles
 {
-    NSString *inboxPath = [[SHCFileManager sharedFileManager] inboxFolderPath];
+    NSString *inboxPath = [[POSFileManager sharedFileManager] inboxFolderPath];
 
-    if (![[SHCFileManager sharedFileManager] removeAllFilesInFolder:inboxPath]) {
+    if (![[POSFileManager sharedFileManager] removeAllFilesInFolder:inboxPath]) {
         return;
     }
 }

@@ -15,12 +15,12 @@
 //
 
 #import "UIViewController+ValidateOpening.h"
-#import "SHCAttachment.h"
+#import "POSAttachment.h"
 #import "NSError+ExtraInfo.h"
 
 @implementation UIViewController (ValidateOpening)
 
-- (void)validateOpeningAttachment:(SHCAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)validateOpeningAttachment:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     if (![attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         if (failure) {

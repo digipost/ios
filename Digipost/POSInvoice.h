@@ -20,9 +20,9 @@
 // Core Data model entity names
 extern NSString *const kInvoiceEntityName;
 
-@class SHCAttachment;
+@class POSAttachment;
 
-@interface SHCInvoice : NSManagedObject
+@interface POSInvoice : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSString *accountNumber;
@@ -35,7 +35,7 @@ extern NSString *const kInvoiceEntityName;
 @property (strong, nonatomic) NSString *bankHomepage;
 
 // Relationships
-@property (strong, nonatomic) SHCAttachment *attachment;
+@property (strong, nonatomic) POSAttachment *attachment;
 
 + (instancetype)invoiceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForInvoiceAmount:(NSNumber *)amount;

@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "SHCRootResource.h"
-#import "SHCMailbox.h"
-#import "SHCModelManager.h"
+#import "POSRootResource.h"
+#import "POSMailbox.h"
+#import "POSModelManager.h"
 
 // Core Data model entity names
 NSString *const kRootResourceEntityName = @"RootResource";
@@ -32,7 +32,7 @@ NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = 
 NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"upload_document";
 NSString *const kRootResourceNoticeAPIKey = @"notice";
 
-@implementation SHCRootResource
+@implementation POSRootResource
 
 // Attributes
 @dynamic authenticationLevel;
@@ -60,14 +60,14 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 + (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] rootResourceEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] rootResourceEntity];
     fetchRequest.fetchLimit = 1;
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];
@@ -75,8 +75,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] rootResourceEntity];
-    SHCRootResource *rootResource = [[SHCRootResource alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] rootResourceEntity];
+    POSRootResource *rootResource = [[POSRootResource alloc] initWithEntity:entity
                                              insertIntoManagedObjectContext:managedObjectContext];
 
     NSNumber *authenticationLevel = attributes[kRootResourceAuthenticationLevelAPIKey];
@@ -138,7 +138,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
     if ([mailboxesArray isKindOfClass:[NSArray class]]) {
         for (NSDictionary *mailboxDict in mailboxesArray) {
             if ([mailboxDict isKindOfClass:[NSDictionary class]]) {
-                SHCMailbox *mailbox = [SHCMailbox mailboxWithAttributes:mailboxDict
+                POSMailbox *mailbox = [POSMailbox mailboxWithAttributes:mailboxDict
                                                  inManagedObjectContext:managedObjectContext];
                 [rootResource addMailboxesObject:mailbox];
                 mailbox.rootResource = rootResource;
@@ -166,10 +166,10 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
-    for (SHCRootResource *rootResource in results) {
+    for (POSRootResource *rootResource in results) {
         [managedObjectContext deleteObject:rootResource];
     }
 }

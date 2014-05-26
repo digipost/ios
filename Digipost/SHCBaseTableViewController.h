@@ -17,7 +17,7 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@class SHCRootResource;
+@class POSRootResource;
 
 @interface SHCBaseTableViewController : UITableViewController
 
@@ -26,7 +26,7 @@
 @property (strong, nonatomic) NSArray *sortDescriptors;
 @property (strong, nonatomic) NSPredicate *predicate;
 @property (copy, nonatomic) NSString *screenName;
-@property (strong, nonatomic) SHCRootResource *rootResource;
+@property (strong, nonatomic) POSRootResource *rootResource;
 
 // Override these methods in subclass
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *) userDidInititateRequest;

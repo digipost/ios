@@ -18,21 +18,21 @@
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import <UIActionSheet+Blocks.h>
 #import "SHCDocumentsViewController.h"
-#import "SHCModelManager.h"
-#import "SHCDocument.h"
+#import "POSModelManager.h"
+#import "POSDocument.h"
 #import "SHCDocumentTableViewCell.h"
-#import "SHCAttachment.h"
+#import "POSAttachment.h"
 #import "SHCAPIManager.h"
-#import "SHCMailbox.h"
-#import "SHCRootResource.h"
-#import "SHCFolder.h"
-#import "SHCReceipt.h"
+#import "POSMailbox.h"
+#import "POSRootResource.h"
+#import "POSFolder.h"
+#import "POSReceipt.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "UIViewController+ValidateOpening.h"
-#import "SHCInvoice.h"
+#import "POSInvoice.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "SHCUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
@@ -75,7 +75,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
 
-    self.baseEntity = [[SHCModelManager sharedManager] documentEntity];
+    self.baseEntity = [[POSModelManager sharedManager] documentEntity];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
@@ -120,9 +120,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     [super viewDidAppear:animated];
     if (self.folderUri == nil) {
-        SHCFolder *folder = [SHCFolder existingFolderWithName:self.folderName
+        POSFolder *folder = [POSFolder existingFolderWithName:self.folderName
                                        mailboxDigipostAddress:self.mailboxDigipostAddress
-                                       inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                                       inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
         [self updateNavbar];
@@ -154,13 +154,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushAttachmentsIdentifier]) {
-        SHCDocument *document = (SHCDocument *)sender;
+        POSDocument *document = (POSDocument *)sender;
         self.selectedDocumentUpdateUri = document.updateUri;
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
         attachmentsViewController.attachments = document.attachments;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
-        SHCAttachment *attachment = (SHCAttachment *)sender;
+        POSAttachment *attachment = (POSAttachment *)sender;
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
@@ -205,7 +205,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             SHCUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
                                                                            forIndexPath:indexPath];
             cell.progressView.progress = [SHCAPIManager sharedManager].uploadProgress.fractionCompleted;
-            cell.dateLabel.text = [SHCDocument stringForDocumentDate:[NSDate date]];
+            cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
             cell.fileNameLabel.text = [[SHCAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
 
             return cell;
@@ -216,12 +216,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                        inSection:indexPath.section];
     }
 
-    SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     SHCDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier
                                                                      forIndexPath:indexPath];
 
-    SHCAttachment *attachment = [document mainDocumentAttachment];
+    POSAttachment *attachment = [document mainDocumentAttachment];
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         cell.unreadImageView.hidden = [attachment.read boolValue];
@@ -232,7 +232,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
     cell.senderLabel.text = attachment.document.creatorName;
-    cell.dateLabel.text = [SHCDocument stringForDocumentDate:attachment.document.createdAt];
+    cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.subjectLabel.text = attachment.subject;
 
     return cell;
@@ -253,14 +253,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         return;
     }
 
-    SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
     } else {
 
-        SHCAttachment *attachment = [document.attachments firstObject];
+        POSAttachment *attachment = [document.attachments firstObject];
 
         [self validateOpeningAttachment:attachment
             success:^{
@@ -407,7 +407,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if ([self.navigationController.topViewController isKindOfClass:[SHCAttachmentsViewController class]]) {
             SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
             
-            SHCDocument *selectedDocument = [SHCDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            POSDocument *selectedDocument = [POSDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             
             attachmentsViewController.attachments = selectedDocument.attachments;
         }
@@ -418,12 +418,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         SHCLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
         if (letterViewConctroller.attachment) {
             if (letterViewConctroller.attachment.uri == nil ) {
-                SHCAttachment *refetchedObject = [SHCAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                POSAttachment *refetchedObject = [POSAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 //                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
             }
         }
         
-        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         if (!rootResource.currentBankAccount) {
             if ([self documentsNeedCurrentBankAccount]) {
                 [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
@@ -534,7 +534,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)moveSelectedDocumentsToLocation:(NSString *)location
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
-        SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
+        POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
 
         [self moveDocument:document
                 toLocation:location];
@@ -544,7 +544,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self updateToolbarButtonItems];
 }
 
-- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location
+- (void)moveDocument:(POSDocument *)document toLocation:(NSString *)location
 {
     [[SHCAPIManager sharedManager] moveDocument:document
         toLocation:location
@@ -555,7 +555,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             
-            SHCDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
             if ([currentOpenDocument isEqual:document]){
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
@@ -591,14 +591,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)deleteDocuments
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
-        SHCDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
+        POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
         [self deleteDocument:document];
     }
     [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
 
-- (void)deleteDocument:(SHCDocument *)document
+- (void)deleteDocument:(POSDocument *)document
 {
     [[SHCAPIManager sharedManager] deleteDocument:document
         withSuccess:^{
@@ -608,7 +608,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             
-            SHCDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
             if ([currentOpenDocument isEqual:document]){
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
@@ -639,13 +639,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (BOOL)documentsNeedCurrentBankAccount
 {
-    NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
+    NSManagedObjectContext *managedObjectContext = [POSModelManager sharedManager].managedObjectContext;
 
-    NSArray *alldocuments = [SHCDocument allDocumentsInFolderWithName:self.folderName
+    NSArray *alldocuments = [POSDocument allDocumentsInFolderWithName:self.folderName
                                                mailboxDigipostAddress:self.mailboxDigipostAddress
                                                inManagedObjectContext:managedObjectContext];
-    for (SHCDocument *document in alldocuments) {
-        for (SHCAttachment *attachment in document.attachments) {
+    for (POSDocument *document in alldocuments) {
+        for (POSAttachment *attachment in document.attachments) {
             if (attachment.invoice && [attachment.invoice.canBePaidByUser boolValue] && [attachment.invoice.sendToBankUri length] > 0) {
                 return YES;
             }

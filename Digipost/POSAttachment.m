@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "SHCAttachment.h"
-#import "SHCModelManager.h"
-#import "SHCInvoice.h"
+#import "POSAttachment.h"
+#import "POSModelManager.h"
+#import "POSInvoice.h"
 
 // Defines what the app considers a valid attachment authentication level
 NSString *const kAttachmentOpeningValidAuthenticationLevel = @"PASSWORD";
@@ -37,7 +37,7 @@ NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
-@implementation SHCAttachment
+@implementation POSAttachment
 
 // Attributes
 @dynamic authenticationLevel;
@@ -57,8 +57,8 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] attachmentEntity];
-    SHCAttachment *attachment = [[SHCAttachment alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] attachmentEntity];
+    POSAttachment *attachment = [[POSAttachment alloc] initWithEntity:entity
                                        insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *authenticationLevel = attributes[kAttachmentAuthenticationLevel];
@@ -100,7 +100,7 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
     NSDictionary *invoiceDict = attributes[kAttachmentInvoiceAPIKey];
     if ([invoiceDict isKindOfClass:[NSDictionary class]]) {
-        attachment.invoice = [SHCInvoice invoiceWithAttributes:invoiceDict
+        attachment.invoice = [POSInvoice invoiceWithAttributes:invoiceDict
                                         inManagedObjectContext:managedObjectContext];
     }
 
@@ -110,7 +110,7 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] attachmentEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
     fetchRequest.fetchLimit = 1;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
 
@@ -118,7 +118,7 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];

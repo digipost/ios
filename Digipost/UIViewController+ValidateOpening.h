@@ -16,10 +16,10 @@
 
 #import <UIKit/UIKit.h>
 
-@class SHCAttachment;
+@class POSAttachment;
 
 @interface UIViewController (ValidateOpening)
 
-- (void)validateOpeningAttachment:(SHCAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)validateOpeningAttachment:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

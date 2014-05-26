@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-#import "SHCDocument.h"
-#import "SHCAttachment.h"
-#import "SHCFolder.h"
+#import "POSDocument.h"
+#import "POSAttachment.h"
+#import "POSFolder.h"
 #import "NSPredicate+CommonPredicates.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 
 // Core Data model entity names
 NSString *const kDocumentEntityName = @"Document";
@@ -34,16 +34,16 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 // Because of a bug in Core Data, we need to manually implement these methods
 // See: http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors
 
-@implementation SHCDocument (CoreDataGeneratedAccessors)
+@implementation POSDocument (CoreDataGeneratedAccessors)
 
-- (void)addAttachmentsObject:(SHCAttachment *)value
+- (void)addAttachmentsObject:(POSAttachment *)value
 {
     NSMutableOrderedSet *attachmentsMutable = [NSMutableOrderedSet orderedSetWithOrderedSet:self.attachments];
     [attachmentsMutable addObject:value];
     self.attachments = [NSOrderedSet orderedSetWithOrderedSet:attachmentsMutable];
 }
 
-- (void)removeAttachmentsObject:(SHCAttachment *)value
+- (void)removeAttachmentsObject:(POSAttachment *)value
 {
     NSMutableOrderedSet *attachmentsMutable = [NSMutableOrderedSet orderedSetWithOrderedSet:self.attachments];
     [attachmentsMutable removeObject:value];
@@ -52,7 +52,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 @end
 
-@implementation SHCDocument
+@implementation POSDocument
 
 // Attributes
 @dynamic createdAt;
@@ -70,8 +70,8 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (instancetype)documentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] documentEntity];
-    SHCDocument *document = [[SHCDocument alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] documentEntity];
+    POSDocument *document = [[POSDocument alloc] initWithEntity:entity
                                  insertIntoManagedObjectContext:managedObjectContext];
 
     [document updateWithAttributes:attributes
@@ -81,7 +81,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     if ([attachments isKindOfClass:[NSArray class]]) {
         for (NSDictionary *attachmentDict in attachments) {
             if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
-                SHCAttachment *attachment = [SHCAttachment attachmentWithAttributes:attachmentDict
+                POSAttachment *attachment = [POSAttachment attachmentWithAttributes:attachmentDict
                                                              inManagedObjectContext:managedObjectContext];
                 [document addAttachmentsObject:attachment];
             }
@@ -94,7 +94,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.fetchLimit = 1;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(updateUri)), updateUri];
 
@@ -102,7 +102,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];
@@ -118,28 +118,28 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     // and delete those that doesn't match.
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] folderEntity];
 
     NSError *error = nil;
     NSArray *folders = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
-    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
 
     error = nil;
     NSArray *documents = [managedObjectContext executeFetchRequest:fetchRequest
                                                              error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     NSMutableArray *remainingDocuments = [NSMutableArray arrayWithArray:documents];
 
-    for (SHCDocument *document in documents) {
-        for (SHCFolder *folder in folders) {
+    for (POSDocument *document in documents) {
+        for (POSFolder *folder in folders) {
             if ([document.folderUri compare:folder.uri
                                     options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 [folder addDocumentsObject:document];
@@ -150,7 +150,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     }
 
     // Delete all remaining documents that we couldn't match
-    for (SHCDocument *document in remainingDocuments) {
+    for (POSDocument *document in remainingDocuments) {
         [managedObjectContext deleteObject:document];
     }
 }
@@ -159,16 +159,16 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
-    for (SHCDocument *document in results) {
+    for (POSDocument *document in results) {
         [managedObjectContext deleteObject:document];
     }
 }
@@ -176,7 +176,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] documentEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress
                                                                          inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
                                                                                                        //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
@@ -186,7 +186,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return results;
@@ -228,11 +228,11 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     }
 }
 
-- (SHCAttachment *)mainDocumentAttachment
+- (POSAttachment *)mainDocumentAttachment
 {
-    SHCAttachment *mainDocumentAttachment = nil;
+    POSAttachment *mainDocumentAttachment = nil;
 
-    for (SHCAttachment *attachment in self.attachments) {
+    for (POSAttachment *attachment in self.attachments) {
         if ([attachment.mainDocument boolValue]) {
             mainDocumentAttachment = attachment;
             break;

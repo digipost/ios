@@ -18,8 +18,8 @@
 #import <GAIFields.h>
 #import <GAIDictionaryBuilder.h>
 #import "SHCBaseTableViewController.h"
-#import "SHCModelManager.h"
-#import "SHCRootResource.h"
+#import "POSModelManager.h"
+#import "POSRootResource.h"
 #import "UIViewController+NeedsReload.h"
 #import "SHCFoldersViewController.h"
 #import "SHCDocumentsViewController.h"
@@ -148,10 +148,10 @@
 
 #pragma mark - Properties
 
-- (SHCRootResource *)rootResource
+- (POSRootResource *)rootResource
 {
     if (!_rootResource) {
-        _rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        _rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
 
     return _rootResource;
@@ -191,12 +191,12 @@
     fetchRequest.predicate = self.predicate;
     NSAssert(self.sortDescriptors != nil, @"No sort descriptors present");
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
+                                                                    managedObjectContext:[POSModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
 
-    NSArray *results = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
+    NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
                                                                                            error:nil];
 
     NSLog(@"%@, results: %i", self.predicate, [results count]);
@@ -259,7 +259,7 @@
 
         NSString *lastUpdatedText = NSLocalizedString(@"GENERIC_LAST_UPDATED_TITLE", @"Last updated");
 
-        NSString *lastUpdatedDate = [dateFormatter stringFromDate:[[SHCModelManager sharedManager] rootResourceCreatedAt]];
+        NSString *lastUpdatedDate = [dateFormatter stringFromDate:[[POSModelManager sharedManager] rootResourceCreatedAt]];
         lastUpdatedDate = lastUpdatedDate ?: NSLocalizedString(@"GENERIC_UPDATED_NEVER_TITLE", @"never");
 
         text = [NSString stringWithFormat:@"%@: %@", lastUpdatedText, lastUpdatedDate];

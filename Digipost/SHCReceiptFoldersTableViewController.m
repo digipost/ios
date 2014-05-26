@@ -18,15 +18,15 @@
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCReceiptFoldersTableViewController.h"
-#import "SHCModelManager.h"
-#import "SHCReceipt.h"
+#import "POSModelManager.h"
+#import "POSReceipt.h"
 #import "SHCAPIManager.h"
 #import "SHCLetterViewController.h"
 #import "SHCReceiptTableViewCell.h"
 #import "SHCAppDelegate.h"
 #import "NSError+ExtraInfo.h"
-#import "SHCDocument.h"
-#import "SHCRootResource.h"
+#import "POSDocument.h"
+#import "POSRootResource.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCReceiptFolderTableViewDataSource.h"
 #import "SHCReceiptsViewController.h"
@@ -58,7 +58,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
 
-    self.baseEntity = [[SHCModelManager sharedManager] receiptEntity];
+    self.baseEntity = [[POSModelManager sharedManager] receiptEntity];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(timeOfPurchase))
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
@@ -179,7 +179,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
         if (letterViewConctroller.receipt) {
             if (letterViewConctroller.receipt.uri == nil) {
-                SHCReceipt *refetchedObject = [SHCReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                POSReceipt *refetchedObject = [POSReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
                 [letterViewConctroller setReceiptDoNotDismissPopover:refetchedObject];
             }
         }
@@ -237,7 +237,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     }
 
     if (showTableViewBackgroundView) {
-        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
         if ([rootResource.numberOfCards integerValue] == 0) {
             self.noReceiptsLabel.text = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", @"No cards");

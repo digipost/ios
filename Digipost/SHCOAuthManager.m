@@ -19,7 +19,7 @@
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
 #import "SHCAPIManager.h"
-#import "SHCFileManager.h"
+#import "POSFileManager.h"
 #import "oauth.h"
 
 // Digipost OAuth2 API consts
@@ -221,7 +221,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
     NSAssert(refreshToken == nil, @"refresh token not nil!");
     refreshToken = nil;
-    [[SHCFileManager sharedFileManager] removeAllFiles];
+    [[POSFileManager sharedFileManager] removeAllFiles];
 }
 
 @end

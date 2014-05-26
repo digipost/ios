@@ -7,10 +7,10 @@
 //
 
 #import "POSReceiptsTableViewDataSource.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 #import "SHCReceiptTableViewCell.h"
-#import "SHCReceipt.h"
-#import "SHCDocument.h"
+#import "POSReceipt.h"
+#import "POSDocument.h"
 @import CoreData;
 
 @interface POSReceiptsTableViewDataSource ()
@@ -24,10 +24,10 @@
 {
     SHCReceiptTableViewCell *receiptTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"ReceiptCellIdentifier"
                                                                                     forIndexPath:indexPath];
-    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;
-    receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@", [SHCReceipt stringForReceiptAmount:receipt.amount]];
-    receiptTableViewCell.dateLabel.text = [SHCDocument stringForDocumentDate:receipt.timeOfPurchase];
+    receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:receipt.amount]];
+    receiptTableViewCell.dateLabel.text = [POSDocument stringForDocumentDate:receipt.timeOfPurchase];
     return receiptTableViewCell;
 }
 
@@ -52,7 +52,7 @@
     self.fetchedResultsController = nil;
 }
 
-- (SHCReceipt *)receiptAtIndexPath:(NSIndexPath *)indexPath
+- (POSReceipt *)receiptAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.fetchedResultsController objectAtIndexPath:indexPath];
 }
@@ -66,7 +66,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:kReceiptEntityName
-                                              inManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+                                              inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     [fetchRequest setEntity:entity];
 
     // Order the events by creation date, most recent first.
@@ -81,7 +81,7 @@
 
     // Create and initialize the fetch results controller.
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                    managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
+                                                                    managedObjectContext:[POSModelManager sharedManager].managedObjectContext
                                                                       sectionNameKeyPath:nil
                                                                                cacheName:@"cache"];
     [_fetchedResultsController performFetch:&error];

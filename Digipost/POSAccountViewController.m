@@ -12,7 +12,7 @@
 #import "SHCAPIManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIRefreshControl+Additions.m"
-#import "SHCMailbox.h"
+#import "POSMailbox.h"
 
 @interface POSAccountViewController ()
 
@@ -93,10 +93,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"PushFolders"]) {
-        SHCMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        POSMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
         SHCFoldersViewController *folderViewController = (id)segue.destinationViewController;
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
-        [SHCModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
+        [POSModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
     }
 }
 

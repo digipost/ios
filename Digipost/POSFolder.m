@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
-#import "SHCFolder.h"
-#import "SHCModelManager.h"
+#import "POSFolder.h"
+#import "POSModelManager.h"
 #import "NSPredicate+CommonPredicates.h"
 
 // Core Data model entity names
@@ -26,7 +26,7 @@ NSString *const kFolderInboxName = @"Inbox";
 NSString *const kFolderWorkAreaName = @"WorkArea";
 NSString *const kFolderArchiveName = @"Archive";
 
-@implementation SHCFolder
+@implementation POSFolder
 
 // Attributes
 @dynamic name;
@@ -40,8 +40,8 @@ NSString *const kFolderArchiveName = @"Archive";
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] folderEntity];
-    SHCFolder *folder = [[SHCFolder alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] folderEntity];
+    POSFolder *folder = [[POSFolder alloc] initWithEntity:entity
                            insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *name = attributes[NSStringFromSelector(@selector(name))];
@@ -56,7 +56,7 @@ NSString *const kFolderArchiveName = @"Archive";
 + (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] folderEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] folderEntity];
     //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K LIKE[cd] %@", NSStringFromSelector(@selector(name)), folderName];
     fetchRequest.predicate = [NSPredicate folderWithName:folderName
                          mailboxDigipostAddressPredicate:mailboxDigipostAddress];
@@ -66,7 +66,7 @@ NSString *const kFolderArchiveName = @"Archive";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];

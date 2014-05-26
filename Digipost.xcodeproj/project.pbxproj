@@ -15,9 +15,9 @@
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
-		835C74E518867603006C6F4F /* SHCInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* SHCInvoice.m */; };
-		835C74E618867603006C6F4F /* SHCInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* SHCInvoice.m */; };
-		835C74E718867603006C6F4F /* SHCInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* SHCInvoice.m */; };
+		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
+		835C74E618867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
+		835C74E718867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */; };
 		8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */; };
 		8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */; };
@@ -69,9 +69,9 @@
 		83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
 		83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
 		83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
-		83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
-		83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
-		83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* SHCFileManager.m */; };
+		83D2F7E81875578A00344644 /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
+		83D2F7E91875578A00344644 /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
+		83D2F7EA1875578A00344644 /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
 		83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
 		83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
 		83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
@@ -87,39 +87,39 @@
 		83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
-		83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
-		83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
-		83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* SHCDocument.m */; };
-		83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
-		83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
-		83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* SHCFolder.m */; };
-		83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
-		83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
-		83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* SHCAttachment.m */; };
-		83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
-		83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
-		83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* SHCMailbox.m */; };
-		83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
-		83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
-		83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* SHCRootResource.m */; };
-		83D75F6D1858E9C20013F8C9 /* SHCModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */; };
-		83D75F6E1858E9C20013F8C9 /* SHCModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */; };
-		83D75F6F1858E9C20013F8C9 /* SHCModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */; };
+		83D75F541858E5790013F8C9 /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
+		83D75F551858E5790013F8C9 /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
+		83D75F561858E5790013F8C9 /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
+		83D75F591858E5790013F8C9 /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
+		83D75F5A1858E5790013F8C9 /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
+		83D75F5B1858E5790013F8C9 /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
+		83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
+		83D75F5F1858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
+		83D75F601858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
+		83D75F631858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
+		83D75F641858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
+		83D75F651858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
+		83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
+		83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
+		83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
+		83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
+		83D75F6E1858E9C20013F8C9 /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
+		83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
 		83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
 		83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
 		83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */; };
-		83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
-		83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
-		83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* SHCReceipt.m */; };
+		83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
+		83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
+		83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
 		83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
 		83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */; };
 		83DB4AF0188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF1188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
 		83DB4AF2188D419A00515022 /* SHCReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */; };
-		83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
-		83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
-		83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */; };
+		83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
+		83DB4AF6188D963400515022 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
+		83DB4AF7188D963400515022 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
 		83F703611855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703621855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
 		83F703631855E7A9003DABE1 /* SHCFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */; };
@@ -145,12 +145,12 @@
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
-		EC181DB0192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
-		EC181DB1192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
-		EC181DB2192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */; };
-		EC181DB5192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
-		EC181DB6192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
-		EC181DB7192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */; };
+		EC181DB0192CC0430054C0E8 /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */; };
+		EC181DB1192CC0430054C0E8 /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */; };
+		EC181DB2192CC0430054C0E8 /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */; };
+		EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
+		EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
+		EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
@@ -172,9 +172,9 @@
 		EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m */; };
 		EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
-		ECB3A64F18B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
-		ECB3A65018B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
-		ECB3A65118B379F8002D8C22 /* SHCNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* SHCNotice.m */; };
+		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
+		ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
+		ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
@@ -214,8 +214,8 @@
 		8342EFB8185861A80080A833 /* SHCAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAPIManager.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* SHCAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAPIManager.m; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
-		835C74E318867603006C6F4F /* SHCInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCInvoice.h; sourceTree = "<group>"; };
-		835C74E418867603006C6F4F /* SHCInvoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCInvoice.m; sourceTree = "<group>"; };
+		835C74E318867603006C6F4F /* POSInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSInvoice.h; sourceTree = "<group>"; };
+		835C74E418867603006C6F4F /* POSInvoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSInvoice.m; sourceTree = "<group>"; };
 		835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.1.xcdatamodel"; sourceTree = "<group>"; };
 		835C74E918881886006C6F4F /* Model v1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.2.xcdatamodel"; sourceTree = "<group>"; };
 		8364D712185F1EB4008DE6CB /* SHCDocumentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocumentsViewController.h; sourceTree = "<group>"; };
@@ -254,8 +254,8 @@
 		83C5719818984111000C61E7 /* Images-Shared.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-Shared.xcassets"; sourceTree = "<group>"; };
 		83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.6.xcdatamodel"; sourceTree = "<group>"; };
 		83CC75EC18905461007F8A52 /* Model v1.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.4.xcdatamodel"; sourceTree = "<group>"; };
-		83D2F7E61875578A00344644 /* SHCFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFileManager.h; sourceTree = "<group>"; };
-		83D2F7E71875578A00344644 /* SHCFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFileManager.m; sourceTree = "<group>"; };
+		83D2F7E61875578A00344644 /* POSFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFileManager.h; sourceTree = "<group>"; };
+		83D2F7E71875578A00344644 /* POSFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFileManager.m; sourceTree = "<group>"; };
 		83D2F7EB18755AAA00344644 /* NSString+SHA1String.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SHA1String.h"; sourceTree = "<group>"; };
 		83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SHA1String.m"; sourceTree = "<group>"; };
 		83D3550518619069009EABC6 /* NSError+ExtraInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+ExtraInfo.h"; sourceTree = "<group>"; };
@@ -266,29 +266,29 @@
 		83D355151861C5EA009EABC6 /* SHCLetterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterViewController.m; sourceTree = "<group>"; };
 		83D355191861CDDD009EABC6 /* SHCAttachmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAttachmentTableViewCell.h; sourceTree = "<group>"; };
 		83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAttachmentTableViewCell.m; sourceTree = "<group>"; };
-		83D75F521858E5790013F8C9 /* SHCDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCDocument.h; sourceTree = "<group>"; };
-		83D75F531858E5790013F8C9 /* SHCDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCDocument.m; sourceTree = "<group>"; };
-		83D75F571858E5790013F8C9 /* SHCFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolder.h; sourceTree = "<group>"; };
-		83D75F581858E5790013F8C9 /* SHCFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFolder.m; sourceTree = "<group>"; };
-		83D75F5C1858E5790013F8C9 /* SHCAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCAttachment.h; sourceTree = "<group>"; };
-		83D75F5D1858E5790013F8C9 /* SHCAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCAttachment.m; sourceTree = "<group>"; };
-		83D75F611858E5790013F8C9 /* SHCMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCMailbox.h; sourceTree = "<group>"; };
-		83D75F621858E5790013F8C9 /* SHCMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCMailbox.m; sourceTree = "<group>"; };
-		83D75F661858E5790013F8C9 /* SHCRootResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCRootResource.h; sourceTree = "<group>"; };
-		83D75F671858E5790013F8C9 /* SHCRootResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCRootResource.m; sourceTree = "<group>"; };
-		83D75F6B1858E9C20013F8C9 /* SHCModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCModelManager.h; sourceTree = "<group>"; };
-		83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCModelManager.m; sourceTree = "<group>"; };
+		83D75F521858E5790013F8C9 /* POSDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSDocument.h; sourceTree = "<group>"; };
+		83D75F531858E5790013F8C9 /* POSDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSDocument.m; sourceTree = "<group>"; };
+		83D75F571858E5790013F8C9 /* POSFolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolder.h; sourceTree = "<group>"; };
+		83D75F581858E5790013F8C9 /* POSFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolder.m; sourceTree = "<group>"; };
+		83D75F5C1858E5790013F8C9 /* POSAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAttachment.h; sourceTree = "<group>"; };
+		83D75F5D1858E5790013F8C9 /* POSAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAttachment.m; sourceTree = "<group>"; };
+		83D75F611858E5790013F8C9 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
+		83D75F621858E5790013F8C9 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
+		83D75F661858E5790013F8C9 /* POSRootResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSRootResource.h; sourceTree = "<group>"; };
+		83D75F671858E5790013F8C9 /* POSRootResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSRootResource.m; sourceTree = "<group>"; };
+		83D75F6B1858E9C20013F8C9 /* POSModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSModelManager.h; sourceTree = "<group>"; };
+		83D75F6C1858E9C20013F8C9 /* POSModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSModelManager.m; sourceTree = "<group>"; };
 		83D75F731859B7250013F8C9 /* SHCFolderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCFolderTableViewCell.h; sourceTree = "<group>"; };
 		83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCFolderTableViewCell.m; sourceTree = "<group>"; };
 		83DB4AE3188D1DE600515022 /* Model v1.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.3.xcdatamodel"; sourceTree = "<group>"; };
-		83DB4AE4188D1F4E00515022 /* SHCReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceipt.h; sourceTree = "<group>"; };
-		83DB4AE5188D1F4E00515022 /* SHCReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceipt.m; sourceTree = "<group>"; };
+		83DB4AE4188D1F4E00515022 /* POSReceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceipt.h; sourceTree = "<group>"; };
+		83DB4AE5188D1F4E00515022 /* POSReceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceipt.m; sourceTree = "<group>"; };
 		83DB4AE9188D287600515022 /* SHCReceiptFoldersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptFoldersTableViewController.h; sourceTree = "<group>"; };
 		83DB4AEA188D287600515022 /* SHCReceiptFoldersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptFoldersTableViewController.m; sourceTree = "<group>"; };
 		83DB4AEE188D419A00515022 /* SHCReceiptTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptTableViewCell.h; sourceTree = "<group>"; };
 		83DB4AEF188D419A00515022 /* SHCReceiptTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCReceiptTableViewCell.m; sourceTree = "<group>"; };
-		83DB4AF3188D963400515022 /* SHCBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCBaseEncryptedModel.h; sourceTree = "<group>"; };
-		83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCBaseEncryptedModel.m; sourceTree = "<group>"; };
+		83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSBaseEncryptedModel.h; sourceTree = "<group>"; };
+		83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSBaseEncryptedModel.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
 		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Staging-Enterprise.xcconfig"; sourceTree = "<group>"; };
@@ -309,10 +309,10 @@
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
-		EC181DAE192CC0430054C0E8 /* SHCDocument+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SHCDocument+Methods.h"; path = "../SHCDocument+Methods.h"; sourceTree = "<group>"; };
-		EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SHCDocument+Methods.m"; path = "../SHCDocument+Methods.m"; sourceTree = "<group>"; };
-		EC181DB3192CC47B0054C0E8 /* SHCFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCFolder+Methods.h"; sourceTree = "<group>"; };
-		EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCFolder+Methods.m"; sourceTree = "<group>"; };
+		EC181DAE192CC0430054C0E8 /* POSDocument+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "POSDocument+Methods.h"; path = "../POSDocument+Methods.h"; sourceTree = "<group>"; };
+		EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "POSDocument+Methods.m"; path = "../POSDocument+Methods.m"; sourceTree = "<group>"; };
+		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
+		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* SHCLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverView.h; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
-		ECB3A64D18B379F8002D8C22 /* SHCNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCNotice.h; sourceTree = "<group>"; };
-		ECB3A64E18B379F8002D8C22 /* SHCNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCNotice.m; sourceTree = "<group>"; };
+		ECB3A64D18B379F8002D8C22 /* POSNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNotice.h; sourceTree = "<group>"; };
+		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
 		ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButton.m"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
@@ -396,32 +396,32 @@
 		8342EFBD1858CDA40080A833 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				83D75F6B1858E9C20013F8C9 /* SHCModelManager.h */,
-				83D75F6C1858E9C20013F8C9 /* SHCModelManager.m */,
-				83D2F7E61875578A00344644 /* SHCFileManager.h */,
-				83D2F7E71875578A00344644 /* SHCFileManager.m */,
-				ECB3A64D18B379F8002D8C22 /* SHCNotice.h */,
-				ECB3A64E18B379F8002D8C22 /* SHCNotice.m */,
-				835C74E318867603006C6F4F /* SHCInvoice.h */,
-				835C74E418867603006C6F4F /* SHCInvoice.m */,
-				83D75F661858E5790013F8C9 /* SHCRootResource.h */,
-				83D75F671858E5790013F8C9 /* SHCRootResource.m */,
-				83D75F611858E5790013F8C9 /* SHCMailbox.h */,
-				83D75F621858E5790013F8C9 /* SHCMailbox.m */,
-				83D75F5C1858E5790013F8C9 /* SHCAttachment.h */,
-				83D75F5D1858E5790013F8C9 /* SHCAttachment.m */,
-				EC181DB3192CC47B0054C0E8 /* SHCFolder+Methods.h */,
-				EC181DB4192CC47B0054C0E8 /* SHCFolder+Methods.m */,
-				83D75F571858E5790013F8C9 /* SHCFolder.h */,
-				83D75F581858E5790013F8C9 /* SHCFolder.m */,
-				EC181DAE192CC0430054C0E8 /* SHCDocument+Methods.h */,
-				EC181DAF192CC0430054C0E8 /* SHCDocument+Methods.m */,
-				83D75F521858E5790013F8C9 /* SHCDocument.h */,
-				83D75F531858E5790013F8C9 /* SHCDocument.m */,
-				83DB4AE4188D1F4E00515022 /* SHCReceipt.h */,
-				83DB4AE5188D1F4E00515022 /* SHCReceipt.m */,
-				83DB4AF3188D963400515022 /* SHCBaseEncryptedModel.h */,
-				83DB4AF4188D963400515022 /* SHCBaseEncryptedModel.m */,
+				83D75F6B1858E9C20013F8C9 /* POSModelManager.h */,
+				83D75F6C1858E9C20013F8C9 /* POSModelManager.m */,
+				83D2F7E61875578A00344644 /* POSFileManager.h */,
+				83D2F7E71875578A00344644 /* POSFileManager.m */,
+				ECB3A64D18B379F8002D8C22 /* POSNotice.h */,
+				ECB3A64E18B379F8002D8C22 /* POSNotice.m */,
+				835C74E318867603006C6F4F /* POSInvoice.h */,
+				835C74E418867603006C6F4F /* POSInvoice.m */,
+				83D75F661858E5790013F8C9 /* POSRootResource.h */,
+				83D75F671858E5790013F8C9 /* POSRootResource.m */,
+				83D75F611858E5790013F8C9 /* POSMailbox.h */,
+				83D75F621858E5790013F8C9 /* POSMailbox.m */,
+				83D75F5C1858E5790013F8C9 /* POSAttachment.h */,
+				83D75F5D1858E5790013F8C9 /* POSAttachment.m */,
+				EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */,
+				EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */,
+				83D75F571858E5790013F8C9 /* POSFolder.h */,
+				83D75F581858E5790013F8C9 /* POSFolder.m */,
+				EC181DAE192CC0430054C0E8 /* POSDocument+Methods.h */,
+				EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */,
+				83D75F521858E5790013F8C9 /* POSDocument.h */,
+				83D75F531858E5790013F8C9 /* POSDocument.m */,
+				83DB4AE4188D1F4E00515022 /* POSReceipt.h */,
+				83DB4AE5188D1F4E00515022 /* POSReceipt.m */,
+				83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */,
+				83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -908,22 +908,22 @@
 				83D355181861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
-				83D75F601858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D75F601858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
-				83D2F7EA1875578A00344644 /* SHCFileManager.m in Sources */,
+				83D2F7EA1875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
-				83D75F6A1858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
-				83DB4AE8188D1F4E00515022 /* SHCReceipt.m in Sources */,
+				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07C18AA317100A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
-				835C74E718867603006C6F4F /* SHCInvoice.m in Sources */,
-				83DB4AF7188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
+				835C74E718867603006C6F4F /* POSInvoice.m in Sources */,
+				83DB4AF7188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4E192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
@@ -931,19 +931,19 @@
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
-				EC181DB2192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
-				83D75F5B1858E5790013F8C9 /* SHCFolder.m in Sources */,
+				EC181DB2192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				83D75F5B1858E5790013F8C9 /* POSFolder.m in Sources */,
 				EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
-				83D75F561858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBC185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				EC29512B18BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
-				83D75F651858E5790013F8C9 /* SHCMailbox.m in Sources */,
+				83D75F651858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07518AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
@@ -953,10 +953,10 @@
 				ECF06D751923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
-				ECB3A65118B379F8002D8C22 /* SHCNotice.m in Sources */,
-				83D75F6F1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
+				ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */,
+				83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
-				EC181DB7192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
+				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -971,22 +971,22 @@
 				83D355171861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
-				83D75F5F1858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D75F5F1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
-				83D2F7E91875578A00344644 /* SHCFileManager.m in Sources */,
+				83D2F7E91875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
-				83D75F691858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
-				83DB4AE7188D1F4E00515022 /* SHCReceipt.m in Sources */,
+				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07B18AA317000A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
-				835C74E618867603006C6F4F /* SHCInvoice.m in Sources */,
-				83DB4AF6188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
+				835C74E618867603006C6F4F /* POSInvoice.m in Sources */,
+				83DB4AF6188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4D192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
@@ -994,19 +994,19 @@
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
 				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
-				EC181DB1192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
-				83D75F5A1858E5790013F8C9 /* SHCFolder.m in Sources */,
+				EC181DB1192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				83D75F5A1858E5790013F8C9 /* POSFolder.m in Sources */,
 				EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
-				83D75F551858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBB185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				EC29512A18BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
-				83D75F641858E5790013F8C9 /* SHCMailbox.m in Sources */,
+				83D75F641858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
@@ -1016,10 +1016,10 @@
 				ECF06D741923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
-				ECB3A65018B379F8002D8C22 /* SHCNotice.m in Sources */,
-				83D75F6E1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
+				ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */,
+				83D75F6E1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
-				EC181DB6192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
+				EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,42 +1034,42 @@
 				83D355161861C5EA009EABC6 /* SHCLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
-				83D75F5E1858E5790013F8C9 /* SHCAttachment.m in Sources */,
+				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
-				83D2F7E81875578A00344644 /* SHCFileManager.m in Sources */,
+				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				EC68C07818AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
-				83D75F681858E5790013F8C9 /* SHCRootResource.m in Sources */,
+				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
-				83DB4AE6188D1F4E00515022 /* SHCReceipt.m in Sources */,
-				835C74E518867603006C6F4F /* SHCInvoice.m in Sources */,
-				83DB4AF5188D963400515022 /* SHCBaseEncryptedModel.m in Sources */,
+				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
+				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
+				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				ECF06D4C192363EF003BD200 /* SHCReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
-				83D75F591858E5790013F8C9 /* SHCFolder.m in Sources */,
+				83D75F591858E5790013F8C9 /* POSFolder.m in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
-				EC181DB0192CC0430054C0E8 /* SHCDocument+Methods.m in Sources */,
+				EC181DB0192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
 				83D75F751859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
-				83D75F541858E5790013F8C9 /* SHCDocument.m in Sources */,
+				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBA185861A80080A833 /* SHCAPIManager.m in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
-				83D75F631858E5790013F8C9 /* SHCMailbox.m in Sources */,
+				83D75F631858E5790013F8C9 /* POSMailbox.m in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BA1891041C00902218 /* SHCUploadTableViewCell.m in Sources */,
@@ -1079,10 +1079,10 @@
 				ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
-				ECB3A64F18B379F8002D8C22 /* SHCNotice.m in Sources */,
-				83D75F6D1858E9C20013F8C9 /* SHCModelManager.m in Sources */,
+				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
+				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
-				EC181DB5192CC47B0054C0E8 /* SHCFolder+Methods.m in Sources */,
+				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

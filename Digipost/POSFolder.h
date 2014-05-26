@@ -25,10 +25,10 @@ extern NSString *const kFolderInboxName;
 extern NSString *const kFolderWorkAreaName;
 extern NSString *const kFolderArchiveName;
 
-@class SHCDocument;
-@class SHCMailbox;
+@class POSDocument;
+@class POSMailbox;
 
-@interface SHCFolder : NSManagedObject
+@interface POSFolder : NSManagedObject
 
 // Attributes
 @property (strong, nonatomic) NSString *name;
@@ -36,17 +36,17 @@ extern NSString *const kFolderArchiveName;
 
 // Relationships
 @property (strong, nonatomic) NSSet *documents;
-@property (strong, nonatomic) SHCMailbox *mailbox;
+@property (strong, nonatomic) POSMailbox *mailbox;
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)displayName;
 @end
 
-@interface SHCFolder (CoreDataGeneratedAccessors)
+@interface POSFolder (CoreDataGeneratedAccessors)
 
-- (void)addDocumentsObject:(SHCDocument *)value;
-- (void)removeDocumentsObject:(SHCDocument *)value;
+- (void)addDocumentsObject:(POSDocument *)value;
+- (void)removeDocumentsObject:(POSDocument *)value;
 - (void)addDocuments:(NSSet *)values;
 - (void)removeDocuments:(NSSet *)values;
 

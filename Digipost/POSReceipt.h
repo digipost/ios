@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SHCBaseEncryptedModel.h"
+#import "POSBaseEncryptedModel.h"
 
 // Core Data model entity names
 extern NSString *const kReceiptEntityName;
@@ -24,9 +24,9 @@ extern NSString *const kReceiptEntityName;
 // API Keys
 extern NSString *const kReceiptReceiptAPIKey;
 
-@class SHCMailbox;
+@class POSMailbox;
 
-@interface SHCReceipt : SHCBaseEncryptedModel
+@interface POSReceipt : POSBaseEncryptedModel
 
 // Attributes
 @property (strong, nonatomic) NSNumber *amount;
@@ -41,7 +41,7 @@ extern NSString *const kReceiptReceiptAPIKey;
 @property (strong, nonatomic) NSString *uri;
 
 // Relationships
-@property (strong, nonatomic) SHCMailbox *mailbox;
+@property (strong, nonatomic) POSMailbox *mailbox;
 
 + (instancetype)receiptWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingReceiptWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;

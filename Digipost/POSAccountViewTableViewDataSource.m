@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
-#import "SHCMailbox.h"
+#import "POSMailbox.h"
 #import "POSAccountViewTableViewDataSource.h"
 #import <CoreData/CoreData.h>
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 @interface POSAccountViewTableViewDataSource ()
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
@@ -48,6 +48,7 @@
                                                             forIndexPath:indexPath];
     [self configureCell:cell
             atIndexPath:indexPath];
+
     return cell;
 }
 
@@ -56,7 +57,7 @@
 {
 
     // Configure the cell with objects from your store
-    SHCMailbox *mailbox = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSMailbox *mailbox = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = mailbox.digipostAddress;
 }
 
@@ -75,7 +76,7 @@
 
     // Create and configure a fetch request with the Book entity.
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSManagedObjectContext *managedObjectContext = [SHCModelManager sharedManager].managedObjectContext;
+    NSManagedObjectContext *managedObjectContext = [POSModelManager sharedManager].managedObjectContext;
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Mailbox"
                                               inManagedObjectContext:managedObjectContext];

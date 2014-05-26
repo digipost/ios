@@ -17,7 +17,7 @@
 #import "SHCAPIManager.h"
 #import "UIViewController+Additions.h"
 #import "SHCReceiptTableViewCell.h"
-#import "SHCReceipt.h"
+#import "POSReceipt.h"
 #import "SHCDocumentsViewController.h"
 #import <UIAlertView+Blocks.h>
 
@@ -95,7 +95,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
-        SHCReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
+        POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         //        letterViewController.receiptsViewController = self;
@@ -161,7 +161,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                                 }];
 }
 
-- (void)deleteReceipt:(SHCReceipt *)receipt
+- (void)deleteReceipt:(POSReceipt *)receipt
 {
     [[SHCAPIManager sharedManager] deleteReceipt:receipt
         withSuccess:^{
@@ -247,7 +247,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)deleteReceipts
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
-        SHCReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPathOfSelectedRow];
+        POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPathOfSelectedRow];
 
         [self deleteReceipt:receipt];
     }

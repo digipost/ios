@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SHCBaseEncryptedModel.h"
+#import "POSBaseEncryptedModel.h"
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCAttachmentOpeningValidationErrorCode) {
@@ -33,10 +33,10 @@ extern NSString *const kAttachmentOpeningValidationErrorDomain;
 // Core Data model entity names
 extern NSString *const kAttachmentEntityName;
 
-@class SHCDocument;
-@class SHCInvoice;
+@class POSDocument;
+@class POSInvoice;
 
-@interface SHCAttachment : SHCBaseEncryptedModel
+@interface POSAttachment : POSBaseEncryptedModel
 
 // Attributes
 @property (strong, nonatomic) NSString *authenticationLevel;
@@ -49,8 +49,8 @@ extern NSString *const kAttachmentEntityName;
 @property (strong, nonatomic) NSString *uri;
 
 // Relationships
-@property (strong, nonatomic) SHCDocument *document;
-@property (strong, nonatomic) SHCInvoice *invoice;
+@property (strong, nonatomic) POSDocument *document;
+@property (strong, nonatomic) POSInvoice *invoice;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;

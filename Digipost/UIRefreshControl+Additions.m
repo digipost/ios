@@ -7,7 +7,7 @@
 //
 
 #import "UIRefreshControl+Additions.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 #import "SHCDocumentsViewController.h"
 #import "SHCReceiptFoldersTableViewController.h"
 
@@ -24,7 +24,7 @@
 
         NSString *lastUpdatedText = NSLocalizedString(@"GENERIC_LAST_UPDATED_TITLE", @"Last updated");
 
-        NSString *lastUpdatedDate = [dateFormatter stringFromDate:[[SHCModelManager sharedManager] rootResourceCreatedAt]];
+        NSString *lastUpdatedDate = [dateFormatter stringFromDate:[[POSModelManager sharedManager] rootResourceCreatedAt]];
         lastUpdatedDate = lastUpdatedDate ?: NSLocalizedString(@"GENERIC_UPDATED_NEVER_TITLE", @"never");
 
         text = [NSString stringWithFormat:@"%@: %@", lastUpdatedText, lastUpdatedDate];

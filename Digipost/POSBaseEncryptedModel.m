@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "SHCBaseEncryptedModel.h"
-#import "SHCFileManager.h"
-#import "SHCModelManager.h"
-#import "SHCBaseEncryptedModel.h"
+#import "POSBaseEncryptedModel.h"
+#import "POSFileManager.h"
+#import "POSModelManager.h"
+#import "POSBaseEncryptedModel.h"
 #import "NSString+SHA1String.h"
 
-@implementation SHCBaseEncryptedModel
+@implementation POSBaseEncryptedModel
 
 @dynamic uri;
 @dynamic fileType;
@@ -33,7 +33,7 @@
         return nil;
     }
 
-    NSString *filePath = [[[SHCFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+    NSString *filePath = [[[POSFileManager sharedFileManager] encryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
 }
@@ -46,7 +46,7 @@
         return nil;
     }
 
-    NSString *filePath = [[[SHCFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
+    NSString *filePath = [[[POSFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
 }

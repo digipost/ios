@@ -16,13 +16,13 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "SHCFolder.h"
+#import "POSFolder.h"
 
-@class SHCMailbox;
-@class SHCDocument;
-@class SHCReceipt;
+@class POSMailbox;
+@class POSDocument;
+@class POSReceipt;
 
-@interface SHCModelManager : NSObject
+@interface POSModelManager : NSObject
 
 @property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
 
@@ -37,10 +37,10 @@
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes;
 - (void)updateCardAttributes:(NSDictionary *)attributes;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
-- (void)updateDocument:(SHCDocument *)document withAttributes:(NSDictionary *)attributes;
-- (void)deleteDocument:(SHCDocument *)document;
+- (void)updateDocument:(POSDocument *)document withAttributes:(NSDictionary *)attributes;
+- (void)deleteDocument:(POSDocument *)document;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
-- (void)deleteReceipt:(SHCReceipt *)receipt;
+- (void)deleteReceipt:(POSReceipt *)receipt;
 - (void)deleteAllObjects;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;

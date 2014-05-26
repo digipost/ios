@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import "SHCRootResource.h"
+#import "POSRootResource.h"
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 #import "SHCFoldersViewController.h"
 #import "SHCOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
@@ -98,7 +98,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([SHCOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             // @ TODO WILL BUG fIRST TIME
-            SHCRootResource *resource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
             if ([resource.mailboxes.allObjects count] == 1) {
                 [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
@@ -158,7 +158,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self.navigationController dismissViewControllerAnimated:YES
                                                       completion:nil];
     } else {
-        SHCRootResource *resource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
         if ([resource.mailboxes.allObjects count] == 1) {
             [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue

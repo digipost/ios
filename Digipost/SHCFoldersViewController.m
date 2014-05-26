@@ -20,14 +20,14 @@
 #import "SHCFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "SHCAPIManager.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 #import "SHCFolderTableViewCell.h"
-#import "SHCFolder.h"
-#import "SHCMailbox.h"
+#import "POSFolder.h"
+#import "POSMailbox.h"
 #import "SHCOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
-#import "SHCRootResource.h"
+#import "POSRootResource.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCReceiptFoldersTableViewController.h"
 #import "SHCLetterViewController.h"
@@ -47,7 +47,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 @interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
-@property (strong, nonatomic) SHCFolder *inboxFolder;
+@property (strong, nonatomic) POSFolder *inboxFolder;
 
 @end
 
@@ -57,7 +57,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 - (void)viewDidLoad
 {
-    self.baseEntity = [[SHCModelManager sharedManager] folderEntity];
+    self.baseEntity = [[POSModelManager sharedManager] folderEntity];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
@@ -73,10 +73,12 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                              selector:@selector(uploadProgressDidStart:)
                                                  name:kAPIManagerUploadProgressStartedNotificationName
                                                object:nil];
-
-    //    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-    //    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-    //    [self.navigationItem setHidesBackButton:YES];
+    if ([self.navigationController.viewControllers[0] isMemberOfClass:[SHCLoginViewController class]]) {
+        
+        UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+        [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
+        [self.navigationItem setHidesBackButton:YES];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -98,7 +100,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushDocumentsIdentifier]) {
-        SHCFolder *folder = (SHCFolder *)sender;
+        POSFolder *folder = (POSFolder *)sender;
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = folder.name;
         documentsViewController.folderDisplayName = folder.displayName;
@@ -180,7 +182,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
 
     if (!unreadCounterHidden) {
-        SHCRootResource *rootResource = [SHCRootResource existingRootResourceInManagedObjectContext:[SHCModelManager sharedManager].managedObjectContext];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
     }
 
@@ -272,12 +274,12 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                    [[SHCAPIManager sharedManager] logoutWithSuccess:^{
 
                                        [[SHCOAuthManager sharedManager] removeAllTokens];
-                                       [[SHCModelManager sharedManager] deleteAllObjects];
+                                       [[POSModelManager sharedManager] deleteAllObjects];
 
                                    } failure:^(NSError *error) {
 
                                        [[SHCOAuthManager sharedManager] removeAllTokens];
-                                       [[SHCModelManager sharedManager] deleteAllObjects];
+                                       [[POSModelManager sharedManager] deleteAllObjects];
 
                                        [UIAlertView showWithTitle:error.errorTitle
                                                           message:[error localizedDescription]
@@ -311,7 +313,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     for (NSInteger section = 0; section < [self.fetchedResultsController.sections count]; section++) {
         id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
         for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
-            SHCFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
+            POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
                                                                                                     inSection:section]];
 
             if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
@@ -380,7 +382,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         [self.navigationController popToViewController:self.navigationController.viewControllers[1]
                                               animated:NO];
         // @TODO  enure you got the correct VC !!!!!!!!
-        for (SHCFolder *folder in self.folders) {
+        for (POSFolder *folder in self.folders) {
             if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
                 [self performSegueWithIdentifier:kPushDocumentsIdentifier
                                           sender:folder];

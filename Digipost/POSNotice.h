@@ -16,7 +16,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface SHCNotice : NSObject
+@interface POSNotice : NSObject
 @property (nonatomic, strong) NSString *messageHeader;
 @property (nonatomic, strong) NSString *messageText;
 @property (nonatomic, strong) NSString *dismissText;

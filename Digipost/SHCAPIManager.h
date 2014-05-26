@@ -33,11 +33,11 @@ extern NSString *const kAPIManagerUploadProgressStartedNotificationName;
 extern NSString *const kAPIManagerUploadProgressChangedNotificationName;
 extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
-@class SHCFolder;
-@class SHCBaseEncryptedModel;
-@class SHCDocument;
-@class SHCInvoice;
-@class SHCReceipt;
+@class POSFolder;
+@class POSBaseEncryptedModel;
+@class POSDocument;
+@class POSInvoice;
+@class POSReceipt;
 
 @interface SHCAPIManager : NSObject
 
@@ -57,17 +57,17 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)cancelUpdatingRootResource;
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingBankAccount;
-- (void)sendInvoiceToBank:(SHCInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)sendInvoiceToBank:(POSInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
-- (void)downloadBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)moveDocument:(SHCDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)deleteDocument:(SHCDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)moveDocument:(POSDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)deleteDocument:(POSDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingBaseEncryptionModels;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingReceipts;
-- (void)deleteReceipt:(SHCReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)deleteReceipt:(POSReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUploadingFiles;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import "SHCNotice.h"
+#import "POSNotice.h"
 
 NSString *const kNoticeMessageHeaderAPIKey = @"messageHeader";
 NSString *const kNoticeMessageTextAPIKey = @"messageText";
@@ -24,10 +24,10 @@ NSString *const kNoticeDLinkAPIKey = @"link";
 NSString *const kNoticeDismissRelKey = @"dismiss_notice";
 NSString *const kNoticeMoreInfoRelKey = @"more_info";
 
-@implementation SHCNotice
+@implementation POSNotice
 + (instancetype)noticeWithAttributes:(NSDictionary *)attributes
 {
-    SHCNotice *notice = [[SHCNotice alloc] init];
+    POSNotice *notice = [[POSNotice alloc] init];
     //        "code": "FORSIKRING_AVTALEVILKAAR",
     //        "messageHeader": "Samtykke for forsikringsdokumenter",
     //        "messageText": "Du vil i fremtiden kunne motta forsikringsdokumenter fra selskaper du har avtale med i Digipost. For å bruke Digipost videre må du samtykke til dette.",

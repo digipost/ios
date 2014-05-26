@@ -7,7 +7,7 @@
 //
 
 #import "NSFetchedResultsController+Additions.h"
-#import "SHCModelManager.h"
+#import "POSModelManager.h"
 
 @implementation NSFetchedResultsController (Additions)
 + (NSFetchedResultsController *)fetchedResultsControllerWithEntity:(NSEntityDescription *)entity sortDescriptors:(NSArray *)sortDescriptors predicate:(NSPredicate *)predicate delegate:(id)delegate
@@ -21,7 +21,7 @@
     fetchRequest.predicate = predicate;
     NSAssert(sortDescriptors != nil, @"No sort descriptors present");
     NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                               managedObjectContext:[SHCModelManager sharedManager].managedObjectContext
+                                                                                               managedObjectContext:[POSModelManager sharedManager].managedObjectContext
                                                                                                  sectionNameKeyPath:nil
                                                                                                           cacheName:nil];
     fetchedResultsController.delegate = delegate;

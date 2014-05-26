@@ -8,8 +8,8 @@
 
 #import "SHCReceiptFolderTableViewDataSource.h"
 #import "POSReceiptFolderTableViewCell.h"
-#import "SHCReceipt.h"
-#import "SHCModelManager.h"
+#import "POSReceipt.h"
+#import "POSModelManager.h"
 
 @import CoreData;
 @interface SHCReceiptFolderTableViewDataSource ()
@@ -26,13 +26,13 @@
 {
     self.receiptGroups = nil;
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] receiptEntity];
 
-    NSArray *objects = [[SHCModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
+    NSArray *objects = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
                                                                                            error:nil];
     NSMutableDictionary *mutableReceipts = [NSMutableDictionary dictionary];
 
-    for (SHCReceipt *receipt in objects) {
+    for (POSReceipt *receipt in objects) {
         if (mutableReceipts[receipt.franchiseName] == nil) {
             NSMutableArray *array = [NSMutableArray array];
             [array addObject:receipt];

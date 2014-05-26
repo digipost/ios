@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Attachment" representedClassName="SHCAttachment" syncable="YES">
+    <entity name="Attachment" representedClassName="POSAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fileType" attributeType="String" syncable="YES"/>
@@ -12,7 +12,7 @@
         <relationship name="document" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="attachments" inverseEntity="Document" syncable="YES"/>
         <relationship name="invoice" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Invoice" inverseName="attachment" inverseEntity="Invoice" syncable="YES"/>
     </entity>
-    <entity name="Document" representedClassName="SHCDocument" syncable="YES">
+    <entity name="Document" representedClassName="POSDocument" syncable="YES">
         <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="creatorName" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="deleteUri" attributeType="String" syncable="YES"/>
@@ -22,13 +22,13 @@
         <relationship name="attachments" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Attachment" inverseName="document" inverseEntity="Attachment" syncable="YES"/>
         <relationship name="folder" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="documents" inverseEntity="Folder" syncable="YES"/>
     </entity>
-    <entity name="Folder" representedClassName="SHCFolder" syncable="YES">
+    <entity name="Folder" representedClassName="POSFolder" syncable="YES">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
-    <entity name="Invoice" representedClassName="SHCInvoice" syncable="YES">
+    <entity name="Invoice" representedClassName="POSInvoice" syncable="YES">
         <attribute name="accountNumber" attributeType="String" syncable="YES"/>
         <attribute name="amount" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="bankHomepage" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,7 +39,7 @@
         <attribute name="timePaid" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="attachment" maxCount="1" deletionRule="Nullify" destinationEntity="Attachment" inverseName="invoice" inverseEntity="Attachment" syncable="YES"/>
     </entity>
-    <entity name="Mailbox" representedClassName="SHCMailbox" syncable="YES">
+    <entity name="Mailbox" representedClassName="POSMailbox" syncable="YES">
         <attribute name="digipostAddress" attributeType="String" syncable="YES"/>
         <attribute name="owner" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="receiptsUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,7 +47,7 @@
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="mailbox" inverseEntity="Receipt" syncable="YES"/>
         <relationship name="rootResource" maxCount="1" deletionRule="Nullify" destinationEntity="RootResource" inverseName="mailboxes" inverseEntity="RootResource" syncable="YES"/>
     </entity>
-    <entity name="Receipt" representedClassName="SHCReceipt" syncable="YES">
+    <entity name="Receipt" representedClassName="POSReceipt" syncable="YES">
         <attribute name="amount" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="card" attributeType="String" syncable="YES"/>
         <attribute name="currency" attributeType="String" syncable="YES"/>
@@ -60,7 +60,7 @@
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="receipts" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
-    <entity name="RootResource" representedClassName="SHCRootResource" syncable="YES">
+    <entity name="RootResource" representedClassName="POSRootResource" syncable="YES">
         <attribute name="authenticationLevel" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="createdAt" attributeType="Date" syncable="YES"/>
         <attribute name="currentBankAccount" optional="YES" attributeType="String" syncable="YES"/>
@@ -78,12 +78,12 @@
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="0" positionY="0" width="128" height="195"/>
-        <element name="Document" positionX="313" positionY="-198" width="128" height="165"/>
-        <element name="Folder" positionX="0" positionY="0" width="128" height="105"/>
-        <element name="Invoice" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Mailbox" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Receipt" positionX="0" positionY="0" width="128" height="210"/>
-        <element name="RootResource" positionX="520" positionY="-72" width="128" height="270"/>
+        <element name="Attachment" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Document" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Folder" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Invoice" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Mailbox" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Receipt" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="RootResource" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

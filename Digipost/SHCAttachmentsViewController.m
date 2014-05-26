@@ -20,8 +20,8 @@
 #import <UIAlertView+Blocks.h>
 #import "SHCAttachmentsViewController.h"
 #import "SHCAttachmentTableViewCell.h"
-#import "SHCAttachment.h"
-#import "SHCDocument.h"
+#import "POSAttachment.h"
+#import "POSDocument.h"
 #import "SHCAppDelegate.h"
 #import "SHCLetterViewController.h"
 #import "UIViewController+ValidateOpening.h"
@@ -106,7 +106,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)generateTableViewHeader
 {
-    SHCAttachment *firstAttachment = [self.attachments firstObject];
+    POSAttachment *firstAttachment = [self.attachments firstObject];
     UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
                                                                         0.0,
                                                                         CGRectGetWidth(self.view.frame),
@@ -165,7 +165,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
-        SHCAttachment *attachment = (SHCAttachment *)sender;
+        POSAttachment *attachment = (POSAttachment *)sender;
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self.documentsViewController;
@@ -186,7 +186,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SHCAttachment *attachment = self.attachments[indexPath.row];
+    POSAttachment *attachment = self.attachments[indexPath.row];
 
     SHCAttachmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kAttachmentTableViewCellIdentifier
                                                                             forIndexPath:indexPath];
@@ -200,7 +200,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SHCAttachment *attachment = self.attachments[indexPath.row];
+    POSAttachment *attachment = self.attachments[indexPath.row];
 
     [self validateOpeningAttachment:attachment
         success:^{

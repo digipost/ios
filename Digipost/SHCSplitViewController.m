@@ -63,6 +63,7 @@
     }
 
     SHCLetterViewController *letterViewController = self.letterViewController;
+
     if (letterViewController) {
         self.delegate = letterViewController;
 

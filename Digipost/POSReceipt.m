@@ -14,11 +14,11 @@
 // limitations under the License.
 //
 
-#import "SHCReceipt.h"
-#import "SHCModelManager.h"
-#import "SHCMailbox.h"
+#import "POSReceipt.h"
+#import "POSModelManager.h"
+#import "POSMailbox.h"
 #import "NSString+SHA1String.h"
-#import "SHCFileManager.h"
+#import "POSFileManager.h"
 
 // Core Data model entity names
 NSString *const kReceiptEntityName = @"Receipt";
@@ -32,7 +32,7 @@ NSString *const kReceiptLinkAPIKey = @"link";
 NSString *const kReceiptLinkDeleteUriAPIKeySuffix = @"delete_receipt";
 NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
-@implementation SHCReceipt
+@implementation POSReceipt
 
 // Attributes
 @dynamic amount;
@@ -69,8 +69,8 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 
 + (instancetype)receiptWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] receiptEntity];
-    SHCReceipt *receipt = [[SHCReceipt alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] receiptEntity];
+    POSReceipt *receipt = [[POSReceipt alloc] initWithEntity:entity
                               insertIntoManagedObjectContext:managedObjectContext];
 
     // Because amount is given as a decimal number from the API, and we don't want to risk floating points
@@ -132,7 +132,7 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 + (instancetype)existingReceiptWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] receiptEntity];
     fetchRequest.fetchLimit = 1;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
 
@@ -140,7 +140,7 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];
@@ -155,28 +155,28 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     // and delete those that doesn't match.
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] mailboxEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] mailboxEntity];
 
     NSError *error = nil;
     NSArray *mailboxes = [managedObjectContext executeFetchRequest:fetchRequest
                                                              error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
-    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] receiptEntity];
 
     error = nil;
     NSArray *receipts = [managedObjectContext executeFetchRequest:fetchRequest
                                                             error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     NSMutableArray *remainingReceipts = [NSMutableArray arrayWithArray:receipts];
 
-    for (SHCReceipt *receipt in receipts) {
-        for (SHCMailbox *mailbox in mailboxes) {
+    for (POSReceipt *receipt in receipts) {
+        for (POSMailbox *mailbox in mailboxes) {
             if ([receipt.mailboxDigipostAddress compare:mailbox.digipostAddress
                                                 options:NSCaseInsensitiveSearch] == NSOrderedSame) {
                 [mailbox addReceiptsObject:receipt];
@@ -187,7 +187,7 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     }
 
     // Delete all remaining receipts that we couldn't match
-    for (SHCReceipt *receipt in remainingReceipts) {
+    for (POSReceipt *receipt in remainingReceipts) {
         [managedObjectContext deleteObject:receipt];
     }
 }
@@ -195,16 +195,16 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 + (void)deleteAllReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] receiptEntity];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
-    for (SHCReceipt *receipt in results) {
+    for (POSReceipt *receipt in results) {
         [managedObjectContext deleteObject:receipt];
     }
 }
@@ -212,14 +212,14 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
 + (NSArray *)allReceiptsWithMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] receiptEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] receiptEntity];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(mailboxDigipostAddress)), digipostAddress];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return results;

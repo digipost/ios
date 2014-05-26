@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import "SHCMailbox.h"
-#import "SHCFolder.h"
-#import "SHCModelManager.h"
+#import "POSMailbox.h"
+#import "POSFolder.h"
+#import "POSModelManager.h"
 
 // Core Data model entity names
 NSString *const kMailboxEntityName = @"Mailbox";
@@ -28,7 +28,7 @@ NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 
-@implementation SHCMailbox
+@implementation POSMailbox
 
 // Attributes
 @dynamic digipostAddress;
@@ -43,8 +43,8 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSEntityDescription *entity = [[SHCModelManager sharedManager] mailboxEntity];
-    SHCMailbox *mailbox = [[SHCMailbox alloc] initWithEntity:entity
+    NSEntityDescription *entity = [[POSModelManager sharedManager] mailboxEntity];
+    POSMailbox *mailbox = [[POSMailbox alloc] initWithEntity:entity
                               insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *digipostAddress = attributes[kMailboxDigipostAddressAPIKey];
@@ -75,7 +75,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
                     }
 
                     if (folderAttributes) {
-                        SHCFolder *folder = [SHCFolder folderWithAttributes:folderAttributes
+                        POSFolder *folder = [POSFolder folderWithAttributes:folderAttributes
                                                      inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
                         folder.mailbox = mailbox;
@@ -91,7 +91,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 + (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    fetchRequest.entity = [[SHCModelManager sharedManager] mailboxEntity];
+    fetchRequest.entity = [[POSModelManager sharedManager] mailboxEntity];
     fetchRequest.fetchLimit = 1;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(digipostAddress)), digipostAddress];
 
@@ -99,7 +99,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
                                                            error:&error];
     if (error) {
-        [[SHCModelManager sharedManager] logExecuteFetchRequestWithError:error];
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
 
     return [results firstObject];

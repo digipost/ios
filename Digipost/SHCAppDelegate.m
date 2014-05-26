@@ -24,7 +24,7 @@
 #import "SHCAppDelegate.h"
 #import "SHCAPIManager.h"
 #import "SHCLetterViewController.h"
-#import "SHCFileManager.h"
+#import "POSFileManager.h"
 #import "oauth.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
@@ -69,7 +69,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+    [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -82,7 +82,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[SHCFileManager sharedFileManager] removeAllDecryptedFiles];
+    [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

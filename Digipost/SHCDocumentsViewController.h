@@ -16,7 +16,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SHCBaseTableViewController.h"
-#import "SHCFolder.h"
+#import "POSFolder.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushDocumentsIdentifier;
@@ -30,7 +30,7 @@ extern NSString *const kEditingStatusKey;
 @property (copy, nonatomic) NSString *folderName;
 @property (copy, nonatomic) NSString *folderDisplayName;
 @property (copy, nonatomic) NSString *folderUri;
-@property (nonatomic, strong) SHCFolder *selectedFolder;
+@property (nonatomic, strong) POSFolder *selectedFolder;
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest;
 

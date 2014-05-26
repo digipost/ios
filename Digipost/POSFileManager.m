@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import "SHCFileManager.h"
+#import "POSFileManager.h"
 #import "NSString+SHA1String.h"
 #import <RNCryptor/RNEncryptor.h>
 #import <RNCryptor/RNDecryptor.h>
 #import "SHCOAuthManager.h"
 #import "NSError+ExtraInfo.h"
-#import "SHCBaseEncryptedModel.h"
+#import "POSBaseEncryptedModel.h"
 
 // Custom NSError consts
 NSString *const kFileManagerDecryptingErrorDomain = @"FileManagerDecryptingErrorDomain";
@@ -30,23 +30,23 @@ NSString *const kFileManagerEncryptedFilesFolderName = @"encryptedFiles";
 NSString *const kFileManagerDecryptedFilesFolderName = @"decryptedFiles";
 NSString *const kFileManagerUploadsFolderName = @"uploads";
 
-@implementation SHCFileManager
+@implementation POSFileManager
 
 #pragma mark - Public methods
 
 + (instancetype)sharedFileManager
 {
-    static SHCFileManager *sharedInstance;
+    static POSFileManager *sharedInstance;
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[SHCFileManager alloc] init];
+        sharedInstance = [[POSFileManager alloc] init];
     });
 
     return sharedInstance;
 }
 
-- (BOOL)decryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
+- (BOOL)decryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 
@@ -151,7 +151,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     return YES;
 }
 
-- (BOOL)encryptDataForBaseEncryptionModel:(SHCBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
+- (BOOL)encryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     NSString *password = [SHCOAuthManager sharedManager].refreshToken;
 

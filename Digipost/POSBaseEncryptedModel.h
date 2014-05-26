@@ -18,7 +18,7 @@
 
 extern NSString *const kBaseEncryptionModelEntityName;
 
-@interface SHCBaseEncryptedModel : NSManagedObject
+@interface POSBaseEncryptedModel : NSManagedObject
 
 @property (strong, nonatomic) NSString *uri;
 @property (strong, nonatomic) NSString *fileType;
