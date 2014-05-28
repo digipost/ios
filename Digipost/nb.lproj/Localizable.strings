@@ -303,3 +303,6 @@ limitations under the License. */
 /* %i kvitteringer */
 "RECEIPTS_FOLDER_NUMBER_OF_RECEIPTS_LABEL" = "%i kvitteringer";
 
+/* Legg til mappe */
+"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Legg til mappe";
+
