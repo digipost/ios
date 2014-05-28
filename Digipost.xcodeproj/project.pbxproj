@@ -154,6 +154,9 @@
 		EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
 		EC0C1A19193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
 		EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
+		EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
+		EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
+		EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
@@ -193,6 +196,9 @@
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
+		ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
+		ECDC58931935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
+		ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
@@ -329,6 +335,8 @@
 		EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNewFolderCollectionViewDataSource.m; sourceTree = "<group>"; };
 		EC0C1A16193476F5007CB53E /* POSNewFolderCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNewFolderCollectionViewCell.h; sourceTree = "<group>"; };
 		EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNewFolderCollectionViewCell.m; sourceTree = "<group>"; };
+		EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Convenience.h"; sourceTree = "<group>"; };
+		EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Convenience.m"; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
@@ -361,6 +369,8 @@
 		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
 		ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButton.m"; sourceTree = "<group>"; };
+		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
+		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
 		ECF06D4A192363EF003BD200 /* SHCReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCReceiptsViewController.h; sourceTree = "<group>"; };
@@ -546,6 +556,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */,
+				EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */,
 				EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */,
 				EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */,
 				ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */,
@@ -654,13 +666,15 @@
 			isa = PBXGroup;
 			children = (
 				83F7035F1855E7A9003DABE1 /* SHCFoldersViewController.h */,
+				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
 				EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */,
 				EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */,
 				EC0C1A1119347388007CB53E /* POSNewFolderCollectionViewDataSource.h */,
 				EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */,
+				ECDC58901935FF5B003202CD /* POSFolderIcon.h */,
+				ECDC58911935FF5B003202CD /* POSFolderIcon.m */,
 				EC0C1A16193476F5007CB53E /* POSNewFolderCollectionViewCell.h */,
 				EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */,
-				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
 				83D75F731859B7250013F8C9 /* SHCFolderTableViewCell.h */,
 				83D75F741859B7250013F8C9 /* SHCFolderTableViewCell.m */,
 			);
@@ -975,6 +989,7 @@
 				83D75F771859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBC185861A80080A833 /* SHCAPIManager.m in Sources */,
@@ -996,6 +1011,7 @@
 				ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1043,6 +1059,7 @@
 				83D75F761859B7250013F8C9 /* SHCFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBB185861A80080A833 /* SHCAPIManager.m in Sources */,
@@ -1064,6 +1081,7 @@
 				ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6E1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				ECDC58931935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1111,6 +1129,7 @@
 				EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				8342EFBA185861A80080A833 /* SHCAPIManager.m in Sources */,
@@ -1132,6 +1151,7 @@
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
+				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
