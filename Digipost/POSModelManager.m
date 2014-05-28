@@ -133,11 +133,11 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     if ([documentsArray isKindOfClass:[NSArray class]]) {
         [documentsArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
             POSDocument *document = [POSDocument documentWithAttributes:obj
-                                                     inManagedObjectContext:self.managedObjectContext];
-                document.folder = folder;
-                document.folderUri = folder.uri;
-                [folder addDocumentsObject:document];
-                NSLog(@"adding %@ to %@,mailbox: %@", document.creatorName, folderName, folder.mailbox.digipostAddress);
+                                                 inManagedObjectContext:self.managedObjectContext];
+            document.folder = folder;
+            document.folderUri = folder.uri;
+            [folder addDocumentsObject:document];
+            NSLog(@"adding %@ to %@,mailbox: %@", document.creatorName, folderName, folder.mailbox.digipostAddress);
         }];
     }
 

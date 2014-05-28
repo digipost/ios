@@ -18,6 +18,7 @@
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
+#import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "SHCAPIManager.h"
 #import "POSModelManager.h"
@@ -30,6 +31,7 @@
 #import "SHCLoginViewController.h"
 #import "SHCDocumentsViewController.h"
 #import "POSRootResource.h"
+#import "UIColor+Convenience.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCReceiptFoldersTableViewController.h"
 #import "SHCLetterViewController.h"
@@ -46,6 +48,7 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue";
+NSString *const kEditFolderSegue = @"newFolderSegue";
 
 @interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
 
@@ -60,6 +63,7 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 - (void)viewDidLoad
 {
+    [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
                                                             ascending:NO
@@ -124,6 +128,8 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
+    [self setEditing:NO
+            animated:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -143,6 +149,13 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         SHCDocumentsViewController *documentsViewController = (SHCDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
+    } else if ([segue.identifier isEqualToString:kEditFolderSegue]) {
+        POSNewFolderViewController *newFolderVC = (POSNewFolderViewController *)segue.destinationViewController;
+        NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
+        newFolderVC.selectedFolder = nil;
+        if ([self.folders count] > selectedIndexPath.row) {
+            newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
+        }
     }
 }
 
@@ -169,7 +182,12 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
         return 1; // Only Sign Out for now
     } else {
-        return [self.folders count];
+        if (self.isEditing) {
+            // add new cell-cell is added
+            return [self.folders count] + 1;
+        } else {
+            return [self.folders count];
+        }
     }
 }
 
@@ -180,6 +198,8 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     BOOL arrowHidden = NO;
     BOOL unreadCounterHidden = YES;
 
+    SHCFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier
+                                                                   forIndexPath:indexPath];
     if (indexPath.section == 0 && self.inboxFolder) {
         if (indexPath.row == 0) {
             folderName = [self.inboxFolder displayName];
@@ -194,12 +214,15 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
         iconImage = [UIImage imageNamed:@"list-icon-logout"];
         arrowHidden = YES;
     } else {
-        folderName = [self.folders[indexPath.row] displayName];
-        iconImage = [UIImage imageNamed:@"list-icon-folder"];
+        if (indexPath.row >= [self.folders count]) {
+            folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
+        } else {
+            folderName = [self.folders[indexPath.row] displayName];
+
+            iconImage = [UIImage imageNamed:@"list-icon-folder"];
+        }
     }
 
-    SHCFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier
-                                                                   forIndexPath:indexPath];
     cell.backgroundColor = [UIColor colorWithRed:64.0 / 255.0
                                            green:66.0 / 255.0
                                             blue:69.0 / 255.0
@@ -218,6 +241,21 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     return cell;
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing
+             animated:animated];
+
+    if (editing) {
+        [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                     inSection:1] ]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else if (animated) {
+        [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                     inSection:1] ]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -232,10 +270,30 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
     return height;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 1:
+            //            if (indexPath.row >= [self.folders count]) {
+            //                return NO;
+            //            }
+            return YES;
+            break;
+        default:
+            break;
+    }
+    return NO;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+}
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {
         case 1:
+            //            if (indexPath.row >= [self.folders count]) {
+            //                return NO;
+            //            }
             return YES;
             break;
         default:
@@ -246,12 +304,21 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        [self performSegueWithIdentifier:@"newFolderSegue"
+                                  sender:self];
     }
 }
 
-- (void)tableView:(UITableView *)tableView didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= [self.folders count]) {
+        return UITableViewCellEditingStyleInsert;
+    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -282,24 +349,32 @@ NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue
                                                             CGRectGetWidth(tableView.frame),
                                                             headerHeight)];
     [view addSubview:headerLabel];
+    [view setBackgroundColor:[UIColor pos_colorWithR:64
+                                                   G:66
+                                                   B:69]];
 
     return view;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && self.inboxFolder) {
-        if (indexPath.row == 0) {
-            [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                      sender:self.inboxFolder];
+    if (self.isEditing == NO) {
+        if (indexPath.section == 0 && self.inboxFolder) {
+            if (indexPath.row == 0) {
+                [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                          sender:self.inboxFolder];
+            } else {
+                [self performSegueWithIdentifier:kPushReceiptsIdentifier
+                                          sender:nil];
+            }
+        } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
         } else {
-            [self performSegueWithIdentifier:kPushReceiptsIdentifier
-                                      sender:nil];
+            [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                      sender:self.folders[indexPath.row]];
         }
-    } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
     } else {
-        [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                  sender:self.folders[indexPath.row]];
+        [self performSegueWithIdentifier:kEditFolderSegue
+                                  sender:self];
     }
 }
 

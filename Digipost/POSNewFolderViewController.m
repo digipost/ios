@@ -6,9 +6,19 @@
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
+#import "UIColor+Convenience.h"
 #import "POSNewFolderViewController.h"
+#import "POSFolderIcon.h"
+#import "POSNewFolderCollectionViewCell.h"
+#import "POSNewFolderCollectionViewDataSource.h"
 
 @interface POSNewFolderViewController ()
+
+@property (nonatomic, strong) POSNewFolderCollectionViewDataSource *dataSource;
+@property (weak, nonatomic) IBOutlet UITextField *textField;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+- (IBAction)saveButtonTapped:(id)sender;
 
 @end
 
@@ -16,7 +26,8 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil
+                           bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
@@ -26,13 +37,48 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.dataSource = [[POSNewFolderCollectionViewDataSource alloc] initAsDataSourceForCollectionView:self.collectionView];
+    self.collectionView.delegate = self;
+
+    if (self.selectedFolder) {
+        self.textField.text = self.selectedFolder.name;
+        NSIndexPath *folderIconIndexPath = [self.dataSource indexPathForFolderIconWithName:self.selectedFolder.iconName];
+        [self.collectionView selectItemAtIndexPath:folderIconIndexPath
+                                          animated:NO
+                                    scrollPosition:UICollectionViewScrollPositionTop];
+    } else {
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0
+                                                                      inSection:0]
+                                          animated:NO
+                                    scrollPosition:UICollectionViewScrollPositionTop];
+    }
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewWillLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewWillLayoutSubviews];
+
+    if ([self.collectionView.indexPathsForSelectedItems count] == 0) {
+    }
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath : indexPath];
+    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath : indexPath];
+    cell.imageView.image = folderIcon.bigSelectedImage;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath : indexPath];
+    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath : indexPath];
+    cell.imageView.image = folderIcon.bigImage;
 }
 
 /*
@@ -46,4 +92,7 @@
 }
 */
 
+- (IBAction)saveButtonTapped:(id)sender
+{
+}
 @end

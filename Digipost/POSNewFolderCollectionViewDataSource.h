@@ -9,4 +9,9 @@
 
 @interface POSNewFolderCollectionViewDataSource : NSObject
 
+@property (nonatomic, strong) NSArray *items;
+
+- (id)initAsDataSourceForCollectionView:(UICollectionView *)collectionView;
+- (NSString *)objectAtIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)indexPathForFolderIconWithName:(NSString *)name;
 @end

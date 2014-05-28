@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "POSFolder.h"
 
-@interface POSNewFolderViewController : UIViewController
-
+@interface POSNewFolderViewController : UIViewController <UICollectionViewDelegate>
+@property (nonatomic, strong) POSFolder *selectedFolder;
 @end

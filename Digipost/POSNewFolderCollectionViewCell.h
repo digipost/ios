@@ -10,4 +10,7 @@
 
 @interface POSNewFolderCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *cellView;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
+
 @end
