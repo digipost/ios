@@ -15,6 +15,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 
 // Custom NSError code enum
 typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
@@ -25,6 +26,59 @@ typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
     SHCAPIManagerErrorCodeUploadFailed
 };
 
+typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
+    SHCAPIManagerStateIdle = 0,
+    SHCAPIManagerStateValidatingAccessToken,
+    SHCAPIManagerStateValidatingAccessTokenFinished,
+    SHCAPIManagerStateRefreshingAccessToken,
+    SHCAPIManagerStateRefreshingAccessTokenFinished,
+    SHCAPIManagerStateRefreshingAccessTokenFailed,
+    SHCAPIManagerStateUpdatingRootResource,
+    SHCAPIManagerStateUpdatingRootResourceFinished,
+    SHCAPIManagerStateUpdatingRootResourceFailed,
+    SHCAPIManagerStateUpdatingDocuments,
+    SHCAPIManagerStateUpdatingDocumentsFinished,
+    SHCAPIManagerStateUpdatingDocumentsFailed,
+    SHCAPIManagerStateDownloadingBaseEncryptionModel,
+    SHCAPIManagerStateDownloadingBaseEncryptionModelFinished,
+    SHCAPIManagerStateDownloadingBaseEncryptionModelFailed,
+    SHCAPIManagerStateMovingDocument,
+    SHCAPIManagerStateMovingDocumentFinished,
+    SHCAPIManagerStateMovingDocumentFailed,
+    SHCAPIManagerStateDeletingDocument,
+    SHCAPIManagerStateDeletingDocumentFinished,
+    SHCAPIManagerStateDeletingDocumentFailed,
+    SHCAPIManagerStateDeletingReceipt,
+    SHCAPIManagerStateDeletingReceiptFinished,
+    SHCAPIManagerStateDeletingReceiptFailed,
+    SHCAPIManagerStateUpdatingBankAccount,
+    SHCAPIManagerStateUpdatingBankAccountFinished,
+    SHCAPIManagerStateUpdatingBankAccountFailed,
+    SHCAPIManagerStateSendingInvoiceToBank,
+    SHCAPIManagerStateSendingInvoiceToBankFinished,
+    SHCAPIManagerStateSendingInvoiceToBankFailed,
+    SHCAPIManagerStateUpdatingReceipts,
+    SHCAPIManagerStateUpdatingReceiptsFinished,
+    SHCAPIManagerStateUpdatingReceiptsFailed,
+    SHCAPIManagerStateUploadingFile,
+    SHCAPIManagerStateUploadingFileFinished,
+    SHCAPIManagerStateUploadingFileFailed,
+    SHCAPIManagerStateLoggingOut,
+    SHCAPIManagerStateLoggingOutFailed,
+    SHCAPIManagerStateLoggingOutFinished,
+    SHCAPIManagerStateChangingFolder,
+    SHCAPIManagerStateChangingFolderFailed,
+    SHCAPIManagerStateChangingFolderFinished,
+    SHCAPIManagerStateDeletingFolder,
+    SHCAPIManagerStateDeletingFolderFailed,
+    SHCAPIManagerStateDeletingFolderFinished,
+    SHCAPIManagerStateCreatingFolder,
+    SHCAPIManagerStateCreatingFolderFailed,
+    SHCAPIManagerStateCreatingFolderFinished,
+    SHCAPIManagerStateUpdatingFolder,
+    SHCAPIManagerStateUpdatingFolderFailed,
+    SHCAPIManagerStateUpdatingFolderFinished,
+};
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
 
@@ -37,6 +91,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 @class POSBaseEncryptedModel;
 @class POSDocument;
 @class POSInvoice;
+@class POSMailbox;
 @class POSReceipt;
 
 @interface SHCAPIManager : NSObject
@@ -48,6 +103,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 @property (assign, nonatomic, getter=isDownloadingBaseEncryptionModel) BOOL downloadingBaseEncryptionModel;
 @property (assign, nonatomic, getter=isUploadingFile) BOOL uploadingFile;
 @property (strong, nonatomic) NSProgress *uploadProgress;
+@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 + (instancetype)sharedManager;
 
@@ -72,5 +128,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)cancelUploadingFiles;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;
+
+- (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
 @end

@@ -10,11 +10,13 @@
 #import "POSNewFolderViewController.h"
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
+#import "SHCAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 
 @interface POSNewFolderViewController ()
 
 @property (nonatomic, strong) POSNewFolderCollectionViewDataSource *dataSource;
+
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
@@ -94,5 +96,16 @@
 
 - (IBAction)saveButtonTapped:(id)sender
 {
+
+    POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
+    [[SHCAPIManager sharedManager] createFolderWithName:self.textField.text
+        iconName:selectedIcon.name
+        forMailBox:self.mailbox
+        success:^{
+            [NSString stringWithFormat:@"%@",@"dfaf"];
+            [self dismissViewControllerAnimated:YES completion:^{
+            }];
+        }
+        failure:^(NSError *error) {}];
 }
 @end

@@ -153,6 +153,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         POSNewFolderViewController *newFolderVC = (POSNewFolderViewController *)segue.destinationViewController;
         NSIndexPath *selectedIndexPath = [self.tableView indexPathForSelectedRow];
         newFolderVC.selectedFolder = nil;
+        newFolderVC.mailbox = self.inboxFolder.mailbox;
         if ([self.folders count] > selectedIndexPath.row) {
             newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
         }

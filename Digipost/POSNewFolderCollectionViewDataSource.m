@@ -9,7 +9,6 @@
 
 #import "POSNewFolderCollectionViewDataSource.h"
 #import "POSNewFolderCollectionViewCell.h"
-#import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 
 @import CoreData;
@@ -63,7 +62,7 @@
 
     self.items = items;
 }
-- (NSString *)objectAtIndexPath:(NSIndexPath *)indexPath
+- (POSFolderIcon *)objectAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.items objectAtIndex:indexPath.row];
 }

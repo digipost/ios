@@ -178,6 +178,9 @@
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
+		EC5110EE1938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5110ED1938832600B7FC4D /* SHCAPIManager+FolderRequests.m */; };
+		EC5110EF1938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5110ED1938832600B7FC4D /* SHCAPIManager+FolderRequests.m */; };
+		EC5110F01938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5110ED1938832600B7FC4D /* SHCAPIManager+FolderRequests.m */; };
 		EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
 		EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
@@ -190,6 +193,9 @@
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
+		ECB1354B1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */; };
+		ECB1354C1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */; };
+		ECB1354D1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
@@ -352,6 +358,8 @@
 		EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewController.m; sourceTree = "<group>"; };
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
+		EC5110EC1938832600B7FC4D /* SHCAPIManager+FolderRequests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCAPIManager+FolderRequests.h"; sourceTree = "<group>"; };
+		EC5110ED1938832600B7FC4D /* SHCAPIManager+FolderRequests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCAPIManager+FolderRequests.m"; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* SHCLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -365,6 +373,8 @@
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
+		ECB135491938C243000F9F7F /* SHCAPIManager+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCAPIManager+PrivateMethods.h"; sourceTree = "<group>"; };
+		ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCAPIManager+PrivateMethods.m"; sourceTree = "<group>"; };
 		ECB3A64D18B379F8002D8C22 /* POSNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
@@ -556,6 +566,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */,
+				EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */,
 				EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */,
 				EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */,
 				EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */,
@@ -612,8 +624,6 @@
 			children = (
 				8364D712185F1EB4008DE6CB /* SHCDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* SHCDocumentsViewController.m */,
-				EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */,
-				EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */,
 				8364D71C185F2981008DE6CB /* SHCDocumentTableViewCell.h */,
 				8364D71D185F2981008DE6CB /* SHCDocumentTableViewCell.m */,
 				83DB4AE9188D287600515022 /* SHCReceiptFoldersTableViewController.h */,
@@ -639,6 +649,10 @@
 				83F7038018573641003DABE1 /* SHCOAuthManager.m */,
 				8342EFB8185861A80080A833 /* SHCAPIManager.h */,
 				8342EFB9185861A80080A833 /* SHCAPIManager.m */,
+				ECB135491938C243000F9F7F /* SHCAPIManager+PrivateMethods.h */,
+				ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */,
+				EC5110EC1938832600B7FC4D /* SHCAPIManager+FolderRequests.h */,
+				EC5110ED1938832600B7FC4D /* SHCAPIManager+FolderRequests.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -961,10 +975,12 @@
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07A18AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7EA1875578A00344644 /* POSFileManager.m in Sources */,
+				ECB1354D1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */,
 				83DB4AED188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
+				EC5110F01938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */,
 				EC0C1A1519347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				8364D716185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -1031,10 +1047,12 @@
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07918AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				83D2F7E91875578A00344644 /* POSFileManager.m in Sources */,
+				ECB1354C1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */,
 				83DB4AEC188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
 				EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
+				EC5110EF1938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */,
 				EC0C1A1419347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				8364D715185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -1101,10 +1119,12 @@
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* SHCReceiptFoldersTableViewController.m in Sources */,
+				ECB1354B1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* SHCDocumentsViewController.m in Sources */,
+				EC5110EE1938832600B7FC4D /* SHCAPIManager+FolderRequests.m in Sources */,
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC68C07818AA2D1400A94770 /* SHCLetterPopoverTableViewMobelObject.m in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,

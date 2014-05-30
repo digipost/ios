@@ -13,10 +13,11 @@
 //
 
 #import <objc/runtime.h>
-#import <AFNetworking/AFHTTPSessionManager.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCAPIManager.h"
+#import "SHCAPIManager+PrivateMethods.h"
+#import "POSMailbox.h"
 #import "SHCOAuthManager.h"
 #import "POSModelManager.h"
 #import "POSFolder.h"
@@ -29,48 +30,6 @@
 #import "POSRootResource.h"
 #import "POSInvoice.h"
 #import "POSReceipt.h"
-
-typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
-    SHCAPIManagerStateIdle = 0,
-    SHCAPIManagerStateValidatingAccessToken,
-    SHCAPIManagerStateValidatingAccessTokenFinished,
-    SHCAPIManagerStateRefreshingAccessToken,
-    SHCAPIManagerStateRefreshingAccessTokenFinished,
-    SHCAPIManagerStateRefreshingAccessTokenFailed,
-    SHCAPIManagerStateUpdatingRootResource,
-    SHCAPIManagerStateUpdatingRootResourceFinished,
-    SHCAPIManagerStateUpdatingRootResourceFailed,
-    SHCAPIManagerStateUpdatingDocuments,
-    SHCAPIManagerStateUpdatingDocumentsFinished,
-    SHCAPIManagerStateUpdatingDocumentsFailed,
-    SHCAPIManagerStateDownloadingBaseEncryptionModel,
-    SHCAPIManagerStateDownloadingBaseEncryptionModelFinished,
-    SHCAPIManagerStateDownloadingBaseEncryptionModelFailed,
-    SHCAPIManagerStateMovingDocument,
-    SHCAPIManagerStateMovingDocumentFinished,
-    SHCAPIManagerStateMovingDocumentFailed,
-    SHCAPIManagerStateDeletingDocument,
-    SHCAPIManagerStateDeletingDocumentFinished,
-    SHCAPIManagerStateDeletingDocumentFailed,
-    SHCAPIManagerStateDeletingReceipt,
-    SHCAPIManagerStateDeletingReceiptFinished,
-    SHCAPIManagerStateDeletingReceiptFailed,
-    SHCAPIManagerStateUpdatingBankAccount,
-    SHCAPIManagerStateUpdatingBankAccountFinished,
-    SHCAPIManagerStateUpdatingBankAccountFailed,
-    SHCAPIManagerStateSendingInvoiceToBank,
-    SHCAPIManagerStateSendingInvoiceToBankFinished,
-    SHCAPIManagerStateSendingInvoiceToBankFailed,
-    SHCAPIManagerStateUpdatingReceipts,
-    SHCAPIManagerStateUpdatingReceiptsFinished,
-    SHCAPIManagerStateUpdatingReceiptsFailed,
-    SHCAPIManagerStateUploadingFile,
-    SHCAPIManagerStateUploadingFileFinished,
-    SHCAPIManagerStateUploadingFileFailed,
-    SHCAPIManagerStateLoggingOut,
-    SHCAPIManagerStateLoggingOutFailed,
-    SHCAPIManagerStateLoggingOutFinished
-};
 
 static void *kSHCAPIManagerStateContext = &kSHCAPIManagerStateContext;
 static void *kSHCAPIManagerRequestWasSuspended = &kSHCAPIManagerRequestWasSuspended;
@@ -97,7 +56,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 @property (strong, nonatomic) NSError *lastError;
 @property (strong, nonatomic) POSDocument *lastDocument;
 @property (strong, nonatomic) POSReceipt *lastReceipt;
-@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (strong, nonatomic) AFHTTPSessionManager *fileTransferSessionManager;
 @property (copy, nonatomic) NSString *lastBankAccountUri;
 @property (copy, nonatomic) NSString *lastReceiptsUri;
@@ -742,18 +700,36 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.updatingBankAccount = YES;
                 break;
             }
+                
             case SHCAPIManagerStateUpdatingDocuments: {
                 self.updatingDocuments = YES;
                 break;
             }
+                
             case SHCAPIManagerStateDownloadingBaseEncryptionModel: {
                 self.downloadingBaseEncryptionModel = YES;
                 break;
             }
+                
             case SHCAPIManagerStateUpdatingReceipts: {
                 self.updatingReceipts = YES;
                 break;
             }
+                
+            case SHCAPIManagerStateCreatingFolderFinished: {
+                
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+                break;
+            }
+            case SHCAPIManagerStateCreatingFolderFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateMovingDocument:
@@ -776,6 +752,25 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                                change:change
                               context:context];
     }
+}
+
+- (void)checkStateAndCallFailureBlock
+{
+    if ([self responseCodeIsUnauthorized:self.lastURLResponse]) {
+
+        // The access token was rejected - let's remove it...
+        [[SHCOAuthManager sharedManager] removeAccessToken];
+
+        if (self.lastFailureBlock) {
+            self.lastFailureBlock(self.lastError);
+        }
+    } else if (![self requestWasCanceledWithError:self.lastError]) {
+        if (self.lastFailureBlock) {
+            self.lastFailureBlock(self.lastError);
+        }
+    }
+
+    [self cleanup];
 }
 
 - (void)stateSendingInvoiceToBankFailed
@@ -1420,6 +1415,47 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             failure(error);
         }
     }];
+}
+
+- (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    self.state = SHCAPIManagerStateCreatingFolder;
+
+    NSDictionary *parameters = @{ @"name" : name,
+                                  @"icon" : iconName };
+
+    [self validateTokensWithSuccess:^{
+        [self jsonPOSTRequestWithParameters:parameters
+                                        url:mailbox.createFolderUri
+                          completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                              if (error) {
+                                  self.lastFailureBlock = failure;
+                                  self.lastError = error;
+                                  self.lastURLResponse = response;
+                                  self.state = SHCAPIManagerStateCreatingFolderFailed;
+                              } else {
+                                  self.lastSuccessBlock = success;
+                                  self.lastResponseObject = responseObject;
+                                  self.state = SHCAPIManagerStateCreatingFolderFinished;
+                              }
+                          }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)changeFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        NSDictionary *parameters =@{@"":@""};
+        [self.sessionManager POST:folder.changeFolderUri parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+        }];
+    } failure:^(NSError *error) {}];
 }
 
 - (void)cancelUploadingFiles

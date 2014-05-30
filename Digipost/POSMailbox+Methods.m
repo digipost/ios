@@ -16,9 +16,14 @@ NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
 NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
+NSString *const kMailboxLinkCreateFolderAPIKeySuffix = @"create_folder";
+NSString *const kMailboxLinkUpdateFoldersAPIKeySuffix = @"update_folders";
 
 NSString *const kMailboxLinkFoldersAPIKeySuffix = @"folders";
 NSString *const kMailboxLinkFolderAPIKeySuffix = @"folder";
+
+// Core Data model entity names
+NSString *const kMailboxEntityName = @"Mailbox";
 
 @implementation POSMailbox (Methods)
 
@@ -70,16 +75,24 @@ NSString *const kMailboxLinkFolderAPIKeySuffix = @"folder";
 
     NSDictionary *folders = attributes[kMailboxLinkFoldersAPIKeySuffix];
     NSArray *foldersForMailbox = folders[kMailboxLinkFolderAPIKeySuffix];
-
     [foldersForMailbox enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        
         POSFolder *folder = [POSFolder userMadeFolderWithAttributes:obj
                                      inManagedObjectContext:managedObjectContext];
-        
         [mailbox addFoldersObject:folder];
         folder.mailbox = mailbox;
     }];
 
+    NSArray *link = attributes[@"link"];
+    [link enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        NSDictionary *linkDict = (id) obj;
+        NSString *rel = linkDict[@"rel"];
+        if ([rel hasSuffix:kMailboxLinkCreateFolderAPIKeySuffix]){
+            mailbox.createFolderUri = linkDict[@"uri"];
+        }
+        else if ([rel hasSuffix:kMailboxLinkUpdateFoldersAPIKeySuffix]){
+            mailbox.updateFoldersUri = linkDict[@"uri"];
+        }
+    }];
     return mailbox;
 }
 

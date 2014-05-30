@@ -8,6 +8,9 @@
 
 #import "POSMailbox.h"
 
+// Core Data model entity names
+extern NSString *const kMailboxEntityName;
+
 @interface POSMailbox (Methods)
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
