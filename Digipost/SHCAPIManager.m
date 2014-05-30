@@ -700,24 +700,24 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.updatingBankAccount = YES;
                 break;
             }
-                
+
             case SHCAPIManagerStateUpdatingDocuments: {
                 self.updatingDocuments = YES;
                 break;
             }
-                
+
             case SHCAPIManagerStateDownloadingBaseEncryptionModel: {
                 self.downloadingBaseEncryptionModel = YES;
                 break;
             }
-                
+
             case SHCAPIManagerStateUpdatingReceipts: {
                 self.updatingReceipts = YES;
                 break;
             }
-                
+
             case SHCAPIManagerStateCreatingFolderFinished: {
-                
+
                 if (self.lastSuccessBlock) {
                     self.lastSuccessBlock();
                 }
@@ -726,6 +726,37 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
             }
             case SHCAPIManagerStateCreatingFolderFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateChangingFolder: {
+                break;
+            }
+            case SHCAPIManagerStateChangingFolderFinished: {
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+                break;
+            }
+            case SHCAPIManagerStateChangingFolderFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateDeletingFolder: {
+
+                break;
+            }
+            case SHCAPIManagerStateDeletingFolderFinished: {
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+
+                [self cleanup];
+                break;
+            }
+            case SHCAPIManagerStateDeletingFolderFailed: {
                 [self checkStateAndCallFailureBlock];
                 break;
             }
@@ -1446,16 +1477,59 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
-- (void)changeFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
-        NSDictionary *parameters =@{@"":@""};
-        [self.sessionManager POST:folder.changeFolderUri parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
-            
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            
-        }];
-    } failure:^(NSError *error) {}];
+        NSDictionary *parameters =@{@"id":folder.folderId,
+                                    @"name":newName,
+                                    @"icon":newIcon
+                                    };
+    self.state = SHCAPIManagerStateChangingFolder;
+        
+////        [self.sessionManager PUT:folder.changeFolderUri
+//                         parameters:parameters
+//                            success:^(NSURLSessionDataTask *task, id responseObject) {
+//                                self.lastSuccessBlock = success;
+//                                self.lastResponseObject = responseObject;
+//                                self.state = SHCAPIManagerStateChangingFolderFailed;
+//                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                                self.lastFailureBlock = failure;
+//                                self.lastError = error;
+//                                self.lastURLResponse = task.response;
+//                                self.state = SHCAPIManagerStateChangingFolderFinished;
+//                            }];
+
+                [self jsonPOSTRequestWithParameters:parameters url:folder.changeFolderUri completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                    if (error) {
+                        self.lastFailureBlock = failure;
+                        self.lastError = error;
+                        self.lastURLResponse = response;
+                    } else {
+                       self.lastSuccessBlock = success;
+                       self.lastResponseObject = responseObject;
+                    }
+       
+                }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
+- (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+
+    [self validateTokensWithSuccess:^{
+        NSDictionary *parameters =@{@"id":folder.folderId,
+                                    @"name":folder.name,
+                                    @"icon":folder.iconName
+                                    };
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
 }
 
 - (void)cancelUploadingFiles

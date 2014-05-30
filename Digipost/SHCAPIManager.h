@@ -131,4 +131,6 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
+- (void)changeFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+
 @end

@@ -93,19 +93,42 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (IBAction)saveButtonTapped:(id)sender
+- (void)createNewFolder
 {
-
     POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
     [[SHCAPIManager sharedManager] createFolderWithName:self.textField.text
         iconName:selectedIcon.name
         forMailBox:self.mailbox
         success:^{
-            [NSString stringWithFormat:@"%@",@"dfaf"];
             [self dismissViewControllerAnimated:YES completion:^{
+                
             }];
         }
-        failure:^(NSError *error) {}];
+        failure:^(NSError *error) {
+                    // TODO show error to user
+                }];
+}
+
+- (void)changeFolder
+{
+    POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
+    [[SHCAPIManager sharedManager] changeFolder:self.selectedFolder
+        newName:self.textField.text
+        newIcon:selectedIcon.name
+        success:^{
+        [self.navigationController popViewControllerAnimated:YES];
+        }
+        failure:^(NSError *error) {
+
+                    // TODO show error to user
+                }];
+}
+- (IBAction)saveButtonTapped:(id)sender
+{
+    if (self.selectedFolder) {
+        [self changeFolder];
+    } else {
+        [self createNewFolder];
+    }
 }
 @end

@@ -20,6 +20,7 @@
     AFJSONRequestSerializer *JSONRequestSerializer = [AFJSONRequestSerializer serializerWithWritingOptions:NSJSONWritingPrettyPrinted];
 
     NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
+
     [JSONRequestSerializer setValue:contentType
                  forHTTPHeaderField:@"Accept"];
 
