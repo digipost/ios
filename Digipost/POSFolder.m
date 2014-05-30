@@ -2,7 +2,7 @@
 //  POSFolder.m
 //  Digipost
 //
-//  Created by Håkon Bogen on 26.05.14.
+//  Created by Håkon Bogen on 30.05.14.
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
@@ -10,13 +10,15 @@
 #import "POSDocument.h"
 #import "POSMailbox.h"
 
+
 @implementation POSFolder
 
-@dynamic name;
-@dynamic uri;
 @dynamic changeFolderUri;
 @dynamic deletefolderUri;
 @dynamic iconName;
+@dynamic name;
+@dynamic uri;
+@dynamic folderId;
 @dynamic documents;
 @dynamic mailbox;
 

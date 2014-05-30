@@ -7,6 +7,7 @@
 //
 
 #import "POSFolder+Methods.h"
+#import "NSNumber+JsonParsing.h"
 #import "POSModelManager.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "NSString+CoreDataConvenience.h"
@@ -18,6 +19,7 @@ NSString *const kFolderWorkAreaName = @"WorkArea";
 NSString *const kFolderArchiveName = @"Archive";
 
 NSString *const kFolderIconKey = @"icon";
+NSString *const kFolderIdKey = @"id";
 
 NSString *const kMailboxLinkChangeFolderAPIKeySuffix = @"change_folder";
 NSString *const kMailboxLinkDeleteFolderAPIKeySuffix = @"delete_folder";
@@ -54,8 +56,8 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     NSString *icon = attributes[kFolderIconKey];
     folder.iconName = [NSString nilOrValueForValue:icon];
 
-    //    NSString *uri = attributes[NSStringFromSelector(@selector(uri))];
-    //    folder.uri = [uri isKindOfClass:[NSString class]] ? uri : nil;
+    NSNumber *folderId = attributes[kFolderIdKey];
+    folder.folderId = [NSNumber nilOrValueForValue:folderId];
 
     NSArray *linkArray = attributes[@"link"];
     [linkArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
