@@ -247,14 +247,20 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [super setEditing:editing
              animated:animated];
 
+    NSInteger numberOfRowsShowing = [self.tableView numberOfRowsInSection:1];
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
                                                                      inSection:1] ]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
+
     } else if (animated) {
-        [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                     inSection:1] ]
-                              withRowAnimation:UITableViewRowAnimationAutomatic];
+        if ([self.folders count] > numberOfRowsShowing) {
+            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                         inSection:1] ]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    } else {
+        //        NSAssert(NO, @"wrong");
     }
 }
 #pragma mark - UITableViewDelegate
@@ -307,7 +313,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-
+        POSFolder *folder = [self.folders objectAtIndex:indexPath.row];
+        [self deleteFolder:folder
+               atIndexPath:indexPath];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         [self performSegueWithIdentifier:@"newFolderSegue"
                                   sender:self];
@@ -452,6 +460,15 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     //    [self.navigationItem setHidesBackButton:YES];
 
     self.navigationItem.title = self.selectedMailBoxDigipostAdress ?: @"";
+}
+
+- (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
+{
+    [[SHCAPIManager sharedManager] delteFolder:folder
+        success:^{
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
+        failure:^(NSError *error) {}];
 }
 
 - (void)uploadProgressDidStart:(NSNotification *)notification

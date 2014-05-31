@@ -260,7 +260,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             case SHCAPIManagerStateLoggingOutFinished:
                 stateString = @"SHCAPIManagerStateLoggingOutFinished";
                 break;
+                
             default:
+                VariableName(state);
                 stateString = @"default";
                 break;
         }
@@ -1456,7 +1458,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                                   @"icon" : iconName };
 
     [self validateTokensWithSuccess:^{
-        [self jsonPOSTRequestWithParameters:parameters
+        [self jsonRequestWithMethod:@"POST" parameters:parameters
                                         url:mailbox.createFolderUri
                           completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
                               if (error) {
@@ -1485,29 +1487,19 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                                     @"icon":newIcon
                                     };
     self.state = SHCAPIManagerStateChangingFolder;
-        
-////        [self.sessionManager PUT:folder.changeFolderUri
-//                         parameters:parameters
-//                            success:^(NSURLSessionDataTask *task, id responseObject) {
-//                                self.lastSuccessBlock = success;
-//                                self.lastResponseObject = responseObject;
-//                                self.state = SHCAPIManagerStateChangingFolderFailed;
-//                            } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                self.lastFailureBlock = failure;
-//                                self.lastError = error;
-//                                self.lastURLResponse = task.response;
-//                                self.state = SHCAPIManagerStateChangingFolderFinished;
-//                            }];
-
-                [self jsonPOSTRequestWithParameters:parameters url:folder.changeFolderUri completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-                    if (error) {
-                        self.lastFailureBlock = failure;
-                        self.lastError = error;
-                        self.lastURLResponse = response;
-                    } else {
-                       self.lastSuccessBlock = success;
-                       self.lastResponseObject = responseObject;
-                    }
+        [self jsonRequestWithMethod:@"PUT" parameters:parameters
+                                url:folder.changeFolderUri
+                  completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+                      if (error) {
+                          self.lastFailureBlock = failure;
+                          self.lastError = error;
+                          self.lastURLResponse = response;
+                          self.state = SHCAPIManagerStateChangingFolderFailed;
+                      } else {
+                          self.lastSuccessBlock = success;
+                          self.lastResponseObject = responseObject;
+                          self.state = SHCAPIManagerStateChangingFolderFinished;
+                      }
        
                 }];
     } failure:^(NSError *error) {
@@ -1519,13 +1511,28 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-
     [self validateTokensWithSuccess:^{
-        NSDictionary *parameters =@{@"id":folder.folderId,
+        NSDictionary *parameters =@{ @"id":folder.folderId,
                                     @"name":folder.name,
                                     @"icon":folder.iconName
                                     };
+        self.state = SHCAPIManagerStateDeletingFolder;
+        [self jsonRequestWithMethod:@"DELETE" parameters:parameters url:folder.deletefolderUri completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (error) {
+                self.lastFailureBlock = failure;
+                self.lastError = error;
+                self.lastURLResponse = response;
+                self.state = SHCAPIManagerStateDeletingFolderFailed;
+                NSLog(@"failed %@",error);
+            } else {
+                self.lastSuccessBlock = success;
+                self.lastResponseObject = responseObject;
+                self.state = SHCAPIManagerStateDeletingFolderFinished;
+            }
+            
+        }];
     } failure:^(NSError *error) {
+        
         if (failure) {
             failure(error);
         }

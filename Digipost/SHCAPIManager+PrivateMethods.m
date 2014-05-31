@@ -13,7 +13,7 @@
 
 @implementation SHCAPIManager (PrivateMethods)
 
-- (void)jsonPOSTRequestWithParameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler
+- (void)jsonRequestWithMethod:(NSString *)method parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler
 {
     NSString *urlString = url;
 
@@ -28,7 +28,7 @@
     [JSONRequestSerializer setValue:bearer
                  forHTTPHeaderField:@"Authorization"];
 
-    NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST"
+    NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:method
                                                                   URLString:urlString
                                                                  parameters:parameters];
     [request setValue:contentType

@@ -10,6 +10,5 @@
 
 @interface SHCAPIManager (PrivateMethods)
 
-- (void)jsonPOSTRequestWithParameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler;
-
+- (void)jsonRequestWithMethod:(NSString *)method parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 @end

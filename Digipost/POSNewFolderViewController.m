@@ -100,9 +100,7 @@
         iconName:selectedIcon.name
         forMailBox:self.mailbox
         success:^{
-            [self dismissViewControllerAnimated:YES completion:^{
-                
-            }];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         failure:^(NSError *error) {
                     // TODO show error to user
@@ -112,11 +110,12 @@
 - (void)changeFolder
 {
     POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
+
     [[SHCAPIManager sharedManager] changeFolder:self.selectedFolder
         newName:self.textField.text
         newIcon:selectedIcon.name
         success:^{
-        [self.navigationController popViewControllerAnimated:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         failure:^(NSError *error) {
 
