@@ -10,6 +10,7 @@
 #import "POSNewFolderViewController.h"
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
+#import <UIAlertView+Blocks.h>
 #import "SHCAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 
@@ -104,7 +105,11 @@
         }
         failure:^(NSError *error) {
                     // TODO show error to user
-                }];
+            
+            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+        }];
 }
 
 - (void)changeFolder
@@ -118,9 +123,10 @@
             [self.navigationController popViewControllerAnimated:YES];
         }
         failure:^(NSError *error) {
-
-                    // TODO show error to user
-                }];
+            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+        }];
 }
 - (IBAction)saveButtonTapped:(id)sender
 {

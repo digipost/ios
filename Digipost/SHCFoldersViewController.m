@@ -20,6 +20,7 @@
 #import "SHCFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
+#import <UIAlertView+Blocks.h>
 #import "SHCAPIManager.h"
 #import "POSModelManager.h"
 #import "SHCFolderTableViewCell.h"
@@ -155,7 +156,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         newFolderVC.selectedFolder = nil;
         newFolderVC.mailbox = self.inboxFolder.mailbox;
         if ([self.folders count] > selectedIndexPath.row) {
-            newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
+            if (selectedIndexPath != nil) {
+                newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
+            }
         }
     }
 }
@@ -260,7 +263,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                   withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     } else {
-        //        NSAssert(NO, @"wrong");
     }
 }
 #pragma mark - UITableViewDelegate
@@ -405,7 +407,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
             POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
                                                                                                     inSection:section]];
-
             if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
                 self.inboxFolder = folder;
             } else {
@@ -466,9 +467,13 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [[SHCAPIManager sharedManager] delteFolder:folder
         success:^{
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self updateContentsFromServerUserInitiatedRequest:@NO];
         }
-        failure:^(NSError *error) {}];
+        failure:^(NSError *error) {
+            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                
+            }];
+        }];
 }
 
 - (void)uploadProgressDidStart:(NSNotification *)notification

@@ -260,9 +260,40 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             case SHCAPIManagerStateLoggingOutFinished:
                 stateString = @"SHCAPIManagerStateLoggingOutFinished";
                 break;
-                
+            case SHCAPIManagerStateChangingFolderFinished:
+                stateString = @"SHCAPIManagerStateChangingFolderFinished";
+                break;
+            case SHCAPIManagerStateChangingFolderFailed:
+                stateString = @"SHCAPIManagerStateChangingFolderFailed";
+                break;
+            case SHCAPIManagerStateChangingFolder:
+                stateString = @"SHCAPIManagerStateChangingFolder";
+                break;
+            case SHCAPIManagerStateDeletingFolderFinished:
+                stateString = @"SHCAPIManagerStateDeletingFolderFinished";
+                break;
+            case SHCAPIManagerStateDeletingFolderFailed:
+                stateString = @"SHCAPIManagerStateDeletingFolderFailed";
+                break;
+            case SHCAPIManagerStateDeletingFolder:
+                stateString = @"SHCAPIManagerStateDeletingFolder";
+                break;
+            case SHCAPIManagerStateCreatingFolder:
+                stateString = @"SHCAPIManagerStateCreatingFolder";
+                break;
+            case SHCAPIManagerStateCreatingFolderFinished:
+                stateString = @"SHCAPIManagerStateCreatingFolderFinished";
+                break;
+            case SHCAPIManagerStateUpdatingFolder:
+                stateString = @"SHCAPIManagerStateUpdatingFolder";
+                break;
+            case SHCAPIManagerStateUpdatingFolderFailed:
+                stateString = @"SHCAPIManagerStateUpdatingFolderFailed";
+                break;
+            case SHCAPIManagerStateUpdatingFolderFinished:
+                stateString = @"SHCAPIManagerStateUpdatingFolderFinished";
+                break;
             default:
-                VariableName(state);
                 stateString = @"default";
                 break;
         }
@@ -1452,12 +1483,12 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    self.state = SHCAPIManagerStateCreatingFolder;
 
     NSDictionary *parameters = @{ @"name" : name,
                                   @"icon" : iconName };
 
     [self validateTokensWithSuccess:^{
+    self.state = SHCAPIManagerStateCreatingFolder;
         [self jsonRequestWithMethod:@"POST" parameters:parameters
                                         url:mailbox.createFolderUri
                           completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
