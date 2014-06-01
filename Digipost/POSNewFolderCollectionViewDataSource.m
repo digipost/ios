@@ -35,33 +35,21 @@
 - (void)setupDataItems
 {
     NSMutableArray *items = [NSMutableArray array];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Archive"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Camera"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Folder"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Envelope"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"File"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Folder"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Heart"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Tags"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Home"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Star"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Suitcase"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Tags"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Heart"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Home"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Archive"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Trophy"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"usd"]];
-
-    //    [items addObject:@"Camera_128"];
-    //    [items addObject:@"Envelope_128"];
-    //    [items addObject:@"File_128"];
-    //    [items addObject:@"Folder_128"];
-    //    [items addObject:@"Heart_128"];
-    //    [items addObject:@"Tags_128"];
-    //    [items addObject:@"Home_128"];
-    //    [items addObject:@"Star_128"];
-    //    [items addObject:@"Suitcase_128"];
-    //    [items addObject:@"Trophy_128"];
-    //    [items addObject:@"USD_128"];
-
+    [items addObject:[POSFolderIcon folderIconWithName:@"Suitcase"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"USD"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Camera"]];
     self.items = items;
 }
+
 - (POSFolderIcon *)objectAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.items objectAtIndex:indexPath.row];
