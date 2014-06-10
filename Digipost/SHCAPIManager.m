@@ -1528,6 +1528,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                           self.state = SHCAPIManagerStateChangingFolderFailed;
                       } else {
                           self.lastSuccessBlock = success;
+                          self.lastURLResponse = response;
                           self.lastResponseObject = responseObject;
                           self.state = SHCAPIManagerStateChangingFolderFinished;
                       }
