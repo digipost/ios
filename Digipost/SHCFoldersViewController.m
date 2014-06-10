@@ -16,6 +16,7 @@
 
 #import "POSFolder+Methods.h"
 #import <UIAlertView+Blocks.h>
+#import "POSFolderIcon.h"
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "SHCFoldersViewController.h"
 #import "POSNewFolderViewController.h"
@@ -49,6 +50,7 @@ NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kFoldersViewControllerScreenName = @"Folders";
 
 NSString *const kGoToInboxFolderAtStartupSegue = @"goToInboxFolderAtStartupSegue";
+
 NSString *const kEditFolderSegue = @"newFolderSegue";
 
 @interface SHCFoldersViewController () <NSFetchedResultsControllerDelegate>
@@ -102,17 +104,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         [self.navigationController setViewControllers:newViewControllerArray
                                              animated:YES];
     }
-    //    NSInteger viewControllerCount = [self.navigationController.viewControllers count];
-
-    //    if ([self.navigationController.viewControllers[viewControllerCount - 1] isMemberOfClass:[SHCLoginViewController class]]) {
-
-    //    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-    //                                                                           style:UIBarButtonItemStyleDone
-    //                                                                          target:nil
-    //                                                                          action:nil];
-    //    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-    //        [self.navigationItem setHidesBackButton:YES];
-    //    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -222,8 +213,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
         } else {
             folderName = [self.folders[indexPath.row] displayName];
-
-            iconImage = [UIImage imageNamed:@"list-icon-folder"];
+            POSFolder *folder = self.folders[indexPath.row];
+            POSFolderIcon *folderIcon = [POSFolderIcon folderIconWithName:folder.iconName];
+            iconImage = folderIcon.smallImage;
         }
     }
 
@@ -257,11 +249,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                               withRowAnimation:UITableViewRowAnimationAutomatic];
 
     } else if (animated) {
-        if ([self.folders count] > numberOfRowsShowing) {
-            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                         inSection:1] ]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
+        //        if ([self.folders count] > numberOfRowsShowing) {
+        [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                     inSection:1] ]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+        //        }
     } else {
     }
 }
