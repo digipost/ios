@@ -358,6 +358,10 @@
 		EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewController.m; sourceTree = "<group>"; };
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
+		EC5972F519475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		EC5972F619475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		EC5972F719475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EC5972F819475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* SHCLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -811,6 +815,7 @@
 				en,
 				Base,
 				nb,
+				nn,
 			);
 			mainGroup = 83BAB90F1855C0AC004A7BFB;
 			productRefGroup = 83BAB9191855C0AC004A7BFB /* Products */;
@@ -1184,6 +1189,7 @@
 			children = (
 				83BAB9251855C0AC004A7BFB /* en */,
 				ECA1A9F81898FFDF00408CD5 /* nb */,
+				EC5972F719475FE100E3108D /* nn */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1193,6 +1199,7 @@
 			children = (
 				83BAB92E1855C0AC004A7BFB /* Base */,
 				ECA1A9F61898FFDE00408CD5 /* nb */,
+				EC5972F519475FE100E3108D /* nn */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -1202,6 +1209,7 @@
 			children = (
 				83BAB9311855C0AC004A7BFB /* Base */,
 				ECA1A9F71898FFDF00408CD5 /* nb */,
+				EC5972F619475FE100E3108D /* nn */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -1211,6 +1219,7 @@
 			children = (
 				83F7038518573C3A003DABE1 /* en */,
 				ECA1A9F91898FFDF00408CD5 /* nb */,
+				EC5972F819475FE100E3108D /* nn */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
