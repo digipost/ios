@@ -17,11 +17,12 @@
 #import "UIViewController+BackButton.h"
 
 @implementation UIViewController (BackButton)
+
 - (void)setMenuButton
 {
-    //    UIBarButtonItem *backButton = self.navigationItem.backBarButtonItem;
-
-    //    [backButton setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-    //    [self.navigationItem setBackBarButtonItem:backButton];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
+    [self setTitle:@"backButton"];
+    [self.navigationItem setLeftBarButtonItem:backButton];
 }
+
 @end
