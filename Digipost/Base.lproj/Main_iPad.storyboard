@@ -1081,9 +1081,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Kontoer" id="77d-8d-nAS">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="zbb-lW-mMA">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="zbb-lW-mMA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yin-f1-P08">
-                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Logg ut">
@@ -1104,7 +1104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6f-dZ-jFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700" y="-710"/>
+            <point key="canvasLocation" x="700" y="-716"/>
         </scene>
         <!--New Folder View Controller - Lag ny mappe-->
         <scene sceneID="vz6-Ip-gWU">
