@@ -27,6 +27,7 @@
         <attribute name="deletefolderUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="folderId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="iconName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
@@ -86,7 +87,7 @@
     <elements>
         <element name="Attachment" positionX="36" positionY="-9" width="128" height="195"/>
         <element name="Document" positionX="27" positionY="-207" width="128" height="165"/>
-        <element name="Folder" positionX="304" positionY="57" width="128" height="165"/>
+        <element name="Folder" positionX="304" positionY="57" width="128" height="178"/>
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
         <element name="Mailbox" positionX="79" positionY="207" width="128" height="165"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>

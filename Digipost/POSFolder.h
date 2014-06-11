@@ -2,7 +2,7 @@
 //  POSFolder.h
 //  Digipost
 //
-//  Created by Håkon Bogen on 30.05.14.
+//  Created by Håkon Bogen on 11.06.14.
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
@@ -15,10 +15,11 @@
 
 @property (nonatomic, retain) NSString * changeFolderUri;
 @property (nonatomic, retain) NSString * deletefolderUri;
+@property (nonatomic, retain) NSNumber * folderId;
 @property (nonatomic, retain) NSString * iconName;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * uri;
-@property (nonatomic, retain) NSNumber * folderId;
+@property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSSet *documents;
 @property (nonatomic, retain) POSMailbox *mailbox;
 @end

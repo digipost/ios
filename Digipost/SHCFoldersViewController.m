@@ -68,8 +68,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
-    self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(name))
-                                                            ascending:NO
+    self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index))
+                                                            ascending:YES
                                                              selector:@selector(compare:)] ];
 
     if (self.selectedMailBoxDigipostAdress == nil) {

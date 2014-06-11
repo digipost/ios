@@ -42,6 +42,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;
 
     NSArray *links = attributes[@"link"];
+    __block NSInteger index = 0;
     if ([links isKindOfClass:[NSArray class]]) {
         for (NSDictionary *link in links) {
             if ([link isKindOfClass:[NSDictionary class]]) {
@@ -66,6 +67,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
                         POSFolder *folder = [POSFolder folderWithAttributes:folderAttributes
                                                      inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
+                        folder.index = @(index++);
                         folder.mailbox = mailbox;
                     }
                 }
@@ -78,6 +80,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
     [foldersForMailbox enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         POSFolder *folder = [POSFolder userMadeFolderWithAttributes:obj
                                      inManagedObjectContext:managedObjectContext];
+        folder.index = @(index++);
         [mailbox addFoldersObject:folder];
         folder.mailbox = mailbox;
     }];
