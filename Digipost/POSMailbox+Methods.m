@@ -76,6 +76,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
     }
 
     NSDictionary *folders = attributes[kMailboxLinkFoldersAPIKeySuffix];
+
     NSArray *foldersForMailbox = folders[kMailboxLinkFolderAPIKeySuffix];
     [foldersForMailbox enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         POSFolder *folder = [POSFolder userMadeFolderWithAttributes:obj
@@ -85,7 +86,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
         folder.mailbox = mailbox;
     }];
 
-    NSArray *link = attributes[@"link"];
+    NSArray *link = folders[@"link"];
     [link enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSDictionary *linkDict = (id) obj;
         NSString *rel = linkDict[@"rel"];

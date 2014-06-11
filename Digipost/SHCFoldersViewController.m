@@ -287,7 +287,22 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 }
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
+    POSFolder *firstFolder = self.folders[sourceIndexPath.row];
+    POSFolder *secondFolder = self.folders[destinationIndexPath.row];
+
+    [self.folders setObject:firstFolder
+         atIndexedSubscript:destinationIndexPath.row];
+    [self.folders setObject:secondFolder
+         atIndexedSubscript:sourceIndexPath.row];
+    POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    [[SHCAPIManager sharedManager] moveFolder:self.folders
+        mailbox:mailbox
+        success:^{
+        }
+        failure:^(NSError *error) {}];
 }
+
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.section) {

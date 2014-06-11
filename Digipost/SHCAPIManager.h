@@ -78,6 +78,9 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateUpdatingFolder,
     SHCAPIManagerStateUpdatingFolderFailed,
     SHCAPIManagerStateUpdatingFolderFinished,
+    SHCAPIManagerStateMovingFolders,
+    SHCAPIManagerStateMovingFoldersFinished,
+    SHCAPIManagerStateMovingFoldersFailed,
 };
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
@@ -133,5 +136,6 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
 @end
