@@ -15,26 +15,15 @@
     POSFolderIcon *icon = [[POSFolderIcon alloc] init];
     icon.name = [name uppercaseString];
     return icon;
-    //    [items addObject:@"Archive_128"];
-    //    [items addObject:@"Camera_128"];
-    //    [items addObject:@"Envelope_128"];
-    //    [items addObject:@"File_128"];
-    //    [items addObject:@"Folder_128"];
-    //    [items addObject:@"Heart_128"];
-    //    [items addObject:@"Tags_128"];
-    //    [items addObject:@"Home_128"];
-    //    [items addObject:@"Star_128"];
-    //    [items addObject:@"Suitcase_128"];
-    //    [items addObject:@"Trophy_128"];
-    //    [items addObject:@"USD_128"];
 }
+
 - (NSString *)upperCaseFirstLetterName
 {
-
     NSString *lowercaseName = [_name lowercaseString];
     return [lowercaseName stringByReplacingCharactersInRange:NSMakeRange(0, 1)
                                                   withString:[[lowercaseName substringToIndex:1] uppercaseString]];
 }
+
 - (UIImage *)bigImage
 {
     if (_bigImage == nil) {
@@ -50,6 +39,7 @@
     }
     return _bigSelectedImage;
 }
+
 - (UIImage *)smallImage
 {
     if (_smallImage == nil) {
@@ -57,4 +47,5 @@
     }
     return _smallImage;
 }
+
 @end
