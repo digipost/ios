@@ -36,13 +36,13 @@
 {
     NSMutableArray *items = [NSMutableArray array];
     [items addObject:[POSFolderIcon folderIconWithName:@"Folder"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Envelope"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"File"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Letter"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Paper"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Star"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Tags"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Heart"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Home"]];
-    [items addObject:[POSFolderIcon folderIconWithName:@"Archive"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Box"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Trophy"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Suitcase"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"USD"]];
