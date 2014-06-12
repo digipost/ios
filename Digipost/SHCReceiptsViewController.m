@@ -99,14 +99,9 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
-        letterViewController.receiptsViewController = self;
+        letterViewController.receiptsViewController = (id)self;
         letterViewController.receipt = receipt;
     }
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -276,10 +271,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 {
     return YES;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView indentationLevelForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 20;
 }
+
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return YES;

@@ -49,7 +49,7 @@ NSString *const kNoticeMoreInfoRelKey = @"more_info";
     notice.dismissText = attributes[kNoticeDismissTextAPIKey];
     NSArray *linkArray = attributes[kNoticeDLinkAPIKey];
     for (NSDictionary *link in linkArray) {
-        NSString *rel = attributes[@"rel"];
+        NSString *rel = link[@"rel"];
         if ([rel rangeOfString:kNoticeMoreInfoRelKey].location != NSNotFound) {
             notice.moreInfoLink = attributes[@"uri"];
         }

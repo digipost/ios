@@ -120,8 +120,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
-    [self setEditing:NO
-            animated:NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -242,19 +240,15 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [super setEditing:editing
              animated:animated];
 
-    NSInteger numberOfRowsShowing = [self.tableView numberOfRowsInSection:1];
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
                                                                      inSection:1] ]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
 
     } else if (animated) {
-        //        if ([self.folders count] > numberOfRowsShowing) {
         [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
                                                                      inSection:1] ]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
-        //        }
-    } else {
     }
 }
 #pragma mark - UITableViewDelegate

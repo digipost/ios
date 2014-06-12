@@ -31,14 +31,6 @@
     }
 
     return fetchedResultsController;
-#warning potential bug prone
-    //    [self.tableView reloadData];
-    //    [self updateNavbar]
-    // Because we don't know which subclass inherits from the base controller,
-    // let's see if it responds to the updateFolders selector
-    //    if ([self respondsToSelector:@selector(updateFolders)]) {
-    //        [self performSelector:@selector(updateFolders)];
-    //    }
 }
 
 @end

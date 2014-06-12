@@ -23,7 +23,6 @@
     NSParameterAssert(mailboxDigipostAddress);
     NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", mailboxDigipostAddress];
     NSPredicate *p2 = [NSPredicate predicateWithFormat:@"%K == %@", [NSString stringWithFormat:@"%@", NSStringFromSelector(@selector(name))], folderName];
-
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[ p1, p2 ]];
     return predicate;
 }
@@ -34,7 +33,6 @@
     NSParameterAssert(mailboxDigipostAddress);
     NSPredicate *p1 = [NSPredicate predicateWithFormat:@"folder.mailbox.digipostAddress == %@", mailboxDigipostAddress];
     NSPredicate *p2 = [NSPredicate predicateWithFormat:@"%K == %@", [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))], folderName];
-
     NSPredicate *predicate = [NSCompoundPredicate andPredicateWithSubpredicates:@[ p1, p2 ]];
     return predicate;
 }

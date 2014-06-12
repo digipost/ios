@@ -50,13 +50,6 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
     [super viewDidLoad];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:self.refreshControl];
-    //
-    //    UIBarButtonItem *emptyBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"sdfasj"
-    //                                                                           style:UIBarButtonItemStyleDone
-    //                                                                          target:nil
-    //                                                                          action:nil];
-    ////    [self.navigationItem setLeftBarButtonItem:emptyBarButtonItem];
-    //    [self.navigationItem setHidesBackButton:YES];
 
     [self.navigationItem setLeftBarButtonItem:self.logoutBarButtonItem];
 

@@ -111,7 +111,6 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)reconnectDanglingDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     // At this point, all our Folder objects have been created anew.
     // Because the relationship from Folder to Document is of type Nullify,
     // this means that all Documents have their folder property set to nil.
@@ -158,7 +157,6 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (void)deleteAllDocumentsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
 
@@ -175,7 +173,6 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 }
 + (NSArray *)allDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress
