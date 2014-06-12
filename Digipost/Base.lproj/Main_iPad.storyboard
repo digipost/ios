@@ -428,11 +428,11 @@
                                             <color key="backgroundColor" red="0.1960784314" green="0.20784313730000001" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kbC-sZ-OoW" userLabel="Icon Image View">
-                                            <rect key="frame" x="15" y="19" width="15" height="12"/>
+                                            <rect key="frame" x="15" y="17" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="KOl-vJ-3Fe"/>
-                                                <constraint firstAttribute="width" constant="15" id="X17-iH-kSG"/>
+                                                <constraint firstAttribute="height" constant="16" id="KOl-vJ-3Fe"/>
+                                                <constraint firstAttribute="width" constant="16" id="X17-iH-kSG"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLDER_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWl-0q-fND" userLabel="Folder Name Label">
