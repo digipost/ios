@@ -42,7 +42,9 @@
     [super viewDidLoad];
     self.dataSource = [[POSNewFolderCollectionViewDataSource alloc] initAsDataSourceForCollectionView:self.collectionView];
     self.collectionView.delegate = self;
-
+    UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+    [self.textField setLeftViewMode:UITextFieldViewModeAlways];
+    [self.textField setLeftView:spacerView];
     if (self.selectedFolder) {
         self.textField.text = self.selectedFolder.name;
         NSIndexPath *folderIconIndexPath = [self.dataSource indexPathForFolderIconWithName:self.selectedFolder.iconName];
