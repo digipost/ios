@@ -26,6 +26,37 @@ PODS:
   - GoogleAnalytics-iOS-SDK (3.0.3)
   - HockeySDK (3.5.2)
   - LUKeychainAccess (1.2.0)
+  - MRProgress (0.4.3):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+    - MRProgress/MessageInterceptor
+    - MRProgress/NavigationBarProgress
+    - MRProgress/Overlay
+    - MRProgress/Stopable
+    - MRProgress/WeakProxy
+  - MRProgress/ActivityIndicator (0.4.3):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.4.3):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.4.3):
+    - MRProgress/Helper
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.4.3)
+  - MRProgress/Icons (0.4.3)
+  - MRProgress/MessageInterceptor (0.4.3)
+  - MRProgress/NavigationBarProgress (0.4.3)
+  - MRProgress/Overlay (0.4.3):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/Stopable (0.4.3):
+    - MRProgress/Helper
+  - MRProgress/WeakProxy (0.4.3)
   - RNCryptor (2.2)
   - UIActionSheet+Blocks (0.8)
   - UIAlertView+Blocks (0.8)
@@ -36,18 +67,20 @@ DEPENDENCIES:
   - GoogleAnalytics-iOS-SDK (~> 3.0.3)
   - HockeySDK (~> 3.5.2)
   - LUKeychainAccess (~> 1.2.0)
+  - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.1)
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
 
 SPEC CHECKSUMS:
-  AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
-  CocoaLumberjack: 17803afbade3126a377d32b8d23367264b44ced6
-  GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
-  HockeySDK: 203d3af93c2a229bfb528ff085201670ff65e1cf
-  LUKeychainAccess: 87c5398528278a5f24956b61bb459ea97bd93b6a
-  RNCryptor: 1420380792b33758d2414cf37af160ea2495e15c
-  UIActionSheet+Blocks: d3c7515281a4c5c5b9fbf127d8a9220982d4392c
-  UIAlertView+Blocks: 39a1aee8ea75c4f9f877ff0b3734d84bf2009d1f
+  AFNetworking: a4d0e9a64de9242986620dafd1b3cee3b413ac5c
+  CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
+  GoogleAnalytics-iOS-SDK: ee5322bf919d731d34ff3c8d891301e8f1e0e873
+  HockeySDK: a971bdf56c4e549c05d76aa9283fcfc9f6ecaea3
+  LUKeychainAccess: 3559d5939dee13858809c2405164db901330d343
+  MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
+  RNCryptor: 4f562062c39f288b99601674f2c50dd44b68d58a
+  UIActionSheet+Blocks: dac8918e50e1d401cc14bb6463f2ff5ef3094c53
+  UIAlertView+Blocks: 90d7f6b2853404277c94f6284c2b8c16028272e6
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1

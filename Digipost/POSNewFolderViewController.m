@@ -13,6 +13,7 @@
 #import <UIAlertView+Blocks.h>
 #import "SHCAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
+#import <MRProgress.h>
 
 @interface POSNewFolderViewController () <UITextFieldDelegate>
 
@@ -89,30 +90,41 @@
 }
 
 /*
-#pragma mark - Navigation
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+ {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (void)createNewFolder
 {
     POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
+    MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
+                                                                          animated:YES];
+    [overlayView setTitleLabelText:@""];
     [[SHCAPIManager sharedManager] createFolderWithName:self.textField.text
         iconName:selectedIcon.name
         forMailBox:self.mailbox
         success:^{
-            [self.navigationController popViewControllerAnimated:YES];
+                                                    [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+                                                    [self.navigationController popViewControllerAnimated:YES];
         }
         failure:^(NSError *error) {
-                    // TODO show error to user
-            
-            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-            }];
+                                                    [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+                                                    // TODO show error to user
+                                                    if (error.code == -1011){
+                                                        [UIAlertView showWithTitle:NSLocalizedString(@"Folder allready exists title", @"Title of the error telling user folder with the name allready exists") message:NSLocalizedString(@"Folder allready exists text", @"Text for error telling about folder with name exits") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                            
+                                                        }];
+                                                    }else {
+                                                        [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                            
+                                                        }];
+                                                    }
         }];
 }
 
@@ -120,18 +132,24 @@
 {
     POSFolderIcon *selectedIcon = [self.dataSource objectAtIndexPath:self.collectionView.indexPathsForSelectedItems[0]];
 
+    MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
+                                                                          animated:YES];
+    [overlayView setTitleLabelText:@""];
     [[SHCAPIManager sharedManager] changeFolder:self.selectedFolder
         newName:self.textField.text
         newIcon:selectedIcon.name
         success:^{
-            [self.navigationController popViewControllerAnimated:YES];
+                                            [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+                                            [self.navigationController popViewControllerAnimated:YES];
         }
         failure:^(NSError *error) {
-            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-            }];
+                                            [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+                                            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                
+                                            }];
         }];
 }
+
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     textField.text = @"";
