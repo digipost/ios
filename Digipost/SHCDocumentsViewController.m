@@ -419,7 +419,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (letterViewConctroller.attachment) {
             if (letterViewConctroller.attachment.uri == nil ) {
                 POSAttachment *refetchedObject = [POSAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-//                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
+                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
             }
         }
         
