@@ -14,6 +14,7 @@
 #import "UIViewController+Additions.h"
 #import <AFNetworking.h>
 #import "SHCLetterViewController.h"
+#import "SHCAppDelegate.h"
 #import "SHCAPIManager.h"
 #import "UIViewController+Additions.h"
 #import "SHCReceiptTableViewCell.h"
@@ -98,7 +99,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
 
         SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
-        //        letterViewController.receiptsViewController = self;
+        letterViewController.receiptsViewController = self;
         letterViewController.receipt = receipt;
     }
 }
@@ -234,10 +235,11 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
         return;
     }
 
-    //    SHCReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPath];
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        //        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.receipt = receipt;
+        SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+        appDelegate.letterViewController.receipt = receipt;
     } else {
         [self performSegueWithIdentifier:kPushReceiptIdentifier
                                   sender:self];
@@ -248,7 +250,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 {
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPathOfSelectedRow];
-
         [self deleteReceipt:receipt];
     }
 
