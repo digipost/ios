@@ -14,7 +14,7 @@
 #import "SHCAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 
-@interface POSNewFolderViewController ()
+@interface POSNewFolderViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) POSNewFolderCollectionViewDataSource *dataSource;
 
@@ -49,11 +49,13 @@
         [self.collectionView selectItemAtIndexPath:folderIconIndexPath
                                           animated:NO
                                     scrollPosition:UICollectionViewScrollPositionTop];
+        [self.textField becomeFirstResponder];
     } else {
         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0
                                                                       inSection:0]
                                           animated:NO
                                     scrollPosition:UICollectionViewScrollPositionTop];
+        self.textField.delegate = self;
     }
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -128,6 +130,12 @@
             }];
         }];
 }
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    textField.text = @"";
+    return YES;
+}
+
 - (IBAction)saveButtonTapped:(id)sender
 {
     if (self.selectedFolder) {
