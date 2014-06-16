@@ -89,21 +89,28 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                                  name:kAPIManagerUploadProgressStartedNotificationName
                                                object:nil];
 
-    if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
-        POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
-        NSMutableArray *newViewControllerArray = [NSMutableArray array];
-        NSInteger index = 0;
-        // add account vc as second view controller in navigation controller
-        for (UIViewController *viewController in self.navigationController.viewControllers) {
-            [newViewControllerArray addObject:viewController];
-            if (index == 0) {
-                [newViewControllerArray addObject:accountViewController];
-            }
-            index++;
+    UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
+
+    if ([navItem.title isEqualToString:@""] == NO) {
+        navItem.title = self.selectedMailBoxDigipostAdress;
+        if (navItem.leftBarButtonItem == nil) {
+            UIImage *image = [UIImage imageNamed:@"back"];
+            UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:image
+                                                                           style:UIBarButtonItemStyleDone
+                                                                          target:self
+                                                                          action:@selector(popViewController)];
+            backButton.title = @" ";
+            [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
+
+            [navItem setLeftBarButtonItem:backButton];
         }
-        [self.navigationController setViewControllers:newViewControllerArray
-                                             animated:YES];
     }
+}
+
+- (void)popViewController
+{
+    NSAssert(self.navigationController != nil, @"no nav controller");
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated

@@ -15,6 +15,8 @@
 //
 
 #import "POSRootResource.h"
+#import "POSFolder+Methods.h"
+#import "SHCDocumentsViewController.h"
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
 #import "POSModelManager.h"
@@ -96,7 +98,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
             if ([resource.mailboxes.allObjects count] == 1) {
-                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                //                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                //                                          sender:self];
+                [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
                                           sender:self];
                 //                [self performSegueWithIdentifier:@"accountSegue"
                 //                                          sender:self];
@@ -134,6 +138,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
         SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         OAuthViewController.delegate = self;
+    } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
+        POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        POSMailbox *mailbox = resource.mailboxes.allObjects[0];
+        SHCDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
+        documentsViewController.folderName = kFolderInboxName;
+        documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
     }
 }
 
@@ -169,9 +179,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [self performSegueWithIdentifier:@"accountSegue"
                                       sender:self];
         }
-
-        //        [self performSegueWithIdentifier:@"accountSegue"
-        //                                  sender:nil];
     }
 }
 

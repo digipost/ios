@@ -51,13 +51,14 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView addSubview:self.refreshControl];
 
-    [self.navigationItem setLeftBarButtonItem:self.logoutBarButtonItem];
-
     self.dataSource = [[POSAccountViewTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
 
     // hack to set title and back button when the view was instantiated programmatically instead of by user
     UIViewController *firstVC = self.navigationController.viewControllers[0];
-    [firstVC.navigationItem setLeftBarButtonItem:self.logoutBarButtonItem];
+    if (firstVC.navigationItem.rightBarButtonItem == nil) {
+        [firstVC.navigationItem setRightBarButtonItem:self.logoutBarButtonItem];
+    }
+    firstVC.navigationItem.leftBarButtonItem = nil;
     [firstVC.navigationItem setTitle:self.navigationItem.title];
     [firstVC.navigationItem setTitleView:nil];
 }
@@ -88,7 +89,6 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
             }
         }
         
-//        [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
 //            [UIAlertView showWithTitle:error.errorTitle
 //                               message:[error localizedDescription]

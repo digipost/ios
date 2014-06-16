@@ -33,6 +33,8 @@
 #import "SHCAppDelegate.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"
+#import "POSAccountViewController.h"
+#import "SHCFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "SHCUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
@@ -89,6 +91,27 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
+
+    if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
+        POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+        // add account vc as second view controller in navigation controller
+        UIViewController *loginViewController = self.navigationController.viewControllers[0];
+
+        SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
+
+        [newViewControllerArray addObject:loginViewController];
+        [newViewControllerArray addObject:accountViewController];
+        [newViewControllerArray addObject:folderViewController];
+        [newViewControllerArray addObject:currentViewController];
+
+        folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
+
+        [self.navigationController setViewControllers:newViewControllerArray
+                                             animated:YES];
+    }
 
     [self updateToolbarButtonItems];
 }
