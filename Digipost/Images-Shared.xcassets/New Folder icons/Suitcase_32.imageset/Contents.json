@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "Suitcase_32.png"
+      "filename" : "suitcase.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "suitcase_32.png"
     }
   ],
   "info" : {
