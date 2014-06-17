@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Envelope_active-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Envelope_active.png"
+      "filename" : "Envelope_active2x.png"
     }
   ],
   "info" : {

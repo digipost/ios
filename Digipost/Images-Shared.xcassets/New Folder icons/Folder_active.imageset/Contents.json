@@ -2,12 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x"
+      "scale" : "1x",
+      "filename" : "Folder_active.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "Folder_active.png"
+      "filename" : "Folder_active2x.png"
     }
   ],
   "info" : {
