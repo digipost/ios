@@ -176,14 +176,15 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-
-        if (letterViewConctroller.receipt) {
-            if (letterViewConctroller.receipt.uri == nil) {
-                POSReceipt *refetchedObject = [POSReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                [letterViewConctroller setReceiptDoNotDismissPopover:refetchedObject];
+            
+            if (letterViewConctroller.receipt) {
+                if (letterViewConctroller.receipt.uri == nil) {
+                    POSReceipt *refetchedObject = [POSReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                    [letterViewConctroller setReceiptDoNotDismissPopover:refetchedObject];
+                }
             }
-        }
-        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+            [self.receiptFolderTableViewDataSource refreshContent];
+            [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         }
         failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
