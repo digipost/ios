@@ -321,6 +321,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
 
         [self showEmptyView:new];
+        if (new) {
+            self.errorLabel.alpha = 0;
+        }
         [self reloadFromMetadata];
         // update the read status for ipad view
     }
