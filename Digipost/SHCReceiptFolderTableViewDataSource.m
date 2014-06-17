@@ -44,6 +44,10 @@
     }
     self.receiptGroups = mutableReceipts;
 }
+- (NSInteger)numberOfReceiptGroups
+{
+    return [self.receiptGroups count];
+}
 
 - (NSString *)storeNameAtIndexPath:(NSIndexPath *)indexPath
 {

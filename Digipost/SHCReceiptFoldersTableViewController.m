@@ -184,7 +184,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                 }
             }
             [self.receiptFolderTableViewDataSource refreshContent];
-            [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+            [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
         }
         failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
