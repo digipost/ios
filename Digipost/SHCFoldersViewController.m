@@ -105,6 +105,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             [navItem setLeftBarButtonItem:backButton];
         }
     }
+    if (navItem.rightBarButtonItem == nil) {
+        navItem.rightBarButtonItem = self.editButtonItem;
+    }
 }
 
 - (void)popViewController
@@ -163,7 +166,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSUInteger numberOfSections = 1; // We always want the Settings section
+    NSUInteger numberOfSections = 0; // We always want the Settings section
 
     if (self.inboxFolder) {
         numberOfSections++;
@@ -179,8 +182,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     if (section == 0 && self.inboxFolder) {
         return 2; // Inbox and Receipts
-    } else if (section == [self numberOfSectionsInTableView:tableView] - 1) {
-        return 1; // Only Sign Out for now
     } else {
         if (self.isEditing) {
             // add new cell-cell is added
@@ -209,10 +210,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
             iconImage = [UIImage imageNamed:@"list-icon-receipt"];
         }
-    } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
-        folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign Out");
-        iconImage = [UIImage imageNamed:@"list-icon-logout"];
-        arrowHidden = YES;
     } else {
         if (indexPath.row >= [self.folders count]) {
             folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
@@ -276,9 +273,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     switch (indexPath.section) {
         case 1:
-            //            if (indexPath.row >= [self.folders count]) {
-            //                return NO;
-            //            }
+            if (indexPath.row >= [self.folders count]) {
+                return NO;
+            }
             return YES;
             break;
         default:
@@ -286,6 +283,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
     return NO;
 }
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     POSFolder *firstFolder = self.folders[sourceIndexPath.row];
@@ -308,9 +306,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     switch (indexPath.section) {
         case 1:
-            //            if (indexPath.row >= [self.folders count]) {
-            //                return NO;
-            //            }
+            if (indexPath.row >= [self.folders count]) {
+                return NO;
+            }
             return YES;
             break;
         default:
@@ -386,7 +384,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 [self performSegueWithIdentifier:kPushReceiptsIdentifier
                                           sender:nil];
             }
-        } else if (indexPath.section == [self numberOfSectionsInTableView:tableView] - 1) {
         } else {
             [self performSegueWithIdentifier:kPushDocumentsIdentifier
                                       sender:self.folders[indexPath.row]];
