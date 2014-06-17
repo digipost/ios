@@ -35,16 +35,6 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
 
 @implementation POSAccountViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil
-                           bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -61,6 +51,14 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
     firstVC.navigationItem.leftBarButtonItem = nil;
     [firstVC.navigationItem setTitle:self.navigationItem.title];
     [firstVC.navigationItem setTitleView:nil];
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    UIViewController *firstVC = self.navigationController.viewControllers[0];
+    if ([firstVC.navigationItem respondsToSelector:@selector(setLeftBarButtonItem:)]) {
+        [firstVC.navigationItem setLeftBarButtonItem:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

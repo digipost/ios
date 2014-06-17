@@ -31,6 +31,7 @@
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"
 #import "POSAccountViewController.h"
@@ -84,35 +85,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
-    //    self.predicate = [NSPredicate predicateWithFormat:@"%K == %@",
-    //                     [NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
-    //                      self.folderName];
 
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
-
-    if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
-        POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
-        SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-
-        NSMutableArray *newViewControllerArray = [NSMutableArray array];
-        // add account vc as second view controller in navigation controller
-        UIViewController *loginViewController = self.navigationController.viewControllers[0];
-
-        SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
-
-        [newViewControllerArray addObject:loginViewController];
-        [newViewControllerArray addObject:accountViewController];
-        [newViewControllerArray addObject:folderViewController];
-        [newViewControllerArray addObject:currentViewController];
-
-        folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
-
-        [self.navigationController setViewControllers:newViewControllerArray
-                                             animated:YES];
-    }
-
+    [self addAccountsAnFoldersVCToDoucmentHierarchy];
     [self updateToolbarButtonItems];
 }
 
