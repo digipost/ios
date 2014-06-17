@@ -17,7 +17,9 @@
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "SHCLoginViewController.h"
+#import "POSFolder+Methods.h"
 #import <UIAlertView+Blocks.h>
+#import "POSRootResource.h"
 #import "SHCOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 
@@ -51,6 +53,14 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
     firstVC.navigationItem.leftBarButtonItem = nil;
     [firstVC.navigationItem setTitle:self.navigationItem.title];
     [firstVC.navigationItem setTitleView:nil];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        if (rootResource) {
+
+            [self performSegueWithIdentifier:@"gotoDocumentsFromAccountsSegue"
+                                      sender:self];
+        }
+    }
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -107,6 +117,16 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
         SHCFoldersViewController *folderViewController = (id)segue.destinationViewController;
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
         [POSModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
+    } else if ([segue.identifier isEqualToString:@"gotoDocumentsFromAccountsSegue"]) {
+        SHCDocumentsViewController *documentsView = (id)segue.destinationViewController;
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
+                                                                       ascending:YES];
+        NSArray *mailboxes = [rootResource.mailboxes sortedArrayUsingDescriptors:
+                                                         @[ nameDescriptor ]];
+        POSMailbox *userMailbox = mailboxes[0];
+        documentsView.mailboxDigipostAddress = userMailbox.digipostAddress;
+        documentsView.folderName = kFolderInboxName;
     }
 }
 

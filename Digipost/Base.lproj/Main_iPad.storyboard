@@ -779,7 +779,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1704" y="-710"/>
+            <point key="canvasLocation" x="1766" y="-519"/>
         </scene>
         <!--Attachments View Controller-->
         <scene sceneID="33h-ng-vdi">
@@ -945,6 +945,7 @@
                         <outlet property="logoutBarButtonItem" destination="zbb-lW-mMA" id="WGV-Fg-GBL"/>
                         <outlet property="logoutButton" destination="yin-f1-P08" id="lZg-Df-ekA"/>
                         <outlet property="tableView" destination="5mO-LF-YkC" id="8QG-b6-6oJ"/>
+                        <segue destination="JEl-rf-xhU" kind="push" identifier="gotoDocumentsFromAccountsSegue" id="E3S-ye-Wyc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6f-dZ-jFU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1282,4 +1283,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="E3S-ye-Wyc"/>
+    </inferredMetricsTieBreakers>
 </document>

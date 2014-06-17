@@ -13,25 +13,47 @@
 @implementation SHCDocumentsViewController (NavigationHierarchy)
 - (void)addAccountsAnFoldersVCToDoucmentHierarchy
 {
-    if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
-        POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
-        SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
-        NSMutableArray *newViewControllerArray = [NSMutableArray array];
-        // add account vc as second view controller in navigation controller
-        UIViewController *loginViewController = self.navigationController.viewControllers[0];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
+            POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
-        SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
+            NSMutableArray *newViewControllerArray = [NSMutableArray array];
+            // add account vc as second view controller in navigation controller
+            UIViewController *loginViewController = self.navigationController.viewControllers[0];
 
-        [newViewControllerArray addObject:loginViewController];
-        [newViewControllerArray addObject:accountViewController];
-        [newViewControllerArray addObject:folderViewController];
-        [newViewControllerArray addObject:currentViewController];
+            SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
 
-        folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
+            [newViewControllerArray addObject:loginViewController];
+            [newViewControllerArray addObject:accountViewController];
+            [newViewControllerArray addObject:folderViewController];
+            [newViewControllerArray addObject:currentViewController];
 
-        [self.navigationController setViewControllers:newViewControllerArray
-                                             animated:YES];
+            folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
+
+            [self.navigationController setViewControllers:newViewControllerArray
+                                                 animated:YES];
+        }
+    } else {
+        if ([self.navigationController.viewControllers[1] isMemberOfClass:[SHCFoldersViewController class]] == NO) {
+            SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+
+            NSMutableArray *newViewControllerArray = [NSMutableArray array];
+            // add account vc as second view controller in navigation controller
+            POSAccountViewController *accountVC = self.navigationController.viewControllers[0];
+
+            SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
+
+            [newViewControllerArray addObject:accountVC];
+            [newViewControllerArray addObject:folderViewController];
+            [newViewControllerArray addObject:currentViewController];
+
+            folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
+
+            [self.navigationController setViewControllers:newViewControllerArray
+                                                 animated:YES];
+        }
     }
 }
 @end

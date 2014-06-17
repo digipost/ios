@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-54" y="-43"/>
+            <point key="canvasLocation" x="-27" y="-24"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pCU-Bh-qnC">
@@ -116,11 +116,11 @@
                                             <color key="backgroundColor" red="0.19607843137254902" green="0.20784313725490194" blue="0.2196078431372549" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0R-mi-dzV" userLabel="Icon Image View">
-                                            <rect key="frame" x="15" y="19" width="15" height="12"/>
+                                            <rect key="frame" x="15" y="17" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="6oJ-2u-aMN"/>
-                                                <constraint firstAttribute="width" constant="15" id="fJC-Lk-8A2"/>
+                                                <constraint firstAttribute="height" constant="16" id="6oJ-2u-aMN"/>
+                                                <constraint firstAttribute="width" constant="16" id="fJC-Lk-8A2"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLDER_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8S-n8-YQk" userLabel="Folder Name Label">
@@ -209,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="867" y="677"/>
+            <point key="canvasLocation" x="995" y="677"/>
         </scene>
         <!--New Folder View Controller - Lag ny mappe-->
         <scene sceneID="vIE-Wc-spq">
@@ -299,7 +299,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Umn-lv-0T5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="443" y="827"/>
+            <point key="canvasLocation" x="465" y="677"/>
         </scene>
         <!--Documents View Controller-->
         <scene sceneID="ch1-fS-EKn">
@@ -559,7 +559,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1416" y="-43"/>
+            <point key="canvasLocation" x="1384" y="-24"/>
         </scene>
         <!--Receipts View Controller-->
         <scene sceneID="di7-tb-Lyr">
@@ -1162,11 +1162,12 @@
                         <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
                         <segue destination="8hc-kI-yQH" kind="push" identifier="accountSegue" id="8sB-AL-W3R"/>
                         <segue destination="J0H-vT-0Kh" kind="push" identifier="goToInboxFolderAtStartupSegue" id="eDA-DZ-Lcc"/>
+                        <segue destination="mgI-2c-YJ5" kind="push" identifier="goToDocumentsFromLoginSegue" id="6ll-nd-HYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eon-Zr-X9N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="361" y="-43"/>
+            <point key="canvasLocation" x="391" y="-24"/>
         </scene>
         <!--Account View Controller - Kontoer-->
         <scene sceneID="SnP-zZ-sOg">
@@ -1234,7 +1235,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-e3-7mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="872" y="-43"/>
+            <point key="canvasLocation" x="828" y="-24"/>
         </scene>
     </scenes>
     <resources>
@@ -1257,7 +1258,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="vJp-VT-rtF"/>
-        <segue reference="nJS-Zx-WgQ"/>
-        <segue reference="geX-1f-yyf"/>
+        <segue reference="6ll-nd-HYD"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
