@@ -44,6 +44,7 @@
     }
     self.receiptGroups = mutableReceipts;
 }
+
 - (NSInteger)numberOfReceiptGroups
 {
     return [self.receiptGroups count];
@@ -51,18 +52,18 @@
 
 - (NSString *)storeNameAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.receiptGroups.allKeys[indexPath.row];
+    NSArray *sortedKeys = [self.receiptGroups keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        POSReceipt *receipt1 = obj1[0];
+        POSReceipt *receipt2 = obj2[0];
+        return [receipt1.franchiseName compare:receipt2.franchiseName];
+    }];
+
+    return sortedKeys[indexPath.row];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
-
-    //    if (number == 0) {
-    //        [self showTableViewBackgroundView:YES];
-    //    }
-
-    //    return number;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -72,7 +73,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *storeName = self.receiptGroups.allKeys[indexPath.row];
+    NSArray *sortedKeys = [self.receiptGroups keysSortedByValueUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        POSReceipt *receipt1 = obj1[0];
+        POSReceipt *receipt2 = obj2[0];
+        return [receipt1.franchiseName compare:receipt2.franchiseName];
+    }];
+    NSString *storeName = sortedKeys[indexPath.row];
     NSArray *receipts = self.receiptGroups[storeName];
     POSReceiptFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"receiptFolderCell"
                                                                           forIndexPath:indexPath];
