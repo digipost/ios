@@ -23,6 +23,7 @@
 #import "POSFolder+Methods.h"
 #import "POSFileManager.h"
 #import "SHCAPIManager.h"
+#import "UIViewController+BackButton.h"
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCBaseTableViewController.h"
@@ -66,12 +67,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
 @property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
 @property (strong, nonatomic) UIBarButtonItem *leftBarButtonItem;
-
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
 @property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
 @property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
-- (IBAction)didTapClosePopoverButton:(id)sender;
 @property (nonatomic, strong) SHCLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSourceAndDelegate;
+- (IBAction)didTapClosePopoverButton:(id)sender;
 @end
 
 @implementation SHCLetterViewController
@@ -146,6 +146,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
     [self reloadFromMetadata];
+    [self pos_setDefaultBackButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -74,11 +74,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
+
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
 
     self.baseEntity = [[POSModelManager sharedManager] documentEntity];
+
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(createdAt))
                                                             ascending:NO
                                                              selector:@selector(compare:)] ];
@@ -90,7 +92,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [super viewDidLoad];
     [self addAccountsAnFoldersVCToDoucmentHierarchy];
+
     [self updateToolbarButtonItems];
+    [self pos_setDefaultBackButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated

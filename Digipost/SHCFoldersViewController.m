@@ -38,6 +38,7 @@
 #import "SHCReceiptFoldersTableViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "UIViewController+BackButton.h"
 #import "POSAccountViewController.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
@@ -68,6 +69,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
+
+    [self pos_setDefaultBackButton];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index))
                                                             ascending:YES
                                                              selector:@selector(compare:)] ];
@@ -130,6 +133,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
+
+    //    if ([self.navigationItem respondsToSelector:@selector(setTitle:)]) {
+    //        UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
+    //        NSString *title = NSLocalizedString(@"Accounts title", @"Title for navbar at accounts view");
+    //        if ([navItem.title isEqualToString:title] == NO) {
+    //            [navItem setTitle:title];
+    //        }
+    //    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -284,6 +295,23 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     return NO;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
+{
+    if (sourceIndexPath.section != proposedDestinationIndexPath.section) {
+        NSInteger row = 0;
+        if (sourceIndexPath.section < proposedDestinationIndexPath.section) {
+            row = [tableView numberOfRowsInSection:sourceIndexPath.section] - 1;
+        }
+        return [NSIndexPath indexPathForRow:row
+                                  inSection:sourceIndexPath.section];
+    } else if (proposedDestinationIndexPath.row == [self.folders count]) {
+        return [NSIndexPath indexPathForRow:proposedDestinationIndexPath.row - 1
+                                  inSection:sourceIndexPath.section];
+    }
+
+    return proposedDestinationIndexPath;
+}
+
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
     POSFolder *firstFolder = self.folders[sourceIndexPath.row];
@@ -346,7 +374,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                   heightForHeaderInSection:section];
 
     UILabel *headerLabel = [UILabel folderSectionHeaderTitleLabelWithFrame:CGRectMake(labelOriginX,
-                                                                                      headerHeight - labelHeight,
+                                                                                      headerHeight - labelHeight - 4,
                                                                                       CGRectGetWidth(tableView.frame) - labelOriginX,
                                                                                       labelHeight)];
 

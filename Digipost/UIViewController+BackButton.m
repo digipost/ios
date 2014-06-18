@@ -25,4 +25,33 @@
     [self.navigationItem setLeftBarButtonItem:backButton];
 }
 
+- (void)pos_setDefaultBackButton
+{
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(pos_popViewController)];
+    [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
+    [self.navigationItem setLeftBarButtonItem:backButton];
+    return;
+
+    //    UIBarButtonItem *backButton = nil;
+
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+
+    } else {
+        backButton = [[UIBarButtonItem alloc] initWithTitle:@" "
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:nil
+                                                     action:nil];
+    }
+
+    [self.navigationItem setBackBarButtonItem:backButton];
+}
+
+- (void)pos_popViewController
+{
+    NSAssert(self.navigationController != nil, @"no nav controller");
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

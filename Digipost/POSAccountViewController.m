@@ -15,6 +15,7 @@
 #import "POSMailbox.h"
 #import <UIActionSheet+Blocks.h>
 #import "SHCLetterViewController.h"
+#import "UIViewController+BackButton.h"
 #import "SHCAppDelegate.h"
 #import "SHCLoginViewController.h"
 #import "POSFolder+Methods.h"
@@ -51,24 +52,39 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
         [firstVC.navigationItem setRightBarButtonItem:self.logoutBarButtonItem];
     }
     firstVC.navigationItem.leftBarButtonItem = nil;
-    [firstVC.navigationItem setTitle:self.navigationItem.title];
+    firstVC.navigationItem.backBarButtonItem = nil;
     [firstVC.navigationItem setTitleView:nil];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         if (rootResource) {
-
             [self performSegueWithIdentifier:@"gotoDocumentsFromAccountsSegue"
                                       sender:self];
         }
     }
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    UIViewController *firstVC = self.navigationController.viewControllers[0];
-    if ([firstVC.navigationItem respondsToSelector:@selector(setLeftBarButtonItem:)]) {
-        [firstVC.navigationItem setLeftBarButtonItem:nil];
+    NSString *title = NSLocalizedString(@"Accounts title", @"Title for navbar at accounts view");
+    UINavigationItem *showingItem = self.navigationController.navigationBar.backItem;
+    [showingItem setHidesBackButton:YES];
+    if ([showingItem respondsToSelector:@selector(setLeftBarButtonItem:)]) {
+        [showingItem setLeftBarButtonItem:nil];
     }
+    if ([showingItem respondsToSelector:@selector(setRightBarButtonItem:)]) {
+        [showingItem setRightBarButtonItem:self.logoutBarButtonItem];
+    }
+
+    if ([showingItem respondsToSelector:@selector(setBackBarButtonItem:)]) {
+        [showingItem setBackBarButtonItem:nil];
+    }
+    [showingItem setTitle:title];
+    [self.navigationItem setHidesBackButton:YES];
+    self.navigationItem.backBarButtonItem = nil;
+    self.navigationItem.leftBarButtonItem = nil;
+    [self.navigationController.navigationBar.topItem setRightBarButtonItem:self.logoutBarButtonItem];
+    [self.navigationController.navigationBar.topItem setTitle:title];
 }
 
 - (void)viewDidAppear:(BOOL)animated

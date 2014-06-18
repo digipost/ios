@@ -19,4 +19,6 @@
 @interface UIViewController (BackButton)
 
 - (void)setMenuButton;
+- (void)pos_setDefaultBackButton;
+
 @end
