@@ -173,10 +173,9 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [[SHCAPIManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
         uri:self.receiptsUri
         success:^{
-        [self updateFetchedResultsController];
-        [self programmaticallyEndRefresh];
-        [self updateNavbar];
-            
+            [self updateFetchedResultsController];
+            [self programmaticallyEndRefresh];
+            [self updateNavbar];
             if (letterViewConctroller.receipt) {
                 if (letterViewConctroller.receipt.uri == nil) {
                     POSReceipt *refetchedObject = [POSReceipt existingReceiptWithUri:openedReceiptURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -184,6 +183,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
                 }
             }
             [self.receiptFolderTableViewDataSource refreshContent];
+            [self.tableView reloadData];
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
         }
         failure:^(NSError *error) {
@@ -197,9 +197,9 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             }
         }
 
-        [self programmaticallyEndRefresh];
+            [self programmaticallyEndRefresh];
+            [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
 
-        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         if ([userDidInititateRequest boolValue]) {
             [UIAlertView showWithTitle:error.errorTitle
                                message:[error localizedDescription]
@@ -221,15 +221,15 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     return [[self.tableView indexPathsForSelectedRows] count] > 0;
 }
 
-- (NSInteger)numberOfRows
-{
-    NSInteger numberOfRows = 0;
-    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
-        numberOfRows += [self.tableView numberOfRowsInSection:section];
-    }
-
-    return numberOfRows;
-}
+//- (NSInteger)numberOfRows
+//{
+//    NSInteger numberOfRows = 0;
+//    for (NSInteger section = 0; section < [self.tableView numberOfSections]; section++) {
+//        numberOfRows += [self.tableView numberOfRowsInSection:section];
+//    }
+//
+//    return numberOfRows;
+//}
 
 - (void)showTableViewBackgroundView:(BOOL)showTableViewBackgroundView
 {
