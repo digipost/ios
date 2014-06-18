@@ -64,10 +64,10 @@ limitations under the License. */
 "FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE" = "FOLDERS";
 
 /* ACTIONS */
-"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "ACCOUNT";
+"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "MY FOLDERS";
 
 /* Receipts */
-"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "Receipts";
+"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "E-Receipts";
 
 /* From */
 "LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE" = "From";
@@ -305,4 +305,19 @@ limitations under the License. */
 
 /* Legg til mappe */
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Add folder";
+
+/* Title for navbar at accounts view */
+"Accounts title" = "Accounts";
+
+/* Text for error telling about folder with name exits */
+"Folder allready exists text" = "Choose another name";
+
+/* Title of the error telling user folder with the name allready exists */
+"Folder allready exists title" = "Folder allready exists";
+
+/* Noe feil skjedde. */
+"Noe feil skjedde.  " = "Noe feil skjedde.  ";
+
+/* Ok */
+"Ok" = "Ok";
 

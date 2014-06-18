@@ -64,10 +64,10 @@ limitations under the License. */
 "FOLDERS_VIEW_CONTROLLER_FOLDERS_SECTION_HEADER_TITLE" = "MAPPER";
 
 /* ACTIONS */
-"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "KONTO";
+"FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "MINE MAPPER";
 
 /* Receipts */
-"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "Kvitteringer";
+"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "E-Kvitteringer";
 
 /* From */
 "LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE" = "Fra";
@@ -304,5 +304,26 @@ limitations under the License. */
 "RECEIPTS_FOLDER_NUMBER_OF_RECEIPTS_LABEL" = "%i kvitteringer";
 
 /* Legg til mappe */
-"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Legg til mappe";
+"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Opprett mappe";
+
+/* Title for navbar at accounts view */
+"Accounts title" = "Kontoer";
+
+/* Feil */
+"Feil" = "Feil";
+
+/* Text for error telling about folder with name exits */
+"Folder allready exists text" = "Velg et annet navn";
+
+/* Title of the error telling user folder with the name allready exists */
+"Folder allready exists title" = "Mappen eksisterer allerede";
+
+/* Noe feil skjedde. */
+"Noe feil skjedde.  " = "Noe feil skjedde.  ";
+
+/* Noe feil skjedde. Sikker på at mappa er tom? */
+"Noe feil skjedde. Sikker på at mappa er tom? " = "Noe feil skjedde. Sikker på at mappa er tom? ";
+
+/* Ok */
+"Ok" = "Ok";
 
