@@ -1195,15 +1195,21 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         
         NSString *subject = [(POSAttachment *)[document.attachments firstObject] subject];
         NSString *folderLocation = @"";
-        if ([folder.name isEqualToString:@"mailbox"]){
-            folderLocation = @"MAILBOX";
+        NSDictionary *parameters;
+        if ([folder.name isEqualToString:@"Inbox"]){
+            folderLocation = @"INBOX";
+            parameters = @{NSStringFromSelector(@selector(subject)):  subject,
+                                     NSStringFromSelector(@selector(location)): folderLocation,
+                                     };
+        
         }else {
             folderLocation = @"FOLDER";
-        }
-        NSDictionary *parameters = @{NSStringFromSelector(@selector(subject)):  subject,
+            parameters = @{NSStringFromSelector(@selector(subject)):  subject,
                                      NSStringFromSelector(@selector(location)): folderLocation,
                                      NSStringFromSelector(@selector(folderId)): folder.folderId
                                      };
+        
+        }
         
         NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST" URLString:urlString parameters:parameters];
         [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
