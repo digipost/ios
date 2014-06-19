@@ -11,4 +11,5 @@
 @interface UIColor (Convenience)
 
 + (UIColor *)pos_colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b;
++ (UIColor *)pos_colorWithR:(CGFloat)r G:(CGFloat)g B:(CGFloat)b alpha:(CGFloat)alpha;
 @end

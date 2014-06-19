@@ -14,5 +14,6 @@
 + (NSPredicate *)predicateWithFoldersInMailbox:(NSString *)mailboxDigipostAddress;
 + (NSPredicate *)folderWithName:(NSString *)folderName mailboxDigipostAddressPredicate:(NSString *)mailboxDigipostAddress;
 + (NSPredicate *)predicateForFolderWithUri:(NSString *)uri;
++ (NSPredicate *)predicateForFoldersForDigipostAddress:(NSString *)digipostAddress;
 
 @end

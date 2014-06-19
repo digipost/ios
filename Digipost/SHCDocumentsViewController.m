@@ -17,11 +17,14 @@
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import <UIActionSheet+Blocks.h>
+#import "POSFolderIcon.h"
+#import "UIColor+Convenience.h"
 #import "SHCDocumentsViewController.h"
 #import "POSModelManager.h"
 #import "POSDocument.h"
 #import "SHCDocumentTableViewCell.h"
 #import "POSAttachment.h"
+#import "UIColor+Convenience.h"
 #import "SHCAPIManager.h"
 #import "POSMailbox.h"
 #import "POSRootResource.h"
@@ -31,6 +34,7 @@
 #import "SHCAttachmentsViewController.h"
 #import "SHCLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import <AHKActionSheet.h>
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"
@@ -53,7 +57,7 @@ NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documents
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
-@interface SHCDocumentsViewController ()
+@interface SHCDocumentsViewController () <NSFetchedResultsControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
@@ -203,6 +207,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+
     if ([self.folderName isEqualToString:kFolderArchiveName] && [SHCAPIManager sharedManager].isUploadingFile) {
 
         if (indexPath.row == 0) {
@@ -219,11 +224,18 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1
                                        inSection:indexPath.section];
     }
-
-    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
     SHCDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier
                                                                      forIndexPath:indexPath];
+    [self configureCell:cell
+            atIndexPath:indexPath];
+
+    return cell;
+}
+
+- (void)configureCell:(SHCDocumentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+
+    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     POSAttachment *attachment = [document mainDocumentAttachment];
 
@@ -238,8 +250,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.subjectLabel.text = attachment.subject;
-
-    return cell;
 }
 
 #pragma mark - UITableViewDelegate
@@ -253,7 +263,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
         return;
     }
 
@@ -310,43 +319,65 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (IBAction)didTapMoveBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-    NSMutableArray *destinations = [NSMutableArray array];
-    NSString *inboxLocalizedName = NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox");
-    NSString *workAreaLocalizedName = NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea");
-    NSString *archiveLocalizedName = NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive");
-    if (![[self.folderName lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
-        [destinations addObject:inboxLocalizedName];
-    }
 
-    if (![[self.folderName lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
-        [destinations addObject:workAreaLocalizedName];
-    }
+    [self showBlurredActionSheetWithFolders];
+    return;
+}
 
-    if (![[self.folderName lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-        [destinations addObject:archiveLocalizedName];
-    }
+- (void)showBlurredActionSheetWithFolders
+{
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
 
-    [UIActionSheet showFromBarButtonItem:barButtonItem
-                                animated:YES
-                               withTitle:nil
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:nil
-                       otherButtonTitles:destinations
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                    if (buttonIndex < [destinations count]) {
-                                        NSString *location = destinations[buttonIndex] ;
-                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
-                                            [self moveSelectedDocumentsToLocation:[kFolderInboxName uppercaseString]];
-                                        }else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
-                                            [self moveSelectedDocumentsToLocation:[kFolderWorkAreaName uppercaseString]];
-                                        }else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
-                                            [self moveSelectedDocumentsToLocation:[kFolderArchiveName uppercaseString]];
-                                        }else {
-                                            NSAssert(NO, @"Wrong index tapped");
-                                        }
-                                    }
+    NSArray *folders = [POSFolder foldersForUserWithMailboxDigipostAddress:self.mailboxDigipostAddress
+                                                    inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    [actionSheet setBlurTintColor:[UIColor pos_colorWithR:64
+                                                        G:66
+                                                        B:69
+                                                    alpha:0.80]];
+    actionSheet.automaticallyTintButtonImages = @YES;
+    [actionSheet setButtonHeight:50];
+
+    actionSheet.separatorColor = [UIColor pos_colorWithR:255
+                                                       G:255
+                                                       B:255
+                                                   alpha:0.30f];
+
+    [actionSheet setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [actionSheet setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
+    for (POSFolder *folder in folders) {
+
+        UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
+        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+        [actionSheet addButtonWithTitle:folder.displayName
+                                  image:image
+                                   type:AHKActionSheetButtonTypeDefault
+                                handler:^(AHKActionSheet *actionSheet, id item) {
+            AHKActionSheetItem *actionSheetItem = (id)item;
+            if (item) {
+                NSLog(@"%@", actionSheetItem.title);
+                [self moveSelectedDocumentsToFolder:folder];
+            }
                                     [self setEditing:NO animated:YES];
                                 }];
+    }
+
+    [actionSheet show];
+}
+
+- (void)moveSelectedDocumentsToFolder:(POSFolder *)folder
+{
+    NSArray *selectedIndexes = [self.tableView indexPathsForSelectedRows];
+    for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
+        POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
+
+        [self moveDocument:document
+                  toFolder:folder];
+    }
+
+    [self deselectAllRows];
+    [self updateToolbarButtonItems];
 }
 
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -535,27 +566,17 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 }
 
-- (void)moveSelectedDocumentsToLocation:(NSString *)location
-{
-    for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
-        POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-
-        [self moveDocument:document
-                toLocation:location];
-    }
-
-    [self deselectAllRows];
-    [self updateToolbarButtonItems];
-}
-
-- (void)moveDocument:(POSDocument *)document toLocation:(NSString *)location
+- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder
 {
     [[SHCAPIManager sharedManager] moveDocument:document
-        toLocation:location
+        toFolder:folder
         withSuccess:^{
-        [self updateFetchedResultsController];
+            
+            document.folder = folder;
+            
+            [[POSModelManager sharedManager].managedObjectContext save:nil];
         
-        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+            [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
             
@@ -575,7 +596,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 double delayInSeconds = 0.0;
                 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
                 dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self moveDocument:document toLocation:location];
+                    [self moveDocument:document toFolder:folder];
                 });
                 
                 return;
@@ -748,4 +769,60 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
 
+#pragma mark NSFetchedResultsControllerDelegate
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+
+    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
+    [self.tableView beginUpdates];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+
+    UITableView *tableView = self.tableView;
+
+    switch (type) {
+
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
+                             withRowAnimation:UITableViewRowAnimationRight];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ]
+                             withRowAnimation:UITableViewRowAnimationLeft];
+            break;
+
+        case NSFetchedResultsChangeMove:
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ]
+                             withRowAnimation:UITableViewRowAnimationLeft];
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
+                             withRowAnimation:UITableViewRowAnimationRight];
+            break;
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch (type) {
+
+        case NSFetchedResultsChangeInsert:
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+
+        case NSFetchedResultsChangeDelete:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+            break;
+    }
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+
+    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView endUpdates];
+}
 @end

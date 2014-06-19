@@ -23,6 +23,7 @@ extern NSString *const kFolderArchiveName;
 + (instancetype)userMadeFolderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 + (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (NSArray *)foldersForUserWithMailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)displayName;
 
 @end

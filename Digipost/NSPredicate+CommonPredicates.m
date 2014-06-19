@@ -27,6 +27,12 @@
     return predicate;
 }
 
++ (NSPredicate *)predicateForFoldersForDigipostAddress:(NSString *)digipostAddress
+{
+    NSPredicate *p1 = [NSPredicate predicateWithFormat:@"mailbox.digipostAddress == %@", digipostAddress];
+    return p1;
+}
+
 + (NSPredicate *)predicateWithDocumentsForMailBoxDigipostAddress:(NSString *)mailboxDigipostAddress inFolderWithName:(NSString *)folderName
 {
     NSParameterAssert(folderName);

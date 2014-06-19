@@ -110,6 +110,22 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     return [results firstObject];
 }
 
++ (NSArray *)foldersForUserWithMailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [[POSModelManager sharedManager] folderEntity];
+    fetchRequest.predicate = [NSPredicate predicateForFoldersForDigipostAddress:mailboxDigipostAddress];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
+    if (error) {
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+
+    return results;
+}
+
 - (NSString *)displayName
 {
     if (self.name) {
