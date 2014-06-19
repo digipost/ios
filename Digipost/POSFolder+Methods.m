@@ -115,6 +115,8 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] folderEntity];
     fetchRequest.predicate = [NSPredicate predicateForFoldersForDigipostAddress:mailboxDigipostAddress];
+    fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"index"
+                                                                    ascending:YES] ];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest

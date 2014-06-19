@@ -42,7 +42,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;
 
     NSArray *links = attributes[@"link"];
-    __block NSInteger index = 0;
+    __block NSInteger index = 1;
     if ([links isKindOfClass:[NSArray class]]) {
         for (NSDictionary *link in links) {
             if ([link isKindOfClass:[NSDictionary class]]) {
@@ -54,11 +54,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
                         folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderInboxName,
                                               NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentWorkAreaAPIKeySuffix]) {
-                        //                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderWorkAreaName,
-                        //                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
-                        //                        folderAttributes = @{ NSStringFromSelector(@selector(name)) : kFolderArchiveName,
-                        //                                              NSStringFromSelector(@selector(uri)) : uri };
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
                     }
@@ -67,7 +63,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
                         POSFolder *folder = [POSFolder folderWithAttributes:folderAttributes
                                                      inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
-                        folder.index = @(index++);
+                        folder.index = @(0);
                         folder.mailbox = mailbox;
                     }
                 }
@@ -145,6 +141,7 @@ NSString *const kMailboxEntityName = @"Mailbox";
     if (error) {
         [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
+
     return [results count];
 }
 
