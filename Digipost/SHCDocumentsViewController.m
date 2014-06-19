@@ -65,6 +65,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 @property (weak, nonatomic) IBOutlet UIView *tableViewBackgroundView;
 @property (weak, nonatomic) IBOutlet UILabel *noDocumentsLabel;
 @property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
+@property (assign, nonatomic) BOOL shouldAnimateInsertAndDeletesToFetchedResultsController;
 
 @end
 
@@ -99,6 +100,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [self updateToolbarButtonItems];
     [self pos_setDefaultBackButton];
+    self.shouldAnimateInsertAndDeletesToFetchedResultsController = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -135,6 +137,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.folderDisplayName = folder.displayName;
         [self updateNavbar];
     }
+
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
@@ -359,7 +362,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 NSLog(@"%@", actionSheetItem.title);
                 [self moveSelectedDocumentsToFolder:folder];
             }
-                                    [self setEditing:NO animated:YES];
                                 }];
     }
 
@@ -368,7 +370,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)moveSelectedDocumentsToFolder:(POSFolder *)folder
 {
-    NSArray *selectedIndexes = [self.tableView indexPathsForSelectedRows];
+    self.shouldAnimateInsertAndDeletesToFetchedResultsController = YES;
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
 
@@ -378,6 +380,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [self deselectAllRows];
     [self updateToolbarButtonItems];
+    [self setEditing:NO
+            animated:YES];
 }
 
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
@@ -416,6 +420,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     if ([SHCAPIManager sharedManager].isUpdatingDocuments) {
         return;
     }
+    self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
     // @TODO refactor this
     // Saving uri for the open document in case we need to re fetch it later
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
@@ -786,12 +791,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
-                             withRowAnimation:UITableViewRowAnimationRight];
+                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationRight : UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:@[ indexPath ]
-                             withRowAnimation:UITableViewRowAnimationLeft];
+                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeMove:
