@@ -476,8 +476,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             case SHCAPIManagerStateMovingDocumentFinished: {
                 NSDictionary *responseDict = (NSDictionary *)self.lastResponseObject;
                 if ([responseDict isKindOfClass:[NSDictionary class]]) {
-                    [[POSModelManager sharedManager] updateDocument:self.lastDocument
-                                                     withAttributes:responseDict];
+                    //                    [[POSModelManager sharedManager] updateDocument:self.lastDocument
+                    //                                                     withAttributes:responseDict];
 
                     if (self.lastSuccessBlock) {
                         self.lastSuccessBlock();
@@ -1177,7 +1177,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }
 }
 
-- (void)moveDocument:(POSDocument *)document toLocation:(NSString *)location withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateMovingDocument;
 
@@ -1194,9 +1194,16 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         [JSONRequestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
         
         NSString *subject = [(POSAttachment *)[document.attachments firstObject] subject];
-        
-        NSDictionary *parameters = @{NSStringFromSelector(@selector(subject)): subject,
-                                     NSStringFromSelector(@selector(location)): location};
+        NSString *folderLocation = @"";
+        if ([folder.name isEqualToString:@"mailbox"]){
+            folderLocation = @"MAILBOX";
+        }else {
+            folderLocation = @"FOLDER";
+        }
+        NSDictionary *parameters = @{NSStringFromSelector(@selector(subject)):  subject,
+                                     NSStringFromSelector(@selector(location)): folderLocation,
+                                     NSStringFromSelector(@selector(folderId)): folder.folderId
+                                     };
         
         NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST" URLString:urlString parameters:parameters];
         [request setValue:contentType forHTTPHeaderField:@"Content-Type"];

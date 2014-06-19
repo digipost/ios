@@ -147,6 +147,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 forViewController:self];
     [self reloadFromMetadata];
     [self pos_setDefaultBackButton];
+    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        if (!leftBarButtonItem) {
+            leftBarButtonItem = self.navigationItem.leftBarButtonItem;
+        }
+        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+
+        leftBarButtonItem.title = @" ";
+        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
+                                         animated:YES];
+        [leftBarButtonItem setAction:@selector(showSideMenu:)];
+
+        [leftBarButtonItem setTarget:self];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -173,12 +188,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
-        [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
-                                                           permittedArrowDirections:UIPopoverArrowDirectionAny
-                                                                           animated:YES];
-    }
-
     [super viewDidAppear:animated];
 }
 
@@ -387,49 +396,49 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapMove:(UIBarButtonItem *)sender
 {
-    NSString *moveTo = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE", @"Move to");
-
-    NSMutableArray *destinations = [NSMutableArray array];
-
-    NSString *inboxLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox")];
-    NSString *workAreaLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea")];
-    NSString *archiveLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive")];
-
-    NSString *documentLocation = self.attachment.document.location;
-    if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
-        [destinations addObject:inboxLocalizedName];
-    }
-    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
-        [destinations addObject:workAreaLocalizedName];
-    }
-    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-        [destinations addObject:archiveLocalizedName];
-    }
-    NSString *title = nil;
-    if ([self.attachment.document.attachments count] > 1) {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
-    }
-
-    [UIActionSheet showFromBarButtonItem:sender
-                                animated:YES
-                               withTitle:title
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:nil
-                       otherButtonTitles:destinations
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                    if (buttonIndex < [destinations count]) {
-                                        NSString *location = destinations[buttonIndex] ;
-                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
-                                            [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
-                                        } else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
-                                            [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
-                                        } else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
-                                            [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
-                                        } else {
-                                            NSAssert(NO, @"Wrong index tapped");
-                                        }
-                                    }
-                                }];
+    //    NSString *moveTo = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE", @"Move to");
+    //
+    //    NSMutableArray *destinations = [NSMutableArray array];
+    //
+    //    NSString *inboxLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox")];
+    //    NSString *workAreaLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea")];
+    //    NSString *archiveLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive")];
+    //
+    //    NSString *documentLocation = self.attachment.document.location;
+    //    if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
+    //        [destinations addObject:inboxLocalizedName];
+    //    }
+    //    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
+    //        [destinations addObject:workAreaLocalizedName];
+    //    }
+    //    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
+    //        [destinations addObject:archiveLocalizedName];
+    //    }
+    //    NSString *title = nil;
+    //    if ([self.attachment.document.attachments count] > 1) {
+    //        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
+    //    }
+    //
+    //    [UIActionSheet showFromBarButtonItem:sender
+    //                                animated:YES
+    //                               withTitle:title
+    //                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+    //                  destructiveButtonTitle:nil
+    //                       otherButtonTitles:destinations
+    //                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+    //                                    if (buttonIndex < [destinations count]) {
+    //                                        NSString *location = destinations[buttonIndex] ;
+    //                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
+    //                                            [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
+    //                                        } else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
+    //                                            [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
+    //                                        } else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
+    //                                            [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
+    //                                        } else {
+    //                                            NSAssert(NO, @"Wrong index tapped");
+    //                                        }
+    //                                    }
+    //                                }];
 }
 
 - (IBAction)didTapDelete:(UIBarButtonItem *)sender
@@ -647,12 +656,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSLog(@"double tap");
 }
 
-- (void)moveDocumentToLocation:(NSString *)location
+- (void)moveDocumentToFolder:(POSFolder *)folder
 {
     NSAssert(self.attachment.document != nil, @"no document");
 
     [[SHCAPIManager sharedManager] moveDocument:self.attachment.document
-        toLocation:location
+        toFolder:folder
         withSuccess:^{
         _attachment = nil;
         if (self.documentsViewController) {
@@ -679,7 +688,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
-                [self performSelector:@selector(moveDocumentToLocation:) withObject:location afterDelay:0.0];
+                [self performSelector:@selector(moveDocumentToLocation:) withObject:folder afterDelay:0.0];
                 
                 return;
             }
@@ -1097,6 +1106,24 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     leftBarButtonItem.title = @" ";
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
                                      animated:YES];
+
+    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
+        [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
+                                                           permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                                           animated:YES];
+    } else {
+        [leftBarButtonItem setAction:@selector(showSideMenu:)];
+        [leftBarButtonItem setTarget:self];
+    }
+}
+
+- (void)showSideMenu:(id)sender
+{
+    if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
+        [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
+                                                           permittedArrowDirections:UIPopoverArrowDirectionAny
+                                                                           animated:YES];
+    }
 }
 
 - (void)showEmptyView:(BOOL)showEmptyView
