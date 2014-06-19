@@ -64,7 +64,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.0.3)
-  - AHKActionSheet (~> 0.2.0)
+  - AHKActionSheet (from `git@github.com:haaakon/AHKActionSheet.git`, commit `903d3e58d5f58c2021de2c0d84f7f6f294be922d`)
   - CocoaLumberjack (~> 1.6.5.1)
   - GoogleAnalytics-iOS-SDK (~> 3.0.3)
   - HockeySDK (~> 3.5.2)
@@ -74,9 +74,14 @@ DEPENDENCIES:
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
 
+EXTERNAL SOURCES:
+  AHKActionSheet:
+    :commit: 903d3e58d5f58c2021de2c0d84f7f6f294be922d
+    :git: git@github.com:haaakon/AHKActionSheet.git
+
 SPEC CHECKSUMS:
   AFNetworking: a4d0e9a64de9242986620dafd1b3cee3b413ac5c
-  AHKActionSheet: ad4252e2fbd9e3013a2105b552de932f893a31d9
+  AHKActionSheet: dbe68adfd670e2a307e0a64b12e7a321be6b3819
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   GoogleAnalytics-iOS-SDK: ee5322bf919d731d34ff3c8d891301e8f1e0e873
   HockeySDK: a971bdf56c4e549c05d76aa9283fcfc9f6ecaea3
