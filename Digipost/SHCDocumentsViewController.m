@@ -347,22 +347,25 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [actionSheet setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [actionSheet setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [actionSheet setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 
     for (POSFolder *folder in folders) {
 
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
-        [actionSheet addButtonWithTitle:folder.displayName
-                                  image:image
-                                   type:AHKActionSheetButtonTypeDefault
-                                handler:^(AHKActionSheet *actionSheet, id item) {
+        if ([self.folderName isEqualToString:folder.name] == NO) {
+            [actionSheet addButtonWithTitle:folder.displayName
+                                      image:image
+                                       type:AHKActionSheetButtonTypeDefault
+                                    handler:^(AHKActionSheet *actionSheet, id item) {
             AHKActionSheetItem *actionSheetItem = (id)item;
             if (item) {
                 NSLog(@"%@", actionSheetItem.title);
                 [self moveSelectedDocumentsToFolder:folder];
             }
-                                }];
+                                    }];
+        }
     }
 
     [actionSheet show];
@@ -589,6 +592,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             if ([currentOpenDocument isEqual:document]){
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
+        }else {
         }
         }
         failure:^(NSError *error) {
