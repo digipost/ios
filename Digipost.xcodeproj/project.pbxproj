@@ -178,6 +178,9 @@
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
+		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
+		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
+		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC68C07018AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
 		EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m */; };
@@ -361,6 +364,8 @@
 		EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewController.m; sourceTree = "<group>"; };
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
+		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
+		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC5972F519475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		EC5972F619475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EC5972F719475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -603,6 +608,8 @@
 				83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */,
 				839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */,
 				839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */,
+				ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */,
+				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -620,8 +627,6 @@
 				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
 				8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */,
 				8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */,
-				ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */,
-				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
 				ECF06D5E19239537003BD200 /* UIViewController+Additions.h */,
 				ECF06D5F19239537003BD200 /* UIViewController+Additions.m */,
 				ECF06D63192395A5003BD200 /* UIRefreshControl+Additions.h */,
@@ -692,6 +697,8 @@
 			children = (
 				83F7035F1855E7A9003DABE1 /* SHCFoldersViewController.h */,
 				83F703601855E7A9003DABE1 /* SHCFoldersViewController.m */,
+				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
+				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */,
 				EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */,
 				EC0C1A1119347388007CB53E /* POSNewFolderCollectionViewDataSource.h */,
@@ -1025,6 +1032,7 @@
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
 				83F7038318573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512B18BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
 				83D75F651858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07518AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
@@ -1098,6 +1106,7 @@
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A19193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
 				83F7038218573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512A18BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
 				83D75F641858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07418AA2BE300A94770 /* SHCLetterPopoverTableViewCell.m in Sources */,
@@ -1171,6 +1180,7 @@
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
 				83F7038118573641003DABE1 /* SHCOAuthManager.m in Sources */,
+				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* SHCLetterPopoverView.m in Sources */,
 				83D75F631858E5790013F8C9 /* POSMailbox.m in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,

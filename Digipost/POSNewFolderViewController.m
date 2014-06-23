@@ -43,6 +43,7 @@
     [super viewDidLoad];
     self.dataSource = [[POSNewFolderCollectionViewDataSource alloc] initAsDataSourceForCollectionView:self.collectionView];
     self.collectionView.delegate = self;
+    self.textField.delegate = self;
     UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [self.textField setLeftViewMode:UITextFieldViewModeAlways];
     [self.textField setLeftView:spacerView];
@@ -58,7 +59,6 @@
                                                                       inSection:0]
                                           animated:NO
                                     scrollPosition:UICollectionViewScrollPositionTop];
-        self.textField.delegate = self;
     }
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -153,6 +153,12 @@
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
     textField.text = @"";
+
+    return YES;
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
     return YES;
 }
 
@@ -164,4 +170,20 @@
         [self createNewFolder];
     }
 }
+
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+    return UIInterfaceOrientationPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+
 @end
