@@ -106,6 +106,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
@@ -192,6 +194,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -269,12 +272,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.masterViewControllerPopoverController = popoverController;
 
-    UIViewController *topViewController = viewController;
+    UIViewController *topViewController;
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         topViewController = ((UINavigationController *)viewController).topViewController;
-        for (UIViewController *viewController in((UINavigationController *)topViewController).viewControllers) {
-            if ([viewController isKindOfClass:[SHCDocumentsViewController class]]) {
-                self.documentsViewController = (id)viewController;
+        
+        for (UIViewController *vc in((UINavigationController *)viewController).viewControllers) {
+            if ([vc isKindOfClass:[SHCDocumentsViewController class]]) {
+                self.documentsViewController = (id)vc;
             }
         }
     }
@@ -456,10 +460,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
 
-    UINavigationController *navigationcontroller = self.masterViewControllerPopoverController.contentViewController;
     SHCDocumentsViewController *documentsViewController;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        NSArray *viewcontrollers = self.splitViewController.viewControllers;
         for (UIViewController *viewController in self.splitViewController.viewControllers) {
             if ([viewController isKindOfClass:[UINavigationController class]]) {
                 for (UIViewController *subViewController in((UINavigationController *)viewController).viewControllers) {
@@ -838,7 +840,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                           ;
                                           if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
                                               [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                              //            [self showEmptyView:YES];
+                                              [self showEmptyView:YES];
                                           }
         }
         failure:^(NSError *error) {

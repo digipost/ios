@@ -27,7 +27,7 @@
 #import "UIViewController+BackButton.h"
 #import "SHCLetterViewController.h"
 
-@interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate>
+@interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate,UIGestureRecognizerDelegate>
 
 @end
 
@@ -45,6 +45,8 @@
 
     // This line makes the tableview hide its separator lines for empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+
 
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self
