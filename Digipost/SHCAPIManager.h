@@ -120,7 +120,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder*)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)deleteDocument:(POSDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelDownloadingBaseEncryptionModels;

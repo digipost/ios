@@ -1052,7 +1052,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self validateTokensWithSuccess:^{
         self.lastFolderUri = folderUri;
-        
         [self.sessionManager GET:folderUri
                       parameters:nil
                          success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -1602,7 +1601,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.lastError = error;
                 self.lastURLResponse = response;
                 self.state = SHCAPIManagerStateMovingFoldersFailed;
-                NSLog(@"failed %@",error);
             } else {
                 self.lastSuccessBlock = success;
                 self.lastResponseObject = responseObject;
@@ -1616,9 +1614,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     [self validateTokensWithSuccess:^{
         NSDictionary *parameters =@{ @"id":folder.folderId,
-                                    @"name":folder.name,
-                                    @"icon":folder.iconName
-                                    };
+                                     @"name":folder.name,
+                                     @"icon":folder.iconName
+                                     };
         self.state = SHCAPIManagerStateDeletingFolder;
         [self jsonRequestWithMethod:@"DELETE" parameters:parameters url:folder.deletefolderUri completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
             if (error) {
