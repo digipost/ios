@@ -21,7 +21,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic) BOOL removeTextWhenEditing;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
+
 - (IBAction)saveButtonTapped:(id)sender;
 
 @end
@@ -54,11 +56,13 @@
                                           animated:NO
                                     scrollPosition:UICollectionViewScrollPositionTop];
         [self.textField becomeFirstResponder];
+        self.removeTextWhenEditing = NO;
     } else {
         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0
                                                                       inSection:0]
                                           animated:NO
                                     scrollPosition:UICollectionViewScrollPositionTop];
+        self.removeTextWhenEditing = YES;
     }
 }
 - (void)viewWillAppear:(BOOL)animated
@@ -152,7 +156,11 @@
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    textField.text = @"";
+    if (self.removeTextWhenEditing) {
+        textField.text = @"";
+    } else {
+        self.removeTextWhenEditing = YES;
+    }
 
     return YES;
 }
