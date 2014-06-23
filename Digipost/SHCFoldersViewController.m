@@ -317,12 +317,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    NSArray *originalSorting = self.folders;
     NSMutableArray *newSorting = [self.folders mutableCopy];
-
     POSFolder *firstFolder = self.folders[sourceIndexPath.row];
-
-    POSFolder *secondFolder = self.folders[destinationIndexPath.row];
     BOOL movingUpwards = NO;
     if (sourceIndexPath.row > destinationIndexPath.row) {
         movingUpwards = YES;
@@ -330,12 +326,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
     [self.folders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         POSFolder *folder = (id)obj;
-        NSInteger destIndex = destinationIndexPath.row;
-        NSInteger sourceIndex = sourceIndexPath.row;
         if (idx == destinationIndexPath.row){
             [newSorting setObject:firstFolder atIndexedSubscript:idx];
             firstFolder.index = @( idx );
-            NSLog(@"%@ at %lu",firstFolder.name,(unsigned long)idx);
         }else if (idx == sourceIndexPath.row){
             if (movingUpwards){
                 POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
@@ -345,23 +338,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx  + 1];
                 [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
                 objNextIndex.index = @( idx );
-                NSLog(@"%@ at %lu",objNextIndex.name,(unsigned long)idx );
             }
         }else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
-                POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
-                [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
-                objatBeforeindex.index = @( idx );
-        }else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards)
-        {
+            POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
+            [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
+            objatBeforeindex.index = @( idx );
+        }else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
             POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx + 1];
             [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
             objNextIndex.index = @( idx );
-            NSLog(@"%@ at %lu",objNextIndex.name,(unsigned long)idx);
- 
         } else {
             [newSorting setObject:obj atIndexedSubscript:idx];
             folder.index = @( idx );
-            NSLog(@"%@ at %lu",folder.name,(unsigned long)idx);
         }
     }];
 
