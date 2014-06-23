@@ -106,7 +106,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
@@ -155,17 +155,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (!leftBarButtonItem) {
-            leftBarButtonItem = self.navigationItem.leftBarButtonItem;
+
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) == NO) {
+            if (!leftBarButtonItem) {
+                leftBarButtonItem = self.navigationItem.leftBarButtonItem;
+            }
+            [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+
+            leftBarButtonItem.title = @" ";
+            [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
+                                             animated:YES];
+            [leftBarButtonItem setAction:@selector(showSideMenu:)];
+            [leftBarButtonItem setTarget:self];
+        } else {
+            [self.navigationItem setLeftBarButtonItem:nil];
         }
-        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-
-        leftBarButtonItem.title = @" ";
-        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-                                         animated:YES];
-        [leftBarButtonItem setAction:@selector(showSideMenu:)];
-
-        [leftBarButtonItem setTarget:self];
     }
 }
 
@@ -194,7 +198,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+//    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -275,7 +279,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIViewController *topViewController;
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         topViewController = ((UINavigationController *)viewController).topViewController;
-        
+
         for (UIViewController *vc in((UINavigationController *)viewController).viewControllers) {
             if ([vc isKindOfClass:[SHCDocumentsViewController class]]) {
                 self.documentsViewController = (id)vc;
@@ -1233,8 +1237,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            permittedArrowDirections:UIPopoverArrowDirectionAny
                                                                            animated:YES];
     } else {
-        [leftBarButtonItem setAction:@selector(showSideMenu:)];
-        [leftBarButtonItem setTarget:self];
+        if ([UIApplication sharedApplication].statusBarOrientation != (UIInterfaceOrientationLandscapeRight | UIInterfaceOrientationLandscapeLeft)) {
+            [leftBarButtonItem setAction:@selector(showSideMenu:)];
+            [leftBarButtonItem setTarget:self];
+        }
     }
 }
 
