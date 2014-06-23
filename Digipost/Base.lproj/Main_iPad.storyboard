@@ -520,7 +520,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UU-5W-bQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144" y="-682"/>
+            <point key="canvasLocation" x="1144" y="-716"/>
         </scene>
         <!--Documents View Controller-->
         <scene sceneID="PZn-ut-t6s">
@@ -545,8 +545,8 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="LjM-c3-7Gm"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-uJ-8np" userLabel="Date Label">
@@ -561,13 +561,13 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-Vl-Dpn" userLabel="Subject Label">
-                                            <rect key="frame" x="30" y="11" width="257" height="21"/>
+                                            <rect key="frame" x="30" y="11" width="200" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="xUN-aX-qUN"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-unread" translatesAutoresizingMaskIntoConstraints="NO" id="bGh-2Q-4sO" userLabel="Unread Image View">
@@ -617,7 +617,7 @@
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="10" id="bVD-xJ-z8I"/>
                                         <constraint firstItem="bGh-2Q-4sO" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" id="ekZ-JT-eWk"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="30" id="gMJ-47-xuX"/>
-                                        <constraint firstItem="eXb-U5-2yR" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="10" id="iko-Zb-c4Z"/>
+                                        <constraint firstItem="eXb-U5-2yR" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="67" id="iko-Zb-c4Z"/>
                                         <constraint firstItem="Qcx-VB-dgT" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" id="mP6-Qa-bJc"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="30" id="nRQ-iJ-TFl"/>
                                         <constraint firstItem="Pmt-A4-NGA" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" id="pRn-Zj-P9E"/>
@@ -1152,7 +1152,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yg7-fv-n9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1472" y="461"/>
+            <point key="canvasLocation" x="1446" y="289"/>
         </scene>
         <!--Receipts View Controller-->
         <scene sceneID="ZwF-oT-3kS">
@@ -1263,7 +1263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HwP-id-aem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1943" y="863"/>
+            <point key="canvasLocation" x="2125" y="-519"/>
         </scene>
     </scenes>
     <resources>
