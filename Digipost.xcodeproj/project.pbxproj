@@ -338,7 +338,7 @@
 		83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthViewController.m; sourceTree = "<group>"; };
 		83F7037F18573641003DABE1 /* SHCOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* SHCOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCOAuthManager.m; sourceTree = "<group>"; };
-		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
 		EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNewFolderViewController.h; sourceTree = "<group>"; };
@@ -366,10 +366,6 @@
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
-		EC5972F519475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
-		EC5972F619475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Main_iPad.strings; sourceTree = "<group>"; };
-		EC5972F719475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EC5972F819475FE100E3108D /* nn */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nn; path = nn.lproj/Localizable.strings; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* SHCLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* SHCLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -385,7 +381,7 @@
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB135491938C243000F9F7F /* SHCAPIManager+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCAPIManager+PrivateMethods.h"; sourceTree = "<group>"; };
 		ECB1354A1938C243000F9F7F /* SHCAPIManager+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCAPIManager+PrivateMethods.m"; sourceTree = "<group>"; };
@@ -1209,7 +1205,6 @@
 			children = (
 				83BAB9251855C0AC004A7BFB /* en */,
 				ECA1A9F81898FFDF00408CD5 /* nb */,
-				EC5972F719475FE100E3108D /* nn */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1219,7 +1214,6 @@
 			children = (
 				83BAB92E1855C0AC004A7BFB /* Base */,
 				ECA1A9F61898FFDE00408CD5 /* nb */,
-				EC5972F519475FE100E3108D /* nn */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -1229,7 +1223,6 @@
 			children = (
 				83BAB9311855C0AC004A7BFB /* Base */,
 				ECA1A9F71898FFDF00408CD5 /* nb */,
-				EC5972F619475FE100E3108D /* nn */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -1239,7 +1232,6 @@
 			children = (
 				83F7038518573C3A003DABE1 /* en */,
 				ECA1A9F91898FFDF00408CD5 /* nb */,
-				EC5972F819475FE100E3108D /* nn */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
