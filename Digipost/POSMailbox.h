@@ -2,7 +2,7 @@
 //  POSMailbox.h
 //  Digipost
 //
-//  Created by Håkon Bogen on 30.05.14.
+//  Created by Håkon Bogen on 23.06.14.
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
@@ -13,11 +13,12 @@
 
 @interface POSMailbox : NSManagedObject
 
-@property (nonatomic, retain) NSString *digipostAddress;
-@property (nonatomic, retain) NSNumber *owner;
-@property (nonatomic, retain) NSString *receiptsUri;
-@property (nonatomic, retain) NSString *createFolderUri;
-@property (nonatomic, retain) NSString *updateFoldersUri;
+@property (nonatomic, retain) NSString * createFolderUri;
+@property (nonatomic, retain) NSString * digipostAddress;
+@property (nonatomic, retain) NSNumber * owner;
+@property (nonatomic, retain) NSString * receiptsUri;
+@property (nonatomic, retain) NSString * updateFoldersUri;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSSet *folders;
 @property (nonatomic, retain) NSSet *receipts;
 @property (nonatomic, retain) POSRootResource *rootResource;

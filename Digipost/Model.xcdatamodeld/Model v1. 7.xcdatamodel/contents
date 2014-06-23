@@ -47,6 +47,7 @@
     <entity name="Mailbox" representedClassName="POSMailbox" syncable="YES">
         <attribute name="createFolderUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="digipostAddress" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="receiptsUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateFoldersUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -89,7 +90,7 @@
         <element name="Document" positionX="27" positionY="-207" width="128" height="165"/>
         <element name="Folder" positionX="304" positionY="57" width="128" height="178"/>
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
-        <element name="Mailbox" positionX="79" positionY="207" width="128" height="165"/>
+        <element name="Mailbox" positionX="79" positionY="207" width="128" height="180"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
         <element name="RootResource" positionX="-360" positionY="27" width="128" height="270"/>
     </elements>

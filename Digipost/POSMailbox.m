@@ -2,7 +2,7 @@
 //  POSMailbox.m
 //  Digipost
 //
-//  Created by Håkon Bogen on 30.05.14.
+//  Created by Håkon Bogen on 23.06.14.
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
@@ -11,13 +11,15 @@
 #import "POSReceipt.h"
 #import "POSRootResource.h"
 
+
 @implementation POSMailbox
 
+@dynamic createFolderUri;
 @dynamic digipostAddress;
 @dynamic owner;
 @dynamic receiptsUri;
-@dynamic createFolderUri;
 @dynamic updateFoldersUri;
+@dynamic name;
 @dynamic folders;
 @dynamic receipts;
 @dynamic rootResource;
