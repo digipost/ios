@@ -25,6 +25,8 @@
 #import "NSError+ExtraInfo.h"
 
 NSString *const kAccountViewControllerIdentifier = @"accountViewController";
+NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
+
 @interface POSAccountViewController ()
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutBarButtonItem;
@@ -61,6 +63,10 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
                                       sender:self];
         }
     }
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(updateContentsFromServerUserInitiatedRequest:)
+//                                                 name:kRefreshContentNotification
+//                                               object:@NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -95,10 +101,6 @@ NSString *const kAccountViewControllerIdentifier = @"accountViewController";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([SHCAPIManager sharedManager].isUpdatingRootResource) {
-        return;
-    }
-
     [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
     } failure:^(NSError *error) {
         

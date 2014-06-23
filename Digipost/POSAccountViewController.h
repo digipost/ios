@@ -11,4 +11,5 @@
 @interface POSAccountViewController : UIViewController
 
 extern NSString *const kAccountViewControllerIdentifier;
+extern NSString *const kRefreshContentNotification;
 @end
