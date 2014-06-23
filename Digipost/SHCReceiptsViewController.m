@@ -61,9 +61,9 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self
-                            action:@selector(refreshControlDidChangeValue:)
-                  forControlEvents:UIControlEventValueChanged];
+    //    [self.refreshControl addTarget:self
+    //                            action:@selector(refreshControlDidChangeValue:)
+    //                  forControlEvents:UIControlEventValueChanged];
 
     // Set the initial refresh control text
     [self.refreshControl initializeRefreshControlText];
@@ -84,6 +84,8 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow
+                                  animated:YES];
 }
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
@@ -161,31 +163,29 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 {
     [[SHCAPIManager sharedManager] deleteReceipt:receipt
         withSuccess:^{
-        [self.receiptsTableViewDataSource resetFetchedResultsController];
-        [self.tableView reloadData];
-
-            //        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+                                         [self.receiptsTableViewDataSource resetFetchedResultsController];
+                                         [self.tableView reloadData];
         }
         failure:^(NSError *error) {
-
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(deleteReceipt:) withObject:receipt afterDelay:0.0];
-
-                return;
-            }
-        }
-
-//        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
+                                             
+                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                 if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                     // We were unauthorized, due to the session being invalid.
+                                                     // Let's retry in the next run loop
+                                                     [self performSelector:@selector(deleteReceipt:) withObject:receipt afterDelay:0.0];
+                                                     
+                                                     return;
+                                                 }
+                                             }
+                                             
+                                             //        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+                                             
+                                             [UIAlertView showWithTitle:error.errorTitle
+                                                                message:[error localizedDescription]
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@[error.okButtonTitle]
+                                                               tapBlock:error.tapBlock];
         }];
 }
 
