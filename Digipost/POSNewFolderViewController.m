@@ -43,6 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.dataSource = [[POSNewFolderCollectionViewDataSource alloc] initAsDataSourceForCollectionView:self.collectionView];
     self.collectionView.delegate = self;
     self.textField.delegate = self;
@@ -64,10 +65,25 @@
                                     scrollPosition:UICollectionViewScrollPositionTop];
         self.removeTextWhenEditing = YES;
     }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+            [UIAlertView showWithTitle:NSLocalizedString(@"Wrong interface orientation title", @"")
+                               message:NSLocalizedString(@"Wrong interface orientation text", @"")
+                     cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok")
+                     otherButtonTitles:nil
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {}];
+        }
+    }
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillLayoutSubviews
@@ -92,17 +108,6 @@
     POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath : indexPath];
     cell.imageView.image = folderIcon.bigImage;
 }
-
-/*
- #pragma mark - Navigation
- 
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
- // Get the new view controller using [segue destinationViewController].
- // Pass the selected object to the new view controller.
- }
- */
 
 - (void)createNewFolder
 {
@@ -164,6 +169,7 @@
 
     return YES;
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -181,17 +187,22 @@
 
 - (BOOL)shouldAutorotate
 {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+            return YES;
+        }
+    }
     return NO;
 }
 
 - (NSUInteger)supportedInterfaceOrientations
 {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationPortrait | UIDeviceOrientationPortraitUpsideDown;
 }
 
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
 {
-    return UIInterfaceOrientationPortrait;
+    return UIInterfaceOrientationPortrait | UIDeviceOrientationPortraitUpsideDown;
 }
 
 @end
