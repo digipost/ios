@@ -12,6 +12,7 @@
 
 // API keys
 NSString *const kMailboxDigipostAddressAPIKey = @"digipostaddress";
+NSString *const kMailboxNameAPIKey = @"name";
 NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
 NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
@@ -37,6 +38,8 @@ NSString *const kMailboxEntityName = @"Mailbox";
 
     NSString *digipostAddress = attributes[kMailboxDigipostAddressAPIKey];
     mailbox.digipostAddress = [digipostAddress isKindOfClass:[NSString class]] ? digipostAddress : nil;
+    NSString *name = attributes[kMailboxNameAPIKey];
+    mailbox.name = [name isKindOfClass:[NSString class]] ? name : nil;
 
     NSNumber *owner = attributes[NSStringFromSelector(@selector(owner))];
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;

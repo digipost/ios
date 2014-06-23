@@ -58,7 +58,7 @@
 
     // Configure the cell with objects from your store
     POSMailbox *mailbox = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = mailbox.digipostAddress;
+    cell.textLabel.text = mailbox.name;
 }
 
 // convenience method for fetching objects at index path from the database

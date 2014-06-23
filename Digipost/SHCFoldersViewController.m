@@ -67,6 +67,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewDidLoad
 {
+
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
@@ -84,6 +85,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
+
     [super viewDidLoad];
 
     [self.navigationItem setRightBarButtonItem:self.editButtonItem];
@@ -95,7 +97,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
 
     if ([navItem.title isEqualToString:@""] == NO) {
-        navItem.title = self.selectedMailBoxDigipostAdress;
+        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        navItem.title = mailbox.name;
         if (navItem.leftBarButtonItem == nil) {
             UIImage *image = [UIImage imageNamed:@"back"];
             UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:image
@@ -314,18 +317,66 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
-    POSFolder *firstFolder = self.folders[sourceIndexPath.row];
-    POSFolder *secondFolder = self.folders[destinationIndexPath.row];
+    NSArray *originalSorting = self.folders;
+    NSMutableArray *newSorting = [self.folders mutableCopy];
 
-    [self.folders setObject:firstFolder
-         atIndexedSubscript:destinationIndexPath.row];
-    [self.folders setObject:secondFolder
-         atIndexedSubscript:sourceIndexPath.row];
+    POSFolder *firstFolder = self.folders[sourceIndexPath.row];
+
+    POSFolder *secondFolder = self.folders[destinationIndexPath.row];
+    BOOL movingUpwards = NO;
+    if (sourceIndexPath.row > destinationIndexPath.row) {
+        movingUpwards = YES;
+    }
+
+    [self.folders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        POSFolder *folder = (id)obj;
+        NSInteger destIndex = destinationIndexPath.row;
+        NSInteger sourceIndex = sourceIndexPath.row;
+        if (idx == destinationIndexPath.row){
+            [newSorting setObject:firstFolder atIndexedSubscript:idx];
+            firstFolder.index = @( idx );
+            NSLog(@"%@ at %lu",firstFolder.name,(unsigned long)idx);
+        }else if (idx == sourceIndexPath.row){
+            if (movingUpwards){
+                POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
+                [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
+                objatBeforeindex.index = @( idx );
+            }else {
+                POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx  + 1];
+                [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
+                objNextIndex.index = @( idx );
+                NSLog(@"%@ at %lu",objNextIndex.name,(unsigned long)idx );
+            }
+        }else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
+                POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
+                [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
+                objatBeforeindex.index = @( idx );
+        }else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards)
+        {
+            POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx + 1];
+            [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
+            objNextIndex.index = @( idx );
+            NSLog(@"%@ at %lu",objNextIndex.name,(unsigned long)idx);
+ 
+        } else {
+            [newSorting setObject:obj atIndexedSubscript:idx];
+            folder.index = @( idx );
+            NSLog(@"%@ at %lu",folder.name,(unsigned long)idx);
+        }
+    }];
+
+    self.folders = newSorting;
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    [[SHCAPIManager sharedManager] moveFolder:self.folders
+
+    [[SHCAPIManager sharedManager] moveFolder:newSorting
         mailbox:mailbox
         success:^{
+                                          NSError *error;
+                                          [[POSModelManager sharedManager].managedObjectContext save:&error];
+                                          if (error){
+                                              [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
+                                          }
         }
         failure:^(NSError *error) {}];
 }
@@ -470,11 +521,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-
+                
                 return;
             }
         }
-
+        
         [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
             [UIAlertView showWithTitle:error.errorTitle
@@ -490,22 +541,20 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [super updateNavbar];
 
-    [self.navigationItem setTitle:@""];
-    //    [self.navigationItem setHidesBackButton:YES];
-
-    self.navigationItem.title = self.selectedMailBoxDigipostAdress ?: @"";
+    POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    self.navigationItem.title = mailbox.name;
 }
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
     [[SHCAPIManager sharedManager] delteFolder:folder
         success:^{
-            [self updateContentsFromServerUserInitiatedRequest:@NO];
+                                           [self updateContentsFromServerUserInitiatedRequest:@NO];
         }
         failure:^(NSError *error) {
-            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-            }];
+                                           [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                               
+                                           }];
         }];
 }
 
