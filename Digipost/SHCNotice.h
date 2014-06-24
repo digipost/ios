@@ -14,22 +14,14 @@
 // limitations under the License.
 //
 
-#ifndef Digipost_id_h_example_h
-#define Digipost_id_h_example_h
+#import <Foundation/Foundation.h>
 
-#ifdef STAGING
+@interface SHCNotice : NSObject
+@property (nonatomic,strong) NSString *messageHeader;
+@property (nonatomic,strong) NSString *messageText;
+@property (nonatomic,strong) NSString *dismissText;
+@property (nonatomic,strong) NSString *moreInfoLink;
+@property (nonatomic,strong) NSString *dismissNoticeLink;
 
-// Remove the .example in this files name to include it in the project
-#define OAUTH_SECRET        @"Your staging app secret here"
-#define OAUTH_CLIENT_ID     @"Your staging client ID here"
-#define OAUTH_REDIRECT_URI  @"http://localhost:7890"
-
-#else
-// Remove the .example in this files name to include it in the project
-#define OAUTH_SECRET        @"Your production app secret here"
-#define OAUTH_CLIENT_ID     @"Your production client ID here"
-#define OAUTH_REDIRECT_URI  @"http://localhost:7890"
-
-#endif
-
-#endif
++ (instancetype)noticeWithAttributes:(NSDictionary *)attributes;
+@end

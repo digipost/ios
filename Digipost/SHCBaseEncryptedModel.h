@@ -14,22 +14,16 @@
 // limitations under the License.
 //
 
-#ifndef Digipost_id_h_example_h
-#define Digipost_id_h_example_h
+#import <CoreData/CoreData.h>
 
-#ifdef STAGING
+extern NSString *const kBaseEncryptionModelEntityName;
 
-// Remove the .example in this files name to include it in the project
-#define OAUTH_SECRET        @"Your staging app secret here"
-#define OAUTH_CLIENT_ID     @"Your staging client ID here"
-#define OAUTH_REDIRECT_URI  @"http://localhost:7890"
+@interface SHCBaseEncryptedModel : NSManagedObject
 
-#else
-// Remove the .example in this files name to include it in the project
-#define OAUTH_SECRET        @"Your production app secret here"
-#define OAUTH_CLIENT_ID     @"Your production client ID here"
-#define OAUTH_REDIRECT_URI  @"http://localhost:7890"
+@property (strong, nonatomic) NSString *uri;
+@property (strong, nonatomic) NSString *fileType;
 
-#endif
+- (NSString *)encryptedFilePath;
+- (NSString *)decryptedFilePath;
 
-#endif
+@end
