@@ -66,7 +66,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     // Then, create a new root resource with related mailboxes and folders
     [POSRootResource rootResourceWithAttributes:attributes
                          inManagedObjectContext:self.managedObjectContext];
-    //
     //    // Now we need to reconnect "old" documents so they're available to the user
     //    // before updateDocumentsWithAttribtues: has been called and finished
     [POSDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
@@ -137,7 +136,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
             document.folder = folder;
             document.folderUri = folder.uri;
             [folder addDocumentsObject:document];
-            NSLog(@"adding %@ to %@,mailbox: %@", document.creatorName, folderName, folder.mailbox.digipostAddress);
         }];
     }
 

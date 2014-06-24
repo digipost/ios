@@ -27,4 +27,5 @@
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end
