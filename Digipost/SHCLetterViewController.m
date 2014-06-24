@@ -106,7 +106,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationController.interactivePopGestureRecognizer.delegate = self;
+    //    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
@@ -198,7 +198,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-//    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -503,7 +503,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-
+        if (image == nil) {
+            image = [UIImage imageNamed:@"list-icon-inbox"];
+        }
         if ([documentsViewController.folderName isEqualToString:folder.name] == NO) {
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
