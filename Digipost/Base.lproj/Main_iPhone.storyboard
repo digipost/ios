@@ -1163,7 +1163,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tCK-qk-wlS">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tCK-qk-wlS">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1192,6 +1192,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tCK-qk-wlS" firstAttribute="top" secondItem="cQr-QC-It5" secondAttribute="top" id="LXg-tJ-KE1"/>
+                            <constraint firstItem="tCK-qk-wlS" firstAttribute="leading" secondItem="cQr-QC-It5" secondAttribute="leading" id="Rxn-0n-MHJ"/>
+                            <constraint firstAttribute="bottom" secondItem="tCK-qk-wlS" secondAttribute="bottom" id="k01-HE-hJ8"/>
+                            <constraint firstAttribute="trailing" secondItem="tCK-qk-wlS" secondAttribute="trailing" id="yDo-5H-lig"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Kontoer" id="vHD-b2-5cA">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="835-WA-l70">
