@@ -102,8 +102,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                 //                                          sender:self];
                 [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
                                           sender:self];
-                //                [self performSegueWithIdentifier:@"accountSegue"
-                //                                          sender:self];
             } else {
                 [self performSegueWithIdentifier:@"accountSegue"
                                           sender:self];
@@ -130,6 +128,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.navigationItem.titleView = self.titleImageView;
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationItem.rightBarButtonItem = nil;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -169,6 +168,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self.navigationController dismissViewControllerAnimated:YES
                                                       completion:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
+                                                            object:@NO];
     } else {
         POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
