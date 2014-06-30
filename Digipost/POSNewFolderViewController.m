@@ -11,7 +11,7 @@
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
 #import <UIAlertView+Blocks.h>
-#import "SHCAPIManager.h"
+#import "POSAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 #import <MRProgress.h>
 
@@ -115,7 +115,7 @@
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:@""];
-    [[SHCAPIManager sharedManager] createFolderWithName:self.textField.text
+    [[POSAPIManager sharedManager] createFolderWithName:self.textField.text
         iconName:selectedIcon.name
         forMailBox:self.mailbox
         success:^{
@@ -144,7 +144,7 @@
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:@""];
-    [[SHCAPIManager sharedManager] changeFolder:self.selectedFolder
+    [[POSAPIManager sharedManager] changeFolder:self.selectedFolder
         newName:self.textField.text
         newIcon:selectedIcon.name
         success:^{

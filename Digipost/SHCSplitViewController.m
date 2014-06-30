@@ -15,14 +15,14 @@
 //
 
 #import "SHCSplitViewController.h"
-#import "SHCOAuthManager.h"
+#import "POSOAuthManager.h"
 #import "SHCLoginViewController.h"
-#import "SHCLetterViewController.h"
+#import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
 
 @interface SHCSplitViewController ()
 
-@property (weak, nonatomic, readonly) SHCLetterViewController *letterViewController;
+@property (weak, nonatomic, readonly) POSLetterViewController *letterViewController;
 
 @end
 
@@ -62,7 +62,7 @@
         DDLogWarn(@"Caught an exception: %@", exception);
     }
 
-    SHCLetterViewController *letterViewController = self.letterViewController;
+    POSLetterViewController *letterViewController = self.letterViewController;
 
     if (letterViewController) {
         self.delegate = letterViewController;
@@ -75,22 +75,22 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![SHCOAuthManager sharedManager].refreshToken) {
+    if (![POSOAuthManager sharedManager].refreshToken) {
         [self presentLoginViewController];
     }
 }
 
 #pragma mark - Properties
 
-- (SHCLetterViewController *)letterViewController
+- (POSLetterViewController *)letterViewController
 {
-    SHCLetterViewController *letterViewController = nil;
+    POSLetterViewController *letterViewController = nil;
 
     UINavigationController *detailNavigationController = [self.viewControllers lastObject];
     if ([detailNavigationController isKindOfClass:[UINavigationController class]]) {
         UIViewController *topViewController = detailNavigationController.topViewController;
-        if ([topViewController isKindOfClass:[SHCLetterViewController class]]) {
-            letterViewController = (SHCLetterViewController *)topViewController;
+        if ([topViewController isKindOfClass:[POSLetterViewController class]]) {
+            letterViewController = (POSLetterViewController *)topViewController;
         }
     }
 
@@ -106,7 +106,7 @@
 
 - (void)presentLoginViewController
 {
-    SHCLetterViewController *letterViewController = self.letterViewController;
+    POSLetterViewController *letterViewController = self.letterViewController;
     if (letterViewController) {
         [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
     }

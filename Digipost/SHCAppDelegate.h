@@ -16,11 +16,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class SHCLetterViewController;
+@class POSLetterViewController;
 
 @interface SHCAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (weak, nonatomic) SHCLetterViewController *letterViewController;
+@property (weak, nonatomic) POSLetterViewController *letterViewController;
 
 @end

@@ -14,16 +14,26 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "POSLetterPopoverTableViewCell.h"
 
-// Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+@implementation POSLetterPopoverTableViewCell
 
-@class POSDocumentsViewController;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style
+                reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
-@interface SHCAttachmentsViewController : UITableViewController
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected
+              animated:animated];
 
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+    // Configure the view for the selected state
+}
 
 @end

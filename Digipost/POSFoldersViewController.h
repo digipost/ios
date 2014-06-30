@@ -15,15 +15,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "POSMailbox.h"
+#import "SHCBaseTableViewController.h"
+
+// Storyboard identifiers (to enable programmatic storyboard instantiation)
+extern NSString *const kFoldersViewControllerIdentifier;
 
 // Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+extern NSString *const kPushFoldersIdentifier;
 
-@class POSDocumentsViewController;
+// Segue to be performed when app starts and user has previously logged in
+extern NSString *const kGoToInboxFolderAtStartupSegue;
 
-@interface SHCAttachmentsViewController : UITableViewController
+@interface POSFoldersViewController : SHCBaseTableViewController
 
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+- (void)updateFolders;
+@property (strong, nonatomic) NSString *selectedMailBoxDigipostAdress;
 
 @end

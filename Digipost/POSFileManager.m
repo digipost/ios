@@ -18,7 +18,7 @@
 #import "NSString+SHA1String.h"
 #import <RNCryptor/RNEncryptor.h>
 #import <RNCryptor/RNDecryptor.h>
-#import "SHCOAuthManager.h"
+#import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "POSBaseEncryptedModel.h"
 
@@ -48,7 +48,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
 - (BOOL)decryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
-    NSString *password = [SHCOAuthManager sharedManager].refreshToken;
+    NSString *password = [POSOAuthManager sharedManager].refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't decrypt data without a password");
@@ -153,7 +153,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
 - (BOOL)encryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
-    NSString *password = [SHCOAuthManager sharedManager].refreshToken;
+    NSString *password = [POSOAuthManager sharedManager].refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't encrypt data without a password");

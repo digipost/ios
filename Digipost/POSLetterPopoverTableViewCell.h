@@ -16,14 +16,8 @@
 
 #import <UIKit/UIKit.h>
 
-// Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
-
-@class POSDocumentsViewController;
-
-@interface SHCAttachmentsViewController : UITableViewController
-
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+@interface POSLetterPopoverTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *description;
 
 @end

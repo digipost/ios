@@ -21,11 +21,11 @@
 #import "POSModelManager.h"
 #import "POSRootResource.h"
 #import "UIViewController+NeedsReload.h"
-#import "SHCFoldersViewController.h"
-#import "SHCDocumentsViewController.h"
-#import "SHCReceiptFoldersTableViewController.h"
+#import "POSFoldersViewController.h"
+#import "POSDocumentsViewController.h"
+#import "POSReceiptFoldersTableViewController.h"
 #import "UIViewController+BackButton.h"
-#import "SHCLetterViewController.h"
+#import "POSLetterViewController.h"
 
 @interface SHCBaseTableViewController () <NSFetchedResultsControllerDelegate, UIGestureRecognizerDelegate>
 
@@ -57,8 +57,8 @@
     [self initializeRefreshControlText];
     [self updateRefreshControlTextRefreshing:YES];
 
-    if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
-        [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
+    if ([self isKindOfClass:[POSDocumentsViewController class]] ||
+        [self isKindOfClass:[POSReceiptFoldersTableViewController class]]) {
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
                                                           alpha:1.0];
     } else {
@@ -111,8 +111,8 @@
         if ([splitViewController isKindOfClass:[UISplitViewController class]]) {
             UINavigationController *navigationController = (UINavigationController *)[splitViewController.viewControllers lastObject];
             if ([navigationController isKindOfClass:[UINavigationController class]]) {
-                SHCLetterViewController *letterViewController = (SHCLetterViewController *)navigationController.topViewController;
-                if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
+                POSLetterViewController *letterViewController = (POSLetterViewController *)navigationController.topViewController;
+                if ([letterViewController isKindOfClass:[POSLetterViewController class]]) {
                     [letterViewController updateLeftBarButtonItem:nil
                                                 forViewController:self];
                 }
@@ -170,7 +170,7 @@
                                                                          target:self
                                                                          action:@selector(popViewController)];
 
-    if ([self isKindOfClass:[SHCFoldersViewController class]]) {
+    if ([self isKindOfClass:[POSFoldersViewController class]]) {
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
@@ -234,8 +234,8 @@
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
-    if ([self isKindOfClass:[SHCDocumentsViewController class]] ||
-        [self isKindOfClass:[SHCReceiptFoldersTableViewController class]]) {
+    if ([self isKindOfClass:[POSDocumentsViewController class]] ||
+        [self isKindOfClass:[POSReceiptFoldersTableViewController class]]) {
         attributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:0.4
                                                                           alpha:1.0]};
     } else {

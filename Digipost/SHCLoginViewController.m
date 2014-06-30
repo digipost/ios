@@ -16,12 +16,12 @@
 
 #import "POSRootResource.h"
 #import "POSFolder+Methods.h"
-#import "SHCDocumentsViewController.h"
+#import "POSDocumentsViewController.h"
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
 #import "POSModelManager.h"
-#import "SHCFoldersViewController.h"
-#import "SHCOAuthManager.h"
+#import "POSFoldersViewController.h"
+#import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
 
@@ -92,7 +92,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
-    if ([SHCOAuthManager sharedManager].refreshToken) {
+    if ([POSOAuthManager sharedManager].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -140,7 +140,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSMailbox *mailbox = resource.mailboxes.allObjects[0];
-        SHCDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
+        POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
     }

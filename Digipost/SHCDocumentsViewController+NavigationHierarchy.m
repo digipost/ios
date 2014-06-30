@@ -8,22 +8,22 @@
 
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "POSAccountViewController.h"
-#import "SHCFoldersViewController.h"
+#import "POSFoldersViewController.h"
 
-@implementation SHCDocumentsViewController (NavigationHierarchy)
+@implementation POSDocumentsViewController (NavigationHierarchy)
 - (void)addAccountsAnFoldersVCToDoucmentHierarchy
 {
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
             POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
-            SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+            POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
             NSMutableArray *newViewControllerArray = [NSMutableArray array];
             // add account vc as second view controller in navigation controller
             UIViewController *loginViewController = self.navigationController.viewControllers[0];
 
-            SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
+            POSDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
 
             [newViewControllerArray addObject:loginViewController];
             [newViewControllerArray addObject:accountViewController];
@@ -36,14 +36,14 @@
                                                  animated:YES];
         }
     } else {
-        if ([self.navigationController.viewControllers[1] isMemberOfClass:[SHCFoldersViewController class]] == NO) {
-            SHCFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+        if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSFoldersViewController class]] == NO) {
+            POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
             NSMutableArray *newViewControllerArray = [NSMutableArray array];
             // add account vc as second view controller in navigation controller
             POSAccountViewController *accountVC = self.navigationController.viewControllers[0];
 
-            SHCDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
+            POSDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
 
             [newViewControllerArray addObject:accountVC];
             [newViewControllerArray addObject:folderViewController];

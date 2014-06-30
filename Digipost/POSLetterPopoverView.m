@@ -14,16 +14,26 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import "POSLetterPopoverView.h"
 
-// Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+@implementation POSLetterPopoverView
 
-@class POSDocumentsViewController;
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
-@interface SHCAttachmentsViewController : UITableViewController
-
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
 
 @end

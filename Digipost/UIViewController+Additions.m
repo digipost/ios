@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+Additions.h"
-#import "SHCFoldersViewController.h"
+#import "POSFoldersViewController.h"
 
 @implementation UIViewController (Additions)
 - (void)updateNavbar
@@ -17,7 +17,7 @@
                                                                          target:self
                                                                          action:@selector(popViewController)];
 
-    if ([self isKindOfClass:[SHCFoldersViewController class]]) {
+    if ([self isKindOfClass:[POSFoldersViewController class]]) {
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }

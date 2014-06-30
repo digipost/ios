@@ -15,15 +15,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SHCBaseTableViewController.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+extern NSString *const kPushReceiptsIdentifier;
 
-@class POSDocumentsViewController;
+@interface POSReceiptFoldersTableViewController : SHCBaseTableViewController
 
-@interface SHCAttachmentsViewController : UITableViewController
-
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+@property (copy, nonatomic) NSString *mailboxDigipostAddress;
+@property (copy, nonatomic) NSString *receiptsUri;
 
 @end

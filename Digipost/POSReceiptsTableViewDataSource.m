@@ -8,7 +8,7 @@
 
 #import "POSReceiptsTableViewDataSource.h"
 #import "POSModelManager.h"
-#import "SHCReceiptTableViewCell.h"
+#import "POSReceiptTableViewCell.h"
 #import "POSReceipt.h"
 #import "POSDocument.h"
 @import CoreData;
@@ -22,7 +22,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SHCReceiptTableViewCell *receiptTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"ReceiptCellIdentifier"
+    POSReceiptTableViewCell *receiptTableViewCell = [tableView dequeueReusableCellWithIdentifier:@"ReceiptCellIdentifier"
                                                                                     forIndexPath:indexPath];
     POSReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;

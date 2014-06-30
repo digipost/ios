@@ -74,7 +74,7 @@
         <!--Letter View Controller-->
         <scene sceneID="y5s-iI-wIP">
             <objects>
-                <viewController id="9Yb-L2-1ej" customClass="SHCLetterViewController" sceneMemberID="viewController">
+                <viewController id="9Yb-L2-1ej" customClass="POSLetterViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U99-DD-r9a"/>
                         <viewControllerLayoutGuide type="bottom" id="OVC-GN-Ngo"/>
@@ -139,7 +139,7 @@
                                                     <constraint firstAttribute="height" constant="278" id="yvM-lo-vhd"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="gZe-CL-lGM" customClass="SHCLetterPopoverTableViewCell">
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="gZe-CL-lGM" customClass="POSLetterPopoverTableViewCell">
                                                         <rect key="frame" x="0.0" y="55" width="309" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gZe-CL-lGM" id="bEI-eb-ftu">
@@ -401,13 +401,13 @@
         <!--Folders View Controller-->
         <scene sceneID="Cwh-c9-qF1">
             <objects>
-                <tableViewController storyboardIdentifier="FoldersViewController" id="dIZ-es-7bO" customClass="SHCFoldersViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FoldersViewController" id="dIZ-es-7bO" customClass="POSFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="40" sectionFooterHeight="22" id="ldK-Ht-GGo">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" id="vXI-BO-bCa" customClass="SHCFolderTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" id="vXI-BO-bCa" customClass="POSFolderTableViewCell">
                                 <rect key="frame" x="0.0" y="40" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vXI-BO-bCa" id="ZuH-qn-pnj">
@@ -525,14 +525,14 @@
         <!--Documents View Controller-->
         <scene sceneID="PZn-ut-t6s">
             <objects>
-                <tableViewController id="JEl-rf-xhU" customClass="SHCDocumentsViewController" sceneMemberID="viewController">
+                <tableViewController id="JEl-rf-xhU" customClass="POSDocumentsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" id="fM0-S4-JFu">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DocumentCellIdentifier" id="76K-oo-2Qq" userLabel="Document Table View Cell" customClass="SHCDocumentTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="DocumentCellIdentifier" id="76K-oo-2Qq" userLabel="Document Table View Cell" customClass="POSDocumentTableViewCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="76K-oo-2Qq" id="rLJ-CH-eiQ">
@@ -634,7 +634,7 @@
                                     <outlet property="unreadImageView" destination="bGh-2Q-4sO" id="BIa-4n-7ju"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UploadCellIdentifier" id="fBN-5V-OPN" userLabel="Upload Table View Cell" customClass="SHCUploadTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UploadCellIdentifier" id="fBN-5V-OPN" userLabel="Upload Table View Cell" customClass="POSUploadTableViewCell">
                                 <rect key="frame" x="0.0" y="87" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fBN-5V-OPN" id="xJt-8C-5BU">
@@ -1047,7 +1047,7 @@
         <!--Receipt Folders Table View Controller-->
         <scene sceneID="9um-Ow-pWZ">
             <objects>
-                <tableViewController id="xLF-Ij-XNd" customClass="SHCReceiptFoldersTableViewController" sceneMemberID="viewController">
+                <tableViewController id="xLF-Ij-XNd" customClass="POSReceiptFoldersTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" id="dTY-xN-XX8">
                         <rect key="frame" x="0.0" y="64" width="320" height="788"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1157,7 +1157,7 @@
         <!--Receipts View Controller-->
         <scene sceneID="ZwF-oT-3kS">
             <objects>
-                <viewController id="vEi-5U-4WK" customClass="SHCReceiptsViewController" sceneMemberID="viewController">
+                <viewController id="vEi-5U-4WK" customClass="POSReceiptsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CiK-qt-fkx"/>
                         <viewControllerLayoutGuide type="bottom" id="RC7-il-HEn"/>
@@ -1171,7 +1171,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCellIdentifier" rowHeight="66" id="fJM-rA-FPp" customClass="SHCReceiptTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCellIdentifier" rowHeight="66" id="fJM-rA-FPp" customClass="POSReceiptTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJM-rA-FPp" id="Efy-kS-eeW">

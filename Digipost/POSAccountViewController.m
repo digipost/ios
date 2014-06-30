@@ -8,20 +8,20 @@
 
 #import "POSAccountViewController.h"
 #import "POSAccountViewTableViewDataSource.h"
-#import "SHCFoldersViewController.h"
-#import "SHCAPIManager.h"
+#import "POSFoldersViewController.h"
+#import "POSAPIManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIRefreshControl+Additions.m"
 #import "POSMailbox.h"
 #import <UIActionSheet+Blocks.h>
-#import "SHCLetterViewController.h"
+#import "POSLetterViewController.h"
 #import "UIViewController+BackButton.h"
 #import "SHCAppDelegate.h"
 #import "SHCLoginViewController.h"
 #import "POSFolder+Methods.h"
 #import <UIAlertView+Blocks.h>
 #import "POSRootResource.h"
-#import "SHCOAuthManager.h"
+#import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 
 NSString *const kAccountViewControllerIdentifier = @"accountViewController";
@@ -101,12 +101,12 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    [[SHCAPIManager sharedManager] updateRootResourceWithSuccess:^{
+    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
     } failure:^(NSError *error) {
         
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[SHCAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
@@ -132,11 +132,11 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 {
     if ([segue.identifier isEqualToString:@"PushFolders"]) {
         POSMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        SHCFoldersViewController *folderViewController = (id)segue.destinationViewController;
+        POSFoldersViewController *folderViewController = (id)segue.destinationViewController;
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
         [POSModelManager sharedManager].selectedMailboxDigipostAddress = mailbox.digipostAddress;
     } else if ([segue.identifier isEqualToString:@"gotoDocumentsFromAccountsSegue"]) {
-        SHCDocumentsViewController *documentsView = (id)segue.destinationViewController;
+        POSDocumentsViewController *documentsView = (id)segue.destinationViewController;
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
                                                                        ascending:YES];
@@ -166,19 +166,19 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
                                 tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                                if (buttonIndex == 0) {
                                    SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
-                                   SHCLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
+                                   POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
                                    letterViewConctroller.attachment = nil;
                                    letterViewConctroller.receipt = nil;
                                    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
-                                   [[SHCAPIManager sharedManager] logoutWithSuccess:^{
+                                   [[POSAPIManager sharedManager] logoutWithSuccess:^{
 
-                                       [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[POSOAuthManager sharedManager] removeAllTokens];
                                        [[POSModelManager sharedManager] deleteAllObjects];
 
                                    } failure:^(NSError *error) {
 
-                                       [[SHCOAuthManager sharedManager] removeAllTokens];
+                                       [[POSOAuthManager sharedManager] removeAllTokens];
                                        [[POSModelManager sharedManager] deleteAllObjects];
 
                                        [UIAlertView showWithTitle:error.errorTitle

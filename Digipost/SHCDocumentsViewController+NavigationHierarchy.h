@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Posten. All rights reserved.
 //
 
-#import "SHCDocumentsViewController.h"
+#import "POSDocumentsViewController.h"
 
-@interface SHCDocumentsViewController (NavigationHierarchy)
+@interface POSDocumentsViewController (NavigationHierarchy)
 
 - (void)addAccountsAnFoldersVCToDoucmentHierarchy;
 

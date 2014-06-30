@@ -19,7 +19,7 @@
 #import "SHCOAuthViewController.h"
 #import "NSString+RandomNumber.h"
 #import "NSURLRequest+QueryParameters.h"
-#import "SHCOAuthManager.h"
+#import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "oauth.h"
 
@@ -92,7 +92,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
         }
 
         if (parameters[kOAuth2Code]) {
-            [[SHCOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
                 success:^{
 
                 // The OAuth manager has successfully authenticated with code - which means we've

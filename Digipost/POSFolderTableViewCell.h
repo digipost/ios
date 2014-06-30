@@ -16,14 +16,16 @@
 
 #import <UIKit/UIKit.h>
 
-// Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+extern NSString *const kFolderTableViewCellIdentifier;
 
-@class POSDocumentsViewController;
+@interface POSFolderTableViewCell : UITableViewCell
 
-@interface SHCAttachmentsViewController : UITableViewController
-
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
+@property (weak, nonatomic) IBOutlet UIView *selectedView;
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *folderNameLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *unreadCounterImageView;
+@property (weak, nonatomic) IBOutlet UILabel *unreadCounterLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 
 @end

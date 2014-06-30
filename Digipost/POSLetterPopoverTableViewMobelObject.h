@@ -14,16 +14,12 @@
 // limitations under the License.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-// Segue identifiers (to enable programmatic triggering of segues)
-extern NSString *const kPushAttachmentsIdentifier;
+@interface POSLetterPopoverTableViewMobelObject : NSObject
 
-@class POSDocumentsViewController;
+@property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *description;
 
-@interface SHCAttachmentsViewController : UITableViewController
-
-@property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
-
++ (POSLetterPopoverTableViewMobelObject *)initWithTitle:(NSString *)title description:(NSString *)description;
 @end

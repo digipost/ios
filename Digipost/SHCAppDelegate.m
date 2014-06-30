@@ -22,8 +22,8 @@
 #import <GAITracker.h>
 #import <UIAlertView+Blocks.h>
 #import "SHCAppDelegate.h"
-#import "SHCAPIManager.h"
-#import "SHCLetterViewController.h"
+#import "POSAPIManager.h"
+#import "POSLetterViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
 
@@ -95,7 +95,7 @@
              otherButtonTitles:@[ NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload") ]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                           if (buttonIndex == 1) {
-                              [[SHCAPIManager sharedManager] uploadFileWithURL:url success:^{
+                              [[POSAPIManager sharedManager] uploadFileWithURL:url success:^{
 
                               } failure:^(NSError *error) {
 
@@ -140,7 +140,7 @@
 
 - (void)setupNetworkingLogging
 {
-    [[SHCAPIManager sharedManager] startLogging];
+    [[POSAPIManager sharedManager] startLogging];
 }
 
 - (void)setupGoogleAnalytics

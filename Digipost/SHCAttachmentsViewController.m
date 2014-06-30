@@ -23,7 +23,7 @@
 #import "POSAttachment.h"
 #import "POSDocument.h"
 #import "SHCAppDelegate.h"
-#import "SHCLetterViewController.h"
+#import "POSLetterViewController.h"
 #import "UIViewController+ValidateOpening.h"
 #import "NSError+ExtraInfo.h"
 #import "UIView+AutoLayout.h"
@@ -90,8 +90,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
         if ([splitViewController isKindOfClass:[UISplitViewController class]]) {
             UINavigationController *navigationController = (UINavigationController *)[splitViewController.viewControllers lastObject];
             if ([navigationController isKindOfClass:[UINavigationController class]]) {
-                SHCLetterViewController *letterViewController = (SHCLetterViewController *)navigationController.topViewController;
-                if ([letterViewController isKindOfClass:[SHCLetterViewController class]]) {
+                POSLetterViewController *letterViewController = (POSLetterViewController *)navigationController.topViewController;
+                if ([letterViewController isKindOfClass:[POSLetterViewController class]]) {
                     [letterViewController updateLeftBarButtonItem:nil
                                                 forViewController:self];
                 }
@@ -167,7 +167,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         POSAttachment *attachment = (POSAttachment *)sender;
 
-        SHCLetterViewController *letterViewController = (SHCLetterViewController *)segue.destinationViewController;
+        POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self.documentsViewController;
         letterViewController.attachment = attachment;
     }
