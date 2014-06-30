@@ -1,17 +1,9 @@
 //
-// Copyright (C) Posten Norge AS
+//  POSAttachment.h
+//  Digipost
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//         http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  Created by Håkon Bogen on 30.06.14.
+//  Copyright (c) 2014 Posten. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -38,19 +30,17 @@ extern NSString *const kAttachmentEntityName;
 
 @interface POSAttachment : POSBaseEncryptedModel
 
-// Attributes
-@property (strong, nonatomic) NSString *authenticationLevel;
-@property (strong, nonatomic) NSNumber *fileSize;
-@property (strong, nonatomic) NSString *fileType;
-@property (strong, nonatomic) NSNumber *mainDocument;
-@property (strong, nonatomic) NSNumber *read;
-@property (strong, nonatomic) NSString *subject;
-@property (strong, nonatomic) NSString *type;
-@property (strong, nonatomic) NSString *uri;
-
-// Relationships
-@property (strong, nonatomic) POSDocument *document;
-@property (strong, nonatomic) POSInvoice *invoice;
+@property (nonatomic, retain) NSString *authenticationLevel;
+@property (nonatomic, retain) NSNumber *fileSize;
+@property (nonatomic, retain) NSString *fileType;
+@property (nonatomic, retain) NSNumber *mainDocument;
+@property (nonatomic, retain) NSNumber *read;
+@property (nonatomic, retain) NSString *subject;
+@property (nonatomic, retain) NSString *type;
+@property (nonatomic, retain) NSString *uri;
+@property (nonatomic, retain) NSString *openingReceiptUri;
+@property (nonatomic, retain) POSDocument *document;
+@property (nonatomic, retain) POSInvoice *invoice;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;

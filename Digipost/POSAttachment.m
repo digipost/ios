@@ -1,20 +1,13 @@
 //
-// Copyright (C) Posten Norge AS
+//  POSAttachment.m
+//  Digipost
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//         http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  Created by Håkon Bogen on 30.06.14.
+//  Copyright (c) 2014 Posten. All rights reserved.
 //
 
 #import "POSAttachment.h"
+#import "POSDocument.h"
 #import "POSModelManager.h"
 #import "POSInvoice.h"
 
@@ -39,7 +32,6 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 @implementation POSAttachment
 
-// Attributes
 @dynamic authenticationLevel;
 @dynamic fileSize;
 @dynamic fileType;
@@ -48,11 +40,9 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 @dynamic subject;
 @dynamic type;
 @dynamic uri;
-
-// Relationships
+@dynamic openingReceiptUri;
 @dynamic document;
 @dynamic invoice;
-
 #pragma mark - Public methods
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
