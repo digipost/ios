@@ -57,6 +57,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @interface POSFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
+@property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
 
 @end
@@ -67,7 +68,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewDidLoad
 {
-
+    self.shouldShowAddNewFolderCell = YES;
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
@@ -76,9 +77,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                                             ascending:YES
                                                              selector:@selector(compare:)] ];
 
+    POSMailbox *currentMailbox = nil;
     if (self.selectedMailBoxDigipostAdress == nil) {
-        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        self.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+        currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        self.selectedMailBoxDigipostAdress = currentMailbox.digipostAddress;
         NSAssert(self.selectedMailBoxDigipostAdress != nil, @"No mailbox stored");
     }
 
@@ -97,8 +99,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
 
     if ([navItem.title isEqualToString:@""] == NO) {
-        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        navItem.title = mailbox.name;
+        if (currentMailbox == nil) {
+            currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
+        navItem.title = currentMailbox.name;
         if (navItem.leftBarButtonItem == nil) {
             UIImage *image = [UIImage imageNamed:@"back"];
             UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:image
@@ -110,6 +114,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
             [navItem setLeftBarButtonItem:backButton];
         }
+        [navItem setRightBarButtonItem:self.editButtonItem];
     }
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
@@ -189,6 +194,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         numberOfSections++;
     }
 
+    if (self.editing && [self.folders count] == 0) {
+        numberOfSections++;
+    }
     return numberOfSections;
 }
 
@@ -197,8 +205,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (section == 0 && self.inboxFolder) {
         return 2; // Inbox and Receipts
     } else {
-        if (self.isEditing) {
+        if (self.isEditing && self.shouldShowAddNewFolderCell) {
             // add new cell-cell is added
+
             return [self.folders count] + 1;
         } else {
             return [self.folders count];
@@ -259,16 +268,27 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
              animated:animated];
 
     if (editing) {
-        [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                     inSection:1] ]
-                              withRowAnimation:UITableViewRowAnimationAutomatic];
-
+        self.shouldShowAddNewFolderCell = YES;
+        if ([self.folders count] == 0) {
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                         inSection:1] ]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     } else if (animated) {
-        [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                     inSection:1] ]
-                              withRowAnimation:UITableViewRowAnimationAutomatic];
+        if ([self.folders count] == 0) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                         inSection:1] ]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     }
 }
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -296,6 +316,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             break;
     }
     return NO;
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"will begin editing");
+    self.shouldShowAddNewFolderCell = NO;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -537,7 +563,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [[POSAPIManager sharedManager] delteFolder:folder
         success:^{
-                                           [self updateContentsFromServerUserInitiatedRequest:@NO];
+            [self updateContentsFromServerUserInitiatedRequest:@NO];
         }
         failure:^(NSError *error) {
                                            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
