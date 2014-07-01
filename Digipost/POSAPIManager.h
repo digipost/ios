@@ -81,6 +81,9 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateMovingFolders,
     SHCAPIManagerStateMovingFoldersFinished,
     SHCAPIManagerStateMovingFoldersFailed,
+    SHCAPIManagerStateValididatingOpeningReceipt,
+    SHCAPIManagerStateValididatingOpeningReceiptFinished,
+    SHCAPIManagerStateValididatingOpeningReceiptFailed,
 };
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
@@ -96,6 +99,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 @class POSInvoice;
 @class POSMailbox;
 @class POSReceipt;
+@class POSAttachment;
 
 @interface POSAPIManager : NSObject
 
@@ -137,5 +141,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
 @end

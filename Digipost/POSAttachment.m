@@ -28,6 +28,7 @@ NSString *const kAttachmentTypeInvoice = @"INVOICE";
 NSString *const kAttachmentAuthenticationLevel = @"authentication-level";
 NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content";
+NSString *const kAttachmentSendOpeningReceiptAPIKeySuffix = @"send_opening_receipt";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 @implementation POSAttachment
@@ -82,6 +83,9 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
                     if ([rel hasSuffix:kAttachmentDocumentContentAPIKeySuffix]) {
                         attachment.uri = uri;
+                    }
+                    if ([rel hasSuffix:kAttachmentSendOpeningReceiptAPIKeySuffix]) {
+                        attachment.openingReceiptUri = uri;
                     }
                 }
             }

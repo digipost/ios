@@ -1579,6 +1579,41 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+//        NSDictionary *parameters =@{@"id":folder.folderId,
+//                                    @"name":newName,
+//                                    @"icon":newIcon
+//                                    };
+        self.state = SHCAPIManagerStateValididatingOpeningReceipt;
+        [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            self.lastSuccessBlock = success;
+//                          self.lastURLResponse = response;
+                          self.lastResponseObject = responseObject;
+                          self.state = SHCAPIManagerStateValididatingOpeningReceiptFinished;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            self.lastFailureBlock = failure;
+            self.lastError = error;
+//            self.lastURLResponse = response;
+            self.state = SHCAPIManagerStateValididatingOpeningReceiptFailed;
+        }];
+        //        [self jsonRequestWithMethod:@"POST" parameters:nil
+        //                                url:attachment.openingReceiptUri
+        //                  completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+        //                      if (error) {
+        //
+        //                      } else {
+        //
+        //                      }
+        //                  }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 - (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSParameterAssert(mailbox);
