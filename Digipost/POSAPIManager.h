@@ -84,6 +84,9 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateValididatingOpeningReceipt,
     SHCAPIManagerStateValididatingOpeningReceiptFinished,
     SHCAPIManagerStateValididatingOpeningReceiptFailed,
+    SHCAPIManagerStateUpdateSingleDocument,
+    SHCAPIManagerStateUpdateSingleDocumentFinished,
+    SHCAPIManagerStateUpdateSingleDocumentFailed
 };
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
@@ -144,4 +147,5 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
+- (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 @end

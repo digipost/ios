@@ -819,6 +819,39 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 [self checkStateAndCallFailureBlock];
                 break;
             }
+            case SHCAPIManagerStateValididatingOpeningReceipt: {
+                break;
+            }
+            case SHCAPIManagerStateValididatingOpeningReceiptFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateValididatingOpeningReceiptFinished: {
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdateSingleDocument:
+                break;
+            case SHCAPIManagerStateUpdateSingleDocumentFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateUpdateSingleDocumentFinished: {
+                if (self.lastResponseObject) {
+                    [[POSModelManager sharedManager] updateDocument:self.lastDocument
+                                                     withAttributes:self.lastResponseObject];
+                }
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+                [self cleanup];
+                break;
+            }
+
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateMovingDocument:
@@ -1579,34 +1612,36 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
-- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
-//        NSDictionary *parameters =@{@"id":folder.folderId,
-//                                    @"name":newName,
-//                                    @"icon":newIcon
-//                                    };
-        self.state = SHCAPIManagerStateValididatingOpeningReceipt;
-        [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        self.state = SHCAPIManagerStateUpdateSingleDocument;
+        self.lastDocument = document;
+        [self.sessionManager GET:document.updateUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
             self.lastSuccessBlock = success;
-//                          self.lastURLResponse = response;
-                          self.lastResponseObject = responseObject;
-                          self.state = SHCAPIManagerStateValididatingOpeningReceiptFinished;
+            self.lastResponseObject = responseObject;
+            self.state = SHCAPIManagerStateUpdateSingleDocumentFinished;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
             self.lastFailureBlock = failure;
             self.lastError = error;
-//            self.lastURLResponse = response;
+            self.state = SHCAPIManagerStateUpdateSingleDocumentFailed;
+        }];
+    } failure:^(NSError *error) {}];
+}
+
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateValididatingOpeningReceipt;
+        [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            self.lastSuccessBlock = success;
+            self.lastResponseObject = responseObject;
+            self.state = SHCAPIManagerStateValididatingOpeningReceiptFinished;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            self.lastFailureBlock = failure;
+            self.lastError = error;
             self.state = SHCAPIManagerStateValididatingOpeningReceiptFailed;
         }];
-        //        [self jsonRequestWithMethod:@"POST" parameters:nil
-        //                                url:attachment.openingReceiptUri
-        //                  completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
-        //                      if (error) {
-        //
-        //                      } else {
-        //
-        //                      }
-        //                  }];
     } failure:^(NSError *error) {
         if (failure) {
             failure(error);

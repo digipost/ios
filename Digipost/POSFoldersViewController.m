@@ -82,6 +82,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.selectedMailBoxDigipostAdress = currentMailbox.digipostAddress;
         NSAssert(self.selectedMailBoxDigipostAdress != nil, @"No mailbox stored");
+    } else {
+        currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                 inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
 
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
@@ -125,6 +128,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.selectedMailBoxDigipostAdress) {
+        POSMailbox *currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                             inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
+        navItem.title = currentMailbox.name;
+        self.navigationItem.title = currentMailbox.name;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated

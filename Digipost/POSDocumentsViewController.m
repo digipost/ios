@@ -272,29 +272,108 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
-    if ([document.attachments count] > 1) {
+    POSAttachment *attachment = [document.attachments firstObject];
+
+    if (attachment.openingReceiptUri) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
+                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                  switch (buttonIndex) {
+                                      case 0:
+                                          break;
+                                      case 1:
+                                      {
+                                          [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^{
+                                              [self validateOpeningAttachment:attachment
+                                                                      success:^{
+                                                                          if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                                                                              ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+                                                                          } else {
+                                                                              
+                                                                              if ([document.attachments count] > 1) {
+                                                                                  [self performSegueWithIdentifier:kPushAttachmentsIdentifier
+                                                                                                            sender:document];
+                                                                              } else {
+                                                                                  [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+                                                                              }
+                                                                          }
+                                                                      }
+                                                                      failure:^(NSError *error) {
+                                                                          [UIAlertView showWithTitle:error.errorTitle
+                                                                                             message:[error localizedDescription]
+                                                                                   cancelButtonTitle:nil
+                                                                                   otherButtonTitles:@[error.okButtonTitle]
+                                                                                            tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                                                                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                                                                                            }];
+                                                                      }];
+                                              
+                                          } failure:^(NSError *error) {
+                                            [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                
+                                            }];
+                                          }];
+                                          break;
+                                      }
+                                      case 2:
+                                          
+                                          break;
+                                          
+                                      default:
+                                          break;
+                                  }
+                          }];
+    } else if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
+        //        }else {
+        //
+        //        POSAttachment *attachment = [document.attachments firstObject];
+        //            [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+        //                               message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+        //                     cancelButtonTitle:NSLocalizedString(@"Abryt", @"Abryt")
+        //                     otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering"), NSLocalizedString(@"Slett brevet", @"Slett brevet") ]
+        //                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        //                                  switch (buttonIndex) {
+        //                                      case 0:
+        //
+        //                                          break;
+        //                                      case 1:
+        //                                          [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^{
+        //
+        //                                          } failure:^(NSError *error) {
+        //
+        //                                          }];
+        //                                          break;
+        //                                      case 2:
+        //
+        //                                          break;
+        //
+        //                                      default:
+        //                                          break;
+        //                                  }
+        //                              }];
     } else {
-
         POSAttachment *attachment = [document.attachments firstObject];
 
         [self validateOpeningAttachment:attachment
             success:^{
-                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-                                    } else {
-                                        [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-                                    }
+                                                          if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                                                              ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+                                                          } else {
+                                                              [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+                                                          }
             }
             failure:^(NSError *error) {
-                                    [UIAlertView showWithTitle:error.errorTitle
-                                                       message:[error localizedDescription]
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@[error.okButtonTitle]
-                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [tableView deselectRowAtIndexPath:indexPath animated:YES];
-                                                      }];
+                                                          [UIAlertView showWithTitle:error.errorTitle
+                                                                             message:[error localizedDescription]
+                                                                   cancelButtonTitle:nil
+                                                                   otherButtonTitles:@[error.okButtonTitle]
+                                                                            tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                                                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                                                                            }];
             }];
     }
 }
