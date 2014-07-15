@@ -370,7 +370,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         if (idx == destinationIndexPath.row){
             [newSorting setObject:firstFolder atIndexedSubscript:idx];
             firstFolder.index = @( idx );
-        }else if (idx == sourceIndexPath.row){
+        } else if (idx == sourceIndexPath.row){
             if (movingUpwards){
                 POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
                 [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
@@ -380,11 +380,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
                 objNextIndex.index = @( idx );
             }
-        }else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
+        } else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
             POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
             [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
             objatBeforeindex.index = @( idx );
-        }else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
+        } else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
             POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx + 1];
             [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
             objNextIndex.index = @( idx );
@@ -443,8 +443,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (indexPath.row >= [self.folders count]) {
         return UITableViewCellEditingStyleInsert;
     }
-    
-    if (self.tableView.isEditing){
+
+    if (self.tableView.isEditing) {
         return UITableViewCellEditingStyleDelete;
     }
     return UITableViewCellEditingStyleNone;
@@ -501,9 +501,22 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                       sender:self.folders[indexPath.row]];
         }
     } else {
-        [self performSegueWithIdentifier:kEditFolderSegue
-                                  sender:self];
+        if (indexPath.section != 0) {
+            [self performSegueWithIdentifier:kEditFolderSegue
+                                      sender:self];
+        }
     }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (self.isEditing) {
+        if (indexPath.section == 0) {
+            return nil;
+        }
+    }
+    return indexPath;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
