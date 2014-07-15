@@ -443,7 +443,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (indexPath.row >= [self.folders count]) {
         return UITableViewCellEditingStyleInsert;
     }
-    return UITableViewCellEditingStyleDelete;
+    
+    if (self.tableView.isEditing){
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
