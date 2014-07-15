@@ -579,6 +579,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
+				EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */,
 				EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */,
 				EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */,
 				EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */,
@@ -637,8 +639,6 @@
 			children = (
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
-				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
-				EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
 				8364D71D185F2981008DE6CB /* POSDocumentTableViewCell.m */,
 				83DB4AE9188D287600515022 /* POSReceiptFoldersTableViewController.h */,
