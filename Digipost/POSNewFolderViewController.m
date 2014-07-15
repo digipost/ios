@@ -58,6 +58,7 @@
                                     scrollPosition:UICollectionViewScrollPositionTop];
         [self.textField becomeFirstResponder];
         self.removeTextWhenEditing = NO;
+        self.navigationItem.title = NSLocalizedString(@"Edit folder title item", @"The title in navbar when editing folders");
     } else {
         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0
                                                                       inSection:0]
