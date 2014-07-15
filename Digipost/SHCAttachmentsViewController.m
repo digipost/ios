@@ -257,7 +257,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)shouldValidateOpeningReceipt:(POSAttachment*)attachment {
     {
         [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-            
             [self validateOpeningAttachment:attachment
                                     success:^{
                                         POSAttachment *refetchedAttachment = [POSAttachment updateExistingAttachmentWithUriFromDictionary:attachmentAttributes existingAttachment:attachment inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -265,14 +264,10 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                         [self reloadTableViewDataForDocument:refetchedAttachment.document];
                                         
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            
-                                            
                                             ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
                                         } else {
                                             [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                         }
-                                        
-                                        
                                     }
                                     failure:^(NSError *error) {
                                         [UIAlertView showWithTitle:error.errorTitle

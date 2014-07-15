@@ -50,6 +50,7 @@
     UIView *spacerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
     [self.textField setLeftViewMode:UITextFieldViewModeAlways];
     [self.textField setLeftView:spacerView];
+
     if (self.selectedFolder) {
         self.textField.text = self.selectedFolder.name;
         NSIndexPath *folderIconIndexPath = [self.dataSource indexPathForFolderIconWithName:self.selectedFolder.iconName];
@@ -120,18 +121,18 @@
         iconName:selectedIcon.name
         forMailBox:self.mailbox
         success:^{
-                                                    [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
-                                                    [self.navigationController popViewControllerAnimated:YES];
+                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                                    [self.navigationController popViewControllerAnimated: YES];
         }
         failure:^(NSError *error) {
-                                                    [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                     // TODO show error to user
                                                     if (error.code == -1011){
-                                                        [UIAlertView showWithTitle:NSLocalizedString(@"Folder allready exists title", @"Title of the error telling user folder with the name allready exists") message:NSLocalizedString(@"Folder allready exists text", @"Text for error telling about folder with name exits") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                        [UIAlertView showWithTitle: NSLocalizedString(@"Folder allready exists title", @"Title of the error telling user folder with the name allready exists") message: NSLocalizedString(@"Folder allready exists text", @"Text for error telling about folder with name exits") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                             
                                                         }];
-                                                    }else {
-                                                        [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                    } else {
+                                                        [UIAlertView showWithTitle: NSLocalizedString(@"Feil", @"Feil") message: NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                             
                                                         }];
                                                     }
@@ -149,12 +150,12 @@
         newName:self.textField.text
         newIcon:selectedIcon.name
         success:^{
-                                            [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
-                                            [self.navigationController popViewControllerAnimated:YES];
+                                            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                            [self.navigationController popViewControllerAnimated: YES];
         }
         failure:^(NSError *error) {
-                                            [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
-                                            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde.  ", @"Noe feil skjedde. ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                            [UIAlertView showWithTitle: NSLocalizedString(@"Feil", @"Feil") message: NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                 
                                             }];
         }];
