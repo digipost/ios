@@ -52,4 +52,5 @@
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;
+- (void)logSavingManagedObjectContext;
 @end

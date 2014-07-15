@@ -47,6 +47,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 @property (assign, nonatomic) SHCAPIManagerState state;
 @property (copy, nonatomic) void (^lastSuccessBlock)(void);
+@property (copy, nonatomic) void (^lastSuccessBlockWithAttachmentAttributes)(NSDictionary*);
 @property (copy, nonatomic) void (^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLResponse *lastURLResponse;
 @property (strong, nonatomic) id lastResponseObject;
@@ -827,8 +828,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 break;
             }
             case SHCAPIManagerStateValididatingOpeningReceiptFinished: {
-                if (self.lastSuccessBlock) {
-                    self.lastSuccessBlock();
+                if (self.lastSuccessBlockWithAttachmentAttributes) {
+                    self.lastSuccessBlockWithAttachmentAttributes(self.lastResponseObject);
                 }
                 [self cleanup];
 
@@ -1629,12 +1630,12 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     } failure:^(NSError *error) {}];
 }
 
-- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary*))success failure:(void (^)(NSError *))failure
 {
     [self validateTokensWithSuccess:^{
         self.state = SHCAPIManagerStateValididatingOpeningReceipt;
         [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-            self.lastSuccessBlock = success;
+            self.lastSuccessBlockWithAttachmentAttributes = success;
             self.lastResponseObject = responseObject;
             self.state = SHCAPIManagerStateValididatingOpeningReceiptFinished;
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -1860,6 +1861,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     self.lastFolderUri = nil;
     self.lastError = nil;
     self.lastDocument = nil;
+    self.lastSuccessBlockWithAttachmentAttributes = nil;
     self.state = SHCAPIManagerStateIdle;
 }
 
