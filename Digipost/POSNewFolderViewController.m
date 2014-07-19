@@ -196,15 +196,5 @@
     }
     return NO;
 }
-//
-//- (NSUInteger)supportedInterfaceOrientations
-//{
-//    return UIInterfaceOrientationPortrait | UIDeviceOrientationPortraitUpsideDown;
-//}
-//
-//- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
-//{
-//    return UIInterfaceOrientationPortrait | UIDeviceOrientationPortraitUpsideDown;
-//}
 
 @end
