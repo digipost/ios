@@ -307,6 +307,14 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
 }
 
+- (void)logSavingManagedObjectContext
+{
+    NSError *error = nil;
+    if (![self.managedObjectContext save:&error]) {
+        [self logSavingManagedObjectContextWithError:error];
+    }
+}
+
 #pragma mark - Properties
 
 - (NSManagedObjectContext *)managedObjectContext

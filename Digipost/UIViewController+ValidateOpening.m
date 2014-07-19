@@ -30,6 +30,10 @@
             error.errorTitle = NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE", @"Insufficient authentication level");
             failure(error);
         }
+    } else if (attachment.openingReceiptUri) {
+        if (success) {
+            success();
+        }
     } else if (!attachment.uri) {
         // If the attachment doesn't have a uri, it probably means the letter requires
         // an opening receipt or something else that Digipost knows the app can't handle.

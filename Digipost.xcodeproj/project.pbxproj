@@ -393,6 +393,7 @@
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
+		ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
 		ECF06D4A192363EF003BD200 /* POSReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptsViewController.h; sourceTree = "<group>"; };
 		ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsViewController.m; sourceTree = "<group>"; };
 		ECF06D4F192382EF003BD200 /* POSReceiptFolderTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptFolderTableViewDataSource.h; sourceTree = "<group>"; };
@@ -578,6 +579,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
+				EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */,
 				EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */,
 				EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */,
 				EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */,
@@ -636,8 +639,6 @@
 			children = (
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
-				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
-				EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
 				8364D71D185F2981008DE6CB /* POSDocumentTableViewCell.m */,
 				83DB4AE9188D287600515022 /* POSReceiptFoldersTableViewController.h */,
@@ -1479,6 +1480,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
 				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
 				83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */,
 				833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */,
@@ -1488,7 +1490,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */;
+			currentVersion = ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

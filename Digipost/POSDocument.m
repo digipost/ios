@@ -78,16 +78,16 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     [document updateWithAttributes:attributes
             inManagedObjectContext:managedObjectContext];
 
-    NSArray *attachments = attributes[kDocumentAttachmentAPIKey];
-    if ([attachments isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *attachmentDict in attachments) {
-            if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
-                POSAttachment *attachment = [POSAttachment attachmentWithAttributes:attachmentDict
-                                                             inManagedObjectContext:managedObjectContext];
-                [document addAttachmentsObject:attachment];
-            }
-        }
-    }
+    //    NSArray *attachments = attributes[kDocumentAttachmentAPIKey];
+    //    if ([attachments isKindOfClass:[NSArray class]]) {
+    //        for (NSDictionary *attachmentDict in attachments) {
+    //            if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
+    //                POSAttachment *attachment = [POSAttachment attachmentWithAttributes:attachmentDict
+    //                                                             inManagedObjectContext:managedObjectContext];
+    //                [document addAttachmentsObject:attachment];
+    //            }
+    //        }
+    //    }
 
     return document;
 }
@@ -278,6 +278,22 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
                         self.updateUri = uri;
                     }
                 }
+            }
+        }
+    }
+
+    [self.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        POSAttachment *attachment = obj;
+        [managedObjectContext deleteObject:attachment];
+    }];
+
+    NSArray *attachments = attributes[kDocumentAttachmentAPIKey];
+    if ([attachments isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *attachmentDict in attachments) {
+            if ([attachmentDict isKindOfClass:[NSDictionary class]]) {
+                POSAttachment *attachment = [POSAttachment attachmentWithAttributes:attachmentDict
+                                                             inManagedObjectContext:managedObjectContext];
+                [self addAttachmentsObject:attachment];
             }
         }
     }

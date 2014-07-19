@@ -47,6 +47,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 @property (assign, nonatomic) SHCAPIManagerState state;
 @property (copy, nonatomic) void (^lastSuccessBlock)(void);
+@property (copy, nonatomic) void (^lastSuccessBlockWithAttachmentAttributes)(NSDictionary*);
 @property (copy, nonatomic) void (^lastFailureBlock)(NSError *);
 @property (strong, nonatomic) NSURLResponse *lastURLResponse;
 @property (strong, nonatomic) id lastResponseObject;
@@ -819,6 +820,39 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 [self checkStateAndCallFailureBlock];
                 break;
             }
+            case SHCAPIManagerStateValididatingOpeningReceipt: {
+                break;
+            }
+            case SHCAPIManagerStateValididatingOpeningReceiptFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateValididatingOpeningReceiptFinished: {
+                if (self.lastSuccessBlockWithAttachmentAttributes) {
+                    self.lastSuccessBlockWithAttachmentAttributes(self.lastResponseObject);
+                }
+                [self cleanup];
+
+                break;
+            }
+            case SHCAPIManagerStateUpdateSingleDocument:
+                break;
+            case SHCAPIManagerStateUpdateSingleDocumentFailed: {
+                [self checkStateAndCallFailureBlock];
+                break;
+            }
+            case SHCAPIManagerStateUpdateSingleDocumentFinished: {
+                if (self.lastResponseObject) {
+                    [[POSModelManager sharedManager] updateDocument:self.lastDocument
+                                                     withAttributes:self.lastResponseObject];
+                }
+                if (self.lastSuccessBlock) {
+                    self.lastSuccessBlock();
+                }
+                [self cleanup];
+                break;
+            }
+
             case SHCAPIManagerStateValidatingAccessToken:
             case SHCAPIManagerStateRefreshingAccessToken:
             case SHCAPIManagerStateMovingDocument:
@@ -1579,6 +1613,43 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
+- (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateUpdateSingleDocument;
+        self.lastDocument = document;
+        [self.sessionManager GET:document.updateUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            self.lastSuccessBlock = success;
+            self.lastResponseObject = responseObject;
+            self.state = SHCAPIManagerStateUpdateSingleDocumentFinished;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            self.lastFailureBlock = failure;
+            self.lastError = error;
+            self.state = SHCAPIManagerStateUpdateSingleDocumentFailed;
+        }];
+    } failure:^(NSError *error) {}];
+}
+
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary*))success failure:(void (^)(NSError *))failure
+{
+    [self validateTokensWithSuccess:^{
+        self.state = SHCAPIManagerStateValididatingOpeningReceipt;
+        [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+            self.lastSuccessBlockWithAttachmentAttributes = success;
+            self.lastResponseObject = responseObject;
+            self.state = SHCAPIManagerStateValididatingOpeningReceiptFinished;
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            self.lastFailureBlock = failure;
+            self.lastError = error;
+            self.state = SHCAPIManagerStateValididatingOpeningReceiptFailed;
+        }];
+    } failure:^(NSError *error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 - (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSParameterAssert(mailbox);
@@ -1790,6 +1861,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     self.lastFolderUri = nil;
     self.lastError = nil;
     self.lastDocument = nil;
+    self.lastSuccessBlockWithAttachmentAttributes = nil;
     self.state = SHCAPIManagerStateIdle;
 }
 

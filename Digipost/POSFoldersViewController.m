@@ -25,6 +25,7 @@
 #import "POSAPIManager.h"
 #import "POSModelManager.h"
 #import "POSFolderTableViewCell.h"
+#import "POSDocument+Methods.h"
 #import "UILabel+Digipost.h"
 #import "POSFolder.h"
 #import "POSMailbox+Methods.h"
@@ -57,6 +58,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @interface POSFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
+@property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
 
 @end
@@ -67,7 +69,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewDidLoad
 {
-
+    self.shouldShowAddNewFolderCell = YES;
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
@@ -76,10 +78,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                                             ascending:YES
                                                              selector:@selector(compare:)] ];
 
+    POSMailbox *currentMailbox = nil;
     if (self.selectedMailBoxDigipostAdress == nil) {
-        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        self.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+        currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        self.selectedMailBoxDigipostAdress = currentMailbox.digipostAddress;
         NSAssert(self.selectedMailBoxDigipostAdress != nil, @"No mailbox stored");
+    } else {
+        currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                 inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
 
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
@@ -97,8 +103,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
 
     if ([navItem.title isEqualToString:@""] == NO) {
-        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        navItem.title = mailbox.name;
+        if (currentMailbox == nil) {
+            currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
+        navItem.title = currentMailbox.name;
         if (navItem.leftBarButtonItem == nil) {
             UIImage *image = [UIImage imageNamed:@"back"];
             UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:image
@@ -110,6 +118,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
             [navItem setLeftBarButtonItem:backButton];
         }
+        [navItem setRightBarButtonItem:self.editButtonItem];
     }
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
@@ -120,6 +129,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (self.selectedMailBoxDigipostAdress) {
+        POSMailbox *currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                             inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
+        navItem.title = currentMailbox.name;
+        self.navigationItem.title = currentMailbox.name;
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -189,6 +210,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         numberOfSections++;
     }
 
+    if (self.editing && [self.folders count] == 0) {
+        numberOfSections++;
+    }
     return numberOfSections;
 }
 
@@ -197,8 +221,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (section == 0 && self.inboxFolder) {
         return 2; // Inbox and Receipts
     } else {
-        if (self.isEditing) {
+        if (self.isEditing && self.shouldShowAddNewFolderCell) {
             // add new cell-cell is added
+
             return [self.folders count] + 1;
         } else {
             return [self.folders count];
@@ -246,8 +271,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
 
     if (!unreadCounterHidden) {
-        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
+        NSInteger unread = [POSDocument numberOfUnreadDocumentsForMailboxFolder:self.inboxFolder inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%i", unread];
     }
 
     return cell;
@@ -259,16 +284,27 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
              animated:animated];
 
     if (editing) {
-        [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                     inSection:1] ]
-                              withRowAnimation:UITableViewRowAnimationAutomatic];
-
+        self.shouldShowAddNewFolderCell = YES;
+        if ([self.folders count] == 0) {
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                         inSection:1] ]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     } else if (animated) {
-        [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                     inSection:1] ]
-                              withRowAnimation:UITableViewRowAnimationAutomatic];
+        if ([self.folders count] == 0) {
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
+        } else {
+            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
+                                                                         inSection:1] ]
+                                  withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
     }
 }
+
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -296,6 +332,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             break;
     }
     return NO;
+}
+
+- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"will begin editing");
+    self.shouldShowAddNewFolderCell = NO;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -329,7 +371,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         if (idx == destinationIndexPath.row){
             [newSorting setObject:firstFolder atIndexedSubscript:idx];
             firstFolder.index = @( idx );
-        }else if (idx == sourceIndexPath.row){
+        } else if (idx == sourceIndexPath.row){
             if (movingUpwards){
                 POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
                 [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
@@ -339,11 +381,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
                 objNextIndex.index = @( idx );
             }
-        }else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
+        } else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
             POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
             [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
             objatBeforeindex.index = @( idx );
-        }else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
+        } else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
             POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx + 1];
             [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
             objNextIndex.index = @( idx );
@@ -402,7 +444,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (indexPath.row >= [self.folders count]) {
         return UITableViewCellEditingStyleInsert;
     }
-    return UITableViewCellEditingStyleDelete;
+
+    if (self.tableView.isEditing) {
+        return UITableViewCellEditingStyleDelete;
+    }
+    return UITableViewCellEditingStyleNone;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -456,9 +502,22 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                       sender:self.folders[indexPath.row]];
         }
     } else {
-        [self performSegueWithIdentifier:kEditFolderSegue
-                                  sender:self];
+        if (indexPath.section != 0) {
+            [self performSegueWithIdentifier:kEditFolderSegue
+                                      sender:self];
+        }
     }
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if (self.isEditing) {
+        if (indexPath.section == 0) {
+            return nil;
+        }
+    }
+    return indexPath;
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -528,16 +587,13 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)updateNavbar
 {
     [super updateNavbar];
-
-    POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    self.navigationItem.title = mailbox.name;
 }
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
     [[POSAPIManager sharedManager] delteFolder:folder
         success:^{
-                                           [self updateContentsFromServerUserInitiatedRequest:@NO];
+            [self updateContentsFromServerUserInitiatedRequest:@NO];
         }
         failure:^(NSError *error) {
                                            [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {

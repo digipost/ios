@@ -1,20 +1,13 @@
 //
-// Copyright (C) Posten Norge AS
+//  POSAttachment.m
+//  Digipost
 //
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//         http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+//  Created by Håkon Bogen on 30.06.14.
+//  Copyright (c) 2014 Posten. All rights reserved.
 //
 
 #import "POSAttachment.h"
+#import "POSDocument.h"
 #import "POSModelManager.h"
 #import "POSInvoice.h"
 
@@ -35,11 +28,11 @@ NSString *const kAttachmentTypeInvoice = @"INVOICE";
 NSString *const kAttachmentAuthenticationLevel = @"authentication-level";
 NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content";
+NSString *const kAttachmentSendOpeningReceiptAPIKeySuffix = @"send_opening_receipt";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
 @implementation POSAttachment
 
-// Attributes
 @dynamic authenticationLevel;
 @dynamic fileSize;
 @dynamic fileType;
@@ -48,11 +41,9 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 @dynamic subject;
 @dynamic type;
 @dynamic uri;
-
-// Relationships
+@dynamic openingReceiptUri;
 @dynamic document;
 @dynamic invoice;
-
 #pragma mark - Public methods
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -93,6 +84,9 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
                     if ([rel hasSuffix:kAttachmentDocumentContentAPIKeySuffix]) {
                         attachment.uri = uri;
                     }
+                    if ([rel hasSuffix:kAttachmentSendOpeningReceiptAPIKeySuffix]) {
+                        attachment.openingReceiptUri = uri;
+                    }
                 }
             }
         }
@@ -124,4 +118,45 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     return [results firstObject];
 }
 
++ (NSString*)uriFromLinksArray:(NSArray*)links withSuffix:(NSString*)suffix
+{
+    if ([links isKindOfClass:[NSArray class]]) {
+        for (NSDictionary *link in links) {
+            if ([link isKindOfClass:[NSDictionary class]]) {
+                NSString *rel = link[@"rel"];
+                NSString *uri = link[@"uri"];
+                if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
+                    if ([rel hasSuffix:suffix]) {
+                        return uri;
+                    }
+                }
+            }
+        }
+    }
+    return nil;
+}
+
++ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment*)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext
+{
+    NSArray *links = attributesDictionary[kAttachmentLinkAPIKey];
+    NSString *uri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentDocumentContentAPIKeySuffix];
+    
+//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//    fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
+//    fetchRequest.fetchLimit = 1;
+//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
+    
+//    NSError *error = nil;
+//    NSArray *results = [managedObjectcontext executeFetchRequest:fetchRequest
+//                                                           error:&error];
+//    if (error) {
+//        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
+//    }
+//    POSAttachment *attachment = [results firstObject];
+    NSString *openingReceiptUri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentSendOpeningReceiptAPIKeySuffix];
+    existingAttachment.openingReceiptUri = openingReceiptUri;
+    existingAttachment.uri = uri;
+    
+    return existingAttachment;
+}
 @end

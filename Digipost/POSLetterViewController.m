@@ -412,51 +412,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (IBAction)didTapMove:(UIBarButtonItem *)sender
 {
-
     [self showBlurredActionSheetWithFolders];
-    //    NSString *moveTo = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_TO_TITLE", @"Move to");
-    //
-    //    NSMutableArray *destinations = [NSMutableArray array];
-    //
-    //    NSString *inboxLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_INBOX", @"Inbox")];
-    //    NSString *workAreaLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_WORKAREA", @"Workarea")];
-    //    NSString *archiveLocalizedName = [NSString stringWithFormat:@"%@ %@", moveTo, NSLocalizedString(@"FOLDER_NAME_ARCHIVE", @"Archive")];
-    //
-    //    NSString *documentLocation = self.attachment.document.location;
-    //    if (![[documentLocation lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
-    //        [destinations addObject:inboxLocalizedName];
-    //    }
-    //    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderWorkAreaName lowercaseString]]) {
-    //        [destinations addObject:workAreaLocalizedName];
-    //    }
-    //    if (![[self.attachment.document.location lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-    //        [destinations addObject:archiveLocalizedName];
-    //    }
-    //    NSString *title = nil;
-    //    if ([self.attachment.document.attachments count] > 1) {
-    //        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE", @"Move warning");
-    //    }
-    //
-    //    [UIActionSheet showFromBarButtonItem:sender
-    //                                animated:YES
-    //                               withTitle:title
-    //                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-    //                  destructiveButtonTitle:nil
-    //                       otherButtonTitles:destinations
-    //                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-    //                                    if (buttonIndex < [destinations count]) {
-    //                                        NSString *location = destinations[buttonIndex] ;
-    //                                        if ([location rangeOfString:inboxLocalizedName].location != NSNotFound) {
-    //                                            [self moveDocumentToLocation:[kFolderInboxName uppercaseString]];
-    //                                        } else if ( [location rangeOfString:workAreaLocalizedName].location != NSNotFound){
-    //                                            [self moveDocumentToLocation:[kFolderWorkAreaName uppercaseString]];
-    //                                        } else if ( [location rangeOfString:archiveLocalizedName].location != NSNotFound){
-    //                                            [self moveDocumentToLocation:[kFolderArchiveName uppercaseString]];
-    //                                        } else {
-    //                                            NSAssert(NO, @"Wrong index tapped");
-    //                                        }
-    //                                    }
-    //                                }];
 }
 
 - (void)showBlurredActionSheetWithFolders
@@ -540,7 +496,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                 self.attachment = nil;
                                             }
                                         }else {
-                                                [self.navigationController popToViewController:self.documentsViewController animated:YES];
+                                            [self.navigationController popToViewController:self.documentsViewController animated:YES];
                                         }
         }
         failure:^(NSError *error) {
@@ -660,11 +616,62 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+    if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
+        POSAttachment *attachment = (id)baseEncryptionModel;
 
-    [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
-        withProgress:progress
-        success:^{
-                                                           
+        __block POSDocument *document = attachment.document;
+        NSString *subject = attachment.subject;
+
+        NSString *updateURI = document.updateUri;
+        [[POSAPIManager sharedManager] updateDocument:attachment.document
+            success:^{
+                // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+                __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
+                document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                    POSAttachment *attachment = (id)obj;
+                    if ([attachment.subject isEqualToString:subject]){
+                        changedBaseEncryptionModel = attachment;
+                    }
+                    
+                }];
+                
+                [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
+                                                              withProgress:progress
+                                                                   success:^{
+                
+                NSError *error = nil;
+                if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                    [UIAlertView showWithTitle:error.errorTitle
+                                       message:[error localizedDescription]
+                             cancelButtonTitle:nil
+                             otherButtonTitles:@[error.okButtonTitle]
+                                      tapBlock:error.tapBlock];
+                }
+                
+                NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+                [self.webView loadRequest:request];
+                
+                [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
+                
+                if ([_attachment.read boolValue] == NO ) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+                
+                }
+                                                                   }
+                                                                   failure:^(NSError *error) {
+                                                                       
+                                                                   }];
+                //            document = [POSDocument docum]
+            }
+            failure:^(NSError *error) {}];
+    } else {
+
+        [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
+            withProgress:progress
+            success:^{
+                
                                                            // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
                                                            POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
                                                            if (self.attachment) {
@@ -691,8 +698,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            if ([_attachment.read boolValue] == NO ) {
                                                                [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                            }
-        }
-        failure:^(NSError *error) {
+            }
+            failure:^(NSError *error) {
                                                            
                                                            BOOL unauthorized = NO;
                                                            
@@ -730,7 +737,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                         otherButtonTitles:@[error.okButtonTitle]
                                                                                  tapBlock:error.tapBlock];
                                                            }
-        }];
+            }];
+    }
 }
 
 - (void)unloadContent

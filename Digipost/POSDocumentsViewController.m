@@ -272,13 +272,34 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
+    POSAttachment *attachment = [document mainDocumentAttachment];
+
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
+
+    } else if (attachment.openingReceiptUri) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
+                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              switch (buttonIndex) {
+                                  case 0:
+                                      break;
+                                  case 1:
+                                  {
+                                      [self shouldValidateOpeningReceipt:document];
+                                      break;
+                                  }
+                                  case 2:
+                                      break;
+                                  default:
+                                      break;
+                              }
+                          }];
     } else {
-
-        POSAttachment *attachment = [document.attachments firstObject];
-
+        POSAttachment *attachment = [document mainDocumentAttachment];
         [self validateOpeningAttachment:attachment
             success:^{
                                     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -299,6 +320,40 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 }
 
+- (void)shouldValidateOpeningReceipt:(POSDocument *)document
+{
+    POSAttachment *attachment = [document.attachments firstObject];
+    [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
+        
+        [self validateOpeningAttachment:attachment
+                                success:^{
+                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+                                    } else {
+                                        
+                                        if ([document.attachments count] > 1) {
+                                            [self performSegueWithIdentifier:kPushAttachmentsIdentifier
+                                                                      sender:document];
+                                        } else {
+                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+                                        }
+                                    }
+                                }
+                                failure:^(NSError *error) {
+                                    [UIAlertView showWithTitle:error.errorTitle
+                                                       message:[error localizedDescription]
+                                             cancelButtonTitle:nil
+                                             otherButtonTitles:@[error.okButtonTitle]
+                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                          [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+                                                      }];
+                                }];
+    } failure:^(NSError *error) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            
+        }];
+    }];
+}
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isEditing) {

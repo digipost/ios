@@ -83,9 +83,11 @@
     [fetchRequest setEntity:entity];
 
     // Order the events by creation date, most recent first.
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
+    NSSortDescriptor *ownerDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
+                                                                    ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
                                                                    ascending:YES];
-    [fetchRequest setSortDescriptors:@[ nameDescriptor ]];
+    [fetchRequest setSortDescriptors:@[ ownerDescriptor, nameDescriptor ]];
 
     // Create and initialize the fetch results controller.
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
