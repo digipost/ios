@@ -106,6 +106,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.webView.backgroundColor = [UIColor whiteColor];
+                }
     //    self.navigationController.interactivePopGestureRecognizer.delegate = self;
 
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
@@ -648,7 +651,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                              otherButtonTitles:@[error.okButtonTitle]
                                       tapBlock:error.tapBlock];
                 }
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.webView.backgroundColor = [UIColor whiteColor];
+                }
                 
+                                                                       
                 NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
                 NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
                 [self.webView loadRequest:request];
@@ -690,6 +697,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            }
                                                            
                                                            NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.webView.backgroundColor = [UIColor whiteColor];
+                }
                                                            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
                                                            [self.webView loadRequest:request];
                                                            
@@ -1112,7 +1122,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                              
                                              // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
                                              // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
-                                             [self updateDocuments];
+            [self updateDocuments];
+            [self updateToolbarItemsWithInvoice:YES];
         }
         failure:^(NSError *error) {
                                                  NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
