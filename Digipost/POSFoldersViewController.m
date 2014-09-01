@@ -223,7 +223,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     } else {
         if (self.isEditing && self.shouldShowAddNewFolderCell) {
             // add new cell-cell is added
-
             return [self.folders count] + 1;
         } else {
             return [self.folders count];
@@ -336,7 +335,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"will begin editing");
     self.shouldShowAddNewFolderCell = NO;
 }
 
@@ -433,6 +431,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         POSFolder *folder = [self.folders objectAtIndex:indexPath.row];
         [self deleteFolder:folder
                atIndexPath:indexPath];
+        if (self.folders.count == 1){
+            NSIndexSet *indexset =  [[NSIndexSet alloc]initWithIndex:1];
+            [self.tableView reloadSections:indexset withRowAnimation:UITableViewRowAnimationNone];
+        }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         [self performSegueWithIdentifier:@"newFolderSegue"
                                   sender:self];
