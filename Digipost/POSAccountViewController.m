@@ -29,7 +29,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
 @interface POSAccountViewController ()
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *logoutBarButtonItem;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *logoutBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
 - (IBAction)logoutButtonTapped:(id)sender;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -90,6 +90,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     self.navigationItem.backBarButtonItem = nil;
     self.navigationItem.leftBarButtonItem = nil;
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:self.logoutBarButtonItem];
+    
     [self.navigationController.navigationBar.topItem setTitle:title];
 }
 
