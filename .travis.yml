@@ -1,3 +1,5 @@
+before_script:
+  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Digipost-Enterprise
