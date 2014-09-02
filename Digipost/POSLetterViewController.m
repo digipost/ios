@@ -471,7 +471,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                     handler:^(AHKActionSheet *actionSheet, id item) {
                                         AHKActionSheetItem *actionSheetItem = (id)item;
                                         if (item) {
-                                            NSLog(@"%@", actionSheetItem.title);
                                             [self moveDocument:self.attachment.document toFolder:folder];
                                         }
                                     }];
@@ -675,7 +674,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    failure:^(NSError *error) {
                                                                        
                                                                    }];
-                //            document = [POSDocument docum]
             }
             failure:^(NSError *error) {}];
     } else {
@@ -803,7 +801,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    NSLog(@"double tap");
 }
 
 - (void)moveDocumentToFolder:(POSFolder *)folder

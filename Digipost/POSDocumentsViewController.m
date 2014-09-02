@@ -800,7 +800,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         if (uploadCell) {
             uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
-            NSLog(@"fractionCompleted = %f", [POSAPIManager sharedManager].uploadProgress.fractionCompleted);
         } else {
             // We've not found the upload cell - let's check if the topmost cell is visible.
             // If it is, that means we're missing the upload cell and we need to insert it.

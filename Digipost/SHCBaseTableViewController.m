@@ -198,7 +198,6 @@
     NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
                                                                                            error:nil];
 
-    NSLog(@"%@, results: %i", self.predicate, [results count]);
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {

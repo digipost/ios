@@ -1557,8 +1557,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     NSDictionary *parameters = @{ @"name" : name,
                                   @"icon" : iconName };
-    NSLog(@"%@", parameters);
-
     [self validateTokensWithSuccess:^{
     self.state = SHCAPIManagerStateCreatingFolder;
         [self jsonRequestWithMethod:@"POST" parameters:parameters
