@@ -303,7 +303,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationItem setLeftBarButtonItem:nil
                                      animated:YES];
 }
-
 #pragma mark - NSKeyValueObserving
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -561,6 +560,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContent
 {
 
+    
     POSBaseEncryptedModel *baseEncryptionModel = nil;
 
     if (self.attachment) {
@@ -609,7 +609,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                              userInfo:nil];
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
-
+        
+        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]){
+            [self.progress removeObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
+                                  context:kSHCLetterViewControllerKVOContext];
+        }
         [progress addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                       options:NSKeyValueObservingOptionNew
