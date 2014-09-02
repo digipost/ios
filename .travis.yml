@@ -3,3 +3,4 @@ before_script:
 language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Digipost-Enterprise
+xcode_sdk: iphonesimulator
