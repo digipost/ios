@@ -1198,16 +1198,19 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)cancelDownloadingBaseEncryptionModels
 {
-    NSUInteger counter = 0;
-    for (NSURLSessionDownloadTask *downloadTask in self.fileTransferSessionManager.downloadTasks) {
-        [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
-        counter++;
-    }
+    __block NSUInteger counter = 0;
 
-    if (counter > 0) {
-        NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
-        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
-    }
+    [self.fileTransferSessionManager.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        for (NSURLSessionDownloadTask *downloadTask in downloadTasks) {
+            [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
+            counter++;
+        }
+
+        if (counter > 0) {
+            NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
+            DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
+        }
+    }];
 }
 
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
