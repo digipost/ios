@@ -70,8 +70,8 @@
     [fetchRequest setEntity:entity];
 
     // Order the events by creation date, most recent first.
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"storeName"
-                                                                   ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeOfPurchase"
+                                                                   ascending:NO];
     [fetchRequest setSortDescriptors:@[ nameDescriptor ]];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"franchiseName like %@", self.storeName];
