@@ -86,8 +86,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)dealloc
 {
-    @try
-    {
+    @try {
         [self.progress removeObserver:self
                            forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                               context:kSHCLetterViewControllerKVOContext];
@@ -106,11 +105,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-                if ([self.attachment.fileType isEqualToString:@"html"]){
-                    self.webView.backgroundColor = [UIColor whiteColor];
-                }
-    //    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
+    if ([self.attachment.fileType isEqualToString:@"html"]) {
+        self.webView.backgroundColor = [UIColor whiteColor];
+    }
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
@@ -223,13 +220,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.progressView.alpha = 0.0;
     self.webView.alpha = 1.0;
+    [self updateNavbar];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    //    self.progressView.alpha = 0.0;
-    //    self.webView.alpha = 1.0;
-
     DDLogError(@"%@", [error localizedDescription]);
 }
 
@@ -559,7 +554,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContent
 {
 
-    
     POSBaseEncryptedModel *baseEncryptionModel = nil;
 
     if (self.attachment) {
@@ -584,6 +578,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.webView loadRequest:request];
 
         [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
+        [self updateNavbar];
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
@@ -608,8 +603,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                              userInfo:nil];
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
-        
-        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]){
+
+        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
             [self.progress removeObserver:self
                                forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                                   context:kSHCLetterViewControllerKVOContext];
@@ -646,7 +641,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
                                                               withProgress:progress
                                                                    success:^{
-                
                 NSError *error = nil;
                 if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
                     [UIAlertView showWithTitle:error.errorTitle
@@ -670,6 +664,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                     [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                 
                 }
+                [self updateNavbar];
                                                                    }
                                                                    failure:^(NSError *error) {
                                                                        
@@ -737,6 +732,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
                                                                }
                                                                
+                                                               
+                                                               [self updateNavbar];
                                                                // We were unauthorized, due to the session being invalid.
                                                                // Let's retry in the next run loop
                                                                [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
@@ -932,11 +929,46 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self setInfoViewVisible:shouldBeVisible];
 }
 
+- (BOOL)interactionControllerCanShareDocument
+{
+
+    POSBaseEncryptedModel *baseEncryptionModel = nil;
+
+    if (self.attachment) {
+        baseEncryptionModel = self.attachment;
+
+    } else if (self.receipt) {
+        baseEncryptionModel = self.receipt;
+    }
+
+    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
+    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
+
+    NSURL *fileURL = nil;
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
+        fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+    } else if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
+        NSError *error = nil;
+        if ([[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
+                                                                            error:&error]) {
+            fileURL = [NSURL fileURLWithPath:decryptedFilePath];
+        }
+    }
+    if (fileURL == nil) {
+        return NO;
+    }
+    UIDocumentInteractionController *interactioncontroller = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+    BOOL canopen = [interactioncontroller presentOpenInMenuFromRect:CGRectZero inView:[UIView new] animated:NO];
+    [interactioncontroller dismissMenuAnimated:NO];
+    return canopen;
+}
+
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
     [self setInfoViewVisible:NO];
 
-    if (!self.openInController) {
+    if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
 
@@ -1165,6 +1197,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
                                                                [self updateToolbarItemsWithInvoice:YES];
+            [self updateNavbar];
         }
         failure:^(NSError *error) {
                                                                
@@ -1291,7 +1324,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
 
     if (self.attachment || self.receipt) {
-        [rightBarButtonItems addObjectsFromArray:@[ self.actionBarButtonItem, self.infoBarButtonItem ]];
+
+        if ([self interactionControllerCanShareDocument]) {
+            [rightBarButtonItems addObjectsFromArray:@[ self.actionBarButtonItem, self.infoBarButtonItem ]];
+
+        } else {
+            [rightBarButtonItems addObject:self.infoBarButtonItem];
+        }
     }
 
     self.navigationItem.rightBarButtonItems = [rightBarButtonItems count] > 0 ? rightBarButtonItems : nil;
@@ -1299,7 +1338,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)reloadFromMetadata
 {
-    [self updateNavbar];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
@@ -1316,6 +1354,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     [self loadContent];
+    [self updateNavbar];
 }
 
 - (IBAction)didTapClosePopoverButton:(id)sender
