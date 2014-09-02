@@ -617,7 +617,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.progress = progress;
     }
-
+    [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
         POSAttachment *attachment = (id)baseEncryptionModel;
