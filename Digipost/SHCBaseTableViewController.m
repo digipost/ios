@@ -170,6 +170,8 @@
                                                                          target:self
                                                                          action:@selector(popViewController)];
 
+    backBarButtonItem.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
+    backBarButtonItem.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
     if ([self isKindOfClass:[POSFoldersViewController class]]) {
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
@@ -197,7 +199,6 @@
 
     NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
                                                                                            error:nil];
-
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {

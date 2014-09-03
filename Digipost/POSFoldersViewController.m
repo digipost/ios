@@ -114,8 +114,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                                                           target:self
                                                                           action:@selector(popViewController)];
             backButton.title = @" ";
+            backButton.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
+            backButton.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
             [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
-
             [navItem setLeftBarButtonItem:backButton];
         }
         [navItem setRightBarButtonItem:self.editButtonItem];
@@ -134,6 +135,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if (self.selectedMailBoxDigipostAdress) {
         POSMailbox *currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                              inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -157,14 +159,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
-
-    //    if ([self.navigationItem respondsToSelector:@selector(setTitle:)]) {
-    //        UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
-    //        NSString *title = NSLocalizedString(@"Accounts title", @"Title for navbar at accounts view");
-    //        if ([navItem.title isEqualToString:title] == NO) {
-    //            [navItem setTitle:title];
-    //        }
-    //    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -431,8 +425,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         POSFolder *folder = [self.folders objectAtIndex:indexPath.row];
         [self deleteFolder:folder
                atIndexPath:indexPath];
-        if (self.folders.count == 1){
-            NSIndexSet *indexset =  [[NSIndexSet alloc]initWithIndex:1];
+        if (self.folders.count == 1) {
+            NSIndexSet *indexset = [[NSIndexSet alloc] initWithIndex:1];
             [self.tableView reloadSections:indexset withRowAnimation:UITableViewRowAnimationNone];
         }
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {

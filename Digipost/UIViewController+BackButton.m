@@ -33,20 +33,8 @@
                                                                   action:@selector(pos_popViewController)];
     [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
     [self.navigationItem setLeftBarButtonItem:backButton];
-    return;
-
-    //    UIBarButtonItem *backButton = nil;
-
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-
-    } else {
-        backButton = [[UIBarButtonItem alloc] initWithTitle:@" "
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:nil
-                                                     action:nil];
-    }
-
-    [self.navigationItem setBackBarButtonItem:backButton];
+    backButton.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
+    backButton.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
 }
 
 - (void)pos_popViewController
