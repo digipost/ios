@@ -115,14 +115,6 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
                 return;
             }
         }
-        
-        if ([userDidInititateRequest boolValue]) {
-//            [UIAlertView showWithTitle:error.errorTitle
-//                               message:[error localizedDescription]
-//                     cancelButtonTitle:nil
-//                     otherButtonTitles:@[error.okButtonTitle]
-//                              tapBlock:error.tapBlock];
-        }
     }];
 }
 
@@ -172,10 +164,12 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
                                    letterViewConctroller.receipt = nil;
                                    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
+                                   
                                    [[POSAPIManager sharedManager] logoutWithSuccess:^{
 
                                        [[POSOAuthManager sharedManager] removeAllTokens];
                                        [[POSModelManager sharedManager] deleteAllObjects];
+                                       [self.tableView reloadData];
 
                                    } failure:^(NSError *error) {
 
