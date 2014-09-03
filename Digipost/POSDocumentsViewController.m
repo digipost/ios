@@ -847,16 +847,21 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     UITableView *tableView = self.tableView;
 
+    BOOL shouldAnimateCustom = self.shouldAnimateInsertAndDeletesToFetchedResultsController;
+    
+    if (self.refreshControl.isRefreshing){
+        shouldAnimateCustom = NO;
+    }
+    
     switch (type) {
-
         case NSFetchedResultsChangeInsert:
             [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
-                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationRight : UITableViewRowAnimationNone];
+                             withRowAnimation:shouldAnimateCustom ? UITableViewRowAnimationRight : UITableViewRowAnimationFade ];
             break;
 
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:@[ indexPath ]
-                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone];
+                             withRowAnimation:shouldAnimateCustom ? UITableViewRowAnimationLeft : UITableViewRowAnimationFade];
             break;
 
         case NSFetchedResultsChangeMove:
