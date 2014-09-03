@@ -5,7 +5,9 @@ var target = UIATarget.localTarget();
 target.frontMostApp().mainWindow().buttons()["Sign In"].tap();
 UIATarget.localTarget().delay(2)
 UIATarget.localTarget().pushTimeout(1);
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].textFields()[0].tap();target.frontMostApp().keyboard().typeString("30086835378");
+target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].textFields()[0].tap();
+UIATarget.localTarget().delay(1)
+target.frontMostApp().keyboard().typeString("30086835378");
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();

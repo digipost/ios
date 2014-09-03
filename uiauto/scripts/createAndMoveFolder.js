@@ -26,7 +26,7 @@ target.frontMostApp().mainWindow().textFields()[0].textFields()[0].tap();
 target.frontMostApp().keyboard().typeString("test");
 UIATarget.localTarget().pushTimeout(1);
 target.frontMostApp().navigationBar().buttons()["Lagre"].tap();
-UIATarget.localTarget().delay(3);
+UIATarget.localTarget().delay(5);
 target.frontMostApp().mainWindow().tableViews()["Empty list"].tapWithOptions({tapOffset:{x:0.08, y:0.65}});
 target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()["test"].buttons()["Delete"].tap();
 target.frontMostApp().mainWindow().tableViews()["Empty list"].tapWithOptions({tapOffset:{x:0.92, y:0.56}});

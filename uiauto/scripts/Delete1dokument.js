@@ -23,6 +23,7 @@ target.frontMostApp().mainWindow().tableViews()["Empty list"].visibleCells()[0].
 
 // End move to first letter in list
 // Start Edit multiple
+UIATarget.localTarget().delay(1)
 target.frontMostApp().navigationBar().rightButton().tap();
 UIATarget.localTarget().delay(1)
 target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()[0].tap();
