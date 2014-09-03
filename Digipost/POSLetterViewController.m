@@ -27,6 +27,7 @@
 #import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 #import "UIViewController+BackButton.h"
+#import "AHKActionSheet+Convenience.h"
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCBaseTableViewController.h"
@@ -416,7 +417,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
 
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
-
+    [actionSheet setupStyle];
     POSDocumentsViewController *documentsViewController;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         for (UIViewController *viewController in self.splitViewController.viewControllers) {
@@ -436,22 +437,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSArray *folders = [POSFolder foldersForUserWithMailboxDigipostAddress:documentsViewController.mailboxDigipostAddress
                                                     inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    [actionSheet setBlurTintColor:[UIColor pos_colorWithR:64
-                                                        G:66
-                                                        B:69
-                                                    alpha:0.80]];
-    actionSheet.automaticallyTintButtonImages = @YES;
-    [actionSheet setButtonHeight:50];
-
-    actionSheet.separatorColor = [UIColor pos_colorWithR:255
-                                                       G:255
-                                                       B:255
-                                                   alpha:0.30f];
-
-    [actionSheet setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [actionSheet setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [actionSheet setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-
     for (POSFolder *folder in folders) {
 
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
@@ -464,7 +449,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
                                     handler:^(AHKActionSheet *actionSheet, id item) {
-                                        AHKActionSheetItem *actionSheetItem = (id)item;
                                         if (item) {
                                             [self moveDocument:self.attachment.document toFolder:folder];
                                         }
@@ -1090,7 +1074,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                         description:self.attachment.document.creatorName]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
                                                                                         description:[dateFormatter stringFromDate:self.attachment.document.createdAt]]];
-
         } else if (self.receipt) {
             self.popoverTitleLabel.text = self.receipt.storeName;
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
