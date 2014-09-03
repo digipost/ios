@@ -1113,6 +1113,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                         description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto")
                                                                                         description:self.attachment.invoice.accountNumber]];
+
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID")
                                                                                         description:[NSString stringWithFormat:@"%@", self.attachment.invoice.kid]]];
             NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
@@ -1191,7 +1192,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *attachmentUri = self.attachment.uri;
 
     [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
-        mailboxDigipostAddress:nil
+        mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
         folderUri:self.attachment.document.folder.uri
         success:^{
                                                                [self updateAttachmentWithAttachmentUri:attachmentUri];
