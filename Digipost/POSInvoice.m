@@ -16,6 +16,7 @@
 
 #import "POSInvoice.h"
 #import "POSAttachment.h"
+#import "NSString+Convenience.h"
 #import "POSModelManager.h"
 
 // Core Data model entity names
@@ -52,7 +53,12 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
                               insertIntoManagedObjectContext:managedObjectContext];
 
     NSString *accountNumber = attributes[NSStringFromSelector(@selector(accountNumber))];
-    invoice.accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
+    accountNumber = [accountNumber isKindOfClass:[NSString class]] ? accountNumber : nil;
+    if (accountNumber) {
+        accountNumber = [NSString stringByAddingSpace:accountNumber atIndex:4];
+        accountNumber = [NSString stringByAddingSpace:accountNumber atIndex:7];
+    }
+    invoice.accountNumber = accountNumber;
 
     // Because amount is given as a decimal number from the API, and we don't want to risk floating points
     // inaccuracies, we convert to 100th's and store as an integer in Core Data.
