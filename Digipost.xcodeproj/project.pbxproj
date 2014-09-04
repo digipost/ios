@@ -157,6 +157,9 @@
 		EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
 		EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
 		EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
+		EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
+		EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
+		EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
@@ -355,6 +358,8 @@
 		EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNewFolderCollectionViewCell.m; sourceTree = "<group>"; };
 		EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Convenience.h"; sourceTree = "<group>"; };
 		EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Convenience.m"; sourceTree = "<group>"; };
+		EC0F2B7619B893350019212E /* POSUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadViewController.h; sourceTree = "<group>"; };
+		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
@@ -581,6 +586,7 @@
 				EC2C82D7192A176400A6D4B8 /* Accounts */,
 				EC1A6C3118BBA37300269428 /* Folder view */,
 				EC1A6C2E18BBA30900269428 /* Document lists */,
+				EC0F2B7519B8930E0019212E /* Upload */,
 				EC1A6C3018BBA36100269428 /* Document detail */,
 			);
 			name = View;
@@ -625,6 +631,15 @@
 				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		EC0F2B7519B8930E0019212E /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				EC0F2B7619B893350019212E /* POSUploadViewController.h */,
+				EC0F2B7719B893350019212E /* POSUploadViewController.m */,
+			);
+			name = Upload;
 			sourceTree = "<group>";
 		};
 		EC1A6C2D18BBA2F200269428 /* Base classes */ = {
@@ -1016,6 +1031,7 @@
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07C18AA317100A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
@@ -1092,6 +1108,7 @@
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07B18AA317000A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
@@ -1168,6 +1185,7 @@
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
