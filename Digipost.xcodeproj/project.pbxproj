@@ -595,6 +595,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
+				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				ECB4C65719B725ED00C1C748 /* NSString+Convenience.h */,
 				ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */,
 				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
@@ -723,8 +725,6 @@
 			children = (
 				83F7035F1855E7A9003DABE1 /* POSFoldersViewController.h */,
 				83F703601855E7A9003DABE1 /* POSFoldersViewController.m */,
-				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
-				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */,
 				EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */,
 				EC0C1A1119347388007CB53E /* POSNewFolderCollectionViewDataSource.h */,
