@@ -135,7 +135,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     UILabel *headerDateTextLabel = [UILabel tableViewRegularHeaderLabel];
     // Dateformatter for format: 2013-02-15 09:49
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:NSLocalizedString(@"ATTACHMENTS_DATE_FORMAT", @"dd.MM.YYYY 'kl.' HH:mm")];
+    [dateFormatter setDateFormat:NSLocalizedString(@"ATTACHMENTS_DATE_FORMAT", @"dd.MMM.YYYY 'kl.' HH:mm")];
     headerDateTextLabel.text = [dateFormatter stringFromDate:firstAttachment.document.createdAt];
     [tableHeaderView addSubview:headerDateTextLabel];
     

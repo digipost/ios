@@ -207,9 +207,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
     if (dayDiff > 6) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateStyle = NSDateFormatterShortStyle;
-        dateFormatter.timeStyle = NSDateFormatterNoStyle;
-
+        dateFormatter.dateFormat = @"dd. MMM yyyy";
         return [dateFormatter stringFromDate:date];
     } else if (dayDiff > 1) {
         NSDateFormatter *weekdayDateFormatter = [[NSDateFormatter alloc] init];

@@ -16,6 +16,7 @@
 @interface POSReceiptsTableViewDataSource ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, strong) NSNumberFormatter *numberFormatter;
 @end
 
 @implementation POSReceiptsTableViewDataSource
@@ -26,9 +27,28 @@
                                                                                     forIndexPath:indexPath];
     POSReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;
+//    receiptTableViewCell.amountLabel.text = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:receipt.amount]];
+    receiptTableViewCell.amountLabel.accessibilityLabel = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
+    receiptTableViewCell.amountLabel.accessibilityHint = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.dateLabel.text = [POSDocument stringForDocumentDate:receipt.timeOfPurchase];
     return receiptTableViewCell;
+}
+
+- (NSNumberFormatter*)numberFormatter
+{
+    if (_numberFormatter== nil){
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        [_numberFormatter setCurrencyCode:@"NOK"];
+        _numberFormatter.alwaysShowsDecimalSeparator = NO;
+        _numberFormatter.perMillSymbol = @" ";
+        _numberFormatter.decimalSeparator = @" ";
+        _numberFormatter.groupingSize = 10;
+        [_numberFormatter setCurrencySymbol:@"kroner"];
+        [_numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [_numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"nb_NO"]];
+    }
+    return _numberFormatter;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

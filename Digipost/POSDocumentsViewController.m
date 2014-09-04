@@ -253,6 +253,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
+    cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
 }
 
