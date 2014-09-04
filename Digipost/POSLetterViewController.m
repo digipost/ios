@@ -464,12 +464,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[POSAPIManager sharedManager] moveDocument:document
         toFolder:folder
         withSuccess:^{
-                                        
                                         document.folder = folder;
                                         
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
-                                        
-                                        
+            
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                                             
                                             if ([self.attachment.document isEqual:document]){
@@ -766,6 +764,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
+    // this feature should not be activated if voiceover is running
+    if (UIAccessibilityIsVoiceOverRunning()) {
+        return;
+    }
     BOOL barsHidden = self.navigationController.isToolbarHidden;
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
