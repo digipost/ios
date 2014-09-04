@@ -219,7 +219,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
             cell.fileNameLabel.text = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
-
             return cell;
         }
 
@@ -234,6 +233,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     return cell;
 }
+
+
 
 - (void)configureCell:(POSDocumentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
@@ -255,6 +256,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
+    cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"),cell.subjectLabel.accessibilityLabel,cell.dateLabel.accessibilityLabel,cell.senderLabel.accessibilityLabel];
+    
 }
 
 #pragma mark - UITableViewDelegate
