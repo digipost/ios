@@ -773,6 +773,7 @@
 				8375DD3B1855C383009435B4 /* Frameworks */,
 				8375DD3F1855C383009435B4 /* Resources */,
 				D9DF57046D584E96910A2EF6 /* Copy Pods Resources */,
+				EC76A6BA19BF121900D80B01 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1001,6 +1002,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EC76A6BA19BF121900D80B01 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ $CONFIGURATION == Release ]; then\n   exec > /tmp/UITests-log.txt 2>&1\n   ./runtests.sh\n   open /tmp/UITests-log.txt\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1345,7 +1359,7 @@
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1356,12 +1370,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
