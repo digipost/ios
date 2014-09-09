@@ -1,3 +1,4 @@
+#import createAndMoveFolder.js
 
 var target = UIATarget.localTarget();
 
