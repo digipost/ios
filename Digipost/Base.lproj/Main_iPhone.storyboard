@@ -828,6 +828,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecK-nw-fjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fCp-Q7-V5k">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <segue destination="4z4-Au-vJv" kind="push" identifier="showFoldersSegue" id="Qd6-Rx-yPi"/>
+                    </connections>
+                </button>
             </objects>
             <point key="canvasLocation" x="1435" y="1396"/>
         </scene>
@@ -1314,6 +1324,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="vJp-VT-rtF"/>
+        <segue reference="2eh-GI-VIr"/>
         <segue reference="nJS-Zx-WgQ"/>
         <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>

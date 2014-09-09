@@ -8,9 +8,10 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface POSUploadTableViewDataSource : NSObject<UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface POSUploadTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 // designated initalizer
 - (id)initAsDataSourceForTableView:(UITableView *)tableView;
+@property (nonatomic, strong) NSString *entityDescription;
 
 @end

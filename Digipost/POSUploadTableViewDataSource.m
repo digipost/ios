@@ -15,7 +15,6 @@
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic, strong) NSString *entityDescription;
 
 @end
 
