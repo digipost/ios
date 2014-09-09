@@ -766,10 +766,10 @@
             </objects>
             <point key="canvasLocation" x="1450" y="684"/>
         </scene>
-        <!--View Controller - Last opp-->
+        <!--Upload View Controller - Last opp-->
         <scene sceneID="Y35-2d-3dH">
             <objects>
-                <viewController id="4z4-Au-vJv" sceneMemberID="viewController">
+                <viewController id="4z4-Au-vJv" customClass="POSUploadViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WoF-SB-xEo"/>
                         <viewControllerLayoutGuide type="bottom" id="THl-Df-Gzn"/>
@@ -790,6 +790,21 @@
                                             <constraint firstAttribute="width" constant="320" id="V36-SD-goB"/>
                                         </constraints>
                                     </imageView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tJC-NC-Zoe">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="AcH-To-kJ9">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AcH-To-kJ9" id="gBa-nM-IPu">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
@@ -807,10 +822,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Last opp" id="Nyr-oj-bUw"/>
+                    <connections>
+                        <outlet property="howtoUploadImageView" destination="dv7-v2-dtm" id="MWd-NN-aGk"/>
+                        <outlet property="tableView" destination="tJC-NC-Zoe" id="76r-3z-Rav"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecK-nw-fjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1444" y="1378"/>
+            <point key="canvasLocation" x="1435" y="1396"/>
         </scene>
         <!--Attachments View Controller-->
         <scene sceneID="sjq-19-YZ0">

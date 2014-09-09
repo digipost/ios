@@ -7,8 +7,13 @@
 //
 
 #import "POSUploadViewController.h"
+#import "POSUploadTableViewDataSource.h"
 
 @interface POSUploadViewController ()
+
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UIImageView *howtoUploadImageView;
+@property (nonatomic, strong) POSUploadTableViewDataSource *dataSource;
 
 @end
 
@@ -26,13 +31,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
+    self.howtoUploadImageView.hidden = YES;
     // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

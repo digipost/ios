@@ -196,6 +196,9 @@
 		EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
 		EC6CFA4C19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
 		EC6CFA4D19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
+		EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */; };
+		EC76A6BE19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */; };
+		EC76A6BF19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */; };
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
@@ -385,6 +388,8 @@
 		EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewMobelObject.m; sourceTree = "<group>"; };
 		EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SHCDocumentsViewController+NavigationHierarchy.h"; sourceTree = "<group>"; };
 		EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCDocumentsViewController+NavigationHierarchy.m"; sourceTree = "<group>"; };
+		EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadTableViewDataSource.h; sourceTree = "<group>"; };
+		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
@@ -640,6 +645,8 @@
 			children = (
 				EC0F2B7619B893350019212E /* POSUploadViewController.h */,
 				EC0F2B7719B893350019212E /* POSUploadViewController.m */,
+				EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */,
+				EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */,
 			);
 			name = Upload;
 			sourceTree = "<group>";
@@ -1090,6 +1097,7 @@
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC76A6BF19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
@@ -1167,6 +1175,7 @@
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6E1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC76A6BE19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58931935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
@@ -1244,6 +1253,7 @@
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,

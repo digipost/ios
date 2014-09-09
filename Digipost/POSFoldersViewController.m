@@ -632,7 +632,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
         [self.navigationController popToViewController:self.navigationController.viewControllers[1]
                                               animated:NO];
-        // @TODO  enure you got the correct VC !!!!!!!!
         for (POSFolder *folder in self.folders) {
             if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
                 [self performSegueWithIdentifier:kPushDocumentsIdentifier
