@@ -778,13 +778,33 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I79-ZA-DNO">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I79-ZA-DNO">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Veileder_lastopp" translatesAutoresizingMaskIntoConstraints="NO" id="dv7-v2-dtm">
+                                        <rect key="frame" x="0.0" y="-63" width="320" height="568"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="568" id="Mrm-Z2-8tI"/>
+                                            <constraint firstAttribute="width" constant="320" id="V36-SD-goB"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dv7-v2-dtm" secondAttribute="bottom" constant="-1" id="4zP-4d-gPP"/>
+                                    <constraint firstItem="dv7-v2-dtm" firstAttribute="top" secondItem="I79-ZA-DNO" secondAttribute="top" constant="-63" id="IjH-3G-oZE"/>
+                                    <constraint firstAttribute="trailing" secondItem="dv7-v2-dtm" secondAttribute="trailing" id="RCK-ER-0kp"/>
+                                    <constraint firstItem="dv7-v2-dtm" firstAttribute="leading" secondItem="I79-ZA-DNO" secondAttribute="leading" id="hKI-uT-iEv"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="I79-ZA-DNO" firstAttribute="leading" secondItem="K2e-Ay-eAm" secondAttribute="leading" id="nQa-KY-0fc"/>
+                            <constraint firstItem="I79-ZA-DNO" firstAttribute="top" secondItem="K2e-Ay-eAm" secondAttribute="top" id="vja-Um-qfh"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Last opp" id="Nyr-oj-bUw"/>
                 </viewController>
@@ -1257,6 +1277,7 @@
     <resources>
         <image name="File_128" width="64" height="64"/>
         <image name="Searchbackground" width="15" height="31"/>
+        <image name="Veileder_lastopp" width="640" height="1136"/>
         <image name="empty-folder-fly" width="151" height="133"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
