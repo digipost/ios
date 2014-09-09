@@ -47,6 +47,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
+NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -195,11 +196,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSUInteger numberOfSections = 0; // We always want the Settings section
+    NSUInteger numberOfSections = 0;
 
     if (self.inboxFolder) {
         numberOfSections++;
     }
+
     if ([self.folders count] > 0) {
         numberOfSections++;
     }
@@ -213,7 +215,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
-        return 2; // Inbox and Receipts
+        return 3; // Inbox, Receipts and upload
     } else {
         if (self.isEditing && self.shouldShowAddNewFolderCell) {
             // add new cell-cell is added
@@ -234,14 +236,26 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     POSFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier
                                                                    forIndexPath:indexPath];
     if (indexPath.section == 0 && self.inboxFolder) {
-        if (indexPath.row == 0) {
-            folderName = [self.inboxFolder displayName];
-            iconImage = [UIImage imageNamed:@"list-icon-inbox"];
-            unreadCounterHidden = NO;
-        } else {
-            folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
-            iconImage = [UIImage imageNamed:@"list-icon-receipt"];
+        switch (indexPath.row) {
+            case 0: {
+                folderName = [self.inboxFolder displayName];
+                iconImage = [UIImage imageNamed:@"list-icon-inbox"];
+                unreadCounterHidden = NO;
+            } break;
+            case 1: {
+                folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
+                iconImage = [UIImage imageNamed:@"list-icon-receipt"];
+
+            } break;
+            case 2: {
+                folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
+                iconImage = [UIImage imageNamed:@"list-icon-inbox"];
+            } break;
+
+            default:
+                break;
         }
+
     } else {
         if (indexPath.row >= [self.folders count]) {
             folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
@@ -265,7 +279,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
     if (!unreadCounterHidden) {
         NSInteger unread = [POSDocument numberOfUnreadDocumentsForMailboxFolder:self.inboxFolder inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%i", unread];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%li", (long)unread];
     }
 
     return cell;
@@ -308,7 +322,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     } else {
         height = self.tableView.sectionHeaderHeight;
     }
-
     return height;
 }
 
@@ -486,12 +499,25 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     if (self.isEditing == NO) {
         if (indexPath.section == 0 && self.inboxFolder) {
-            if (indexPath.row == 0) {
-                [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                          sender:self.inboxFolder];
-            } else {
-                [self performSegueWithIdentifier:kPushReceiptsIdentifier
-                                          sender:nil];
+            switch (indexPath.row) {
+                case 0: {
+
+                    [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                              sender:self.inboxFolder];
+                    break;
+                }
+                case 1: {
+                    [self performSegueWithIdentifier:kPushReceiptsIdentifier
+                                              sender:nil];
+                    break;
+                }
+                case 2: {
+                    [self performSegueWithIdentifier:kUploadFileSegueIdentifier sender:self];
+                    break;
+
+                } break;
+                default:
+                    break;
             }
         } else {
             [self performSegueWithIdentifier:kPushDocumentsIdentifier
@@ -557,7 +583,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         [self programmaticallyEndRefresh];
         [self updateNavbar];
     } failure:^(NSError *error) {
-        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {

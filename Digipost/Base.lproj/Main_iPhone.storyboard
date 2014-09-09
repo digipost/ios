@@ -205,6 +205,7 @@
                         <segue destination="CQ6-bh-m2j" kind="push" identifier="PushReceipts" id="5tq-Sj-onf"/>
                         <segue destination="mgI-2c-YJ5" kind="push" identifier="goToInboxFolderAtStartupSegue" id="nJS-Zx-WgQ"/>
                         <segue destination="bbL-dE-QG4" kind="push" identifier="newFolderSegue" id="2IH-85-kgn"/>
+                        <segue destination="4z4-Au-vJv" kind="push" identifier="uploadFileSegue" id="2eh-GI-VIr"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -764,6 +765,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32i-4K-2Ng" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1450" y="684"/>
+        </scene>
+        <!--View Controller - Last opp-->
+        <scene sceneID="Y35-2d-3dH">
+            <objects>
+                <viewController id="4z4-Au-vJv" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WoF-SB-xEo"/>
+                        <viewControllerLayoutGuide type="bottom" id="THl-Df-Gzn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="K2e-Ay-eAm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I79-ZA-DNO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Last opp" id="Nyr-oj-bUw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecK-nw-fjB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1444" y="1378"/>
         </scene>
         <!--Attachments View Controller-->
         <scene sceneID="sjq-19-YZ0">
