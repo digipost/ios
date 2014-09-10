@@ -134,7 +134,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingReceipts;
 - (void)deleteReceipt:(POSReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)uploadFileWithURL:(NSURL *)fileURL toFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUploadingFiles;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;

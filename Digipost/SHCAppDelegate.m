@@ -21,6 +21,7 @@
 #import <GAI.h>
 #import <GAITracker.h>
 #import <UIAlertView+Blocks.h>
+#import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
 #import "POSAPIManager.h"
 #import "POSLetterViewController.h"
@@ -87,6 +88,18 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
+    POSUploadViewController *uploadViewController = (id) uploadNavigationController.topViewController;
+    
+    uploadViewController.url = url;
+    
+    UINavigationController *rootNavController = (id) self.window.rootViewController;
+    [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
+completion:^{
+    
+}];
+    
     NSString *fileName = [url lastPathComponent];
     NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
     [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")

@@ -7,7 +7,9 @@
 //
 
 #import "POSUploadViewController.h"
-#import "POSMailbox.h"
+#import "POSMailbox+Methods.h"
+#import "POSFolder+Methods.h"
+#import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
 
 @interface POSUploadViewController () <UITableViewDelegate>
@@ -16,7 +18,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *howtoUploadImageView;
 @property (nonatomic, strong) POSUploadTableViewDataSource *dataSource;
 @property (nonatomic) BOOL isShowingFolders;
-
+@property (nonatomic, strong) POSMailbox *chosenMailBox;
+@property (nonatomic, strong) POSFolder *chosenFolder;
 @end
 
 NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
@@ -36,6 +39,11 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 {
     [super viewDidLoad];
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
+    if (self.isShowingFolders){
+        self.dataSource.entityDescription = kFolderEntityName;
+    }else {
+        self.dataSource.entityDescription = kMailboxEntityName;
+    }
     self.tableView.delegate = self;
     self.howtoUploadImageView.hidden = YES;
 }
@@ -43,9 +51,17 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isShowingFolders == NO) {
-        
-    } else {
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
+    } else {
+        self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
+        
+        [[POSAPIManager sharedManager] uploadFileWithURL:self.url success:^{
+            [self.navigationController dismissViewControllerAnimated:YES completion:^{
+                
+            }];
+        } failure:^(NSError *error) {
+            
+        }];
     }
 }
 #pragma mark - Navigation
@@ -56,8 +72,10 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     if ([segue.identifier isEqualToString:kShowFoldersSegueIdentifier]) {
         POSUploadViewController *uploadViewcontroller = [segue destinationViewController];
         uploadViewcontroller.isShowingFolders = YES;
+        POSMailbox *selectedMailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        uploadViewcontroller.chosenMailBox = selectedMailbox;
+        uploadViewcontroller.url = self.url;
     }
-
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }

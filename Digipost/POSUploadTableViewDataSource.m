@@ -72,7 +72,7 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSManagedObjectContext *managedObjectContext = [POSModelManager sharedManager].managedObjectContext;
 
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Mailbox" inManagedObjectContext:managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityDescription inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
 
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];

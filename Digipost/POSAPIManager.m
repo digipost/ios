@@ -1404,7 +1404,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
-- (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)uploadFileWithURL:(NSURL *)fileURL toFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 {
     // Let's do a couple of checks before kicking off the upload
 
@@ -1487,6 +1487,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     // Ready!
     self.state = SHCAPIManagerStateUploadingFile;
+    folder.
 
     [self validateTokensWithSuccess:^{
         

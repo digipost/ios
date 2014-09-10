@@ -12,6 +12,7 @@
 
 // designated initalizer
 - (id)initAsDataSourceForTableView:(UITableView *)tableView;
+- (id)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
 @property (nonatomic, strong) NSString *entityDescription;
 
 @end
