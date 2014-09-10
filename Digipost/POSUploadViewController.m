@@ -55,7 +55,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
         
-        [[POSAPIManager sharedManager] uploadFileWithURL:self.url success:^{
+        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
             [self.navigationController dismissViewControllerAnimated:YES completion:^{
                 
             }];

@@ -100,21 +100,21 @@ completion:^{
     
 }];
     
-    NSString *fileName = [url lastPathComponent];
-    NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
-    [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
-                       message:[NSString stringWithFormat:format, fileName]
-             cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-             otherButtonTitles:@[ NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload") ]
-                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                          if (buttonIndex == 1) {
-                              [[POSAPIManager sharedManager] uploadFileWithURL:url success:^{
-
-                              } failure:^(NSError *error) {
-
-                              }];
-                          }
-                      }];
+//    NSString *fileName = [url lastPathComponent];
+//    NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
+//    [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
+//                       message:[NSString stringWithFormat:format, fileName]
+//             cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+//             otherButtonTitles:@[ NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload") ]
+//                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                          if (buttonIndex == 1) {
+//                              [[POSAPIManager sharedManager] uploadFileWithURL:url success:^{
+//
+//                              } failure:^(NSError *error) {
+//
+//                              }];
+//                          }
+//                      }];
     return YES;
 }
 

@@ -1487,11 +1487,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     // Ready!
     self.state = SHCAPIManagerStateUploadingFile;
-    folder.
 
     [self validateTokensWithSuccess:^{
         
-        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:rootResource.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:folder.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             // Subject
             NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
             NSString *subject = [fileName substringToIndex:rangeOfExtension.location];
