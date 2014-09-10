@@ -390,6 +390,7 @@
 		EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SHCDocumentsViewController+NavigationHierarchy.m"; sourceTree = "<group>"; };
 		EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadTableViewDataSource.h; sourceTree = "<group>"; };
 		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
+		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
@@ -1545,6 +1546,7 @@
 			isa = XCVersionGroup;
 			children = (
 				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
+				EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */,
 				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
 				83C5719C189856A2000C61E7 /* Model v1.6.xcdatamodel */,
 				833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */,
@@ -1554,7 +1556,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */;
+			currentVersion = EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
