@@ -14,6 +14,7 @@
 @interface POSFolder : NSManagedObject
 
 @property (nonatomic, retain) NSString * changeFolderUri;
+@property (nonatomic, retain) NSString * uploadDocumentUri;
 @property (nonatomic, retain) NSString * deletefolderUri;
 @property (nonatomic, retain) NSNumber * folderId;
 @property (nonatomic, retain) NSString * iconName;
