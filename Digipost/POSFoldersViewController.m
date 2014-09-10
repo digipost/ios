@@ -88,7 +88,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
-
+    
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
@@ -249,7 +249,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             } break;
             case 2: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
-                iconImage = [UIImage imageNamed:@"list-icon-inbox"];
+                iconImage = [UIImage imageNamed:@"Upload"];
             } break;
 
             default:
