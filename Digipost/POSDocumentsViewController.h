@@ -23,6 +23,7 @@ extern NSString *const kPushDocumentsIdentifier;
 extern NSString *const kRefreshDocumentsContentNotificationName;
 extern NSString *const kDocumentsViewEditingStatusChangedNotificationName;
 extern NSString *const kEditingStatusKey;
+extern NSString *const kDocumentsViewControllerIdentifier;
 
 @interface POSDocumentsViewController : SHCBaseTableViewController
 

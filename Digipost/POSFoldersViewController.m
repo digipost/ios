@@ -78,7 +78,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index))
                                                             ascending:YES
                                                              selector:@selector(compare:)] ];
-
     POSMailbox *currentMailbox = nil;
     if (self.selectedMailBoxDigipostAdress == nil) {
         currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -626,6 +625,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)uploadProgressDidStart:(NSNotification *)notification
 {
     UIViewController *topViewController = [self.navigationController topViewController];
+    
+    if ([topViewController isKindOfClass:[POSDocumentsViewController class]]) {
+    
+    }
+    
+    [topViewController performSegueWithIdentifier:@"TESTSeg" sender:self];
+    return;
+    
     POSDocumentsViewController *archiveViewController = (POSDocumentsViewController *)topViewController;
 
     if (!([topViewController isKindOfClass:[POSDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {
@@ -640,5 +647,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
     }
 }
-
+- (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
+{
+}
 @end

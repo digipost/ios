@@ -9,8 +9,11 @@
 #import "POSUploadViewController.h"
 #import "POSMailbox+Methods.h"
 #import "POSFolder+Methods.h"
+#import "UIViewController+BackButton.h"
 #import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
+
+NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocumentNotification";
 
 @interface POSUploadViewController () <UITableViewDelegate>
 
@@ -46,6 +49,23 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     }
     self.tableView.delegate = self;
     self.howtoUploadImageView.hidden = YES;
+    
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([self pos_hasBackButton] == NO){
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
+        self.navigationItem.rightBarButtonItem = barButtonItem;
+    }
+}
+- (void)closeView {
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -56,10 +76,17 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
         
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
-            [self.navigationController dismissViewControllerAnimated:YES completion:^{
-                
-            }];
+            
+           
         } failure:^(NSError *error) {
+            
+        }];
+        NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:@{
+                                                                                                                                         @"folder": self.chosenFolder, @"mailbox": self.chosenMailBox
+                                                                                                                                         }];
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            
             
         }];
     }

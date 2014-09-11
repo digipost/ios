@@ -43,10 +43,12 @@
 #import "NSPredicate+CommonPredicates.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
+#import "Digipost-Swift.h"
+
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
-
+NSString *const kDocumentsViewControllerIdentifier = @"documentsViewControllerIdentifier";
 // Google Analytics screen name
 NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
@@ -66,6 +68,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 @property (weak, nonatomic) IBOutlet UILabel *noDocumentsLabel;
 @property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
 @property (assign, nonatomic) BOOL shouldAnimateInsertAndDeletesToFetchedResultsController;
+@property (weak, nonatomic) IBOutlet POSUploadTableViewHeaderView *uploadHeaderView;
 
 @end
 
@@ -201,18 +204,18 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSInteger number = [super tableView:tableView
                   numberOfRowsInSection:section];
 
-    if ([self.folderName isEqualToString:kFolderArchiveName] && [POSAPIManager sharedManager].isUploadingFile) {
+    if ([POSAPIManager sharedManager].isUploadingFile) {
         number++;
     }
 
+    NSLog(@"number of rows: %li is uploading: %i",(long)number,[POSAPIManager sharedManager].isUploadingFile);
     return number;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ([self.folderName isEqualToString:kFolderArchiveName] && [POSAPIManager sharedManager].isUploadingFile) {
-
+    if ([POSAPIManager sharedManager].isUploadingFile) {
         if (indexPath.row == 0) {
             POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
                                                                            forIndexPath:indexPath];
@@ -238,7 +241,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)configureCell:(POSDocumentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     POSAttachment *attachment = [document mainDocumentAttachment];
@@ -250,6 +252,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
     }
+    
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
     cell.senderLabel.text = attachment.document.creatorName;
@@ -257,7 +260,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"),cell.subjectLabel.accessibilityLabel,cell.dateLabel.accessibilityLabel,cell.senderLabel.accessibilityLabel];
-    
 }
 
 #pragma mark - UITableViewDelegate
@@ -822,6 +824,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (!(self.isViewLoaded && self.view.window)) {
             return;
         }
+//        [self.tableView reloadData];
         
         [self updateContentsFromServerUserInitiatedRequest:@YES];
     });
@@ -897,6 +900,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
 
     // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
+    [self.tableView reloadData];
     [self.tableView endUpdates];
 }
 @end

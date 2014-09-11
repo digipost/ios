@@ -22,7 +22,7 @@ NSString *const kFolderIconKey = @"icon";
 NSString *const kFolderIdKey = @"id";
 
 NSString *const kMailboxLinkChangeFolderAPIKeySuffix = @"change_folder";
-NSString *const kMailboxLinkUploadDocumentToFolderAPIKeySuffix = @"update_document";
+NSString *const kMailboxLinkUploadDocumentToFolderAPIKeySuffix = @"upload_document";
 NSString *const kMailboxLinkDeleteFolderAPIKeySuffix = @"delete_folder";
 NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
 
