@@ -7,16 +7,9 @@
 //
 
 import UIKit
-
+@objc
 class POSUploadTableViewHeaderView: UITableViewHeaderFooterView {
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect)
-    {
-        // Drawing code
-    }
-    */
-
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var progressView: UIProgressView!
 }
