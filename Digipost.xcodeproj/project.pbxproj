@@ -181,6 +181,9 @@
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
+		EC4875C019C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
+		EC4875C119C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
+		EC4875C219C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
 		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
@@ -250,6 +253,9 @@
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
+		ECFE3A3619C19A33007073FD /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE3A3519C19A33007073FD /* UIViewController+Navigation.m */; };
+		ECFE3A3719C19A33007073FD /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE3A3519C19A33007073FD /* UIViewController+Navigation.m */; };
+		ECFE3A3819C19A33007073FD /* UIViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFE3A3519C19A33007073FD /* UIViewController+Navigation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -378,6 +384,10 @@
 		EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewController.m; sourceTree = "<group>"; };
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
+		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSUploadTableViewHeaderView.swift; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
@@ -431,6 +441,8 @@
 		ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsTableViewDataSource.m; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
+		ECFE3A3419C19A33007073FD /* UIViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Navigation.h"; sourceTree = "<group>"; };
+		ECFE3A3519C19A33007073FD /* UIViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Navigation.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -594,6 +606,9 @@
 				EC1A6C2E18BBA30900269428 /* Document lists */,
 				EC0F2B7519B8930E0019212E /* Upload */,
 				EC1A6C3018BBA36100269428 /* Document detail */,
+				EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */,
+				EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */,
+				EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -601,6 +616,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				ECFE3A3419C19A33007073FD /* UIViewController+Navigation.h */,
+				ECFE3A3519C19A33007073FD /* UIViewController+Navigation.m */,
 				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
 				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				ECB4C65719B725ED00C1C748 /* NSString+Convenience.h */,
@@ -676,6 +693,7 @@
 		EC1A6C2E18BBA30900269428 /* Document lists */ = {
 			isa = PBXGroup;
 			children = (
+				EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */,
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
@@ -844,7 +862,7 @@
 						DevelopmentTeam = KMS8B8MK42;
 					};
 					83A31AF91855D706007045B9 = {
-						DevelopmentTeam = KMS8B8MK42;
+						DevelopmentTeam = 4E3PDM5H84;
 					};
 					83BAB9171855C0AC004A7BFB = {
 						DevelopmentTeam = KMS8B8MK42;
@@ -1031,6 +1049,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE3A3819C19A33007073FD /* UIViewController+Navigation.m in Sources */,
 				ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D720185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF2188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
@@ -1081,6 +1100,7 @@
 				8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
+				EC4875C219C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038318573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512B18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1109,6 +1129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE3A3719C19A33007073FD /* UIViewController+Navigation.m in Sources */,
 				ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D71F185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF1188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
@@ -1159,6 +1180,7 @@
 				8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A19193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
+				EC4875C119C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038218573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512A18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1187,6 +1209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECFE3A3619C19A33007073FD /* UIViewController+Navigation.m in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
@@ -1237,6 +1260,7 @@
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
+				EC4875C019C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1309,6 +1333,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1325,9 +1350,12 @@
 					STAGING,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1338,6 +1366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1352,8 +1381,10 @@
 					STAGING,
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3A91C9D3-8CE2-4AB7-9BD7-01187E133616";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1364,13 +1395,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
+				PROVISIONING_PROFILE = "bf576268-5725-4b08-9336-66c04c9d19db";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1381,13 +1416,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "73B452EF-423F-4324-A0DE-47E47954CC4E";
+				PROVISIONING_PROFILE = "bf576268-5725-4b08-9336-66c04c9d19db";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1426,7 +1464,9 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULE_NAME = Digipost;
 				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_MODULE_NAME = Digipost;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1460,6 +1500,8 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				MODULE_NAME = Digipost;
+				PRODUCT_MODULE_NAME = Digipost;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -1472,13 +1514,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1489,13 +1535,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
