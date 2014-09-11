@@ -19,6 +19,9 @@
 #import <DDTTYLogger.h>
 #import <DDFileLogger.h>
 #import <GAI.h>
+#import "POSDocumentsViewController.h"
+#import "POSAccountViewController.h"
+#import "POSFoldersViewController.h"
 #import <GAITracker.h>
 #import <UIAlertView+Blocks.h>
 #import "POSUploadViewController.h"
@@ -61,7 +64,47 @@
                                                                  alpha:0.8]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
+
     return YES;
+}
+
+- (void)startUploading:(NSNotification *)notification
+{
+    NSDictionary *dict = notification.userInfo;
+    if (dict[@"mailbox"]) {
+        UINavigationController *navController = (id)self.window.rootViewController;
+        UIViewController *topViewController = navController.topViewController;
+        [navController popToRootViewControllerAnimated:NO];
+        POSAccountViewController *accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+        POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
+
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+        // add account vc as second view controller in navigation controller
+        UIViewController *loginViewController = topViewController;
+
+        [newViewControllerArray addObject:loginViewController];
+        [newViewControllerArray addObject:accountViewController];
+        [newViewControllerArray addObject:folderViewController];
+        [newViewControllerArray addObject:documentsViewController];
+        POSMailbox *mailbox = dict[@"mailbox"];
+        POSFolder *folder = dict[@"folder"];
+
+        NSAssert([mailbox isKindOfClass:[POSMailbox class]], @"not correct class");
+
+        folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+        documentsViewController.folderName = folder.name;
+        documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+
+        [navController setViewControllers:newViewControllerArray
+                                 animated:YES];
+
+        if ([topViewController isKindOfClass:[POSDocumentsViewController class]]) {
+
+        } else {
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -89,32 +132,14 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
-    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
-    POSUploadViewController *uploadViewController = (id) uploadNavigationController.topViewController;
-    
+    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
+    POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
+
     uploadViewController.url = url;
-    
-    UINavigationController *rootNavController = (id) self.window.rootViewController;
+
+    UINavigationController *rootNavController = (id)self.window.rootViewController;
     [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
-completion:^{
-    
-}];
-    
-//    NSString *fileName = [url lastPathComponent];
-//    NSString *format = NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_MESSAGE", @"Do you want to upload the file %@ to Digipost?");
-//    [UIAlertView showWithTitle:NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_TITLE", @"Upload file")
-//                       message:[NSString stringWithFormat:format, fileName]
-//             cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-//             otherButtonTitles:@[ NSLocalizedString(@"APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE", @"Upload") ]
-//                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-//                          if (buttonIndex == 1) {
-//                              [[POSAPIManager sharedManager] uploadFileWithURL:url success:^{
-//
-//                              } failure:^(NSError *error) {
-//
-//                              }];
-//                          }
-//                      }];
+                                                    completion:^{}];
     return YES;
 }
 
