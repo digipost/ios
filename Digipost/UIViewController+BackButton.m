@@ -42,4 +42,18 @@
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (BOOL)pos_hasBackButton
+{
+    if (self.navigationController.viewControllers.count > 1) {
+        NSInteger count = self.navigationController.viewControllers.count;
+        UIViewController *lastViewController = (id) self.navigationController.viewControllers[count - 2];
+        if (lastViewController.navigationItem.backBarButtonItem != nil ){
+            return YES;
+        }else {
+            return NO;
+        }
+    }
+    return NO;
+}
 @end
