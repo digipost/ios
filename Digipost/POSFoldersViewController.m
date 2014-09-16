@@ -87,7 +87,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
-    
+
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
@@ -625,14 +625,16 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)uploadProgressDidStart:(NSNotification *)notification
 {
     UIViewController *topViewController = [self.navigationController topViewController];
-    
-    if ([topViewController isKindOfClass:[POSDocumentsViewController class]]) {
-    
+
+    if ([topViewController isKindOfClass:[POSAccountViewController class]] || [topViewController isKindOfClass:[POSFoldersViewController class]]) {
+
+    } else {
+       
+        [topViewController performSegueWithIdentifier:@"unwindToFoldersSegue" sender:self];
     }
-    
-    [topViewController performSegueWithIdentifier:@"TESTSeg" sender:self];
+
     return;
-    
+
     POSDocumentsViewController *archiveViewController = (POSDocumentsViewController *)topViewController;
 
     if (!([topViewController isKindOfClass:[POSDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {

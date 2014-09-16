@@ -30,6 +30,7 @@
 #import "POSLetterViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
+#import "Digipost-Swift.h"
 
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
@@ -73,8 +74,11 @@
 {
     NSDictionary *dict = notification.userInfo;
     if (dict[@"mailbox"]) {
-        UINavigationController *navController = (id)self.window.rootViewController;
-        UIViewController *topViewController = navController.topViewController;
+        
+        UINavigationController *navController = [self.window topMasterNavigationController];
+        
+        UIViewController *topViewController = [self.window topMasterViewController];
+        
         [navController popToRootViewControllerAnimated:NO];
         POSAccountViewController *accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
@@ -96,6 +100,7 @@
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
         documentsViewController.folderName = folder.name;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+        documentsViewController.folderUri = folder.uri;
 
         [navController setViewControllers:newViewControllerArray
                                  animated:YES];
@@ -138,8 +143,16 @@
     uploadViewController.url = url;
 
     UINavigationController *rootNavController = (id)self.window.rootViewController;
-    [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
-                                                    completion:^{}];
+    if ([rootNavController isKindOfClass:[UINavigationController class]]) {
+        [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
+                                                        completion:^{}];
+    }else {
+        UISplitViewController *splitViewController = (id)rootNavController;
+        UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
+        uploadNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
+        [leftSideNavController.topViewController presentViewController:uploadNavigationController animated:YES completion:nil];
+    }
+    
     return YES;
 }
 
