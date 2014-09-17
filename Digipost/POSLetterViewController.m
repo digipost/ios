@@ -32,6 +32,7 @@
 #import "NSError+ExtraInfo.h"
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
+#import "Digipost-Swift.h"
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
@@ -915,41 +916,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self setInfoViewVisible:shouldBeVisible];
 }
 
-- (BOOL)interactionControllerCanShareDocument
-{
-
-    POSBaseEncryptedModel *baseEncryptionModel = nil;
-
-    if (self.attachment) {
-        baseEncryptionModel = self.attachment;
-
-    } else if (self.receipt) {
-        baseEncryptionModel = self.receipt;
-    }
-
-    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
-    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
-
-    NSURL *fileURL = nil;
-
-    if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
-        fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-    } else if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        NSError *error = nil;
-        if ([[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
-                                                                            error:&error]) {
-            fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-        }
-    }
-    if (fileURL == nil) {
-        return NO;
-    }
-    UIDocumentInteractionController *interactioncontroller = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
-    BOOL canopen = [interactioncontroller presentOpenInMenuFromRect:CGRectZero inView:[UIView new] animated:NO];
-    [interactioncontroller dismissMenuAnimated:NO];
-    return canopen;
-}
-
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
     [self setInfoViewVisible:NO];
@@ -1305,13 +1271,24 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self updateToolbarItemsWithInvoice:NO];
 }
 
+- (POSBaseEncryptedModel *)currentBaseEncryptModel
+{
+    if (self.receipt) {
+        return self.receipt;
+    }
+    if (self.attachment) {
+        return self.attachment;
+    }
+    return nil;
+}
+
 - (void)updateNavbar
 {
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
 
     if (self.attachment || self.receipt) {
 
-        if ([self interactionControllerCanShareDocument]) {
+        if ([self interactionControllerCanShareContent:[self currentBaseEncryptModel]]) {
             [rightBarButtonItems addObjectsFromArray:@[ self.actionBarButtonItem, self.infoBarButtonItem ]];
 
         } else {
