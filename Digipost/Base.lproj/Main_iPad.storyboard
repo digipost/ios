@@ -165,7 +165,7 @@
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
-                                                            <outlet property="description" destination="KKt-fy-yca" id="0v3-ex-9YB"/>
+                                                            <outlet property="descriptionText" destination="KKt-fy-yca" id="af9-M9-Rub"/>
                                                             <outlet property="titleLabel" destination="ctx-bD-88Y" id="sFQ-ct-nix"/>
                                                         </connections>
                                                     </tableViewCell>
