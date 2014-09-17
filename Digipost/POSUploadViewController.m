@@ -9,6 +9,7 @@
 #import "POSUploadViewController.h"
 #import "POSMailbox+Methods.h"
 #import "POSFolder+Methods.h"
+#import "POSModelManager.h"
 #import "UIViewController+BackButton.h"
 #import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
@@ -20,7 +21,6 @@ NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocument
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *howtoUploadImageView;
 @property (nonatomic, strong) POSUploadTableViewDataSource *dataSource;
-@property (nonatomic) BOOL isShowingFolders;
 @property (nonatomic, strong) POSMailbox *chosenMailBox;
 @property (nonatomic, strong) POSFolder *chosenFolder;
 @end
@@ -42,30 +42,26 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 {
     [super viewDidLoad];
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
-    if (self.isShowingFolders){
+    if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
-    }else {
+    } else {
         self.dataSource.entityDescription = kMailboxEntityName;
     }
     self.tableView.delegate = self;
     self.howtoUploadImageView.hidden = YES;
-    
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if ([self pos_hasBackButton] == NO){
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
+    if ([self pos_hasBackButton] == NO) {
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
 }
-- (void)closeView {
-    [self dismissViewControllerAnimated:YES completion:^{
-        
-    }];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{
-        
-    }];
+- (void)closeView
+{
+    [self dismissViewControllerAnimated:YES completion:^{}];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,21 +70,27 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
-        
+
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
-            
-           
-        } failure:^(NSError *error) {
-            
-        }];
-        NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:@{
-                                                                                                                                         @"folder": self.chosenFolder, @"mailbox": self.chosenMailBox
-                                                                                                                                         }];
+        } failure:^(NSError *error) {}];
+        
+        NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            
-            
-        }];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    }
+}
+- (NSDictionary*)notificationDictionary{
+    if (self.chosenMailBox){
+      return @{
+          @"folder" : self.chosenFolder,
+          @"mailbox" : self.chosenMailBox
+          };
+    }else {
+        POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        return @{
+                 @"folder" : self.chosenFolder,
+                 @"mailbox" : mailbox
+                 };
     }
 }
 #pragma mark - Navigation

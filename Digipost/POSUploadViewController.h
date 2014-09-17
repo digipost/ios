@@ -10,5 +10,6 @@
 
 @interface POSUploadViewController : UIViewController
 @property (nonatomic, strong) NSURL *url;
+@property (nonatomic) BOOL isShowingFolders;
 extern NSString *const kStartUploadingDocumentNotitification;
 @end

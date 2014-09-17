@@ -24,9 +24,11 @@
 #import "POSFoldersViewController.h"
 #import <GAITracker.h>
 #import <UIAlertView+Blocks.h>
+#import "POSModelManager.h"
 #import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
 #import "POSAPIManager.h"
+#import "POSMailbox+Methods.h"
 #import "POSLetterViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
@@ -74,11 +76,11 @@
 {
     NSDictionary *dict = notification.userInfo;
     if (dict[@"mailbox"]) {
-        
+
         UINavigationController *navController = [self.window topMasterNavigationController];
-        
+
         UIViewController *topViewController = [self.window topMasterViewController];
-        
+
         [navController popToRootViewControllerAnimated:NO];
         POSAccountViewController *accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
@@ -87,7 +89,6 @@
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
         // add account vc as second view controller in navigation controller
         UIViewController *loginViewController = topViewController;
-
         [newViewControllerArray addObject:loginViewController];
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
@@ -138,21 +139,25 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
-    POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
 
+    POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
     uploadViewController.url = url;
+    NSInteger numberOfMailboxes = [POSMailbox numberOfMailboxesStoredInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    if (numberOfMailboxes == 1) {
+        uploadViewController.isShowingFolders = YES;
+    }
 
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
         [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
                                                         completion:^{}];
-    }else {
+    } else {
         UISplitViewController *splitViewController = (id)rootNavController;
         UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
         uploadNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [leftSideNavController.topViewController presentViewController:uploadNavigationController animated:YES completion:nil];
     }
-    
+
     return YES;
 }
 

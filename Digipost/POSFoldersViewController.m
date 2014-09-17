@@ -496,11 +496,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kFolderViewControllerNavigatedInList" object:nil];
+    }
+
     if (self.isEditing == NO) {
         if (indexPath.section == 0 && self.inboxFolder) {
             switch (indexPath.row) {
                 case 0: {
-
                     [self performSegueWithIdentifier:kPushDocumentsIdentifier
                                               sender:self.inboxFolder];
                     break;
@@ -511,7 +514,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     break;
                 }
                 case 2: {
-                    [self performSegueWithIdentifier:kUploadFileSegueIdentifier sender:self];
+                    [self performSegueWithIdentifier:@"uploadGuideSegue" sender:self];
                     break;
 
                 } break;
@@ -629,7 +632,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if ([topViewController isKindOfClass:[POSAccountViewController class]] || [topViewController isKindOfClass:[POSFoldersViewController class]]) {
 
     } else {
-       
+
         [topViewController performSegueWithIdentifier:@"unwindToFoldersSegue" sender:self];
     }
 

@@ -181,9 +181,6 @@
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
-		EC4875C019C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
-		EC4875C119C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
-		EC4875C219C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */; };
 		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
@@ -390,7 +387,6 @@
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
-		EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSUploadTableViewHeaderView.swift; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
@@ -696,7 +692,6 @@
 		EC1A6C2E18BBA30900269428 /* Document lists */ = {
 			isa = PBXGroup;
 			children = (
-				EC4875BF19C1D6660024C95E /* POSUploadTableViewHeaderView.swift */,
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
@@ -1103,7 +1098,6 @@
 				8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
-				EC4875C219C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038318573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512B18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1184,7 +1178,6 @@
 				8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A19193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
-				EC4875C119C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038218573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512A18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
@@ -1265,7 +1258,6 @@
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
-				EC4875C019C1D6660024C95E /* POSUploadTableViewHeaderView.swift in Sources */,
 				83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
