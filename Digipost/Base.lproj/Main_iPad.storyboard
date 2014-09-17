@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -265,7 +264,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-1334" y="2492"/>
+            <point key="canvasLocation" x="-1306" y="1999"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="ysi-uY-b41">
@@ -492,6 +491,7 @@
                         <segue destination="8Xx-Nc-5sN" kind="push" identifier="newFolderSegue" id="AVp-X0-I0h"/>
                         <segue destination="xLF-Ij-XNd" kind="push" identifier="PushReceipts" id="W5U-iU-CWz"/>
                         <segue destination="XOW-31-ASn" kind="push" identifier="uploadFileSegue" id="zbK-2F-FJp"/>
+                        <segue destination="B4J-Su-iTO" kind="push" identifier="uploadGuideSegue" id="zcy-OZ-u2f"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0UU-5W-bQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1111,6 +1111,51 @@
             </objects>
             <point key="canvasLocation" x="1551" y="266"/>
         </scene>
+        <!--Upload Guide View Controller-->
+        <scene sceneID="YBg-xK-ylU">
+            <objects>
+                <viewController id="B4J-Su-iTO" customClass="UploadGuideViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="baT-4U-RFj"/>
+                        <viewControllerLayoutGuide type="bottom" id="xue-7Y-hlU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qni-o4-n6v">
+                        <rect key="frame" x="0.0" y="0.0" width="308" height="960"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_grafikk" translatesAutoresizingMaskIntoConstraints="NO" id="HF1-kc-JSG">
+                                <rect key="frame" x="52" y="56" width="205" height="205"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="205" id="KzE-Rx-zJ0"/>
+                                    <constraint firstAttribute="width" constant="205" id="eta-nB-gJs"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kej-Md-px0">
+                                <rect key="frame" x="39" y="297" width="230" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ekJ-aJ-fTV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Kej-Md-px0" firstAttribute="top" secondItem="HF1-kc-JSG" secondAttribute="bottom" constant="36" id="0ng-jx-HRH"/>
+                            <constraint firstAttribute="centerX" secondItem="HF1-kc-JSG" secondAttribute="centerX" id="IjD-gg-KIY"/>
+                            <constraint firstItem="Kej-Md-px0" firstAttribute="leading" secondItem="qni-o4-n6v" secondAttribute="leadingMargin" constant="19" id="MjH-nO-SaC"/>
+                            <constraint firstItem="Kej-Md-px0" firstAttribute="centerX" secondItem="qni-o4-n6v" secondAttribute="centerX" id="eMe-KS-8Zj"/>
+                            <constraint firstItem="HF1-kc-JSG" firstAttribute="top" secondItem="baT-4U-RFj" secondAttribute="bottom" constant="56" id="xQF-L8-4SX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Gfv-lh-ptx"/>
+                    <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AWt-La-ueE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="554" y="965"/>
+        </scene>
         <!--Receipts View Controller-->
         <scene sceneID="ZwF-oT-3kS">
             <objects>
@@ -1326,6 +1371,7 @@
     </scenes>
     <resources>
         <image name="File_128" width="23" height="23"/>
+        <image name="Lastopp_grafikk" width="612" height="613"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="empty-folder-fly" width="151" height="133"/>
         <image name="empty-letterview" width="154" height="188"/>

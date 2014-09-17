@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -198,12 +197,13 @@
                         <segue destination="bbL-dE-QG4" kind="push" identifier="newFolderSegue" id="2IH-85-kgn"/>
                         <segue destination="4z4-Au-vJv" kind="push" identifier="uploadFileSegue" id="WBk-6x-J5R"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="QTl-hU-aIM"/>
+                        <segue destination="wKx-6R-7HF" kind="push" identifier="uploadGuideSegue" id="qLx-wG-JAd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="wIu-7T-vk9" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="641" y="756"/>
+            <point key="canvasLocation" x="614" y="727"/>
         </scene>
         <!--Lag ny mappe-->
         <scene sceneID="vIE-Wc-spq">
@@ -733,6 +733,50 @@
             </objects>
             <point key="canvasLocation" x="1416" y="756"/>
         </scene>
+        <!--Last opp-->
+        <scene sceneID="Zjh-CO-XSp">
+            <objects>
+                <viewController id="wKx-6R-7HF" customClass="UploadGuideViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GK6-iG-9iF"/>
+                        <viewControllerLayoutGuide type="bottom" id="uXc-j9-3uG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="iCs-BM-gpW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_grafikk" translatesAutoresizingMaskIntoConstraints="NO" id="t9F-KS-Hxy">
+                                <rect key="frame" x="60" y="21" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="MCC-G6-O0X"/>
+                                    <constraint firstAttribute="height" constant="200" id="yes-wh-qR6"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz1-8a-XML">
+                                <rect key="frame" x="45" y="241" width="230" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="230" id="ZEW-K2-jkx"/>
+                                    <constraint firstAttribute="height" constant="50" id="owG-RD-e8f"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="t9F-KS-Hxy" firstAttribute="top" secondItem="GK6-iG-9iF" secondAttribute="bottom" constant="21" id="324-9W-tat"/>
+                            <constraint firstItem="t9F-KS-Hxy" firstAttribute="centerX" secondItem="iCs-BM-gpW" secondAttribute="centerX" id="8dl-ee-hm2"/>
+                            <constraint firstAttribute="centerX" secondItem="tz1-8a-XML" secondAttribute="centerX" id="Wvi-td-jGY"/>
+                            <constraint firstItem="tz1-8a-XML" firstAttribute="top" secondItem="t9F-KS-Hxy" secondAttribute="bottom" constant="20" id="Xxl-5i-hjb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Last opp" id="BcG-PX-hsw"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3U-NM-6z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1090" y="1134"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="O5a-7z-blq">
             <objects>
@@ -763,7 +807,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou0-X5-HPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TH4-kf-LH5" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="953" y="1547"/>
+            <point key="canvasLocation" x="701" y="1692"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="Y35-2d-3dH">
@@ -1284,6 +1328,7 @@
     </scenes>
     <resources>
         <image name="File_128" width="64" height="64"/>
+        <image name="Lastopp_grafikk" width="612" height="613"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="Veileder_lastopp" width="640" height="1136"/>
         <image name="empty-folder-fly" width="151" height="133"/>
@@ -1303,8 +1348,8 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="vJp-VT-rtF"/>
-        <segue reference="nJS-Zx-WgQ"/>
+        <segue reference="WBk-6x-J5R"/>
+        <segue reference="j20-qk-TDu"/>
         <segue reference="Kl9-xn-mhN"/>
-        <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
