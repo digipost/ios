@@ -67,7 +67,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 @property (weak, nonatomic) IBOutlet UILabel *noDocumentsLabel;
 @property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
 @property (assign, nonatomic) BOOL shouldAnimateInsertAndDeletesToFetchedResultsController;
-@property (weak, nonatomic) IBOutlet POSUploadTableViewHeaderView *uploadHeaderView;
 
 @end
 
@@ -817,8 +816,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             return;
         }
         [self.tableView reloadData];
-        
-        [self updateContentsFromServerUserInitiatedRequest:@YES];
+        [self updateContentsFromServerUserInitiatedRequest:@NO];
     });
 }
 
