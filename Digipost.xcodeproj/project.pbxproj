@@ -190,9 +190,6 @@
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70919C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
-		EC41C71419C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
-		EC41C71519C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
-		EC41C71619C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
@@ -217,9 +214,6 @@
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
-		EC8BB14619CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
-		EC8BB14719CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
-		EC8BB14819CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
@@ -408,7 +402,6 @@
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
-		EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FoundryMonoline-Medium.suit"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -428,7 +421,6 @@
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
-		EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBarFont.swift"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
@@ -585,8 +577,6 @@
 				8342EFBD1858CDA40080A833 /* Model */,
 				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* View */,
-				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
-				EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
 				83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */,
@@ -599,7 +589,8 @@
 		83BAB9221855C0AC004A7BFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */,
+				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
+				EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */,
 				ECAB707918C0997A009731FF /* oauth.h */,
 				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
 				83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */,
@@ -646,7 +637,6 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */,
 				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
@@ -940,7 +930,6 @@
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
-				EC41C71619C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 			);
@@ -956,7 +945,6 @@
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
-				EC41C71519C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
 			);
@@ -972,7 +960,6 @@
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
-				EC41C71419C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 			);
@@ -1122,7 +1109,6 @@
 				83DB4AF7188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4E192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
-				EC8BB14819CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
@@ -1206,7 +1192,6 @@
 				83DB4AF6188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4D192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
-				EC8BB14719CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FB19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
@@ -1290,7 +1275,6 @@
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
-				EC8BB14619CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
