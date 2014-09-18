@@ -60,25 +60,6 @@
     [SHCAppDelegate setupAppearance];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
-    
-    for (NSString* family in [UIFont familyNames])
-    {
-        NSLog(@"%@", family);
-        
-        for (NSString* name in [UIFont fontNamesForFamilyName: family])
-        {
-            NSLog(@"  %@", name);
-        }
-    }
-
-    
-//    [[UINavigationBar appearance] setTitleTextAttributes: @{
-//                                                            UITextAttributeTextColor: [UIColor greenColor],
-//                                                            UITextAttributeTextShadowColor: [UIColor redColor],
-//                                                            UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
-//                                                            UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:20.0f]
-//                                                            }];
-//
     return YES;
 }
 

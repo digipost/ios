@@ -6,6 +6,17 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="foundmonmed-webfont.ttf">
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+            <string>FoundryMonoline-Medium</string>
+        </mutableArray>
         <mutableArray key="foundmonreg-webfont.ttf">
             <string>FoundryMonoline-Regular</string>
         </mutableArray>
@@ -401,14 +412,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-In-2XQ" userLabel="Separator View">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VUg-In-2XQ" userLabel="Separator View">
                                             <rect key="frame" x="15" y="49" width="305" height="1"/>
                                             <color key="backgroundColor" red="0.34901960780000002" green="0.36078431370000003" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="9y6-2S-jsp"/>
                                             </constraints>
                                         </view>
-                                        <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sC3-A0-WBi" userLabel="Selected View">
+                                        <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sC3-A0-WBi" userLabel="Selected View">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <color key="backgroundColor" red="0.1960784314" green="0.20784313730000001" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                         </view>
@@ -419,23 +430,23 @@
                                                 <constraint firstAttribute="width" constant="16" id="X17-iH-kSG"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FOLDER_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWl-0q-fND" userLabel="Folder Name Label">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FOLDER_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWl-0q-fND" userLabel="Folder Name Label">
                                             <rect key="frame" x="40" y="15" width="226" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="zZO-eA-AvI"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="list-icon-unread-counter" translatesAutoresizingMaskIntoConstraints="NO" id="giR-RH-kRH" userLabel="Unread Counter Image View">
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-unread-counter" translatesAutoresizingMaskIntoConstraints="NO" id="giR-RH-kRH" userLabel="Unread Counter Image View">
                                             <rect key="frame" x="257" y="14" width="23" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="23" id="O3d-iW-Iou"/>
                                                 <constraint firstAttribute="height" constant="23" id="Srv-2T-PAe"/>
                                             </constraints>
                                         </imageView>
-                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buU-Im-4Kc" userLabel="Unread Counter Label">
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buU-Im-4Kc" userLabel="Unread Counter Label">
                                             <rect key="frame" x="257" y="14" width="23" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="23" id="p1y-Kk-gqv"/>
@@ -445,7 +456,7 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="list-icon-arrow-white" translatesAutoresizingMaskIntoConstraints="NO" id="z8Q-el-rtE" userLabel="Arrow Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-white" translatesAutoresizingMaskIntoConstraints="NO" id="z8Q-el-rtE" userLabel="Arrow Image View">
                                             <rect key="frame" x="297" y="19" width="8" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="8" id="UiT-bg-0Tr"/>
@@ -457,17 +468,17 @@
                                         <constraint firstItem="z8Q-el-rtE" firstAttribute="leading" secondItem="giR-RH-kRH" secondAttribute="trailing" constant="17" id="0cy-Qg-vTE"/>
                                         <constraint firstItem="kbC-sZ-OoW" firstAttribute="leading" secondItem="ZuH-qn-pnj" secondAttribute="leading" constant="15" id="3lX-WP-fpk"/>
                                         <constraint firstAttribute="centerY" secondItem="buU-Im-4Kc" secondAttribute="centerY" id="6I6-iD-X89"/>
-                                        <constraint firstAttribute="trailing" secondItem="VUg-In-2XQ" secondAttribute="trailing" id="8lI-rY-EHB"/>
+                                        <constraint firstAttribute="trailing" secondItem="VUg-In-2XQ" secondAttribute="trailing" constant="-12" id="8lI-rY-EHB"/>
                                         <constraint firstItem="sC3-A0-WBi" firstAttribute="top" secondItem="ZuH-qn-pnj" secondAttribute="top" id="AV3-ar-VF0"/>
                                         <constraint firstAttribute="bottom" secondItem="sC3-A0-WBi" secondAttribute="bottom" id="D3b-8h-36f"/>
                                         <constraint firstItem="z8Q-el-rtE" firstAttribute="leading" secondItem="buU-Im-4Kc" secondAttribute="trailing" constant="17" id="FKx-zz-P5O"/>
                                         <constraint firstAttribute="centerY" secondItem="z8Q-el-rtE" secondAttribute="centerY" id="Fdb-Kq-Q6S"/>
                                         <constraint firstAttribute="centerY" secondItem="kbC-sZ-OoW" secondAttribute="centerY" id="Jj6-4D-Eps"/>
                                         <constraint firstItem="VWl-0q-fND" firstAttribute="leading" secondItem="ZuH-qn-pnj" secondAttribute="leading" constant="40" id="L39-sp-FOp"/>
-                                        <constraint firstAttribute="trailing" secondItem="sC3-A0-WBi" secondAttribute="trailing" id="WZL-Kw-DIw"/>
+                                        <constraint firstAttribute="trailing" secondItem="sC3-A0-WBi" secondAttribute="trailing" constant="-12" id="WZL-Kw-DIw"/>
                                         <constraint firstAttribute="centerY" secondItem="giR-RH-kRH" secondAttribute="centerY" id="Weu-mI-pE6"/>
-                                        <constraint firstAttribute="trailing" secondItem="VWl-0q-fND" secondAttribute="trailing" constant="54" id="Ymm-z8-nIy"/>
-                                        <constraint firstAttribute="trailing" secondItem="z8Q-el-rtE" secondAttribute="trailing" constant="15" id="ZW4-Zl-TQq"/>
+                                        <constraint firstAttribute="trailing" secondItem="VWl-0q-fND" secondAttribute="trailing" constant="42" id="Ymm-z8-nIy"/>
+                                        <constraint firstAttribute="trailing" secondItem="z8Q-el-rtE" secondAttribute="trailing" constant="3" id="ZW4-Zl-TQq"/>
                                         <constraint firstAttribute="bottom" secondItem="VUg-In-2XQ" secondAttribute="bottom" id="ag1-mO-Rg3"/>
                                         <constraint firstItem="sC3-A0-WBi" firstAttribute="leading" secondItem="ZuH-qn-pnj" secondAttribute="leading" id="hJW-07-O1g"/>
                                         <constraint firstItem="VUg-In-2XQ" firstAttribute="leading" secondItem="ZuH-qn-pnj" secondAttribute="leading" constant="15" id="nDk-Dk-I9f"/>
@@ -526,7 +537,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="LjM-c3-7Gm"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -536,7 +547,7 @@
                                                 <constraint firstAttribute="height" constant="21" id="hEz-Uk-NM6"/>
                                                 <constraint firstAttribute="width" priority="249" constant="30" id="nsR-Tv-rlr"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="15"/>
                                             <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -545,7 +556,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="xUN-aX-qUN"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -627,7 +638,7 @@
                                                 <constraint firstAttribute="width" priority="249" constant="30" id="byl-lW-1ok"/>
                                                 <constraint firstAttribute="height" constant="21" id="zie-L9-gtM"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="15"/>
                                             <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -636,7 +647,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oMR-Te-ePs"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -877,7 +888,7 @@
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jbv-gj-6sh">
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1029,13 +1040,13 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9U-wh-b9o" userLabel="Amount Label">
                                             <rect key="frame" x="20" y="33" width="257" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="STORE_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KVI-uR-oVN" userLabel="Store Name Label">
                                             <rect key="frame" x="20" y="11" width="227" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -1141,7 +1152,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ekJ-aJ-fTV"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="FoundryMonoline-Regular" family="FoundryMonoline-Regular" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="FoundryMonoline-Regular" family="FoundryMonoline-Regular" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1396,7 +1407,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zbK-2F-FJp"/>
         <segue reference="gXC-zd-OIB"/>
+        <segue reference="zbK-2F-FJp"/>
     </inferredMetricsTieBreakers>
 </document>

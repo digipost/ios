@@ -217,9 +217,15 @@
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
+		EC8BB14619CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
+		EC8BB14719CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
+		EC8BB14819CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
+		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
+		EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
+		EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354C1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
@@ -422,8 +428,10 @@
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
+		EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+NavigationBarFont.swift"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
+		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -578,6 +586,7 @@
 				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* View */,
 				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
+				EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
 				83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */,
@@ -637,11 +646,14 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC8BB14519CB19830051BDA9 /* UIViewController+NavigationBarFont.swift */,
 				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
 				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
+				ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */,
+				ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */,
 				ECB4C65719B725ED00C1C748 /* NSString+Convenience.h */,
 				ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */,
 				EC6CFA4919501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.h */,
@@ -743,8 +755,6 @@
 				83F7038018573641003DABE1 /* POSOAuthManager.m */,
 				8342EFB8185861A80080A833 /* POSAPIManager.h */,
 				8342EFB9185861A80080A833 /* POSAPIManager.m */,
-				ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */,
-				ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -931,6 +941,7 @@
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
 				EC41C71619C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
+				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,6 +957,7 @@
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
 				EC41C71519C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
+				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -961,6 +973,7 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC41C71419C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
+				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1109,6 +1122,7 @@
 				83DB4AF7188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4E192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				839FC5891883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
+				EC8BB14819CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83D355131861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				8375DD381855C383009435B4 /* main.m in Sources */,
@@ -1192,6 +1206,7 @@
 				83DB4AF6188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECF06D4D192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				839FC5881883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
+				EC8BB14719CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FB19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
@@ -1275,6 +1290,7 @@
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
+				EC8BB14619CB19830051BDA9 /* UIViewController+NavigationBarFont.swift in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,

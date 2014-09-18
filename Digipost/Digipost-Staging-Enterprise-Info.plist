@@ -38,6 +38,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>foundmonreg-webfont.ttf</string>
+		<string>foundmonmed-webfont.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>Main_iPhone</string>
