@@ -5,3 +5,4 @@
 #import "POSLetterViewController.h"
 #import "POSBaseEncryptedModel.h"
 #import "POSFileManager.h"
+#import "SHCAppDelegate.h"

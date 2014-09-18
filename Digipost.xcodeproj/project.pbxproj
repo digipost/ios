@@ -160,6 +160,12 @@
 		EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
+		EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
+		EC0F8D5D19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
+		EC0F8D5E19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
+		EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
+		EC0F8D6119CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
+		EC0F8D6219CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
@@ -378,6 +384,8 @@
 		EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Convenience.m"; sourceTree = "<group>"; };
 		EC0F2B7619B893350019212E /* POSUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadViewController.h; sourceTree = "<group>"; };
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
+		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
+		EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SHCAppDelegate+Appearance.swift"; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
@@ -629,6 +637,8 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
+				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
 				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
@@ -1134,10 +1144,12 @@
 				EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A1019338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				ECF06D751923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
+				EC0F8D5E19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703681855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC0F8D6219CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BF19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65B18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
@@ -1215,10 +1227,12 @@
 				EC41C70919C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0F19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				ECF06D741923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
+				EC0F8D5D19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				8342EFC11858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				83F703671855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A65018B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6E1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC0F8D6119CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BE19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58931935FF5B003202CD /* POSFolderIcon.m in Sources */,
@@ -1296,10 +1310,12 @@
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
+				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
@@ -1422,14 +1438,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "976717a7-ef89-4046-8d13-86aaa3e6db9e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1443,14 +1459,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "976717a7-ef89-4046-8d13-86aaa3e6db9e";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

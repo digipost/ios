@@ -57,18 +57,28 @@
     [self setupGoogleAnalytics];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-
-    [[UINavigationBar appearance] setBarStyle:UIBarStyleBlackOpaque];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:227.0 / 255.0
-                                                                  green:45.0 / 255.0
-                                                                   blue:34.0 / 255.0
-                                                                  alpha:1.0]];
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithWhite:1.0
-                                                                 alpha:0.8]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [SHCAppDelegate setupAppearance];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
+    
+    for (NSString* family in [UIFont familyNames])
+    {
+        NSLog(@"%@", family);
+        
+        for (NSString* name in [UIFont fontNamesForFamilyName: family])
+        {
+            NSLog(@"  %@", name);
+        }
+    }
 
+    
+//    [[UINavigationBar appearance] setTitleTextAttributes: @{
+//                                                            UITextAttributeTextColor: [UIColor greenColor],
+//                                                            UITextAttributeTextShadowColor: [UIColor redColor],
+//                                                            UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0.0f, 1.0f)],
+//                                                            UITextAttributeFont: [UIFont fontWithName:@"Helvetica" size:20.0f]
+//                                                            }];
+//
     return YES;
 }
 

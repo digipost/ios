@@ -21,8 +21,6 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIdentifier</key>
-	<string>no.posten.Digipost-Staging.enterprise</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -37,6 +35,12 @@
 	<string>86</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>foundmonreg-webfont.ttf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
