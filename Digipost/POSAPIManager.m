@@ -1184,9 +1184,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
         }];
-        //        NSLog(@"operation queue %@",self.fileTransferSessionManager.downloadTasks);
-        //        [self.fileTransferSessionManager.operationQueue cancelAllOperations];
-//        [self cancelDownloadingBaseEncryptionModels];
         [task resume];
     } failure:^(NSError *error) {
         self.downloadingBaseEncryptionModel = NO;
@@ -1525,6 +1522,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     uploadFailure = YES;
                 }
             }
+            
             if (error || uploadFailure) {
                 
                 // In case we're not actually getting an error object, let's create one

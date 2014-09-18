@@ -29,18 +29,10 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 
 @implementation POSUploadViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
@@ -73,24 +65,25 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
         } failure:^(NSError *error) {}];
-        
+
         NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
         [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
     }
 }
-- (NSDictionary*)notificationDictionary{
-    if (self.chosenMailBox){
-      return @{
-          @"folder" : self.chosenFolder,
-          @"mailbox" : self.chosenMailBox
-          };
-    }else {
+- (NSDictionary *)notificationDictionary
+{
+    if (self.chosenMailBox) {
+        return @{
+            @"folder" : self.chosenFolder,
+            @"mailbox" : self.chosenMailBox
+        };
+    } else {
         POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         return @{
-                 @"folder" : self.chosenFolder,
-                 @"mailbox" : mailbox
-                 };
+            @"folder" : self.chosenFolder,
+            @"mailbox" : mailbox
+        };
     }
 }
 #pragma mark - Navigation

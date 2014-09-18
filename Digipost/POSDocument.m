@@ -269,7 +269,6 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
                 NSString *rel = link[@"rel"];
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                     if ([rel hasSuffix:kDocumentDeleteDocumentAPIKeySuffix]) {
                         self.deleteUri = uri;
                     } else if ([rel hasSuffix:kDocumentUpdateDocumentAPIKeySuffix]) {

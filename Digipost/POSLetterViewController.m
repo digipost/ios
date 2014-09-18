@@ -114,7 +114,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
-
     self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self
                                                                            action:@selector(didTapInfo:)];
 
@@ -618,7 +617,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                     if ([attachment.subject isEqualToString:subject]){
                         changedBaseEncryptionModel = attachment;
                     }
-                    
                 }];
                 
                 [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel

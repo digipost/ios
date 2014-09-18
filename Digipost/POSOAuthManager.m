@@ -51,6 +51,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 - (instancetype)init
 {
     self = [super init];
+
     if (self) {
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
 

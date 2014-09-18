@@ -27,7 +27,6 @@
                                                                                     forIndexPath:indexPath];
     POSReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;
-//    receiptTableViewCell.amountLabel.text = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:receipt.amount]];
     receiptTableViewCell.amountLabel.accessibilityLabel = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.amountLabel.accessibilityHint = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
@@ -35,9 +34,9 @@
     return receiptTableViewCell;
 }
 
-- (NSNumberFormatter*)numberFormatter
+- (NSNumberFormatter *)numberFormatter
 {
-    if (_numberFormatter== nil){
+    if (_numberFormatter == nil) {
         _numberFormatter = [[NSNumberFormatter alloc] init];
         [_numberFormatter setCurrencyCode:@"NOK"];
         _numberFormatter.alwaysShowsDecimalSeparator = NO;
