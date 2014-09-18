@@ -184,6 +184,12 @@
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70919C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
+		EC41C71419C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
+		EC41C71519C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
+		EC41C71619C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */ = {isa = PBXBuildFile; fileRef = EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */; };
+		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
+		EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
+		EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
@@ -388,9 +394,11 @@
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
+		EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "FoundryMonoline-Medium.suit"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
+		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
@@ -561,6 +569,7 @@
 				8342EFBD1858CDA40080A833 /* Model */,
 				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* View */,
+				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
 				83BAB9221855C0AC004A7BFB /* Supporting Files */,
 				83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */,
@@ -573,6 +582,7 @@
 		83BAB9221855C0AC004A7BFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EC41C71319C9B9C700E3EBCC /* FoundryMonoline-Medium.suit */,
 				ECAB707918C0997A009731FF /* oauth.h */,
 				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
 				83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */,
@@ -905,10 +915,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
+				EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
+				EC41C71619C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -918,10 +930,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038718573C3A003DABE1 /* Localizable.strings in Resources */,
+				EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				83C22B7A187EC52900A6B6F4 /* Images-Prod.xcassets in Resources */,
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
+				EC41C71519C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,10 +945,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
+				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				83C22B79187EC52800A6B6F4 /* Images-Prod.xcassets in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
+				EC41C71419C9B9C700E3EBCC /* FoundryMonoline-Medium.suit in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
