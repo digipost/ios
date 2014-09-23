@@ -209,6 +209,19 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewDidDisappear:animated];
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+
+    // Assuming self.webView is our UIWebView
+    // We go though all sub views of the UIWebView and set their backgroundColor to white
+    UIView *v = self.webView;
+    while (v) {
+        v.backgroundColor = RGB(236, 238, 241);
+        v = [v.subviews firstObject];
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
