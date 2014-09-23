@@ -545,13 +545,13 @@
                                             <rect key="frame" x="267" y="11" width="38" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="hEz-Uk-NM6"/>
-                                                <constraint firstAttribute="width" priority="249" constant="30" id="nsR-Tv-rlr"/>
+                                                <constraint firstAttribute="width" priority="249" constant="38" id="nsR-Tv-rlr"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="15"/>
                                             <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-Vl-Dpn" userLabel="Subject Label">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-Vl-Dpn" userLabel="Subject Label">
                                             <rect key="frame" x="30" y="11" width="200" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="xUN-aX-qUN"/>
@@ -581,7 +581,7 @@
                                                 <constraint firstAttribute="width" constant="30" id="nNz-zl-bmn"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-U5-2yR" userLabel="Arrow Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-U5-2yR" userLabel="Arrow Image View">
                                             <rect key="frame" x="297" y="37" width="8" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="8" id="k0S-o2-wlk"/>
@@ -591,8 +591,8 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="centerY" secondItem="Qcx-VB-dgT" secondAttribute="centerY" constant="-22.5" id="1Dq-iw-cwm"/>
-                                        <constraint firstAttribute="trailing" secondItem="KbF-uJ-8np" secondAttribute="trailing" constant="15" id="3Cw-QV-CkW"/>
-                                        <constraint firstAttribute="trailing" secondItem="eXb-U5-2yR" secondAttribute="trailing" constant="15" id="73y-SP-bl5"/>
+                                        <constraint firstAttribute="trailing" secondItem="KbF-uJ-8np" secondAttribute="trailing" constant="3" id="3Cw-QV-CkW"/>
+                                        <constraint firstAttribute="trailing" secondItem="eXb-U5-2yR" secondAttribute="trailing" constant="3" id="73y-SP-bl5"/>
                                         <constraint firstAttribute="bottom" secondItem="Dh8-Vl-Dpn" secondAttribute="bottom" constant="32" id="Fs9-9C-rQR"/>
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="11" id="GfC-Kl-zj4"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Qcx-VB-dgT" secondAttribute="trailing" id="J3A-jf-3dd"/>
@@ -632,17 +632,17 @@
                                             <color key="progressTintColor" red="0.90196078430000004" green="0.16862745100000001" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="trackTintColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         </progressView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grF-fj-pvY" userLabel="Date Label">
-                                            <rect key="frame" x="267" y="11" width="38" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grF-fj-pvY" userLabel="Date Label">
+                                            <rect key="frame" x="269.5" y="11" width="35.5" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" priority="249" constant="30" id="byl-lW-1ok"/>
+                                                <constraint firstAttribute="width" priority="249" constant="38" id="byl-lW-1ok"/>
                                                 <constraint firstAttribute="height" constant="21" id="zie-L9-gtM"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="FoundryMonoline-Medium" family="FoundryMonoline-Medium" pointSize="15"/>
                                             <color key="textColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FILE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK1-DW-88W" userLabel="File Name Label">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILE NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aK1-DW-88W" userLabel="File Name Label">
                                             <rect key="frame" x="30" y="33" width="257" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="oMR-Te-ePs"/>
@@ -651,7 +651,7 @@
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="D3m-u5-bkf" userLabel="Arrow Image View">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="D3m-u5-bkf" userLabel="Arrow Image View">
                                             <rect key="frame" x="297" y="37" width="8" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="8" id="L87-x4-2dh"/>
@@ -661,11 +661,11 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="aK1-DW-88W" firstAttribute="leading" secondItem="xJt-8C-5BU" secondAttribute="leading" constant="30" id="AA0-wK-aCs"/>
-                                        <constraint firstAttribute="trailing" secondItem="D3m-u5-bkf" secondAttribute="trailing" constant="15" id="ITg-cF-iG1"/>
+                                        <constraint firstAttribute="trailing" secondItem="D3m-u5-bkf" secondAttribute="trailing" constant="3" id="ITg-cF-iG1"/>
                                         <constraint firstItem="grF-fj-pvY" firstAttribute="top" secondItem="xJt-8C-5BU" secondAttribute="top" constant="11" id="Ze8-go-bNx"/>
                                         <constraint firstAttribute="bottom" secondItem="aK1-DW-88W" secondAttribute="bottom" constant="10" id="rWF-5K-ypL"/>
                                         <constraint firstItem="D3m-u5-bkf" firstAttribute="leading" secondItem="aK1-DW-88W" secondAttribute="trailing" constant="10" id="rxH-Qh-xQ5"/>
-                                        <constraint firstAttribute="trailing" secondItem="grF-fj-pvY" secondAttribute="trailing" constant="15" id="tUG-cL-ZCO"/>
+                                        <constraint firstAttribute="trailing" secondItem="grF-fj-pvY" secondAttribute="trailing" constant="3" id="tUG-cL-ZCO"/>
                                         <constraint firstAttribute="bottom" secondItem="D3m-u5-bkf" secondAttribute="bottom" constant="14" id="yWN-Ox-wLj"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -721,17 +721,17 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
                             <rect key="frame" x="0.0" y="138" width="320" height="184"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
-                                    <rect key="frame" x="85" y="0.0" width="151" height="133"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
+                                    <rect key="frame" x="85" y="0.0" width="203" height="232"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="151" id="Xle-mV-yc6"/>
-                                        <constraint firstAttribute="height" constant="133" id="u2t-W1-7z9"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="203" id="GtI-Pm-p8H"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="232" id="c9U-I3-rvf"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
                                     <rect key="frame" x="30" y="143" width="260" height="21"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="fNk-yO-pLp"/>
@@ -1140,7 +1140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="308" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_grafikk" translatesAutoresizingMaskIntoConstraints="NO" id="HF1-kc-JSG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_norsk_vertikal" translatesAutoresizingMaskIntoConstraints="NO" id="HF1-kc-JSG">
                                 <rect key="frame" x="52" y="56" width="205" height="205"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="KzE-Rx-zJ0"/>
@@ -1388,9 +1388,9 @@
     </scenes>
     <resources>
         <image name="File_128" width="23" height="23"/>
-        <image name="Lastopp_grafikk" width="612" height="613"/>
+        <image name="Lastopp_norsk_vertikal" width="352" height="501"/>
         <image name="Searchbackground" width="6" height="31"/>
-        <image name="empty-folder-fly" width="151" height="133"/>
+        <image name="empty-folder-fly" width="203" height="233"/>
         <image name="empty-letterview" width="154" height="188"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
