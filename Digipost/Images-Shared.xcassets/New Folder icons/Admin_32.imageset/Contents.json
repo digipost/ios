@@ -1,17 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Admin_32px.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Admin_32px.png",
+      "unassigned" : true,
+      "scale" : "2x"
     }
   ],
   "info" : {

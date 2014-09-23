@@ -1,18 +1,19 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "power-off.png"
+      "idiom" : "universal"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "power-off_32.png"
+      "filename" : "power-off.png",
+      "unassigned" : true,
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "power-off_32.png",
+      "unassigned" : true,
+      "scale" : "2x"
     }
   ],
   "info" : {
