@@ -6,33 +6,18 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Digipost</string>
-	<key>CFBundleDocumentTypes</key>
-	<array>
-		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string>PDF Document</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>com.adobe.pdf</string>
-			</array>
-			<key>xyx</key>
-			<string>av</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
-			<key>CFBundleTypeName</key>
-			<string>All Files</string>
-			<key>LSItemContentTypes</key>
-			<array>
-				<string>public.data</string>
-			</array>
-			<key>public.content</key>
-			<string>kekeddc</string>
-		</dict>
-	</array>
+<key>CFBundleDocumentTypes</key>
+<array>
+	<dict>
+		<key>CFBundleTypeName</key>
+		<string>All Files</string>
+		<key>LSItemContentTypes</key>
+		<array>
+			<string>public.data</string>
+			<string>public.content</string>
+		</array>
+	</dict>
+</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>

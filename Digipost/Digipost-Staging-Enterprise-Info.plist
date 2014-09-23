@@ -9,13 +9,12 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeIconFiles</key>
-			<array/>
 			<key>CFBundleTypeName</key>
-			<string>PDF File</string>
+			<string>All Files</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.adobe.pdf</string>
+				<string>public.data</string>
+				<string>public.content</string>
 			</array>
 		</dict>
 	</array>
