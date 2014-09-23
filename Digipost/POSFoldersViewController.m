@@ -578,7 +578,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if ([POSAPIManager sharedManager].isUpdatingRootResource) {
         return;
     }
-
     [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
         self.rootResource = nil; // To force a refetch of this property
         [self updateFetchedResultsController];
@@ -591,7 +590,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                
                 return;
             }
         }
@@ -619,7 +617,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             [self updateContentsFromServerUserInitiatedRequest:@NO];
         }
         failure:^(NSError *error) {
-                                           [UIAlertView showWithTitle:NSLocalizedString(@"Feil", @"Feil") message:NSLocalizedString(@"Noe feil skjedde. Sikker på at mappa er tom? ", @"Noe feil skjedde. Sikker på at mappa er tom? ") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                
                                            }];
         }];
