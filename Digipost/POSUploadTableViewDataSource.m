@@ -8,6 +8,7 @@
 
 #import "POSUploadTableViewDataSource.h"
 #import "POSModelManager.h"
+#import "POSFolder+Methods.h"
 #import <CoreData/CoreData.h>
 #import "POSMailbox.h"
 
@@ -55,14 +56,18 @@
 {
     // Configure the cell with objects from your store
     POSMailbox *objectInFetchedResultsController = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = objectInFetchedResultsController.name;
+    if ([objectInFetchedResultsController respondsToSelector:@selector(displayName)]) {
+        POSFolder *folder = (id)objectInFetchedResultsController;
+        cell.textLabel.text = folder.displayName;
+    } else {
+        cell.textLabel.text = objectInFetchedResultsController.name;
+    }
 }
 
 // convenience method for fetching objects at index path from the database
 - (id)managedObjectAtIndexPath:(NSIndexPath *)indexPath
 {
     POSMailbox *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
     return managedObject;
 }
 
@@ -138,7 +143,6 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
     switch (type) {
-
         case NSFetchedResultsChangeInsert:
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
