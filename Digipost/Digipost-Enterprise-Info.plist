@@ -6,18 +6,18 @@
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
 	<string>Digipost</string>
-<key>CFBundleDocumentTypes</key>
-<array>
-	<dict>
-		<key>CFBundleTypeName</key>
-		<string>All Files</string>
-		<key>LSItemContentTypes</key>
-		<array>
-			<string>public.data</string>
-			<string>public.content</string>
-		</array>
-	</dict>
-</array>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>All Files</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.data</string>
+				<string>public.content</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
@@ -42,7 +42,7 @@
 		<string>foundmonmed-webfont.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>Main_iPhone</string>
+	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main_iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>

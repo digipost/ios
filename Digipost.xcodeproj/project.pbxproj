@@ -166,6 +166,9 @@
 		EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		EC0F8D6119CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		EC0F8D6219CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
+		EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
+		EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
+		EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
@@ -386,6 +389,7 @@
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
 		EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SHCAppDelegate+Appearance.swift"; sourceTree = "<group>"; };
+		EC14B93419D1ADAB00570923 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../LaunchScreen.xib; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
 		EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSPredicate+CommonPredicates.m"; sourceTree = "<group>"; };
@@ -611,6 +615,7 @@
 		83F703551855DB1A003DABE1 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				EC14B93419D1ADAB00570923 /* LaunchScreen.xib */,
 				83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */,
 				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
 			);
@@ -931,6 +936,7 @@
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
+				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -946,6 +952,7 @@
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
+				EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -961,6 +968,7 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
+				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
