@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -763,33 +763,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz1-8a-XML">
-                                <rect key="frame" x="30" y="360" width="250" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tz1-8a-XML">
+                                <rect key="frame" x="44" y="11" width="250" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="ZEW-K2-jkx"/>
                                     <constraint firstAttribute="height" constant="50" id="owG-RD-e8f"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="FoundryMonoline-Regular" family="FoundryMonoline-Regular" pointSize="14"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Lastopp_norsk_vertikal" translatesAutoresizingMaskIntoConstraints="NO" id="t9F-KS-Hxy">
-                                <rect key="frame" x="9" y="-5" width="352" height="501"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_norsk_vertikal" translatesAutoresizingMaskIntoConstraints="NO" id="t9F-KS-Hxy">
+                                <rect key="frame" x="15" y="78" width="290" height="412"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="MCC-G6-O0X"/>
-                                    <constraint firstAttribute="height" constant="200" id="yes-wh-qR6"/>
+                                    <constraint firstAttribute="width" secondItem="t9F-KS-Hxy" secondAttribute="height" multiplier="145:206" id="Xcb-Na-mJ2"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="t9F-KS-Hxy" firstAttribute="top" secondItem="GK6-iG-9iF" secondAttribute="bottom" constant="21" id="324-9W-tat"/>
-                            <constraint firstItem="t9F-KS-Hxy" firstAttribute="centerX" secondItem="iCs-BM-gpW" secondAttribute="centerX" id="8dl-ee-hm2"/>
-                            <constraint firstAttribute="centerX" secondItem="tz1-8a-XML" secondAttribute="centerX" id="Wvi-td-jGY"/>
-                            <constraint firstItem="tz1-8a-XML" firstAttribute="top" secondItem="t9F-KS-Hxy" secondAttribute="bottom" constant="20" id="Xxl-5i-hjb"/>
+                            <constraint firstItem="t9F-KS-Hxy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="tz1-8a-XML" secondAttribute="bottom" constant="17" id="2nx-Sc-qX6"/>
+                            <constraint firstItem="tz1-8a-XML" firstAttribute="top" secondItem="GK6-iG-9iF" secondAttribute="bottom" constant="11" id="C8h-b7-42L"/>
+                            <constraint firstAttribute="centerX" secondItem="tz1-8a-XML" secondAttribute="centerX" constant="-9" id="Wvi-td-jGY"/>
+                            <constraint firstAttribute="centerX" secondItem="t9F-KS-Hxy" secondAttribute="centerX" id="qSd-e1-Jw7"/>
+                            <constraint firstItem="uXc-j9-3uG" firstAttribute="top" secondItem="t9F-KS-Hxy" secondAttribute="bottom" constant="14" id="vGq-5R-DAF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Last opp" id="BcG-PX-hsw"/>
+                    <connections>
+                        <outlet property="uploadImage" destination="t9F-KS-Hxy" id="u0p-8I-iMc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3U-NM-6z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1330,7 +1332,7 @@
     </scenes>
     <resources>
         <image name="File_128" width="64" height="64"/>
-        <image name="Lastopp_norsk_vertikal" width="352" height="501"/>
+        <image name="Lastopp_norsk_vertikal" width="373" height="501"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="empty-folder-fly" width="203" height="233"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
@@ -1350,7 +1352,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="vJp-VT-rtF"/>
         <segue reference="j20-qk-TDu"/>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="svS-B5-imh"/>
         <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
