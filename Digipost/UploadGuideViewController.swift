@@ -27,37 +27,18 @@ class UploadGuideViewController: UIViewController {
                 uploadImage.image = UIImage(named: "Lastopp_engelsk_vertikal")
             }
             view.updateConstraints()
-            
         }
-        
-//        NSString *identifier = [[NSLocale autoupdatingCurrentLocale] localeIdentifier];
-//        NSArray *segments = [identifier componentsSeparatedByString:@"_"];
-//        
-//        if ( [segments count] > 1 ) {
-//            identifier = segments[0];
-//        } else {
-//            identifier = identifier;
-//        }
-//        
-//        NSString *fullname = [NSString stringWithFormat:@"%@-%@", name, identifier];
-//        UIImage *image = [UIImage imageNamed:fullname];
-//        
-//        if ( image ) {
-//            return image;
-//        }
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "kFolderViewControllerNavigatedInList", object: nil)
     }
     
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
+            uploadImage.image = UIImage(named: "Veileder_lastopp_horisontalt")
+        }else {
+            uploadImage.image = UIImage(named: "Veileder")
+        }
+        
     }
-    */
-    
 }
