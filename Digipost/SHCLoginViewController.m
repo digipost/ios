@@ -20,6 +20,7 @@
 #import "SHCLoginViewController.h"
 #import "SHCOAuthViewController.h"
 #import "POSModelManager.h"
+#import "POSMailbox+Methods.h"
 #import "POSFoldersViewController.h"
 #import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
@@ -53,8 +54,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)dealloc
 {
-    @try
-    {
+    @try {
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:kShowLoginViewControllerNotificationName
                                                       object:nil];
@@ -73,8 +73,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     self.screenName = kLoginViewControllerScreenName;
 
-    @try
-    {
+    @try {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(popToSelf:)
                                                      name:kShowLoginViewControllerNotificationName
@@ -97,15 +96,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-            if ([resource.mailboxes.allObjects count] == 1) {
-                //                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
-                //                                          sender:self];
+            if ([resource.mailboxes.allObjects count] > 0) {
                 [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
                                           sender:self];
-            } else {
-                [self performSegueWithIdentifier:@"accountSegue"
-                                          sender:self];
             }
+            //                [self performSegueWithIdentifier:@"accountSegue"
+            //                                          sender:self];
+            //            }
         }
     }
 
@@ -138,8 +135,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         OAuthViewController.delegate = self;
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
-        POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        POSMailbox *mailbox = resource.mailboxes.allObjects[0];
+        POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;

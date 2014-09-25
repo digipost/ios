@@ -15,6 +15,7 @@ extern NSString *const kMailboxEntityName;
 
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (POSMailbox *)mailboxOwnerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)deleteAllMailboxesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSInteger)numberOfMailboxesStoredInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (POSMailbox *)mailboxInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;

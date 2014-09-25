@@ -139,6 +139,27 @@ NSString *const kMailboxEntityName = @"Mailbox";
     return results[0];
 }
 
++ (POSMailbox *)mailboxOwnerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [NSEntityDescription entityForName:kMailboxEntityName
+                                      inManagedObjectContext:managedObjectContext];
+
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(owner)), @YES];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
+    if (error) {
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+    if ([results count] > 0) {
+        return results[0];
+    }
+
+    return nil;
+}
+
 + (NSInteger)numberOfMailboxesStoredInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
