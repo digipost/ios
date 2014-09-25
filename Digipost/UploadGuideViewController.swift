@@ -17,18 +17,9 @@ class UploadGuideViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserverForName("kFolderViewControllerNavigatedInList", object: nil, queue: nil) { note in
            self.dismissViewControllerAnimated(false, completion: nil)
         }
-        let identifier = NSLocale.autoupdatingCurrentLocale().localeIdentifier
-        let segments = identifier.componentsSeparatedByString("_")
+        uploadImage.image = UIImage.localizedImage(interfaceOrientation)
+        view.updateConstraints()
         
-        if let localeName = segments[0] as String? {
-            if (localeName.lowercaseString == "nb"){
-                uploadImage.image = UIImage(named: "Lastopp_norsk_vertikal")
-            }else {
-                let image = UIImage(named: "Lastopp_engelsk_vertikal")
-                uploadImage.image = UIImage(named: "Lastopp_engelsk_vertikal")
-            }
-            view.updateConstraints()
-        }
         if (UIInterfaceOrientationIsLandscape(interfaceOrientation)){
             self.uploadImage.hidden = true
             self.horizontalUploadImage.hidden = false
@@ -42,6 +33,7 @@ class UploadGuideViewController: UIViewController {
     }
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
+        uploadImage.image = UIImage.localizedImage(toInterfaceOrientation)
         if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
             self.uploadImage.hidden = true
             self.horizontalUploadImage.hidden = false
