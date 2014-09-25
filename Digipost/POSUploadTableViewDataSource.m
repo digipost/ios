@@ -7,6 +7,7 @@
 //
 
 #import "POSUploadTableViewDataSource.h"
+#import "POSFolderTableViewCell.h"
 #import "POSModelManager.h"
 #import "POSFolder+Methods.h"
 #import <CoreData/CoreData.h>
@@ -46,8 +47,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    id objectInFetchedResultsController = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UITableViewCell *cell;
+    if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"FolderCellIdentifier" forIndexPath:indexPath];
+        POSFolder *folder = (id)objectInFetchedResultsController;
+        POSFolderTableViewCell *foldercell = (id) cell;
+        foldercell.folderNameLabel.text = folder.displayName;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        POSMailbox *mailbox = (id)objectInFetchedResultsController;
+        cell.textLabel.text = mailbox.name;
+    }
+
     return cell;
 }
 
@@ -56,11 +68,12 @@
 {
     // Configure the cell with objects from your store
     POSMailbox *objectInFetchedResultsController = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    if ([objectInFetchedResultsController respondsToSelector:@selector(displayName)]) {
+    if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
         POSFolder *folder = (id)objectInFetchedResultsController;
         cell.textLabel.text = folder.displayName;
     } else {
-        cell.textLabel.text = objectInFetchedResultsController.name;
+        POSMailbox *mailbox = (id)objectInFetchedResultsController;
+        cell.textLabel.text = mailbox.name;
     }
 }
 

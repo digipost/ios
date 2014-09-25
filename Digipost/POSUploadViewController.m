@@ -36,7 +36,9 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
+        self.navigationItem.title = NSLocalizedString(@"navbar title upload folder", @"");
     } else {
+        self.navigationItem.title = NSLocalizedString(@"navbar title upload mailbox", @"");
         self.dataSource.entityDescription = kMailboxEntityName;
     }
     self.tableView.delegate = self;
@@ -86,6 +88,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         };
     }
 }
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
