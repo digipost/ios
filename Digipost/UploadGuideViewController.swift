@@ -11,6 +11,7 @@ import UIKit
 class UploadGuideViewController: UIViewController {
     @IBOutlet weak var uploadImage: UIImageView!
     
+    @IBOutlet weak var horizontalUploadImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserverForName("kFolderViewControllerNavigatedInList", object: nil, queue: nil) { note in
@@ -28,6 +29,13 @@ class UploadGuideViewController: UIViewController {
             }
             view.updateConstraints()
         }
+        if (UIInterfaceOrientationIsLandscape(interfaceOrientation)){
+            self.uploadImage.hidden = true
+            self.horizontalUploadImage.hidden = false
+        }else {
+            self.uploadImage.hidden = false
+            self.horizontalUploadImage.hidden = true
+        }   
     }
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "kFolderViewControllerNavigatedInList", object: nil)
@@ -35,10 +43,11 @@ class UploadGuideViewController: UIViewController {
     
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
         if (UIInterfaceOrientationIsLandscape(toInterfaceOrientation)){
-            uploadImage.image = UIImage(named: "Veileder_lastopp_horisontalt")
-        }else {
-            uploadImage.image = UIImage(named: "Veileder")
+            self.uploadImage.hidden = true
+            self.horizontalUploadImage.hidden = false
+        } else {
+            self.uploadImage.hidden = false
+            self.horizontalUploadImage.hidden = true
         }
-        
     }
 }
