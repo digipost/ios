@@ -14,6 +14,7 @@ class UploadGuideViewController: UIViewController {
     @IBOutlet weak var horizontalUploadImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.uploadImage.accessibilityLabel = NSLocalizedString("upload guide image accessability hint", comment: "when user taps on image, this text should be read")
         NSNotificationCenter.defaultCenter().addObserverForName("kFolderViewControllerNavigatedInList", object: nil, queue: nil) { note in
            self.dismissViewControllerAnimated(false, completion: nil)
         }
@@ -28,6 +29,7 @@ class UploadGuideViewController: UIViewController {
             self.horizontalUploadImage.hidden = true
         }   
     }
+    
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "kFolderViewControllerNavigatedInList", object: nil)
     }
