@@ -9,7 +9,36 @@ get_pw () {
   security 2>&1 >/dev/null find-generic-password -ga test \
   |ruby -e 'print $1 if STDIN.gets =~ /^password: "(.*)"$/'
 }
-if [ "${2}" == "loginVPN" ];then
+
+
+# Default values
+
+RUNS=1
+
+for i in "$@"
+do
+case $i in
+    -p=*|--prefix=*)
+    PREFIX="${i#*=}"
+
+    ;;
+    -v|--vpn)
+    VPN="1"
+    ;;
+    -r=*|--runs=*)
+    RUNS="${i#*=}"
+    ;;
+    --default)
+    DEFAULT=YES
+    ;;
+    *)
+            # unknown option
+    ;;
+esac
+done
+
+## Login VPN
+if [ "${VPN}" == "1" ];then
   echo  "fetching VPN credentials from keychain \"test\""
   scutil --nc start "VPN (Cisco IPSec)"
   sleep 2
@@ -37,9 +66,15 @@ fullTracetemplatePath="$DIR$scriptPath"
 simulator="iPhone 6 (8.0 Simulator)"
 
 appPath="$(find ~/Library/Developer/CoreSimulator/Devices -name "${appName}" | head -n 1)"
-commandToExecute=`instruments -w "${simulator}" -t "${fullTracetemplatePath}" "${appPath}"`
-echo "$commandToExecute 2>&1"
-echo "$commandToExecute 2>&1"
-echo "$commandToExecute 2>&1"
-echo "$commandToExecute 2>&1"
-echo "$commandToExecute 2>&1"
+COUNTER=1
+while [  $COUNTER -lt $RUNS ]; do
+  echo RUN NUMBER = $COUNTER
+  let COUNTER=COUNTER+1
+  echo `instruments -w "${simulator}" -t "${fullTracetemplatePath}" "${appPath}" 1>&2`
+done
+
+
+
+#
+#echo ""
+#echo `instruments -w "${simulator}" -t "${fullTracetemplatePath}" "${appPath}" 1>&2`
