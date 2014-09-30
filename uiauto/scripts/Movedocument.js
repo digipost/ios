@@ -2,49 +2,46 @@
 var target = UIATarget.localTarget();
 
 
-target.frontMostApp().mainWindow().buttons()["Sign In"].tap();
-UIATarget.localTarget().delay(2)
-UIATarget.localTarget().pushTimeout(1);
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].textFields()[0].tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().keyboard().typeString("30086835378");
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
-target.frontMostApp().keyboard().typeString("Qwer12345");
-target.frontMostApp().windows()[1].toolbar().buttons()["Done"].tap();
-UIATarget.localTarget().pushTimeout(4);
-target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
-UIATarget.localTarget().delay(1)
-
 /// start move to first letter in list
-target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()[0].tap();
-UIATarget.localTarget().pushTimeout(1);
-UIATarget.localTarget().delay(1)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].visibleCells()[0].tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].elements()[0].tap();
+UIATarget.localTarget().delay(1);
+
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.15, y:0.03}});
+target.delay(1);
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.25, y:0.06}});
+target.delay(1);
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.58, y:0.07}});
+target.delay(1);
+
 
 // End move to first letter in list
 // start Move letter
 
+target.delay(2);
+if (target.frontMostApp().toolbar().buttons()[0].checkIsValid()) {
+target.frontMostApp().toolbar().buttons()[0].tap();
+} else {
+    
+    target.frontMostApp().toolbar().buttons()["Move"].tap();
+    
+    
+    
+}
+UIATarget.localTarget().delay(2);
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.34, y:0.81}});
 
-target.frontMostApp().toolbar().buttons()["Move"].tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()["Betalte fakturaer"].tap();
-UIATarget.localTarget().delay(1)
+
+UIATarget.localTarget().delay(1);
 target.frontMostApp().navigationBar().leftButton().tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()["Betalte fakturaer"].tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()[0].tap();
-UIATarget.localTarget().delay(1)
-target.frontMostApp().toolbar().buttons()["Move"].tap();
-UIATarget.localTarget().delay(0.5)
-target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()["Mailbox"].tap();
+UIATarget.localTarget().delay(1);
+
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.37, y:0.39}});
+UIATarget.localTarget().delay(1);
+target.frontMostApp().mainWindow().tableViews()[0].cells()[0].tap();
+target.frontMostApp().toolbar().buttons()[0].tap();
+target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.28, y:0.79}});
+
+
+
 target.frontMostApp().navigationBar().leftButton().tap();
 target.frontMostApp().navigationBar().leftButton().tap();
 
-// Log out part
-target.frontMostApp().navigationBar().buttons()["Logg ut"].tap();
-target.frontMostApp().actionSheet().buttons()["Sign Out"].tap();
