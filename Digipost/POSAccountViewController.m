@@ -43,9 +43,6 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.tableView addSubview:self.refreshControl];
-
     self.dataSource = [[POSAccountViewTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
 
     // hack to set title and back button when the view was instantiated programmatically instead of by user
@@ -56,6 +53,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     firstVC.navigationItem.leftBarButtonItem = nil;
     firstVC.navigationItem.backBarButtonItem = nil;
     [firstVC.navigationItem setTitleView:nil];
+
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         if (rootResource) {
@@ -63,10 +61,6 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
                                       sender:self];
         }
     }
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(updateContentsFromServerUserInitiatedRequest:)
-//                                                 name:kRefreshContentNotification
-//                                               object:@NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -90,7 +84,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     self.navigationItem.backBarButtonItem = nil;
     self.navigationItem.leftBarButtonItem = nil;
     [self.navigationController.navigationBar.topItem setRightBarButtonItem:self.logoutBarButtonItem];
-    
+
     [self.navigationController.navigationBar.topItem setTitle:title];
 }
 
