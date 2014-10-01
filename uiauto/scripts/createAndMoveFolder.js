@@ -1,11 +1,15 @@
 
 var target = UIATarget.localTarget();
-
+UIALogger.logDebug("start createAndMoveFolder.js");
 // end login
 target.delay(1);
 
+// tap user account
 target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.35, y:0.06}});
+
+// tap edit
 target.frontMostApp().navigationBar().rightButton().tap();
+
 target.delay(1);
 target.frontMostApp().mainWindow().tableViews()[0].cells()["Add folder"].tap();
 target.frontMostApp().mainWindow().collectionViews()[0].cells()[1].images()["Letter"].tapWithOptions({tapOffset:{x:0.49, y:0.36}});

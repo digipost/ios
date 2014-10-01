@@ -1,5 +1,6 @@
 
 var target = UIATarget.localTarget();
+UIALogger.logDebug("start renameExisting.js");
 target.frontMostApp().mainWindow().tableViews()[0].tapWithOptions({tapOffset:{x:0.39, y:0.03}});
 target.frontMostApp().navigationBar().rightButton().tap();
 target.frontMostApp().mainWindow().tableViews()[0].dragInsideWithOptions({startOffset:{x:0.93, y:0.54}, endOffset:{x:0.93, y:0.39}, duration:1.1});
