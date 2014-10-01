@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -143,7 +142,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-white" translatesAutoresizingMaskIntoConstraints="NO" id="LLD-bN-g7Z" userLabel="Arrow Image View">
-                                            <rect key="frame" x="297" y="19" width="8" height="13"/>
+                                            <rect key="frame" x="294" y="19" width="8" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="13" id="KaP-0m-kbX"/>
                                                 <constraint firstAttribute="width" constant="8" id="pOs-hY-SKW"/>
@@ -157,9 +156,9 @@
                                         <constraint firstItem="o8S-n8-YQk" firstAttribute="leading" secondItem="Yaj-27-Xs6" secondAttribute="leading" constant="40" id="6Vi-Pu-91E"/>
                                         <constraint firstAttribute="centerY" secondItem="aua-uF-gO9" secondAttribute="centerY" id="GBq-He-7t0"/>
                                         <constraint firstAttribute="centerY" secondItem="LLD-bN-g7Z" secondAttribute="centerY" id="HLl-8o-Jhk"/>
-                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="O2Y-vy-HSD" secondAttribute="trailing" constant="17" id="KPh-MG-DSl"/>
-                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="aua-uF-gO9" secondAttribute="trailing" constant="17" id="LrN-Hl-A9u"/>
-                                        <constraint firstAttribute="trailing" secondItem="LLD-bN-g7Z" secondAttribute="trailing" constant="15" id="QLd-7C-BaU"/>
+                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="O2Y-vy-HSD" secondAttribute="trailing" constant="14" id="KPh-MG-DSl"/>
+                                        <constraint firstItem="LLD-bN-g7Z" firstAttribute="leading" secondItem="aua-uF-gO9" secondAttribute="trailing" constant="14" id="LrN-Hl-A9u"/>
+                                        <constraint firstAttribute="trailing" secondItem="LLD-bN-g7Z" secondAttribute="trailing" constant="18" id="QLd-7C-BaU"/>
                                         <constraint firstItem="vhx-hr-I5w" firstAttribute="leading" secondItem="Yaj-27-Xs6" secondAttribute="leading" constant="15" id="YzC-ys-K6t"/>
                                         <constraint firstAttribute="trailing" secondItem="o8S-n8-YQk" secondAttribute="trailing" constant="54" id="dgu-bz-A44"/>
                                         <constraint firstAttribute="centerY" secondItem="O2Y-vy-HSD" secondAttribute="centerY" id="eiX-jh-cZM"/>
@@ -244,7 +243,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zFM-VK-N50">
                                                     <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="File_128" translatesAutoresizingMaskIntoConstraints="NO" id="UdR-Aj-5tr">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UdR-Aj-5tr">
                                                             <rect key="frame" x="1" y="3" width="58" height="53"/>
                                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         </imageView>
@@ -280,7 +279,9 @@
                             <constraint firstItem="V9e-Aa-hoH" firstAttribute="centerX" secondItem="TjR-oK-wrN" secondAttribute="centerX" id="Bid-VK-FXA"/>
                             <constraint firstItem="9VM-il-yR1" firstAttribute="top" secondItem="TjR-oK-wrN" secondAttribute="top" constant="20" symbolic="YES" id="Btj-Gb-295"/>
                             <constraint firstItem="oRD-gQ-K1V" firstAttribute="top" secondItem="V9e-Aa-hoH" secondAttribute="bottom" constant="92" id="Cp4-d8-mJc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V9e-Aa-hoH" secondAttribute="trailing" constant="4" id="Wrm-ll-xcn"/>
                             <constraint firstItem="V9e-Aa-hoH" firstAttribute="top" secondItem="9VM-il-yR1" secondAttribute="bottom" constant="31" id="Wxk-7n-ap0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9VM-il-yR1" secondAttribute="trailing" constant="5" id="bPT-9B-IVu"/>
                             <constraint firstItem="9VM-il-yR1" firstAttribute="leading" secondItem="V9e-Aa-hoH" secondAttribute="leading" id="ddl-em-Obo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9VM-il-yR1" secondAttribute="trailing" constant="5" id="ezD-xU-GZm"/>
                             <constraint firstItem="V9e-Aa-hoH" firstAttribute="leading" secondItem="TjR-oK-wrN" secondAttribute="leadingMargin" constant="4" id="yPX-Xf-P3p"/>
@@ -813,7 +814,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3U-NM-6z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="614" y="1437"/>
+            <point key="canvasLocation" x="448" y="1385"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O5a-7z-blq">
@@ -1431,7 +1432,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="File_128" width="64" height="64"/>
         <image name="Lastopp_norsk_vertikal" width="320" height="327"/>
         <image name="Lastopp_veileder_english_horisontal" width="601" height="203"/>
         <image name="Searchbackground" width="6" height="31"/>
@@ -1451,8 +1451,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vJp-VT-rtF"/>
         <segue reference="nJS-Zx-WgQ"/>
+        <segue reference="vJp-VT-rtF"/>
         <segue reference="geX-1f-yyf"/>
         <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
