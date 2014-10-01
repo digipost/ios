@@ -34,11 +34,12 @@ class UploadGuideViewController: UIViewController {
     }
     func setImageForOrientation(forOrientation: UIInterfaceOrientation){
         
-        if let horizontalImage = uploadImage {
+        if let horizontalImage = horizontalUploadImage {
             if (UIInterfaceOrientationIsLandscape(forOrientation)){
                 horizontalImage.hidden = false
-            }else {
+            } else {
                 horizontalImage.hidden = true
+                
             }
         }
         if let verticalImage = uploadImage {
