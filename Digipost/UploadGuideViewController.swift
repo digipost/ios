@@ -15,6 +15,7 @@ class UploadGuideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.uploadImage.accessibilityLabel = NSLocalizedString("upload guide image accessability hint", comment: "when user taps on image, this text should be read")
+        self.uploadImage.isAccessibilityElement = true
         NSNotificationCenter.defaultCenter().addObserverForName("kFolderViewControllerNavigatedInList", object: nil, queue: nil) { note in
            self.dismissViewControllerAnimated(false, completion: nil)
         }
