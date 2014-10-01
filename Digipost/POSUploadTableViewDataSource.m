@@ -54,6 +54,7 @@
         POSFolder *folder = (id)objectInFetchedResultsController;
         POSFolderTableViewCell *foldercell = (id) cell;
         foldercell.folderNameLabel.text = folder.displayName;
+        cell.backgroundColor = RGB(64, 66, 69);
     } else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
         POSMailbox *mailbox = (id)objectInFetchedResultsController;
