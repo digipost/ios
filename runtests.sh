@@ -14,7 +14,7 @@ get_pw () {
 # Default values
 
 RUNS=1
-
+APPNAME=""
 for i in "$@"
 do
 case $i in
@@ -22,12 +22,19 @@ case $i in
     PREFIX="${i#*=}"
 
     ;;
+    -a=*|--app=*)
+    APPNAME="${i#*=}"
+
+    ;;
     -v|--vpn)
     VPN="1"
+
     ;;
     -r=*|--runs=*)
     RUNS="${i#*=}"
+
     ;;
+
     --default)
     DEFAULT=YES
     ;;
@@ -47,25 +54,19 @@ if [ "${VPN}" == "1" ];then
 fi
 
 
-SCRIPT="realpath -s $0"
+SCRIPT="realpath -s $APPNAME"
 SCRIPTPATH='dirname $SCRIPT'
 s=test1
 s=$s"test2"
 DIR=$(cd `dirname "${BASH_SOURCE[0]}"` && pwd)
-appName="s"
-if [ "${1}" == "" ];then
-  appName="MinPosten QA.app"
-else
-  appName=$1
-fi
 
-scriptPath="/testTemplate.traceTemplate"
+scriptPath="/iPhoneTemplate.traceTemplate"
 
 fullTracetemplatePath="$DIR$scriptPath"
 
 simulator="iPhone 6 (8.0 Simulator)"
 
-appPath="$(find ~/Library/Developer/CoreSimulator/Devices -name "${appName}" | head -n 1)"
+appPath="$(find ~/Library/Developer/CoreSimulator/Devices -name "${APPNAME}" | head -n 1)"
 COUNTER=1
 while [  $COUNTER -lt $RUNS ]; do
   echo RUN NUMBER = $COUNTER
