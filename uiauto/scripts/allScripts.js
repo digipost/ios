@@ -6,26 +6,4 @@ var target = UIATarget.localTarget();
 #import "createAndMoveFolder.js"
 #import "Delete1dokument.js"
 #import "renameExisting_iPhone.js"
-
-
-#import "MoveDocument.js"
-#import "createAndMoveFolder.js"
-#import "Delete1dokument.js"
-#import "renameExisting_iPhone.js"
-
-
-#import "MoveDocument.js"
-#import "createAndMoveFolder.js"
-#import "Delete1dokument.js"
-#import "renameExisting_iPhone.js"
-
-#import "MoveDocument.js"
-#import "createAndMoveFolder.js"
-#import "Delete1dokument.js"
-#import "renameExisting_iPhone.js"
-
-
-#import "MoveDocument.js"
-#import "createAndMoveFolder.js"
-#import "Delete1dokument.js"
-#import "renameExisting_iPhone.js"
+#import "orientationChange.js"
