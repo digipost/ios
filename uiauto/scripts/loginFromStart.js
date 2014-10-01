@@ -17,7 +17,9 @@ if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
 target.popTimeout();
 target.delay(1);
 target.pushTimeout(3);
-target.frontMostApp().navigationBar().leftButton().tap();
+if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
+    target.frontMostApp().navigationBar().leftButton().tap();
+}
 target.popTimeout();
 
 target.pushTimeout(2);

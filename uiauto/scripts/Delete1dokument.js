@@ -19,6 +19,7 @@ target.frontMostApp().mainWindow().tableViews()[0].cells()[0].tap();
 // end deselect
 // start delete topmost cell
 target.frontMostApp().mainWindow().tableViews()[0].cells()[0].tap();
+UIATarget.localTarget().delay(1);
 target.frontMostApp().toolbar().buttons()[2].tap();
 UIATarget.localTarget().delay(2);
 target.frontMostApp().actionSheet().collectionViews()[0].cells()[0].buttons()[0].tap();
