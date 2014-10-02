@@ -17,9 +17,9 @@
 #import <HockeySDK/HockeySDK.h>
 #import <DDASLLogger.h>
 #import <DDTTYLogger.h>
+#import "POSFolder+Methods.h"
 #import <DDFileLogger.h>
 #import <GAI.h>
-
 #import "POSDocumentsViewController.h"
 #import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
@@ -67,10 +67,25 @@
 
 - (void)startUploading:(NSNotification *)notification
 {
+    NSDictionary *dict = notification.userInfo;
     if ([self.window hasCorrectNavigationHierarchyForShowingDocuments]) {
+        UINavigationController *navController = [self.window topMasterNavigationController];
+        POSDocumentsViewController *documentsViewController = [navController documentsViewControllerInHierarchy];
+        if (documentsViewController) {
+            POSMailbox *mailbox = dict[@"mailbox"];
+            POSFolder *folder = dict[@"folder"];
+
+            NSAssert([mailbox isKindOfClass:[POSMailbox class]], @"not correct class");
+
+            POSFoldersViewController *foldersViewController = [navController foldersViewControllerInHierarchy];
+            foldersViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
+            documentsViewController.folderName = folder.name;
+            documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+            documentsViewController.folderUri = folder.uri;
+            documentsViewController.folderDisplayName = folder.displayName;
+        }
         return;
     }
-    NSDictionary *dict = notification.userInfo;
     if (dict[@"mailbox"]) {
 
         UINavigationController *navController = [self.window topMasterNavigationController];
@@ -110,6 +125,7 @@
         documentsViewController.folderName = folder.name;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
         documentsViewController.folderUri = folder.uri;
+        documentsViewController.folderDisplayName = folder.displayName;
 
         [navController setViewControllers:newViewControllerArray
                                  animated:YES];
