@@ -46,7 +46,6 @@ extension UIWindow {
                                 return true
                             }
                         }
-                        
                     }
                 }
             }

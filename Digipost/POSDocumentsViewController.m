@@ -134,7 +134,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                        inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
-        [self updateNavbar];
+        self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
+                                                                     inFolderWithName:self.folderName];
     }
 
     [self updateContentsFromServerUserInitiatedRequest:@NO];
