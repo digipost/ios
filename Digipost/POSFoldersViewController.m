@@ -625,30 +625,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)uploadProgressDidStart:(NSNotification *)notification
 {
-    UIViewController *topViewController = [self.navigationController topViewController];
-
-    if ([topViewController isKindOfClass:[POSAccountViewController class]] || [topViewController isKindOfClass:[POSFoldersViewController class]]) {
-
-    } else {
-
-        [topViewController performSegueWithIdentifier:@"unwindToFoldersSegue" sender:self];
-    }
-
-    return;
-
-    POSDocumentsViewController *archiveViewController = (POSDocumentsViewController *)topViewController;
-
-    if (!([topViewController isKindOfClass:[POSDocumentsViewController class]] && [archiveViewController.folderName isEqualToString:kFolderArchiveName])) {
-
-        [self.navigationController popToViewController:self.navigationController.viewControllers[1]
-                                              animated:NO];
-        for (POSFolder *folder in self.folders) {
-            if ([[folder.name lowercaseString] isEqualToString:[kFolderArchiveName lowercaseString]]) {
-                [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                          sender:folder];
-            }
-        }
-    }
 }
 - (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
 {
