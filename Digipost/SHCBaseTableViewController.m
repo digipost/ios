@@ -197,9 +197,6 @@
                                                                                cacheName:nil];
     _fetchedResultsController.delegate = self;
 
-    NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest
-                                                                                           error:nil];
-
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
         NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
