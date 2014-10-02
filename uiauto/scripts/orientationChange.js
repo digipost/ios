@@ -3,7 +3,6 @@ var target = UIATarget.localTarget();
 
 target.delay(1);
 UIATarget.localTarget().pushTimeout(2);
-target.setDeviceOrientation(UIA_DEVICE_ORIENTATION_LANDSCAPERIGHT);
 target.pushTimeout(15);
 target.frontMostApp().mainWindow().tableViews()[0].cells()[0].tap();
 target.popTimeout();
@@ -53,4 +52,3 @@ target.frontMostApp().navigationBar().leftButton().tap();
 target.frontMostApp().navigationBar().leftButton().tap();
 target.popTimeout();
 
-target.setDeviceOrientation(UIA_DEVICE_ORIENTATION_PORTRAIT);
