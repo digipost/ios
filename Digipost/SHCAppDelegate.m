@@ -19,6 +19,7 @@
 #import <DDTTYLogger.h>
 #import <DDFileLogger.h>
 #import <GAI.h>
+
 #import "POSDocumentsViewController.h"
 #import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
@@ -30,6 +31,7 @@
 #import "POSAPIManager.h"
 #import "POSMailbox+Methods.h"
 #import "POSLetterViewController.h"
+#import "SHCLoginViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
@@ -65,6 +67,9 @@
 
 - (void)startUploading:(NSNotification *)notification
 {
+    if ([self.window hasCorrectNavigationHierarchyForShowingDocuments]) {
+        return;
+    }
     NSDictionary *dict = notification.userInfo;
     if (dict[@"mailbox"]) {
 
@@ -73,17 +78,29 @@
         UIViewController *topViewController = [self.window topMasterViewController];
 
         [navController popToRootViewControllerAnimated:NO];
-        POSAccountViewController *accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+
+        POSAccountViewController *accountViewController;
+        if ([navController.viewControllers[0] isKindOfClass:[POSAccountViewController class]]) {
+            accountViewController = navController.viewControllers[0];
+        } else {
+            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        }
+
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
 
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
         // add account vc as second view controller in navigation controller
         UIViewController *loginViewController = topViewController;
-        [newViewControllerArray addObject:loginViewController];
+        // for iphone root controller will be login controller
+        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
+            [newViewControllerArray addObject:loginViewController];
+            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        }
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
+
         POSMailbox *mailbox = dict[@"mailbox"];
         POSFolder *folder = dict[@"folder"];
 
@@ -96,11 +113,6 @@
 
         [navController setViewControllers:newViewControllerArray
                                  animated:YES];
-
-        if ([topViewController isKindOfClass:[POSDocumentsViewController class]]) {
-
-        } else {
-        }
     }
 }
 
