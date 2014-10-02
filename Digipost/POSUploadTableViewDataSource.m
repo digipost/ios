@@ -72,6 +72,9 @@
         foldercell.folderNameLabel.text = folder.displayName;
         POSFolderIcon *folderIcon = [POSFolderIcon folderIconWithName:folder.iconName];
         UIImage *iconImage = folderIcon.smallImage;
+        if (iconImage == nil) {
+            iconImage = [UIImage imageNamed:@"list-icon-inbox"];
+        }
         foldercell.iconImageView.image = iconImage;
     } else {
         POSMailbox *mailbox = (id)objectInFetchedResultsController;
