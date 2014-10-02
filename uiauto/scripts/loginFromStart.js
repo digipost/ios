@@ -14,9 +14,6 @@ target.pushTimeout(3);
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
     target.frontMostApp().navigationBar().leftButton().tap();
 }
-target.popTimeout();
-target.delay(1);
-target.pushTimeout(3);
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
     target.frontMostApp().navigationBar().leftButton().tap();
 }
@@ -39,11 +36,11 @@ target.pushTimeout(10);
 target.frontMostApp().mainWindow().buttons()["Sign In"].tap();
 target.popTimeout();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].textFields()[0].tap();
-target.frontMostApp().keyboard().typeString("30086835378");
+target.frontMostApp().keyboard().typeString("13013500002");
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
-target.frontMostApp().keyboard().typeString("Qwer12345");
+target.frontMostApp().keyboard().typeString("Qwer1234");
 target.frontMostApp().windows()[1].toolbar().buttons()["Done"].tap();
 UIATarget.localTarget().pushTimeout(4);
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
