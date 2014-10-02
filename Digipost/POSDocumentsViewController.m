@@ -134,10 +134,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                        inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
-        self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
-                                                                     inFolderWithName:self.folderName];
     }
 
+    self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
+                                                                 inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
@@ -493,7 +493,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         mailboxDigipostAddress:self.mailboxDigipostAddress
         folderUri:self.folderUri
         success:^{
-                                                               
+            
                                                                [self updateFetchedResultsController];
                                                                [self programmaticallyEndRefresh];
                                                                [self updateNavbar];
