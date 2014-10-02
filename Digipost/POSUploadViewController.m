@@ -37,6 +37,8 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
         self.navigationItem.title = NSLocalizedString(@"navbar title upload folder", @"");
+        self.tableView.backgroundColor = RGB(64, 66, 69);
+        self.dataSource.selectedMailbox = self.chosenMailBox;
     } else {
         self.navigationItem.title = NSLocalizedString(@"navbar title upload mailbox", @"");
         self.dataSource.entityDescription = kMailboxEntityName;
@@ -44,6 +46,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     self.tableView.delegate = self;
     self.howtoUploadImageView.hidden = YES;
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -52,6 +55,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
 }
+
 - (void)closeView
 {
     [self dismissViewControllerAnimated:YES completion:^{}];
@@ -61,18 +65,20 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isShowingFolders == NO) {
+        self.chosenMailBox = [self.dataSource managedObjectAtIndexPath:indexPath];
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
 
+        [self dismissViewControllerAnimated:YES completion:^{}];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
         } failure:^(NSError *error) {}];
-
         NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
     }
 }
+
 - (NSDictionary *)notificationDictionary
 {
     if (self.chosenMailBox) {

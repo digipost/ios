@@ -11,6 +11,7 @@
 #import "POSModelManager.h"
 #import "POSFolder+Methods.h"
 #import <CoreData/CoreData.h>
+#import "POSFolderIcon.h"
 #import "POSMailbox.h"
 
 @interface POSUploadTableViewDataSource ()
@@ -40,7 +41,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-
     id<NSFetchedResultsSectionInfo> sectionInfo = [[self.fetchedResultsController sections] objectAtIndex:section];
     return [sectionInfo numberOfObjects];
 }
@@ -51,14 +51,11 @@
     UITableViewCell *cell;
     if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"FolderCellIdentifier" forIndexPath:indexPath];
-        POSFolder *folder = (id)objectInFetchedResultsController;
-        POSFolderTableViewCell *foldercell = (id) cell;
-        foldercell.folderNameLabel.text = folder.displayName;
+        [self configureCell:cell atIndexPath:indexPath];
         cell.backgroundColor = RGB(64, 66, 69);
     } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        POSMailbox *mailbox = (id)objectInFetchedResultsController;
-        cell.textLabel.text = mailbox.name;
+        cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+        [self configureCell:cell atIndexPath:indexPath];
     }
 
     return cell;
@@ -71,7 +68,11 @@
     POSMailbox *objectInFetchedResultsController = [self.fetchedResultsController objectAtIndexPath:indexPath];
     if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
         POSFolder *folder = (id)objectInFetchedResultsController;
-        cell.textLabel.text = folder.displayName;
+        POSFolderTableViewCell *foldercell = (id)cell;
+        foldercell.folderNameLabel.text = folder.displayName;
+        POSFolderIcon *folderIcon = [POSFolderIcon folderIconWithName:folder.iconName];
+        UIImage *iconImage = folderIcon.smallImage;
+        foldercell.iconImageView.image = iconImage;
     } else {
         POSMailbox *mailbox = (id)objectInFetchedResultsController;
         cell.textLabel.text = mailbox.name;
@@ -93,11 +94,21 @@
 
     NSEntityDescription *entity = [NSEntityDescription entityForName:self.entityDescription inManagedObjectContext:managedObjectContext];
     [fetchRequest setEntity:entity];
+    fetchRequest.predicate = [self predicate];
 
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
 
     [fetchRequest setSortDescriptors:@[ nameDescriptor ]];
     return fetchRequest;
+}
+
+- (NSPredicate *)predicate
+{
+    if (self.selectedMailbox) {
+        return [NSPredicate predicateWithFormat:@"mailbox == %@", self.selectedMailbox];
+    } else {
+        return nil;
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
