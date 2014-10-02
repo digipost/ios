@@ -18,13 +18,16 @@ extension POSLetterViewController {
         let decryptedFilePath = baseEncryptModel.decryptedFilePath()
         var fileURL : NSURL?
         var error : NSError?
-        if (NSFileManager.defaultManager().fileExistsAtPath(decryptedFilePath)){
-            fileURL = NSURL.fileURLWithPath(decryptedFilePath)
-        } else if (NSFileManager.defaultManager().fileExistsAtPath(encryptedFilePath)){
-            if (POSFileManager.sharedFileManager().decryptDataForBaseEncryptionModel(baseEncryptModel, error: &error)){
-                fileURL = NSURL.fileURLWithPath(decryptedFilePath)
+        if let decryptedFilePathNotNil = decryptedFilePath {
+            if (NSFileManager.defaultManager().fileExistsAtPath(decryptedFilePathNotNil)){
+                fileURL = NSURL.fileURLWithPath(decryptedFilePathNotNil)
+            } else if (NSFileManager.defaultManager().fileExistsAtPath(encryptedFilePath)){
+                if (POSFileManager.sharedFileManager().decryptDataForBaseEncryptionModel(baseEncryptModel, error: &error)){
+                    fileURL = NSURL.fileURLWithPath(decryptedFilePathNotNil)
+                }
             }
         }
+       
         
         if let actualError = error {
             return false

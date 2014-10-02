@@ -6,3 +6,6 @@
 #import "POSBaseEncryptedModel.h"
 #import "POSFileManager.h"
 #import "SHCAppDelegate.h"
+#import "POSAccountViewController.h"
+#import "POSDocumentsViewController.h"
+#import "POSFoldersViewController.h"
