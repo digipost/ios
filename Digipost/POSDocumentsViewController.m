@@ -238,12 +238,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     POSAttachment *attachment = [document mainDocumentAttachment];
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
-        cell.unreadImageView.hidden = [attachment.read boolValue];
         cell.lockedImageView.hidden = YES;
     } else {
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
     }
+    cell.unreadImageView.hidden = [attachment.read boolValue];
 
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
