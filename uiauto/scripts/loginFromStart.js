@@ -21,6 +21,7 @@ target.popTimeout();
 
 target.pushTimeout(2);
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid()) {
+    
     target.frontMostApp().navigationBar().leftButton().tap();
 }
 target.popTimeout();

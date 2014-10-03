@@ -15,6 +15,7 @@ get_pw () {
 
 RUNS=1
 APPNAME=""
+HELP="0"
 for i in "$@"
 do
 case $i in
@@ -35,6 +36,11 @@ case $i in
 
     ;;
 
+    -h|--help)
+    HELP="1"
+
+    ;;
+
     --default)
     DEFAULT=YES
     ;;
@@ -43,7 +49,6 @@ case $i in
     ;;
 esac
 done
-
 ## Login VPN
 if [ "${VPN}" == "1" ];then
   echo  "fetching VPN credentials from keychain \"test\""
@@ -52,7 +57,11 @@ if [ "${VPN}" == "1" ];then
   osascript -e "tell application \"System Events\" to keystroke \"$(get_pw)\""
   osascript -e "tell application \"System Events\" to keystroke return"
 fi
-
+## Show help
+if [ "${HELP}" == "1" ];then
+    echo "usage    : --app=[name of app to run] --runs=[number of runs to run scripts] --vpn [if set, connects to vpn]"
+    echo "example  : --app=\"Digipost-Test-Dpost.app\" --runs=10 --vpn"
+fi
 
 SCRIPT="realpath -s $APPNAME"
 SCRIPTPATH='dirname $SCRIPT'
@@ -72,6 +81,7 @@ while [  $COUNTER -lt $RUNS ]; do
   echo RUN NUMBER = $COUNTER
   let COUNTER=COUNTER+1
   echo `instruments -w "${simulator}" -t "${fullTracetemplatePath}" "${appPath}" 1>&2`
+  
 done
 
 
