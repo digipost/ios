@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -917,18 +918,22 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="zkJ-cS-2Jj">
-                                <rect key="frame" x="20" y="16" width="279" height="30"/>
+                                <rect key="frame" x="14" y="16" width="279" height="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ava-7r-o2s"/>
+                                    <constraint firstAttribute="width" constant="279" id="Egi-4P-1K2"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                             </textField>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-bg-V1J">
-                                <rect key="frame" x="20" y="57" width="280" height="615"/>
+                                <rect key="frame" x="14" y="57" width="280" height="615"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="Pk4-sJ-hKl"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="4" id="fry-ll-OoX">
                                     <size key="itemSize" width="60" height="60"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -979,11 +984,9 @@
                         </subviews>
                         <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="zkJ-cS-2Jj" firstAttribute="leading" secondItem="bbI-bg-V1J" secondAttribute="leading" id="8cc-MR-bIY"/>
                             <constraint firstItem="8hw-QI-XlF" firstAttribute="top" secondItem="bbI-bg-V1J" secondAttribute="bottom" constant="288" id="9si-TR-tdi"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bbI-bg-V1J" secondAttribute="trailing" constant="-12" id="EcC-Ew-siE"/>
-                            <constraint firstItem="zkJ-cS-2Jj" firstAttribute="leading" secondItem="uiw-aJ-zIH" secondAttribute="leadingMargin" id="MP2-68-eOQ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zkJ-cS-2Jj" secondAttribute="trailing" constant="-11" id="ZfM-wh-47G"/>
+                            <constraint firstAttribute="centerX" secondItem="bbI-bg-V1J" secondAttribute="centerX" id="eQB-Uf-1OX"/>
+                            <constraint firstAttribute="centerX" secondItem="zkJ-cS-2Jj" secondAttribute="centerX" id="gCg-6V-FYd"/>
                             <constraint firstItem="zkJ-cS-2Jj" firstAttribute="top" secondItem="doA-3k-pBD" secondAttribute="bottom" constant="16" id="rvZ-QR-P5S"/>
                             <constraint firstItem="bbI-bg-V1J" firstAttribute="top" secondItem="zkJ-cS-2Jj" secondAttribute="bottom" constant="11" id="s8H-G9-ghR"/>
                         </constraints>
