@@ -99,10 +99,21 @@
     [fetchRequest setEntity:entity];
     fetchRequest.predicate = [self predicate];
 
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-
-    [fetchRequest setSortDescriptors:@[ nameDescriptor ]];
+    NSSortDescriptor *sortDescriptor = [self sortDescriptor];
+    [fetchRequest setSortDescriptors:@[ sortDescriptor ]];
     return fetchRequest;
+}
+
+- (NSSortDescriptor *)sortDescriptor
+{
+    if ([self.entityDescription isEqualToString:kFolderEntityName]) {
+
+        NSSortDescriptor *indexDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
+        return indexDescriptor;
+    } else {
+        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+        return nameDescriptor;
+    }
 }
 
 - (NSPredicate *)predicate
