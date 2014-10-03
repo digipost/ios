@@ -10,11 +10,9 @@ import Foundation
 
 extension UIImage {
     class func localizedImage(orientation: UIInterfaceOrientation) -> UIImage?{
-        let identifier = NSLocale.autoupdatingCurrentLocale().localeIdentifier
-        let segments = identifier.componentsSeparatedByString("_")
-        
+        let locale = NSLocalizedString("language of app", comment: "the app language")
         var image: UIImage?
-        if let localeName = segments[0] as String? {
+        if let localeName = locale as String? {
             if (UIInterfaceOrientationIsLandscape(orientation)){
                 if (localeName.lowercaseString == "nb"){
                     image = UIImage(named: "Lastopp_veileder_norsk_horisontal")
@@ -24,7 +22,7 @@ extension UIImage {
             }else {
                 if (localeName.lowercaseString == "nb"){
                     image = UIImage(named: "Lastopp_norsk_vertikal")
-                }else {
+                } else {
                     image = UIImage(named: "Lastopp_engelsk_vertikal")
                 }
             }
