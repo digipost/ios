@@ -196,6 +196,9 @@
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
+		EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
+		EC51BA2A19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
+		EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
 		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
@@ -416,6 +419,7 @@
 		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
+		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
@@ -654,6 +658,7 @@
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */,
+				EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */,
 				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
 				EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */,
 				ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */,
@@ -1103,6 +1108,7 @@
 				EC2C82D6192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355181861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4D19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F601858E5790013F8C9 /* POSAttachment.m in Sources */,
@@ -1188,6 +1194,7 @@
 				EC2C82D5192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355171861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				EC51BA2A19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4C19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F5F1858E5790013F8C9 /* POSAttachment.m in Sources */,
@@ -1273,6 +1280,7 @@
 				EC2C82D4192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,

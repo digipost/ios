@@ -453,7 +453,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     for (POSFolder *folder in folders) {
 
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
-        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+        image = [image scaleToSize:CGSizeMake(18, 18)];
+
         if (image == nil) {
             image = [UIImage imageNamed:@"list-icon-inbox"];
         }
@@ -482,10 +484,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
             
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            
                                             if ([self.attachment.document isEqual:document]){
                                                 self.attachment = nil;
                                             }
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                         }else {
                                             [self.navigationController popToViewController:self.documentsViewController animated:YES];
                                         }
