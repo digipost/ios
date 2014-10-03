@@ -21,10 +21,9 @@ class UploadGuideViewController: UIViewController {
         }
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
             uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.Portrait)
-        }else {
+        } else {
             uploadImage.image = UIImage.localizedImage(interfaceOrientation)
             self.setImageForOrientation(interfaceOrientation)
-            
         }
         view.updateConstraints()
     }
@@ -45,7 +44,7 @@ class UploadGuideViewController: UIViewController {
         if let verticalImage = uploadImage {
             if (UIInterfaceOrientationIsLandscape(forOrientation)){
                 verticalImage.hidden = true
-            }else {
+            } else {
                 verticalImage.hidden = false
             }
         }
