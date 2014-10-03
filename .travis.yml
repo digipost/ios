@@ -1,6 +1,6 @@
 before_script:
   - echo -e 'ssh -o "StrictHostKeyChecking no" git@github.com'
-  - touch oauth.h
+  - oauth.example.h oauth.h
 language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Digipost-Enterprise
