@@ -11,9 +11,15 @@ import UIKit
 
 extension UIFont {
     class func digipostRegularFont() -> UIFont{
-        let regularFont = UIFont(name: "FoundryMonoline-Regular", size: 20)
+        let regularFont = UIFont(name: "HeleveticaNeue", size: 17)
         return regularFont
     }
+    
+    class func digipostBoldFont() -> UIFont{
+        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        return boldFont
+    }
+    
     class func digipostMediumFontSizeMedium() -> UIFont{
         let regularFont = UIFont(name: "FoundryMonoline-Medium", size: 18)
         return regularFont
