@@ -1424,7 +1424,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8eecd971-458a-4dbe-9b1a-8473f51ecef7";
+				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1457,7 +1457,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8eecd971-458a-4dbe-9b1a-8473f51ecef7";
+				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
