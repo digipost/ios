@@ -217,15 +217,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     // We go though all sub views of the UIWebView and set their backgroundColor to white
     UIView *v = self.webView;
     while (v) {
-        v.backgroundColor = RGB(236, 238, 241);
+        if (self.attachment) {
+            if ([self.attachment.fileType isEqualToString:@"html"]) {
+                self.webView.backgroundColor = [UIColor whiteColor];
+            } else {
+                v.backgroundColor = RGB(236, 238, 241);
+            }
+        } else {
+            v.backgroundColor = RGB(236, 238, 241);
+        }
         v = [v.subviews firstObject];
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - UIWebViewDelegate
@@ -235,6 +237,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.progressView.alpha = 0.0;
     self.webView.alpha = 1.0;
     [self updateNavbar];
+    if ([self.attachment.fileType isEqualToString:@"html"]) {
+        self.webView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -555,6 +560,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
+
     } else if (self.receipt) {
         baseEncryptionModel = self.receipt;
     }
@@ -646,7 +652,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                       tapBlock:error.tapBlock];
                 }
                 if ([self.attachment.fileType isEqualToString:@"html"]){
-                    self.webView.backgroundColor = [UIColor whiteColor];
+                    self.view.backgroundColor = [UIColor whiteColor];
                 }
                 
                                                                        
