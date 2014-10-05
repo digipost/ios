@@ -239,11 +239,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         cell.lockedImageView.hidden = YES;
+
     } else {
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
     }
-    cell.unreadImageView.hidden = [attachment.read boolValue];
+    if ([attachment.read boolValue]) {
+        cell.subjectLabel.font = [UIFont digipostRegularFont];
+    } else {
+        cell.subjectLabel.font = [UIFont digipostBoldFont];
+    }
 
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
@@ -409,9 +414,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
         if ([self.folderName isEqualToString:folder.name] == NO) {
+            image = [image scaleToSize:CGSizeMake(18, 18)];
             if (image == nil) {
                 image = [UIImage imageNamed:@"list-icon-inbox"];
             }
+
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
