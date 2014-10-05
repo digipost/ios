@@ -2,13 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Heart_active.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Heart_active2x.png"
+      "filename" : "Heart_valgt.pdf"
     }
   ],
   "info" : {

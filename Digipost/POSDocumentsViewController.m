@@ -43,10 +43,11 @@
 #import "NSPredicate+CommonPredicates.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
+#import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushDocumentsIdentifier = @"PushDocuments";
-
+NSString *const kDocumentsViewControllerIdentifier = @"documentsViewControllerIdentifier";
 // Google Analytics screen name
 NSString *const kDocumentsViewControllerScreenName = @"Documents";
 
@@ -110,16 +111,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
 
-    if ([self.folderName isEqualToString:kFolderArchiveName]) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(uploadProgressDidChange:)
-                                                     name:kAPIManagerUploadProgressChangedNotificationName
-                                                   object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(uploadProgressDidFinish:)
-                                                     name:kAPIManagerUploadProgressFinishedNotificationName
-                                                   object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadProgressDidChange:)
+                                                 name:kAPIManagerUploadProgressChangedNotificationName
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(uploadProgressDidFinish:)
+                                                 name:kAPIManagerUploadProgressFinishedNotificationName
+                                               object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(refreshContent)
                                                  name:kRefreshDocumentsContentNotificationName
@@ -135,9 +134,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                        inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
-        [self updateNavbar];
     }
 
+    self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
+                                                                 inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
@@ -145,14 +145,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     [[POSAPIManager sharedManager] cancelUpdatingDocuments];
 
-    if ([self.folderName isEqualToString:kFolderArchiveName]) {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:kAPIManagerUploadProgressChangedNotificationName
-                                                      object:nil];
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:kAPIManagerUploadProgressFinishedNotificationName
-                                                      object:nil];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kAPIManagerUploadProgressChangedNotificationName
+                                                  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:kAPIManagerUploadProgressFinishedNotificationName
+                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kRefreshDocumentsContentNotificationName
                                                   object:nil];
@@ -201,7 +199,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSInteger number = [super tableView:tableView
                   numberOfRowsInSection:section];
 
-    if ([self.folderName isEqualToString:kFolderArchiveName] && [POSAPIManager sharedManager].isUploadingFile) {
+    if ([POSAPIManager sharedManager].isUploadingFile) {
         number++;
     }
 
@@ -211,15 +209,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ([self.folderName isEqualToString:kFolderArchiveName] && [POSAPIManager sharedManager].isUploadingFile) {
-
+    if ([POSAPIManager sharedManager].isUploadingFile) {
         if (indexPath.row == 0) {
             POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
                                                                            forIndexPath:indexPath];
             cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
             cell.fileNameLabel.text = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
-
             return cell;
         }
 
@@ -237,23 +233,30 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)configureCell:(POSDocumentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
 
     POSAttachment *attachment = [document mainDocumentAttachment];
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
-        cell.unreadImageView.hidden = [attachment.read boolValue];
         cell.lockedImageView.hidden = YES;
+
     } else {
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
     }
+    if ([attachment.read boolValue]) {
+        cell.subjectLabel.font = [UIFont digipostRegularFont];
+    } else {
+        cell.subjectLabel.font = [UIFont digipostBoldFont];
+    }
+
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
     cell.senderLabel.text = attachment.document.creatorName;
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
+    cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
+    cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
 }
 
 #pragma mark - UITableViewDelegate
@@ -411,9 +414,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 
         if ([self.folderName isEqualToString:folder.name] == NO) {
+            image = [image scaleToSize:CGSizeMake(18, 18)];
             if (image == nil) {
                 image = [UIImage imageNamed:@"list-icon-inbox"];
             }
+
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
@@ -495,7 +500,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         mailboxDigipostAddress:self.mailboxDigipostAddress
         folderUri:self.folderUri
         success:^{
-                                                               
+            
                                                                [self updateFetchedResultsController];
                                                                [self programmaticallyEndRefresh];
                                                                [self updateNavbar];
@@ -642,6 +647,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
                                         
                                         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+            [self updateFetchedResultsController];
                                         
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                                             
@@ -649,7 +655,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                             if ([currentOpenDocument isEqual:document]){
                                                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
                                             }
-                                        }else {
                                         }
         }
         failure:^(NSError *error) {
@@ -800,7 +805,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         if (uploadCell) {
             uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
-            NSLog(@"fractionCompleted = %f", [POSAPIManager sharedManager].uploadProgress.fractionCompleted);
         } else {
             // We've not found the upload cell - let's check if the topmost cell is visible.
             // If it is, that means we're missing the upload cell and we need to insert it.
@@ -819,8 +823,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (!(self.isViewLoaded && self.view.window)) {
             return;
         }
-        
-        [self updateContentsFromServerUserInitiatedRequest:@YES];
+        [self updateContentsFromServerUserInitiatedRequest:@NO];
     });
 }
 
@@ -833,62 +836,5 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
-}
-
-#pragma mark NSFetchedResultsControllerDelegate
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-
-    // The fetch controller is about to start sending change notifications, so prepare the table view for updates.
-    [self.tableView beginUpdates];
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
-{
-
-    UITableView *tableView = self.tableView;
-
-    switch (type) {
-
-        case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
-                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationRight : UITableViewRowAnimationNone];
-            break;
-
-        case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ]
-                             withRowAnimation:self.shouldAnimateInsertAndDeletesToFetchedResultsController ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone];
-            break;
-
-        case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ]
-                             withRowAnimation:UITableViewRowAnimationLeft];
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ]
-                             withRowAnimation:UITableViewRowAnimationRight];
-            break;
-    }
-}
-
-- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
-{
-    switch (type) {
-
-        case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-
-        case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-            break;
-    }
-}
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
-{
-
-    // The fetch controller has sent all current change notifications, so tell the table view to process all updates.
-    [self.tableView endUpdates];
 }
 @end

@@ -22,6 +22,7 @@ NSString *const kFolderIconKey = @"icon";
 NSString *const kFolderIdKey = @"id";
 
 NSString *const kMailboxLinkChangeFolderAPIKeySuffix = @"change_folder";
+NSString *const kMailboxLinkUploadDocumentToFolderAPIKeySuffix = @"upload_document";
 NSString *const kMailboxLinkDeleteFolderAPIKeySuffix = @"delete_folder";
 NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
 
@@ -70,6 +71,8 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
             folder.deletefolderUri = uri;
         }else if ([rel hasSuffix:kMailboxLinkFolderURIAPIKeySuffix]) {
             folder.uri = uri;
+        }else if ([rel hasSuffix:kMailboxLinkUploadDocumentToFolderAPIKeySuffix]){
+            folder.uploadDocumentUri = uri;
         }
     }];
     NSAssert(folder.uri != nil, @"no uri set");

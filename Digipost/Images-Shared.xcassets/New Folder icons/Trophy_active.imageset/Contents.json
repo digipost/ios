@@ -2,13 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Trophy_active.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Trophy_active2x.png"
+      "filename" : "Trophy_valgt.pdf"
     }
   ],
   "info" : {

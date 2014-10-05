@@ -2,13 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Home_active.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Home_active2x.png"
+      "filename" : "Home_valgt.pdf"
     }
   ],
   "info" : {

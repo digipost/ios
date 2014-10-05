@@ -14,6 +14,7 @@
 @implementation POSFolder
 
 @dynamic changeFolderUri;
+@dynamic uploadDocumentUri;
 @dynamic deletefolderUri;
 @dynamic folderId;
 @dynamic iconName;

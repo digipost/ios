@@ -15,7 +15,7 @@
 {
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSAccountViewController class]] == NO) {
+        if ([self.navigationController.viewControllers[1] isKindOfClass:[POSAccountViewController class]] == NO) {
             POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
             POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
@@ -36,12 +36,14 @@
                                                  animated:YES];
         }
     } else {
-        if ([self.navigationController.viewControllers[1] isMemberOfClass:[POSFoldersViewController class]] == NO) {
+        if ([self.navigationController.viewControllers[1] isKindOfClass:[POSFoldersViewController class]] == NO) {
             POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
-
             NSMutableArray *newViewControllerArray = [NSMutableArray array];
             // add account vc as second view controller in navigation controller
             POSAccountViewController *accountVC = self.navigationController.viewControllers[0];
+            if ([accountVC isKindOfClass:[POSAccountViewController class]] == NO) {
+                accountVC = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            }
 
             POSDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;
 
@@ -52,7 +54,7 @@
             folderViewController.selectedMailBoxDigipostAdress = currentViewController.mailboxDigipostAddress;
 
             [self.navigationController setViewControllers:newViewControllerArray
-                                                 animated:YES];
+                                                 animated:NO];
         }
     }
 }

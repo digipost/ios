@@ -18,6 +18,7 @@
 #import <UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSReceiptFoldersTableViewController.h"
+#import "UIRefreshControl+Additions.h"
 #import "POSModelManager.h"
 #import "POSReceipt.h"
 #import "POSOAuthManager.h"
@@ -69,6 +70,26 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     self.tableView.dataSource = self.receiptFolderTableViewDataSource;
     [self.receiptFolderTableViewDataSource refreshContent];
 
+    
+    // This line makes the tableview hide its separator lines for empty cells
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+        [self.refreshControl addTarget:self
+                                action:@selector(refreshControlDidChangeValue:)
+                      forControlEvents:UIControlEventValueChanged];
+    
+    // Set the initial refresh control text
+    [self.refreshControl initializeRefreshControlText];
+    [self.refreshControl updateRefreshControlTextRefreshing:YES];
+    
+    self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
+                                                      alpha:1.0];
+    
+    // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
+    [self.refreshControl beginRefreshing];
+    [self.refreshControl endRefreshing];
+    
     [super viewDidLoad];
 }
 
@@ -108,6 +129,12 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     }
 }
 
+- (void)refreshControlDidChangeValue:(UIRefreshControl *)refreshControl
+{
+    [self.refreshControl updateRefreshControlTextRefreshing:YES];
+    
+    [self updateContentsFromServerUserInitiatedRequest:@YES];
+}
 #pragma mark - UITableViewDelegate
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -164,9 +191,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([POSAPIManager sharedManager].isUpdatingReceipts) {
-        return;
-    }
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;

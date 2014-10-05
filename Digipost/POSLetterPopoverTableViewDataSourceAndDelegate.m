@@ -35,7 +35,7 @@
                                                                           forIndexPath:indexPath];
     POSLetterPopoverTableViewMobelObject *popoverTableViewModelObject = self.lineObjects[indexPath.row];
     cell.titleLabel.text = popoverTableViewModelObject.title;
-    cell.description.text = popoverTableViewModelObject.description;
+    cell.descriptionText.text = popoverTableViewModelObject.descriptionText;
     return cell;
 }
 
@@ -44,7 +44,7 @@
     POSLetterPopoverTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     POSLetterPopoverTableViewMobelObject *popoverTableViewModelObject = self.lineObjects[indexPath.row];
     cell.titleLabel.text = popoverTableViewModelObject.title;
-    cell.description.text = popoverTableViewModelObject.description;
+    cell.descriptionText.text = popoverTableViewModelObject.descriptionText;
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingExpandedSize].height;
     return height + 5;
 }

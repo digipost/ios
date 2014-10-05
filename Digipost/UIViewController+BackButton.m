@@ -33,25 +33,27 @@
                                                                   action:@selector(pos_popViewController)];
     [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
     [self.navigationItem setLeftBarButtonItem:backButton];
-    return;
-
-    //    UIBarButtonItem *backButton = nil;
-
-    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
-
-    } else {
-        backButton = [[UIBarButtonItem alloc] initWithTitle:@" "
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:nil
-                                                     action:nil];
-    }
-
-    [self.navigationItem setBackBarButtonItem:backButton];
+    backButton.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
+    backButton.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
 }
 
 - (void)pos_popViewController
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)pos_hasBackButton
+{
+    if (self.navigationController.viewControllers.count > 1) {
+        NSInteger count = self.navigationController.viewControllers.count;
+        UIViewController *lastViewController = (id) self.navigationController.viewControllers[count - 2];
+        if (lastViewController.navigationItem.backBarButtonItem != nil ){
+            return YES;
+        }else {
+            return NO;
+        }
+    }
+    return NO;
 }
 @end

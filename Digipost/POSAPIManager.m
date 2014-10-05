@@ -1184,9 +1184,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
         }];
-        //        NSLog(@"operation queue %@",self.fileTransferSessionManager.downloadTasks);
-        //        [self.fileTransferSessionManager.operationQueue cancelAllOperations];
-//        [self cancelDownloadingBaseEncryptionModels];
         [task resume];
     } failure:^(NSError *error) {
         self.downloadingBaseEncryptionModel = NO;
@@ -1198,16 +1195,19 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)cancelDownloadingBaseEncryptionModels
 {
-    NSUInteger counter = 0;
-    for (NSURLSessionDownloadTask *downloadTask in self.fileTransferSessionManager.downloadTasks) {
-        [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
-        counter++;
-    }
+    __block NSUInteger counter = 0;
 
-    if (counter > 0) {
-        NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
-        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
-    }
+    [self.fileTransferSessionManager.session getTasksWithCompletionHandler:^(NSArray *dataTasks, NSArray *uploadTasks, NSArray *downloadTasks) {
+        for (NSURLSessionDownloadTask *downloadTask in downloadTasks) {
+            [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
+            counter++;
+        }
+
+        if (counter > 0) {
+            NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
+            DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
+        }
+    }];
 }
 
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
@@ -1401,7 +1401,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     }];
 }
 
-- (void)uploadFileWithURL:(NSURL *)fileURL success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)uploadFileWithURL:(NSURL *)fileURL toFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 {
     // Let's do a couple of checks before kicking off the upload
 
@@ -1487,7 +1487,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self validateTokensWithSuccess:^{
         
-        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:rootResource.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:folder.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             // Subject
             NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
             NSString *subject = [fileName substringToIndex:rangeOfExtension.location];
@@ -1522,6 +1522,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     uploadFailure = YES;
                 }
             }
+            
             if (error || uploadFailure) {
                 
                 // In case we're not actually getting an error object, let's create one
@@ -1557,8 +1558,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     NSDictionary *parameters = @{ @"name" : name,
                                   @"icon" : iconName };
-    NSLog(@"%@", parameters);
-
     [self validateTokensWithSuccess:^{
     self.state = SHCAPIManagerStateCreatingFolder;
         [self jsonRequestWithMethod:@"POST" parameters:parameters

@@ -2,13 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "usd_active.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "USD_active2x.png"
+      "filename" : "Money_valgt.pdf"
     }
   ],
   "info" : {

@@ -27,10 +27,12 @@
 #import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 #import "UIViewController+BackButton.h"
+#import "AHKActionSheet+Convenience.h"
 #import "NSString+SHA1String.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCBaseTableViewController.h"
 #import "UIViewController+NeedsReload.h"
+#import "Digipost-Swift.h"
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
@@ -86,8 +88,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)dealloc
 {
-    @try
-    {
+    @try {
         [self.progress removeObserver:self
                            forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                               context:kSHCLetterViewControllerKVOContext];
@@ -106,13 +107,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //    self.navigationController.interactivePopGestureRecognizer.delegate = self;
-
+    if ([self.attachment.fileType isEqualToString:@"html"]) {
+        self.webView.backgroundColor = [UIColor whiteColor];
+    }
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
-
     self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self
                                                                            action:@selector(didTapInfo:)];
 
@@ -208,10 +209,25 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [super viewDidDisappear:animated];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLayoutSubviews
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidLayoutSubviews];
+
+    // Assuming self.webView is our UIWebView
+    // We go though all sub views of the UIWebView and set their backgroundColor to white
+    UIView *v = self.webView;
+    while (v) {
+        if (self.attachment) {
+            if ([self.attachment.fileType isEqualToString:@"html"]) {
+                self.webView.backgroundColor = [UIColor whiteColor];
+            } else {
+                v.backgroundColor = RGB(236, 238, 241);
+            }
+        } else {
+            v.backgroundColor = RGB(236, 238, 241);
+        }
+        v = [v.subviews firstObject];
+    }
 }
 
 #pragma mark - UIWebViewDelegate
@@ -220,13 +236,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.progressView.alpha = 0.0;
     self.webView.alpha = 1.0;
+    [self updateNavbar];
+    if ([self.attachment.fileType isEqualToString:@"html"]) {
+        self.webView.backgroundColor = [UIColor whiteColor];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    //    self.progressView.alpha = 0.0;
-    //    self.webView.alpha = 1.0;
-
     DDLogError(@"%@", [error localizedDescription]);
 }
 
@@ -300,7 +317,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationItem setLeftBarButtonItem:nil
                                      animated:YES];
 }
-
 #pragma mark - NSKeyValueObserving
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -419,7 +435,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
 
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
-
+    [actionSheet setupStyle];
     POSDocumentsViewController *documentsViewController;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         for (UIViewController *viewController in self.splitViewController.viewControllers) {
@@ -439,26 +455,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSArray *folders = [POSFolder foldersForUserWithMailboxDigipostAddress:documentsViewController.mailboxDigipostAddress
                                                     inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    [actionSheet setBlurTintColor:[UIColor pos_colorWithR:64
-                                                        G:66
-                                                        B:69
-                                                    alpha:0.80]];
-    actionSheet.automaticallyTintButtonImages = @YES;
-    [actionSheet setButtonHeight:50];
-
-    actionSheet.separatorColor = [UIColor pos_colorWithR:255
-                                                       G:255
-                                                       B:255
-                                                   alpha:0.30f];
-
-    [actionSheet setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [actionSheet setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [actionSheet setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-
     for (POSFolder *folder in folders) {
 
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
-        image = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+
+        image = [image scaleToSize:CGSizeMake(18, 18)];
+
         if (image == nil) {
             image = [UIImage imageNamed:@"list-icon-inbox"];
         }
@@ -467,9 +469,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
                                     handler:^(AHKActionSheet *actionSheet, id item) {
-                                        AHKActionSheetItem *actionSheetItem = (id)item;
                                         if (item) {
-                                            NSLog(@"%@", actionSheetItem.title);
                                             [self moveDocument:self.attachment.document toFolder:folder];
                                         }
                                     }];
@@ -484,17 +484,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[POSAPIManager sharedManager] moveDocument:document
         toFolder:folder
         withSuccess:^{
-                                        
                                         document.folder = folder;
                                         
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
-                                        
-                                        
+            
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            
                                             if ([self.attachment.document isEqual:document]){
                                                 self.attachment = nil;
                                             }
+                                             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                         }else {
                                             [self.navigationController popToViewController:self.documentsViewController animated:YES];
                                         }
@@ -562,6 +560,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
+
     } else if (self.receipt) {
         baseEncryptionModel = self.receipt;
     }
@@ -582,6 +581,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.webView loadRequest:request];
 
         [self updateToolbarItemsWithInvoice:(self.attachment.invoice != nil)];
+        [self updateNavbar];
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
@@ -607,6 +607,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
 
+        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
+            [self.progress removeObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
+                                  context:kSHCLetterViewControllerKVOContext];
+        }
         [progress addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                       options:NSKeyValueObservingOptionNew
@@ -614,7 +619,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.progress = progress;
     }
-
+    [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
         POSAttachment *attachment = (id)baseEncryptionModel;
@@ -633,13 +638,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                     if ([attachment.subject isEqualToString:subject]){
                         changedBaseEncryptionModel = attachment;
                     }
-                    
                 }];
                 
                 [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
                                                               withProgress:progress
                                                                    success:^{
-                
                 NSError *error = nil;
                 if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
                     [UIAlertView showWithTitle:error.errorTitle
@@ -648,7 +651,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                              otherButtonTitles:@[error.okButtonTitle]
                                       tapBlock:error.tapBlock];
                 }
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.view.backgroundColor = [UIColor whiteColor];
+                }
                 
+                                                                       
                 NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
                 NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
                 [self.webView loadRequest:request];
@@ -659,11 +666,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                     [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                 
                 }
+                [self updateNavbar];
                                                                    }
                                                                    failure:^(NSError *error) {
                                                                        
                                                                    }];
-                //            document = [POSDocument docum]
             }
             failure:^(NSError *error) {}];
     } else {
@@ -690,6 +697,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            }
                                                            
                                                            NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.webView.backgroundColor = [UIColor whiteColor];
+                }
                                                            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
                                                            [self.webView loadRequest:request];
                                                            
@@ -724,6 +734,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
                                                                }
                                                                
+                                                               
+                                                               [self updateNavbar];
                                                                // We were unauthorized, due to the session being invalid.
                                                                // Let's retry in the next run loop
                                                                [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
@@ -772,6 +784,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
+    // this feature should not be activated if voiceover is running
+    if (UIAccessibilityIsVoiceOverRunning()) {
+        return;
+    }
     BOOL barsHidden = self.navigationController.isToolbarHidden;
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
@@ -788,7 +804,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
 {
-    NSLog(@"double tap");
 }
 
 - (void)moveDocumentToFolder:(POSFolder *)folder
@@ -924,7 +939,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self setInfoViewVisible:NO];
 
-    if (!self.openInController) {
+    if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
 
@@ -1046,7 +1061,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                         description:self.attachment.document.creatorName]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
                                                                                         description:[dateFormatter stringFromDate:self.attachment.document.createdAt]]];
-
         } else if (self.receipt) {
             self.popoverTitleLabel.text = self.receipt.storeName;
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
@@ -1069,6 +1083,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                         description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto")
                                                                                         description:self.attachment.invoice.accountNumber]];
+
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID")
                                                                                         description:[NSString stringWithFormat:@"%@", self.attachment.invoice.kid]]];
             NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
@@ -1112,7 +1127,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                              
                                              // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
                                              // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
-                                             [self updateDocuments];
+            [self updateDocuments];
+            [self updateToolbarItemsWithInvoice:YES];
         }
         failure:^(NSError *error) {
                                                  NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
@@ -1146,12 +1162,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *attachmentUri = self.attachment.uri;
 
     [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
-        mailboxDigipostAddress:nil
+        mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
         folderUri:self.attachment.document.folder.uri
         success:^{
                                                                [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
                                                                [self updateToolbarItemsWithInvoice:YES];
+            [self updateNavbar];
         }
         failure:^(NSError *error) {
                                                                
@@ -1273,12 +1290,29 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self updateToolbarItemsWithInvoice:NO];
 }
 
+- (POSBaseEncryptedModel *)currentBaseEncryptModel
+{
+    if (self.receipt) {
+        return self.receipt;
+    }
+    if (self.attachment) {
+        return self.attachment;
+    }
+    return nil;
+}
+
 - (void)updateNavbar
 {
     NSMutableArray *rightBarButtonItems = [NSMutableArray array];
 
     if (self.attachment || self.receipt) {
-        [rightBarButtonItems addObjectsFromArray:@[ self.actionBarButtonItem, self.infoBarButtonItem ]];
+
+        if ([self interactionControllerCanShareContent:[self currentBaseEncryptModel]]) {
+            [rightBarButtonItems addObjectsFromArray:@[ self.actionBarButtonItem, self.infoBarButtonItem ]];
+
+        } else {
+            [rightBarButtonItems addObject:self.infoBarButtonItem];
+        }
     }
 
     self.navigationItem.rightBarButtonItems = [rightBarButtonItems count] > 0 ? rightBarButtonItems : nil;
@@ -1286,7 +1320,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)reloadFromMetadata
 {
-    [self updateNavbar];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
@@ -1303,6 +1336,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     [self loadContent];
+    [self updateNavbar];
 }
 
 - (IBAction)didTapClosePopoverButton:(id)sender

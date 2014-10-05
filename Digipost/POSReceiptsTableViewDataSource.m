@@ -16,6 +16,7 @@
 @interface POSReceiptsTableViewDataSource ()
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 
+@property (nonatomic, strong) NSNumberFormatter *numberFormatter;
 @end
 
 @implementation POSReceiptsTableViewDataSource
@@ -27,8 +28,26 @@
     POSReceipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     receiptTableViewCell.storeNameLabel.text = receipt.storeName;
     receiptTableViewCell.amountLabel.text = [NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:receipt.amount]];
+    receiptTableViewCell.amountLabel.accessibilityLabel = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
+    receiptTableViewCell.amountLabel.accessibilityHint = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.dateLabel.text = [POSDocument stringForDocumentDate:receipt.timeOfPurchase];
     return receiptTableViewCell;
+}
+
+- (NSNumberFormatter *)numberFormatter
+{
+    if (_numberFormatter == nil) {
+        _numberFormatter = [[NSNumberFormatter alloc] init];
+        [_numberFormatter setCurrencyCode:@"NOK"];
+        _numberFormatter.alwaysShowsDecimalSeparator = NO;
+        _numberFormatter.perMillSymbol = @" ";
+        _numberFormatter.decimalSeparator = @" ";
+        _numberFormatter.groupingSize = 10;
+        [_numberFormatter setCurrencySymbol:@"kroner"];
+        [_numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [_numberFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"nb_NO"]];
+    }
+    return _numberFormatter;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -70,8 +89,8 @@
     [fetchRequest setEntity:entity];
 
     // Order the events by creation date, most recent first.
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"storeName"
-                                                                   ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeOfPurchase"
+                                                                   ascending:NO];
     [fetchRequest setSortDescriptors:@[ nameDescriptor ]];
 
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"franchiseName like %@", self.storeName];

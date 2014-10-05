@@ -19,7 +19,7 @@
 @interface POSLetterPopoverTableViewMobelObject : NSObject
 
 @property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *description;
+@property (strong, nonatomic) NSString *descriptionText;
 
 + (POSLetterPopoverTableViewMobelObject *)initWithTitle:(NSString *)title description:(NSString *)description;
 @end

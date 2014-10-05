@@ -2,13 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "envelope-3.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "envelope_32.png"
+      "filename" : " Envelope.pdf"
     }
   ],
   "info" : {

@@ -1,13 +1,7 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "Account_32px.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
+      "idiom" : "universal"
     }
   ],
   "info" : {

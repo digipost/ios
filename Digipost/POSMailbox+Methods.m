@@ -19,6 +19,7 @@ NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 NSString *const kMailboxLinkCreateFolderAPIKeySuffix = @"create_folder";
 NSString *const kMailboxLinkUpdateFoldersAPIKeySuffix = @"update_folders";
+NSString *const kMailboxLinkUploadToInboxFolderAPIKeySuffix = @"upload_document_to_inbox";
 
 NSString *const kMailboxLinkFoldersAPIKeySuffix = @"folders";
 NSString *const kMailboxLinkFolderAPIKeySuffix = @"folder";
@@ -45,6 +46,8 @@ NSString *const kMailboxEntityName = @"Mailbox";
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;
 
     NSArray *links = attributes[@"link"];
+    NSString *uploadDocumentURI = @"";
+    POSFolder *inboxFolder;
     __block NSInteger index = 1;
     if ([links isKindOfClass:[NSArray class]]) {
         for (NSDictionary *link in links) {
@@ -61,18 +64,22 @@ NSString *const kMailboxEntityName = @"Mailbox";
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
                     }
-
+                    if ([rel hasSuffix:kMailboxLinkUploadToInboxFolderAPIKeySuffix]) {
+                        uploadDocumentURI = uri;
+                    }
                     if (folderAttributes) {
                         POSFolder *folder = [POSFolder folderWithAttributes:folderAttributes
                                                      inManagedObjectContext:managedObjectContext];
                         [mailbox addFoldersObject:folder];
                         folder.index = @(0);
                         folder.mailbox = mailbox;
+                        inboxFolder = folder;
                     }
                 }
             }
         }
     }
+    inboxFolder.uploadDocumentUri = uploadDocumentURI;
 
     NSDictionary *folders = attributes[kMailboxLinkFoldersAPIKeySuffix];
 
@@ -130,6 +137,27 @@ NSString *const kMailboxEntityName = @"Mailbox";
     }
 
     return results[0];
+}
+
++ (POSMailbox *)mailboxOwnerInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    fetchRequest.entity = [NSEntityDescription entityForName:kMailboxEntityName
+                                      inManagedObjectContext:managedObjectContext];
+
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(owner)), @YES];
+
+    NSError *error = nil;
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
+                                                           error:&error];
+    if (error) {
+        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    }
+    if ([results count] > 0) {
+        return results[0];
+    }
+
+    return nil;
 }
 
 + (NSInteger)numberOfMailboxesStoredInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

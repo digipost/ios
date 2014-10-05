@@ -83,7 +83,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [tracker set:kGAIScreenName
            value:kAttachmentsViewControllerScreenName];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
-    NSLog(@"%@",self.attachments);
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -136,7 +135,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     UILabel *headerDateTextLabel = [UILabel tableViewRegularHeaderLabel];
     // Dateformatter for format: 2013-02-15 09:49
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:NSLocalizedString(@"ATTACHMENTS_DATE_FORMAT", @"dd.MM.YYYY 'kl.' HH:mm")];
+    [dateFormatter setDateFormat:NSLocalizedString(@"ATTACHMENTS_DATE_FORMAT", @"dd.MMM.YYYY 'kl.' HH:mm")];
     headerDateTextLabel.text = [dateFormatter stringFromDate:firstAttachment.document.createdAt];
     [tableHeaderView addSubview:headerDateTextLabel];
     
@@ -211,7 +210,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     POSAttachment *attachment = self.attachments[indexPath.row];
-    NSLog(@"attachement uri %@ receipt uri: %@,attachment %@",attachment.uri,attachment.openingReceiptUri,attachment.subject);
     
     if (attachment.openingReceiptUri){
         [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")

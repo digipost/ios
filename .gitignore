@@ -10,6 +10,7 @@ build/
 *.perspectivev3
 !default.perspectivev3
 *.xcworkspace
+*.trace
 !default.xcworkspace
 xcuserdata
 profile
@@ -18,3 +19,5 @@ DerivedData
 .idea/
 Pods
 oauth.h
+uiauto/results
+UI-Test.trace/instrument_data

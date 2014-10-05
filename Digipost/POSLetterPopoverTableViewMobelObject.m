@@ -19,9 +19,14 @@
 @implementation POSLetterPopoverTableViewMobelObject
 + (POSLetterPopoverTableViewMobelObject *)initWithTitle:(NSString *)title description:(NSString *)description
 {
+    NSParameterAssert(description);
+    
     POSLetterPopoverTableViewMobelObject *ptvmo = [[POSLetterPopoverTableViewMobelObject alloc] init];
     ptvmo.title = title;
-    ptvmo.description = description;
+    ptvmo.descriptionText = description;
+    if (description == nil){
+        return nil;
+    }
     return ptvmo;
 }
 @end
