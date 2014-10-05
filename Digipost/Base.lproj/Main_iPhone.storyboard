@@ -780,17 +780,17 @@
                         <viewControllerLayoutGuide type="bottom" id="uXc-j9-3uG"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iCs-BM-gpW">
-                        <rect key="frame" x="0.0" y="64" width="568" height="256"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_norsk_vertikal" translatesAutoresizingMaskIntoConstraints="NO" id="t9F-KS-Hxy">
-                                <rect key="frame" x="0.0" y="-212" width="568" height="679"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="327"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="t9F-KS-Hxy" secondAttribute="height" multiplier="145:206" constant="89.830097087378647" id="Xcb-Na-mJ2"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lastopp_veileder_english_horisontal" translatesAutoresizingMaskIntoConstraints="NO" id="OYS-Cr-m3P">
-                                <rect key="frame" x="18" y="34" width="532" height="188"/>
+                                <rect key="frame" x="18" y="202" width="284" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OYS-Cr-m3P" secondAttribute="height" multiplier="133:47" id="rJC-HS-jwt"/>
                                 </constraints>
@@ -804,11 +804,11 @@
                             <constraint firstItem="OYS-Cr-m3P" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iCs-BM-gpW" secondAttribute="leadingMargin" constant="2" id="aTg-J6-uVx"/>
                             <constraint firstItem="t9F-KS-Hxy" firstAttribute="leading" secondItem="iCs-BM-gpW" secondAttribute="leadingMargin" constant="-16" id="fuN-u8-bxX"/>
                             <constraint firstAttribute="centerX" secondItem="OYS-Cr-m3P" secondAttribute="centerX" id="l9b-us-dKZ"/>
-                            <constraint firstAttribute="centerY" secondItem="t9F-KS-Hxy" secondAttribute="centerY" id="ouR-st-idq"/>
+                            <constraint firstAttribute="centerY" secondItem="t9F-KS-Hxy" secondAttribute="centerY" constant="2.5" id="ouR-st-idq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Last opp" id="BcG-PX-hsw"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="horizontalUploadImage" destination="OYS-Cr-m3P" id="8fD-K3-HIG"/>
                         <outlet property="uploadImage" destination="t9F-KS-Hxy" id="u0p-8I-iMc"/>
