@@ -509,7 +509,7 @@
                         <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MKg-wJ-kWG" userLabel="No Documents View">
                             <rect key="frame" x="0.0" y="138" width="320" height="184"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="TxU-9E-z1W" userLabel="No Documents Image View">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="TxU-9E-z1W" userLabel="No Documents Image View">
                                     <rect key="frame" x="85" y="0.0" width="203" height="232"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="232" id="UcL-xt-XCr"/>
@@ -529,7 +529,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="bjg-Ch-dqM" firstAttribute="top" secondItem="TxU-9E-z1W" secondAttribute="bottom" constant="10" id="BOd-HF-Iwx"/>
-                                <constraint firstAttribute="centerX" secondItem="TxU-9E-z1W" secondAttribute="centerX" id="IOT-Yy-PNF"/>
+                                <constraint firstAttribute="centerX" secondItem="TxU-9E-z1W" secondAttribute="centerX" constant="-26.5" id="IOT-Yy-PNF"/>
                                 <constraint firstItem="TxU-9E-z1W" firstAttribute="top" secondItem="MKg-wJ-kWG" secondAttribute="top" id="MZa-CB-Iqg"/>
                                 <constraint firstAttribute="bottom" secondItem="bjg-Ch-dqM" secondAttribute="bottom" constant="20" id="V8C-Gs-SsB"/>
                                 <constraint firstAttribute="trailing" secondItem="bjg-Ch-dqM" secondAttribute="trailing" constant="30" id="YqZ-vv-HYt"/>
@@ -682,14 +682,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-TZ-rSD" userLabel="Amount Label">
-                                            <rect key="frame" x="20" y="33" width="257" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-TZ-rSD" userLabel="Amount Label">
+                                            <rect key="frame" x="20" y="32" width="257" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="STORE_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ll3-0C-0YT" userLabel="Store Name Label">
-                                            <rect key="frame" x="20" y="11" width="227" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STORE_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ll3-0C-0YT" userLabel="Store Name Label">
+                                            <rect key="frame" x="20" y="11" width="227" height="20"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -816,7 +816,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G3U-NM-6z6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="1313"/>
+            <point key="canvasLocation" x="938" y="1437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="O5a-7z-blq">
@@ -881,8 +881,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hAC-eN-d9N" userLabel="Separator View">
-                                                    <rect key="frame" x="15" y="49" width="305" height="1"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAC-eN-d9N" userLabel="Separator View">
+                                                    <rect key="frame" x="15" y="50" width="305" height="1"/>
                                                     <color key="backgroundColor" red="0.34901960780000002" green="0.36078431370000003" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="1" id="Ao2-Ez-OLD"/>
@@ -1406,7 +1406,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Kontoer" id="vHD-b2-5cA">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="835-WA-l70">
+                        <barButtonItem key="rightBarButtonItem" id="835-WA-l70">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" id="8XQ-uL-n1w">
                                 <rect key="frame" x="230" y="5" width="74" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1453,9 +1453,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="6ll-nd-HYD"/>
         <segue reference="vJp-VT-rtF"/>
-        <segue reference="WBk-6x-J5R"/>
-        <segue reference="nJS-Zx-WgQ"/>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="geX-1f-yyf"/>
+        <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
