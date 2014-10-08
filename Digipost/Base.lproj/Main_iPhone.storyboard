@@ -289,7 +289,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Lag ny mappe" id="ocr-TF-s5R">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="YUz-G4-jMZ">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="YUz-G4-jMZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3sC-5d-anC">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
