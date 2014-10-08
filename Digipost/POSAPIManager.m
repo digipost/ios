@@ -961,7 +961,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkRequestDidStart:)
-                                                 name:AFNetworkingTaskDidStartNotification
+                                                 name:AFNetworkingTaskDidResumeNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkRequestDidSuspend:)
@@ -969,7 +969,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(networkRequestDidFinish:)
-                                                 name:AFNetworkingTaskDidFinishNotification
+                                                 name:AFNetworkingTaskDidCompleteNotification
                                                object:nil];
 }
 
@@ -1128,7 +1128,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self validateTokensWithSuccess:^{
         
-        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil];
+        NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil error:nil];
         
         // Let's set the correct mime type for this file download.
         [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
@@ -1486,7 +1486,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     self.state = SHCAPIManagerStateUploadingFile;
 
     [self validateTokensWithSuccess:^{
-        
         NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer multipartFormRequestWithMethod:@"POST" URLString:folder.uploadDocumentUri parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             // Subject
             NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
@@ -1499,7 +1498,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 DDLogError(@"Error reading data: %@", [error localizedDescription]);
             }
             [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"application/pdf"];
-        }];
+        } error:nil];
         
         [urlRequest setValue:@"*/*" forHTTPHeaderField:@"Accept"];
         

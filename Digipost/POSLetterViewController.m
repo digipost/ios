@@ -838,7 +838,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                                                     // We were unauthorized, due to the session being invalid.
                                                     // Let's retry in the next run loop
-                                                    [self performSelector:@selector(moveDocumentToLocation:) withObject:folder afterDelay:0.0];
+                                                    [self performSelector:@selector(moveDocumentToFolder:) withObject:folder afterDelay:0.0];
                                                     
                                                     return;
                                                 }
