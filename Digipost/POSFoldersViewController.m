@@ -38,9 +38,11 @@
 #import "NSError+ExtraInfo.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSLetterViewController.h"
+#import <UIActionSheet+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
 #import "POSAccountViewController.h"
+#import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -61,6 +63,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @property (strong, nonatomic) NSMutableArray *folders;
 @property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
+@property (strong, nonatomic) UploadImageController *uploadImageController;
 
 @end
 
@@ -514,9 +517,19 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     break;
                 }
                 case 2: {
-                    [self performSegueWithIdentifier:@"uploadGuideSegue" sender:self];
+                    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                        switch (buttonIndex) {
+                            case 0:
+                                self.uploadImageController = [[UploadImageController alloc] init];
+                                [self.uploadImageController showPhotoLibraryPickerInViewController:self];
+                                break;
+                            case 1:
+                                
+                            default:
+                                break;
+                        }
+                    }];
                     break;
-
                 } break;
                 default:
                     break;

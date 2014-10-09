@@ -73,7 +73,9 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self dismissViewControllerAnimated:YES completion:^{}];
         [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
-        } failure:^(NSError *error) {}];
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
         NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     }
