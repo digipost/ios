@@ -247,6 +247,9 @@
 		ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
 		ECB4C65F19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
 		ECB4C66019B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
+		ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
+		ECCAD43619E694D000E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
+		ECCAD43719E694D000E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
 		ECCC5CAC19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
 		ECCC5CAD19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
@@ -455,6 +458,7 @@
 		ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Convenience.m"; sourceTree = "<group>"; };
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
+		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
 		ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadGuideViewController.swift; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
@@ -794,6 +798,7 @@
 			children = (
 				83F7035F1855E7A9003DABE1 /* POSFoldersViewController.h */,
 				83F703601855E7A9003DABE1 /* POSFoldersViewController.m */,
+				ECCAD43419E694CF00E602DC /* UploadImageController.swift */,
 				EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */,
 				EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */,
 				EC0C1A1119347388007CB53E /* POSNewFolderCollectionViewDataSource.h */,
@@ -1103,6 +1108,7 @@
 			files = (
 				ECCC5CB119C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECCAD43719E694D000E602DC /* UploadImageController.swift in Sources */,
 				8364D720185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF2188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				EC2C82D6192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
@@ -1189,6 +1195,7 @@
 			files = (
 				ECCC5CB019C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECCAD43619E694D000E602DC /* UploadImageController.swift in Sources */,
 				8364D71F185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF1188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				EC2C82D5192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
@@ -1275,6 +1282,7 @@
 			files = (
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */,
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				EC2C82D4192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
