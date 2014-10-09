@@ -16,27 +16,34 @@ protocol UploadImageProtocol {
 }
 
 class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+    
+    
     func showCameraCaptureInViewController(viewController:UIViewController) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let imagePicker = setupPickerController()
             imagePicker.sourceType = UIImagePickerControllerSourceType.Camera;
-            viewController.presentViewController(imagePicker, animated: true, completion: nil)
+            viewController.presentViewController(imagePicker, animated: true, completion: { () -> Void in
+                
+            })
         }
     }
+    
     func showPhotoLibraryPickerInViewController(viewController:UIViewController) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
             let imagePicker = setupPickerController()
             imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
-            viewController.presentViewController(imagePicker, animated: true, completion: nil)
+            viewController.presentViewController(imagePicker, animated: true, completion: { () -> Void in
+                
+            })
         }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         
-        println("did finish picling")
-        if let mediaType = info[UIImagePickerControllerMediaType] as? CFString{
+        if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo ){
+                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
+                println(mediaInfo)
                 let image = info[UIImagePickerControllerOriginalImage] as UIImage
                 let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                 let data = UIImageJPEGRepresentation(image as UIImage, 1.0)
@@ -46,15 +53,16 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     let localFilePath = documentsDirectory.stringByAppendingPathComponent("temp.JPG")
                     let couldCopy = data.writeToFile(localFilePath, atomically: true)
                     let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                    picker.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        appDelegate.uploadImageWithURL(localFileURL)
+                    picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
                     })
+                    appDelegate.uploadImageWithURL(localFileURL)
                     return
                 }
             }
         }
-        picker.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
+        picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
         })
         //            editedImage = (UIImage *) [info objectForKey:
        
