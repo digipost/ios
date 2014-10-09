@@ -517,14 +517,15 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     break;
                 }
                 case 2: {
-                    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"),NSLocalizedString(@"upload action sheet camera", @"start camera")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                         switch (buttonIndex) {
                             case 0:
                                 self.uploadImageController = [[UploadImageController alloc] init];
                                 [self.uploadImageController showPhotoLibraryPickerInViewController:self];
                                 break;
                             case 1:
-                                
+                                self.uploadImageController = [[UploadImageController alloc] init];
+                                [self.uploadImageController showCameraCaptureInViewController:self];
                             default:
                                 break;
                         }
