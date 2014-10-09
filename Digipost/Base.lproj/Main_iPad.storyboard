@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -877,7 +878,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Kontoer" id="77d-8d-nAS">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="zbb-lW-mMA">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="zbb-lW-mMA">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yin-f1-P08">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -991,7 +992,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Lag ny mappe" id="HLg-eU-svL">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="sEb-Rk-xLy">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="sEb-Rk-xLy">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Afw-f7-ZRc">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1015,7 +1016,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daL-sk-ddX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1128" y="1056"/>
+            <point key="canvasLocation" x="1253" y="722"/>
         </scene>
         <!--Receipt Folders Table View Controller-->
         <scene sceneID="9um-Ow-pWZ">
@@ -1122,7 +1123,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yg7-fv-n9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="aii-3Y-ofQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1551" y="266"/>
+            <point key="canvasLocation" x="1615" y="722"/>
         </scene>
         <!--Upload Guide View Controller-->
         <scene sceneID="YBg-xK-ylU">
@@ -1169,7 +1170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AWt-La-ueE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="554" y="965"/>
+            <point key="canvasLocation" x="428" y="722"/>
         </scene>
         <!--Receipts View Controller-->
         <scene sceneID="ZwF-oT-3kS">
@@ -1277,14 +1278,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HwP-id-aem" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="UOw-54-914" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2125" y="-519"/>
+            <point key="canvasLocation" x="2291" y="722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MrC-2o-8lB">
             <objects>
                 <navigationController storyboardIdentifier="uploadNavigationController" definesPresentationContext="YES" id="mzW-2I-ZIn" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="hbd-5l-F32">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="a9E-qB-PGC">
+                        <barButtonItem key="rightBarButtonItem" style="done" id="a9E-qB-PGC">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="plS-kx-EVR">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1311,7 +1312,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="khy-qq-teq" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="TI6-yR-0mP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="355" y="2015"/>
+            <point key="canvasLocation" x="452" y="2015"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="TFN-HH-Pox">
@@ -1442,7 +1443,7 @@
                     </connections>
                 </button>
             </objects>
-            <point key="canvasLocation" x="-51" y="1576"/>
+            <point key="canvasLocation" x="871" y="722"/>
         </scene>
     </scenes>
     <resources>
@@ -1465,7 +1466,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gXC-zd-OIB"/>
-        <segue reference="zbK-2F-FJp"/>
+        <segue reference="E3S-ye-Wyc"/>
+        <segue reference="I3M-Ic-pgV"/>
     </inferredMetricsTieBreakers>
 </document>
