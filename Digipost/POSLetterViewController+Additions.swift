@@ -27,8 +27,6 @@ extension POSLetterViewController {
                 }
             }
         }
-       
-        
         if let actualError = error {
             return false
         }
@@ -37,7 +35,7 @@ extension POSLetterViewController {
 //            let canOpen = interactionController.presentOptionsMenuFromRect(CGRectZero, inView: UIView(frame: CGRectZero), animated: false)
 //            interactionController.dismissMenuAnimated(false)
             return true
-        }else {
+        } else {
             return false
         }
     }
@@ -54,7 +52,20 @@ extension POSLetterViewController {
         doubleTapGestureRecognizer.numberOfTouchesRequired = 1
         doubleTapGestureRecognizer.delegate = self
         webView.addGestureRecognizer(doubleTapGestureRecognizer)
-        
+    
         singleTapGestureRecognizer.requireGestureRecognizerToFail(doubleTapGestureRecognizer)
+    }
+    
+    func showActionsActionSheet(view: UIView) {
+//        UIActionSheet.showInView(self.view, withTitle: nslocalidstr, cancelButtonTitle: <#String!#>, destructiveButtonTitle: <#String!#>, otherButtonTitles: <#[AnyObject]!#>, tapBlock: <#UIActionSheetCompletionBlock!##(UIActionSheet!, Int) -> Void#>)
+//        [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"),NSLocalizedString(@"upload action sheet camera", @"start camera")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+//            switch (buttonIndex) {
+//            case 0:
+//                break;
+//            case 1:
+//            default:
+//                break;
+//            }
+//        }];
     }
 }

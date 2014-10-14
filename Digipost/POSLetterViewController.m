@@ -114,6 +114,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
+
     self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self
                                                                            action:@selector(didTapInfo:)];
 
@@ -122,6 +123,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     self.screenName = kLetterViewControllerScreenName;
 
+    
+    
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
 
@@ -178,12 +181,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSNumber *isEditing = userInfo[kEditingStatusKey];
     [self.navigationController setToolbarHidden:[isEditing boolValue]
                                        animated:YES];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    //    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -440,11 +437,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                     inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
     for (POSFolder *folder in folders) {
-
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
-
         image = [image scaleToSize:CGSizeMake(18, 18)];
-
         if (image == nil) {
             image = [UIImage imageNamed:@"list-icon-inbox"];
         }
@@ -921,6 +915,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
+    //
+    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"),NSLocalizedString(@"upload action sheet camera", @"start camera")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+        switch (buttonIndex) {
+            case 0:
+                break;
+            case 1:
+            default:
+                break;
+        }
+    }];
+    
+    // dont do this :
+    return
+    
+    
     [self setInfoViewVisible:NO];
 
     if (self.openInController == nil) {
@@ -1028,6 +1037,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)setInfoViewVisible:(BOOL)visible
 {
 
+    
+    
     if (visible && self.shadowView.alpha == 0.0) {
 
         if (self.popoverTableViewDataSourceAndDelegate == nil) {
