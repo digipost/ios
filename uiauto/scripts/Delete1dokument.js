@@ -11,6 +11,7 @@ target.frontMostApp().mainWindow().tableViews()[0].cells()[0].tap();
 // Start Edit multiple
 target.pushTimeout(3);
 target.frontMostApp().navigationBar().rightButton().tap();
+
 target.popTimeout();
 UIATarget.localTarget().delay(1);
 target.pushTimeout(3);
