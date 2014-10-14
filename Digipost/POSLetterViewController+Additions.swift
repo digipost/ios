@@ -41,4 +41,20 @@ extension POSLetterViewController {
             return false
         }
     }
+    
+    func addTapGestureRecognizersToWebView(webView: UIWebView) {
+        let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("didSingleTapWebView:"))
+        singleTapGestureRecognizer.numberOfTapsRequired = 1
+        singleTapGestureRecognizer.numberOfTouchesRequired = 1
+        singleTapGestureRecognizer.delegate = self
+        webView.addGestureRecognizer(singleTapGestureRecognizer)
+        
+        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("didDoubleTapWebView:"))
+        doubleTapGestureRecognizer.numberOfTapsRequired = 2
+        doubleTapGestureRecognizer.numberOfTouchesRequired = 1
+        doubleTapGestureRecognizer.delegate = self
+        webView.addGestureRecognizer(doubleTapGestureRecognizer)
+        
+        singleTapGestureRecognizer.requireGestureRecognizerToFail(doubleTapGestureRecognizer)
+    }
 }

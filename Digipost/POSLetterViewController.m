@@ -56,7 +56,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface POSLetterViewController () <UIWebViewDelegate, UIGestureRecognizerDelegate, UIDocumentInteractionControllerDelegate>
+@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
@@ -125,23 +125,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.moveBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_MOVE_BUTTON_TITLE", @"Move");
     self.deleteBarButtonItem.title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_BUTTON_TITLE", @"Delete");
 
-    UITapGestureRecognizer *singleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                                 action:@selector(didSingleTapWebView:)];
-    singleTapGestureRecognizer.numberOfTapsRequired = 1;
-    singleTapGestureRecognizer.numberOfTouchesRequired = 1;
-    singleTapGestureRecognizer.delegate = self;
-
-    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                                 action:@selector(didDoubleTapWebView:)];
-    doubleTapGestureRecognizer.numberOfTapsRequired = 2;
-    doubleTapGestureRecognizer.numberOfTouchesRequired = 1;
-    doubleTapGestureRecognizer.delegate = self;
-
-    // To make sure this view only responds to single taps
-    [singleTapGestureRecognizer requireGestureRecognizerToFail:doubleTapGestureRecognizer];
-
-    [self.webView addGestureRecognizer:singleTapGestureRecognizer];
-    [self.webView addGestureRecognizer:doubleTapGestureRecognizer];
+    [self addTapGestureRecognizersToWebView:self.webView];
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [[NSNotificationCenter defaultCenter] addObserver:self
