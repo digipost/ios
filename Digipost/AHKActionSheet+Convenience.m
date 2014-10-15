@@ -19,6 +19,7 @@
                                              alpha:0.80]];
     self.automaticallyTintButtonImages = @YES;
     [self setButtonHeight:50];
+    [self setBlurRadius:4.5f];
 
     self.separatorColor = [UIColor pos_colorWithR:255
                                                 G:255
