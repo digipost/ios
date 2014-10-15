@@ -76,11 +76,14 @@ fullTracetemplatePath="$DIR$scriptPath"
 simulator="iPhone 6 (8.0 Simulator)"
 
 appPath="$(find ~/Library/Developer/CoreSimulator/Devices -name "${APPNAME}" | head -n 1)"
-COUNTER=1
+traceTemplatePath="/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.xrplugin/Contents/Resources/Automation.tracetemplate"
+script="uiauto/scripts/allScripts.js"
+COUNTER=0
+
 while [  $COUNTER -lt $RUNS ]; do
   echo RUN NUMBER = $COUNTER
   let COUNTER=COUNTER+1
-  echo `instruments -w "${simulator}" -t "${fullTracetemplatePath}" "${appPath}" 1>&2`
+echo `instruments -w "${simulator}" -t "${traceTemplatePath}" "${appPath}" -e UIASCRIPT "${script}" 1>&2`
   
 done
 
