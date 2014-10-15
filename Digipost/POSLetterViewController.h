@@ -37,6 +37,10 @@ extern NSString *const kPushReceiptIdentifier;
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 - (void)reloadFromMetadata;
 
+- (void)showMoveDocumentActionSheet;
+- (void)showDeleteDocumentActionSheet;
+- (void)showOpenInController;
+
 // reloads current open document without dimsissing popover on ipad portrait
 - (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment;
 - (void)setReceiptDoNotDismissPopover:(POSReceipt *)receipt;

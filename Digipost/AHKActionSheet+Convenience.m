@@ -29,4 +29,32 @@
     [self setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
+
++ (AHKActionSheet *)setupButtonsForLetterController:(POSLetterViewController *)letterViewController
+{
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"", @"")];
+    [actionSheet setupStyle];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet move document", @"")
+                              image:nil
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *actionSheet, id item) {
+                                [letterViewController showMoveDocumentActionSheet];
+                            }];
+
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet delete document", @"")
+                              image:nil
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *actionSheet, id item) {
+                                [letterViewController showDeleteDocumentActionSheet];
+                            }];
+
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet open in app", @"")
+                              image:nil
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *actionSheet, id item) {
+                                [letterViewController showOpenInController];
+                            }];
+    return actionSheet;
+}
+
 @end
