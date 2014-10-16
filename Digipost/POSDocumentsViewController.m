@@ -41,6 +41,7 @@
 #import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
+#import "POSDocumentTableViewCell.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
 #import "Digipost-Swift.h"
@@ -58,7 +59,7 @@ NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documents
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
-@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate>
+@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
@@ -185,7 +186,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     });
     [super setEditing:editing
              animated:animated];
-
     [self.navigationController setToolbarHidden:!editing
                                        animated:animated];
     [self updateNavbar];
@@ -252,6 +252,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     } else {
         cell.subjectLabel.font = [UIFont digipostBoldFont];
     }
+    cell.delegate = self;
 
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
@@ -850,4 +851,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
+
+- (void)documentTableViewCellDidTapEditingButton:(POSDocumentTableViewCell *)documentTableViewCell
+{
+    UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        
+        if (buttonIndex == 1){
+            // do the actual change!
+        }
+    }];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+}
+
 @end

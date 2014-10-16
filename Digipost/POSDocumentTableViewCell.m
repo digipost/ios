@@ -48,4 +48,11 @@ NSString *const kDocumentTableViewCellIdentifier = @"DocumentCellIdentifier";
                                     : [UIColor whiteColor];
 }
 
+- (IBAction)didTapEditingButton:(id)sender
+{
+    if ([self.delegate respondsToSelector:@selector(documentTableViewCellDidTapEditingButton:)]) {
+        [self.delegate documentTableViewCellDidTapEditingButton:self];
+    }
+}
+
 @end
