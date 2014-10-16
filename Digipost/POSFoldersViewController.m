@@ -247,13 +247,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             case 1: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
                 iconImage = [UIImage imageNamed:@"list-icon-receipt"];
-
             } break;
             case 2: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
-
             default:
                 break;
         }
@@ -517,7 +515,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     break;
                 }
                 case 2: {
-                    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"),NSLocalizedString(@"upload action sheet camera", @"start camera")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                    [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[ NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"), NSLocalizedString(@"upload action sheet camera", @"start camera") ] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
                         switch (buttonIndex) {
                             case 0:
                                 self.uploadImageController = [[UploadImageController alloc] init];
