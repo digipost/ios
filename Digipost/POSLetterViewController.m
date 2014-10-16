@@ -56,7 +56,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate>
+@interface POSLetterViewController () <UIWebViewDelegate,UIDocumentInteractionControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
@@ -133,15 +133,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self reloadFromMetadata];
     [self pos_setDefaultBackButton];
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
-
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-
         if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) == NO) {
             if (!leftBarButtonItem) {
                 leftBarButtonItem = self.navigationItem.leftBarButtonItem;
             }
             [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-
             leftBarButtonItem.title = @" ";
             [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
                                              animated:YES];
@@ -630,7 +627,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
                                                            [self.webView loadRequest:request];
                                                            
-                
                                                            if ([_attachment.read boolValue] == NO ) {
                                                                [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                            }
@@ -839,6 +835,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showOpenInController
 {
+    
     if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
@@ -876,8 +873,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-        [self.openInController presentPreviewAnimated:YES];
+        [self.openInController presentOpenInMenuFromBarButtonItem:self.actionBarButtonItem animated:YES];
+        self.openInController.delegate = self;
     } else {
+        self.openInController.delegate = self;
         [self.openInController dismissMenuAnimated:YES];
     }
 }
