@@ -86,7 +86,10 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateValididatingOpeningReceiptFailed,
     SHCAPIManagerStateUpdateSingleDocument,
     SHCAPIManagerStateUpdateSingleDocumentFinished,
-    SHCAPIManagerStateUpdateSingleDocumentFailed
+    SHCAPIManagerStateUpdateSingleDocumentFailed,
+    SHCAPIManagerStateChangeDocumentName,
+    SHCAPIManagerStateChangeDocumentNameFinished,
+    SHCAPIManagerStateChangeDocumentNameFailed,
 };
 // Custom NSError consts
 extern NSString *const kAPIManagerErrorDomain;
@@ -145,7 +148,8 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
-- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary*))success failure:(void (^)(NSError *))failure;
+- (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure;
 
 - (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)changeNameOfDocument:(POSDocument *)document newName:(NSString *)newName success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 @end
