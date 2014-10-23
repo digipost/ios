@@ -31,9 +31,9 @@
     [self setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 }
 
-+ (AHKActionSheet *)setupButtonsForLetterController:(POSLetterViewController *)letterViewController
++ (AHKActionSheet *)setupActionButtonsForLetterController:(POSLetterViewController *)letterViewController
 {
-    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"", @"")];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"actions action sheet title", @"")];
     [actionSheet setupStyle];
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet move document", @"")
                               image:nil

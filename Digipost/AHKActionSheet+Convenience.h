@@ -12,6 +12,6 @@
 @interface AHKActionSheet (Convenience)
 
 - (void)setupStyle;
-+ (AHKActionSheet *)setupButtonsForLetterController:(POSLetterViewController *)letterViewController;
++ (AHKActionSheet *)setupActionButtonsForLetterController:(POSLetterViewController *)letterViewController;
 
 @end
