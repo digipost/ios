@@ -73,6 +73,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
 @property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
 @property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
+@property (nonatomic) CGFloat lastDragStartY;
 @property (nonatomic, strong) POSLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSourceAndDelegate;
 - (IBAction)didTapClosePopoverButton:(id)sender;
 @end
@@ -115,9 +116,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
 
-    [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(swipe:)];
+    //    [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(swipe:)];
 
-    self.navigationController.hidesBarsOnSwipe = YES;
     self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self
                                                                            action:@selector(didTapInfo:)];
 
@@ -181,18 +181,28 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     //    self.navigationController.hidesBarsOnSwipe = YES;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-
-    //    if (scrollView.dragging) {
-    //        NSLog(@"point: %f %f", scrollView.contentOffset.x, scrollView.contentOffset.y);
-    //        if (scrollView.contentOffset.y > 0) {
-    //            [self changeNavbarStateToHidden:NO];
-    //        } else {
-    //            [self changeNavbarStateToHidden:YES];
-    //        }
-    //    }
+    CGFloat yStartValue = scrollView.contentOffset.y;
+    self.lastDragStartY = yStartValue;
+    NSLog(@"will begin dragging: %f %f", scrollView.contentOffset.x, scrollView.contentOffset.y);
 }
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
+{
+    NSLog(@"end dragging: %f %f", targetContentOffset->x, targetContentOffset->y);
+    if (targetContentOffset->y == self.lastDragStartY) {
+        return;
+    }
+    if (targetContentOffset->y > self.lastDragStartY) {
+        NSLog(@"navbar  hidden");
+        [self changeNavbarStateToHidden:YES];
+    } else {
+        [self changeNavbarStateToHidden:NO];
+        NSLog(@"navbar not hidden");
+    }
+}
+
 - (void)changeNavbarStateToHidden:(BOOL)hidden
 {
     if (hidden) {
