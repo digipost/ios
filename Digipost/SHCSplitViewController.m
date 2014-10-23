@@ -32,8 +32,7 @@
 
 - (void)dealloc
 {
-    @try
-    {
+    @try {
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:kShowLoginViewControllerNotificationName
                                                       object:nil];
@@ -50,8 +49,7 @@
 {
     [super viewDidLoad];
 
-    @try
-    {
+    @try {
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(presentLoginViewController:)
                                                      name:kShowLoginViewControllerNotificationName
@@ -106,11 +104,13 @@
 
 - (void)presentLoginViewController
 {
-    POSLetterViewController *letterViewController = self.letterViewController;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        POSLetterViewController *letterViewController = self.letterViewController;
     if (letterViewController) {
         [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
     }
     [self performSegueWithIdentifier:kPresentLoginModallyIdentifier
                               sender:nil];
+    });
 }
 @end
