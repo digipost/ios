@@ -56,7 +56,7 @@ NSString *const kPushLetterIdentifier = @"PushLetter";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface POSLetterViewController () <UIWebViewDelegate,UIDocumentInteractionControllerDelegate>
+@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (weak, nonatomic) IBOutlet UIProgressView *progressView;
@@ -104,15 +104,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
+    self.webView.scrollView.delegate = self;
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];
 
+    [self.navigationController.barHideOnSwipeGestureRecognizer addTarget:self action:@selector(swipe:)];
+
+    self.navigationController.hidesBarsOnSwipe = YES;
     self.infoBarButtonItem = [UIBarButtonItem barButtonItemWithInfoImageForTarget:self
                                                                            action:@selector(didTapInfo:)];
 
@@ -150,13 +155,67 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
+- (void)swipe:(UIPanGestureRecognizer *)gestureRecognizer
+{
+    CGPoint point = [gestureRecognizer translationInView:self.view];
+    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
+
+    NSLog(@"point: %f %f, velocity: %f %f", point.x, point.y, velocity.x, velocity.y);
+    //    if (point.y > 0) {
+    //        [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    //    }else {
+    //        [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    //    }
+    //    //    switch (gestureRecognizer.) {
+    //    //        case UISwipeGestureRecognizerDirectionUp: {
+    //    //            [self.navigationController.navigationBar setHidden:NO];
+    //    //
+    //    //        } break;
+    //    //        case UISwipeGestureRecognizerDirectionDown: {
+    //    //            [self.navigationController.navigationBar setHidden:YES];
+    //    //
+    //    //        }
+    //    //        default:
+    //    //            break;
+    //    //    }
+    //    self.navigationController.hidesBarsOnSwipe = YES;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+    //    if (scrollView.dragging) {
+    //        NSLog(@"point: %f %f", scrollView.contentOffset.x, scrollView.contentOffset.y);
+    //        if (scrollView.contentOffset.y > 0) {
+    //            [self changeNavbarStateToHidden:NO];
+    //        } else {
+    //            [self changeNavbarStateToHidden:YES];
+    //        }
+    //    }
+}
+- (void)changeNavbarStateToHidden:(BOOL)hidden
+{
+    if (hidden) {
+        if (self.navigationController.navigationBar.isHidden == NO) {
+            [[self navigationController] setNavigationBarHidden:YES animated:YES];
+        }
+    } else {
+        if (self.navigationController.navigationBar.isHidden) {
+            [[self navigationController] setNavigationBarHidden:NO animated:YES];
+        }
+    }
+}
+
+- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
+{
+}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    BOOL toolbarHidden = NO;
-    [self.navigationController setToolbarHidden:toolbarHidden
-                                       animated:NO];
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    //    BOOL toolbarHidden = NO;
+    //    [self.navigationController setToolbarHidden:toolbarHidden
+    //                                       animated:NO];
+    //    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)didChangeEditingStatus:(NSNotification *)notification
@@ -700,9 +759,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                      }];
 }
 
-- (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
-{
-}
+//- (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
+//{
+//}
 
 - (void)moveDocumentToFolder:(POSFolder *)folder
 {
@@ -828,14 +887,18 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
-    AHKActionSheet *actionSheet = [AHKActionSheet setupButtonsForLetterController:self];
+    AHKActionSheet *actionSheet = [AHKActionSheet setupActionButtonsForLetterController:self];
     [actionSheet show];
     [self setInfoViewVisible:NO];
 }
 
+- (void)showRenameAlert
+{
+}
+
 - (void)showOpenInController
 {
-    
+
     if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
@@ -941,7 +1004,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         actionButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
     }
-    
+
     [UIAlertView showWithTitle:title
                        message:message
              cancelButtonTitle:cancelButtonTitle
@@ -1173,7 +1236,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)reloadFromMetadata
 {
-
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
         if (!self.attachment && !self.receipt) {
