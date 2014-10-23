@@ -10,23 +10,14 @@ import Foundation
 import UIKit
 
 extension UIFont {
-    class func digipostRegularFont() -> UIFont{
+    class func digipostRegularFont() -> UIFont {
         let regularFont = UIFont.systemFontOfSize(17)
         return regularFont
     }
     
-    class func digipostBoldFont() -> UIFont{
+    class func digipostBoldFont() -> UIFont? {
         let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
         return boldFont!
-    }
-    
-    class func digipostMediumFontSizeMedium() -> UIFont{
-        let regularFont = UIFont(name: "FoundryMonoline-Medium", size: 18)
-        return regularFont!
-    }
-    class func digipostMediumFontSizeSmall() -> UIFont{
-        let regularFont = UIFont(name: "FoundryMonoline-Medium", size: 17)
-        return regularFont!
     }
     // debug method used when you are looking for custom font names
     class func debugToFindNameOfCustomFonts(){
