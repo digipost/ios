@@ -672,7 +672,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         }
         }
         failure:^(NSError *error) {
-                                            
                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -725,7 +724,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                           }
         }
         failure:^(NSError *error) {
-                                              
                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -854,13 +852,21 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)documentTableViewCellDidTapEditingButton:(POSDocumentTableViewCell *)documentTableViewCell
 {
+
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        
         if (buttonIndex == 1){
+            NSString *name = [alertView textFieldAtIndex:0].text;
             // do the actual change!
+            POSDocument *document = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:documentTableViewCell]];
+            [[POSAPIManager sharedManager] changeNameOfDocument:document newName:name success:^{
+                [self updateContentsFromServerUserInitiatedRequest:@NO];
+            } failure:^(NSError *error) {
+                
+            }];
         }
     }];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView textFieldAtIndex:0].text = documentTableViewCell.subjectLabel.text;
 }
 
 @end
