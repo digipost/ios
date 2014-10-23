@@ -10,5 +10,14 @@ import UIKit
 
 extension UIToolbar {
     
+    
+    func setupIconsForLetterViewController(letterViewController: POSLetterViewController){
+//        backgroundColor = UIColor.whiteColor()
+//        tintColor = UIColor.whiteColor()
+        barTintColor = UIColor.whiteColor()
+        let items = NSMutableArray()
+        
+        setItems(items, animated: false)
+    }
  
 }
