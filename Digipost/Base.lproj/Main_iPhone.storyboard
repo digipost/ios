@@ -1227,6 +1227,9 @@
                     <toolbarItems>
                         <barButtonItem image="Info" id="Ibj-82-v8n">
                             <color key="tintColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="didTapInformationBarButtonItem:" destination="IOM-jr-kzB" id="3v4-p2-RET"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2tg-7S-duO"/>
                         <barButtonItem title="Item" image="Move" id="a5W-FN-Zke">
@@ -1249,6 +1252,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="errorLabel" destination="xQW-NC-XrA" id="wd5-2F-s8Q"/>
+                        <outlet property="informationBarButtonItem" destination="Ibj-82-v8n" id="6tF-Rr-B4j"/>
                         <outlet property="popoverTableView" destination="akV-fc-y5R" id="nZd-sW-NPQ"/>
                         <outlet property="popoverTitleLabel" destination="KLb-8S-wmJ" id="Lgt-LQ-gvf"/>
                         <outlet property="popoverView" destination="GRH-Ar-m5o" id="tJk-Ze-FwK"/>
@@ -1486,9 +1490,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vJp-VT-rtF"/>
         <segue reference="6ll-nd-HYD"/>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="geX-1f-yyf"/>
         <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
