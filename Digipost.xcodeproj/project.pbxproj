@@ -238,6 +238,9 @@
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
+		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
+		ECA594C719FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
+		ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354C1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
@@ -429,8 +432,6 @@
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
-		EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Enterprise-Bridging-Header.h"; sourceTree = "<group>"; };
-		EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Test-Dpost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
@@ -458,6 +459,7 @@
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSAPIManager+PrivateMethods.h"; sourceTree = "<group>"; };
 		ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSAPIManager+PrivateMethods.m"; sourceTree = "<group>"; };
@@ -542,6 +544,7 @@
 				83D2F7E71875578A00344644 /* POSFileManager.m */,
 				ECB3A64D18B379F8002D8C22 /* POSNotice.h */,
 				ECB3A64E18B379F8002D8C22 /* POSNotice.m */,
+				ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */,
 				835C74E318867603006C6F4F /* POSInvoice.h */,
 				835C74E418867603006C6F4F /* POSInvoice.m */,
 				83D75F661858E5790013F8C9 /* POSRootResource.h */,
@@ -659,8 +662,6 @@
 				EC1A6C3018BBA36100269428 /* Document detail */,
 				EC0F2B7519B8930E0019212E /* Upload */,
 				EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */,
-				EC4875BD19C1D6660024C95E /* Digipost-Enterprise-Bridging-Header.h */,
-				EC4875BE19C1D6660024C95E /* Digipost-Test-Dpost-Bridging-Header.h */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1166,6 +1167,7 @@
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC181DB2192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F5B1858E5790013F8C9 /* POSFolder.m in Sources */,
 				EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F771859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
@@ -1256,6 +1258,7 @@
 				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC181DB1192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				ECA594C719FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F5A1858E5790013F8C9 /* POSFolder.m in Sources */,
 				EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F761859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
@@ -1346,6 +1349,7 @@
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC181DB0192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
@@ -1457,7 +1461,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1490,7 +1494,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Test-Dpost-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1510,7 +1514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "976717a7-ef89-4046-8d13-86aaa3e6db9e";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1531,7 +1535,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "976717a7-ef89-4046-8d13-86aaa3e6db9e";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Enterprise-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
