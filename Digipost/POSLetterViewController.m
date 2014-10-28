@@ -70,7 +70,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (strong, nonatomic) NSProgress *progress;
 @property (strong, nonatomic) UIDocumentInteractionController *openInController;
 @property (strong, nonatomic) UIBarButtonItem *invoiceBarButtonItem;
-@property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
 @property (strong, nonatomic) UIBarButtonItem *leftBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIView *popoverView;
 @property (weak, nonatomic) IBOutlet UITableView *popoverTableView;
@@ -109,7 +108,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewDidLoad
 {
-
     [super viewDidLoad];
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
@@ -148,34 +146,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
-    //    [self.navigationController.toolbar setupIconsForLetterViewController:self];
-    NSLog(@"%@", self.navigationController.toolbar.items);
-}
-
-- (void)swipe:(UIPanGestureRecognizer *)gestureRecognizer
-{
-    CGPoint point = [gestureRecognizer translationInView:self.view];
-    CGPoint velocity = [gestureRecognizer velocityInView:self.view];
-
-    NSLog(@"point: %f %f, velocity: %f %f", point.x, point.y, velocity.x, velocity.y);
-    //    if (point.y > 0) {
-    //        [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    //    }else {
-    //        [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    //    }
-    //    //    switch (gestureRecognizer.) {
-    //    //        case UISwipeGestureRecognizerDirectionUp: {
-    //    //            [self.navigationController.navigationBar setHidden:NO];
-    //    //
-    //    //        } break;
-    //    //        case UISwipeGestureRecognizerDirectionDown: {
-    //    //            [self.navigationController.navigationBar setHidden:YES];
-    //    //
-    //    //        }
-    //    //        default:
-    //    //            break;
-    //    //    }
-    //    self.navigationController.hidesBarsOnSwipe = YES;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -220,19 +190,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    //    [self.navigationController.toolbar setupIconsForLetterViewController:self];
 }
+
 - (void)viewWillLayoutSubviews
 {
     [self.navigationController.toolbar setupIconsForLetterViewController:self];
 }
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //    BOOL toolbarHidden = NO;
-    //    [self.navigationController setToolbarHidden:toolbarHidden
-    //                                       animated:NO];
-    //    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 }
 
 - (void)didChangeEditingStatus:(NSNotification *)notification
@@ -784,10 +751,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                      }];
 }
 
-//- (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
-//{
-//}
-
 - (void)moveDocumentToFolder:(POSFolder *)folder
 {
     NSAssert(self.attachment.document != nil, @"no document");
@@ -912,9 +875,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapAction:(UIBarButtonItem *)barButtonItem
 {
-    AHKActionSheet *actionSheet = [AHKActionSheet setupActionButtonsForLetterController:self];
-    [actionSheet show];
-    [self setInfoViewVisible:NO];
+
 }
 
 - (void)showRenameAlert
@@ -1202,16 +1163,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 }
 
-//        NSString *title = nil;
-//        if (self.isSendingInvoice) {
-//            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"Sending...");
-//        } else if (self.attachment.invoice.timePaid) {
-//            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE", @"Sent to bank");
-//        } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
-//            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE", @"Send to bank");
-//        } else {
-//            title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE", @"Payment tips");
-//        }
+
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController
 {
@@ -1293,17 +1245,27 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapMoveDocumentBarButtonItem:(id)sender
 {
+    [self showMoveDocumentActionSheet];
 }
 
 - (void)didTapDeleteDocumentBarButtonItem:(id)sender
 {
+    [self showDeleteDocumentActionSheet];
 }
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
+    
 }
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
 {
+    [self showOpenInController];
+}
+
+- (void)didTapMoreOptionsBarButtonItem:(id)sender {
+    AHKActionSheet *actionSheet = [AHKActionSheet setupActionButtonsForLetterController:self];
+    [actionSheet show];
+    [self setInfoViewVisible:NO];
 }
 
 - (IBAction)didTapClosePopoverButton:(id)sender

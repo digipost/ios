@@ -10,5 +10,12 @@ import UIKit
 
 extension POSAttachment {
     
- 
+    func hasValidToPayInvoice() -> Bool {
+        if let actualInvoice = invoice as POSInvoice? {
+            if actualInvoice.canBePaidByUser.boolValue {
+                return true
+            }
+        }
+        return false
+    }
 }

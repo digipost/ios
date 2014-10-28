@@ -33,6 +33,7 @@ extern NSString *const kPushReceiptIdentifier;
 @property (strong, nonatomic) POSAttachment *attachment;
 @property (strong, nonatomic) POSReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
+@property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 - (void)reloadFromMetadata;
