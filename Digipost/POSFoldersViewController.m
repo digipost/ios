@@ -217,6 +217,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
+        if (__IS_BETA__ == 1) {
+            return 4;
+        }
         return 3; // Inbox, Receipts and upload
     } else {
         if (self.isEditing && self.shouldShowAddNewFolderCell) {
@@ -252,10 +255,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
+            case 3: {
+                folderName = NSLocalizedString(@"folder view controller beta title", @"tells user that they can send feedback with this button");
+                iconImage = [UIImage imageNamed:@"Feedback"];
+            } break;
+
             default:
                 break;
         }
-
     } else {
         if (indexPath.row >= [self.folders count]) {
             folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
@@ -413,7 +420,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                               [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
                                           }
         }
-        failure:^(NSError *error) {}];
+        failure:^(NSError *error){}];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -530,6 +537,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     }];
                     break;
                 } break;
+                case 3: {
+                    NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
+                    [[UIApplication sharedApplication] openURL:url];
+                }
                 default:
                     break;
             }
