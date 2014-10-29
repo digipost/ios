@@ -55,6 +55,12 @@
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showOpenInController];
                             }];
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")
+                              image:nil
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *actionSheet, id item) {
+                                [letterViewController showRenameAlertView];
+                            }];
     return actionSheet;
 }
 

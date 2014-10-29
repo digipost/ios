@@ -865,9 +865,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
 }
 
-- (void)showRenameAlert
+- (void)showRenameAlertView
 {
-            POSDocument *document = self.attachment.document;
+    POSDocument *document = self.attachment.document;
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1){
             NSString *name = [alertView textFieldAtIndex:0].text;
@@ -1243,7 +1243,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
-    [self showRenameAlert];
+    [self showRenameAlertView];
 }
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender

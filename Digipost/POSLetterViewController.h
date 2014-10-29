@@ -41,6 +41,7 @@ extern NSString *const kPushReceiptIdentifier;
 - (void)showMoveDocumentActionSheet;
 - (void)showDeleteDocumentActionSheet;
 - (void)showOpenInController;
+- (void)showRenameAlertView;
 
 // reloads current open document without dimsissing popover on ipad portrait
 - (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment;
