@@ -883,7 +883,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [alertView textFieldAtIndex:0].text = self.attachment.subject;
 }
 
-- (void)showOpenInController
+- (void)showOpenInControllerFromBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
 
     if (self.openInController == nil) {
@@ -923,7 +923,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-        [self.openInController presentOpenInMenuFromBarButtonItem:self.actionBarButtonItem animated:YES];
+        
+        [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
+        
         self.openInController.delegate = self;
     } else {
         self.openInController.delegate = self;
@@ -1248,7 +1250,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
 {
-    [self showOpenInController];
+    [self showOpenInControllerFromBarButtonItem:sender];
 }
 
 - (void)didTapMoreOptionsBarButtonItem:(id)sender
