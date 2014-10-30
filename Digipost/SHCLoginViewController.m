@@ -70,7 +70,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
