@@ -114,8 +114,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     self.navigationItem.title = self.attachment.subject;
     self.webView.scrollView.delegate = self;
-    [self.navigationController setToolbarHidden:NO
-                                       animated:YES];
 
     self.screenName = kLetterViewControllerScreenName;
 
@@ -151,21 +149,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     CGFloat yStartValue = scrollView.contentOffset.y;
     self.lastDragStartY = yStartValue;
-    NSLog(@"will begin dragging: %f %f", scrollView.contentOffset.x, scrollView.contentOffset.y);
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset
 {
-    NSLog(@"end dragging: %f %f", targetContentOffset->x, targetContentOffset->y);
     if (targetContentOffset->y == self.lastDragStartY) {
         return;
     }
     if (targetContentOffset->y > self.lastDragStartY) {
-        NSLog(@"navbar  hidden");
         [self changeNavbarStateToHidden:YES];
     } else {
         [self changeNavbarStateToHidden:NO];
-        NSLog(@"navbar not hidden");
     }
 }
 
@@ -179,7 +173,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         if (self.navigationController.navigationBar.isHidden) {
             [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            [[self navigationController] setToolbarHidden:NO animated:YES];
+            if ([self shouldHideToolBar:self.attachment receipt:self.receipt] == NO) {
+                [[self navigationController] setToolbarHidden:NO animated:YES];
+            }
         }
     }
 }
@@ -923,9 +919,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-        
+
         [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
-        
+
         self.openInController.delegate = self;
     } else {
         self.openInController.delegate = self;
@@ -1213,18 +1209,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)reloadFromMetadata
 {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-
         if (!self.attachment && !self.receipt) {
             [self showEmptyView:YES];
             return;
         } else {
+
             [self showEmptyView:NO];
         }
     }
 
-    if (![self attachmentHasValidFileType]) {
+    if ([self attachmentHasValidFileType] == NO) {
         [self showInvalidFileTypeView];
     }
+
+    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment receipt:self.receipt] animated:NO];
 
     [self loadContent];
 }

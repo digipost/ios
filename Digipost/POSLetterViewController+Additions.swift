@@ -14,10 +14,12 @@ import UIKit
 extension POSLetterViewController {
     
     func interactionControllerCanShareContent(baseEncryptModel: POSBaseEncryptedModel) -> Bool{
+        
         let encryptedFilePath = baseEncryptModel.encryptedFilePath()
         let decryptedFilePath = baseEncryptModel.decryptedFilePath()
         var fileURL : NSURL?
         var error : NSError?
+        
         if let decryptedFilePathNotNil = decryptedFilePath {
             if (NSFileManager.defaultManager().fileExistsAtPath(decryptedFilePathNotNil)){
                 fileURL = NSURL.fileURLWithPath(decryptedFilePathNotNil)
@@ -27,9 +29,11 @@ extension POSLetterViewController {
                 }
             }
         }
+        
         if let actualError = error {
             return false
         }
+        
         if let updatedFileURL = fileURL? {
 //            let interactionController = UIDocumentInteractionController(URL: updatedFileURL)
 //            let canOpen = interactionController.presentOptionsMenuFromRect(CGRectZero, inView: UIView(frame: CGRectZero), animated: false)
@@ -39,17 +43,34 @@ extension POSLetterViewController {
             return false
         }
     }
-    
-    func showActionsActionSheet(view: UIView) {
-//        UIActionSheet.showInView(self.view, withTitle: nslocalidstr, cancelButtonTitle: <#String!#>, destructiveButtonTitle: <#String!#>, otherButtonTitles: <#[AnyObject]!#>, tapBlock: <#UIActionSheetCompletionBlock!##(UIActionSheet!, Int) -> Void#>)
-//        [UIActionSheet showInView:self.view withTitle:NSLocalizedString(@"upload action sheet title", @"") cancelButtonTitle:NSLocalizedString(@"upload action sheet cancel button", @"") destructiveButtonTitle:nil otherButtonTitles:@[NSLocalizedString(@"upload action sheet camera roll button", @"button that uploads from camera roll"),NSLocalizedString(@"upload action sheet camera", @"start camera")] tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-//            switch (buttonIndex) {
-//            case 0:
-//                break;
-//            case 1:
-//            default:
-//                break;
+    func shouldHideToolBar(attachment: POSAttachment?, receipt: POSReceipt?) -> Bool {
+        if let actualAttachment = attachment as POSAttachment? {
+            if actualAttachment.mainDocument.boolValue == false {
+                return true
+            }
+        } else if let actualReceipt = receipt as POSReceipt? {
+            return true
+        } else {
+            self.navigationController?.setToolbarHidden(true, animated: true)
+        }
+        return false
+//        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+//            if (!self.attachment && !self.receipt) {
+//                [self showEmptyView:YES];
+//                [self.navigationController setToolbarHidden:YES animated:YES];
+//                return;
+//            } else {
+//                
+//                [self showEmptyView:NO];
 //            }
-//        }];
+//        }
+//        if (self.receipt || self.attachment.mainDocument.boolValue == NO) {
+//            [self.navigationController setToolbarHidden:YES animated:YES];
+//        } else {
+//            [self.navigationController setToolbarHidden:NO animated:YES];
+//        }
+//        if ([self attachmentHasValidFileType] == NO) {
+//            [self showInvalidFileTypeView];
+//        }
     }
 }
