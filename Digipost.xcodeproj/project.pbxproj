@@ -879,9 +879,9 @@
 			productReference = 8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */;
 			productType = "com.apple.product-type.application";
 		};
-		83A31AF91855D706007045B9 /* Digipost Beta */ = {
+		83A31AF91855D706007045B9 /* Digipost-Beta */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost Beta" */;
+			buildConfigurationList = 83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost-Beta" */;
 			buildPhases = (
 				A63ABFE4BDB4469FA891B1A2 /* Check Pods Manifest.lock */,
 				83A31AFA1855D706007045B9 /* Sources */,
@@ -893,7 +893,7 @@
 			);
 			dependencies = (
 			);
-			name = "Digipost Beta";
+			name = "Digipost-Beta";
 			productName = Digipost;
 			productReference = 83A31B0B1855D706007045B9 /* Digipost Beta.app */;
 			productType = "com.apple.product-type.application";
@@ -958,7 +958,7 @@
 			projectRoot = "";
 			targets = (
 				83BAB9171855C0AC004A7BFB /* Digipost */,
-				83A31AF91855D706007045B9 /* Digipost Beta */,
+				83A31AF91855D706007045B9 /* Digipost-Beta */,
 				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
 			);
 		};
@@ -1680,7 +1680,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost Beta" */ = {
+		83A31B081855D706007045B9 /* Build configuration list for PBXNativeTarget "Digipost-Beta" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83A31B091855D706007045B9 /* Debug */,
