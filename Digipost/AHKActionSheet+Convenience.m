@@ -35,15 +35,15 @@
 {
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"actions action sheet title", @"")];
     [actionSheet setupStyle];
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet move document", @"")
-                              image:nil
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet move document", @"title for move document in the multiple actions action sheet")
+                              image:[UIImage imageNamed:@"Move"]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showMoveDocumentActionSheet];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet delete document", @"")
-                              image:nil
+                              image:[UIImage imageNamed:@"Delete"]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showDeleteDocumentActionSheet];
@@ -55,6 +55,7 @@
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showOpenInController];
                             }];
+
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")
                               image:nil
                                type:AHKActionSheetButtonTypeDefault
