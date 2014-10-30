@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 
-link_with ['Digipost', 'Digipost-Enterprise', 'Digipost-Staging-Enterprise']
+link_with ['Digipost', 'Digipost-Beta', 'Digipost-Staging-Enterprise']
 
 pod 'AFNetworking', '~> 2.3.1'
 pod 'HockeySDK', '~> 3.5.2'
