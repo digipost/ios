@@ -109,6 +109,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
@@ -127,6 +128,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 forViewController:self];
     [self reloadFromMetadata];
     [self pos_setDefaultBackButton];
+
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) == NO) {
@@ -240,6 +242,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
+    [self.webView setAccessabilityLabelForFileType:self.attachment.fileType];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
