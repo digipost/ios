@@ -48,24 +48,40 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                           style:UIBarButtonItemStyleBordered
                                                                          target:nil
                                                                          action:nil];
-    
+
     self.navigationItem.backBarButtonItem = backBarButtonItem;
-    
+
     [self generateTableViewHeader];
+    // select first row
+    POSAttachment *attachment = self.attachments[0];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [self validateOpeningAttachment:attachment
+            success:^{
+                                    ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+            }
+            failure:^(NSError *error) {
+                                [UIAlertView showWithTitle:error.errorTitle
+                                                   message:[error localizedDescription]
+                                         cancelButtonTitle:nil
+                                         otherButtonTitles:@[error.okButtonTitle]
+                                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                  }];
+            }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
-    
+
     // Sometimes, the previously selected cell isn't properly deselected.
     // The line below makes sure all visible cells are deselected, plus it adds a
     // fancy fading effect when the user swipes back to this view controller
@@ -74,11 +90,11 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
         [self.tableView deselectRowAtIndexPath:indexPathForSelectedRow
                                       animated:YES];
     }
-    
+
     // Since this is a UITableViewController subclass, and we can't subclass the GAITrackedViewController,
     // we'll manually track and submit screen hits.
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    
+
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
     [tracker set:kGAIScreenName
            value:kAttachmentsViewControllerScreenName];
@@ -100,13 +116,13 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
             }
         }
     }
-    
+
     [super viewWillDisappear:animated];
 }
 
-- (void)reloadTableViewDataForDocument:(POSDocument*)document
+- (void)reloadTableViewDataForDocument:(POSDocument *)document
 {
-    
+
     self.attachments = document.attachments;
     [self.tableView reloadData];
 }
@@ -123,43 +139,43 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     UILabel *headerFromLabel = [UILabel tableViewMediumHeaderLabel];
     [tableHeaderView addSubview:headerFromLabel];
     headerFromLabel.text = NSLocalizedString(@"GENERIC_FROM_LABEL", @"Fra");
-    
+
     UILabel *headerDateTitleLabel = [UILabel tableViewMediumHeaderLabel];
     headerDateTitleLabel.text = NSLocalizedString(@"GENERIC_DATE_LABEL", @"Dato");
     [tableHeaderView addSubview:headerDateTitleLabel];
-    
+
     UILabel *headerFromTextLabel = [UILabel tableViewRegularHeaderLabel];
     headerFromTextLabel.text = firstAttachment.document.creatorName;
     [tableHeaderView addSubview:headerFromTextLabel];
-    
+
     UILabel *headerDateTextLabel = [UILabel tableViewRegularHeaderLabel];
     // Dateformatter for format: 2013-02-15 09:49
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:NSLocalizedString(@"ATTACHMENTS_DATE_FORMAT", @"dd.MMM.YYYY 'kl.' HH:mm")];
     headerDateTextLabel.text = [dateFormatter stringFromDate:firstAttachment.document.createdAt];
     [tableHeaderView addSubview:headerDateTextLabel];
-    
+
     [headerFromLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [headerDateTitleLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [headerDateTextLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
     [headerFromTextLabel setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
+
     [tableHeaderView addOriginConstraintForOrigin:CGPointMake(15, 10)
                                     containedView:headerFromLabel];
     [headerFromLabel addSizeConstraint:CGSizeMake(60, 30)];
-    
+
     [tableHeaderView addOriginConstraintForOrigin:CGPointMake(15, 35)
                                     containedView:headerDateTitleLabel];
     [headerDateTitleLabel addSizeConstraint:CGSizeMake(60, 30)];
-    
+
     [tableHeaderView addOriginConstraintForOrigin:CGPointMake(80, 10)
                                     containedView:headerFromTextLabel];
     [headerFromTextLabel addSizeConstraint:CGSizeMake(210, 30)];
-    
+
     [tableHeaderView addOriginConstraintForOrigin:CGPointMake(80, 35)
                                     containedView:headerDateTextLabel];
     [headerDateTextLabel addSizeConstraint:CGSizeMake(210, 30)];
-    
+
     [self.tableView setTableHeaderView:tableHeaderView];
     // This line makes the tableview hide its separator lines for empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -175,7 +191,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 {
     if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         POSAttachment *attachment = (POSAttachment *)sender;
-        
+
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self.documentsViewController;
         letterViewController.attachment = attachment;
@@ -196,12 +212,12 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     POSAttachment *attachment = self.attachments[indexPath.row];
-    
+
     SHCAttachmentTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:kAttachmentTableViewCellIdentifier
                                                                             forIndexPath:indexPath];
-    
+
     cell.subjectLabel.text = attachment.subject;
-    
+
     return cell;
 }
 
@@ -210,8 +226,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     POSAttachment *attachment = self.attachments[indexPath.row];
-    
-    if (attachment.openingReceiptUri){
+
+    if (attachment.openingReceiptUri) {
         [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
                            message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
                  cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
@@ -234,14 +250,14 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
         return;
     }
     [self validateOpeningAttachment:attachment
-                            success:^{
+        success:^{
                                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                                     ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
                                 } else {
                                     [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                 }
-                            }
-                            failure:^(NSError *error) {
+        }
+        failure:^(NSError *error) {
                                 [UIAlertView showWithTitle:error.errorTitle
                                                    message:[error localizedDescription]
                                          cancelButtonTitle:nil
@@ -249,10 +265,11 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                                   tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                       [tableView deselectRowAtIndexPath:indexPath animated:YES];
                                                   }];
-                            }];
+        }];
 }
 
-- (void)shouldValidateOpeningReceipt:(POSAttachment*)attachment {
+- (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
+{
     {
         [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
             [self validateOpeningAttachment:attachment
@@ -276,13 +293,12 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                                               [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
                                                           }];
                                     }];
-            
+
         } failure:^(NSError *error) {
             [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                 
             }];
         }];
-        
     }
 }
 @end
