@@ -188,6 +188,12 @@
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
+		EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
+		EC31A6361A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
+		EC31A6371A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
+		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
+		EC31A63A1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
+		EC31A63B1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC3BC7691A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC3BC76A1A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
@@ -435,6 +441,8 @@
 		EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewController.m; sourceTree = "<group>"; };
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
+		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
+		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
@@ -733,6 +741,8 @@
 			children = (
 				EC0F2B7619B893350019212E /* POSUploadViewController.h */,
 				EC0F2B7719B893350019212E /* POSUploadViewController.m */,
+				EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */,
+				EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */,
 				EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */,
 				EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */,
 				ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */,
@@ -1157,7 +1167,9 @@
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65F19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
+				EC31A63B1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC31A6371A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
 				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5219FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
@@ -1250,7 +1262,9 @@
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65E19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */,
+				EC31A63A1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC31A6361A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
 				EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5119FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
@@ -1343,7 +1357,9 @@
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
+				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
+				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
