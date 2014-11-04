@@ -11,9 +11,9 @@ import UIKit
 extension UIToolbar {
     
     
-    func setupIconsForLetterViewController(letterViewController: POSLetterViewController){
+    func setupIconsForLetterViewController(letterViewController: POSLetterViewController) -> NSArray{
+        
         barTintColor = UIColor.whiteColor()
-
         let image = UIImage(named: "Info.pdf")
         
         let infoBarButtonItem = UIBarButtonItem(image: UIImage(named: "Info"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapInformationBarButtonItem:"))
@@ -33,9 +33,8 @@ extension UIToolbar {
                 items.addObjectsFromArray(itemsForStandardLetter(letterViewController))
         }
         
-       setItems(items, animated: true)
         self.tintColor = UIColor.digipostSpaceGrey()
-        
+        return items
     }
     
     private func itemsForValidInvoice (letterViewController: POSLetterViewController) -> NSArray {

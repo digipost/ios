@@ -200,7 +200,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)viewWillLayoutSubviews
 {
-    [self.navigationController.toolbar setupIconsForLetterViewController:self];
+    NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+    [self setToolbarItems:toolbarItems animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
