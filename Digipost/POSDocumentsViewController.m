@@ -68,7 +68,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 @property (weak, nonatomic) IBOutlet UILabel *noDocumentsLabel;
 @property (copy, nonatomic) NSString *selectedDocumentUpdateUri;
 @property (assign, nonatomic) BOOL shouldAnimateInsertAndDeletesToFetchedResultsController;
-@property (nonatomic) BOOL internalIsEditing;
 
 @end
 
@@ -180,10 +179,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    self.internalIsEditing = editing;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.tableView reloadSections: [NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    });
     [super setEditing:editing
              animated:animated];
     [self.navigationController setToolbarHidden:!editing
@@ -261,15 +256,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
-    if (self.internalIsEditing) {
-        cell.editingButton.hidden = NO;
-        cell.dateLabel.hidden = YES;
-        cell.arrowImageView.hidden = YES;
-    } else {
-        cell.editingButton.hidden = YES;
-        cell.dateLabel.hidden = NO;
-        cell.arrowImageView.hidden = NO;
-    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -514,7 +500,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         mailboxDigipostAddress:self.mailboxDigipostAddress
         folderUri:self.folderUri
         success:^{
-            
+                                                               
                                                                [self updateFetchedResultsController];
                                                                [self programmaticallyEndRefresh];
                                                                [self updateNavbar];
@@ -661,10 +647,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
                                         
                                         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-            [self updateFetchedResultsController];
+                                        [self updateFetchedResultsController];
                                         
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            
                                             POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
                                             if ([currentOpenDocument isEqual:document]){
                                                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
@@ -848,25 +833,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
-}
-
-- (void)documentTableViewCellDidTapEditingButton:(POSDocumentTableViewCell *)documentTableViewCell
-{
-
-    UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1){
-            NSString *name = [alertView textFieldAtIndex:0].text;
-            // do the actual change!
-            POSDocument *document = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:documentTableViewCell]];
-            [[POSAPIManager sharedManager] changeNameOfDocument:document newName:name success:^{
-                [self updateContentsFromServerUserInitiatedRequest:@NO];
-            } failure:^(NSError *error) {
-                
-            }];
-        }
-    }];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [alertView textFieldAtIndex:0].text = documentTableViewCell.subjectLabel.text;
 }
 
 @end
