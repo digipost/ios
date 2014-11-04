@@ -28,7 +28,7 @@
 - (void)pos_setDefaultBackButton
 {
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]
-                                                                   style:UIBarButtonItemStylePlain
+                                                                   style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(pos_popViewController)];
     [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
@@ -47,10 +47,10 @@
 {
     if (self.navigationController.viewControllers.count > 1) {
         NSInteger count = self.navigationController.viewControllers.count;
-        UIViewController *lastViewController = (id) self.navigationController.viewControllers[count - 2];
-        if (lastViewController.navigationItem.backBarButtonItem != nil ){
+        UIViewController *lastViewController = (id)self.navigationController.viewControllers[count - 2];
+        if (lastViewController.navigationItem.backBarButtonItem != nil) {
             return YES;
-        }else {
+        } else {
             return NO;
         }
     }

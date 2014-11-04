@@ -156,10 +156,10 @@
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
-            
+
         case NSFetchedResultsChangeMove:
             break;
-            
+
         case NSFetchedResultsChangeUpdate:
             break;
     }

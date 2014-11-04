@@ -43,6 +43,7 @@ extension POSLetterViewController {
             return false
         }
     }
+    
     func shouldHideToolBar(attachment: POSAttachment?, receipt: POSReceipt?) -> Bool {
         if let actualAttachment = attachment as POSAttachment? {
             if actualAttachment.mainDocument.boolValue == false {

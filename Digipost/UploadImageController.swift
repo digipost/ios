@@ -17,7 +17,6 @@ protocol UploadImageProtocol {
 
 class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    
     func showCameraCaptureInViewController(viewController:UIViewController) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
             let imagePicker = setupPickerController()
