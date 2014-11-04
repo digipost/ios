@@ -43,7 +43,6 @@ extension UIToolbar {
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         
         let invoiceButton =  UIButton(frame: CGRectMake(0, 0, 170, 44))
-        invoiceButton.setImage(UIImage(named: "Pay_Bill"), forState: UIControlState.Normal)
         invoiceButton.addTarget(letterViewController, action: Selector("didTapInvoice:"), forControlEvents: UIControlEvents.TouchUpInside)
         invoiceButton.setTitle(letterViewController.attachment.invoice.titleForInvoiceButtonLabel(letterViewController.sendingInvoice), forState: UIControlState.Normal)
         invoiceButton.setTitleColor(UIColor.digipostSpaceGrey(), forState: UIControlState.Normal)
@@ -71,7 +70,6 @@ extension UIToolbar {
         let renameDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "New name"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapRenameDocumentBarButtonItem:"))
         
         let openDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Open_in"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapOpenDocumentInExternalAppBarButtonItem:"))
-        
         
         items.addObject(moveDocumentBarButtonItem)
         items.addObject(flexibleSpaceBarButtonItem)
