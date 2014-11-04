@@ -114,9 +114,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
-    if (self.attachment){
+    if (self.attachment) {
         self.navigationItem.title = self.attachment.subject;
-    }else {
+    } else {
         self.navigationItem.title = self.receipt.storeName;
     }
     self.webView.scrollView.delegate = self;
@@ -893,9 +893,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [alertView textFieldAtIndex:0].text = self.attachment.subject;
 }
 
-- (void)showOpenInControllerFromBarButtonItem:(UIBarButtonItem *)barButtonItem
+- (BOOL)showOpenInControllerFromBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
-
+    BOOL didOpenFile = false;
     if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
@@ -923,24 +923,25 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                   tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self dismissViewControllerAnimated:YES completion:nil];
                                   }];
-                return;
+                return false;
             }
 
             fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         } else {
-            return;
+            return false;
         }
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-
-        [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
-
+        didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
         self.openInController.delegate = self;
     } else {
         self.openInController.delegate = self;
         [self.openInController dismissMenuAnimated:YES];
+        self.openInController = nil;
+        didOpenFile = YES;
     }
+    return didOpenFile;
 }
 
 - (void)showDeleteDocumentActionSheet
@@ -1264,7 +1265,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
 {
-    [self showOpenInControllerFromBarButtonItem:sender];
+    BOOL didOpen = [self showOpenInControllerFromBarButtonItem:sender];
+    if (didOpen == NO) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+    }
 }
 
 - (void)didTapMoreOptionsBarButtonItem:(id)sender
