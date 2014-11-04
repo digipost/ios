@@ -65,6 +65,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UILabel *errorLabel;
 @property (weak, nonatomic) IBOutlet UIView *shadowView;
 @property (weak, nonatomic) IBOutlet UIImageView *emptyLetterViewImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *popoverViewHeightConstraint;
 @property (strong, nonatomic) UIBarButtonItem *infoBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *actionBarButtonItem;
 @property (strong, nonatomic) NSProgress *progress;
@@ -113,7 +114,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
-    self.navigationItem.title = self.attachment.subject;
+    if (self.attachment){
+        self.navigationItem.title = self.attachment.subject;
+    }else {
+        self.navigationItem.title = self.receipt.storeName;
+    }
     self.webView.scrollView.delegate = self;
 
     self.screenName = kLetterViewControllerScreenName;
@@ -146,7 +151,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 1;
+    }
+    return 0;
+}
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     CGFloat yStartValue = scrollView.contentOffset.y;
@@ -1061,7 +1072,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.popoverTableView.delegate = self.popoverTableViewDataSourceAndDelegate;
         self.popoverTableView.dataSource = self.popoverTableViewDataSourceAndDelegate;
+        self.popoverTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
         self.popoverTableViewDataSourceAndDelegate.lineObjects = mutableObjectsInMetadata;
+        self.popoverViewHeightConstraint.constant = mutableObjectsInMetadata.count * 33 + 65;
 
         [UIView animateWithDuration:0.2
                          animations:^{
