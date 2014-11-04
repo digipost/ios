@@ -5,3 +5,4 @@ language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Digipost-Beta
 xcode_sdk: iphonesimulator
+osx_image: xcode61 
