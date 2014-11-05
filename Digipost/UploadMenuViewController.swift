@@ -35,9 +35,9 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
-            uploadImageController.showPhotoLibraryPickerInViewController(self)
-        case 1:
             uploadImageController.showCameraCaptureInViewController(self)
+        case 1:
+            uploadImageController.showPhotoLibraryPickerInViewController(self)
         default:
             // illegal index
             performSegueWithIdentifier("uploadGuideSegue", sender: self)

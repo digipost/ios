@@ -30,10 +30,10 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
     func configureCell(cell: UploadMenuTableViewCell, indexPath: NSIndexPath){
         switch indexPath.row {
         case 0:
-            cell.titleLabel.text = NSLocalizedString("upload action sheet camera roll button", comment:"button that uploads from camera roll")
+            cell.titleLabel.text = NSLocalizedString("upload action sheet camera", comment:"start camera")
             cell.iconImage.image = UIImage(named: "From_camera")
         case 1:
-            cell.titleLabel.text = NSLocalizedString("upload action sheet camera", comment:"start camera")
+            cell.titleLabel.text = NSLocalizedString("upload action sheet camera roll button", comment:"button that uploads from camera roll")
             cell.iconImage.image = UIImage(named: "Upload")
         case 2:
             cell.titleLabel.text = NSLocalizedString( "upload action sheet other file", comment:"From other app")
