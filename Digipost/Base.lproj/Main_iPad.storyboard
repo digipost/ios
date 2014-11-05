@@ -1506,7 +1506,7 @@
         <image name="list-icon-unread" width="30" height="18"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-logo" width="159" height="38"/>
-        <image name="popover-bg" width="310" height="37"/>
+        <image name="popover-bg" width="310" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
