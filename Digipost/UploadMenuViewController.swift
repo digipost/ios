@@ -23,6 +23,7 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = menuDataSource
         tableView.delegate = self
         tableView.reloadData()
+        tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 1))
         // Do any additional setup after loading the view.
     }
 
@@ -39,35 +40,10 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
             uploadImageController.showCameraCaptureInViewController(self)
         default:
             // illegal index
-            assert(false)
+            performSegueWithIdentifier("", sender: self)
         }
     }
     
-    /*
-    https://www.digipost.no/?s tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                        switch (buttonIndex) {
-                            case 0:
-                                self.uploadImageController = [[UploadImageController alloc] init];
-                                [self.uploadImageController showPhotoLibraryPickerInViewController:self];
-                                break;
-                            case 1:
-                                self.uploadImageController = [[UploadImageController alloc] init];
-                                [self.uploadImageController showCameraCaptureInViewController:self];
-                                break;
-                            case 2 :
-                                [self performSegueWithIdentifier:@"uploadGuideSegue" sender:self];
-                                break;
-                            default:
-                                break;
-                        }
-                    }];
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
