@@ -14,6 +14,8 @@
 // limitations under the License.
 //
 
+#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
+
 #include "Shared.xcconfig"
 
 ACCEPT_SELF_SIGNED_CERTIFICATES = 0
