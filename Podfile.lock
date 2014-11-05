@@ -28,7 +28,7 @@ PODS:
   - CocoaLumberjack/Extensions (1.6.5.1):
     - CocoaLumberjack/Core
   - GoogleAnalytics-iOS-SDK (3.0.9)
-  - HockeySDK (3.5.6)
+  - HockeySDK (3.5.7)
   - LUKeychainAccess (1.2.2)
   - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator
@@ -87,11 +87,11 @@ SPEC CHECKSUMS:
   AHKActionSheet: dbe68adfd670e2a307e0a64b12e7a321be6b3819
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
-  HockeySDK: 27d8b411208f9d3f70c8f6695a8defa2a3465721
+  HockeySDK: f0e874d1c6833163ee0c4e423606faf33ad04071
   LUKeychainAccess: 4365689e03b1a019ce40a86058aae6e31e9adcea
   MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
   RNCryptor: 4f562062c39f288b99601674f2c50dd44b68d58a
   UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4
