@@ -12,4 +12,6 @@
 #import <UIActionSheet+Blocks.h>
 #import "POSInvoice.h"
 #import "POSAttachment.h"
+#import "POSDocument.h"
+
 #import "POSReceipt.h"

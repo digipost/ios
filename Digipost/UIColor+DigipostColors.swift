@@ -18,4 +18,7 @@ extension UIColor {
         return UIColor(r: 64, g: 66, b: 69)
     }
     
+    class func digipostGreyOne () -> UIColor {
+        return UIColor(r: 239, g: 66, b: 69)
+    }
 }
