@@ -44,15 +44,11 @@ extension POSLetterViewController {
         }
     }
     
-    func shouldHideToolBar(attachment: POSAttachment?, receipt: POSReceipt?) -> Bool {
+    func shouldHideToolBar(attachment: POSAttachment?) -> Bool {
         if let actualAttachment = attachment as POSAttachment? {
             if actualAttachment.mainDocument.boolValue == false {
                 return true
             }
-        } else if let actualReceipt = receipt as POSReceipt? {
-            return true
-        } else {
-            self.navigationController?.setToolbarHidden(true, animated: true)
         }
         return false
 //        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
