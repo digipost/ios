@@ -53,7 +53,7 @@
                               image:nil
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
-                                [letterViewController showOpenInController];
+                                [letterViewController showOpenInControllerModally];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")

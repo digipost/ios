@@ -40,7 +40,7 @@ extern NSString *const kPushReceiptIdentifier;
 
 - (void)showMoveDocumentActionSheet;
 - (void)showDeleteDocumentActionSheet;
-- (void)showOpenInController;
+- (void)showOpenInControllerModally;
 - (void)showRenameAlertView;
 
 // reloads current open document without dimsissing popover on ipad portrait

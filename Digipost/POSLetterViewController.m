@@ -934,7 +934,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-        didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
+        if (barButtonItem ) {
+            didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
+        }else {
+            didOpenFile = [self.openInController presentPreviewAnimated:YES];
+        }
         self.openInController.delegate = self;
     } else {
         self.openInController.delegate = self;
@@ -1272,6 +1276,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
+- (void)showOpenInControllerModally {
+    BOOL didOpen = [self showOpenInControllerFromBarButtonItem:nil];
+    if (didOpen == NO) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+    }
+}
 - (void)didTapMoreOptionsBarButtonItem:(id)sender
 {
     AHKActionSheet *actionSheet = [AHKActionSheet setupActionButtonsForLetterController:self];
