@@ -119,7 +119,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         self.navigationItem.title = self.receipt.storeName;
     }
-    self.webView.scrollView.delegate = self;
 
     self.screenName = kLetterViewControllerScreenName;
 
@@ -129,6 +128,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
+    self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
     [self reloadFromMetadata];
@@ -151,6 +151,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -158,6 +159,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     return 0;
 }
+
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     CGFloat yStartValue = scrollView.contentOffset.y;
@@ -536,6 +538,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 #pragma mark - Private methods
 
+- (void)loadFileURL:(NSURL *)fileURL
+{
+    if ([self.attachment.fileType.lowercaseString isEqualToString:@"jpg"]) {
+        NSString *html = [NSString stringWithFormat:@"<img src='%@' style='width:100%%'>", fileURL];
+        [self.webView loadHTMLString:html baseURL:nil];
+    } else if ([self.attachment.fileType isEqualToString:@"html"]) {
+        self.webView.backgroundColor = [UIColor whiteColor];
+        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+        [self.webView loadRequest:request];
+    } else {
+        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
+        [self.webView loadRequest:request];
+    }
+}
+
 - (void)loadContent
 {
     POSBaseEncryptedModel *baseEncryptionModel = nil;
@@ -558,8 +575,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
 
         NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
-        NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-        [self.webView loadRequest:request];
+        [self loadFileURL:fileURL];
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
@@ -633,8 +649,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 
                                                                        
                 NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-                [self.webView loadRequest:request];
+                                                                       [self loadFileURL:fileURL];
                 
                 
                 if ([_attachment.read boolValue] == NO ) {
@@ -671,12 +686,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            }
                                                            
                                                            NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                if ([self.attachment.fileType isEqualToString:@"html"]){
-                    self.webView.backgroundColor = [UIColor whiteColor];
-                }
-                                                           NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
-                                                           [self.webView loadRequest:request];
-                                                           
+               
+                [self loadFileURL:fileURL];
+                
                                                            if ([_attachment.read boolValue] == NO ) {
                                                                [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                            }
@@ -934,9 +946,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
         self.openInController.delegate = self;
-        if (barButtonItem ) {
+        if (barButtonItem) {
             didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
-        }else {
+        } else {
             didOpenFile = [self.openInController presentPreviewAnimated:YES];
         }
         self.openInController.delegate = self;
@@ -1276,7 +1288,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (void)showOpenInControllerModally {
+- (void)showOpenInControllerModally
+{
     BOOL didOpen = [self showOpenInControllerFromBarButtonItem:nil];
     if (didOpen == NO) {
         [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
