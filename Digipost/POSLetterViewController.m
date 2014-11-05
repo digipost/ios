@@ -186,7 +186,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         if (self.navigationController.navigationBar.isHidden) {
             [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            if ([self shouldHideToolBar:self.attachment receipt:self.receipt] == NO) {
+            if ([self shouldHideToolBar:self.attachment] == NO) {
                 [[self navigationController] setToolbarHidden:NO animated:YES];
             }
         }
@@ -1076,7 +1076,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         self.popoverTableView.dataSource = self.popoverTableViewDataSourceAndDelegate;
         self.popoverTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
         self.popoverTableViewDataSourceAndDelegate.lineObjects = mutableObjectsInMetadata;
-        self.popoverViewHeightConstraint.constant = mutableObjectsInMetadata.count * 33 + 65;
+        self.popoverViewHeightConstraint.constant = mutableObjectsInMetadata.count * 48 + 44;
 
         [UIView animateWithDuration:0.2
                          animations:^{
@@ -1240,7 +1240,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self showInvalidFileTypeView];
     }
 
-    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment receipt:self.receipt] animated:NO];
+    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
 
     [self loadContent];
 }
