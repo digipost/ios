@@ -140,6 +140,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+    [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
