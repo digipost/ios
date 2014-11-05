@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreFoundation
+import AssetsLibrary
 import MobileCoreServices
 import UIKit
 
@@ -42,93 +43,118 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo ){
                 let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
-                println(mediaInfo)
-                let image = info[UIImagePickerControllerOriginalImage] as UIImage
-                let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
-                let data = UIImageJPEGRepresentation(image as UIImage, 1.0)
-                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-                let documentsDir = paths.firstObject as NSString?
-                if let documentsDirectory = documentsDir {
-                    let localFilePath = documentsDirectory.stringByAppendingPathComponent("temp.JPG")
-                    let couldCopy = data.writeToFile(localFilePath, atomically: true)
-                    let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                    picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
+                
+                var refURL = info[UIImagePickerControllerReferenceURL] as NSURL?;
+                if refURL == nil {
+                    refURL = info[UIImagePickerControllerMediaURL] as NSURL?;
+                }
+                //                let resultBlock =
+                //                ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset)
+                //                (ALAsset!)  in
+                
+                
+                //                }
+                if let actualMediaURL = refURL as NSURL! {
+                    var fileName = "temp.jpg"
+                    let assetLibrary = ALAssetsLibrary()
+                    assetLibrary.assetForURL(actualMediaURL , resultBlock: { (asset: ALAsset!) -> Void in
+                        if let actualAsset = asset as ALAsset? {
+                            var assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
+                            fileName = assetRep.filename()
+                            var iref = assetRep.fullResolutionImage().takeUnretainedValue()
+                            var image = UIImage(CGImage: iref)
+                            let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+                            let documentsDir = paths.firstObject as NSString?
+                            if let documentsDirectory = documentsDir {
+                                let localFilePath = documentsDirectory.stringByAppendingPathComponent(fileName)
+                                let data = UIImageJPEGRepresentation(image, 1.0)
+                                let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                                let localFileURL = NSURL(fileURLWithPath: localFilePath)
+                                let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                                appDelegate.uploadImageWithURL(localFileURL)
+                            }
+                            
+                            picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                
+                            })
+                        }
+                        }, failureBlock: { (error) -> Void in
+                            
                     })
-                    appDelegate.uploadImageWithURL(localFileURL)
-                    return
+                } else {
+                    
                 }
             }
         }
         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
+            
         })
         //            editedImage = (UIImage *) [info objectForKey:
-       
-        
-//        [picker dismissModalViewControllerAnimated:YES];
-//        imageView.image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-//        NSData *webData = UIImagePNGRepresentation(imageView.image);
-//        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-//        NSString *documentsDirectory = [paths objectAtIndex:0];
-//        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:png];
-//        [webData writeToFile:localFilePath atomically:YES];
-//        NSLog(@"localFilePath.%@",localFilePath);
         
         
+        //        [picker dismissModalViewControllerAnimated:YES];
+        //        imageView.image= [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+        //        NSData *webData = UIImagePNGRepresentation(imageView.image);
+        //        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        //        NSString *documentsDirectory = [paths objectAtIndex:0];
+        //        NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:png];
+        //        [webData writeToFile:localFilePath atomically:YES];
+        //        NSLog(@"localFilePath.%@",localFilePath);
         
         
         
-    
-//
-//            println(imagePathURL.absoluteURL)
-//            println(imagePathURL.relativePath)
-//            println(imagePathURL.standardizedURL)
-//        
-//            println(imagePathURL.path)
         
-//            NSString *moviePath = [[info objectForKey:
-//                UIImagePickerControllerMediaURL] path];
-            //                    UIImagePickerControllerEditedImage];
-            //                originalImage = (UIImage *) [info objectForKey:
-            //                    UIImagePickerControllerOriginalImage];
-            //
-            //                if (editedImage) {
-            //                    imageToUse = editedImage;
-            //                } else {
-            //                    imageToUse = originalImage;
-            //                }
-            //                // Do something with image
-//        }
-//        NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
-//        UIImage *originalImage, *editedImage, *imageToUse;
-//        
-//        // Handle a still image picked from a photo album
-//        if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
-//            == kCFCompareEqualTo) {
-//                
-//                editedImage = (UIImage *) [info objectForKey:
-//                    UIImagePickerControllerEditedImage];
-//                originalImage = (UIImage *) [info objectForKey:
-//                    UIImagePickerControllerOriginalImage];
-//                
-//                if (editedImage) {
-//                    imageToUse = editedImage;
-//                } else {
-//                    imageToUse = originalImage;
-//                }
-//                // Do something with imageToUse
-//        }
-//        
-//        // Handle a movied picked from a photo album
-//        if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
-//            == kCFCompareEqualTo) {
-//                
-//                NSString *moviePath = [[info objectForKey:
-//                    UIImagePickerControllerMediaURL] path];
-//                
-//                // Do something with the picked movie available at moviePath
-//        }
+        
+        
+        //
+        //            println(imagePathURL.absoluteURL)
+        //            println(imagePathURL.relativePath)
+        //            println(imagePathURL.standardizedURL)
+        //
+        //            println(imagePathURL.path)
+        
+        //            NSString *moviePath = [[info objectForKey:
+        //                UIImagePickerControllerMediaURL] path];
+        //                    UIImagePickerControllerEditedImage];
+        //                originalImage = (UIImage *) [info objectForKey:
+        //                    UIImagePickerControllerOriginalImage];
+        //
+        //                if (editedImage) {
+        //                    imageToUse = editedImage;
+        //                } else {
+        //                    imageToUse = originalImage;
+        //                }
+        //                // Do something with image
+        //        }
+        //        NSString *mediaType = [info objectForKey: UIImagePickerControllerMediaType];
+        //        UIImage *originalImage, *editedImage, *imageToUse;
+        //
+        //        // Handle a still image picked from a photo album
+        //        if (CFStringCompare ((CFStringRef) mediaType, kUTTypeImage, 0)
+        //            == kCFCompareEqualTo) {
+        //
+        //                editedImage = (UIImage *) [info objectForKey:
+        //                    UIImagePickerControllerEditedImage];
+        //                originalImage = (UIImage *) [info objectForKey:
+        //                    UIImagePickerControllerOriginalImage];
+        //
+        //                if (editedImage) {
+        //                    imageToUse = editedImage;
+        //                } else {
+        //                    imageToUse = originalImage;
+        //                }
+        //                // Do something with imageToUse
+        //        }
+        //
+        //        // Handle a movied picked from a photo album
+        //        if (CFStringCompare ((CFStringRef) mediaType, kUTTypeMovie, 0)
+        //            == kCFCompareEqualTo) {
+        //
+        //                NSString *moviePath = [[info objectForKey:
+        //                    UIImagePickerControllerMediaURL] path];
+        //                
+        //                // Do something with the picked movie available at moviePath
+        //        }
         
         
         
