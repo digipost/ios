@@ -31,10 +31,13 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             cell.titleLabel.text = NSLocalizedString("upload action sheet camera roll button", comment:"button that uploads from camera roll")
+            cell.iconImage.image = UIImage(named: "From_camera")
         case 1:
             cell.titleLabel.text = NSLocalizedString("upload action sheet camera", comment:"start camera")
+            cell.iconImage.image = UIImage(named: "Upload")
         case 2:
             cell.titleLabel.text = NSLocalizedString( "upload action sheet other file", comment:"From other app")
+            cell.iconImage.image = UIImage(named: "Upload_apps")
         default:
             assert(false)
         }
