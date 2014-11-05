@@ -48,12 +48,6 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 if refURL == nil {
                     refURL = info[UIImagePickerControllerMediaURL] as NSURL?;
                 }
-                //                let resultBlock =
-                //                ALAssetsLibraryAssetForURLResultBlock resultblock = ^(ALAsset *imageAsset)
-                //                (ALAsset!)  in
-                
-                
-                //                }
                 if let actualMediaURL = refURL as NSURL! {
                     var fileName = "temp.jpg"
                     let assetLibrary = ALAssetsLibrary()
@@ -82,7 +76,21 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                             
                     })
                 } else {
-                    
+                    let image = info[UIImagePickerControllerOriginalImage] as UIImage
+                    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+                    let documentsDir = paths.firstObject as NSString?
+                    if let documentsDirectory = documentsDir {
+                        let localFilePath = documentsDirectory.stringByAppendingPathComponent("temp.jpg")
+                        let data = UIImageJPEGRepresentation(image, 1.0)
+                        let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                        let localFileURL = NSURL(fileURLWithPath: localFilePath)
+                        let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                        appDelegate.uploadImageWithURL(localFileURL)
+                        
+                    }
+                    picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
+                    })
                 }
             }
         }
