@@ -1,6 +1,8 @@
 {
   "images" : [
     {
+      "idiom" : "universal",
+      "filename" : "popover-bg.pdf",
       "resizing" : {
         "mode" : "3-part-vertical",
         "center" : {
@@ -8,33 +10,10 @@
           "height" : 1
         },
         "capInsets" : {
-          "top" : 24,
+          "top" : 11,
           "bottom" : 12
         }
-      },
-      "idiom" : "universal",
-      "filename" : "popover-bg.png",
-      "scale" : "1x"
-    },
-    {
-      "resizing" : {
-        "mode" : "3-part-vertical",
-        "center" : {
-          "mode" : "fill",
-          "height" : 2
-        },
-        "capInsets" : {
-          "top" : 48,
-          "bottom" : 24
-        }
-      },
-      "idiom" : "universal",
-      "filename" : "popover-bg@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      }
     }
   ],
   "info" : {
