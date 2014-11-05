@@ -40,7 +40,7 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
             uploadImageController.showCameraCaptureInViewController(self)
         default:
             // illegal index
-            performSegueWithIdentifier("", sender: self)
+            performSegueWithIdentifier("uploadGuideSegue", sender: self)
         }
     }
     
