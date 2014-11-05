@@ -115,13 +115,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J38-2R-Moe" userLabel="Popover View">
-                                        <rect key="frame" x="23" y="550" width="310" height="340"/>
+                                        <rect key="frame" x="229" y="310" width="310" height="340"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popover-bg" translatesAutoresizingMaskIntoConstraints="NO" id="Ojy-uA-5c0">
                                                 <rect key="frame" x="0.0" y="0.0" width="310" height="340"/>
                                             </imageView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gwt-jT-s9X">
-                                                <rect key="frame" x="0.0" y="46.5" width="309" height="288.5"/>
+                                                <rect key="frame" x="0.0" y="46" width="309" height="288.5"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="gZe-CL-lGM" customClass="POSLetterPopoverTableViewCell">
@@ -195,8 +195,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="J38-2R-Moe" secondAttribute="bottom" constant="70" id="EqE-4b-bbz"/>
-                                    <constraint firstItem="J38-2R-Moe" firstAttribute="leading" secondItem="xHm-UB-Jqi" secondAttribute="leading" constant="23" id="bV2-D1-5K2"/>
+                                    <constraint firstAttribute="centerY" secondItem="J38-2R-Moe" secondAttribute="centerY" id="51H-SJ-pJ3"/>
+                                    <constraint firstAttribute="centerX" secondItem="J38-2R-Moe" secondAttribute="centerX" id="N7a-hH-dUw"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="BFK-Pj-gUU" appends="YES" id="ltx-Lh-Ust"/>
@@ -1501,8 +1501,8 @@
         <image name="empty-letterview" width="154" height="188"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
-        <image name="list-icon-attachment" width="30" height="18"/>
-        <image name="list-icon-padlock" width="30" height="18"/>
+        <image name="list-icon-attachment" width="16" height="16"/>
+        <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread" width="30" height="18"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-logo" width="159" height="38"/>

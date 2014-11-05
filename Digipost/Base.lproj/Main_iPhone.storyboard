@@ -1170,7 +1170,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GRH-Ar-m5o" userLabel="Popover View" customClass="POSLetterPopoverView">
-                                        <rect key="frame" x="10" y="100" width="310" height="340"/>
+                                        <rect key="frame" x="5" y="82" width="310" height="340"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popover-bg" translatesAutoresizingMaskIntoConstraints="NO" id="W3c-l4-vsI">
                                                 <rect key="frame" x="0.0" y="3" width="310" height="330"/>
@@ -1199,7 +1199,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="865" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-zR-hvc">
-                                                                    <rect key="frame" x="93" y="11.5" width="205" height="20.5"/>
+                                                                    <rect key="frame" x="93" y="11" width="205" height="20.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="205" id="w1S-oF-MGP"/>
                                                                     </constraints>
@@ -1244,8 +1244,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.45000000000000001" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="GRH-Ar-m5o" firstAttribute="leading" secondItem="UZq-Nf-q1o" secondAttribute="leading" constant="10" id="ebs-QV-baB"/>
-                                    <constraint firstAttribute="bottom" secondItem="GRH-Ar-m5o" secondAttribute="bottom" constant="64" id="vfu-TP-Hix"/>
+                                    <constraint firstAttribute="centerX" secondItem="GRH-Ar-m5o" secondAttribute="centerX" id="NDG-LU-4bh"/>
+                                    <constraint firstAttribute="centerY" secondItem="GRH-Ar-m5o" secondAttribute="centerY" id="NP2-Xq-ILN"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="tOa-Ln-jHS" appends="YES" id="Bf5-Pk-VxV"/>
