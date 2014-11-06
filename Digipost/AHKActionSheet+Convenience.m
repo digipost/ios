@@ -49,18 +49,18 @@
                                 [letterViewController showDeleteDocumentActionSheet];
                             }];
 
-    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet open in app", @"")
-                              image:[UIImage imageNamed:@"Open_in"]
-                               type:AHKActionSheetButtonTypeDefault
-                            handler:^(AHKActionSheet *actionSheet, id item) {
-                                [letterViewController showOpenInControllerModally];
-                            }];
-
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")
                               image:[UIImage imageNamed:@"New name"]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showRenameAlertView];
+                            }];
+
+    [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet open in app", @"")
+                              image:[UIImage imageNamed:@"Open_in"]
+                               type:AHKActionSheetButtonTypeDefault
+                            handler:^(AHKActionSheet *actionSheet, id item) {
+                                [letterViewController showOpenInControllerModally];
                             }];
     return actionSheet;
 }
