@@ -83,6 +83,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     //    [self updateFetchedResultsController];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES
+                                       animated:NO];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -101,7 +107,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 {
     if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
-
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.receiptsViewController = (id)self;
         letterViewController.receipt = receipt;
