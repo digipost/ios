@@ -160,16 +160,21 @@
 
 - (void)uploadImageWithURL:(NSURL *)url
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    UIStoryboard *storyboard;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    }
     UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
-    
+
     POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
     uploadViewController.url = url;
     NSInteger numberOfMailboxes = [POSMailbox numberOfMailboxesStoredInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     if (numberOfMailboxes == 1) {
         uploadViewController.isShowingFolders = YES;
     }
-    
+
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
         [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES

@@ -29,9 +29,9 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     }
     
     func showPhotoLibraryPickerInViewController(viewController:UIViewController) {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             let imagePicker = setupPickerController()
-            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum;
+            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
             viewController.presentViewController(imagePicker, animated: true, completion: { () -> Void in
                 
             })
@@ -65,18 +65,20 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                                 let couldCopy = data.writeToFile(localFilePath, atomically: true)
                                 let localFileURL = NSURL(fileURLWithPath: localFilePath)
                                 let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                                picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                
+                            })
                                 appDelegate.uploadImageWithURL(localFileURL)
                             }
                             
-                            picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                
-                            })
+                            
                         }
                         }, failureBlock: { (error) -> Void in
                             
                     })
                 } else {
                     let image = info[UIImagePickerControllerOriginalImage] as UIImage
+                    println(image)
                     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
                     let documentsDir = paths.firstObject as NSString?
                     if let documentsDirectory = documentsDir {
@@ -85,18 +87,27 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                         let couldCopy = data.writeToFile(localFilePath, atomically: true)
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
                         let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                        picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        
+                        })
                         appDelegate.uploadImageWithURL(localFileURL)
-                        
+                        println("uploading image")
                     }
-                    picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
-                    })
+                   
                 }
+            }else {
+                // movie
+                
+//            /    if (CFStringCompare ((CFStringRef) me//diaType, kUTTypeMovie, 0)
+                //            == kCFCompareEqualTo) {
+                //
+                //                NSString *moviePath = [[info objectForKey:
+                //                    UIImagePickerControllerMediaURL] path];
             }
         }
-        picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+        //  picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             
-        })
+        // })
         //            editedImage = (UIImage *) [info objectForKey:
         
         
@@ -174,8 +185,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     private func setupPickerController() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.mediaTypes = NSArray(object: kUTTypeImage)
-        imagePicker
+        imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo)
         return imagePicker
     }
 }
