@@ -586,7 +586,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else if (self.receipt) {
         baseEncryptionModel = self.receipt;
     }
-
+    if (self.attachment) {
+        self.navigationItem.title = self.attachment.subject;
+    } else {
+        self.navigationItem.title = self.receipt.storeName;
+    }
     NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
     NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
@@ -603,6 +607,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
+
+    NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+    [self setToolbarItems:toolbarItems animated:YES];
 }
 
 - (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
