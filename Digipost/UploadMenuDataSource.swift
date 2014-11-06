@@ -37,7 +37,8 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
             cell.iconImage.image = UIImage(named: "Upload")
         case 2:
             cell.titleLabel.text = NSLocalizedString( "upload action sheet other file", comment:"From other app")
-            cell.iconImage.image = UIImage(named: "Upload_apps")
+            cell.iconImage.image = UIImage.templateImage("Upload_apps")
+            cell.iconImage.tintColor = UIColor.whiteColor()
         default:
             assert(false)
         }

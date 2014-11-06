@@ -176,6 +176,12 @@
 		EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
+		EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
+		EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
+		EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
+		EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
+		EC2352A31A0BBF1B0071624C /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
+		EC2352A41A0BBF1B0071624C /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
@@ -438,6 +444,8 @@
 		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
 		EC2352991A0B9AFD0071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EC23529C1A0BA6690071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
+		EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TintColor.swift"; sourceTree = "<group>"; };
+		EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Color.swift"; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverView.h; sourceTree = "<group>"; };
@@ -605,6 +613,7 @@
 		83BAB90F1855C0AC004A7BFB = {
 			isa = PBXGroup;
 			children = (
+				EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
@@ -837,6 +846,7 @@
 				83F703601855E7A9003DABE1 /* POSFoldersViewController.m */,
 				EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */,
 				EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */,
+				EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */,
 				EC0C1A1119347388007CB53E /* POSNewFolderCollectionViewDataSource.h */,
 				EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */,
 				ECDC58901935FF5B003202CD /* POSFolderIcon.h */,
@@ -1209,9 +1219,11 @@
 				EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F771859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
+				EC2352A41A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
+				EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */,
@@ -1305,9 +1317,11 @@
 				EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F761859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
+				EC2352A31A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
+				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */,
@@ -1401,9 +1415,11 @@
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
+				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
+				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
