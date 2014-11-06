@@ -19,31 +19,24 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(tableView)
         tableView.dataSource = menuDataSource
         tableView.delegate = self
         tableView.reloadData()
         tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 1))
+        navigationItem.title = NSLocalizedString("upload image Controller title", comment: "")
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch indexPath.row {
         case 0:
             uploadImageController.showCameraCaptureInViewController(self)
         case 1:
             uploadImageController.showPhotoLibraryPickerInViewController(self)
-        default:
-            // illegal index
+        case 2:
             performSegueWithIdentifier("uploadGuideSegue", sender: self)
+        default:
+            assert(false)
         }
     }
-    
-
-
 }
