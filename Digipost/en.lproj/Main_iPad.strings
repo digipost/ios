@@ -1,0 +1,126 @@
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "0fe-I7-xzl"; */
+"0fe-I7-xzl.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "PRIVACY_BUTTON"; ObjectID = "4UT-VF-ZhR"; */
+"4UT-VF-ZhR.normalTitle" = "PRIVACY_BUTTON";
+
+/* Class = "IBUINavigationItem"; title = "Kontoer"; ObjectID = "77d-8d-nAS"; */
+"77d-8d-nAS.title" = "Kontoer";
+
+/* Class = "IBUIBarButtonItem"; title = "SELECTION"; ObjectID = "7ne-60-xj4"; */
+"7ne-60-xj4.title" = "SELECTION";
+
+/* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "8PI-aF-u8N"; */
+"8PI-aF-u8N.title" = "DELETE";
+
+/* Class = "IBUILabel"; text = "AMOUNT"; ObjectID = "8fG-Fi-dQa"; */
+"8fG-Fi-dQa.text" = "AMOUNT";
+
+/* Class = "IBUILabel"; text = "1"; ObjectID = "8qH-9z-56Q"; */
+"8qH-9z-56Q.text" = "1";
+
+/* Class = "IBUIButton"; normalTitle = "Lagre"; ObjectID = "Afw-f7-ZRc"; */
+"Afw-f7-ZRc.normalTitle" = "Lagre";
+
+/* Class = "IBUIBarButtonItem"; title = "MOVE"; ObjectID = "Cqz-Si-P2S"; */
+"Cqz-Si-P2S.title" = "MOVE";
+
+/* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "Dh8-Vl-Dpn"; */
+"Dh8-Vl-Dpn.text" = "SUBJECT";
+
+/* Class = "IBUIBarButtonItem"; title = "SELECTION"; ObjectID = "Dmr-Fq-HxN"; */
+"Dmr-Fq-HxN.title" = "SELECTION";
+
+/* Class = "IBUILabel"; text = "NO_DOCUMENTS"; ObjectID = "EJR-4a-CZ8"; */
+"EJR-4a-CZ8.text" = "NO_DOCUMENTS";
+
+/* Class = "IBUINavigationItem"; title = "Lag ny mappe"; ObjectID = "HLg-eU-svL"; */
+"HLg-eU-svL.title" = "Lag ny mappe";
+
+/* Class = "IBUILabel"; text = "FOLDER_NAME"; ObjectID = "ISf-YH-j6Q"; */
+"ISf-YH-j6Q.text" = "FOLDER_NAME";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "J7Y-3L-1zO"; */
+"J7Y-3L-1zO.text" = "Label";
+
+/* Class = "IBUILabel"; text = "Title"; ObjectID = "Jbv-gj-6sh"; */
+"Jbv-gj-6sh.text" = "Title";
+
+/* Class = "IBUILabel"; text = "STORE_NAME"; ObjectID = "KVI-uR-oVN"; */
+"KVI-uR-oVN.text" = "STORE_NAME";
+
+/* Class = "IBUILabel"; text = "DATE sdfasf"; ObjectID = "KbF-uJ-8np"; */
+"KbF-uJ-8np.text" = "DATE sdfasf";
+
+/* Class = "IBUILabel"; text = "Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost"; ObjectID = "Kej-Md-px0"; */
+"Kej-Md-px0.text" = "Åpne filen der den er lagret og klikk på eksportikonet for å laste opp til Digipost";
+
+/* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "Olo-Lk-eSI"; */
+"Olo-Lk-eSI.title" = "DELETE";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "RHZ-PB-86L"; */
+"RHZ-PB-86L.normalTitle" = "Button";
+
+/* Class = "IBUILabel"; text = "NO_DOCUMENTS"; ObjectID = "Wmi-7m-JXL"; */
+"Wmi-7m-JXL.text" = "NO_DOCUMENTS";
+
+/* Class = "IBUILabel"; text = "STORE_NAME"; ObjectID = "Ybb-9C-FNc"; */
+"Ybb-9C-FNc.text" = "STORE_NAME";
+
+/* Class = "IBUILabel"; text = "AMOUNT"; ObjectID = "Z9U-wh-b9o"; */
+"Z9U-wh-b9o.text" = "AMOUNT";
+
+/* Class = "IBUILabel"; text = "FILE NAME"; ObjectID = "aK1-DW-88W"; */
+"aK1-DW-88W.text" = "FILE NAME";
+
+/* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "af0-qh-XQl"; */
+"af0-qh-XQl.title" = "Last opp";
+
+/* Class = "IBUIButton"; normalTitle = "LOGIN_BUTTON"; ObjectID = "daO-Ah-4uu"; */
+"daO-Ah-4uu.normalTitle" = "LOGIN_BUTTON";
+
+/* Class = "IBUILabel"; text = "FOLDER_NAME"; ObjectID = "eXV-GF-x86"; */
+"eXV-GF-x86.text" = "FOLDER_NAME";
+
+/* Class = "IBUILabel"; text = "SENDER"; ObjectID = "fJI-uk-1YP"; */
+"fJI-uk-1YP.text" = "SENDER";
+
+/* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "fcM-v5-T3a"; */
+"fcM-v5-T3a.title" = "Last opp";
+
+/* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "fjD-vv-io8"; */
+"fjD-vv-io8.text" = "SUBJECT";
+
+/* Class = "IBUILabel"; text = "DATE"; ObjectID = "grF-fj-pvY"; */
+"grF-fj-pvY.text" = "DATE";
+
+/* Class = "IBUILabel"; text = "FOLDER_NAME"; ObjectID = "lz7-vt-Xxr"; */
+"lz7-vt-Xxr.text" = "FOLDER_NAME";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "nNg-2N-bBs"; */
+"nNg-2N-bBs.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "plS-kx-EVR"; */
+"plS-kx-EVR.normalTitle" = "Button";
+
+/* Class = "IBUIButton"; normalTitle = "REGISTER_BUTTON"; ObjectID = "qUg-Iy-BH3"; */
+"qUg-Iy-BH3.normalTitle" = "REGISTER_BUTTON";
+
+/* Class = "IBUINavigationItem"; title = "LOGIN"; ObjectID = "qVG-Fc-fo8"; */
+"qVG-Fc-fo8.title" = "LOGIN";
+
+/* Class = "IBUILabel"; text = "1"; ObjectID = "seV-ey-Nj9"; */
+"seV-ey-Nj9.text" = "1";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "xpW-AE-0Mj"; */
+"xpW-AE-0Mj.text" = "Label";
+
+/* Class = "IBUIButton"; normalTitle = "Logg ut"; ObjectID = "yin-f1-P08"; */
+"yin-f1-P08.normalTitle" = "Logg ut";
+
+/* Class = "IBUITextField"; placeholder = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
+"zkJ-cS-2Jj.placeholder" = "Navn på mappe";
+
+/* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
+"zkJ-cS-2Jj.text" = "Navn på mappe";
