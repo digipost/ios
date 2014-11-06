@@ -272,8 +272,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateToolbarButtonItems];
         return;
     }
+    NSIndexPath *actualIndexPathSelected = nil;
+    // adjust for index when uploading file
+    if ([POSAPIManager sharedManager].isUploadingFile) {
+        actualIndexPathSelected = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
+    } else {
+        actualIndexPathSelected = indexPath;
+    }
 
-    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
 
     POSAttachment *attachment = [document mainDocumentAttachment];
 
@@ -317,7 +324,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                              cancelButtonTitle:nil
                                              otherButtonTitles:@[error.okButtonTitle]
                                                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                                                          [tableView deselectRowAtIndexPath:actualIndexPathSelected animated:YES];
                                                       }];
             }];
     }
