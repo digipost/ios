@@ -436,6 +436,8 @@
 		EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "POSDocument+Methods.m"; path = "../POSDocument+Methods.m"; sourceTree = "<group>"; };
 		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
 		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
+		EC2352991A0B9AFD0071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
+		EC23529C1A0BA6690071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverView.h; sourceTree = "<group>"; };
@@ -755,7 +757,6 @@
 				EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */,
 				ECCAD43419E694CF00E602DC /* UploadImageController.swift */,
 				ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */,
-				EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */,
 			);
 			name = Upload;
 			sourceTree = "<group>";
@@ -824,14 +825,7 @@
 				EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */,
 				83D355141861C5EA009EABC6 /* POSLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* POSLetterViewController.m */,
-				EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */,
-				EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */,
-				EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */,
-				EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */,
-				EC68C07618AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.h */,
-				EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */,
-				EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */,
-				EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */,
+				EC23529A1A0BA1040071624C /* LetterView popup */,
 			);
 			name = "Document detail";
 			sourceTree = "<group>";
@@ -872,13 +866,29 @@
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */,
 				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
+				EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */,
+				EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */,
 				ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */,
 				EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */,
 				EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
-				EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		EC23529A1A0BA1040071624C /* LetterView popup */ = {
+			isa = PBXGroup;
+			children = (
+				EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */,
+				EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */,
+				EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */,
+				EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */,
+				EC68C07618AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.h */,
+				EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */,
+				EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */,
+				EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */,
+			);
+			name = "LetterView popup";
 			sourceTree = "<group>";
 		};
 		EC2C82D7192A176400A6D4B8 /* Accounts */ = {
@@ -1447,6 +1457,7 @@
 			children = (
 				83BAB92E1855C0AC004A7BFB /* Base */,
 				ECA1A9F61898FFDE00408CD5 /* nb */,
+				EC23529C1A0BA6690071624C /* en */,
 			);
 			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
@@ -1456,6 +1467,7 @@
 			children = (
 				83BAB9311855C0AC004A7BFB /* Base */,
 				ECA1A9F71898FFDF00408CD5 /* nb */,
+				EC2352991A0B9AFD0071624C /* en */,
 			);
 			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
@@ -1567,7 +1579,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
+				PROVISIONING_PROFILE = "d11ed6d3-7984-4f93-b769-def81d5c43ae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1600,7 +1612,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
+				PROVISIONING_PROFILE = "d11ed6d3-7984-4f93-b769-def81d5c43ae";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
