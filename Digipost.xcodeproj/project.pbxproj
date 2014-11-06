@@ -637,6 +637,7 @@
 			children = (
 				EC1A6C2F18BBA32100269428 /* Client */,
 				8342EFBD1858CDA40080A833 /* Model */,
+				EC2352971A0B907E0071624C /* Extensions */,
 				83F703691855FE35003DABE1 /* Categories */,
 				83F703561855DB2A003DABE1 /* View */,
 				83F703551855DB1A003DABE1 /* Storyboards */,
@@ -698,12 +699,6 @@
 		83F703691855FE35003DABE1 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */,
-				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
-				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
-				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
-				EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */,
-				EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */,
 				EC93622719393515006E85FA /* NSNumber+JsonParsing.h */,
 				EC93622819393515006E85FA /* NSNumber+JsonParsing.m */,
 				EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */,
@@ -829,8 +824,6 @@
 				EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */,
 				83D355141861C5EA009EABC6 /* POSLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* POSLetterViewController.m */,
-				ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */,
-				EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */,
 				EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */,
 				EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */,
 				EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */,
@@ -871,6 +864,21 @@
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 			);
 			name = Login;
+			sourceTree = "<group>";
+		};
+		EC2352971A0B907E0071624C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
+				EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */,
+				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
+				ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */,
+				EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */,
+				EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */,
+				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
+				EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		EC2C82D7192A176400A6D4B8 /* Accounts */ = {
@@ -1492,7 +1500,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1527,7 +1535,7 @@
 				IS_BETA = 0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
