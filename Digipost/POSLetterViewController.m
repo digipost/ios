@@ -708,7 +708,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                         otherButtonTitles:@[error.okButtonTitle]
                                                                                  tapBlock:error.tapBlock];
                                                            }
-                                                           
+                if (changedBaseEncryptionModel == nil ) {
+                    return;
+                }
                                                            NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
                
                 [self loadFileURL:fileURL];
@@ -915,7 +917,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)showRenameAlertView
 {
     POSDocument *document = self.attachment.document;
-    UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") style:UIAlertViewStylePlainTextInput cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1){
             NSString *name = [alertView textFieldAtIndex:0].text;
             // do the actual change!
@@ -926,7 +928,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }];
         }
     }];
-    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alertView textFieldAtIndex:0].text = self.attachment.subject;
 }
 
@@ -973,7 +974,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if (barButtonItem) {
             didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
         } else {
-            didOpenFile = [self.openInController presentPreviewAnimated:YES];
+            UIBarButtonItem *barButtonItem = self.toolbarItems.lastObject;
+            didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
         }
         self.openInController.delegate = self;
     } else {
@@ -985,6 +987,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     return didOpenFile;
 }
 
+- (UIView *)documentInteractionControllerViewForPreview:(UIDocumentInteractionController *)controller
+{
+    return self.view;
+}
 - (void)showDeleteDocumentActionSheet
 {
     NSString *title = NSLocalizedString(@"letter view delete document title", @"");
