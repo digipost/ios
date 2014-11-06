@@ -85,7 +85,6 @@ extension UIToolbar {
         items.addObject(invoiceButtonInLetterController(letterViewController))
         items.addObject(flexibleSpaceBarButtonItem)
         items.addObject(moreOptionsBarButtonItem)
-        
         return items
     }
     
@@ -105,33 +104,9 @@ extension UIToolbar {
     private func itemsForReceipt(letterViewController: POSLetterViewController) -> NSArray {
         let items = NSMutableArray()
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        items.addObject(deleteDocumentBarButtonItemInLetterViewController(letterViewController))
         items.addObject(flexibleSpaceBarButtonItem)
         items.addObject(openDocumentBarButtonItemInLetterViewController(letterViewController))
         return items
     }
 }
-
-
-//- (void)didTapInformationBarButtonItem:(id)sender
-//{
-//    [self setInfoViewVisible:YES];
-//}
-//
-//- (void)didTapMoveDocumentBarButtonItem:(id)sender
-//{
-//    
-//}
-//
-//- (void)didTapDeleteDocumentBarButtonItem:(id)sender
-//{
-//    
-//}
-//- (void)didTapRenameDocumentBarButtonItem:(id)sender
-//{
-//    
-//}
-//
-//- (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
-//{
-//    
-//}
