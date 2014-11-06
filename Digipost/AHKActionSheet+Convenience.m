@@ -50,14 +50,14 @@
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet open in app", @"")
-                              image:nil
+                              image:[UIImage imageNamed:@"Open_in"]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showOpenInControllerModally];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")
-                              image:nil
+                              image:[UIImage imageNamed:@"New name"]
                                type:AHKActionSheetButtonTypeDefault
                             handler:^(AHKActionSheet *actionSheet, id item) {
                                 [letterViewController showRenameAlertView];
