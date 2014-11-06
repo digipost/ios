@@ -66,9 +66,9 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                                 let localFileURL = NSURL(fileURLWithPath: localFilePath)
                                 let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                                 picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                    appDelegate.uploadImageWithURL(localFileURL)
                                 
                             })
-                                appDelegate.uploadImageWithURL(localFileURL)
                             }
                             
                             
@@ -88,10 +88,9 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
                         let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        appDelegate.uploadImageWithURL(localFileURL)
                         
                         })
-                        appDelegate.uploadImageWithURL(localFileURL)
-                        println("uploading image")
                     }
                    
                 }
