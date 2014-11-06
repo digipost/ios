@@ -119,7 +119,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         self.navigationItem.title = self.receipt.storeName;
     }
-
     self.screenName = kLetterViewControllerScreenName;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -133,6 +132,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 forViewController:self];
     [self reloadFromMetadata];
     [self pos_setDefaultBackButton];
+    [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -224,6 +224,30 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self unloadContent];
 
     [super viewDidDisappear:animated];
+}
+
+- (void)didSingleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
+    // this feature should not be activated if voiceover is running
+    if (UIAccessibilityIsVoiceOverRunning()) {
+        return;
+    }
+    BOOL barsHidden = self.navigationController.isToolbarHidden;
+
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        [self.navigationController setNavigationBarHidden:!barsHidden
+                                                 animated:YES];
+        [self.navigationController setToolbarHidden:!barsHidden
+                                           animated:YES];
+
+        UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+        [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
+                                                    animated:YES];
+    }
+}
+
+- (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
+{
 }
 
 - (void)viewDidLayoutSubviews
@@ -541,7 +565,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadFileURL:(NSURL *)fileURL
 {
     if ([self.attachment.fileType.lowercaseString isEqualToString:@"jpg"]) {
-        NSString *html = [NSString stringWithFormat:@"<img src='%@' style='width:100%%'>", fileURL];
+        NSString *html = [NSString stringWithFormat:@"<img src='%@' style='width:100%%; margin: 0px 0px;'>", fileURL];
         [self.webView loadHTMLString:html baseURL:nil];
     } else if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
