@@ -67,11 +67,9 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                                 let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                                 picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                                     appDelegate.uploadImageWithURL(localFileURL)
-                                
-                            })
+                                    
+                                })
                             }
-                            
-                            
                         }
                         }, failureBlock: { (error) -> Void in
                             
@@ -82,22 +80,20 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
                     let documentsDir = paths.firstObject as NSString?
                     if let documentsDirectory = documentsDir {
-                        let localFilePath = documentsDirectory.stringByAppendingPathComponent("temp.jpg")
+                        let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithJPGExtension())
                         let data = UIImageJPEGRepresentation(image, 1.0)
                         let couldCopy = data.writeToFile(localFilePath, atomically: true)
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
                         let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        appDelegate.uploadImageWithURL(localFileURL)
-                        
+                            appDelegate.uploadImageWithURL(localFileURL)
                         })
                     }
-                   
                 }
             }else {
                 // movie
                 
-//            /    if (CFStringCompare ((CFStringRef) me//diaType, kUTTypeMovie, 0)
+                //            /    if (CFStringCompare ((CFStringRef) me//diaType, kUTTypeMovie, 0)
                 //            == kCFCompareEqualTo) {
                 //
                 //                NSString *moviePath = [[info objectForKey:
@@ -105,7 +101,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
             }
         }
         //  picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-            
+        
         // })
         //            editedImage = (UIImage *) [info objectForKey:
         
@@ -170,7 +166,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         //
         //                NSString *moviePath = [[info objectForKey:
         //                    UIImagePickerControllerMediaURL] path];
-        //                
+        //
         //                // Do something with the picked movie available at moviePath
         //        }
         

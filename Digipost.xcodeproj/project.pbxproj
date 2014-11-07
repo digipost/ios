@@ -286,6 +286,9 @@
 		ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		ECCC5CB019C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		ECCC5CB119C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
+		ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
+		ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
+		ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20419F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20519F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
@@ -504,6 +507,7 @@
 		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
 		ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadGuideViewController.swift; sourceTree = "<group>"; };
+		ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
@@ -873,6 +877,7 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */,
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */,
 				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
@@ -1198,6 +1203,7 @@
 				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5219FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
+				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07C18AA317100A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E718867603006C6F4F /* POSInvoice.m in Sources */,
@@ -1296,6 +1302,7 @@
 				EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5119FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
+				ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07B18AA317000A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E618867603006C6F4F /* POSInvoice.m in Sources */,
@@ -1394,6 +1401,7 @@
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
+				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
@@ -1595,7 +1603,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d11ed6d3-7984-4f93-b769-def81d5c43ae";
+				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1628,7 +1636,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d11ed6d3-7984-4f93-b769-def81d5c43ae";
+				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
