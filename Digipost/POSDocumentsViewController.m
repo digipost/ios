@@ -214,7 +214,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                            forIndexPath:indexPath];
             cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
-            cell.fileNameLabel.text = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+            NSString *fileName = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            cell.fileNameLabel.text = fileName;
             return cell;
         }
 
@@ -264,6 +266,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleNone;
+}
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([POSAPIManager sharedManager].isUploadingFile) {
+        if (indexPath.row == 0){
+            return nil;
+        }
+    }
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
