@@ -66,7 +66,11 @@ extension UIToolbar {
         
         if let attachment = letterViewController.attachment as POSAttachment? {
             if attachment.hasValidToPayInvoice() {
-                items.addObjectsFromArray(itemsForValidInvoice(letterViewController))
+                if (attachment.mainDocument.boolValue){
+                    items.addObjectsFromArray(itemsForValidInvoice(letterViewController))
+                }else {
+                    items.addObjectsFromArray(itemsForAttachmentThatIsInvoice(letterViewController))
+                }
             } else {
                 items.addObjectsFromArray(itemsForStandardLetter(letterViewController))
             }
@@ -107,6 +111,14 @@ extension UIToolbar {
         items.addObject(deleteDocumentBarButtonItemInLetterViewController(letterViewController))
         items.addObject(flexibleSpaceBarButtonItem)
         items.addObject(openDocumentBarButtonItemInLetterViewController(letterViewController))
+        return items
+    }
+    
+    private func itemsForAttachmentThatIsInvoice(letterViewController: POSLetterViewController) -> NSArray {
+        let items = NSMutableArray()
+        let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        items.addObject(invoiceButtonInLetterController(letterViewController))
+        items.addObject(flexibleSpaceBarButtonItem)
         return items
     }
 }

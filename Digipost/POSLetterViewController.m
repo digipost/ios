@@ -36,6 +36,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
+#import <MRProgress.h>
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSModelManager.h"
@@ -193,6 +194,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }
         }
     }
+    UIStatusBarStyle statusBarStyle = !hidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
+                                                animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -232,18 +236,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
-    BOOL barsHidden = self.navigationController.isToolbarHidden;
+    BOOL barsHidden = self.navigationController.isNavigationBarHidden;
+    [self changeNavbarStateToHidden:!barsHidden];
 
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        [self.navigationController setNavigationBarHidden:!barsHidden
-                                                 animated:YES];
-        [self.navigationController setToolbarHidden:!barsHidden
-                                           animated:YES];
+    UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
+    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
+                                                animated:YES];
 
-        UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-        [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
-                                                    animated:YES];
-    }
+    //    }
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -337,7 +337,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIViewController *topViewController;
     if ([viewController isKindOfClass:[UINavigationController class]]) {
         topViewController = ((UINavigationController *)viewController).topViewController;
-
         for (UIViewController *vc in((UINavigationController *)viewController).viewControllers) {
             if ([vc isKindOfClass:[POSDocumentsViewController class]]) {
                 self.documentsViewController = (id)vc;
@@ -458,7 +457,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     _attachment = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-
         [self showEmptyView:new];
         [self reloadFromMetadata];
         // update the read status for ipad view
@@ -472,13 +470,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
     [actionSheet setupStyle];
     POSDocumentsViewController *documentsViewController;
+    POSFoldersViewController *foldersViewController;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         for (UIViewController *viewController in self.splitViewController.viewControllers) {
             if ([viewController isKindOfClass:[UINavigationController class]]) {
                 for (UIViewController *subViewController in((UINavigationController *)viewController).viewControllers) {
+                    if ([subViewController isKindOfClass:[POSFoldersViewController class]]) {
+                        foldersViewController = (id)subViewController;
+                    }
                     if ([subViewController isKindOfClass:[POSDocumentsViewController class]]) {
                         documentsViewController = (id)subViewController;
-                        break;
                     }
                 }
             }
@@ -486,9 +487,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         documentsViewController = self.documentsViewController;
     }
-
-    NSArray *folders = [POSFolder foldersForUserWithMailboxDigipostAddress:documentsViewController.mailboxDigipostAddress
-                                                    inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    NSArray *folders;
+    if (documentsViewController == nil) {
+        folders = [POSFolder foldersForUserWithMailboxDigipostAddress:foldersViewController.selectedMailBoxDigipostAdress
+                                               inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    } else {
+        folders = [POSFolder foldersForUserWithMailboxDigipostAddress:documentsViewController.mailboxDigipostAddress
+                                               inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    }
 
     for (POSFolder *folder in folders) {
         UIImage *image = [POSFolderIcon folderIconWithName:folder.iconName].smallImage;
@@ -1154,14 +1160,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.sendingInvoice = YES;
 
+    MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
+                                                                          animated:YES];
+    [overlayView setTitleLabelText:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"")];
     [[POSAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice
         withSuccess:^{
-                                             
                                              // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
                                              // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
             [self updateDocuments];
+            
+            NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+            [self setToolbarItems:toolbarItems animated:YES];
+                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
         }
         failure:^(NSError *error) {
+                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                  NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                      if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
