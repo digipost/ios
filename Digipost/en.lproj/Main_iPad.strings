@@ -75,7 +75,7 @@
 "aK1-DW-88W.text" = "FILE NAME";
 
 /* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "af0-qh-XQl"; */
-"af0-qh-XQl.title" = "Last opp";
+"af0-qh-XQl.title" = "Upload";
 
 /* Class = "IBUIButton"; normalTitle = "LOGIN_BUTTON"; ObjectID = "daO-Ah-4uu"; */
 "daO-Ah-4uu.normalTitle" = "LOGIN_BUTTON";
@@ -87,7 +87,7 @@
 "fJI-uk-1YP.text" = "SENDER";
 
 /* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "fcM-v5-T3a"; */
-"fcM-v5-T3a.title" = "Last opp";
+"fcM-v5-T3a.title" = "Upload";
 
 /* Class = "IBUILabel"; text = "SUBJECT"; ObjectID = "fjD-vv-io8"; */
 "fjD-vv-io8.text" = "SUBJECT";
