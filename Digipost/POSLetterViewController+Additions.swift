@@ -61,6 +61,9 @@ extension POSLetterViewController {
 
     func shouldHideToolBar(attachment: POSAttachment?) -> Bool {
         if let actualAttachment = attachment as POSAttachment! {
+            if actualAttachment.invoice != nil{
+                return false
+            }
             if let mainDocumentNumber = actualAttachment.mainDocument as NSNumber? {
                 if mainDocumentNumber.boolValue == false {
                     return true

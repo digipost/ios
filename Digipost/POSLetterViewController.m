@@ -1167,11 +1167,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         withSuccess:^{
                                              // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
                                              // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
-            [self updateDocuments];
             
-            NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
-            [self setToolbarItems:toolbarItems animated:YES];
-                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+            [self updateDocuments];
+
         }
         failure:^(NSError *error) {
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
@@ -1210,6 +1208,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         success:^{
                                                                [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
+            NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+            [self setToolbarItems:toolbarItems animated:YES];
+                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
         }
         failure:^(NSError *error) {
                                                                
