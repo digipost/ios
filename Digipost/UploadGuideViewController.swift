@@ -26,12 +26,14 @@ class UploadGuideViewController: UIViewController {
             uploadImage.image = UIImage.localizedImage(interfaceOrientation)
             self.setImageForOrientation(interfaceOrientation)
         }
+        self.pos_setDefaultBackButton()
         view.updateConstraints()
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "kFolderViewControllerNavigatedInList", object: nil)
     }
+
     func setImageForOrientation(forOrientation: UIInterfaceOrientation){
         if let horizontalImage = horizontalUploadImage {
             if (UIInterfaceOrientationIsLandscape(forOrientation)){
@@ -48,8 +50,8 @@ class UploadGuideViewController: UIViewController {
             }
         }
     }
+    
     override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
             uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.Portrait)
         }else {
