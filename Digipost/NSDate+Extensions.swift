@@ -13,7 +13,8 @@ extension NSDate {
     func prettyStringWithJPGExtension()-> String {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd MMM YY hh:mm:ss"
-        var dateString = dateFormatter.stringFromDate(self)
+        var dateString = "IMG "
+        dateString = dateString.stringByAppendingString(dateFormatter.stringFromDate(self))
         dateString = dateString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!
         dateString = dateString.stringByAppendingString(".jpg")
         return dateString
