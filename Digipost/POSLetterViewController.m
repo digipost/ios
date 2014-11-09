@@ -242,8 +242,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
                                                 animated:YES];
-
-    //    }
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -936,6 +934,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             // do the actual change!
             [[POSAPIManager sharedManager] changeNameOfDocument:document newName:name success:^{
                 self.navigationItem.title = name;
+                self.attachment.subject = name;
+                [self loadContent];
             } failure:^(NSError *error) {
                 
             }];
