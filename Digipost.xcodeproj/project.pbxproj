@@ -490,7 +490,7 @@
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
@@ -991,7 +991,7 @@
 						DevelopmentTeam = 4E3PDM5H84;
 					};
 					83A31AF91855D706007045B9 = {
-						DevelopmentTeam = KMS8B8MK42;
+						DevelopmentTeam = 4E3PDM5H84;
 					};
 					83BAB9171855C0AC004A7BFB = {
 						DevelopmentTeam = KMS8B8MK42;
@@ -1584,7 +1584,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -1603,7 +1603,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
+				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -1617,7 +1617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -1636,7 +1636,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CC407396-D2B7-4881-ACBA-DAC2ABD551C1";
+				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1739,6 +1739,7 @@
 					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
+					"__IS_BETA__=$(IS_BETA)",
 				);
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1771,6 +1772,7 @@
 					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
+					"__IS_BETA__=$(IS_BETA)",
 				);
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
