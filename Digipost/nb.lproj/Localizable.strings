@@ -416,13 +416,13 @@
 "letter view delete document cancel" = "Avbryt";
 
 /* No comment provided by engineer. */
-"letter view delete document message" = "Er du sikker på at du vil slette brevet?";
+"letter view delete document message" = "Er du sikker på at du vil slette filen?";
 
 /* No comment provided by engineer. */
 "letter view delete document ok" = "OK";
 
 /* No comment provided by engineer. */
-"letter view delete document title" = "Slett brev";
+"letter view delete document title" = "Slett";
 
 /* button that uploads from camera roll */
 "upload action sheet camera roll button" = "Velg bilde";
