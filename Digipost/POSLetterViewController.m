@@ -936,6 +936,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 self.navigationItem.title = name;
                 self.attachment.subject = name;
                 [self loadContent];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
             } failure:^(NSError *error) {
                 
             }];
