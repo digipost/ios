@@ -70,33 +70,31 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     self.tableView.dataSource = self.receiptFolderTableViewDataSource;
     [self.receiptFolderTableViewDataSource refreshContent];
 
-    
     // This line makes the tableview hide its separator lines for empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    
+
     self.refreshControl = [[UIRefreshControl alloc] init];
-        [self.refreshControl addTarget:self
-                                action:@selector(refreshControlDidChangeValue:)
-                      forControlEvents:UIControlEventValueChanged];
-    
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshControlDidChangeValue:)
+                  forControlEvents:UIControlEventValueChanged];
+
     // Set the initial refresh control text
     [self.refreshControl initializeRefreshControlText];
     [self.refreshControl updateRefreshControlTextRefreshing:YES];
-    
+
     self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
                                                       alpha:1.0];
-    
+
     // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
     [self.refreshControl beginRefreshing];
     [self.refreshControl endRefreshing];
-    
+
     [super viewDidLoad];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
 }
@@ -132,7 +130,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 - (void)refreshControlDidChangeValue:(UIRefreshControl *)refreshControl
 {
     [self.refreshControl updateRefreshControlTextRefreshing:YES];
-    
+
     [self updateContentsFromServerUserInitiatedRequest:@YES];
 }
 #pragma mark - UITableViewDelegate

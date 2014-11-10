@@ -270,7 +270,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([POSAPIManager sharedManager].isUploadingFile) {
-        if (indexPath.row == 0){
+        if (indexPath.row == 0) {
             return nil;
         }
     }

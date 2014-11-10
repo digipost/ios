@@ -32,9 +32,8 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
             let imagePicker = setupPickerController()
             imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
-//            viewController.navigationController!.showViewController(imagePicker, sender: self)
             viewController.presentViewController(imagePicker, animated: true, completion: { () -> Void in
-            
+                
             })
         }
     }
@@ -87,43 +86,41 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                         let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                             appDelegate.uploadImageWithURL(localFileURL)
-                                    UIApplication.sharedApplication().statusBarStyle = .LightContent
-                        })
-                    }
-                }
-            }else {
-                let movieURL = info[UIImagePickerControllerMediaURL] as NSURL
-                let moviePath = movieURL.path
-                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
-                    let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-                    let documentsDir = paths.firstObject as NSString?
-                    let name = movieURL.path?.componentsSeparatedByString("/").last as String!
-                    if let documentsDirectory = documentsDir {
-                        let localFilePath = documentsDirectory.stringByAppendingPathComponent(name)
-                        let data = NSData(contentsOfURL: movieURL)!
-                        let couldCopy = data.writeToFile(localFilePath, atomically: true)
-                        let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                        let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
-                        picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            appDelegate.uploadImageWithURL(localFileURL)
                             UIApplication.sharedApplication().statusBarStyle = .LightContent
                         })
                     }
+                }
+            } else {
+                let movieURL = info[UIImagePickerControllerMediaURL] as NSURL
+                let moviePath = movieURL.path
+                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
+                let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+                let documentsDir = paths.firstObject as NSString?
+                var name = movieURL.path?.componentsSeparatedByString("/").last as String!
+                name = name.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+                if let documentsDirectory = documentsDir {
+                    let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithMOVExtension())
+                    let data = NSData(contentsOfURL: movieURL)!
+                    let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                    let localFileURL = NSURL(fileURLWithPath: localFilePath)
+                    let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                    picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                        appDelegate.uploadImageWithURL(localFileURL)
+                        UIApplication.sharedApplication().statusBarStyle = .LightContent
+                    })
+                }
             }
         }
     }
     
     func navigationControllerPreferredInterfaceOrientationForPresentation(navigationController: UINavigationController) -> UIInterfaceOrientation {
-//        let orientation = UIApplication.sharedApplication().statusBarOrientation
+        //        let orientation = UIApplication.sharedApplication().statusBarOrientation
         return UIInterfaceOrientation.LandscapeLeft
     }
     func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
         return UIInterfaceOrientation.LandscapeLeft.rawValue
     }
     
-//    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
-//        return UIInterfaceOrientationMask.All
-//    }
     private func setupPickerController() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self

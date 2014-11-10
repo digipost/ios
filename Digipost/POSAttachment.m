@@ -80,7 +80,6 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
                 NSString *rel = link[@"rel"];
                 NSString *uri = link[@"uri"];
                 if ([rel isKindOfClass:[NSString class]] && [uri isKindOfClass:[NSString class]]) {
-
                     if ([rel hasSuffix:kAttachmentDocumentContentAPIKeySuffix]) {
                         attachment.uri = uri;
                     }
@@ -118,7 +117,7 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     return [results firstObject];
 }
 
-+ (NSString*)uriFromLinksArray:(NSArray*)links withSuffix:(NSString*)suffix
++ (NSString *)uriFromLinksArray:(NSArray *)links withSuffix:(NSString *)suffix
 {
     if ([links isKindOfClass:[NSArray class]]) {
         for (NSDictionary *link in links) {
@@ -136,27 +135,27 @@ NSString *const kAttachmentInvoiceAPIKey = @"invoice";
     return nil;
 }
 
-+ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment*)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext
++ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment *)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext
 {
     NSArray *links = attributesDictionary[kAttachmentLinkAPIKey];
     NSString *uri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentDocumentContentAPIKeySuffix];
-    
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
-//    fetchRequest.fetchLimit = 1;
-//    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
-    
-//    NSError *error = nil;
-//    NSArray *results = [managedObjectcontext executeFetchRequest:fetchRequest
-//                                                           error:&error];
-//    if (error) {
-//        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
-//    }
-//    POSAttachment *attachment = [results firstObject];
+
+    //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //    fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
+    //    fetchRequest.fetchLimit = 1;
+    //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
+
+    //    NSError *error = nil;
+    //    NSArray *results = [managedObjectcontext executeFetchRequest:fetchRequest
+    //                                                           error:&error];
+    //    if (error) {
+    //        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
+    //    }
+    //    POSAttachment *attachment = [results firstObject];
     NSString *openingReceiptUri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentSendOpeningReceiptAPIKeySuffix];
     existingAttachment.openingReceiptUri = openingReceiptUri;
     existingAttachment.uri = uri;
-    
+
     return existingAttachment;
 }
 @end

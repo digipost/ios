@@ -30,16 +30,6 @@
 
 @implementation POSNewFolderViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil
-                           bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -73,7 +63,7 @@
                                message:NSLocalizedString(@"Wrong interface orientation text", @"")
                      cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok")
                      otherButtonTitles:nil
-                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {}];
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
         }
     }
 }
@@ -168,7 +158,6 @@
     } else {
         self.removeTextWhenEditing = YES;
     }
-
     return YES;
 }
 
