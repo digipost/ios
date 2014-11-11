@@ -73,13 +73,15 @@ scriptPath="/iPhoneTemplate.traceTemplate"
 
 fullTracetemplatePath="$DIR$scriptPath"
 
-simulator="iPhone 6 (8.0 Simulator)"
+simulator="iPhone 6 (8.1 Simulator)"
 
 appPath="$(find ~/Library/Developer/CoreSimulator/Devices -name "${APPNAME}" | head -n 1)"
 traceTemplatePath="/Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.xrplugin/Contents/Resources/Automation.tracetemplate"
 script="uiauto/scripts/allScripts.js"
 COUNTER=0
 
+echo ${appPath}
+echo "dfjksdlf"
 while [  $COUNTER -lt $RUNS ]; do
   echo RUN NUMBER = $COUNTER
   let COUNTER=COUNTER+1
