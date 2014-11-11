@@ -228,7 +228,7 @@
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Du har registrert betalingskortene dine.\n\nNeste gang du handler i en butikk som støtter elektronisk kvittering, vil kvitteringen dukke opp her.";
 
 /* Receipts hidden */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ er skjult.\nFor å vise disse må du verifisere betalingskortene dine på digipost.no";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ skjult.\nFor å vise disse må du verifisere betalingskortene dine på digipost.no";
 
 /* receipt is */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR" = "kvitteringen er";
