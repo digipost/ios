@@ -70,7 +70,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
@@ -100,9 +100,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                 [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
                                           sender:self];
             }
-            //                [self performSegueWithIdentifier:@"accountSegue"
-            //                                          sender:self];
-            //            }
         }
     }
 
@@ -215,6 +212,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self.navigationController popToViewController:self
                                               animated:YES];
+    } else {
     }
 }
 

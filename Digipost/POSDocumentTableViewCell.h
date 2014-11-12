@@ -16,17 +16,29 @@
 
 #import <UIKit/UIKit.h>
 
-extern NSString *const kDocumentTableViewCellIdentifier;
-
 @protocol SHCDocumentTableViewCellDelegate;
+
+extern NSString *const kDocumentTableViewCellIdentifier;
 
 @interface POSDocumentTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *arrowImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *unreadImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *lockedImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *attachmentImageView;
 @property (weak, nonatomic) IBOutlet UILabel *senderLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+@property (weak, nonatomic) IBOutlet UIButton *editingButton;
+
+@property (nonatomic, assign) id<SHCDocumentTableViewCellDelegate> delegate;
+
+- (IBAction)didTapEditingButton:(id)sender;
+
+@end
+
+@protocol SHCDocumentTableViewCellDelegate <NSObject>
+
+- (void)documentTableViewCellDidTapEditingButton:(POSDocumentTableViewCell *)documentTableViewCell;
 
 @end

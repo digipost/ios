@@ -38,9 +38,11 @@
 #import "NSError+ExtraInfo.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSLetterViewController.h"
+#import <UIActionSheet+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
 #import "POSAccountViewController.h"
+#import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
@@ -61,6 +63,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @property (strong, nonatomic) NSMutableArray *folders;
 @property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
+@property (strong, nonatomic) UploadImageController *uploadImageController;
 
 @end
 
@@ -214,6 +217,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
+        if (__IS_BETA__ == 1) {
+            return 4;
+        }
         return 3; // Inbox, Receipts and upload
     } else {
         if (self.isEditing && self.shouldShowAddNewFolderCell) {
@@ -244,17 +250,19 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             case 1: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
                 iconImage = [UIImage imageNamed:@"list-icon-receipt"];
-
             } break;
             case 2: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
+            case 3: {
+                folderName = NSLocalizedString(@"folder view controller beta title", @"tells user that they can send feedback with this button");
+                iconImage = [UIImage imageNamed:@"Feedback"];
+            } break;
 
             default:
                 break;
         }
-
     } else {
         if (indexPath.row >= [self.folders count]) {
             folderName = NSLocalizedString(@"FOLDER_VIEW_ADD_NEW_FOLDER_TEXT", @"Legg til mappe");
@@ -412,7 +420,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                               [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
                                           }
         }
-        failure:^(NSError *error) {}];
+        failure:^(NSError *error){}];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -514,10 +522,14 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     break;
                 }
                 case 2: {
-                    [self performSegueWithIdentifier:@"uploadGuideSegue" sender:self];
-                    break;
+                    [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
 
+                    break;
                 } break;
+                case 3: {
+                    NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
+                    [[UIApplication sharedApplication] openURL:url];
+                }
                 default:
                     break;
             }

@@ -352,6 +352,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     return _persistentStoreCoordinator;
 }
+
 #pragma mark - Private methods
 
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinatorWithRetries:(BOOL)retries

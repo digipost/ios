@@ -27,7 +27,7 @@
 NSString *const kAccountViewControllerIdentifier = @"accountViewController";
 NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
-@interface POSAccountViewController ()
+@interface POSAccountViewController () <UIActionSheetDelegate>
 
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *logoutBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIButton *logoutButton;
@@ -144,39 +144,56 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 - (void)logoutUser
 {
 
-    [UIActionSheet showFromBarButtonItem:self.logoutBarButtonItem
-                                animated:YES
-                               withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
-                       otherButtonTitles:nil
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                               if (buttonIndex == 0) {
-                                   SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
-                                   POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
-                                   letterViewConctroller.attachment = nil;
-                                   letterViewConctroller.receipt = nil;
-                                   [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        [UIActionSheet showInView:self.view
+                         withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
+                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+            destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
+                 otherButtonTitles:nil
+                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                        if (buttonIndex == 0) {
+                                            [self userDidConfirmLogout];
+                                        }
+                          }];
+    } else {
 
-                                   
-                                   [[POSAPIManager sharedManager] logoutWithSuccess:^{
-
-                                       [[POSOAuthManager sharedManager] removeAllTokens];
-                                       [[POSModelManager sharedManager] deleteAllObjects];
-                                       [self.tableView reloadData];
-
-                                   } failure:^(NSError *error) {
-
-                                       [[POSOAuthManager sharedManager] removeAllTokens];
-                                       [[POSModelManager sharedManager] deleteAllObjects];
-
-                                       [UIAlertView showWithTitle:error.errorTitle
-                                                          message:[error localizedDescription]
-                                                cancelButtonTitle:nil
-                                                otherButtonTitles:@[error.okButtonTitle]
-                                                         tapBlock:error.tapBlock];
-                                   }];
-                               }
-                                }];
+        [UIActionSheet showFromBarButtonItem:self.logoutBarButtonItem
+                                    animated:YES
+                                   withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
+                           cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                      destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
+                           otherButtonTitles:nil
+                                    tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
+                                    if (buttonIndex == 0) {
+                                        [self userDidConfirmLogout];
+                                    }
+                                    }];
+    }
 }
+
+- (void)userDidConfirmLogout
+{
+    SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+    POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
+    letterViewConctroller.attachment = nil;
+    letterViewConctroller.receipt = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+
+    [[POSAPIManager sharedManager] logoutWithSuccess:^{
+        [[POSOAuthManager sharedManager] removeAllTokens];
+        [[POSModelManager sharedManager] deleteAllObjects];
+        [self.tableView reloadData];
+    } failure:^(NSError *error) {
+        
+        [[POSOAuthManager sharedManager] removeAllTokens];
+        [[POSModelManager sharedManager] deleteAllObjects];
+        
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
+}
+
 @end

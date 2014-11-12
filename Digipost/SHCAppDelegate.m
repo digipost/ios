@@ -74,9 +74,7 @@
         if (documentsViewController) {
             POSMailbox *mailbox = dict[@"mailbox"];
             POSFolder *folder = dict[@"folder"];
-
             NSAssert([mailbox isKindOfClass:[POSMailbox class]], @"not correct class");
-
             POSFoldersViewController *foldersViewController = [navController foldersViewControllerInHierarchy];
             foldersViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
             documentsViewController.folderName = folder.name;
@@ -156,7 +154,18 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    [self uploadImageWithURL:url];
+    return YES;
+}
+
+- (void)uploadImageWithURL:(NSURL *)url
+{
+    UIStoryboard *storyboard;
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
+    }
     UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
 
     POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
@@ -176,10 +185,7 @@
         uploadNavigationController.modalPresentationStyle = UIModalPresentationCurrentContext;
         [leftSideNavController.topViewController presentViewController:uploadNavigationController animated:YES completion:nil];
     }
-
-    return YES;
 }
-
 #pragma mark - Private methods
 
 - (void)setupHockeySDK

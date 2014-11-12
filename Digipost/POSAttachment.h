@@ -45,6 +45,6 @@ extern NSString *const kAttachmentEntityName;
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
-+ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary*)attributesDictionary inManagedObjectContext:(NSManagedObjectContext*) managedobjectcontext;
+//+ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary*)attributesDictionary inManagedObjectContext:(NSManagedObjectContext*) managedobjectcontext;
 + (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment*)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext;
 @end

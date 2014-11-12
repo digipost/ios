@@ -10,18 +10,15 @@ UIATarget.onAlert = function onAlert(alert) {
 
 UIALogger.logDebug("start loginFromStart.js");
 //Logs out in case user did not log out before
-target.pushTimeout(3);
+target.pushTimeout(5);
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
     target.frontMostApp().navigationBar().leftButton().tap();
 }
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid() ) {
     target.frontMostApp().navigationBar().leftButton().tap();
 }
-target.popTimeout();
 
-target.pushTimeout(2);
 if (target.frontMostApp().navigationBar().leftButton().checkIsValid()) {
-    
     target.frontMostApp().navigationBar().leftButton().tap();
 }
 target.popTimeout();

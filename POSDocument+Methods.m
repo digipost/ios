@@ -31,10 +31,9 @@
                 }
                 *stop = YES;
             }
-            
-            
         }];
     }];
     return unread;
 }
+
 @end

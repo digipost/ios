@@ -13,6 +13,7 @@
 #import "UIViewController+BackButton.h"
 #import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
+#import <UIAlertView+Blocks.h>
 
 NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocumentNotification";
 
@@ -69,11 +70,17 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
-
         [self dismissViewControllerAnimated:YES completion:^{}];
-        [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+        [self.navigationController dismissViewControllerAnimated:YES completion:^{
+            }];
+
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
-        } failure:^(NSError *error) {}];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
+                                                        animated:YES];
+        } failure:^(NSError *error) {
+            [UIAlertView showWithTitle:NSLocalizedString(@"upload failed title", @"") message:NSLocalizedString(@"upload failed message", @"") cancelButtonTitle:NSLocalizedString(@"upload failed ok", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+            }];
+        }];
         NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     }

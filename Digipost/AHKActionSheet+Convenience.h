@@ -7,9 +7,11 @@
 //
 
 #import "AHKActionSheet.h"
+#import "POSLetterViewController.h"
 
 @interface AHKActionSheet (Convenience)
 
 - (void)setupStyle;
++ (AHKActionSheet *)setupActionButtonsForLetterController:(POSLetterViewController *)letterViewController;
 
 @end

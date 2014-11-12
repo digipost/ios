@@ -20,6 +20,7 @@
 #import "POSReceiptTableViewCell.h"
 #import "POSReceipt.h"
 #import "POSDocumentsViewController.h"
+#import "UIViewController+BackButton.h"
 #import <UIAlertView+Blocks.h>
 
 NSString *const kPushReceiptIdentifier = @"PushReceipt";
@@ -47,6 +48,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self pos_setDefaultBackButton];
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
     [self.navigationItem setTitle:self.storeName];
@@ -81,6 +83,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     //    [self updateFetchedResultsController];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setToolbarHidden:YES
+                                       animated:NO];
+}
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -99,7 +107,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 {
     if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:[self.tableView indexPathForSelectedRow]];
-
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.receiptsViewController = (id)self;
         letterViewController.receipt = receipt;

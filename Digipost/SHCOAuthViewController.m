@@ -192,10 +192,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
     NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
-
-    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET"
-                                                                          URLString:URLString
-                                                                         parameters:parameters];
+    NSError *error;
+    NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:parameters error:&error];
     [self.webView loadRequest:request];
 }
 

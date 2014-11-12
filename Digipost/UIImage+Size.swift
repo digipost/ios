@@ -10,7 +10,6 @@ import Foundation
 
 extension UIImage {
     func scaleToSize(size: CGSize) -> UIImage {
-        
         UIGraphicsBeginImageContextWithOptions(size, false, 0.0);
         self.drawInRect(CGRectMake(0, 0, size.width, size.height))
         var newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()

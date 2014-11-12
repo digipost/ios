@@ -9,3 +9,9 @@
 #import "POSAccountViewController.h"
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
+#import <UIActionSheet+Blocks.h>
+#import "POSInvoice.h"
+#import "POSAttachment.h"
+#import "POSDocument.h"
+#import "UIViewController+BackButton.h"
+#import "POSReceipt.h"

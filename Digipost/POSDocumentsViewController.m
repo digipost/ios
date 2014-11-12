@@ -41,6 +41,7 @@
 #import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
+#import "POSDocumentTableViewCell.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
 #import "Digipost-Swift.h"
@@ -58,7 +59,7 @@ NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documents
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
-@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate>
+@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
@@ -139,6 +140,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+    [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -180,12 +182,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     [super setEditing:editing
              animated:animated];
-
     [self.navigationController setToolbarHidden:!editing
                                        animated:animated];
-
     [self updateNavbar];
-
     self.navigationController.interactivePopGestureRecognizer.enabled = !editing;
     [[NSNotificationCenter defaultCenter] postNotificationName:kDocumentsViewEditingStatusChangedNotificationName
                                                         object:self
@@ -215,7 +214,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                            forIndexPath:indexPath];
             cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
-            cell.fileNameLabel.text = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+            NSString *fileName = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            cell.fileNameLabel.text = fileName;
             return cell;
         }
 
@@ -249,6 +250,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     } else {
         cell.subjectLabel.font = [UIFont digipostBoldFont];
     }
+    cell.delegate = self;
 
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
@@ -265,6 +267,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     return UITableViewCellEditingStyleNone;
 }
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([POSAPIManager sharedManager].isUploadingFile) {
+        if (indexPath.row == 0) {
+            return nil;
+        }
+    }
+    return indexPath;
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -272,8 +283,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateToolbarButtonItems];
         return;
     }
+    NSIndexPath *actualIndexPathSelected = nil;
+    // adjust for index when uploading file
+    if ([POSAPIManager sharedManager].isUploadingFile) {
+        actualIndexPathSelected = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
+    } else {
+        actualIndexPathSelected = indexPath;
+    }
 
-    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
 
     POSAttachment *attachment = [document mainDocumentAttachment];
 
@@ -317,7 +335,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                              cancelButtonTitle:nil
                                              otherButtonTitles:@[error.okButtonTitle]
                                                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [tableView deselectRowAtIndexPath:indexPath animated:YES];
+                                                          [tableView deselectRowAtIndexPath:actualIndexPathSelected animated:YES];
                                                       }];
             }];
     }
@@ -357,6 +375,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }];
     }];
 }
+
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isEditing) {
@@ -500,7 +519,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         mailboxDigipostAddress:self.mailboxDigipostAddress
         folderUri:self.folderUri
         success:^{
-            
+                                                               
                                                                [self updateFetchedResultsController];
                                                                [self programmaticallyEndRefresh];
                                                                [self updateNavbar];
@@ -647,10 +666,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
                                         
                                         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-            [self updateFetchedResultsController];
+                                        [self updateFetchedResultsController];
                                         
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            
                                             POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
                                             if ([currentOpenDocument isEqual:document]){
                                                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
@@ -658,7 +676,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         }
         }
         failure:^(NSError *error) {
-                                            
                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -711,7 +728,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                           }
         }
         failure:^(NSError *error) {
-                                              
                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -837,4 +853,5 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
+
 @end

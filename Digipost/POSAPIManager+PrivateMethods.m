@@ -30,7 +30,7 @@
 
     NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:method
                                                                   URLString:urlString
-                                                                 parameters:parameters];
+                                                                 parameters:parameters error:nil];
     [request setValue:contentType
         forHTTPHeaderField:@"Content-Type"];
 

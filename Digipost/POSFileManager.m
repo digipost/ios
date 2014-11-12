@@ -267,7 +267,6 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 {
     BOOL successfullyRemovedEncryptedFiles = [self removeAllFilesInFolder:[self encryptedFilesFolderPath]];
     BOOL successfullyRemovedDecryptedFiles = [self removeAllFilesInFolder:[self decryptedFilesFolderPath]];
-
     return successfullyRemovedEncryptedFiles && successfullyRemovedDecryptedFiles;
 }
 
