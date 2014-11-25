@@ -221,6 +221,9 @@
 		EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
+		EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
+		EC56AAB81A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
+		EC56AAB91A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC60D64719D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC60D64819D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
@@ -468,6 +471,7 @@
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
+		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
@@ -732,6 +736,10 @@
 				EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */,
 				EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */,
 				EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */,
+				ECF06D5E19239537003BD200 /* UIViewController+Additions.h */,
+				ECF06D5F19239537003BD200 /* UIViewController+Additions.m */,
+				ECF06D63192395A5003BD200 /* UIRefreshControl+Additions.h */,
+				ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */,
 				ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */,
 				ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */,
 				ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */,
@@ -787,10 +795,7 @@
 				83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */,
 				8364D717185F2286008DE6CB /* SHCBaseTableViewController.h */,
 				8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */,
-				ECF06D5E19239537003BD200 /* UIViewController+Additions.h */,
-				ECF06D5F19239537003BD200 /* UIViewController+Additions.m */,
-				ECF06D63192395A5003BD200 /* UIRefreshControl+Additions.h */,
-				ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */,
+				EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */,
 			);
 			name = "Base classes";
 			sourceTree = "<group>";
@@ -1190,6 +1195,7 @@
 				ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
 				83DB4AED188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */,
+				EC56AAB91A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1519347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
@@ -1289,6 +1295,7 @@
 				ECB1354C1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
 				83DB4AEC188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */,
+				EC56AAB81A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1419347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
@@ -1388,6 +1395,7 @@
 				ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
+				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
