@@ -25,6 +25,11 @@ extern NSString *const kAttachmentOpeningValidationErrorDomain;
 // Core Data model entity names
 extern NSString *const kAttachmentEntityName;
 
+extern NSString *const kAuthenticationLevelIDPorten4;
+extern NSString *const kAuthenticationLevelIDPorten3;
+extern NSString *const kAuthenticationLevelTwoFactor;
+extern NSString *const kAuthenticationLevelPassword;
+
 @class POSDocument;
 @class POSInvoice;
 
@@ -46,5 +51,5 @@ extern NSString *const kAttachmentEntityName;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 //+ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary*)attributesDictionary inManagedObjectContext:(NSManagedObjectContext*) managedobjectcontext;
-+ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment*)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext;
++ (instancetype)updateExistingAttachmentWithUriFromDictionary:(NSDictionary *)attributesDictionary existingAttachment:(POSAttachment *)existingAttachment inManagedObjectContext:(NSManagedObjectContext *)managedObjectcontext;
 @end

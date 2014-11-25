@@ -179,12 +179,14 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)presentAuthenticationWebView
 {
+    NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString randomNumberString];
 
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
-                                 kOAuth2State : self.stateParameter};
+                                 kOAuth2State : self.stateParameter,
+                                 kOAuth2Scope : self.scope};
 
     [self authenticateWithParameters:parameters];
 }

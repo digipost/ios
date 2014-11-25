@@ -131,6 +131,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
         SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         OAuthViewController.delegate = self;
+        OAuthViewController.scope = kOauth2ScopeFull;
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;

@@ -28,9 +28,15 @@ NSString *const kOAuth2RedirectURI = @"redirect_uri";
 NSString *const kOAuth2ResponseType = @"response_type";
 NSString *const kOAuth2State = @"state";
 NSString *const kOAuth2Code = @"code";
+NSString *const kOAuth2Scope = @"scope";
 NSString *const kOAuth2GrantType = @"grant_type";
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
+
+NSString *const kOauth2ScopeFull = @"FULL";
+NSString *const kOauth2ScopeFullHighAuth = @"";
+NSString *const kOauth2ScopeFull_Idporten3 = @"";
+NSString *const kOauth2ScopeFull_Idporten4 = @"";
 
 // Internal Keychain key consts
 NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";

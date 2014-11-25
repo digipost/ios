@@ -44,6 +44,8 @@
 #import "POSDocumentTableViewCell.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
+#import "SHCOAuthViewController.h"
+#import "POSOAuthManager.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -59,7 +61,7 @@ NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documents
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
-@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate>
+@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate, SHCOAuthViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
@@ -175,6 +177,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
+    } else if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]) {
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        POSDocument *document = (POSDocument *)sender;
+        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
+        OAuthViewController.delegate = self;
+        OAuthViewController.scope = kOauth2ScopeFull;
     }
 }
 
@@ -240,7 +248,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         cell.lockedImageView.hidden = YES;
-
     } else {
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
@@ -267,6 +274,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     return UITableViewCellEditingStyleNone;
 }
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([POSAPIManager sharedManager].isUploadingFile) {
@@ -380,7 +388,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
         return;
     }
 }
@@ -852,6 +859,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
+}
+
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+{
+    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    rootResource.authenticationLevel = OAuthViewController.scope;
 }
 
 @end

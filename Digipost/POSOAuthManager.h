@@ -28,6 +28,11 @@ extern NSString *const kOAuth2RedirectURI;
 extern NSString *const kOAuth2ResponseType;
 extern NSString *const kOAuth2State;
 extern NSString *const kOAuth2Code;
+extern NSString *const kOAuth2Scope;
+extern NSString *const kOauth2ScopeFull;
+extern NSString *const kOauth2ScopeFullHighAuth;
+extern NSString *const kOauth2ScopeFull_Idporten3;
+extern NSString *const kOauth2ScopeFull_Idporten4;
 
 // Custom NSError consts
 extern NSString *const kOAuth2ErrorDomain;
