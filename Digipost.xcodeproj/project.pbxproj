@@ -224,6 +224,9 @@
 		EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		EC56AAB81A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		EC56AAB91A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
+		EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */; };
+		EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */ = {isa = PBXBuildFile; fileRef = EC56AAC91A24C7DD00720109 /* rootresource.json */; };
+		EC56AACC1A24C92900720109 /* documents.json in Resources */ = {isa = PBXBuildFile; fileRef = EC56AACB1A24C92900720109 /* documents.json */; };
 		EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC60D64719D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC60D64819D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
@@ -326,6 +329,16 @@
 		ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EC56AAC41A24C7BA00720109 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8375DD351855C383009435B4;
+			remoteInfo = "Digipost-Test-Dpost";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -472,6 +485,11 @@
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
+		EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Digipost-Test-Dpost Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC56AAC11A24C7BA00720109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digipost_Test_Dpost_Tests.swift; sourceTree = "<group>"; };
+		EC56AAC91A24C7DD00720109 /* rootresource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rootresource.json; sourceTree = "<group>"; };
+		EC56AACB1A24C92900720109 /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
@@ -570,6 +588,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC56AABB1A24C7BA00720109 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -623,6 +648,7 @@
 			children = (
 				EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
+				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
 				29E65A4E416873C25D1B4292 /* Pods */,
@@ -635,6 +661,7 @@
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
 				8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */,
 				83A31B0B1855D706007045B9 /* Digipost-Beta.app */,
+				EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -922,6 +949,25 @@
 			name = Accounts;
 			sourceTree = "<group>";
 		};
+		EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */ = {
+			isa = PBXGroup;
+			children = (
+				EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */,
+				EC56AAC91A24C7DD00720109 /* rootresource.json */,
+				EC56AACB1A24C92900720109 /* documents.json */,
+				EC56AAC01A24C7BA00720109 /* Supporting Files */,
+			);
+			path = "Digipost-Test-Dpost Tests";
+			sourceTree = "<group>";
+		};
+		EC56AAC01A24C7BA00720109 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC56AAC11A24C7BA00720109 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -982,6 +1028,24 @@
 			productReference = 83BAB9181855C0AC004A7BFB /* Digipost.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EC56AABD1A24C7BA00720109 /* Digipost-Test-Dpost Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC56AAC81A24C7BA00720109 /* Build configuration list for PBXNativeTarget "Digipost-Test-Dpost Tests" */;
+			buildPhases = (
+				EC56AABA1A24C7BA00720109 /* Sources */,
+				EC56AABB1A24C7BA00720109 /* Frameworks */,
+				EC56AABC1A24C7BA00720109 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC56AAC51A24C7BA00720109 /* PBXTargetDependency */,
+			);
+			name = "Digipost-Test-Dpost Tests";
+			productName = "Digipost-Test-Dpost Tests";
+			productReference = EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1006,6 +1070,10 @@
 							};
 						};
 					};
+					EC56AABD1A24C7BA00720109 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 8375DD351855C383009435B4;
+					};
 				};
 			};
 			buildConfigurationList = 83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */;
@@ -1025,6 +1093,7 @@
 				83BAB9171855C0AC004A7BFB /* Digipost */,
 				83A31AF91855D706007045B9 /* Digipost-Beta */,
 				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
+				EC56AABD1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1075,6 +1144,15 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC56AABC1A24C7BA00720109 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
+				EC56AACC1A24C92900720109 /* documents.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1472,7 +1550,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC56AABA1A24C7BA00720109 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EC56AAC51A24C7BA00720109 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8375DD351855C383009435B4 /* Digipost-Test-Dpost */;
+			targetProxy = EC56AAC41A24C7BA00720109 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
@@ -1791,6 +1885,51 @@
 			};
 			name = Release;
 		};
+		EC56AAC61A24C7BA00720109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Digipost-Test-Dpost Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost-Test-Dpost.app/Digipost-Test-Dpost";
+			};
+			name = Debug;
+		};
+		EC56AAC71A24C7BA00720109 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = "Digipost-Test-Dpost Tests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost-Test-Dpost.app/Digipost-Test-Dpost";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1829,6 +1968,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		EC56AAC81A24C7BA00720109 /* Build configuration list for PBXNativeTarget "Digipost-Test-Dpost Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC56AAC61A24C7BA00720109 /* Debug */,
+				EC56AAC71A24C7BA00720109 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 
