@@ -20,6 +20,7 @@
 #import "LUKeychainAccess.h"
 #import "POSAPIManager.h"
 #import "POSFileManager.h"
+#import "digipost-Swift.h"
 #import "oauth.h"
 
 // Digipost OAuth2 API consts
@@ -30,11 +31,12 @@ NSString *const kOAuth2State = @"state";
 NSString *const kOAuth2Code = @"code";
 NSString *const kOAuth2Scope = @"scope";
 NSString *const kOAuth2GrantType = @"grant_type";
+
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
 
 NSString *const kOauth2ScopeFull = @"FULL";
-NSString *const kOauth2ScopeFullHighAuth = @"";
+NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
 NSString *const kOauth2ScopeFull_Idporten3 = @"";
 NSString *const kOauth2ScopeFull_Idporten4 = @"";
 
@@ -43,6 +45,8 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 
 // Custom NSError consts
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
+
+NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
 @interface POSOAuthManager ()
 
@@ -98,6 +102,31 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                                                   forKey:kKeychainAccessRefreshTokenKey];
 }
 
+- (NSArray *)oAuthTokens
+{
+    NSArray *array = (id)[[LUKeychainAccess standardKeychainAccess] stringForKey : kOAuth2TokensKey];
+    return array;
+}
+
+- (OAuthToken *)oAuthTokenWithScope:(NSString *)scope
+{
+    NSArray *oAuthTokens = [self oAuthTokens];
+    __block OAuthToken *oAuthToken = nil;
+    [oAuthTokens enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        OAuthToken *token = (id) obj;
+        if ([token.scope isEqualToString:scope]){
+            oAuthToken = token;
+        }
+
+    }];
+
+    return oAuthToken;
+}
+
+- (void)setRefreshTokenForKey:(NSString *)key refreshToken:(NSString *)refreshToken
+{
+}
+
 #pragma mark - Public methods
 
 + (instancetype)sharedManager
@@ -112,7 +141,7 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     return sharedInstance;
 }
 
-- (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // First, remove any previous access and refresh tokens
     _accessToken = nil;
@@ -129,13 +158,10 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
 
                               NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-                              if ([refreshToken isKindOfClass:[NSString class]]) {
-                                  self.refreshToken = refreshToken;
-                              }
-
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
-                              if ([accessToken isKindOfClass:[NSString class]]) {
-                                  _accessToken = accessToken;
+                              
+                              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope];
+                              if (oAuthToken != nil ) {
 
                                   // We only call the success block if the access token is set.
                                   // The refresh token is not strictly neccesary at this point.

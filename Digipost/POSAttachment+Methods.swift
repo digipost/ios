@@ -19,23 +19,12 @@ extension POSAttachment {
         return false
     }
     
-    func needsAuthenticationToOpen(currentAuthenticationLevel: String) -> Bool{
-        if currentAuthenticationLevel == kAuthenticationLevelIDPorten4 {
+    func needsAuthenticationToOpen(authenticationLevel: NSNumber) -> Bool{
+        switch authenticationLevel {
+        case kAuthenticationLevelPassword:
             return false
-        } else if currentAuthenticationLevel == kAuthenticationLevelIDPorten3 {
-            if authenticationLevel == kAuthenticationLevelIDPorten4 {
-                return true
-            } else if authenticationLevel == kAuthenticationLevelTwoFactor {
-                return true
-            }
-            return false
-        } else if currentAuthenticationLevel == kAuthenticationLevelTwoFactor {
-            if authenticationLevel == kAuthenticationLevelIDPorten4 {
-                return true
-            } else if authenticationLevel == kAuthenticationLevelIDPorten3 {
-                return true
-            }
-            return false
+        default:
+            return true
         }
         return true
     }

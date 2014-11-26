@@ -92,7 +92,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
         }
 
         if (parameters[kOAuth2Code]) {
-            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code] scope:self.scope
                 success:^{
 
                 // The OAuth manager has successfully authenticated with code - which means we've

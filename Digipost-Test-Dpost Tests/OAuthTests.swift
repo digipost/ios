@@ -20,10 +20,30 @@ class OAuthTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
+    
+    func jsonDictionaryFromFile(filename: String) -> Dictionary<String, AnyObject> {
+        let testBundle = NSBundle(forClass: OAuthTests.self)
+        let path = testBundle.pathForResource(filename, ofType: nil)
+        XCTAssertNotNil(path, "wrong filename")
+        let data = NSData(contentsOfFile: path!)
+        XCTAssertNotNil(data, "wrong filename")
+        var error : NSError?
+        let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as Dictionary<String,AnyObject>
+        XCTAssertNil(error, "could not read json")
+        return jsonDictionary
+    }
+    
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testOauthFromDictionary() {
+        
+        let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        let token = OAuthToken(attributes: oAuthDictionary, scope: "scope")
+        XCTAssertNotNil(token, "no valid token was created")
+        
+        let invalidAuthDictionary = jsonDictionaryFromFile("InvalidOAuthToken.json")
+        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: "anotherScope")
+        XCTAssertNil(anotherToken, "token should not have been created")
+ 
     }
 
     func testPerformanceExample() {

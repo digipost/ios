@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		769409655B6D7777B3778F57 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -250,7 +251,9 @@
 		EC7C1AEE1A25CFFB00BE62DC /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		EC7C1AEF1A25CFFB00BE62DC /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
-		EC7C1AF31A25DA0300BE62DC /* oAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1AF21A25DA0300BE62DC /* oAuthToken.json */; };
+		EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */; };
+		EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */; };
+		EC7C1B591A25FBFB00BE62DC /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
 		EC7FC6A819DD795900886D41 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
 		EC7FC6A919DD795A00886D41 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
@@ -348,6 +351,7 @@
 
 /* Begin PBXFileReference section */
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* POSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAPIManager.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* POSAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAPIManager.m; sourceTree = "<group>"; };
@@ -509,7 +513,8 @@
 		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
 		EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTests.swift; sourceTree = "<group>"; };
-		EC7C1AF21A25DA0300BE62DC /* oAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = oAuthToken.json; path = "Digipost-Test-Dpost Tests/oAuthToken.json"; sourceTree = SOURCE_ROOT; };
+		EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthToken.json; sourceTree = "<group>"; };
+		EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidOAuthToken.json; sourceTree = "<group>"; };
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
@@ -601,6 +606,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769409655B6D7777B3778F57 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -611,6 +617,7 @@
 			isa = PBXGroup;
 			children = (
 				CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */,
+				6419CDC77F32F4255423B47D /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -964,8 +971,9 @@
 			children = (
 				EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */,
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
-				EC7C1AF21A25DA0300BE62DC /* oAuthToken.json */,
 				EC56AAC91A24C7DD00720109 /* rootresource.json */,
+				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
+				EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */,
 				EC56AACB1A24C92900720109 /* documents.json */,
 				EC56AAC01A24C7BA00720109 /* Supporting Files */,
 			);
@@ -1044,9 +1052,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC56AAC81A24C7BA00720109 /* Build configuration list for PBXNativeTarget "Digipost-Test-Dpost Tests" */;
 			buildPhases = (
+				7E361E7188785C5E8BC2C57C /* Check Pods Manifest.lock */,
 				EC56AABA1A24C7BA00720109 /* Sources */,
 				EC56AABB1A24C7BA00720109 /* Frameworks */,
 				EC56AABC1A24C7BA00720109 /* Resources */,
+				150F8DBF97F2B1991D637942 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1164,14 +1174,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
-				EC7C1AF31A25DA0300BE62DC /* oAuthToken.json in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
+				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
+				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		150F8DBF97F2B1991D637942 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1215,6 +1241,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7E361E7188785C5E8BC2C57C /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		A63ABFE4BDB4469FA891B1A2 /* Check Pods Manifest.lock */ = {
@@ -1571,6 +1612,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */,
+				EC7C1B591A25FBFB00BE62DC /* POSAPIManager.m in Sources */,
 				EC7C1AEF1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */,
 			);
@@ -1905,6 +1947,7 @@
 		};
 		EC56AAC61A24C7BA00720109 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1913,6 +1956,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1930,6 +1975,7 @@
 		};
 		EC56AAC71A24C7BA00720109 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6419CDC77F32F4255423B47D /* Pods.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_UNREACHABLE_CODE = YES;
@@ -1938,6 +1984,8 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = "Digipost-Test-Dpost Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

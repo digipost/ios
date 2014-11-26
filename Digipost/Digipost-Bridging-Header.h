@@ -15,3 +15,4 @@
 #import "POSDocument.h"
 #import "UIViewController+BackButton.h"
 #import "POSReceipt.h"
+#import "POSOAuthManager.h"
