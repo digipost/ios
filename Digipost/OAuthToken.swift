@@ -15,10 +15,28 @@ private struct Keys {
 }
 
 class OAuthToken: NSObject, NSCoding{
-    var refreshToken: String?
-    var accessToken: String?
+    
+    var refreshToken: String? {
+        didSet {
+            storeInKeyChain()
+        }
+    }
+    
+    var accessToken: String? {
+        didSet {
+            storeInKeyChain()
+        }
+    }
     var scope: String?
     
+//    var rank: Int = 0 {
+//        didSet {
+//            // Say 1000 is not good for you and 999 is the maximum you want to be stored there
+//            if rank >= 1000  {
+//                rank = 999
+//            }
+//        }
+//    }
     required convenience init(coder decoder: NSCoder) {
         self.init()
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!
@@ -66,7 +84,18 @@ class OAuthToken: NSObject, NSCoding{
         var existingTokens = OAuthToken.oAuthTokens()
         existingTokens[scope!] = self
         LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
-        
+    }
+    
+    class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
+        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
+        if let actualDictionary = dictionary as NSDictionary? {
+            let object: AnyObject! = actualDictionary[scope] as AnyObject!
+            if object != nil {
+                return object as OAuthToken!
+            }
+            
+        }
+        return nil
     }
     
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
@@ -80,24 +109,5 @@ class OAuthToken: NSObject, NSCoding{
         }
         return tokenArray
     }
-    //    - (NSArray *)oAuthTokens
-    //    {
-    //    NSArray *array = (id)[[LUKeychainAccess standardKeychainAccess] stringForKey : kOAuth2TokensKey];
-    //    return array;
-    //    }
-    //
-    //    - (OAuthToken *)oAuthTokenWithScope:(NSString *)scope
-    //    {
-    //    NSArray *oAuthTokens = [self oAuthTokens];
-    //    __block OAuthToken *oAuthToken = nil;
-    //    [oAuthTokens enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    //    OAuthToken *token = (id) obj;
-    //    if ([token.scope isEqualToString:scope]){
-    //    oAuthToken = token;
-    //    }
-    //    
-    //    }];
-    //    
-    //    return oAuthToken;
-    //    }
+
 }

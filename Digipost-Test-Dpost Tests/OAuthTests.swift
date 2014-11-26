@@ -54,15 +54,27 @@ class OAuthTests: XCTestCase {
     
     func testMultipleScopedTokensInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        // create an invalid token that does not get stored
+        let invalidAuthDictionary = jsonDictionaryFromFile("InvalidOAuthToken.json")
+        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: "anotherScope")
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 1, "token did not correctly store in database")
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testUpdateSameTokenMultipleTimes () {
+        let newAccessToken = "newAccessToken"
+        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        
+        let refetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        XCTAssertNotNil(refetchedToken, "no valid token was created")
+        println(refetchedToken)
+        
+        refetchedToken!.accessToken = newAccessToken
+        
+        let alteredToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        let acc = alteredToken?.accessToken!
+        XCTAssertTrue(alteredToken!.accessToken! == refetchedToken!.accessToken!, "\(alteredToken!.accessToken!) not similar to \(refetchedToken!.accessToken!)")
+        
     }
 
 }
