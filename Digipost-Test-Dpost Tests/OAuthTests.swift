@@ -17,6 +17,7 @@ class OAuthTests: XCTestCase {
     }
     
     override func tearDown() {
+        LUKeychainAccess.standardKeychainAccess().deleteAll()
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
@@ -33,6 +34,11 @@ class OAuthTests: XCTestCase {
         return jsonDictionary
     }
     
+    func mockTokenWithScope(scope: String) -> OAuthToken {
+        let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        let token = OAuthToken(attributes: oAuthDictionary, scope: scope)
+        return token!
+    }
 
     func testOauthFromDictionary() {
         
@@ -45,7 +51,13 @@ class OAuthTests: XCTestCase {
         XCTAssertNil(anotherToken, "token should not have been created")
  
     }
-
+    
+    func testMultipleScopedTokensInKeychain() {
+        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        let allTokens = OAuthToken.oAuthTokens()
+        XCTAssertTrue(allTokens.count == 1, "token did not correctly store in database")
+    }
+    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock() {

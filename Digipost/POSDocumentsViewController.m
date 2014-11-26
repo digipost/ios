@@ -291,6 +291,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateToolbarButtonItems];
         return;
     }
+
     NSIndexPath *actualIndexPathSelected = nil;
     // adjust for index when uploading file
     if ([POSAPIManager sharedManager].isUploadingFile) {
@@ -300,8 +301,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
-
+    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     POSAttachment *attachment = [document mainDocumentAttachment];
+    if ([attachment needsAuthenticationToOpen:rootResource.authenticationLevel]) {
+        
+    }
 
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier

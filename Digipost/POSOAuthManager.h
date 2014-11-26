@@ -36,6 +36,7 @@ extern NSString *const kOauth2ScopeFull_Idporten4;
 
 extern NSString *const kOAuth2AccessToken;
 extern NSString *const kOAuth2RefreshToken;
+extern NSString *const kOAuth2TokensKey;
 
 // Custom NSError consts
 extern NSString *const kOAuth2ErrorDomain;
