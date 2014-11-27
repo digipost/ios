@@ -10,10 +10,10 @@
 #import "POSOAuthManager.h"
 #import "POSAPIManager.h"
 #import <AFHTTPSessionManager.h>
+#import "digipost-Swift.h"
 
 @implementation POSAPIManager (PrivateMethods)
-
-- (void)jsonRequestWithMethod:(NSString *)method parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler
+- (void)jsonRequestWithMethod:(NSString *)method oAuth2Scope:(NSString *)oAuth2Scope parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *, id, NSError *))completionHandler
 {
     NSString *urlString = url;
 
@@ -24,13 +24,14 @@
     [JSONRequestSerializer setValue:contentType
                  forHTTPHeaderField:@"Accept"];
 
-    NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [POSOAuthManager sharedManager].accessToken];
+    NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [OAuthToken oAuthTokenWithScope:oAuth2Scope].accessToken];
     [JSONRequestSerializer setValue:bearer
                  forHTTPHeaderField:@"Authorization"];
 
     NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:method
                                                                   URLString:urlString
-                                                                 parameters:parameters error:nil];
+                                                                 parameters:parameters
+                                                                      error:nil];
     [request setValue:contentType
         forHTTPHeaderField:@"Content-Type"];
 

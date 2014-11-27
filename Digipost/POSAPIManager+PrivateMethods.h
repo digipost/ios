@@ -10,5 +10,5 @@
 
 @interface POSAPIManager (PrivateMethods)
 
-- (void)jsonRequestWithMethod:(NSString *)method parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+- (void)jsonRequestWithMethod:(NSString *)method oAuth2Scope:(NSString *)oAuth2Scope parameters:(NSDictionary *)parameters url:(NSString *)url completionHandler:(void (^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 @end

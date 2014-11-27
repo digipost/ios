@@ -43,14 +43,9 @@ extern NSString *const kOAuth2ErrorDomain;
 
 @interface POSOAuthManager : NSObject
 
-@property (copy, nonatomic, readonly) NSString *accessToken;
-@property (copy, nonatomic, readonly) NSString *refreshToken;
-
 + (instancetype)sharedManager;
 
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)removeAccessToken;
-- (void)removeAllTokens;
+- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

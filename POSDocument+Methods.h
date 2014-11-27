@@ -11,5 +11,6 @@
 @interface POSDocument (Methods)
 
 + (NSInteger)numberOfUnreadDocumentsForMailboxFolder:(POSFolder *)mailboxFolder inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (NSString *)authenticationLevelForMainAttachment;
 
 @end

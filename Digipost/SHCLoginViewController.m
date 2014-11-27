@@ -25,6 +25,7 @@
 #import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
+#import "digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";
@@ -91,7 +92,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
-    if ([POSOAuthManager sharedManager].refreshToken) {
+    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];

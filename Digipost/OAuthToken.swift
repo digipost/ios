@@ -93,7 +93,6 @@ class OAuthToken: NSObject, NSCoding{
             if object != nil {
                 return object as OAuthToken!
             }
-            
         }
         return nil
     }
@@ -108,6 +107,25 @@ class OAuthToken: NSObject, NSCoding{
             }
         }
         return tokenArray
+    }
+    
+    class func oAuthScopeForAuthenticationLevel(authenticationLevel: String) -> String {
+        switch authenticationLevel {
+        case "PASSWORD":
+            return kOauth2ScopeFull
+        default:
+            assert(false, "wrong auth level")
+            return kOauth2ScopeFull
+        }
+    }
+    
+    class func removeAllTokens() {
+        assert(false, "not implemented")
+    }
+    
+    class func removeAcessTokenForOAuthTokenWithScope(scope: String) {
+        let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
+        oauthToken?.accessToken = nil
     }
 
 }

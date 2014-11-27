@@ -21,6 +21,7 @@
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "POSBaseEncryptedModel.h"
+#import "digipost-Swift.h"
 
 // Custom NSError consts
 NSString *const kFileManagerDecryptingErrorDomain = @"FileManagerDecryptingErrorDomain";
@@ -48,7 +49,10 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
 - (BOOL)decryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
-    NSString *password = [POSOAuthManager sharedManager].refreshToken;
+    POSAttachment *attachment = (id)baseEncryptionModel;
+    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
+
+    NSString *password = oauthToken.refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't decrypt data without a password");
@@ -153,7 +157,10 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
 - (BOOL)encryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
-    NSString *password = [POSOAuthManager sharedManager].refreshToken;
+    POSAttachment *attachment = (id)baseEncryptionModel;
+    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
+
+    NSString *password = oauthToken.refreshToken;
 
     if (!password) {
         DDLogError(@"Error: Can't encrypt data without a password");

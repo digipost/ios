@@ -37,8 +37,8 @@ NSString *const kOAuth2RefreshToken = @"refresh_token";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
-NSString *const kOauth2ScopeFull_Idporten3 = @"";
-NSString *const kOauth2ScopeFull_Idporten4 = @"";
+NSString *const kOauth2ScopeFull_Idporten3 = @"IDPORTEN_3";
+NSString *const kOauth2ScopeFull_Idporten4 = @"IDPORTEN_4";
 
 // Internal Keychain key consts
 NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
@@ -87,46 +87,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
     return self;
 }
 
-#pragma mark - Properties
-
-- (NSString *)refreshToken
-{
-    NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
-
-    return refreshToken;
-}
-
-- (void)setRefreshToken:(NSString *)refreshToken
-{
-    [[LUKeychainAccess standardKeychainAccess] setString:refreshToken
-                                                  forKey:kKeychainAccessRefreshTokenKey];
-}
-
-- (NSArray *)oAuthTokens
-{
-    NSArray *array = (id)[[LUKeychainAccess standardKeychainAccess] stringForKey : kOAuth2TokensKey];
-    return array;
-}
-
-- (OAuthToken *)oAuthTokenWithScope:(NSString *)scope
-{
-    NSArray *oAuthTokens = [self oAuthTokens];
-    __block OAuthToken *oAuthToken = nil;
-    [oAuthTokens enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        OAuthToken *token = (id) obj;
-        if ([token.scope isEqualToString:scope]){
-            oAuthToken = token;
-        }
-
-    }];
-
-    return oAuthToken;
-}
-
-- (void)setRefreshTokenForKey:(NSString *)key refreshToken:(NSString *)refreshToken
-{
-}
-
 #pragma mark - Public methods
 
 + (instancetype)sharedManager
@@ -144,8 +104,9 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // First, remove any previous access and refresh tokens
-    _accessToken = nil;
-    self.refreshToken = nil;
+    //    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+    //    oauthToken.accessToken = nil;
+    //    oauthToken.refreshToken = nil;
 
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
@@ -186,10 +147,11 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
         }];
 }
 
-- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     // First, remove previous access token
-    _accessToken = nil;
+    //    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+    //    oauthToken.accessToken = nil;
 
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2RefreshToken,
                                  kOAuth2RefreshToken : refreshToken,
@@ -203,8 +165,8 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
                               if ([accessToken isKindOfClass:[NSString class]]) {
-                                  _accessToken = accessToken;
-
+                                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                                  oauthToken.accessToken = accessToken;
                                   DDLogInfo(@"Access token updated");
 
                                   if (success) {
@@ -236,25 +198,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                               }
                           }
         }];
-}
-
-- (void)removeAccessToken
-{
-    _accessToken = nil;
-
-    DDLogInfo(@"Access token removed");
-}
-
-- (void)removeAllTokens
-{
-    _accessToken = nil;
-    self.refreshToken = nil;
-
-    DDLogInfo(@"All tokens removed");
-    NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
-    NSAssert(refreshToken == nil, @"refresh token not nil!");
-    refreshToken = nil;
-    [[POSFileManager sharedFileManager] removeAllFiles];
 }
 
 @end

@@ -23,6 +23,7 @@
 #import "POSRootResource.h"
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
+#import "digipost-Swift.h"
 
 NSString *const kAccountViewControllerIdentifier = @"accountViewController";
 NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
@@ -180,12 +181,12 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
     [[POSAPIManager sharedManager] logoutWithSuccess:^{
-        [[POSOAuthManager sharedManager] removeAllTokens];
+        [OAuthToken removeAllTokens];
         [[POSModelManager sharedManager] deleteAllObjects];
         [self.tableView reloadData];
     } failure:^(NSError *error) {
         
-        [[POSOAuthManager sharedManager] removeAllTokens];
+        [OAuthToken removeAllTokens];
         [[POSModelManager sharedManager] deleteAllObjects];
         
         [UIAlertView showWithTitle:error.errorTitle
