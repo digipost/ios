@@ -177,6 +177,7 @@
 		EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
+		EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */ = {isa = PBXBuildFile; fileRef = EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */; };
 		EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
@@ -471,6 +472,7 @@
 		EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "POSDocument+Methods.m"; path = "../POSDocument+Methods.m"; sourceTree = "<group>"; };
 		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
 		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
+		EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthTokenHigherSecurity.json; sourceTree = "<group>"; };
 		EC2352991A0B9AFD0071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EC23529C1A0BA6690071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TintColor.swift"; sourceTree = "<group>"; };
@@ -974,6 +976,7 @@
 				EC56AAC91A24C7DD00720109 /* rootresource.json */,
 				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
 				EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */,
+				EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */,
 				EC56AACB1A24C92900720109 /* documents.json */,
 				EC56AAC01A24C7BA00720109 /* Supporting Files */,
 			);
@@ -1177,6 +1180,7 @@
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
 				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
 				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
+				EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

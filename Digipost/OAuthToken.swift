@@ -29,14 +29,6 @@ class OAuthToken: NSObject, NSCoding{
     }
     var scope: String?
     
-//    var rank: Int = 0 {
-//        didSet {
-//            // Say 1000 is not good for you and 999 is the maximum you want to be stored there
-//            if rank >= 1000  {
-//                rank = 999
-//            }
-//        }
-//    }
     required convenience init(coder decoder: NSCoder) {
         self.init()
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!
@@ -57,14 +49,11 @@ class OAuthToken: NSObject, NSCoding{
         self.init()
         
         if let acutalRefreshToken = refreshToken as String? {
-            self.refreshToken = acutalRefreshToken
-            println(self.refreshToken)
-        } else {
-            return nil
+           self.refreshToken = acutalRefreshToken
         }
+        
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
-            println(self.accessToken)
         }else {
             return nil
         }
@@ -86,6 +75,12 @@ class OAuthToken: NSObject, NSCoding{
         LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
     }
     
+    func canBeRefreshedByRefreshToken() -> Bool {
+        if scope == kOauth2ScopeFull {
+            return true
+        }
+        return false
+    }
     class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
@@ -120,7 +115,8 @@ class OAuthToken: NSObject, NSCoding{
     }
     
     class func removeAllTokens() {
-         LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kOAuth2TokensKey)
+        let emptyDictionary = Dictionary<String,AnyObject>()
+         LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
     
     class func removeAcessTokenForOAuthTokenWithScope(scope: String) {

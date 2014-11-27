@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 
 class OAuthTests: XCTestCase {
-
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -35,11 +35,16 @@ class OAuthTests: XCTestCase {
     }
     
     func mockTokenWithScope(scope: String) -> OAuthToken {
-        let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        var oAuthDictionary: Dictionary<String,AnyObject>!
+        if scope == kOauth2ScopeFull {
+            oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        } else {
+            oAuthDictionary = jsonDictionaryFromFile("ValidOAuthTokenHigherSecurity.json")
+        }
         let token = OAuthToken(attributes: oAuthDictionary, scope: scope)
         return token!
     }
-
+    
     func testOauthFromDictionary() {
         
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
@@ -49,7 +54,7 @@ class OAuthTests: XCTestCase {
         let invalidAuthDictionary = jsonDictionaryFromFile("InvalidOAuthToken.json")
         let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: "anotherScope")
         XCTAssertNil(anotherToken, "token should not have been created")
- 
+        
     }
     
     func testMultipleScopedTokensInKeychain() {
@@ -83,9 +88,10 @@ class OAuthTests: XCTestCase {
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
         let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
         let allTokens = OAuthToken.oAuthTokens()
+        XCTAssertNil(idPorten3.refreshToken, "idporten3 token should not have refresh token")
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
     }
-
+    
     func testdeleteAllTokens () {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
@@ -96,10 +102,10 @@ class OAuthTests: XCTestCase {
         
         OAuthToken.removeAllTokens()
         let allTokensAfterDeletion = OAuthToken.oAuthTokens()
-        XCTAssertTrue(allTokens.count == 0, "token did not correctly store in database, should be 4, was \(allTokens.count)")
+        XCTAssertTrue(allTokensAfterDeletion.count == 0, "could not delete token database, should be 0, was \(allTokensAfterDeletion.count)")
     }
     
-    func renewAccessTokensForMultipleOauthTokens(){
+    func testRenewAccessTokensForMultipleOauthTokens(){
         let newAccessTokenFull = "new Acesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
         let newAccessTokenIdPorten4 = "new Acesstoken for idporten4"
