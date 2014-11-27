@@ -501,7 +501,7 @@
                         <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="Kl9-xn-mhN"/>
                         <segue destination="JNU-sI-t0Q" kind="push" identifier="PushAttachments" id="6gR-yU-rUq"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="NbI-rk-UoN"/>
-                        <segue destination="95z-FI-Of9" kind="modal" id="oQ7-vy-wTh"/>
+                        <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="oQ7-vy-wTh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgJ-0K-g5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -876,10 +876,10 @@
             </objects>
             <point key="canvasLocation" x="1322" y="-260"/>
         </scene>
-        <!--View Controller-->
+        <!--øk sikkerhet-->
         <scene sceneID="HHc-Kw-qYK">
             <objects>
-                <viewController id="BPe-EW-mWm" sceneMemberID="viewController">
+                <viewController id="BPe-EW-mWm" customClass="SHCOAuthViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NEx-2S-aC6"/>
                         <viewControllerLayoutGuide type="bottom" id="Fwo-ay-hU3"/>
@@ -887,9 +887,27 @@
                     <view key="view" contentMode="scaleToFill" id="r7i-6C-G8C">
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUO-Up-hZk">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BPe-EW-mWm" id="dW8-YE-wid"/>
+                                </connections>
+                            </webView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Fwo-ay-hU3" firstAttribute="top" secondItem="WUO-Up-hZk" secondAttribute="bottom" id="U1J-ww-TCy"/>
+                            <constraint firstItem="WUO-Up-hZk" firstAttribute="top" secondItem="r7i-6C-G8C" secondAttribute="topMargin" id="YNh-ie-jd1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WUO-Up-hZk" secondAttribute="trailing" constant="-16" id="eBj-VB-ML8"/>
+                            <constraint firstItem="WUO-Up-hZk" firstAttribute="leading" secondItem="r7i-6C-G8C" secondAttribute="leadingMargin" constant="-16" id="yc9-5q-0vu"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g7r-Eb-vzj"/>
+                    <navigationItem key="navigationItem" title="øk sikkerhet" id="g7r-Eb-vzj"/>
+                    <connections>
+                        <outlet property="webView" destination="WUO-Up-hZk" id="CUb-bJ-vTM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHF-QQ-cDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
