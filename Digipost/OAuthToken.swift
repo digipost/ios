@@ -58,6 +58,7 @@ class OAuthToken: NSObject, NSCoding{
             return nil
         }
         self.scope = scope
+        storeInKeyChain()
     }
     
     convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
@@ -108,6 +109,8 @@ class OAuthToken: NSObject, NSCoding{
         switch authenticationLevel {
         case "PASSWORD":
             return kOauth2ScopeFull
+        case "IDPORTEN_4":
+            return kOauth2ScopeFull_Idporten4
         default:
             assert(false, "wrong auth level")
             return kOauth2ScopeFull

@@ -46,7 +46,6 @@ class OAuthTests: XCTestCase {
     }
     
     func testOauthFromDictionary() {
-        
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         let token = OAuthToken(attributes: oAuthDictionary, scope: "scope")
         XCTAssertNotNil(token, "no valid token was created")
@@ -54,9 +53,16 @@ class OAuthTests: XCTestCase {
         let invalidAuthDictionary = jsonDictionaryFromFile("InvalidOAuthToken.json")
         let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: "anotherScope")
         XCTAssertNil(anotherToken, "token should not have been created")
-        
     }
     
+    func testOauthFromStrings() {
+        let accesstoken = "accesstoken"
+        let token = OAuthToken(refreshToken: "refresh", accessToken:accesstoken, scope: kOauth2ScopeFull)
+        
+        let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        XCTAssertNotNil(fetchedToken, "could not store oauthtoken to keychain")
+        XCTAssertEqual(fetchedToken!.accessToken!, accesstoken, "wrong accesstoken stored")
+    }
     func testMultipleScopedTokensInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
