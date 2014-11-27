@@ -76,5 +76,53 @@ class OAuthTests: XCTestCase {
         XCTAssertTrue(alteredToken!.accessToken! == refetchedToken!.accessToken!, "\(alteredToken!.accessToken!) not similar to \(refetchedToken!.accessToken!)")
         
     }
+    
+    func testMultipleScopes() {
+        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        let allTokens = OAuthToken.oAuthTokens()
+        XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
+    }
 
+    func testdeleteAllTokens () {
+        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        let allTokens = OAuthToken.oAuthTokens()
+        XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
+        
+        OAuthToken.removeAllTokens()
+        let allTokensAfterDeletion = OAuthToken.oAuthTokens()
+        XCTAssertTrue(allTokens.count == 0, "token did not correctly store in database, should be 4, was \(allTokens.count)")
+    }
+    
+    func renewAccessTokensForMultipleOauthTokens(){
+        let newAccessTokenFull = "new Acesstoken for Full"
+        let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
+        let newAccessTokenIdPorten4 = "new Acesstoken for idporten4"
+        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        
+        
+        let fetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        let fetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
+        let fetchedIdPorten4 = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
+        
+        fetchedFull?.accessToken = newAccessTokenFull
+        fetchedHighAuth?.accessToken = newAccessTokenHighAuth
+        fetchedIdPorten4?.accessToken = newAccessTokenIdPorten4
+        
+        let refetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        XCTAssertEqual(refetchedFull!.accessToken!, newAccessTokenFull, "did not save new access token correctly")
+        let refetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
+        XCTAssertEqual(refetchedHighAuth!.accessToken!, newAccessTokenHighAuth, "did not save new access token correctly")
+        
+        let refetchedIdporten4 = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
+        XCTAssertEqual(refetchedIdporten4!.accessToken!, newAccessTokenIdPorten4, "did not save new access token correctly")
+    }
 }

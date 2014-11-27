@@ -120,7 +120,7 @@ class OAuthToken: NSObject, NSCoding{
     }
     
     class func removeAllTokens() {
-        assert(false, "not implemented")
+         LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kOAuth2TokensKey)
     }
     
     class func removeAcessTokenForOAuthTokenWithScope(scope: String) {
