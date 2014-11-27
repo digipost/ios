@@ -106,6 +106,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
                                                   object:nil];
+    if (self.attachment.needsAuthenticationToOpen) {
+        [self.attachment deleteDecryptedFileIfExisting];
+        [self.attachment deleteEncryptedFileIfExisting];
+    }
 }
 
 #pragma mark - UIViewController

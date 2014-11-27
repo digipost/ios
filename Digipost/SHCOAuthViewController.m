@@ -48,7 +48,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy= NSHTTPCookieAcceptPolicyAlways;
 
     self.screenName = kOAuthViewControllerScreenName;
 
@@ -62,6 +61,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                                                  forState:UIControlStateNormal];
         }
     } else {
+        //    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy= NSHTTPCookieAcceptPolicyAlways;
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
 
@@ -206,19 +206,20 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString randomNumberString];
 
-    NSDictionary *parameters = @{ kOAuth2ClientID : OAUTH_CLIENT_ID,
-                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
-                                  kOAuth2ResponseType : kOAuth2Code,
-                                  kOAuth2State : self.stateParameter,
-                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope] };
+    NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
+                                 kOAuth2ResponseType : kOAuth2Code,
+                                 kOAuth2State : self.stateParameter,
+                                 kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
 
     [self authenticateWithParameters:parameters];
 }
 
-- (NSString *)parameterForOauth2Scope:(NSString *) scope {
+- (NSString *)parameterForOauth2Scope:(NSString *)scope
+{
     if ([scope isEqualToString:kOauth2ScopeFull]) {
         return @"FULL";
-    } else if ([scope isEqualToString:kOauth2ScopeFullHighAuth]){
+    } else if ([scope isEqualToString:kOauth2ScopeFullHighAuth]) {
         return @"FULL_HIGHAUTH";
     } else if ([scope isEqualToString:kOauth2ScopeFull_Idporten3]) {
         return @"FULL_IDPORTEN3";

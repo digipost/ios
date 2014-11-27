@@ -25,5 +25,7 @@ extern NSString *const kBaseEncryptionModelEntityName;
 
 - (NSString *)encryptedFilePath;
 - (NSString *)decryptedFilePath;
+- (void)deleteDecryptedFileIfExisting;
+- (void)deleteEncryptedFileIfExisting;
 
 @end

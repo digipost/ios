@@ -19,12 +19,10 @@ extension POSAttachment {
         return false
     }
     
-    func needsAuthenticationToOpen(authenticationLevel: NSNumber) -> Bool{
-        switch authenticationLevel {
-        case kAuthenticationLevelPassword:
+    func needsAuthenticationToOpen() -> Bool{
+        let scope = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
+        if scope == kOauth2ScopeFull {
             return false
-        default:
-            return true
         }
         return true
     }

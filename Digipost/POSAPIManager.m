@@ -1877,7 +1877,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     } else if (oAuthToken.canBeRefreshedByRefreshToken == false) {
         self.state = SHCAPIManagerStateRefreshingAccessTokenFailedNeedHigherAuthenticationLevel;
         self.lastFailureBlock = failure;
-        self.lastSuccessBlock = success;
     }
 }
 

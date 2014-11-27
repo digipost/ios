@@ -51,4 +51,18 @@
     return filePath;
 }
 
+- (void)deleteDecryptedFileIfExisting
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.decryptedFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:self.decryptedFilePath error:nil];
+    }
+}
+
+- (void)deleteEncryptedFileIfExisting
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.encryptedFilePath]) {
+        [[NSFileManager defaultManager] removeItemAtPath:self.encryptedFilePath error:nil];
+    }
+}
+
 @end
