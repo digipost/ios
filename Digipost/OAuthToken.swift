@@ -109,11 +109,12 @@ class OAuthToken: NSObject, NSCoding{
         switch authenticationLevel {
         case "PASSWORD":
             return kOauth2ScopeFull
+        case "TWO_FACTOR":
+            return kOauth2ScopeFullHighAuth
         case "IDPORTEN_4":
             return kOauth2ScopeFull_Idporten4
         default:
-            assert(false, "wrong auth level")
-            return kOauth2ScopeFull
+            return authenticationLevel
         }
     }
     

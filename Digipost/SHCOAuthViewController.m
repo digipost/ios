@@ -48,21 +48,38 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy= NSHTTPCookieAcceptPolicyAlways;
 
     self.screenName = kOAuthViewControllerScreenName;
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
 
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                            alpha:0.8] }
-                                                             forState:UIControlStateNormal];
+    if (self.scope == kOauth2ScopeFull) {
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+            self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
+            [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                                alpha:0.8] }
+                                                                 forState:UIControlStateNormal];
+        }
+    } else {
+        [self setupUIForIncreasedAuthenticationLevelVC];
     }
 
     [self presentAuthenticationWebView];
 
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
+}
+
+- (void)setupUIForIncreasedAuthenticationLevelVC
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
+        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                            alpha:0.8] }
+
+                                                             forState:UIControlStateNormal];
+    } else {
+    }
 }
 
 #pragma mark - UIWebViewDelegate
@@ -178,6 +195,12 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 #pragma mark - Private methods
 
+- (void)didTapCloseBarButtonItem:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+
+    }];
+}
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
@@ -187,9 +210,22 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                   kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                   kOAuth2ResponseType : kOAuth2Code,
                                   kOAuth2State : self.stateParameter,
-                                  kOAuth2Scope : @"FULL_IDPORTEN4" };
+                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope] };
 
     [self authenticateWithParameters:parameters];
+}
+
+- (NSString *)parameterForOauth2Scope:(NSString *) scope {
+    if ([scope isEqualToString:kOauth2ScopeFull]) {
+        return @"FULL";
+    } else if ([scope isEqualToString:kOauth2ScopeFullHighAuth]){
+        return @"FULL_HIGHAUTH";
+    } else if ([scope isEqualToString:kOauth2ScopeFull_Idporten3]) {
+        return @"FULL_IDPORTEN3";
+    } else if ([scope isEqualToString:kOauth2ScopeFull_Idporten4]) {
+        return @"FULL_IDPORTEN4";
+    }
+    return nil;
 }
 
 - (void)authenticateWithParameters:(NSDictionary *)parameters

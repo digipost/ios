@@ -58,12 +58,11 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
 
 NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documentsViewEditingStatusChangedNotificationName";
-NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
 //NSString *const kDocumentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName =@"documentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName";
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
 
-@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate, SHCOAuthViewControllerDelegate>
+@interface POSDocumentsViewController () <NSFetchedResultsControllerDelegate, SHCDocumentTableViewCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectionBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *moveBarButtonItem;
@@ -179,13 +178,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
-    } else if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
-        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        POSAttachment *attachment = (POSAttachment *)sender;
-        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
-        OAuthViewController.delegate = self;
-        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
-    }
+    } 
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -339,11 +332,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
             }
             failure:^(NSError *error) {
-                [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                    if (buttonIndex == 1) {
-                        [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:attachment];
-                    }
-                }];
+               
             }];
     }
 }

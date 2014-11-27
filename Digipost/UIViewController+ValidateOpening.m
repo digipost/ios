@@ -23,17 +23,17 @@
 
 - (void)validateOpeningAttachment:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel] == NO) {
-        NSString *scopeNeeded = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
-        if ([OAuthToken oAuthTokenWithScope:scopeNeeded] == nil) {
-            if (failure) {
-                failure([[NSError alloc] init]);
-            }
-        } else {
-            success();
-        }
+//    if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel] == NO) {
+//        NSString *scopeNeeded = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+//        if ([OAuthToken oAuthTokenWithScope:scopeNeeded] == nil) {
+//            if (failure) {
+//                failure([[NSError alloc] init]);
+//            }
+//        } else {
+//            success();
+//        }
 
-    } else if (attachment.openingReceiptUri) {
+    if (attachment.openingReceiptUri) {
         if (success) {
             success();
         }

@@ -117,7 +117,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
         success:^(NSURLSessionDataTask *task, id responseObject) {
                           NSDictionary *responseDict = (NSDictionary *)responseObject;
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
                               NSString *refreshToken = responseDict[kOAuth2RefreshToken];
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
                               

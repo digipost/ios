@@ -501,7 +501,6 @@
                         <segue destination="IOM-jr-kzB" kind="push" identifier="PushLetter" id="Kl9-xn-mhN"/>
                         <segue destination="JNU-sI-t0Q" kind="push" identifier="PushAttachments" id="6gR-yU-rUq"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="NbI-rk-UoN"/>
-                        <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="oQ7-vy-wTh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hgJ-0K-g5E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -864,7 +863,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -874,7 +873,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wm3-FM-FqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1322" y="-260"/>
+            <point key="canvasLocation" x="2281" y="1134"/>
         </scene>
         <!--øk sikkerhet-->
         <scene sceneID="HHc-Kw-qYK">
@@ -885,11 +884,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Fwo-ay-hU3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="r7i-6C-G8C">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WUO-Up-hZk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="BPe-EW-mWm" id="dW8-YE-wid"/>
@@ -911,7 +910,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHF-QQ-cDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="-260"/>
+            <point key="canvasLocation" x="2782" y="1134"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="Zjh-CO-XSp">
@@ -1365,6 +1364,7 @@
                         <outlet property="shadowView" destination="UZq-Nf-q1o" id="ehi-lv-bNn"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                         <segue destination="iIu-uD-AEh" kind="unwind" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
+                        <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAR-h4-ijQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1594,9 +1594,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3jD-Vn-Y8D"/>
         <segue reference="vJp-VT-rtF"/>
         <segue reference="j20-qk-TDu"/>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="svS-B5-imh"/>
+        <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>

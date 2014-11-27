@@ -1142,8 +1142,21 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     POSAttachment *attachment = (id)baseEncryptionModel;
 
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
 
-    [self validateTokensForScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel] success:^{
+    if (oauthToken == nil) {
+        NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
+                                             code:SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel
+                                         userInfo:nil];
+        self.lastError = error;
+        self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFailed;
+        if (failure) {
+            failure(error);
+        }
+        return;
+    }
+
+    [self validateTokensForScope:oauthToken.scope success:^{
         
         NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil error:nil];
         
@@ -1195,7 +1208,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.lastFailureBlock = failure;
                 self.lastError = error;
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFailed;
-            } else {
+            }else {
                 self.lastURLResponse = response;
                 self.lastSuccessBlock = success;
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
@@ -1230,8 +1243,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateMovingDocument;
-    __block NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:document.authenticationLevelForMainAttachment];
-    [self validateTokensForScope:scope success:^{
+    [self validateTokensForScope:kOauth2ScopeFull success:^{
         
         NSString *urlString = document.updateUri;
         
@@ -1240,7 +1252,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSString *contentType = [NSString stringWithFormat:@"application/vnd.digipost-%@+json", __API_VERSION__];
         [JSONRequestSerializer setValue:contentType forHTTPHeaderField:@"Accept"];
         
-        NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [OAuthToken oAuthTokenWithScope:scope].accessToken];
+        NSString *bearer = [NSString stringWithFormat:@"Bearer %@",[OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].accessToken];
         [JSONRequestSerializer setValue:bearer forHTTPHeaderField:@"Authorization"];
         
         NSString *subject = [(POSAttachment *)[document.attachments firstObject] subject];
