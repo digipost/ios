@@ -46,6 +46,7 @@
 #import "UIViewController+BackButton.h"
 #import "SHCOAuthViewController.h"
 #import "POSOAuthManager.h"
+#import "POSDocument+Methods.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -57,6 +58,7 @@ NSString *const kDocumentsViewControllerScreenName = @"Documents";
 NSString *const kRefreshDocumentsContentNotificationName = @"refreshDocumentsContentNotificationName";
 
 NSString *const kDocumentsViewEditingStatusChangedNotificationName = @"documentsViewEditingStatusChangedNotificationName";
+NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
 //NSString *const kDocumentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName =@"documentsViewDidMoveOrDeleteDocumentsLetterViewNeedsReloadNotificationName";
 
 NSString *const kEditingStatusKey = @"editingStatusKey";
@@ -177,12 +179,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
-    } else if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]) {
+    } else if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        POSDocument *document = (POSDocument *)sender;
+        POSAttachment *attachment = (POSAttachment *)sender;
         SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         OAuthViewController.delegate = self;
-        OAuthViewController.scope = kOauth2ScopeFull;
+        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
     }
 }
 
@@ -301,12 +303,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
-    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     POSAttachment *attachment = [document mainDocumentAttachment];
-    if ([attachment needsAuthenticationToOpen:rootResource.authenticationLevel]) {
-        
-    }
-
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
@@ -342,13 +339,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
             }
             failure:^(NSError *error) {
-                                    [UIAlertView showWithTitle:error.errorTitle
-                                                       message:[error localizedDescription]
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@[error.okButtonTitle]
-                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [tableView deselectRowAtIndexPath:actualIndexPathSelected animated:YES];
-                                                      }];
+                [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                    if (buttonIndex == 1) {
+                        [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:attachment];
+                    }
+                }];
             }];
     }
 }
@@ -867,8 +862,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
 {
-    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    rootResource.authenticationLevel = OAuthViewController.scope;
+    // todo do stuff here when authenticated
 }
 
 @end

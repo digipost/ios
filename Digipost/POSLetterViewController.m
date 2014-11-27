@@ -696,7 +696,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                        
                                                                    }];
             }
-            failure:^(NSError *error){}];
+            failure:^(NSError *error){
+                // show upload view controller here
+
+            }];
     } else {
 
         [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
@@ -737,6 +740,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
                                                                [error code] == SHCAPIManagerErrorCodeUnauthorized) {
                                                                unauthorized = YES;
+                                                           } else  if (error.code == SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel) {
+                                                               // TODO: fix show
+                                                               
                                                            } else {
                                                                NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -1311,6 +1317,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
 
     [self loadContent];
+}
+
+- (void)showRenewAuthenticationAlert
+{
+    [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        if (buttonIndex == 0) {
+            [self performSegueWithIdentifier:@"" sender:self];
+        }
+    }];
 }
 
 - (void)didTapInformationBarButtonItem:(id)sender

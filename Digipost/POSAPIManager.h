@@ -23,7 +23,8 @@ typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
     SHCAPIManagerErrorCodeUploadFileDoesNotExist,
     SHCAPIManagerErrorCodeUploadFileTooBig,
     SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource,
-    SHCAPIManagerErrorCodeUploadFailed
+    SHCAPIManagerErrorCodeUploadFailed,
+    SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel
 };
 
 typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
@@ -33,6 +34,7 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateRefreshingAccessToken,
     SHCAPIManagerStateRefreshingAccessTokenFinished,
     SHCAPIManagerStateRefreshingAccessTokenFailed,
+    SHCAPIManagerStateRefreshingAccessTokenFailedNeedHigherAuthenticationLevel,
     SHCAPIManagerStateUpdatingRootResource,
     SHCAPIManagerStateUpdatingRootResourceFinished,
     SHCAPIManagerStateUpdatingRootResourceFailed,

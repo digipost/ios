@@ -17,19 +17,22 @@
 #import "UIViewController+ValidateOpening.h"
 #import "POSAttachment.h"
 #import "NSError+ExtraInfo.h"
+#import "digipost-Swift.h"
 
 @implementation UIViewController (ValidateOpening)
 
 - (void)validateOpeningAttachment:(POSAttachment *)attachment success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    if (![attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
-        if (failure) {
-            NSError *error = [NSError errorWithDomain:kAttachmentOpeningValidAuthenticationLevel
-                                                 code:SHCAttachmentOpeningValidationErrorCodeWrongAuthenticationLevel
-                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE", @"Wrong authentication level validation error message") }];
-            error.errorTitle = NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_TITLE", @"Insufficient authentication level");
-            failure(error);
+    if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel] == NO) {
+        NSString *scopeNeeded = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+        if ([OAuthToken oAuthTokenWithScope:scopeNeeded] == nil) {
+            if (failure) {
+                failure([[NSError alloc] init]);
+            }
+        } else {
+            success();
         }
+
     } else if (attachment.openingReceiptUri) {
         if (success) {
             success();

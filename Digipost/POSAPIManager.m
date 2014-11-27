@@ -1682,7 +1682,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             self.lastError = error;
             self.state = SHCAPIManagerStateUpdateSingleDocumentFailed;
         }];
-    } failure:^(NSError *error){}];
+    } failure:^(NSError *error) {
+        if (failure){
+            failure(error);
+        }
+    }];
 }
 
 - (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure
@@ -1836,6 +1840,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     POSOAuthManager *OAuthManager = [POSOAuthManager sharedManager];
     OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
     // If the OAuth manager already has its access token, we'll go ahead and try an API request using this.
+    self.lastOAuth2Scope = scope;
     if (oAuthToken.accessToken) {
         self.lastSuccessBlock = success;
         self.state = SHCAPIManagerStateValidatingAccessTokenFinished;
@@ -1844,9 +1849,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     // If the OAuth manager has its refresh token, ask it to update its access token first,
     // and then go ahead and try an API request.
+
     if (oAuthToken.refreshToken) {
         self.state = SHCAPIManagerStateRefreshingAccessToken;
-        [OAuthManager refreshAccessTokenWithRefreshToken:oAuthToken.refreshToken scope:scope
+        [OAuthManager refreshAccessTokenWithRefreshToken:oAuthToken.refreshToken scope:self.lastOAuth2Scope
             success:^{
                                                      self.lastSuccessBlock = success;
                                                      self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
@@ -1856,12 +1862,17 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.lastError = error;
                 self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
             }];
+    } else if (oAuthToken.canBeRefreshedByRefreshToken == false) {
+        self.state = SHCAPIManagerStateRefreshingAccessTokenFailedNeedHigherAuthenticationLevel;
+        self.lastFailureBlock = failure;
+        self.lastSuccessBlock = success;
     }
 }
 
 - (void)updateAuthorizationHeaderForScope:(NSString *)scope
 {
-    NSString *bearer = [NSString stringWithFormat:@"Bearer %@", [OAuthToken oAuthTokenWithScope:scope].accessToken];
+    OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
+    NSString *bearer = [NSString stringWithFormat:@"Bearer %@", oAuthToken.accessToken];
     [self.sessionManager.requestSerializer setValue:bearer
                                  forHTTPHeaderField:@"Authorization"];
     [self.fileTransferSessionManager.requestSerializer setValue:bearer

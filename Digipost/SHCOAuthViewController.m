@@ -69,6 +69,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    NSLog(@"request %@", request);
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
     if ([request.URL.host isEqualToString:@"localhost"]) {
 
@@ -82,7 +83,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             self.stateParameter = nil;
 
             if (![state isEqualToString:currentState]) {
-
                 [self presentAuthenticationWebView];
                 return NO;
             }
@@ -137,6 +137,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
+    NSLog(@"error: %@", error);
     [UIAlertView showWithTitle:error.errorTitle
                        message:[error localizedDescription]
              cancelButtonTitle:nil
@@ -182,11 +183,11 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString randomNumberString];
 
-    NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
-                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
-                                 kOAuth2ResponseType : kOAuth2Code,
-                                 kOAuth2State : self.stateParameter,
-                                 kOAuth2Scope : self.scope};
+    NSDictionary *parameters = @{ kOAuth2ClientID : OAUTH_CLIENT_ID,
+                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
+                                  kOAuth2ResponseType : kOAuth2Code,
+                                  kOAuth2State : self.stateParameter,
+                                  kOAuth2Scope : @"FULL_IDPORTEN4" };
 
     [self authenticateWithParameters:parameters];
 }
