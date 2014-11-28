@@ -1243,7 +1243,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateMovingDocument;
-    [self validateTokensForScope:kOauth2ScopeFull success:^{
+    self.lastOAuth2Scope = kOauth2ScopeFull;
+    [self validateTokensForScope:self.lastOAuth2Scope success:^{
         
         NSString *urlString = document.updateUri;
         
@@ -1273,7 +1274,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         
         }
         
-        NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST" URLString:urlString parameters:parameters];
+    NSMutableURLRequest *request = [JSONRequestSerializer requestWithMethod:@"POST" URLString:urlString parameters:parameters error:nil];
         [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
         
         NSURLSessionDataTask *task = [self.sessionManager dataTaskWithRequest:request completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
@@ -1303,7 +1304,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     NSParameterAssert(document);
     self.state = SHCAPIManagerStateDeletingDocument;
 
-    [self validateTokensForScope:[OAuthToken oAuthScopeForAuthenticationLevel:document.authenticationLevelForMainAttachment] success:^{
+    self.lastOAuth2Scope = kOauth2ScopeFull;
+    [self validateTokensForScope:self.lastOAuth2Scope success:^{
         [self.sessionManager DELETE:document.deleteUri
                          parameters:nil
                             success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -1328,7 +1330,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     self.state = SHCAPIManagerStateLoggingOut;
 
-    [self validateTokensForScope:kOauth2ScopeFull success:^{
+    self.lastOAuth2Scope = kOauth2ScopeFull;
+    [self validateTokensForScope:self.lastOAuth2Scope success:^{
         
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         
@@ -1336,9 +1339,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         if (!rootResource) {
             if (success) {
                 success();
-                
                 self.state = SHCAPIManagerStateLoggingOutFinished;
-                
                 return;
             }
         }
@@ -1703,7 +1704,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure
 {
-    self.lastOAuth2Scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+    self.lastOAuth2Scope = kOauth2ScopeFull;
     [self validateTokensForScope:self.lastOAuth2Scope success:^{
         self.state = SHCAPIManagerStateValididatingOpeningReceipt;
         [self.sessionManager POST:attachment.openingReceiptUri parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -1864,9 +1865,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     if (oAuthToken.refreshToken) {
         self.state = SHCAPIManagerStateRefreshingAccessToken;
+        NSAssert(self.lastOAuth2Scope != nil, @"no scope set!");
         [OAuthManager refreshAccessTokenWithRefreshToken:oAuthToken.refreshToken scope:self.lastOAuth2Scope
             success:^{
                                                      self.lastSuccessBlock = success;
+                self.lastOAuth2Scope = scope;
                                                      self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
             }
             failure:^(NSError *error) {
@@ -1874,9 +1877,16 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.lastError = error;
                 self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
             }];
-    } else if (oAuthToken.canBeRefreshedByRefreshToken == false) {
-        self.state = SHCAPIManagerStateRefreshingAccessTokenFailedNeedHigherAuthenticationLevel;
+
+    } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
+        // if no oauthtoken  and the scope is full, means user has not yet logged in, ask user to log in
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
         self.lastFailureBlock = failure;
+        self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
+    } else {
+        // refresh
+        self.lastFailureBlock = failure;
+        self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
     }
 }
 

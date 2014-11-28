@@ -61,7 +61,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                                                  forState:UIControlStateNormal];
         }
     } else {
-        //    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy= NSHTTPCookieAcceptPolicyAlways;
+        [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
 
@@ -154,12 +154,14 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"error: %@", error);
-    [UIAlertView showWithTitle:error.errorTitle
-                       message:[error localizedDescription]
-             cancelButtonTitle:nil
-             otherButtonTitles:@[ error.okButtonTitle ]
-                      tapBlock:error.tapBlock];
+    // the -999 code is a code that happens every time oauth is done
+    if (error.code != -999) {
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[ error.okButtonTitle ]
+                          tapBlock:error.tapBlock];
+    }
 }
 
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
@@ -201,6 +203,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     }];
 }
+
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");

@@ -80,6 +80,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
 @property (nonatomic) CGFloat lastDragStartY;
 @property (nonatomic, strong) POSLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSourceAndDelegate;
+@property (nonatomic, weak) UnlockHighAuthenticationLevelView *unlockView;
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
@@ -157,11 +158,19 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
+    //    if (self.attachment.needsAuthenticationToOpen) {
+    //        NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
+    //        UnlockHighAuthenticationLevelView *unlockView = [theView objectAtIndex:0];
+    //        [self.view addSubview:unlockView];
+    //        [unlockView needsUpdateConstraints];
+    //        unlockView.frame = self.view.frame;
+    //        [unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
+    //        self.unlockView = unlockView;
+    //    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-
     if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
         POSAttachment *attachment = (POSAttachment *)sender;
@@ -407,9 +416,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(POSAttachment *)attachment
 {
+
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
 
+    if (new) {
+        if (_attachment.needsAuthenticationToOpen) {
+            [_attachment deleteDecryptedFileIfExisting];
+            [_attachment deleteEncryptedFileIfExisting];
+        }
+    }
     _attachment = attachment;
     _receipt = nil;
 
@@ -418,7 +434,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
         }
 
-        [self showEmptyView:new];
+        //        [self showEmptyView:new];
         if (new) {
             self.errorLabel.alpha = 0;
         }
@@ -597,6 +613,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
+
+    [self removeUnlockViewIfPresent];
 }
 
 - (void)loadContent
@@ -627,6 +645,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         [self loadFileURL:fileURL];
     } else {
+
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
 
@@ -637,6 +656,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
 {
     NSParameterAssert(baseEncryptionModel);
+    if (self.attachment.needsAuthenticationToOpen) {
+        if (self.unlockView == nil) {
+            NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
+            self.unlockView = [theView objectAtIndex:0];
+            [self.view addSubview:self.unlockView];
+            [self.unlockView needsUpdateConstraints];
+            self.unlockView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.view.frame.origin.y + 20);
+            [self.unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
 
@@ -675,6 +704,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSString *updateURI = document.updateUri;
         [[POSAPIManager sharedManager] updateDocument:attachment.document
             success:^{
+                [self removeUnlockViewIfPresent];
+                
                                                   // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
                                                   __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
                                                   document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -744,7 +775,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    return;
                                                                }
                                                                NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                                                               
                                                                [self loadFileURL:fileURL];
                                                                
                                                                if ([_attachment.read boolValue] == NO ) {
@@ -759,13 +789,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    [error code] == SHCAPIManagerErrorCodeUnauthorized) {
                                                                    unauthorized = YES;
                                                                } else  if (error.code == SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel) {
-                                                                   // TODO: fix show
-                                                                   [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                                       if (buttonIndex == 1) {
-                                                                           [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:self.attachment];
-                                                                       }
-                                                                   }];
-                                                                       return;
+                                                                 
                                                                } else {
                                                                    NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -790,17 +814,28 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    
                                                                    return;
                                                                } else {
-                                                                   
-                                                                   [UIAlertView showWithTitle:error.errorTitle
-                                                                                      message:[error localizedDescription]
-                                                                            cancelButtonTitle:nil
-                                                                            otherButtonTitles:@[error.okButtonTitle]
-                                                                                     tapBlock:error.tapBlock];
+                                                                   if (self.attachment.needsAuthenticationToOpen == NO) {
+                                                                       [UIAlertView showWithTitle:error.errorTitle
+                                                                                          message:[error localizedDescription]
+                                                                                cancelButtonTitle:nil
+                                                                                otherButtonTitles:@[error.okButtonTitle]
+                                                                                         tapBlock:error.tapBlock];
+                                                                   }
                                                                }
             }];
     }
 }
 
+- (void)removeUnlockViewIfPresent
+{
+    if (self.unlockView) {
+        [UIView animateWithDuration:0.3 animations:^{
+                            self.unlockView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+                            [self.unlockView removeFromSuperview];
+        }];
+    }
+}
 - (void)unloadContent
 {
     [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
@@ -1306,8 +1341,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     if (showEmptyView) {
         self.webView.alpha = 0.0;
+        [self removeUnlockViewIfPresent];
     }
-
     self.emptyLetterViewImageView.hidden = !showEmptyView;
 }
 
@@ -1329,7 +1364,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self showEmptyView:YES];
             return;
         } else {
-
             [self showEmptyView:NO];
         }
     }
@@ -1403,8 +1437,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
 }
+
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
 {
     [self loadContent];
+}
+
+- (void)didTapUnlockButton:(id)sender
+{
+    [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:self.attachment];
+    // TODO: fix show
+    //                                                                   [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    //                                                                       if (buttonIndex == 1) {
+    //                                                                       }
+    //                                                                   }];
+    //                                                                       return;
 }
 @end

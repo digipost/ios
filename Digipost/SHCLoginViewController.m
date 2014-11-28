@@ -129,10 +129,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]) {
-        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
-        OAuthViewController.delegate = self;
-        OAuthViewController.scope = kOauth2ScopeFull;
+        SHCOAuthViewController *oAuthViewController;
+        UINavigationController *navigationController = segue.destinationViewController;
+
+        if ([navigationController isKindOfClass:[UINavigationController class]]) {
+            oAuthViewController = (id)navigationController.topViewController;
+        } else {
+            oAuthViewController = (id)segue.destinationViewController;
+        }
+        oAuthViewController.delegate = self;
+        oAuthViewController.scope = kOauth2ScopeFull;
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
