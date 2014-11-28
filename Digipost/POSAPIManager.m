@@ -328,7 +328,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 // Check to see if the request failed because the refresh token was rejected
                 if ([self responseCodeIsUnauthorized:self.lastURLResponse] ||
                     ([self.lastError.domain isEqualToString:kOAuth2ErrorDomain] &&
-                     self.lastError.code == SHCOAuthErrorCodeInvalidRefreshTokenResponse)) {
+                     self.lastError.code == SHCOAuthErrorCodeInvalidRefreshTokenResponse && [self.lastOAuth2Scope isEqualToString:kOauth2ScopeFull])) {
                     // The refresh token was rejected, most likely because the user invalidated
                     // the session in the www.digipost.no web settings interface.
 

@@ -158,25 +158,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
-    //    if (self.attachment.needsAuthenticationToOpen) {
-    //        NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
-    //        UnlockHighAuthenticationLevelView *unlockView = [theView objectAtIndex:0];
-    //        [self.view addSubview:unlockView];
-    //        [unlockView needsUpdateConstraints];
-    //        unlockView.frame = self.view.frame;
-    //        [unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
-    //        self.unlockView = unlockView;
-    //    }
+
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        POSAttachment *attachment = (POSAttachment *)sender;
         SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         OAuthViewController.delegate = self;
-        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }
 }
 
