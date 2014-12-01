@@ -14,7 +14,7 @@ get_pw () {
 # Default values
 
 RUNS=1
-APPNAME=""
+APPNAME="Digipost-Test-QA-2"
 HELP="0"
 for i in "$@"
 do
@@ -81,12 +81,13 @@ script="uiauto/scripts/allScripts.js"
 COUNTER=0
 
 echo ${appPath}
+echo ${APPNAME}
 echo "dfjksdlf"
 while [  $COUNTER -lt $RUNS ]; do
   echo RUN NUMBER = $COUNTER
   let COUNTER=COUNTER+1
 echo `instruments -w "${simulator}" -t "${traceTemplatePath}" "${appPath}" -e UIASCRIPT "${script}" 1>&2`
-  
+
 done
 
 
