@@ -614,7 +614,7 @@
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
-		EC55F4301A2C5ACC00A3192C /* Digipost-Test-Dpost copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test-Dpost copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test-QA-2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC55F4311A2C5ACC00A3192C /* Digipost-Test-Dpost copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost-Test-Dpost copy-Info.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost-Test-Dpost copy-Info.plist"; sourceTree = "<absolute>"; };
 		EC55F4321A2C5C1A00A3192C /* Digipost-Test-QA-2.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-Test-QA-2.xcconfig"; sourceTree = "<group>"; };
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
@@ -815,7 +815,7 @@
 				8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */,
 				83A31B0B1855D706007045B9 /* Digipost-Beta.app */,
 				EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */,
-				EC55F4301A2C5ACC00A3192C /* Digipost-Test-Dpost copy.app */,
+				EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1206,7 +1206,7 @@
 			);
 			name = "Digipost-Test-QA-2";
 			productName = Digipost;
-			productReference = EC55F4301A2C5ACC00A3192C /* Digipost-Test-Dpost copy.app */;
+			productReference = EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EC56AABD1A24C7BA00720109 /* Digipost-Test-Dpost Tests */ = {
@@ -2274,7 +2274,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2294,8 +2294,8 @@
 				INFOPLIST_FILE = "Digipost-Test-Dpost copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "Digipost-Test-Dpost copy";
-				PROVISIONING_PROFILE = "bec73055-4bd7-4e3f-a7c7-9e46570e92ab";
+				PRODUCT_NAME = "Digipost-Test-QA-2";
+				PROVISIONING_PROFILE = "cfec9f11-d315-4a1a-9f01-c6591a828a56";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -2304,12 +2304,12 @@
 		};
 		EC55F42F1A2C5ACC00A3192C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */;
+			baseConfigurationReference = EC55F4321A2C5C1A00A3192C /* Digipost-Test-QA-2.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2329,8 +2329,8 @@
 				INFOPLIST_FILE = "Digipost-Test-Dpost copy-Info.plist";
 				IS_BETA = 0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "Digipost-Test-Dpost copy";
-				PROVISIONING_PROFILE = "bec73055-4bd7-4e3f-a7c7-9e46570e92ab";
+				PRODUCT_NAME = "Digipost-Test-QA-2";
+				PROVISIONING_PROFILE = "cfec9f11-d315-4a1a-9f01-c6591a828a56";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
