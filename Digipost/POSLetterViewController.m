@@ -158,7 +158,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
-
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -1393,7 +1392,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
-    [self showRenameAlertView];
+    if ([self.attachment needsAuthenticationToOpen]) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+    } else {
+        [self showRenameAlertView];
+    }
 }
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
