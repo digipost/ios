@@ -16,5 +16,6 @@
 #import "UIViewController+BackButton.h"
 #import "POSReceipt.h"
 #import "POSOAuthManager.h"
-
+#import <PublicAutomation/UIAutomationBridge.h>
+#import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
