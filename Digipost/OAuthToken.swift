@@ -29,20 +29,49 @@ class OAuthToken: NSObject, NSCoding{
     }
     var scope: String?
     
+    class func levelForScope(aScope: String)-> Int {
+        switch aScope {
+        case kOauth2ScopeFull:
+            return 1
+        case kOauth2ScopeFullHighAuth:
+            fallthrough
+        case kOauth2ScopeFull_Idporten3:
+            return 2
+        case kOauth2ScopeFull_Idporten4:
+            return 3
+        default:
+            return 1
+        }
+    }
+    
+    class func highestScopeInStorageForScope(scope:String) -> String {
+        switch scope {
+        case kOauth2ScopeFull_Idporten4:
+            return scope
+        case kOauth2ScopeFull_Idporten3:
+            fallthrough
+        case kOauth2ScopeFullHighAuth:
+            if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+                return kOauth2ScopeFull_Idporten4
+            }else {
+                return scope
+            }
+        default:
+            return scope
+        }
+    }
+        
     required convenience init(coder decoder: NSCoder) {
         self.init()
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!
         self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as String!
         self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as String!
-        println(self)
     }
     
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encodeObject(self.scope, forKey: Keys.scopeKey)
-        println(self.refreshToken)
-        println(self.accessToken)
     }
     
     convenience init?(refreshToken: String?, accessToken: String?, scope:String) {
@@ -70,6 +99,14 @@ class OAuthToken: NSObject, NSCoding{
         storeInKeyChain()
     }
     
+    func password() -> String? {
+        if scope == kOauth2ScopeFull{
+            return refreshToken
+        }else {
+            return accessToken
+        }
+    }
+    
     func storeInKeyChain() {
         var existingTokens = OAuthToken.oAuthTokens()
         existingTokens[scope!] = self
@@ -82,6 +119,23 @@ class OAuthToken: NSObject, NSCoding{
         }
         return false
     }
+    
+    class func highestOAuthTokenWithScope(scope: String) -> OAuthToken? {
+        let level = levelForScope(scope)
+        switch level {
+        case 2:
+            if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+                return higherLevelToken
+            }else {
+                return oAuthTokenWithScope(scope)
+            }
+        case 3:
+            return oAuthTokenWithScope(scope)
+        default:
+            return oAuthTokenWithScope(scope)
+        }
+    }
+    
     class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
@@ -120,7 +174,7 @@ class OAuthToken: NSObject, NSCoding{
     
     class func removeAllTokens() {
         let emptyDictionary = Dictionary<String,AnyObject>()
-         LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
+        LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
     
     class func removeAcessTokenForOAuthTokenWithScope(scope: String) {

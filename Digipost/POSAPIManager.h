@@ -154,4 +154,5 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)changeNameOfDocument:(POSDocument *)document newName:(NSString *)newName success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)logout;
 @end

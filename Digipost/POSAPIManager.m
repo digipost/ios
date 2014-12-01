@@ -1114,6 +1114,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                              self.lastFailureBlock = failure;
                              self.lastURLResponse = task.response;
                              self.lastError = error;
+                             self.lastOAuth2Scope = kOauth2ScopeFull;
                              self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
                          }];
     } failure:^(NSError *error) {
@@ -1130,7 +1131,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSURL *URL = [NSURL URLWithString:self.lastFolderUri];
         NSString *pathSuffix = [URL lastPathComponent];
         [self cancelRequestsWithPathSuffix:pathSuffix];
-
         self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
     }
 }
@@ -1141,9 +1141,30 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     POSAttachment *attachment = (id)baseEncryptionModel;
 
-    NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
-    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
+    NSString *highestScope;
+    NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+    __block BOOL didChoseAHigherScope = NO;
+    if ([scope isEqualToString:kOauth2ScopeFull]) {
+        highestScope = kOauth2ScopeFull;
+    } else {
+        highestScope = [OAuthToken highestScopeInStorageForScope:scope];
+        if ([highestScope isEqualToString:scope] == NO) {
+            didChoseAHigherScope = YES;
+        }
+    }
 
+    [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:highestScope didChooseHigherScope:didChoseAHigherScope success:success failure:failure];
+}
+
+- (void)validateAndDownloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress scope:(NSString *)scope didChooseHigherScope:(BOOL)didChooseHigherScope success:(void (^)(void))success failure:(void (^)(NSError *))failure
+{
+    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+
+    if (oauthToken == nil && didChooseHigherScope) {
+        POSAttachment *attachment = (id)baseEncryptionModel;
+        NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+        oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+    }
     if (oauthToken == nil) {
         NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
                                              code:SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel
@@ -1155,20 +1176,20 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }
         return;
     }
+    NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+    [self validateTokensForScope:scope success:^{
 
-    [self validateTokensForScope:oauthToken.scope success:^{
-        
         NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil error:nil];
-        
+
         // Let's set the correct mime type for this file download.
         [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
         [self.fileTransferSessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
             progress.completedUnitCount = totalBytesWritten;
         }];
-        
+
         BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[POSAttachment class]];
-        
-        NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+
+        NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL * (NSURL * targetPath, NSURLResponse * response) {
             
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
             POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
@@ -1186,8 +1207,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             
             NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
             return fileUrl;
-        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+                                                                                                                                               }
+            completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            
             BOOL downloadFailure = NO;
+                NSLog(@"%@",error);
             NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
             if ([HTTPURLResponse isKindOfClass:[NSHTTPURLResponse class]]) {
                 if ([HTTPURLResponse statusCode] != 200) {
@@ -1195,7 +1219,13 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 }
             }
             if (error || downloadFailure) {
-                
+                if (didChooseHigherScope){
+                    POSAttachment *attachment = (id)baseEncryptionModel;
+                    NSString *originalScope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+                    [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:originalScope didChooseHigherScope:NO success:success failure:failure];
+                    return;
+                }
+                    
                 // If we're getting a 401 from the server, the error object will be nil.
                 // Let's set it to something more usable that the caller can interpret.
                 if (!error) {
@@ -1213,14 +1243,15 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.lastSuccessBlock = success;
                 self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
             }
-        }];
+            }];
         [task resume];
-    } failure:^(NSError *error) {
-        self.downloadingBaseEncryptionModel = NO;
-        if (failure) {
-            failure(error);
-        }
-    }];
+    }
+        failure:^(NSError *error) {
+            self.downloadingBaseEncryptionModel = NO;
+            if (failure) {
+                failure(error);
+            }
+        }];
 }
 
 - (void)cancelDownloadingBaseEncryptionModels
@@ -1323,6 +1354,17 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         if (failure) {
             failure(error);
         }
+    }];
+}
+
+- (void)logout
+{
+    [[POSAPIManager sharedManager] logoutWithSuccess:^{
+        [OAuthToken removeAllTokens];
+        [[POSModelManager sharedManager] deleteAllObjects];
+    } failure:^(NSError *error) {
+        [OAuthToken removeAllTokens];
+        [[POSModelManager sharedManager] deleteAllObjects];
     }];
 }
 
@@ -1868,24 +1910,30 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         NSAssert(self.lastOAuth2Scope != nil, @"no scope set!");
         [OAuthManager refreshAccessTokenWithRefreshToken:oAuthToken.refreshToken scope:self.lastOAuth2Scope
             success:^{
-                                                     self.lastSuccessBlock = success;
+                self.lastSuccessBlock = success;
                 self.lastOAuth2Scope = scope;
-                                                     self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
+                self.state = SHCAPIManagerStateRefreshingAccessTokenFinished;
             }
             failure:^(NSError *error) {
+                NSLog(@"Error %@",error);
                 self.lastFailureBlock = failure;
                 self.lastError = error;
+                self.lastOAuth2Scope = scope;
                 self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
             }];
 
     } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
+        NSLog(@"Error  No login token");
         // if no oauthtoken  and the scope is full, means user has not yet logged in, ask user to log in
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
         self.lastFailureBlock = failure;
+        self.lastOAuth2Scope = scope;
         self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
     } else {
+        NSLog(@"Error unknown error, could not refresh refresh token");
         // refresh
         self.lastFailureBlock = failure;
+        self.lastOAuth2Scope = scope;
         self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
     }
 }

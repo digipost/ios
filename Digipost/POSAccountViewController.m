@@ -178,23 +178,10 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
     letterViewConctroller.attachment = nil;
     letterViewConctroller.receipt = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
 
-    [[POSAPIManager sharedManager] logoutWithSuccess:^{
-        [OAuthToken removeAllTokens];
-        [[POSModelManager sharedManager] deleteAllObjects];
-        [self.tableView reloadData];
-    } failure:^(NSError *error) {
-        
-        [OAuthToken removeAllTokens];
-        [[POSModelManager sharedManager] deleteAllObjects];
-        
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
-    }];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+    [self.tableView reloadData];
+    [[POSAPIManager sharedManager] logout];
 }
 
 @end
