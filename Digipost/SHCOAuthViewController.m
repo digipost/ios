@@ -53,6 +53,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
 
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
+
     if (self.scope == kOauth2ScopeFull) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
@@ -61,7 +63,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                                                  forState:UIControlStateNormal];
         }
     } else {
-        [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
 
