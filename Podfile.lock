@@ -61,6 +61,7 @@ PODS:
   - MRProgress/Stopable (0.4.3):
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.3)
+  - PublicAutomation (0.2.3)
   - RNCryptor (2.2)
   - UIActionSheet+Blocks (0.8.1)
   - UIAlertView+Blocks (0.8.1)
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - HockeySDK (~> 3.5.2)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
+  - PublicAutomation (~> 0.2.3)
   - RNCryptor (~> 2.1)
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
@@ -90,6 +92,7 @@ SPEC CHECKSUMS:
   HockeySDK: f0e874d1c6833163ee0c4e423606faf33ad04071
   LUKeychainAccess: 4365689e03b1a019ce40a86058aae6e31e9adcea
   MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
+  PublicAutomation: 46e0b550914731d9aefed8edb74e92245ac20abc
   RNCryptor: 4f562062c39f288b99601674f2c50dd44b68d58a
   UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
