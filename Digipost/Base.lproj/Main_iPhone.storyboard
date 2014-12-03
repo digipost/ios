@@ -1380,7 +1380,7 @@
         <!--Login View Controller-->
         <scene sceneID="i79-ks-pOi">
             <objects>
-                <viewController id="2Dt-Hy-BfT" customClass="SHCLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="2Dt-Hy-BfT" customClass="SHCLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cli-5S-9MX"/>
                         <viewControllerLayoutGuide type="bottom" id="wTy-nL-Oqt"/>
@@ -1594,8 +1594,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="vJp-VT-rtF"/>
-        <segue reference="j20-qk-TDu"/>
+        <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="6ll-nd-HYD"/>
         <segue reference="svS-B5-imh"/>
         <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
