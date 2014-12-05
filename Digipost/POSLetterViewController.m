@@ -652,7 +652,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             self.unlockView = [theView objectAtIndex:0];
             [self.view addSubview:self.unlockView];
             [self.unlockView needsUpdateConstraints];
-            self.unlockView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.view.frame.origin.y + 20);
+            self.unlockView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.view.frame.origin.y + 20 - 44);
             [self.unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
         }
     }
@@ -1201,6 +1201,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
         [self.navigationController.toolbar setUserInteractionEnabled:NO];
         [self.popoverTableView reloadData];
+
+        [self.view bringSubviewToFront:self.shadowView];
+        [self.view bringSubviewToFront:self.popoverView];
+
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2
                          animations:^{
@@ -1440,11 +1444,5 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)didTapUnlockButton:(id)sender
 {
     [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:self.attachment];
-    // TODO: fix show
-    //                                                                   [UIAlertView showWithTitle:NSLocalizedString(@"higher authentication alert title", @"") message:NSLocalizedString(@"higher authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"higher authentication alert cancel", @"") otherButtonTitles:@[ NSLocalizedString(@"higher authentication alert ok", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //                                                                       if (buttonIndex == 1) {
-    //                                                                       }
-    //                                                                   }];
-    //                                                                       return;
 }
 @end
