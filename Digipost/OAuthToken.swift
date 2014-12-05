@@ -27,6 +27,7 @@ class OAuthToken: NSObject, NSCoding{
             storeInKeyChain()
         }
     }
+    
     var scope: String?
     
     class func levelForScope(aScope: String)-> Int {
@@ -73,6 +74,18 @@ class OAuthToken: NSObject, NSCoding{
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encodeObject(self.scope, forKey: Keys.scopeKey)
     }
+    convenience init?(refreshToken: String?, scope: String) {
+         self.init()
+        
+        if let acutalRefreshToken = refreshToken as String? {
+           self.refreshToken = acutalRefreshToken
+        } else {
+            return nil
+        }
+        
+        self.scope = scope
+        storeInKeyChain()
+    }
     
     convenience init?(refreshToken: String?, accessToken: String?, scope:String) {
         self.init()
@@ -118,6 +131,13 @@ class OAuthToken: NSObject, NSCoding{
             return true
         }
         return false
+    }
+    
+    class func moveOldOAuthTokensIfPresent() {
+        if let actualOldRefreshToken = LUKeychainAccess.standardKeychainAccess().objectForKey(kKeychainAccessRefreshTokenKey) as? String {
+            let newOAuthToken = OAuthToken(refreshToken: actualOldRefreshToken, scope: kOauth2ScopeFull)
+            LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
+        }
     }
     
     class func highestOAuthTokenWithScope(scope: String) -> OAuthToken? {
@@ -181,5 +201,5 @@ class OAuthToken: NSObject, NSCoding{
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }
-
+    
 }

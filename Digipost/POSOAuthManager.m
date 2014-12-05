@@ -103,11 +103,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    // First, remove any previous access and refresh tokens
-    //    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-    //    oauthToken.accessToken = nil;
-    //    oauthToken.refreshToken = nil;
-
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
@@ -148,10 +143,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    // First, remove previous access token
-    //    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-    //    oauthToken.accessToken = nil;
-
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2RefreshToken,
                                  kOAuth2RefreshToken : refreshToken,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
