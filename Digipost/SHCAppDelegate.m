@@ -57,7 +57,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [self setupCocoaLumberjack];
 
     [self setupNetworkingLogging];
-
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
