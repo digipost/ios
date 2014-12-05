@@ -11,11 +11,11 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-padlock" translatesAutoresizingMaskIntoConstraints="NO" id="8Fv-yA-G0u">
-                    <rect key="frame" x="260" y="127" width="80" height="80"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="8Fv-yA-G0u">
+                    <rect key="frame" x="259" y="107" width="81" height="100"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="80" id="BaO-qi-C76"/>
-                        <constraint firstAttribute="width" constant="80" id="JeE-2a-td6"/>
+                        <constraint firstAttribute="height" constant="100" id="BaO-qi-C76"/>
+                        <constraint firstAttribute="width" constant="81" id="JeE-2a-td6"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Avsenderen krever at du logger inn på et annet sikkerhetsnivå for å åpne brevet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neN-qs-Raw">
@@ -35,7 +35,7 @@
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-kj-NJH">
-                    <rect key="frame" x="250" y="362.5" width="100" height="30"/>
+                    <rect key="frame" x="250" y="362" width="100" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="sD9-zT-lFt"/>
                     </constraints>
@@ -73,6 +73,6 @@
         </view>
     </objects>
     <resources>
-        <image name="list-icon-padlock" width="16" height="16"/>
+        <image name="Lock_icon_big" width="81" height="100"/>
     </resources>
 </document>
