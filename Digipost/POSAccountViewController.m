@@ -146,18 +146,12 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 {
 
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        [UIActionSheet showInView:self.view
-                         withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
-                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-            destructiveButtonTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out")
-                 otherButtonTitles:nil
-                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                        if (buttonIndex == 0) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?") message:@"" cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") otherButtonTitles:@[ NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", @"Sign out") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                        if (buttonIndex == 1) {
                                             [self userDidConfirmLogout];
                                         }
-                          }];
+        }];
     } else {
-
         [UIActionSheet showFromBarButtonItem:self.logoutBarButtonItem
                                     animated:YES
                                    withTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", @"You you sure you want to sign out?")
@@ -172,6 +166,10 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     }
 }
 
+- (void)prepareForPopoverPresentation:(UIPopoverPresentationController *)popoverPresentationController
+{
+    popoverPresentationController.sourceView = self.view;
+}
 - (void)userDidConfirmLogout
 {
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
