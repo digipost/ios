@@ -37,7 +37,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8fS-aE-onr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-292" y="-748"/>
+            <point key="canvasLocation" x="-292" y="-754"/>
         </scene>
         <!--Split View Controller-->
         <scene sceneID="Nki-YV-4Qg">
@@ -53,7 +53,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cZU-Oi-B1e" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1347" y="-748"/>
+            <point key="canvasLocation" x="-1306" y="-754"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r7l-gg-dq7">
@@ -69,7 +69,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SLD-UC-DBI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1347" y="529"/>
+            <point key="canvasLocation" x="-1306" y="529"/>
         </scene>
         <!--Brev-->
         <scene sceneID="y5s-iI-wIP">
@@ -1518,9 +1518,9 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ht-bJ-zAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1306" y="3570"/>
+            <point key="canvasLocation" x="-1306" y="3342"/>
         </scene>
-        <!--øk sikkerhet-->
+        <!--Auth View Controller-->
         <scene sceneID="cao-1T-SaW">
             <objects>
                 <viewController id="PTP-fh-JHg" customClass="SHCOAuthViewController" sceneMemberID="viewController">
@@ -1548,14 +1548,16 @@
                             <constraint firstItem="Qwg-qS-8kt" firstAttribute="leading" secondItem="5Ch-cp-0O7" secondAttribute="leadingMargin" constant="-16" id="lAp-up-KV6"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="øk sikkerhet" id="AXu-Qc-nBx"/>
+                    <navigationItem key="navigationItem" id="AXu-Qc-nBx">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="8Mu-sv-Qlj"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="webView" destination="Qwg-qS-8kt" id="Vqg-8h-9yq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JVA-s9-uyp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="3570"/>
+            <point key="canvasLocation" x="-292" y="3342"/>
         </scene>
     </scenes>
     <resources>
