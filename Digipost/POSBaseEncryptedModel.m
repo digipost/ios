@@ -20,8 +20,15 @@
 #import "POSBaseEncryptedModel.h"
 #import "NSString+SHA1String.h"
 
+@interface POSBaseEncryptedModel ()
+
+@property (nonatomic, strong) NSString *tempHumanReadablePathForFile;
+
+@end
+
 @implementation POSBaseEncryptedModel
 
+@synthesize tempHumanReadablePathForFile;
 @dynamic uri;
 @dynamic fileType;
 
@@ -49,6 +56,31 @@
     NSString *filePath = [[[POSFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:fileName];
 
     return filePath;
+}
+
+- (NSString *)humanReadablePathWithTitle:(NSString *)title
+{
+    NSError *error = nil;
+    NSString *humanReadableURLString = [[[POSFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", title, self.fileType]];
+    [[NSFileManager defaultManager] copyItemAtPath:[self decryptedFilePath] toPath:humanReadableURLString error:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
+    NSLog(@"%@", humanReadableURLString);
+    self.tempHumanReadablePathForFile = humanReadableURLString;
+    return humanReadableURLString;
+}
+
+- (void)setTempHumanReadablePathForFile:(NSString *)tempHumanReadablePathForFile
+{
+    //    _tempHumanReadablePathForFile = tempHumanReadablePathForFile;
+}
+
+- (void)deletefileAtHumanReadablePath
+{
+    if ([[NSFileManager defaultManager] fileExistsAtPath:self.tempHumanReadablePathForFile]) {
+        [[NSFileManager defaultManager] removeItemAtPath:self.tempHumanReadablePathForFile error:nil];
+    }
 }
 
 - (void)deleteDecryptedFileIfExisting

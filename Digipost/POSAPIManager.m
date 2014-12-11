@@ -1571,6 +1571,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 DDLogError(@"Error reading data: %@", [error localizedDescription]);
             }
             [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"application/pdf"];
+            
         } error:nil];
         
         [urlRequest setValue:@"*/*" forHTTPHeaderField:@"Accept"];
@@ -1594,7 +1595,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                     uploadFailure = YES;
                 }
             }
-            
+            [self removeTemporaryUploadFiles];
             if (error || uploadFailure) {
                 
                 // In case we're not actually getting an error object, let's create one
