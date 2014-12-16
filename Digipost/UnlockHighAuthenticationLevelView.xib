@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,9 +19,9 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Avsenderen krever at du logger inn på et annet sikkerhetsnivå for å åpne brevet" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neN-qs-Raw">
-                    <rect key="frame" x="150" y="267" width="300" height="66"/>
+                    <rect key="frame" x="159" y="267" width="280" height="66"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="Klw-kI-O7e"/>
+                        <constraint firstAttribute="width" constant="280" id="Klw-kI-O7e"/>
                         <constraint firstAttribute="height" constant="21" id="og1-Kz-V4a"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="66" id="udo-db-BfD"/>
                     </constraints>
@@ -35,11 +35,13 @@
                     </variation>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhi-kj-NJH">
-                    <rect key="frame" x="250" y="362" width="100" height="30"/>
+                    <rect key="frame" x="233" y="362" width="134" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="sD9-zT-lFt"/>
+                        <constraint firstAttribute="height" constant="40" id="RH6-IB-pij"/>
+                        <constraint firstAttribute="width" constant="134" id="sD9-zT-lFt"/>
                     </constraints>
-                    <state key="normal" title="Lås opp">
+                    <state key="normal" title="Lås opp brevet" backgroundImage="Knappen_bakgrunn">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
@@ -47,7 +49,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="bhi-kj-NJH" firstAttribute="top" secondItem="neN-qs-Raw" secondAttribute="bottom" constant="29" id="23g-0d-nte"/>
-                <constraint firstAttribute="centerX" secondItem="neN-qs-Raw" secondAttribute="centerX" id="4qU-aw-xoX"/>
+                <constraint firstAttribute="centerX" secondItem="neN-qs-Raw" secondAttribute="centerX" constant="1" id="4qU-aw-xoX"/>
                 <constraint firstAttribute="centerX" secondItem="bhi-kj-NJH" secondAttribute="centerX" id="AOT-ml-25z"/>
                 <constraint firstItem="neN-qs-Raw" firstAttribute="top" secondItem="8Fv-yA-G0u" secondAttribute="bottom" constant="58" id="J8O-AJ-7Ny"/>
                 <constraint firstItem="8Fv-yA-G0u" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PUi-1h-kRj"/>
@@ -73,6 +75,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Knappen_bakgrunn" width="11" height="18"/>
         <image name="Lock_icon_big" width="81" height="100"/>
     </resources>
 </document>
