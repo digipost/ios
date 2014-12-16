@@ -107,7 +107,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
                                                   object:nil];
-    if (self.attachment.needsAuthenticationToOpen) {
+    if ([self needsAuthenticationToOpen]) {
         [self.attachment deleteDecryptedFileIfExisting];
         [self.attachment deleteEncryptedFileIfExisting];
     }
@@ -656,7 +656,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
-    if (self.attachment.needsAuthenticationToOpen) {
+    if ([self needsAuthenticationToOpen]) {
         [self showUnlockViewIfNotPresent];
         [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     }
@@ -665,7 +665,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             delay:0.6
             options:UIViewAnimationOptionCurveEaseInOut
             animations:^{
-                             if (self.attachment.needsAuthenticationToOpen == NO)  {
+                             if ([self needsAuthenticationToOpen] == NO)  {
                                  self.progressView.alpha = 1.0;
                              }
             }
@@ -813,7 +813,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    
                                                                    return;
                                                                } else {
-                                                                   if (self.attachment.needsAuthenticationToOpen == NO) {
+                                                                   if ([self needsAuthenticationToOpen] == NO)  {
                                                                        [UIAlertView showWithTitle:error.errorTitle
                                                                                           message:[error localizedDescription]
                                                                                 cancelButtonTitle:nil
@@ -827,7 +827,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showUnlockViewIfNotPresent
 {
-    if (self.attachment.needsAuthenticationToOpen) {
+    if ([self needsAuthenticationToOpen]) {
         if (self.unlockView == nil) {
             NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
             self.unlockView = [theView objectAtIndex:0];
@@ -872,7 +872,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
-
+- (BOOL)needsAuthenticationToOpen
+{
+    if (self.attachment) {
+        return self.attachment.needsAuthenticationToOpen;
+    } else
+        return NO;
+}
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
@@ -1427,7 +1433,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
-    if ([self.attachment needsAuthenticationToOpen]) {
+    if ([self needsAuthenticationToOpen]) {
         [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
     } else {
         [self showRenameAlertView];

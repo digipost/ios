@@ -50,6 +50,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 - (BOOL)decryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     POSAttachment *attachment = (id)baseEncryptionModel;
+    
     OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
 
     NSString *password = oauthToken.refreshToken;
@@ -158,11 +159,15 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 - (BOOL)encryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     POSAttachment *attachment = (id)baseEncryptionModel;
+    NSString *password;
+    if ([attachment isKindOfClass:[POSAttachment class]]) {
+        OAuthToken *oauthToken = [OAuthToken highestOAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
+        password = [oauthToken password];
 
-    OAuthToken *oauthToken = [OAuthToken highestOAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
-
-    NSString *password = [oauthToken password];
-
+    } else {
+        OAuthToken *oauthToken = [OAuthToken highestOAuthTokenWithScope:kOauth2ScopeFull];
+        password = [oauthToken password];
+    }
     if (!password) {
         DDLogError(@"Error: Can't encrypt data without a password");
 

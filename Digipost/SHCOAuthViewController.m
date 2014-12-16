@@ -73,14 +73,11 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                            alpha:0.8] }
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                        alpha:0.8] }
 
-                                                             forState:UIControlStateNormal];
-    } else {
-    }
+                                                         forState:UIControlStateNormal];
 }
 
 #pragma mark - UIWebViewDelegate

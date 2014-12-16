@@ -1139,18 +1139,21 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
 
-    POSAttachment *attachment = (id)baseEncryptionModel;
-
     NSString *highestScope;
-    NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
     __block BOOL didChoseAHigherScope = NO;
-    if ([scope isEqualToString:kOauth2ScopeFull]) {
-        highestScope = kOauth2ScopeFull;
-    } else {
-        highestScope = [OAuthToken highestScopeInStorageForScope:scope];
-        if ([highestScope isEqualToString:scope] == NO) {
-            didChoseAHigherScope = YES;
+    if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
+        POSAttachment *attachment = (id)baseEncryptionModel;
+        NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+        if ([scope isEqualToString:kOauth2ScopeFull]) {
+            highestScope = kOauth2ScopeFull;
+        } else {
+            highestScope = [OAuthToken highestScopeInStorageForScope:scope];
+            if ([highestScope isEqualToString:scope] == NO) {
+                didChoseAHigherScope = YES;
+            }
         }
+    } else {
+        highestScope = kOauth2ScopeFull;
     }
 
     [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:highestScope didChooseHigherScope:didChoseAHigherScope success:success failure:failure];

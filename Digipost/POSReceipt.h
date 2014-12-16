@@ -49,5 +49,5 @@ extern NSString *const kReceiptReceiptAPIKey;
 + (void)deleteAllReceiptsInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)allReceiptsWithMailboxWithDigipostAddress:(NSString *)digipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSString *)stringForReceiptAmount:(NSNumber *)amount;
-
+- (NSString *)authenticationLevel;
 @end
