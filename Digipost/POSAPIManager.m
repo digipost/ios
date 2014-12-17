@@ -1214,7 +1214,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
             
             BOOL downloadFailure = NO;
-                NSLog(@"%@",error);
             NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
             if ([HTTPURLResponse isKindOfClass:[NSHTTPURLResponse class]]) {
                 if ([HTTPURLResponse statusCode] != 200) {

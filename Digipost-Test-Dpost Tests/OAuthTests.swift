@@ -78,7 +78,6 @@ class OAuthTests: XCTestCase {
         
         let refetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         XCTAssertNotNil(refetchedToken, "no valid token was created")
-        println(refetchedToken)
         
         refetchedToken!.accessToken = newAccessToken
         

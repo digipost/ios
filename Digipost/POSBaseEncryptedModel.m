@@ -66,7 +66,6 @@
     if (error) {
         NSLog(@"%@", error);
     }
-    NSLog(@"%@", humanReadableURLString);
     self.tempHumanReadablePathForFile = humanReadableURLString;
     return humanReadableURLString;
 }
