@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock_icon_big" translatesAutoresizingMaskIntoConstraints="NO" id="8Fv-yA-G0u">
-                    <rect key="frame" x="259" y="107" width="81" height="100"/>
+                    <rect key="frame" x="259" y="114" width="81" height="100"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="BaO-qi-C76"/>
                         <constraint firstAttribute="width" constant="81" id="JeE-2a-td6"/>
@@ -40,6 +40,7 @@
                         <constraint firstAttribute="height" constant="40" id="RH6-IB-pij"/>
                         <constraint firstAttribute="width" constant="134" id="sD9-zT-lFt"/>
                     </constraints>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
                     <state key="normal" title="Lås opp brevet" backgroundImage="Knappen_bakgrunn">
                         <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,7 +57,7 @@
                 <constraint firstItem="bhi-kj-NJH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="279" id="TZA-k0-voB"/>
                 <constraint firstItem="8Fv-yA-G0u" firstAttribute="centerX" secondItem="neN-qs-Raw" secondAttribute="centerX" id="dbJ-re-Plu"/>
                 <constraint firstItem="bhi-kj-NJH" firstAttribute="top" secondItem="neN-qs-Raw" secondAttribute="bottom" constant="29.5" id="l4A-L2-NFO"/>
-                <constraint firstItem="neN-qs-Raw" firstAttribute="top" secondItem="8Fv-yA-G0u" secondAttribute="bottom" constant="60" id="saN-3x-q7z"/>
+                <constraint firstItem="neN-qs-Raw" firstAttribute="top" secondItem="8Fv-yA-G0u" secondAttribute="bottom" constant="53" id="saN-3x-q7z"/>
                 <constraint firstAttribute="centerY" secondItem="neN-qs-Raw" secondAttribute="centerY" id="uqy-Or-vvy"/>
                 <constraint firstItem="8Fv-yA-G0u" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="112" id="zUQ-ai-Y2s"/>
             </constraints>
