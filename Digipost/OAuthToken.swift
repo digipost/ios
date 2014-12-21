@@ -53,7 +53,11 @@ class OAuthToken: NSObject, NSCoding{
             fallthrough
         case kOauth2ScopeFullHighAuth:
             if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
-                return kOauth2ScopeFull_Idporten4
+                if higherLevelToken.accessToken != nil {
+                    return kOauth2ScopeFull_Idporten4
+                }else {
+                    return scope
+                }
             }else {
                 return scope
             }
@@ -145,7 +149,11 @@ class OAuthToken: NSObject, NSCoding{
         switch level {
         case 2:
             if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
-                return higherLevelToken
+                if higherLevelToken.accessToken != nil {
+                    return higherLevelToken
+                }else {
+                    return oAuthTokenWithScope(scope)
+                }
             }else {
                 return oAuthTokenWithScope(scope)
             }
