@@ -1249,6 +1249,11 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         [task resume];
     }
         failure:^(NSError *error) {
+            if (error.code == 2) {
+                if (didChooseHigherScope ) {
+                    [OAuthToken removeAcessTokenForOAuthTokenWithScope:scope];
+                }
+            }
             self.downloadingBaseEncryptionModel = NO;
             if (failure) {
                 failure(error);
