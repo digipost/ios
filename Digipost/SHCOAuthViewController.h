@@ -25,6 +25,7 @@ extern NSString *const kPresentOAuthModallyIdentifier;
 @interface SHCOAuthViewController : GAITrackedViewController
 
 @property (weak, nonatomic) id<SHCOAuthViewControllerDelegate> delegate;
+@property (nonatomic, strong) NSString *scope;
 
 @end
 

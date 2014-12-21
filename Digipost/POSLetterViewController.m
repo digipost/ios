@@ -46,6 +46,7 @@
 #import "POSDocumentsViewController.h"
 #import "UILabel+Digipost.h"
 #import "UIView+AutoLayout.h"
+#import "SHCOAuthViewController.h"
 #import "POSLetterPopoverTableViewDataSourceAndDelegate.h"
 #import "POSLetterPopoverTableViewMobelObject.h"
 #import "Digipost-Swift.h"
@@ -55,10 +56,11 @@ static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOCo
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushLetterIdentifier = @"PushLetter";
 
+NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
-@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate>
+@interface POSLetterViewController () <UIWebViewDelegate, UIDocumentInteractionControllerDelegate, UIScrollViewDelegate, SHCOAuthViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *informationBarButtonItem;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -78,6 +80,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet UILabel *popoverTitleLabel;
 @property (nonatomic) CGFloat lastDragStartY;
 @property (nonatomic, strong) POSLetterPopoverTableViewDataSourceAndDelegate *popoverTableViewDataSourceAndDelegate;
+@property (nonatomic, weak) UnlockHighAuthenticationLevelView *unlockView;
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
@@ -104,6 +107,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
                                                   object:nil];
+    if ([self needsAuthenticationToOpen]) {
+        [self.attachment deleteDecryptedFileIfExisting];
+        [self.attachment deleteEncryptedFileIfExisting];
+    }
 }
 
 #pragma mark - UIViewController
@@ -150,6 +157,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } else {
             [self.navigationItem setLeftBarButtonItem:nil];
         }
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
+        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
+        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
+        OAuthViewController.delegate = self;
+        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }
 }
 
@@ -319,6 +336,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
 {
     self.openInController = nil;
+    POSBaseEncryptedModel *baseEncryptionModel = nil;
+
+    if (self.attachment) {
+        baseEncryptionModel = self.attachment;
+        [baseEncryptionModel deletefileAtHumanReadablePath];
+    } else if (self.receipt) {
+        baseEncryptionModel = self.receipt;
+        [baseEncryptionModel deletefileAtHumanReadablePath];
+    }
 }
 
 #pragma mark - UISplitViewControllerDelegate
@@ -389,9 +415,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(POSAttachment *)attachment
 {
+
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
 
+    if (new) {
+        if (_attachment.needsAuthenticationToOpen) {
+            [_attachment deleteDecryptedFileIfExisting];
+            [_attachment deleteEncryptedFileIfExisting];
+        }
+    }
     _attachment = attachment;
     _receipt = nil;
 
@@ -400,7 +433,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
         }
 
-        [self showEmptyView:new];
         if (new) {
             self.errorLabel.alpha = 0;
         }
@@ -523,12 +555,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                         document.folder = folder;
                                         
                                         [[POSModelManager sharedManager].managedObjectContext save:nil];
-            
+                                        
                                         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
                                             if ([self.attachment.document isEqual:document]){
                                                 self.attachment = nil;
                                             }
-                                             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+                                            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                         }else {
                                             [self.navigationController popToViewController:self.documentsViewController animated:YES];
                                         }
@@ -579,6 +611,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
+
+    [self removeUnlockViewIfPresent];
 }
 
 - (void)loadContent
@@ -619,17 +653,23 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
 {
     NSParameterAssert(baseEncryptionModel);
+
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
-
+    if ([self needsAuthenticationToOpen]) {
+        [self showUnlockViewIfNotPresent];
+        [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+    }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
-        [UIView animateWithDuration:0.3
-                              delay:0.6
-                            options:UIViewAnimationOptionCurveEaseInOut
-                         animations:^{
-                             self.progressView.alpha = 1.0;
-                         }
-                         completion:nil];
+        [UIView animateWithDuration:0.1
+            delay:0.6
+            options:UIViewAnimationOptionCurveEaseInOut
+            animations:^{
+                             if ([self needsAuthenticationToOpen] == NO)  {
+                                 self.progressView.alpha = 1.0;
+                             }
+            }
+            completion:^(BOOL finished){}];
 
         progress = [[NSProgress alloc] initWithParent:nil
                                              userInfo:nil];
@@ -657,96 +697,62 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSString *updateURI = document.updateUri;
         [[POSAPIManager sharedManager] updateDocument:attachment.document
             success:^{
-                // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
-                document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                    POSAttachment *attachment = (id)obj;
-                    if ([attachment.subject isEqualToString:subject]){
-                        changedBaseEncryptionModel = attachment;
-                    }
-                }];
-                
-                [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
-                                                              withProgress:progress
-                                                                   success:^{
-                NSError *error = nil;
-                if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                    [UIAlertView showWithTitle:error.errorTitle
-                                       message:[error localizedDescription]
-                             cancelButtonTitle:nil
-                             otherButtonTitles:@[error.okButtonTitle]
-                                      tapBlock:error.tapBlock];
-                }
-                if ([self.attachment.fileType isEqualToString:@"html"]){
-                    self.view.backgroundColor = [UIColor whiteColor];
-                }
-                
-                                                                       
-                NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                                                                       [self loadFileURL:fileURL];
-                
-                
-                if ([_attachment.read boolValue] == NO ) {
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                
-                }
-                                                                   }
-                                                                   failure:^(NSError *error) {
-                                                                       
-                                                                   }];
+                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+                                                  [self removeUnlockViewIfPresent];
+                                                  
+                                                  // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+                                                  __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
+                                                  document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                                                  [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                                                      POSAttachment *attachment = (id)obj;
+                                                      if ([attachment.subject isEqualToString:subject]){
+                                                          changedBaseEncryptionModel = attachment;
+                                                      }
+                                                  }];
+                                                  
+                                                  [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
+                                                                                                withProgress:progress
+                                                                                                     success:^{
+                                                                                                         NSError *error = nil;
+                                                                                                         if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                                                                                                             [UIAlertView showWithTitle:error.errorTitle
+                                                                                                                                message:[error localizedDescription]
+                                                                                                                      cancelButtonTitle:nil
+                                                                                                                      otherButtonTitles:@[error.okButtonTitle]
+                                                                                                                               tapBlock:error.tapBlock];
+                                                                                                         }
+                                                                                                         if ([self.attachment.fileType isEqualToString:@"html"]){
+                                                                                                             self.view.backgroundColor = [UIColor whiteColor];
+                                                                                                         }
+                                                                                                         
+                                                                                                         
+                                                                                                         NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                                                                                                         [self loadFileURL:fileURL];
+                                                                                                         
+                                                                                                         
+                                                                                                         if ([_attachment.read boolValue] == NO ) {
+                                                                                                             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+                                                                                                             
+                                                                                                         }
+                                                                                                     }
+                                                                                                     failure:^(NSError *error) {
+                                                                                                         if (self.attachment.needsAuthenticationToOpen) {
+                                                                                                             [self showUnlockViewIfNotPresent];
+                                                                                                         }
+                                                                                                     }];
             }
-            failure:^(NSError *error){}];
+            failure:^(NSError *error) {
+                // show upload view controller here
+
+                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+            }];
     } else {
 
         [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
             withProgress:progress
             success:^{
-                
-                                                           // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                                                           POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
-                                                           if (self.attachment) {
-                                                               changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                           } else {
-                                                               changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                           }
-                                                           
-                                                           NSError *error = nil;
-                                                           if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                                                               [UIAlertView showWithTitle:error.errorTitle
-                                                                                  message:[error localizedDescription]
-                                                                        cancelButtonTitle:nil
-                                                                        otherButtonTitles:@[error.okButtonTitle]
-                                                                                 tapBlock:error.tapBlock];
-                                                           }
-                if (changedBaseEncryptionModel == nil ) {
-                    return;
-                }
-                                                           NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-               
-                [self loadFileURL:fileURL];
-                
-                                                           if ([_attachment.read boolValue] == NO ) {
-                                                               [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                                           }
-            }
-            failure:^(NSError *error) {
-                                                           
-                                                           BOOL unauthorized = NO;
-                                                           
-                                                           if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
-                                                               [error code] == SHCAPIManagerErrorCodeUnauthorized) {
-                                                               unauthorized = YES;
-                                                           } else {
-                                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                       unauthorized = YES;
-                                                                   }
-                                                               }
-                                                           }
-                                                           
-                                                           if (unauthorized) {
+                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+                                                               
                                                                // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
                                                                POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
                                                                if (self.attachment) {
@@ -755,23 +761,101 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                    changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
                                                                }
                                                                
-                                                               // We were unauthorized, due to the session being invalid.
-                                                               // Let's retry in the next run loop
-                                                               [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
+                                                               NSError *error = nil;
+                                                               if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                                                                   [UIAlertView showWithTitle:error.errorTitle
+                                                                                      message:[error localizedDescription]
+                                                                            cancelButtonTitle:nil
+                                                                            otherButtonTitles:@[error.okButtonTitle]
+                                                                                     tapBlock:error.tapBlock];
+                                                               }
+                                                               if (changedBaseEncryptionModel == nil ) {
+                                                                   return;
+                                                               }
+                                                               NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                                                               [self loadFileURL:fileURL];
                                                                
-                                                               return;
-                                                           } else {
+                                                               if ([_attachment.read boolValue] == NO ) {
+                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+                                                               }
+            }
+            failure:^(NSError *error) {
                                                                
-                                                               [UIAlertView showWithTitle:error.errorTitle
-                                                                                  message:[error localizedDescription]
-                                                                        cancelButtonTitle:nil
-                                                                        otherButtonTitles:@[error.okButtonTitle]
-                                                                                 tapBlock:error.tapBlock];
-                                                           }
+                                                               BOOL unauthorized = NO;
+                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+                                                               
+                                                               if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
+                                                                   [error code] == SHCAPIManagerErrorCodeUnauthorized) {
+                                                                   unauthorized = YES;
+                                                               } else  if (error.code == SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel) {
+                                                                   
+                                                               } else {
+                                                                   NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+                                                                   if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                                       if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                                           unauthorized = YES;
+                                                                       }
+                                                                   }
+                                                               }
+                                                               
+                                                               if (unauthorized) {
+                                                                   // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+                                                                   POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
+                                                                   if (self.attachment) {
+                                                                       changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                                                                   } else {
+                                                                       changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                                                                   }
+                                                                   
+                                                                   // We were unauthorized, due to the session being invalid.
+                                                                   // Let's retry in the next run loop
+                                                                   [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
+                                                                   
+                                                                   return;
+                                                               } else {
+                                                                   if ([self needsAuthenticationToOpen] == NO)  {
+                                                                       [UIAlertView showWithTitle:error.errorTitle
+                                                                                          message:[error localizedDescription]
+                                                                                cancelButtonTitle:nil
+                                                                                otherButtonTitles:@[error.okButtonTitle]
+                                                                                         tapBlock:error.tapBlock];
+                                                                   }
+                                                               }
             }];
     }
 }
 
+- (void)showUnlockViewIfNotPresent
+{
+    if ([self needsAuthenticationToOpen]) {
+        if (self.unlockView == nil) {
+            NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
+            self.unlockView = [theView objectAtIndex:0];
+            [self.view addSubview:self.unlockView];
+            [self.unlockView needsUpdateConstraints];
+            self.unlockView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.view.frame.origin.y + 20);
+            [self.unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
+        } else {
+            self.unlockView.alpha = 1;
+            if (self.unlockView.superview == nil) {
+                [self.view addSubview:self.unlockView];
+            }
+            [self.view bringSubviewToFront:self.unlockView];
+        }
+    }
+}
+
+- (void)removeUnlockViewIfPresent
+{
+    if (self.unlockView) {
+        [UIView animateWithDuration:0.4 animations:^{
+            self.unlockView.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [self.unlockView removeFromSuperview];
+            self.unlockView = nil;
+        }];
+    }
+}
 - (void)unloadContent
 {
     [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
@@ -788,7 +872,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
-
+- (BOOL)needsAuthenticationToOpen
+{
+    if (self.attachment) {
+        return self.attachment.needsAuthenticationToOpen;
+    } else
+        return NO;
+}
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
@@ -951,11 +1041,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (self.openInController == nil) {
 
         POSBaseEncryptedModel *baseEncryptionModel = nil;
-
+        NSString *subject;
         if (self.attachment) {
             baseEncryptionModel = self.attachment;
+            subject = self.attachment.subject;
         } else if (self.receipt) {
             baseEncryptionModel = self.receipt;
+            subject = self.receipt.storeName;
         }
         NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
         NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
@@ -977,13 +1069,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                   }];
                 return false;
             }
-
             fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         } else {
             return false;
         }
-
-        self.openInController = [UIDocumentInteractionController interactionControllerWithURL:fileURL];
+        NSString *humanReadableURL = [baseEncryptionModel humanReadablePathWithTitle:subject];
+        self.openInController = [UIDocumentInteractionController interactionControllerWithURL:[NSURL fileURLWithPath:humanReadableURL]];
         self.openInController.delegate = self;
         if (barButtonItem) {
             didOpenFile = [self.openInController presentOpenInMenuFromBarButtonItem:barButtonItem animated:YES];
@@ -1005,6 +1096,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     return self.view;
 }
+
 - (void)showDeleteDocumentActionSheet
 {
     NSString *title = NSLocalizedString(@"letter view delete document title", @"");
@@ -1146,6 +1238,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeDimmed];
         [self.navigationController.toolbar setUserInteractionEnabled:NO];
         [self.popoverTableView reloadData];
+
+        [self.view bringSubviewToFront:self.shadowView];
+        [self.view bringSubviewToFront:self.popoverView];
+
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2
                          animations:^{
@@ -1168,12 +1264,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         withSuccess:^{
                                              // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
                                              // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
-            
-            [self updateDocuments];
+                                             
+                                             [self updateDocuments];
 
         }
         failure:^(NSError *error) {
-                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                                 [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                  NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                      if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -1186,7 +1282,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                  }
                                                  
                                                  self.sendingInvoice = NO;
-            
+                                                 
                                                  [UIAlertView showWithTitle:error.errorTitle
                                                                     message:[error localizedDescription]
                                                           cancelButtonTitle:nil
@@ -1209,9 +1305,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         success:^{
                                                                [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
-            NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
-            [self setToolbarItems:toolbarItems animated:YES];
-                                                    [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                                               NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+                                                               [self setToolbarItems:toolbarItems animated:YES];
+                                                               [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
         }
         failure:^(NSError *error) {
                                                                
@@ -1276,8 +1372,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     if (showEmptyView) {
         self.webView.alpha = 0.0;
+        [self removeUnlockViewIfPresent];
     }
-
     self.emptyLetterViewImageView.hidden = !showEmptyView;
 }
 
@@ -1299,7 +1395,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self showEmptyView:YES];
             return;
         } else {
-
             [self showEmptyView:NO];
         }
     }
@@ -1329,7 +1424,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
-    [self showRenameAlertView];
+    if ([self needsAuthenticationToOpen]) {
+        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+    } else {
+        [self showRenameAlertView];
+    }
 }
 
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id)sender
@@ -1363,5 +1462,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
+}
+
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+{
+    [self loadContent];
+}
+
+- (void)didTapUnlockButton:(id)sender
+{
+    [self performSegueWithIdentifier:kaskForhigherAuthenticationLevelSegue sender:self.attachment];
 }
 @end

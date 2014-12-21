@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '7.0'
 
-link_with ['Digipost', 'Digipost-Beta', 'Digipost-Staging-Enterprise']
+link_with ['Digipost', 'Digipost-Beta', 'Digipost-Staging-Enterprise', 'Digipost-Test-Dpost Tests']
 
 pod 'AFNetworking', '~> 2.3.1'
 pod 'HockeySDK', '~> 3.5.2'

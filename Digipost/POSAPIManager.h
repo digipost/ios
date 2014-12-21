@@ -23,7 +23,8 @@ typedef NS_ENUM(NSUInteger, SHCAPIManagerErrorCode) {
     SHCAPIManagerErrorCodeUploadFileDoesNotExist,
     SHCAPIManagerErrorCodeUploadFileTooBig,
     SHCAPIManagerErrorCodeUploadLinkNotFoundInRootResource,
-    SHCAPIManagerErrorCodeUploadFailed
+    SHCAPIManagerErrorCodeUploadFailed,
+    SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel
 };
 
 typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
@@ -33,6 +34,7 @@ typedef NS_ENUM(NSInteger, SHCAPIManagerState) {
     SHCAPIManagerStateRefreshingAccessToken,
     SHCAPIManagerStateRefreshingAccessTokenFinished,
     SHCAPIManagerStateRefreshingAccessTokenFailed,
+    SHCAPIManagerStateRefreshingAccessTokenFailedNeedHigherAuthenticationLevel,
     SHCAPIManagerStateUpdatingRootResource,
     SHCAPIManagerStateUpdatingRootResourceFinished,
     SHCAPIManagerStateUpdatingRootResourceFailed,
@@ -152,4 +154,5 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)changeNameOfDocument:(POSDocument *)document newName:(NSString *)newName success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)logout;
 @end

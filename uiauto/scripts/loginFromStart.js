@@ -34,7 +34,7 @@ target.pushTimeout(10);
 target.frontMostApp().mainWindow().buttons()["Sign In"].tap();
 target.popTimeout();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].textFields()[0].tap();
-target.frontMostApp().keyboard().typeString("13013500002");
+target.frontMostApp().keyboard().typeString("01043100358");
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].links()["Logg inn i Digipost"].tap();
 target.frontMostApp().mainWindow().scrollViews()[0].webViews()[0].secureTextFields()[0].tap();

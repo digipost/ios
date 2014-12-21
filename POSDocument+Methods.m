@@ -36,4 +36,15 @@
     return unread;
 }
 
+- (NSString *)authenticationLevelForMainAttachment
+{
+    __block NSString *authenticationLevel = nil;
+    [self.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        POSAttachment *attachment = (id) obj;
+        if (attachment.mainDocument.boolValue) {
+            authenticationLevel = attachment.authenticationLevel;
+        }
+    }];
+    return authenticationLevel;
+}
 @end

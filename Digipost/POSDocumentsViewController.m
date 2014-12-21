@@ -44,6 +44,9 @@
 #import "POSDocumentTableViewCell.h"
 #import "POSUploadTableViewCell.h"
 #import "UIViewController+BackButton.h"
+#import "SHCOAuthViewController.h"
+#import "POSOAuthManager.h"
+#import "POSDocument+Methods.h"
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -175,7 +178,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
-    }
+    } 
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -240,7 +243,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
         cell.lockedImageView.hidden = YES;
-
     } else {
         cell.unreadImageView.hidden = YES;
         cell.lockedImageView.hidden = NO;
@@ -267,6 +269,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     return UITableViewCellEditingStyleNone;
 }
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if ([POSAPIManager sharedManager].isUploadingFile) {
@@ -283,6 +286,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self updateToolbarButtonItems];
         return;
     }
+
     NSIndexPath *actualIndexPathSelected = nil;
     // adjust for index when uploading file
     if ([POSAPIManager sharedManager].isUploadingFile) {
@@ -292,9 +296,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
-
     POSAttachment *attachment = [document mainDocumentAttachment];
-
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
@@ -330,13 +332,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
             }
             failure:^(NSError *error) {
-                                    [UIAlertView showWithTitle:error.errorTitle
-                                                       message:[error localizedDescription]
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@[error.okButtonTitle]
-                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [tableView deselectRowAtIndexPath:actualIndexPathSelected animated:YES];
-                                                      }];
+               
             }];
     }
 }
@@ -380,7 +376,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     if (self.isEditing) {
         [self updateToolbarButtonItems];
-
         return;
     }
 }
@@ -852,6 +847,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
+}
+
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+{
+    // todo do stuff here when authenticated
 }
 
 @end

@@ -53,11 +53,17 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
 
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-        [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                            alpha:0.8] }
-                                                             forState:UIControlStateNormal];
+    [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
+
+    if (self.scope == kOauth2ScopeFull) {
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+            self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
+            [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                                alpha:0.8] }
+                                                                 forState:UIControlStateNormal];
+        }
+    } else {
+        [self setupUIForIncreasedAuthenticationLevelVC];
     }
 
     [self presentAuthenticationWebView];
@@ -65,10 +71,20 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
+- (void)setupUIForIncreasedAuthenticationLevelVC
+{
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
+                                                                                                                        alpha:0.8] }
+
+                                                         forState:UIControlStateNormal];
+}
+
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    NSLog(@"request %@", request);
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
     if ([request.URL.host isEqualToString:@"localhost"]) {
 
@@ -82,7 +98,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             self.stateParameter = nil;
 
             if (![state isEqualToString:currentState]) {
-
                 [self presentAuthenticationWebView];
                 return NO;
             }
@@ -92,7 +107,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
         }
 
         if (parameters[kOAuth2Code]) {
-            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code] scope:self.scope
                 success:^{
 
                 // The OAuth manager has successfully authenticated with code - which means we've
@@ -137,11 +152,14 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    [UIAlertView showWithTitle:error.errorTitle
-                       message:[error localizedDescription]
-             cancelButtonTitle:nil
-             otherButtonTitles:@[ error.okButtonTitle ]
-                      tapBlock:error.tapBlock];
+    // the -999 code is a code that happens every time oauth is done
+    if (error.code != -999) {
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[ error.okButtonTitle ]
+                          tapBlock:error.tapBlock];
+    }
 }
 
 #if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
@@ -177,16 +195,39 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 #pragma mark - Private methods
 
+- (void)didTapCloseBarButtonItem:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+
+    }];
+}
+
 - (void)presentAuthenticationWebView
 {
+    NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString randomNumberString];
 
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
-                                 kOAuth2State : self.stateParameter};
+                                 kOAuth2State : self.stateParameter,
+                                 kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
 
     [self authenticateWithParameters:parameters];
+}
+
+- (NSString *)parameterForOauth2Scope:(NSString *)scope
+{
+    if ([scope isEqualToString:kOauth2ScopeFull]) {
+        return @"FULL";
+    } else if ([scope isEqualToString:kOauth2ScopeFullHighAuth]) {
+        return @"FULL_HIGHAUTH";
+    } else if ([scope isEqualToString:kOauth2ScopeFull_Idporten3]) {
+        return @"FULL_IDPORTEN3";
+    } else if ([scope isEqualToString:kOauth2ScopeFull_Idporten4]) {
+        return @"FULL_IDPORTEN4";
+    }
+    return nil;
 }
 
 - (void)authenticateWithParameters:(NSDictionary *)parameters

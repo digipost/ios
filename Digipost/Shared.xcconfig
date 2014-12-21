@@ -14,8 +14,6 @@
 // limitations under the License.
 //
 
-#include "Pods/Pods.xcconfig"
-
 #include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
 #include "Pods/Target Support Files/Pods/Pods.release.xcconfig"
 

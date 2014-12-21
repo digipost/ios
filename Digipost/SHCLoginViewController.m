@@ -25,6 +25,7 @@
 #import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
+#import "digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";
@@ -91,7 +92,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
-    if ([POSOAuthManager sharedManager].refreshToken) {
+    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -128,9 +129,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]) {
-        UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
-        OAuthViewController.delegate = self;
+        SHCOAuthViewController *oAuthViewController;
+        UINavigationController *navigationController = segue.destinationViewController;
+
+        if ([navigationController isKindOfClass:[UINavigationController class]]) {
+            oAuthViewController = (id)navigationController.topViewController;
+        } else {
+            oAuthViewController = (id)segue.destinationViewController;
+        }
+        oAuthViewController.delegate = self;
+        oAuthViewController.scope = kOauth2ScopeFull;
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;

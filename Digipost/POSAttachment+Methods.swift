@@ -18,4 +18,14 @@ extension POSAttachment {
         }
         return false
     }
+    
+    func needsAuthenticationToOpen() -> Bool{
+        if authenticationLevel != nil {
+            let scope = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
+            if scope == kOauth2ScopeFull {
+                return false
+            }
+        }
+        return true
+    }
 }

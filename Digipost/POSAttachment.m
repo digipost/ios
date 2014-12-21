@@ -31,6 +31,11 @@ NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content"
 NSString *const kAttachmentSendOpeningReceiptAPIKeySuffix = @"send_opening_receipt";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
 
+NSString *const kAuthenticationLevelIDPorten4 = @"IDPORTEN_4";
+NSString *const kAuthenticationLevelIDPorten3 = @"IDPORTEN_3";
+NSString *const kAuthenticationLevelTwoFactor = @"TWO_FACTOR";
+NSString *const kAuthenticationLevelPassword = @"PASSWORD";
+
 @implementation POSAttachment
 
 @dynamic authenticationLevel;

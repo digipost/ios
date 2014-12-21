@@ -36,6 +36,8 @@
 #import "oauth.h"
 #import "Digipost-Swift.h"
 
+NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
+
 @interface SHCAppDelegate () <BITHockeyManagerDelegate>
 
 @property (strong, nonatomic) DDFileLogger *fileLogger;
@@ -55,7 +57,7 @@
     [self setupCocoaLumberjack];
 
     [self setupNetworkingLogging];
-
+    [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -150,6 +152,15 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
+}
+
+- (void)checkForOldOAuthTokens
+{
+    BOOL hasMovedOAuthtokens = [[NSUserDefaults standardUserDefaults] boolForKey:kHasMovedOldOauthTokensKey];
+    if (hasMovedOAuthtokens == NO) {
+        [OAuthToken moveOldOAuthTokensIfPresent];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHasMovedOldOauthTokensKey];
+    }
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation

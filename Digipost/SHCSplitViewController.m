@@ -73,9 +73,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (![POSOAuthManager sharedManager].refreshToken) {
-        [self presentLoginViewController];
-    }
+    //    // TODO This should not be here
+    // if acesstoken == nil {
+    //    [self presentLoginViewController];
 }
 
 #pragma mark - Properties

@@ -19,6 +19,7 @@
 #import "POSMailbox.h"
 #import "NSString+SHA1String.h"
 #import "POSFileManager.h"
+#import "digipost-Swift.h"
 
 // Core Data model entity names
 NSString *const kReceiptEntityName = @"Receipt";
@@ -223,6 +224,11 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     }
 
     return results;
+}
+
+- (NSString *)authenticationLevel
+{
+    return kOauth2ScopeFull;
 }
 
 + (NSString *)stringForReceiptAmount:(NSNumber *)amount

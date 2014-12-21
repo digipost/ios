@@ -20,6 +20,7 @@
 #import "LUKeychainAccess.h"
 #import "POSAPIManager.h"
 #import "POSFileManager.h"
+#import "digipost-Swift.h"
 #import "oauth.h"
 
 // Digipost OAuth2 API consts
@@ -28,15 +29,24 @@ NSString *const kOAuth2RedirectURI = @"redirect_uri";
 NSString *const kOAuth2ResponseType = @"response_type";
 NSString *const kOAuth2State = @"state";
 NSString *const kOAuth2Code = @"code";
+NSString *const kOAuth2Scope = @"scope";
 NSString *const kOAuth2GrantType = @"grant_type";
+
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
+
+NSString *const kOauth2ScopeFull = @"FULL";
+NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
+NSString *const kOauth2ScopeFull_Idporten3 = @"IDPORTEN_3";
+NSString *const kOauth2ScopeFull_Idporten4 = @"IDPORTEN_4";
 
 // Internal Keychain key consts
 NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 
 // Custom NSError consts
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
+
+NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
 @interface POSOAuthManager ()
 
@@ -77,21 +87,6 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     return self;
 }
 
-#pragma mark - Properties
-
-- (NSString *)refreshToken
-{
-    NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
-
-    return refreshToken;
-}
-
-- (void)setRefreshToken:(NSString *)refreshToken
-{
-    [[LUKeychainAccess standardKeychainAccess] setString:refreshToken
-                                                  forKey:kKeychainAccessRefreshTokenKey];
-}
-
 #pragma mark - Public methods
 
 + (instancetype)sharedManager
@@ -106,12 +101,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
     return sharedInstance;
 }
 
-- (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    // First, remove any previous access and refresh tokens
-    _accessToken = nil;
-    self.refreshToken = nil;
-
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
@@ -121,15 +112,11 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
         success:^(NSURLSessionDataTask *task, id responseObject) {
                           NSDictionary *responseDict = (NSDictionary *)responseObject;
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
                               NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-                              if ([refreshToken isKindOfClass:[NSString class]]) {
-                                  self.refreshToken = refreshToken;
-                              }
-
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
-                              if ([accessToken isKindOfClass:[NSString class]]) {
-                                  _accessToken = accessToken;
+                              
+                              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope];
+                              if (oAuthToken != nil ) {
 
                                   // We only call the success block if the access token is set.
                                   // The refresh token is not strictly neccesary at this point.
@@ -154,11 +141,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
         }];
 }
 
-- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    // First, remove previous access token
-    _accessToken = nil;
-
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2RefreshToken,
                                  kOAuth2RefreshToken : refreshToken,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
@@ -171,8 +155,8 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
                               if ([accessToken isKindOfClass:[NSString class]]) {
-                                  _accessToken = accessToken;
-
+                                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                                  oauthToken.accessToken = accessToken;
                                   DDLogInfo(@"Access token updated");
 
                                   if (success) {
@@ -204,25 +188,6 @@ NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
                               }
                           }
         }];
-}
-
-- (void)removeAccessToken
-{
-    _accessToken = nil;
-
-    DDLogInfo(@"Access token removed");
-}
-
-- (void)removeAllTokens
-{
-    _accessToken = nil;
-    self.refreshToken = nil;
-
-    DDLogInfo(@"All tokens removed");
-    NSString *refreshToken = [[LUKeychainAccess standardKeychainAccess] stringForKey:kKeychainAccessRefreshTokenKey];
-    NSAssert(refreshToken == nil, @"refresh token not nil!");
-    refreshToken = nil;
-    [[POSFileManager sharedFileManager] removeAllFiles];
 }
 
 @end

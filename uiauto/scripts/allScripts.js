@@ -1,7 +1,16 @@
 
 var target = UIATarget.localTarget();
 
-#import "Login.js"
-#import "MoveDocument.js"
-#import "createAndMoveFolder.js"
-#import "Delete1dokument.js"
+#import "loginFromStart.js"
+//#import "uploadImage.js"
+//#import "Delete1dokument.js"
+//#import "MoveDocument.js"
+//#import "orientationChange.js"
+//#import "createAndMoveFolder.js"
+//#import "renameExisting_iPhone.js"
+#import "bankid.js"
+
+
+
+
+

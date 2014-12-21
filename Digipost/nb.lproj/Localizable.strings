@@ -55,7 +55,6 @@
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Det har oppstått en feil. Logg inn på nytt";
 
-
 /* Refresh token invalid title */
 "GENERIC_REFRESH_TOKEN_INVALID_TITLE" = "Sesjonen har utløpt";
 
@@ -236,8 +235,6 @@
 /* receipts are */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL" = "kvitteringer er";
 
-
-
 /* Upload file */
 "APPDELEGATE_UPLOAD_FILE_TITLE" = "Last opp fil";
 
@@ -350,7 +347,7 @@
 "Avbryt" = "Avbryt";
 
 /* Avsender krever lesekvittering */
-"Avsender krever lesekvittering" = "Avsender ønsker åpningskvittering";
+"Avsender krever lesekvittering" = "Åpningskvittering";
 
 /* The title in navbar when editing folders */
 "Edit folder title item" = "Rediger mappe";
@@ -375,7 +372,6 @@
 
 /* Upload */
 "FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE" = "Last opp";
-
 
 /* Description of user telling folder is not empty */
 "Not empty folder alert descrption " = "Du må flytte eller slette filene du har i mappen før du kan slette den.";
@@ -478,3 +474,13 @@
 "upload failed ok" = "OK";
 
 "upload image Controller title" = "Last opp";
+
+/* No comment provided by engineer. */
+"cannot rename document need authentication alert cancel" = "OK";
+
+/* No comment provided by engineer. */
+"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
+
+/* No comment provided by engineer. */
+"cannot rename document need authentication alert title" = " ";
+

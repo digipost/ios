@@ -28,20 +28,25 @@ extern NSString *const kOAuth2RedirectURI;
 extern NSString *const kOAuth2ResponseType;
 extern NSString *const kOAuth2State;
 extern NSString *const kOAuth2Code;
+extern NSString *const kOAuth2Scope;
+extern NSString *const kOauth2ScopeFull;
+extern NSString *const kOauth2ScopeFullHighAuth;
+extern NSString *const kOauth2ScopeFull_Idporten3;
+extern NSString *const kOauth2ScopeFull_Idporten4;
+extern NSString *const kKeychainAccessRefreshTokenKey;
+
+extern NSString *const kOAuth2AccessToken;
+extern NSString *const kOAuth2RefreshToken;
+extern NSString *const kOAuth2TokensKey;
 
 // Custom NSError consts
 extern NSString *const kOAuth2ErrorDomain;
 
 @interface POSOAuthManager : NSObject
 
-@property (copy, nonatomic, readonly) NSString *accessToken;
-@property (copy, nonatomic, readonly) NSString *refreshToken;
-
 + (instancetype)sharedManager;
 
-- (void)authenticateWithCode:(NSString *)code success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)removeAccessToken;
-- (void)removeAllTokens;
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end
