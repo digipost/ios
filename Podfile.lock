@@ -61,6 +61,13 @@ PODS:
   - MRProgress/Stopable (0.4.3):
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.3)
+  - ReactiveCocoa (2.4.2):
+    - ReactiveCocoa/UI
+  - ReactiveCocoa/Core (2.4.2):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.4.2)
+  - ReactiveCocoa/UI (2.4.2):
+    - ReactiveCocoa/Core
   - RNCryptor (2.2)
   - UIActionSheet+Blocks (0.8.1)
   - UIAlertView+Blocks (0.8.1)
@@ -73,6 +80,7 @@ DEPENDENCIES:
   - HockeySDK (~> 3.5.2)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
+  - ReactiveCocoa (~> 2.4.2)
   - RNCryptor (~> 2.1)
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
@@ -90,6 +98,7 @@ SPEC CHECKSUMS:
   HockeySDK: f0e874d1c6833163ee0c4e423606faf33ad04071
   LUKeychainAccess: 4365689e03b1a019ce40a86058aae6e31e9adcea
   MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
+  ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063
   RNCryptor: 4f562062c39f288b99601674f2c50dd44b68d58a
   UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
   UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2

@@ -18,3 +18,4 @@
 #import "POSOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
