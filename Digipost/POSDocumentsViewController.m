@@ -178,7 +178,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
-    } 
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -331,8 +331,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                     }
             }
-            failure:^(NSError *error) {
-               
+            failure:^(NSError *error){
+
             }];
     }
 }
@@ -652,48 +652,45 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder
 {
-    [[POSAPIManager sharedManager] moveDocument:document
-        toFolder:folder
-        withSuccess:^{
-                                        
-                                        document.folder = folder;
-                                        
-                                        [[POSModelManager sharedManager].managedObjectContext save:nil];
-                                        
-                                        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                        [self updateFetchedResultsController];
-                                        
-                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
-                                            if ([currentOpenDocument isEqual:document]){
-                                                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
-                                            }
-                                        }
+
+    [[APIClient sharedClient] moveDocument:document toFolder:folder completed:^{
+        document.folder = folder;
+        
+        [[POSModelManager sharedManager].managedObjectContext save:nil];
+        
+//        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        [self updateFetchedResultsController];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            if ([currentOpenDocument isEqual:document]){
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+            }
         }
-        failure:^(NSError *error) {
-                                            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                    // We were unauthorized, due to the session being invalid.
-                                                    // Let's retry in the next run loop
-                                                    double delayInSeconds = 0.0;
-                                                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                        [self moveDocument:document toFolder:folder];
-                                                    });
-                                                    
-                                                    return;
-                                                }
-                                            }
-                                            
-                                            [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                            
-                                            [UIAlertView showWithTitle:error.errorTitle
-                                                               message:[error localizedDescription]
-                                                     cancelButtonTitle:nil
-                                                     otherButtonTitles:@[error.okButtonTitle]
-                                                              tapBlock:error.tapBlock];
-        }];
+    } failed:^(NSError *error) {
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                // We were unauthorized, due to the session being invalid.
+                // Let's retry in the next run loop
+                double delayInSeconds = 0.0;
+                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                    [self moveDocument:document toFolder:folder];
+                });
+                
+                return;
+            }
+        }
+        
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
 }
 
 - (void)deleteDocuments
@@ -708,40 +705,53 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)deleteDocument:(POSDocument *)document
 {
-    [[POSAPIManager sharedManager] deleteDocument:document
-        withSuccess:^{
-                                          [self updateFetchedResultsController];
-                                          
-                                          [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                          
-                                          if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                              
-                                              POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
-                                              if ([currentOpenDocument isEqual:document]){
-                                                  ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
-                                              }
-                                          }
-        }
-        failure:^(NSError *error) {
-                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                  if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                      // We were unauthorized, due to the session being invalid.
-                                                      // Let's retry in the next run loop
-                                                      [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
-                                                      
-                                                      return;
-                                                  }
-                                              }
-                                              
-                                              [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                              
-                                              [UIAlertView showWithTitle:error.errorTitle
-                                                                 message:[error localizedDescription]
-                                                       cancelButtonTitle:nil
-                                                       otherButtonTitles:@[error.okButtonTitle]
-                                                                tapBlock:error.tapBlock];
-        }];
+
+    [[APIClient sharedClient] deleteDocument:document.deleteUri completed:^{
+
+    } failed:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+
+    //    [[APIClient signal:document.deleteUri arguments:nil method:@"DELETE"] subscribeError:^(NSError *error) {
+    //        NSLog(@"Error %@",error);
+    //    } completed:^{
+    //        NSLog(@"completed");
+    //    }];
+
+    //    [[POSAPIManager sharedManager] deleteDocument:document
+    //        withSuccess:^{
+    //                                          [self updateFetchedResultsController];
+    //
+    //                                          [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+    //
+    //                                          if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    //
+    //                                              POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+    //                                              if ([currentOpenDocument isEqual:document]){
+    //                                                  ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+    //                                              }
+    //                                          }
+    //        }
+    //        failure:^(NSError *error) {
+    //                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+    //                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+    //                                                  if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+    //                                                      // We were unauthorized, due to the session being invalid.
+    //                                                      // Let's retry in the next run loop
+    //                                                      [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
+    //
+    //                                                      return;
+    //                                                  }
+    //                                              }
+    //
+    //                                              [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+    //
+    //                                              [UIAlertView showWithTitle:error.errorTitle
+    //                                                                 message:[error localizedDescription]
+    //                                                       cancelButtonTitle:nil
+    //                                                       otherButtonTitles:@[error.okButtonTitle]
+    //                                                                tapBlock:error.tapBlock];
+    //        }];
 }
 
 - (BOOL)documentsNeedCurrentBankAccount

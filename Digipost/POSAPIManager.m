@@ -319,6 +319,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
                 if (self.lastSuccessBlock) {
                     [self updateAuthorizationHeaderForScope:self.lastOAuth2Scope];
+                    [[APIClient sharedClient] updateAuthorizationHeader:self.lastOAuth2Scope];
+
                     self.lastSuccessBlock();
                 }
 
