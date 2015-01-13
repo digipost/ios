@@ -140,6 +140,16 @@
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		83F7038718573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		83F7038818573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		AF2342381A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		AF2342391A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		AF23423B1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		AF23423C1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		AF23423D1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		AF23423E1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		AF23423F1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FB19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -676,6 +686,8 @@
 		83F7037F18573641003DABE1 /* POSOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
+		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1220,6 +1232,8 @@
 				EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */,
 				EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */,
 				EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */,
+				AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */,
+				AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -1417,6 +1431,7 @@
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
+				AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1434,6 +1449,7 @@
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
+				AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1451,6 +1467,7 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
+				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1459,6 +1476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC55F4221A2C5ACC00A3192C /* Localizable.strings in Resources */,
+				AF2342391A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 				EC55F4231A2C5ACC00A3192C /* foundmonreg-webfont.ttf in Resources */,
 				EC55F4331A2C5C1A00A3192C /* Digipost-Test-QA-2.xcconfig in Resources */,
 				EC55F4241A2C5ACC00A3192C /* Images-Staging.xcassets in Resources */,
@@ -1481,6 +1499,7 @@
 				EC55F4341A2C718200A3192C /* Main_iPhone.storyboard in Resources */,
 				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
 				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
+				AF2342381A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 				EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1694,6 +1713,7 @@
 				EC3BC76A1A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AEE1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				EC181DB2192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				AF23423D1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DFB1A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F5B1858E5790013F8C9 /* POSFolder.m in Sources */,
@@ -1800,6 +1820,7 @@
 				EC3BC7691A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AED1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				EC181DB1192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				AF23423C1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DFA1A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C719FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F5A1858E5790013F8C9 /* POSFolder.m in Sources */,
@@ -1906,6 +1927,7 @@
 				EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AEC1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				EC181DB0192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
+				AF23423B1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
@@ -2012,6 +2034,7 @@
 				EC55F3EE1A2C5ACC00A3192C /* UIWebView+Accessability.swift in Sources */,
 				EC55F3EF1A2C5ACC00A3192C /* OAuthToken.swift in Sources */,
 				EC55F3F01A2C5ACC00A3192C /* POSDocument+Methods.m in Sources */,
+				AF23423F1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DFD1A5BE798004C829D /* APIClient.swift in Sources */,
 				EC55F3F11A2C5ACC00A3192C /* POSInvoice+Methods.swift in Sources */,
 				EC55F3F21A2C5ACC00A3192C /* POSFolder.m in Sources */,
@@ -2125,6 +2148,7 @@
 				ECF486A11A4715C200E97519 /* POSDocument+Methods.m in Sources */,
 				ECF486F81A471A3D00E97519 /* POSAccountViewTableViewDataSource.m in Sources */,
 				ECF4869F1A4715B600E97519 /* POSRootResource.m in Sources */,
+				AF23423E1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECF486A41A4715CB00E97519 /* POSBaseEncryptedModel.m in Sources */,
 				ECF486B41A4719F400E97519 /* NSDate+Extensions.swift in Sources */,
 				ECF486FB1A471A7700E97519 /* UIImage+TintColor.swift in Sources */,
