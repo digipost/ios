@@ -37,6 +37,13 @@ struct Constants {
             case NeedHigherAuthenticationLevel = 4006
         }
     }
+
+    struct Account {
+        static let viewControllerIdentifier: String = "accountViewController"
+        static let refreshContentNotification: String = "refreshContentNotificiation"
+        static let cellIdentifier: String = "AccountCell"
+    }
+
 }
 
 func == (left:Int, right:Constants.Error.Code) -> Bool {
@@ -47,3 +54,5 @@ func == (left:Constants.Error.Code, right:Int) -> Bool {
     return left.rawValue == right
 }
 
+
+    
