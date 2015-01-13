@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
+
 import Foundation
 
 struct Constants {
