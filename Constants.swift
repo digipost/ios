@@ -17,5 +17,13 @@ struct Constants {
             return __SERVER_URI__
         }
     }
+    
+    struct Account {
+        static let viewControllerIdentifier: String = "accountViewController"
+        static let refreshContentNotification: String = "refreshContentNotificiation"
+        static let cellIdentifier: String = "AccountCell"
+    }
 
 }
+
+    
