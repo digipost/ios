@@ -31,4 +31,4 @@
 #import <UIAlertView+Blocks.h>
 #import "POSRootResource.h"
 #import "NSError+ExtraInfo.h"
-#import "digipost-Swift.h"
+//#import "digipost-Swift.h"
