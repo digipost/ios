@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1497,7 +1497,7 @@
         <!--Kontoer-->
         <scene sceneID="SnP-zZ-sOg">
             <objects>
-                <viewController storyboardIdentifier="accountViewController" id="8hc-kI-yQH" customClass="POSAccountViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountViewController" id="8hc-kI-yQH" customClass="AccountViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hCg-TJ-MuE"/>
                         <viewControllerLayoutGuide type="bottom" id="dz9-ZL-349"/>
@@ -1553,15 +1553,15 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="logoutButtonTapped:" destination="8hc-kI-yQH" eventType="touchUpInside" id="4yB-6o-3Ng"/>
+                                    <action selector="logoutButtonTapped:" destination="8hc-kI-yQH" eventType="touchUpInside" id="9EJ-9i-uxP"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="logoutBarButtonItem" destination="835-WA-l70" id="xoD-Nc-4YH"/>
-                        <outlet property="logoutButton" destination="8XQ-uL-n1w" id="LhA-8q-t57"/>
-                        <outlet property="tableView" destination="tCK-qk-wlS" id="i6v-Yf-ljf"/>
+                        <outlet property="logoutBarButtonItem" destination="835-WA-l70" id="f66-VR-z1n"/>
+                        <outlet property="logoutButton" destination="8XQ-uL-n1w" id="Ypa-Ds-jd6"/>
+                        <outlet property="tableView" destination="tCK-qk-wlS" id="tBe-gj-ozu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-e3-7mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1596,6 +1596,11 @@
         <segue reference="Kl9-xn-mhN"/>
         <segue reference="6ll-nd-HYD"/>
         <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="3jD-Vn-Y8D"/>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="WBk-6x-J5R"/>
+        <segue reference="vJp-VT-rtF"/>
+        <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
