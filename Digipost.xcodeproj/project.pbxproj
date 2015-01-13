@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		769409655B6D7777B3778F57 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -588,6 +589,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
@@ -1230,6 +1232,7 @@
 			children = (
 				EC2C82D2192A166900A6D4B8 /* POSAccountViewController.h */,
 				EC2C82D3192A166900A6D4B8 /* POSAccountViewController.m */,
+				31B4BED01A6536D900CA7EAC /* AccountViewController.swift */,
 				EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */,
 				EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */,
 				AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */,
@@ -1904,6 +1907,7 @@
 				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
+				31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */,
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
