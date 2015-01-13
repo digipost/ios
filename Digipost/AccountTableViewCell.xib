@@ -2,17 +2,45 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="rlA-YU-WTW" customClass="AccountTableViewCell" customModule="Digipost" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AccountCell" rowHeight="160" id="rlA-YU-WTW" customClass="AccountTableViewCell" customModule="Digipost" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rlA-YU-WTW" id="etZ-Q5-Odv">
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BOt-ul-Goz">
+                        <rect key="frame" x="8" y="35" width="80" height="80"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="Yqd-9B-Yeo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWo-84-oTm">
+                        <rect key="frame" x="96" y="64" width="216" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BOt-ul-Goz" firstAttribute="leading" secondItem="etZ-Q5-Odv" secondAttribute="leadingMargin" id="AJS-oa-sVa"/>
+                    <constraint firstItem="BOt-ul-Goz" firstAttribute="top" secondItem="etZ-Q5-Odv" secondAttribute="topMargin" constant="27" id="Apt-IW-R8C"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="BOt-ul-Goz" secondAttribute="bottom" constant="36.5" id="Enf-v2-rXi"/>
+                    <constraint firstItem="yWo-84-oTm" firstAttribute="top" secondItem="etZ-Q5-Odv" secondAttribute="topMargin" constant="56" id="WLT-ds-VRc"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="yWo-84-oTm" secondAttribute="bottom" constant="66.5" id="fAq-4Q-uJ4"/>
+                    <constraint firstItem="yWo-84-oTm" firstAttribute="leading" secondItem="BOt-ul-Goz" secondAttribute="trailing" constant="8" symbolic="YES" id="igD-Sf-Mhd"/>
+                    <constraint firstItem="yWo-84-oTm" firstAttribute="trailing" secondItem="etZ-Q5-Odv" secondAttribute="trailingMargin" id="wSs-dc-kBi"/>
+                </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="553" y="404"/>
+            <connections>
+                <outlet property="accountImageView" destination="BOt-ul-Goz" id="IDP-97-gB3"/>
+                <outlet property="accountNameLabel" destination="yWo-84-oTm" id="VH2-GF-VF7"/>
+            </connections>
+            <point key="canvasLocation" x="553" y="462"/>
         </tableViewCell>
     </objects>
 </document>
