@@ -13,7 +13,9 @@ class APIClient : NSObject {
     enum httpMethod : String {
         case post = "POST"
         case delete = "DELETE"
-        case UPDATE = "update"
+        case update = "UPDATE"
+        case put = "PUT"
+        case get = "GET"
     }
     
     var session:                 NSURLSession?
@@ -33,8 +35,6 @@ class APIClient : NSObject {
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         sessionConfiguration.requestCachePolicy = .ReloadIgnoringLocalCacheData
         let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
-        
-//        [request setValue:contentType forHTTPHeaderField:@"Content-Type"];
         sessionConfiguration.HTTPAdditionalHeaders = ["Accept": contentType, "Content-type" : contentType]
         self.queue = NSOperationQueue()
         self.session = NSURLSession(configuration: sessionConfiguration, delegate: nil, delegateQueue: self.queue)
@@ -49,16 +49,6 @@ class APIClient : NSObject {
     func updateAuthorizationHeader(scope: String) {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         self.session?.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
-        
-        //        - (void)updateAuthorizationHeaderForScope:(NSString *)scope
-        //        {
-        //            OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-        //            NSString *bearer = [NSString stringWithFormat:@"Bearer %@", oAuthToken.accessToken];
-        //            [self.sessionManager.requestSerializer setValue:bearer
-        //            forHTTPHeaderField:@"Authorization"];
-        //            [self.fileTransferSessionManager.requestSerializer setValue:bearer
-        //            forHTTPHeaderField:@"Authorization"];
-        //        }
     }
     
     class func stringFromArguments(arguments: Dictionary<String,AnyObject>?) -> String? {
@@ -133,11 +123,36 @@ class APIClient : NSObject {
     //    self.state = SHCAPIManagerStateRefreshingAccessTokenFailed;
     //    }
     
-    func validateTokensThenPerformTask(task: NSURLSessionTask) {
+    private func validateTokensThenPerformTask(task: NSURLSessionTask) {
         validateOAuthToken(kOauth2ScopeFull) {
-            println("performing url session task: \(task)")
+            println("performing url session task: \(task.originalRequest)")
             task.resume()
         }
+    }
+    
+    func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, completed: () -> Void , failed: (error: NSError) -> ()) {
+        let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
+        let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, completed: completed, failed: failed)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func changeName(document: POSDocument, newName name: String, completed: () -> Void , failed: (error: NSError) -> ()) {
+        let documentFolder = document.folder
+        let parameters : Dictionary<String,String> = {
+            if documentFolder.name == "Inbox" {
+                return ["location":"INBOX", "subject" : name]
+            } else {
+                return ["location":"FOLDER", "subject" : name, "folderId" : documentFolder.folderId.stringValue]
+            }
+            }()
+        let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, completed: completed, failed: failed)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func createFolder(name: String, iconName: String, mailBox: POSMailbox, completed: () -> Void , failed: (error: NSError) -> ()) {
+        let parameters = ["name" : name, "icon" : iconName]
+        let task = urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, completed: completed, failed: failed)
+        validateTokensThenPerformTask(task!)
     }
     
     func deleteDocument(uri: String, completed: () -> Void , failed: (error: NSError) -> ()) {
@@ -159,12 +174,80 @@ class APIClient : NSObject {
         validateTokensThenPerformTask(task!)
     }
     
-//    
-//    
+    func updateRootResource(#completed: () -> Void , failed: (error: NSError) -> ()) {
+        let task = urlSessionTask(httpMethod.get, url: __ROOT_RESOURCE_URI__, completed: completed, failed: failed)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func updateBankAccount(#uri : String, completed: () -> Void , failed: (error: NSError) -> ()) {
+        let task = urlSessionTask(httpMethod.get, url: uri, completed: completed, failed: failed)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func
+//
+//    - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
+//{
+//    self.state = SHCAPIManagerStateUpdatingBankAccount;
+//
+//    [self validateTokensForScope:kOauth2ScopeFull success:^{
+//        self.lastBankAccountUri = uri;
+//        [self.sessionManager GET:uri
+//                      parameters:nil
+//                         success:^(NSURLSessionDataTask *task, id responseObject) {
+//                             self.lastSuccessBlock = success;
+//                             self.lastURLResponse = task.response;
+//                             self.lastResponseObject = responseObject;
+//                             self.state = SHCAPIManagerStateUpdatingBankAccountFinished;
+//                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                             self.lastFailureBlock = failure;
+//                             self.lastURLResponse = task.response;
+//                             self.lastError = error;
+//                             self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
+//                         }];
+//    } failure:^(NSError *error) {
+//        self.updatingBankAccount = NO;
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
+//}
+    
+//    - (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure
+//    {
+//
+//    NSDictionary *parameters = @{ @"name" : name,
+//    @"icon" : iconName };
+//    self.lastOAuth2Scope = kOauth2ScopeFull;
+//    [self validateTokensForScope:self.lastOAuth2Scope success:^{
+//    self.state = SHCAPIManagerStateCreatingFolder;
+//    [self jsonRequestWithMethod:@"POST" oAuth2Scope:self.lastOAuth2Scope parameters:parameters
+//    url:mailbox.createFolderUri
+//    completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+//    if (error) {
+//    NSLog(@"%@",error);
+//    self.lastFailureBlock = failure;
+//    self.lastError = error;
+//    self.lastURLResponse = response;
+//    self.state = SHCAPIManagerStateCreatingFolderFailed;
+//    } else {
+//    self.lastSuccessBlock = success;
+//    self.lastResponseObject = responseObject;
+//    self.state = SHCAPIManagerStateCreatingFolderFinished;
+//    }
+//    }];
+//    } failure:^(NSError *error) {
+//    if (failure) {
+//    failure(error);
+//    }
+//    }];
+//    }
+//
+//
 //    class func signal(endPoint: String, arguments: Dictionary<String,AnyObject>?, method: String) -> RACSignal? {
 //        abort()
 //        let baseURL = NSURL(string: Constants.APIClient.baseURL)!
-//        
+//
 //        var url: NSURL {
 //            if let argumentString = APIClient.stringFromArguments(arguments) {
 //                let endPointWithArguments = "\(endPoint)?\(argumentString)"

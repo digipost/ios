@@ -658,7 +658,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         [[POSModelManager sharedManager].managedObjectContext save:nil];
         
-//        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         [self updateFetchedResultsController];
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
