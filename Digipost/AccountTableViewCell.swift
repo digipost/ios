@@ -10,9 +10,18 @@ import UIKit
 
 class AccountTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var accountImageView: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        // Set account image to be circular
+        let imageWidth = accountImageView.frame.width
+        let cornerRadius = imageWidth/2
+        self.accountImageView.layer.cornerRadius = cornerRadius
+        self.accountImageView.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
