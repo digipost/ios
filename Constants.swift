@@ -16,5 +16,9 @@ struct Constants {
             return __SERVER_URI__
         }
     }
-
+    
+    struct HTTPHeaderKeys {
+        static let accept = "Accept"
+        static let contentType = "Content-Type"
+    }
 }

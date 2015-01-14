@@ -19,3 +19,4 @@
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "POSModelManager.h"
