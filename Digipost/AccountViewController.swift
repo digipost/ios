@@ -27,16 +27,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         self.tableView.delegate = self
         self.logoutBarButtonVariable = self.logoutBarButtonItem
-        
         let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
-        
         if firstVC.navigationItem.rightBarButtonItem == nil {
             firstVC.navigationItem.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
         }
 
         firstVC.navigationItem.leftBarButtonItem = nil
         firstVC.navigationItem.rightBarButtonItem = nil
-        
         firstVC.navigationItem.titleView = nil
         
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -45,10 +42,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                     self.performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
                 }
             }
-            
         }
-        
-
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -94,10 +88,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
             }, failure: { (error: NSError!) -> Void in
                 
-                if let e = error {
+                if let actualError = error {
                     let key = AFNetworkingOperationFailingURLRequestErrorKey
                     
-                    let response =  e.userInfo![key] as NSHTTPURLResponse
+                    let response =  actualError.userInfo![key] as NSHTTPURLResponse
                     
                     if response.isKindOfClass(NSHTTPURLResponse) {
                         if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
