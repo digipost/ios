@@ -25,20 +25,31 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rZ-OD-v2O">
+                        <rect key="frame" x="18" y="45" width="60" height="60"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="4rZ-OD-v2O" firstAttribute="top" secondItem="etZ-Q5-Odv" secondAttribute="topMargin" constant="37" id="8j8-HT-yax"/>
                     <constraint firstItem="BOt-ul-Goz" firstAttribute="leading" secondItem="etZ-Q5-Odv" secondAttribute="leadingMargin" id="AJS-oa-sVa"/>
                     <constraint firstItem="BOt-ul-Goz" firstAttribute="top" secondItem="etZ-Q5-Odv" secondAttribute="topMargin" constant="27" id="Apt-IW-R8C"/>
+                    <constraint firstItem="4rZ-OD-v2O" firstAttribute="centerY" secondItem="BOt-ul-Goz" secondAttribute="centerY" id="EUB-YC-QrO"/>
                     <constraint firstAttribute="bottomMargin" secondItem="BOt-ul-Goz" secondAttribute="bottom" constant="36.5" id="Enf-v2-rXi"/>
                     <constraint firstItem="yWo-84-oTm" firstAttribute="top" secondItem="etZ-Q5-Odv" secondAttribute="topMargin" constant="56" id="WLT-ds-VRc"/>
+                    <constraint firstItem="4rZ-OD-v2O" firstAttribute="centerX" secondItem="BOt-ul-Goz" secondAttribute="centerX" id="Z9s-62-cbK"/>
                     <constraint firstAttribute="bottomMargin" secondItem="yWo-84-oTm" secondAttribute="bottom" constant="66.5" id="fAq-4Q-uJ4"/>
                     <constraint firstItem="yWo-84-oTm" firstAttribute="leading" secondItem="BOt-ul-Goz" secondAttribute="trailing" constant="8" symbolic="YES" id="igD-Sf-Mhd"/>
+                    <constraint firstItem="yWo-84-oTm" firstAttribute="leading" secondItem="4rZ-OD-v2O" secondAttribute="trailing" constant="18" id="mBH-zz-asf"/>
                     <constraint firstItem="yWo-84-oTm" firstAttribute="trailing" secondItem="etZ-Q5-Odv" secondAttribute="trailingMargin" id="wSs-dc-kBi"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="accountImageView" destination="BOt-ul-Goz" id="IDP-97-gB3"/>
                 <outlet property="accountNameLabel" destination="yWo-84-oTm" id="VH2-GF-VF7"/>
+                <outlet property="initialLabel" destination="4rZ-OD-v2O" id="JNC-xF-JFj"/>
             </connections>
             <point key="canvasLocation" x="553" y="462"/>
         </tableViewCell>
