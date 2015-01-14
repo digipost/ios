@@ -84,16 +84,19 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mailboxCell", forIndexPath: indexPath)as UITableViewCell
+        //let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mailboxCell", forIndexPath: indexPath)as UITableViewCell
+        
+        let cell: AccountTableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.cellIdentifier, forIndexPath: indexPath) as AccountTableViewCell
         self.configureCell(cell, atIndexPath: indexPath)
         
         return cell
     }
     
     // Customize the appearance of table view cells.
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath){
+    func configureCell(cell: AccountTableViewCell, atIndexPath indexPath: NSIndexPath){
         let mailBox: POSMailbox = self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
-        cell.textLabel?.text = mailBox.name
+       // cell.textLabel?.text = mailBox.name
+        cell.accountNameLabel.text = mailBox.name
     }
     
     // convenience method for fetching objects at index path from the database
@@ -116,7 +119,8 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         case NSFetchedResultsChangeType.Delete:
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         case NSFetchedResultsChangeType.Update:
-            self.configureCell(self.tableView.cellForRowAtIndexPath(indexPath!)!, atIndexPath: indexPath!)
+            let updateCell: AccountTableViewCell = self.tableView.cellForRowAtIndexPath(indexPath!) as AccountTableViewCell
+            self.configureCell(updateCell, atIndexPath: indexPath!)
         case NSFetchedResultsChangeType.Move:
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
             self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
