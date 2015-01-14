@@ -23,9 +23,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
-        self.tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
-        self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
-        self.tableView.delegate = self
+        
         self.logoutBarButtonVariable = self.logoutBarButtonItem
         let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
         if firstVC.navigationItem.rightBarButtonItem == nil {
@@ -44,10 +42,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
         }
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
+        self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
+        self.tableView.delegate = self
+
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         
         if let showingItem: UINavigationItem = self.navigationController?.navigationBar.backItem {
