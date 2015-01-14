@@ -994,32 +994,32 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-- (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
-{
-    self.state = SHCAPIManagerStateUpdatingRootResource;
-
-    [self validateTokensForScope:kOauth2ScopeFull success:^{
-        [self.sessionManager GET:__ROOT_RESOURCE_URI__
-                      parameters:nil
-                         success:^(NSURLSessionDataTask *task, id responseObject) {
-                             self.lastSuccessBlock = success;
-                             self.lastURLResponse = task.response;
-                             self.lastResponseObject = responseObject;
-                             self.state = SHCAPIManagerStateUpdatingRootResourceFinished;
-                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                             self.lastFailureBlock = failure;
-                             self.lastURLResponse = task.response;
-                             self.lastError = error;
-                             self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
-                         }];
-    } failure:^(NSError *error) {
-        self.updatingRootResource = NO;
-        if (failure) {
-            failure(error);
-        }
-    }];
-}
+//// DONE
+//- (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
+//{
+//    self.state = SHCAPIManagerStateUpdatingRootResource;
+//
+//    [self validateTokensForScope:kOauth2ScopeFull success:^{
+//        [self.sessionManager GET:__ROOT_RESOURCE_URI__
+//                      parameters:nil
+//                         success:^(NSURLSessionDataTask *task, id responseObject) {
+//                             self.lastSuccessBlock = success;
+//                             self.lastURLResponse = task.response;
+//                             self.lastResponseObject = responseObject;
+//                             self.state = SHCAPIManagerStateUpdatingRootResourceFinished;
+//                         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//                             self.lastFailureBlock = failure;
+//                             self.lastURLResponse = task.response;
+//                             self.lastError = error;
+//                             self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
+//                         }];
+//    } failure:^(NSError *error) {
+//        self.updatingRootResource = NO;
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
+//}
 
 - (void)cancelUpdatingRootResource
 {
@@ -1029,7 +1029,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
 }
-
+// DONE
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateUpdatingBankAccount;
@@ -1069,7 +1069,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         self.state = SHCAPIManagerStateUpdatingBankAccountFailed;
     }
 }
-
+// done
 - (void)sendInvoiceToBank:(POSInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateSendingInvoiceToBank;
@@ -1093,7 +1093,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         }
     }];
 }
-
+// done
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSParameterAssert(digipostAddress);
@@ -1136,7 +1136,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         self.state = SHCAPIManagerStateUpdatingDocumentsFailed;
     }
 }
-
+// done
 - (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
@@ -1157,8 +1157,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     } else {
         highestScope = kOauth2ScopeFull;
     }
-
-    [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:highestScope didChooseHigherScope:didChoseAHigherScope success:success failure:failure];
+    [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:success failure:failure];
 }
 
 - (void)validateAndDownloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress scope:(NSString *)scope didChooseHigherScope:(BOOL)didChooseHigherScope success:(void (^)(void))success failure:(void (^)(NSError *))failure

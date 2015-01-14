@@ -124,12 +124,12 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 
 - (void)startLogging;
 - (void)stopLogging;
-- (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+// - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingRootResource;
 - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingBankAccount;
 - (void)sendInvoiceToBank:(POSInvoice *)invoice withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
-- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+//- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure;
