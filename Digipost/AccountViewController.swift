@@ -17,12 +17,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     var logoutBarButtonVariable: UIBarButtonItem?
     
     var refreshControl: UIRefreshControl?
-    var dataSource: POSAccountViewTableViewDataSource?
+    //var dataSource: POSAccountViewTableViewDataSource?
+    var dataSource: AccountTableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
-        
+       // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
+        self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         self.logoutBarButtonVariable = self.logoutBarButtonItem
         
         let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
@@ -111,7 +112,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushFolders" {
-            let mailbox: POSMailbox = self.dataSource?.managedObjectAtIndexPath(self.tableView.indexPathForSelectedRow()) as POSMailbox
+            let mailbox: POSMailbox = self.dataSource?.managedObjectAtIndexPath(self.tableView.indexPathForSelectedRow()!) as POSMailbox
             let folderViewController: POSFoldersViewController = segue.destinationViewController as POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
