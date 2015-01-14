@@ -16,7 +16,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     var logoutBarButtonVariable: UIBarButtonItem?
     
-    var refreshControl: UIRefreshControl?
+    var refreshControl: UIRefreshControl? // trengs?
     //var dataSource: POSAccountViewTableViewDataSource?
     var dataSource: AccountTableViewDataSource?
     
@@ -25,6 +25,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
        // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
         
         logoutBarButtonVariable = logoutBarButtonItem
+
         let firstVC: UIViewController = navigationController!.viewControllers[0] as UIViewController
         if firstVC.navigationItem.rightBarButtonItem == nil {
             firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
@@ -90,10 +91,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
             }, failure: { (error: NSError!) -> Void in
                 
-                if let actualError = error {
-                    let key = AFNetworkingOperationFailingURLRequestErrorKey
-                    
-                    let response =  actualError.userInfo![key] as NSHTTPURLResponse
+                let key = AFNetworkingOperationFailingURLRequestErrorKey
+                if error.userInfo![key] != nil {
+                    let response =  error.userInfo![key] as NSHTTPURLResponse
                     
                     if response.isKindOfClass(NSHTTPURLResponse) {
                         if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
