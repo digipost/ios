@@ -33,10 +33,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         firstVC.navigationItem.titleView = nil
         
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
-            if rootResource == true {
-                self.performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
+            if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
+                if rootResource == true {
+                    self.performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
+                }
             }
+            
         }
         
 
@@ -64,7 +66,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             
             showingItem.title = title
         }
-        
+
         
         self.navigationItem.setHidesBackButton(true, animated: false)
         self.navigationItem.backBarButtonItem = nil
@@ -82,14 +84,17 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
             }, failure: { (error: NSError!) -> Void in
-                let key = AFNetworkingOperationFailingURLRequestErrorKey
                 
-                let response =  error.userInfo![key] as NSHTTPURLResponse
-                
-                if response.isKindOfClass(NSHTTPURLResponse) {
-                    if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
-                     NSTimer.scheduledTimerWithTimeInterval(0.0, target: userDidInitiateRequest, selector: "updateContentsFromServerUserInitiatedRequest", userInfo: nil, repeats: false)
-                        return
+                if let e = error {
+                    let key = AFNetworkingOperationFailingURLRequestErrorKey
+                    
+                    let response =  e.userInfo![key] as NSHTTPURLResponse
+                    
+                    if response.isKindOfClass(NSHTTPURLResponse) {
+                        if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
+                            NSTimer.scheduledTimerWithTimeInterval(0.0, target: userDidInitiateRequest, selector: "updateContentsFromServerUserInitiatedRequest:", userInfo: nil, repeats: false)
+                            return
+                        }
                     }
                 }
         })
