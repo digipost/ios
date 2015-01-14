@@ -12,11 +12,14 @@ class AccountTableViewCell: UITableViewCell {
 
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var accountImageView: UIImageView!
+    @IBOutlet var initialLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
+        // Set defaul image background
+        self.accountImageView.backgroundColor = UIColor.lightGrayColor()
         // Set account image to be circular
         let imageWidth = accountImageView.frame.width
         let cornerRadius = imageWidth/2
