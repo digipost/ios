@@ -178,6 +178,11 @@
 		EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */ = {isa = PBXBuildFile; fileRef = EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */; };
+		EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
+		EC22CF8D1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
+		EC22CF8E1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
+		EC22CF8F1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
+		EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
 		EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
@@ -700,6 +705,7 @@
 		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
 		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
 		EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthTokenHigherSecurity.json; sourceTree = "<group>"; };
+		EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+URLSessionTask.swift"; sourceTree = "<group>"; };
 		EC2352991A0B9AFD0071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EC23529C1A0BA6690071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+TintColor.swift"; sourceTree = "<group>"; };
@@ -1124,6 +1130,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
+				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
 				ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */,
 				ECC08E041A5BE8DB004C829D /* APIResponse.swift */,
 				EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */,
@@ -1702,6 +1709,7 @@
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A41A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC22CF8E1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
 				EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
@@ -1808,6 +1816,7 @@
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A31A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC22CF8D1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
 				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
@@ -1914,6 +1923,7 @@
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
@@ -2020,6 +2030,7 @@
 				EC55F3F51A2C5ACC00A3192C /* NSError+ExtraInfo.m in Sources */,
 				EC55F3F61A2C5ACC00A3192C /* UIImageView+Color.swift in Sources */,
 				EC55F3F71A2C5ACC00A3192C /* NSURLRequest+QueryParameters.m in Sources */,
+				EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC55F3F81A2C5ACC00A3192C /* UIColor+Convenience.m in Sources */,
 				EC55F3F91A2C5ACC00A3192C /* POSDocument.m in Sources */,
 				EC55F3FA1A2C5ACC00A3192C /* UIImage+TintColor.swift in Sources */,
@@ -2127,6 +2138,7 @@
 				ECF4869F1A4715B600E97519 /* POSRootResource.m in Sources */,
 				ECF486A41A4715CB00E97519 /* POSBaseEncryptedModel.m in Sources */,
 				ECF486B41A4719F400E97519 /* NSDate+Extensions.swift in Sources */,
+				EC22CF8F1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				ECF486FB1A471A7700E97519 /* UIImage+TintColor.swift in Sources */,
 				ECF486C31A471A0E00E97519 /* POSNewFolderViewController.m in Sources */,
 				EC7C1B591A25FBFB00BE62DC /* POSAPIManager.m in Sources */,
