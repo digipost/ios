@@ -14,6 +14,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
     
+    var logoutBarButtonVariable: UIBarButtonItem?
+    
     var refreshControl: UIRefreshControl?
     var dataSource: POSAccountViewTableViewDataSource?
     
@@ -21,12 +23,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         super.viewDidLoad()
         self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
         
+        self.logoutBarButtonVariable = self.logoutBarButtonItem
+        
         let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
         
         if firstVC.navigationItem.rightBarButtonItem == nil {
             firstVC.navigationItem.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
         }
-        
+
         firstVC.navigationItem.leftBarButtonItem = nil
         firstVC.navigationItem.rightBarButtonItem = nil
         
@@ -50,14 +54,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         
         if let showingItem: UINavigationItem = self.navigationController?.navigationBar.backItem {
-            showingItem.hidesBackButton = true
             
+            showingItem.hidesBackButton = true
+                        
             if showingItem.respondsToSelector("setLeftBarButtonItem:") {
                 showingItem.setLeftBarButtonItem(nil, animated: false)
             }
             
             if showingItem.respondsToSelector("setRightBarButtonItem:") {
-                showingItem.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
+                showingItem.setRightBarButtonItem(self.logoutBarButtonVariable, animated: false)
             }
             
             if showingItem.respondsToSelector("setBackBarButtonItem:") {
@@ -67,10 +72,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             showingItem.title = title
         }
 
-        
         self.navigationItem.setHidesBackButton(true, animated: false)
+        
         self.navigationItem.backBarButtonItem = nil
         self.navigationItem.leftBarButtonItem = nil
+        
         self.navigationController?.navigationBar.topItem?.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
         self.navigationController?.navigationBar.topItem?.title = title
         
