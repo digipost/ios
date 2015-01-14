@@ -10,6 +10,15 @@
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		31B57FF61A669150008952DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
+		31B57FF71A6691E3008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		31B57FF81A6691E8008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		31B57FF91A6691E8008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		31B57FFA1A6691E9008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		31B57FFB1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		31B57FFD1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		769409655B6D7777B3778F57 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -1749,6 +1758,7 @@
 				EC31A63B1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6371A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
+				31B57FF71A6691E3008952DE /* AccountViewController.swift in Sources */,
 				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5219FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
@@ -1789,6 +1799,7 @@
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC11A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
+				31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -1861,6 +1872,7 @@
 				EC31A63A1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6361A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
+				31B57FF81A6691E8008952DE /* AccountViewController.swift in Sources */,
 				EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5119FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
@@ -1900,6 +1912,7 @@
 				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
+				31B57FFB1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A19193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -2084,6 +2097,7 @@
 				EC55F3D81A2C5ACC00A3192C /* UploadMenuDataSource.swift in Sources */,
 				EC55F3D91A2C5ACC00A3192C /* SHCSplitViewController.m in Sources */,
 				EC55F3DA1A2C5ACC00A3192C /* UploadMenuViewController.swift in Sources */,
+				31B57FFA1A6691E9008952DE /* AccountViewController.swift in Sources */,
 				EC55F3DB1A2C5ACC00A3192C /* POSUploadViewController.m in Sources */,
 				EC55F3DC1A2C5ACC00A3192C /* UIColor+DigipostColors.swift in Sources */,
 				EC55F3DD1A2C5ACC00A3192C /* UIViewController+Additions.m in Sources */,
@@ -2124,6 +2138,7 @@
 				EC55F3FB1A2C5ACC00A3192C /* SHCAttachmentTableViewCell.m in Sources */,
 				EC55F3FC1A2C5ACC00A3192C /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC21A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
+				31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */,
 				EC55F3FD1A2C5ACC00A3192C /* POSAPIManager.m in Sources */,
 				EC55F3FE1A2C5ACC00A3192C /* NSString+SHA1String.m in Sources */,
 				EC55F3FF1A2C5ACC00A3192C /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -2197,6 +2212,7 @@
 				ECF4869D1A4715A900E97519 /* POSInvoice+Methods.swift in Sources */,
 				ECF4869E1A4715AC00E97519 /* POSInvoice.m in Sources */,
 				ECF486F71A471A3D00E97519 /* POSAccountViewController.m in Sources */,
+				31B57FF91A6691E8008952DE /* AccountViewController.swift in Sources */,
 				ECC08E021A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC63A8471A6E7C1800708A75 /* ModelTests.swift in Sources */,
 				ECF486F31A471A3600E97519 /* SHCBaseTableViewController.m in Sources */,
@@ -2239,6 +2255,7 @@
 				EC7C1B591A25FBFB00BE62DC /* POSAPIManager.m in Sources */,
 				ECF486C41A471A0E00E97519 /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC63A84D1A6E7DF200708A75 /* XCTestCase+Convenience.swift in Sources */,
+				31B57FFD1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				ECF487031A471A8000E97519 /* UploadMenuTableViewCell.swift in Sources */,
 				ECF486941A47157500E97519 /* NSManagedObject+Attributes.swift in Sources */,
 				ECF486FA1A471A7500E97519 /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -2247,6 +2264,7 @@
 				ECF486A01A4715B800E97519 /* POSMailbox+Methods.m in Sources */,
 				ECF486951A47158700E97519 /* POSAttachment.m in Sources */,
 				ECF4869C1A4715A600E97519 /* POSNotice.m in Sources */,
+				31B57FF61A669150008952DE /* Constants.swift in Sources */,
 				ECF486F61A471A3A00E97519 /* SHCLoginViewController.m in Sources */,
 				ECF486C21A471A0E00E97519 /* POSFoldersViewController.m in Sources */,
 				ECF486D41A471A1A00E97519 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
