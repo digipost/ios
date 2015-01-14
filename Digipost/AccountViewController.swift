@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate {
+class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate {
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -23,7 +23,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewDidLoad() {
         super.viewDidLoad()
        // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
+        self.tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
         self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
+        self.tableView.delegate = self
         self.logoutBarButtonVariable = self.logoutBarButtonItem
         
         let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
@@ -108,6 +110,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
     }
     
+    // MARK: - TableViewDelegate
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("PushFolders", sender: self)
+    }
+    
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -127,8 +135,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             documentsView.folderName = kFolderInboxName
         }
     }
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
