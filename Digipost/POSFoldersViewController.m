@@ -590,13 +590,13 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if ([POSAPIManager sharedManager].isUpdatingRootResource) {
         return;
     }
-    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^{
         self.rootResource = nil; // To force a refetch of this property
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
     } failure:^(NSError *error) {
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
@@ -614,6 +614,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                      otherButtonTitles:@[error.okButtonTitle]
                               tapBlock:error.tapBlock];
         }
+
     }];
 }
 

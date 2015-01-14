@@ -510,12 +510,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
-    [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName
-        mailboxDigipostAddress:self.mailboxDigipostAddress
-        folderUri:self.folderUri
-        success:^{
-                                                               
-                                                               [self updateFetchedResultsController];
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri success:^{
+                  [self updateFetchedResultsController];
                                                                [self programmaticallyEndRefresh];
                                                                [self updateNavbar];
                                                                [self showTableViewBackgroundView:([self numberOfRows] == 0)];
@@ -548,10 +544,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                        [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
                                                                    }
                                                                }
-        }
-        failure:^(NSError *error) {
-                                                               
-                                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+    } failure:^(NSError *error) {
+             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                                    if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                                                                        // We were unauthorized, due to the session being invalid.
@@ -572,7 +566,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                             otherButtonTitles:@[error.okButtonTitle]
                                                                                      tapBlock:error.tapBlock];
                                                                }
-        }];
+    }];
 }
 
 - (void)updateNavbar
@@ -653,7 +647,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder
 {
 
-    [[APIClient sharedClient] moveDocument:document toFolder:folder completed:^{
+    [[APIClient sharedClient] moveDocument:document toFolder:folder success:^{
         document.folder = folder;
         
         [[POSModelManager sharedManager].managedObjectContext save:nil];
@@ -667,7 +661,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
         }
-    } failed:^(NSError *error) {
+    } failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
@@ -706,9 +700,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)deleteDocument:(POSDocument *)document
 {
 
-    [[APIClient sharedClient] deleteDocument:document.deleteUri completed:^{
+    [[APIClient sharedClient] deleteDocument:document.deleteUri success:^{
 
-    } failed:^(NSError *error) {
+    } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 

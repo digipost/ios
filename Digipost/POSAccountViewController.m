@@ -97,9 +97,9 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^{
+
     } failure:^(NSError *error) {
-        
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {

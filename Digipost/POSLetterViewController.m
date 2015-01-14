@@ -748,10 +748,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }];
     } else {
 
-        [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
-            withProgress:progress
-            success:^{
-                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+        [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
+         [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
                                                                
                                                                // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
                                                                POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
@@ -778,10 +776,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                if ([_attachment.read boolValue] == NO ) {
                                                                    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                                }
-            }
-            failure:^(NSError *error) {
-                                                               
-                                                               BOOL unauthorized = NO;
+        } failure:^(NSError *error) {
+                BOOL unauthorized = NO;
                 [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
                                                                
                                                                if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
@@ -821,7 +817,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                          tapBlock:error.tapBlock];
                                                                    }
                                                                }
-            }];
+        }];
+        //
+        //        [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
+        //            withProgress:progress
+        //            success:^{
+        //
+        //            }
+        //            failure:^(NSError *error) {
+        //
+        //
+        //            }];
     }
 }
 
@@ -1298,20 +1304,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     NSString *attachmentUri = self.attachment.uri;
-
-    [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
-        mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
-        folderUri:self.attachment.document.folder.uri
-        success:^{
-                                                               [self updateAttachmentWithAttachmentUri:attachmentUri];
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri success:^{
+          [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
                                                                NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
                                                                [self setToolbarItems:toolbarItems animated:YES];
                                                                [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-        }
-        failure:^(NSError *error) {
-                                                               
-                                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+    } failure:^(NSError *error) {
+          NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
                                                                    if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
                                                                        // We were unauthorized, due to the session being invalid.
@@ -1326,8 +1326,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                   message:[error localizedDescription]
                                                                         cancelButtonTitle:nil
                                                                         otherButtonTitles:@[error.okButtonTitle]
-                                                                                 tapBlock:error.tapBlock];
-        }];
+                                                                                tapBlock:error.tapBlock];
+    }];
 }
 
 - (void)updateAttachmentWithAttachmentUri:(NSString *)uri
