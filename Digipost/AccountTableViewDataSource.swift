@@ -11,49 +11,29 @@ import UIKit
 class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     let tableView:UITableView
-    
-    // Set up fetchedresultscontroller and perform fetch
-    var fetchedResultsController: NSFetchedResultsController {
-        get{
-            // Return if there is allready an instance
-            if self._fetchedResultsController != nil{
-                return self._fetchedResultsController!
-            }
-            
-            // Create and configure a fetch request with the Book entity.
-            let fetchRequest = NSFetchRequest()
-            let context: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
-            
-            let entity = NSEntityDescription.entityForName("Mailbox", inManagedObjectContext: context)
-            fetchRequest.entity = entity
-            
-            // Order the events by creation date, most recent first.
-            let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: true)
-            let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
-            fetchRequest.sortDescriptors = [ownerDescriptor,nameDescriptor]
-            
-            // Create and initialize the fetch results controller.
-            let controller = NSFetchedResultsController(
-                fetchRequest: fetchRequest,
-                managedObjectContext: context,
-                sectionNameKeyPath: nil,
-                cacheName: nil)
-            controller.delegate = self
-            self._fetchedResultsController = controller
-            
-            var error: NSError?
-            
-            if !controller.performFetch(&error){
-                println(error?.localizedDescription)
-            }
 
-            return self._fetchedResultsController!
+    private lazy var fetchedResultsController : NSFetchedResultsController = {
+        
+        // Create and configure a fetch request with the Book entity.
+        let fetchRequest = NSFetchRequest(entityName: "Mailbox")
+        let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
+        
+        // Order the events by creation date, most recent first.
+        let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: true)
+        let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
+        fetchRequest.sortDescriptors = [ownerDescriptor,nameDescriptor]
+        
+        var controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext:managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        controller.delegate = self
+        
+        var error: NSError?
+        
+        if !controller.performFetch(&error){
+            println(error?.localizedDescription)
         }
-    }
-    
-    // fetchedResultController set property
-    var _fetchedResultsController:NSFetchedResultsController?
-
+        
+        return controller
+        }()
     
     // MARK: - Class initialiser
     
