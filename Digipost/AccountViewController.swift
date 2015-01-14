@@ -24,10 +24,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         super.viewDidLoad()
        // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
         
-        self.logoutBarButtonVariable = self.logoutBarButtonItem
-        let firstVC: UIViewController = self.navigationController!.viewControllers[0] as UIViewController
+        logoutBarButtonVariable = logoutBarButtonItem
+        let firstVC: UIViewController = navigationController!.viewControllers[0] as UIViewController
         if firstVC.navigationItem.rightBarButtonItem == nil {
-            firstVC.navigationItem.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
+            firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         }
 
         firstVC.navigationItem.leftBarButtonItem = nil
@@ -37,7 +37,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
                 if rootResource == true {
-                    self.performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
+                    performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
                 }
             }
         }
@@ -46,13 +46,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
-        self.dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
-        self.tableView.delegate = self
+        tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
+        dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
+        tableView.delegate = self
 
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         
-        if let showingItem: UINavigationItem = self.navigationController?.navigationBar.backItem {
+        if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
             
             showingItem.hidesBackButton = true
                         
@@ -61,7 +61,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
             
             if showingItem.respondsToSelector("setRightBarButtonItem:") {
-                showingItem.setRightBarButtonItem(self.logoutBarButtonVariable, animated: false)
+                showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
             }
             
             if showingItem.respondsToSelector("setBackBarButtonItem:") {
@@ -71,19 +71,19 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             showingItem.title = title
         }
 
-        self.navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.setHidesBackButton(true, animated: false)
         
-        self.navigationItem.backBarButtonItem = nil
-        self.navigationItem.leftBarButtonItem = nil
+        navigationItem.backBarButtonItem = nil
+        navigationItem.leftBarButtonItem = nil
         
-        self.navigationController?.navigationBar.topItem?.setRightBarButtonItem(self.logoutBarButtonItem, animated: false)
-        self.navigationController?.navigationBar.topItem?.title = title
+        navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
+        navigationController?.navigationBar.topItem?.title = title
         
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateContentsFromServerUseInitiateRequest(0)
+        updateContentsFromServerUseInitiateRequest(0)
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
@@ -109,14 +109,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     // MARK: - TableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("PushFolders", sender: self)
+        performSegueWithIdentifier("PushFolders", sender: self)
     }
     
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushFolders" {
-            let mailbox: POSMailbox = self.dataSource?.managedObjectAtIndexPath(self.tableView.indexPathForSelectedRow()!) as POSMailbox
+            let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow()!) as POSMailbox
             let folderViewController: POSFoldersViewController = segue.destinationViewController as POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
@@ -137,7 +137,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     @IBAction func logoutButtonTapped(sender: UIButton) {
-        self.logoutUser()
+        logoutUser()
     }
     
     // MARK: - Logout
@@ -152,7 +152,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             })
             
         } else {
-            UIActionSheet.showFromBarButtonItem(self.logoutBarButtonItem, animated: true, withTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), destructiveButtonTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), otherButtonTitles: nil, tapBlock: { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
+            UIActionSheet.showFromBarButtonItem(logoutBarButtonItem, animated: true, withTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), destructiveButtonTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), otherButtonTitles: nil, tapBlock: { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
                 if buttonIndex == 0 {
                     self.userDidConfirmLogout()
                 }
@@ -161,7 +161,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func prepareForPopoverPresentation(popoverPresentationController: UIPopoverPresentationController) {
-        popoverPresentationController.sourceView = self.view
+        popoverPresentationController.sourceView = view
     }
     
     func userDidConfirmLogout() {
@@ -172,7 +172,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }
         
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
-        self.tableView.reloadData()
+        tableView.reloadData()
         POSAPIManager.sharedManager().logout()
     }
 
