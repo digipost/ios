@@ -12,8 +12,6 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     let tableView:UITableView
     
-
-    
     // Set up fetchedresultscontroller and perform fetch
     var fetchedResultsController: NSFetchedResultsController {
         get{
@@ -52,6 +50,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
             return self._fetchedResultsController!
         }
     }
+    
     // fetchedResultController set property
     var _fetchedResultsController:NSFetchedResultsController?
 
@@ -59,6 +58,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     // MARK: - Class initialiser
     
     init(asDataSourceForTableView tableView: UITableView){
+        
         self.tableView = tableView
         super.init()
         tableView.dataSource = self
@@ -74,17 +74,16 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         } else {
             return 0
         }
-        
     }
     
     // Set number of rows in section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
         
+        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+            return sectionInfo.numberOfObjects
     }
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mailboxCell", forIndexPath: indexPath)as UITableViewCell
         self.configureCell(cell, atIndexPath: indexPath)
         
@@ -96,7 +95,12 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         let mailBox: POSMailbox = self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
         cell.textLabel?.text = mailBox.name
     }
-
+    
+    // convenience method for fetching objects at index path from the database
+    func managedObjectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject{
+        return self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
+    }
+    
     // MARK: - NSFetchedResultsControllerDelegate
     
     func controllerWillChangeContent(controller: NSFetchedResultsController) {
