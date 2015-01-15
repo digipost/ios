@@ -61,7 +61,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @interface POSFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
-@property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
 @property (strong, nonatomic) UploadImageController *uploadImageController;
 
@@ -73,7 +72,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewDidLoad
 {
-    self.shouldShowAddNewFolderCell = YES;
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
@@ -221,12 +219,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
         return 3; // Inbox, Receipts and upload
     } else {
-        if (self.isEditing && self.shouldShowAddNewFolderCell) {
-            // add new cell-cell is added
-            return [self.folders count] + 1;
-        } else {
-            return [self.folders count];
-        }
+        // add new cell-cell is added
+        return [self.folders count] + 1;
     }
 }
 
@@ -295,6 +289,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [super setEditing:editing
              animated:animated];
+
     if (editing) {
         self.shouldShowAddNewFolderCell = YES;
         if ([self.folders count] == 0) {
@@ -343,11 +338,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             break;
     }
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.shouldShowAddNewFolderCell = NO;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -507,40 +497,50 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
 
     if (self.isEditing == NO) {
-        if (indexPath.section == 0 && self.inboxFolder) {
-            switch (indexPath.row) {
-                case 0: {
-                    [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                              sender:self.inboxFolder];
-                    break;
-                }
-                case 1: {
-                    [self performSegueWithIdentifier:kPushReceiptsIdentifier
-                                              sender:nil];
-                    break;
-                }
-                case 2: {
-                    [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
+        switch (indexPath.section) {
+            case 0: {
+                switch (indexPath.row) {
+                    case 0: {
+                        [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                                  sender:self.inboxFolder];
+                        break;
+                    }
+                    case 1: {
+                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
+                                                  sender:nil];
+                        break;
+                    }
+                    case 2: {
+                        [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
 
-                    break;
-                } break;
-                case 3: {
-                    NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
-                    [[UIApplication sharedApplication] openURL:url];
+                        break;
+                    } break;
+                    case 3: {
+                        NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
+                    default:
+                        break;
                 }
-                default:
-                    break;
             }
-        } else {
-            [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                      sender:self.folders[indexPath.row]];
+            case 1:
+                if (indexPath.row == self.folders.count) {
+                    [self performSegueWithIdentifier:kEditFolderSegue
+                                              sender:self];
+                } else {
+                    [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
+                }
+
+                break;
         }
     } else {
-        if (indexPath.section != 0) {
-            [self performSegueWithIdentifier:kEditFolderSegue
-                                      sender:self];
-        }
+        [self performSegueWithIdentifier:kEditFolderSegue
+                                  sender:self];
     }
+
+    //      [self performSegueWithIdentifier:kPushDocumentsIdentifier
+    //                                sender:self.folders[indexPath.row]];
+    //  }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -632,10 +632,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }];
 }
 
-- (void)uploadProgressDidStart:(NSNotification *)notification
-{
-}
-- (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
+- (void)uploadProgressDidStart:(NSNotification *)notification{} - (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
 {
 }
 @end
