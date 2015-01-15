@@ -9,7 +9,7 @@
 import Foundation
 import MobileCoreServices
 
-class APIClient : NSObject , NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate,NSURLSessionDownloadDelegate {
+class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate,NSURLSessionDownloadDelegate {
     
     enum httpMethod : String {
         case post = "POST"
@@ -20,23 +20,9 @@ class APIClient : NSObject , NSURLSessionTaskDelegate, NSURLSessionDelegate, NSU
     }
     
    
-    var queue = NSOperationQueue()
+    lazy var queue = NSOperationQueue()
+    var session : NSURLSession!
     
-    lazy var session: NSURLSession =  {
-        let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        sessionConfiguration.requestCachePolicy = .ReloadIgnoringLocalCacheData
-        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
-        sessionConfiguration.HTTPAdditionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
-        let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
-        println(" The delegate: \(theSession.delegate)")
-        println(theSession.delegateQueue)
-        dispatch(after:3) {
-            
-        println(" The delegate: \(theSession.delegate)")
-        println(theSession.delegateQueue)
-        }
-        return theSession
-    }()
     
     var taskCounter              = 0
     
@@ -48,40 +34,72 @@ class APIClient : NSObject , NSURLSessionTaskDelegate, NSURLSessionDelegate, NSU
         return Singleton.sharedClient
     }
     
+    
+    var taskWasUnAuthorized : Bool  = false
+    var lastPerformedTask : NSURLSessionTask?
+    
     override init() {
         super.init()
-
+        let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
+        sessionConfiguration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        sessionConfiguration.HTTPAdditionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
+        let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        self.session = theSession
+        println(" The delegate: \(theSession.delegate)")
+        println(theSession.delegateQueue)
+        dispatch(after:3) {
+            println(" The delegate: \(theSession.delegate)")
+            println(theSession.delegateQueue)
+        }
+        updateAuthorizationHeader(kOauth2ScopeFull)
         RACObserve(self, Constants.APIClient.taskCounter).subscribeNext({
             (anyObject) in
             if let taskCounter = anyObject as? Int {
                 UIApplication.sharedApplication().networkActivityIndicatorVisible = (taskCounter > 0)
             }
         })
+        
+        
+        RACObserve(self, "taskWasUnAuthorized").subscribeNext { (anyObject) -> Void in
+            OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+            if let actualTask = self.lastPerformedTask {
+                self.validateTokensThenPerformTask(actualTask)
+            }
+            
+        }
     }
     
     func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
+        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     }
     func URLSession(session: NSURLSession, didBecomeInvalidWithError error: NSError?) {
+        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
     }
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
         println(session,task)
+        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     }
     
     func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
+        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     }
     
     
     func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
+        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
         println(session,task,bytesSent)
 
     }
     
     func updateAuthorizationHeader(scope: String) {
-        let athing = self.session.delegate
+        let athing = self.session.delegate! as NSURLSessionDelegate
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
+        println(self.session.configuration.HTTPAdditionalHeaders)
         self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
+        println(self.session.configuration.HTTPAdditionalHeaders)
     }
     
     class func stringFromArguments(arguments: Dictionary<String,AnyObject>?) -> String? {
@@ -96,7 +114,13 @@ class APIClient : NSObject , NSURLSessionTaskDelegate, NSURLSessionDelegate, NSU
     }
 
     private func validateTokensThenPerformTask(task: NSURLSessionTask) {
+        println("\(task.originalRequest.allHTTPHeaderFields)")
+        println(self.session.configuration.HTTPAdditionalHeaders)
         validateOAuthToken(kOauth2ScopeFull) {
+            println("resume task")
+            println(self.session.configuration.HTTPAdditionalHeaders)
+            
+            println("\(task.originalRequest.allHTTPHeaderFields)")
             task.resume()
         }
     }
@@ -371,6 +395,7 @@ class APIClient : NSObject , NSURLSessionTaskDelegate, NSURLSessionDelegate, NSU
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if (oAuthToken?.accessToken != nil) {
             success()
+            return
         }
         
         if (oAuthToken?.refreshToken != nil) {

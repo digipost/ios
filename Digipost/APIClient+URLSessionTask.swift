@@ -13,8 +13,14 @@ extension APIClient {
     
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
-            if let actualError = error {
-                failure(error: actualError)
+            if let actualError = error as NSError! {
+                let urlResponse = response as? NSHTTPURLResponse
+                if urlResponse?.statusCode == 403  {
+                    self.taskWasUnAuthorized = true
+                } else {
+                    failure(error: actualError)
+                    
+                }
             } else {
                 let urlResponse = response as NSHTTPURLResponse
                 if (urlResponse.statusCode == 400 ) {
@@ -25,6 +31,7 @@ extension APIClient {
                 }
             }
         })
+        lastPerformedTask = task
         return task
     }
     
@@ -43,6 +50,26 @@ extension APIClient {
                 }
             }
         })
+        lastPerformedTask = task
+        return task
+    }
+    
+    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
+        let task = session.downloadTaskWithRequest(urlrequest, completionHandler: { (url, response, error) -> Void in
+            println(url,response,error)
+            if let actualError = error {
+                failure(error: actualError)
+            } else {
+                let urlResponse = response as NSHTTPURLResponse
+                if (urlResponse.statusCode == 400 ) {
+                    failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
+                } else {
+                    // TOODO make responseDictionary
+                    success(Dictionary())
+                }
+            }
+        })
+        lastPerformedTask = task
         return task
     }
     
@@ -52,6 +79,15 @@ extension APIClient {
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         let task = downloadTask(urlRequest, success: success, failure: failure)
+        return task
+    }
+    
+    // Only GET allowed
+    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+        let url = NSURL(string: url)
+        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.HTTPMethod = httpMethod.get.rawValue
+        let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task
     }
     
