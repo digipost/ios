@@ -19,9 +19,13 @@ struct Constants {
     }
     
     struct Account {
-        static let viewControllerIdentifier: String = "accountViewController"
-        static let refreshContentNotification: String = "refreshContentNotificiation"
-        static let cellIdentifier: String = "AccountCell"
+        static let viewControllerIdentifier = "accountViewController"
+        static let refreshContentNotification = "refreshContentNotificiation"
+        static let accountCellIdentifier = "accountCellIdentifier"
+        static let mainAccountCellIdentifier = "mainAccountCellIdentifier"
+        static let accountCellNibName = "AccountTableViewCell"
+        static let mainAccountCellNibName = "MainAccountTableViewCell"
+
     }
 
 }
