@@ -47,7 +47,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.registerNib(UINib(nibName: "AccountTableViewCell", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.cellIdentifier)
+        tableView.registerNib(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
+        tableView.registerNib(UINib(nibName: Constants.Account.accountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160
+        
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
 
@@ -90,18 +95,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
             }, failure: { (error: NSError!) -> Void in
-                
-                let key = AFNetworkingOperationFailingURLRequestErrorKey
-                if error.userInfo![key] != nil {
-                    let response =  error.userInfo![key] as NSHTTPURLResponse
-                    
+                                
+                /*if let response = error.userInfo?[AFNetworkingOperationFailingURLRequestErrorKey] as? NSHTTPURLResponse {
                     if response.isKindOfClass(NSHTTPURLResponse) {
                         if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
                             NSTimer.scheduledTimerWithTimeInterval(0.0, target: userDidInitiateRequest, selector: "updateContentsFromServerUserInitiatedRequest:", userInfo: nil, repeats: false)
                             return
                         }
                     }
-                }
+                }*/
         })
         
     }
