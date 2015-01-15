@@ -10,6 +10,7 @@ import UIKit
 
 class AccountTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var unreadMessages: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet var initialLabel: UILabel!
@@ -22,8 +23,6 @@ class AccountTableViewCell: UITableViewCell {
         self.accountImageView.backgroundColor = UIColor.lightGrayColor()
         // Set account image to be circular
         let imageWidth = accountImageView.frame.width
-        let cornerRadius = imageWidth/2
-        self.accountImageView.layer.cornerRadius = cornerRadius
         self.accountImageView.clipsToBounds = true
     }
 
