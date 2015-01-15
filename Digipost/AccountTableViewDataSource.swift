@@ -19,7 +19,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
         
         // Order the events by creation date, most recent first.
-        let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: true)
+        let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: false)
         let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
         fetchRequest.sortDescriptors = [ownerDescriptor,nameDescriptor]
         
@@ -66,18 +66,56 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mailboxCell", forIndexPath: indexPath)as UITableViewCell
         
-        let cell: AccountTableViewCell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.cellIdentifier, forIndexPath: indexPath) as AccountTableViewCell
-        self.configureCell(cell, atIndexPath: indexPath)
+        var cell: UITableViewCell?
+        //let mailBox: POSMailbox = self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
+
+        let mailBox = fetchMailBox(atIndexPath: indexPath)
         
-        return cell
+        if mailBox.owner == 0 {
+            cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.accountCellIdentifier, forIndexPath: indexPath) as AccountTableViewCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.mainAccountCellIdentifier, forIndexPath: indexPath) as MainAccountTableViewCell
+        }
+        
+        self.configureCell(cell!, atIndexPath: indexPath, mailBox: mailBox)
+        
+        return cell!
+        
     }
     
+    
     // Customize the appearance of table view cells.
-    func configureCell(cell: AccountTableViewCell, atIndexPath indexPath: NSIndexPath){
-        let mailBox: POSMailbox = self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
-       // cell.textLabel?.text = mailBox.name
-        cell.accountNameLabel.text = mailBox.name
+    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath, mailBox: POSMailbox){
+
+        let rootResource = mailBox.rootResource
+        
+        var unreadItemsString = ""
+        if let unreadItems = mailBox.unreadItemsInInbox {
+            if unreadItems == 0 {
+                unreadItemsString = "Ingen uleste brev"
+            } else if unreadItems == 1{
+                unreadItemsString = "\(unreadItems) ulest brev"
+            } else {
+                unreadItemsString = "\(unreadItems) uleste brev"
+            }
+        }
+        
+        if let accountCell = cell as? AccountTableViewCell {
+            accountCell.accountNameLabel.text = mailBox.name
+            accountCell.initialLabel.text = mailBox.name.getInitials()
+            accountCell.unreadMessages.text = unreadItemsString
+        } else if let mainAccountCell = cell as? MainAccountTableViewCell {
+            mainAccountCell.accountNameLabel.text = mailBox.name
+            mainAccountCell.initialLabel.text = mailBox.name.getInitials()
+            mainAccountCell.unreadMessages.text = unreadItemsString
+        }
     }
+    
+    // Convinience method for getteing the mailbox at an Indexpath in tableview
+    func fetchMailBox(atIndexPath indexPath: NSIndexPath) -> POSMailbox{
+        return self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
+    }
+    
     
     // convenience method for fetching objects at index path from the database
     func managedObjectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject{
@@ -99,8 +137,8 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         case NSFetchedResultsChangeType.Delete:
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         case NSFetchedResultsChangeType.Update:
-            let updateCell: AccountTableViewCell = self.tableView.cellForRowAtIndexPath(indexPath!) as AccountTableViewCell
-            self.configureCell(updateCell, atIndexPath: indexPath!)
+            let updateCell = self.tableView.cellForRowAtIndexPath(indexPath!)
+            self.configureCell(updateCell!, atIndexPath: indexPath!, mailBox: self.fetchMailBox(atIndexPath: indexPath!))
         case NSFetchedResultsChangeType.Move:
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
             self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainAccountCellIdentifier" id="KGk-i7-Jjw" customClass="MainAccountTableViewCell" customModule="Digipost" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hannes Waller" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIr-Tn-DgL">
+                        <rect key="frame" x="105" y="168" width="110.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3 uleste brev" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RSx-Rn-Qqw">
+                        <rect key="frame" x="111" y="198" width="98.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5uf-95-ZeQ">
+                        <rect key="frame" x="115" y="48" width="90" height="90"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rectangle 62" translatesAutoresizingMaskIntoConstraints="NO" id="KWN-lg-faK">
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="PIW-uP-lpl"/>
+                                    <constraint firstAttribute="height" constant="90" id="f7O-r9-KaM"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaj-BD-VJK">
+                                <rect key="frame" x="-0.5" y="0.0" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="d9F-cZ-AGJ"/>
+                                    <constraint firstAttribute="height" constant="90" id="eMU-bp-CnZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="35"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.45490199329999997" green="0.90588241820000004" blue="0.6549019814" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="90" id="4BA-nB-BMk"/>
+                            <constraint firstAttribute="width" constant="90" id="NFe-M3-5Be"/>
+                            <constraint firstAttribute="centerX" secondItem="KWN-lg-faK" secondAttribute="centerX" id="b2G-Qj-G9M"/>
+                            <constraint firstAttribute="centerX" secondItem="qaj-BD-VJK" secondAttribute="centerX" id="fTq-0d-aWq"/>
+                            <constraint firstAttribute="centerY" secondItem="KWN-lg-faK" secondAttribute="centerY" id="fix-Er-kYK"/>
+                            <constraint firstAttribute="centerY" secondItem="qaj-BD-VJK" secondAttribute="centerY" id="vdD-VI-wHx"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="centerX" secondItem="RSx-Rn-Qqw" secondAttribute="centerX" id="5Z3-cc-xxM"/>
+                    <constraint firstAttribute="centerX" secondItem="vIr-Tn-DgL" secondAttribute="centerX" id="JaQ-kG-d7o"/>
+                    <constraint firstItem="vIr-Tn-DgL" firstAttribute="top" secondItem="5uf-95-ZeQ" secondAttribute="bottom" constant="30" id="Jkb-4N-8At"/>
+                    <constraint firstAttribute="centerX" secondItem="5uf-95-ZeQ" secondAttribute="centerX" id="Lsc-oo-lwR"/>
+                    <constraint firstItem="RSx-Rn-Qqw" firstAttribute="top" secondItem="vIr-Tn-DgL" secondAttribute="bottom" constant="10" id="MIb-va-qOr"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RSx-Rn-Qqw" secondAttribute="bottom" constant="21.5" id="aPB-Dh-YNJ"/>
+                    <constraint firstAttribute="centerX" secondItem="5uf-95-ZeQ" secondAttribute="centerX" id="apu-Z0-1QE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RSx-Rn-Qqw" secondAttribute="bottom" constant="23" id="ccj-Nl-pV6"/>
+                    <constraint firstItem="5uf-95-ZeQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="37" id="jTa-6U-ekS"/>
+                    <constraint firstItem="5uf-95-ZeQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="40" id="mBJ-a6-gRb"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="apu-Z0-1QE"/>
+                        <exclude reference="jTa-6U-ekS"/>
+                        <exclude reference="aPB-Dh-YNJ"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="accountImageView" destination="KWN-lg-faK" id="wHG-da-tqH"/>
+                <outlet property="accountNameLabel" destination="vIr-Tn-DgL" id="3EG-oT-Jy7"/>
+                <outlet property="initialLabel" destination="qaj-BD-VJK" id="TES-ZR-oW3"/>
+                <outlet property="unreadMessages" destination="RSx-Rn-Qqw" id="u1z-xP-xGS"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Rectangle 62" width="146" height="146"/>
+    </resources>
+</document>
