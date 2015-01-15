@@ -501,8 +501,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             case 0: {
                 switch (indexPath.row) {
                     case 0: {
-                        [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                                  sender:self.inboxFolder];
+                                                [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                                                          sender:self.inboxFolder];
                         break;
                     }
                     case 1: {
@@ -518,15 +518,17 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     case 3: {
                         NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
                         [[UIApplication sharedApplication] openURL:url];
+                        break;
                     }
                     default:
                         break;
                 }
-            }
+            } break;
             case 1:
                 if (indexPath.row == self.folders.count) {
                     [self performSegueWithIdentifier:kEditFolderSegue
                                               sender:self];
+
                 } else {
                     [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
                 }
