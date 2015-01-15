@@ -9,6 +9,26 @@
 /* Begin PBXBuildFile section */
 		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		3118486D1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		3118486E1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		3118486F1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		311848701A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		311848721A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		316D3BBF1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		316D3BC11A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		316D3BC21A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
+		3194C83E1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
+		3194C83F1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
+		3194C8401A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
+		3194C8411A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		31B57FF61A669150008952DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		31B57FF71A6691E3008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
@@ -105,9 +125,6 @@
 		83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
 		83D75F5F1858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
 		83D75F601858E5790013F8C9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
-		83D75F631858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
-		83D75F641858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
-		83D75F651858E5790013F8C9 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
 		83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
 		83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
 		83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
@@ -329,7 +346,6 @@
 		EC55F4021A2C5ACC00A3192C /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		EC55F4031A2C5ACC00A3192C /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		EC55F4041A2C5ACC00A3192C /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
-		EC55F4051A2C5ACC00A3192C /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
 		EC55F4061A2C5ACC00A3192C /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
 		EC55F4071A2C5ACC00A3192C /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
 		EC55F4081A2C5ACC00A3192C /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
@@ -517,7 +533,6 @@
 		ECF486941A47157500E97519 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		ECF486951A47158700E97519 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
 		ECF486961A47158A00E97519 /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
-		ECF486971A47158D00E97519 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F621858E5790013F8C9 /* POSMailbox.m */; };
 		ECF486981A47159600E97519 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		ECF486991A47159900E97519 /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
 		ECF4869A1A4715A100E97519 /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
@@ -626,6 +641,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAccountTableViewCell.swift; sourceTree = "<group>"; };
+		3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAccountTableViewCell.xib; sourceTree = "<group>"; };
+		316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
+		316D3BBC1A67F501004E3291 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
+		316D3BBD1A67F501004E3291 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
+		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -691,8 +712,6 @@
 		83D75F581858E5790013F8C9 /* POSFolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolder.m; sourceTree = "<group>"; };
 		83D75F5C1858E5790013F8C9 /* POSAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAttachment.h; sourceTree = "<group>"; };
 		83D75F5D1858E5790013F8C9 /* POSAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAttachment.m; sourceTree = "<group>"; };
-		83D75F611858E5790013F8C9 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
-		83D75F621858E5790013F8C9 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
 		83D75F661858E5790013F8C9 /* POSRootResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSRootResource.h; sourceTree = "<group>"; };
 		83D75F671858E5790013F8C9 /* POSRootResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSRootResource.m; sourceTree = "<group>"; };
 		83D75F6B1858E9C20013F8C9 /* POSModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSModelManager.h; sourceTree = "<group>"; };
@@ -948,8 +967,8 @@
 				83D75F671858E5790013F8C9 /* POSRootResource.m */,
 				EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */,
 				EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */,
-				83D75F611858E5790013F8C9 /* POSMailbox.h */,
-				83D75F621858E5790013F8C9 /* POSMailbox.m */,
+				316D3BBC1A67F501004E3291 /* POSMailbox.h */,
+				316D3BBD1A67F501004E3291 /* POSMailbox.m */,
 				ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */,
 				83D75F5C1858E5790013F8C9 /* POSAttachment.h */,
 				83D75F5D1858E5790013F8C9 /* POSAttachment.m */,
@@ -1263,6 +1282,7 @@
 			children = (
 				EC2B64621A66928D00AB6085 /* Dispatch.swift */,
 				ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */,
+				3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */,
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
 				EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */,
 				EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */,
@@ -1301,6 +1321,8 @@
 				EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */,
 				AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */,
 				AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */,
+				3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */,
+				3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */,
 				AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */,
 			);
 			name = Accounts;
@@ -1491,6 +1513,7 @@
 			files = (
 				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
+				311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
 				ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
@@ -1509,6 +1532,7 @@
 			files = (
 				83F7038718573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
+				311848721A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A71A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
@@ -1527,6 +1551,7 @@
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
+				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
@@ -1553,6 +1578,7 @@
 				EC55F4271A2C5ACC00A3192C /* Main_iPad.storyboard in Resources */,
 				EC55F4281A2C5ACC00A3192C /* Main_iPhone.storyboard in Resources */,
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
+				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				EC55F42A1A2C5ACC00A3192C /* LaunchScreen.xib in Resources */,
 				EC55F42B1A2C5ACC00A3192C /* InfoPlist.strings in Resources */,
 			);
@@ -1565,6 +1591,7 @@
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
 				EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */,
+				311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				EC55F4341A2C718200A3192C /* Main_iPhone.storyboard in Resources */,
 				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
 				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
@@ -1737,6 +1764,7 @@
 				EC2C82D6192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355181861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				3118486E1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4D19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -1792,6 +1820,7 @@
 				83D75F771859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A41A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
+				3194C83F1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8E1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
@@ -1807,11 +1836,11 @@
 				EC31A63F1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */,
 				83F7038318573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E071A5BE8DB004C829D /* APIResponse.swift in Sources */,
+				316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508551958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512B18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECDB9A051A5A904E0013DF4F /* Constants.swift in Sources */,
 				ECCC5CAD19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
-				83D75F651858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07518AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				ECB4C66019B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
@@ -1850,6 +1879,7 @@
 				EC2C82D5192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355171861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				3118486D1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				EC51BA2A19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4C19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -1906,6 +1936,7 @@
 				83D75F761859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A31A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
+				3194C83E1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8D1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
@@ -1921,11 +1952,11 @@
 				EC31A63E1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */,
 				83F7038218573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E061A5BE8DB004C829D /* APIResponse.swift in Sources */,
+				316D3BBF1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512A18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECDB9A041A5A904E0013DF4F /* Constants.swift in Sources */,
 				ECCC5CAC19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
-				83D75F641858E5790013F8C9 /* POSMailbox.m in Sources */,
 				EC68C07418AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				ECB4C65F19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
@@ -1963,6 +1994,7 @@
 				EC2C82D4192A166900A6D4B8 /* POSAccountViewController.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -2018,6 +2050,7 @@
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
+				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
@@ -2033,11 +2066,11 @@
 				EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */,
 				83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
+				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECDB9A031A5A904E0013DF4F /* Constants.swift in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
-				83D75F631858E5790013F8C9 /* POSMailbox.m in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
@@ -2076,6 +2109,7 @@
 				EC55F3C21A2C5ACC00A3192C /* POSAccountViewController.m in Sources */,
 				EC55F3C31A2C5ACC00A3192C /* POSLetterViewController.m in Sources */,
 				EC55F3C41A2C5ACC00A3192C /* NSString+RandomNumber.m in Sources */,
+				311848701A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				EC55F3C51A2C5ACC00A3192C /* UIImage+Size.swift in Sources */,
 				EC55F3C61A2C5ACC00A3192C /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				EC55F3C71A2C5ACC00A3192C /* NSFetchedResultsController+Additions.m in Sources */,
@@ -2131,6 +2165,7 @@
 				EC55F3F41A2C5ACC00A3192C /* POSFolderTableViewCell.m in Sources */,
 				EC55F3F51A2C5ACC00A3192C /* NSError+ExtraInfo.m in Sources */,
 				EC55F3F61A2C5ACC00A3192C /* UIImageView+Color.swift in Sources */,
+				3194C8411A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				EC55F3F71A2C5ACC00A3192C /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC55F3F81A2C5ACC00A3192C /* UIColor+Convenience.m in Sources */,
@@ -2146,11 +2181,11 @@
 				EC55F4001A2C5ACC00A3192C /* UploadMenuTableViewCell.swift in Sources */,
 				EC55F4011A2C5ACC00A3192C /* POSOAuthManager.m in Sources */,
 				ECC08E091A5BE8DB004C829D /* APIResponse.swift in Sources */,
+				316D3BC21A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC55F4021A2C5ACC00A3192C /* POSNoRotationNavigationController.m in Sources */,
 				EC55F4031A2C5ACC00A3192C /* POSLetterPopoverView.m in Sources */,
 				ECDB9A061A5A904E0013DF4F /* Constants.swift in Sources */,
 				EC55F4041A2C5ACC00A3192C /* UIWindow+Navigation.swift in Sources */,
-				EC55F4051A2C5ACC00A3192C /* POSMailbox.m in Sources */,
 				EC55F4061A2C5ACC00A3192C /* POSLetterPopoverTableViewCell.m in Sources */,
 				EC55F4071A2C5ACC00A3192C /* AHKActionSheet+Convenience.m in Sources */,
 				EC55F4081A2C5ACC00A3192C /* SHCBaseTableViewController.m in Sources */,
@@ -2189,6 +2224,7 @@
 				ECF486D81A471A1F00E97519 /* POSUploadTableViewDataSource.m in Sources */,
 				ECF486B51A4719F400E97519 /* SHCAppDelegate+Appearance.swift in Sources */,
 				ECF486F21A471A3600E97519 /* SHCAttachmentTableViewCell.m in Sources */,
+				3118486F1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				ECF486B71A4719F400E97519 /* UIFont+DigipostFonts.swift in Sources */,
 				ECF486FD1A471A7B00E97519 /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				ECF486BA1A4719F400E97519 /* UIToolbar+Actions.swift in Sources */,
@@ -2248,6 +2284,7 @@
 				ECF486F81A471A3D00E97519 /* POSAccountViewTableViewDataSource.m in Sources */,
 				ECF4869F1A4715B600E97519 /* POSRootResource.m in Sources */,
 				AF23423E1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
+				3194C8401A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				ECF486A41A4715CB00E97519 /* POSBaseEncryptedModel.m in Sources */,
 				ECF486B41A4719F400E97519 /* NSDate+Extensions.swift in Sources */,
 				EC22CF8F1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
@@ -2263,6 +2300,7 @@
 				ECF486CB1A471A1200E97519 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				ECF486DF1A471A2E00E97519 /* NSString+CoreDataConvenience.m in Sources */,
 				ECF486A01A4715B800E97519 /* POSMailbox+Methods.m in Sources */,
+				316D3BC11A67F501004E3291 /* POSMailbox.m in Sources */,
 				ECF486951A47158700E97519 /* POSAttachment.m in Sources */,
 				ECF4869C1A4715A600E97519 /* POSNotice.m in Sources */,
 				31B57FF61A669150008952DE /* Constants.swift in Sources */,
@@ -2288,7 +2326,6 @@
 				ECF486D71A471A1F00E97519 /* POSUploadViewController.m in Sources */,
 				ECF486CE1A471A1200E97519 /* POSReceiptsTableViewDataSource.m in Sources */,
 				ECF4869B1A4715A300E97519 /* POSFileManager.m in Sources */,
-				ECF486971A47158D00E97519 /* POSMailbox.m in Sources */,
 				EC2B64661A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF486C81A471A1200E97519 /* POSDocumentsViewController.m in Sources */,
 				EC2E9E371A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift in Sources */,
@@ -2823,6 +2860,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
 				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
 				EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */,
 				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
@@ -2834,7 +2872,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */;
+			currentVersion = 316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
