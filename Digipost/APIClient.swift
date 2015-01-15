@@ -184,7 +184,6 @@ class APIClient : NSObject {
         validateTokensThenPerformTask(task!)
     }
     
-    func
 //
 //    - (void)updateBankAccountWithUri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *))failure
 //{
