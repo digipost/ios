@@ -20,6 +20,7 @@ NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
 NSString *const kMailboxLinkCreateFolderAPIKeySuffix = @"create_folder";
 NSString *const kMailboxLinkUpdateFoldersAPIKeySuffix = @"update_folders";
 NSString *const kMailboxLinkUploadToInboxFolderAPIKeySuffix = @"upload_document_to_inbox";
+NSString *const kMailboxUnreadItemsInInbox = @"unreadItemsInInbox";
 
 NSString *const kMailboxLinkFoldersAPIKeySuffix = @"folders";
 NSString *const kMailboxLinkFolderAPIKeySuffix = @"folder";
@@ -45,6 +46,11 @@ NSString *const kMailboxEntityName = @"Mailbox";
     NSNumber *owner = attributes[NSStringFromSelector(@selector(owner))];
     mailbox.owner = [owner isKindOfClass:[NSNumber class]] ? owner : nil;
 
+    mailbox.unreadItemsInInbox =
+    [attributes[kMailboxUnreadItemsInInbox] isKindOfClass:[NSNumber class]]
+    ? attributes[kMailboxUnreadItemsInInbox]
+    : @0;
+    
     NSArray *links = attributes[@"link"];
     NSString *uploadDocumentURI = @"";
     POSFolder *inboxFolder;
