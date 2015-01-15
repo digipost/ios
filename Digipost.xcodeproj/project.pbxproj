@@ -162,6 +162,7 @@
 		AF23423E1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		AF23423F1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FB19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -2280,6 +2281,7 @@
 				ECF486EB1A471A2E00E97519 /* NSString+SHA1String.m in Sources */,
 				EC7C1AEF1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				ECF486D31A471A1A00E97519 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */,
 				ECF486EA1A471A2E00E97519 /* NSError+ExtraInfo.m in Sources */,
 				ECF486E91A471A2E00E97519 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */,
