@@ -1608,8 +1608,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             // Subject
             NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
             NSString *subject = [fileName substringToIndex:rangeOfExtension.location];
-            subject = [subject stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            [formData appendPartWithFormData:[subject dataUsingEncoding:NSASCIIStringEncoding] name:@"subject"];
+            subject = [subject stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSData *subjectAsData = [subject dataUsingEncoding:NSUTF8StringEncoding];
+            
+            [formData appendPartWithFormData:subjectAsData name:@"subject"];
             
             NSError *error = nil;
             NSData *fileData = [NSData dataWithContentsOfURL:uploadURL options:NSDataReadingMappedIfSafe error:&error];
