@@ -1571,8 +1571,10 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             // Subject
             NSRange rangeOfExtension = [fileName rangeOfString:[NSString stringWithFormat:@".%@", [uploadURL pathExtension]]];
             NSString *subject = [fileName substringToIndex:rangeOfExtension.location];
-            subject = [subject stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            [formData appendPartWithFormData:[subject dataUsingEncoding:NSASCIIStringEncoding] name:@"subject"];
+            subject = [subject stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSData *subjectAsData = [subject dataUsingEncoding:NSUTF8StringEncoding];
+            
+            [formData appendPartWithFormData:subjectAsData name:@"subject"];
             
             NSError *error = nil;
             NSData *fileData = [NSData dataWithContentsOfURL:uploadURL options:NSDataReadingMappedIfSafe error:&error];
@@ -1699,7 +1701,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateChangeDocumentNameFinished;
             }
         }];
-    } failure:^(NSError *error){}];
+    } failure:^(NSError *error){
+    }];
 }
 
 - (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure
@@ -1804,7 +1807,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                 self.state = SHCAPIManagerStateMovingFoldersFinished;
             }
         }];
-    } failure:^(NSError *error){}];
+    } failure:^(NSError *error){
+    }];
 }
 
 - (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure
