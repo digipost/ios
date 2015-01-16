@@ -286,30 +286,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     return cell;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing
-             animated:animated];
-    //
-    //    if (editing) {
-    //        if ([self.folders count] == 0) {
-    //        } else {
-    //            [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-    //                                                                         inSection:1] ]
-    //                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-    //        }
-    //    } else if (animated) {
-    //        if ([self.folders count] == 0) {
-    //            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1]
-    //                          withRowAnimation:UITableViewRowAnimationAutomatic];
-    //        } else {
-    //            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-    //                                                                         inSection:1] ]
-    //                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-    //        }
-    //    }
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -500,8 +476,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             case 0: {
                 switch (indexPath.row) {
                     case 0: {
-                                                [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                                                          sender:self.inboxFolder];
+                        [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                                  sender:self.inboxFolder];
                         break;
                     }
                     case 1: {
