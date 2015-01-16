@@ -501,8 +501,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             case 0: {
                 switch (indexPath.row) {
                     case 0: {
-                                                [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                                                          sender:self.inboxFolder];
+                        [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                                  sender:self.inboxFolder];
                         break;
                     }
                     case 1: {
