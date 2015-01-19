@@ -13,9 +13,11 @@
 #import "UIViewController+BackButton.h"
 #import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
+#import "POSNewFolderViewController.h"
 #import <UIAlertView+Blocks.h>
 
 NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocumentNotification";
+NSString *const kUploadNewFolderSegue = @"createNewFolderSegue";
 
 @interface POSUploadViewController () <UITableViewDelegate>
 
@@ -24,6 +26,7 @@ NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocument
 @property (nonatomic, strong) POSUploadTableViewDataSource *dataSource;
 @property (nonatomic, strong) POSMailbox *chosenMailBox;
 @property (nonatomic, strong) POSFolder *chosenFolder;
+
 @end
 
 NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
@@ -33,7 +36,6 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
@@ -55,12 +57,21 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
+    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
+
+    } failure:^(NSError *error){
+
+    }];
 }
 
 - (void)closeView
 {
-    [self dismissViewControllerAnimated:YES completion:^{}];
-    [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
+    [self dismissViewControllerAnimated:YES completion:^{
+
+    }];
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -70,9 +81,10 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
-        [self dismissViewControllerAnimated:YES completion:^{}];
+        [self dismissViewControllerAnimated:YES completion:^{
+        }];
         [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            }];
+        }];
 
         [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
@@ -113,6 +125,13 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         POSMailbox *selectedMailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
         uploadViewcontroller.chosenMailBox = selectedMailbox;
         uploadViewcontroller.url = self.url;
+    } else if ([segue.identifier isEqualToString:kUploadNewFolderSegue]) {
+        POSNewFolderViewController *newFolderViewController = segue.destinationViewController;
+        if (self.chosenMailBox == nil) {
+            newFolderViewController.mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        } else {
+            newFolderViewController.mailbox = self.chosenMailBox;
+        }
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
