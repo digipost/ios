@@ -29,7 +29,6 @@
     if (self) {
         self.tableView = tableView;
         tableView.dataSource = self;
-        _fetchedResultsController.delegate = self;
     }
     return self;
 }
@@ -137,6 +136,7 @@
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self fetchRequest] managedObjectContext:[POSModelManager sharedManager].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     NSError *error;
     [_fetchedResultsController performFetch:&error];
+    _fetchedResultsController.delegate = self;
 
     if (error) {
         NSLog(@"%@", error);
@@ -160,7 +160,7 @@
     switch (type) {
 
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeDelete:
