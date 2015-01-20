@@ -14,16 +14,20 @@ class AccountTableViewCell: UITableViewCell {
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var accountImageView: UIImageView!
     @IBOutlet var initialLabel: UILabel!
-    
+    @IBOutlet weak var accountDescriptionLabel: UILabel!
+        
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
-        // Set defaul image background
-        self.accountImageView.backgroundColor = UIColor.lightGrayColor()
         // Set account image to be circular
-        let imageWidth = accountImageView.frame.width
-        self.accountImageView.clipsToBounds = true
+        
+        accountImageView.layer.cornerRadius = accountImageView.frame.width / 2
+        accountImageView.backgroundColor = UIColor.digipostProfileViewBackground()
+        accountImageView.clipsToBounds = true
+        accountNameLabel.textColor = UIColor.digipostProfileTextColor()
+
+        initialLabel.textColor = UIColor.digipostProfileViewInitials()
+        unreadMessages.textColor = UIColor.digipostProfileTextColor()
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
