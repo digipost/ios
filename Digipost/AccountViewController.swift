@@ -52,6 +52,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
+        tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        
+        var tblView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = tblView
+        tableView.tableFooterView?.hidden = true
+        tableView.backgroundColor = UIColor.digipostAccountViewBackground()
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
@@ -90,6 +97,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         updateContentsFromServerUseInitiateRequest(0)
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        cell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
