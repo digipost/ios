@@ -10,16 +10,16 @@ import Foundation
 
 extension String {
 
-    func getInitials() -> String {
+    func initials() -> String {
         
         var arr = split(self) { $0 == " " }
         
         if arr.count == 0 { return "" }
         
-        return  arr[0].getFirstLetter() + arr[arr.count - 1].getFirstLetter()
+        return  arr[0].firstLetter() + arr[arr.count - 1].firstLetter()
     }
     
-    func getFirstLetter() -> String {
+    func firstLetter() -> String {
         for c in self {
             return "\(c)"
         }
