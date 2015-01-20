@@ -147,6 +147,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                  kOAuth2RefreshToken : refreshToken,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
 
+    NSLog(@"parameters: %@",parameters);
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -179,7 +180,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                           if (failure) {
                               // Check to see if the request failed because the refresh token was denied
 
-                              if ([[POSAPIManager sharedManager] responseCodeForOAuthIsUnauthorized:task.response]) {
+                              if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response] ) {
                                   NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                              code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];

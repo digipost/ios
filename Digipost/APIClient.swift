@@ -9,7 +9,7 @@
 import Foundation
 import MobileCoreServices
 
-class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate,NSURLSessionDownloadDelegate {
+class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
     enum httpMethod : String {
         case post = "POST"
@@ -60,37 +60,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
         })
         
-        
         RACObserve(self, "taskWasUnAuthorized").subscribeNext { (anyObject) -> Void in
             OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
             if let actualTask = self.lastPerformedTask {
                 self.validateTokensThenPerformTask(actualTask)
             }
-            
         }
-    }
-    
-    func URLSession(session: NSURLSession, downloadTask: NSURLSessionDownloadTask, didFinishDownloadingToURL location: NSURL) {
-        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    }
-    func URLSession(session: NSURLSession, didBecomeInvalidWithError error: NSError?) {
-        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-
-    }
-    
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) {
-        println(session,task)
-        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    }
-    
-    func URLSession(session: NSURLSession, dataTask: NSURLSessionDataTask, didReceiveData data: NSData) {
-        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-    }
-    
-    
-    func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-        println(" \n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-        println(session,task,bytesSent)
 
     }
     
@@ -98,8 +73,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let athing = self.session.delegate! as NSURLSessionDelegate
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         println(self.session.configuration.HTTPAdditionalHeaders)
-        self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
-        println(self.session.configuration.HTTPAdditionalHeaders)
+        if let accessToken = oAuthToken?.accessToken {
+            self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
+            println(self.session.configuration.HTTPAdditionalHeaders)
+        }
     }
     
     class func stringFromArguments(arguments: Dictionary<String,AnyObject>?) -> String? {
@@ -117,13 +94,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         println("\(task.originalRequest.allHTTPHeaderFields)")
         println(self.session.configuration.HTTPAdditionalHeaders)
         validateOAuthToken(kOauth2ScopeFull) {
-            println("resume task")
             println(self.session.configuration.HTTPAdditionalHeaders)
-            
             println("\(task.originalRequest.allHTTPHeaderFields)")
             task.resume()
         }
     }
+    
     func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: NSError) -> ()) {
         let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
         let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
@@ -168,13 +144,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
-    func updateRootResource(#success: () -> Void , failure: (error: NSError) -> ()) {
-        let task = urlSessionTask(httpMethod.get, url: __ROOT_RESOURCE_URI__, success: success, failure: failure)
+    func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) {
+        println("update root resource")
+        let rootResource = __ROOT_RESOURCE_URI__
+        let task = urlSessionJSONTask(url: rootResource, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func updateBankAccount(#uri : String, success: () -> Void , failure: (error: NSError) -> ()) {
-        let task = urlSessionTask(httpMethod.get, url: uri, success: success, failure: failure)
+    func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) {
+        let task = urlSessionJSONTask(url: uri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
@@ -183,21 +161,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
-    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: () -> Void, failure: (error: NSError) -> ()) {
-        let task = urlSessionTask(httpMethod.get, url: folderUri, success: success, failure: failure)
+    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: NSError) -> ()) {
+        let task = urlSessionJSONTask(url: folderUri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: NSError) -> ()) {
-        
         var didChooseHigherScope = false
         var highestScope : String?
         var baseEncryptedModelIsAttachment = false
-        
         if let attachment = baseEncryptionModel as? POSAttachment {
             baseEncryptedModelIsAttachment = true
             let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-            if scope == kOauth2ScopeFull {
+           if scope == kOauth2ScopeFull {
                 highestScope = kOauth2ScopeFull
             } else {
                 highestScope = OAuthToken.highestScopeInStorageForScope(scope)
@@ -231,11 +207,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 //            println(ractuple)
 //            println("Heloo world")
 //        }
-//        
+        
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
         
-        let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, success: { (url) -> Void in
+        let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
+        
             var changedBaseEncryptedModel : POSBaseEncryptedModel?
             if baseEncryptedModelIsAttachment {
                 changedBaseEncryptedModel = POSAttachment.existingAttachmentWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
@@ -255,8 +232,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             
             success()
-            
-            }, failure: failure)
+                    }
+    , failure: failure)
+    
         validateTokensThenPerformTask(task!)
     }
     
@@ -403,6 +381,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 success()
                 }, failure: { (error) -> Void in
                     // TODO handle failure
+                    println(error)
             })
         }else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
             
@@ -410,7 +389,34 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             
         }
     }
+    func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
+        let HTTPResponse = response as NSHTTPURLResponse
+        switch HTTPResponse {
+        case 400:
+            return true
+        case 401:
+            return true
+        case 403:
+            return true
+        default:
+            return false
+        }
+    }
+//    
     
+//    - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response
+//    {
+//    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+//    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+//    if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized.
+//    [HTTPResponse statusCode] == 401 || // Unauthorized.
+//    [HTTPResponse statusCode] == 403) { // Forbidden.
+//    return YES;
+//    }
+//    }
+//    
+//    return NO;
+//    }
     private class func incrementTaskCounter() {
         APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
         APIClient.sharedClient.taskCounter++

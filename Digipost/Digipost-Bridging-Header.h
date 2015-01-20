@@ -18,5 +18,6 @@
 #import "POSOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
+#import "POSRootResource.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "POSModelManager.h"
