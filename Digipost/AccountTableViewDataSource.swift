@@ -73,6 +73,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         
         if mailBox.owner == 0 {
             cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.accountCellIdentifier, forIndexPath: indexPath) as AccountTableViewCell
+            
         } else {
             cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.mainAccountCellIdentifier, forIndexPath: indexPath) as MainAccountTableViewCell
         }
@@ -91,22 +92,25 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         
         var unreadItemsString = ""
         if let unreadItems = mailBox.unreadItemsInInbox {
-            if unreadItems == 0 {
-                unreadItemsString = "Ingen uleste brev"
-            } else if unreadItems == 1{
-                unreadItemsString = "\(unreadItems) ulest brev"
+            var str = ""
+            if unreadItems == 1{
+                str = NSLocalizedString("account view unread letter", comment: "Unread message")
+                unreadItemsString = "\(unreadItems). \(str)"
             } else {
-                unreadItemsString = "\(unreadItems) uleste brev"
+                str = NSLocalizedString("account view unread letters", comment: "Unread messages")
+                unreadItemsString = "\(unreadItems) \(str)"
             }
         }
         
         if let accountCell = cell as? AccountTableViewCell {
             accountCell.accountNameLabel.text = mailBox.name
-            accountCell.initialLabel.text = mailBox.name.getInitials()
+            accountCell.initialLabel.text = mailBox.name.initials()
             accountCell.unreadMessages.text = unreadItemsString
+            accountCell.accountDescriptionLabel.text = NSLocalizedString("account description shared", comment: "Shared with you")
+            
         } else if let mainAccountCell = cell as? MainAccountTableViewCell {
             mainAccountCell.accountNameLabel.text = mailBox.name
-            mainAccountCell.initialLabel.text = mailBox.name.getInitials()
+            mainAccountCell.initialLabel.text = mailBox.name.initials()
             mainAccountCell.unreadMessages.text = unreadItemsString
         }
     }
