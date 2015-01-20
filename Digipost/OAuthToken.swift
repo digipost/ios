@@ -100,8 +100,6 @@ class OAuthToken: NSObject, NSCoding{
         
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
-        }else {
-            return nil
         }
         self.scope = scope
         storeInKeyChain()
@@ -110,8 +108,8 @@ class OAuthToken: NSObject, NSCoding{
     convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
         var aRefreshToken: String?
         var anAccessToken: String?
-        aRefreshToken = attributes["refresh_token"] as String?
-        anAccessToken = attributes["access_token"] as String?
+        aRefreshToken = attributes["refresh_token"] as? String
+        anAccessToken = attributes["access_token"] as? String
         self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope)
         storeInKeyChain()
     }
