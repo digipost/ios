@@ -36,20 +36,13 @@ extension APIClient {
     }
     
     func downloadTask(urlrequest: NSURLRequest, success: (url: NSURL) -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
-        let task = session.downloadTaskWithRequest(urlrequest, completionHandler: { (url, response, error) -> Void in
-            println(url,response,error)
-            if let actualError = error {
-                failure(error: actualError)
-            } else {
-                let urlResponse = response as NSHTTPURLResponse
-                if (urlResponse.statusCode == 400 ) {
-                    failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
-                } else {
-                    println(response)
-                    success(url: url)
-                }
-            }
-        })
+        let task = session.downloadTaskWithRequest(urlrequest, completionHandler: nil)
+        
+        rac_signalForSelector(Selector("URLSession:task:didCompleteWithError:"), fromProtocol:NSURLSessionTaskDelegate.self).subscribeNext { (tuple) -> Void in
+            println(tuple)
+        }
+        
+        
         lastPerformedTask = task
         return task
     }
@@ -73,14 +66,33 @@ extension APIClient {
         return task
     }
     
-    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String , success: (url: NSURL) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress, success: (url: NSURL) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
+        
+        RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
+            let urlSession = racTuple.first as NSURLSession
+            let downloadTask = racTuple.second as NSURLSessionDownloadTask
+            let location = racTuple.third as NSURL
+//            if (urlResponse.statusCode == 400 ) {
+//       k             failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
+//                } else {
+//                    println(response)
+            success(url: location)
+            
+        }
+        
+        RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
+            let totalBytesWritten = racTuple.third as NSNumber
+            progress.totalUnitCount = totalBytesWritten.longLongValue
+        }
+        
         let task = downloadTask(urlRequest, success: success, failure: failure)
         return task
     }
+    
     
     // Only GET allowed
     func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
