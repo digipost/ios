@@ -361,6 +361,11 @@
 		EC63A83A1A6E73E500708A75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC63A83B1A6E744300708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC63A83C1A6E744400708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
+		EC63A83E1A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
+		EC63A83F1A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
+		EC63A8401A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
+		EC63A8411A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
+		EC63A8421A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
 		EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
 		EC68C07418AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
@@ -757,6 +762,7 @@
 		EC56AACB1A24C92900720109 /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
 		EC63A8341A6E701D00708A75 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		EC63A83D1A6E74EB00708A75 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -1257,6 +1263,7 @@
 			isa = PBXGroup;
 			children = (
 				EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */,
+				EC63A83D1A6E74EB00708A75 /* APITests.swift */,
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC56AAC91A24C7DD00720109 /* rootresource.json */,
 				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
@@ -1684,6 +1691,7 @@
 				83D75F601858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B77187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07A18AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				EC63A8401A6E74EB00708A75 /* APITests.swift in Sources */,
 				83D2F7EA1875578A00344644 /* POSFileManager.m in Sources */,
 				EC7FC6A919DD795A00886D41 /* UINavigationController+Extensions.swift in Sources */,
 				ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
@@ -1794,6 +1802,7 @@
 				83D75F5F1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B76187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				EC68C07918AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				EC63A83F1A6E74EB00708A75 /* APITests.swift in Sources */,
 				83D2F7E91875578A00344644 /* POSFileManager.m in Sources */,
 				EC7FC6A819DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
 				ECB1354C1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
@@ -1904,6 +1913,7 @@
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
+				EC63A83E1A6E74EB00708A75 /* APITests.swift in Sources */,
 				83DB4AEB188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
 				ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
@@ -2014,6 +2024,7 @@
 				EC55F3C81A2C5ACC00A3192C /* POSAttachment.m in Sources */,
 				EC55F3C91A2C5ACC00A3192C /* UIViewController+NeedsReload.m in Sources */,
 				EC55F3CA1A2C5ACC00A3192C /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				EC63A8421A6E74EB00708A75 /* APITests.swift in Sources */,
 				EC55F3CB1A2C5ACC00A3192C /* POSFileManager.m in Sources */,
 				EC55F3CC1A2C5ACC00A3192C /* UINavigationController+Extensions.swift in Sources */,
 				EC55F3CD1A2C5ACC00A3192C /* POSAPIManager+PrivateMethods.m in Sources */,
@@ -2124,6 +2135,7 @@
 				ECF486EC1A471A2E00E97519 /* UIViewController+NeedsReload.m in Sources */,
 				ECF486B81A4719F400E97519 /* UIImage+Localization.swift in Sources */,
 				ECF486CD1A471A1200E97519 /* POSReceiptsViewController.m in Sources */,
+				EC63A8411A6E74EB00708A75 /* APITests.swift in Sources */,
 				ECF487011A471A8000E97519 /* UploadMenuViewController.swift in Sources */,
 				ECF486E61A471A2E00E97519 /* UIView+AutoLayout.m in Sources */,
 				ECF486991A47159900E97519 /* POSFolder.m in Sources */,
