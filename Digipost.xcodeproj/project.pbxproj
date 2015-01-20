@@ -358,6 +358,9 @@
 		EC63A8371A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		EC63A8381A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		EC63A8391A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
+		EC63A83A1A6E73E500708A75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
+		EC63A83B1A6E744300708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
+		EC63A83C1A6E744400708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
 		EC68C07418AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
@@ -1798,6 +1801,7 @@
 				EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				EC56AAB81A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				EC63A83C1A6E744400708A75 /* NSObject+RACConvenience.swift in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1419347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				8364D715185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
@@ -2127,6 +2131,7 @@
 				ECF486D21A471A1A00E97519 /* POSLetterPopoverView.m in Sources */,
 				ECF486D11A471A1600E97519 /* POSLetterViewController.m in Sources */,
 				ECF486E51A471A2E00E97519 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				EC63A83B1A6E744300708A75 /* NSObject+RACConvenience.swift in Sources */,
 				ECF486D01A471A1600E97519 /* POSReceiptTableViewCell.m in Sources */,
 				ECF486E71A471A2E00E97519 /* UILabel+Digipost.m in Sources */,
 				ECF486BB1A4719F400E97519 /* UINavigationController+Extensions.swift in Sources */,
@@ -2141,6 +2146,7 @@
 				ECF487051A471A8000E97519 /* UploadGuideViewController.swift in Sources */,
 				ECF486E31A471A2E00E97519 /* UIRefreshControl+Additions.m in Sources */,
 				ECF486CA1A471A1200E97519 /* POSReceiptFoldersTableViewController.m in Sources */,
+				EC63A83A1A6E73E500708A75 /* Constants.swift in Sources */,
 				ECF486CC1A471A1200E97519 /* POSReceiptFolderTableViewCell.m in Sources */,
 				ECC08DFC1A5BE798004C829D /* APIClient.swift in Sources */,
 				ECF486BD1A4719F400E97519 /* UIWindow+Navigation.swift in Sources */,
