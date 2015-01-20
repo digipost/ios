@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import XCTest
 
 extension XCTestCase {
     
- 
+    class func assertRootResourceObject(rootResource: POSRootResource) {
+        XCTAssertTrue(rootResource.fullName == "Dangfart Utnes", "Not correct name set")
+        XCTAssertTrue(rootResource.mailboxes.count == 1 , "Could not parse mailboxes")
+    }
 }

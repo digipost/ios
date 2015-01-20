@@ -13,28 +13,38 @@ class APITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
+        let oAuthToken = XCTestCase.mockTokenWithScope(kOauth2ScopeFull)
+        
+        // get valid OAuthToken
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+//        OAuthToken.removeAllTokens()
     }
     
-    func testRootResource() {
+    func testGetRootResource() {
+        let expectation = expectationWithDescription("fetched root resource")
+        
+        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+            APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
+                println(responseDictionary)
+                POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
+                expectation.fulfill()
+                let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+                XCTestCase.assertRootResourceObject(rootResource)
+            }, failure: { (error) -> () in
+                XCTFail(error.description)
+                expectation.fulfill()
+            })
+            
+        
+        waitForExpectationsWithTimeout(50, handler: { (error) -> Void in
+           
+    })
         
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }

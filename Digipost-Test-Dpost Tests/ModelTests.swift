@@ -19,6 +19,8 @@ class ModelTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        OAuthToken.removeAllTokens()
+        POSModelManager.sharedManager().deleteAllObjects()
     }
 
     func testExample() {
@@ -31,6 +33,14 @@ class ModelTests: XCTestCase {
         self.measureBlock() {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testRootResource() {
+        let responseDict = XCTestCase.jsonDictionaryFromFile("rootresource.json")
+        POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDict)
+        let managedObjectContext = POSModelManager.sharedManager().managedObjectContext
+        let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(managedObjectContext)
+        XCTestCase.assertRootResourceObject(rootResource)
     }
 
 }
