@@ -510,11 +510,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
-    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri success:^{
-                  [self updateFetchedResultsController];
-                                                               [self programmaticallyEndRefresh];
-                                                               [self updateNavbar];
-                                                               [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri success:^(NSDictionary *responseDictionary) {
+        [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
+                                                  mailboxDigipostAddress:self.mailboxDigipostAddress
+                                                              attributes:responseDictionary];
+        [self updateFetchedResultsController];
+        [self programmaticallyEndRefresh];
+        [self updateNavbar];
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
                                                                
                                                                // If the user has just managed to enter a document with attachments _after_ the API call finished,
                                                                // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.

@@ -48,8 +48,7 @@ extension APIClient {
     }
     
     func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
-        let task = session.downloadTaskWithRequest(urlrequest, completionHandler: { (url, response, error) -> Void in
-            println(url,response,error)
+        let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             if let actualError = error {
                 failure(error: actualError)
             } else {
@@ -57,8 +56,14 @@ extension APIClient {
                 if (urlResponse.statusCode == 400 ) {
                     failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
                 } else {
+                    var jsonError : NSError?
                     // TOODO make responseDictionary
-                    success(Dictionary())
+                    if data != nil {
+                        let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
+                        success(serializer)
+                    }else {
+                        success(Dictionary<String, AnyObject>())
+                    }
                 }
             }
         })
@@ -80,8 +85,8 @@ extension APIClient {
 //       k             failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
 //                } else {
 //                    println(response)
-            success(url: location)
             
+            success(url: location)
         }
         
         RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
@@ -96,8 +101,9 @@ extension APIClient {
     
     // Only GET allowed
     func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
-        let url = NSURL(string: url)
-        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+//        let url = NSURL(string: url)
+        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
+        var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task

@@ -18,6 +18,7 @@
 #import "UIViewController+BackButton.h"
 #import "SHCAppDelegate.h"
 #import "SHCLoginViewController.h"
+#import "POSModelManager.h"
 #import "POSFolder+Methods.h"
 #import <UIAlertView+Blocks.h>
 #import "POSRootResource.h"
@@ -97,8 +98,9 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    [[APIClient sharedClient] updateRootResourceWithSuccess:^{
-
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
+        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+        [self.tableView reloadData];
     } failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {

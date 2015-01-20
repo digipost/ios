@@ -151,9 +151,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -590,7 +590,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if ([POSAPIManager sharedManager].isUpdatingRootResource) {
         return;
     }
-    [[APIClient sharedClient] updateRootResourceWithSuccess:^{
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
+        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
         self.rootResource = nil; // To force a refetch of this property
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];

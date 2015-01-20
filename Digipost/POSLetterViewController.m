@@ -669,7 +669,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                  self.progressView.alpha = 1.0;
                              }
             }
-            completion:^(BOOL finished){}];
+            completion:^(BOOL finished){
+            }];
 
         progress = [[NSProgress alloc] initWithParent:nil
                                              userInfo:nil];
@@ -1304,7 +1305,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 
     NSString *attachmentUri = self.attachment.uri;
-    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri success:^{
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri success:^(NSDictionary *responseDictionary) {
+        [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
+                                                  mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
+                                                              attributes:responseDictionary];
           [self updateAttachmentWithAttachmentUri:attachmentUri];
                                                                self.sendingInvoice = NO;
                                                                NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
@@ -1425,7 +1429,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
     if ([self needsAuthenticationToOpen]) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     } else {
         [self showRenameAlertView];
     }
@@ -1435,7 +1440,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     BOOL didOpen = [self showOpenInControllerFromBarButtonItem:sender];
     if (didOpen == NO) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     }
 }
 
@@ -1443,7 +1449,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     BOOL didOpen = [self showOpenInControllerFromBarButtonItem:nil];
     if (didOpen == NO) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     }
 }
 - (void)didTapMoreOptionsBarButtonItem:(id)sender
