@@ -68,7 +68,7 @@ extension APIClient {
         return task
     }
     
-    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
@@ -89,7 +89,11 @@ extension APIClient {
         RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let totalBytesWritten = racTuple.third as NSNumber
-                progress.totalUnitCount = totalBytesWritten.longLongValue
+                if let actualProgress = progress {
+                    println("completed \(actualProgress.completedUnitCount) actual: \(actualProgress.totalUnitCount) total written : \(totalBytesWritten.longLongValue)")
+                    actualProgress.completedUnitCount = totalBytesWritten.longLongValue 
+                }
+                
             })
         }
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)

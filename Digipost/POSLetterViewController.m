@@ -673,18 +673,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
 
-        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
-            [self.progress removeObserver:self
-                               forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
-                                  context:kSHCLetterViewControllerKVOContext];
-        }
-        [progress addObserver:self
-                   forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
-                      options:NSKeyValueObservingOptionNew
-                      context:kSHCLetterViewControllerKVOContext];
+        [RACObserve(self, progress.completedUnitCount) subscribeNext:^(NSObject *progressOrAnything) {
+            self.progressView.progress = progress.fractionCompleted;
 
+        }];
         self.progress = progress;
     }
+
     [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
