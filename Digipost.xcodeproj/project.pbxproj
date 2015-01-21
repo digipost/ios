@@ -165,6 +165,7 @@
 		EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		EC0F8D6119CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		EC0F8D6219CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
+		EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC141E191A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json */; };
 		EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
@@ -716,6 +717,7 @@
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
 		EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SHCAppDelegate+Appearance.swift"; sourceTree = "<group>"; };
+		EC141E191A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = oAuthTokenNoAccessToken.json; sourceTree = "<group>"; };
 		EC14B93419D1ADAB00570923 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../LaunchScreen.xib; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
@@ -1112,6 +1114,19 @@
 			name = Upload;
 			sourceTree = "<group>";
 		};
+		EC141E181A6F956500EAAA3A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				EC56AAC91A24C7DD00720109 /* rootresource.json */,
+				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
+				EC141E191A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json */,
+				EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */,
+				EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */,
+				EC56AACB1A24C92900720109 /* documents.json */,
+			);
+			name = json;
+			sourceTree = "<group>";
+		};
 		EC1A6C2D18BBA2F200269428 /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,11 +1285,7 @@
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */,
 				EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */,
-				EC56AAC91A24C7DD00720109 /* rootresource.json */,
-				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
-				EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */,
-				EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */,
-				EC56AACB1A24C92900720109 /* documents.json */,
+				EC141E181A6F956500EAAA3A /* json */,
 				EC56AAC01A24C7BA00720109 /* Supporting Files */,
 			);
 			path = "Digipost-Test-Dpost Tests";
@@ -1519,6 +1530,7 @@
 			files = (
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
+				EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */,
 				EC55F4341A2C718200A3192C /* Main_iPhone.storyboard in Resources */,
 				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
 				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
