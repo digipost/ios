@@ -97,7 +97,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
                 unreadItemsString = "\(unreadItems)\(str)"
             } else {
                 str = NSLocalizedString("account view unread letters", comment: "Unread messages")
-                unreadItemsString = "\(unreadItems)\(str)"
+                unreadItemsString = "\(unreadItems) \(str)"
             }
         }
         
