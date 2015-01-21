@@ -83,17 +83,15 @@ extension APIClient {
             //                } else {
             //                    println(response)
             
-                success(url: location)
+            success(url: location)
         }
         
         RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                let totalBytesWritten = racTuple.third as NSNumber
+                let totalBytesWritten = racTuple.fourth as NSNumber
                 if let actualProgress = progress {
-                    println("completed \(actualProgress.completedUnitCount) actual: \(actualProgress.totalUnitCount) total written : \(totalBytesWritten.longLongValue)")
-                    actualProgress.completedUnitCount = totalBytesWritten.longLongValue 
+                    actualProgress.completedUnitCount = totalBytesWritten.longLongValue
                 }
-                
             })
         }
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
