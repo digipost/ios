@@ -23,7 +23,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         super.viewDidLoad()
         
         logoutBarButtonVariable = logoutBarButtonItem
-
+        
         let firstVC: UIViewController = navigationController!.viewControllers[0] as UIViewController
         if firstVC.navigationItem.rightBarButtonItem == nil {
             firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
@@ -71,8 +71,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
-
+        
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
+        logoutButton.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), forState: .Normal)
+        logoutButton.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
             
@@ -85,7 +87,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             if showingItem.respondsToSelector("setRightBarButtonItem:") {
                 showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
             }
-            
             if showingItem.respondsToSelector("setBackBarButtonItem:") {
                 showingItem.backBarButtonItem = nil
             }
@@ -94,13 +95,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }
 
         navigationItem.setHidesBackButton(true, animated: false)
-        
         navigationItem.backBarButtonItem = nil
         navigationItem.leftBarButtonItem = nil
         
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
-        
     }
     
     override func viewDidAppear(animated: Bool) {
