@@ -13,59 +13,56 @@ extension APIClient {
     
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
-            if let actualError = error as NSError! {
-                let urlResponse = response as? NSHTTPURLResponse
-                if urlResponse?.statusCode == 403  {
-                    self.taskWasUnAuthorized = true
+            dispatch_async(dispatch_get_main_queue(), {
+                if let actualError = error as NSError! {
+                    let urlResponse = response as? NSHTTPURLResponse
+                    if urlResponse?.statusCode == 403  {
+                        self.taskWasUnAuthorized = true
+                    } else {
+                        failure(error: APIError(error: actualError))
+                        
+                    }
                 } else {
-                    failure(error: APIError(error: actualError))
-                    
+                    let urlResponse = response as NSHTTPURLResponse
+                    if (urlResponse.statusCode == 400 ) {
+                        failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
+                    } else {
+                        success()
+                    }
                 }
-            } else {
-                let urlResponse = response as NSHTTPURLResponse
-                if (urlResponse.statusCode == 400 ) {
-                    failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
-                } else {
-                    println(response)
-                    success()
-                }
-            }
+                
+            });
         })
-        lastPerformedTask = task
-        return task
-    }
-    
-    func downloadTask(urlrequest: NSURLRequest, success: (url: NSURL) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
-        let task = session.downloadTaskWithRequest(urlrequest, completionHandler: nil)
-        
-        rac_signalForSelector(Selector("URLSession:task:didCompleteWithError:"), fromProtocol:NSURLSessionTaskDelegate.self).subscribeNext { (tuple) -> Void in
-            println(tuple)
-        }
-        
-        
         lastPerformedTask = task
         return task
     }
     
     func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
-            if let actualError = error {
-                failure(error: APIError(error: actualError))
-            } else {
-                let urlResponse = response as NSHTTPURLResponse
-                if (urlResponse.statusCode == 400 ) {
-                    failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
+            dispatch_async(dispatch_get_main_queue(), {
+                if let actualError = error {
+                    failure(error: APIError(error: actualError))
                 } else {
-                    var jsonError : NSError?
-                    // TOODO make responseDictionary
-                    if data != nil {
-                        let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
-                        success(serializer)
-                    }else {
-                        success(Dictionary<String, AnyObject>())
+                    let urlResponse = response as NSHTTPURLResponse
+                    if (urlResponse.statusCode == 400 ) {
+                        failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
+                    } else {
+                        var jsonError : NSError?
+                        // TOODO make responseDictionary
+                        if let actualData = data as NSData? {
+                            if actualData.length == 0 {
+                                success(Dictionary<String,AnyObject>())
+                            }else {
+                                
+                                let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
+                                success(serializer)
+                            }
+                        }else {
+                            success(Dictionary<String, AnyObject>())
+                        }
                     }
                 }
-            }
+            })
         })
         lastPerformedTask = task
         return task
@@ -81,27 +78,29 @@ extension APIClient {
             let urlSession = racTuple.first as NSURLSession
             let downloadTask = racTuple.second as NSURLSessionDownloadTask
             let location = racTuple.third as NSURL
-//            if (urlResponse.statusCode == 400 ) {
-//       k             failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
-//                } else {
-//                    println(response)
+            //            if (urlResponse.statusCode == 400 ) {
+            //       k             failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
+            //                } else {
+            //                    println(response)
             
-            success(url: location)
+                success(url: location)
         }
         
         RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
-            let totalBytesWritten = racTuple.third as NSNumber
-            progress.totalUnitCount = totalBytesWritten.longLongValue
+            dispatch_async(dispatch_get_main_queue(), {
+                let totalBytesWritten = racTuple.third as NSNumber
+                progress.totalUnitCount = totalBytesWritten.longLongValue
+            })
         }
-        
-        let task = downloadTask(urlRequest, success: success, failure: failure)
+        let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
+        lastPerformedTask = task
         return task
     }
     
     
     // Only GET allowed
     func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
-//        let url = NSURL(string: url)
+        //        let url = NSURL(string: url)
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
@@ -125,6 +124,6 @@ extension APIClient {
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-       
- 
+    
+    
 }

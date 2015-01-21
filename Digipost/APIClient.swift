@@ -115,6 +115,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 return ["location":"FOLDER", "subject" : name, "folderId" : documentFolder.folderId.stringValue]
             }
             }()
+        
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
@@ -144,6 +145,21 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
+    func moveFolder(folderArray: Array<POSFolder>, mailbox: POSMailbox, success: () -> Void , failure: (error: APIError) -> ()) {
+        let folders = folderArray.map({ (folder: POSFolder) -> Dictionary<String,String> in
+            return [ "id" : folder.folderId.stringValue, "name" : folder.name, "icon" : folder.iconName]
+        })
+        let parameters = ["folder" : folders]
+        let task = urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success, failure: failure)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func delete(#folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
+        let parameters = [ "id" : folder.folderId, "name" : folder.name, "icon" : folder.iconName]
+        let task = urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success, failure: failure)
+        validateTokensThenPerformTask(task!)
+    }
+
     func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         println("update root resource")
         let rootResource = __ROOT_RESOURCE_URI__
@@ -163,6 +179,21 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: folderUri, success: success, failure: failure)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        let task = urlSessionJSONTask(url: document.updateUri, success: success, failure: failure)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        let task = urlSessionJSONTask(url: uri, success: success, failure: failure)
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
+        let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
@@ -232,142 +263,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             
             success()
-                    }
+            }
     , failure: failure)
-    
         validateTokensThenPerformTask(task!)
     }
-    
-    //    func URLSession(session: NSURLSession, task: NSURLSessionTask, didSendBodyData bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) {
-    
-    //    }
-    //    - (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *))failure
-    //    {
-    //    self.state = SHCAPIManagerStateDownloadingBaseEncryptionModel;
-    //
-    //    NSString *highestScope;
-    //    __block BOOL didChoseAHigherScope = NO;
-    //    if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
-    //    POSAttachment *attachment = (id)baseEncryptionModel;
-    //    NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
-    //    if ([scope isEqualToString:kOauth2ScopeFull]) {
-    //    highestScope = kOauth2ScopeFull;
-    //    } else {
-    //    highestScope = [OAuthToken highestScopeInStorageForScope:scope];
-    //    if ([highestScope isEqualToString:scope] == NO) {
-    //    didChoseAHigherScope = YES;
-    //    }
-    //    }
-    //    } else {
-    //    highestScope = kOauth2ScopeFull;
-    //    }
-    //
-    //    [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:highestScope didChooseHigherScope:didChoseAHigherScope success:success failure:failure];
-    //    }
-    //
-    //    - (void)validateAndDownloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress scope:(NSString *)scope didChooseHigherScope:(BOOL)didChooseHigherScope success:(void (^)(void))success failure:(void (^)(NSError *))failure
-    //    {
-    //    OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-    //
-    //    if (oauthToken == nil && didChooseHigherScope) {
-    //    POSAttachment *attachment = (id)baseEncryptionModel;
-    //    NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
-    //    oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-    //    }
-    //    if (oauthToken == nil) {
-    //    NSError *error = [NSError errorWithDomain:kAPIManagerErrorDomain
-    //    code:SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel
-    //    userInfo:nil];
-    //    self.lastError = error;
-    //    self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFailed;
-    //    if (failure) {
-    //    failure(error);
-    //    }
-    //    return;
-    //    }
-    //    NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
-    //    [self validateTokensForScope:scope success:^{
-    //
-    //    NSMutableURLRequest *urlRequest = [self.fileTransferSessionManager.requestSerializer requestWithMethod:@"GET" URLString:baseEncryptionModelUri parameters:nil error:nil];
-    //
-    //    // Let's set the correct mime type for this file download.
-    //    [urlRequest setValue:[self mimeTypeForFileType:baseEncryptionModel.fileType] forHTTPHeaderField:@"Accept"];
-    //    [self.fileTransferSessionManager setDownloadTaskDidWriteDataBlock:^(NSURLSession *session, NSURLSessionDownloadTask *downloadTask, int64_t bytesWritten, int64_t totalBytesWritten, int64_t totalBytesExpectedToWrite) {
-    //    progress.completedUnitCount = totalBytesWritten;
-    //    }];
-    //
-    //    BOOL baseEncryptionModelIsAttachment = [baseEncryptionModel isKindOfClass:[POSAttachment class]];
-    //
-    //    NSURLSessionDownloadTask *task = [self.fileTransferSessionManager downloadTaskWithRequest:urlRequest progress:nil destination:^NSURL * (NSURL * targetPath, NSURLResponse * response) {
-    //
-    //    // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-    //    POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
-    //    if (baseEncryptionModelIsAttachment) {
-    //    changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    //    } else {
-    //    changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    //    }
-    //
-    //    NSString *filePath = [changedBaseEncryptionModel decryptedFilePath];
-    //
-    //    if (!filePath) {
-    //    return nil;
-    //    }
-    //
-    //    NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
-    //    return fileUrl;
-    //    }
-    //    completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-    //
-    //    BOOL downloadFailure = NO;
-    //    NSHTTPURLResponse *HTTPURLResponse = (NSHTTPURLResponse *)response;
-    //    if ([HTTPURLResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-    //    if ([HTTPURLResponse statusCode] != 200) {
-    //    downloadFailure = YES;
-    //    }
-    //    }
-    //    if (error || downloadFailure) {
-    //    if (didChooseHigherScope){
-    //    POSAttachment *attachment = (id)baseEncryptionModel;
-    //    NSString *originalScope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
-    //    [self validateAndDownloadBaseEncryptionModel:baseEncryptionModel withProgress:progress scope:originalScope didChooseHigherScope:NO success:success failure:failure];
-    //    return;
-    //    }
-    //
-    //    // If we're getting a 401 from the server, the error object will be nil.
-    //    // Let's set it to something more usable that the caller can interpret.
-    //    if (!error) {
-    //    error = [NSError errorWithDomain:kAPIManagerErrorDomain
-    //    code:SHCAPIManagerErrorCodeUnauthorized
-    //    userInfo:nil];
-    //    }
-    //
-    //    self.lastURLResponse = response;
-    //    self.lastFailureBlock = failure;
-    //    self.lastError = error;
-    //    self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFailed;
-    //    }else {
-    //    self.lastURLResponse = response;
-    //    self.lastSuccessBlock = success;
-    //    self.state = SHCAPIManagerStateDownloadingBaseEncryptionModelFinished;
-    //    }
-    //    }];
-    //    [task resume];
-    //    }
-    //    failure:^(NSError *error) {
-    //    if (error.code == 2) {
-    //    if (didChooseHigherScope ) {
-    //    [OAuthToken removeAcessTokenForOAuthTokenWithScope:scope];
-    //    }
-    //    }
-    //    self.downloadingBaseEncryptionModel = NO;
-    //    if (failure) {
-    //    failure(error);
-    //    }
-    //    }];
-    //    }
-    //
-    //
     
     private func validateOAuthToken(scope: String, success: () -> Void)  {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
@@ -389,6 +288,25 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             
         }
     }
+    
+    func cancelUpdatingReceipts() {
+        
+    }
+    
+    func cancelDownloadingBaseEncryptionModels() {
+        
+    }
+    
+    func cancelUpdatingRootResource () {
+//        - (void)cancelUpdatingRootResource
+//            {
+//                NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
+//                NSString *pathSuffix = [URL lastPathComponent];
+//                [self cancelRequestsWithPathSuffix:pathSuffix];
+//                
+//                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
+//        }
+    }
     func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
         let HTTPResponse = response as NSHTTPURLResponse
         switch HTTPResponse {
@@ -402,21 +320,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return false
         }
     }
-//    
     
-//    - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response
-//    {
-//    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
-//    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-//    if ([HTTPResponse statusCode] == 400 || // Bad Request. OAuth 2.0 responds with HTTP 400 if the request is somehow invalid or unauthorized.
-//    [HTTPResponse statusCode] == 401 || // Unauthorized.
-//    [HTTPResponse statusCode] == 403) { // Forbidden.
-//    return YES;
-//    }
-//    }
-//    
-//    return NO;
-//    }
     private class func incrementTaskCounter() {
         APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
         APIClient.sharedClient.taskCounter++
