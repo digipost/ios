@@ -165,10 +165,18 @@ class OAuthToken: NSObject, NSCoding{
     class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
-            let object: AnyObject! = actualDictionary[scope] as AnyObject!
-            if object != nil {
-                return object as OAuthToken!
+            if let token = actualDictionary[scope] as?  OAuthToken? {
+                return token
             }
+//            let object: AnyObject! = actualDiacctionary[scope] as AnyObject!
+//            if object != nil {
+//                println(object)
+//                if object is OAuthToken {
+//                    return object as OAuthToken!
+//                }else {
+//                    println(object)
+//                }
+//            }
         }
         return nil
     }
