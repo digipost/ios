@@ -16,13 +16,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     var logoutBarButtonVariable: UIBarButtonItem?
     
-    var refreshControl: UIRefreshControl? // trengs?
-    //var dataSource: POSAccountViewTableViewDataSource?
+    var refreshControl: UIRefreshControl?
     var dataSource: AccountTableViewDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.dataSource = POSAccountViewTableViewDataSource(asDataSourceForTableView: self.tableView)
         
         logoutBarButtonVariable = logoutBarButtonItem
 
@@ -42,6 +40,17 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                 }
             }
         }
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.tintColor = UIColor.digipostGreyOne()
+        refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.addSubview(refreshControl!)
+    }
+    
+    func refresh() {
+        updateContentsFromServerUseInitiateRequest(0)
+        
+        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -106,6 +115,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
+            if let actualRefreshControl = self.refreshControl {
+                self.refreshControl?.endRefreshing()
+            }
+
             }, failure: { (error: NSError!) -> Void in
                                 
                 /*if let response = error.userInfo?[AFNetworkingOperationFailingURLRequestErrorKey] as? NSHTTPURLResponse {
