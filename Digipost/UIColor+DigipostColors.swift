@@ -38,4 +38,8 @@ extension UIColor {
         return UIColor(r: 248, g: 248, b: 248)
     }
     
+    class func digipostAccountCellSelectBackground () -> UIColor {
+        return UIColor(r: 212, g: 212, b: 212)
+    }
+    
 }
