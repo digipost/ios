@@ -42,4 +42,8 @@ extension UIColor {
         return UIColor(r: 212, g: 212, b: 212)
     }
     
+    class func digipostLogoutButtonTextColor () -> UIColor {
+        return UIColor(r: 224, g: 209, b: 208)
+    }
+    
 }
