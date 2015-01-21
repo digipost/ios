@@ -121,7 +121,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 + (instancetype)sharedManager;
-
+/*
 - (void)startLogging;
 - (void)stopLogging;
 // - (void)updateRootResourceWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
@@ -139,16 +139,17 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress uri:(NSString *)uri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingReceipts;
 - (void)deleteReceipt:(POSReceipt *)receipt withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+ */
 - (void)uploadFileWithURL:(NSURL *)fileURL toFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUploadingFiles;
 - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response;
 - (BOOL)responseCodeForOAuthIsUnauthorized:(NSURLResponse *)response;
 
-- (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+//- (void)createFolderWithName:(NSString *)name iconName:(NSString *)iconName forMailBox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
-- (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure;
-- (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
-- (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+//- (void)changeFolder:(POSFolder *)folder newName:(NSString *)newName newIcon:(NSString *)newIcon success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+//- (void)delteFolder:(POSFolder *)folder success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+//- (void)moveFolder:(NSArray *)folderArray mailbox:(POSMailbox *)mailbox success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 
 - (void)validateOpeningReceipt:(POSAttachment *)attachment success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *))failure;
 

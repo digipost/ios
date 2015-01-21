@@ -21,6 +21,7 @@
 #import "POSReceipt.h"
 #import "POSDocumentsViewController.h"
 #import "UIViewController+BackButton.h"
+#import "digipost-Swift.h"
 #import <UIAlertView+Blocks.h>
 
 NSString *const kPushReceiptIdentifier = @"PushReceipt";
@@ -168,12 +169,11 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (void)deleteReceipt:(POSReceipt *)receipt
 {
-    [[POSAPIManager sharedManager] deleteReceipt:receipt
-        withSuccess:^{
+    [[APIClient sharedClient] deleteReceipt:receipt success:^{
                                          [self.receiptsTableViewDataSource resetFetchedResultsController];
                                          [self.tableView reloadData];
         }
-        failure:^(NSError *error) {
+        failure:^(APIError *error) {
                                              
                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {

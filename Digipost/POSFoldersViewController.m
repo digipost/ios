@@ -154,10 +154,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingRootResource];
+    [[APIClient sharedClient] cancelUpdatingRootResource];
 
     [self programmaticallyEndRefresh];
 
@@ -411,8 +410,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    [[POSAPIManager sharedManager] moveFolder:newSorting
-        mailbox:mailbox
+    [[APIClient sharedClient] moveFolder:newSorting mailbox:mailbox
         success:^{
                                           NSError *error;
                                           [[POSModelManager sharedManager].managedObjectContext save:&error];
@@ -420,7 +418,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                               [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
                                           }
         }
-        failure:^(NSError *error){}];
+        failure:^(APIError *error){
+        }];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -626,11 +625,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
-    [[POSAPIManager sharedManager] delteFolder:folder
-        success:^{
+    [[APIClient sharedClient] deleteWithFolder:folder success:^{
             [self updateContentsFromServerUserInitiatedRequest:@NO];
-        }
-        failure:^(NSError *error) {
+    }
+        failure:^(APIError *error) {
                                            [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                
                                            }];

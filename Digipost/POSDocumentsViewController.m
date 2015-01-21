@@ -148,7 +148,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
+    //    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
+    //    [APIClient sharedClient] cancel
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kAPIManagerUploadProgressChangedNotificationName
@@ -775,9 +776,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         return;
     }
 
-    [[POSAPIManager sharedManager] updateBankAccountWithUri:uri
-                                                    success:nil
-                                                    failure:^(NSError *error) {
+    [[APIClient sharedClient] updateBankAccountWithUri:uri success:nil
+                                               failure:^(APIError *error) {
                                                         
                                                         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
@@ -799,7 +799,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                  cancelButtonTitle:nil
                                                                  otherButtonTitles:@[error.okButtonTitle]
                                                                           tapBlock:error.tapBlock];
-                                                    }];
+                                               }];
 }
 
 - (void)uploadProgressDidChange:(NSNotification *)notification

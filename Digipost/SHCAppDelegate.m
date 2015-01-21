@@ -56,7 +56,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
     [self setupCocoaLumberjack];
 
-    [self setupNetworkingLogging];
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
@@ -177,7 +176,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     } else {
         storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     }
-    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
+    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
 
     POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
     uploadViewController.url = url;
@@ -189,7 +188,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
         [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
-                                                        completion:^{}];
+                                                        completion:^{
+                                                        }];
     } else {
         UISplitViewController *splitViewController = (id)rootNavController;
         UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
@@ -228,11 +228,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [self.fileLogger rollLogFileWithCompletionBlock:^{
         [DDLog addLogger:self.fileLogger];
     }];
-}
-
-- (void)setupNetworkingLogging
-{
-    [[POSAPIManager sharedManager] startLogging];
 }
 
 - (void)setupGoogleAnalytics

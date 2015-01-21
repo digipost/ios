@@ -32,6 +32,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFolderTableViewDataSource.h"
 #import "POSReceiptsViewController.h"
+#import "digipost-swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
@@ -108,7 +109,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingReceipts];
+    [[APIClient sharedClient] cancelUpdatingReceipts];
 
     [self programmaticallyEndRefresh];
 
@@ -193,9 +194,9 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
 
-    [[POSAPIManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
-        uri:self.receiptsUri
-        success:^{
+    [[APIClient sharedClient] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^(NSDictionary *responseDictionary) {
+            [[POSModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
+                                                                             attributes:responseDictionary];
             [self updateFetchedResultsController];
             [self programmaticallyEndRefresh];
             [self updateNavbar];
@@ -208,8 +209,8 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             [self.receiptFolderTableViewDataSource refreshContent];
             [self.tableView reloadData];
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
-        }
-        failure:^(NSError *error) {
+    }
+        failure:^(APIError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
             if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
