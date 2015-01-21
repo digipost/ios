@@ -388,7 +388,7 @@
 "upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
 
 /* unread letters in account view */
-"account view unread letter" = "ulest brev";
+"account view unread letter" = ". ulest brev";
 "account view unread letters" = "uleste brev";
 
 /* Account description */
