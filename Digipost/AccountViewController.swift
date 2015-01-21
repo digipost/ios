@@ -135,7 +135,16 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     // MARK: - TableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        var cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
+        
         performSegueWithIdentifier("PushFolders", sender: self)
+    }
+    
+    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
+        var cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+        cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
     }
     
     // MARK: - Navigation
