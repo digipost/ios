@@ -394,6 +394,9 @@
 /* Account description */
 "account description shared" = "Delt med deg";
 
+/* logout button title */
+"log out button title" = "Logg ut";
+
 
 /* No comment provided by engineer. */
 "" = "";
