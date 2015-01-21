@@ -84,7 +84,6 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         
     }
     
-    
     // Customize the appearance of table view cells.
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath, mailBox: POSMailbox){
 
@@ -95,10 +94,10 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
             var str = ""
             if unreadItems == 1{
                 str = NSLocalizedString("account view unread letter", comment: "Unread message")
-                unreadItemsString = "\(unreadItems). \(str)"
+                unreadItemsString = "\(unreadItems)\(str)"
             } else {
                 str = NSLocalizedString("account view unread letters", comment: "Unread messages")
-                unreadItemsString = "\(unreadItems) \(str)"
+                unreadItemsString = "\(unreadItems)\(str)"
             }
         }
         
@@ -115,7 +114,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         }
     }
     
-    // Convinience method for getteing the mailbox at an Indexpath in tableview
+    // Convenience method for getteing the mailbox at an Indexpath in tableview
     func fetchMailBox(atIndexPath indexPath: NSIndexPath) -> POSMailbox{
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
     }
