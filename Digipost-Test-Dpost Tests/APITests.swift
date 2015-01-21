@@ -40,10 +40,7 @@ class APITests: XCTestCase {
                 XCTFail(error.description)
                 expectation.fulfill()
             })
-            
-        
         waitForExpectationsWithTimeout(50, handler: { (error) -> Void in
-           
     })
         
     }

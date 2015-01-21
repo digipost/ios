@@ -100,13 +100,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
     
-    func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: NSError) -> ()) {
+    func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
         let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func changeName(document: POSDocument, newName name: String, success: () -> Void , failure: (error: NSError) -> ()) {
+    func changeName(document: POSDocument, newName name: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let documentFolder = document.folder
         let parameters : Dictionary<String,String> = {
             if documentFolder.name == "Inbox" {
@@ -119,19 +119,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
-    func createFolder(name: String, iconName: String, mailBox: POSMailbox, success: () -> Void , failure: (error: NSError) -> ()) {
+    func createFolder(name: String, iconName: String, mailBox: POSMailbox, success: () -> Void , failure: (error: APIError) -> ()) {
         let parameters = ["name" : name, "icon" : iconName]
         let task = urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func deleteDocument(uri: String, success: () -> Void , failure: (error: NSError) -> ()) {
+    func deleteDocument(uri: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let task = urlSessionTask(httpMethod.delete, url: uri, success: success, failure: failure)
         // only do task if validated
         validateTokensThenPerformTask(task!)
     }
     
-    func moveDocument(document: POSDocument, toFolder folder: POSFolder, success: () -> Void , failure: (error: NSError) -> ()) {
+    func moveDocument(document: POSDocument, toFolder folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
         let firstAttachment = document.attachments.firstObject as POSAttachment
         let parameters : Dictionary<String,String> = {
             if folder.name == "Inbox" {
@@ -144,29 +144,29 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
-    func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) {
+    func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         println("update root resource")
         let rootResource = __ROOT_RESOURCE_URI__
         let task = urlSessionJSONTask(url: rootResource, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) {
+    func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: uri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: NSError) -> ()) {
+    func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
         let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure);
         validateTokensThenPerformTask(task!)
     }
     
-    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: NSError) -> ()) {
+    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: folderUri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
-    func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: NSError) -> ()) {
+    func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
         var baseEncryptedModelIsAttachment = false
@@ -198,7 +198,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         
         if oAuthToken == nil {
             let error = NSError(domain: "apiManagerErrorDomain", code: 100, userInfo: nil)
-            failure(error: error)
+            failure(error: APIError(error: error))
             return
         }
         

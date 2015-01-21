@@ -152,7 +152,7 @@ class OAuthToken: NSObject, NSCoding{
                 }else {
                     return oAuthTokenWithScope(scope)
                 }
-            }else {
+            } else {
                 return oAuthTokenWithScope(scope)
             }
         case 3:
@@ -168,15 +168,6 @@ class OAuthToken: NSObject, NSCoding{
             if let token = actualDictionary[scope] as?  OAuthToken? {
                 return token
             }
-//            let object: AnyObject! = actualDiacctionary[scope] as AnyObject!
-//            if object != nil {
-//                println(object)
-//                if object is OAuthToken {
-//                    return object as OAuthToken!
-//                }else {
-//                    println(object)
-//                }
-//            }
         }
         return nil
     }

@@ -11,20 +11,20 @@ import UIKit
 
 extension APIClient {
     
-    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
+    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
             if let actualError = error as NSError! {
                 let urlResponse = response as? NSHTTPURLResponse
                 if urlResponse?.statusCode == 403  {
                     self.taskWasUnAuthorized = true
                 } else {
-                    failure(error: actualError)
+                    failure(error: APIError(error: actualError))
                     
                 }
             } else {
                 let urlResponse = response as NSHTTPURLResponse
                 if (urlResponse.statusCode == 400 ) {
-                    failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
+                    failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
                 } else {
                     println(response)
                     success()
@@ -35,7 +35,7 @@ extension APIClient {
         return task
     }
     
-    func downloadTask(urlrequest: NSURLRequest, success: (url: NSURL) -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
+    func downloadTask(urlrequest: NSURLRequest, success: (url: NSURL) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.downloadTaskWithRequest(urlrequest, completionHandler: nil)
         
         rac_signalForSelector(Selector("URLSession:task:didCompleteWithError:"), fromProtocol:NSURLSessionTaskDelegate.self).subscribeNext { (tuple) -> Void in
@@ -47,14 +47,14 @@ extension APIClient {
         return task
     }
     
-    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: NSError) -> () ) -> NSURLSessionTask? {
+    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             if let actualError = error {
-                failure(error: actualError)
+                failure(error: APIError(error: actualError))
             } else {
                 let urlResponse = response as NSHTTPURLResponse
                 if (urlResponse.statusCode == 400 ) {
-                    failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
+                    failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
                 } else {
                     var jsonError : NSError?
                     // TOODO make responseDictionary
@@ -71,7 +71,7 @@ extension APIClient {
         return task
     }
     
-    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress, success: (url: NSURL) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
@@ -100,7 +100,7 @@ extension APIClient {
     
     
     // Only GET allowed
-    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
 //        let url = NSURL(string: url)
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
@@ -109,7 +109,7 @@ extension APIClient {
         return task
     }
     
-    func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
@@ -117,7 +117,7 @@ extension APIClient {
         return task
     }
     
-    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: NSError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
