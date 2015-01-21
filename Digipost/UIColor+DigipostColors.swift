@@ -39,7 +39,7 @@ extension UIColor {
     }
     
     class func digipostAccountCellSelectBackground () -> UIColor {
-        return UIColor(r: 212, g: 212, b: 212)
+        return UIColor(r: 230, g: 230, b: 230)
     }
     
     class func digipostLogoutButtonTextColor () -> UIColor {
