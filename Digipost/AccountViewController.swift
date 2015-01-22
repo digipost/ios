@@ -43,14 +43,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.digipostGreyOne()
-        refreshControl?.addTarget(self, action: "refresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: "refreshContentFromServer", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl!)
     }
     
-    func refresh() {
+    func refreshContentFromServer() {
         updateContentsFromServerUseInitiateRequest(0)
-        
-        
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -100,11 +98,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
+        
+        updateContentsFromServerUseInitiateRequest(0)
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        updateContentsFromServerUseInitiateRequest(0)
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -119,7 +118,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
 
             }, failure: { (error: NSError!) -> Void in
-                                
+                UIAlertView(title: "Oppdatering", message: "Kunne ikke oppdatere innehold", delegate: self, cancelButtonTitle: "OK").show()
+                
+                if let actualRefreshControl = self.refreshControl {
+                    self.refreshControl?.endRefreshing()
+                }
                 /*if let response = error.userInfo?[AFNetworkingOperationFailingURLRequestErrorKey] as? NSHTTPURLResponse {
                     if response.isKindOfClass(NSHTTPURLResponse) {
                         if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
