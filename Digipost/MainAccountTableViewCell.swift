@@ -21,17 +21,14 @@ class MainAccountTableViewCell: UITableViewCell {
         accountImageView.backgroundColor = UIColor.digipostProfileViewBackground()
         accountImageView.layer.cornerRadius = accountImageView.frame.width / 2
         accountImageView.clipsToBounds = true
+        
         accountNameLabel.textColor = UIColor.digipostProfileTextColor()
         initialLabel.textColor = UIColor.digipostProfileViewInitials()
         unreadMessages.textColor = UIColor.digipostProfileTextColor()
-        
-        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }
