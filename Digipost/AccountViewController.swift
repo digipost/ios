@@ -15,7 +15,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
     
     var logoutBarButtonVariable: UIBarButtonItem?
-    
     var refreshControl: UIRefreshControl?
     var dataSource: AccountTableViewDataSource?
     
@@ -102,15 +101,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         updateContentsFromServerUseInitiateRequest(0)
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        cell.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-        cell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-    }
-    
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
         POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
             if let actualRefreshControl = self.refreshControl {
@@ -118,11 +108,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
 
             }, failure: { (error: NSError!) -> Void in
-                UIAlertView(title: "Oppdatering", message: "Kunne ikke oppdatere innehold", delegate: self, cancelButtonTitle: "OK").show()
-                
                 if let actualRefreshControl = self.refreshControl {
                     self.refreshControl?.endRefreshing()
                 }
+                
                 /*if let response = error.userInfo?[AFNetworkingOperationFailingURLRequestErrorKey] as? NSHTTPURLResponse {
                     if response.isKindOfClass(NSHTTPURLResponse) {
                         if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
@@ -132,7 +121,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                     }
                 }*/
         })
-        
     }
     
     // MARK: - TableViewDelegate
@@ -148,6 +136,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         var cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        cell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
     }
     
     // MARK: - Navigation
@@ -173,12 +166,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
+    // MARK: - Logout
+
     @IBAction func logoutButtonTapped(sender: UIButton) {
         logoutUser()
     }
-    
-    // MARK: - Logout
     
     func logoutUser() {
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
@@ -186,9 +179,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                 if buttonIndex == 1 {
                     self.userDidConfirmLogout()
                 }
-                
             })
-            
         } else {
             UIActionSheet.showFromBarButtonItem(logoutBarButtonItem, animated: true, withTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), destructiveButtonTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), otherButtonTitles: nil, tapBlock: { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
                 if buttonIndex == 0 {
@@ -196,10 +187,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                 }
             })
         }
-    }
-    
-    func prepareForPopoverPresentation(popoverPresentationController: UIPopoverPresentationController) {
-        popoverPresentationController.sourceView = view
     }
     
     func userDidConfirmLogout() {

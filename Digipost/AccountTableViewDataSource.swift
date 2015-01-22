@@ -64,10 +64,8 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("mailboxCell", forIndexPath: indexPath)as UITableViewCell
         
         var cell: UITableViewCell?
-        //let mailBox: POSMailbox = self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
 
         let mailBox = fetchMailBox(atIndexPath: indexPath)
         
@@ -119,7 +117,6 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as POSMailbox
     }
     
-    
     // convenience method for fetching objects at index path from the database
     func managedObjectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject{
         return self.fetchedResultsController.objectAtIndexPath(indexPath) as NSManagedObject
@@ -163,7 +160,5 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
         self.tableView.endUpdates()
     }
-
-    
 }
 
