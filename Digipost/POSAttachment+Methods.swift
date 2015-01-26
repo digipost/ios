@@ -25,6 +25,8 @@ extension POSAttachment {
             if scope == kOauth2ScopeFull {
                 return false
             }
+        }else {
+            return false
         }
         return true
     }
