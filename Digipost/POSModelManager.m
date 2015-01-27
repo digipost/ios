@@ -64,8 +64,8 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
 
     // Then, create a new root resource with related mailboxes and folders
-    [POSRootResource rootResourceWithAttributes:attributes
-                         inManagedObjectContext:self.managedObjectContext];
+    POSRootResource *rootResource = [POSRootResource rootResourceWithAttributes:attributes
+                                                         inManagedObjectContext:self.managedObjectContext];
     //    // Now we need to reconnect "old" documents so they're available to the user
     //    // before updateDocumentsWithAttribtues: has been called and finished
     [POSDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];

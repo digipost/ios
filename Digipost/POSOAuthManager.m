@@ -147,7 +147,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                  kOAuth2RefreshToken : refreshToken,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
 
-    NSLog(@"parameters: %@",parameters);
+    NSLog(@"parameters: %@", parameters);
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -162,6 +162,8 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                   DDLogInfo(@"Access token updated");
 
                                   if (success) {
+//                                      [[POSAPIManager sharedManager] updateAuthorizationHeaderForScope:scope];
+//                                      [[APIClient sharedClient] updateAuthorizationHeader:scope];
                                       success();
                                       return;
                                   }
@@ -181,10 +183,18 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                               // Check to see if the request failed because the refresh token was denied
 
                               if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response] ) {
-                                  NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                  if ([scope isEqualToString: kOauth2ScopeFull]) {
+                                      NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                              code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                          userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];
-                                  failure(customError);
+                                      failure(customError);
+                                  } else {
+                                      // remove token and retry request
+                                      OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
+                                      [oAuthToken removeFromKeyChain];
+                                      OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
+                                      [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
+                                  }
                               } else {
                                   failure(error);
                               }
