@@ -179,6 +179,16 @@
 		AF23423D1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		AF23423E1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		AF23423F1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
+		AF477DFC1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
+		AF477DFD1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
+		AF477DFE1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
+		AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
+		AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF477E031A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -758,6 +768,8 @@
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1085,6 +1097,7 @@
 				83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */,
 				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
 				ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */,
+				AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1092,6 +1105,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF477E001A77B48A00CBD150 /* Onboarding */,
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
 				EC1A6C3218BBA39500269428 /* Login */,
 				EC2C82D7192A176400A6D4B8 /* Accounts */,
@@ -1154,6 +1168,14 @@
 				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		AF477E001A77B48A00CBD150 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		EC0F2B7519B8930E0019212E /* Upload */ = {
@@ -1528,6 +1550,7 @@
 				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
+				AF477DFD1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
 				ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
@@ -1547,6 +1570,7 @@
 				83F7038718573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F547019CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				311848721A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
+				AF477DFC1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A71A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
@@ -1566,6 +1590,7 @@
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
+				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
@@ -1593,6 +1618,7 @@
 				EC55F4281A2C5ACC00A3192C /* Main_iPhone.storyboard in Resources */,
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
 				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
+				AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC55F42A1A2C5ACC00A3192C /* LaunchScreen.xib in Resources */,
 				EC55F42B1A2C5ACC00A3192C /* InfoPlist.strings in Resources */,
 			);
@@ -1603,6 +1629,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
+				AF477DFE1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
 				EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */,
 				311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
@@ -1841,6 +1868,7 @@
 				EC22CF8E1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
+				AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
@@ -1959,6 +1987,7 @@
 				EC22CF8D1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
+				AF477E031A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
@@ -2075,6 +2104,7 @@
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
+				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
@@ -2192,6 +2222,7 @@
 				EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC55F3F81A2C5ACC00A3192C /* UIColor+Convenience.m in Sources */,
 				EC55F3F91A2C5ACC00A3192C /* POSDocument.m in Sources */,
+				AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC55F3FA1A2C5ACC00A3192C /* UIImage+TintColor.swift in Sources */,
 				EC55F3FB1A2C5ACC00A3192C /* SHCAttachmentTableViewCell.m in Sources */,
 				EC55F3FC1A2C5ACC00A3192C /* NSNumber+JsonParsing.m in Sources */,
@@ -2288,6 +2319,7 @@
 				ECF486E21A471A2E00E97519 /* UIViewController+Additions.m in Sources */,
 				ECF486D91A471A2E00E97519 /* NSNumber+JsonParsing.m in Sources */,
 				ECF486E81A471A2E00E97519 /* NSString+RandomNumber.m in Sources */,
+				AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				ECF486DE1A471A2E00E97519 /* AHKActionSheet+Convenience.m in Sources */,
 				EC63A8381A6E701D00708A75 /* APIError.swift in Sources */,
 				ECF486DD1A471A2E00E97519 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
