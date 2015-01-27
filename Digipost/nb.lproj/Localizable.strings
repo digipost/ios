@@ -308,7 +308,7 @@
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Opprett mappe";
 
 /* Title for navbar at accounts view */
-"Accounts title" = "Kontoer";
+"Accounts title" = "Velg konto";
 
 /* Text for error telling about folder with name exits */
 "FOLDER ALREADY EXSISTS" = "Velg et annet navn";
@@ -386,6 +386,17 @@
 "navbar title upload mailbox" = "Velg konto";
 
 "upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
+
+/* unread letters in account view */
+"account view unread letter" = ". ulest brev";
+"account view unread letters" = "uleste brev";
+
+/* Account description */
+"account description shared" = "Delt med deg";
+
+/* logout button title */
+"log out button title" = "Logg ut";
+
 
 /* No comment provided by engineer. */
 "" = "";
