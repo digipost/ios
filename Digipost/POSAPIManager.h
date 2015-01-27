@@ -121,6 +121,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 @property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 
 + (instancetype)sharedManager;
+
 /*
 - (void)startLogging;
 - (void)stopLogging;
@@ -132,6 +133,7 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 //- (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress folderUri:(NSString *)folderUri success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)cancelUpdatingDocuments;
 - (void)downloadBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel withProgress:(NSProgress *)progress success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)updateDocumentsInFolder:(POSFolder *)folder mailboxDigipostAddress:(NSString *)digipostAddress success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder withSuccess:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)deleteDocument:(POSDocument *)document withSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 - (void)logoutWithSuccess:(void (^)(void))success failure:(void (^)(NSError *error))failure;
@@ -156,4 +158,5 @@ extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
 - (void)updateDocument:(POSDocument *)document success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)changeNameOfDocument:(POSDocument *)document newName:(NSString *)newName success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)logout;
+
 @end
