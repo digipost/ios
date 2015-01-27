@@ -9,8 +9,12 @@
 #import "POSFolder+Methods.h"
 #import "NSNumber+JsonParsing.h"
 #import "POSModelManager.h"
+#import "POSAttachment.h"
 #import "NSPredicate+CommonPredicates.h"
+#import "digipost-Swift.h"
+#import "POSDocument.h"
 #import "NSString+CoreDataConvenience.h"
+#import "digipost-Swift.h"
 
 NSString *const kFolderEntityName = @"Folder";
 
@@ -129,6 +133,31 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     }
 
     return results;
+}
+
+// complexity is O(n^2)
+
+- (NSString *)highestOAuth2ScopeForContainedDocuments
+{
+    __block NSString *highestOAuthScopeInThisFolder = kOauth2ScopeFull;
+    __block NSString *highestStoredScope = [OAuthToken oAuthTokenWithHighestScopeInStorage].scope;
+
+    [self.documents enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        POSDocument *document = (id) obj;
+        [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            
+            POSAttachment *attachment = (id) obj;
+            NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
+            
+            if ([OAuthToken oAuthScope:scope isHigherThanScope:highestOAuthScopeInThisFolder]) {
+                if ([OAuthToken oAuthScope:scope isHigherThanScope:highestStoredScope] == NO) {
+                    highestOAuthScopeInThisFolder = scope;
+                }
+            }
+        }];
+    }];
+    NSLog(@"highest auth scope in this folder was %@", highestOAuthScopeInThisFolder);
+    return highestOAuthScopeInThisFolder;
 }
 
 - (NSString *)displayName
