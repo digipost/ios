@@ -14,6 +14,13 @@ private struct Keys {
     static let scopeKey = "scope"
 }
 
+private struct AuthenticationLevel {
+    static let password = "PASSWORD"
+    static let twoFactor = "TWO_FACTOR"
+    static let idPorten4 = "IDPORTEN_4"
+    static let idPorten3 = "IDPORTEN_3"
+}
+
 class OAuthToken: NSObject, NSCoding{
     
     var refreshToken: String? {
@@ -114,6 +121,14 @@ class OAuthToken: NSObject, NSCoding{
         storeInKeyChain()
     }
     
+    func removeFromKeyChain() {
+        if accessToken == nil {
+            var existingTokens = OAuthToken.oAuthTokens()
+            existingTokens[scope!] = nil
+            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+        }
+    }
+    
     func password() -> String? {
         if scope == kOauth2ScopeFull{
             return refreshToken
@@ -139,6 +154,18 @@ class OAuthToken: NSObject, NSCoding{
         if let actualOldRefreshToken = LUKeychainAccess.standardKeychainAccess().stringForKey(kKeychainAccessRefreshTokenKey) as String? {
             let newOAuthToken = OAuthToken(refreshToken: actualOldRefreshToken, scope: kOauth2ScopeFull)
             LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
+        }
+    }
+    
+    class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
+        if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+            return oAuth4Token
+        }else if let oAuth3Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+            return oAuth3Token
+        }else if let oAuthTwoFactorToken = oAuthTokenWithScope(kOauth2ScopeFullHighAuth){
+            return oAuthTwoFactorToken
+        }else {
+            return oAuthTokenWithScope(kOauth2ScopeFull)
         }
     }
     
@@ -184,14 +211,48 @@ class OAuthToken: NSObject, NSCoding{
         return tokenArray
     }
     
+    
+    
+    class func oAuthScope(scope: String, isHigherThanScope otherScope: String) -> Bool {
+        switch otherScope {
+        case kOauth2ScopeFull:
+            if scope != kOauth2ScopeFull {
+                return true
+            }
+        case kOauth2ScopeFullHighAuth:
+            switch scope {
+            case kOauth2ScopeFull_Idporten4:
+                fallthrough
+            case kOauth2ScopeFull_Idporten3:
+                return true
+            default:
+                return false
+            }
+        case kOauth2ScopeFull_Idporten3:
+            if scope == kOauth2ScopeFull_Idporten4 {
+                return true
+            }
+            return false
+            
+        case kOauth2ScopeFull_Idporten4:
+            return false
+        default:
+            return false
+        }
+        return false
+    }
+    
     class func oAuthScopeForAuthenticationLevel(authenticationLevel: String) -> String {
         switch authenticationLevel {
-        case "PASSWORD":
+        case AuthenticationLevel.password:
             return kOauth2ScopeFull
-        case "TWO_FACTOR":
+        case AuthenticationLevel.twoFactor:
             return kOauth2ScopeFullHighAuth
-        case "IDPORTEN_4":
+        case AuthenticationLevel.idPorten3:
+            return kOauth2ScopeFull_Idporten3;
+        case AuthenticationLevel.idPorten4:
             return kOauth2ScopeFull_Idporten4
+            
         default:
             return authenticationLevel
         }
