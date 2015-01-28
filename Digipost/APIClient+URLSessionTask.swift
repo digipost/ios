@@ -14,52 +14,39 @@ extension APIClient {
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
             dispatch_async(dispatch_get_main_queue(), {
-                if let actualError = error as NSError! {
-                    let urlResponse = response as? NSHTTPURLResponse
-                    if urlResponse?.statusCode == 403  {
-                        self.taskWasUnAuthorized = true
-                    } else {
-                        failure(error: APIError(error: actualError))
-                        
-                    }
+                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                    self.taskWasUnAuthorized = true
+                } else if let actualError = error as NSError! {
+                    failure(error: APIError(error: actualError))
                 } else {
-                    let urlResponse = response as NSHTTPURLResponse
-                    if (urlResponse.statusCode == 400 ) {
-                        failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
-                    } else {
-                        success()
-                    }
+                    success()
                 }
-                
             });
         })
         lastPerformedTask = task
         return task
     }
     
-    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    private func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                if let actualError = error {
+                
+                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                    self.taskWasUnAuthorized = true
+                } else if let actualError = error as NSError! {
                     failure(error: APIError(error: actualError))
                 } else {
-                    let urlResponse = response as NSHTTPURLResponse
-                    if (urlResponse.statusCode == 400 ) {
-                        failure(error:APIError(error: NSError(domain: "failed", code: 400, userInfo: nil)))
-                    } else {
-                        var jsonError : NSError?
-                        // TOODO make responseDictionary
-                        if let actualData = data as NSData? {
-                            if actualData.length == 0 {
-                                success(Dictionary<String,AnyObject>())
-                            }else {
-                                
-                                let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
-                                success(serializer)
-                            }
+                    var jsonError : NSError?
+                    // TOODO make responseDictionary
+                    if let actualData = data as NSData? {
+                        if actualData.length == 0 {
+                            failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
                         }else {
-                            success(Dictionary<String, AnyObject>())
+                            let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
+                            success(serializer)
                         }
+                    }else {
+                        success(Dictionary<String, AnyObject>())
                     }
                 }
             })
@@ -74,16 +61,12 @@ extension APIClient {
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         
-        RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
+        disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
             let urlSession = racTuple.first as NSURLSession
             let downloadTask = racTuple.second as NSURLSessionDownloadTask
             let location = racTuple.third as NSURL
-            //            if (urlResponse.statusCode == 400 ) {
-            //       k             failure(error:NSError(domain: "failed", code: 400, userInfo: nil))
-            //                } else {
-            //                    println(response)
-            
             success(url: location)
+            self.disposable?.dispose()
         }
         
         RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
@@ -100,6 +83,14 @@ extension APIClient {
     }
     
     
+    private func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
+        if let actualResponse = urlResponse as NSHTTPURLResponse! {
+            if (actualResponse.statusCode == 403 || actualResponse.statusCode == 401) {
+                return true
+            }
+        }
+        return false
+    }
     // Only GET allowed
     func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         //        let url = NSURL(string: url)

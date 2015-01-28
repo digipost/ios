@@ -565,7 +565,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                             
                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                if ([[APIClient sharedClient]  responseCodeForOAuthIsUnauthorized:response]) {
                                                     // We were unauthorized, due to the session being invalid.
                                                     // Let's retry in the next run loop
                                                     double delayInSeconds = 0.0;
@@ -779,9 +779,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                } else {
                                                                    NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                       if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                           unauthorized = YES;
-                                                                       }
+//                                                                       if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                                                                           unauthorized = YES;
+//                                                                       }
                                                                    }
                                                                }
                                                                
@@ -912,7 +912,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                             
                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                                                     // We were unauthorized, due to the session being invalid.
                                                     // Let's retry in the next run loop
                                                     [self performSelector:@selector(moveDocumentToFolder:) withObject:folder afterDelay:0.0];
@@ -950,7 +950,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         failure:^(APIError *error) {
                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                  if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                  if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                                                       // We were unauthorized, due to the session being invalid.
                                                       // Let's retry in the next run loop
                                                       [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];
@@ -986,7 +986,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         failure:^(APIError *error) {
                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                 if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                                                      // We were unauthorized, due to the session being invalid.
                                                      // Let's retry in the next run loop
                                                      [self performSelector:@selector(deleteReceipt) withObject:nil afterDelay:0.0];
@@ -1016,17 +1016,18 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     POSDocument *document = self.attachment.document;
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") style:UIAlertViewStylePlainTextInput cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1){
+        if (buttonIndex == 1) {
             NSString *name = [alertView textFieldAtIndex:0].text;
             // do the actual change!
-            [[POSAPIManager sharedManager] changeNameOfDocument:document newName:name success:^{
-                self.navigationItem.title = name;
+            [[APIClient sharedClient] changeName:document newName:name success: ^{
+               self.navigationItem.title = name;
                 self.attachment.subject = name;
                 [self loadContent];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-            } failure:^(NSError *error) {
-                
-            }];
+            }
+                                         failure:^(APIError *error){
+
+    }];
         }
     }];
     [alertView textFieldAtIndex:0].text = self.attachment.subject;
@@ -1270,7 +1271,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                  [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                  NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                  if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                     if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                     if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                                                          // We were unauthorized, due to the session being invalid.
                                                          // Let's retry in the next run loop
                                                          [self performSelector:@selector(sendInvoiceToBank) withObject:nil afterDelay:0.0];
@@ -1291,9 +1292,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)updateDocuments
 {
-    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
+    //        return;
+    //    }
 
     NSString *attachmentUri = self.attachment.uri;
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri success:^(NSDictionary *responseDictionary) {
@@ -1308,13 +1309,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } failure:^(NSError *error) {
           NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                       // We were unauthorized, due to the session being invalid.
-                                                                       // Let's retry in the next run loop
-                                                                       [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
-                                                                       
-                                                                       return;
-                                                                   }
+//                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                                                                       // We were unauthorized, due to the session being invalid.
+//                                                                       // Let's retry in the next run loop
+//                                                                       [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
+//                                                                       
+//                                                                       return;
+//                                                                   }
                                                                }
                                                                
                                                                [UIAlertView showWithTitle:error.errorTitle
@@ -1417,6 +1418,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self showDeleteDocumentActionSheet];
 }
+
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
     if ([self needsAuthenticationToOpen]) {

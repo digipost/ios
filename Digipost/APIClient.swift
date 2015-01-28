@@ -20,6 +20,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
    
+    var disposable : RACDisposable?
+    
     lazy var queue = NSOperationQueue()
     var session : NSURLSession!
     
@@ -34,6 +36,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return Singleton.sharedClient
     }
     
+    var isUploadingFile = false
     
     var taskWasUnAuthorized : Bool  = false
     var lastPerformedTask : NSURLSessionTask?
@@ -53,6 +56,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             println(theSession.delegateQueue)
         }
         updateAuthorizationHeader(kOauth2ScopeFull)
+        
         RACObserve(self, Constants.APIClient.taskCounter).subscribeNext({
             (anyObject) in
             if let taskCounter = anyObject as? Int {
@@ -60,13 +64,23 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
         })
         
-        RACObserve(self, "taskWasUnAuthorized").subscribeNext { (anyObject) -> Void in
+        RACObserve(self, "taskWasUnAuthorized").filter { (anyObject) -> Bool in
+             return self.taskWasUnAuthorized
+        }.subscribeNext { (anyObject) -> Void in
+            
             OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+            println(self.lastPerformedTask)
             if let actualTask = self.lastPerformedTask {
                 self.validateTokensThenPerformTask(actualTask)
+            } else {
+                println("new task unauthroied!")
             }
         }
-
+    }
+    
+    func checkForOAuthUnauthroizedOauthStatus(failure: (error: APIError) -> ()) -> (error: APIError) -> () {
+        
+        return failure
     }
     
     func updateAuthorizationHeader(scope: String) {
@@ -101,7 +115,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: APIError) -> ()) {
-        let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
+        let parameters = [ "isssssssssd" : folder.folderId, "name" : name, "icon" : iconName]
         let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
@@ -161,7 +175,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        println("update root resource")
         let rootResource = __ROOT_RESOURCE_URI__
         let task = urlSessionJSONTask(url: rootResource, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
@@ -215,8 +228,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         } else {
             highestScope = kOauth2ScopeFull
         }
-        println(self.session.delegate)
-        println(self.session.delegateQueue)
         
         var oAuthToken = OAuthToken.oAuthTokenWithScope(highestScope!)
         
@@ -232,12 +243,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: APIError(error: error))
             return
         }
-        
-        //        let task = urlSessionTask(httpMethod.get, url: baseEncryptionModel.uri, success: success, failure: failure)
-//        let signal = rac_signalForSelector(Selector("URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:"), fromProtocol:NSURLSessionDownloadDelegate.self ).subscribeNext { (ractuple) -> Void in
-//            println(ractuple)
-//            println("Heloo world")
-//        }
         
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
@@ -268,16 +273,16 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validateTokensThenPerformTask(task!)
     }
     
-    private func validateOAuthToken(scope: String, success: () -> Void)  {
+    private func validateOAuthToken(scope: String, validationSuccess: () -> Void)  {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if (oAuthToken?.accessToken != nil) {
-            success()
+            validationSuccess()
             return
         }
         
         if (oAuthToken?.refreshToken != nil) {
             POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: scope, success: {
-                success()
+                validationSuccess()
                 }, failure: { (error) -> Void in
                     // TODO handle failure
                     println(error)
@@ -307,6 +312,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 //                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
 //        }
     }
+//    - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response
+//    {
+//    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+//    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
+//    if ([HTTPResponse statusCode] == 401 || // Unauthorized.
+//    [HTTPResponse statusCode] == 403) { // Forbidden.
+//    return YES;
+//    }
+//    }
+//    
+//    return NO;
+//    }
     func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
         let HTTPResponse = response as NSHTTPURLResponse
         switch HTTPResponse {
