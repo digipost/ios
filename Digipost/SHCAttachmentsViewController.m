@@ -271,34 +271,34 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
 {
     {
-        [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-            [self validateOpeningAttachment:attachment
-                                    success:^{
-                                        POSAttachment *refetchedAttachment = [POSAttachment updateExistingAttachmentWithUriFromDictionary:attachmentAttributes existingAttachment:attachment inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                        [[POSModelManager sharedManager] logSavingManagedObjectContext];
-                                        [self reloadTableViewDataForDocument:refetchedAttachment.document];
-                                        
-                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-                                        } else {
-                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-                                        }
-                                    }
-                                    failure:^(NSError *error) {
-                                        [UIAlertView showWithTitle:error.errorTitle
-                                                           message:[error localizedDescription]
-                                                 cancelButtonTitle:nil
-                                                 otherButtonTitles:@[error.okButtonTitle]
-                                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                              [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-                                                          }];
-                                    }];
-
-        } failure:^(NSError *error) {
-            [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-            }];
-        }];
+//        [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
+//            [self validateOpeningAttachment:attachment
+//                                    success:^{
+//                                        POSAttachment *refetchedAttachment = [POSAttachment updateExistingAttachmentWithUriFromDictionary:attachmentAttributes existingAttachment:attachment inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+//                                        [[POSModelManager sharedManager] logSavingManagedObjectContext];
+//                                        [self reloadTableViewDataForDocument:refetchedAttachment.document];
+//                                        
+//                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+//                                            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+//                                        } else {
+//                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+//                                        }
+//                                    }
+//                                    failure:^(NSError *error) {
+//                                        [UIAlertView showWithTitle:error.errorTitle
+//                                                           message:[error localizedDescription]
+//                                                 cancelButtonTitle:nil
+//                                                 otherButtonTitles:@[error.okButtonTitle]
+//                                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                                                              [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+//                                                          }];
+//                                    }];
+//
+//        } failure:^(NSError *error) {
+//            [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+//                
+//            }];
+//        }];
     }
 }
 @end

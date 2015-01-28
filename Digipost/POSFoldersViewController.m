@@ -296,6 +296,16 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [super setEditing:editing
              animated:animated];
 
+    OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:kOauth2ScopeFull];
+    NSLog(@"%@", oAuthToken.accessToken);
+    oAuthToken.accessToken = @"sdfjaeajcjce";
+
+    NSLog(@"%@", oAuthToken.accessToken);
+
+    OAuthToken *sameOAuthToken = [OAuthToken oAuthTokenWithScope:kOauth2ScopeFull];
+    NSLog(@"%@", sameOAuthToken.accessToken);
+    [[APIClient sharedClient] updateAuthorizationHeader:kOauth2ScopeFull];
+
     if (editing) {
         self.shouldShowAddNewFolderCell = YES;
         if ([self.folders count] == 0) {
@@ -586,9 +596,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([POSAPIManager sharedManager].isUpdatingRootResource) {
-        return;
-    }
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
         [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
         self.rootResource = nil; // To force a refetch of this property
@@ -596,14 +603,15 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         [self programmaticallyEndRefresh];
         [self updateNavbar];
     } failure:^(NSError *error) {
+        NSLog(@"error is : %@",error.userInfo);
          NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                return;
-            }
+//            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                // We were unauthorized, due to the session being invalid.
+//                // Let's retry in the next run loop
+//                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
+//                return;
+//            }
         }
         
         [self programmaticallyEndRefresh];

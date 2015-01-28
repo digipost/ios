@@ -10,12 +10,12 @@ import UIKit
 
 extension NSObject {
     
-    func RACSignalSubscriptionNext(#selector:Selector, fromProtocol: Protocol, subscribeNext: (racTuple: RACTuple) -> Void) {
-        rac_signalForSelector(selector, fromProtocol:fromProtocol).subscribeNext { (anyObject) -> Void in
+    func RACSignalSubscriptionNext(#selector:Selector, fromProtocol: Protocol, subscribeNext: (racTuple: RACTuple) -> Void) -> RACDisposable {
+        return rac_signalForSelector(selector, fromProtocol:fromProtocol).subscribeNext { (anyObject) -> Void in
             if let racTuple = anyObject as? RACTuple {
                 subscribeNext(racTuple: racTuple)
             } else {
-                
+                println("something wrong happened")
             }
         }
     }

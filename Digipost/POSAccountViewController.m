@@ -104,13 +104,13 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
     } failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                
-                return;
-            }
+//            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                // We were unauthorized, due to the session being invalid.
+//                // Let's retry in the next run loop
+//                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
+//                
+//                return;
+//            }
         }
     }];
 }
@@ -181,7 +181,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     [self.tableView reloadData];
-    [[POSAPIManager sharedManager] logout];
+//    [[POSAPIManager sharedManager] logout];
 }
 
 @end

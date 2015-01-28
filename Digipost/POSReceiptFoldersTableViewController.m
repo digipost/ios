@@ -213,7 +213,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         failure:^(APIError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+            if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                 // We were unauthorized, due to the session being invalid.
                 // Let's retry in the next run loop
                 [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];

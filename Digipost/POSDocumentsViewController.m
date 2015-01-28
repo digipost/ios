@@ -202,7 +202,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSInteger number = [super tableView:tableView
                   numberOfRowsInSection:section];
 
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile) {
         number++;
     }
 
@@ -211,23 +211,23 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if ([POSAPIManager sharedManager].isUploadingFile) {
-        if (indexPath.row == 0) {
-            POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
-                                                                           forIndexPath:indexPath];
-            cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
-            cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
-            NSString *fileName = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
-            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-            cell.fileNameLabel.text = fileName;
-            return cell;
+    
+        if ([APIClient sharedClient].isUploadingFile) {
+            if (indexPath.row == 0) {
+                POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
+                                                                               forIndexPath:indexPath];
+                cell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted;
+                cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
+                NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
+                fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+                cell.fileNameLabel.text = fileName;
+                return cell;
+            }
+    
+            // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
+            indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1
+                                           inSection:indexPath.section];
         }
-
-        // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
-        indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1
-                                       inSection:indexPath.section];
-    }
     POSDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier
                                                                      forIndexPath:indexPath];
     [self configureCell:cell
@@ -273,7 +273,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile) {
         if (indexPath.row == 0) {
             return nil;
         }
@@ -289,8 +289,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     NSIndexPath *actualIndexPathSelected = nil;
-    // adjust for index when uploading file
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    //     adjust for index when uploading file
+    if ([APIClient sharedClient].isUploadingFile) {
         actualIndexPathSelected = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
     } else {
         actualIndexPathSelected = indexPath;
@@ -332,7 +332,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                     }
             }
-            failure:^(NSError *error){
+            failure:^(NSError *error) {
+                NSLog(@"failed validating opening of document %@",error);
 
             }];
     }
@@ -341,36 +342,36 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)shouldValidateOpeningReceipt:(POSDocument *)document
 {
     POSAttachment *attachment = [document.attachments firstObject];
-    [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-        
-        [self validateOpeningAttachment:attachment
-                                success:^{
-                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-                                    } else {
-                                        
-                                        if ([document.attachments count] > 1) {
-                                            [self performSegueWithIdentifier:kPushAttachmentsIdentifier
-                                                                      sender:document];
-                                        } else {
-                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-                                        }
-                                    }
-                                }
-                                failure:^(NSError *error) {
-                                    [UIAlertView showWithTitle:error.errorTitle
-                                                       message:[error localizedDescription]
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@[error.okButtonTitle]
-                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-                                                      }];
-                                }];
-    } failure:^(NSError *error) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            
-        }];
-    }];
+    //    [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
+    //
+    //        [self validateOpeningAttachment:attachment
+    //                                success:^{
+    //                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+    //                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+    //                                    } else {
+    //
+    //                                        if ([document.attachments count] > 1) {
+    //                                            [self performSegueWithIdentifier:kPushAttachmentsIdentifier
+    //                                                                      sender:document];
+    //                                        } else {
+    //                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+    //                                        }
+    //                                    }
+    //                                }
+    //                                failure:^(NSError *error) {
+    //                                    [UIAlertView showWithTitle:error.errorTitle
+    //                                                       message:[error localizedDescription]
+    //                                             cancelButtonTitle:nil
+    //                                             otherButtonTitles:@[error.okButtonTitle]
+    //                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    //                                                          [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    //                                                      }];
+    //                                }];
+    //    } failure:^(NSError *error) {
+    //        [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    //
+    //        }];
+    //    }];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -497,9 +498,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
+    //        return;
+    //    }
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
     // @TODO refactor this
     // Saving uri for the open document in case we need to re fetch it later
@@ -511,15 +512,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
+    POSFolder *folder = [POSFolder existingFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
                                                   mailboxDigipostAddress:self.mailboxDigipostAddress
                                                               attributes:responseDictionary];
+        NSLog(@"%lu",(unsigned long)responseDictionary.count);
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                                               
                                                                // If the user has just managed to enter a document with attachments _after_ the API call finished,
                                                                // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
                                                                // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
@@ -551,13 +553,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     } failure:^(NSError *error) {
              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                       // We were unauthorized, due to the session being invalid.
-                                                                       // Let's retry in the next run loop
-                                                                       [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                                                                       
-                                                                       return;
-                                                                   }
+//                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                                                                       // We were unauthorized, due to the session being invalid.
+//                                                                       // Let's retry in the next run loop
+//                                                                       [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
+//                                                                       
+//                                                                       return;
+//                                                                   }
                                                                }
                                                                
                                                                [self programmaticallyEndRefresh];
@@ -667,19 +669,19 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
     } failure:^(NSError *error) {
         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                double delayInSeconds = 0.0;
-                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                    [self moveDocument:document toFolder:folder];
-                });
-                
-                return;
-            }
-        }
+//        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+//            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+//                // We were unauthorized, due to the session being invalid.
+//                // Let's retry in the next run loop
+//                double delayInSeconds = 0.0;
+//                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+//                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+//                    [self moveDocument:document toFolder:folder];
+//                });
+//                
+//                return;
+//            }
+//        }
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         
@@ -772,16 +774,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
-    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
+    //        return;
+    //    }
 
     [[APIClient sharedClient] updateBankAccountWithUri:uri success:nil
                                                failure:^(APIError *error) {
                                                         
                                                         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
                                                         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+                                                            if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
                                                                 // We were unauthorized, due to the session being invalid.
                                                                 // Let's retry in the next run loop
                                                                 double delayInSeconds = 0.0;
@@ -822,7 +824,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         if (uploadCell) {
-            uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
+//            uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
         } else {
             // We've not found the upload cell - let's check if the topmost cell is visible.
             // If it is, that means we're missing the upload cell and we need to insert it.
