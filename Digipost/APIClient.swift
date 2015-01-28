@@ -8,6 +8,7 @@
 
 import Foundation
 import MobileCoreServices
+import Darwin
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
@@ -19,15 +20,20 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case get = "GET"
     }
     
-   
+    
     var disposable : RACDisposable?
     
     lazy var queue = NSOperationQueue()
     var session : NSURLSession!
+    lazy var fileTransferSessionManager : AFHTTPSessionManager = {
+        let manager = AFHTTPSessionManager(baseURL: nil)
+        manager.requestSerializer = AFHTTPRequestSerializer()
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        return manager
+    }()
     
-    
+    var uploadProgress : NSProgress?
     var taskCounter              = 0
-    
     class var sharedClient: APIClient {
         struct Singleton {
             static let sharedClient = APIClient()
@@ -37,8 +43,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     var isUploadingFile = false
+    var taskSomething = "jakfa"
     
     var taskWasUnAuthorized : Bool  = false
+    
+    var observerTask : RACDisposable?
     var lastPerformedTask : NSURLSessionTask?
     
     override init() {
@@ -56,26 +65,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             println(theSession.delegateQueue)
         }
         updateAuthorizationHeader(kOauth2ScopeFull)
-        
-        RACObserve(self, Constants.APIClient.taskCounter).subscribeNext({
-            (anyObject) in
-            if let taskCounter = anyObject as? Int {
-                UIApplication.sharedApplication().networkActivityIndicatorVisible = (taskCounter > 0)
-            }
-        })
-        
-        RACObserve(self, "taskWasUnAuthorized").filter { (anyObject) -> Bool in
-             return self.taskWasUnAuthorized
-        }.subscribeNext { (anyObject) -> Void in
-            
-            OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
-            println(self.lastPerformedTask)
-            if let actualTask = self.lastPerformedTask {
-                self.validateTokensThenPerformTask(actualTask)
-            } else {
-                println("new task unauthroied!")
-            }
-        }
+    }
+    
+    
+    func removeAccessToken() {
+        OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
     }
     
     func checkForOAuthUnauthroizedOauthStatus(failure: (error: APIError) -> ()) -> (error: APIError) -> () {
@@ -89,7 +83,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         println(self.session.configuration.HTTPAdditionalHeaders)
         if let accessToken = oAuthToken?.accessToken {
             self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
-            println(self.session.configuration.HTTPAdditionalHeaders)
+            fileTransferSessionManager.requestSerializer.setValue("Bearer \(oAuthToken!.accessToken!)", forHTTPHeaderField: "Authorization")
         }
     }
     
@@ -103,19 +97,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
         return urlString
     }
-
+    
     private func validateTokensThenPerformTask(task: NSURLSessionTask) {
-        println("\(task.originalRequest.allHTTPHeaderFields)")
-        println(self.session.configuration.HTTPAdditionalHeaders)
         validateOAuthToken(kOauth2ScopeFull) {
-            println(self.session.configuration.HTTPAdditionalHeaders)
-            println("\(task.originalRequest.allHTTPHeaderFields)")
             task.resume()
         }
     }
     
     func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: APIError) -> ()) {
-        let parameters = [ "isssssssssd" : folder.folderId, "name" : name, "icon" : iconName]
+        let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
         let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
@@ -129,8 +119,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 return ["location":"FOLDER", "subject" : name, "folderId" : documentFolder.folderId.stringValue]
             }
             }()
-        
-        let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success) { (error) -> () in
+            if (error.code == Constants.Error.Code.oAuthUnathorized.rawValue ) {
+                self.changeName(document, newName: name, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -173,10 +166,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
-
+    
     func updateRootResource(#success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let rootResource = __ROOT_RESOURCE_URI__
-        let task = urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+        let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.updateRootResource(success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -191,12 +188,21 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: folderUri, success: success, failure: failure)
+        let task = urlSessionJSONTask(url: folderUri,  success: success) { (error) -> () in
+            if (error.code == Constants.Error.Code.oAuthUnathorized.rawValue ) {
+               self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
     func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: document.updateUri, success: success, failure: failure)
+        let task = urlSessionJSONTask(url: document.updateUri, success: success)  { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
+                self.updateDocument(document, success: success, failure: failure)
+            }
+        }
+        
         validateTokensThenPerformTask(task!)
     }
     
@@ -217,7 +223,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         if let attachment = baseEncryptionModel as? POSAttachment {
             baseEncryptedModelIsAttachment = true
             let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-           if scope == kOauth2ScopeFull {
+            if scope == kOauth2ScopeFull {
                 highestScope = kOauth2ScopeFull
             } else {
                 highestScope = OAuthToken.highestScopeInStorageForScope(scope)
@@ -248,7 +254,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let baseEncryptedModelUri = baseEncryptionModel.uri
         
         let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
-        
+            
             var changedBaseEncryptedModel : POSBaseEncryptedModel?
             if baseEncryptedModelIsAttachment {
                 changedBaseEncryptedModel = POSAttachment.existingAttachmentWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
@@ -269,10 +275,111 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             
             success()
             }
-    , failure: failure)
+            , failure: failure)
         validateTokensThenPerformTask(task!)
     }
     
+    func uploadFile(#url: NSURL, folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
+        let fileManager = NSFileManager.defaultManager()
+        if fileManager.fileExistsAtPath(url.path!) == false {
+            let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
+            failure(error: error)
+        }
+        var error : NSError?
+        let fileAttributes = fileManager.attributesOfItemAtPath(url.path!, error: &error)
+        if let actualError = error {
+            failure(error: APIError(error: actualError))
+            return
+        }
+        
+        
+//        let fileSize = pow(2,20)
+        let maxFileSize = pow(Float(2),Float(20)) * 10
+        let fileSize = fileAttributes![NSFileSize] as Float
+        
+        if (fileSize > maxFileSize) {
+            let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
+            failure(error: tooBigError)
+            return
+        }
+        let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        if (rootResource.uploadDocumentUri.utf16Count) <= 0 {
+            let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
+            failure(error: noUploadLinkError)
+            return
+        }
+        // TODO CANCEL UPLOADING FILES && DELETE TEMP FILES
+ //
+//    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
+//    if (self.isUploadingFile) {
+//    [self cancelUploadingFiles];
+//    }
+//    
+//    [self removeTemporaryUploadFiles];
+       
+        removeTemporaryUploadFiles()
+        
+        let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
+        let fileName = url.lastPathComponent
+        let filePath = uploadsFolderPath.stringByAppendingPathComponent(fileName!)
+        let uploadURL = NSURL(fileURLWithPath: filePath)
+        
+        if fileManager.moveItemAtURL(url, toURL: uploadURL!, error: &error) == false {
+            failure(error: APIError(error: error!))
+        }
+        
+        let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
+        var userInfo = Dictionary<NSObject,AnyObject>()
+        userInfo["fileName"] = fileName
+        self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
+        self.uploadProgress!.totalUnitCount = Int64(fileSize)
+        let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
+        let pathExtension = lastPathComponent.pathExtension
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+            
+            let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")
+            var subject = fileName?.substringToIndex(rangeOfExtension!.startIndex)
+            subject = subject?.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+            formData.appendPartWithFormData(subject?.dataUsingEncoding(NSASCIIStringEncoding), name:"subject")
+            let fileData = NSData(contentsOfURL: uploadURL!)
+            formData.appendPartWithFileData(fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
+        }, error: nil)
+        urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
+        
+        fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+            self.removeTemporaryUploadFiles()
+            self.isUploadingFile = false
+            if (error != nil ){
+                failure(error: APIError(error: error!))
+            } else {
+                success()
+            }
+        }
+        
+        fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
+            let totalSent = totalBytesSent as Int64
+            self.uploadProgress?.completedUnitCount = totalSent
+        }
+        
+        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
+           self.removeTemporaryUploadFiles()
+            self.isUploadingFile = false
+            if (error != nil ){
+                failure(error: APIError(error: error!))
+            } else {
+                success()
+            }
+        })
+        self.isUploadingFile = true
+        validateTokensThenPerformTask(task)
+//    [self removeTemporaryInboxFiles];
+    }
+    
+    func removeTemporaryUploadFiles () {
+        let uploadsPath = POSFileManager.sharedFileManager().uploadsFolderPath()
+        POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
+    }
+   
     private func validateOAuthToken(scope: String, validationSuccess: () -> Void)  {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if (oAuthToken?.accessToken != nil) {
@@ -301,29 +408,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func cancelDownloadingBaseEncryptionModels() {
         
     }
-    
+   
     func cancelUpdatingRootResource () {
-//        - (void)cancelUpdatingRootResource
-//            {
-//                NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
-//                NSString *pathSuffix = [URL lastPathComponent];
-//                [self cancelRequestsWithPathSuffix:pathSuffix];
-//                
-//                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
-//        }
+        //        - (void)cancelUpdatingRootResource
+        //            {
+        //                NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
+        //                NSString *pathSuffix = [URL lastPathComponent];
+        //                [self cancelRequestsWithPathSuffix:pathSuffix];
+        //
+        //                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
+        //        }
     }
-//    - (BOOL)responseCodeIsUnauthorized:(NSURLResponse *)response
-//    {
-//    NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
-//    if ([HTTPResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-//    if ([HTTPResponse statusCode] == 401 || // Unauthorized.
-//    [HTTPResponse statusCode] == 403) { // Forbidden.
-//    return YES;
-//    }
-//    }
-//    
-//    return NO;
-//    }
+
     func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
         let HTTPResponse = response as NSHTTPURLResponse
         switch HTTPResponse {
@@ -355,4 +451,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let mimeType = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType).takeUnretainedValue()
         return mimeType
     }
+    
+   
 }

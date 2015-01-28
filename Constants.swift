@@ -21,4 +21,19 @@ struct Constants {
         static let accept = "Accept"
         static let contentType = "Content-Type"
     }
+    
+    struct Error {
+        static let apiErrorDomainOAuthUnauthorized = "oAuthUnauthorized"
+        
+        static let apiClientErrorDomain = "APIManagerErrorDomain"
+        
+        enum Code : Int {
+            case oAuthUnathorized = 4001
+            case uploadFileDoesNotExist = 4002
+            case uploadFileTooBig = 4003
+            case uploadLinkNotFoundInRootResource = 4004
+            case uploadFailed = 4005
+            case NeedHigherAuthenticationLevel = 4006
+        }
+    }
 }

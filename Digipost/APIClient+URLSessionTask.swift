@@ -15,7 +15,8 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
-                    self.taskWasUnAuthorized = true
+                    self.removeAccessToken()
+                    failure(error: APIError.UnauthorizedOAuthTokenError())
                 } else if let actualError = error as NSError! {
                     failure(error: APIError(error: actualError))
                 } else {
@@ -27,12 +28,12 @@ extension APIClient {
         return task
     }
     
-    private func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
-                    self.taskWasUnAuthorized = true
+                    self.removeAccessToken()
+                    failure(error: APIError.UnauthorizedOAuthTokenError())
                 } else if let actualError = error as NSError! {
                     failure(error: APIError(error: actualError))
                 } else {
@@ -54,6 +55,7 @@ extension APIClient {
         lastPerformedTask = task
         return task
     }
+    
     
     func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
@@ -77,13 +79,14 @@ extension APIClient {
                 }
             })
         }
+        
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
         lastPerformedTask = task
         return task
     }
     
     
-    private func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
+    func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
         if let actualResponse = urlResponse as NSHTTPURLResponse! {
             if (actualResponse.statusCode == 403 || actualResponse.statusCode == 401) {
                 return true
@@ -91,6 +94,7 @@ extension APIClient {
         }
         return false
     }
+    
     // Only GET allowed
     func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         //        let url = NSURL(string: url)
@@ -117,6 +121,5 @@ extension APIClient {
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-    
     
 }

@@ -21,3 +21,4 @@
 #import "POSRootResource.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
 #import "POSModelManager.h"
+#import <AFNetworking/AFNetworking.h>
