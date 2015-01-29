@@ -66,7 +66,12 @@ extension APIClient {
         disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
             let urlSession = racTuple.first as NSURLSession
             let downloadTask = racTuple.second as NSURLSessionDownloadTask
+            // For usage when backend supports error delivery on pdf with higher auth levels
+            println(downloadTask.response)
             let location = racTuple.third as NSURL
+            let contents = NSData(contentsOfURL: location)
+            let stringContents = NSString(data: contents!, encoding: NSASCIIStringEncoding)
+            let stringContents2 = NSString(data: contents!, encoding: NSUTF8StringEncoding)
             success(url: location)
             self.disposable?.dispose()
         }
@@ -79,6 +84,21 @@ extension APIClient {
                 }
             })
         }
+        
+        RACSignalSubscriptionNext(selector: Selector("URLSession:task:didCompleteWithError:"), fromProtocol: NSURLSessionTaskDelegate.self) { (racTuple) -> Void in
+            println(racTuple)
+            let urlSession = racTuple.first as NSURLSession
+            let downloadTask = racTuple.second as NSURLSessionTask
+//            let location = racTuple.third as NSError
+//            success(url: location)
+//            self.disposable?.dispose()
+        }
+        
+//       optional func URLSession(session: NSURLSession, task: NSURLSessionTask, didCompleteWithError error: NSError?) 
+        
+        
+        
+        
         
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
         lastPerformedTask = task
