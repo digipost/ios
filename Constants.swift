@@ -37,3 +37,12 @@ struct Constants {
         }
     }
 }
+
+func == (left:Int, right:Constants.Error.Code) -> Bool {
+    return left == right.rawValue
+}
+
+func == (left:Constants.Error.Code, right:Int) -> Bool {
+    return left.rawValue == right
+}
+
