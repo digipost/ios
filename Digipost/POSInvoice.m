@@ -127,12 +127,11 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 
 - (NSString *)statusDescriptionText
 {
-    if (self.sendToBankUri) {
-        return nil;
-    } else {
+    if (self.timePaid) {
         return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbanken");
+    } else {
+        return nil;
     }
-    return nil;
 }
 
 + (NSString *)stringForInvoiceAmount:(NSNumber *)amount
