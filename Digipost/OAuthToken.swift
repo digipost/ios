@@ -21,7 +21,7 @@ private struct AuthenticationLevel {
     static let idPorten3 = "IDPORTEN_3"
 }
 
-class OAuthToken: NSObject, NSCoding{
+class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     
     var refreshToken: String? {
         didSet {
@@ -268,4 +268,7 @@ class OAuthToken: NSObject, NSCoding{
         oauthToken?.accessToken = nil
     }
     
+    override var debugDescription: String {
+        return "accessToken: \(accessToken), refreshToken: \(refreshToken), scope: \(scope)"
+    }
 }
