@@ -126,7 +126,6 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
             }
         }
     }
-
     return receipt;
 }
 

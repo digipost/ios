@@ -9,9 +9,10 @@
 #import "POSReceipt.h"
 #import <Foundation/Foundation.h>
 
-@interface POSReceiptsTableViewDataSource : NSObject <UITableViewDataSource>
+@interface POSReceiptsTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 - (void)resetFetchedResultsController;
+- (instancetype)initAsDataSourceForTableView:(UITableView*) tableView;
 - (POSReceipt *)receiptAtIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, strong) NSString *storeName;

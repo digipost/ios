@@ -53,10 +53,9 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
     [self.navigationItem setTitle:self.storeName];
-    self.receiptsTableViewDataSource = [POSReceiptsTableViewDataSource new];
+    self.receiptsTableViewDataSource = [[POSReceiptsTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     self.receiptsTableViewDataSource.storeName = self.storeName;
     self.tableView.delegate = self;
-    self.tableView.dataSource = self.receiptsTableViewDataSource;
 
     [self updateNavbar];
 
@@ -81,7 +80,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     // Present persistent data before updating
-    //    [self updateFetchedResultsController];
 }
 
 - (void)viewWillAppear:(BOOL)animated

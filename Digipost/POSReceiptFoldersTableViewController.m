@@ -98,13 +98,13 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
 
-    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
