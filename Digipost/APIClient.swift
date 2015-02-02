@@ -12,28 +12,6 @@ import Darwin
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
-    enum httpMethod : String {
-        case post = "POST"
-        case delete = "DELETE"
-        case update = "UPDATE"
-        case put = "PUT"
-        case get = "GET"
-    }
-    
-    
-    var disposable : RACDisposable?
-    
-    lazy var queue = NSOperationQueue()
-    var session : NSURLSession!
-    lazy var fileTransferSessionManager : AFHTTPSessionManager = {
-        let manager = AFHTTPSessionManager(baseURL: nil)
-        manager.requestSerializer = AFHTTPRequestSerializer()
-        manager.responseSerializer = AFHTTPResponseSerializer()
-        return manager
-    }()
-    
-    var uploadProgress : NSProgress?
-    var taskCounter              = 0
     class var sharedClient: APIClient {
         struct Singleton {
             static let sharedClient = APIClient()
@@ -42,11 +20,28 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return Singleton.sharedClient
     }
     
+    enum httpMethod : String {
+        case post = "POST"
+        case delete = "DELETE"
+        case update = "UPDATE"
+        case put = "PUT"
+        case get = "GET"
+    }
+    var disposable : RACDisposable?
+    
+    lazy var fileTransferSessionManager : AFHTTPSessionManager = {
+        let manager = AFHTTPSessionManager(baseURL: nil)
+        manager.requestSerializer = AFHTTPRequestSerializer()
+        manager.responseSerializer = AFHTTPResponseSerializer()
+        return manager
+    }()
+    
+    lazy var queue = NSOperationQueue()
+    var session : NSURLSession!
+    var uploadProgress : NSProgress?
+    var taskCounter = 0
     var isUploadingFile = false
-    var taskSomething = "jakfa"
-    
     var taskWasUnAuthorized : Bool  = false
-    
     var observerTask : RACDisposable?
     var lastPerformedTask : NSURLSessionTask?
     
@@ -58,22 +53,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         sessionConfiguration.HTTPAdditionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         self.session = theSession
-        println(" The delegate: \(theSession.delegate)")
-        println(theSession.delegateQueue)
-        dispatch(after:3) {
-            println(" The delegate: \(theSession.delegate)")
-            println(theSession.delegateQueue)
-        }
         updateAuthorizationHeader(kOauth2ScopeFull)
     }
-    
     
     func removeAccessToken() {
         OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
     }
     
     func checkForOAuthUnauthroizedOauthStatus(failure: (error: APIError) -> ()) -> (error: APIError) -> () {
-        
         return failure
     }
     
@@ -100,13 +87,25 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     private func validateTokensThenPerformTask(task: NSURLSessionTask) {
         validateOAuthToken(kOauth2ScopeFull) {
+            self.updateAuthorizationHeader(kOauth2ScopeFull)
+            task.resume()
+        }
+    }
+    
+    private func validateTokensWithHigherScopeThenPerformTak(scope: String, task: NSURLSessionTask) {
+        validateOAuthToken(scope) {
+            self.updateAuthorizationHeader(scope)
             task.resume()
         }
     }
     
     func changeName(folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let parameters = [ "id" : folder.folderId, "name" : name, "icon" : iconName]
-        let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success) { (error) -> Void in
+            if (error.code == Constants.Error.Code.oAuthUnathorized ) {
+                self.changeName(folder, newName: name, newIconName: iconName, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -120,7 +119,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             }()
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success) { (error) -> () in
-            if (error.code == Constants.Error.Code.oAuthUnathorized.rawValue ) {
+            if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                 self.changeName(document, newName: name, success: success, failure: failure)
             }
         }
@@ -134,7 +133,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func deleteDocument(uri: String, success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.delete, url: uri, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.delete, url: uri, success: success) { (error) -> Void in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.deleteDocument(uri, success: success, failure: failure)
+            }
+        }
         // only do task if validated
         validateTokensThenPerformTask(task!)
     }
@@ -148,7 +151,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 return ["location":"FOLDER", "subject" : firstAttachment.subject, "folderId" : folder.folderId.stringValue]
             }
             }()
-        let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success) { (error) -> () in
+             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.moveDocument(document, toFolder: folder, success: success, failure: failure)
+            } 
+        
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -157,13 +165,21 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return [ "id" : folder.folderId.stringValue, "name" : folder.name, "icon" : folder.iconName]
         })
         let parameters = ["folder" : folders]
-        let task = urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.moveFolder(folderArray, mailbox: mailbox, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
     func delete(#folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
         let parameters = [ "id" : folder.folderId, "name" : folder.name, "icon" : folder.iconName]
-        let task = urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success) { (error) -> Void in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.delete(folder: folder, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -178,18 +194,26 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success, failure: failure)
+        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.updateBankAccount(uri: uri, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
     func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure);
+        let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized {
+                self.sendInvoideToBank(invoice, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
     func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: folderUri,  success: success) { (error) -> () in
-            if (error.code == Constants.Error.Code.oAuthUnathorized.rawValue ) {
+            if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
             }
         }
@@ -198,21 +222,37 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: document.updateUri, success: success)  { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
+            if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.updateDocument(document, success: success, failure: failure)
             }
         }
-        
         validateTokensThenPerformTask(task!)
     }
     
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success, failure: failure)
+        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
+                self.updateReceiptsInMailboxWithDigipostAddress(digipostAddress, uri: uri, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
+                self.deleteReceipt(receipt, success: success, failure: failure)
+            }
+        }
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
+        let task  = urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
+                self.validateOpeningReceipt(attachment, success: success, failure: failure)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -252,9 +292,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
+        println(baseEncryptedModelUri)
         
         let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
-            
             var changedBaseEncryptedModel : POSBaseEncryptedModel?
             if baseEncryptedModelIsAttachment {
                 changedBaseEncryptedModel = POSAttachment.existingAttachmentWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
@@ -264,6 +304,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let filePath = changedBaseEncryptedModel?.decryptedFilePath()
             if (filePath == nil) {
                 // do return nil
+                return
             }
             let fileURL = NSURL(fileURLWithPath: filePath!)
             
@@ -274,9 +315,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             
             success()
-            }
-            , failure: failure)
-        validateTokensThenPerformTask(task!)
+            }, failure: failure)
+        validateTokensWithHigherScopeThenPerformTak(highestScope!, task: task!)
     }
     
     func uploadFile(#url: NSURL, folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
@@ -292,8 +332,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return
         }
         
-        
-//        let fileSize = pow(2,20)
         let maxFileSize = pow(Float(2),Float(20)) * 10
         let fileSize = fileAttributes![NSFileSize] as Float
         
@@ -301,7 +339,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
             failure(error: tooBigError)
             return
-        }
+       }
+        
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         if (rootResource.uploadDocumentUri.utf16Count) <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
@@ -448,9 +487,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     private class func mimeType(#fileType:String) -> String {
         let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil).takeUnretainedValue()
-        let mimeType = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType).takeUnretainedValue()
-        return mimeType
+        let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)
+        if findTag != nil {
+            let mimeType = findTag.takeRetainedValue()
+            return mimeType
+        }else {
+            return ""
+        }
     }
-    
-   
 }
