@@ -176,9 +176,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:mailboxDigipostAddress
-                                                                         inFolderWithName:folderName]; //[NSPredicate predicateWithFormat:@"%K == %@",
-                                                                                                       //[NSString stringWithFormat:@"%@.%@", NSStringFromSelector(@selector(folder)), NSStringFromSelector(@selector(name))],
-                                                                                                       //folderName];
+                                                                         inFolderWithName:folderName];
 
     NSError *error = nil;
     NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest
