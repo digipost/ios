@@ -211,23 +211,23 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-        if ([APIClient sharedClient].isUploadingFile) {
-            if (indexPath.row == 0) {
-                POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
-                                                                               forIndexPath:indexPath];
-                cell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted;
-                cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
-                NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
-                fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-                cell.fileNameLabel.text = fileName;
-                return cell;
-            }
-    
-            // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
-            indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1
-                                           inSection:indexPath.section];
+
+    if ([APIClient sharedClient].isUploadingFile) {
+        if (indexPath.row == 0) {
+            POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
+                                                                           forIndexPath:indexPath];
+            cell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted;
+            cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
+            NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
+            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            cell.fileNameLabel.text = fileName;
+            return cell;
         }
+
+        // If we have a cell displaying the upload progress, adjust the indexPath accordingly.
+        indexPath = [NSIndexPath indexPathForRow:indexPath.row - 1
+                                       inSection:indexPath.section];
+    }
     POSDocumentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDocumentTableViewCellIdentifier
                                                                      forIndexPath:indexPath];
     [self configureCell:cell
@@ -257,7 +257,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
-    cell.senderLabel.text = attachment.document.creatorName;
+    cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
@@ -342,36 +342,35 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)shouldValidateOpeningReceipt:(POSDocument *)document
 {
     POSAttachment *attachment = [document.attachments firstObject];
-    //    [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-    //
-    //        [self validateOpeningAttachment:attachment
-    //                                success:^{
-    //                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-    //                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-    //                                    } else {
-    //
-    //                                        if ([document.attachments count] > 1) {
-    //                                            [self performSegueWithIdentifier:kPushAttachmentsIdentifier
-    //                                                                      sender:document];
-    //                                        } else {
-    //                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-    //                                        }
-    //                                    }
-    //                                }
-    //                                failure:^(NSError *error) {
-    //                                    [UIAlertView showWithTitle:error.errorTitle
-    //                                                       message:[error localizedDescription]
-    //                                             cancelButtonTitle:nil
-    //                                             otherButtonTitles:@[error.okButtonTitle]
-    //                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //                                                          [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    //                                                      }];
-    //                                }];
-    //    } failure:^(NSError *error) {
-    //        [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //
-    //        }];
-    //    }];
+    [[APIClient sharedClient] validateOpeningReceipt:attachment success:^{
+             [self validateOpeningAttachment:attachment
+                                    success:^{
+                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+                                            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+                                        } else {
+    
+                                            if ([document.attachments count] > 1) {
+                                                [self performSegueWithIdentifier:kPushAttachmentsIdentifier
+                                                                          sender:document];
+                                            } else {
+                                                [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+                                            }
+                                        }
+                                    }
+                                    failure:^(NSError *error) {
+                                        [UIAlertView showWithTitle:error.errorTitle
+                                                           message:[error localizedDescription]
+                                                 cancelButtonTitle:nil
+                                                 otherButtonTitles:@[error.okButtonTitle]
+                                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                              [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+                                                          }];
+                                    }];
+    } failure:^(APIError *error) {
+            [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    
+            }];
+    }];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
