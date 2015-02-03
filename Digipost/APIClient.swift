@@ -27,6 +27,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case put = "PUT"
         case get = "GET"
     }
+    
     var disposable : RACDisposable?
     
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
@@ -67,7 +68,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateAuthorizationHeader(scope: String) {
         let athing = self.session.delegate! as NSURLSessionDelegate
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
-        println(self.session.configuration.HTTPAdditionalHeaders)
         if let accessToken = oAuthToken?.accessToken {
             self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(oAuthToken!.accessToken!)", forHTTPHeaderField: "Authorization")
@@ -104,6 +104,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success) { (error) -> Void in
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                 self.changeName(folder, newName: name, newIconName: iconName, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -121,6 +123,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success) { (error) -> () in
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                 self.changeName(document, newName: name, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -128,7 +132,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     func createFolder(name: String, iconName: String, mailBox: POSMailbox, success: () -> Void , failure: (error: APIError) -> ()) {
         let parameters = ["name" : name, "icon" : iconName]
-        let task = urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, success: success, failure: failure)
+        let task = urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                self.createFolder(name, iconName: iconName, mailBox: mailBox, success: success, failure: failure)
+            } else {
+                failure(error: error)
+            }
+        }
         validateTokensThenPerformTask(task!)
     }
     
@@ -136,6 +146,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.delete, url: uri, success: success) { (error) -> Void in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.deleteDocument(uri, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         // only do task if validated
@@ -152,10 +164,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             }()
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success) { (error) -> () in
-             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.moveDocument(document, toFolder: folder, success: success, failure: failure)
-            } 
-        
+            } else {
+                failure(error: error)
+            }
+            
         }
         validateTokensThenPerformTask(task!)
     }
@@ -168,6 +182,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.moveFolder(folderArray, mailbox: mailbox, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -178,6 +194,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success) { (error) -> Void in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.delete(folder: folder, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -188,6 +206,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.updateRootResource(success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -197,6 +217,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 self.updateBankAccount(uri: uri, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -206,6 +228,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.sendInvoideToBank(invoice, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -215,6 +239,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionJSONTask(url: folderUri,  success: success) { (error) -> () in
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -224,6 +250,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionJSONTask(url: document.updateUri, success: success)  { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.updateDocument(document, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -233,6 +261,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
                 self.updateReceiptsInMailboxWithDigipostAddress(digipostAddress, uri: uri, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -242,6 +272,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
                 self.deleteReceipt(receipt, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -251,6 +283,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let task  = urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue  {
                 self.validateOpeningReceipt(attachment, success: success, failure: failure)
+            } else {
+                failure(error: error)
             }
         }
         validateTokensThenPerformTask(task!)
@@ -292,7 +326,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
-        println(baseEncryptedModelUri)
         
         let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
             var changedBaseEncryptedModel : POSBaseEncryptedModel?
@@ -411,7 +444,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         })
         self.isUploadingFile = true
         validateTokensThenPerformTask(task)
-//    [self removeTemporaryInboxFiles];
     }
     
     func removeTemporaryUploadFiles () {
