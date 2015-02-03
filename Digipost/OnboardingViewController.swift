@@ -18,13 +18,24 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
         // Do any additional setup after loading the view.
         
-        let panorama = UIImage(named: "panOslo")
-        let imageView = UIImageView(image: panorama)
+        //Images in xcassets: panOslo, background_1 -> bacground_7
         
-        scrollView.contentSize = CGSizeMake(self.view.frame.width*5, self.view.frame.height)
-        scrollView.addSubview(imageView)
+        let pageSize = view.frame.size
+        let backgroundLeftEdgeOffset = pageSize.width/2
         
-        pageControl.numberOfPages = 5
+        let backgroundImage = UIImage(named: "background_5")!
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        
+        backgroundImageView.frame = CGRectMake(-backgroundLeftEdgeOffset, 0, backgroundImage.size.width, pageSize.height)
+        backgroundImageView.contentMode = UIViewContentMode.TopLeft
+        
+        let numOfPagesToFitBackground = (backgroundImageView.frame.size.width - pageSize.width) / pageSize.width
+        
+        scrollView.contentSize = CGSizeMake(pageSize.width * numOfPagesToFitBackground, pageSize.height)
+        scrollView.addSubview(backgroundImageView)
+        
+        pageControl.numberOfPages = Int(round(numOfPagesToFitBackground))
+
     }
 
     override func didReceiveMemoryWarning() {
