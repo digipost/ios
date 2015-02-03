@@ -295,17 +295,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     [super setEditing:editing
              animated:animated];
-
-    OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:kOauth2ScopeFull];
-    NSLog(@"%@", oAuthToken.accessToken);
-    oAuthToken.accessToken = @"sdfjaeajcjce";
-
-    NSLog(@"%@", oAuthToken.accessToken);
-
-    OAuthToken *sameOAuthToken = [OAuthToken oAuthTokenWithScope:kOauth2ScopeFull];
-    NSLog(@"%@", sameOAuthToken.accessToken);
-    [[APIClient sharedClient] updateAuthorizationHeader:kOauth2ScopeFull];
-
     if (editing) {
         self.shouldShowAddNewFolderCell = YES;
         if ([self.folders count] == 0) {
