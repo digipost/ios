@@ -291,7 +291,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
              animated:animated];
 
     if (editing) {
-        self.shouldShowAddNewFolderCell = YES;
         if ([self.folders count] == 0) {
             [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1]
                           withRowAnimation:UITableViewRowAnimationAutomatic];

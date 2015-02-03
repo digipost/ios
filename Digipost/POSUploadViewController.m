@@ -58,10 +58,11 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
-    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
-
-    } failure:^(NSError *error){
-
+    
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
+        
+    } failure:^(APIError *error) {
+        
     }];
 }
 

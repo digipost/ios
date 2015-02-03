@@ -102,25 +102,16 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
-        POSAPIManager.sharedManager().updateRootResourceWithSuccess({ () -> Void in
+        APIClient.sharedClient.updateRootResource(success: { (response) -> Void in
             if let actualRefreshControl = self.refreshControl {
                 self.refreshControl?.endRefreshing()
             }
-
-            }, failure: { (error: NSError!) -> Void in
-                if let actualRefreshControl = self.refreshControl {
-                    self.refreshControl?.endRefreshing()
-                }
-                
-                /*if let response = error.userInfo?[AFNetworkingOperationFailingURLRequestErrorKey] as? NSHTTPURLResponse {
-                    if response.isKindOfClass(NSHTTPURLResponse) {
-                        if (POSAPIManager.sharedManager().responseCodeIsUnauthorized(response)) {
-                            NSTimer.scheduledTimerWithTimeInterval(0.0, target: userDidInitiateRequest, selector: "updateContentsFromServerUserInitiatedRequest:", userInfo: nil, repeats: false)
-                            return
-                        }
-                    }
-                }*/
-        })
+        }) { (error) -> () in
+            if let actualRefreshControl = self.refreshControl {
+                self.refreshControl?.endRefreshing()
+            }
+            // Notify user about error?
+        }
     }
     
     // MARK: - TableViewDelegate
@@ -198,7 +189,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
         tableView.reloadData()
-        POSAPIManager.sharedManager().logout()
+        //POSAPIManager.sharedManager().logout()
     }
 
 }
