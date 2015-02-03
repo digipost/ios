@@ -45,13 +45,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var taskWasUnAuthorized : Bool  = false
     var observerTask : RACDisposable?
     var lastPerformedTask : NSURLSessionTask?
+    var additionalHeaders = Dictionary<String, String>()
     
     override init() {
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         sessionConfiguration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
         let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
-        sessionConfiguration.HTTPAdditionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
+        additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         self.session = theSession
         updateAuthorizationHeader(kOauth2ScopeFull)
@@ -69,8 +70,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let athing = self.session.delegate! as NSURLSessionDelegate
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if let accessToken = oAuthToken?.accessToken {
-            self.session.configuration.HTTPAdditionalHeaders!["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
+            self.additionalHeaders["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(oAuthToken!.accessToken!)", forHTTPHeaderField: "Authorization")
+        } else {
+            println("FATAL")
         }
     }
     
@@ -238,8 +241,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         let task = urlSessionJSONTask(url: folderUri,  success: success) { (error) -> () in
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
-               self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
+                self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
             } else {
+                println("failure")
                 failure(error: error)
             }
         }
@@ -287,6 +291,25 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 failure(error: error)
             }
         }
+        validateTokensThenPerformTask(task!)
+    }
+    
+    func logout () {
+        logout(success: { () -> Void in
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
+        }) { (error) -> () in
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
+        }
+    }
+    
+    private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
+        let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        if rootResource == nil {
+            success()
+        }
+        let task = urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
     }
     

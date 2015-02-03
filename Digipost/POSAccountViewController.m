@@ -172,6 +172,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 {
     popoverPresentationController.sourceView = self.view;
 }
+
 - (void)userDidConfirmLogout
 {
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
@@ -181,7 +182,7 @@ NSString *const kRefreshContentNotification = @"refreshContentNotificiation";
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     [self.tableView reloadData];
-//    [[POSAPIManager sharedManager] logout];
+    [[APIClient sharedClient] logout];
 }
 
 @end

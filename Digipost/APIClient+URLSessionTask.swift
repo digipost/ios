@@ -35,6 +35,10 @@ extension APIClient {
     func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
+                let httpRespoonse = response as NSHTTPURLResponse
+                println(httpRespoonse)
+                let string = NSString(data: data, encoding: NSASCIIStringEncoding)
+                println(string)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessToken()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
@@ -68,15 +72,12 @@ extension APIClient {
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         
         disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
-            let urlSession = racTuple.first as NSURLSession
-            let downloadTask = racTuple.second as NSURLSessionDownloadTask
-            // For usage when backend supports error delivery on pdf with higher auth levels
-            println(downloadTask.response)
-            let location = racTuple.third as NSURL
-            let contents = NSData(contentsOfURL: location)
-            let stringContents = NSString(data: contents!, encoding: NSASCIIStringEncoding)
-            let stringContents2 = NSString(data: contents!, encoding: NSUTF8StringEncoding)
-            success(url: location)
+            if let location = racTuple.objectAtIndex(2) as? NSURL {
+                let contents = NSData(contentsOfURL: location)
+                let stringContents = NSString(data: contents!, encoding: NSASCIIStringEncoding)
+                let stringContents2 = NSString(data: contents!, encoding: NSUTF8StringEncoding)
+                success(url: location)
+            }
             self.disposable?.dispose()
         }
         
@@ -88,13 +89,6 @@ extension APIClient {
                 }
             })
         }
-        
-        RACSignalSubscriptionNext(selector: Selector("URLSession:task:didCompleteWithError:"), fromProtocol: NSURLSessionTaskDelegate.self) { (racTuple) -> Void in
-            println(racTuple)
-            let urlSession = racTuple.first as NSURLSession
-            let downloadTask = racTuple.second as NSURLSessionTask
-        }
-        
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
         lastPerformedTask = task
         return task
@@ -115,7 +109,13 @@ extension APIClient {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+        println(urlRequest.allHTTPHeaderFields)
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
+//        println(urlRequest.allHTTPHeaderFields)
+//        println(self.session.configuration.HTTPAdditionalHeaders!)
         return task
     }
     
@@ -123,6 +123,9 @@ extension APIClient {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
@@ -132,6 +135,10 @@ extension APIClient {
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+//        urlRequest.allHTTPHeaderFields
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
