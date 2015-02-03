@@ -16,8 +16,6 @@ extension APIClient {
             dispatch_async(dispatch_get_main_queue(), {
                 let httpRespoonse = response as NSHTTPURLResponse
                 println(httpRespoonse)
-                let string = NSString(data: data, encoding: NSASCIIStringEncoding)
-                println(string)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessToken()
                     failure(error: APIError.UnauthorizedOAuthTokenError())

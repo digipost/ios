@@ -102,7 +102,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
-        APIClient.sharedClient.updateRootResource(success: { (response) -> Void in
+        APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
+            POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
             if let actualRefreshControl = self.refreshControl {
                 self.refreshControl?.endRefreshing()
             }
@@ -189,7 +190,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
         tableView.reloadData()
-        //POSAPIManager.sharedManager().logout()
+        APIClient.sharedClient.logout()
     }
 
 }

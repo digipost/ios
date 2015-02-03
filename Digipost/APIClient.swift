@@ -295,6 +295,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func logout () {
+        
         logout(success: { () -> Void in
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
@@ -308,6 +309,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         if rootResource == nil {
             success()
+            return
         }
         let task = urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
         validateTokensThenPerformTask(task!)
