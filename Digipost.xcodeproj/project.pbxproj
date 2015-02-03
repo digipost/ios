@@ -2328,6 +2328,7 @@
 				ECF486D71A471A1F00E97519 /* POSUploadViewController.m in Sources */,
 				ECF486CE1A471A1200E97519 /* POSReceiptsTableViewDataSource.m in Sources */,
 				ECF4869B1A4715A300E97519 /* POSFileManager.m in Sources */,
+				ECF486971A47158D00E97519 /* POSMailbox.m in Sources */,
 				EC2B64661A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF486C81A471A1200E97519 /* POSDocumentsViewController.m in Sources */,
 				EC2E9E371A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift in Sources */,

@@ -1613,9 +1613,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6ll-nd-HYD"/>
         <segue reference="WBk-6x-J5R"/>
-        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="j20-qk-TDu"/>
         <segue reference="Kl9-xn-mhN"/>
         <segue reference="eq9-PM-agO"/>
