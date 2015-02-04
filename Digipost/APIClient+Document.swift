@@ -15,10 +15,10 @@ extension APIClient {
     func changeName(document: POSDocument, newName name: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let documentFolder = document.folder
         let parameters : Dictionary<String,String> = {
-            if documentFolder.name == "Inbox" {
-                return ["location":"INBOX", "subject" : name]
+            if documentFolder.name.lowercaseString == Constants.FolderName.inbox.lowercaseString {
+                return [Constants.APIClient.AttributeKey.location : Constants.FolderName.inbox, Constants.APIClient.AttributeKey.subject : name]
             } else {
-                return ["location":"FOLDER", "subject" : name, "folderId" : documentFolder.folderId.stringValue]
+                return [Constants.APIClient.AttributeKey.location : Constants.FolderName.folder, Constants.APIClient.AttributeKey.subject : name, Constants.APIClient.AttributeKey.folderId: documentFolder.folderId.stringValue]
             }
             }()
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success) { (error) -> () in
@@ -46,10 +46,10 @@ extension APIClient {
     func moveDocument(document: POSDocument, toFolder folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
         let firstAttachment = document.attachments.firstObject as POSAttachment
         let parameters : Dictionary<String,String> = {
-            if folder.name == "Inbox" {
-                return ["location":"INBOX", "subject" : firstAttachment.subject]
+            if folder.name.lowercaseString == Constants.FolderName.inbox.lowercaseString {
+                return [Constants.APIClient.AttributeKey.location : Constants.FolderName.inbox, Constants.APIClient.AttributeKey.subject : firstAttachment.subject]
             } else {
-                return ["location":"FOLDER", "subject" : firstAttachment.subject, "folderId" : folder.folderId.stringValue]
+                return [Constants.APIClient.AttributeKey.location: Constants.FolderName.folder, Constants.APIClient.AttributeKey.subject : firstAttachment.subject, Constants.APIClient.AttributeKey.folderId : folder.folderId.stringValue]
             }
             }()
         let task = urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success) { (error) -> () in
@@ -67,7 +67,6 @@ extension APIClient {
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
                 self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
             } else {
-                println("failure")
                 failure(error: error)
             }
         }

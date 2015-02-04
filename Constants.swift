@@ -16,6 +16,22 @@ struct Constants {
         static var baseURL : String {
             return __SERVER_URI__
         }
+        
+        struct AttributeKey {
+            static let location = "location"
+            static let subject = "subject"
+            static let folderId = "folderId"
+            static let identifier = "id"
+            static let name = "name"
+            static let icon = "icon"
+            static let folder = "folder"
+        }
+        
+    }
+    
+    struct FolderName {
+            static let inbox = "INBOX"
+            static let folder = "FOLDER"
     }
     
     struct HTTPHeaderKeys {
@@ -27,7 +43,6 @@ struct Constants {
         static let apiErrorDomainOAuthUnauthorized = "oAuthUnauthorized"
         
         static let apiClientErrorDomain = "APIManagerErrorDomain"
-        
         enum Code : Int {
             case oAuthUnathorized = 4001
             case uploadFileDoesNotExist = 4002
