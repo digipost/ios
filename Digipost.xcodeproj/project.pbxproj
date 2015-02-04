@@ -502,6 +502,11 @@
 		ECD0B8941A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		ECD0B8951A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		ECD0B8961A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
+		ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
+		ECD0B8991A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
+		ECD0B89A1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
+		ECD0B89B1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
+		ECD0B89C1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20419F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20519F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
@@ -865,6 +870,7 @@
 		ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Folder.swift"; sourceTree = "<group>"; };
 		ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Document.swift"; sourceTree = "<group>"; };
+		ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+APIError.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
 		ECDB9A021A5A904E0013DF4F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
@@ -1288,6 +1294,7 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */,
 				EC2B64621A66928D00AB6085 /* Dispatch.swift */,
 				ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */,
 				3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */,
@@ -1837,6 +1844,7 @@
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC11A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
+				ECD0B89A1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
@@ -1953,6 +1961,7 @@
 				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622A19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
+				ECD0B8991A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				31B57FFB1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7EE18755AAA00344644 /* NSString+SHA1String.m in Sources */,
@@ -2069,6 +2078,7 @@
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
+				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
@@ -2185,6 +2195,7 @@
 				EC55F3FB1A2C5ACC00A3192C /* SHCAttachmentTableViewCell.m in Sources */,
 				EC55F3FC1A2C5ACC00A3192C /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC21A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
+				ECD0B89C1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */,
 				EC55F3FD1A2C5ACC00A3192C /* POSAPIManager.m in Sources */,
 				EC55F3FE1A2C5ACC00A3192C /* NSString+SHA1String.m in Sources */,
@@ -2267,6 +2278,7 @@
 				ECF486E31A471A2E00E97519 /* UIRefreshControl+Additions.m in Sources */,
 				ECF486CA1A471A1200E97519 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC63A83A1A6E73E500708A75 /* Constants.swift in Sources */,
+				ECD0B89B1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				ECF486CC1A471A1200E97519 /* POSReceiptFolderTableViewCell.m in Sources */,
 				ECC08DFC1A5BE798004C829D /* APIClient.swift in Sources */,
 				ECF486BD1A4719F400E97519 /* UIWindow+Navigation.swift in Sources */,

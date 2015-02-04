@@ -32,8 +32,6 @@ class APIError: NSError {
         super.init(coder: aDecoder)
     }
 
-//    required init(coder aDecoder: NSCoder) {
-//    }
     
     var alertTitle : String {
         switch self.code {
@@ -42,7 +40,7 @@ class APIError: NSError {
         }
     }
     
-    var altertText : String {
+    var altertMessage : String {
         switch self.code {
         default:
             return ""
