@@ -44,14 +44,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         refreshControl?.tintColor = UIColor.digipostGreyOne()
         refreshControl?.addTarget(self, action: "refreshContentFromServer", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl!)
-    }
-    
-    func refreshContentFromServer() {
-        updateContentsFromServerUseInitiateRequest(0)
-    }
-
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        // Configure Tableview
         
         tableView.registerNib(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
         tableView.registerNib(UINib(nibName: Constants.Account.accountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
@@ -68,6 +62,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
+    }
+    
+    func refreshContentFromServer() {
+        updateContentsFromServerUseInitiateRequest(0)
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         logoutButton.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), forState: .Normal)
