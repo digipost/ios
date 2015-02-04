@@ -41,7 +41,6 @@
 #import <UIActionSheet+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
-#import "POSAccountViewController.h"
 #import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)

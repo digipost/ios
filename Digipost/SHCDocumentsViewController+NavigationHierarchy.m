@@ -7,16 +7,16 @@
 //
 
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
-#import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
+#import "digipost-swift.h"
 
 @implementation POSDocumentsViewController (NavigationHierarchy)
 - (void)addAccountsAnFoldersVCToDoucmentHierarchy
 {
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-        if ([self.navigationController.viewControllers[1] isKindOfClass:[POSAccountViewController class]] == NO) {
-            POSAccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+        if ([self.navigationController.viewControllers[1] isKindOfClass:[AccountViewController class]] == NO) {
+            AccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
             POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
             NSMutableArray *newViewControllerArray = [NSMutableArray array];
@@ -40,9 +40,9 @@
             POSFoldersViewController *folderViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
             NSMutableArray *newViewControllerArray = [NSMutableArray array];
             // add account vc as second view controller in navigation controller
-            POSAccountViewController *accountVC = self.navigationController.viewControllers[0];
-            if ([accountVC isKindOfClass:[POSAccountViewController class]] == NO) {
-                accountVC = [self.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            AccountViewController *accountVC = self.navigationController.viewControllers[0];
+            if ([accountVC isKindOfClass:[AccountViewController class]] == NO) {
+                accountVC = [self.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
             }
 
             POSDocumentsViewController *currentViewController = self.navigationController.viewControllers.lastObject;

@@ -38,7 +38,6 @@
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"
-#import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "POSDocumentTableViewCell.h"

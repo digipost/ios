@@ -21,7 +21,6 @@
 #import <DDFileLogger.h>
 #import <GAI.h>
 #import "POSDocumentsViewController.h"
-#import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
 #import <GAITracker.h>
 #import <UIAlertView+Blocks.h>
@@ -93,11 +92,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
         [navController popToRootViewControllerAnimated:NO];
 
-        POSAccountViewController *accountViewController;
-        if ([navController.viewControllers[0] isKindOfClass:[POSAccountViewController class]]) {
+        AccountViewController *accountViewController;
+        if ([navController.viewControllers[0] isKindOfClass:[AccountViewController class]]) {
             accountViewController = navController.viewControllers[0];
         } else {
-            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
         }
 
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
@@ -109,7 +108,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         // for iphone root controller will be login controller
         if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
             [newViewControllerArray addObject:loginViewController];
-            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
         }
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
