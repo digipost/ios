@@ -147,7 +147,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                  kOAuth2RefreshToken : refreshToken,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
 
-    NSLog(@"parameters: %@", parameters);
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -160,10 +159,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                   oauthToken.accessToken = accessToken;
                                   [[APIClient sharedClient] updateAuthorizationHeader:scope];
                                   DDLogInfo(@"Access token updated");
-
                                   if (success) {
-//                                      [[POSAPIManager sharedManager] updateAuthorizationHeaderForScope:scope];
-//                                      [[APIClient sharedClient] updateAuthorizationHeader:scope];
                                       success();
                                       return;
                                   }

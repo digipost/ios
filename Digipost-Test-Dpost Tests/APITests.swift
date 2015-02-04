@@ -31,7 +31,6 @@ class APITests: XCTestCase {
         
         let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
             APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
-                println(responseDictionary)
                 POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
                 expectation.fulfill()
                 let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)

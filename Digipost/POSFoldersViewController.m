@@ -401,7 +401,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         POSFolder *folder = [self.folders objectAtIndex:indexPath.row];
         [self deleteFolder:folder
@@ -421,7 +420,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (indexPath.row >= [self.folders count]) {
         return UITableViewCellEditingStyleInsert;
     }
-
     if (self.tableView.isEditing) {
         return UITableViewCellEditingStyleDelete;
     }
@@ -569,15 +567,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     } failure:^(NSError *error) {
         NSLog(@"error is : %@",error.userInfo);
          NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-//                // We were unauthorized, due to the session being invalid.
-//                // Let's retry in the next run loop
-//                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-//                return;
-//            }
-        }
-        
         [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
             [UIAlertView showWithTitle:error.errorTitle
@@ -598,11 +587,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
     [[APIClient sharedClient] deleteWithFolder:folder success:^{
-            [self updateContentsFromServerUserInitiatedRequest:@NO];
+        [self updateContentsFromServerUserInitiatedRequest:@NO];
     }
         failure:^(APIError *error) {
                                            [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                               
                                            }];
         }];
 }
