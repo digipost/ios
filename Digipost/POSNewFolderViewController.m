@@ -142,9 +142,7 @@
     }
         failure:^(APIError *error) {
                                             [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-                                            [UIAlertView showWithTitle: NSLocalizedString(@"Feil", @"Feil") message: NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                
-                                            }];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 

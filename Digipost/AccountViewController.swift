@@ -102,12 +102,17 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
+        
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
             POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
             if let actualRefreshControl = self.refreshControl {
                 self.refreshControl?.endRefreshing()
             }
         }) { (error) -> () in
+            if (userDidInitiateRequest == 1) {
+                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self)
+            }
+            
             if let actualRefreshControl = self.refreshControl {
                 self.refreshControl?.endRefreshing()
             }

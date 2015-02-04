@@ -104,7 +104,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -225,11 +224,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
 
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }
         }];
 }

@@ -172,25 +172,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                                          [self.tableView reloadData];
     }
         failure:^(APIError *error) {
-                                             
-                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                 if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
-                                                     // We were unauthorized, due to the session being invalid.
-                                                     // Let's retry in the next run loop
-                                                     [self performSelector:@selector(deleteReceipt:) withObject:receipt afterDelay:0.0];
-                                                     
-                                                     return;
-                                                 }
-                                             }
-                                             
-                                             //        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                             
-                                             [UIAlertView showWithTitle:error.errorTitle
-                                                                message:[error localizedDescription]
-                                                      cancelButtonTitle:nil
-                                                      otherButtonTitles:@[error.okButtonTitle]
-                                                               tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 

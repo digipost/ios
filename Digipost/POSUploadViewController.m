@@ -58,11 +58,11 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
-    
+
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
-        
-    } failure:^(APIError *error) {
-        
+
+    } failure:^(APIError *error){
+
     }];
 }
 
@@ -86,23 +86,23 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self dismissViewControllerAnimated:YES completion:^{
         }];
         [self.navigationController dismissViewControllerAnimated:YES completion:^{
-            
+
         }];
-        
+
         [[APIClient sharedClient] uploadFileWithUrl:self.url folder:self.chosenFolder success:^{
-            
+
         } failure:^(APIError *error) {
             NSLog(@"%@",error);
-            
+
         }];
-        
-//        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
-//            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
-//                                                        animated:YES];
-//        } failure:^(NSError *error) {
-//            [UIAlertView showWithTitle:NSLocalizedString(@"upload failed title", @"") message:NSLocalizedString(@"upload failed message", @"") cancelButtonTitle:NSLocalizedString(@"upload failed ok", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-//            }];
-//        }];
+
+        //        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
+        //            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent
+        //                                                        animated:YES];
+        //        } failure:^(NSError *error) {
+        //            [UIAlertView showWithTitle:NSLocalizedString(@"upload failed title", @"") message:NSLocalizedString(@"upload failed message", @"") cancelButtonTitle:NSLocalizedString(@"upload failed ok", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        //            }];
+        //        }];
         NSNotification *notification = [NSNotification notificationWithName:kStartUploadingDocumentNotitification object:self userInfo:[self notificationDictionary]];
         [[NSNotificationCenter defaultCenter] postNotification:notification];
     }

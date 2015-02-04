@@ -357,6 +357,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
                                 }
                                 failure:^(NSError *error) {
+                                    
                                     [UIAlertView showWithTitle:error.errorTitle
                                                        message:[error localizedDescription]
                                              cancelButtonTitle:nil
@@ -547,17 +548,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
             }
         }
-    } failure:^(NSError *error) {
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+    } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         if ([userDidInititateRequest boolValue]){
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }
     }];
 }
@@ -654,13 +650,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
         }
-    } failure:^(NSError *error) {
+    } failure:^(APIError *error) {
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-        [UIAlertView showWithTitle:error.errorTitle
-                           message:[error localizedDescription]
-                 cancelButtonTitle:nil
-                 otherButtonTitles:@[error.okButtonTitle]
-                          tapBlock:error.tapBlock];
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
     }];
 }
 
@@ -683,18 +675,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         
         if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-            
             POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
             if ([currentOpenDocument isEqual:document]){
                 ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
             }
         }
     } failure:^(APIError *error) {
-        [UIAlertView showWithTitle:error.errorTitle
-                              message:[error localizedDescription]
-                    cancelButtonTitle:nil
-                    otherButtonTitles:@[error.okButtonTitle]
-                             tapBlock:error.tapBlock];
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     }];
 }
@@ -725,11 +712,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [[APIClient sharedClient] updateBankAccountWithUri:uri success:nil
                                                failure:^(APIError *error) {
-                                                   [UIAlertView showWithTitle:error.errorTitle
-                                                                      message:[error localizedDescription]
-                                                            cancelButtonTitle:nil
-                                                            otherButtonTitles:@[error.okButtonTitle]
-                                                                     tapBlock:error.tapBlock];
+                                                   [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                                }];
 }
 

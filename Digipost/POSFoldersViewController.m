@@ -563,16 +563,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-    } failure:^(NSError *error) {
-        NSLog(@"error is : %@",error.userInfo);
-         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+    } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }
 
     }];

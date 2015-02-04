@@ -563,28 +563,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
         failure:^(APIError *error) {
-                                       
-                                       NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                           if ([[APIClient sharedClient]  responseCodeForOAuthIsUnauthorized:response]) {
-                                               // We were unauthorized, due to the session being invalid.
-                                               // Let's retry in the next run loop
-                                               double delayInSeconds = 0.0;
-                                               dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                               dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                   [self moveDocument:document toFolder:folder];
-                                               });
-                                               
-                                               return;
-                                           }
-                                       }
-                                       
-                                       
-                                       [UIAlertView showWithTitle:error.errorTitle
-                                                          message:[error localizedDescription]
-                                                cancelButtonTitle:nil
-                                                otherButtonTitles:@[error.okButtonTitle]
-                                                         tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -771,58 +750,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             if ([_attachment.read boolValue] == NO ) {
                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
             }
-        } failure:^(NSError *error) {
-            BOOL unauthorized = NO;
+        } failure:^(APIError *error) {
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-            
-            if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
-                [error code] == SHCAPIManagerErrorCodeUnauthorized) {
-                unauthorized = YES;
-            } else  if (error.code == SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel) {
-                
-            } else {
-                NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                    //                                                                       if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                    //                                                                           unauthorized = YES;
-                    //                                                                       }
-                }
-            }
-            
-            if (unauthorized) {
-                // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
-                if (self.attachment) {
-                    changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                } else {
-                    changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                }
-                
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
-                
-                return;
-            } else {
                 if ([self needsAuthenticationToOpen] == NO)  {
-                    [UIAlertView showWithTitle:error.errorTitle
-                                       message:[error localizedDescription]
-                             cancelButtonTitle:nil
-                             otherButtonTitles:@[error.okButtonTitle]
-                                      tapBlock:error.tapBlock];
+                    [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                 }
-            }
         }];
-        //
-        //        [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
-        //            withProgress:progress
-        //            success:^{
-        //
-        //            }
-        //            failure:^(NSError *error) {
-        //
-        //
-        //            }];
     }
 }
 
@@ -915,23 +848,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
         failure:^(APIError *error) {
-                                       
-                                       NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                       if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                           if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
-                                               // We were unauthorized, due to the session being invalid.
-                                               // Let's retry in the next run loop
-                                               [self performSelector:@selector(moveDocumentToFolder:) withObject:folder afterDelay:0.0];
-                                               
-                                               return;
-                                           }
-                                       }
-                                       
-                                       [UIAlertView showWithTitle:error.errorTitle
-                                                          message:[error localizedDescription]
-                                                cancelButtonTitle:nil
-                                                otherButtonTitles:@[error.okButtonTitle]
-                                                         tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -954,22 +871,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
         failure:^(APIError *error) {
-                                         NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                             if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
-                                                 // We were unauthorized, due to the session being invalid.
-                                                 // Let's retry in the next run loop
-                                                 [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];
-                                                 
-                                                 return;
-                                             }
-                                         }
-                                         
-                                         [UIAlertView showWithTitle:error.errorTitle
-                                                            message:[error localizedDescription]
-                                                  cancelButtonTitle:nil
-                                                  otherButtonTitles:@[error.okButtonTitle]
-                                                           tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -990,20 +892,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
         failure:^(APIError *error) {
-                                        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                            if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
-                                                // We were unauthorized, due to the session being invalid.
-                                                // Let's retry in the next run loop
-                                                [self performSelector:@selector(deleteReceipt) withObject:nil afterDelay:0.0];
-                                                return;
-                                            }
-                                        }
-                                        [UIAlertView showWithTitle:error.errorTitle
-                                                           message:[error localizedDescription]
-                                                 cancelButtonTitle:nil
-                                                 otherButtonTitles:@[error.okButtonTitle]
-                                                          tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 

@@ -194,7 +194,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else {
         url = [NSURL URLWithString:@"https://www.digipost.no/juridisk/#personvern"];
     }
-
     [UIActionSheet showFromRect:sender.frame
                          inView:[sender superview]
                        animated:YES
