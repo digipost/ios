@@ -285,32 +285,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     return cell;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing
-             animated:animated];
-
-    if (editing) {
-        if ([self.folders count] == 0) {
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                         inSection:1] ]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    } else if (animated) {
-        if ([self.folders count] == 0) {
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                         inSection:1] ]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
