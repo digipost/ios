@@ -501,7 +501,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     //        return;
     //    }
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
-    // @TODO refactor this
     // Saving uri for the open document in case we need to re fetch it later
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
@@ -551,16 +550,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                                }
     } failure:^(NSError *error) {
              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-//                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-//                                                                       // We were unauthorized, due to the session being invalid.
-//                                                                       // Let's retry in the next run loop
-//                                                                       [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-//                                                                       
-//                                                                       return;
-//                                                                   }
-                                                               }
-                                                               
                                                                [self programmaticallyEndRefresh];
                                                                
                                                                [self showTableViewBackgroundView:([self numberOfRows] == 0)];
