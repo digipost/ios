@@ -14,6 +14,8 @@ extension APIClient {
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
             dispatch_async(dispatch_get_main_queue(), {
+                let htttpURL = response as NSHTTPURLResponse
+                println(htttpURL)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessToken()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
@@ -31,6 +33,8 @@ extension APIClient {
     func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
+                let htttpURL = response as NSHTTPURLResponse
+                println(htttpURL)
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessToken()
@@ -63,7 +67,9 @@ extension APIClient {
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-        
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
         disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
             if let location = racTuple.objectAtIndex(2) as? NSURL {
                 let contents = NSData(contentsOfURL: location)
@@ -82,6 +88,17 @@ extension APIClient {
                 }
             })
         }
+        RACSignalSubscriptionNext(selector: Selector("URLSession:task:didCompleteWithError:"), fromProtocol: NSURLSessionTaskDelegate.self) { (racTuple) -> Void in
+            println(racTuple)
+            let urlSession = racTuple.first as NSURLSession
+            let downloadTask = racTuple.second as NSURLSessionTask
+            println(urlSession)
+            println(downloadTask)
+            //            let location = racTuple.third as NSError
+            //            success(url: location)
+            //            self.disposable?.dispose()
+        }
+
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
         lastPerformedTask = task
         return task
