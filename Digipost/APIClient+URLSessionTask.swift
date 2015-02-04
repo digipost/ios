@@ -36,7 +36,6 @@ extension APIClient {
                 let httpRespoonse = response as NSHTTPURLResponse
                 println(httpRespoonse)
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
-                println(string)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessToken()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
@@ -110,10 +109,7 @@ extension APIClient {
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
-        println(urlRequest.allHTTPHeaderFields)
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
-//        println(urlRequest.allHTTPHeaderFields)
-//        println(self.session.configuration.HTTPAdditionalHeaders!)
         return task
     }
     
@@ -133,7 +129,6 @@ extension APIClient {
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-//        urlRequest.allHTTPHeaderFields
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
