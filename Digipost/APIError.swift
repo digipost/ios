@@ -13,11 +13,8 @@ import UIKit
 class APIError: NSError {
     
     init(error: NSError) {
-        
         super.init(domain: error.domain, code: error.code, userInfo: error.userInfo)
     }
-    
-//    init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?)
     
     override init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?) {
         super.init(domain: domain, code: code, userInfo: dict)
@@ -33,8 +30,6 @@ class APIError: NSError {
         super.init(coder: aDecoder)
     }
 
-    //    m CFNetworkErrors : Int32 {
-    
 //    case CFHostErrorHostNotFound
 //    case CFHostErrorUnknown // Query the kCFGetAddrInfoFailureKey to get the value returned from getaddrinfo; lookup in netdb.h
 //    // SOCKS errors; in all cases you may query kCFSOCKSStatusCodeKey to recover the status code returned by the server
@@ -155,11 +150,8 @@ class APIError: NSError {
             return "Skru på roaming for å bruke digipost"
         case CFNetworkErrors.CFURLErrorUnknown.rawValue:
             return "Noe feil skjedde, prøv igjen"
-            
-//        case kCFURLErrorTimedOut :
-//            return "timeout"
         default:
-            return "??????????????????"
+            return "Error"
         }
     }
     
