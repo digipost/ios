@@ -72,7 +72,19 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return scope
         }
     }
-        
+    
+    class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
+        if let token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+            return token
+        }else if let token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+            return token
+        }else if let token = oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
+            return token
+        }else {
+            return oAuthTokenWithScope(kOauth2ScopeFull)?
+        }
+    }
+    
     required convenience init(coder decoder: NSCoder) {
         self.init()
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!

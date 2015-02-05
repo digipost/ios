@@ -164,9 +164,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
-        OAuthViewController.delegate = self;
-        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+        SHCOAuthViewController *oAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
+        oAuthViewController.delegate = self;
+        oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }
 }
 
@@ -634,6 +634,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.progressView.progress = 0.0;
     if ([self needsAuthenticationToOpen]) {
         [self showUnlockViewIfNotPresent];
+        return;
         //        [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
@@ -659,10 +660,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }];
         self.progress = progress;
     } else {
+        
     }
 
     [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+    
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
         POSAttachment *attachment = (id)baseEncryptionModel;
         __block POSDocument *document = attachment.document;
@@ -1361,7 +1364,26 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
 {
-    [self loadContent];
+    // If a user logs into scope FULL with one fødselsnummer and then uses bankid with another fødselsnummer to auth IDporten, we need to tell the user that.
+    NSManagedObjectContext *context = [POSModelManager sharedManager].managedObjectContext ;
+    POSRootResource *oldRootResource = [POSRootResource existingRootResourceInManagedObjectContext: context];
+    
+    
+    [[APIClient sharedClient] updateRootResourceWithScope:@"" success:^(NSDictionary *responseDict) {
+        POSRootResource *newRootResource = [POSRootResource rootResourceWithAttributes:responseDict inManagedObjectContext:context];
+        if (oldRootResource) {
+            
+        }
+        
+    } failure:^(APIError *error) {
+        
+    }];
+//    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *response) {
+//        [[POSModelManager sharedManager] updateRootResourceWithAttributes:response];
+//        [self loadContent];
+//    } failure:^(APIError *error) {
+//        
+//    }];
 }
 
 - (void)didTapUnlockButton:(id)sender

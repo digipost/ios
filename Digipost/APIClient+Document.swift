@@ -33,7 +33,7 @@ extension APIClient {
     
     func deleteDocument(uri: String, success: () -> Void , failure: (error: APIError) -> ()) {
         let task = urlSessionTask(httpMethod.delete, url: uri, success: success) { (error) -> Void in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+            if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.deleteDocument(uri, success: success, failure: failure)
             } else {
                 failure(error: error)
@@ -70,7 +70,9 @@ extension APIClient {
                 failure(error: error)
             }
         }
-        validateTokensThenPerformTask(task!)
+        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+        println("choosing highest scope: \(highestToken)")
+        validate(token: highestToken, thenPerformTask: task!)
     }
     
     func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
