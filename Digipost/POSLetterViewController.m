@@ -723,6 +723,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
 
         NSLog(@"uri %@", baseEncryptionModel.uri);
+
         [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
             
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
@@ -1382,6 +1383,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 NSLog(@"%@",updateURI);
                 [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAddress:self.attachment.document.folder.mailbox.digipostAddress attributes:responseDict];
                 
+                [self removeUnlockViewIfPresent];
                 [self reloadAttachmentWithUpdateURI:updateURI];
                 [self loadContent];
             } failure:^(APIError *error) {

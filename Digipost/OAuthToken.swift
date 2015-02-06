@@ -141,6 +141,11 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
     }
     
+    func removeFromKeyChainIfNotValid() {
+        if accessToken == nil && refreshToken == nil {
+            removeFromKeyChain()
+        }
+    }
     func password() -> String? {
         if scope == kOauth2ScopeFull{
             return refreshToken

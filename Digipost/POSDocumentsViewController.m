@@ -126,11 +126,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                              selector:@selector(refreshContent)
                                                  name:kRefreshDocumentsContentNotificationName
                                                object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     if (self.folderUri == nil) {
         POSFolder *folder = [POSFolder existingFolderWithName:self.folderName
                                        mailboxDigipostAddress:self.mailboxDigipostAddress
@@ -142,6 +137,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
     [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
 

@@ -74,6 +74,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(oAuthToken!.accessToken!)", forHTTPHeaderField: "Authorization")
             self.lastSetOauthTokenForAuthorizationHeader = oAuthToken
         } else {
+            oAuthToken?.removeFromKeyChainIfNotValid()
             assert(false, "no access token to validate tokens with")
         }
     }
@@ -84,7 +85,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             self.lastSetOauthTokenForAuthorizationHeader = oAuthToken
         } else {
-            assert(false, "no access token to validate tokens with")
+            oAuthToken.removeFromKeyChainIfNotValid()
         }
     }
     
@@ -114,6 +115,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func updateRootResource(#success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+        self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = __ROOT_RESOURCE_URI__
         let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
@@ -122,7 +125,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 failure(error: error)
             }
         }
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         println("choosing highest scope: \(highestToken)")
         
         validate(token: highestToken, thenPerformTask: task!)
