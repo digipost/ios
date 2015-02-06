@@ -114,8 +114,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                 // got an access code and a refresh code, and can dismiss this view controller
                 // and let the login view controller take over and push the folders view controller.
                 [self dismissViewControllerAnimated:YES completion:^{
-                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:)]) {
-                        [self.delegate OAuthViewControllerDidAuthenticate:self];
+                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                        [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
                     }
                 }];
                 }

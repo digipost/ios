@@ -62,17 +62,18 @@ extension APIClient {
         validateTokensThenPerformTask(task!)
     }
     
-    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
+    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
+        updateAuthorizationHeader(oAuthToken: token)
         let task = urlSessionJSONTask(url: folderUri,  success: success) { (error) -> () in
             if (error.code == Constants.Error.Code.oAuthUnathorized ) {
-                self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, success: success, failure: failure)
+                self.updateDocumentsInFolder(name: name, mailboxDigipostAdress: mailboxDigipostAdress, folderUri: folderUri, token: token, success: success, failure: failure)
             } else {
                 failure(error: error)
             }
         }
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-        println("choosing highest scope: \(highestToken)")
-        validate(token: highestToken, thenPerformTask: task!)
+//        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+//        println("choosing highest scope: \(highestToken)")
+        validate(token: token, thenPerformTask: task!)
     }
     
     func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {

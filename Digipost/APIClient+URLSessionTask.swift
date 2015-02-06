@@ -35,7 +35,9 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
-                println(htttpURL)
+                println("response \(htttpURL)")
+                println("urlRequest \(urlrequest) ")
+                println("error \(error) ")
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
@@ -123,6 +125,8 @@ extension APIClient {
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+        
+        println( urlRequest.allHTTPHeaderFields)
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task
     }

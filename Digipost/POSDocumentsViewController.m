@@ -511,7 +511,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
     }
     POSFolder *folder = [POSFolder existingFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri success:^(NSDictionary *responseDictionary) {
+
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
                                                   mailboxDigipostAddress:self.mailboxDigipostAddress
                                                               attributes:responseDictionary];

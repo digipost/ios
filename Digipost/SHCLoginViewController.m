@@ -164,7 +164,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 #pragma mark - SHCOAuthViewControllerDelegate
 
-- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self.navigationController dismissViewControllerAnimated:YES

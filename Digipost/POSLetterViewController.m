@@ -660,12 +660,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }];
         self.progress = progress;
     } else {
-        
     }
 
     [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
-    
+
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
         POSAttachment *attachment = (id)baseEncryptionModel;
         __block POSDocument *document = attachment.document;
@@ -723,6 +722,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }];
     } else {
 
+        NSLog(@"uri %@", baseEncryptionModel.uri);
         [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
             
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
@@ -1195,7 +1195,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     //    }
 
     NSString *attachmentUri = self.attachment.uri;
-    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri success:^(NSDictionary *responseDictionary) {
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
                                                   mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
                                                               attributes:responseDictionary];
@@ -1362,28 +1362,47 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
 }
 
-- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
     // If a user logs into scope FULL with one fødselsnummer and then uses bankid with another fødselsnummer to auth IDporten, we need to tell the user that.
-    NSManagedObjectContext *context = [POSModelManager sharedManager].managedObjectContext ;
-    POSRootResource *oldRootResource = [POSRootResource existingRootResourceInManagedObjectContext: context];
-    
-    
-    [[APIClient sharedClient] updateRootResourceWithScope:@"" success:^(NSDictionary *responseDict) {
+    NSManagedObjectContext *context = [POSModelManager sharedManager].managedObjectContext;
+    POSRootResource *oldRootResource = [POSRootResource existingRootResourceInManagedObjectContext:context];
+
+    NSString *updateURI = self.attachment.document.updateUri;
+    OAuthToken *token = [OAuthToken oAuthTokenWithScope:scope];
+
+    NSLog(@"%@", updateURI);
+    [[APIClient sharedClient] updateRootResourceWithScope:scope success:^(NSDictionary *responseDict) {
         POSRootResource *newRootResource = [POSRootResource rootResourceWithAttributes:responseDict inManagedObjectContext:context];
-        if (oldRootResource) {
-            
+        NSLog(@"%@",updateURI);
+        if ([oldRootResource.selfUri isEqualToString:newRootResource.selfUri]) {
+            NSLog(@"%@",updateURI);
+            [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+            [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.attachment.document.folder.mailbox.digipostAddress folderUri:self.attachment.document.folder.uri token:token success:^(NSDictionary *responseDict) {
+                NSLog(@"%@",updateURI);
+                [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAddress:self.attachment.document.folder.mailbox.digipostAddress attributes:responseDict];
+                
+                [self reloadAttachmentWithUpdateURI:updateURI];
+                [self loadContent];
+            } failure:^(APIError *error) {
+                
+            }];
+        }else {
+            // Show Alert to user and abort update
+            [self showUnlockViewIfNotPresent];
         }
-        
-    } failure:^(APIError *error) {
-        
+    } failure:^(APIError *error){
+
     }];
-//    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *response) {
-//        [[POSModelManager sharedManager] updateRootResourceWithAttributes:response];
-//        [self loadContent];
-//    } failure:^(APIError *error) {
-//        
-//    }];
+}
+
+- (void)reloadAttachmentWithUpdateURI:(NSString *)updateUri;
+{
+    POSDocument *document = [POSDocument existingDocumentWithUpdateUri:updateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    self.attachment = [document mainDocumentAttachment];
+    NSLog(@"attachment uri %@", self.attachment.uri);
+    POSBaseEncryptedModel *baseEncryptedMode = (POSBaseEncryptedModel *)self.attachment;
+    NSLog(@"baseencrypt model  %@", baseEncryptedMode);
 }
 
 - (void)didTapUnlockButton:(id)sender

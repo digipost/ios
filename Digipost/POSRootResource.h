@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -40,19 +40,20 @@ extern NSString *const kRootResourceEntityName;
 @property (strong, nonatomic) NSNumber *numberOfReceiptsHiddenUntilVerification;
 @property (strong, nonatomic) NSNumber *unreadItemsInInbox;
 @property (strong, nonatomic) NSString *uploadDocumentUri;
+@property (nonatomic, retain) NSString *selfUri;
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;
+
 /**
  *  Attribute not stored in core data, should only be shown when once.
  */
-@property (nonatomic,strong) POSNotice *notice;
+@property (nonatomic, strong) POSNotice *notice;
 
 + (instancetype)existingRootResourceInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)rootResourceWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (void)deleteAllRootResourcesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
-
 
 @interface POSRootResource (CoreDataGeneratedAccessors)
 
