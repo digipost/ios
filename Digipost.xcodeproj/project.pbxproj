@@ -860,6 +860,7 @@
 		ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Convenience.m"; sourceTree = "<group>"; };
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
+		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -1330,13 +1331,13 @@
 			isa = PBXGroup;
 			children = (
 				31B4BED01A6536D900CA7EAC /* AccountViewController.swift */,
+				AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */,
 				EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */,
 				EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */,
 				AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */,
 				AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */,
 				3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */,
 				3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */,
-				AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */,
 			);
 			name = Accounts;
 			sourceTree = "<group>";
@@ -2646,7 +2647,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -2680,7 +2681,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d5cf6ec6-f11b-423f-bd5a-75180f08498a";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2887,6 +2888,7 @@
 			isa = XCVersionGroup;
 			children = (
 				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
+				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
 				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
 				EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */,
 				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
@@ -2898,7 +2900,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = 316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */;
+			currentVersion = ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
