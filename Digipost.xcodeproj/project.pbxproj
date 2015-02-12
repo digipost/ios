@@ -197,6 +197,14 @@
 		AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AFE2715D1A8CA46D00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
+		AFE2715E1A8CA46D00B72147 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */; };
+		AFE2715F1A8CA47B00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
+		AFE271601A8CA47B00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
+		AFE271611A8CA47C00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
+		AFE271621A8CA47F00B72147 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */; };
+		AFE271631A8CA47F00B72147 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */; };
+		AFE271641A8CA48000B72147 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -780,6 +788,8 @@
 		AF471CCD1A8B426600D07DD7 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AFE2715B1A8CA46D00B72147 /* LockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
+		AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1183,6 +1193,8 @@
 		AF471CD61A8B426F00D07DD7 /* AnimationViews */ = {
 			isa = PBXGroup;
 			children = (
+				AFE2715B1A8CA46D00B72147 /* LockView.swift */,
+				AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */,
 				AF471CCC1A8B426600D07DD7 /* DeviceView.swift */,
 				AF471CCD1A8B426600D07DD7 /* QCMethod.swift */,
 			);
@@ -1913,6 +1925,8 @@
 				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				ECF06D53192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				AF471CD41A8B426600D07DD7 /* QCMethod.swift in Sources */,
+				AFE271631A8CA47F00B72147 /* ReceiptView.swift in Sources */,
+				AFE271601A8CA47B00B72147 /* LockView.swift in Sources */,
 				837574BC1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				83F703631855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
@@ -2033,6 +2047,8 @@
 				8364D71A185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADE189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				AF471CD31A8B426600D07DD7 /* QCMethod.swift in Sources */,
+				AFE271621A8CA47F00B72147 /* ReceiptView.swift in Sources */,
+				AFE2715F1A8CA47B00B72147 /* LockView.swift in Sources */,
 				ECF06D52192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				837574BB1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				83F703621855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
@@ -2153,6 +2169,8 @@
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				ECF06D51192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				AF471CD21A8B426600D07DD7 /* QCMethod.swift in Sources */,
+				AFE2715E1A8CA46D00B72147 /* ReceiptView.swift in Sources */,
+				AFE2715D1A8CA46D00B72147 /* LockView.swift in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
@@ -2273,6 +2291,8 @@
 				EC55F4091A2C5ACC00A3192C /* UIView+AutoLayout.m in Sources */,
 				EC55F40A1A2C5ACC00A3192C /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				AF471CD51A8B426600D07DD7 /* QCMethod.swift in Sources */,
+				AFE271641A8CA48000B72147 /* ReceiptView.swift in Sources */,
+				AFE271611A8CA47C00B72147 /* LockView.swift in Sources */,
 				EC55F40B1A2C5ACC00A3192C /* POSUploadTableViewCell.m in Sources */,
 				EC55F40C1A2C5ACC00A3192C /* POSFoldersViewController.m in Sources */,
 				EC55F40D1A2C5ACC00A3192C /* POSLetterViewController+Additions.swift in Sources */,
