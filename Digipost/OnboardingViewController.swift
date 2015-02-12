@@ -44,7 +44,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     var secondAnimationView: LockView!
     var thirdAnimationView: ReceiptView!
     
-    @IBOutlet var button: UIButton!
+    
+    @IBOutlet var getStartedButton: UIButton!
     @IBOutlet var pageControll: UIPageControl!
     
     override func viewDidLoad() {
@@ -113,7 +114,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         setupAnimationViews()
         
         view.bringSubviewToFront(pageControll)
-        view.bringSubviewToFront(button)
+        view.bringSubviewToFront(getStartedButton)
     }
     
     func setupAnimationViews(){
@@ -193,8 +194,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             secondAnimationView.progress = 3 - progress
         case 3.0...5.0:
             thirdAnimationView.progress = 4 - progress
-            button.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
-            pageControll.frame.origin.y = button.frame.origin.y - button.frame.height
+            getStartedButton.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
+            pageControll.frame.origin.y = getStartedButton.frame.origin.y - getStartedButton.frame.height
             pageControll.alpha = (4 - progress)*3
             logoImageView.hidden = true
             welcomeLabel.hidden = true

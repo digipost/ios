@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Fd-0c-viX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="8Fd-0c-viX">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Onboarding View Controller-->
@@ -16,42 +18,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayw-MC-5Do">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fke-GL-zcr">
-                                        <rect key="frame" x="173" y="49" width="255" height="265"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </view>
-                                </subviews>
-                                <connections>
-                                    <outlet property="delegate" destination="8Fd-0c-viX" id="gnQ-zP-7JE"/>
-                                </connections>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50T-g2-cKw">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="CNP-1a-lTM">
-                                <rect key="frame" x="280" y="282" width="39" height="37"/>
-                                <color key="pageIndicatorTintColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="currentPageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGP-rK-yNY">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.85098039219999999" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Kom i gang">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="5" translatesAutoresizingMaskIntoConstraints="NO" id="EBw-Fa-Djv">
+                                <rect key="frame" x="-19" y="-18" width="39" height="37"/>
+                                <color key="pageIndicatorTintColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.85098039219999999" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="114" y="470" width="92" height="37"/>
+                                </variation>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="CNP-1a-lTM" secondAttribute="centerX" constant="0.5" id="0CN-Mv-V3p"/>
-                            <constraint firstItem="ayw-MC-5Do" firstAttribute="bottom" secondItem="L9z-Nk-JGa" secondAttribute="top" id="6yN-ZR-xU8"/>
-                            <constraint firstItem="ayw-MC-5Do" firstAttribute="top" secondItem="493-eC-pmI" secondAttribute="top" id="Csl-Bj-fcP"/>
-                            <constraint firstAttribute="centerY" secondItem="CNP-1a-lTM" secondAttribute="centerY" constant="-0.5" id="ZN6-Q2-C9O"/>
-                            <constraint firstAttribute="trailing" secondItem="ayw-MC-5Do" secondAttribute="trailing" id="dbU-YP-ep6"/>
-                            <constraint firstItem="ayw-MC-5Do" firstAttribute="leading" secondItem="493-eC-pmI" secondAttribute="leading" id="vac-Ks-405"/>
+                            <constraint firstItem="oGP-rK-yNY" firstAttribute="centerX" secondItem="50T-g2-cKw" secondAttribute="centerX" id="01P-r8-wkk"/>
+                            <constraint firstItem="L9z-Nk-JGa" firstAttribute="top" secondItem="50T-g2-cKw" secondAttribute="bottom" id="0KX-jC-nei"/>
+                            <constraint firstAttribute="centerX" secondItem="EBw-Fa-Djv" secondAttribute="centerX" id="8jg-fd-T1S"/>
+                            <constraint firstAttribute="trailing" secondItem="50T-g2-cKw" secondAttribute="trailing" id="G4S-88-wUB"/>
+                            <constraint firstAttribute="centerX" secondItem="oGP-rK-yNY" secondAttribute="centerX" id="Ovd-VZ-8q6"/>
+                            <constraint firstItem="50T-g2-cKw" firstAttribute="leading" secondItem="493-eC-pmI" secondAttribute="leading" id="Ykj-0U-c22"/>
+                            <constraint firstItem="50T-g2-cKw" firstAttribute="top" secondItem="493-eC-pmI" secondAttribute="top" id="h9G-6X-xch"/>
+                            <constraint firstItem="L9z-Nk-JGa" firstAttribute="top" secondItem="oGP-rK-yNY" secondAttribute="bottom" constant="16" id="jFR-GH-GAR"/>
+                            <constraint firstAttribute="width" secondItem="oGP-rK-yNY" secondAttribute="height" multiplier="80:11" id="jKu-Rx-6uu"/>
+                            <constraint firstItem="oGP-rK-yNY" firstAttribute="top" secondItem="EBw-Fa-Djv" secondAttribute="bottom" constant="1" id="uZA-GU-mAh"/>
+                            <constraint firstItem="oGP-rK-yNY" firstAttribute="leading" secondItem="493-eC-pmI" secondAttribute="leadingMargin" id="vtU-S4-LaC"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="50T-g2-cKw"/>
+                                <exclude reference="oGP-rK-yNY"/>
+                                <exclude reference="EBw-Fa-Djv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="G4S-88-wUB"/>
+                                <exclude reference="Ykj-0U-c22"/>
+                                <exclude reference="h9G-6X-xch"/>
+                                <exclude reference="8jg-fd-T1S"/>
+                                <exclude reference="01P-r8-wkk"/>
+                                <exclude reference="Ovd-VZ-8q6"/>
+                                <exclude reference="jKu-Rx-6uu"/>
+                                <exclude reference="uZA-GU-mAh"/>
+                                <exclude reference="vtU-S4-LaC"/>
+                                <exclude reference="0KX-jC-nei"/>
+                                <exclude reference="jFR-GH-GAR"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="50T-g2-cKw"/>
+                                <include reference="oGP-rK-yNY"/>
+                                <include reference="EBw-Fa-Djv"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="G4S-88-wUB"/>
+                                <include reference="Ykj-0U-c22"/>
+                                <include reference="h9G-6X-xch"/>
+                                <include reference="8jg-fd-T1S"/>
+                                <exclude reference="01P-r8-wkk"/>
+                                <include reference="Ovd-VZ-8q6"/>
+                                <include reference="jKu-Rx-6uu"/>
+                                <include reference="uZA-GU-mAh"/>
+                                <include reference="vtU-S4-LaC"/>
+                                <include reference="0KX-jC-nei"/>
+                                <include reference="jFR-GH-GAR"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="pageControl" destination="CNP-1a-lTM" id="O0y-PW-uQ0"/>
-                        <outlet property="scrollView" destination="ayw-MC-5Do" id="c0k-h5-di3"/>
+                        <outlet property="getStartedButton" destination="oGP-rK-yNY" id="iTq-nl-x5V"/>
+                        <outlet property="pageControll" destination="EBw-Fa-Djv" id="qvI-Lf-62b"/>
+                        <outlet property="scrollView" destination="50T-g2-cKw" id="z4Z-1E-uKG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kUe-y6-c6g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="766" y="419"/>
+            <point key="canvasLocation" x="520.5" y="405.75"/>
         </scene>
     </scenes>
 </document>
