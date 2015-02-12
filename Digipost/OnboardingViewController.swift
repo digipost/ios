@@ -31,14 +31,18 @@ extension UIScrollView{
 
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
-    var bgImageView = UIImageView()
-    var bgMaskImageView = UIImageView()
-    var bgParallaxImageView = UIImageView()
+    // Backgrounds
+    @IBOutlet var bgImageView: UIImageView!
+    @IBOutlet var bgMaskImageView: UIImageView!
+    @IBOutlet var bgParallaxImageView: UIImageView!
+    // First page
+    @IBOutlet var logoImageView: UIImageView!
+    @IBOutlet var welcomeLabel: UILabel!
     
     @IBOutlet var scrollView: UIScrollView!
     var deviceView: DeviceView?
-    var logoImageView = UIImageView()
-    var welcomeLabel = UILabel()
+    
+    
     // AnimationViews
     var firstAnimationView: DeviceView!
     var secondAnimationView: LockView!
@@ -66,7 +70,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         if let backgroundImage = UIImage(named: "background-cropped") {
             bgImageView.image = backgroundImage
             bgImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundImage.size.width, view.frame.height)
-            view.addSubview(bgImageView)
+          //  view.addSubview(bgImageView)
         }
         
         if let logoImg = UIImage(named: "logo-text") {
@@ -75,7 +79,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             logoImageView.frame = CGRectMake(view.frame.midX - logoWidth/2, view.frame.midY - logoWidth, logoWidth, logoWidth)
             logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
             logoImageView.center.y = CGFloat(abs(Int32(scrollView.contentOffset.x - ((scrollView.frame.height / 2 ))))) - logoImageView.frame.height
-            view.addSubview(logoImageView)
+         //   view.addSubview(logoImageView)
         }
         
         welcomeLabel.frame = CGRectMake(0, 0, view.frame.width/2, view.frame.width/2)
@@ -84,24 +88,26 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         welcomeLabel.numberOfLines = 2
         welcomeLabel.textAlignment = .Center
         welcomeLabel.text = "Velkommen til din\nsikre digitale postkasse"
-        view.addSubview(welcomeLabel)
+      //  view.addSubview(welcomeLabel)
         
         
         if let backgroundMaskImage = UIImage(named: "background-mask") {
             bgMaskImageView.image = backgroundMaskImage
             bgMaskImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundMaskImage.size.width, view.frame.height)
-            view.addSubview(bgMaskImageView)
+          //  view.addSubview(bgMaskImageView)
         }
-        if let backgroundParallaxImage = UIImage(named: "background-mountain") {
-            bgParallaxImageView.image = backgroundParallaxImage
-            bgParallaxImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundParallaxImage.size.width, view.frame.height)
-            let initialBackgroundHeight = bgParallaxImageView.frame.height
-            bgParallaxImageView.transform = CGAffineTransformMakeScale(1.15, 1.15)
-            let newBackgroundHeight = bgParallaxImageView.frame.height
-            let newOriginY = newBackgroundHeight - initialBackgroundHeight
-            bgParallaxImageView.frame.origin.y = -newOriginY
-            view.addSubview(bgParallaxImageView)
-        }
+//        if let backgroundParallaxImage = UIImage(named: "background-mountain") {
+//            bgParallaxImageView.image = backgroundParallaxImage
+//            bgParallaxImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundParallaxImage.size.width, view.frame.height)
+//            
+//          //  view.addSubview(bgParallaxImageView)
+//        }
+        let initialBackgroundHeight = bgParallaxImageView.frame.height
+        bgParallaxImageView.transform = CGAffineTransformMakeScale(1.15, 1.15)
+        let newBackgroundHeight = bgParallaxImageView.frame.height
+        let newOriginY = newBackgroundHeight - initialBackgroundHeight
+        bgParallaxImageView.frame.origin.y = -newOriginY
+        
         
         // Set background positions to parallax starting point
         bgImageView.center.x = (scrollView.contentSize.width/2 - scrollView.contentOffset.x)*0.5
@@ -194,8 +200,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             secondAnimationView.progress = 3 - progress
         case 3.0...5.0:
             thirdAnimationView.progress = 4 - progress
-            getStartedButton.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
-            pageControll.frame.origin.y = getStartedButton.frame.origin.y - getStartedButton.frame.height
+            //getStartedButton.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
+            //pageControll.frame.origin.y = getStartedButton.frame.origin.y - getStartedButton.frame.height
             pageControll.alpha = (4 - progress)*3
             logoImageView.hidden = true
             welcomeLabel.hidden = true
