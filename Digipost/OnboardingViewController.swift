@@ -30,114 +30,134 @@ extension UIScrollView{
 }
 
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
-
-    @IBOutlet var pageControl: UIPageControl!
-    @IBOutlet var scrollView: UIScrollView!
-    @IBOutlet var button: UIButton!
     
-    var logo = UIImageView()
     var bgImageView = UIImageView()
-    // AnimationViews
-    var firstAnimationView: DeviceView?
-    var secondAnimationView: DeviceView?
-    var thirdAnimationView: DeviceView?
+    var bgMaskImageView = UIImageView()
+    var bgParallaxImageView = UIImageView()
     
+    @IBOutlet var scrollView: UIScrollView!
+    var deviceView: DeviceView?
+    var logoImageView = UIImageView()
+    var welcomeLabel = UILabel()
+    // AnimationViews
+    var firstAnimationView: DeviceView!
+    var secondAnimationView: LockView!
+    var thirdAnimationView: ReceiptView!
+    
+    @IBOutlet var button: UIButton!
+    @IBOutlet var pageControll: UIPageControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let screenEdgeOffset = view.frame.width/3
-        
-        // Set up bacground image & imageView
-        let image = UIImage(named: "background-cropped")
-        if let img = image {
-            bgImageView.image = img
-            bgImageView.frame = CGRectMake(-screenEdgeOffset, 0, img.size.width, view.frame.height)
-        }
-        
         // Set up scrollView
         let pageSize = view.frame.size
         let numOfPages:CGFloat = 5
-        scrollView.frame = view.frame
         scrollView.delegate = self
         scrollView.pagingEnabled = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
+        println(scrollView.constraints())
+        // Setup bacground images & imageViews
+        let screenEdgeOffset = view.frame.width/3
         
-        // Set background position to parallax starting point
+        if let backgroundImage = UIImage(named: "background-cropped") {
+            bgImageView.image = backgroundImage
+            bgImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundImage.size.width, view.frame.height)
+            view.addSubview(bgImageView)
+        }
+        
+        if let logoImg = UIImage(named: "logo-text") {
+            logoImageView.image = logoImg
+            let logoWidth = view.frame.width/2
+            logoImageView.frame = CGRectMake(view.frame.midX - logoWidth/2, view.frame.midY - logoWidth, logoWidth, logoWidth)
+            logoImageView.contentMode = UIViewContentMode.ScaleAspectFit
+            logoImageView.center.y = CGFloat(abs(Int32(scrollView.contentOffset.x - ((scrollView.frame.height / 2 ))))) - logoImageView.frame.height
+            view.addSubview(logoImageView)
+        }
+        
+        welcomeLabel.frame = CGRectMake(0, 0, view.frame.width/2, view.frame.width/2)
+        welcomeLabel.center = CGPointMake(logoImageView.center.x, logoImageView.center.y + welcomeLabel.frame.height/3)
+        welcomeLabel.textColor = UIColor.blackColor()
+        welcomeLabel.numberOfLines = 2
+        welcomeLabel.textAlignment = .Center
+        welcomeLabel.text = "Velkommen til din\nsikre digitale postkasse"
+        view.addSubview(welcomeLabel)
+        
+        
+        if let backgroundMaskImage = UIImage(named: "background-mask") {
+            bgMaskImageView.image = backgroundMaskImage
+            bgMaskImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundMaskImage.size.width, view.frame.height)
+            view.addSubview(bgMaskImageView)
+        }
+        if let backgroundParallaxImage = UIImage(named: "background-mountain") {
+            bgParallaxImageView.image = backgroundParallaxImage
+            bgParallaxImageView.frame = CGRectMake(-screenEdgeOffset, 0, backgroundParallaxImage.size.width, view.frame.height)
+            let initialBackgroundHeight = bgParallaxImageView.frame.height
+            bgParallaxImageView.transform = CGAffineTransformMakeScale(1.15, 1.15)
+            let newBackgroundHeight = bgParallaxImageView.frame.height
+            let newOriginY = newBackgroundHeight - initialBackgroundHeight
+            bgParallaxImageView.frame.origin.y = -newOriginY
+            view.addSubview(bgParallaxImageView)
+        }
+        
+        // Set background positions to parallax starting point
         bgImageView.center.x = (scrollView.contentSize.width/2 - scrollView.contentOffset.x)*0.5
-        
-        view.addSubview(bgImageView)
+        bgMaskImageView.center = bgImageView.center
+        bgParallaxImageView.center.x = (((scrollView.contentSize.width/2)) - scrollView.contentOffset.x)*0.55
         
         view.addSubview(scrollView)
-        //scrollView.addSubview(bgImageView)
         
         // Setup animation views
         setupAnimationViews()
         
-        let logoImg = UIImage(named: "logo")
-        if let img = logoImg {
-            logo.image = img
-            let logoWidth = view.frame.width/4
-            logo.frame = CGRectMake(view.frame.midX - logoWidth/2, view.frame.midY - logoWidth, logoWidth, logoWidth)
-            logo.center.y = CGFloat(abs(Int32(scrollView.contentOffset.x - ((scrollView.frame.height / 2 ))))) - logo.frame.height
-            view.addSubview(logo)
-        }
-        
+        view.bringSubviewToFront(pageControll)
         view.bringSubviewToFront(button)
     }
     
     func setupAnimationViews(){
-        let viewWidth = view.frame.width/2
-        let pageCenter = scrollView.frame.midY - (viewWidth / 2)
+        let pageCenter = scrollView.frame.midY - (view.frame.width/4)
         let viewOffset = scrollView.frame.width
+        let viewSize = CGSize(width: scrollView.frame.width, height: scrollView.frame.height)
         
-        firstAnimationView = DeviceView(frame: CGRectMake(viewOffset, 100, viewWidth, viewWidth))
-        //firstAnimationView?.backgroundColor = UIColor.redColor()
+        firstAnimationView = DeviceView(frame: CGRectMake(viewOffset, 0, viewSize.width, viewSize.height))
+        //firstAnimationView.backgroundColor = UIColor.redColor()
         scrollView.addSubview(firstAnimationView!)
         
-        secondAnimationView = DeviceView(frame: CGRectMake(viewOffset*2, 100, viewWidth, viewWidth))
-        //secondAnimationView?.backgroundColor = UIColor.redColor()
+        let firstAnimationText = UILabel(frame: CGRectMake(firstAnimationView.frame.origin.x, firstAnimationView.frame.origin.y + viewSize.width/3 , viewSize.width/2, viewSize.height/2))
+        firstAnimationText.center = CGPointMake(firstAnimationView.center.x, firstAnimationText.center.y)
+        firstAnimationText.textColor = UIColor.blackColor()
+        firstAnimationText.textAlignment = .Center
+        firstAnimationText.numberOfLines = 2
+        firstAnimationText.text = "Ha med deg\npostkassen din overalt"
+        scrollView.addSubview(firstAnimationText)
+        
+        secondAnimationView = LockView(frame: CGRectMake(viewOffset*2, 0, viewSize.width, viewSize.height))
+        //secondAnimationView.backgroundColor = UIColor.redColor()
         scrollView.addSubview(secondAnimationView!)
+        secondAnimationView.constraints()
         
-        thirdAnimationView = DeviceView(frame: CGRectMake(viewOffset*3, 100, viewWidth, viewWidth))
-        //thirdAnimationView?.backgroundColor = UIColor.redColor()
+        let secondAnimationText = UILabel(frame: CGRectMake(secondAnimationView.frame.origin.x, secondAnimationView.frame.origin.y + viewSize.width/3 , viewSize.width/2, viewSize.height/2))
+        secondAnimationText.center = CGPointMake(secondAnimationView.center.x, secondAnimationText.center.y)
+        secondAnimationText.textColor = UIColor.blackColor()
+        secondAnimationText.textAlignment = .Center
+        secondAnimationText.numberOfLines = 2
+        secondAnimationText.text = "Trygg oppbevaring\nav viktige dokumenter"
+        scrollView.addSubview(secondAnimationText)
+        
+        thirdAnimationView = ReceiptView(frame: CGRectMake(viewOffset*3, 0, viewSize.width, viewSize.height))
+        //thirdAnimationView.backgroundColor = UIColor.redColor()
         scrollView.addSubview(thirdAnimationView!)
-    }
-    
-    func updateAnimationViewProgress(){
         
-        let progress = scrollView.pageProgressInPercentage()
-        
-        switch progress{
-        case -1.0...1.0:
-            firstAnimationView?.progress =  progress
-            logo.center.y = CGFloat(abs(Int32(scrollView.contentOffset.x - ((scrollView.frame.height / 2 ))))) - logo.frame.height
-            logo.alpha = 1 - progress
-        case 1.0...2.0:
-            secondAnimationView?.progress =  progress - 1
-            firstAnimationView?.progress = 2 - progress
-        case 2.0...3.0:
-            thirdAnimationView?.progress =  progress - 2
-            secondAnimationView?.progress = 3 - progress
-        case 3.0...5.0:
-            thirdAnimationView?.progress = 4 - progress
-            button.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
-            pageControl.frame.origin.y = button.frame.origin.y - button.frame.height
-            pageControl.alpha = (4 - progress)*3
-        default: break
-        }
+        let thirdAnimationText = UILabel(frame: CGRectMake(thirdAnimationView.frame.origin.x, thirdAnimationView.frame.origin.y + viewSize.width/3 , viewSize.width/2, viewSize.height/2))
+        thirdAnimationText.center = CGPointMake(thirdAnimationView.center.x, thirdAnimationText.center.y)
+        thirdAnimationText.textColor = UIColor.blackColor()
+        thirdAnimationText.textAlignment = .Center
+        thirdAnimationText.numberOfLines = 2
+        thirdAnimationText.text = "Full kontroll med\nelektroniske kvittering"
+        scrollView.addSubview(thirdAnimationText)
     }
-    
-    func panBackground(){
-        let contentCenter = scrollView.contentSize.width/2
-        let currentContentOffsetX = scrollView.contentOffset.x
-        let parallaxRate:CGFloat = 0.5
-        bgImageView.center.x = (contentCenter - currentContentOffsetX) * parallaxRate
-    }
-    
-    // MARK: - Scrollview Delegate
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //       println(scrollView.contentOffset.x)
@@ -146,23 +166,51 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         
         panBackground()
         updateAnimationViewProgress()
-        pageControl.currentPage = scrollView.currentPage()
+        pageControll.currentPage = scrollView.currentPage()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func startAnimation(sender: AnyObject) {
+        deviceView?.startAllAnimations(self)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func updateAnimationViewProgress(){
+        
+        let progress = scrollView.pageProgressInPercentage()
+        
+        switch progress{
+        case -1.0...1.0:
+            firstAnimationView.progress =  progress
+            logoImageView.center.y = CGFloat(abs(Int32(scrollView.contentOffset.x + ((scrollView.frame.height / 2 ))))) - logoImageView.frame.height
+            welcomeLabel.center.y = logoImageView.center.y + welcomeLabel.frame.height/3
+            //logoImageView.alpha = 1 - progress
+            logoImageView.hidden = false
+            welcomeLabel.hidden = false
+        case 1.0...2.0:
+            secondAnimationView.progress =  progress - 1
+            firstAnimationView.progress = 2 - progress
+        case 2.0...3.0:
+            thirdAnimationView.progress =  progress - 2
+            secondAnimationView.progress = 3 - progress
+        case 3.0...5.0:
+            thirdAnimationView.progress = 4 - progress
+            button.frame.origin.y = (scrollView.contentSize.width - scrollView.contentOffset.x) - (scrollView.frame.height/4)
+            pageControll.frame.origin.y = button.frame.origin.y - button.frame.height
+            pageControll.alpha = (4 - progress)*3
+            logoImageView.hidden = true
+            welcomeLabel.hidden = true
+        default: break
+        }
     }
-    */
-
+    
+    func panBackground(){
+        let contentCenter = scrollView.contentSize.width/2
+        let currentContentOffsetX = scrollView.contentOffset.x
+        let backgroundParallaxRate:CGFloat = 0.5
+        let mountainParallaxRate: CGFloat = 0.55
+        bgImageView.center.x = (contentCenter - currentContentOffsetX) * backgroundParallaxRate
+        bgMaskImageView.center = bgImageView.center
+        bgParallaxImageView.center.x = ((contentCenter) - currentContentOffsetX ) * mountainParallaxRate
+    }
+    
 }
+
