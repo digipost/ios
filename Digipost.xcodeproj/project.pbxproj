@@ -169,6 +169,7 @@
 		83F7038718573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		83F7038818573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
@@ -782,6 +783,7 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
+		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		AF471CCC1A8B426600D07DD7 /* DeviceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceView.swift; sourceTree = "<group>"; };
@@ -1362,6 +1364,7 @@
 				EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */,
 				EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
+				AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2138,6 +2141,7 @@
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
+				AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */,
 				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
