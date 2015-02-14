@@ -169,6 +169,9 @@
 		83F7038718573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		83F7038818573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		AF0A8F151A8EABB300A5A8E7 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
+		AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
+		AF0A8F171A8EABB500A5A8E7 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
@@ -1948,6 +1951,7 @@
 				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
+				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2070,6 +2074,7 @@
 				ECB3A65A18B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58931935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB6192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
+				AF0A8F151A8EABB300A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2315,6 +2320,7 @@
 				EC55F41A1A2C5ACC00A3192C /* POSFolderIcon.m in Sources */,
 				EC55F41B1A2C5ACC00A3192C /* POSFolder+Methods.m in Sources */,
 				EC63A8391A6E701D00708A75 /* APIError.swift in Sources */,
+				AF0A8F171A8EABB500A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
