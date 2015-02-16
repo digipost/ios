@@ -201,6 +201,18 @@
 		AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
+		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
+		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
+		AFC1A92B1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
+		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
+		AFC1A92F1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
+		AFC1A9301A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
+		AFC1A9311A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
+		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
+		AFC1A9341A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
+		AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
+		AFC1A9361A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFE2715D1A8CA46D00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
 		AFE2715E1A8CA46D00B72147 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */; };
 		AFE2715F1A8CA47B00B72147 /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE2715B1A8CA46D00B72147 /* LockView.swift */; };
@@ -793,6 +805,9 @@
 		AF471CCD1A8B426600D07DD7 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
+		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
+		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFE2715B1A8CA46D00B72147 /* LockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockView.swift; sourceTree = "<group>"; };
 		AFE2715C1A8CA46D00B72147 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1123,6 +1138,7 @@
 				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
 				ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */,
 				AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */,
+				AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -1130,6 +1146,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
 				AF477E001A77B48A00CBD150 /* Onboarding */,
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
 				EC1A6C3218BBA39500269428 /* Login */,
@@ -1213,6 +1230,15 @@
 				AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		AFC1A92C1A920B6A00E62F48 /* NewFeatures */ = {
+			isa = PBXGroup;
+			children = (
+				AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */,
+				AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */,
+			);
+			name = NewFeatures;
 			sourceTree = "<group>";
 		};
 		EC0F2B7519B8930E0019212E /* Upload */ = {
@@ -1597,6 +1623,7 @@
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
+				AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1617,6 +1644,7 @@
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
+				AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1637,6 +1665,7 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
+				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1656,6 +1685,7 @@
 				EC55F4281A2C5ACC00A3192C /* Main_iPhone.storyboard in Resources */,
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
 				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
+				AFC1A92B1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC55F42A1A2C5ACC00A3192C /* LaunchScreen.xib in Resources */,
 				EC55F42B1A2C5ACC00A3192C /* InfoPlist.strings in Resources */,
@@ -1844,6 +1874,7 @@
 				83D355181861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				3118486E1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
+				AFC1A9301A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4D19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -1864,6 +1895,7 @@
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65F19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
+				AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				EC31A63B1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6371A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
@@ -1967,6 +1999,7 @@
 				83D355171861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				3118486D1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
+				AFC1A92F1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2A19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4C19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5C192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -1987,6 +2020,7 @@
 				8364D715185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65E19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
+				AFC1A9341A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				83D75F691858E5790013F8C9 /* POSRootResource.m in Sources */,
 				EC31A63A1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9D1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
@@ -2090,6 +2124,7 @@
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
+				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
@@ -2110,6 +2145,7 @@
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
+				AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
@@ -2213,6 +2249,7 @@
 				EC55F3C31A2C5ACC00A3192C /* POSLetterViewController.m in Sources */,
 				EC55F3C41A2C5ACC00A3192C /* NSString+RandomNumber.m in Sources */,
 				311848701A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
+				AFC1A9311A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC55F3C51A2C5ACC00A3192C /* UIImage+Size.swift in Sources */,
 				EC55F3C61A2C5ACC00A3192C /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				EC55F3C71A2C5ACC00A3192C /* NSFetchedResultsController+Additions.m in Sources */,
@@ -2233,6 +2270,7 @@
 				EC55F3D51A2C5ACC00A3192C /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC55F3D61A2C5ACC00A3192C /* NSManagedObject+Attributes.swift in Sources */,
 				EC55F3D71A2C5ACC00A3192C /* POSRootResource.m in Sources */,
+				AFC1A9361A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				EC55F3D81A2C5ACC00A3192C /* UploadMenuDataSource.swift in Sources */,
 				EC55F3D91A2C5ACC00A3192C /* SHCSplitViewController.m in Sources */,
 				EC55F3DA1A2C5ACC00A3192C /* UploadMenuViewController.swift in Sources */,
