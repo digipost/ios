@@ -10,12 +10,17 @@ import UIKit
 
 class ExtendedTouchView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        
+        if pointInside(point, withEvent: event) {
+            for subview in subviews as [UIView] {
+                if subview .isKindOfClass(UIScrollView) {
+                    return subview
+                }
+            }
+        }
+        
+        return nil
     }
-    */
 
 }
