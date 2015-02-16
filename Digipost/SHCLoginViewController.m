@@ -103,11 +103,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             }
         }
     }
-    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-    UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
-    [self presentViewController:onboardingViewController animated:NO completion:^{
+
+    // Present onboarding
+//    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+//    UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
+//    [self presentViewController:onboardingViewController animated:NO completion:^{
+//
+//    }];
+
+    // Present new features
+    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+    UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
+    [self presentViewController:newFeaturesViewController animated:NO completion:^{
 
     }];
+
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                               style:UIBarButtonItemStyleBordered
