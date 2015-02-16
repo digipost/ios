@@ -36,7 +36,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     func configureNewFeatures() {
         
         // Set up new features
-        features.append(Feature(imageName: "last", featureText: "Del postkassen din med\nandre i familien"))
+        features.append(Feature(imageName: "first", featureText: "Del postkassen din med\nandre i familien"))
         features.append(Feature(imageName: "vise_mapper", featureText: "Bruk mapper for å\norganisere dine eposter"))
         features.append(Feature(imageName: "last", featureText: "Et helt eget arkiv\ndu kan fylle opp"))
     }
