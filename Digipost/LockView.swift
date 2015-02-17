@@ -1,7 +1,7 @@
 //
 //  LockView.swift
 //
-//  Code generated using QuartzCode on 2015-02-11.
+//  Code generated using QuartzCode on 2015-02-17.
 //  www.quartzcodeapp.com
 //
 
@@ -11,7 +11,7 @@ class LockView: UIView {
     
     var layerWithAnims : [CALayer]!
     var animationAdded : Bool = false
-    var lockView : CALayer!
+    var lock : CALayer!
     var roundedrect : CAShapeLayer!
     var path : CAShapeLayer!
     var oval : CAShapeLayer!
@@ -27,44 +27,59 @@ class LockView: UIView {
         setupLayers()
     }
     
+    override var frame: CGRect {
+        didSet{
+            setupLayerFrames()
+        }
+    }
+    
     func setupLayers(){
-        lockView = CALayer()
-        lockView.frame           = CGRectMake(0, 2.35, 375, 330)
-        lockView.backgroundColor = UIColor(red:0.671, green: 0.745, blue:0.855, alpha:0).CGColor
-        self.layer.addSublayer(lockView)
+        lock = CALayer()
+        self.layer.addSublayer(lock)
         
-        var lock = CALayer()
-        lock.frame = CGRectMake(140.65, 92.91, 81.45, 144.18)
-        
-        lockView.addSublayer(lock)
         
         roundedrect = CAShapeLayer()
-        roundedrect.frame       = CGRectMake(0, 66.88, 81.45, 77.31)
+        lock.addSublayer(roundedrect)
         roundedrect.fillColor   = nil
         roundedrect.strokeColor = UIColor.blackColor().CGColor
         roundedrect.lineWidth   = 3
-        roundedrect.path        = roundedRectPath().CGPath;
-        lock.addSublayer(roundedrect)
         
         path = CAShapeLayer()
-        path.frame       = CGRectMake(29.17, 86.34, 23.11, 38.38)
+        lock.addSublayer(path)
         path.fillRule    = kCAFillRuleEvenOdd
         path.fillColor   = nil
         path.strokeColor = UIColor.blackColor().CGColor
         path.lineWidth   = 3
-        path.path        = pathPath().CGPath;
-        lock.addSublayer(path)
         
         oval = CAShapeLayer()
-        oval.frame       = CGRectMake(9.64, 0, 60.67, 53.7)
+        lock.addSublayer(oval)
         oval.lineCap     = kCALineCapRound
         oval.fillColor   = nil
         oval.strokeColor = UIColor.blackColor().CGColor
         oval.lineWidth   = 3
-        oval.path        = ovalPath().CGPath;
-        lock.addSublayer(oval)
         
-        self.layerWithAnims = [lockView, roundedrect, path, oval]
+        setupLayerFrames()
+        
+        self.layerWithAnims = [lock, roundedrect, path, oval]
+    }
+    
+    
+    func setupLayerFrames(){
+        if lock != nil{
+            lock.frame = CGRectMake(0.39169 * lock.superlayer.bounds.width, 0.14728 * lock.superlayer.bounds.height, 0.21662 * lock.superlayer.bounds.width, 0.21584 * lock.superlayer.bounds.height)
+        }
+        if roundedrect != nil{
+            roundedrect.frame = CGRectMake(0, 0.46384 * roundedrect.superlayer.bounds.height,  roundedrect.superlayer.bounds.width, 0.53616 * roundedrect.superlayer.bounds.height)
+            roundedrect.path  = roundedRectPathWithBounds(roundedrect.bounds).CGPath;
+        }
+        if path != nil{
+            path.frame = CGRectMake(0.35811 * path.superlayer.bounds.width, 0.59881 * path.superlayer.bounds.height, 0.28379 * path.superlayer.bounds.width, 0.26621 * path.superlayer.bounds.height)
+            path.path  = pathPathWithBounds(path.bounds).CGPath;
+        }
+        if oval != nil{
+            oval.frame = CGRectMake(0.11835 * oval.superlayer.bounds.width, 0, 0.74488 * oval.superlayer.bounds.width, 0.37246 * oval.superlayer.bounds.height)
+            oval.path  = ovalPathWithBounds(oval.bounds).CGPath;
+        }
     }
     
     
@@ -73,7 +88,6 @@ class LockView: UIView {
         for layer in self.layerWithAnims{
             layer.speed = 1
         }
-        lockView?.addAnimation(lockViewAnimation(), forKey:"lockViewAnimation")
         
         roundedrect?.addAnimation(roundedRectAnimation(), forKey:"roundedRectAnimation")
         path?.addAnimation(pathAnimation(), forKey:"pathAnimation")
@@ -98,17 +112,6 @@ class LockView: UIView {
                 }
             }
         }
-    }
-    
-    func lockViewAnimation() -> CAKeyframeAnimation{
-        var positionAnim      = CAKeyframeAnimation(keyPath:"position")
-        positionAnim.values   = [NSValue(CGPoint: CGPointMake(288, 167.347)), NSValue(CGPoint: CGPointMake(288, 167.347)), NSValue(CGPoint: CGPointMake(187.5, 167.347))]
-        positionAnim.keyTimes = [0, 0.55, 1]
-        positionAnim.duration = 2.66
-        positionAnim.fillMode = kCAFillModeForwards
-        positionAnim.removedOnCompletion = false
-        
-        return positionAnim;
     }
     
     func roundedRectAnimation() -> CAAnimationGroup{
@@ -184,48 +187,54 @@ class LockView: UIView {
     
     //MARK: - Bezier Path
     
-    func roundedRectPath() -> UIBezierPath{
+    func roundedRectPathWithBounds(bound: CGRect) -> UIBezierPath{
         var roundedRectPath = UIBezierPath()
-        roundedRectPath.moveToPoint(CGPointMake(14, 0))
-        roundedRectPath.addCurveToPoint(CGPointMake(0, 14), controlPoint1:CGPointMake(6.268, 0), controlPoint2:CGPointMake(0, 6.268))
-        roundedRectPath.addLineToPoint(CGPointMake(0, 63.306))
-        roundedRectPath.addCurveToPoint(CGPointMake(14, 77.306), controlPoint1:CGPointMake(0, 71.038), controlPoint2:CGPointMake(6.268, 77.306))
-        roundedRectPath.addLineToPoint(CGPointMake(67.449, 77.306))
-        roundedRectPath.addCurveToPoint(CGPointMake(81.449, 63.306), controlPoint1:CGPointMake(75.181, 77.306), controlPoint2:CGPointMake(81.449, 71.038))
-        roundedRectPath.addLineToPoint(CGPointMake(81.449, 14))
-        roundedRectPath.addCurveToPoint(CGPointMake(67.449, 0), controlPoint1:CGPointMake(81.449, 6.268), controlPoint2:CGPointMake(75.181, 0))
+        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        
+        roundedRectPath.moveToPoint(CGPointMake(minX + 0.17189 * w, minY))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX, minY + 0.1811 * h), controlPoint1:CGPointMake(minX + 0.07696 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.08108 * h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX, minY + 0.8189 * h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + 0.17189 * w, minY + h), controlPoint1:CGPointMake(minX, minY + 0.91892 * h), controlPoint2:CGPointMake(minX + 0.07696 * w, minY + h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX + 0.82811 * w, minY + h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.8189 * h), controlPoint1:CGPointMake(minX + 0.92304 * w, minY + h), controlPoint2:CGPointMake(minX + w, minY + 0.91892 * h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX + w, minY + 0.1811 * h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + 0.82811 * w, minY), controlPoint1:CGPointMake(minX + w, minY + 0.08108 * h), controlPoint2:CGPointMake(minX + 0.92304 * w, minY))
         roundedRectPath.closePath()
-        roundedRectPath.moveToPoint(CGPointMake(14, 0))
+        roundedRectPath.moveToPoint(CGPointMake(minX + 0.17189 * w, minY))
         
         return roundedRectPath;
     }
     
-    func pathPath() -> UIBezierPath{
+    func pathPathWithBounds(bound: CGRect) -> UIBezierPath{
         var pathPath = UIBezierPath()
-        pathPath.moveToPoint(CGPointMake(5.315, 20.976))
-        pathPath.addCurveToPoint(CGPointMake(0, 11.389), controlPoint1:CGPointMake(2.118, 18.95), controlPoint2:CGPointMake(0, 15.413))
-        pathPath.addCurveToPoint(CGPointMake(11.557, 0), controlPoint1:CGPointMake(0, 5.099), controlPoint2:CGPointMake(5.174, 0))
-        pathPath.addCurveToPoint(CGPointMake(23.114, 11.389), controlPoint1:CGPointMake(17.94, 0), controlPoint2:CGPointMake(23.114, 5.099))
-        pathPath.addCurveToPoint(CGPointMake(17.929, 20.892), controlPoint1:CGPointMake(23.114, 15.358), controlPoint2:CGPointMake(21.054, 18.853))
-        pathPath.addLineToPoint(CGPointMake(21.645, 34.077))
-        pathPath.addCurveToPoint(CGPointMake(17.231, 38.384), controlPoint1:CGPointMake(21.645, 36.455), controlPoint2:CGPointMake(19.669, 38.384))
-        pathPath.addLineToPoint(CGPointMake(6.423, 38.384))
-        pathPath.addCurveToPoint(CGPointMake(2.009, 34.077), controlPoint1:CGPointMake(3.985, 38.384), controlPoint2:CGPointMake(2.009, 36.455))
-        pathPath.addLineToPoint(CGPointMake(5.315, 20.976))
+        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        
+        pathPath.moveToPoint(CGPointMake(minX + 0.22996 * w, minY + 0.54648 * h))
+        pathPath.addCurveToPoint(CGPointMake(minX, minY + 0.29672 * h), controlPoint1:CGPointMake(minX + 0.09163 * w, minY + 0.4937 * h), controlPoint2:CGPointMake(minX, minY + 0.40156 * h))
+        pathPath.addCurveToPoint(CGPointMake(minX + 0.5 * w, minY), controlPoint1:CGPointMake(minX, minY + 0.13284 * h), controlPoint2:CGPointMake(minX + 0.22386 * w, minY))
+        pathPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.29672 * h), controlPoint1:CGPointMake(minX + 0.77614 * w, minY), controlPoint2:CGPointMake(minX + w, minY + 0.13284 * h))
+        pathPath.addCurveToPoint(CGPointMake(minX + 0.77568 * w, minY + 0.5443 * h), controlPoint1:CGPointMake(minX + w, minY + 0.40013 * h), controlPoint2:CGPointMake(minX + 0.91086 * w, minY + 0.49118 * h))
+        pathPath.addLineToPoint(CGPointMake(minX + 0.93645 * w, minY + 0.88778 * h))
+        pathPath.addCurveToPoint(CGPointMake(minX + 0.74548 * w, minY + h), controlPoint1:CGPointMake(minX + 0.93645 * w, minY + 0.94976 * h), controlPoint2:CGPointMake(minX + 0.85095 * w, minY + h))
+        pathPath.addLineToPoint(CGPointMake(minX + 0.27789 * w, minY + h))
+        pathPath.addCurveToPoint(CGPointMake(minX + 0.08691 * w, minY + 0.88778 * h), controlPoint1:CGPointMake(minX + 0.17242 * w, minY + h), controlPoint2:CGPointMake(minX + 0.08691 * w, minY + 0.94976 * h))
+        pathPath.addLineToPoint(CGPointMake(minX + 0.22996 * w, minY + 0.54648 * h))
         pathPath.closePath()
-        pathPath.moveToPoint(CGPointMake(5.315, 20.976))
+        pathPath.moveToPoint(CGPointMake(minX + 0.22996 * w, minY + 0.54648 * h))
         
         return pathPath;
     }
     
-    func ovalPath() -> UIBezierPath{
+    func ovalPathWithBounds(bound: CGRect) -> UIBezierPath{
         var ovalPath = UIBezierPath()
-        ovalPath.moveToPoint(CGPointMake(30.335, 0))
-        ovalPath.addCurveToPoint(CGPointMake(0, 26.851), controlPoint1:CGPointMake(13.581, 0), controlPoint2:CGPointMake(0, 12.022))
-        ovalPath.addLineToPoint(CGPointMake(0, 53.703))
-        ovalPath.moveToPoint(CGPointMake(60.669, 53.703))
-        ovalPath.addLineToPoint(CGPointMake(60.669, 26.851))
-        ovalPath.addCurveToPoint(CGPointMake(30.335, 0), controlPoint1:CGPointMake(60.669, 12.022), controlPoint2:CGPointMake(47.088, 0))
+        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        
+        ovalPath.moveToPoint(CGPointMake(minX + 0.5 * w, minY))
+        ovalPath.addCurveToPoint(CGPointMake(minX, minY + 0.5 * h), controlPoint1:CGPointMake(minX + 0.22386 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.22386 * h))
+        ovalPath.addLineToPoint(CGPointMake(minX, minY + h))
+        ovalPath.moveToPoint(CGPointMake(minX + w, minY + h))
+        ovalPath.addLineToPoint(CGPointMake(minX + w, minY + 0.5 * h))
+        ovalPath.addCurveToPoint(CGPointMake(minX + 0.5 * w, minY), controlPoint1:CGPointMake(minX + w, minY + 0.22386 * h), controlPoint2:CGPointMake(minX + 0.77614 * w, minY))
         
         return ovalPath;
     }
