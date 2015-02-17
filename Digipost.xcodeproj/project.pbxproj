@@ -13,6 +13,18 @@
 		3108743B1A93443300EBEF4D /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874371A93443300EBEF4D /* LockView.swift */; };
 		3108743C1A93443300EBEF4D /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874381A93443300EBEF4D /* QCMethod.swift */; };
 		3108743D1A93443300EBEF4D /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874391A93443300EBEF4D /* ReceiptView.swift */; };
+		3108743E1A9378A500EBEF4D /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874361A93443300EBEF4D /* DeviceView.swift */; };
+		3108743F1A9378A600EBEF4D /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874361A93443300EBEF4D /* DeviceView.swift */; };
+		310874401A9378A600EBEF4D /* DeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874361A93443300EBEF4D /* DeviceView.swift */; };
+		310874411A9378A900EBEF4D /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874371A93443300EBEF4D /* LockView.swift */; };
+		310874421A9378A900EBEF4D /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874371A93443300EBEF4D /* LockView.swift */; };
+		310874431A9378AA00EBEF4D /* LockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874371A93443300EBEF4D /* LockView.swift */; };
+		310874441A9378AC00EBEF4D /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874381A93443300EBEF4D /* QCMethod.swift */; };
+		310874451A9378AC00EBEF4D /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874381A93443300EBEF4D /* QCMethod.swift */; };
+		310874461A9378AD00EBEF4D /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874381A93443300EBEF4D /* QCMethod.swift */; };
+		310874471A9378B000EBEF4D /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874391A93443300EBEF4D /* ReceiptView.swift */; };
+		310874481A9378B000EBEF4D /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874391A93443300EBEF4D /* ReceiptView.swift */; };
+		310874491A9378B000EBEF4D /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 310874391A93443300EBEF4D /* ReceiptView.swift */; };
 		3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
 		3118486D1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
 		3118486E1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
@@ -1895,6 +1907,7 @@
 				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC68C07C18AA317100A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				310874451A9378AC00EBEF4D /* QCMethod.swift in Sources */,
 				835C74E718867603006C6F4F /* POSInvoice.m in Sources */,
 				83DB4AF7188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				ECD1C20519F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
@@ -1906,6 +1919,7 @@
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				ECB4C65B19B725ED00C1C748 /* NSString+Convenience.m in Sources */,
+				3108743F1A9378A600EBEF4D /* DeviceView.swift in Sources */,
 				EC2B64651A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -1925,8 +1939,10 @@
 				83F7037418570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8E1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1F1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
+				310874421A9378A900EBEF4D /* LockView.swift in Sources */,
 				83D75F561858E5790013F8C9 /* POSDocument.m in Sources */,
 				AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
+				310874481A9378B000EBEF4D /* ReceiptView.swift in Sources */,
 				EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
@@ -2016,6 +2032,7 @@
 				ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E001A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
+				310874441A9378AC00EBEF4D /* QCMethod.swift in Sources */,
 				EC68C07B18AA317000A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				835C74E618867603006C6F4F /* POSInvoice.m in Sources */,
 				83DB4AF6188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
@@ -2027,6 +2044,7 @@
 				83D355121861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
+				3108743E1A9378A500EBEF4D /* DeviceView.swift in Sources */,
 				ECB4C65A19B725ED00C1C748 /* NSString+Convenience.m in Sources */,
 				EC2B64641A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
@@ -2046,8 +2064,10 @@
 				3194C83E1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8D1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
+				310874411A9378A900EBEF4D /* LockView.swift in Sources */,
 				EC0C1A1E1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F551858E5790013F8C9 /* POSDocument.m in Sources */,
+				310874471A9378B000EBEF4D /* ReceiptView.swift in Sources */,
 				AF477E031A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC23529F1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551C1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
@@ -2262,6 +2282,7 @@
 				ECC08E031A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC55F3DF1A2C5ACC00A3192C /* POSReceipt.m in Sources */,
 				EC55F3E01A2C5ACC00A3192C /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				310874461A9378AD00EBEF4D /* QCMethod.swift in Sources */,
 				EC55F3E11A2C5ACC00A3192C /* POSInvoice.m in Sources */,
 				EC55F3E21A2C5ACC00A3192C /* POSBaseEncryptedModel.m in Sources */,
 				EC55F3E31A2C5ACC00A3192C /* UIToolbar+Actions.swift in Sources */,
@@ -2273,6 +2294,7 @@
 				EC55F3E91A2C5ACC00A3192C /* main.m in Sources */,
 				EC55F3EA1A2C5ACC00A3192C /* SHCAppDelegate.m in Sources */,
 				EC55F3EB1A2C5ACC00A3192C /* NSString+Convenience.m in Sources */,
+				310874401A9378A600EBEF4D /* DeviceView.swift in Sources */,
 				EC2B64671A66928D00AB6085 /* Dispatch.swift in Sources */,
 				EC55F3EC1A2C5ACC00A3192C /* UIRefreshControl+Additions.m in Sources */,
 				EC55F3ED1A2C5ACC00A3192C /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -2292,8 +2314,10 @@
 				EC55F3F71A2C5ACC00A3192C /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC55F3F81A2C5ACC00A3192C /* UIColor+Convenience.m in Sources */,
+				310874431A9378AA00EBEF4D /* LockView.swift in Sources */,
 				EC55F3F91A2C5ACC00A3192C /* POSDocument.m in Sources */,
 				AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
+				310874491A9378B000EBEF4D /* ReceiptView.swift in Sources */,
 				EC55F3FA1A2C5ACC00A3192C /* UIImage+TintColor.swift in Sources */,
 				EC55F3FB1A2C5ACC00A3192C /* SHCAttachmentTableViewCell.m in Sources */,
 				EC55F3FC1A2C5ACC00A3192C /* NSNumber+JsonParsing.m in Sources */,
