@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     // Backgrounds
@@ -24,7 +22,6 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     var secondAnimationView: LockView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
-    @IBOutlet var animationMockLabel: UILabel!
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var getStartedButton: UIButton!
@@ -46,7 +43,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         let numOfPages:CGFloat = 5
         scrollView.delegate = self
         scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
-        
+
         // Set parallax speed depending on device
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
@@ -79,45 +76,23 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
     func setupAnimationViews() {
         
-        let pageCenter = animationMockView.center
         let viewOffset = scrollView.frame.width
-        let viewSize = animationMockView.frame.size
-        
-        firstAnimationView = DeviceView(frame: animationMockView.frame)
+        let animationFrame = animationMockView.frame
+
+        firstAnimationView = DeviceView(frame: animationFrame)
         firstAnimationView.center.x = animationMockView.center.x + viewOffset
+        firstAnimationView.animationText.string = "Ha med deg\npostkassen din overalt" // TODO: Localization
         scrollView.addSubview(firstAnimationView!)
         
-        let firstAnimationText = UILabel(frame: animationMockLabel.frame)
-        firstAnimationText.center.x = animationMockLabel.center.x + viewOffset
-        firstAnimationText.textColor = UIColor.blackColor()
-        firstAnimationText.textAlignment = .Center
-        firstAnimationText.numberOfLines = 2
-        firstAnimationText.text = "Ha med deg\npostkassen din overalt" // TODO: Localization
-        scrollView.addSubview(firstAnimationText)
-        
-        secondAnimationView = LockView(frame: animationMockView.frame)
+        secondAnimationView = LockView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
+        secondAnimationView.animationText.string = "Trygg oppbevaring\nav viktige dokumenter" // TODO: Localization
         scrollView.addSubview(secondAnimationView!)
         
-        let secondAnimationText = UILabel(frame: animationMockLabel.frame)
-        secondAnimationText.center.x = animationMockLabel.center.x + viewOffset * 2
-        secondAnimationText.textColor = UIColor.blackColor()
-        secondAnimationText.textAlignment = .Center
-        secondAnimationText.numberOfLines = 2
-        secondAnimationText.text = "Trygg oppbevaring\nav viktige dokumenter" // TODO: Localization
-        scrollView.addSubview(secondAnimationText)
-        
-        thirdAnimationView = ReceiptView(frame: animationMockView.frame)
+        thirdAnimationView = ReceiptView(frame: animationFrame)
         thirdAnimationView.center.x = animationMockView.center.x + viewOffset * 3
+        thirdAnimationView.animationText.string = "Full kontroll med\nelektroniske kvitteringer" // TODO: Localization
         scrollView.addSubview(thirdAnimationView!)
-        
-        let thirdAnimationText = UILabel(frame: animationMockLabel.frame)
-        thirdAnimationText.center.x = animationMockLabel.center.x + viewOffset * 3
-        thirdAnimationText.textColor = UIColor.blackColor()
-        thirdAnimationText.textAlignment = .Center
-        thirdAnimationText.numberOfLines = 2
-        thirdAnimationText.text = "Full kontroll med\nelektroniske kvitteringer" // TODO: Localization
-        scrollView.addSubview(thirdAnimationText)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -166,6 +141,29 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    @IBAction func getStartedButtonAction(sender: AnyObject) {
+        
+        var storyboard:UIStoryboard!
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        if !userDefaults.boolForKey("hasViewedNewFeatures_v250"){
+            storyboard = UIStoryboard(name: "NewFeatures", bundle: nil)
+        } else {
+            let device = UIDevice.currentDevice().userInterfaceIdiom
+            switch device {
+            case .Phone:
+                storyboard = UIStoryboard(name: "Main_iPhone", bundle: nil)
+            case .Pad:
+                storyboard = UIStoryboard(name: "Main_iPad", bundle: nil)
+            default: break
+            }
+        }
+        
+        let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
+        self.presentViewController(viewcontroller, animated: false) { () -> Void in
+        }
+    }
+    
     func panBackground() {
         let translatedOffsetX = -(scrollView.contentOffset.x + scrollView.scrollableEdgeOffset)
         bgImageView.frame.origin.x = translatedOffsetX * backgroundParallaxSpeed
@@ -183,7 +181,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 //        switch device {
 //        case .Phone: return UIInterfaceOrientation.Portrait.rawValue
 //        case .Pad: return UIInterfaceOrientation.LandscapeRight.rawValue
-//        default: return UIInterfaceOrientation.Portrait.rawValue
+//        default: return UIInterfaceOrientation.LandscapeRight.rawValue
 //        }
 //    }
     
