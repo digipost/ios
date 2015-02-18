@@ -184,18 +184,18 @@ class ReceiptView: UIView {
         }
         if rectangle5 != nil{
             rectangle5.setValue(0, forKeyPath:"transform.rotation")
-            rectangle5.frame = CGRectMake(0.31406 * rectangle5.superlayer.bounds.width, 0.45706 * rectangle5.superlayer.bounds.height, 0.57592 * rectangle5.superlayer.bounds.width, 0 * rectangle5.superlayer.bounds.height)
+            rectangle5.frame = CGRectMake(0.31406 * rectangle5.superlayer.bounds.width, 0.53133 * rectangle5.superlayer.bounds.height, 0.57592 * rectangle5.superlayer.bounds.width, 0 * rectangle5.superlayer.bounds.height)
             rectangle5.setValue(180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
             rectangle5.path  = rectangle5PathWithBounds(rectangle5.bounds).CGPath;
         }
         if rectangle6 != nil{
             rectangle6.setValue(0, forKeyPath:"transform.rotation")
-            rectangle6.frame = CGRectMake(0.32196 * rectangle6.superlayer.bounds.width, 0.60708 * rectangle6.superlayer.bounds.height, 0.22417 * rectangle6.superlayer.bounds.width, 0 * rectangle6.superlayer.bounds.height)
+            rectangle6.frame = CGRectMake(0.32196 * rectangle6.superlayer.bounds.width, 0.68135 * rectangle6.superlayer.bounds.height, 0.22417 * rectangle6.superlayer.bounds.width, 0 * rectangle6.superlayer.bounds.height)
             rectangle6.setValue(180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
             rectangle6.path  = rectangle6PathWithBounds(rectangle6.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.0042 * animationText.superlayer.bounds.width, 0.65664 * animationText.superlayer.bounds.height, 0.99283 * animationText.superlayer.bounds.width, 0.34402 * animationText.superlayer.bounds.height)
         }
     }
     

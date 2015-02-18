@@ -76,7 +76,7 @@ class LockView: UIView {
     
     func setupLayerFrames(){
         if lock != nil{
-            lock.frame = CGRectMake(0.39274 * lock.superlayer.bounds.width, 0.15373 * lock.superlayer.bounds.height, 0.2172 * lock.superlayer.bounds.width, 0.41073 * lock.superlayer.bounds.height)
+            lock.frame = CGRectMake(0.39204 * lock.superlayer.bounds.width, 0.15373 * lock.superlayer.bounds.height, 0.21681 * lock.superlayer.bounds.width, 0.41073 * lock.superlayer.bounds.height)
         }
         if roundedrect != nil{
             roundedrect.frame = CGRectMake(0, 0.43648 * roundedrect.superlayer.bounds.height,  roundedrect.superlayer.bounds.width, 0.56352 * roundedrect.superlayer.bounds.height)
@@ -91,7 +91,7 @@ class LockView: UIView {
             oval.path  = ovalPathWithBounds(oval.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.00459 * animationText.superlayer.bounds.width, 0.65859 * animationText.superlayer.bounds.height, 0.98989 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
         }
     }
     
@@ -140,7 +140,7 @@ class LockView: UIView {
     
     func pathAnimation() -> CAAnimationGroup{
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.values   = [0, 0, 2]
         strokeEndAnim.keyTimes = [0, 0.979, 1]
         strokeEndAnim.duration = 2.87
         

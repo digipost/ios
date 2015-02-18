@@ -14,7 +14,7 @@ class DeviceView: UIView {
     var phone : CALayer!
     var roundedrect : CAShapeLayer!
     var oval : CAShapeLayer!
-    var roundedrect2 : CAShapeLayer!
+    var roundedrect6 : CAShapeLayer!
     var desktop : CALayer!
     var roundedrect3 : CAShapeLayer!
     var rectangle : CAShapeLayer!
@@ -59,11 +59,10 @@ class DeviceView: UIView {
         oval.fillColor = UIColor.blackColor().CGColor
         oval.lineWidth = 0
         
-        roundedrect2 = CAShapeLayer()
-        phone.addSublayer(roundedrect2)
-        roundedrect2.setValue(90 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
-        roundedrect2.fillColor   = nil
-        roundedrect2.strokeColor = UIColor.blackColor().CGColor
+        roundedrect6 = CAShapeLayer()
+        phone.addSublayer(roundedrect6)
+        roundedrect6.fillColor = UIColor(red:0.137, green: 0.137, blue:0.137, alpha:1).CGColor
+        roundedrect6.lineWidth = 0
         
         desktop = CALayer()
         self.layer.addSublayer(desktop)
@@ -117,13 +116,13 @@ class DeviceView: UIView {
         
         setupLayerFrames()
         
-        self.layerWithAnims = [phone, roundedrect, oval, roundedrect2, desktop, roundedrect3, rectangle, oval2, tablet, roundedrect4, oval3, roundedrect5, animationText]
+        self.layerWithAnims = [phone, roundedrect, oval, roundedrect6, desktop, roundedrect3, rectangle, oval2, tablet, roundedrect4, oval3, roundedrect5, animationText]
     }
     
     
     func setupLayerFrames(){
         if phone != nil{
-            phone.frame = CGRectMake(0.67614 * phone.superlayer.bounds.width, 0.398 * phone.superlayer.bounds.height, 0.10292 * phone.superlayer.bounds.width, 0.13317 * phone.superlayer.bounds.height)
+            phone.frame = CGRectMake(0.67485 * phone.superlayer.bounds.width, 0.398 * phone.superlayer.bounds.height, 0.10272 * phone.superlayer.bounds.width, 0.13317 * phone.superlayer.bounds.height)
         }
         if roundedrect != nil{
             roundedrect.setValue(0, forKeyPath:"transform.rotation")
@@ -132,17 +131,15 @@ class DeviceView: UIView {
             roundedrect.path  = roundedRectPathWithBounds(roundedrect.bounds).CGPath;
         }
         if oval != nil{
-            oval.frame = CGRectMake(0.88062 * oval.superlayer.bounds.width, 0.44017 * oval.superlayer.bounds.height, 0.11938 * oval.superlayer.bounds.width, 0.11966 * oval.superlayer.bounds.height)
+            oval.frame = CGRectMake(0.94942 * oval.superlayer.bounds.width, 0.44017 * oval.superlayer.bounds.height, 0.11938 * oval.superlayer.bounds.width, 0.11966 * oval.superlayer.bounds.height)
             oval.path  = ovalPathWithBounds(oval.bounds).CGPath;
         }
-        if roundedrect2 != nil{
-            roundedrect2.setValue(0, forKeyPath:"transform.rotation")
-            roundedrect2.frame = CGRectMake(0, 0.49131 * roundedrect2.superlayer.bounds.height, 0.16624 * roundedrect2.superlayer.bounds.width, 0.01739 * roundedrect2.superlayer.bounds.height)
-            roundedrect2.setValue(90 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
-            roundedrect2.path  = roundedRect2PathWithBounds(roundedrect2.bounds).CGPath;
+        if roundedrect6 != nil{
+            roundedrect6.frame = CGRectMake(0.00227 * roundedrect6.superlayer.bounds.width, 0.44379 * roundedrect6.superlayer.bounds.height, 0.05182 * roundedrect6.superlayer.bounds.width, 0.11241 * roundedrect6.superlayer.bounds.height)
+            roundedrect6.path  = roundedRect6PathWithBounds(roundedrect6.bounds).CGPath;
         }
         if desktop != nil{
-            desktop.frame = CGRectMake(0.2006 * desktop.superlayer.bounds.width, 0.23108 * desktop.superlayer.bounds.height, 0.30287 * desktop.superlayer.bounds.width, 0.33384 * desktop.superlayer.bounds.height)
+            desktop.frame = CGRectMake(0.20022 * desktop.superlayer.bounds.width, 0.23108 * desktop.superlayer.bounds.height, 0.3023 * desktop.superlayer.bounds.width, 0.33384 * desktop.superlayer.bounds.height)
         }
         if roundedrect3 != nil{
             roundedrect3.frame = CGRectMake(0, 0,  roundedrect3.superlayer.bounds.width, 0.68901 * roundedrect3.superlayer.bounds.height)
@@ -157,7 +154,7 @@ class DeviceView: UIView {
             oval2.path  = oval2PathWithBounds(oval2.bounds).CGPath;
         }
         if tablet != nil{
-            tablet.frame = CGRectMake(0.53199 * tablet.superlayer.bounds.width, 0.30458 * tablet.superlayer.bounds.height, 0.10965 * tablet.superlayer.bounds.width, 0.19542 * tablet.superlayer.bounds.height)
+            tablet.frame = CGRectMake(0.53098 * tablet.superlayer.bounds.width, 0.30458 * tablet.superlayer.bounds.height, 0.10944 * tablet.superlayer.bounds.width, 0.19542 * tablet.superlayer.bounds.height)
         }
         if roundedrect4 != nil{
             roundedrect4.frame = CGRectMake(0, 0,  roundedrect4.superlayer.bounds.width,  roundedrect4.superlayer.bounds.height)
@@ -172,7 +169,7 @@ class DeviceView: UIView {
             roundedrect5.path  = roundedRect5PathWithBounds(roundedrect5.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.00463 * animationText.superlayer.bounds.width, 0.6741 * animationText.superlayer.bounds.height, 0.9897 * animationText.superlayer.bounds.width, 0.32565 * animationText.superlayer.bounds.height)
         }
     }
     
@@ -185,7 +182,7 @@ class DeviceView: UIView {
         phone?.addAnimation(phoneAnimation(), forKey:"phoneAnimation")
         roundedrect?.addAnimation(roundedRectAnimation(), forKey:"roundedRectAnimation")
         oval?.addAnimation(ovalAnimation(), forKey:"ovalAnimation")
-        roundedrect2?.addAnimation(roundedRect2Animation(), forKey:"roundedRect2Animation")
+        roundedrect6?.addAnimation(roundedRect6Animation(), forKey:"roundedRect6Animation")
         
         roundedrect3?.addAnimation(roundedRect3Animation(), forKey:"roundedRect3Animation")
         rectangle?.addAnimation(rectangleAnimation(), forKey:"rectangleAnimation")
@@ -206,7 +203,7 @@ class DeviceView: UIView {
         phone?.addAnimation(QCMethod.reverseAnimation(phoneAnimation(), totalDuration:totalDuration), forKey:"phoneAnimation")
         roundedrect?.addAnimation(QCMethod.reverseAnimation(roundedRectAnimation(), totalDuration:totalDuration), forKey:"roundedRectAnimation")
         oval?.addAnimation(QCMethod.reverseAnimation(ovalAnimation(), totalDuration:totalDuration), forKey:"ovalAnimation")
-        roundedrect2?.addAnimation(QCMethod.reverseAnimation(roundedRect2Animation(), totalDuration:totalDuration), forKey:"roundedRect2Animation")
+        roundedrect6?.addAnimation(QCMethod.reverseAnimation(roundedRect6Animation(), totalDuration:totalDuration), forKey:"roundedRect6Animation")
         
         roundedrect3?.addAnimation(QCMethod.reverseAnimation(roundedRect3Animation(), totalDuration:totalDuration), forKey:"roundedRect3Animation")
         rectangle?.addAnimation(QCMethod.reverseAnimation(rectangleAnimation(), totalDuration:totalDuration), forKey:"rectangleAnimation")
@@ -239,9 +236,10 @@ class DeviceView: UIView {
     
     func phoneAnimation() -> CAAnimationGroup{
         var positionAnim       = CABasicAnimation(keyPath:"position")
-        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.7276 * phone.superlayer.bounds.width, 0.53892 * phone.superlayer.bounds.height));
-        positionAnim.duration  = 0.342
-        positionAnim.beginTime = 3.11
+        positionAnim.fromValue = NSValue(CGPoint: CGPointMake(0.72621 * phone.superlayer.bounds.width, 0.46459 * phone.superlayer.bounds.height));
+        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.72621 * phone.superlayer.bounds.width, 0.54491 * phone.superlayer.bounds.height));
+        positionAnim.duration  = 0.373
+        positionAnim.beginTime = 3.14
         
         var GroupAnimGroup                 = CAAnimationGroup()
         GroupAnimGroup.animations          = [positionAnim]
@@ -279,14 +277,14 @@ class DeviceView: UIView {
         return transformAnim;
     }
     
-    func roundedRect2Animation() -> CAKeyframeAnimation{
+    func roundedRect6Animation() -> CAKeyframeAnimation{
         var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
-        transformAnim.values   = [NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0, 0, 0), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1))),
-            NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0, 0, 0), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1))),
-            NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(1.1, 1.1, 1.5), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1))),
-            NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0.7, 1, 1), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1)))]
-        transformAnim.keyTimes = [0, 0.912, 0.954, 1]
-        transformAnim.duration = 3.9
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(1.5, 1.5, 1.5), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1))),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.917, 0.961, 1]
+        transformAnim.duration = 3.96
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -338,7 +336,7 @@ class DeviceView: UIView {
     
     func tabletAnimation() -> CAAnimationGroup{
         var positionAnim       = CABasicAnimation(keyPath:"position")
-        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.58682 * tablet.superlayer.bounds.width, 0.47904 * tablet.superlayer.bounds.height));
+        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.5857 * tablet.superlayer.bounds.width, 0.47904 * tablet.superlayer.bounds.height));
         positionAnim.duration  = 0.312
         positionAnim.beginTime = 2.11
         
@@ -417,9 +415,9 @@ class DeviceView: UIView {
         return ovalPath;
     }
     
-    func roundedRect2PathWithBounds(bound: CGRect) -> UIBezierPath{
-        var roundedRect2Path = UIBezierPath(roundedRect:bound, cornerRadius:1)
-        return roundedRect2Path;
+    func roundedRect6PathWithBounds(bound: CGRect) -> UIBezierPath{
+        var roundedRect6Path = UIBezierPath(roundedRect:bound, cornerRadius:1)
+        return roundedRect6Path;
     }
     
     func roundedRect3PathWithBounds(bound: CGRect) -> UIBezierPath{
