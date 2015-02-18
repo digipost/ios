@@ -82,6 +82,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         
         var deviceFont:UIFont {
             get {
+                // If iPad
                 if view.bounds.width >= 768.0 {
                     return UIFont(name: "HelveticaNeue-Light", size: 40)!
                 } else {
@@ -139,6 +140,21 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.hidesBackButton = true
 
+    }
+    @IBAction func doneButtonAction(sender: AnyObject) {
+        var storyboard:UIStoryboard!
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        switch device {
+        case .Phone:
+            storyboard = UIStoryboard(name: "Main_iPhone", bundle: nil)
+        case .Pad:
+            storyboard = UIStoryboard(name: "Main_iPad", bundle: nil)
+        default: break
+        }
+        
+        let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
+        self.presentViewController(viewcontroller, animated: false) { () -> Void in
+        }
     }
     
     override func didReceiveMemoryWarning() {
