@@ -195,7 +195,7 @@ class ReceiptView: UIView {
             rectangle6.path  = rectangle6PathWithBounds(rectangle6.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0042 * animationText.superlayer.bounds.width, 0.65664 * animationText.superlayer.bounds.height, 0.99283 * animationText.superlayer.bounds.width, 0.34402 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
         }
     }
     

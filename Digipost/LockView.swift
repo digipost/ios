@@ -76,28 +76,35 @@ class LockView: UIView {
     
     func setupLayerFrames(){
         if lock != nil{
-            lock.frame = CGRectMake(0.39274 * lock.superlayer.bounds.width, 0.13277 * lock.superlayer.bounds.height, 0.2172 * lock.superlayer.bounds.width, 0.43169 * lock.superlayer.bounds.height)
+            lock.frame = CGRectMake(0.39274 * lock.superlayer.bounds.width, 0.15373 * lock.superlayer.bounds.height, 0.2172 * lock.superlayer.bounds.width, 0.41073 * lock.superlayer.bounds.height)
         }
         if roundedrect != nil{
-            roundedrect.frame = CGRectMake(0, 0.46384 * roundedrect.superlayer.bounds.height,  roundedrect.superlayer.bounds.width, 0.53616 * roundedrect.superlayer.bounds.height)
+            roundedrect.frame = CGRectMake(0, 0.43648 * roundedrect.superlayer.bounds.height,  roundedrect.superlayer.bounds.width, 0.56352 * roundedrect.superlayer.bounds.height)
             roundedrect.path  = roundedRectPathWithBounds(roundedrect.bounds).CGPath;
         }
         if path != nil{
-            path.frame = CGRectMake(0.35811 * path.superlayer.bounds.width, 0.59881 * path.superlayer.bounds.height, 0.28379 * path.superlayer.bounds.width, 0.26621 * path.superlayer.bounds.height)
+            path.frame = CGRectMake(0.35811 * path.superlayer.bounds.width, 0.57834 * path.superlayer.bounds.height, 0.28379 * path.superlayer.bounds.width, 0.2798 * path.superlayer.bounds.height)
             path.path  = pathPathWithBounds(path.bounds).CGPath;
         }
         if oval != nil{
-            oval.frame = CGRectMake(0.11835 * oval.superlayer.bounds.width, 0, 0.74488 * oval.superlayer.bounds.width, 0.37246 * oval.superlayer.bounds.height)
+            oval.frame = CGRectMake(0.11835 * oval.superlayer.bounds.width, 0, 0.74488 * oval.superlayer.bounds.width, 0.39146 * oval.superlayer.bounds.height)
             oval.path  = ovalPathWithBounds(oval.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.65859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
         }
     }
     
     
     @IBAction func startAllAnimations(sender: AnyObject!){
+        self.animationAdded = false
+        for layer in self.layerWithAnims{
+            layer.speed = 1
+        }
         
+        roundedrect?.addAnimation(roundedRectAnimation(), forKey:"roundedRectAnimation")
+        path?.addAnimation(pathAnimation(), forKey:"pathAnimation")
+        oval?.addAnimation(ovalAnimation(), forKey:"ovalAnimation")
     }
     
     var progress: CGFloat = 0 {
@@ -111,7 +118,7 @@ class LockView: UIView {
                 }
             }
             else{
-                var totalDuration : CGFloat = 0
+                var totalDuration : CGFloat = 3.31
                 var offset = progress * totalDuration
                 for layer in self.layerWithAnims{
                     layer.timeOffset = CFTimeInterval(offset)
@@ -120,10 +127,70 @@ class LockView: UIView {
         }
     }
     
+    func roundedRectAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.353, 1]
+        strokeEndAnim.duration = 3.12
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func pathAnimation() -> CAAnimationGroup{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.979, 1]
+        strokeEndAnim.duration = 2.87
+        
+        var transformAnim       = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values    = [NSValue(CATransform3D: CATransform3DIdentity),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes  = [0, 0.484, 1]
+        transformAnim.duration  = 0.447
+        transformAnim.beginTime = 2.87
+        
+        var path5AnimGroup                 = CAAnimationGroup()
+        path5AnimGroup.animations          = [strokeEndAnim, transformAnim]
+        path5AnimGroup.animations.map{$0.setValue(kCAFillModeForwards, forKeyPath:"fillMode")}
+        path5AnimGroup.fillMode            = kCAFillModeForwards
+        path5AnimGroup.removedOnCompletion = false
+        path5AnimGroup.duration = QCMethod.maxDurationFromAnimations(path5AnimGroup.animations as [CAAnimation])
+        
+        
+        return path5AnimGroup;
+    }
+    
+    func ovalAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.545, 1]
+        strokeEndAnim.duration = 3.16
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
     //MARK: - Bezier Path
     
     func roundedRectPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var roundedRectPath = UIBezierPath(roundedRect:bound, cornerRadius:14)
+        var roundedRectPath = UIBezierPath()
+        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        
+        roundedRectPath.moveToPoint(CGPointMake(minX + 0.17189 * w, minY))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX, minY + 0.1811 * h), controlPoint1:CGPointMake(minX + 0.07696 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.08108 * h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX, minY + 0.8189 * h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + 0.17189 * w, minY + h), controlPoint1:CGPointMake(minX, minY + 0.91892 * h), controlPoint2:CGPointMake(minX + 0.07696 * w, minY + h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX + 0.82811 * w, minY + h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + w, minY + 0.8189 * h), controlPoint1:CGPointMake(minX + 0.92304 * w, minY + h), controlPoint2:CGPointMake(minX + w, minY + 0.91892 * h))
+        roundedRectPath.addLineToPoint(CGPointMake(minX + w, minY + 0.1811 * h))
+        roundedRectPath.addCurveToPoint(CGPointMake(minX + 0.82811 * w, minY), controlPoint1:CGPointMake(minX + w, minY + 0.08108 * h), controlPoint2:CGPointMake(minX + 0.92304 * w, minY))
+        roundedRectPath.closePath()
+        roundedRectPath.moveToPoint(CGPointMake(minX + 0.17189 * w, minY))
+        
         return roundedRectPath;
     }
     

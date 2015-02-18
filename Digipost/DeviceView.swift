@@ -123,7 +123,7 @@ class DeviceView: UIView {
     
     func setupLayerFrames(){
         if phone != nil{
-            phone.frame = CGRectMake(0.67614 * phone.superlayer.bounds.width, 0.46422 * phone.superlayer.bounds.height, 0.10292 * phone.superlayer.bounds.width, 0.13317 * phone.superlayer.bounds.height)
+            phone.frame = CGRectMake(0.67614 * phone.superlayer.bounds.width, 0.398 * phone.superlayer.bounds.height, 0.10292 * phone.superlayer.bounds.width, 0.13317 * phone.superlayer.bounds.height)
         }
         if roundedrect != nil{
             roundedrect.setValue(0, forKeyPath:"transform.rotation")
@@ -157,7 +157,7 @@ class DeviceView: UIView {
             oval2.path  = oval2PathWithBounds(oval2.bounds).CGPath;
         }
         if tablet != nil{
-            tablet.frame = CGRectMake(0.53211 * tablet.superlayer.bounds.width, 0.3695 * tablet.superlayer.bounds.height, 0.10965 * tablet.superlayer.bounds.width, 0.19542 * tablet.superlayer.bounds.height)
+            tablet.frame = CGRectMake(0.53199 * tablet.superlayer.bounds.width, 0.30458 * tablet.superlayer.bounds.height, 0.10965 * tablet.superlayer.bounds.width, 0.19542 * tablet.superlayer.bounds.height)
         }
         if roundedrect4 != nil{
             roundedrect4.frame = CGRectMake(0, 0,  roundedrect4.superlayer.bounds.width,  roundedrect4.superlayer.bounds.height)
@@ -172,7 +172,7 @@ class DeviceView: UIView {
             roundedrect5.path  = roundedRect5PathWithBounds(roundedrect5.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.0042 * animationText.superlayer.bounds.width, 0.65664 * animationText.superlayer.bounds.height, 0.99283 * animationText.superlayer.bounds.width, 0.34402 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.61859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
         }
     }
     
@@ -182,7 +182,7 @@ class DeviceView: UIView {
         for layer in self.layerWithAnims{
             layer.speed = 1
         }
-        
+        phone?.addAnimation(phoneAnimation(), forKey:"phoneAnimation")
         roundedrect?.addAnimation(roundedRectAnimation(), forKey:"roundedRectAnimation")
         oval?.addAnimation(ovalAnimation(), forKey:"ovalAnimation")
         roundedrect2?.addAnimation(roundedRect2Animation(), forKey:"roundedRect2Animation")
@@ -190,7 +190,7 @@ class DeviceView: UIView {
         roundedrect3?.addAnimation(roundedRect3Animation(), forKey:"roundedRect3Animation")
         rectangle?.addAnimation(rectangleAnimation(), forKey:"rectangleAnimation")
         oval2?.addAnimation(oval2Animation(), forKey:"oval2Animation")
-        
+        tablet?.addAnimation(tabletAnimation(), forKey:"tabletAnimation")
         roundedrect4?.addAnimation(roundedRect4Animation(), forKey:"roundedRect4Animation")
         oval3?.addAnimation(oval3Animation(), forKey:"oval3Animation")
         roundedrect5?.addAnimation(roundedRect5Animation(), forKey:"roundedRect5Animation")
@@ -202,8 +202,8 @@ class DeviceView: UIView {
         for layer in self.layerWithAnims{
             layer.speed = 1
         }
-        var totalDuration = CGFloat(6.16)
-        
+        var totalDuration = CGFloat(4)
+        phone?.addAnimation(QCMethod.reverseAnimation(phoneAnimation(), totalDuration:totalDuration), forKey:"phoneAnimation")
         roundedrect?.addAnimation(QCMethod.reverseAnimation(roundedRectAnimation(), totalDuration:totalDuration), forKey:"roundedRectAnimation")
         oval?.addAnimation(QCMethod.reverseAnimation(ovalAnimation(), totalDuration:totalDuration), forKey:"ovalAnimation")
         roundedrect2?.addAnimation(QCMethod.reverseAnimation(roundedRect2Animation(), totalDuration:totalDuration), forKey:"roundedRect2Animation")
@@ -211,7 +211,7 @@ class DeviceView: UIView {
         roundedrect3?.addAnimation(QCMethod.reverseAnimation(roundedRect3Animation(), totalDuration:totalDuration), forKey:"roundedRect3Animation")
         rectangle?.addAnimation(QCMethod.reverseAnimation(rectangleAnimation(), totalDuration:totalDuration), forKey:"rectangleAnimation")
         oval2?.addAnimation(QCMethod.reverseAnimation(oval2Animation(), totalDuration:totalDuration), forKey:"oval2Animation")
-        
+        tablet?.addAnimation(QCMethod.reverseAnimation(tabletAnimation(), totalDuration:totalDuration), forKey:"tabletAnimation")
         roundedrect4?.addAnimation(QCMethod.reverseAnimation(roundedRect4Animation(), totalDuration:totalDuration), forKey:"roundedRect4Animation")
         oval3?.addAnimation(QCMethod.reverseAnimation(oval3Animation(), totalDuration:totalDuration), forKey:"oval3Animation")
         roundedrect5?.addAnimation(QCMethod.reverseAnimation(roundedRect5Animation(), totalDuration:totalDuration), forKey:"roundedRect5Animation")
@@ -228,7 +228,7 @@ class DeviceView: UIView {
                 }
             }
             else{
-                var totalDuration : CGFloat = 6.16
+                var totalDuration : CGFloat = 4
                 var offset = progress * totalDuration
                 for layer in self.layerWithAnims{
                     layer.timeOffset = CFTimeInterval(offset)
@@ -237,11 +237,28 @@ class DeviceView: UIView {
         }
     }
     
+    func phoneAnimation() -> CAAnimationGroup{
+        var positionAnim       = CABasicAnimation(keyPath:"position")
+        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.7276 * phone.superlayer.bounds.width, 0.53892 * phone.superlayer.bounds.height));
+        positionAnim.duration  = 0.342
+        positionAnim.beginTime = 3.11
+        
+        var GroupAnimGroup                 = CAAnimationGroup()
+        GroupAnimGroup.animations          = [positionAnim]
+        GroupAnimGroup.animations.map{$0.setValue(kCAFillModeForwards, forKeyPath:"fillMode")}
+        GroupAnimGroup.fillMode            = kCAFillModeForwards
+        GroupAnimGroup.removedOnCompletion = false
+        GroupAnimGroup.duration = QCMethod.maxDurationFromAnimations(GroupAnimGroup.animations as [CAAnimation])
+        
+        
+        return GroupAnimGroup;
+    }
+    
     func roundedRectAnimation() -> CAKeyframeAnimation{
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
-        strokeEndAnim.keyTimes = [0, 0.809, 1]
-        strokeEndAnim.duration = 5.08
+        strokeEndAnim.keyTimes = [0, 0.677, 1]
+        strokeEndAnim.duration = 3.09
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
         
@@ -254,8 +271,8 @@ class DeviceView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 1.2)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.2, 1.2, 1.2)),
             NSValue(CATransform3D: CATransform3DMakeScale(0.6, 0.6, 0.6))]
-        transformAnim.keyTimes = [0, 0.933, 0.969, 1]
-        transformAnim.duration = 5.36
+        transformAnim.keyTimes = [0, 0.913, 0.957, 1]
+        transformAnim.duration = 4
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -268,8 +285,8 @@ class DeviceView: UIView {
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0, 0, 0), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1))),
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(1.1, 1.1, 1.5), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1))),
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0.7, 1, 1), CATransform3DMakeRotation(-CGFloat(M_PI_2), 0, 0, 1)))]
-        transformAnim.keyTimes = [0, 0.93, 0.965, 1]
-        transformAnim.duration = 5.39
+        transformAnim.keyTimes = [0, 0.912, 0.954, 1]
+        transformAnim.duration = 3.9
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -280,7 +297,7 @@ class DeviceView: UIView {
         var strokeEndAnim       = CABasicAnimation(keyPath:"strokeEnd")
         strokeEndAnim.fromValue = 0;
         strokeEndAnim.toValue   = 1;
-        strokeEndAnim.duration  = 3.98
+        strokeEndAnim.duration  = 1.08
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
         
@@ -291,7 +308,7 @@ class DeviceView: UIView {
         var strokeEndAnim       = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values    = [0, 1]
         strokeEndAnim.keyTimes  = [0, 1]
-        strokeEndAnim.duration  = 2.32
+        strokeEndAnim.duration  = 1.03
         strokeEndAnim.beginTime = 0.151
         
         var rectangleAnimGroup                 = CAAnimationGroup()
@@ -311,48 +328,54 @@ class DeviceView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
             NSValue(CATransform3D: CATransform3DIdentity)]
-        transformAnim.keyTimes = [0, 0.911, 0.956, 1]
-        transformAnim.duration = 4.41
+        transformAnim.keyTimes = [0, 0.767, 0.869, 1]
+        transformAnim.duration = 1.6
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
         return transformAnim;
     }
     
+    func tabletAnimation() -> CAAnimationGroup{
+        var positionAnim       = CABasicAnimation(keyPath:"position")
+        positionAnim.toValue   = NSValue(CGPoint: CGPointMake(0.58682 * tablet.superlayer.bounds.width, 0.47904 * tablet.superlayer.bounds.height));
+        positionAnim.duration  = 0.312
+        positionAnim.beginTime = 2.11
+        
+        var GroupAnimGroup                 = CAAnimationGroup()
+        GroupAnimGroup.animations          = [positionAnim]
+        GroupAnimGroup.animations.map{$0.setValue(kCAFillModeForwards, forKeyPath:"fillMode")}
+        GroupAnimGroup.fillMode            = kCAFillModeForwards
+        GroupAnimGroup.removedOnCompletion = false
+        GroupAnimGroup.duration = QCMethod.maxDurationFromAnimations(GroupAnimGroup.animations as [CAAnimation])
+        
+        
+        return GroupAnimGroup;
+    }
+    
     func roundedRect4Animation() -> CAKeyframeAnimation{
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
-        strokeEndAnim.keyTimes = [0, 0.772, 1]
-        strokeEndAnim.duration = 4.13
+        strokeEndAnim.keyTimes = [0, 0.528, 1]
+        strokeEndAnim.duration = 2.08
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
         
         return strokeEndAnim;
     }
     
-    func oval3Animation() -> CAAnimationGroup{
+    func oval3Animation() -> CAKeyframeAnimation{
         var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
             NSValue(CATransform3D: CATransform3DMakeScale(0.8, 0.8, 1))]
-        transformAnim.keyTimes = [0, 0.931, 0.963, 1]
-        transformAnim.duration = 4.44
+        transformAnim.keyTimes = [0, 0.905, 0.95, 1]
+        transformAnim.duration = 2.7
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
         
-        var hiddenAnim       = CABasicAnimation(keyPath:"hidden")
-        hiddenAnim.fromValue = true;
-        hiddenAnim.toValue   = false;
-        hiddenAnim.duration  = 6.16
-        
-        var ovalAnimGroup                 = CAAnimationGroup()
-        ovalAnimGroup.animations          = [transformAnim, hiddenAnim]
-        ovalAnimGroup.animations.map{$0.setValue(kCAFillModeForwards, forKeyPath:"fillMode")}
-        ovalAnimGroup.fillMode            = kCAFillModeForwards
-        ovalAnimGroup.removedOnCompletion = false
-        ovalAnimGroup.duration = QCMethod.maxDurationFromAnimations(ovalAnimGroup.animations as [CAAnimation])
-        
-        
-        return ovalAnimGroup;
+        return transformAnim;
     }
     
     func roundedRect5Animation() -> CAKeyframeAnimation{
@@ -361,8 +384,8 @@ class DeviceView: UIView {
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0, 0, 0), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1))),
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(1.5, 1.5, 1.5), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1))),
             NSValue(CATransform3D: CATransform3DConcat(CATransform3DMakeScale(0.4, 1, 1), CATransform3DMakeRotation(-CGFloat(M_PI), 0, 0, 1)))]
-        transformAnim.keyTimes = [0, 0.917, 0.958, 1]
-        transformAnim.duration = 4.48
+        transformAnim.keyTimes = [0, 0.875, 0.944, 1]
+        transformAnim.duration = 2.79
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
