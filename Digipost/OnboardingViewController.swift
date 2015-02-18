@@ -43,6 +43,9 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         let numOfPages:CGFloat = 5
         scrollView.delegate = self
         scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
+        
+        welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
+        getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
 
         // Set parallax speed depending on device
         let device = UIDevice.currentDevice().userInterfaceIdiom
@@ -79,17 +82,17 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
         firstAnimationView = DeviceView(frame: animationFrame)
         firstAnimationView.center.x = animationMockView.center.x + viewOffset
-        firstAnimationView.animationText.string = "Ha med deg\npostkassen din overalt" // TODO: Localization
+        firstAnimationView.animationText.string = NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
         scrollView.addSubview(firstAnimationView!)
         
         secondAnimationView = LockView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
-        secondAnimationView.animationText.string = "Trygg oppbevaring\nav viktige dokumenter" // TODO: Localization
+        secondAnimationView.animationText.string = NSLocalizedString("onboarding second animation", comment: "safe storage of documents")
         scrollView.addSubview(secondAnimationView!)
         
         thirdAnimationView = ReceiptView(frame: animationFrame)
         thirdAnimationView.center.x = animationMockView.center.x + viewOffset * 3
-        thirdAnimationView.animationText.string = "Full kontroll med\nelektroniske kvitteringer" // TODO: Localization
+        thirdAnimationView.animationText.string = NSLocalizedString("onboarding third animation", comment: "full control")
         scrollView.addSubview(thirdAnimationView!)
     }
     

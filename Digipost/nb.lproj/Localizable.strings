@@ -495,3 +495,24 @@
 /* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
 
+/* New features onboarding. */
+"new feature navbar title" = "Hva er nytt?";
+
+"new feature barbutton title" = "Ferdig";
+
+"new feature share" = "Del postkassen din med\nandre i familien";
+
+"new feature folders" = "Bruk mapper for å\norganisere dine eposter";
+
+"new feature archive" = "Et helt eget arkiv\ndu kan fylle opp";
+
+/* Onboarding. */
+"onboarding button" = "KOM I GANG";
+
+"onboarding welcome" = "Velkommen til din\nsikre digitale postkasse";
+
+"onboarding first animation" = "Ha med deg\npostkassen din overalt";
+
+"onboarding second animation" = "Trygg oppbevaring\nav viktige dokumenter";
+
+"onboarding third animation" = "Full kontroll med\nelektroniske kvitteringer";

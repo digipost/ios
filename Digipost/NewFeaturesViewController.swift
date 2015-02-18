@@ -19,6 +19,8 @@ struct Feature {
 
 class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
 
+    @IBOutlet var navBar: UINavigationItem!
+    @IBOutlet var doneBarButton: UIBarButtonItem!
     @IBOutlet var deviceFrameImageView: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
@@ -43,23 +45,25 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         default: break
         }
         
+        doneBarButton.title = NSLocalizedString("new feature barbutton title", comment: "bar button title")
+        navBar.title = NSLocalizedString("new feature navbar title", comment: "nav bar title")
         scrollView.delegate = self
     }
     
     func configureIphone() {
         
         // Set up new features
-        features.append(Feature(imageName: "first", featureText: "Del postkassen din med\nandre i familien"))
-        features.append(Feature(imageName: "vise_mapper", featureText: "Bruk mapper for å\norganisere dine eposter"))
-        features.append(Feature(imageName: "last", featureText: "Et helt eget arkiv\ndu kan fylle opp"))
+        features.append(Feature(imageName: "first", featureText:  NSLocalizedString("new feature share", comment: "text for share feature")))
+        features.append(Feature(imageName: "vise_mapper", featureText:  NSLocalizedString("new feature folders", comment: "text for folders feature")))
+        features.append(Feature(imageName: "last", featureText:  NSLocalizedString("new feature archive", comment: "text for archive feature")))
     }
     
     func configureIpad() {
     
         // Set up new features
-        features.append(Feature(imageName: "ipad1", featureText: "Del postkassen din med\nandre i familien"))
-        features.append(Feature(imageName: "ipad2", featureText: "Bruk mapper for å\norganisere dine eposter"))
-        features.append(Feature(imageName: "ipad3", featureText: "Et helt eget arkiv\ndu kan fylle opp"))
+        features.append(Feature(imageName: "ipad1", featureText:  NSLocalizedString("new feature share", comment: "text for share feature")))
+        features.append(Feature(imageName: "ipad2", featureText:  NSLocalizedString("new feature folders", comment: "text for folders feature")))
+        features.append(Feature(imageName: "ipad3", featureText:  NSLocalizedString("new feature archive", comment: "text for archive feature")))
     }
     
     func setupNewFeatures() {
