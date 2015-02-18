@@ -172,7 +172,7 @@ class DeviceView: UIView {
             roundedrect5.path  = roundedRect5PathWithBounds(roundedrect5.bounds).CGPath;
         }
         if animationText != nil{
-            animationText.frame = CGRectMake(0.00464 * animationText.superlayer.bounds.width, 0.6741 * animationText.superlayer.bounds.height, 0.99159 * animationText.superlayer.bounds.width, 0.32565 * animationText.superlayer.bounds.height)
+            animationText.frame = CGRectMake(0.0042 * animationText.superlayer.bounds.width, 0.65664 * animationText.superlayer.bounds.height, 0.99283 * animationText.superlayer.bounds.width, 0.34402 * animationText.superlayer.bounds.height)
         }
     }
     
