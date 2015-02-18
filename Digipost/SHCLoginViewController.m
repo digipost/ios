@@ -71,6 +71,23 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+            [self presentOnboarding];
+    //        [self presentNewFeatures];
+//    if (![userDefaults boolForKey:@"hasViewedOnboarding"]) {
+//        [self presentOnboarding];
+//        [userDefaults setBool:true forKey:@"hasViewedOnboarding"];
+//        [userDefaults synchronize];
+//    }
+//
+//    if (![userDefaults boolForKey:@"hasViewedNewfeatures_v250"]) {
+//        [self presentNewFeatures];
+//        [userDefaults setBool:true forKey:@"hasViewedNewfeatures_v250"];
+//        [userDefaults synchronize];
+//    }
+
     [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
 
@@ -104,20 +121,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         }
     }
 
-    // Present onboarding
-//    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-//    UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
-//    [self presentViewController:onboardingViewController animated:NO completion:^{
-//
-//    }];
-
-    // Present new features
-    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-    UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
-    [self presentViewController:newFeaturesViewController animated:NO completion:^{
-
-    }];
-
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                               style:UIBarButtonItemStyleBordered
@@ -125,6 +128,19 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                                              action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
+}
+- (void)presentOnboarding
+{
+    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+    UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
+    [self presentViewController:onboardingViewController animated:NO completion:^{}];
+}
+
+- (void)presentNewFeatures
+{
+    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+    UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
+    [self presentViewController:newFeaturesViewController animated:NO completion:^{}];
 }
 
 - (void)viewWillAppear:(BOOL)animated
