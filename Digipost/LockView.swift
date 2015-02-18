@@ -1,7 +1,7 @@
 //
 //  LockView.swift
 //
-//  Code generated using QuartzCode on 2015-02-17.
+//  Code generated using QuartzCode on 2015-02-18.
 //  www.quartzcodeapp.com
 //
 
@@ -15,6 +15,7 @@ class LockView: UIView {
     var roundedrect : CAShapeLayer!
     var path : CAShapeLayer!
     var oval : CAShapeLayer!
+    var animationText : CATextLayer!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -58,15 +59,24 @@ class LockView: UIView {
         oval.strokeColor = UIColor.blackColor().CGColor
         oval.lineWidth   = 3
         
+        animationText = CATextLayer()
+        self.layer.addSublayer(animationText)
+        animationText.contentsScale   = UIScreen.mainScreen().scale
+        animationText.string          = "Hello World!"
+        animationText.font            = "HelveticaNeue"
+        animationText.fontSize        = 17
+        animationText.alignmentMode   = kCAAlignmentCenter;
+        animationText.foregroundColor = UIColor.blackColor().CGColor;
+        
         setupLayerFrames()
         
-        self.layerWithAnims = [lock, roundedrect, path, oval]
+        self.layerWithAnims = [lock, roundedrect, path, oval, animationText]
     }
     
     
     func setupLayerFrames(){
         if lock != nil{
-            lock.frame = CGRectMake(0.39169 * lock.superlayer.bounds.width, 0.14728 * lock.superlayer.bounds.height, 0.21662 * lock.superlayer.bounds.width, 0.21584 * lock.superlayer.bounds.height)
+            lock.frame = CGRectMake(0.39274 * lock.superlayer.bounds.width, 0.13277 * lock.superlayer.bounds.height, 0.2172 * lock.superlayer.bounds.width, 0.43169 * lock.superlayer.bounds.height)
         }
         if roundedrect != nil{
             roundedrect.frame = CGRectMake(0, 0.46384 * roundedrect.superlayer.bounds.height,  roundedrect.superlayer.bounds.width, 0.53616 * roundedrect.superlayer.bounds.height)
@@ -79,6 +89,9 @@ class LockView: UIView {
         if oval != nil{
             oval.frame = CGRectMake(0.11835 * oval.superlayer.bounds.width, 0, 0.74488 * oval.superlayer.bounds.width, 0.37246 * oval.superlayer.bounds.height)
             oval.path  = ovalPathWithBounds(oval.bounds).CGPath;
+        }
+        if animationText != nil{
+            animationText.frame = CGRectMake(0.0046 * animationText.superlayer.bounds.width, 0.65859 * animationText.superlayer.bounds.height, 0.99165 * animationText.superlayer.bounds.width, 0.34187 * animationText.superlayer.bounds.height)
         }
     }
     
@@ -105,7 +118,7 @@ class LockView: UIView {
                 }
             }
             else{
-                var totalDuration : CGFloat = 3.39
+                var totalDuration : CGFloat = 0
                 var offset = progress * totalDuration
                 for layer in self.layerWithAnims{
                     layer.timeOffset = CFTimeInterval(offset)
