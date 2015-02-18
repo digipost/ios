@@ -50,11 +50,9 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         case .Phone:
             backgroundParallaxSpeed = 0.5
             mountainParallaxSpeed = 0.57
-            println("iPhone")
         case .Pad:
             backgroundParallaxSpeed = 0.1
             mountainParallaxSpeed = 0.13
-            println("iPad")
         default: break
         }
     }

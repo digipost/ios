@@ -30,6 +30,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
@@ -41,6 +42,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             println("iPad")
         default: break
         }
+        
         scrollView.delegate = self
     }
     
@@ -122,7 +124,6 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLayoutSubviews() {
         setupNewFeatures()
-
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -139,9 +140,10 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.hidesBackButton = true
-
     }
+    
     @IBAction func doneButtonAction(sender: AnyObject) {
+        
         var storyboard:UIStoryboard!
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
