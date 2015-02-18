@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZVX-K2-m21">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="iUr-lV-CwJ">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--New Features View Controller-->
+        <!--Hva er nytt?-->
         <scene sceneID="pXJ-a0-tkS">
             <objects>
                 <viewController id="ZVX-K2-m21" customClass="NewFeaturesViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="newFeatures-ipad" translatesAutoresizingMaskIntoConstraints="NO" id="0NF-ds-C3k">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="newFeatures-ipad" translatesAutoresizingMaskIntoConstraints="NO" id="0NF-ds-C3k">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="0NF-ds-C3k" secondAttribute="height" multiplier="642:449" id="01V-o4-4Z2"/>
@@ -42,11 +41,11 @@
                                     </mask>
                                 </variation>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoV-J0-dUN">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BoV-J0-dUN">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHH-96-aPY" userLabel="Label View">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHH-96-aPY" userLabel="Label View">
                                 <rect key="frame" x="0.0" y="379" width="600" height="220"/>
                                 <color key="backgroundColor" red="0.85098039219999999" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -72,7 +71,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1ag-Fv-iCr">
+                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="1ag-Fv-iCr">
                                 <rect key="frame" x="-19" y="-18" width="39" height="37"/>
                             </pageControl>
                         </subviews>
@@ -118,10 +117,10 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="-12"/>
                             </constraint>
                             <constraint firstItem="0NF-ds-C3k" firstAttribute="bottom" secondItem="BoV-J0-dUN" secondAttribute="bottom" id="RzT-WX-yg7">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-29"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-40"/>
                             </constraint>
                             <constraint firstItem="0NF-ds-C3k" firstAttribute="top" secondItem="BoV-J0-dUN" secondAttribute="top" constant="-59" id="ScI-fC-iF5">
-                                <variation key="heightClass=regular-widthClass=compact" constant="-56"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="-44"/>
                             </constraint>
                             <constraint firstItem="0NF-ds-C3k" firstAttribute="trailing" secondItem="BoV-J0-dUN" secondAttribute="trailing" constant="10" id="T5A-ZW-lXJ">
                                 <variation key="heightClass=regular-widthClass=compact" constant="12"/>
@@ -190,6 +189,12 @@
                                 <exclude reference="uRE-5k-vvd"/>
                                 <exclude reference="yQm-Kd-y0r"/>
                                 <exclude reference="qYj-Tk-SgB"/>
+                                <exclude reference="2Bp-ej-VwE"/>
+                                <exclude reference="H2g-uw-V2v"/>
+                                <exclude reference="LQ9-5O-lZx"/>
+                                <exclude reference="VYg-Rl-1Li"/>
+                                <exclude reference="Zd5-pW-QFi"/>
+                                <exclude reference="fp6-Rb-4Eh"/>
                                 <exclude reference="4hZ-hg-9FJ"/>
                                 <exclude reference="542-CN-1bN"/>
                                 <exclude reference="6T0-7s-2Jb"/>
@@ -211,12 +216,6 @@
                                 <exclude reference="XPg-z1-5h5"/>
                                 <exclude reference="dQM-UD-clV"/>
                                 <exclude reference="pWA-oG-dQq"/>
-                                <exclude reference="2Bp-ej-VwE"/>
-                                <exclude reference="H2g-uw-V2v"/>
-                                <exclude reference="LQ9-5O-lZx"/>
-                                <exclude reference="VYg-Rl-1Li"/>
-                                <exclude reference="Zd5-pW-QFi"/>
-                                <exclude reference="fp6-Rb-4Eh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -238,6 +237,10 @@
                                 <exclude reference="uRE-5k-vvd"/>
                                 <exclude reference="yQm-Kd-y0r"/>
                                 <exclude reference="qYj-Tk-SgB"/>
+                                <include reference="2Bp-ej-VwE"/>
+                                <exclude reference="VYg-Rl-1Li"/>
+                                <include reference="Zd5-pW-QFi"/>
+                                <exclude reference="fp6-Rb-4Eh"/>
                                 <exclude reference="4hZ-hg-9FJ"/>
                                 <exclude reference="542-CN-1bN"/>
                                 <include reference="7o4-9c-WmQ"/>
@@ -249,10 +252,6 @@
                                 <include reference="rcX-MC-9Be"/>
                                 <include reference="XPg-z1-5h5"/>
                                 <exclude reference="pWA-oG-dQq"/>
-                                <include reference="2Bp-ej-VwE"/>
-                                <exclude reference="VYg-Rl-1Li"/>
-                                <include reference="Zd5-pW-QFi"/>
-                                <exclude reference="fp6-Rb-4Eh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
@@ -263,6 +262,8 @@
                                 <include reference="Vty-4w-8ks"/>
                                 <include reference="WDv-5C-GVD"/>
                                 <include reference="XXr-5D-dIw"/>
+                                <exclude reference="H2g-uw-V2v"/>
+                                <include reference="LQ9-5O-lZx"/>
                                 <include reference="6T0-7s-2Jb"/>
                                 <exclude reference="Ak9-Ed-rHO"/>
                                 <include reference="CwM-3O-A0X"/>
@@ -273,11 +274,17 @@
                                 <exclude reference="vfS-WZ-cw8"/>
                                 <include reference="Guz-9B-RTa"/>
                                 <include reference="dQM-UD-clV"/>
-                                <exclude reference="H2g-uw-V2v"/>
-                                <include reference="LQ9-5O-lZx"/>
                             </mask>
                         </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Hva er nytt?" id="Hvh-gM-UTV">
+                        <barButtonItem key="rightBarButtonItem" title="Ferdig" id="cIn-7K-bP3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="doneButtonAction:" destination="ZVX-K2-m21" id="xLR-kk-dCp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="deviceFrameImageView" destination="0NF-ds-C3k" id="MCg-rB-7Wb"/>
                         <outlet property="labelViewContainer" destination="SHH-96-aPY" id="SHS-h4-dR1"/>
@@ -286,6 +293,29 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wzm-bc-Pnt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1264.5" y="346.5"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8a1-c2-5qe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="iUr-lV-CwJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="m0f-4o-gaG">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.85098039219999999" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ZVX-K2-m21" kind="relationship" relationship="rootViewController" id="G3y-Nl-6ST"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hrO-El-JvY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <barButtonItem title="Item" id="Lyl-W6-hbI"/>
             </objects>
             <point key="canvasLocation" x="505.5" y="346.5"/>
         </scene>
