@@ -1,7 +1,7 @@
 //
 //  ReceiptView.swift
 //
-//  Code generated using QuartzCode on 2015-02-18.
+//  Code generated using QuartzCode on 2015-02-19.
 //  www.quartzcodeapp.com
 //
 
@@ -241,7 +241,7 @@ class ReceiptView: UIView {
     func pathAnimation() -> CAKeyframeAnimation{
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 0.551, 0.551, 1.1]
-        strokeEndAnim.keyTimes = [0, 0.531, 0.724, 0.86, 1]
+        strokeEndAnim.keyTimes = [0, 0.531, 0.764, 0.86, 1]
         strokeEndAnim.duration = 3.03
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
