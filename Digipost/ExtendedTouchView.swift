@@ -8,6 +8,9 @@
 
 import UIKit
 
+// This class is set as the custom view for the view in the new features viewcontroller.
+// Its function is to redirect all touch events to the scrollview in viewcontroller.
+
 class ExtendedTouchView: UIView {
 
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
@@ -22,5 +25,4 @@ class ExtendedTouchView: UIView {
         
         return nil
     }
-
 }
