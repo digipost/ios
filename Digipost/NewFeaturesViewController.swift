@@ -29,6 +29,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     var imageNames = [String]()
     var labelTexts = [String]()
     var features = [Feature]()
+    var hasSetUpFeatures = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +49,13 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         doneBarButton.title = NSLocalizedString("new feature barbutton title", comment: "bar button title")
         navBar.title = NSLocalizedString("new feature navbar title", comment: "nav bar title")
         scrollView.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if !hasSetUpFeatures{
+            setupNewFeatures()
+            hasSetUpFeatures = true
+        }
     }
     
     func configureIphone() {
@@ -124,10 +132,6 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         
         view.addSubview(labelContainer)
         scrollView.contentSize = CGSizeMake(imageOffset, scrollView.frame.size.height)
-    }
-    
-    override func viewDidLayoutSubviews() {
-        setupNewFeatures()
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {

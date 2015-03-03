@@ -22,6 +22,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     var secondAnimationView: LockView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
+    var hasSetUpAnimationViews = false
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var getStartedButton: UIButton!
@@ -58,12 +59,16 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             mountainParallaxSpeed = 0.13
         default: break
         }
+        
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // Setup animation views
-        setupAnimationViews()
+        if !hasSetUpAnimationViews{
+            setupAnimationViews()
+            hasSetUpAnimationViews = true
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,6 +79,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
     }
+    
 
     func setupAnimationViews() {
         
