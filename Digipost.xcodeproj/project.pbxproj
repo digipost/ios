@@ -221,6 +221,10 @@
 		AFC1A9341A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFC1A9361A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
+		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		AFD508BC1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		AFD508BE1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
 		EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -810,6 +814,7 @@
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
+		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1394,6 +1399,7 @@
 				EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */,
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */,
+				AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -1906,6 +1912,7 @@
 				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
+				AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC68C07C18AA317100A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				AF1E74421A94B2110076DB30 /* QCMethod.swift in Sources */,
 				835C74E718867603006C6F4F /* POSInvoice.m in Sources */,
@@ -2031,6 +2038,7 @@
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E001A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
+				AFD508BC1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
 				AF1E74411A94B2110076DB30 /* QCMethod.swift in Sources */,
 				EC68C07B18AA317000A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
@@ -2156,6 +2164,7 @@
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
+				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
 				AF1E74401A94B2110076DB30 /* QCMethod.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
@@ -2281,6 +2290,7 @@
 				EC55F3DE1A2C5ACC00A3192C /* NSDate+Extensions.swift in Sources */,
 				ECC08E031A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC55F3DF1A2C5ACC00A3192C /* POSReceipt.m in Sources */,
+				AFD508BE1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC55F3E01A2C5ACC00A3192C /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				AF1E74431A94B2110076DB30 /* QCMethod.swift in Sources */,
 				EC55F3E11A2C5ACC00A3192C /* POSInvoice.m in Sources */,
