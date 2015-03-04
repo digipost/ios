@@ -74,19 +74,14 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
-            [self presentOnboarding];
-    //        [self presentNewFeatures];
-//    if (![userDefaults boolForKey:@"hasViewedOnboarding"]) {
-//        [self presentOnboarding];
-//        [userDefaults setBool:true forKey:@"hasViewedOnboarding"];
-//        [userDefaults synchronize];
-//    }
-//
-//    if (![userDefaults boolForKey:@"hasViewedNewfeatures_v250"]) {
-//        [self presentNewFeatures];
-//        [userDefaults setBool:true forKey:@"hasViewedNewfeatures_v250"];
-//        [userDefaults synchronize];
-//    }
+    BOOL shouldViewOnboarding = ![userDefaults boolForKey:@"hasViewedOnboarding"];
+    BOOL shouldViewNewFeatures = ![userDefaults boolForKey:@"hasViewedNewFeatures"];
+    
+    if (shouldViewOnboarding) {
+        [self presentOnboarding];
+    } else if (shouldViewNewFeatures) {
+        [self presentNewFeatures];
+    }
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
@@ -129,18 +124,28 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
+
+-(NSString*) getNewFeaturesCurrentAppVersionKey{
+    
+    NSString *currentAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *newFeaturesCurrentAppVersionKey = [NSString stringWithFormat:@"hasViewedNewFeaturesForVersion %@",currentAppVersion];
+    return newFeaturesCurrentAppVersionKey;
+}
+
 - (void)presentOnboarding
 {
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
     UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
-    [self presentViewController:onboardingViewController animated:NO completion:^{}];
+    [self presentViewController:onboardingViewController animated:NO completion:^{
+    }];
 }
 
 - (void)presentNewFeatures
 {
     UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
     UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
-    [self presentViewController:newFeaturesViewController animated:NO completion:^{}];
+    [self presentViewController:newFeaturesViewController animated:NO completion:^{
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
