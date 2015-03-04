@@ -8,6 +8,6 @@
 
 import UIKit
 
-class GuideItem: NSObject {
+class GuideItem {
    
 }

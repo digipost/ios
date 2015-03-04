@@ -21,6 +21,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Guide.shouldShowWhatsNewGuide()
+        
         logoutBarButtonVariable = logoutBarButtonItem
         
         let firstVC: UIViewController = navigationController!.viewControllers[0] as UIViewController
