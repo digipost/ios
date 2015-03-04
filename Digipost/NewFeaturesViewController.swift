@@ -17,6 +17,19 @@ struct Feature {
     }
 }
 
+extension UIFont{
+    class func fonstSizeForCurrentDevice() -> UIFont{
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Pad:
+            return UIFont(name: "HelveticaNeue-Light", size: 40)!
+        case .Phone:
+            return UIFont(name: "HelveticaNeue", size: 17)!
+        case .Unspecified:
+            return UIFont(name: "HelveticaNeue", size: 17)!
+        }
+    }
+}
+
 class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet var navBar: UINavigationItem!
@@ -94,17 +107,6 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             }
         }
         
-        var deviceFont:UIFont {
-            get {
-                // If iPad
-                if view.bounds.width >= 768.0 {
-                    return UIFont(name: "HelveticaNeue-Light", size: 40)!
-                } else {
-                    return UIFont(name: "HelveticaNeue", size: 17)!
-                }
-            }
-        }
-        
         for feature in features {
             // Setup feature imageView
             
@@ -119,7 +121,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             let frame = CGRectMake(labelOffset, 0.0, view.frame.width, labelViewContainer.frame.height)
             let label = UILabel(frame: frame)
             label.text = feature.featureText
-            label.font = deviceFont
+            label.font = UIFont.fonstSizeForCurrentDevice()
 
             label.numberOfLines = 2
             label.textColor = UIColor.whiteColor()
@@ -152,16 +154,12 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func doneButtonAction(sender: AnyObject) {
         
-        var storyboard:UIStoryboard!
-        let device = UIDevice.currentDevice().userInterfaceIdiom
-        switch device {
-        case .Phone:
-            storyboard = UIStoryboard(name: "Main_iPhone", bundle: nil)
-        case .Pad:
-            storyboard = UIStoryboard(name: "Main_iPad", bundle: nil)
-        default: break
-        }
+        // Store that user has viewed the the new features for this version
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        userdefaults.setBool(true, forKey: "hasViewedNewFeatures")
+        userdefaults.synchronize()
         
+        var storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
         let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
         self.presentViewController(viewcontroller, animated: false) { () -> Void in
         }
