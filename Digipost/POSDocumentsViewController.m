@@ -438,10 +438,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
-                                    handler:^(AHKActionSheet *actionSheet, id item) {
-                                        if (item) {
-                                            [self moveSelectedDocumentsToFolder:folder];
-                                        }
+                                    handler:^(AHKActionSheet *actionSheet) {
+                                        [self moveSelectedDocumentsToFolder:folder];
                                     }];
         }
     }

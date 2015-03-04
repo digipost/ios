@@ -536,10 +536,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
-                                    handler:^(AHKActionSheet *actionSheet, id item) {
-                                        if (item) {
+                                    handler:^(AHKActionSheet *actionSheet) {
                                             [self moveDocument:self.attachment.document toFolder:folder];
-                                        }
                                     }];
         }
     }
