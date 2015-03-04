@@ -29,6 +29,9 @@ PODS:
     - CocoaLumberjack/Core
   - GoogleAnalytics-iOS-SDK (3.0.9)
   - HockeySDK (3.5.7)
+  - KIF (3.1.2):
+    - KIF/XCTest (= 3.1.2)
+  - KIF/XCTest (3.1.2)
   - LUKeychainAccess (1.2.2)
   - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator (= 0.4.3)
@@ -78,6 +81,7 @@ DEPENDENCIES:
   - CocoaLumberjack (~> 1.6.5.1)
   - GoogleAnalytics-iOS-SDK (~> 3.0.3)
   - HockeySDK (~> 3.5.2)
+  - KIF (~> 3.0)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - ReactiveCocoa (~> 2.4.2)
@@ -101,6 +105,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
   HockeySDK: f0e874d1c6833163ee0c4e423606faf33ad04071
+  KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
   LUKeychainAccess: 4365689e03b1a019ce40a86058aae6e31e9adcea
   MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
   ReactiveCocoa: 8418a82b67af2f1b7587baf29c329040a23c2063

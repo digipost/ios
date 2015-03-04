@@ -14,4 +14,9 @@ pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.3'
 pod 'RNCryptor', '~> 2.1'
 pod 'MRProgress', '~> 0.4.3'
 pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => 'ffa91dce31891351da7f0dd5a35507677a89ac9e'
+
 pod 'ReactiveCocoa', '~> 2.4.2'
+
+target 'Digipost-Test-Dpost Tests', :exclusive => true do
+    pod 'KIF', '~> 3.0', :configurations => ['Debug']
+end
