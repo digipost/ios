@@ -19,6 +19,7 @@
 #import "SHCLoginViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "digipost-swift.h"
 
 @interface SHCSplitViewController ()
 
@@ -67,6 +68,9 @@
 
         SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         appDelegate.letterViewController = letterViewController;
+    }
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     }
 }
 

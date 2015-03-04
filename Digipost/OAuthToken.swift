@@ -97,6 +97,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encodeObject(self.scope, forKey: Keys.scopeKey)
     }
+    
     convenience init?(refreshToken: String?, scope: String) {
          self.init()
         
@@ -120,6 +121,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
         }
+        
         self.scope = scope
         storeInKeyChain()
     }
@@ -131,6 +133,14 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         anAccessToken = attributes["access_token"] as? String
         self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope)
         storeInKeyChain()
+    }
+    
+    class func isUserLoggedIn() -> Bool {
+        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        if token == nil {
+            return true
+        }
+        return false
     }
     
     func removeFromKeyChain() {
