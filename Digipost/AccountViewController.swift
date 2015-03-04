@@ -150,6 +150,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             let folderViewController: POSFoldersViewController = segue.destinationViewController as POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
+            tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: true)
+
         } else if segue.identifier == "gotoDocumentsFromAccountsSegue" {
             let documentsView: POSDocumentsViewController = segue.destinationViewController as POSDocumentsViewController
             let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
