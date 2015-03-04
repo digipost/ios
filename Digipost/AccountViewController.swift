@@ -100,7 +100,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
         
-        updateContentsFromServerUseInitiateRequest(0)
+        if (OAuthToken.isUserLoggedIn()) {
+            updateContentsFromServerUseInitiateRequest(0)
+        }
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
@@ -162,10 +164,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             documentsView.mailboxDigipostAddress = userMailbox.digipostAddress
             documentsView.folderName = kFolderInboxName
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
     }
 
     // MARK: - Logout

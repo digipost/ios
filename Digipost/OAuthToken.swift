@@ -138,9 +138,9 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     class func isUserLoggedIn() -> Bool {
         let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         if token == nil {
-            return true
+            return false
         }
-        return false
+        return true
     }
     
     func removeFromKeyChain() {
