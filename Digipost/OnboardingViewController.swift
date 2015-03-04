@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     // Backgrounds
@@ -23,9 +25,14 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
     var hasSetUpAnimationViews = false
+    // Login view
+    @IBOutlet var loginContainerView: UIView!
+    @IBOutlet var loginContainerViewBottomConstraint: NSLayoutConstraint!
     
     @IBOutlet var scrollView: UIScrollView!
     @IBOutlet var getStartedButton: UIButton!
+    @IBOutlet var getStartedButtonBottomConstraint: NSLayoutConstraint!
+    var getStartedButtonInitialBottomConstraint:CGFloat!
     @IBOutlet var pageControll: UIPageControl!
     
     var buttonInitialPostionY:CGFloat = 0
@@ -39,7 +46,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         let pageSize = view.frame.size
         let numOfPages:CGFloat = 5
         scrollView.delegate = self
@@ -59,7 +66,6 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             mountainParallaxSpeed = 0.13
         default: break
         }
-        
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -74,13 +80,14 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
+        println(getStartedButtonInitialBottomConstraint)
         buttonInitialPostionY = getStartedButton.center.y
         logoInitialPositionY = logoImageView.center.y
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
     }
     
-
     func setupAnimationViews() {
         
         let viewOffset = scrollView.frame.width
@@ -133,8 +140,11 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             let translatedXPostitionToY = buttonInitialPostionY - startPointX
             // stop decreasing y when welcome label reaches the middle of the screen
             if startPointX < scrollView.frame.height / 2 {
-                getStartedButton.center.y =  translatedXPostitionToY
+                getStartedButtonBottomConstraint.constant = translatedXPostitionToY + getStartedButtonInitialBottomConstraint
+                getStartedButton.setNeedsLayout()
+                //getStartedButton.center.y =  translatedXPostitionToY
                 buttonEndPositionY = getStartedButton.center.y
+                //loginContainerViewBottomConstraint.constant = translatedXPostitionToY
             }
             pageControll.alpha = (4 - progress)
             logoImageView.hidden = true
@@ -153,24 +163,24 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         var storyboard:UIStoryboard!
         let userDefaults = NSUserDefaults.standardUserDefaults()
         
-        if !userDefaults.boolForKey("hasViewedNewFeatures_v250"){
+        let shouldViewNewFeatures = !userDefaults.boolForKey("hasViewedNewFeaturesForVersion")
+        
+        if shouldViewNewFeatures{
             storyboard = UIStoryboard(name: "NewFeatures", bundle: nil)
         } else {
-            let device = UIDevice.currentDevice().userInterfaceIdiom
-            switch device {
-            case .Phone:
-                storyboard = UIStoryboard(name: "Main_iPhone", bundle: nil)
-            case .Pad:
-                storyboard = UIStoryboard(name: "Main_iPad", bundle: nil)
-            default: break
-            }
+            storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
         }
+        
+        // Store that user has viewed the onboarding
+        let userdefaults = NSUserDefaults.standardUserDefaults()
+        userDefaults.setBool(true, forKey: "hasViewedOnboarding")
+        userDefaults.synchronize()
         
         let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
         self.presentViewController(viewcontroller, animated: false) { () -> Void in
         }
     }
-    
+
     func panBackground() {
         let translatedOffsetX = -(scrollView.contentOffset.x + scrollView.scrollableEdgeOffset)
         bgImageView.frame.origin.x = translatedOffsetX * backgroundParallaxSpeed
