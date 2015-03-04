@@ -8,23 +8,24 @@
 
 import UIKit
 
-
-
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     // Backgrounds
     @IBOutlet var bgImageView: UIImageView!
     @IBOutlet var bgMaskImageView: UIImageView!
     @IBOutlet var bgParallaxImageView: UIImageView!
+    
     // First page elements
     @IBOutlet var logoImageView: UIImageView!
     @IBOutlet var welcomeLabel: UILabel!
+    
     // AnimationViews
     var firstAnimationView: DeviceView!
     var secondAnimationView: LockView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
     var hasSetUpAnimationViews = false
+    
     // Login view
     @IBOutlet var loginContainerView: UIView!
     @IBOutlet var loginContainerViewBottomConstraint: NSLayoutConstraint!
@@ -34,9 +35,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var getStartedButtonBottomConstraint: NSLayoutConstraint!
     var getStartedButtonInitialBottomConstraint:CGFloat!
     @IBOutlet var pageControll: UIPageControl!
-    
-    var buttonInitialPostionY:CGFloat = 0
-    var buttonEndPositionY:CGFloat = 0
+
     var logoInitialPositionY:CGFloat = 0
     var welcomeLabelInitialPositionY:CGFloat = 0
     
@@ -74,15 +73,13 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         if !hasSetUpAnimationViews{
             setupAnimationViews()
             hasSetUpAnimationViews = true
+            getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
+            println(getStartedButtonInitialBottomConstraint)
         }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
-        println(getStartedButtonInitialBottomConstraint)
-        buttonInitialPostionY = getStartedButton.center.y
         logoInitialPositionY = logoImageView.center.y
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
@@ -132,53 +129,28 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         case 2.0...3.0:
             thirdAnimationView.progress =  progress - 2
             secondAnimationView.progress = 3 - progress
-        case 3.0...4.0:
+        case 3.0...5.0:
             thirdAnimationView.progress = 4 - progress
             // get a startpoint where x is zero when on page 4, increasing the content offsett will give value from 0 to the size of one frame.width
             let startPointX = scrollView.contentOffset.x - (scrollView.frame.width * 3)
             // Then we use this translated x offset to increase/decreace the y position of the button
-            let translatedXPostitionToY = buttonInitialPostionY - startPointX
+            let translatedConstant = (startPointX + getStartedButtonInitialBottomConstraint) * 1.6
             // stop decreasing y when welcome label reaches the middle of the screen
-            if startPointX < scrollView.frame.height / 2 {
-                getStartedButtonBottomConstraint.constant = translatedXPostitionToY + getStartedButtonInitialBottomConstraint
-                getStartedButton.setNeedsLayout()
-                //getStartedButton.center.y =  translatedXPostitionToY
-                buttonEndPositionY = getStartedButton.center.y
-                //loginContainerViewBottomConstraint.constant = translatedXPostitionToY
-            }
+            getStartedButtonBottomConstraint.constant =  translatedConstant
+            getStartedButton.setNeedsUpdateConstraints()
             pageControll.alpha = (4 - progress)
+            getStartedButton.alpha = (4 - progress)
             logoImageView.hidden = true
             welcomeLabel.hidden = true
-        case 4.0...5.0:
-            // get a startpoint where x is zero when on page 5
-            let startPointX = scrollView.contentOffset.x - (scrollView.frame.width * 4)
-            // If the user over scrolls the scrollview in x, move the button equally in y
-            getStartedButton.center.y = buttonEndPositionY - startPointX
         default: break
         }
     }
     
     @IBAction func getStartedButtonAction(sender: AnyObject) {
         
-        var storyboard:UIStoryboard!
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        
-        let shouldViewNewFeatures = !userDefaults.boolForKey("hasViewedNewFeaturesForVersion")
-        
-        if shouldViewNewFeatures{
-            storyboard = UIStoryboard(name: "NewFeatures", bundle: nil)
-        } else {
-            storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
-        }
-        
-        // Store that user has viewed the onboarding
-        let userdefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setBool(true, forKey: "hasViewedOnboarding")
-        userDefaults.synchronize()
-        
-        let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
-        self.presentViewController(viewcontroller, animated: false) { () -> Void in
-        }
+        let lastPageRect = CGRectMake(0, 0, scrollView.pageSize.width*5, scrollView.pageSize.height)
+        scrollView.scrollRectToVisible(lastPageRect, animated: true)
+
     }
 
     func panBackground() {
