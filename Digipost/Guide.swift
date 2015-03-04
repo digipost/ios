@@ -8,10 +8,11 @@
 
 import Foundation
 
-
-private struct GuideConstants {
+struct GuideConstants {
     private static let shortVersionString : NSObject = "CFBundleShortVersionString"
-    private static let whatsNewTableName = "WhatsNewGuideTexts"
+    private static let hasShownOnboardingKey = "hasShownOnboardingKey"
+    static let whatsNewTableName = "WhatsNewGuideTexts"
+    static let onboardingTableName = "OnboardingGuideTexts"
 }
 
 class Guide {
@@ -20,7 +21,11 @@ class Guide {
         return NSUserDefaults.standardUserDefaults().boolForKey(versionStringWithDashesInsteadOfPeriods)
     }
     
-    private class var versionStringWithDashesInsteadOfPeriods : String  {
+    private class var hasShownOnboarding : Bool {
+        return NSUserDefaults.standardUserDefaults().boolForKey(GuideConstants.hasShownOnboardingKey)
+    }
+    
+    class var versionStringWithDashesInsteadOfPeriods : String  {
         let versionString : AnyObject = NSBundle.mainBundle().infoDictionary![GuideConstants.shortVersionString]!
         let versionStringWithDashesInsteadOfPeriods = versionString.stringByReplacingOccurrencesOfString(".", withString: "-")
         return versionStringWithDashesInsteadOfPeriods
@@ -36,39 +41,40 @@ class Guide {
         
         // String format for images, for example iPhone: "2-5-0_1-iphone"
         
-        let firstObjectForThisVersionString = "\(versionStringWithDashesInsteadOfPeriods)_1"
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Pad:
-            if let firstImage = UIImage(named: "\(firstObjectForThisVersionString)-ipad") {
-                if let firstText = NSLocalizedString(firstObjectForThisVersionString,tableName:GuideConstants.whatsNewTableName, comment:"") as String? {
-                    if hasShownWhatsNewGuideForCurrentVersion == false {
-                        return true
-                    }
+        if let firstImage = UIImage(named: WhatsNewGuideItem.nameForIndex(1)) {
+            if let firstText = NSLocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(1),tableName:GuideConstants.whatsNewTableName, comment:"") as String? {
+                if hasShownWhatsNewGuideForCurrentVersion == false {
+                    return true
                 }
             }
-            break
-        case .Phone:
-            if let firstImage = UIImage(named: "\(firstObjectForThisVersionString)-iphone") {
-                if let firstText = NSLocalizedString(firstObjectForThisVersionString,tableName:GuideConstants.whatsNewTableName, comment:"") as String? {
-                    if hasShownWhatsNewGuideForCurrentVersion == false {
-                        return true
-                    }
-                }
-            }
-            break
-        default:
-            return false
         }
-        
         return false
     }
     
-    class func whatsNewGuideItems() {
-        
+    /**
+    checks if app has not shown onboarding guide before, and that there are at least one localized text to show
+    
+    :returns: whether to show onboarding guide or not
+    */
+    class func shouldShowOnboardingGuide() -> Bool {
+        if onboardingText(forIndex: 1) != nil {
+            return hasShownOnboarding == false
+        }
+        return false
     }
     
-    class func shouldShowOnboardingGuide() -> Bool {
-        return true
+    class func whatsNewGuideItems() -> [WhatsNewGuideItem] {
+        var index = 0
+        var guideItems = [WhatsNewGuideItem]()
+        while let whatsNewItem = WhatsNewGuideItem(index: index) {
+            guideItems.append(whatsNewItem)
+            index++
+        }
+        return guideItems
+    }
+    
+    class func onboardingText(#forIndex: Int) -> String? {
+        return NSLocalizedString("onboarding_\(index)",tableName:GuideConstants.onboardingTableName, comment:"") as String?
     }
     
 }

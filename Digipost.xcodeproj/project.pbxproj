@@ -318,11 +318,16 @@
 		EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C81AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C91AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
-		EC4146D41AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
-		EC4146D51AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
-		EC4146D61AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
-		EC4146D71AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
-		EC4146D81AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
+		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC4146DB1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC4146DC1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC4146DD1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC4146DE1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
+		EC4146EC1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
+		EC4146ED1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
+		EC4146EE1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
+		EC4146EF1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70919C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
@@ -887,7 +892,9 @@
 		EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-5-0.xcassets"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
-		EC4146D31AA7471A003DBF47 /* GuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideItem.swift; sourceTree = "<group>"; };
+		EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewGuideItem.swift; sourceTree = "<group>"; };
+		EC4146F01AA76130003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
+		EC4146F21AA76135003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1265,6 +1272,7 @@
 		AF477E001A77B48A00CBD150 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */,
 				AF471CD61A8B426F00D07DD7 /* AnimationViews */,
 				AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */,
 				AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */,
@@ -1276,8 +1284,8 @@
 			isa = PBXGroup;
 			children = (
 				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
+				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
 				EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */,
-				EC4146D31AA7471A003DBF47 /* GuideItem.swift */,
 				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
 				EC4146BE1AA736A8003DBF47 /* Old images */,
 				AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */,
@@ -1673,6 +1681,7 @@
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
+				EC4146ED1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
@@ -1696,6 +1705,7 @@
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
 				ECA594CE19FFE4520064D98D /* Images-Prod.xcassets in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
+				EC4146EC1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C61AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */,
@@ -1719,6 +1729,7 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
+				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
@@ -1748,6 +1759,7 @@
 				AFC1A92B1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				EC4146C91AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
+				EC4146EF1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC55F42A1A2C5ACC00A3192C /* LaunchScreen.xib in Resources */,
 				EC55F42B1A2C5ACC00A3192C /* InfoPlist.strings in Resources */,
 			);
@@ -1770,6 +1782,7 @@
 				AF2342381A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 				EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				31B13B141A6E92050052792C /* Images-Shared.xcassets in Resources */,
+				EC4146EE1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1956,6 +1969,7 @@
 				EC0C1A1519347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				8364D716185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				ECD0B88E1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
+				EC4146DC1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65F19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
@@ -1967,7 +1981,6 @@
 				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5219FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
-				EC4146D61AA7471A003DBF47 /* GuideItem.swift in Sources */,
 				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
@@ -2085,6 +2098,7 @@
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1419347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				ECD0B88D1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
+				EC4146DB1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				8364D715185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				ECF06D5719238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65E19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
@@ -2096,7 +2110,6 @@
 				31B57FF81A6691E8008952DE /* AccountViewController.swift in Sources */,
 				EC0F2B7919B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5119FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
-				EC4146D51AA7471A003DBF47 /* GuideItem.swift in Sources */,
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E001A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
@@ -2214,6 +2227,7 @@
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
+				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
@@ -2225,7 +2239,6 @@
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
-				EC4146D41AA7471A003DBF47 /* GuideItem.swift in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
@@ -2343,6 +2356,7 @@
 				EC55F3D31A2C5ACC00A3192C /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC55F3D41A2C5ACC00A3192C /* POSDocumentsViewController.m in Sources */,
 				ECD0B8901A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
+				EC4146DE1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				EC55F3D51A2C5ACC00A3192C /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC55F3D61A2C5ACC00A3192C /* NSManagedObject+Attributes.swift in Sources */,
 				EC55F3D71A2C5ACC00A3192C /* POSRootResource.m in Sources */,
@@ -2354,7 +2368,6 @@
 				EC55F3DB1A2C5ACC00A3192C /* POSUploadViewController.m in Sources */,
 				EC55F3DC1A2C5ACC00A3192C /* UIColor+DigipostColors.swift in Sources */,
 				EC55F3DD1A2C5ACC00A3192C /* UIViewController+Additions.m in Sources */,
-				EC4146D81AA7471A003DBF47 /* GuideItem.swift in Sources */,
 				EC55F3DE1A2C5ACC00A3192C /* NSDate+Extensions.swift in Sources */,
 				ECC08E031A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC55F3DF1A2C5ACC00A3192C /* POSReceipt.m in Sources */,
@@ -2445,6 +2458,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4146DD1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF486C61A471A0E00E97519 /* POSNewFolderCollectionViewCell.m in Sources */,
 				ECF486EE1A471A2E00E97519 /* NSFetchedResultsController+Additions.m in Sources */,
 				ECF486F11A471A3600E97519 /* SHCAttachmentsViewController.m in Sources */,
@@ -2538,7 +2552,6 @@
 				31B57FF61A669150008952DE /* Constants.swift in Sources */,
 				ECF486F61A471A3A00E97519 /* SHCLoginViewController.m in Sources */,
 				ECF486C21A471A0E00E97519 /* POSFoldersViewController.m in Sources */,
-				EC4146D71AA7471A003DBF47 /* GuideItem.swift in Sources */,
 				ECF486D41A471A1A00E97519 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECC08E081A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				ECF486D51A471A1A00E97519 /* POSLetterPopoverTableViewCell.m in Sources */,
@@ -2623,6 +2636,15 @@
 				EC4146CC1AA73CF8003DBF47 /* en */,
 			);
 			name = WhatsNewGuideTexts.strings;
+			sourceTree = "<group>";
+		};
+		EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EC4146F01AA76130003DBF47 /* nb */,
+				EC4146F21AA76135003DBF47 /* en */,
+			);
+			name = OnboardingGuideTexts.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

@@ -1,0 +1,51 @@
+//
+//  WhatsNewGuideItem.swift
+//  Digipost
+//
+//  Created by Håkon Bogen on 04/03/15.
+//  Copyright (c) 2015 Posten. All rights reserved.
+//
+
+import UIKit
+
+class WhatsNewGuideItem {
+    let image : UIImage!
+    let text : String!
+    
+    init(image: UIImage, text:String) {
+        self.image = image
+        self.text = text
+    }
+    
+    // Remove in swift 1.2
+    init() {
+        
+    }
+    
+    convenience init?(index: Int) {
+        let image = UIImage(named:WhatsNewGuideItem.nameForIndex(index))
+        let text =  NSLocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index),tableName:GuideConstants.whatsNewTableName, comment:"") as String?
+        
+        if image == nil || text == nil {
+            self.init()
+            return nil
+        } else {
+            self.init(image:image!,text:text!)
+        }
+    }
+    
+    class func nameForIndex(index: Int) -> String {
+        switch UIDevice.currentDevice().userInterfaceIdiom {
+        case .Pad:
+            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-ipad"
+        case .Phone:
+            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
+        default:
+            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
+        }
+    }
+    
+    class func guideItemNameForIndexWithoutUserInterfaceIdiom(index: Int) -> String {
+        return "\(Guide.versionStringWithDashesInsteadOfPeriods)_\(index)"
+    }
+}
