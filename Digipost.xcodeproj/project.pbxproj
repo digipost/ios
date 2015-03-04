@@ -318,11 +318,6 @@
 		EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C81AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C91AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
-		EC4146CE1AA742CD003DBF47 /* 2-4-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */; };
-		EC4146CF1AA742CD003DBF47 /* 2-4-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */; };
-		EC4146D01AA742CD003DBF47 /* 2-4-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */; };
-		EC4146D11AA742CD003DBF47 /* 2-4-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */; };
-		EC4146D21AA742CD003DBF47 /* 2-4-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */; };
 		EC4146D41AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
 		EC4146D51AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
 		EC4146D61AA7471A003DBF47 /* GuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D31AA7471A003DBF47 /* GuideItem.swift */; };
@@ -892,7 +887,6 @@
 		EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-5-0.xcassets"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
-		EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-4-0.xcassets"; sourceTree = "<group>"; };
 		EC4146D31AA7471A003DBF47 /* GuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideItem.swift; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
@@ -1483,7 +1477,6 @@
 		EC4146BE1AA736A8003DBF47 /* Old images */ = {
 			isa = PBXGroup;
 			children = (
-				EC4146CD1AA742CD003DBF47 /* 2-4-0.xcassets */,
 			);
 			name = "Old images";
 			sourceTree = "<group>";
@@ -1678,7 +1671,6 @@
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
 				ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
-				EC4146D01AA742CD003DBF47 /* 2-4-0.xcassets in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
 				EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
@@ -1702,7 +1694,6 @@
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A71A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
-				EC4146CF1AA742CD003DBF47 /* 2-4-0.xcassets in Resources */,
 				ECA594CE19FFE4520064D98D /* Images-Prod.xcassets in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
 				EC4146C61AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
@@ -1726,7 +1717,6 @@
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
-				EC4146CE1AA742CD003DBF47 /* 2-4-0.xcassets in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
@@ -1755,7 +1745,6 @@
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
 				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				EC4146BD1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
-				EC4146D21AA742CD003DBF47 /* 2-4-0.xcassets in Resources */,
 				AFC1A92B1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				EC4146C91AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
@@ -1768,7 +1757,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC4146D11AA742CD003DBF47 /* 2-4-0.xcassets in Resources */,
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
 				AF477DFE1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
