@@ -142,11 +142,8 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func doneButtonAction(sender: AnyObject) {
         
-        // Store that user has viewed the the new features for this version
-        let userdefaults = NSUserDefaults.standardUserDefaults()
-        userdefaults.setBool(true, forKey: "hasViewedNewFeatures")
-        userdefaults.synchronize()
-        
+        Guide.setWhatsNewFeaturesHasBeenWatchedForThisVersion()
+       
         if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             NSNotificationCenter.defaultCenter().postNotificationName(kRefreshDocumentsContentNotificationName, object: nil)

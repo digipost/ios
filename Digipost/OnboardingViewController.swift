@@ -104,12 +104,14 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
         firstAnimationView = DeviceView(frame: animationFrame)
         firstAnimationView.center.x = animationMockView.center.x + viewOffset
-        firstAnimationView.animationText.string = NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
+        firstAnimationView.animationText.string = Guide.onboardingText(forIndex: 1)
+        
+        // NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
         scrollView.addSubview(firstAnimationView!)
         
         secondAnimationView = LockView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
-        secondAnimationView.animationText.string = NSLocalizedString("onboarding second animation", comment: "safe storage of documents")
+        secondAnimationView.animationText.string = Guide.onboardingText(forIndex: 2)
         scrollView.addSubview(secondAnimationView!)
         
         thirdAnimationView = ReceiptView(frame: animationFrame)

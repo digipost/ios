@@ -71,13 +71,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    BOOL shouldViewOnboarding = ![userDefaults boolForKey:@"hasViewedOnboarding"];
-
-//    if (shouldViewOnboarding) {
-//        [self presentOnboarding];
-//    }
+    if ([Guide shouldShowOnboardingGuide]) {
+        [self presentOnboarding];
+    }
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;

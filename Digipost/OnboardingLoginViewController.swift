@@ -27,9 +27,7 @@ class OnboardingLoginViewController: UIViewController {
     @IBAction func loginButtonAction(sender: UIButton) {
 
         // Store that user has viewed the onboarding
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        userDefaults.setBool(true, forKey: "hasViewedOnboarding")
-        userDefaults.synchronize()
+        Guide.setOnboaringHasBeenWatched()
         let storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
         let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
         self.presentViewController(viewcontroller, animated: false, completion: nil)
