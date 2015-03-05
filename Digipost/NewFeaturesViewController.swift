@@ -40,23 +40,24 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var orientation: Int?
+        
         whatsNewGuideItems = Guide.whatsNewGuideItems()
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
             deviceFrameImageView.image = UIImage(named: "newFeatures-phone")
-            println("iPhone")
+            orientation = UIInterfaceOrientation.Portrait.rawValue
         case .Pad:
-            println("iPad")
+            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
         default: break
         }
         
         doneBarButton.title = NSLocalizedString("new feature barbutton title", comment: "bar button title")
         navBar.title = NSLocalizedString("new feature navbar title", comment: "nav bar title")
         scrollView.delegate = self
-    
-        let value = UIInterfaceOrientation.Portrait.rawValue
-        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+
+        UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
 
     }
     
@@ -68,7 +69,16 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     }
 
     override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        
+        switch device {
+        case .Phone:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        case .Pad:
+            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+        default:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        }
     }
 
     override func shouldAutorotate() -> Bool {
