@@ -831,6 +831,11 @@
                         </variation>
                     </view>
                     <toolbarItems/>
+                    <connections>
+                        <outlet property="loginButton" destination="TfH-8I-ZOG" id="ICV-Fj-nb3"/>
+                        <outlet property="privacyButton" destination="z8p-Sp-Tog" id="Nrp-w4-3ul"/>
+                        <outlet property="registerButton" destination="jtw-jS-3dk" id="vZc-AP-cHA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WeX-Hm-Ofq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
