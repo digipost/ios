@@ -54,6 +54,10 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         doneBarButton.title = NSLocalizedString("new feature barbutton title", comment: "bar button title")
         navBar.title = NSLocalizedString("new feature navbar title", comment: "nav bar title")
         scrollView.delegate = self
+    
+        let value = UIInterfaceOrientation.Portrait.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,6 +65,10 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             setupNewFeatures()
             hasSetUpFeatures = true
         }
+    }
+
+    override func shouldAutorotate() -> Bool {
+        return true
     }
     
     func setupNewFeatures() {
