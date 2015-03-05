@@ -28,12 +28,24 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     // Login view
     @IBOutlet var loginContainerView: UIView!
-    @IBOutlet var loginContainerViewBottomConstraint: NSLayoutConstraint!
+    // Login view iPhone Constraints
+    @IBOutlet var loginContainerViewTopConstant: NSLayoutConstraint!
+    var loginContainerViewInitialTopConstant:CGFloat!
+    // Login view iPad Constraints
+    @IBOutlet var loginContainerViewTopConstantIPAD: NSLayoutConstraint!
+    var loginContainerViewInitialTopConstantIPAD:CGFloat!
     
     @IBOutlet var scrollView: UIScrollView!
+    
+    // Get started button
     @IBOutlet var getStartedButton: UIButton!
+    // Get started Button iPhone Constraints
     @IBOutlet var getStartedButtonBottomConstraint: NSLayoutConstraint!
     var getStartedButtonInitialBottomConstraint:CGFloat!
+    //  ConstraintsiPad Constraints
+     @IBOutlet var getStartedButtonBottomConstraintIPAD: NSLayoutConstraint!
+    var getStartedButtonInitialBottomConstraintIPAD:CGFloat!
+    
     @IBOutlet var pageControll: UIPageControl!
 
     var logoInitialPositionY:CGFloat = 0
@@ -74,7 +86,13 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             setupAnimationViews()
             hasSetUpAnimationViews = true
             getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
+            getStartedButtonInitialBottomConstraintIPAD = getStartedButtonBottomConstraintIPAD.constant
             println(getStartedButtonInitialBottomConstraint)
+            loginContainerViewTopConstant.constant = self.view.frame.height
+            loginContainerViewInitialTopConstant = loginContainerViewTopConstant.constant
+            loginContainerViewTopConstantIPAD.constant = self.view.frame.height
+            loginContainerViewInitialTopConstantIPAD = loginContainerViewTopConstant.constant
+            println(loginContainerViewInitialTopConstant)
         }
     }
     
@@ -134,14 +152,25 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             // get a startpoint where x is zero when on page 4, increasing the content offsett will give value from 0 to the size of one frame.width
             let startPointX = scrollView.contentOffset.x - (scrollView.frame.width * 3)
             // Then we use this translated x offset to increase/decreace the y position of the button
-            let translatedConstant = (startPointX + getStartedButtonInitialBottomConstraint) * 1.6
-            // stop decreasing y when welcome label reaches the middle of the screen
-            getStartedButtonBottomConstraint.constant =  translatedConstant
+            let translatedButtonConstant = getStartedButtonInitialBottomConstraint - startPointX
+            let scrollMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.35 : 1.6 // TODO: Make more readable
+            let translatedLoginContainerConstant = loginContainerViewInitialTopConstant - (startPointX * scrollMultiplier)
+            let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * 0.7)
+            // Move button off screen bottom
+            getStartedButtonBottomConstraint.constant =  translatedButtonConstant
+            getStartedButtonBottomConstraintIPAD.constant = translatedButtonConstant
             getStartedButton.setNeedsUpdateConstraints()
+            // Move login container up from buttom
+            loginContainerViewTopConstant.constant = translatedLoginContainerConstant
+            loginContainerViewTopConstantIPAD.constant = translatedLoginContainerConstantIPAD
+            loginContainerView.setNeedsUpdateConstraints()
+            // Fade out on leaving screen bottom
             pageControll.alpha = (4 - progress)
             getStartedButton.alpha = (4 - progress)
             logoImageView.hidden = true
             welcomeLabel.hidden = true
+            println("Button \(getStartedButtonBottomConstraint.constant ) : Login \(loginContainerViewTopConstant.constant)")
+            
         default: break
         }
     }
