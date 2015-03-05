@@ -1296,9 +1296,7 @@
 			isa = PBXGroup;
 			children = (
 				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
-				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
 				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
-				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
 				EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */,
 				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
 				EC4146BE1AA736A8003DBF47 /* Old images */,
@@ -1447,6 +1445,8 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
+				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
 				ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */,
 				EC2B64621A66928D00AB6085 /* Dispatch.swift */,
 				ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */,
