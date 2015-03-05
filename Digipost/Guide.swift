@@ -15,7 +15,7 @@ struct GuideConstants {
     static let onboardingTableName = "OnboardingGuideTexts"
 }
 
-class Guide {
+class Guide : NSObject {
     
     private class var hasShownWhatsNewGuideForCurrentVersion : Bool {
         return NSUserDefaults.standardUserDefaults().boolForKey(versionStringWithDashesInsteadOfPeriods)
@@ -72,9 +72,16 @@ class Guide {
         }
         return guideItems
     }
+    /**
     
+    :param: forIndex index of the localized text
+    
+    :returns: the text as index, else nil
+    */
     class func onboardingText(#forIndex: Int) -> String? {
-        return NSLocalizedString("onboarding_\(index)",tableName:GuideConstants.onboardingTableName, comment:"") as String?
+        let string = LocalizedString("onboarding_\(forIndex)", tableName: GuideConstants.onboardingTableName, comment: "")
+        debugIfNil(string, " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
+        return string
     }
 
     class func setWhatsNewFeaturesHasBeenWatchedForThisVersion() {
@@ -84,5 +91,6 @@ class Guide {
     
     class func setOnboaringHasBeenWatched() {
         NSUserDefaults.standardUserDefaults().setBool(true, forKey: GuideConstants.hasShownOnboardingKey)
+        NSUserDefaults.standardUserDefaults().synchronize()
     }
 }
