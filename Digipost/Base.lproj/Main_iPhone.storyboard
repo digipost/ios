@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C78c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -93,7 +93,7 @@
         <!--Folders View Controller-->
         <scene sceneID="Ige-oa-FSO">
             <objects>
-                <tableViewController storyboardIdentifier="FoldersViewController" id="J0H-vT-0Kh" customClass="POSFoldersViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FoldersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="J0H-vT-0Kh" customClass="POSFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="50" sectionFooterHeight="22" id="qSR-YO-R1z">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -212,7 +212,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oRD-gQ-K1V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TjR-oK-wrN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="9VM-il-yR1">
@@ -334,7 +334,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-1t-g98" userLabel="Sender Label">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-1t-g98" userLabel="Sender Label">
                                             <rect key="frame" x="30" y="33" width="165" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -362,8 +362,8 @@
                                                 <constraint firstAttribute="width" constant="8" id="dKl-bZ-ZqM"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W8-5K-T1U" userLabel="Date Label">
-                                            <rect key="frame" x="204" y="35" width="100" height="17.5"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" misplaced="YES" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4W8-5K-T1U" userLabel="Date Label">
+                                            <rect key="frame" x="204" y="35" width="100" height="18"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="WUA-83-Pg7"/>
                                             </constraints>
@@ -1233,7 +1233,7 @@
                                 <color key="trackTintColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             </progressView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="xQW-NC-XrA" userLabel="Error Label">
-                                <rect key="frame" x="20" y="242" width="280" height="20.5"/>
+                                <rect key="frame" x="20" y="242" width="280" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="249" constant="21" id="OY5-X0-I04"/>
                                 </constraints>
@@ -1264,8 +1264,8 @@
                                                                 <userLayoutGuide location="21" affinity="minY"/>
                                                             </userGuides>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-qn-YBf">
-                                                                    <rect key="frame" x="18" y="12" width="98" height="20.5"/>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ao4-qn-YBf">
+                                                                    <rect key="frame" x="18" y="12" width="98" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="98" id="5pj-NJ-d3j"/>
                                                                     </constraints>
@@ -1274,7 +1274,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="865" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-zR-hvc">
-                                                                    <rect key="frame" x="93" y="11" width="205" height="20.5"/>
+                                                                    <rect key="frame" x="93" y="11" width="205" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="205" id="w1S-oF-MGP"/>
                                                                     </constraints>
@@ -1516,7 +1516,7 @@
         <!--Kontoer-->
         <scene sceneID="SnP-zZ-sOg">
             <objects>
-                <viewController storyboardIdentifier="accountViewController" id="8hc-kI-yQH" customClass="AccountViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="accountViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8hc-kI-yQH" customClass="AccountViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hCg-TJ-MuE"/>
                         <viewControllerLayoutGuide type="bottom" id="dz9-ZL-349"/>
@@ -1613,19 +1613,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WBk-6x-J5R"/>
-        <segue reference="j20-qk-TDu"/>
-        <segue reference="Kl9-xn-mhN"/>
-        <segue reference="eq9-PM-agO"/>
-        <segue reference="WBk-6x-J5R"/>
         <segue reference="vJp-VT-rtF"/>
-        <segue reference="j20-qk-TDu"/>
-        <segue reference="Kl9-xn-mhN"/>
-        <segue reference="eq9-PM-agO"/>
-        <segue reference="3jD-Vn-Y8D"/>
-        <segue reference="3jD-Vn-Y8D"/>
-        <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="nJS-Zx-WgQ"/>
         <segue reference="WBk-6x-J5R"/>
-        <segue reference="eq9-PM-agO"/>
+        <segue reference="2IH-85-kgn"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
