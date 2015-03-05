@@ -538,6 +538,16 @@
 		ECBEDB9F1AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		ECBEDBA01AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		ECBEDBA11AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
+		ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		ECBF75A81AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		ECBF75A91AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		ECBF75AA1AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		ECBF75AB1AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		ECBF75AE1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		ECBF75AF1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		ECBF75B01AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		ECBF75B11AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08DFA1A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08DFB1A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
@@ -957,6 +967,8 @@
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
 		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
 		ECBEDB9C1AA734A50052B11B /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
+		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
+		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -1284,7 +1296,9 @@
 			isa = PBXGroup;
 			children = (
 				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
+				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
 				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
+				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
 				EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */,
 				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
 				EC4146BE1AA736A8003DBF47 /* Old images */,
@@ -1944,11 +1958,13 @@
 			files = (
 				ECCC5CB119C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECBF75AF1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43719E694D000E602DC /* UploadImageController.swift in Sources */,
 				8364D720185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF2188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				83D355181861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037918570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECBF75A91AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486E1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A9301A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
@@ -2073,11 +2089,13 @@
 			files = (
 				ECCC5CB019C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECBF75AE1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43619E694D000E602DC /* UploadImageController.swift in Sources */,
 				8364D71F185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF1188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				83D355171861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037818570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECBF75A81AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486D1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A92F1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2A19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
@@ -2202,11 +2220,13 @@
 			files = (
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
+				ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */,
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
@@ -2331,11 +2351,13 @@
 			files = (
 				EC55F3BD1A2C5ACC00A3192C /* UploadGuideViewController.swift in Sources */,
 				EC55F3BE1A2C5ACC00A3192C /* UILabel+Digipost.m in Sources */,
+				ECBF75B11AA85E6900540BCA /* Localization.swift in Sources */,
 				EC55F3BF1A2C5ACC00A3192C /* UploadImageController.swift in Sources */,
 				EC55F3C01A2C5ACC00A3192C /* POSDocumentTableViewCell.m in Sources */,
 				EC55F3C11A2C5ACC00A3192C /* POSReceiptTableViewCell.m in Sources */,
 				EC55F3C31A2C5ACC00A3192C /* POSLetterViewController.m in Sources */,
 				EC55F3C41A2C5ACC00A3192C /* NSString+RandomNumber.m in Sources */,
+				ECBF75AB1AA85ACF00540BCA /* Debug.swift in Sources */,
 				311848701A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A9311A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC55F3C51A2C5ACC00A3192C /* UIImage+Size.swift in Sources */,
@@ -2492,6 +2514,7 @@
 				ECF486C91A471A1200E97519 /* POSDocumentTableViewCell.m in Sources */,
 				ECF4869D1A4715A900E97519 /* POSInvoice+Methods.swift in Sources */,
 				ECF4869E1A4715AC00E97519 /* POSInvoice.m in Sources */,
+				ECBF75B01AA85E6900540BCA /* Localization.swift in Sources */,
 				31B57FF91A6691E8008952DE /* AccountViewController.swift in Sources */,
 				ECC08E021A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC63A8471A6E7C1800708A75 /* ModelTests.swift in Sources */,
@@ -2519,6 +2542,7 @@
 				ECF486F51A471A3A00E97519 /* SHCOAuthViewController.m in Sources */,
 				EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */,
 				ECF486DA1A471A2E00E97519 /* POSNoRotationNavigationController.m in Sources */,
+				ECBF75AA1AA85ACF00540BCA /* Debug.swift in Sources */,
 				ECF486DC1A471A2E00E97519 /* NSString+Convenience.m in Sources */,
 				ECD0B88F1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				ECF4869A1A4715A100E97519 /* POSModelManager.m in Sources */,
@@ -2886,6 +2910,7 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DDEBUGLOG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -2920,6 +2945,7 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
