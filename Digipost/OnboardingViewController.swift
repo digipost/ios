@@ -85,14 +85,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         if !hasSetUpAnimationViews{
             setupAnimationViews()
             hasSetUpAnimationViews = true
-            getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
-            getStartedButtonInitialBottomConstraintIPAD = getStartedButtonBottomConstraintIPAD.constant
-            println(getStartedButtonInitialBottomConstraint)
-            loginContainerViewTopConstant.constant = self.view.frame.height
-            loginContainerViewInitialTopConstant = loginContainerViewTopConstant.constant
-            loginContainerViewTopConstantIPAD.constant = self.view.frame.height
-            loginContainerViewInitialTopConstantIPAD = loginContainerViewTopConstant.constant
-            println(loginContainerViewInitialTopConstant)
+            // Stor initial consstraint constants for button and login conatiner view
+            storeInitialConstraints()
         }
     }
     
@@ -169,7 +163,6 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             getStartedButton.alpha = (4 - progress)
             logoImageView.hidden = true
             welcomeLabel.hidden = true
-            println("Button \(getStartedButtonBottomConstraint.constant ) : Login \(loginContainerViewTopConstant.constant)")
             
         default: break
         }
@@ -187,6 +180,15 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         bgImageView.frame.origin.x = translatedOffsetX * backgroundParallaxSpeed
         bgMaskImageView.frame.origin.x = bgImageView.frame.origin.x
         bgParallaxImageView.frame.origin.x = translatedOffsetX * mountainParallaxSpeed
+    }
+    
+    func storeInitialConstraints() {
+        getStartedButtonInitialBottomConstraint = getStartedButtonBottomConstraint.constant
+        getStartedButtonInitialBottomConstraintIPAD = getStartedButtonBottomConstraintIPAD.constant
+        loginContainerViewTopConstant.constant = self.view.frame.height
+        loginContainerViewInitialTopConstant = loginContainerViewTopConstant.constant
+        loginContainerViewTopConstantIPAD.constant = self.view.frame.height
+        loginContainerViewInitialTopConstantIPAD = loginContainerViewTopConstant.constant
     }
     
 //    override func shouldAutorotate() -> Bool {
