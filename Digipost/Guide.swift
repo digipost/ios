@@ -64,7 +64,7 @@ class Guide {
     }
     
     class func whatsNewGuideItems() -> [WhatsNewGuideItem] {
-        var index = 0
+        var index = 1 // designers don't start counting on zero.
         var guideItems = [WhatsNewGuideItem]()
         while let whatsNewItem = WhatsNewGuideItem(index: index) {
             guideItems.append(whatsNewItem)
@@ -76,5 +76,13 @@ class Guide {
     class func onboardingText(#forIndex: Int) -> String? {
         return NSLocalizedString("onboarding_\(index)",tableName:GuideConstants.onboardingTableName, comment:"") as String?
     }
+
+    class func setWhatsNewFeaturesHasBeenWatchedForThisVersion() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: versionStringWithDashesInsteadOfPeriods)
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
     
+    class func setOnboaringHasBeenWatched() {
+        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GuideConstants.hasShownOnboardingKey)
+    }
 }
