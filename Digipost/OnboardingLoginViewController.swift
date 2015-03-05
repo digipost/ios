@@ -21,11 +21,10 @@ class OnboardingLoginViewController: UIViewController {
         self.presentViewController(viewcontroller, animated: false, completion: nil)
     }
     
-    @IBAction func newUserButtonAction(sender: UIButton) {
+    @IBAction func registerButtonAction(sender: UIButton) {
         if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering#/") {
            presentActionSheetFromSenderWithURL(sender, url: newUserURL)
         }
-        
     }
     
     @IBAction func privacyButtonAction(sender: UIButton) {

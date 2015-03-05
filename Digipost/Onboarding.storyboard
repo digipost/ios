@@ -665,7 +665,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="newUserButtonAction:" destination="T10-nk-z96" eventType="touchUpInside" id="LW4-I8-Lpg"/>
+                                    <action selector="registerButtonAction:" destination="T10-nk-z96" eventType="touchUpInside" id="e9C-7I-NVK"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z8p-Sp-Tog">
