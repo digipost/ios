@@ -10,6 +10,20 @@ import UIKit
 
 class OnboardingLoginViewController: UIViewController {
 
+    @IBOutlet var loginButton: UIButton!
+    @IBOutlet var registerButton: UIButton!
+    @IBOutlet var privacyButton: UIButton!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Localize button titels
+        loginButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", comment: "Sign In"), forState: .Normal)
+        registerButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", comment: "New user"), forState: .Normal)
+        privacyButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", comment: "Privacy"), forState: .Normal)
+        
+    }
+
     @IBAction func loginButtonAction(sender: UIButton) {
 
         // Store that user has viewed the onboarding
