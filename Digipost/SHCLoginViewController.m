@@ -73,15 +73,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [super viewDidLoad];
 
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-
     BOOL shouldViewOnboarding = ![userDefaults boolForKey:@"hasViewedOnboarding"];
-    BOOL shouldViewNewFeatures = ![userDefaults boolForKey:@"hasViewedNewFeatures"];
-    
-    if (shouldViewOnboarding) {
-        [self presentOnboarding];
-    } else if (shouldViewNewFeatures) {
-        [self presentNewFeatures];
-    }
+
+//    if (shouldViewOnboarding) {
+//        [self presentOnboarding];
+//    }
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
@@ -103,6 +99,19 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+
+    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
+    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+    self.navigationItem.titleView = self.titleImageView;
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationItem.rightBarButtonItem = nil;
 
     if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
@@ -118,17 +127,18 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                              style:UIBarButtonItemStyleBordered
+                                                                              style:UIBarButtonItemStylePlain
                                                                              target:nil
                                                                              action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 
--(NSString*) getNewFeaturesCurrentAppVersionKey{
-    
+- (NSString *)getNewFeaturesCurrentAppVersionKey
+{
+
     NSString *currentAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *newFeaturesCurrentAppVersionKey = [NSString stringWithFormat:@"hasViewedNewFeaturesForVersion %@",currentAppVersion];
+    NSString *newFeaturesCurrentAppVersionKey = [NSString stringWithFormat:@"hasViewedNewFeaturesForVersion %@", currentAppVersion];
     return newFeaturesCurrentAppVersionKey;
 }
 
@@ -144,21 +154,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
     UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
-    [self presentViewController:newFeaturesViewController animated:NO completion:^{
-    }];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
-    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-    self.navigationItem.titleView = self.titleImageView;
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.navigationItem.rightBarButtonItem = nil;
+    [[self navigationController] pushViewController:newFeaturesViewController animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -201,20 +197,24 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [self.navigationController dismissViewControllerAnimated:YES
-                                                      completion:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
-                                                            object:@NO];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hasViewedNewFeatures"] == NO) {
+        [self presentNewFeatures];
     } else {
-        POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
-        if ([resource.mailboxes.allObjects count] == 1) {
-            [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
-                                      sender:self];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [self.navigationController dismissViewControllerAnimated:YES
+                                                          completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
+                                                                object:@NO];
         } else {
-            [self performSegueWithIdentifier:@"accountSegue"
-                                      sender:self];
+            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+
+            if ([resource.mailboxes.allObjects count] == 1) {
+                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                                          sender:self];
+            } else {
+                [self performSegueWithIdentifier:@"accountSegue"
+                                          sender:self];
+            }
         }
     }
 }
