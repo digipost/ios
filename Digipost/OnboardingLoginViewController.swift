@@ -22,9 +22,30 @@ class OnboardingLoginViewController: UIViewController {
     }
     
     @IBAction func newUserButtonAction(sender: UIButton) {
+        if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering#/") {
+           presentActionSheetFromSenderWithURL(sender, url: newUserURL)
+        }
+        
     }
     
     @IBAction func privacyButtonAction(sender: UIButton) {
+        if let privacyURL = NSURL(string: "https://www.digipost.no/juridisk/#personvern") {
+            presentActionSheetFromSenderWithURL(sender, url: privacyURL)
+        }
     }
     
+    func presentActionSheetFromSenderWithURL(sender: UIButton, url: NSURL){
+        UIActionSheet.showFromRect(sender.frame,
+            inView: sender.superview,
+            animated: true,
+            withTitle: url.host,
+            cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"),
+            destructiveButtonTitle: nil,
+            otherButtonTitles: [NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari")]
+            ) { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
+                if buttonIndex == 0 {
+                    UIApplication.sharedApplication().openURL(url)
+                }
+        }
+    }
 }
