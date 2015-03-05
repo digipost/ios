@@ -67,6 +67,10 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
+    override func supportedInterfaceOrientations() -> Int {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+
     override func shouldAutorotate() -> Bool {
         return true
     }
