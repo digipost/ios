@@ -8,11 +8,18 @@
 
 import UIKit
 
+@objc
+protocol OnboardingLoginViewControllerDelegate {
+    func onboardingLoginViewControllerDidTapLoginButton(onboardingLoginViewController: OnboardingLoginViewController)
+}
+
 class OnboardingLoginViewController: UIViewController {
 
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var registerButton: UIButton!
     @IBOutlet var privacyButton: UIButton!
+    
+    weak var delegate : OnboardingLoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +32,9 @@ class OnboardingLoginViewController: UIViewController {
     }
 
     @IBAction func loginButtonAction(sender: UIButton) {
-
         // Store that user has viewed the onboarding
         Guide.setOnboaringHasBeenWatched()
-        let storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
-        let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
-        self.presentViewController(viewcontroller, animated: false, completion: nil)
+        delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
     }
     
     @IBAction func registerButtonAction(sender: UIButton) {

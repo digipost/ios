@@ -221,7 +221,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <segue destination="T10-nk-z96" kind="embed" id="BGJ-2S-2J0"/>
+                                    <segue destination="T10-nk-z96" kind="embed" identifier="showOnboardingLoginViewControllerSegue" id="BGJ-2S-2J0"/>
                                 </connections>
                             </containerView>
                         </subviews>

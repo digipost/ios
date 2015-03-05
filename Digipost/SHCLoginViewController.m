@@ -31,6 +31,7 @@
 NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";
 NSString *const kLoginViewControllerIdentifier = @"LoginViewController";
 
+
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentLoginModallyIdentifier = @"PresentLoginModally";
 
@@ -40,7 +41,7 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
@@ -141,8 +142,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)presentOnboarding
 {
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-    UIViewController *onboardingViewController = [onboardingStoryboard instantiateInitialViewController];
+    __block OnboardingViewController *onboardingViewController = (id) [onboardingStoryboard instantiateInitialViewController];
     [self presentViewController:onboardingViewController animated:NO completion:^{
+        onboardingViewController.onboardingLoginViewController.delegate = self;
     }];
 }
 
@@ -213,6 +215,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             }
         }
     }
+}
+
+- (void)onboardingLoginViewControllerDidTapLoginButton:(OnboardingLoginViewController *)onboardingLoginViewController
+{
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 
 #pragma mark - IBActions

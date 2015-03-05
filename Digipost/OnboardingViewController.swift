@@ -8,6 +8,10 @@
 
 import UIKit
 
+private struct onboardingViewControllerConstants {
+    static let showOnboardingLoginViewControllerSegue = "showOnboardingLoginViewControllerSegue"
+}
+
 class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     // Backgrounds
@@ -54,6 +58,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     // ParallaxRates
     var backgroundParallaxSpeed:CGFloat!
     var mountainParallaxSpeed: CGFloat!
+    
+    var onboardingLoginViewController : OnboardingLoginViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -167,6 +173,12 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             welcomeLabel.hidden = true
             
         default: break
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == onboardingViewControllerConstants.showOnboardingLoginViewControllerSegue {
+            onboardingLoginViewController = segue.destinationViewController as? OnboardingLoginViewController
         }
     }
     
