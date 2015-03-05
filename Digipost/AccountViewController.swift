@@ -25,15 +25,18 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         logoutBarButtonVariable = logoutBarButtonItem
         
-        let firstVC: UIViewController = navigationController!.viewControllers[0] as UIViewController
-        if firstVC.navigationItem.rightBarButtonItem == nil {
-            firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
+        if let firstVC: UIViewController = navigationController?.viewControllers[0] as? UIViewController {
+            if firstVC.navigationItem.rightBarButtonItem == nil {
+                firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
+            }
+            firstVC.navigationItem.leftBarButtonItem = nil
+            firstVC.navigationItem.rightBarButtonItem = nil
+            firstVC.navigationItem.titleView = nil
+            
         }
 
-        firstVC.navigationItem.leftBarButtonItem = nil
-        firstVC.navigationItem.rightBarButtonItem = nil
-        firstVC.navigationItem.titleView = nil
-        
+
+
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
                 if rootResource == true {

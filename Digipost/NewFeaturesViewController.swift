@@ -159,9 +159,21 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         userdefaults.setBool(true, forKey: "hasViewedNewFeatures")
         userdefaults.synchronize()
         
-        var storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
-        let viewcontroller:UIViewController = storyboard.instantiateInitialViewController() as UIViewController
-        self.presentViewController(viewcontroller, animated: false) { () -> Void in
+        if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
+            self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(kRefreshDocumentsContentNotificationName, object: nil)
+        } else {
+            var storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
+
+            if let resource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
+                if resource.mailboxes.allObjects.count == 1 {
+                    let viewcontroller:POSFoldersViewController = storyboard.instantiateViewControllerWithIdentifier("FoldersViewController") as POSFoldersViewController
+                    self.navigationController?.pushViewController(viewcontroller, animated: false)
+                }
+            } else {
+                let viewcontroller:AccountViewController = storyboard.instantiateViewControllerWithIdentifier("accountViewController") as AccountViewController
+                self.navigationController?.pushViewController(viewcontroller, animated: false)
+            }
         }
     }
     
