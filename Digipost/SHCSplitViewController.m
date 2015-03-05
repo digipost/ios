@@ -104,6 +104,9 @@
 - (void)presentLoginViewController:(NSNotification *)notification
 {
     [self presentLoginViewController];
+//    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+//    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+//    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)presentLoginViewController

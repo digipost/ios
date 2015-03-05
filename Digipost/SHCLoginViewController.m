@@ -151,8 +151,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)presentNewFeatures
 {
     UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-    UIViewController *newFeaturesViewController = [newFeaturesStoryboard instantiateInitialViewController];
-    [[self navigationController] pushViewController:newFeaturesViewController animated:YES];
+    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -200,7 +200,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [self.navigationController dismissViewControllerAnimated:YES
-                                                          completion:nil];
+                                                          completion:^{
+                                                              
+                                                          }];
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
         } else {
