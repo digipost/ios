@@ -193,7 +193,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"hasViewedNewFeatures"] == NO) {
+    if ([Guide shouldShowWhatsNewGuide]){
         [self presentNewFeatures];
     } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
