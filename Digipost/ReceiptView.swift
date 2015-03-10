@@ -58,31 +58,31 @@ class ReceiptView: UIView {
 		kvitto.addSublayer(path)
 		path.fillRule    = kCAFillRuleEvenOdd
 		path.fillColor   = nil
-		path.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		path.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		path.lineWidth   = 3
 		
 		path2 = CAShapeLayer()
 		kvitto.addSublayer(path2)
 		path2.fillColor   = nil
-		path2.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		path2.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		path2.lineWidth   = 3
 		
 		path3 = CAShapeLayer()
 		kvitto.addSublayer(path3)
 		path3.fillColor   = nil
-		path3.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		path3.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		path3.lineWidth   = 3
 		
 		path4 = CAShapeLayer()
 		kvitto.addSublayer(path4)
 		path4.fillColor   = nil
-		path4.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		path4.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		path4.lineWidth   = 3
 		
 		path5 = CAShapeLayer()
 		kvitto.addSublayer(path5)
 		path5.fillColor   = nil
-		path5.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		path5.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		path5.lineWidth   = 3
 		
 		kort = CALayer()
@@ -93,12 +93,12 @@ class ReceiptView: UIView {
 		cardbody = CAShapeLayer()
 		kort.addSublayer(cardbody)
 		cardbody.fillColor   = nil
-		cardbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		cardbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		cardbody.lineWidth   = 3
 		
 		magneticstripe = CAShapeLayer()
 		kort.addSublayer(magneticstripe)
-		magneticstripe.fillColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		magneticstripe.fillColor = UIColor.digipostAnimationGrey().CGColor
 		magneticstripe.lineWidth = 0
 		
 		litenkvadrat = CALayer()
@@ -108,21 +108,21 @@ class ReceiptView: UIView {
 		hologram = CAShapeLayer()
 		litenkvadrat.addSublayer(hologram)
 		hologram.fillColor   = nil
-		hologram.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		hologram.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		hologram.lineWidth   = 3
 		
 		hologramline = CAShapeLayer()
 		kort.addSublayer(hologramline)
 		hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		hologramline.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		hologramline.lineWidth   = 3
 		
 		hologramline2 = CAShapeLayer()
 		kort.addSublayer(hologramline2)
 		hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline2.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline2.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		hologramline2.strokeColor = UIColor.digipostAnimationGrey().CGColor
 		hologramline2.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -132,7 +132,7 @@ class ReceiptView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor;
+		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
 		
 		setupLayerFrames()
 		

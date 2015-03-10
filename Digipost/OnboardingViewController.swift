@@ -24,8 +24,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet var welcomeLabel: UILabel!
     
     // AnimationViews
-    var firstAnimationView: DeviceView!
-    var secondAnimationView: LockView!
+    var firstAnimationView: PeopleView!
+    var secondAnimationView: UploadView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
     var animationViewSetup_dispatch_token: dispatch_once_t = 0
@@ -70,8 +70,9 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
         
         welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
-        getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
 
+        getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
+        
         // Set parallax speed depending on device
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
@@ -107,14 +108,14 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         let viewOffset = scrollView.frame.width
         let animationFrame = animationMockView.frame
 
-        firstAnimationView = DeviceView(frame: animationFrame)
+        firstAnimationView = PeopleView(frame: animationFrame)
         firstAnimationView.center.x = animationMockView.center.x + viewOffset
         firstAnimationView.animationText.string = Guide.onboardingText(forIndex: 1)
         
         // NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
         scrollView.addSubview(firstAnimationView!)
         
-        secondAnimationView = LockView(frame: animationFrame)
+        secondAnimationView = UploadView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
         secondAnimationView.animationText.string = Guide.onboardingText(forIndex: 2)
         scrollView.addSubview(secondAnimationView!)
