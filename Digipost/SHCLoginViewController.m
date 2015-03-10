@@ -104,12 +104,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                         forState:UIControlStateNormal];
 }
 
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -200,19 +194,14 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 #pragma mark - SHCOAuthViewControllerDelegate
 
-- (void)OauthViewControllerLoginCanceled:(SHCOAuthViewController *)OAuthViewController
-{
-    NSLog(@"CANCELED");
-    if ([self.loginView isHidden]) {
-        [self.loginView setHidden:NO];
-    }
-}
-
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
     if ([Guide shouldShowWhatsNewGuide]) {
         [self presentNewFeatures];
     } else {
+
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
@@ -266,6 +255,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
+    }
 }
 
 #pragma mark - Private methods
