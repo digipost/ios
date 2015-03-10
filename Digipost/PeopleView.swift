@@ -56,14 +56,14 @@ class PeopleView: UIView {
 		bigpersonhead = CAShapeLayer()
 		Bigperson.addSublayer(bigpersonhead)
 		bigpersonhead.fillColor   = nil
-		bigpersonhead.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bigpersonhead.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		bigpersonhead.lineWidth   = 3
 		
 		bigpersonbody = CAShapeLayer()
 		Bigperson.addSublayer(bigpersonbody)
 		bigpersonbody.fillRule    = kCAFillRuleEvenOdd
 		bigpersonbody.fillColor   = nil
-		bigpersonbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bigpersonbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		bigpersonbody.lineWidth   = 3
 		
 		Smallperson = CALayer()
@@ -73,14 +73,14 @@ class PeopleView: UIView {
 		smallpersonhead = CAShapeLayer()
 		Smallperson.addSublayer(smallpersonhead)
 		smallpersonhead.fillColor   = nil
-		smallpersonhead.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		smallpersonhead.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		smallpersonhead.lineWidth   = 3
 		
 		smallpersonbody = CAShapeLayer()
 		Smallperson.addSublayer(smallpersonbody)
 		smallpersonbody.fillRule    = kCAFillRuleEvenOdd
 		smallpersonbody.fillColor   = nil
-		smallpersonbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		smallpersonbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		smallpersonbody.lineWidth   = 3
 		
 		Bag = CALayer()
@@ -90,13 +90,13 @@ class PeopleView: UIView {
 		bagbody = CAShapeLayer()
 		Bag.addSublayer(bagbody)
 		bagbody.fillColor   = nil
-		bagbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bagbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		bagbody.lineWidth   = 3
 		
 		baghandle = CAShapeLayer()
 		Bag.addSublayer(baghandle)
 		baghandle.fillColor   = nil
-		baghandle.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baghandle.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		baghandle.lineWidth   = 3
 		
 		Group = CALayer()
@@ -106,13 +106,13 @@ class PeopleView: UIView {
 		baglid = CAShapeLayer()
 		Group.addSublayer(baglid)
 		baglid.fillColor   = nil
-		baglid.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baglid.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		baglid.lineWidth   = 3
 		
 		baglock = CAShapeLayer()
 		Group.addSublayer(baglock)
 		baglock.fillColor   = nil
-		baglock.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baglock.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		baglock.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -122,7 +122,7 @@ class PeopleView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor;
 		
 		setupLayerFrames()
 		
@@ -132,7 +132,7 @@ class PeopleView: UIView {
 	
 	func setupLayerFrames(){
 		if Bigperson != nil{
-			Bigperson.frame = CGRectMake(0.30648 * Bigperson.superlayer.bounds.width, 0.3321 * Bigperson.superlayer.bounds.height, 0.06737 * Bigperson.superlayer.bounds.width, 0.15568 * Bigperson.superlayer.bounds.height)
+			Bigperson.frame = CGRectMake(0.30635 * Bigperson.superlayer.bounds.width, 0.33243 * Bigperson.superlayer.bounds.height, 0.06734 * Bigperson.superlayer.bounds.width, 0.1556 * Bigperson.superlayer.bounds.height)
 		}
 		if bigpersonhead != nil{
 			bigpersonhead.frame = CGRectMake(0.10297 * bigpersonhead.superlayer.bounds.width, 0, 0.77916 * bigpersonhead.superlayer.bounds.width, 0.3725 * bigpersonhead.superlayer.bounds.height)
@@ -143,7 +143,7 @@ class PeopleView: UIView {
 			bigpersonbody.path  = bigpersonbodyPathWithBounds(bigpersonbody.bounds).CGPath;
 		}
 		if Smallperson != nil{
-			Smallperson.frame = CGRectMake(0.38403 * Smallperson.superlayer.bounds.width, 0.35511 * Smallperson.superlayer.bounds.height, 0.0442 * Smallperson.superlayer.bounds.width, 0.10966 * Smallperson.superlayer.bounds.height)
+			Smallperson.frame = CGRectMake(0.38386 * Smallperson.superlayer.bounds.width, 0.35543 * Smallperson.superlayer.bounds.height, 0.04418 * Smallperson.superlayer.bounds.width, 0.10961 * Smallperson.superlayer.bounds.height)
 		}
 		if smallpersonhead != nil{
 			smallpersonhead.frame = CGRectMake(0.10297 * smallpersonhead.superlayer.bounds.width, 0, 0.77916 * smallpersonhead.superlayer.bounds.width, 0.35689 * smallpersonhead.superlayer.bounds.height)
@@ -154,7 +154,7 @@ class PeopleView: UIView {
 			smallpersonbody.path  = smallpersonbodyPathWithBounds(smallpersonbody.bounds).CGPath;
 		}
 		if Bag != nil{
-			Bag.frame = CGRectMake(0.53462 * Bag.superlayer.bounds.width, 0.35026 * Bag.superlayer.bounds.height, 0.16382 * Bag.superlayer.bounds.width, 0.13752 * Bag.superlayer.bounds.height)
+			Bag.frame = CGRectMake(0.53438 * Bag.superlayer.bounds.width, 0.35058 * Bag.superlayer.bounds.height, 0.16375 * Bag.superlayer.bounds.width, 0.13745 * Bag.superlayer.bounds.height)
 		}
 		if bagbody != nil{
 			bagbody.frame = CGRectMake(0.01376 * bagbody.superlayer.bounds.width, 0.12663 * bagbody.superlayer.bounds.height, 0.97983 * bagbody.superlayer.bounds.width, 0.87337 * bagbody.superlayer.bounds.height)
@@ -176,7 +176,7 @@ class PeopleView: UIView {
 			baglock.path  = baglockPathWithBounds(baglock.bounds).CGPath;
 		}
 		if animationText != nil{
-			animationText.frame = CGRectMake(0.00464 * animationText.superlayer.bounds.width, 0.60132 * animationText.superlayer.bounds.height, 0.99071 * animationText.superlayer.bounds.width, 0.27914 * animationText.superlayer.bounds.height)
+			animationText.frame = CGRectMake(0.00464 * animationText.superlayer.bounds.width, 0.60152 * animationText.superlayer.bounds.height, 0.99027 * animationText.superlayer.bounds.width, 0.27901 * animationText.superlayer.bounds.height)
 		}
 	}
 	
@@ -195,6 +195,7 @@ class PeopleView: UIView {
 		
 		bagbody?.addAnimation(bagbodyAnimation(), forKey:"bagbodyAnimation")
 		baghandle?.addAnimation(baghandleAnimation(), forKey:"baghandleAnimation")
+		Group?.addAnimation(GroupAnimation(), forKey:"GroupAnimation")
 	}
 	
 	var progress: CGFloat = 0 {
@@ -208,7 +209,7 @@ class PeopleView: UIView {
 				}
 			}
 			else{
-				var totalDuration : CGFloat = 2.74
+				var totalDuration : CGFloat = 2.88
 				var offset = progress * totalDuration
 				for layer in self.layerWithAnims{
 					layer.timeOffset = CFTimeInterval(offset)
@@ -217,72 +218,86 @@ class PeopleView: UIView {
 		}
 	}
 	
-	func bigpersonheadAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1.1]
-		strokeEndAnim.keyTimes = [0, 0.42, 1]
-		strokeEndAnim.duration = 1.2
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func bigpersonbodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1.1]
-		strokeEndAnim.keyTimes = [0, 0.417, 1]
-		strokeEndAnim.duration = 1.2
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func smallpersonheadAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.595, 1]
-		strokeEndAnim.duration = 1.75
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func smallpersonbodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1.1]
-		strokeEndAnim.keyTimes = [0, 0.598, 1]
-		strokeEndAnim.duration = 1.74
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func bagbodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.723, 1]
-		strokeEndAnim.duration = 2.41
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func baghandleAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.877, 1]
-		strokeEndAnim.duration = 2.74
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
+    func bigpersonheadAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1.1]
+        strokeEndAnim.keyTimes = [0, 0.62, 1]
+        strokeEndAnim.duration = 1.59
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func bigpersonbodyAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1.1]
+        strokeEndAnim.keyTimes = [0, 0.623, 1]
+        strokeEndAnim.duration = 1.58
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func smallpersonheadAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.68, 1]
+        strokeEndAnim.duration = 1.98
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func smallpersonbodyAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1.1]
+        strokeEndAnim.keyTimes = [0, 0.682, 1]
+        strokeEndAnim.duration = 1.97
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func bagbodyAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.723, 1]
+        strokeEndAnim.duration = 2.24
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func baghandleAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.877, 1]
+        strokeEndAnim.duration = 2.59
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func GroupAnimation() -> CAKeyframeAnimation{
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.903, 0.954, 1]
+        transformAnim.duration = 2.88
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
+        
+        return transformAnim;
+    }
+    
 	//MARK: - Bezier Path
 	
 	func bigpersonheadPathWithBounds(bound: CGRect) -> UIBezierPath{

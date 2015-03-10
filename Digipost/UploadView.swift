@@ -58,27 +58,27 @@ class UploadView: UIView {
 		
 		flash = CAShapeLayer()
 		Camera.addSublayer(flash)
-		flash.fillColor   = UIColor.digipostAnimationGrey().CGColor
-		flash.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		flash.fillColor   = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		flash.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		flash.lineWidth   = 3
 		
 		body = CAShapeLayer()
 		Camera.addSublayer(body)
 		body.fillRule    = kCAFillRuleEvenOdd
 		body.fillColor   = nil
-		body.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		body.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		body.lineWidth   = 3
 		
 		handle = CAShapeLayer()
 		Camera.addSublayer(handle)
 		handle.fillColor   = nil
-		handle.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		handle.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		handle.lineWidth   = 3
 		
 		lens = CAShapeLayer()
 		Camera.addSublayer(lens)
 		lens.fillColor   = nil
-		lens.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		lens.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		lens.lineWidth   = 3
 		
 		Upload = CALayer()
@@ -92,20 +92,20 @@ class UploadView: UIView {
 		line = CAShapeLayer()
 		Basket.addSublayer(line)
 		line.fillColor   = nil
-		line.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		line.lineWidth   = 3
 		
 		line2 = CAShapeLayer()
 		Basket.addSublayer(line2)
 		line2.fillColor   = nil
-		line2.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line2.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		line2.lineWidth   = 3
 		
 		line3 = CAShapeLayer()
 		Basket.addSublayer(line3)
 		line3.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		line3.fillColor   = nil
-		line3.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line3.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		line3.lineWidth   = 3
 		
 		Arrow = CALayer()
@@ -115,19 +115,19 @@ class UploadView: UIView {
 		arrowbody = CAShapeLayer()
 		Arrow.addSublayer(arrowbody)
 		arrowbody.fillColor   = nil
-		arrowbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		arrowbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		arrowbody.lineWidth   = 3
 		
 		leftarrow = CAShapeLayer()
 		Arrow.addSublayer(leftarrow)
 		leftarrow.fillColor   = nil
-		leftarrow.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		leftarrow.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		leftarrow.lineWidth   = 3
 		
 		rightarrow = CAShapeLayer()
 		Arrow.addSublayer(rightarrow)
 		rightarrow.fillColor   = nil
-		rightarrow.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		rightarrow.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		rightarrow.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -137,7 +137,7 @@ class UploadView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor;
 		
 		setupLayerFrames()
 		
@@ -214,13 +214,16 @@ class UploadView: UIView {
 			layer.speed = 1
 		}
 		
+		flash?.addAnimation(flashAnimation(), forKey:"flashAnimation")
 		body?.addAnimation(bodyAnimation(), forKey:"bodyAnimation")
 		handle?.addAnimation(handleAnimation(), forKey:"handleAnimation")
+		lens?.addAnimation(lensAnimation(), forKey:"lensAnimation")
 		
 		
 		line?.addAnimation(lineAnimation(), forKey:"lineAnimation")
 		line2?.addAnimation(line2Animation(), forKey:"line2Animation")
 		line3?.addAnimation(line3Animation(), forKey:"line3Animation")
+		Arrow?.addAnimation(ArrowAnimation(), forKey:"ArrowAnimation")
 	}
 	
 	var progress: CGFloat = 0 {
@@ -234,7 +237,7 @@ class UploadView: UIView {
 				}
 			}
 			else{
-				var totalDuration : CGFloat = 3.65
+				var totalDuration : CGFloat = 3.83
 				var offset = progress * totalDuration
 				for layer in self.layerWithAnims{
 					layer.timeOffset = CFTimeInterval(offset)
@@ -242,62 +245,103 @@ class UploadView: UIView {
 			}
 		}
 	}
-	
-	func bodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.494, 1]
-		strokeEndAnim.duration = 1.99
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func handleAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.405, 0.819, 1]
-		strokeEndAnim.duration = 2.42
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func lineAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.853, 1]
-		strokeEndAnim.duration = 3.21
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func line2Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.836, 1]
-		strokeEndAnim.duration = 2.91
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
-	func line3Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.884, 1]
-		strokeEndAnim.duration = 3.65
-		strokeEndAnim.fillMode = kCAFillModeForwards
-		strokeEndAnim.removedOnCompletion = false
-		
-		return strokeEndAnim;
-	}
-	
+    func flashAnimation() -> CAKeyframeAnimation{
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.906, 0.95, 1]
+        transformAnim.duration = 2.66
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
+        
+        return transformAnim;
+    }
+    
+    func bodyAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.605, 1]
+        strokeEndAnim.duration = 1.99
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func handleAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.497, 0.819, 1]
+        strokeEndAnim.duration = 2.42
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func lensAnimation() -> CAKeyframeAnimation{
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.908, 0.951, 1]
+        transformAnim.duration = 2.67
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
+        
+        return transformAnim;
+    }
+    
+    func lineAnimation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.853, 1]
+        strokeEndAnim.duration = 3.36
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func line2Animation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.836, 1]
+        strokeEndAnim.duration = 2.91
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func line3Animation() -> CAKeyframeAnimation{
+        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        strokeEndAnim.values   = [0, 0, 1]
+        strokeEndAnim.keyTimes = [0, 0.906, 1]
+        strokeEndAnim.duration = 3.72
+        strokeEndAnim.fillMode = kCAFillModeForwards
+        strokeEndAnim.removedOnCompletion = false
+        
+        return strokeEndAnim;
+    }
+    
+    func ArrowAnimation() -> CAKeyframeAnimation{
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
+            NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.949, 0.974, 1]
+        transformAnim.duration = 3.83
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
+        
+        return transformAnim;
+    }
+    
 	//MARK: - Bezier Path
 	
 	func flashPathWithBounds(bound: CGRect) -> UIBezierPath{

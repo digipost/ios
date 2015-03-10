@@ -12,11 +12,11 @@ class ReceiptView: UIView {
 	var layerWithAnims : [CALayer]!
 	var animationAdded : Bool = false
 	var kvitto : CALayer!
-	var path : CAShapeLayer!
-	var path2 : CAShapeLayer!
-	var path3 : CAShapeLayer!
-	var path4 : CAShapeLayer!
-	var path5 : CAShapeLayer!
+	var receiptbody : CAShapeLayer!
+	var receiptline1 : CAShapeLayer!
+	var receiptline2 : CAShapeLayer!
+	var receiptline3 : CAShapeLayer!
+	var receiptline4 : CAShapeLayer!
 	var kort : CALayer!
 	var cardbody : CAShapeLayer!
 	var magneticstripe : CAShapeLayer!
@@ -54,36 +54,36 @@ class ReceiptView: UIView {
 		self.layer.addSublayer(kvitto)
 		
 		
-		path = CAShapeLayer()
-		kvitto.addSublayer(path)
-		path.fillRule    = kCAFillRuleEvenOdd
-		path.fillColor   = nil
-		path.strokeColor = UIColor.digipostAnimationGrey().CGColor
-		path.lineWidth   = 3
+		receiptbody = CAShapeLayer()
+		kvitto.addSublayer(receiptbody)
+		receiptbody.fillRule    = kCAFillRuleEvenOdd
+		receiptbody.fillColor   = nil
+		receiptbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		receiptbody.lineWidth   = 3
 		
-		path2 = CAShapeLayer()
-		kvitto.addSublayer(path2)
-		path2.fillColor   = nil
-		path2.strokeColor = UIColor.digipostAnimationGrey().CGColor
-		path2.lineWidth   = 3
+		receiptline1 = CAShapeLayer()
+		kvitto.addSublayer(receiptline1)
+		receiptline1.fillColor   = nil
+		receiptline1.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		receiptline1.lineWidth   = 3
 		
-		path3 = CAShapeLayer()
-		kvitto.addSublayer(path3)
-		path3.fillColor   = nil
-		path3.strokeColor = UIColor.digipostAnimationGrey().CGColor
-		path3.lineWidth   = 3
+		receiptline2 = CAShapeLayer()
+		kvitto.addSublayer(receiptline2)
+		receiptline2.fillColor   = nil
+		receiptline2.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		receiptline2.lineWidth   = 3
 		
-		path4 = CAShapeLayer()
-		kvitto.addSublayer(path4)
-		path4.fillColor   = nil
-		path4.strokeColor = UIColor.digipostAnimationGrey().CGColor
-		path4.lineWidth   = 3
+		receiptline3 = CAShapeLayer()
+		kvitto.addSublayer(receiptline3)
+		receiptline3.fillColor   = nil
+		receiptline3.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		receiptline3.lineWidth   = 3
 		
-		path5 = CAShapeLayer()
-		kvitto.addSublayer(path5)
-		path5.fillColor   = nil
-		path5.strokeColor = UIColor.digipostAnimationGrey().CGColor
-		path5.lineWidth   = 3
+		receiptline4 = CAShapeLayer()
+		kvitto.addSublayer(receiptline4)
+		receiptline4.fillColor   = nil
+		receiptline4.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
+		receiptline4.lineWidth   = 3
 		
 		kort = CALayer()
 		self.layer.addSublayer(kort)
@@ -93,12 +93,12 @@ class ReceiptView: UIView {
 		cardbody = CAShapeLayer()
 		kort.addSublayer(cardbody)
 		cardbody.fillColor   = nil
-		cardbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		cardbody.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		cardbody.lineWidth   = 3
 		
 		magneticstripe = CAShapeLayer()
 		kort.addSublayer(magneticstripe)
-		magneticstripe.fillColor = UIColor.digipostAnimationGrey().CGColor
+		magneticstripe.fillColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		magneticstripe.lineWidth = 0
 		
 		litenkvadrat = CALayer()
@@ -108,21 +108,21 @@ class ReceiptView: UIView {
 		hologram = CAShapeLayer()
 		litenkvadrat.addSublayer(hologram)
 		hologram.fillColor   = nil
-		hologram.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologram.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		hologram.lineWidth   = 3
 		
 		hologramline = CAShapeLayer()
 		kort.addSublayer(hologramline)
 		hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologramline.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		hologramline.lineWidth   = 3
 		
 		hologramline2 = CAShapeLayer()
 		kort.addSublayer(hologramline2)
 		hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline2.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline2.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologramline2.strokeColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor
 		hologramline2.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -132,11 +132,11 @@ class ReceiptView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor(red:0.236, green: 0.242, blue:0.257, alpha:1).CGColor;
 		
 		setupLayerFrames()
 		
-		self.layerWithAnims = [kvitto, path, path2, path3, path4, path5, kort, cardbody, magneticstripe, litenkvadrat, hologram, hologramline, hologramline2, animationText]
+		self.layerWithAnims = [kvitto, receiptbody, receiptline1, receiptline2, receiptline3, receiptline4, kort, cardbody, magneticstripe, litenkvadrat, hologram, hologramline, hologramline2, animationText]
 	}
 	
 	
@@ -144,25 +144,25 @@ class ReceiptView: UIView {
 		if kvitto != nil{
 			kvitto.frame = CGRectMake(0.52926 * kvitto.superlayer.bounds.width, 0.25353 * kvitto.superlayer.bounds.height, 0.11058 * kvitto.superlayer.bounds.width, 0.16411 * kvitto.superlayer.bounds.height)
 		}
-		if path != nil{
-			path.frame = CGRectMake(0, 0,  path.superlayer.bounds.width,  path.superlayer.bounds.height)
-			path.path  = pathPathWithBounds(path.bounds).CGPath;
+		if receiptbody != nil{
+			receiptbody.frame = CGRectMake(0, 0,  receiptbody.superlayer.bounds.width,  receiptbody.superlayer.bounds.height)
+			receiptbody.path  = receiptbodyPathWithBounds(receiptbody.bounds).CGPath;
 		}
-		if path2 != nil{
-			path2.frame = CGRectMake(0.14209 * path2.superlayer.bounds.width, 0.23395 * path2.superlayer.bounds.height, 0.71582 * path2.superlayer.bounds.width, 0.00521 * path2.superlayer.bounds.height)
-			path2.path  = path2PathWithBounds(path2.bounds).CGPath;
+		if receiptline1 != nil{
+			receiptline1.frame = CGRectMake(0.14209 * receiptline1.superlayer.bounds.width, 0.23395 * receiptline1.superlayer.bounds.height, 0.71582 * receiptline1.superlayer.bounds.width, 0.00521 * receiptline1.superlayer.bounds.height)
+			receiptline1.path  = receiptline1PathWithBounds(receiptline1.bounds).CGPath;
 		}
-		if path3 != nil{
-			path3.frame = CGRectMake(0.14209 * path3.superlayer.bounds.width, 0.3373 * path3.superlayer.bounds.height, 0.71582 * path3.superlayer.bounds.width, 0.00521 * path3.superlayer.bounds.height)
-			path3.path  = path3PathWithBounds(path3.bounds).CGPath;
+		if receiptline2 != nil{
+			receiptline2.frame = CGRectMake(0.14209 * receiptline2.superlayer.bounds.width, 0.3373 * receiptline2.superlayer.bounds.height, 0.71582 * receiptline2.superlayer.bounds.width, 0.00521 * receiptline2.superlayer.bounds.height)
+			receiptline2.path  = receiptline2PathWithBounds(receiptline2.bounds).CGPath;
 		}
-		if path4 != nil{
-			path4.frame = CGRectMake(0.14209 * path4.superlayer.bounds.width, 0.439 * path4.superlayer.bounds.height, 0.45943 * path4.superlayer.bounds.width, 0.00649 * path4.superlayer.bounds.height)
-			path4.path  = path4PathWithBounds(path4.bounds).CGPath;
+		if receiptline3 != nil{
+			receiptline3.frame = CGRectMake(0.14209 * receiptline3.superlayer.bounds.width, 0.439 * receiptline3.superlayer.bounds.height, 0.45943 * receiptline3.superlayer.bounds.width, 0.00649 * receiptline3.superlayer.bounds.height)
+			receiptline3.path  = receiptline3PathWithBounds(receiptline3.bounds).CGPath;
 		}
-		if path5 != nil{
-			path5.frame = CGRectMake(0.71905 * path5.superlayer.bounds.width, 0.74761 * path5.superlayer.bounds.height, 0.14604 * path5.superlayer.bounds.width, 0 * path5.superlayer.bounds.height)
-			path5.path  = path5PathWithBounds(path5.bounds).CGPath;
+		if receiptline4 != nil{
+			receiptline4.frame = CGRectMake(0.71905 * receiptline4.superlayer.bounds.width, 0.74761 * receiptline4.superlayer.bounds.height, 0.14604 * receiptline4.superlayer.bounds.width, 0 * receiptline4.superlayer.bounds.height)
+			receiptline4.path  = receiptline4PathWithBounds(receiptline4.bounds).CGPath;
 		}
 		if kort != nil{
 			kort.setValue(0, forKeyPath:"transform.rotation")
@@ -181,7 +181,7 @@ class ReceiptView: UIView {
 			litenkvadrat.frame = CGRectMake(0.09455 * litenkvadrat.superlayer.bounds.width, 0.46439 * litenkvadrat.superlayer.bounds.height, 0.13016 * litenkvadrat.superlayer.bounds.width, 0.19831 * litenkvadrat.superlayer.bounds.height)
 		}
 		if hologram != nil{
-			hologram.frame = CGRectMake(-0.04324 * hologram.superlayer.bounds.width,-0.24421 * hologram.superlayer.bounds.height, 1.05952 * hologram.superlayer.bounds.width, 1.0761 * hologram.superlayer.bounds.height)
+			hologram.frame = CGRectMake(-0.04324 * hologram.superlayer.bounds.width, -0.24421 * hologram.superlayer.bounds.height, 1.05952 * hologram.superlayer.bounds.width, 1.0761 * hologram.superlayer.bounds.height)
 			hologram.path  = hologramPathWithBounds(hologram.bounds).CGPath;
 		}
 		if hologramline != nil{
@@ -208,7 +208,16 @@ class ReceiptView: UIView {
 			layer.speed = 1
 		}
 		
+		receiptbody?.addAnimation(receiptbodyAnimation(), forKey:"receiptbodyAnimation")
+		receiptline1?.addAnimation(receiptline1Animation(), forKey:"receiptline1Animation")
+		receiptline2?.addAnimation(receiptline2Animation(), forKey:"receiptline2Animation")
+		receiptline3?.addAnimation(receiptline3Animation(), forKey:"receiptline3Animation")
+		receiptline4?.addAnimation(receiptline4Animation(), forKey:"receiptline4Animation")
+		
 		cardbody?.addAnimation(cardbodyAnimation(), forKey:"cardbodyAnimation")
+		magneticstripe?.addAnimation(magneticstripeAnimation(), forKey:"magneticstripeAnimation")
+		
+		hologram?.addAnimation(hologramAnimation(), forKey:"hologramAnimation")
 		hologramline?.addAnimation(hologramlineAnimation(), forKey:"hologramlineAnimation")
 		hologramline2?.addAnimation(hologramline2Animation(), forKey:"hologramline2Animation")
 	}
@@ -224,7 +233,7 @@ class ReceiptView: UIView {
 				}
 			}
 			else{
-				var totalDuration : CGFloat = 3.12
+				var totalDuration : CGFloat = 2.3
 				var offset = progress * totalDuration
 				for layer in self.layerWithAnims{
 					layer.timeOffset = CFTimeInterval(offset)
@@ -233,22 +242,105 @@ class ReceiptView: UIView {
 		}
 	}
 	
-	func cardbodyAnimation() -> CAKeyframeAnimation{
+	func receiptbodyAnimation() -> CAKeyframeAnimation{
 		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-		strokeEndAnim.values   = [0, 0, 1]
-		strokeEndAnim.keyTimes = [0, 0.348, 1]
-		strokeEndAnim.duration = 3.12
+		strokeEndAnim.values   = [0, 0, 1.1]
+		strokeEndAnim.keyTimes = [0, 0.625, 1]
+		strokeEndAnim.duration = 2.11
 		strokeEndAnim.fillMode = kCAFillModeForwards
 		strokeEndAnim.removedOnCompletion = false
 		
 		return strokeEndAnim;
 	}
 	
+	func receiptline1Animation() -> CAKeyframeAnimation{
+		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		strokeEndAnim.values   = [0, 0, 1]
+		strokeEndAnim.keyTimes = [0, 0.909, 1]
+		strokeEndAnim.duration = 2.11
+		strokeEndAnim.fillMode = kCAFillModeForwards
+		strokeEndAnim.removedOnCompletion = false
+		
+		return strokeEndAnim;
+	}
+	
+	func receiptline2Animation() -> CAKeyframeAnimation{
+		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		strokeEndAnim.values   = [1, 0, 0, 1]
+		strokeEndAnim.keyTimes = [0, 0.0162, 0.907, 1]
+		strokeEndAnim.duration = 2.11
+		strokeEndAnim.fillMode = kCAFillModeForwards
+		strokeEndAnim.removedOnCompletion = false
+		
+		return strokeEndAnim;
+	}
+	
+	func receiptline3Animation() -> CAKeyframeAnimation{
+		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		strokeEndAnim.values   = [0, 0, 1]
+		strokeEndAnim.keyTimes = [0, 0.902, 1]
+		strokeEndAnim.duration = 2.1
+		strokeEndAnim.fillMode = kCAFillModeForwards
+		strokeEndAnim.removedOnCompletion = false
+		
+		return strokeEndAnim;
+	}
+	
+	func receiptline4Animation() -> CAKeyframeAnimation{
+		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		strokeEndAnim.values   = [0, 0, 1]
+		strokeEndAnim.keyTimes = [0, 0.903, 1]
+		strokeEndAnim.duration = 2.1
+		strokeEndAnim.fillMode = kCAFillModeForwards
+		strokeEndAnim.removedOnCompletion = false
+		
+		return strokeEndAnim;
+	}
+	
+	func cardbodyAnimation() -> CAKeyframeAnimation{
+		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		strokeEndAnim.values   = [0, 0, 1]
+		strokeEndAnim.keyTimes = [0, 0.623, 1]
+		strokeEndAnim.duration = 1.73
+		strokeEndAnim.fillMode = kCAFillModeForwards
+		strokeEndAnim.removedOnCompletion = false
+		
+		return strokeEndAnim;
+	}
+	
+	func magneticstripeAnimation() -> CAKeyframeAnimation{
+		var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
+			 NSValue(CATransform3D: CATransform3DIdentity)]
+		transformAnim.keyTimes = [0, 0.874, 0.94, 1]
+		transformAnim.duration = 1.95
+		transformAnim.fillMode = kCAFillModeBoth
+		transformAnim.removedOnCompletion = false
+		
+		return transformAnim;
+	}
+	
+	func hologramAnimation() -> CAKeyframeAnimation{
+		var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
+			 NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
+			 NSValue(CATransform3D: CATransform3DIdentity)]
+		transformAnim.keyTimes = [0, 0.856, 0.909, 1]
+		transformAnim.duration = 2.3
+		transformAnim.fillMode = kCAFillModeBoth
+		transformAnim.removedOnCompletion = false
+		
+		return transformAnim;
+	}
+	
 	func hologramlineAnimation() -> CAKeyframeAnimation{
 		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.868, 1]
-		strokeEndAnim.duration = 2.82
+		strokeEndAnim.duration = 2.28
 		strokeEndAnim.fillMode = kCAFillModeForwards
 		strokeEndAnim.removedOnCompletion = false
 		
@@ -259,7 +351,7 @@ class ReceiptView: UIView {
 		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.877, 1]
-		strokeEndAnim.duration = 2.79
+		strokeEndAnim.duration = 2.27
 		strokeEndAnim.fillMode = kCAFillModeForwards
 		strokeEndAnim.removedOnCompletion = false
 		
@@ -268,65 +360,65 @@ class ReceiptView: UIView {
 	
 	//MARK: - Bezier Path
 	
-	func pathPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var pathPath = UIBezierPath()
+	func receiptbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
+		var receiptbodyPath = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
-		pathPath.moveToPoint(CGPointMake(minX + 0.72742 * w, minY))
-		pathPath.addLineToPoint(CGPointMake(minX + w, minY))
-		pathPath.addLineToPoint(CGPointMake(minX + w, minY + h))
-		pathPath.addLineToPoint(CGPointMake(minX, minY + h))
-		pathPath.addLineToPoint(CGPointMake(minX, minY))
-		pathPath.addLineToPoint(CGPointMake(minX + 0.27258 * w, minY))
-		pathPath.addLineToPoint(CGPointMake(minX + 0.27258 * w, minY + 0.05153 * h))
-		pathPath.addCurveToPoint(CGPointMake(minX + 0.33099 * w, minY + 0.09271 * h), controlPoint1:CGPointMake(minX + 0.27258 * w, minY + 0.07427 * h), controlPoint2:CGPointMake(minX + 0.29873 * w, minY + 0.09271 * h))
-		pathPath.addLineToPoint(CGPointMake(minX + 0.66901 * w, minY + 0.09271 * h))
-		pathPath.addCurveToPoint(CGPointMake(minX + 0.72742 * w, minY + 0.05153 * h), controlPoint1:CGPointMake(minX + 0.70127 * w, minY + 0.09271 * h), controlPoint2:CGPointMake(minX + 0.72742 * w, minY + 0.07427 * h))
-		pathPath.addLineToPoint(CGPointMake(minX + 0.72742 * w, minY))
-		pathPath.closePath()
-		pathPath.moveToPoint(CGPointMake(minX + 0.72742 * w, minY))
+		receiptbodyPath.moveToPoint(CGPointMake(minX + 0.72742 * w, minY))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + w, minY))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + w, minY + h))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX, minY + h))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX, minY))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + 0.27258 * w, minY))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + 0.27258 * w, minY + 0.05153 * h))
+		receiptbodyPath.addCurveToPoint(CGPointMake(minX + 0.33099 * w, minY + 0.09271 * h), controlPoint1:CGPointMake(minX + 0.27258 * w, minY + 0.07427 * h), controlPoint2:CGPointMake(minX + 0.29873 * w, minY + 0.09271 * h))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + 0.66901 * w, minY + 0.09271 * h))
+		receiptbodyPath.addCurveToPoint(CGPointMake(minX + 0.72742 * w, minY + 0.05153 * h), controlPoint1:CGPointMake(minX + 0.70127 * w, minY + 0.09271 * h), controlPoint2:CGPointMake(minX + 0.72742 * w, minY + 0.07427 * h))
+		receiptbodyPath.addLineToPoint(CGPointMake(minX + 0.72742 * w, minY))
+		receiptbodyPath.closePath()
+		receiptbodyPath.moveToPoint(CGPointMake(minX + 0.72742 * w, minY))
 		
-		return pathPath;
+		return receiptbodyPath;
 	}
 	
-	func path2PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var path2Path = UIBezierPath()
+	func receiptline1PathWithBounds(bound: CGRect) -> UIBezierPath{
+		var receiptline1Path = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
-		path2Path.moveToPoint(CGPointMake(minX, minY))
-		path2Path.addLineToPoint(CGPointMake(minX + w, minY + h))
+		receiptline1Path.moveToPoint(CGPointMake(minX, minY))
+		receiptline1Path.addLineToPoint(CGPointMake(minX + w, minY + h))
 		
-		return path2Path;
+		return receiptline1Path;
 	}
 	
-	func path3PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var path3Path = UIBezierPath()
+	func receiptline2PathWithBounds(bound: CGRect) -> UIBezierPath{
+		var receiptline2Path = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
-		path3Path.moveToPoint(CGPointMake(minX, minY))
-		path3Path.addLineToPoint(CGPointMake(minX + w, minY + h))
+		receiptline2Path.moveToPoint(CGPointMake(minX, minY))
+		receiptline2Path.addLineToPoint(CGPointMake(minX + w, minY + h))
 		
-		return path3Path;
+		return receiptline2Path;
 	}
 	
-	func path4PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var path4Path = UIBezierPath()
+	func receiptline3PathWithBounds(bound: CGRect) -> UIBezierPath{
+		var receiptline3Path = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
-		path4Path.moveToPoint(CGPointMake(minX, minY))
-		path4Path.addLineToPoint(CGPointMake(minX + w, minY + h))
+		receiptline3Path.moveToPoint(CGPointMake(minX, minY))
+		receiptline3Path.addLineToPoint(CGPointMake(minX + w, minY + h))
 		
-		return path4Path;
+		return receiptline3Path;
 	}
 	
-	func path5PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var path5Path = UIBezierPath()
+	func receiptline4PathWithBounds(bound: CGRect) -> UIBezierPath{
+		var receiptline4Path = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
-		path5Path.moveToPoint(CGPointMake(minX, minY * h))
-		path5Path.addLineToPoint(CGPointMake(minX + w, minY * h))
+		receiptline4Path.moveToPoint(CGPointMake(minX, minY * h))
+		receiptline4Path.addLineToPoint(CGPointMake(minX + w, minY * h))
 		
-		return path5Path;
+		return receiptline4Path;
 	}
 	
 	func cardbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
