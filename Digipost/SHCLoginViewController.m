@@ -104,9 +104,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                         forState:UIControlStateNormal];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewWillDisappear:animated];
+    [super viewDidDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
