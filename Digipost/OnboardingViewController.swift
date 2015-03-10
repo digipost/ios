@@ -28,7 +28,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     var secondAnimationView: LockView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
-    var hasSetUpAnimationViews = false
+    var animationViewSetup_dispatch_token: dispatch_once_t = 0
     
     // Login view
     @IBOutlet var loginContainerView: UIView!
@@ -88,11 +88,10 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // Setup animation views
-        if !hasSetUpAnimationViews{
-            setupAnimationViews()
-            hasSetUpAnimationViews = true
+        dispatch_once(&animationViewSetup_dispatch_token){
+            self.setupAnimationViews()
             // Stor initial consstraint constants for button and login conatiner view
-            storeInitialConstraints()
+            self.storeInitialConstraints()
         }
     }
     

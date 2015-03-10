@@ -35,7 +35,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     var imageNames = [String]()
     var labelTexts = [String]()
     var whatsNewGuideItems = [WhatsNewGuideItem]()
-    var hasSetUpFeatures = false
+    var setupFeatures_dispatch_token: dispatch_once_t = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,9 +62,8 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        if !hasSetUpFeatures{
-            setupNewFeatures()
-            hasSetUpFeatures = true
+        dispatch_once(&setupFeatures_dispatch_token){
+            self.setupNewFeatures()
         }
     }
 
