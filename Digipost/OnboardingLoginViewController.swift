@@ -33,8 +33,13 @@ class OnboardingLoginViewController: UIViewController {
 
     @IBAction func loginButtonAction(sender: UIButton) {
         // Store that user has viewed the onboarding
-        Guide.setOnboaringHasBeenWatched()
-        delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
+        
+        UIView.animateWithDuration(0.3, animations: { () -> Void in
+            self.view.frame.origin.x -= self.view.frame.width
+        }) { (Bool) -> Void in
+            Guide.setOnboaringHasBeenWatched()
+            self.delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
+        }
     }
     
     @IBAction func registerButtonAction(sender: UIButton) {

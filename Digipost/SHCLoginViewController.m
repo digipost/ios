@@ -31,7 +31,6 @@
 NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";
 NSString *const kLoginViewControllerIdentifier = @"LoginViewController";
 
-
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentLoginModallyIdentifier = @"PresentLoginModally";
 
@@ -72,6 +71,18 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // TESTING
+    [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    UIImage *backgroundImage = [UIImage imageNamed:@"loginBackground"];
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
+    [backgroundImageView setImage:backgroundImage];
+    [[self view] addSubview:backgroundImageView];
+   
+    [self.view bringSubviewToFront:self.loginButton];
+    [self.view bringSubviewToFront:self.registerButton];
+    [self.view bringSubviewToFront:self.privacyButton];
+
     if ([Guide shouldShowOnboardingGuide]) {
         [self presentOnboarding];
     }
@@ -131,18 +142,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-- (NSString *)getNewFeaturesCurrentAppVersionKey
-{
-
-    NSString *currentAppVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
-    NSString *newFeaturesCurrentAppVersionKey = [NSString stringWithFormat:@"hasViewedNewFeaturesForVersion %@", currentAppVersion];
-    return newFeaturesCurrentAppVersionKey;
-}
-
 - (void)presentOnboarding
 {
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-    __block OnboardingViewController *onboardingViewController = (id) [onboardingStoryboard instantiateInitialViewController];
+    __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
     [self presentViewController:onboardingViewController animated:NO completion:^{
         onboardingViewController.onboardingLoginViewController.delegate = self;
     }];
@@ -195,7 +198,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    if ([Guide shouldShowWhatsNewGuide]){
+    if ([Guide shouldShowWhatsNewGuide]) {
         [self presentNewFeatures];
     } else {
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
@@ -221,7 +224,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)onboardingLoginViewControllerDidTapLoginButton:(OnboardingLoginViewController *)onboardingLoginViewController
 {
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
     [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 
