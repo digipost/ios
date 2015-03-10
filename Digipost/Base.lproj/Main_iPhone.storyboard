@@ -1407,10 +1407,13 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
+                                <rect key="frame" x="0.0" y="-66" width="320" height="570"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
-                                <rect key="frame" x="0.0" y="122" width="320" height="261"/>
+                                <rect key="frame" x="0.0" y="-60" width="320" height="261"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
+                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
                                         <rect key="frame" x="81" y="0.0" width="159" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="Dil-29-21f"/>
@@ -1440,7 +1443,6 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="REGISTER_BUTTON">
-                                            <color key="titleColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1463,7 +1465,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="PRIVACY_BUTTON">
-                                            <color key="titleColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1471,7 +1473,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="zFK-Fz-dSN" secondAttribute="bottom" constant="44" id="193-84-FJa"/>
                                     <constraint firstAttribute="bottom" secondItem="qBu-VV-6Ae" secondAttribute="bottom" id="3ph-Md-fbw"/>
@@ -1493,15 +1495,21 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wTy-nL-Oqt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cSK-Bb-kQC" secondAttribute="bottom" constant="20" id="8aT-tv-VDs"/>
-                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="20" id="Jii-Da-De3"/>
+                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-60" id="Jii-Da-De3"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Noi-7A-pLA"/>
+                            <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="SWx-Y8-qvt"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Uuv-yG-fI2"/>
+                            <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="mqA-Ln-t28"/>
                             <constraint firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" id="vTp-sf-v1c"/>
-                            <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" id="wfj-D3-vFB"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" constant="-66" id="w9Q-jO-GVz"/>
+                            <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" constant="181.5" id="wfj-D3-vFB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bC4-nA-QU9"/>
                     <connections>
+                        <outlet property="loginBackgroundImageView" destination="ff1-dA-bBI" id="qqy-cg-qUN"/>
                         <outlet property="loginButton" destination="GTu-hy-iNW" id="Nai-w8-tgq"/>
+                        <outlet property="loginView" destination="cSK-Bb-kQC" id="c6a-Re-bcM"/>
                         <outlet property="privacyButton" destination="qBu-VV-6Ae" id="cDs-8j-p7g"/>
                         <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
                         <segue destination="8hc-kI-yQH" kind="push" identifier="accountSegue" id="8sB-AL-W3R"/>
@@ -1605,6 +1613,7 @@
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-logo" width="159" height="38"/>
+        <image name="loginBackground" width="414" height="736"/>
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
