@@ -245,6 +245,7 @@ class UploadView: UIView {
 			}
 		}
 	}
+    
     func flashAnimation() -> CAKeyframeAnimation{
         var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
@@ -252,7 +253,7 @@ class UploadView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
             NSValue(CATransform3D: CATransform3DIdentity)]
         transformAnim.keyTimes = [0, 0.906, 0.95, 1]
-        transformAnim.duration = 2.66
+        transformAnim.duration = 3.22
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -288,7 +289,7 @@ class UploadView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
             NSValue(CATransform3D: CATransform3DIdentity)]
         transformAnim.keyTimes = [0, 0.908, 0.951, 1]
-        transformAnim.duration = 2.67
+        transformAnim.duration = 3.23
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -341,6 +342,7 @@ class UploadView: UIView {
         
         return transformAnim;
     }
+
     
 	//MARK: - Bezier Path
 	

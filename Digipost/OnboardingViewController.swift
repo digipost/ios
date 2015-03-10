@@ -70,7 +70,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
         
         welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
-
+        welcomeLabel.textColor = UIColor.digipostAnimationGrey()
+        
         getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
         
         // Set parallax speed depending on device
