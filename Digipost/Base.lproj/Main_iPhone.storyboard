@@ -1407,13 +1407,13 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
-                                <rect key="frame" x="0.0" y="-66" width="320" height="570"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-iphone" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
                                 <rect key="frame" x="0.0" y="-60" width="320" height="261"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-logo" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
+                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-iphone" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
                                         <rect key="frame" x="81" y="0.0" width="159" height="38"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="Dil-29-21f"/>
@@ -1443,6 +1443,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="REGISTER_BUTTON">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1451,7 +1452,7 @@
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Y4-hX-QRK" userLabel="Separator View">
                                         <rect key="frame" x="30" y="216" width="260" height="1"/>
-                                        <color key="backgroundColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="EI8-PF-qgj"/>
                                             <constraint firstAttribute="width" constant="260" id="U4N-NM-kCl"/>
@@ -1465,7 +1466,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="PRIVACY_BUTTON">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1501,7 +1502,7 @@
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Uuv-yG-fI2"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="mqA-Ln-t28"/>
                             <constraint firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" id="vTp-sf-v1c"/>
-                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" constant="-66" id="w9Q-jO-GVz"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" id="w9Q-jO-GVz"/>
                             <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" constant="181.5" id="wfj-D3-vFB"/>
                         </constraints>
                     </view>
@@ -1606,14 +1607,14 @@
         <image name="New name" width="22" height="22"/>
         <image name="Open_in" width="22" height="22"/>
         <image name="Searchbackground" width="6" height="31"/>
+        <image name="background-iphone" width="1448" height="454"/>
         <image name="empty-folder-fly" width="203" height="233"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
         <image name="list-icon-attachment" width="16" height="16"/>
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
-        <image name="login-logo" width="159" height="38"/>
-        <image name="loginBackground" width="414" height="736"/>
+        <image name="logo-iphone" width="133" height="40"/>
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
