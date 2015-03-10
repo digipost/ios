@@ -42,6 +42,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *loginView;
+@property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
@@ -71,23 +73,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // TESTING
-    [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    UIImage *backgroundImage = [UIImage imageNamed:@"loginBackground"];
-    UIImageView *backgroundImageView = [[UIImageView alloc] initWithFrame:self.view.frame];
-    [backgroundImageView setImage:backgroundImage];
-    [[self view] addSubview:backgroundImageView];
-   
-    [self.view bringSubviewToFront:self.loginButton];
-    [self.view bringSubviewToFront:self.registerButton];
-    [self.view bringSubviewToFront:self.privacyButton];
+
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 
     if ([Guide shouldShowOnboardingGuide]) {
+
+        [self.loginView setHidden:YES];
         [self presentOnboarding];
     }
 
-    [self.navigationController setToolbarHidden:YES animated:NO];
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
@@ -107,6 +102,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -144,8 +145,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)presentOnboarding
 {
+
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
     __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
+
     [self presentViewController:onboardingViewController animated:NO completion:^{
         onboardingViewController.onboardingLoginViewController.delegate = self;
     }];
@@ -171,6 +174,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         }
         oAuthViewController.delegate = self;
         oAuthViewController.scope = kOauth2ScopeFull;
+
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
@@ -196,6 +200,14 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 #pragma mark - SHCOAuthViewControllerDelegate
 
+- (void)OauthViewControllerLoginCanceled:(SHCOAuthViewController *)OAuthViewController
+{
+    NSLog(@"CANCELED");
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
+    }
+}
+
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
     if ([Guide shouldShowWhatsNewGuide]) {
@@ -204,7 +216,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
-                                                              
+
                                                           }];
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
