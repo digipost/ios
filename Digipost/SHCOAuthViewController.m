@@ -197,8 +197,11 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)didTapCloseBarButtonItem:(id)sender
 {
+    NSLog(@" SHOULD CANCEL");
     [self dismissViewControllerAnimated:YES completion:^{
-
+        if ([self.delegate respondsToSelector:@selector(OauthViewControllerLoginCanceled:)]) {
+            [self.delegate OauthViewControllerLoginCanceled:self];
+        }
     }];
 }
 

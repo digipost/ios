@@ -34,5 +34,6 @@ extern NSString *const kPresentOAuthModallyIdentifier;
 @required
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope;
+- (void)OauthViewControllerLoginCanceled:(SHCOAuthViewController *)OAuthViewController;
 
 @end
