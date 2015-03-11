@@ -75,7 +75,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [super viewDidLoad];
 
     [self.navigationController setToolbarHidden:YES animated:NO];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
 
@@ -118,9 +118,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+            NSLog(@"HIDDEN");
+            
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
             if ([resource.mailboxes.allObjects count] > 0) {
                 [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
                                           sender:self];
@@ -129,6 +130,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
                                                                               style:UIBarButtonItemStylePlain
                                                                              target:nil
@@ -174,6 +176,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
 }
 
@@ -200,8 +203,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self presentNewFeatures];
     } else {
 
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
@@ -210,14 +211,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
         } else {
-            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
+            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            
             if ([resource.mailboxes.allObjects count] == 1) {
                 [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
                                           sender:self];
+                [self.navigationController setNavigationBarHidden:NO animated:NO];
             } else {
                 [self performSegueWithIdentifier:@"accountSegue"
                                           sender:self];
+                [self.navigationController setNavigationBarHidden:NO animated:NO];
             }
         }
     }
@@ -225,8 +229,15 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
 {
+
     self.loginBackgroundImageView.image = backgroundImage;
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    self.loginBackgroundImageView.contentMode = UIViewContentModeBottomLeft;
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+
+    }];
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
     [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 
