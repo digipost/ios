@@ -10,8 +10,6 @@ import UIKit
 
 @objc
 protocol OnboardingLoginViewControllerDelegate {
-    func onboardingLoginViewControllerDidTapLoginButton(onboardingLoginViewController: OnboardingLoginViewController)
-    
     func onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(onboardingLoginViewController: OnboardingLoginViewController, backgroundImage: UIImage)
 }
 
@@ -40,22 +38,21 @@ class OnboardingLoginViewController: UIViewController {
             self.view.frame.origin.x -= self.view.frame.width
         }) { (Bool) -> Void in
             Guide.setOnboaringHasBeenWatched()
-           // self.delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
             self.delegate?.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
         }
     }
     
     func onboardingBackgroundSnapShot() -> UIImage{
-        if let onboardingViewController = self.presentingViewController{
-            let backgroundSize = onboardingViewController.view.layer.bounds.size
+        if let onboardingViewController = self.parentViewController{
             
-            UIGraphicsBeginImageContextWithOptions((CGSizeMake(backgroundSize.width, backgroundSize.height+60)), false, 0)
+            let backgroundSize = onboardingViewController.view.layer.bounds.size
+            UIGraphicsBeginImageContextWithOptions(backgroundSize, true, 0)
             onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext())
             let backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             return backgroundSnapShot
         } else {
-            return UIImage()
+            return UIImage(named: "loginBackground")!
         }
     }
     

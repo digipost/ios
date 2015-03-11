@@ -76,6 +76,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 
     if ([Guide shouldShowOnboardingGuide]) {
 
@@ -104,6 +105,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                         forState:UIControlStateNormal];
 }
 
+- (void)viewDidLayoutSubviews
+{
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -119,7 +124,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             NSLog(@"HIDDEN");
-            
+
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             if ([resource.mailboxes.allObjects count] > 0) {
@@ -213,7 +218,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         } else {
 
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-            
+
             if ([resource.mailboxes.allObjects count] == 1) {
                 [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
                                           sender:self];
@@ -229,16 +234,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
 {
-
     self.loginBackgroundImageView.image = backgroundImage;
-    self.loginBackgroundImageView.contentMode = UIViewContentModeBottomLeft;
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
+        
+        [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 
     }];
-    [self.navigationController setToolbarHidden:YES animated:NO];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-
-    [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 
 - (void)onboardingLoginViewControllerDidTapLoginButton:(OnboardingLoginViewController *)onboardingLoginViewController
