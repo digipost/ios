@@ -224,8 +224,8 @@ class PeopleView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
             NSValue(CATransform3D: CATransform3DIdentity)]
-        transformAnim.keyTimes = [0, 0.872, 0.933, 1]
-        transformAnim.duration = 1.82
+        transformAnim.keyTimes = [0, 0.872, 0.935, 1]
+        transformAnim.duration = 2.37
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
@@ -250,7 +250,7 @@ class PeopleView: UIView {
             NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
             NSValue(CATransform3D: CATransform3DIdentity)]
         transformAnim.keyTimes = [0, 0.898, 0.948, 1]
-        transformAnim.duration = 2.2
+        transformAnim.duration = 2.48
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
