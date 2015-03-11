@@ -40,14 +40,16 @@ class OnboardingLoginViewController: UIViewController {
             self.view.frame.origin.x -= self.view.frame.width
         }) { (Bool) -> Void in
             Guide.setOnboaringHasBeenWatched()
-            self.delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
-           // self.delegate?.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
+           // self.delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
+            self.delegate?.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
         }
     }
     
     func onboardingBackgroundSnapShot() -> UIImage{
         if let onboardingViewController = self.presentingViewController{
-            UIGraphicsBeginImageContext(onboardingViewController.view.bounds.size)
+            let backgroundSize = onboardingViewController.view.layer.bounds.size
+            
+            UIGraphicsBeginImageContextWithOptions((CGSizeMake(backgroundSize.width, backgroundSize.height)), false, 0)
             onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext())
             let backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()

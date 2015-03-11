@@ -1488,9 +1488,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="ff1-dA-bBI" secondAttribute="width" id="0zc-sk-SBn"/>
+                            <constraint firstAttribute="height" secondItem="ff1-dA-bBI" secondAttribute="height" constant="-66" id="82n-cA-gDm"/>
                             <constraint firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="LpZ-C6-aeO"/>
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Noi-7A-pLA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ff1-dA-bBI" secondAttribute="trailing" constant="-16" id="Pnp-Yh-644"/>
                             <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="SWx-Y8-qvt"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leadingMargin" constant="-16" id="mph-Qi-Kd4"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="mqA-Ln-t28"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-34" id="uRx-PE-hih"/>
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" constant="-66" id="w9Q-jO-GVz"/>
