@@ -63,7 +63,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         let pageSize = view.frame.size
         let numOfPages:CGFloat = 5
         scrollView.delegate = self
@@ -115,6 +115,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         
         // NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
         scrollView.addSubview(firstAnimationView!)
+        
         
         secondAnimationView = UploadView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
