@@ -223,9 +223,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
+- (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
+{
+    self.loginBackgroundImageView.image = backgroundImage;
+    self.loginBackgroundImageView.contentMode = UIViewContentModeScaleToFill;
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
+}
+
 - (void)onboardingLoginViewControllerDidTapLoginButton:(OnboardingLoginViewController *)onboardingLoginViewController
 {
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:nil];
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
     [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 

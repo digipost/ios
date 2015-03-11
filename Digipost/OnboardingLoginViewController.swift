@@ -11,6 +11,8 @@ import UIKit
 @objc
 protocol OnboardingLoginViewControllerDelegate {
     func onboardingLoginViewControllerDidTapLoginButton(onboardingLoginViewController: OnboardingLoginViewController)
+    
+    func onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(onboardingLoginViewController: OnboardingLoginViewController, backgroundImage: UIImage)
 }
 
 class OnboardingLoginViewController: UIViewController {
@@ -39,6 +41,19 @@ class OnboardingLoginViewController: UIViewController {
         }) { (Bool) -> Void in
             Guide.setOnboaringHasBeenWatched()
             self.delegate?.onboardingLoginViewControllerDidTapLoginButton(self)
+           // self.delegate?.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
+        }
+    }
+    
+    func onboardingBackgroundSnapShot() -> UIImage{
+        if let onboardingViewController = self.presentingViewController{
+            UIGraphicsBeginImageContext(onboardingViewController.view.bounds.size)
+            onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext())
+            let backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
+            UIGraphicsEndImageContext()
+            return backgroundSnapShot
+        } else {
+            return UIImage()
         }
     }
     
