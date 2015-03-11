@@ -16,23 +16,17 @@ class ForceOrientationNavigationController: UINavigationController {
     
     override func viewWillAppear(animated: Bool) {
         var orientation: Int?
-        println("featuures\(self.visibleViewController.isKindOfClass(NewFeaturesViewController))")
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
             if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
-                println("featurescontroller")
                 orientation = UIInterfaceOrientation.Portrait.rawValue
-                UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
             }
         case .Pad:
             orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
         default: break
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
     }
     
     override func shouldAutorotate() -> Bool {
@@ -48,11 +42,14 @@ class ForceOrientationNavigationController: UINavigationController {
 
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
-            println("preferredInterfaceOrientationForPresentation")
             return UIInterfaceOrientation.Portrait
         } else {
             return self.viewControllers.last!.preferredInterfaceOrientationForPresentation()
         }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
 
 }
