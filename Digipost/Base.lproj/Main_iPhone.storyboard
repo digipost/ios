@@ -1407,19 +1407,12 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background-iphone" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
+                                <rect key="frame" x="0.0" y="-66" width="320" height="570"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
-                                <rect key="frame" x="0.0" y="-60" width="320" height="261"/>
+                                <rect key="frame" x="0.0" y="-34" width="320" height="261"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-iphone" translatesAutoresizingMaskIntoConstraints="NO" id="zFK-Fz-dSN" userLabel="Digipost Image View">
-                                        <rect key="frame" x="81" y="0.0" width="159" height="38"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="159" id="Dil-29-21f"/>
-                                            <constraint firstAttribute="height" constant="38" id="hFg-3N-hll"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTu-hy-iNW" userLabel="Login Button">
                                         <rect key="frame" x="30" y="82" width="260" height="52"/>
                                         <color key="backgroundColor" red="0.8901960784313725" green="0.1764705882352941" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
@@ -1467,7 +1460,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <state key="normal" title="PRIVACY_BUTTON">
                                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="u2s-jA-5bC"/>
@@ -1476,34 +1469,31 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="zFK-Fz-dSN" secondAttribute="bottom" constant="44" id="193-84-FJa"/>
-                                    <constraint firstAttribute="bottom" secondItem="qBu-VV-6Ae" secondAttribute="bottom" id="3ph-Md-fbw"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="82" id="3vC-Pm-nK9"/>
+                                    <constraint firstItem="fv5-4n-dtY" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="38" id="5AJ-jQ-sK9"/>
                                     <constraint firstItem="fv5-4n-dtY" firstAttribute="top" relation="lessThanOrEqual" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="38" id="9Vb-Oj-EBw"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="6Y4-hX-QRK" secondAttribute="leading" id="BEs-4t-Qfc"/>
                                     <constraint firstItem="qBu-VV-6Ae" firstAttribute="top" secondItem="6Y4-hX-QRK" secondAttribute="bottom" id="GAn-v9-qI0"/>
-                                    <constraint firstAttribute="centerX" secondItem="fv5-4n-dtY" secondAttribute="centerX" id="Hbi-51-OX9"/>
-                                    <constraint firstAttribute="centerX" secondItem="GTu-hy-iNW" secondAttribute="centerX" id="He0-dm-pNc"/>
-                                    <constraint firstAttribute="centerX" secondItem="qBu-VV-6Ae" secondAttribute="centerX" id="Yt0-SD-Aci"/>
-                                    <constraint firstItem="zFK-Fz-dSN" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" id="ckD-zd-F9X"/>
-                                    <constraint firstAttribute="centerX" secondItem="zFK-Fz-dSN" secondAttribute="centerX" id="dtd-8r-jjI"/>
-                                    <constraint firstAttribute="centerX" secondItem="6Y4-hX-QRK" secondAttribute="centerX" id="ga9-Bt-4jc"/>
-                                    <constraint firstAttribute="height" priority="249" constant="261" id="lbw-lu-dul"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="82" id="WZh-46-0bU"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="cVj-4D-L2d"/>
+                                    <constraint firstAttribute="bottom" secondItem="qBu-VV-6Ae" secondAttribute="bottom" id="k5f-NA-TfE"/>
                                     <constraint firstItem="6Y4-hX-QRK" firstAttribute="top" secondItem="fv5-4n-dtY" secondAttribute="bottom" id="nsP-xN-VAu"/>
                                     <constraint firstItem="qBu-VV-6Ae" firstAttribute="top" secondItem="6Y4-hX-QRK" secondAttribute="bottom" id="pxF-gh-LqR"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="qBu-VV-6Ae" secondAttribute="leading" id="u1e-Pl-ICp"/>
+                                    <constraint firstAttribute="width" constant="320" id="vip-Xp-DMk"/>
+                                    <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="fv5-4n-dtY" secondAttribute="leading" id="yGd-Hy-LNJ"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wTy-nL-Oqt" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cSK-Bb-kQC" secondAttribute="bottom" constant="20" id="8aT-tv-VDs"/>
-                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-60" id="Jii-Da-De3"/>
+                            <constraint firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="LpZ-C6-aeO"/>
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Noi-7A-pLA"/>
                             <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="SWx-Y8-qvt"/>
-                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="Uuv-yG-fI2"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="mqA-Ln-t28"/>
-                            <constraint firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" id="vTp-sf-v1c"/>
-                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" id="w9Q-jO-GVz"/>
-                            <constraint firstAttribute="centerY" secondItem="cSK-Bb-kQC" secondAttribute="centerY" constant="181.5" id="wfj-D3-vFB"/>
+                            <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-34" id="uRx-PE-hih"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="HMF-53-tLU" secondAttribute="top" constant="-66" id="w9Q-jO-GVz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bC4-nA-QU9"/>
@@ -1607,14 +1597,13 @@
         <image name="New name" width="22" height="22"/>
         <image name="Open_in" width="22" height="22"/>
         <image name="Searchbackground" width="6" height="31"/>
-        <image name="background-iphone" width="1448" height="454"/>
         <image name="empty-folder-fly" width="203" height="233"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
         <image name="list-icon-attachment" width="16" height="16"/>
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
-        <image name="logo-iphone" width="133" height="40"/>
+        <image name="loginBackground" width="414" height="736"/>
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -1623,10 +1612,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="6ll-nd-HYD"/>
-        <segue reference="Kl9-xn-mhN"/>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="2IH-85-kgn"/>
         <segue reference="WBk-6x-J5R"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
