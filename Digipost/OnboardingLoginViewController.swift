@@ -52,7 +52,7 @@ class OnboardingLoginViewController: UIViewController {
             UIGraphicsEndImageContext()
             return backgroundSnapShot
         } else {
-            return UIImage(named: "loginBackground")!
+            return UIImage(named: "login-background")!
         }
     }
     
