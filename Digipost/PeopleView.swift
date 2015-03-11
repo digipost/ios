@@ -219,14 +219,17 @@ class PeopleView: UIView {
 	}
 	
     func bigpersonheadAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-        strokeEndAnim.values   = [0, 0, 1.1]
-        strokeEndAnim.keyTimes = [0, 0.62, 1]
-        strokeEndAnim.duration = 1.59
-        strokeEndAnim.fillMode = kCAFillModeForwards
-        strokeEndAnim.removedOnCompletion = false
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.872, 0.933, 1]
+        transformAnim.duration = 1.82
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
         
-        return strokeEndAnim;
+        return transformAnim;
     }
     
     func bigpersonbodyAnimation() -> CAKeyframeAnimation{
@@ -241,14 +244,17 @@ class PeopleView: UIView {
     }
     
     func smallpersonheadAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
-        strokeEndAnim.values   = [0, 0, 1]
-        strokeEndAnim.keyTimes = [0, 0.68, 1]
-        strokeEndAnim.duration = 1.98
-        strokeEndAnim.fillMode = kCAFillModeForwards
-        strokeEndAnim.removedOnCompletion = false
+        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
+            NSValue(CATransform3D: CATransform3DIdentity)]
+        transformAnim.keyTimes = [0, 0.898, 0.948, 1]
+        transformAnim.duration = 2.2
+        transformAnim.fillMode = kCAFillModeBoth
+        transformAnim.removedOnCompletion = false
         
-        return strokeEndAnim;
+        return transformAnim;
     }
     
     func smallpersonbodyAnimation() -> CAKeyframeAnimation{
@@ -265,8 +271,8 @@ class PeopleView: UIView {
     func bagbodyAnimation() -> CAKeyframeAnimation{
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
-        strokeEndAnim.keyTimes = [0, 0.723, 1]
-        strokeEndAnim.duration = 2.24
+        strokeEndAnim.keyTimes = [0, 0.829, 1]
+        strokeEndAnim.duration = 2.05
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
         
@@ -277,7 +283,7 @@ class PeopleView: UIView {
         var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.877, 1]
-        strokeEndAnim.duration = 2.59
+        strokeEndAnim.duration = 2.33
         strokeEndAnim.fillMode = kCAFillModeForwards
         strokeEndAnim.removedOnCompletion = false
         
@@ -287,11 +293,11 @@ class PeopleView: UIView {
     func GroupAnimation() -> CAKeyframeAnimation{
         var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
-            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
+            NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
             NSValue(CATransform3D: CATransform3DIdentity)]
         transformAnim.keyTimes = [0, 0.903, 0.954, 1]
-        transformAnim.duration = 2.88
+        transformAnim.duration = 2.58
         transformAnim.fillMode = kCAFillModeBoth
         transformAnim.removedOnCompletion = false
         
