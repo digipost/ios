@@ -12,24 +12,47 @@ class ForceOrientationNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        var orientation: Int?
+        println("featuures\(self.visibleViewController.isKindOfClass(NewFeaturesViewController))")
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        switch device {
+        case .Phone:
+            if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
+                println("featurescontroller")
+                orientation = UIInterfaceOrientation.Portrait.rawValue
+                UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
+            }
+        case .Pad:
+            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
+        default: break
+        }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func shouldAutorotate() -> Bool {
+        if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
+            return false
+        }
+        return true
     }
-    */
+    
+    override func supportedInterfaceOrientations() -> Int {
+        return self.topViewController.supportedInterfaceOrientations()
+    }
+
+    override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+        if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
+            println("preferredInterfaceOrientationForPresentation")
+            return UIInterfaceOrientation.Portrait
+        } else {
+            return self.viewControllers.last!.preferredInterfaceOrientationForPresentation()
+        }
+    }
 
 }
