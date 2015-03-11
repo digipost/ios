@@ -50,7 +50,8 @@
                                         <exclude reference="xDm-V7-1yj"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="94" y="165" width="213" height="40"/>
                                     <mask key="constraints">
                                         <exclude reference="ln4-Ix-Kxr"/>
                                     </mask>
@@ -92,7 +93,8 @@
                                         <exclude reference="sTK-fX-x5N"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="90" y="218" width="220" height="47"/>
                                     <mask key="constraints">
                                         <exclude reference="EEL-qY-Dj5"/>
                                         <include reference="sTK-fX-x5N"/>
@@ -209,7 +211,8 @@
                                         <exclude reference="yba-Cn-cE1"/>
                                     </mask>
                                 </variation>
-                                <variation key="heightClass=regular-widthClass=compact">
+                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="0.0" y="810" width="400" height="200"/>
                                     <mask key="constraints">
                                         <exclude reference="ahk-1b-Bpn"/>
                                         <include reference="ooE-8H-P96"/>
@@ -556,6 +559,9 @@
                             </mask>
                         </variation>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="animationMockView" destination="Dbf-mE-njp" id="qbL-Ah-zeM"/>
