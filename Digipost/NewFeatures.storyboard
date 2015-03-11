@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Force Orientation Navigation Controller-->
         <scene sceneID="3RM-zt-iFR">
             <objects>
-                <navigationController id="iQs-Tn-6yG" sceneMemberID="viewController">
+                <navigationController id="iQs-Tn-6yG" customClass="ForceOrientationNavigationController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="5ob-ds-enp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
