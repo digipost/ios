@@ -113,6 +113,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewWillAppear:YES];
 
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
     UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
     self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
     self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);

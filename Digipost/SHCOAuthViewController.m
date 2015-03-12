@@ -53,6 +53,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
 
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 
     if (self.scope == kOauth2ScopeFull) {
@@ -69,6 +71,13 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     [self presentAuthenticationWebView];
 
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
