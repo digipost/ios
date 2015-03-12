@@ -50,14 +50,10 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
      @IBOutlet var getStartedButtonBottomConstraintIPAD: NSLayoutConstraint!
     var getStartedButtonInitialBottomConstraintIPAD:CGFloat!
     
-    @IBOutlet var pageControll: UIPageControl!
+    @IBOutlet var pageControl: UIPageControl!
 
     var logoInitialPositionY:CGFloat = 0
     var welcomeLabelInitialPositionY:CGFloat = 0
-    
-    // ParallaxRates
-    var backgroundParallaxSpeed:CGFloat!
-    var mountainParallaxSpeed: CGFloat!
     
     var onboardingLoginViewController : OnboardingLoginViewController?
     
@@ -73,27 +69,9 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         welcomeLabel.textColor = UIColor.digipostAnimationGrey()
         
         getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
-        
-        var orientation: Int?
-        
-        // Set parallax speed depending on device
-        let device = UIDevice.currentDevice().userInterfaceIdiom
-        switch device {
-        case .Phone:
-            backgroundParallaxSpeed = 0.5
-            mountainParallaxSpeed = 0.57
-            orientation = UIInterfaceOrientation.Portrait.rawValue
-        case .Pad:
-            backgroundParallaxSpeed = 0.1
-            mountainParallaxSpeed = 0.13
-            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
-        default: break
-        }
-        
-        UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
 
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         // Setup animation views
@@ -109,26 +87,9 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         logoInitialPositionY = logoImageView.center.y
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
-    }
-    
-    override func supportedInterfaceOrientations() -> Int {
-        let device = UIDevice.currentDevice().userInterfaceIdiom
-        
-        switch device {
-        case .Phone:
-            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-        case .Pad:
-            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
-        default:
-            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-        }
-    }
-    
-    override func shouldAutorotate() -> Bool {
-        return true
+        println("layout subviews")
     }
 
-    
     func setupAnimationViews() {
         
         let viewOffset = scrollView.frame.width
@@ -137,10 +98,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         firstAnimationView = PeopleView(frame: animationFrame)
         firstAnimationView.center.x = animationMockView.center.x + viewOffset
         firstAnimationView.animationText.string = Guide.onboardingText(forIndex: 1)
-        
-        // NSLocalizedString("onboarding first animation", comment: "bring your\n mailbox everywhere")
         scrollView.addSubview(firstAnimationView!)
-        
         
         secondAnimationView = UploadView(frame: animationFrame)
         secondAnimationView.center.x = animationMockView.center.x + viewOffset * 2
@@ -149,14 +107,14 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         
         thirdAnimationView = ReceiptView(frame: animationFrame)
         thirdAnimationView.center.x = animationMockView.center.x + viewOffset * 3
-        thirdAnimationView.animationText.string = NSLocalizedString("onboarding third animation", comment: "full control")
+        thirdAnimationView.animationText.string = Guide.onboardingText(forIndex: 3)
         scrollView.addSubview(thirdAnimationView!)
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         panBackground()
         updateAnimationViewProgress()
-        pageControll.currentPage = scrollView.currentPage
+        pageControl.currentPage = scrollView.currentPage
     }
     
     func updateAnimationViewProgress() {
@@ -196,7 +154,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             loginContainerViewTopConstantIPAD.constant = translatedLoginContainerConstantIPAD
             loginContainerView.setNeedsUpdateConstraints()
             // Fade out on leaving screen bottom
-            pageControll.alpha = (4 - progress)
+            pageControl.alpha = (4 - progress)
             getStartedButton.alpha = (4 - progress)
             logoImageView.hidden = true
             welcomeLabel.hidden = true
@@ -212,17 +170,15 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     }
     
     @IBAction func getStartedButtonAction(sender: AnyObject) {
-        
         let lastPageRect = CGRectMake(0, 0, scrollView.pageSize.width*5, scrollView.pageSize.height)
         scrollView.scrollRectToVisible(lastPageRect, animated: true)
-
     }
 
     func panBackground() {
         let translatedOffsetX = -(scrollView.contentOffset.x + scrollView.scrollableEdgeOffset)
-        bgImageView.frame.origin.x = translatedOffsetX * backgroundParallaxSpeed
+        bgImageView.frame.origin.x = translatedOffsetX * parallaxSpeedForCurrentDevice().backgroundSpeed
         bgMaskImageView.frame.origin.x = bgImageView.frame.origin.x
-        bgParallaxImageView.frame.origin.x = translatedOffsetX * mountainParallaxSpeed
+        bgParallaxImageView.frame.origin.x = translatedOffsetX * parallaxSpeedForCurrentDevice().mountainSpeed
     }
     
     func storeInitialConstraints() {
@@ -234,19 +190,43 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         loginContainerViewInitialTopConstantIPAD = loginContainerViewTopConstant.constant
     }
     
-//    override func shouldAutorotate() -> Bool {
-//        return false
-//    }
-//    
-//    override func supportedInterfaceOrientations() -> Int {
-//        
-//        let device = UIDevice.currentDevice().userInterfaceIdiom
-//        switch device {
-//        case .Phone: return UIInterfaceOrientation.Portrait.rawValue
-//        case .Pad: return UIInterfaceOrientation.LandscapeRight.rawValue
-//        default: return UIInterfaceOrientation.LandscapeRight.rawValue
-//        }
-//    }
+    func parallaxSpeedForCurrentDevice() -> (backgroundSpeed: CGFloat, mountainSpeed: CGFloat){
+        // Set parallax speed depending on device
+        
+        // ParallaxRates
+        var backgroundParallaxSpeed:CGFloat!
+        var mountainParallaxSpeed: CGFloat!
+        
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        switch device {
+        case .Phone:
+            backgroundParallaxSpeed = 0.5
+            mountainParallaxSpeed = 0.57
+        case .Pad:
+            backgroundParallaxSpeed = 0.1
+            mountainParallaxSpeed = 0.13
+        default: break
+        }
+        
+        return (backgroundParallaxSpeed, mountainParallaxSpeed)
+    }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        
+        switch device {
+        case .Phone:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        case .Pad:
+            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+        default:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
     
 }
 
