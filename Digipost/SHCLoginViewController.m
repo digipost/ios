@@ -251,7 +251,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
 {
-    self.loginBackgroundImageView.image = backgroundImage;
+    if (backgroundImage != nil) {
+        self.loginBackgroundImageView.image = backgroundImage;
+    }
 
     [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
         

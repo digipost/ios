@@ -42,18 +42,16 @@ class OnboardingLoginViewController: UIViewController {
         }
     }
     
-    func onboardingBackgroundSnapShot() -> UIImage{
+    func onboardingBackgroundSnapShot() -> UIImage!{
+        var backgroundSnapShot:UIImage!
         if let onboardingViewController = self.parentViewController{
-            
             let backgroundSize = onboardingViewController.view.layer.bounds.size
             UIGraphicsBeginImageContextWithOptions(backgroundSize, true, 0)
             onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext())
-            let backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
+            backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
-            return backgroundSnapShot
-        } else {
-            return UIImage(named: "login-background")!
         }
+        return backgroundSnapShot
     }
     
     @IBAction func registerButtonAction(sender: UIButton) {
