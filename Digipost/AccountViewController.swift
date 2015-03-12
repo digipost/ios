@@ -15,6 +15,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     @IBOutlet weak var logoutBarButtonItem: UIBarButtonItem!
     
     var logoutBarButtonVariable: UIBarButtonItem?
+    var logoutButtonVariable: UIButton?
     var refreshControl: UIRefreshControl?
     var dataSource: AccountTableViewDataSource?
     
@@ -22,6 +23,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         super.viewDidLoad()
         
         logoutBarButtonVariable = logoutBarButtonItem
+        logoutButtonVariable = logoutButton
         
         if let firstVC: UIViewController = navigationController?.viewControllers[0] as? UIViewController {
             if firstVC.navigationItem.rightBarButtonItem == nil {
@@ -75,8 +77,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         super.viewWillAppear(animated)
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
-        logoutButton.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), forState: .Normal)
-        logoutButton.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
+        
+        logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), forState: .Normal)
+        logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
             
@@ -201,6 +204,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
         tableView.reloadData()
         APIClient.sharedClient.logout()
+        
     }
 
 }
