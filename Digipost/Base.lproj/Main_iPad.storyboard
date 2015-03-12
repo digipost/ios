@@ -256,7 +256,7 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background-ipad" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-LP-a65">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background-ipad" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-LP-a65">
                                 <rect key="frame" x="0.0" y="-20" width="768" height="980"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6J-F3-PpA" userLabel="Login View">
