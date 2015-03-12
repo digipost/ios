@@ -580,7 +580,7 @@
                         <outlet property="loginContainerViewTopConstant" destination="4fP-qP-Glj" id="iSf-hZ-ZrB"/>
                         <outlet property="loginContainerViewTopConstantIPAD" destination="Nxz-Xe-88y" id="XVw-GC-kmh"/>
                         <outlet property="logoImageView" destination="R8q-42-DUf" id="o2V-HP-QBu"/>
-                        <outlet property="pageControll" destination="EBw-Fa-Djv" id="qvI-Lf-62b"/>
+                        <outlet property="pageControl" destination="EBw-Fa-Djv" id="zdH-zi-caJ"/>
                         <outlet property="scrollView" destination="50T-g2-cKw" id="Qcq-BP-4c5"/>
                         <outlet property="welcomeLabel" destination="kCg-eW-u61" id="Ine-Ep-uMr"/>
                     </connections>
