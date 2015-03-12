@@ -800,6 +800,17 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="3Qm-jG-0fS"/>
+                                <exclude reference="AUl-wB-C2P"/>
+                                <exclude reference="Agx-EF-M7j"/>
+                                <exclude reference="KFF-8W-1p6"/>
+                                <exclude reference="ReP-oR-aBW"/>
+                                <exclude reference="U4m-ul-nKA"/>
+                                <exclude reference="bwi-CY-NoA"/>
+                                <exclude reference="g2l-ce-KoS"/>
+                                <exclude reference="sm0-gg-2pG"/>
+                                <exclude reference="wOg-hy-hNP"/>
+                                <exclude reference="yau-b6-gGr"/>
                                 <exclude reference="3zb-3n-R26"/>
                                 <exclude reference="QaM-zR-wjP"/>
                                 <exclude reference="R9N-Cq-V34"/>
@@ -817,17 +828,6 @@
                                 <exclude reference="qUu-GX-E4v"/>
                                 <exclude reference="yYY-Dq-gzc"/>
                                 <exclude reference="zae-II-O0E"/>
-                                <exclude reference="3Qm-jG-0fS"/>
-                                <exclude reference="AUl-wB-C2P"/>
-                                <exclude reference="Agx-EF-M7j"/>
-                                <exclude reference="KFF-8W-1p6"/>
-                                <exclude reference="ReP-oR-aBW"/>
-                                <exclude reference="U4m-ul-nKA"/>
-                                <exclude reference="bwi-CY-NoA"/>
-                                <exclude reference="g2l-ce-KoS"/>
-                                <exclude reference="sm0-gg-2pG"/>
-                                <exclude reference="wOg-hy-hNP"/>
-                                <exclude reference="yau-b6-gGr"/>
                                 <exclude reference="UZz-9M-rWr"/>
                                 <exclude reference="c8J-x1-wt4"/>
                             </mask>
@@ -840,6 +840,14 @@
                                 <include reference="ccv-KE-wuG"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="3Qm-jG-0fS"/>
+                                <include reference="KFF-8W-1p6"/>
+                                <exclude reference="ReP-oR-aBW"/>
+                                <exclude reference="U4m-ul-nKA"/>
+                                <exclude reference="bwi-CY-NoA"/>
+                                <include reference="g2l-ce-KoS"/>
+                                <exclude reference="sm0-gg-2pG"/>
+                                <exclude reference="wOg-hy-hNP"/>
                                 <include reference="3zb-3n-R26"/>
                                 <exclude reference="QaM-zR-wjP"/>
                                 <include reference="WKc-Hr-1H1"/>
@@ -853,26 +861,18 @@
                                 <include reference="qUu-GX-E4v"/>
                                 <exclude reference="yYY-Dq-gzc"/>
                                 <include reference="zae-II-O0E"/>
-                                <include reference="3Qm-jG-0fS"/>
-                                <include reference="KFF-8W-1p6"/>
-                                <exclude reference="ReP-oR-aBW"/>
-                                <exclude reference="U4m-ul-nKA"/>
-                                <exclude reference="bwi-CY-NoA"/>
-                                <include reference="g2l-ce-KoS"/>
-                                <exclude reference="sm0-gg-2pG"/>
-                                <exclude reference="wOg-hy-hNP"/>
                                 <include reference="UZz-9M-rWr"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=regular">
                             <mask key="constraints">
+                                <include reference="AUl-wB-C2P"/>
+                                <include reference="Agx-EF-M7j"/>
+                                <include reference="yau-b6-gGr"/>
                                 <include reference="R9N-Cq-V34"/>
                                 <include reference="n6O-lR-Lwh"/>
                                 <include reference="Ew9-Yv-33S"/>
                                 <include reference="mzY-Ea-iNh"/>
-                                <include reference="AUl-wB-C2P"/>
-                                <include reference="Agx-EF-M7j"/>
-                                <include reference="yau-b6-gGr"/>
                                 <include reference="c8J-x1-wt4"/>
                             </mask>
                         </variation>
