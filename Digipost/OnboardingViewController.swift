@@ -74,17 +74,24 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         
         getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
         
+        var orientation: Int?
+        
         // Set parallax speed depending on device
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
             backgroundParallaxSpeed = 0.5
             mountainParallaxSpeed = 0.57
+            orientation = UIInterfaceOrientation.Portrait.rawValue
         case .Pad:
             backgroundParallaxSpeed = 0.1
             mountainParallaxSpeed = 0.13
+            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
         default: break
         }
+        
+        UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -103,6 +110,24 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
     }
+    
+    override func supportedInterfaceOrientations() -> Int {
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        
+        switch device {
+        case .Phone:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        case .Pad:
+            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+        default:
+            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        }
+    }
+    
+    override func shouldAutorotate() -> Bool {
+        return true
+    }
+
     
     func setupAnimationViews() {
         
