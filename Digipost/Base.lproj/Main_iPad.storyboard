@@ -1573,7 +1573,7 @@
         <image name="list-icon-attachment" width="16" height="16"/>
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
-        <image name="login-background-ipad" width="605" height="454"/>
+        <image name="login-background-ipad" width="1024" height="768"/>
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

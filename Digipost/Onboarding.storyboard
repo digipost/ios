@@ -890,9 +890,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background-iphone" width="1448" height="454"/>
-        <image name="background-mask-iphone" width="1448" height="454"/>
-        <image name="background-parallax-iphone" width="1448" height="454"/>
-        <image name="logo-iphone" width="133" height="40"/>
+        <image name="background-iphone" width="2084" height="653"/>
+        <image name="background-mask-iphone" width="2086" height="654"/>
+        <image name="background-parallax-iphone" width="2086" height="654"/>
+        <image name="logo-iphone" width="133" height="41"/>
     </resources>
 </document>
