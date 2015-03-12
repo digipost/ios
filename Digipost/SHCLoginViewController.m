@@ -78,12 +78,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
-    if ([Guide shouldShowOnboardingGuide]) {
-
-        [self.loginView setHidden:YES];
-        [self presentOnboarding];
-    }
-
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
@@ -115,6 +109,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+    if ([Guide shouldShowOnboardingGuide]) {
+
+        [self.loginView setHidden:YES];
+        [self presentOnboarding];
+    }
 
     UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
     self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
@@ -244,12 +244,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 
     }];
-}
-
-- (void)onboardingLoginViewControllerDidTapLoginButton:(OnboardingLoginViewController *)onboardingLoginViewController
-{
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:YES completion:nil];
-    [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 }
 
 #pragma mark - IBActions
