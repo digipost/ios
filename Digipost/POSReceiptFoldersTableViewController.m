@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
-#import <UIActionSheet+Blocks.h>
-#import <UIAlertView+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSReceiptFoldersTableViewController.h"
 #import "UIRefreshControl+Additions.h"

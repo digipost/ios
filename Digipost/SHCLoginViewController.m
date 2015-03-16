@@ -64,7 +64,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+//        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 
@@ -88,7 +88,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+//        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
@@ -126,7 +126,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            NSLog(@"HIDDEN");
 
             // @ TODO WILL BUG fIRST TIME
             POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];

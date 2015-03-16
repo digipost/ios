@@ -10,11 +10,11 @@
 #import "POSNewFolderViewController.h"
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 #import "digipost-swift.h"
-#import <MRProgress.h>
+#import <MRProgress/MRProgress.h>
 
 @interface POSNewFolderViewController () <UITextFieldDelegate>
 

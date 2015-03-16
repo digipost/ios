@@ -9,7 +9,7 @@
 #import "POSAPIManager+PrivateMethods.h"
 #import "POSOAuthManager.h"
 #import "POSAPIManager.h"
-#import <AFHTTPSessionManager.h>
+#import <AFNetworking/AFHTTPSessionManager.h>
 #import "digipost-Swift.h"
 
 @implementation POSAPIManager (PrivateMethods)

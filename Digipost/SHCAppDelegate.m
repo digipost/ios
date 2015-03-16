@@ -14,16 +14,12 @@
 // limitations under the License.
 //
 
-#import <HockeySDK/HockeySDK.h>
-#import <DDASLLogger.h>
-#import <DDTTYLogger.h>
 #import "POSFolder+Methods.h"
-#import <DDFileLogger.h>
-#import <GAI.h>
+#import "GAI.h"
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
-#import <GAITracker.h>
-#import <UIAlertView+Blocks.h>
+#import "GAITracker.h"
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
@@ -37,9 +33,9 @@
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
-@interface SHCAppDelegate () <BITHockeyManagerDelegate>
+@interface SHCAppDelegate ()
 
-@property (strong, nonatomic) DDFileLogger *fileLogger;
+//@property (strong, nonatomic) DDFileLogger *fileLogger;
 @property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
 
 @end
@@ -51,9 +47,9 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [self setupHockeySDK];
+    //    [self setupHockeySDK];
 
-    [self setupCocoaLumberjack];
+    //    [self setupCocoaLumberjack];
 
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
@@ -197,37 +193,37 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     }
 }
 #pragma mark - Private methods
+//
+//- (void)setupHockeySDK
+//{
+//    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
+//                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
+//                                                               delegate:self];
+//    [[BITHockeyManager sharedHockeyManager] startManager];
+//    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+//}
 
-- (void)setupHockeySDK
-{
-    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
-                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
-                                                               delegate:self];
-    [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-}
-
-- (void)setupCocoaLumberjack
-{
-    // Enable Apple System Logger (log messages appear in the Console.app)
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-
-    // Enable Xcode debugger console (TTY) logger
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-
-    // If you want nice colors in Xcode's debugger console,
-    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
-    // on how to install the neccesary Xcode plugin.
-    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-
-    // Enable logging to file
-    self.fileLogger = [[DDFileLogger alloc] init];
-    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-    [self.fileLogger rollLogFileWithCompletionBlock:^{
-        [DDLog addLogger:self.fileLogger];
-    }];
-}
+//- (void)setupCocoaLumberjack
+//{
+//    // Enable Apple System Logger (log messages appear in the Console.app)
+//    [DDLog addLogger:[DDASLLogger sharedInstance]];
+//
+//    // Enable Xcode debugger console (TTY) logger
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+//
+//    // If you want nice colors in Xcode's debugger console,
+//    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
+//    // on how to install the neccesary Xcode plugin.
+//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+//
+//    // Enable logging to file
+//    self.fileLogger = [[DDFileLogger alloc] init];
+//    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+//    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+//    [self.fileLogger rollLogFileWithCompletionBlock:^{
+//        [DDLog addLogger:self.fileLogger];
+//    }];
+//}
 
 - (void)setupGoogleAnalytics
 {

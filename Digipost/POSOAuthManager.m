@@ -158,7 +158,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                                   OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
                                   oauthToken.accessToken = accessToken;
                                   [[APIClient sharedClient] updateAuthorizationHeader:scope];
-                                  DDLogInfo(@"Access token updated");
                                   if (success) {
                                       success();
                                       return;

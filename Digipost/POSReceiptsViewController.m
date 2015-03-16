@@ -9,10 +9,10 @@
 #import "POSReceiptsViewController.h"
 #import "UIRefreshControl+Additions.h"
 #import "POSReceiptsTableViewDataSource.h"
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "NSError+ExtraInfo.h"
 #import "UIViewController+Additions.h"
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "POSAPIManager.h"
@@ -22,7 +22,7 @@
 #import "POSDocumentsViewController.h"
 #import "UIViewController+BackButton.h"
 #import "digipost-Swift.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 
 NSString *const kPushReceiptIdentifier = @"PushReceipt";
 

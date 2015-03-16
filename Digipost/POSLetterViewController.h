@@ -15,7 +15,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GAITrackedViewController.h>
+
+#import "GAI.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;

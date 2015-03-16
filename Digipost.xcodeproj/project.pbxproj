@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
-		2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		0C8775B881694AB8A0679A52 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		0EE4FA7026C9097B0B970ABE /* Pods_Digipost_Test_Dpost_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		2DA1144AFEAB4267B1C1782C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		311779581AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		311779591AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
@@ -65,8 +67,6 @@
 		31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		31B57FFD1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
-		769409655B6D7777B3778F57 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
-		774FE4670A759D346432BBDE /* libPods-Digipost-Test-Dpost Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E49326BB1F6FE5A2E1E3BEB4 /* libPods-Digipost-Test-Dpost Tests.a */; };
 		8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -239,8 +239,6 @@
 		AFD508BC1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		AFD508BE1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
-		B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
-		EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FB19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -305,6 +303,14 @@
 		EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		EC2E9E371A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */; };
+		EC3021771AB70C2300812502 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
+		EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
+		EC3021881AB70D9400812502 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
+		EC3021891AB70D9500812502 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
+		EC30218B1AB70DA800812502 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218A1AB70DA800812502 /* libsqlite3.dylib */; };
+		EC30218E1AB70DC100812502 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
+		EC3021901AB70DD400812502 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
+		EC3021921AB70E0A00812502 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
 		EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		EC31A6361A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		EC31A6371A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
@@ -448,7 +454,7 @@
 		EC55F41D1A2C5ACC00A3192C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
 		EC55F41E1A2C5ACC00A3192C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		EC55F41F1A2C5ACC00A3192C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
-		EC55F4201A2C5ACC00A3192C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 42F417BB1E1843FEBA11CCC7 /* libPods.a */; };
+		EC55F4201A2C5ACC00A3192C /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		EC55F4221A2C5ACC00A3192C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		EC55F4231A2C5ACC00A3192C /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC55F4241A2C5ACC00A3192C /* Images-Staging.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C22B7C187EC66400A6B6F4 /* Images-Staging.xcassets */; };
@@ -752,6 +758,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		311779551AAEFCA800229D02 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
@@ -764,7 +771,7 @@
 		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		42F417BB1E1843FEBA11CCC7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test_Dpost_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* POSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAPIManager.h; sourceTree = "<group>"; };
@@ -872,7 +879,6 @@
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E49326BB1F6FE5A2E1E3BEB4 /* libPods-Digipost-Test-Dpost Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Digipost-Test-Dpost Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
 		EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNewFolderViewController.h; sourceTree = "<group>"; };
@@ -910,6 +916,26 @@
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
 		EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ModelAssertions.swift"; sourceTree = "<group>"; };
+		EC30215B1AB70A9300812502 /* GoogleAnalytics_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAnalytics_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Pods/GoogleAnalytics_iOS_SDK.framework"; sourceTree = "<group>"; };
+		EC30215D1AB70AE800812502 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		EC3021761AB70C2300812502 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		EC3021781AB70C2A00812502 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		EC30217C1AB70D9400812502 /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdIdAccess.a; path = GAI/libAdIdAccess.a; sourceTree = "<group>"; };
+		EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GAI/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		EC30217E1AB70D9400812502 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
+		EC30217F1AB70D9400812502 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		EC3021801AB70D9400812502 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GAI/GAIEcommerceFields.h; sourceTree = "<group>"; };
+		EC3021811AB70D9400812502 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GAI/GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		EC3021821AB70D9400812502 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GAI/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		EC3021831AB70D9400812502 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = GAI/GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		EC3021841AB70D9400812502 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GAI/GAIFields.h; sourceTree = "<group>"; };
+		EC3021851AB70D9400812502 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GAI/GAILogger.h; sourceTree = "<group>"; };
+		EC3021861AB70D9400812502 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GAI/GAITrackedViewController.h; sourceTree = "<group>"; };
+		EC3021871AB70D9400812502 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GAI/GAITracker.h; sourceTree = "<group>"; };
+		EC30218A1AB70DA800812502 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		EC30218D1AB70DC100812502 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		EC30218F1AB70DD400812502 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		EC3021911AB70E0A00812502 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -956,6 +982,7 @@
 		EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthToken.json; sourceTree = "<group>"; };
 		EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidOAuthToken.json; sourceTree = "<group>"; };
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
+		EC7F9DBD1AB701080060E8BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
@@ -1031,7 +1058,7 @@
 				8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */,
 				8375DD3D1855C383009435B4 /* UIKit.framework in Frameworks */,
 				8375DD3E1855C383009435B4 /* Foundation.framework in Frameworks */,
-				2DA1144AFEAB4267B1C1782C /* libPods.a in Frameworks */,
+				2DA1144AFEAB4267B1C1782C /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1042,7 +1069,7 @@
 				83A31B001855D706007045B9 /* CoreGraphics.framework in Frameworks */,
 				83A31B011855D706007045B9 /* UIKit.framework in Frameworks */,
 				83A31B021855D706007045B9 /* Foundation.framework in Frameworks */,
-				0C8775B881694AB8A0679A52 /* libPods.a in Frameworks */,
+				0C8775B881694AB8A0679A52 /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,10 +1077,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3021921AB70E0A00812502 /* AdSupport.framework in Frameworks */,
+				EC3021901AB70DD400812502 /* libz.dylib in Frameworks */,
+				EC30218E1AB70DC100812502 /* MobileCoreServices.framework in Frameworks */,
+				EC30218B1AB70DA800812502 /* libsqlite3.dylib in Frameworks */,
+				EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */,
+				EC3021881AB70D9400812502 /* libAdIdAccess.a in Frameworks */,
+				EC3021771AB70C2300812502 /* CoreData.framework in Frameworks */,
+				EC3021891AB70D9500812502 /* libGoogleAnalyticsServices.a in Frameworks */,
 				83BAB91E1855C0AC004A7BFB /* CoreGraphics.framework in Frameworks */,
 				83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */,
 				83BAB91C1855C0AC004A7BFB /* Foundation.framework in Frameworks */,
-				B53E0CB674C74B2995E8222D /* libPods.a in Frameworks */,
+				15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,7 +1099,7 @@
 				EC55F41D1A2C5ACC00A3192C /* CoreGraphics.framework in Frameworks */,
 				EC55F41E1A2C5ACC00A3192C /* UIKit.framework in Frameworks */,
 				EC55F41F1A2C5ACC00A3192C /* Foundation.framework in Frameworks */,
-				EC55F4201A2C5ACC00A3192C /* libPods.a in Frameworks */,
+				EC55F4201A2C5ACC00A3192C /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1072,8 +1107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				769409655B6D7777B3778F57 /* libPods.a in Frameworks */,
-				774FE4670A759D346432BBDE /* libPods-Digipost-Test-Dpost Tests.a in Frameworks */,
+				0EE4FA7026C9097B0B970ABE /* Pods_Digipost_Test_Dpost_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1133,6 +1167,7 @@
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
+				EC30215F1AB70B9F00812502 /* GoogleAnalytics */,
 				29E65A4E416873C25D1B4292 /* Pods */,
 				EC55F4311A2C5ACC00A3192C /* Digipost-Test-Dpost copy-Info.plist */,
 			);
@@ -1153,12 +1188,21 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC3021911AB70E0A00812502 /* AdSupport.framework */,
+				EC30218F1AB70DD400812502 /* libz.dylib */,
+				EC30218D1AB70DC100812502 /* MobileCoreServices.framework */,
+				EC30218A1AB70DA800812502 /* libsqlite3.dylib */,
+				EC3021781AB70C2A00812502 /* SystemConfiguration.framework */,
+				EC3021761AB70C2300812502 /* CoreData.framework */,
+				EC30215D1AB70AE800812502 /* libsqlite3.0.dylib */,
+				EC30215B1AB70A9300812502 /* GoogleAnalytics_iOS_SDK.framework */,
+				EC7F9DBD1AB701080060E8BF /* Security.framework */,
 				83BAB91B1855C0AC004A7BFB /* Foundation.framework */,
 				83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */,
 				83BAB91F1855C0AC004A7BFB /* UIKit.framework */,
 				83BAB9401855C0AD004A7BFB /* XCTest.framework */,
-				42F417BB1E1843FEBA11CCC7 /* libPods.a */,
-				E49326BB1F6FE5A2E1E3BEB4 /* libPods-Digipost-Test-Dpost Tests.a */,
+				03E13B40CF574D28E1F2C73A /* Pods.framework */,
+				599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1514,6 +1558,25 @@
 			name = Accounts;
 			sourceTree = "<group>";
 		};
+		EC30215F1AB70B9F00812502 /* GoogleAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				EC30217C1AB70D9400812502 /* libAdIdAccess.a */,
+				EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */,
+				EC30217E1AB70D9400812502 /* GAI.h */,
+				EC30217F1AB70D9400812502 /* GAIDictionaryBuilder.h */,
+				EC3021801AB70D9400812502 /* GAIEcommerceFields.h */,
+				EC3021811AB70D9400812502 /* GAIEcommerceProduct.h */,
+				EC3021821AB70D9400812502 /* GAIEcommerceProductAction.h */,
+				EC3021831AB70D9400812502 /* GAIEcommercePromotion.h */,
+				EC3021841AB70D9400812502 /* GAIFields.h */,
+				EC3021851AB70D9400812502 /* GAILogger.h */,
+				EC3021861AB70D9400812502 /* GAITrackedViewController.h */,
+				EC3021871AB70D9400812502 /* GAITracker.h */,
+			);
+			name = GoogleAnalytics;
+			sourceTree = "<group>";
+		};
 		EC4146BE1AA736A8003DBF47 /* Old images */ = {
 			isa = PBXGroup;
 			children = (
@@ -1594,6 +1657,7 @@
 				83BAB9151855C0AC004A7BFB /* Frameworks */,
 				83BAB9161855C0AC004A7BFB /* Resources */,
 				E902CF5D7D404E379E086565 /* Copy Pods Resources */,
+				577B676BC2F6293A35EF45DF /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1632,6 +1696,7 @@
 				EC56AABB1A24C7BA00720109 /* Frameworks */,
 				EC56AABC1A24C7BA00720109 /* Resources */,
 				150F8DBF97F2B1991D637942 /* Copy Pods Resources */,
+				2A3E3FEB708F57AE1B2CB5C8 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1836,6 +1901,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost-Test-Dpost Tests/Pods-Digipost-Test-Dpost Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		2A3E3FEB708F57AE1B2CB5C8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost-Test-Dpost Tests/Pods-Digipost-Test-Dpost Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1849,6 +1929,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		577B676BC2F6293A35EF45DF /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5E75E61529884F13ABC62E42 /* Check Pods Manifest.lock */ = {
@@ -2622,7 +2717,6 @@
 				ECF486EB1A471A2E00E97519 /* NSString+SHA1String.m in Sources */,
 				EC7C1AEF1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				ECF486D31A471A1A00E97519 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
-				EC071B8B1A67D8F6006E65D0 /* Constants.swift in Sources */,
 				ECF486EA1A471A2E00E97519 /* NSError+ExtraInfo.m in Sources */,
 				ECF486E91A471A2E00E97519 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */,
@@ -2732,6 +2826,10 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
@@ -2768,6 +2866,10 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Staging-Enterprise-Info.plist";
 				IS_BETA = 0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -2800,6 +2902,10 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -2833,6 +2939,10 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Enterprise-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -2922,6 +3032,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kjetil Halvorsen (3D4Y7V84HV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kjetil Halvorsen (3D4Y7V84HV)";
@@ -2942,7 +3053,11 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "-DDEBUGLOG";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GAI",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "809808c9-8d50-4203-ae02-a7a04f4e9721";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -2957,6 +3072,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -2977,7 +3093,11 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GAI",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "809808c9-8d50-4203-ae02-a7a04f4e9721";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3011,6 +3131,10 @@
 				);
 				INFOPLIST_FILE = "Digipost-Test-Dpost copy-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Digipost-Test-QA-2";
 				PROVISIONING_PROFILE = "";
@@ -3047,6 +3171,10 @@
 				INFOPLIST_FILE = "Digipost-Test-Dpost copy-Info.plist";
 				IS_BETA = 0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				PRODUCT_NAME = "Digipost-Test-QA-2";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3062,10 +3190,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3077,6 +3201,10 @@
 				INFOPLIST_FILE = "Digipost-Test-Dpost Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3093,10 +3221,6 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3115,6 +3239,10 @@
 				INFOPLIST_FILE = "Digipost-Test-Dpost Tests/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";

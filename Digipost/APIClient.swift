@@ -9,6 +9,7 @@
 import Foundation
 import MobileCoreServices
 import Darwin
+import AFNetworking
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
@@ -28,7 +29,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case get = "GET"
     }
     
-    var disposable : RACDisposable?
+    //var disposable : RACDisposable?
     
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
         let manager = AFHTTPSessionManager(baseURL: nil)
@@ -43,7 +44,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var taskCounter = 0
     var isUploadingFile = false
     var taskWasUnAuthorized : Bool  = false
-    var observerTask : RACDisposable?
+//    var observerTask : RACDisposable?
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
@@ -259,7 +260,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             var changedBaseEncryptedModel : POSBaseEncryptedModel?
             if baseEncryptedModelIsAttachment {
                 changedBaseEncryptedModel = POSAttachment.existingAttachmentWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
-            }else {
+            } else {
                 changedBaseEncryptedModel = POSReceipt.existingReceiptWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
             }
             let filePath = changedBaseEncryptedModel?.decryptedFilePath()

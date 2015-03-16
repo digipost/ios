@@ -15,7 +15,7 @@
 #import "POSUploadTableViewDataSource.h"
 #import "digipost-swift.h"
 #import "POSNewFolderViewController.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 
 NSString *const kStartUploadingDocumentNotitification = @"startUploadingDocumentNotification";
 NSString *const kUploadNewFolderSegue = @"createNewFolderSegue";

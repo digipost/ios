@@ -40,7 +40,7 @@
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+//        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 
@@ -58,7 +58,7 @@
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+//        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     POSLetterViewController *letterViewController = self.letterViewController;

@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLRequestSerialization.h>
 #import "SHCOAuthViewController.h"
 #import "NSString+RandomNumber.h"

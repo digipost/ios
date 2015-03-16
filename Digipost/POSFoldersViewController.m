@@ -15,13 +15,12 @@
 //
 
 #import "POSFolder+Methods.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSFolderIcon.h"
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
-#import <UIAlertView+Blocks.h>
 #import "POSAPIManager.h"
 #import "POSModelManager.h"
 #import "POSFolderTableViewCell.h"
@@ -38,7 +37,7 @@
 #import "NSError+ExtraInfo.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSLetterViewController.h"
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
 #import "Digipost-Swift.h"

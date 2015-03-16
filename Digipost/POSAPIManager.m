@@ -1312,7 +1312,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
         if (counter > 0) {
             NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
-            DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
+//            DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
         }
     }];
 }
@@ -1616,7 +1616,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             NSError *error = nil;
             NSData *fileData = [NSData dataWithContentsOfURL:uploadURL options:NSDataReadingMappedIfSafe error:&error];
             if (error) {
-                DDLogError(@"Error reading data: %@", [error localizedDescription]);
+//                DDLogError(@"Error reading data: %@", [error localizedDescription]);
             }
             [formData appendPartWithFileData:fileData name:@"file" fileName:fileName mimeType:@"application/pdf"];
             
@@ -1888,7 +1888,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     if (counter > 0) {
         NSString *uploadWord = counter > 1 ? @"uploads" : @"upload";
-        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, uploadWord);
+        //        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, uploadWord);
     }
 }
 
@@ -2010,7 +2010,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     BOOL wasSuspended = [objc_getAssociatedObject([notification object], kSHCAPIManagerRequestWasSuspended) boolValue];
 
     if (!wasSuspended) {
-        DDLogInfo(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
+        //        DDLogInfo(@"%@ %@", [request HTTPMethod], [[request URL] absoluteString]);
     }
 }
 
@@ -2032,9 +2032,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     NSUInteger responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
 
     if (error) {
-        DDLogDebug(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
+        //        DDLogDebug(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
     } else {
-        DDLogDebug(@"%ld %@", (long)responseStatusCode, [[response URL] absoluteString]);
+        //        DDLogDebug(@"%ld %@", (long)responseStatusCode, [[response URL] absoluteString]);
     }
 }
 
@@ -2068,7 +2068,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     if (counter > 0) {
         NSString *requestWord = counter > 1 ? @"requests" : @"request";
-        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, requestWord);
+        //        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, requestWord);
     }
 }
 

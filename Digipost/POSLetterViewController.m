@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
-#import <UIActionSheet+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSLetterViewController.h"
 #import "POSAttachment.h"
 #import "POSDocument.h"
-#import <AHKActionSheet.h>
+#import <AHKActionSheet/AHKActionSheet.h>
 #import "POSFolder+Methods.h"
 #import "POSFileManager.h"
 #import "POSAPIManager.h"
@@ -36,7 +36,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
-#import <MRProgress.h>
+#import <MRProgress/MRProgress.h>
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSModelManager.h"
@@ -102,7 +102,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     @catch (NSException *exception)
     {
-        DDLogDebug(@"Caught an exception: %@", exception);
+        //        DDLogDebug(@"Caught an exception: %@", exception);
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
@@ -300,7 +300,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    DDLogError(@"%@", [error localizedDescription]);
+    //    DDLogError(@"%@", [error localizedDescription]);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -652,10 +652,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
 
-        [RACObserve(self, progress.completedUnitCount) subscribeNext:^(NSObject *progressOrAnything) {
-            self.progressView.progress = progress.fractionCompleted;
-
-        }];
+        //        [RACObserve(self, progress.completedUnitCount) subscribeNext:^(NSObject *progressOrAnything) {
+        //            self.progressView.progress = progress.fractionCompleted;
+        //        }];
         self.progress = progress;
     } else {
     }

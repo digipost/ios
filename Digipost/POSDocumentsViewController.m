@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 #import "POSDocumentsViewController.h"
@@ -34,7 +34,7 @@
 #import "SHCAttachmentsViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
-#import <AHKActionSheet.h>
+#import <AHKActionSheet/AHKActionSheet.h>
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"

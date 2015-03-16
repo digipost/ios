@@ -8,6 +8,7 @@
 
 import UIKit
 
+//import Alamofire
 
 extension APIClient {
     
@@ -30,8 +31,7 @@ extension APIClient {
         return task
     }
     
-    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
-        
+    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
@@ -66,41 +66,57 @@ extension APIClient {
     
     
     func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+        
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
+        
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
-        disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
-            if let location = racTuple.objectAtIndex(2) as? NSURL {
-                let contents = NSData(contentsOfURL: location)
-                let stringContents = NSString(data: contents!, encoding: NSASCIIStringEncoding)
-                let stringContents2 = NSString(data: contents!, encoding: NSUTF8StringEncoding)
-                success(url: location)
-            }
-            self.disposable?.dispose()
-        }
         
-        RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                let totalBytesWritten = racTuple.fourth as NSNumber
-                if let actualProgress = progress {
-                    actualProgress.completedUnitCount = totalBytesWritten.longLongValue
-                }
-            })
-        }
-        RACSignalSubscriptionNext(selector: Selector("URLSession:task:didCompleteWithError:"), fromProtocol: NSURLSessionTaskDelegate.self) { (racTuple) -> Void in
-            println(racTuple)
-            let urlSession = racTuple.first as NSURLSession
-            let downloadTask = racTuple.second as NSURLSessionTask
-            println(urlSession)
-            println(downloadTask)
-            //            let location = racTuple.third as NSError
-            //            success(url: location)
-            //            self.disposable?.dispose()
-        }
+//        Alamofire.download(.GET, "http://httpbin.org/stream/100", destination: destination)
+//            .progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+//                println(totalBytesRead)
+//            }
+//            .response { (request, response, _, error) in
+//                println(response)
+//        }
+////        Alamofire.download(.Get, url) { (url, response) -> (NSURL) in
+////            
+////            }.progress (request, response, _, error) { in
+////                println(response)
+////        }
+//        
+//        disposable = RACSignalSubscriptionNext(selector: Selector("URLSession:downloadTask:didFinishDownloadingToURL:"), fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
+//            if let location = racTuple.objectAtIndex(2) as? NSURL {
+//                let contents = NSData(contentsOfURL: location)
+//                let stringContents = NSString(data: contents!, encoding: NSASCIIStringEncoding)
+//                let stringContents2 = NSString(data: contents!, encoding: NSUTF8StringEncoding)
+//                success(url: location)
+//            }
+//            self.disposable?.dispose()
+//        }
+//        
+//        RACSignalSubscriptionNext(selector:Selector("URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:") , fromProtocol: NSURLSessionDownloadDelegate.self) { (racTuple) -> Void in
+//            dispatch_async(dispatch_get_main_queue(), {
+//                let totalBytesWritten = racTuple.fourth as NSNumber
+//                if let actualProgress = progress {
+//                    actualProgress.completedUnitCount = totalBytesWritten.longLongValue
+//                }
+//            })
+//        }
+//        RACSignalSubscriptionNext(selector: Selector("URLSession:task:didCompleteWithError:"), fromProtocol: NSURLSessionTaskDelegate.self) { (racTuple) -> Void in
+//            println(racTuple)
+//            let urlSession = racTuple.first as NSURLSession
+//            let downloadTask = racTuple.second as NSURLSessionTask
+//            println(urlSession)
+//            println(downloadTask)
+//            //            let location = racTuple.third as NSError
+//            //            success(url: location)
+//            //            self.disposable?.dispose()
+//        }
 
         let task = session.downloadTaskWithRequest(urlRequest, completionHandler: nil)
         lastPerformedTask = task
