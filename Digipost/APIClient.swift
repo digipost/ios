@@ -257,25 +257,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let baseEncryptedModelUri = baseEncryptionModel.uri
         
         let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
-            var changedBaseEncryptedModel : POSBaseEncryptedModel?
-            if baseEncryptedModelIsAttachment {
-                changedBaseEncryptedModel = POSAttachment.existingAttachmentWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
-            } else {
-                changedBaseEncryptedModel = POSReceipt.existingReceiptWithUri(baseEncryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
-            }
-            let filePath = changedBaseEncryptedModel?.decryptedFilePath()
-            if (filePath == nil) {
-                // do return nil
-                return
-            }
-            let fileURL = NSURL(fileURLWithPath: filePath!)
-            
-            var error : NSError?
-            NSFileManager.defaultManager().copyItemAtURL(url, toURL: fileURL!, error: &error)
-            if let actualError = error {
-                println("file error \(error) ")
-            }
-            
             success()
             }, failure: failure)
         let oAuthTokenInStorage = OAuthToken.oAuthTokenWithScope(highestScope!)
