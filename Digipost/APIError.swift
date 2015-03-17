@@ -26,8 +26,25 @@ class APIError: NSError {
         return apierror
     }
     
+    class func HasNoOAuthTokenForScopeError(scope: String) -> APIError {
+        let apierror = APIError(domain: Constants.Error.apiErrorDomainOAuthUnauthorized, code: Constants.Error.Code.NeedHigherAuthenticationLevel.rawValue, userInfo:[ Constants.Error.apiClientErrorScopeKey : scope])
+        return apierror
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func userNeedsHigherAuthenticationLevel() -> Bool {
+//        if code == Constants.error.code {
+//            
+//        }
+//        
+       
+        if code == Constants.Error.Code.NeedHigherAuthenticationLevel {
+           return true
+        }
+        return false
     }
 
 //    case CFHostErrorHostNotFound

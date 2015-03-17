@@ -241,15 +241,17 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         var oAuthToken = OAuthToken.oAuthTokenWithScope(highestScope!)
         
         // if we dont have token for the higher scope required
+        var attachmentScope : String?
         if oAuthToken == nil && didChooseHigherScope {
             let attachment = baseEncryptionModel as POSAttachment
-            let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-            oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
+            attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
+            oAuthToken = OAuthToken.oAuthTokenWithScope(attachmentScope!)
         }
         
         if oAuthToken == nil {
-            let error = NSError(domain: "apiManagerErrorDomain", code: 100, userInfo: nil)
-            failure(error: APIError(error: error))
+            let attachment = baseEncryptionModel as POSAttachment
+            attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
+            failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
         }
         
