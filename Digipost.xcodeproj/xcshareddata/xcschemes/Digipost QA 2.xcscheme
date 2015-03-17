@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0620"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
-               BuildableName = "Digipost-Test-QA-2.app"
-               BlueprintName = "Digipost-Test-QA-2"
+               BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
+               BuildableName = "Digipost copy.app"
+               BlueprintName = "Digipost-QA-2"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,9 +32,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
-            BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
+            BuildableName = "Digipost copy.app"
+            BlueprintName = "Digipost-QA-2"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,9 +52,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
-            BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
+            BuildableName = "Digipost copy.app"
+            BlueprintName = "Digipost-QA-2"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,9 +71,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
-            BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
+            BuildableName = "Digipost copy.app"
+            BlueprintName = "Digipost-QA-2"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
