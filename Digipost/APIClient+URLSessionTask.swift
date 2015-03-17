@@ -73,7 +73,6 @@ extension APIClient {
         Alamofire.Manager.sharedInstance.startRequestsImmediately = false
         var completedURL : NSURL?
         let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
-            
             let baseEncryptionModel : POSBaseEncryptedModel = {
                 if let attachment = encryptionModel as? POSAttachment {
                     return POSAttachment.existingAttachmentWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
@@ -93,18 +92,19 @@ extension APIClient {
                 println("response :\(response)")
                 println("object :\(object)")
                 println("request :\(request)")
-                if let error = error {
-                    failure(error: APIError(error: error))
-                }else {
+                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                    self.removeAccessTokenUsedInLastRequest()
+                    failure(error: APIError.UnauthorizedOAuthTokenError())
+                } else if let actualError = error as NSError! {
+                    failure(error: APIError(error: actualError))
+                } else {
                     success(url: completedURL!)
                 }
-                
                 println(error)
         }
         self.lastPerformedTask = request.task
         return request.task
     }
-    
     
     func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
         if let actualResponse = urlResponse as NSHTTPURLResponse! {
