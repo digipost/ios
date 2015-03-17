@@ -75,6 +75,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = false
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         
