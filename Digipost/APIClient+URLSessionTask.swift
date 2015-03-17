@@ -62,45 +62,44 @@ extension APIClient {
     }
     
     
-    func urlSessionDownloadTask(method: httpMethod, url: String, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
-        
-        let downloadURL = NSURL(string: url)
+    func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+        let downloadURL = NSURL(string: encryptionModel.uri)
         var urlRequest = NSMutableURLRequest(URL: downloadURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
-        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-        
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         Alamofire.Manager.sharedInstance.startRequestsImmediately = false
         var completedURL : NSURL?
- 
         let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
             
-            let baseEncryptionModel = POSAttachment.existingAttachmentWithUri(url, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+            let baseEncryptionModel : POSBaseEncryptedModel = {
+                if let attachment = encryptionModel as? POSAttachment {
+                    return POSAttachment.existingAttachmentWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+                } else {
+                    return POSReceipt.existingReceiptWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+                }}()
             let filePath = baseEncryptionModel.decryptedFilePath()
-            
             let fileURL = NSURL(fileURLWithPath: filePath)!
             completedURL = fileURL
             return fileURL
-        }.progress { (bytesRead, totalBytesRead, totalBytesExcpedtedToRead) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+            }.progress { (bytesRead, totalBytesRead, totalBytesExcpedtedToRead) -> Void in
                 if let actualProgress = progress as NSProgress! {
                     actualProgress.completedUnitCount = totalBytesRead
                     println(actualProgress)
                 }
-            })
-        }.response { (request, response, object, error) -> Void in
-            println("response :\(response)")
-            println("object :\(object)")
-            println("request :\(request)")
-            if let error = error {
-                failure(error: APIError(error: error))
-            }else {
-                success(url: completedURL!)
-            }
-            
-            println(error)
+            }.response { (request, response, object, error) -> Void in
+                println("response :\(response)")
+                println("object :\(object)")
+                println("request :\(request)")
+                if let error = error {
+                    failure(error: APIError(error: error))
+                }else {
+                    success(url: completedURL!)
+                }
+                
+                println(error)
         }
         self.lastPerformedTask = request.task
         return request.task

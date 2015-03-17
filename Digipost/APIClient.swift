@@ -256,7 +256,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
         
-        let task = urlSessionDownloadTask(httpMethod.get, url: baseEncryptionModel.uri, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
+        let task = urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
             success()
             }, failure: failure)
         let oAuthTokenInStorage = OAuthToken.oAuthTokenWithScope(highestScope!)
