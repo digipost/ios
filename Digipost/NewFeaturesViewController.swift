@@ -137,11 +137,11 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             if let resource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
                 if resource.mailboxes.allObjects.count == 1 {
                     let viewcontroller:POSFoldersViewController = storyboard.instantiateViewControllerWithIdentifier("FoldersViewController") as POSFoldersViewController
-                    self.navigationController?.pushViewController(viewcontroller, animated: false)
+                    self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
                 }
             } else {
                 let viewcontroller:AccountViewController = storyboard.instantiateViewControllerWithIdentifier("accountViewController") as AccountViewController
-                self.navigationController?.pushViewController(viewcontroller, animated: false)
+                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             }
         }
     }
