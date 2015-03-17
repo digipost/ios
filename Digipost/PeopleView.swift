@@ -56,14 +56,14 @@ class PeopleView: UIView {
 		bigpersonhead = CAShapeLayer()
 		Bigperson.addSublayer(bigpersonhead)
 		bigpersonhead.fillColor   = nil
-		bigpersonhead.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bigpersonhead.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		bigpersonhead.lineWidth   = 3
 		
 		bigpersonbody = CAShapeLayer()
 		Bigperson.addSublayer(bigpersonbody)
 		bigpersonbody.fillRule    = kCAFillRuleEvenOdd
 		bigpersonbody.fillColor   = nil
-		bigpersonbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bigpersonbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		bigpersonbody.lineWidth   = 3
 		
 		Smallperson = CALayer()
@@ -73,14 +73,14 @@ class PeopleView: UIView {
 		smallpersonhead = CAShapeLayer()
 		Smallperson.addSublayer(smallpersonhead)
 		smallpersonhead.fillColor   = nil
-		smallpersonhead.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		smallpersonhead.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		smallpersonhead.lineWidth   = 3
 		
 		smallpersonbody = CAShapeLayer()
 		Smallperson.addSublayer(smallpersonbody)
 		smallpersonbody.fillRule    = kCAFillRuleEvenOdd
 		smallpersonbody.fillColor   = nil
-		smallpersonbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		smallpersonbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		smallpersonbody.lineWidth   = 3
 		
 		Bag = CALayer()
@@ -90,13 +90,13 @@ class PeopleView: UIView {
 		bagbody = CAShapeLayer()
 		Bag.addSublayer(bagbody)
 		bagbody.fillColor   = nil
-		bagbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		bagbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		bagbody.lineWidth   = 3
 		
 		baghandle = CAShapeLayer()
 		Bag.addSublayer(baghandle)
 		baghandle.fillColor   = nil
-		baghandle.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baghandle.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		baghandle.lineWidth   = 3
 		
 		Group = CALayer()
@@ -106,13 +106,13 @@ class PeopleView: UIView {
 		baglid = CAShapeLayer()
 		Group.addSublayer(baglid)
 		baglid.fillColor   = nil
-		baglid.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baglid.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		baglid.lineWidth   = 3
 		
 		baglock = CAShapeLayer()
 		Group.addSublayer(baglock)
 		baglock.fillColor   = nil
-		baglock.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		baglock.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		baglock.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -122,7 +122,7 @@ class PeopleView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor.digipostProfileTextColor().CGColor;
 		
 		setupLayerFrames()
 		

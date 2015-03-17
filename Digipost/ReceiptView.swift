@@ -58,31 +58,31 @@ class ReceiptView: UIView {
 		kvitto.addSublayer(receiptbody)
 		receiptbody.fillRule    = kCAFillRuleEvenOdd
 		receiptbody.fillColor   = nil
-		receiptbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		receiptbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		receiptbody.lineWidth   = 3
 		
 		receiptline1 = CAShapeLayer()
 		kvitto.addSublayer(receiptline1)
 		receiptline1.fillColor   = nil
-		receiptline1.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		receiptline1.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		receiptline1.lineWidth   = 3
 		
 		receiptline2 = CAShapeLayer()
 		kvitto.addSublayer(receiptline2)
 		receiptline2.fillColor   = nil
-		receiptline2.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		receiptline2.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		receiptline2.lineWidth   = 3
 		
 		receiptline3 = CAShapeLayer()
 		kvitto.addSublayer(receiptline3)
 		receiptline3.fillColor   = nil
-		receiptline3.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		receiptline3.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		receiptline3.lineWidth   = 3
 		
 		receiptline4 = CAShapeLayer()
 		kvitto.addSublayer(receiptline4)
 		receiptline4.fillColor   = nil
-		receiptline4.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		receiptline4.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		receiptline4.lineWidth   = 3
 		
 		kort = CALayer()
@@ -93,12 +93,12 @@ class ReceiptView: UIView {
 		cardbody = CAShapeLayer()
 		kort.addSublayer(cardbody)
 		cardbody.fillColor   = nil
-		cardbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		cardbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		cardbody.lineWidth   = 3
 		
 		magneticstripe = CAShapeLayer()
 		kort.addSublayer(magneticstripe)
-		magneticstripe.fillColor = UIColor.digipostAnimationGrey().CGColor
+		magneticstripe.fillColor = UIColor.digipostProfileTextColor().CGColor
 		magneticstripe.lineWidth = 0
 		
 		litenkvadrat = CALayer()
@@ -108,21 +108,21 @@ class ReceiptView: UIView {
 		hologram = CAShapeLayer()
 		litenkvadrat.addSublayer(hologram)
 		hologram.fillColor   = nil
-		hologram.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologram.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		hologram.lineWidth   = 3
 		
 		hologramline = CAShapeLayer()
 		kort.addSublayer(hologramline)
 		hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologramline.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		hologramline.lineWidth   = 3
 		
 		hologramline2 = CAShapeLayer()
 		kort.addSublayer(hologramline2)
 		hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		hologramline2.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).CGColor
-		hologramline2.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		hologramline2.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		hologramline2.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -132,7 +132,7 @@ class ReceiptView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor.digipostProfileTextColor().CGColor;
 		
 		setupLayerFrames()
 		

@@ -46,8 +46,4 @@ extension UIColor {
         return UIColor(r: 224, g: 209, b: 208)
     }
     
-    class func digipostAnimationGrey () -> UIColor {
-        return UIColor(r: 77, g: 79, b: 83)
-    }
-    
 }

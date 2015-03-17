@@ -58,27 +58,27 @@ class UploadView: UIView {
 		
 		flash = CAShapeLayer()
 		Camera.addSublayer(flash)
-		flash.fillColor   = UIColor.digipostAnimationGrey().CGColor
-		flash.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		flash.fillColor   = UIColor.digipostProfileTextColor().CGColor
+		flash.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		flash.lineWidth   = 3
 		
 		body = CAShapeLayer()
 		Camera.addSublayer(body)
 		body.fillRule    = kCAFillRuleEvenOdd
 		body.fillColor   = nil
-		body.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		body.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		body.lineWidth   = 3
 		
 		handle = CAShapeLayer()
 		Camera.addSublayer(handle)
 		handle.fillColor   = nil
-		handle.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		handle.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		handle.lineWidth   = 3
 		
 		lens = CAShapeLayer()
 		Camera.addSublayer(lens)
 		lens.fillColor   = nil
-		lens.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		lens.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		lens.lineWidth   = 3
 		
 		Upload = CALayer()
@@ -92,20 +92,20 @@ class UploadView: UIView {
 		line = CAShapeLayer()
 		Basket.addSublayer(line)
 		line.fillColor   = nil
-		line.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		line.lineWidth   = 3
 		
 		line2 = CAShapeLayer()
 		Basket.addSublayer(line2)
 		line2.fillColor   = nil
-		line2.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line2.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		line2.lineWidth   = 3
 		
 		line3 = CAShapeLayer()
 		Basket.addSublayer(line3)
 		line3.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		line3.fillColor   = nil
-		line3.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		line3.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		line3.lineWidth   = 3
 		
 		Arrow = CALayer()
@@ -115,19 +115,19 @@ class UploadView: UIView {
 		arrowbody = CAShapeLayer()
 		Arrow.addSublayer(arrowbody)
 		arrowbody.fillColor   = nil
-		arrowbody.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		arrowbody.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		arrowbody.lineWidth   = 3
 		
 		leftarrow = CAShapeLayer()
 		Arrow.addSublayer(leftarrow)
 		leftarrow.fillColor   = nil
-		leftarrow.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		leftarrow.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		leftarrow.lineWidth   = 3
 		
 		rightarrow = CAShapeLayer()
 		Arrow.addSublayer(rightarrow)
 		rightarrow.fillColor   = nil
-		rightarrow.strokeColor = UIColor.digipostAnimationGrey().CGColor
+		rightarrow.strokeColor = UIColor.digipostProfileTextColor().CGColor
 		rightarrow.lineWidth   = 3
 		
 		animationText = CATextLayer()
@@ -137,7 +137,7 @@ class UploadView: UIView {
 		animationText.font            = "HelveticaNeue"
 		animationText.fontSize        = 17
 		animationText.alignmentMode   = kCAAlignmentCenter;
-		animationText.foregroundColor = UIColor.digipostAnimationGrey().CGColor;
+		animationText.foregroundColor = UIColor.digipostProfileTextColor().CGColor;
 		
 		setupLayerFrames()
 		
