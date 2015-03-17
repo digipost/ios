@@ -184,7 +184,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
                  forAuthenticationChallenge:challenge];
         } else {
-            DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+            //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
 
