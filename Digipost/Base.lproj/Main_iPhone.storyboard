@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -1007,7 +1007,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ny mappe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="435-rs-73K">
                                             <rect key="frame" x="18" y="11" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1250,7 +1250,7 @@
                                             </imageView>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="akV-fc-y5R">
                                                 <rect key="frame" x="0.0" y="20" width="310" height="297"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="Qq6-Sc-2De" customClass="POSLetterPopoverTableViewCell">
                                                         <rect key="frame" x="0.0" y="55" width="310" height="44"/>
@@ -1421,6 +1421,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="19"/>
                                         <state key="normal" title="LOGIN_BUTTON">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1483,6 +1484,16 @@
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="fv5-4n-dtY" secondAttribute="leading" id="yGd-Hy-LNJ"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igh-iJ-6nB">
+                                <rect key="frame" x="16" y="416" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="oMI-WZ-2Yt"/>
+                                    <constraint firstAttribute="width" constant="288" id="sGL-MF-cAN"/>
+                                </constraints>
+                                <state key="normal" title="REPLAY_ONBOARDING_BUTTON">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1490,7 +1501,9 @@
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="LhG-lc-g0s"/>
                             <constraint firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="LpZ-C6-aeO"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="PMQ-ix-z3L"/>
+                            <constraint firstAttribute="centerX" secondItem="igh-iJ-6nB" secondAttribute="centerX" constant="-0.5" id="WMN-eZ-gTu"/>
                             <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="dp6-xd-ZsZ"/>
+                            <constraint firstItem="wTy-nL-Oqt" firstAttribute="top" secondItem="igh-iJ-6nB" secondAttribute="bottom" constant="14" id="gsn-3L-ShN"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-34" id="uRx-PE-hih"/>
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-20" id="xHq-0Z-sUz"/>
                         </constraints>
@@ -1503,6 +1516,7 @@
                         <outlet property="loginView" destination="cSK-Bb-kQC" id="c6a-Re-bcM"/>
                         <outlet property="privacyButton" destination="qBu-VV-6Ae" id="cDs-8j-p7g"/>
                         <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
+                        <outlet property="replayOnboardingButton" destination="igh-iJ-6nB" id="Q6Y-hP-3gI"/>
                         <segue destination="8hc-kI-yQH" kind="push" identifier="accountSegue" id="8sB-AL-W3R"/>
                         <segue destination="J0H-vT-0Kh" kind="push" identifier="goToInboxFolderAtStartupSegue" id="eDA-DZ-Lcc"/>
                         <segue destination="mgI-2c-YJ5" kind="push" identifier="goToDocumentsFromLoginSegue" id="6ll-nd-HYD"/>
@@ -1540,7 +1554,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="270" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>

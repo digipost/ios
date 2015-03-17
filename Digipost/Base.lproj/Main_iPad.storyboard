@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -330,16 +330,28 @@
                                     <constraint firstItem="qUg-Iy-BH3" firstAttribute="top" secondItem="daO-Ah-4uu" secondAttribute="bottom" constant="38" id="yVu-Et-y5e"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMK-4H-fWK">
+                                <rect key="frame" x="16" y="910" width="736" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="VKw-7f-1nm"/>
+                                    <constraint firstAttribute="width" constant="736" id="dMs-YX-yQ8"/>
+                                </constraints>
+                                <state key="normal" title="REPLAY_ONBOARDING_BUTTON">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="DMK-4H-fWK" secondAttribute="centerX" id="8jQ-LH-fFE"/>
                             <constraint firstAttribute="centerY" secondItem="S6J-F3-PpA" secondAttribute="centerY" constant="240.5" id="ALE-0V-eCJ"/>
                             <constraint firstItem="S6J-F3-PpA" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="EZR-RZ-aUR"/>
                             <constraint firstAttribute="trailing" secondItem="S6J-F3-PpA" secondAttribute="trailing" id="Joc-sr-c9c"/>
                             <constraint firstItem="TTB-LP-a65" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="Ufd-2g-3nm"/>
                             <constraint firstAttribute="trailing" secondItem="TTB-LP-a65" secondAttribute="trailing" id="ZqD-lR-J2R"/>
                             <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="TTB-LP-a65" secondAttribute="bottom" id="fug-Ub-sf7"/>
+                            <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="DMK-4H-fWK" secondAttribute="bottom" constant="20" id="iXn-5s-XCE"/>
                             <constraint firstItem="TTB-LP-a65" firstAttribute="top" secondItem="B5a-Fo-gZN" secondAttribute="bottom" constant="-20" id="oXz-rA-iTB"/>
                         </constraints>
                     </view>
@@ -349,6 +361,7 @@
                         <outlet property="loginButton" destination="daO-Ah-4uu" id="Cgq-ek-Dwu"/>
                         <outlet property="privacyButton" destination="4UT-VF-ZhR" id="JW9-Gl-Wbg"/>
                         <outlet property="registerButton" destination="qUg-Iy-BH3" id="IpP-y3-cyn"/>
+                        <outlet property="replayOnboardingButton" destination="DMK-4H-fWK" id="4HB-Ti-SE6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ei-DN-ba6" userLabel="First Responder" sceneMemberID="firstResponder"/>
