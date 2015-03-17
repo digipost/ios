@@ -8,7 +8,10 @@
 
 import UIKit
 
-
+@objc
+protocol NewFeaturesViewControllerDelegate {
+    func newFeaturesViewControllerDidDismiss(newFeaturesViewController: NewFeaturesViewController)
+}
 
 extension UIFont{
     class func fonstSizeForCurrentDevice() -> UIFont{
@@ -36,7 +39,8 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     var labelTexts = [String]()
     var whatsNewGuideItems = [WhatsNewGuideItem]()
     var setupFeatures_dispatch_token: dispatch_once_t = 0
-    
+    weak var delegate : NewFeaturesViewControllerDelegate?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +55,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         doneBarButton.title = NSLocalizedString("new feature barbutton title", comment: "bar button title")
         navBar.title = NSLocalizedString("new feature navbar title", comment: "nav bar title")
         scrollView.delegate = self
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -132,17 +137,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
             self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
             NSNotificationCenter.defaultCenter().postNotificationName(kRefreshDocumentsContentNotificationName, object: nil)
         } else {
-            var storyboard = UIStoryboard.storyboardForCurrentUserInterfaceIdiom()
-
-            if let resource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
-                if resource.mailboxes.allObjects.count == 1 {
-                    let viewcontroller:POSFoldersViewController = storyboard.instantiateViewControllerWithIdentifier("FoldersViewController") as POSFoldersViewController
-                    self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-                }
-            } else {
-                let viewcontroller:AccountViewController = storyboard.instantiateViewControllerWithIdentifier("accountViewController") as AccountViewController
-                self.navigationController?.dismissViewControllerAnimated(true, completion: nil)
-            }
+            self.delegate?.newFeaturesViewControllerDidDismiss(self)
         }
     }
     
