@@ -48,6 +48,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (strong, nonatomic) UIImageView *titleImageView;
+@property (strong, nonatomic) IBOutlet UIButton *replayOnboardingButton;
 
 @end
 
@@ -77,6 +78,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
+    [self.replayOnboardingButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE", @"Show Information") forState:UIControlStateNormal];
 
     self.screenName = kLoginViewControllerScreenName;
 
@@ -111,9 +115,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
-
+        [self.replayOnboardingButton setHidden:YES];
         [self.loginView setHidden:YES];
         [self presentOnboarding];
+        
     }
 
     UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
@@ -289,6 +294,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     if ([self.loginView isHidden]) {
         [self.loginView setHidden:NO];
+        [self.replayOnboardingButton setHidden:NO];
     }
 }
 

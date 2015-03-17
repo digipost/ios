@@ -33,12 +33,14 @@ class OnboardingLoginViewController: UIViewController {
 
     @IBAction func loginButtonAction(sender: UIButton) {
         // Store that user has viewed the onboarding
-        
+
         UIView.animateWithDuration(0.3, animations: { () -> Void in
             self.view.frame.origin.x -= self.view.frame.width
         }) { (Bool) -> Void in
             Guide.setOnboaringHasBeenWatched()
-            self.delegate?.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
+            if let del = self.delegate {
+              del.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
+            }
         }
     }
     
