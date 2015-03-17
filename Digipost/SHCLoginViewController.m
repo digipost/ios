@@ -40,7 +40,7 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
@@ -65,7 +65,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-//        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 
@@ -92,7 +92,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-//        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
@@ -118,7 +118,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self.replayOnboardingButton setHidden:YES];
         [self.loginView setHidden:YES];
         [self presentOnboarding];
-        
     }
 
     UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
@@ -180,6 +179,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
     UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+    NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
+    newFeaturesController.delegate = self;
     [self presentViewController:navigationController animated:YES completion:nil];
 }
 
@@ -237,18 +238,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
         } else {
-
-            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
-            if ([resource.mailboxes.allObjects count] == 1) {
-                [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
-                                          sender:self];
-                [self.navigationController setNavigationBarHidden:NO animated:NO];
-            } else {
-                [self performSegueWithIdentifier:@"accountSegue"
-                                          sender:self];
-                [self.navigationController setNavigationBarHidden:NO animated:NO];
-            }
+            [self performSegueToViewController];
         }
     }
 }
@@ -263,6 +253,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         
         [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
 
+    }];
+}
+
+#pragma mark - NewFeatures dismiss controller delegate
+
+- (void)newFeaturesViewControllerDidDismiss:(NewFeaturesViewController *)newFeaturesViewController
+{
+    [newFeaturesViewController dismissViewControllerAnimated:NO completion:^{
+        [self.loginView setHidden:NO];
+        [self performSegueToViewController];
     }];
 }
 
@@ -306,6 +306,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self.navigationController popToViewController:self
                                               animated:YES];
     } else {
+    }
+}
+
+- (void)performSegueToViewController
+{
+    POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+
+    if ([resource.mailboxes.allObjects count] == 1) {
+        [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
+                                  sender:self];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    } else {
+        [self performSegueWithIdentifier:@"accountSegue"
+                                  sender:self];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
     }
 }
 
