@@ -250,6 +250,9 @@
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
 
+/* Show information / Watch onboarding again */
+"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Vis informasjon";
+
 /* Archive */
 "FOLDER_NAME_ARCHIVE" = "Arkivet";
 
