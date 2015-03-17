@@ -633,7 +633,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([self needsAuthenticationToOpen]) {
         [self showUnlockViewIfNotPresent];
         return;
-        //        [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.1
@@ -652,9 +651,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSInteger fileSize = [self.attachment.fileSize integerValue];
         progress.totalUnitCount = (int64_t)fileSize;
 
-        //        [RACObserve(self, progress.completedUnitCount) subscribeNext:^(NSObject *progressOrAnything) {
-        //            self.progressView.progress = progress.fractionCompleted;
-        //        }];
+        if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
+            [self.progress removeObserver:self
+                               forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
+                                  context:kSHCLetterViewControllerKVOContext];
+        }
+        [progress addObserver:self
+                   forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
+                      options:NSKeyValueObservingOptionNew
+                      context:kSHCLetterViewControllerKVOContext];
         self.progress = progress;
     } else {
     }
