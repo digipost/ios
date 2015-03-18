@@ -84,12 +84,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
+// just a helper function that lets us fetch current attachment if its been nilled out by Core data
+@property (nonatomic, strong) NSString *currentAttachmentURI;
+
 @end
 
 @implementation POSLetterViewController
 
-@synthesize attachment = _attachment;
 @synthesize receipt = _receipt;
+@synthesize attachment = _attachment;
 
 #pragma mark - NSObject
 
@@ -410,9 +413,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (POSAttachment *)attachment
 {
+    // if attachment is refreshed in background, it can be "lost", just refetch it, to get it back
+    if (_attachment == nil) {
+        _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    } else if (_attachment.uri == nil) {
+        _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    }
     return _attachment;
 }
-
 - (void)setAttachment:(POSAttachment *)attachment
 {
 
@@ -427,6 +435,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     _attachment = attachment;
     _receipt = nil;
+
+    self.currentAttachmentURI = attachment.uri;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (self.masterViewControllerPopoverController) {
@@ -916,6 +926,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)showRenameAlertView
 {
     POSDocument *document = self.attachment.document;
+
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") style:UIAlertViewStylePlainTextInput cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
         if (buttonIndex == 1) {
             NSString *name = [alertView textFieldAtIndex:0].text;
@@ -1024,6 +1035,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *message = nil;
     NSString *actionButtonTitle = nil;
     NSString *cancelButtonTitle = nil;
+    POSInvoice *invoice = self.attachment.invoice;
+    NSLog(@"%@", invoice);
 
     if (self.attachment.invoice.timePaid) {
         title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE", @"The invoice has been registered");
@@ -1198,6 +1211,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     //    }
 
     NSString *attachmentUri = self.attachment.uri;
+    NSLog(@"%@", self.currentAttachmentURI);
+
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
                                                   mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress

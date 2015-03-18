@@ -133,6 +133,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
     }
+    [self.tableView reloadData];
 
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
@@ -173,7 +174,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.selectedDocumentUpdateUri = document.updateUri;
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
-        attachmentsViewController.attachments = document.attachments;
+        attachmentsViewController.currentDocumentUpdateURI = document.updateUri;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         POSAttachment *attachment = (POSAttachment *)sender;
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
@@ -509,13 +510,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
+    [self updateFetchedResultsController];
+
     POSFolder *folder = [POSFolder existingFolderWithName:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
                                                   mailboxDigipostAddress:self.mailboxDigipostAddress
                                                               attributes:responseDictionary];
-        NSLog(@"%lu",(unsigned long)responseDictionary.count);
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
@@ -527,8 +529,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
             
             POSDocument *selectedDocument = [POSDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            attachmentsViewController.currentDocumentUpdateURI = selectedDocument.updateUri;
             
-            attachmentsViewController.attachments = selectedDocument.attachments;
         }
         
         // quickfix for a bug that causes attachments document to become nil
@@ -639,7 +641,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [[APIClient sharedClient] moveDocument:document toFolder:folder success:^{
         document.folder = folder;
         
-        [[POSModelManager sharedManager].managedObjectContext save:nil];
+        [[POSModelManager sharedManager] logSavingManagedObjectContext];
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         [self updateFetchedResultsController];
@@ -707,13 +709,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
     //    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
+
     //        return;
     //    }
 
-    [[APIClient sharedClient] updateBankAccountWithUri:uri success:nil
-                                               failure:^(APIError *error) {
-                                                   [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-                                               }];
+    [[APIClient sharedClient] updateBankAccountWithUri:uri success:^(NSDictionary *response) {
+
+    }
+        failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        }];
 }
 
 - (void)uploadProgressDidChange:(NSNotification *)notification

@@ -39,6 +39,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 @interface SHCAttachmentsViewController ()
 
+@property (nonatomic, strong) NSOrderedSet *attachments;
+
 @end
 
 @implementation SHCAttachmentsViewController
@@ -50,7 +52,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [super viewDidLoad];
 
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleBordered
+                                                                          style:UIBarButtonItemStyleDone
                                                                          target:nil
                                                                          action:nil];
 
@@ -58,6 +60,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
     [self generateTableViewHeader];
     // select first row
+    self.attachments = [self attachmentsForCurrentDocument];
     POSAttachment *attachment = self.attachments[0];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self validateOpeningAttachment:attachment
@@ -73,6 +76,12 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                                   }];
             }];
     }
+}
+
+- (NSOrderedSet *)attachmentsForCurrentDocument
+{
+    POSDocument *currentDocument = [POSDocument existingDocumentWithUpdateUri:self.currentDocumentUpdateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    return currentDocument.attachments;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,6 +108,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [tracker set:kGAIScreenName
            value:kAttachmentsViewControllerScreenName];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    self.attachments = [self attachmentsForCurrentDocument];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -122,7 +132,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)reloadTableViewDataForDocument:(POSDocument *)document
 {
-
     self.attachments = document.attachments;
     [self.tableView reloadData];
 }
