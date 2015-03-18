@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate {
+class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -54,7 +54,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         tableView.registerNib(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
         tableView.registerNib(UINib(nibName: Constants.Account.accountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
-        
+                
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
@@ -71,6 +71,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     func refreshContentFromServer() {
         updateContentsFromServerUseInitiateRequest(0)
+    }
+    
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
+        return false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        self.navigationController?.interactivePopGestureRecognizer.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
