@@ -109,6 +109,9 @@
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:@""];
+    if ([self.textField.text isEqualToString:[NSString string]] || self.textField.text == nil) {
+        return;
+    }
     [[APIClient sharedClient] createFolder:self.textField.text iconName:selectedIcon.name mailBox:self.mailbox success:^{
         
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
