@@ -13,19 +13,21 @@ import Alamofire
 extension APIClient {
     
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
-        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data,response, error) in
-            dispatch_async(dispatch_get_main_queue(), {
+        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
                 let htttpURL = response as NSHTTPURLResponse
                 println(htttpURL)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
                 } else if let actualError = error as NSError! {
-                    failure(error: APIError(error: actualError))
+                    dispatch_async(dispatch_get_main_queue(), {
+                        failure(error: APIError(error: actualError))
+                    })
                 } else {
-                    success()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        success()
+                    })
                 }
-            });
         })
         lastPerformedTask = task
         return task
@@ -49,6 +51,7 @@ extension APIClient {
                             failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
                         } else {
                             let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
+                            
                             success(serializer)
                         }
                     } else {
@@ -72,13 +75,16 @@ extension APIClient {
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         Alamofire.Manager.sharedInstance.startRequestsImmediately = false
         var completedURL : NSURL?
+        println(encryptionModel.uri)
+        let downloadURI = encryptionModel.uri
         let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
             let baseEncryptionModel : POSBaseEncryptedModel = {
                 if let attachment = encryptionModel as? POSAttachment {
-                    return POSAttachment.existingAttachmentWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+                    return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
                 } else {
-                    return POSReceipt.existingReceiptWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+                    return POSReceipt.existingReceiptWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
                 }}()
+            
             let filePath = baseEncryptionModel.decryptedFilePath()
             let fileURL = NSURL(fileURLWithPath: filePath)!
             completedURL = fileURL
@@ -124,7 +130,6 @@ extension APIClient {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        println( urlRequest.allHTTPHeaderFields)
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task
     }
