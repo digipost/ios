@@ -120,7 +120,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = __ROOT_RESOURCE_URI__
         let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+            if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.updateRootResource(success: success, failure: failure)
             } else {
                 failure(error: error)
@@ -135,7 +135,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let rootResource = __ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
         let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+            if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.updateRootResource(scope: scope, success: success, failure: failure)
             } else {
                 failure(error: error)

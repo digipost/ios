@@ -671,7 +671,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                       options:NSKeyValueObservingOptionNew
                       context:kSHCLetterViewControllerKVOContext];
         self.progress = progress;
-    } else {
     }
 
     [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
@@ -733,9 +732,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                              [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
             }];
     } else {
-
-        NSLog(@"uri %@", baseEncryptionModel.uri);
-
         [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
             
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
@@ -870,12 +866,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)deleteDocument
 {
-
     NSAssert(self.attachment != nil, @"no attachment document to delete");
     [[APIClient sharedClient] deleteDocument:self.attachment.document.deleteUri success:^{
         _attachment = nil;
         if (self.documentsViewController) {
-            
             self.documentsViewController.needsReload = YES;
             // Becuase we might have been pushed from the attachments vc, make sure that we pop
             // all the way back to the documents vc.

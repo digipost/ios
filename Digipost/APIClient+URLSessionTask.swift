@@ -14,18 +14,18 @@ extension APIClient {
     
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-                if self.isUnauthorized(response as NSHTTPURLResponse?) {
-                    self.removeAccessTokenUsedInLastRequest()
-                    failure(error: APIError.UnauthorizedOAuthTokenError())
-                } else if let actualError = error as NSError! {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        failure(error: APIError(error: actualError))
-                    })
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        success()
-                    })
-                }
+            if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                self.removeAccessTokenUsedInLastRequest()
+                failure(error: APIError.UnauthorizedOAuthTokenError())
+            } else if let actualError = error as NSError! {
+                dispatch_async(dispatch_get_main_queue(), {
+                    failure(error: APIError(error: actualError))
+                })
+            } else {
+                dispatch_async(dispatch_get_main_queue(), {
+                    success()
+                })
+            }
         })
         lastPerformedTask = task
         return task

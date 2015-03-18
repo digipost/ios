@@ -15,7 +15,7 @@ private struct Keys {
     static let scopeKey = "scope"
 }
 
-private struct AuthenticationLevel {
+struct AuthenticationLevel {
     static let password = "PASSWORD"
     static let twoFactor = "TWO_FACTOR"
     static let idPorten4 = "IDPORTEN_4"
