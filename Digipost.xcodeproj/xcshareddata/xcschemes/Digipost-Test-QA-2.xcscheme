@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
                BuildableName = "Digipost-Test-QA-2.app"
-               BlueprintName = "Digipost-Test-QA-2"
+               BlueprintName = "Digipost-Test-QA-2-DEPRECATED"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
             BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintName = "Digipost-Test-QA-2-DEPRECATED"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -54,7 +54,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
             BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintName = "Digipost-Test-QA-2-DEPRECATED"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -73,7 +73,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EC55F3BA1A2C5ACC00A3192C"
             BuildableName = "Digipost-Test-QA-2.app"
-            BlueprintName = "Digipost-Test-QA-2"
+            BlueprintName = "Digipost-Test-QA-2-DEPRECATED"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

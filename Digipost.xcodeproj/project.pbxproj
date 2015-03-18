@@ -2100,9 +2100,9 @@
 			productReference = EC2DCC911AB864AB0063755E /* Digipost copy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC55F3BA1A2C5ACC00A3192C /* Digipost-Test-QA-2 */ = {
+		EC55F3BA1A2C5ACC00A3192C /* Digipost-Test-QA-2-DEPRECATED */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC55F42D1A2C5ACC00A3192C /* Build configuration list for PBXNativeTarget "Digipost-Test-QA-2" */;
+			buildConfigurationList = EC55F42D1A2C5ACC00A3192C /* Build configuration list for PBXNativeTarget "Digipost-Test-QA-2-DEPRECATED" */;
 			buildPhases = (
 				EC55F3BB1A2C5ACC00A3192C /* Check Pods Manifest.lock */,
 				EC55F3BC1A2C5ACC00A3192C /* Sources */,
@@ -2114,7 +2114,7 @@
 			);
 			dependencies = (
 			);
-			name = "Digipost-Test-QA-2";
+			name = "Digipost-Test-QA-2-DEPRECATED";
 			productName = Digipost;
 			productReference = EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */;
 			productType = "com.apple.product-type.application";
@@ -2194,7 +2194,7 @@
 				EC2DCB3B1AB84EAB0063755E /* DigipostBeta */,
 				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
 				EC56AABD1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
-				EC55F3BA1A2C5ACC00A3192C /* Digipost-Test-QA-2 */,
+				EC55F3BA1A2C5ACC00A3192C /* Digipost-Test-QA-2-DEPRECATED */,
 				83A31AF91855D706007045B9 /* Digipost-Beta-DEPRECATED */,
 				EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */,
 			);
@@ -4328,7 +4328,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC55F42D1A2C5ACC00A3192C /* Build configuration list for PBXNativeTarget "Digipost-Test-QA-2" */ = {
+		EC55F42D1A2C5ACC00A3192C /* Build configuration list for PBXNativeTarget "Digipost-Test-QA-2-DEPRECATED" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC55F42E1A2C5ACC00A3192C /* Debug */,
