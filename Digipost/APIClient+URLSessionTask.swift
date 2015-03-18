@@ -14,8 +14,6 @@ extension APIClient {
     
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-                let htttpURL = response as NSHTTPURLResponse
-                println(htttpURL)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
