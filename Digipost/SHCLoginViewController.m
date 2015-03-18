@@ -80,7 +80,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
-    [self.replayOnboardingButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE", @"Show Information") forState:UIControlStateNormal];
 
     self.screenName = kLoginViewControllerScreenName;
 
