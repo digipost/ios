@@ -1118,7 +1118,7 @@
 		8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test-Dpost.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ValidateOpening.h"; sourceTree = "<group>"; };
 		839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ValidateOpening.m"; sourceTree = "<group>"; };
-		83A31B0B1855D706007045B9 /* Digipost-Beta.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Beta.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A31B0B1855D706007045B9 /* Digipost-Beta-DEPRECATED.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Beta-DEPRECATED.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Staging-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83B6BE9A1897A987006D9B20 /* SHCSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCSplitViewController.h; sourceTree = "<group>"; };
@@ -1566,7 +1566,7 @@
 			children = (
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
 				8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */,
-				83A31B0B1855D706007045B9 /* Digipost-Beta.app */,
+				83A31B0B1855D706007045B9 /* Digipost-Beta-DEPRECATED.app */,
 				EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */,
 				EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */,
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
@@ -2037,7 +2037,7 @@
 			);
 			name = "Digipost-Beta-DEPRECATED";
 			productName = Digipost;
-			productReference = 83A31B0B1855D706007045B9 /* Digipost-Beta.app */;
+			productReference = 83A31B0B1855D706007045B9 /* Digipost-Beta-DEPRECATED.app */;
 			productType = "com.apple.product-type.application";
 		};
 		83BAB9171855C0AC004A7BFB /* Digipost */ = {
