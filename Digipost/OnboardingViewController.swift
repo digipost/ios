@@ -87,7 +87,6 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         logoInitialPositionY = logoImageView.center.y
         welcomeLabelInitialPositionY = welcomeLabel.center.y
         panBackground()
-        println("layout subviews")
     }
 
     func setupAnimationViews() {
@@ -141,7 +140,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             // Then we use this translated x offset to increase/decreace the y position of the button
             let translatedButtonConstant = getStartedButtonInitialBottomConstraint - startPointX
             // Scroll mulitpliers to increase the scroll rate of the translated startpoint
-            let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.45 : 1.72
+            let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.36 : 1.57
             let scrollRateMultiplierIPAD:CGFloat = 0.7
             let translatedLoginContainerConstant = loginContainerViewInitialTopConstant - (startPointX * scrollRateMultiplier)
             let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD)
