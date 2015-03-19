@@ -1359,6 +1359,7 @@
 		ECDB9A021A5A904E0013DF4F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
+		ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
 		ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
@@ -4354,6 +4355,7 @@
 			children = (
 				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
 				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
+				ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */,
 				ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */,
 				EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */,
 				EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */,
@@ -4365,7 +4367,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */;
+			currentVersion = ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

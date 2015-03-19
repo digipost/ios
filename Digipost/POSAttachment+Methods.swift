@@ -28,10 +28,14 @@ extension POSAttachment {
             if scope == kOauth2ScopeFull {
                 return false
             } else {
-                let existingScope = OAuthToken.oAuthTokenWithScope(scope)
-                println(existingScope)
-                println(scope)
-                if existingScope?.accessToken != nil {
+                let existingToken = OAuthToken.oAuthTokenWithScope(scope)
+                if existingToken?.accessToken != nil {
+                    return false
+                }
+                
+                let highestToken = OAuthToken.highestScopeInStorageForScope(scope)
+                
+                if OAuthToken.oAuthScope(highestToken, isHigherThanScope:scope){
                     return false
                 }
                 return true
@@ -39,5 +43,17 @@ extension POSAttachment {
         } else {
             return false
         }
+    }
+
+    func originIsPublicEntity() -> Bool{
+
+        if origin == nil {
+            return false
+        }
+
+        if origin == "PUBLIC_ENTITY" {
+            return true
+        }
+        return false
     }
 }

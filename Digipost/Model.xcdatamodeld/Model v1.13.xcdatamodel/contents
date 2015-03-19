@@ -6,6 +6,7 @@
         <attribute name="fileType" attributeType="String" syncable="YES"/>
         <attribute name="mainDocument" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="openingReceiptUri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="origin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
@@ -90,7 +91,7 @@
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Attachment" positionX="36" positionY="-9" width="128" height="210"/>
+        <element name="Attachment" positionX="36" positionY="-9" width="128" height="225"/>
         <element name="Document" positionX="27" positionY="-207" width="128" height="165"/>
         <element name="Folder" positionX="304" positionY="57" width="128" height="195"/>
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
