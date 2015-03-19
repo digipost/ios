@@ -415,12 +415,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     // if attachment is refreshed in background, it can be "lost", just refetch it, to get it back
     if (_attachment == nil) {
-        _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        if (self.currentAttachmentURI) {
+            _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
     } else if (_attachment.uri == nil) {
-        _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        if (self.currentAttachmentURI) {
+            _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
     }
     return _attachment;
 }
+
 - (void)setAttachment:(POSAttachment *)attachment
 {
 
@@ -478,6 +483,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     _receipt = receipt;
     _attachment = nil;
+    _currentAttachmentURI = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (self.masterViewControllerPopoverController) {
@@ -602,7 +608,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContent
 {
     POSBaseEncryptedModel *baseEncryptionModel = nil;
-
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
     } else if (self.receipt) {
