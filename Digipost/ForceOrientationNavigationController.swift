@@ -9,6 +9,7 @@
 import UIKit
 
 class ForceOrientationNavigationController: UINavigationController {
+    let device = UIDevice.currentDevice().userInterfaceIdiom
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,7 +17,6 @@ class ForceOrientationNavigationController: UINavigationController {
     
     override func viewWillAppear(animated: Bool) {
         var orientation: Int?
-        let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
             if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
@@ -42,7 +42,11 @@ class ForceOrientationNavigationController: UINavigationController {
 
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
         if self.visibleViewController.isKindOfClass(NewFeaturesViewController) {
-            return UIInterfaceOrientation.Portrait
+            if device == .Pad {
+                return UIInterfaceOrientation.LandscapeLeft
+            } else {
+                return UIInterfaceOrientation.Portrait
+            }
         } else {
             return self.viewControllers.last!.preferredInterfaceOrientationForPresentation()
         }
