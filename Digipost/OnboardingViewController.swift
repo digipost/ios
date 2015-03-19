@@ -145,8 +145,8 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             // Then we use this translated x offset to increase/decreace the y position of the button
             let translatedButtonConstant = getStartedButtonInitialBottomConstraint - startPointX
             // Scroll mulitpliers to increase the scroll rate of the translated startpoint
-            let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.36 : 1.57
-            let scrollRateMultiplierIPAD:CGFloat = 0.7
+            let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.2 : 1.36
+            let scrollRateMultiplierIPAD:CGFloat = 0.515
             let translatedLoginContainerConstant = loginContainerViewInitialTopConstant - (startPointX * scrollRateMultiplier)
             let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD)
             // Move button off screen bottom
