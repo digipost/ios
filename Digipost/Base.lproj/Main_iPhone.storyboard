@@ -213,7 +213,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="9VM-il-yR1">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="9VM-il-yR1">
                                 <rect key="frame" x="20" y="84" width="279" height="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -276,8 +276,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="9VM-il-yR1" firstAttribute="top" secondItem="mnH-BI-r9E" secondAttribute="bottom" constant="20" id="1Ht-OI-G5w"/>
                             <constraint firstItem="V9e-Aa-hoH" firstAttribute="centerX" secondItem="TjR-oK-wrN" secondAttribute="centerX" id="Bid-VK-FXA"/>
-                            <constraint firstItem="9VM-il-yR1" firstAttribute="top" secondItem="TjR-oK-wrN" secondAttribute="top" constant="20" symbolic="YES" id="Btj-Gb-295"/>
                             <constraint firstItem="oRD-gQ-K1V" firstAttribute="top" secondItem="V9e-Aa-hoH" secondAttribute="bottom" constant="92" id="Cp4-d8-mJc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="V9e-Aa-hoH" secondAttribute="trailing" constant="4" id="Wrm-ll-xcn"/>
                             <constraint firstItem="V9e-Aa-hoH" firstAttribute="top" secondItem="9VM-il-yR1" secondAttribute="bottom" constant="31" id="Wxk-7n-ap0"/>
@@ -305,6 +305,7 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="collectionView" destination="V9e-Aa-hoH" id="UoU-6U-VGa"/>
                         <outlet property="saveButton" destination="3sC-5d-anC" id="cTB-Tu-3fE"/>
@@ -1007,11 +1008,10 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ny mappe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="435-rs-73K">
                                             <rect key="frame" x="18" y="11" width="300" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.9344491332" green="0.40468179739999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                     <gestureRecognizers/>
                                     <connections>
                                         <outletCollection property="gestureRecognizers" destination="9rq-Sx-Ghb" appends="YES" id="3Fa-mG-rf6"/>
