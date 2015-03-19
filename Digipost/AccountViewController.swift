@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate {
+class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverPresentationControllerDelegate, UITableViewDelegate, UIGestureRecognizerDelegate, NewFeaturesViewControllerDelegate {
     
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -68,7 +68,23 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
     }
-    
+
+    func presentNewFeaturesViewController() {
+        let storyboard = UIStoryboard(name: "NewFeatures", bundle: nil)
+        let navController = storyboard.instantiateInitialViewController() as? UINavigationController
+        let newFeaturesViewController = navController?.viewControllers.first as? NewFeaturesViewController
+        newFeaturesViewController?.delegate = self
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.presentViewController(navController!, animated: true, completion: { () -> Void in
+
+            })
+        }
+    }
+
+    func newFeaturesViewControllerDidDismiss(newFeaturesViewController: NewFeaturesViewController) {
+
+    }
+
     func refreshContentFromServer() {
         updateContentsFromServerUseInitiateRequest(0)
     }
@@ -117,6 +133,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         if (OAuthToken.isUserLoggedIn()) {
             updateContentsFromServerUseInitiateRequest(0)
+        }
+
+        if Guide.shouldShowWhatsNewGuide() {
+            presentNewFeaturesViewController()
         }
     }
     

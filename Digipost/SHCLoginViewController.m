@@ -146,6 +146,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                                              action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
+
 }
 
 - (BOOL)shouldAutorotate
@@ -174,14 +175,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }];
 }
 
-- (void)presentNewFeatures
-{
-    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
-    NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
-    newFeaturesController.delegate = self;
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -218,6 +212,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         self.titleImageView.image = titleImage;
         self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
         self.navigationItem.titleView = self.titleImageView;
+    }
+}
+
+- (void)presentNewFeatures
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+        UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+        NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
+        newFeaturesController.delegate = self;
+        [self presentViewController:navigationController animated:YES completion:nil];
     }
 }
 
