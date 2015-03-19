@@ -40,7 +40,7 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
@@ -75,6 +75,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
+    self.navigationController.delegate = self;
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -114,8 +115,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
-        [self.replayOnboardingButton setHidden:YES];
-        [self.loginView setHidden:YES];
         [self presentOnboarding];
     }
 
@@ -165,6 +164,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)presentOnboarding
 {
+    [self.loginView setHidden:YES];
 
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
     __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
@@ -291,16 +291,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
-    if ([self.loginView isHidden]) {
-        [self.loginView setHidden:NO];
-        [self.replayOnboardingButton setHidden:NO];
-    }
+ 
 }
 
 #pragma mark - Private methods
 
 - (void)popToSelf:(NSNotification *)notification
 {
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
+    }
+    
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self.navigationController popToViewController:self
                                               animated:YES];
@@ -323,4 +324,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
+- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    if ([viewController isKindOfClass:[SHCOAuthViewController class]]){
+        if ([self.loginView isHidden]) {
+            [self.loginView setHidden:NO];
+        }
+    }
+}
 @end

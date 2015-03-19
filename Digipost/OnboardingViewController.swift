@@ -60,16 +60,17 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
-        let pageSize = view.frame.size
-        let numOfPages:CGFloat = 5
         scrollView.delegate = self
-        scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
         
-        welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
-        
+         welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
         
         getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
-
+        
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -90,6 +91,10 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func setupAnimationViews() {
+        
+        let pageSize = view.frame.size
+        let numOfPages:CGFloat = 5
+        scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
         
         let viewOffset = scrollView.frame.width
         let animationFrame = animationMockView.frame
