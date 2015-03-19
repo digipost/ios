@@ -146,7 +146,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                                              action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
-
 }
 
 - (BOOL)shouldAutorotate
@@ -174,8 +173,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         onboardingViewController.onboardingLoginViewController.delegate = self;
     }];
 }
-
-
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -296,7 +293,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
- 
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
+    }
 }
 
 #pragma mark - Private methods
@@ -306,7 +305,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if ([self.loginView isHidden]) {
         [self.loginView setHidden:NO];
     }
-    
+
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self.navigationController popToViewController:self
                                               animated:YES];
@@ -331,7 +330,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
-    if ([viewController isKindOfClass:[SHCOAuthViewController class]]){
+    if ([viewController isKindOfClass:[SHCOAuthViewController class]]) {
         if ([self.loginView isHidden]) {
             [self.loginView setHidden:NO];
         }
