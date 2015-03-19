@@ -391,8 +391,12 @@ class UploadView: UIView {
 	
 	func linePathWithBounds(bound: CGRect) -> UIBezierPath{
 		var linePath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
-		
+        
+        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+
+        let device = UIDevice.currentDevice().userInterfaceIdiom
+        if device == .Pad { minY += 1 }
+
 		linePath.moveToPoint(CGPointMake(minX, minY + h))
 		linePath.addLineToPoint(CGPointMake(minX + w, minY))
 		

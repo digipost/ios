@@ -174,7 +174,10 @@ class ReceiptView: UIView {
 			cardbody.path  = cardbodyPathWithBounds(cardbody.bounds).CGPath;
 		}
 		if magneticstripe != nil{
-			magneticstripe.frame = CGRectMake(0, 0.17773 * magneticstripe.superlayer.bounds.height, 0.97806 * magneticstripe.superlayer.bounds.width, 0.1412 * magneticstripe.superlayer.bounds.height)
+            let device = UIDevice.currentDevice().userInterfaceIdiom
+            var xPosition = CGFloat(0.0)
+            if device == .Pad { xPosition += 0.9 }
+			magneticstripe.frame = CGRectMake(xPosition, 0.17773 * magneticstripe.superlayer.bounds.height, 0.97806 * magneticstripe.superlayer.bounds.width, 0.1412 * magneticstripe.superlayer.bounds.height)
 			magneticstripe.path  = magneticstripePathWithBounds(magneticstripe.bounds).CGPath;
 		}
 		if litenkvadrat != nil{
