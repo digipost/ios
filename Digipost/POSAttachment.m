@@ -49,6 +49,8 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 @dynamic openingReceiptUri;
 @dynamic document;
 @dynamic invoice;
+@dynamic origin;
+
 #pragma mark - Public methods
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -77,6 +79,9 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 
     NSString *type = attributes[NSStringFromSelector(@selector(type))];
     attachment.type = [type isKindOfClass:[NSString class]] ? type : nil;
+
+    NSString *origin = attributes[NSStringFromSelector(@selector(origin))];
+    attachment.origin = [type isKindOfClass:[NSString class]] ? origin : nil;
 
     NSArray *links = attributes[kAttachmentLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {

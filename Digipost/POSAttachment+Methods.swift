@@ -24,8 +24,28 @@ extension POSAttachment {
             let scope = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
             if scope == kOauth2ScopeFull {
                 return false
+            } else {
+                let existingScope = OAuthToken.oAuthTokenWithScope(scope)
+                println(existingScope)
+                println(scope)
+                if existingScope?.accessToken != nil {
+                    return false
+                }
+                return true
             }
         }
         return true
+    }
+
+    func originIsPublicEntity() -> Bool{
+
+        if origin == nil {
+            return false
+        }
+
+        if origin == "PUBLIC_ENTITY" {
+            return true
+        }
+        return false
     }
 }

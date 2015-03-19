@@ -46,6 +46,7 @@ extern NSString *const kAuthenticationLevelPassword;
 @property (nonatomic, retain) NSString *openingReceiptUri;
 @property (nonatomic, retain) POSDocument *document;
 @property (nonatomic, retain) POSInvoice *invoice;
+@property (nonatomic, retain) NSString *origin;
 
 + (instancetype)attachmentWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
