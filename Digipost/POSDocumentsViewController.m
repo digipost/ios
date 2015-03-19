@@ -97,7 +97,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
-
     self.screenName = kDocumentsViewControllerScreenName;
 
     [super viewDidLoad];
@@ -252,11 +251,17 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     } else {
         cell.subjectLabel.font = [UIFont digipostBoldFont];
     }
-    cell.delegate = self;
+    if (attachment.originIsPublicEntity) {
+        NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");
+        cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@",publicEntity , attachment.document.creatorName];
+    } else {
+        cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
+    }
 
+    cell.delegate = self;
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
-    cell.senderLabel.text = attachment.document.creatorName;
+    cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
