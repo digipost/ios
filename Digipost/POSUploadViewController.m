@@ -60,7 +60,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     }
 
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
-
+        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
     } failure:^(APIError *error){
 
     }];

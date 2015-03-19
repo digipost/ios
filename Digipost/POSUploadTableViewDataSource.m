@@ -106,7 +106,6 @@
 - (NSSortDescriptor *)sortDescriptor
 {
     if ([self.entityDescription isEqualToString:kFolderEntityName]) {
-
         NSSortDescriptor *indexDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
         return indexDescriptor;
     } else {
@@ -164,7 +163,7 @@
             break;
 
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeUpdate:
