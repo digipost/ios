@@ -37,13 +37,17 @@ class WhatsNewGuideItem {
     }
     
     class func nameForIndex(index: Int) -> String {
+        var languageString = ""
         switch UIDevice.currentDevice().userInterfaceIdiom {
         case .Pad:
-            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-ipad"
+            languageString = NSLocalizedString("language", tableName: GuideConstants.whatsNewTableName, comment: "language for image")
+            return "\(languageString)-\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-ipad"
         case .Phone:
-            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
+            languageString = NSLocalizedString("language", tableName: GuideConstants.whatsNewTableName, comment: "language for image")
+            return "\(languageString)-\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
         default:
-            return "\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
+            languageString = NSLocalizedString("language", tableName: GuideConstants.whatsNewTableName, comment: "language for image")
+            return "\(languageString)-\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
         }
     }
     
