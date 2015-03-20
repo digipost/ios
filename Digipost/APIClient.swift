@@ -10,6 +10,7 @@ import Foundation
 import MobileCoreServices
 import Darwin
 import AFNetworking
+import Alamofire
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
     
@@ -271,7 +272,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         validate(token: oAuthToken, thenPerformTask: task!)
     }
     
-    func uploadFile(#url: NSURL, folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
+    func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(url.path!) == false {
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
@@ -335,31 +336,40 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             formData.appendPartWithFileData(fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
         }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
-        
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
-            self.removeTemporaryUploadFiles()
-            self.isUploadingFile = false
-            if (error != nil ){
-                failure(error: APIError(error: error!))
-            } else {
-                success()
-            }
+//            self.removeTemporaryUploadFiles()
+//            self.isUploadingFile = false
+//            if (error != nil ){
+//                failure(error: APIError(error: error!))
+//            } else {
+//                success?()
+//            }
         }
-        
+
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
-            let totalSent = totalBytesSent as Int64
-            self.uploadProgress?.completedUnitCount = totalSent
+            dispatch_async(dispatch_get_main_queue(), {
+                let totalSent = totalBytesSent as Int64
+                self.uploadProgress?.completedUnitCount = totalSent
+            })
         }
-        
+
         let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
-           self.removeTemporaryUploadFiles()
-            self.isUploadingFile = false
-            if (error != nil ){
-                failure(error: APIError(error: error!))
-            } else {
-                success()
-            }
+            dispatch_async(dispatch_get_main_queue(), {
+                self.removeTemporaryUploadFiles()
+                self.isUploadingFile = false
+                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                    self.removeAccessTokenUsedInLastRequest()
+                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
+                } else if (error != nil ){
+                    failure(error: APIError(error: error!))
+                }
+
+                if success != nil {
+                    success!()
+                }
+            })
         })
+
         self.isUploadingFile = true
         validateTokensThenPerformTask(task)
     }
