@@ -75,10 +75,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
-    self.navigationController.delegate = self;
-    [self.navigationController setToolbarHidden:YES animated:NO];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.navigationController.delegate = self;
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [self.navigationController setToolbarHidden:YES animated:NO];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 
     [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
 
@@ -101,18 +103,27 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
+    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
+        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+
+            // @ TODO WILL BUG fIRST TIME
+            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            if ([resource.mailboxes.allObjects count] > 0) {
+                [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
+                                          sender:self];
+            }
+        }
+    }
 }
 
-- (void)viewDidLayoutSubviews
-{
-}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-
-    [self.navigationController setToolbarHidden:YES animated:NO];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+//
+//    [self.navigationController setToolbarHidden:YES animated:NO];
+//    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
         [self presentOnboarding];
@@ -126,17 +137,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
 
-    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
-        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
 
-            // @ TODO WILL BUG fIRST TIME
-            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-            if ([resource.mailboxes.allObjects count] > 0) {
-                [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
-                                          sender:self];
-            }
-        }
-    }
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
