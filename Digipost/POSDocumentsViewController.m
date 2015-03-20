@@ -524,6 +524,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
+
+    // since all documents are deleted from database regularly, this ensures users won't get buggy data if between "updates" of all content
+    [self updateFetchedResultsController];
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
                                                   mailboxDigipostAddress:self.mailboxDigipostAddress
