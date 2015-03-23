@@ -164,6 +164,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
+    [self setEditing:NO animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -775,7 +776,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)uploadProgressDidFinish:(NSNotification *)notification
 {
-
     dispatch_async(dispatch_get_main_queue(), ^{
         // Don't do anything if this view controller isn't visible
         if (!(self.isViewLoaded && self.view.window)) {
