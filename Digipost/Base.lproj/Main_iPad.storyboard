@@ -29,6 +29,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translucent="NO" id="Pmd-2v-anx">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="qov-wJ-ShK" kind="relationship" relationship="rootViewController" id="2dZ-op-Nd6"/>
@@ -134,7 +135,7 @@
                                                                 <userLayoutGuide location="21" affinity="minY"/>
                                                             </userGuides>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpW-AE-0Mj">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpW-AE-0Mj">
                                                                     <rect key="frame" x="18" y="12" width="98" height="21"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="98" id="gLb-GB-kTy"/>
@@ -842,7 +843,7 @@
                                 <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="-21" maxY="0.0"/>
                                 <state key="normal" title="Logg ut">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logoutButtonTapped:" destination="qov-wJ-ShK" eventType="touchUpInside" id="Vz9-M7-UED"/>
@@ -870,11 +871,11 @@
                         <viewControllerLayoutGuide type="bottom" id="8hw-QI-XlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uiw-aJ-zIH">
-                        <rect key="frame" x="0.0" y="64" width="308" height="960"/>
+                        <rect key="frame" x="0.0" y="64" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="zkJ-cS-2Jj">
-                                <rect key="frame" x="14" y="16" width="279" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="zkJ-cS-2Jj">
+                                <rect key="frame" x="244" y="16" width="279" height="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ava-7r-o2s"/>
@@ -884,8 +885,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                             </textField>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-bg-V1J">
-                                <rect key="frame" x="14" y="57" width="280" height="615"/>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-bg-V1J">
+                                <rect key="frame" x="244" y="57" width="280" height="615"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="Pk4-sJ-hKl"/>
@@ -972,7 +973,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daL-sk-ddX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1253" y="722"/>
+            <point key="canvasLocation" x="1522" y="901"/>
         </scene>
         <!--Receipt Folders Table View Controller-->
         <scene sceneID="9um-Ow-pWZ">
@@ -1369,9 +1370,25 @@
                         <rect key="frame" x="0.0" y="64" width="308" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6w3-RC-lJ9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6w3-RC-lJ9">
                                 <rect key="frame" x="-1" y="0.0" width="309" height="961"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="Ext-77-Xiu">
+                                    <rect key="frame" x="0.0" y="0.0" width="309" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ny mappe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljq-46-0Q1">
+                                            <rect key="frame" x="18" y="11" width="300" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="zW0-ib-5Fz" appends="YES" id="HOa-X3-wUI"/>
+                                    </connections>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" rowHeight="51" id="muR-oV-nt5" customClass="POSFolderTableViewCell">
                                         <rect key="frame" x="-2" y="455" width="320" height="51"/>
@@ -1467,6 +1484,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6w3-RC-lJ9" secondAttribute="trailing" id="6gM-cS-KJv"/>
+                            <constraint firstItem="6w3-RC-lJ9" firstAttribute="leading" secondItem="bty-Tl-ye5" secondAttribute="leading" id="8ZK-VP-3sq"/>
+                            <constraint firstAttribute="bottom" secondItem="6w3-RC-lJ9" secondAttribute="bottom" id="W38-Kh-MBX"/>
+                            <constraint firstItem="6w3-RC-lJ9" firstAttribute="top" secondItem="CM0-NQ-NPj" secondAttribute="bottom" id="cL4-tT-p92"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Last opp" id="fcM-v5-T3a"/>
                     <value key="contentSizeForViewInPopover" type="size" width="308" height="960"/>
@@ -1488,6 +1511,11 @@
                         <segue destination="XOW-31-ASn" kind="push" identifier="showFoldersSegue" id="S9c-Qi-ZSz"/>
                     </connections>
                 </button>
+                <tapGestureRecognizer id="zW0-ib-5Fz">
+                    <connections>
+                        <segue destination="8Xx-Nc-5sN" kind="push" identifier="createNewFolderSegue" id="eke-e6-LJU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="871" y="722"/>
         </scene>
@@ -1567,7 +1595,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="E3S-ye-Wyc"/>
         <segue reference="zbK-2F-FJp"/>
+        <segue reference="gXC-zd-OIB"/>
+        <segue reference="eke-e6-LJU"/>
     </inferredMetricsTieBreakers>
 </document>
