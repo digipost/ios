@@ -94,8 +94,8 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 
         [[APIClient sharedClient] uploadFileWithUrl:self.url folder:self.chosenFolder success:^{
            [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
-        } failure:^(APIError *error) {
-            NSLog(@"%@",error);
+        } failure:^(APIError *error){
+
         }];
 
         //        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
