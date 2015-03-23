@@ -164,7 +164,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
-    [self setEditing:NO animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -304,6 +303,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
     POSAttachment *attachment = [document mainDocumentAttachment];
+    if (attachment == nil) {
+        [self updateFetchedResultsController];
+    }
+
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
