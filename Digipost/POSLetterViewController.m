@@ -741,7 +741,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
             
-            [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
             // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
             POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
             if (self.attachment) {
@@ -937,7 +936,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
             }
                                          failure:^(APIError *error){
-                                             
+                                             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                          }];
         }
     }];
@@ -1388,17 +1387,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *updateURI = self.attachment.document.updateUri;
     OAuthToken *token = [OAuthToken oAuthTokenWithScope:scope];
 
-    NSLog(@"%@", updateURI);
+    NSLog(@"update uri: %@", updateURI);
     [[APIClient sharedClient] updateRootResourceWithScope:scope success:^(NSDictionary *responseDict) {
         POSRootResource *newRootResource = [POSRootResource rootResourceWithAttributes:responseDict inManagedObjectContext:context];
         NSLog(@"%@",updateURI);
         if ([oldRootResource.selfUri isEqualToString:newRootResource.selfUri]) {
-            NSLog(@"%@",updateURI);
+            NSLog(@"update uri :%@",updateURI);
+            NSString *folderName = self.attachment.document.folder.name;
+            NSString *digipostAdress = self.attachment.document.folder.mailbox.digipostAddress;
             [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
-            [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.attachment.document.folder.mailbox.digipostAddress folderUri:self.attachment.document.folder.uri token:token success:^(NSDictionary *responseDict) {
-                NSLog(@"%@",updateURI);
-                [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAddress:self.attachment.document.folder.mailbox.digipostAddress attributes:responseDict];
-                
+
+
+            [[APIClient sharedClient] updateDocumentsInFolderWithName:folderName mailboxDigipostAdress:digipostAdress folderUri:self.attachment.document.folder.uri token:token success:^(NSDictionary *responseDict) {
+                NSLog(@"update uri :%@",updateURI);
+                [[POSModelManager sharedManager] updateDocumentsInFolderWithName:folderName mailboxDigipostAddress:digipostAdress attributes:responseDict];
                 [self removeUnlockViewIfPresent];
                 [self reloadAttachmentWithUpdateURI:updateURI];
                 [self loadContent];

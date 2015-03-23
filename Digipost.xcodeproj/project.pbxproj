@@ -859,6 +859,11 @@
 		ECA594CC19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
 		ECA594CE19FFE4520064D98D /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
+		ECA618E21AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		ECA618E31AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		ECA618E41AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		ECA618E51AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		ECA618E61AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354C1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
@@ -1328,6 +1333,7 @@
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
+		ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLResponse+HTTP.swift"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSAPIManager+PrivateMethods.h"; sourceTree = "<group>"; };
 		ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSAPIManager+PrivateMethods.m"; sourceTree = "<group>"; };
@@ -1550,6 +1556,7 @@
 		83BAB90F1855C0AC004A7BFB = {
 			isa = PBXGroup;
 			children = (
+				ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
@@ -2168,6 +2175,9 @@
 					EC2DCB3B1AB84EAB0063755E = {
 						DevelopmentTeam = KMS8B8MK42;
 					};
+					EC2DCBEC1AB864AB0063755E = {
+						DevelopmentTeam = 4E3PDM5H84;
+					};
 					EC55F3BA1A2C5ACC00A3192C = {
 						DevelopmentTeam = 4E3PDM5H84;
 					};
@@ -2668,6 +2678,7 @@
 				EC7FC6A919DD795A00886D41 /* UINavigationController+Extensions.swift in Sources */,
 				31757D6C1AB02EC6000F7144 /* ForceOrientationNavigationController.swift in Sources */,
 				ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
+				ECA618E41AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				83DB4AED188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC82ACC019331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				EC56AAB91A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -2934,6 +2945,7 @@
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
 				31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */,
 				ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
+				ECA618E21AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -3067,6 +3079,7 @@
 				EC2DCB521AB84EAB0063755E /* UINavigationController+Extensions.swift in Sources */,
 				EC2DCB531AB84EAB0063755E /* ForceOrientationNavigationController.swift in Sources */,
 				EC2DCB541AB84EAB0063755E /* POSAPIManager+PrivateMethods.m in Sources */,
+				ECA618E31AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				EC2DCB551AB84EAB0063755E /* SHCOAuthViewController.m in Sources */,
 				EC2DCB561AB84EAB0063755E /* POSMailbox+Methods.m in Sources */,
 				EC2DCB571AB84EAB0063755E /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -3200,6 +3213,7 @@
 				EC2DCC031AB864AB0063755E /* UINavigationController+Extensions.swift in Sources */,
 				EC2DCC041AB864AB0063755E /* ForceOrientationNavigationController.swift in Sources */,
 				EC2DCC051AB864AB0063755E /* POSAPIManager+PrivateMethods.m in Sources */,
+				ECA618E61AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				EC2DCC061AB864AB0063755E /* SHCOAuthViewController.m in Sources */,
 				EC2DCC071AB864AB0063755E /* POSMailbox+Methods.m in Sources */,
 				EC2DCC081AB864AB0063755E /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -3466,6 +3480,7 @@
 				EC63A8411A6E74EB00708A75 /* APITests.swift in Sources */,
 				ECF487011A471A8000E97519 /* UploadMenuViewController.swift in Sources */,
 				ECF486E61A471A2E00E97519 /* UIView+AutoLayout.m in Sources */,
+				ECA618E51AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				ECF486991A47159900E97519 /* POSFolder.m in Sources */,
 				3117795A1AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF486E01A471A2E00E97519 /* UIColor+Convenience.m in Sources */,
@@ -4043,7 +4058,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kjetil Halvorsen (3D4Y7V84HV)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -4068,7 +4083,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				PRODUCT_NAME = "Digipost copy";
-				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
+				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -4109,7 +4124,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				PRODUCT_NAME = "Digipost copy";
-				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
+				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
