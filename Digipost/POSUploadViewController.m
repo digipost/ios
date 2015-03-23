@@ -83,17 +83,19 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
+
         [self dismissViewControllerAnimated:YES completion:^{
+
         }];
+
         [self.navigationController dismissViewControllerAnimated:YES completion:^{
 
         }];
 
         [[APIClient sharedClient] uploadFileWithUrl:self.url folder:self.chosenFolder success:^{
-
+           [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
         } failure:^(APIError *error) {
             NSLog(@"%@",error);
-
         }];
 
         //        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{
