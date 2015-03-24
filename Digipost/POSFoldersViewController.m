@@ -142,6 +142,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         navItem.title = currentMailbox.name;
         self.navigationItem.title = currentMailbox.name;
     }
+    [self setEditing:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
