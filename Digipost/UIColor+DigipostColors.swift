@@ -14,6 +14,10 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
     
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha:CGFloat) {
+        self.init(red: r/255, green: g/255, blue: b/255, alpha: alpha)
+    }
+    
     class func digipostSpaceGrey () -> UIColor {
         return UIColor(r: 64, g: 66, b: 69)
     }
@@ -43,7 +47,7 @@ extension UIColor {
     }
     
     class func digipostLogoutButtonTextColor () -> UIColor {
-        return UIColor(r: 224, g: 209, b: 208)
+        return UIColor(r: 255, g: 235, b: 235, alpha: 0.85)
     }
     
 }
