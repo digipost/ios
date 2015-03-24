@@ -59,7 +59,6 @@ extension APIClient {
                             failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
                         } else {
                             let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
-
                             success(serializer)
                         }
                     } else {
@@ -104,9 +103,6 @@ extension APIClient {
                     println(actualProgress)
                 }
             }.response { (request, response, object, error) -> Void in
-                println("response :\(response)")
-                println("object :\(object)")
-                println("request :\(request)")
                 dispatch_async(dispatch_get_main_queue(), {
                     if self.isUnauthorized(response as NSHTTPURLResponse?) {
                         self.removeAccessTokenUsedInLastRequest()
@@ -117,7 +113,6 @@ extension APIClient {
                         success(url: completedURL!)
                     }
                 })
-                println(error)
         }
         self.lastPerformedTask = request.task
         return request.task
