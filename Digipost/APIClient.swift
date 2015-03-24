@@ -328,22 +328,21 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
-            let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")
-            var subject = fileName?.substringToIndex(rangeOfExtension!.startIndex)
-            subject = subject?.stringByReplacingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
-            formData.appendPartWithFormData(subject?.dataUsingEncoding(NSASCIIStringEncoding), name:"subject")
+            var subject : String?
+            if let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")  {
+                subject = fileName?.substringToIndex(rangeOfExtension.startIndex)
+            } else {
+                subject = fileName
+            }
+            subject = subject!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            formData.appendPartWithFormData(data, name:"subject")
+
             let fileData = NSData(contentsOfURL: uploadURL!)
             formData.appendPartWithFileData(fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
         }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
-//            self.removeTemporaryUploadFiles()
-//            self.isUploadingFile = false
-//            if (error != nil ){
-//                failure(error: APIError(error: error!))
-//            } else {
-//                success?()
-//            }
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
