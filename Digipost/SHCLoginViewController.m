@@ -118,18 +118,15 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    //
-    //    [self.navigationController setToolbarHidden:YES animated:NO];
-    //    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
         [self presentOnboarding];
     }
 
-    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
-    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-    self.navigationItem.titleView = self.titleImageView;
+//    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+//    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
+//    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+//    self.navigationItem.titleView = self.titleImageView;
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
@@ -204,17 +201,17 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        UIImage *titleImage;
-        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-            titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-        } else {
-            titleImage = [UIImage imageNamed:@"navbar-icon-posten-iphone-landscape"];
-        }
-        self.titleImageView.image = titleImage;
-        self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-        self.navigationItem.titleView = self.titleImageView;
-    }
+//    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+//        UIImage *titleImage;
+//        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
+//            titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
+//        } else {
+//            titleImage = [UIImage imageNamed:@"navbar-icon-posten-iphone-landscape"];
+//        }
+//        self.titleImageView.image = titleImage;
+//        self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
+//        self.navigationItem.titleView = self.titleImageView;
+//    }
 }
 
 - (void)presentNewFeatures
