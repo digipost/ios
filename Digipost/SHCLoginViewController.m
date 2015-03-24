@@ -40,7 +40,7 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate, UINavigationControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
@@ -75,7 +75,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
-//    self.navigationController.delegate = self;
     if ([OAuthToken isUserLoggedIn] == NO) {
         [self.navigationController setToolbarHidden:YES animated:NO];
         [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -116,14 +115,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-//
-//    [self.navigationController setToolbarHidden:YES animated:NO];
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    //
+    //    [self.navigationController setToolbarHidden:YES animated:NO];
+    //    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
         [self presentOnboarding];
@@ -136,8 +133,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
-
-
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
@@ -189,12 +184,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         oAuthViewController.delegate = self;
         oAuthViewController.scope = kOauth2ScopeFull;
 
+        [self performSelector:@selector(showLoginButtonsIfHidden) withObject:nil afterDelay:0.5];
+
     } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
         POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
         [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
+}
+
+- (void)showLoginButtonsIfHidden
+{
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
     }
 }
 
@@ -294,9 +298,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
-    if ([self.loginView isHidden]) {
-        [self.loginView setHidden:NO];
-    }
 }
 
 #pragma mark - Private methods
@@ -329,12 +330,4 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-- (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    if ([viewController isKindOfClass:[SHCOAuthViewController class]]) {
-        if ([self.loginView isHidden]) {
-            [self.loginView setHidden:NO];
-        }
-    }
-}
 @end
