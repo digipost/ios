@@ -199,6 +199,8 @@ class APIError: NSError {
                 return ("Not connected to internet","")
             case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
                 return ("Du har skrudd av datatrafikk","")
+            case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue:
+                return ("Mistet koblingen med server","")
             case CFNetworkErrors.CFURLErrorInternationalRoamingOff.rawValue:
                 return ("Skru på roaming for å bruke digipost","")
             case CFNetworkErrors.CFURLErrorUnknown.rawValue:
