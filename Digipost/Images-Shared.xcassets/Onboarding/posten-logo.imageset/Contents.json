@@ -7,11 +7,13 @@
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "posten-logo-iphone@2x.png"
     },
     {
       "idiom" : "iphone",
-      "scale" : "3x"
+      "scale" : "3x",
+      "filename" : "posten-logo-iphone@3x.png"
     },
     {
       "idiom" : "ipad",
@@ -20,7 +22,8 @@
     },
     {
       "idiom" : "ipad",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "posten-logo-ipad@2x.png"
     }
   ],
   "info" : {
