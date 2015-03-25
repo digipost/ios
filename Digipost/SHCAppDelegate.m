@@ -122,7 +122,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         documentsViewController.folderDisplayName = folder.displayName;
 
         [navController setViewControllers:newViewControllerArray
-                                 animated:YES];
+                                 animated:NO];
     }
 }
 
