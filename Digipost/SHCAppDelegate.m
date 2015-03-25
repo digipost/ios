@@ -85,8 +85,17 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         UINavigationController *navController = [self.window topMasterNavigationController];
 
         UIViewController *topViewController = [self.window topMasterViewController];
-
+        //        NSLog(@"Topp VC %@",topViewController);
         [navController popToRootViewControllerAnimated:NO];
+
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
+                SHCLoginViewController *loginViewController = navController.viewControllers[0];
+                [newViewControllerArray addObject:loginViewController];
+            }
+        }
 
         AccountViewController *accountViewController;
         if ([navController.viewControllers[0] isKindOfClass:[AccountViewController class]]) {
@@ -98,17 +107,26 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
 
-        NSMutableArray *newViewControllerArray = [NSMutableArray array];
-        // add account vc as second view controller in navigation controller
-        UIViewController *loginViewController = topViewController;
-        // for iphone root controller will be login controller
-        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
-            [newViewControllerArray addObject:loginViewController];
-            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
-        }
+        //        // add account vc as second view controller in navigation controller
+        //        UIViewController *loginViewController = topViewController;
+        //        // for iphone root controller will be login controller
+        //        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
+        //            [newViewControllerArray addObject:loginViewController];
+        //            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
+        //        } else if ([loginViewController isKindOfClass:[UploadMenuViewController class]]){
+        //
+        //            loginViewController = navController.viewControllers[0];
+        //            if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
+        //                [newViewControllerArray addObject:loginViewController];
+        //            }
+        //
+        //        }
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
+
+        NSLog(@"new Viewcontroller stack %@", newViewControllerArray);
+        NSLog(@"navigation controller vc %@", navController.viewControllers);
 
         POSMailbox *mailbox = dict[@"mailbox"];
         POSFolder *folder = dict[@"folder"];
