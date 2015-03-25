@@ -293,7 +293,7 @@
                                             <segue destination="hpf-oo-RyW" kind="push" identifier="PresentOAuthModally" id="Pzn-Nt-hgc"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-E6-AO0">
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-E6-AO0">
                                         <rect key="frame" x="264" y="0.0" width="240" height="73"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="73" id="UXJ-Jq-P7p"/>

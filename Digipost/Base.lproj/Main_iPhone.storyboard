@@ -1443,11 +1443,11 @@
                                             <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="CCB-a5-3Zp"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="IKd-6i-3Uz">
-                                        <rect key="frame" x="80" y="0.0" width="160" height="49"/>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="IKd-6i-3Uz">
+                                        <rect key="frame" x="105" y="23" width="110" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="160" id="Taw-Yv-gg2"/>
-                                            <constraint firstAttribute="height" constant="49" id="Y2B-yh-dT6"/>
+                                            <constraint firstAttribute="width" constant="110" id="Taw-Yv-gg2"/>
+                                            <constraint firstAttribute="height" constant="34" id="Y2B-yh-dT6"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -1456,7 +1456,7 @@
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="102" id="3vC-Pm-nK9"/>
                                     <constraint firstItem="fv5-4n-dtY" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="5" id="5AJ-jQ-sK9"/>
                                     <constraint firstItem="fv5-4n-dtY" firstAttribute="top" relation="lessThanOrEqual" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="38" id="9Vb-Oj-EBw"/>
-                                    <constraint firstItem="IKd-6i-3Uz" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" id="Tv2-OX-28a"/>
+                                    <constraint firstItem="IKd-6i-3Uz" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="23" id="Tv2-OX-28a"/>
                                     <constraint firstAttribute="centerX" secondItem="IKd-6i-3Uz" secondAttribute="centerX" id="VCH-4I-O3t"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="102" id="WZh-46-0bU"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="cVj-4D-L2d"/>
@@ -1610,7 +1610,7 @@
         <segue reference="Kl9-xn-mhN"/>
         <segue reference="6ll-nd-HYD"/>
         <segue reference="eDA-DZ-Lcc"/>
-        <segue reference="3jD-Vn-Y8D"/>
-        <segue reference="eq9-PM-agO"/>
+        <segue reference="WBk-6x-J5R"/>
+        <segue reference="2IH-85-kgn"/>
     </inferredMetricsTieBreakers>
 </document>
