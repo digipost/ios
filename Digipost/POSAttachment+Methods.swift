@@ -26,8 +26,6 @@ extension POSAttachment {
                 return false
             } else {
                 let existingScope = OAuthToken.oAuthTokenWithScope(scope)
-                println(existingScope)
-                println(scope)
                 if existingScope?.accessToken != nil {
                     return false
                 }
@@ -38,7 +36,6 @@ extension POSAttachment {
     }
 
     func originIsPublicEntity() -> Bool{
-
         if origin == nil {
             return false
         }

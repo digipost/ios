@@ -177,7 +177,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
-    } 
+    }
 }
 
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -253,7 +253,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
     if (attachment.originIsPublicEntity) {
         NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");
-        cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@",publicEntity , attachment.document.creatorName];
+        cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@", publicEntity, attachment.document.creatorName];
     } else {
         cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
     }
@@ -261,7 +261,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.delegate = self;
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
-    cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
@@ -336,8 +335,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                     }
             }
-            failure:^(NSError *error) {
-               
+            failure:^(NSError *error){
+
             }];
     }
 }
