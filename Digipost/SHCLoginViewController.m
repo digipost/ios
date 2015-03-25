@@ -276,6 +276,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+
         [self.navigationController popToViewController:self
                                               animated:YES];
     }
@@ -315,7 +316,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [viewControllerStack addObject:documentsViewController];
 
     // Set the new view controller stack for the navigation controller
-    [self.navigationController setViewControllers:viewControllerStack animated:YES];
+    [self.navigationController setViewControllers:viewControllerStack animated:NO];
 }
 
 @end
