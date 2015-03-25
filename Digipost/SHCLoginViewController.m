@@ -183,10 +183,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-}
-
 - (void)presentNewFeatures
 {
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
