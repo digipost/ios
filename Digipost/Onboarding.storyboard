@@ -39,20 +39,38 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" misplaced="YES" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="R8q-42-DUf" userLabel="posten logo">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="160" id="44H-Cm-3VL"/>
-                                    <constraint firstAttribute="height" constant="49" id="7IC-hY-emq"/>
+                                    <constraint firstAttribute="width" constant="160" id="44H-Cm-3VL">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="123"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" constant="49" id="7IC-hY-emq">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="38"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="R8q-42-DUf" secondAttribute="height" multiplier="79:24" id="Hu3-u4-kkH">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="-1.5416666666666572"/>
+                                    </constraint>
                                     <constraint firstAttribute="height" constant="128" id="QnC-gv-wW4">
-                                        <variation key="heightClass=regular-widthClass=regular" constant="73"/>
+                                        <variation key="heightClass=regular-widthClass=regular" constant="43"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" secondItem="R8q-42-DUf" secondAttribute="height" multiplier="240:73" id="eUy-uy-sWm">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="0.19178082191780277"/>
                                     </constraint>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="132" id="ln4-Ix-Kxr"/>
-                                    <constraint firstAttribute="width" constant="240" id="xDm-V7-1yj"/>
+                                    <constraint firstAttribute="width" secondItem="R8q-42-DUf" secondAttribute="height" multiplier="160:49" id="mdH-uj-Y2A">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="-1.0816326530612344"/>
+                                    </constraint>
+                                    <constraint firstAttribute="width" constant="240" id="xDm-V7-1yj">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="140"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="44H-Cm-3VL"/>
                                         <exclude reference="7IC-hY-emq"/>
+                                        <exclude reference="Hu3-u4-kkH"/>
                                         <exclude reference="QnC-gv-wW4"/>
+                                        <exclude reference="eUy-uy-sWm"/>
                                         <exclude reference="ln4-Ix-Kxr"/>
+                                        <exclude reference="mdH-uj-Y2A"/>
                                         <exclude reference="xDm-V7-1yj"/>
                                     </mask>
                                 </variation>
@@ -61,11 +79,14 @@
                                         <include reference="44H-Cm-3VL"/>
                                         <include reference="7IC-hY-emq"/>
                                         <exclude reference="ln4-Ix-Kxr"/>
+                                        <exclude reference="mdH-uj-Y2A"/>
                                     </mask>
                                 </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="constraints">
+                                        <include reference="Hu3-u4-kkH"/>
                                         <include reference="QnC-gv-wW4"/>
+                                        <exclude reference="eUy-uy-sWm"/>
                                         <include reference="xDm-V7-1yj"/>
                                     </mask>
                                 </variation>
@@ -265,7 +286,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="-1492"/>
                             </constraint>
                             <constraint firstItem="R8q-42-DUf" firstAttribute="top" secondItem="b1H-RT-gDc" secondAttribute="bottom" constant="180" id="9AG-6o-6e0">
-                                <variation key="heightClass=regular-widthClass=regular" constant="152"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="176"/>
                             </constraint>
                             <constraint firstItem="kCg-eW-u61" firstAttribute="top" secondItem="b1H-RT-gDc" secondAttribute="bottom" constant="198" id="9tC-B3-eaM"/>
                             <constraint firstItem="ehG-0F-bkp" firstAttribute="top" secondItem="jBt-mq-fTI" secondAttribute="top" id="BMF-Gl-CbJ"/>
@@ -310,10 +331,10 @@
                             <constraint firstItem="ehG-0F-bkp" firstAttribute="bottom" secondItem="rDG-oE-Fer" secondAttribute="bottom" id="T0y-bF-aWD"/>
                             <constraint firstItem="kCg-eW-u61" firstAttribute="top" secondItem="R8q-42-DUf" secondAttribute="bottom" constant="24" id="TVi-tZ-EXO"/>
                             <constraint firstItem="kCg-eW-u61" firstAttribute="top" secondItem="R8q-42-DUf" secondAttribute="bottom" constant="24" id="U0C-7T-Ds0">
-                                <variation key="heightClass=regular-widthClass=compact" constant="14"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="10"/>
                             </constraint>
                             <constraint firstItem="kCg-eW-u61" firstAttribute="centerX" secondItem="R8q-42-DUf" secondAttribute="centerX" id="W3X-CV-QgM">
-                                <variation key="heightClass=regular-widthClass=regular" constant="4"/>
+                                <variation key="heightClass=regular-widthClass=regular" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="Dbf-mE-njp" firstAttribute="top" secondItem="b1H-RT-gDc" secondAttribute="bottom" constant="-20" id="XGw-jJ-pRf"/>
                             <constraint firstAttribute="height" secondItem="Dbf-mE-njp" secondAttribute="height" id="XY9-wL-xGV">
@@ -328,7 +349,7 @@
                                 <variation key="heightClass=regular-widthClass=compact" constant="-90"/>
                             </constraint>
                             <constraint firstItem="R8q-42-DUf" firstAttribute="top" secondItem="b1H-RT-gDc" secondAttribute="bottom" constant="145" id="bLA-M2-cty">
-                                <variation key="heightClass=regular-widthClass=compact" constant="65"/>
+                                <variation key="heightClass=regular-widthClass=compact" constant="80"/>
                             </constraint>
                             <constraint firstItem="L9z-Nk-JGa" firstAttribute="top" secondItem="kCg-eW-u61" secondAttribute="bottom" constant="310" id="bpF-Yl-zjF"/>
                             <constraint firstAttribute="bottom" secondItem="50T-g2-cKw" secondAttribute="bottom" constant="800" id="c7E-ag-0Qk">
