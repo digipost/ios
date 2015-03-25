@@ -55,7 +55,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 {
     [super viewWillAppear:animated];
     if ([self pos_hasBackButton] == NO) {
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(closeView)];
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
 
