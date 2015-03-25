@@ -100,12 +100,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
 
             [self presentAppropriateViewController];
-//            // @ TODO WILL BUG fIRST TIME
-//            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-//            if ([resource.mailboxes.allObjects count] > 0) {
-//                [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
-//                                          sender:self];
-//            }
         }
     }
 }
@@ -113,7 +107,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    
+
     if ([OAuthToken isUserLoggedIn] == NO) {
         [self.navigationController setToolbarHidden:YES animated:NO];
         [self.navigationController setNavigationBarHidden:YES animated:NO];
@@ -179,15 +173,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         oAuthViewController.scope = kOauth2ScopeFull;
 
         [self performSelector:@selector(showLoginButtonsIfHidden) withObject:nil afterDelay:0.5];
-
     }
-//    else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
-//        POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-//        POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
-//        documentsViewController.folderName = kFolderInboxName;
-//        documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
-//        [self.navigationController setNavigationBarHidden:NO animated:NO];
-//    }
 }
 
 - (void)showLoginButtonsIfHidden
@@ -263,9 +249,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     NSURL *url;
     if (sender == self.registerButton) {
         url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
-    } else {
-        url = [NSURL URLWithString:@"https://www.digipost.no/juridisk/#personvern"];
     }
+
     [UIActionSheet showFromRect:sender.frame
                          inView:[sender superview]
                        animated:YES
@@ -282,20 +267,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [self.navigationController setToolbarHidden:YES animated:NO];
+        [self.navigationController setNavigationBarHidden:YES animated:NO];
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
 }
 
 #pragma mark - Private methods
 
 - (void)popToSelf:(NSNotification *)notification
 {
-    if ([self.loginView isHidden]) {
-        [self.loginView setHidden:NO];
-    }
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self.navigationController popToViewController:self
                                               animated:YES];
-    } else {
     }
 }
 
@@ -315,27 +301,24 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)presentDocumentsViewControllerWithViewControllerStack
 {
-    if (self.navigationController == nil){
-        return;
-    }
-    
-    // Instantiate ViewControllers for the navigation controller viewcontroller stack
+    // Instantiate view controllers for the navigation controller stack
     SHCLoginViewController *loginViewController = self;
     AccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
     POSFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+
     POSDocumentsViewController *documentsViewController = [self.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
     POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     documentsViewController.folderName = kFolderInboxName;
     documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
-    
+
     // Add the view controllers to the stack
     NSMutableArray *viewControllerStack = [NSMutableArray array];
     [viewControllerStack addObject:loginViewController];
     [viewControllerStack addObject:accountViewController];
     [viewControllerStack addObject:foldersViewController];
     [viewControllerStack addObject:documentsViewController];
-    
-    // Set view controller stack for the navigation controller
+
+    // Set the new view controller stack for the navigation controller
     [self.navigationController setViewControllers:viewControllerStack animated:YES];
 }
 
