@@ -499,7 +499,7 @@
 "cannot rename document need authentication alert title" = " ";
 
 /* New features onboarding. */
-"new feature navbar title" = "Hva er nytt?";
+"new feature navbar title" = "Visste du at..?";
 
 "new feature barbutton title" = "Ferdig";
 
