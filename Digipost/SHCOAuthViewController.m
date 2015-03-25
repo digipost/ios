@@ -238,10 +238,12 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     return nil;
 }
 
-
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
     NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
+    if ([self.scope isEqualToString:kOauth2ScopeFull]) {
+        URLString = [URLString stringByAppendingString:@"?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
+    }
     NSError *error;
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:parameters error:&error];
     [self.webView loadRequest:request];
