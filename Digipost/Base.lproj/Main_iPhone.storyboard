@@ -1443,11 +1443,11 @@
                                             <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="CCB-a5-3Zp"/>
                                         </connections>
                                     </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="IKd-6i-3Uz">
-                                        <rect key="frame" x="105" y="23" width="110" height="34"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostenLogo_hvitskygge_iPhone" translatesAutoresizingMaskIntoConstraints="NO" id="IKd-6i-3Uz">
+                                        <rect key="frame" x="75" y="-11" width="169" height="74"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="110" id="Taw-Yv-gg2"/>
-                                            <constraint firstAttribute="height" constant="34" id="Y2B-yh-dT6"/>
+                                            <constraint firstAttribute="width" constant="169" id="Taw-Yv-gg2"/>
+                                            <constraint firstAttribute="height" constant="74" id="Y2B-yh-dT6"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -1456,8 +1456,8 @@
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="102" id="3vC-Pm-nK9"/>
                                     <constraint firstItem="fv5-4n-dtY" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="5" id="5AJ-jQ-sK9"/>
                                     <constraint firstItem="fv5-4n-dtY" firstAttribute="top" relation="lessThanOrEqual" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="38" id="9Vb-Oj-EBw"/>
-                                    <constraint firstItem="IKd-6i-3Uz" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="23" id="Tv2-OX-28a"/>
-                                    <constraint firstAttribute="centerX" secondItem="IKd-6i-3Uz" secondAttribute="centerX" id="VCH-4I-O3t"/>
+                                    <constraint firstItem="IKd-6i-3Uz" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="-11" id="Tv2-OX-28a"/>
+                                    <constraint firstAttribute="centerX" secondItem="IKd-6i-3Uz" secondAttribute="centerX" constant="0.5" id="VCH-4I-O3t"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="102" id="WZh-46-0bU"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="cVj-4D-L2d"/>
                                     <constraint firstAttribute="width" constant="320" id="vip-Xp-DMk"/>
@@ -1590,6 +1590,7 @@
         <image name="Move" width="22" height="22"/>
         <image name="New name" width="22" height="22"/>
         <image name="Open_in" width="22" height="22"/>
+        <image name="PostenLogo_hvitskygge_iPhone" width="169" height="74"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="empty-folder-fly" width="203" height="233"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
@@ -1597,9 +1598,8 @@
         <image name="list-icon-attachment" width="16" height="16"/>
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
-        <image name="login-background" width="367" height="653"/>
+        <image name="login-background" width="368" height="654"/>
         <image name="popover-bg" width="310" height="24"/>
-        <image name="posten-logo" width="160" height="49"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -293,22 +293,22 @@
                                             <segue destination="hpf-oo-RyW" kind="push" identifier="PresentOAuthModally" id="Pzn-Nt-hgc"/>
                                         </connections>
                                     </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posten-logo" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-E6-AO0">
-                                        <rect key="frame" x="264" y="0.0" width="240" height="73"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PostenLogo_hvitskygge_iPhone" translatesAutoresizingMaskIntoConstraints="NO" id="7rk-E6-AO0">
+                                        <rect key="frame" x="299" y="48" width="169" height="74"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="73" id="UXJ-Jq-P7p"/>
-                                            <constraint firstAttribute="width" constant="240" id="nTb-sh-L7d"/>
+                                            <constraint firstAttribute="height" constant="74" id="UXJ-Jq-P7p"/>
+                                            <constraint firstAttribute="width" constant="169" id="nTb-sh-L7d"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="daO-Ah-4uu" secondAttribute="centerX" id="4ua-3z-ITW"/>
-                                    <constraint firstAttribute="centerX" secondItem="7rk-E6-AO0" secondAttribute="centerX" id="Ns0-d5-IDT"/>
+                                    <constraint firstAttribute="centerX" secondItem="7rk-E6-AO0" secondAttribute="centerX" constant="0.5" id="Ns0-d5-IDT"/>
                                     <constraint firstAttribute="height" priority="249" constant="261" id="e82-Gc-A3X"/>
                                     <constraint firstItem="daO-Ah-4uu" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" constant="162" id="keX-Bs-JRw"/>
                                     <constraint firstAttribute="centerX" secondItem="qUg-Iy-BH3" secondAttribute="centerX" id="pqC-mv-60Q"/>
-                                    <constraint firstItem="7rk-E6-AO0" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" id="vBy-9D-y96"/>
+                                    <constraint firstItem="7rk-E6-AO0" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" constant="48" id="vBy-9D-y96"/>
                                     <constraint firstItem="qUg-Iy-BH3" firstAttribute="top" secondItem="daO-Ah-4uu" secondAttribute="bottom" constant="5" id="yVu-Et-y5e"/>
                                 </constraints>
                             </view>
@@ -1587,6 +1587,7 @@
     </scenes>
     <resources>
         <image name="Lastopp_norsk_vertikal" width="320" height="327"/>
+        <image name="PostenLogo_hvitskygge_iPhone" width="169" height="74"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="empty-folder-fly" width="203" height="233"/>
         <image name="empty-letterview" width="154" height="188"/>
@@ -1597,7 +1598,6 @@
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-background-ipad" width="1024" height="768"/>
         <image name="popover-bg" width="310" height="24"/>
-        <image name="posten-logo" width="240" height="73"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
