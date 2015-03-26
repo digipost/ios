@@ -108,11 +108,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewWillAppear:YES];
 
-    if ([OAuthToken isUserLoggedIn] == NO) {
-        [self.navigationController setToolbarHidden:YES animated:NO];
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
 
     if ([Guide shouldShowOnboardingGuide]) {
         [self presentOnboarding];
@@ -190,7 +187,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
         NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
         newFeaturesController.delegate = self;
-        [self presentViewController:navigationController animated:YES completion:nil];
+        [self presentViewController:navigationController animated:NO completion:nil];
     }
 }
 
@@ -263,11 +260,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
-    if ([OAuthToken isUserLoggedIn] == NO) {
-        [self.navigationController setToolbarHidden:YES animated:NO];
-        [self.navigationController setNavigationBarHidden:YES animated:NO];
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
 }
 
 #pragma mark - Private methods
@@ -286,7 +278,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    if ([resource.mailboxes.allObjects count] == 1) {
+    if ([Guide shouldShowWhatsNewGuide]) {
+        [self presentNewFeatures];
+    } else if ([resource.mailboxes.allObjects count] == 1) {
         [self presentDocumentsViewControllerWithViewControllerStack];
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     } else {
