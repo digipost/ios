@@ -96,12 +96,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
-    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
+    
+    if ([Guide shouldShowOnboardingGuide]) {
+        [self presentOnboarding];
+    }
+ 
+    if ([OAuthToken isUserLoggedIn]) {
+        
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-
             [self presentAppropriateViewController];
         }
+        
+        [Guide setOnboaringHasBeenWatched];
     }
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -110,10 +119,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-
-    if ([Guide shouldShowOnboardingGuide]) {
-        [self presentOnboarding];
-    }
 
     self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
