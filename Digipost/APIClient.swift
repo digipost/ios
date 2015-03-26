@@ -45,11 +45,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var taskCounter = 0
     var isUploadingFile = false
     var taskWasUnAuthorized : Bool  = false
-//    var observerTask : RACDisposable?
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
-    
     override init() {
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -58,7 +56,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         self.session = theSession
-//        updateAuthorizationHeader(kOauth2ScopeFull)
     }
     
     func removeAccessTokenUsedInLastRequest() {
@@ -190,14 +187,16 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
+        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+        self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let task  = urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized  {
-                self.validateOpeningReceipt(attachment, success: success, failure: failure)
+                failure(error: error)
             } else {
                 failure(error: error)
             }
         }
-        validateTokensThenPerformTask(task!)
+        validate(token: highestToken, thenPerformTask: task!)
     }
     
     func logout () {

@@ -141,7 +141,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
+
     [self reloadFromMetadata];
+
     [self pos_setDefaultBackButton];
     [self addTapGestureRecognizersToWebView:self.webView];
 
@@ -161,6 +163,18 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
+}
+
+- (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
+{
+    [[APIClient sharedClient] validateOpeningReceipt:attachment success:^{
+        [self reloadFromMetadata];
+    }
+        failure:^(APIError *error) {
+                                                 [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+                                                     [self.navigationController popViewControllerAnimated:YES];
+                                                 }];
+        }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -1300,22 +1314,53 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)reloadFromMetadata
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (!self.attachment && !self.receipt) {
-            [self showEmptyView:YES];
+    if (self.attachment.openingReceiptUri) {
+
+        if ([self needsAuthenticationToOpen]) {
+            [self showUnlockViewIfNotPresent];
             return;
-        } else {
-            [self showEmptyView:NO];
         }
+
+        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
+                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                          switch (buttonIndex) {
+                              case 0:
+                                                     [self.navigationController popViewControllerAnimated:YES];
+                                  break;
+                              case 1:
+                              {
+                                  [self shouldValidateOpeningReceipt:self.attachment];
+                                  break;
+                              }
+                              case 2:
+                                  break;
+                              default:
+                                  break;
+                          }
+                          }];
+
+    } else {
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            if (!self.attachment && !self.receipt) {
+                [self showEmptyView:YES];
+                return;
+            } else {
+                [self showEmptyView:NO];
+            }
+        }
+
+        if ([self attachmentHasValidFileType] == NO) {
+            [self showInvalidFileTypeView];
+        }
+
+        [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
+
+        [self loadContent];
     }
-
-    if ([self attachmentHasValidFileType] == NO) {
-        [self showInvalidFileTypeView];
-    }
-
-    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
-
-    [self loadContent];
 }
 
 - (void)didTapInformationBarButtonItem:(id)sender
