@@ -275,6 +275,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
+    cell.selectionStyle = self.isEditing && cell.selected ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
 }
 
 #pragma mark - UITableViewDelegate
@@ -717,7 +718,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         if (uploadCell) {
-            //            uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
+            uploadCell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted; //[POSAPIManager sharedManager].uploadProgress.fractionCompleted;
         } else {
             // We've not found the upload cell - let's check if the topmost cell is visible.
             // If it is, that means we're missing the upload cell and we need to insert it.
