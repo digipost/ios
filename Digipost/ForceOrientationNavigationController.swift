@@ -23,7 +23,7 @@ class ForceOrientationNavigationController: UINavigationController {
                 orientation = UIInterfaceOrientation.Portrait.rawValue
             }
         case .Pad:
-            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue
+            orientation = UIInterfaceOrientation.LandscapeLeft.rawValue | UIInterfaceOrientation.LandscapeRight.rawValue
         default: break
         }
         UIDevice.currentDevice().setValue(orientation, forKey: "orientation")
