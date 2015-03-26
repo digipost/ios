@@ -194,6 +194,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
 
     [[APIClient sharedClient] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^(NSDictionary *responseDictionary) {
+            [[POSModelManager sharedManager] updateCardAttributes:responseDictionary];
             [[POSModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
                                                                              attributes:responseDictionary];
             [self updateFetchedResultsController];
@@ -258,7 +259,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     if (showTableViewBackgroundView) {
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
         if ([rootResource.numberOfCards integerValue] == 0) {
             self.noReceiptsLabel.text = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", @"No cards");
         } else if ([rootResource.numberOfCardsReadyForVerification integerValue] == 0) {
