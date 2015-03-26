@@ -278,6 +278,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self unloadContent];
 
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
+
     [super viewDidDisappear:animated];
 }
 
