@@ -57,6 +57,9 @@ class Guide : NSObject {
     :returns: whether to show onboarding guide or not
     */
     class func shouldShowOnboardingGuide() -> Bool {
+        if OAuthToken.isUserLoggedIn(){
+            return false
+        }
         if onboardingText(forIndex: 1) != nil {
             return hasShownOnboarding == false
         }
