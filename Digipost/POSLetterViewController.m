@@ -168,14 +168,18 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
 {
     POSDocument *document = attachment.document;
-    NSString *attachmentURI = self.attachment.uri;
     [[APIClient sharedClient] validateOpeningReceipt:attachment success:^{
         [[APIClient sharedClient] updateDocument:document success:^(NSDictionary *responseDict) {
 
             [[POSModelManager sharedManager] updateDocument:document
                                                                   withAttributes:responseDict];
-            self.attachment = [POSAttachment existingAttachmentWithUri:attachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-            self.attachment.openingReceiptUri = nil;
+            if (self.currentAttachmentURI == nil) {
+                self.attachment = document.attachments[self.indexOfAttachment];
+            }else {
+                self.attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                self.attachment.openingReceiptUri = nil;
+            }
+            NSLog(@"%@",self.attachment.uri);
             [[POSModelManager sharedManager] logSavingManagedObjectContext];
 
 
@@ -1069,7 +1073,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *actionButtonTitle = nil;
     NSString *cancelButtonTitle = nil;
     POSInvoice *invoice = self.attachment.invoice;
-    NSLog(@"%@", invoice);
 
     if (self.attachment.invoice.timePaid) {
         title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE", @"The invoice has been registered");
@@ -1244,7 +1247,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     //    }
 
     NSString *attachmentUri = self.attachment.uri;
-    NSLog(@"%@", self.currentAttachmentURI);
 
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
@@ -1453,24 +1455,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *updateURI = self.attachment.document.updateUri;
     OAuthToken *token = [OAuthToken oAuthTokenWithScope:scope];
 
-    NSLog(@"update uri: %@", updateURI);
     [[APIClient sharedClient] updateRootResourceWithScope:scope success:^(NSDictionary *responseDict) {
         POSRootResource *newRootResource = [POSRootResource rootResourceWithAttributes:responseDict inManagedObjectContext:context];
-        NSLog(@"%@",updateURI);
         if ([oldRootResource.selfUri isEqualToString:newRootResource.selfUri]) {
-            NSLog(@"update uri :%@",updateURI);
             NSString *folderName = self.attachment.document.folder.name;
             NSString *digipostAdress = self.attachment.document.folder.mailbox.digipostAddress;
+            NSString *folderURI = self.attachment.document.folder.uri;
             [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
 
 
-            [[APIClient sharedClient] updateDocumentsInFolderWithName:folderName mailboxDigipostAdress:digipostAdress folderUri:self.attachment.document.folder.uri token:token success:^(NSDictionary *responseDict) {
-                NSLog(@"update uri :%@",updateURI);
+            [[APIClient sharedClient] updateDocumentsInFolderWithName:folderName mailboxDigipostAdress:digipostAdress folderUri:folderURI token:token success:^(NSDictionary *responseDict) {
                 [[POSModelManager sharedManager] updateDocumentsInFolderWithName:folderName mailboxDigipostAddress:digipostAdress attributes:responseDict];
                 [self removeUnlockViewIfPresent];
                 [self reloadAttachmentWithUpdateURI:updateURI];
                 [self reloadFromMetadata];
-//                [self loadContent];
             } failure:^(APIError *error) {
                 
             }];

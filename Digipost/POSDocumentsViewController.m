@@ -318,28 +318,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
-    }
-    //    else if (attachment.openingReceiptUri) {
-    //        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
-    //                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
-    //                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
-    //                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
-    //                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //                              switch (buttonIndex) {
-    //                                  case 0:
-    //                                      break;
-    //                                  case 1:
-    //                                  {
-    //                                      [self shouldValidateOpeningReceipt:document];
-    //                                      break;
-    //                                  }
-    //                                  case 2:
-    //                                      break;
-    //                                  default:
-    //                                      break;
-    //                              }
-    //                          }];
-    {
+    } else {
         POSAttachment *attachment = [document mainDocumentAttachment];
         [self validateOpeningAttachment:attachment
             success:^{

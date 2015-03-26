@@ -36,6 +36,9 @@ extern NSString *const kPushReceiptIdentifier;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 @property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
 
+// index of the attachment showing, if its in a document list of multiple attachments
+@property (nonatomic) NSInteger indexOfAttachment;
+
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 - (void)reloadFromMetadata;
 
