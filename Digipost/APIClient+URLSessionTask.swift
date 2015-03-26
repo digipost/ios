@@ -57,6 +57,9 @@ extension APIClient {
                     if let actualData = data as NSData? {
                         if actualData.length == 0 {
                             failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
+                        }else if (response as NSHTTPURLResponse).didFail()  {
+                            let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
+                            failure(error:err)
                         } else {
                             let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
                             success(serializer)
