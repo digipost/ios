@@ -112,8 +112,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
-    
-    if([self.navigationController isNavigationBarHidden]){
+
+    if ([self.navigationController isNavigationBarHidden]) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
     }
 
@@ -154,6 +154,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     //    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
     //    [APIClient sharedClient] cancel
+
+    if (self.isEditing == YES) {
+        [self setEditing:NO animated:YES];
+    }
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kAPIManagerUploadProgressChangedNotificationName
