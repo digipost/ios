@@ -17,7 +17,7 @@ extension UIFont{
     class func fonstSizeForCurrentDevice() -> UIFont{
         switch UIDevice.currentDevice().userInterfaceIdiom {
         case .Pad:
-            return UIFont(name: "HelveticaNeue-Light", size: 40)!
+            return UIFont(name: "HelveticaNeue-Light", size: 30)!
         case .Phone:
             return UIFont(name: "HelveticaNeue", size: 17)!
         case .Unspecified:
