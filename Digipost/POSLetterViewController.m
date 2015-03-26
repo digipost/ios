@@ -167,8 +167,25 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
 {
+    POSDocument *document = attachment.document;
+    NSString *attachmentURI = self.attachment.uri;
     [[APIClient sharedClient] validateOpeningReceipt:attachment success:^{
-        [self reloadFromMetadata];
+        [[APIClient sharedClient] updateDocument:document success:^(NSDictionary *responseDict) {
+
+            [[POSModelManager sharedManager] updateDocument:document
+                                                                  withAttributes:responseDict];
+            self.attachment = [POSAttachment existingAttachmentWithUri:attachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            self.attachment.openingReceiptUri = nil;
+            [[POSModelManager sharedManager] logSavingManagedObjectContext];
+
+
+            [self reloadFromMetadata];
+        } failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:^{
+                
+            }];
+        }];
+
     }
         failure:^(APIError *error) {
                                                  [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
@@ -1448,7 +1465,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 [[POSModelManager sharedManager] updateDocumentsInFolderWithName:folderName mailboxDigipostAddress:digipostAdress attributes:responseDict];
                 [self removeUnlockViewIfPresent];
                 [self reloadAttachmentWithUpdateURI:updateURI];
-                [self loadContent];
+                [self reloadFromMetadata];
+//                [self loadContent];
             } failure:^(APIError *error) {
                 
             }];
