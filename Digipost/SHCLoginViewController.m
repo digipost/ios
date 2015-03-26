@@ -96,21 +96,21 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
-    
-    if ([Guide shouldShowOnboardingGuide]) {
-        [self presentOnboarding];
-    }
- 
+
     if ([OAuthToken isUserLoggedIn]) {
-        
-        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            [self presentAppropriateViewController];
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            [self presentAppropriateViewControllerForIPhone];
         }
-        
+
         [Guide setOnboaringHasBeenWatched];
+
+    } else {
+
+        if ([Guide shouldShowOnboardingGuide]) {
+            [self presentOnboarding];
+        }
     }
-    
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -200,11 +200,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    if ([Guide shouldShowWhatsNewGuide]) {
+    if ([Guide shouldShowWhatsNewGuide] && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self presentNewFeatures];
     } else {
 
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
 
@@ -212,7 +213,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
         } else {
-            [self presentAppropriateViewController];
+            [self presentAppropriateViewControllerForIPhone];
         }
     }
 }
@@ -236,7 +237,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [newFeaturesViewController dismissViewControllerAnimated:NO completion:^{
         [self.loginView setHidden:NO];
-        [self presentAppropriateViewController];
+        [self presentAppropriateViewControllerForIPhone];
     }];
 }
 
@@ -279,7 +280,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-- (void)presentAppropriateViewController
+- (void)presentAppropriateViewControllerForIPhone
 {
     POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
