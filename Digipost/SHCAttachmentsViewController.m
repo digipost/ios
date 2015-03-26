@@ -141,6 +141,9 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)generateTableViewHeader
 {
     POSAttachment *firstAttachment = [self.attachments firstObject];
+    if (firstAttachment == nil) {
+        firstAttachment = [self attachmentsForCurrentDocument].firstObject;
+    }
     UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
                                                                         0.0,
                                                                         CGRectGetWidth(self.view.frame),
