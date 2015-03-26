@@ -112,6 +112,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
+    
+    if([self.navigationController isNavigationBarHidden]){
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadProgressDidChange:)
