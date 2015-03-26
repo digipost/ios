@@ -34,9 +34,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             firstVC.navigationItem.titleView = nil
             
         }
-
-
-
+    
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
                 if rootResource == true {
@@ -131,13 +129,19 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
         
-        if (OAuthToken.isUserLoggedIn()) {
-            updateContentsFromServerUseInitiateRequest(0)
+        if OAuthToken.isUserLoggedIn() == false {
+            NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
+        } else {
+            if (OAuthToken.isUserLoggedIn()) {
+                updateContentsFromServerUseInitiateRequest(0)
+            }
+            
+            if Guide.shouldShowWhatsNewGuide() {
+                presentNewFeaturesViewController()
+            }
         }
-
-        if Guide.shouldShowWhatsNewGuide() {
-            presentNewFeaturesViewController()
-        }
+        
+        
     }
     
     func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
