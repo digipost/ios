@@ -27,10 +27,9 @@ NSString *const kReceiptTableViewCellIdentifier = @"ReceiptCellIdentifier";
     [super setHighlighted:highlighted
                  animated:animated];
 
-    self.selectionStyle = self.isEditing && highlighted ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
-    self.tintColor = self.isEditing ? [UIColor colorWithRed:13.0 / 255.0
-                                                      green:122.0 / 255.0
-                                                       blue:1.0
+    self.tintColor = self.isEditing ? [UIColor colorWithRed:64.0 / 255.0
+                                                      green:66.0 / 255.0
+                                                       blue:69.0 / 255.0
                                                       alpha:1.0]
                                     : [UIColor whiteColor];
 }
@@ -39,8 +38,6 @@ NSString *const kReceiptTableViewCellIdentifier = @"ReceiptCellIdentifier";
 {
     [super setSelected:selected
               animated:animated];
-
-    self.selectionStyle = self.isEditing && selected ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
     self.tintColor = self.isEditing ? [UIColor colorWithRed:64.0 / 255.0
                                                       green:66.0 / 255.0
                                                        blue:69.0 / 255.0

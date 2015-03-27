@@ -49,6 +49,7 @@
     receiptTableViewCell.amountLabel.accessibilityLabel = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.amountLabel.accessibilityHint = [self.numberFormatter stringFromNumber:@(receipt.amount.doubleValue / 100)];
     receiptTableViewCell.dateLabel.text = [POSDocument stringForDocumentDate:receipt.timeOfPurchase];
+    receiptTableViewCell.multipleSelectionBackgroundView = [UIView new];
 }
 
 - (NSNumberFormatter *)numberFormatter
