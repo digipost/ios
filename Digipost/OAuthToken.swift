@@ -241,7 +241,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     
     
     
-    class func oAuthScope(scope: String, isHigherThanScope otherScope: String) -> Bool {
+    class func oAuthScope(scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
         switch otherScope {
         case kOauth2ScopeFull:
             if scope != kOauth2ScopeFull {
@@ -252,6 +252,8 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             case kOauth2ScopeFull_Idporten4:
                 fallthrough
             case kOauth2ScopeFull_Idporten3:
+                return true
+            case kOauth2ScopeFullHighAuth:
                 return true
             default:
                 return false

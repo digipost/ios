@@ -230,12 +230,26 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (void)deleteReceipts
 {
+    __block NSInteger numberOfDocumentsRemaining = [self.tableView indexPathsForSelectedRows].count;
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPathOfSelectedRow];
-        [self deleteReceipt:receipt];
+        [[APIClient sharedClient] deleteReceipt:receipt success:^{
+            [[POSModelManager sharedManager] deleteReceipt:receipt];
+            [[POSModelManager sharedManager] logSavingManagedObjectContext];
+            numberOfDocumentsRemaining -= 1;
+            if (numberOfDocumentsRemaining == 0) {
+//                [self.receiptsTableViewDataSource resetFetchedResultsController];
+//                [self.tableView reloadData];
+                [self deselectAllRows];
+            }
+        } failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [self.receiptsTableViewDataSource resetFetchedResultsController];
+            [self.tableView reloadData];
+            [self deselectAllRows];
+        }];
     }
 
-    [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
 

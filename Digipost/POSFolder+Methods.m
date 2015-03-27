@@ -149,8 +149,8 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
             POSAttachment *attachment = (id) obj;
             NSString *scope = [OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel];
             
-            if ([OAuthToken oAuthScope:scope isHigherThanScope:highestOAuthScopeInThisFolder]) {
-                if ([OAuthToken oAuthScope:scope isHigherThanScope:highestStoredScope] == NO) {
+            if ([OAuthToken oAuthScope:scope isHigherThanOrEqualToScope:highestOAuthScopeInThisFolder]) {
+                if ([OAuthToken oAuthScope:scope isHigherThanOrEqualToScope:highestStoredScope] == NO) {
                     highestOAuthScopeInThisFolder = scope;
                 }
             }

@@ -24,18 +24,18 @@ extension POSAttachment {
             if authenticationLevel == nil {
                 return false
             }
-            let scope = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
-            if scope == kOauth2ScopeFull {
+            let scopeForAttachment = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
+            if scopeForAttachment == kOauth2ScopeFull {
                 return false
             } else {
-                let existingToken = OAuthToken.oAuthTokenWithScope(scope)
+                let existingToken = OAuthToken.oAuthTokenWithScope(scopeForAttachment)
                 if existingToken?.accessToken != nil {
                     return false
                 }
                 
-                let highestToken = OAuthToken.highestScopeInStorageForScope(scope)
+                let highestToken = OAuthToken.highestScopeInStorageForScope(scopeForAttachment)
                 
-                if OAuthToken.oAuthScope(highestToken, isHigherThanScope:scope){
+                if OAuthToken.oAuthScope(highestToken,isHigherThanOrEqualToScope:scopeForAttachment){
                     return false
                 }
                 return true

@@ -183,7 +183,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [[POSModelManager sharedManager] logSavingManagedObjectContext];
 
 
-            [self reloadFromMetadata];
+            [self downloadAttachmentContent:self.attachment];
+
         } failure:^(APIError *error) {
             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:^{
                 
@@ -678,6 +679,38 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self setToolbarItems:toolbarItems animated:YES];
 }
 
+- (void)downloadAttachmentContent:(POSAttachment *)attachment
+{
+    [[APIClient sharedClient] downloadBaseEncryptionModel:attachment withProgress:self.progress success:^{
+        NSError *error = nil;
+        if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:attachment error:&error]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
+        if ([self.attachment.fileType isEqualToString:@"html"]){
+            self.view.backgroundColor = [UIColor whiteColor];
+        }
+
+
+        NSURL *fileURL = [NSURL fileURLWithPath:[attachment decryptedFilePath]];
+        [self loadFileURL:fileURL];
+
+
+        if ([_attachment.read boolValue] == NO ) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+
+        }
+    }
+        failure:^(APIError *error) {
+                                                      if (self.attachment.needsAuthenticationToOpen) {
+                                                          [self showUnlockViewIfNotPresent];
+                                                      }
+        }];
+}
+
 - (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
 {
     NSParameterAssert(baseEncryptionModel);
@@ -806,6 +839,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
             }
         } failure:^(APIError *error) {
+
             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
                 if ([self needsAuthenticationToOpen] == NO)  {
                     [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
@@ -1124,7 +1158,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)setInfoViewVisible:(BOOL)visible
 {
     if (visible && self.shadowView.alpha == 0.0) {
-
         if (self.popoverTableViewDataSourceAndDelegate == nil) {
             self.popoverTableViewDataSourceAndDelegate = [[POSLetterPopoverTableViewDataSourceAndDelegate alloc] init];
         }
@@ -1156,13 +1189,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             NSString *invoiceAmount = [POSInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp")
                                                                                         description:invoiceAmount]];
-
             [dateFormatter setDateFormat:@"dd.MM.YYYY"];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_DUEDATE", @"Forfallsdato")
                                                                                         description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto")
                                                                                         description:self.attachment.invoice.accountNumber]];
-
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID")
                                                                                         description:[NSString stringWithFormat:@"%@", self.attachment.invoice.kid]]];
             NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
@@ -1441,7 +1472,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                      animations:^{
                          self.shadowView.alpha = 0.0;
                      }];
-
     [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
 }
