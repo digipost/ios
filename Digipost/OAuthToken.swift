@@ -58,7 +58,17 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         case kOauth2ScopeFull_Idporten4:
             return scope
         case kOauth2ScopeFull_Idporten3:
-            fallthrough
+            if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+                if higherLevelToken.accessToken != nil {
+                    return kOauth2ScopeFull_Idporten4
+                }else {
+                    return scope
+                }
+            } else if let idporten3Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+                return idporten3Token.scope!
+            }else {
+                return kOauth2ScopeFull
+            }
         case kOauth2ScopeFullHighAuth:
             if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
                 if higherLevelToken.accessToken != nil {
@@ -66,8 +76,10 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
                 }else {
                     return scope
                 }
+            } else if let highAuthToken = oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
+                return highAuthToken.scope!
             }else {
-                return scope
+                return kOauth2ScopeFull
             }
         default:
             return scope
