@@ -1249,7 +1249,7 @@
 		EC2DCBE01AB84EAB0063755E /* Digipost copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2DCBE11AB84EAC0063755E /* Digipost copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost copy-Info.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost copy-Info.plist"; sourceTree = "<absolute>"; };
 		EC2DCBEA1AB864990063755E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		EC2DCC911AB864AB0063755E /* Digipost copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC2DCC911AB864AB0063755E /* Digipost-qa2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-qa2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2DCC921AB864AC0063755E /* Digipost copy2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost copy2-Info.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost copy2-Info.plist"; sourceTree = "<absolute>"; };
 		EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ModelAssertions.swift"; sourceTree = "<group>"; };
 		EC30215B1AB70A9300812502 /* GoogleAnalytics_iOS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAnalytics_iOS_SDK.framework; path = "Pods/../build/Debug-iphoneos/Pods/GoogleAnalytics_iOS_SDK.framework"; sourceTree = "<group>"; };
@@ -1578,7 +1578,7 @@
 				EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */,
 				EC55F4301A2C5ACC00A3192C /* Digipost-Test-QA-2.app */,
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
-				EC2DCC911AB864AB0063755E /* Digipost copy.app */,
+				EC2DCC911AB864AB0063755E /* Digipost-qa2.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1831,6 +1831,8 @@
 				ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */,
 				ECF06D68192398C3003BD200 /* POSReceiptsTableViewDataSource.h */,
 				ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */,
+				83DB4AEE188D419A00515022 /* POSReceiptTableViewCell.h */,
+				83DB4AEF188D419A00515022 /* POSReceiptTableViewCell.m */,
 				837574B81891041C00902218 /* POSUploadTableViewCell.h */,
 				837574B91891041C00902218 /* POSUploadTableViewCell.m */,
 			);
@@ -1861,8 +1863,6 @@
 		EC1A6C3018BBA36100269428 /* Document detail */ = {
 			isa = PBXGroup;
 			children = (
-				83DB4AEE188D419A00515022 /* POSReceiptTableViewCell.h */,
-				83DB4AEF188D419A00515022 /* POSReceiptTableViewCell.m */,
 				EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */,
 				83D355141861C5EA009EABC6 /* POSLetterViewController.h */,
 				83D355151861C5EA009EABC6 /* POSLetterViewController.m */,
@@ -2105,7 +2105,7 @@
 			);
 			name = "Digipost-QA-2";
 			productName = Digipost;
-			productReference = EC2DCC911AB864AB0063755E /* Digipost copy.app */;
+			productReference = EC2DCC911AB864AB0063755E /* Digipost-qa2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EC55F3BA1A2C5ACC00A3192C /* Digipost-Test-QA-2-DEPRECATED */ = {
@@ -4082,8 +4082,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
-				PRODUCT_NAME = "Digipost copy";
-				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
+				PRODUCT_NAME = "Digipost-qa2";
+				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -4123,8 +4123,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
-				PRODUCT_NAME = "Digipost copy";
-				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
+				PRODUCT_NAME = "Digipost-qa2";
+				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
