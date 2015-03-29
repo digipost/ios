@@ -61,6 +61,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
         [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+        [self.tableView reloadData];
     } failure:^(APIError *error){
 
     }];
