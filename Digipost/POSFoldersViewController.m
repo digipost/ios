@@ -204,7 +204,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         numberOfSections++;
     }
 
-    if (self.editing && [self.folders count] == 0) {
+    if ([self.folders count] == 0) {
         numberOfSections++;
     }
     return numberOfSections;
@@ -213,9 +213,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
-        if (__IS_BETA__ == 1) {
-            return 4;
-        }
         return 3; // Inbox, Receipts and upload
     } else {
         // add new cell-cell is added
