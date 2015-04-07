@@ -12,7 +12,7 @@
 #import "POSFolder+Methods.h"
 #import <CoreData/CoreData.h>
 #import "POSFolderIcon.h"
-#import "POSMailbox.h"
+#import "POSMailbox+Methods.h"
 
 @interface POSUploadTableViewDataSource ()
 
@@ -116,11 +116,17 @@
 
 - (NSPredicate *)predicate
 {
-    if (self.selectedMailbox) {
-        return [NSPredicate predicateWithFormat:@"mailbox == %@", self.selectedMailbox];
+    if (self.selectedMailboxDigipostAddress) {
+        POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailboxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        return [NSPredicate predicateWithFormat:@"mailbox == %@", mailbox];
     } else {
         return nil;
     }
+}
+
+- (void)reloadFetchedResultsController
+{
+    self.fetchedResultsController = nil;
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -171,8 +177,8 @@
             break;
 
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
@@ -181,11 +187,11 @@
 {
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
         case NSFetchedResultsChangeUpdate:
         case NSFetchedResultsChangeMove:

@@ -14,7 +14,8 @@
 // designated initalizer
 - (id)initAsDataSourceForTableView:(UITableView *)tableView;
 - (id)managedObjectAtIndexPath:(NSIndexPath *)indexPath;
+- (void)reloadFetchedResultsController;
 @property (nonatomic, strong) NSString *entityDescription;
-@property (nonatomic, strong) POSMailbox *selectedMailbox;
+@property (nonatomic, strong) NSString *selectedMailboxDigipostAddress;
 
 @end

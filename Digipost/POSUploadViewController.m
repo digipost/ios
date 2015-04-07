@@ -25,7 +25,7 @@ NSString *const kUploadNewFolderSegue = @"createNewFolderSegue";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *howtoUploadImageView;
 @property (nonatomic, strong) POSUploadTableViewDataSource *dataSource;
-@property (nonatomic, strong) POSMailbox *chosenMailBox;
+@property (nonatomic, strong) NSString *chosenMailBoxDigipostAddress;
 @property (nonatomic, strong) POSFolder *chosenFolder;
 
 @end
@@ -42,7 +42,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         self.dataSource.entityDescription = kFolderEntityName;
         self.navigationItem.title = NSLocalizedString(@"navbar title upload folder", @"");
         self.tableView.backgroundColor = RGB(64, 66, 69);
-        self.dataSource.selectedMailbox = self.chosenMailBox;
+        self.dataSource.selectedMailboxDigipostAddress = self.chosenMailBoxDigipostAddress;
     } else {
         self.navigationItem.title = NSLocalizedString(@"navbar title upload mailbox", @"");
         self.dataSource.entityDescription = kMailboxEntityName;
@@ -58,9 +58,9 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
     }
-
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
         [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+        [self.dataSource reloadFetchedResultsController];
         [self.tableView reloadData];
     } failure:^(APIError *error){
 
@@ -80,7 +80,8 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.isShowingFolders == NO) {
-        self.chosenMailBox = [self.dataSource managedObjectAtIndexPath:indexPath];
+        POSMailbox *mailbox = [self.dataSource managedObjectAtIndexPath:indexPath];
+        self.chosenMailBoxDigipostAddress = mailbox.digipostAddress;
         [self performSegueWithIdentifier:kShowFoldersSegueIdentifier sender:self];
     } else {
         self.chosenFolder = [self.dataSource managedObjectAtIndexPath:indexPath];
@@ -113,10 +114,12 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 
 - (NSDictionary *)notificationDictionary
 {
-    if (self.chosenMailBox) {
+
+    if (self.chosenMailBoxDigipostAddress) {
+        POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.chosenMailBoxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         return @{
             @"folder" : self.chosenFolder,
-            @"mailbox" : self.chosenMailBox
+            @"mailbox" : mailbox
         };
     } else {
         POSMailbox *mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -136,14 +139,14 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         POSUploadViewController *uploadViewcontroller = [segue destinationViewController];
         uploadViewcontroller.isShowingFolders = YES;
         POSMailbox *selectedMailbox = [self.dataSource managedObjectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        uploadViewcontroller.chosenMailBox = selectedMailbox;
+        uploadViewcontroller.chosenMailBoxDigipostAddress = selectedMailbox.digipostAddress;
         uploadViewcontroller.url = self.url;
     } else if ([segue.identifier isEqualToString:kUploadNewFolderSegue]) {
         POSNewFolderViewController *newFolderViewController = segue.destinationViewController;
-        if (self.chosenMailBox == nil) {
+        if (self.chosenMailBoxDigipostAddress == nil) {
             newFolderViewController.mailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         } else {
-            newFolderViewController.mailbox = self.chosenMailBox;
+            newFolderViewController.mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.chosenMailBoxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         }
     }
     // Get the new view controller using [segue destinationViewController].
