@@ -179,10 +179,10 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func panBackground() {
-        let translatedOffsetX = -(scrollView.contentOffset.x + scrollView.scrollableEdgeOffset)
+        let translatedOffsetX = -(scrollView.contentOffset.x + scrollView.scrollableEdgeOffset) - 50
         bgImageView.frame.origin.x = translatedOffsetX * parallaxSpeedForCurrentDevice().backgroundSpeed
         bgMaskImageView.frame.origin.x = bgImageView.frame.origin.x
-        bgParallaxImageView.frame.origin.x = translatedOffsetX * parallaxSpeedForCurrentDevice().mountainSpeed
+        bgParallaxImageView.frame.origin.x = translatedOffsetX * parallaxSpeedForCurrentDevice().mountainSpeed - 50
     }
     
     func storeInitialConstraints() {
