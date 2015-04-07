@@ -23,6 +23,12 @@ extension POSAttachment {
         if self.authenticationLevel == AuthenticationLevel.idPorten4 || self.authenticationLevel == AuthenticationLevel.idPorten3 || self.authenticationLevel == AuthenticationLevel.twoFactor {
             if authenticationLevel == nil {
                 return false
+            } else {
+                let existingScope = OAuthToken.oAuthTokenWithScope(scope)
+                if existingScope?.accessToken != nil {
+                    return false
+                }
+                return true
             }
             let scopeForAttachment = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
             if scopeForAttachment == kOauth2ScopeFull {
@@ -47,6 +53,17 @@ extension POSAttachment {
 
     func originIsPublicEntity() -> Bool{
 
+        if origin == nil {
+            return false
+        }
+
+        if origin == "PUBLIC_ENTITY" {
+            return true
+        }
+        return false
+    }
+
+    func originIsPublicEntity() -> Bool{
         if origin == nil {
             return false
         }
