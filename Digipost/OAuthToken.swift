@@ -23,21 +23,21 @@ struct AuthenticationLevel {
 }
 
 class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
-    
+
     var refreshToken: String? {
         didSet {
             storeInKeyChain()
         }
     }
-    
+
     var accessToken: String? {
         didSet {
             storeInKeyChain()
         }
     }
-    
+
     var scope: String?
-    
+
     class func levelForScope(aScope: String)-> Int {
         switch aScope {
         case kOauth2ScopeFull:
@@ -52,7 +52,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return 1
         }
     }
-    
+
     class func highestScopeInStorageForScope(scope:String) -> String {
         switch scope {
         case kOauth2ScopeFull_Idporten4:
@@ -73,7 +73,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
                 if higherLevelToken.accessToken != nil {
                     return kOauth2ScopeFull_Idporten4
-                }else {
+                } else {
                     return scope
                 }
             } else if let highAuthToken = oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
@@ -85,7 +85,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return scope
         }
     }
-    
+
     class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
         if let token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return token
@@ -97,48 +97,48 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return oAuthTokenWithScope(kOauth2ScopeFull)?
         }
     }
-    
+
     required convenience init(coder decoder: NSCoder) {
         self.init()
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!
         self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as String!
         self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as String!
     }
-    
+
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encodeObject(self.scope, forKey: Keys.scopeKey)
     }
-    
+
     convenience init?(refreshToken: String?, scope: String) {
-         self.init()
-        
+        self.init()
+
         if let acutalRefreshToken = refreshToken as String? {
-           self.refreshToken = acutalRefreshToken
+            self.refreshToken = acutalRefreshToken
         } else {
             return nil
         }
-        
+
         self.scope = scope
         storeInKeyChain()
     }
-    
+
     convenience init?(refreshToken: String?, accessToken: String?, scope:String) {
         self.init()
-        
+
         if let acutalRefreshToken = refreshToken as String? {
-           self.refreshToken = acutalRefreshToken
+            self.refreshToken = acutalRefreshToken
         }
-        
+
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
         }
-        
+
         self.scope = scope
         storeInKeyChain()
     }
-    
+
     convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
         var aRefreshToken: String?
         var anAccessToken: String?
@@ -147,7 +147,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope)
         storeInKeyChain()
     }
-    
+
     class func isUserLoggedIn() -> Bool {
         let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         if token == nil {
@@ -155,7 +155,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
         return true
     }
-    
+
     func removeFromKeyChain() {
         if accessToken == nil {
             var existingTokens = OAuthToken.oAuthTokens()
@@ -163,12 +163,13 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
         }
     }
-    
+
     func removeFromKeyChainIfNotValid() {
         if accessToken == nil && refreshToken == nil {
             removeFromKeyChain()
         }
     }
+
     func password() -> String? {
         if scope == kOauth2ScopeFull{
             return refreshToken
@@ -176,27 +177,27 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return accessToken
         }
     }
-    
+
     func storeInKeyChain() {
         var existingTokens = OAuthToken.oAuthTokens()
         existingTokens[scope!] = self
         LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
     }
-    
+
     func canBeRefreshedByRefreshToken() -> Bool {
         if scope == kOauth2ScopeFull {
             return true
         }
         return false
     }
-    
+
     class func moveOldOAuthTokensIfPresent() {
         if let actualOldRefreshToken = LUKeychainAccess.standardKeychainAccess().stringForKey(kKeychainAccessRefreshTokenKey) as String? {
             let newOAuthToken = OAuthToken(refreshToken: actualOldRefreshToken, scope: kOauth2ScopeFull)
             LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
         }
     }
-    
+
     class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
         if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return oAuth4Token
@@ -208,7 +209,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return oAuthTokenWithScope(kOauth2ScopeFull)
         }
     }
-    
+
     class func highestOAuthTokenWithScope(scope: String) -> OAuthToken? {
         let level = levelForScope(scope)
         switch level {
@@ -228,7 +229,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return oAuthTokenWithScope(scope)
         }
     }
-    
+
     class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
@@ -238,7 +239,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
         return nil
     }
-    
+
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
         var tokenArray = Dictionary<String,AnyObject>()
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
@@ -250,9 +251,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
         return tokenArray
     }
-    
-    
-    
+
     class func oAuthScope(scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
         switch otherScope {
         case kOauth2ScopeFull:
@@ -275,7 +274,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
                 return true
             }
             return false
-            
+
         case kOauth2ScopeFull_Idporten4:
             return false
         default:
@@ -283,7 +282,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
         return false
     }
-    
+
     class func oAuthScopeForAuthenticationLevel(authenticationLevel: String) -> String {
         switch authenticationLevel {
         case AuthenticationLevel.password:
@@ -294,22 +293,22 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             return kOauth2ScopeFull_Idporten3;
         case AuthenticationLevel.idPorten4:
             return kOauth2ScopeFull_Idporten4
-            
+
         default:
             return authenticationLevel
         }
     }
-    
+
     class func removeAllTokens() {
         let emptyDictionary = Dictionary<String,AnyObject>()
         LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
-    
+
     class func removeAcessTokenForOAuthTokenWithScope(scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }
-    
+
     override var debugDescription: String {
         return "accessToken: \(accessToken), refreshToken: \(refreshToken), scope: \(scope)"
     }

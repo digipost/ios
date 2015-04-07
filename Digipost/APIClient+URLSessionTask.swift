@@ -14,7 +14,6 @@ extension APIClient {
 
     private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-            println(response)
             let serializedResponse : Dictionary<String,AnyObject>? = {
                 if let data = data {
                     return NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as? Dictionary<String,AnyObject>
@@ -103,7 +102,6 @@ extension APIClient {
             }.progress { (bytesRead, totalBytesRead, totalBytesExcpedtedToRead) -> Void in
                 if let actualProgress = progress as NSProgress! {
                     actualProgress.completedUnitCount = totalBytesRead
-                    println(actualProgress)
                 }
             }.response { (request, response, object, error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), {
