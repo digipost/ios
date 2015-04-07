@@ -74,13 +74,11 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
         var labelOffset: CGFloat = 0.0
         
         var frameHeightConstant:CGFloat {
-            get {
-                // If iphone 4
-                if view.bounds.height <= 480 {
-                    return 50
-                } else {
-                    return 0
-                }
+            // If iphone 4
+            if view.bounds.height <= 480 {
+                return 50
+            } else {
+                return 0
             }
         }
         
