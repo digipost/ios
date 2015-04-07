@@ -2,8 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "background-iphone@1x.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
