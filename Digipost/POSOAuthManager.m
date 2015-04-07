@@ -152,7 +152,6 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
         success:^(NSURLSessionDataTask *task, id responseObject) {
                           NSDictionary *responseDict = (NSDictionary *)responseObject;
                           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-
                               NSString *accessToken = responseDict[kOAuth2AccessToken];
                               if ([accessToken isKindOfClass:[NSString class]]) {
                                   OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
@@ -173,8 +172,10 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                           }
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-                          if (failure) {
+            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            
+            if (failure) {
                               // Check to see if the request failed because the refresh token was denied
 
                               if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response] ) {

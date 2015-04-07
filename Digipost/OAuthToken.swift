@@ -66,7 +66,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
                 }
             } else if let idporten3Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
                 return idporten3Token.scope!
-            }else {
+            } else {
                 return kOauth2ScopeFull
             }
         case kOauth2ScopeFullHighAuth:
@@ -78,7 +78,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
                 }
             } else if let highAuthToken = oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
                 return highAuthToken.scope!
-            }else {
+            } else {
                 return kOauth2ScopeFull
             }
         default:
