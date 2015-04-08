@@ -123,6 +123,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
     }
+    
+    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCompose target:self action:@selector(presentDocumentComposer)];
+    NSArray *items = @[composeButton];
+    self.toolbarItems = items;
+    [self.navigationController setToolbarHidden:NO];
+    
+}
+
+- (void)presentDocumentComposer{
+    UIStoryboard *documentComposerStoryboard = [UIStoryboard storyboardWithName:@"DocumentComposer" bundle:nil];
+    UINavigationController *navigationController = (id)[documentComposerStoryboard instantiateInitialViewController];
+    [self presentViewController:navigationController animated:NO completion:nil];
 }
 
 - (void)popViewController
