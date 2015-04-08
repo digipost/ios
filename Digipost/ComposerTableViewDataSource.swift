@@ -54,7 +54,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         
-        let rowToMoveContent = tableData[sourceIndexPath.row]
+        let rowToMoveContent: AnyObject = tableData[sourceIndexPath.row]
         tableData.removeAtIndex(sourceIndexPath.row)
         tableData.insert(rowToMoveContent, atIndex: destinationIndexPath.row)
         
