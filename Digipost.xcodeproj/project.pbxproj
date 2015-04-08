@@ -266,6 +266,9 @@
 		AF981F101AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */; };
 		AF981F111AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */; };
 		AF981F121AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */; };
+		AF981F141AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
+		AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
+		AF981F161AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -1258,6 +1261,7 @@
 		AF981F041AD525D200DE8B55 /* UITableView+Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Reorder.h"; sourceTree = "<group>"; };
 		AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Reorder.m"; sourceTree = "<group>"; };
 		AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTableViewDataSource.swift; sourceTree = "<group>"; };
+		AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
@@ -1816,6 +1820,7 @@
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
+				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
 			);
 			name = "Document Composer";
 			sourceTree = "<group>";
@@ -3102,6 +3107,7 @@
 				AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */,
 				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
+				AF981F141AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
@@ -3243,6 +3249,7 @@
 				EC2DCB8A1AB84EAB0063755E /* UIScrollViewExtensions.swift in Sources */,
 				EC2DCB8B1AB84EAB0063755E /* UIImageView+Color.swift in Sources */,
 				EC2DCB8C1AB84EAB0063755E /* String+Extensions.swift in Sources */,
+				AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */,
 				EC2DCB8D1AB84EAB0063755E /* NSURLRequest+QueryParameters.m in Sources */,
 				EC2DCB8E1AB84EAB0063755E /* APIClient+URLSessionTask.swift in Sources */,
 				EC2DCB8F1AB84EAB0063755E /* UIColor+Convenience.m in Sources */,
@@ -3384,6 +3391,7 @@
 				EC2DCC3B1AB864AB0063755E /* UIScrollViewExtensions.swift in Sources */,
 				EC2DCC3C1AB864AB0063755E /* UIImageView+Color.swift in Sources */,
 				EC2DCC3D1AB864AB0063755E /* String+Extensions.swift in Sources */,
+				AF981F161AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */,
 				EC2DCC3E1AB864AB0063755E /* NSURLRequest+QueryParameters.m in Sources */,
 				EC2DCC3F1AB864AB0063755E /* APIClient+URLSessionTask.swift in Sources */,
 				EC2DCC401AB864AB0063755E /* UIColor+Convenience.m in Sources */,
