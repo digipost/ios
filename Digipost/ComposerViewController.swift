@@ -10,8 +10,14 @@ import UIKit
 
 class ComposerViewController: UIViewController {
 
+    @IBOutlet var tableView: UITableView!
+    var dataSource: ComposerTableViewDataSource?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        dataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
+        dataSource?.tableData = ["1","2","3"]
 
         // Do any additional setup after loading the view.
     }
