@@ -28,3 +28,18 @@ extension String {
     }
     
 }
+
+extension NSString {
+    
+    func initials() -> NSString {
+        var arr = self.componentsSeparatedByString(" ")
+        if arr.count == 0 { return "" }
+        
+        return  arr[0].firstLetter() + arr[arr.count - 1].firstLetter()
+    }
+    
+    func firstLetter() -> NSString {
+        return self.substringToIndex(1)
+    }
+    
+}
