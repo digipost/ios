@@ -228,6 +228,24 @@
 		AF981EEA1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EEB1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EEF1AD516A400DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EF11AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF21AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF31AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF41AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF51AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF61AD516DC00DE8B55 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		AF981EF71AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EF81AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EF91AD516E000DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EFA1AD516E100DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EFB1AD516E100DE8B55 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */; };
+		AF981EFD1AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		AF981EFE1AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		AF981EFF1AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		AF981F001AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		AF981F011AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		AF981F021AD516F800DE8B55 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -1212,6 +1230,9 @@
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocumentComposer.storyboard; sourceTree = "<group>"; };
+		AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
+		AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
+		AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
@@ -1672,6 +1693,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				AF981EED1AD5164800DE8B55 /* Document Composer */,
 				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
 				AF477E001A77B48A00CBD150 /* Onboarding */,
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
@@ -1758,6 +1780,16 @@
 				AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		AF981EED1AD5164800DE8B55 /* Document Composer */ = {
+			isa = PBXGroup;
+			children = (
+				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
+				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
+			);
+			name = "Document Composer";
 			sourceTree = "<group>";
 		};
 		AFC1A92C1A920B6A00E62F48 /* NewFeatures */ = {
@@ -2732,6 +2764,7 @@
 				8375DD381855C383009435B4 /* main.m in Sources */,
 				8375DD391855C383009435B4 /* SHCAppDelegate.m in Sources */,
 				ECB4C65B19B725ED00C1C748 /* NSString+Convenience.m in Sources */,
+				AF981EFF1AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				EC2B64651A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -2787,6 +2820,7 @@
 				EC60D64819D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
 				ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */,
 				ECA594CC19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
+				AF981EF81AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */,
 				83D75F6F1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				EC0F8D6219CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BF19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
@@ -2795,6 +2829,7 @@
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
 				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
+				AF981EF31AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				311779681AAEFCA800229D02 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2866,6 +2901,7 @@
 				83A31AFC1855D706007045B9 /* main.m in Sources */,
 				83A31AFD1855D706007045B9 /* SHCAppDelegate.m in Sources */,
 				ECB4C65A19B725ED00C1C748 /* NSString+Convenience.m in Sources */,
+				AF981EF51AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				EC2B64641A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D66192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DB192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -2880,6 +2916,7 @@
 				EC181DAC192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				83D75F761859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				83D3550818619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
+				AF981EFA1AD516E100DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2352A31A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				3194C83E1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				83F7037318570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
@@ -2902,6 +2939,7 @@
 				ECC08E061A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBF1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508541958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
+				AF981F011AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				EC29512A18BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECDB9A041A5A904E0013DF4F /* Constants.swift in Sources */,
 				ECCC5CAC19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
@@ -2999,6 +3037,7 @@
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
 				83D75F591858E5790013F8C9 /* POSFolder.m in Sources */,
 				ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */,
+				AF981EFD1AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -3026,6 +3065,7 @@
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
+				AF981EEF1AD516A400DE8B55 /* RecipientsViewController.swift in Sources */,
 				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
 				AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
@@ -3037,6 +3077,7 @@
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
+				AF981EF11AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				ECDB9A031A5A904E0013DF4F /* Constants.swift in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
@@ -3133,6 +3174,7 @@
 				EC2DCB791AB84EAB0063755E /* SHCAppDelegate.m in Sources */,
 				EC2DCB7A1AB84EAB0063755E /* POSFolder.m in Sources */,
 				EC2DCB7B1AB84EAB0063755E /* NSString+Convenience.m in Sources */,
+				AF981EFE1AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				EC2DCB7C1AB84EAB0063755E /* Dispatch.swift in Sources */,
 				EC2DCB7D1AB84EAB0063755E /* UIRefreshControl+Additions.m in Sources */,
 				EC2DCB7E1AB84EAB0063755E /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -3188,6 +3230,7 @@
 				EC2DCBB01AB84EAB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCBB11AB84EAB0063755E /* UIImage+Localization.swift in Sources */,
 				EC2DCBB21AB84EAB0063755E /* POSNotice.m in Sources */,
+				AF981EF71AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
 				EC2DCBB41AB84EAB0063755E /* POSModelManager.m in Sources */,
 				EC2DCBB51AB84EAB0063755E /* SHCAppDelegate+Appearance.swift in Sources */,
@@ -3196,6 +3239,7 @@
 				EC2DCBB81AB84EAB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCBB91AB84EAB0063755E /* POSFolder+Methods.m in Sources */,
 				EC2DCBBA1AB84EAB0063755E /* APIError.swift in Sources */,
+				AF981EF21AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				EC2DCBBB1AB84EAB0063755E /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3267,6 +3311,7 @@
 				EC2DCC2A1AB864AB0063755E /* SHCAppDelegate.m in Sources */,
 				EC2DCC2B1AB864AB0063755E /* POSFolder.m in Sources */,
 				EC2DCC2C1AB864AB0063755E /* NSString+Convenience.m in Sources */,
+				AF981F021AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				EC2DCC2D1AB864AB0063755E /* Dispatch.swift in Sources */,
 				EC2DCC2E1AB864AB0063755E /* UIRefreshControl+Additions.m in Sources */,
 				EC2DCC2F1AB864AB0063755E /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -3322,6 +3367,7 @@
 				EC2DCC611AB864AB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCC621AB864AB0063755E /* UIImage+Localization.swift in Sources */,
 				EC2DCC631AB864AB0063755E /* POSNotice.m in Sources */,
+				AF981EFB1AD516E100DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCC641AB864AB0063755E /* POSAttachment+Methods.swift in Sources */,
 				EC2DCC651AB864AB0063755E /* POSModelManager.m in Sources */,
 				EC2DCC661AB864AB0063755E /* SHCAppDelegate+Appearance.swift in Sources */,
@@ -3330,6 +3376,7 @@
 				EC2DCC691AB864AB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCC6A1AB864AB0063755E /* POSFolder+Methods.m in Sources */,
 				EC2DCC6B1AB864AB0063755E /* APIError.swift in Sources */,
+				AF981EF61AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				EC2DCC6C1AB864AB0063755E /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3401,6 +3448,7 @@
 				EC55F3EA1A2C5ACC00A3192C /* SHCAppDelegate.m in Sources */,
 				EC55F3EB1A2C5ACC00A3192C /* NSString+Convenience.m in Sources */,
 				EC2B64671A66928D00AB6085 /* Dispatch.swift in Sources */,
+				AF981EF41AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				EC55F3EC1A2C5ACC00A3192C /* UIRefreshControl+Additions.m in Sources */,
 				EC55F3ED1A2C5ACC00A3192C /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC55F3EE1A2C5ACC00A3192C /* UIWebView+Accessability.swift in Sources */,
@@ -3415,6 +3463,7 @@
 				EC55F3F41A2C5ACC00A3192C /* POSFolderTableViewCell.m in Sources */,
 				EC55F3F51A2C5ACC00A3192C /* NSError+ExtraInfo.m in Sources */,
 				EC55F3F61A2C5ACC00A3192C /* UIImageView+Color.swift in Sources */,
+				AF981EF91AD516E000DE8B55 /* RecipientsViewController.swift in Sources */,
 				3194C8411A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				EC55F3F71A2C5ACC00A3192C /* NSURLRequest+QueryParameters.m in Sources */,
 				EC22CF901A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
@@ -3437,6 +3486,7 @@
 				316D3BC21A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC55F4021A2C5ACC00A3192C /* POSNoRotationNavigationController.m in Sources */,
 				EC55F4031A2C5ACC00A3192C /* POSLetterPopoverView.m in Sources */,
+				AF981F001AD516F800DE8B55 /* PreviewViewController.swift in Sources */,
 				ECDB9A061A5A904E0013DF4F /* Constants.swift in Sources */,
 				EC55F4041A2C5ACC00A3192C /* UIWindow+Navigation.swift in Sources */,
 				EC55F4061A2C5ACC00A3192C /* POSLetterPopoverTableViewCell.m in Sources */,

@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <scenes>
-        <!--Velg mottaker-->
+        <!--Recipient View Controller-->
         <scene sceneID="HkA-0o-1le">
             <objects>
-                <viewController id="9Ad-2g-amd" sceneMemberID="viewController">
+                <viewController id="9Ad-2g-amd" customClass="RecipientViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KD7-a2-Cro"/>
                         <viewControllerLayoutGuide type="bottom" id="JHi-J7-6lH"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Velg mottaker" id="hPs-XG-oFT">
+                    <navigationItem key="navigationItem" id="hPs-XG-oFT">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pCj-3A-YAg">
                             <connections>
                                 <segue destination="c7P-nT-vMt" kind="show" id="KLU-YQ-95J"/>
@@ -29,10 +29,10 @@
             </objects>
             <point key="canvasLocation" x="33" y="400"/>
         </scene>
-        <!--View Controller-->
+        <!--Preview View Controller-->
         <scene sceneID="gpA-sD-Qpc">
             <objects>
-                <viewController id="pyB-XH-9wo" sceneMemberID="viewController">
+                <viewController id="pyB-XH-9wo" customClass="PreviewViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Deg-LQ-BEd"/>
                         <viewControllerLayoutGuide type="bottom" id="Wtj-kL-Zyg"/>
@@ -47,10 +47,10 @@
             </objects>
             <point key="canvasLocation" x="2080" y="400"/>
         </scene>
-        <!--Nytt brev-->
+        <!--Composer View Controller-->
         <scene sceneID="ahV-r9-P91">
             <objects>
-                <viewController id="hzi-BN-YG0" sceneMemberID="viewController">
+                <viewController id="hzi-BN-YG0" customClass="ComposerViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="opl-Ht-hva"/>
                         <viewControllerLayoutGuide type="bottom" id="2KC-Tl-kD0"/>
@@ -60,7 +60,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Nytt brev" id="DpV-8n-mTd">
+                    <navigationItem key="navigationItem" id="DpV-8n-mTd">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="rVV-tC-IVb">
                             <connections>
                                 <segue destination="pyB-XH-9wo" kind="show" id="od5-zP-ZUb"/>
