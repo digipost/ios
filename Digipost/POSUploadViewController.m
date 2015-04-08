@@ -69,6 +69,8 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     } failure:^(APIError *error){
 
     }];
+
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
 }
 
 - (void)closeView
