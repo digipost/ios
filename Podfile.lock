@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
   - Alamofire (1.1.4)
+  - HockeySDK (3.6.2)
   - KIF (3.1.2):
     - KIF/XCTest (= 3.1.2)
   - KIF/XCTest (3.1.2)
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 1.1)
+  - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
   - KIF (~> 3.0)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
@@ -76,21 +78,28 @@ EXTERNAL SOURCES:
   AHKActionSheet:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
+  HockeySDK:
+    :branch: develop
+    :git: https://github.com/bitstadium/HockeySDK-iOS.git
 
 CHECKOUT OPTIONS:
   AHKActionSheet:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
+  HockeySDK:
+    :commit: e2d35454f9fddf6d37b437a0f4d00eaefc0d2b96
+    :git: https://github.com/bitstadium/HockeySDK-iOS.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 8bee59492a6ff15d69130efa4d0dc67e0094a52a
+  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
-  Alamofire: 524225da382071ee3e6d0badd0ee4b4dc36740de
-  KIF: 068074b24dd455025e7f2a488ba4fb07b9ce047b
-  LUKeychainAccess: 4365689e03b1a019ce40a86058aae6e31e9adcea
-  MRProgress: e588fb8d0fba293715eaf0e485dd8402f4ce1de6
-  RNCryptor: 4f562062c39f288b99601674f2c50dd44b68d58a
-  UIActionSheet+Blocks: c8b9c02f3d08964e8f7a4202f004a639c15eab80
-  UIAlertView+Blocks: 0b749f1f7bd5131ff2233b30a406c1585a7171b2
+  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
+  HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
+  KIF: e08915d78a220480599837e9a760deee64453d76
+  LUKeychainAccess: 708702536726877384ecc4cf2f2040ad393038ba
+  MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
+  RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
+  UIActionSheet+Blocks: 7fdab45fc8f15ac2dc1cd65af1470746600b5f46
+  UIAlertView+Blocks: 45c3d3b7194906702d3e9a14c7ece5581505646d
 
-COCOAPODS: 0.36.0
+COCOAPODS: 0.36.3

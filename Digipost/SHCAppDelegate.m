@@ -30,6 +30,7 @@
 #import "POSFileManager.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
+#import <HockeySDK/HockeySDK.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
@@ -47,7 +48,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    //    [self setupHockeySDK];
+    [self setupHockeySDK];
 
     //    [self setupCocoaLumberjack];
 
@@ -211,15 +212,24 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     }
 }
 #pragma mark - Private methods
-//
-//- (void)setupHockeySDK
-//{
-//    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
-//                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
-//                                                               delegate:self];
-//    [[BITHockeyManager sharedHockeyManager] startManager];
-//    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-//}
+
+- (void)setupHockeySDK
+{
+
+#if __IS_BETA__ == 0
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_LIVE_IDENTIFIER__];
+#elif __IS_BETA__ == 1
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
+#else
+#endif
+    [[BITHockeyManager sharedHockeyManager] startManager];
+
+    //    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
+    //                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
+    //                                                               delegate:self];
+    //    [[BITHockeyManager sharedHockeyManager] startManager];
+    //    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+}
 
 //- (void)setupCocoaLumberjack
 //{
