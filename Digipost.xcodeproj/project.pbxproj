@@ -222,6 +222,12 @@
 		AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF981EE71AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EEA1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EEB1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
+		AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -1205,6 +1211,7 @@
 		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocumentComposer.storyboard; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
@@ -1657,6 +1664,7 @@
 				ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */,
 				AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */,
 				AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */,
+				AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -2224,6 +2232,7 @@
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
 				ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
+				AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
 				EC4146ED1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
@@ -2248,6 +2257,7 @@
 				83C5719A18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A71A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83A31B041855D706007045B9 /* Main_iPad.storyboard in Resources */,
+				AF981EEB1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				ECA594CE19FFE4520064D98D /* Images-Prod.xcassets in Resources */,
 				83A31B061855D706007045B9 /* Main_iPhone.storyboard in Resources */,
 				EC4146EC1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
@@ -2272,6 +2282,7 @@
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
+				AF981EE71AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
@@ -2296,6 +2307,7 @@
 				EC2DCBCE1AB84EAB0063755E /* Images-Shared.xcassets in Resources */,
 				EC2DCBCF1AB84EAB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCBD01AB84EAB0063755E /* Main_iPad.storyboard in Resources */,
+				AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCBD11AB84EAB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCBD21AB84EAB0063755E /* Main_iPhone.storyboard in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
@@ -2320,6 +2332,7 @@
 				EC2DCC7F1AB864AB0063755E /* Images-Shared.xcassets in Resources */,
 				EC2DCC801AB864AB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCC811AB864AB0063755E /* Main_iPad.storyboard in Resources */,
+				AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCC821AB864AB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCC831AB864AB0063755E /* Main_iPhone.storyboard in Resources */,
 				EC2DCC841AB864AB0063755E /* OnboardingGuideTexts.strings in Resources */,
@@ -2345,6 +2358,7 @@
 				EC55F4251A2C5ACC00A3192C /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC55F4261A2C5ACC00A3192C /* Images-Shared.xcassets in Resources */,
 				EC55F4271A2C5ACC00A3192C /* Main_iPad.storyboard in Resources */,
+				AF981EEA1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC55F4281A2C5ACC00A3192C /* Main_iPhone.storyboard in Resources */,
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
 				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
