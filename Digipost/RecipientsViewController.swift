@@ -29,7 +29,7 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        recipients = []
+        recipients.removeAll(keepCapacity: false)
         APIClient.sharedClient.getRecipients(searchBar.text, success: { (responseDictionary) -> Void in
             self.recipients = Recipient.recipients(jsonDict: responseDictionary)
             self.tableView.reloadData()
@@ -45,7 +45,11 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        cell.textLabel?.text = recipients[indexPath.row].name
+        if let recipient = recipients[indexPath.row].name{
+            cell.textLabel?.text = recipient
+        }
+        
+        
         
         return cell
     }
