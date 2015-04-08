@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C99d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Recipient View Controller-->
@@ -15,7 +16,38 @@
                     <view key="view" contentMode="scaleToFill" id="UHt-00-Igr">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="nFo-Ml-eBf">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-wY-uWH">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="RQv-iZ-5mC">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RQv-iZ-5mC" id="uIv-97-76M">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="9Ad-2g-amd" id="zaR-HW-p7t"/>
+                                    <outlet property="delegate" destination="9Ad-2g-amd" id="Xds-xT-ndo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="76k-Jf-HTN"/>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="nFo-Ml-eBf" secondAttribute="bottom" id="K6C-Fa-Ntq"/>
+                            <constraint firstItem="nFo-Ml-eBf" firstAttribute="top" secondItem="KD7-a2-Cro" secondAttribute="bottom" id="VN6-Mn-FX5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="Wdr-6p-C0B"/>
+                            <constraint firstItem="nFo-Ml-eBf" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="cEY-LP-JSF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nFo-Ml-eBf" secondAttribute="trailing" constant="-16" id="tTa-Te-xnw"/>
+                            <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="tzV-06-SkE"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hPs-XG-oFT">
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pCj-3A-YAg">
@@ -24,6 +56,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="nFo-Ml-eBf" id="Yhp-2D-Ylk"/>
+                        <outlet property="tableView" destination="4lo-wY-uWH" id="iLQ-Yp-XD9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyo-VB-O1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

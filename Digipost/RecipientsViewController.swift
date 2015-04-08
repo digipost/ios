@@ -8,28 +8,46 @@
 
 import UIKit
 
-class RecipientViewController: UIViewController {
-
+class RecipientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    var recipients = [Recipient]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        var tblView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = tblView
+        tableView.tableFooterView?.hidden = true
+        tableView.backgroundColor = UIColor.grayColor()
+        
+        searchBar.delegate = self
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        recipients = []
+        APIClient.sharedClient.getRecipients(searchBar.text, success: { (responseDictionary) -> Void in
+            self.recipients = Recipient.recipients(jsonDict: responseDictionary)
+            self.tableView.reloadData()
+            
+            }) { (error) -> () in
+                
+        }
     }
-    */
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipients.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        cell.textLabel?.text = recipients[indexPath.row].name
+        
+        return cell
+    }
 
 }

@@ -66,6 +66,14 @@
 		31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		31B57FFD1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		31F4C88C1AD545D200E63129 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */; };
+		31F4C88E1AD5471700E63129 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
+		31F4C88F1AD54C7500E63129 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */; };
+		31F4C8901AD54C7600E63129 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */; };
+		31F4C8911AD54C7700E63129 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */; };
+		31F4C8921AD554F700E63129 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
+		31F4C8931AD554F800E63129 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
+		31F4C8941AD554F900E63129 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
 		8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBB185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
 		8342EFBC185861A80080A833 /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -1138,6 +1146,8 @@
 		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Recipients.swift"; sourceTree = "<group>"; };
+		31F4C88D1AD5471700E63129 /* Recipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipient.swift; sourceTree = "<group>"; };
 		599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test_Dpost_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
@@ -1572,6 +1582,7 @@
 				835C74E318867603006C6F4F /* POSInvoice.h */,
 				835C74E418867603006C6F4F /* POSInvoice.m */,
 				83D75F661858E5790013F8C9 /* POSRootResource.h */,
+				31F4C88D1AD5471700E63129 /* Recipient.swift */,
 				83D75F671858E5790013F8C9 /* POSRootResource.m */,
 				EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */,
 				EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */,
@@ -1910,6 +1921,7 @@
 			children = (
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
+				31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */,
 				ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */,
 				ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */,
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
@@ -2759,6 +2771,7 @@
 				83F7037E18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1519347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				8364D716185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
+				31F4C8901AD54C7600E63129 /* APIClient+Recipients.swift in Sources */,
 				ECD0B88E1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				EC4146DC1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -2841,6 +2854,7 @@
 				83F703631855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A1019338A82007CB53E /* POSNewFolderViewController.m in Sources */,
+				31F4C8931AD554F800E63129 /* Recipient.swift in Sources */,
 				ECF06D751923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC0F8D5E19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				8342EFC21858CE180080A833 /* Model.xcdatamodeld in Sources */,
@@ -3036,6 +3050,7 @@
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				31F4C88C1AD545D200E63129 /* APIClient+Recipients.swift in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -3101,6 +3116,7 @@
 				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
 				AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */,
 				8342EFBA185861A80080A833 /* POSAPIManager.m in Sources */,
+				31F4C88E1AD5471700E63129 /* Recipient.swift in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
 				EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */,
@@ -3175,6 +3191,7 @@
 				EC2DCB591AB84EAB0063755E /* POSDocumentsViewController.m in Sources */,
 				EC2DCB5A1AB84EAB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCB5B1AB84EAB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				31F4C88F1AD54C7500E63129 /* APIClient+Recipients.swift in Sources */,
 				EC2DCB5C1AB84EAB0063755E /* APIClient+Folder.swift in Sources */,
 				EC2DCB5D1AB84EAB0063755E /* WhatsNewGuideItem.swift in Sources */,
 				EC2DCB5E1AB84EAB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -3257,6 +3274,7 @@
 				EC2DCBA91AB84EAB0063755E /* POSFoldersViewController.m in Sources */,
 				EC2DCBAA1AB84EAB0063755E /* Model.xcdatamodeld in Sources */,
 				EC2DCBAB1AB84EAB0063755E /* POSLetterViewController+Additions.swift in Sources */,
+				31F4C8921AD554F700E63129 /* Recipient.swift in Sources */,
 				EC2DCBAC1AB84EAB0063755E /* POSNewFolderViewController.m in Sources */,
 				EC2DCBAD1AB84EAB0063755E /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC2DCBAE1AB84EAB0063755E /* UIFont+DigipostFonts.swift in Sources */,
@@ -3314,6 +3332,7 @@
 				EC2DCC0A1AB864AB0063755E /* POSDocumentsViewController.m in Sources */,
 				EC2DCC0B1AB864AB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCC0C1AB864AB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				31F4C8911AD54C7700E63129 /* APIClient+Recipients.swift in Sources */,
 				EC2DCC0D1AB864AB0063755E /* APIClient+Folder.swift in Sources */,
 				EC2DCC0E1AB864AB0063755E /* WhatsNewGuideItem.swift in Sources */,
 				EC2DCC0F1AB864AB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
@@ -3396,6 +3415,7 @@
 				EC2DCC5A1AB864AB0063755E /* POSFoldersViewController.m in Sources */,
 				EC2DCC5B1AB864AB0063755E /* Model.xcdatamodeld in Sources */,
 				EC2DCC5C1AB864AB0063755E /* POSLetterViewController+Additions.swift in Sources */,
+				31F4C8941AD554F900E63129 /* Recipient.swift in Sources */,
 				EC2DCC5D1AB864AB0063755E /* POSNewFolderViewController.m in Sources */,
 				EC2DCC5E1AB864AB0063755E /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC2DCC5F1AB864AB0063755E /* UIFont+DigipostFonts.swift in Sources */,
