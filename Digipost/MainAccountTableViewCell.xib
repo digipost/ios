@@ -60,7 +60,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Ola Nordmann" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIr-Tn-DgL">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Ola Nordmann" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="284" translatesAutoresizingMaskIntoConstraints="NO" id="vIr-Tn-DgL">
                         <rect key="frame" x="18" y="132" width="284" height="23"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="20"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -88,11 +88,15 @@
                     <constraint firstAttribute="trailingMargin" secondItem="vIr-Tn-DgL" secondAttribute="trailing" constant="10" id="dAp-Zm-oCG"/>
                     <constraint firstAttribute="centerX" secondItem="vIr-Tn-DgL" secondAttribute="centerX" id="iE8-2M-fuZ"/>
                     <constraint firstItem="5uf-95-ZeQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="37" id="jTa-6U-ekS"/>
+                    <constraint firstItem="vIr-Tn-DgL" firstAttribute="top" secondItem="5uf-95-ZeQ" secondAttribute="bottom" constant="16" id="jvu-MN-UHo"/>
                 </constraints>
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="apu-Z0-1QE"/>
                         <exclude reference="jTa-6U-ekS"/>
+                        <exclude reference="W1H-Y4-N4W"/>
+                        <exclude reference="iE8-2M-fuZ"/>
+                        <exclude reference="7iN-NR-P65"/>
                         <exclude reference="aPB-Dh-YNJ"/>
                     </mask>
                 </variation>
