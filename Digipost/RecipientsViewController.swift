@@ -12,7 +12,10 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     var recipients = [Recipient]()
+    var addedRecipients = [Recipient]()
     
+    var recipientSearchController = UISearchController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         var tblView = UIView(frame: CGRectZero)
@@ -20,38 +23,22 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.tableFooterView?.hidden = true
         tableView.backgroundColor = UIColor.grayColor()
         
-        searchBar.delegate = self
-        
+        self.recipientSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.hidesNavigationBarDuringPresentation = false
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.searchBarStyle = .Minimal
+            controller.searchBar.sizeToFit()
+            controller.searchBar.backgroundColor = UIColor.whiteColor()
+            
+            self.tableView.tableHeaderView = controller.searchBar
+
+            return controller
+        })()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        recipients.removeAll(keepCapacity: false)
-        APIClient.sharedClient.getRecipients(searchBar.text, success: { (responseDictionary) -> Void in
-            self.recipients = Recipient.recipients(jsonDict: responseDictionary)
-            self.tableView.reloadData()
-            
-            }) { (error) -> () in
-                
-        }
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return recipients.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-        if let recipient = recipients[indexPath.row].name{
-            cell.textLabel?.text = recipient
-        }
-        
-        
-        
-        return cell
-    }
-
 }
