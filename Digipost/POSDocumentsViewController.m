@@ -275,7 +275,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
-    cell.selectionStyle = self.isEditing && cell.selected ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
+    cell.multipleSelectionBackgroundView = [UIView new];
 }
 
 #pragma mark - UITableViewDelegate
@@ -647,7 +647,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)deleteDocument:(POSDocument *)document success:(void (^)(void))success
 {
-
     [[APIClient sharedClient] deleteDocument:document.deleteUri success:^{
         [self updateFetchedResultsController];
         
@@ -686,10 +685,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
-    //    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
-    //        return;
-    //    }
-
     [[APIClient sharedClient] updateBankAccountWithUri:uri success:^(NSDictionary *response) {
 
     }
