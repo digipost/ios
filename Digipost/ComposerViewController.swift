@@ -11,15 +11,27 @@ import UIKit
 class ComposerViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
-    var dataSource: ComposerTableViewDataSource?
+    var tableViewDataSource: ComposerTableViewDataSource?
+    var tableViewDelegate: ComposerTableViewDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
-        dataSource?.tableData = ["1","2","3"]
+        setupTableView()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    // MARK: - TableView Setup
+    
+    func setupTableView(){
+        tableViewDataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
+        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView)
+        let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
+        tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
+        let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
+        tableView.registerNib(imageModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.imageModuleCellIdentifier)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 44
     }
 
     override func didReceiveMemoryWarning() {
