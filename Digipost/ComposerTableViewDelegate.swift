@@ -11,12 +11,13 @@ import UIKit
 class ComposerTableViewDelegate: NSObject, UITableViewDelegate {
    
     let tableView: UITableView
-    var tableData = [AnyObject]()
+    let dataSource: ComposerTableViewDataSource
     
     // MARK: - Class initialiser
     
-    init(asDelegateForTableView tableView: UITableView){
+    init(asDelegateForTableView tableView: UITableView, withDataSource dataSource: ComposerTableViewDataSource){
         self.tableView = tableView
+        self.dataSource = dataSource
         super.init()
         tableView.delegate = self
     }
@@ -26,6 +27,7 @@ class ComposerTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         println("Selected")
     }
+    
 
 
 }
