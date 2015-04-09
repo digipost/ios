@@ -1,5 +1,5 @@
 //
-//  ModuleTableViewCell.swift
+//  TextModuleTableViewCell
 //  ModuleSendEditor
 //
 //  Created by Henrik Holmsen on 20.02.15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModuleTableViewCell: UITableViewCell {
+class TextModuleTableViewCell: UITableViewCell {
 
     @IBOutlet var moduleTextView: UITextView!
     override func awakeFromNib() {
