@@ -252,8 +252,13 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
 
-    // Initialize tracker.
+// Initialize tracker.
+
+#if __IS_BETA__ == 0
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-1"];
+#elif __IS_BETA__ == 1
+    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-2"];
+#endif
     [GAI sharedInstance].dispatchInterval = 5.0;
 }
 
