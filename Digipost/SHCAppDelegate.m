@@ -222,13 +222,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
 #else
 #endif
-    [[BITHockeyManager sharedHockeyManager] startManager];
-
-    //    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
-    //                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
-    //                                                               delegate:self];
-    //    [[BITHockeyManager sharedHockeyManager] startManager];
-    //    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
+    [BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
 //- (void)setupCocoaLumberjack
