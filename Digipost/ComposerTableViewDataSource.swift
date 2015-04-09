@@ -11,7 +11,7 @@ import UIKit
 class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
    
     let tableView: UITableView
-    var tableData = [AnyObject]()
+    var tableData = [ComposerModule]()
     
     // MARK: - Class initialiser
     
@@ -22,6 +22,8 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         tableView.allowsLongPressToReorder = true
         tableView.dataSource = self
     }
+    
+    // MARK: - UITableView Datasource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -35,17 +37,36 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cellIdentifier = "Cell"
         let indexPathFromVisibleIndexPath = tableView.dataSourceIndexPathFromVisibleIndexPath(indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPathFromVisibleIndexPath) as UITableViewCell
         
-        if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
-            cell.hidden = true
+        let module = tableData[indexPath.row]
+
+        switch module.type{
+            
+        case .ImageModule:
+        
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.imageModuleCellIdentifier, forIndexPath: indexPath) as ImageModuleTableViewCell
+            configureImageModuleCell(cell)
+            
+            if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
+                cell.hidden = true
+            }
+            
+            return cell
+        
+        case .TextModule:
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as TextModuleTableViewCell
+            configureTextModuleCell(cell)
+            
+            if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
+                cell.hidden = true
+            }
+            
+            return cell
+        
         }
         
-        cell.textLabel?.text = tableData[indexPathFromVisibleIndexPath.row] as? String
-        
-        return cell
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -54,9 +75,8 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         
-        let rowToMoveContent: AnyObject = tableData[sourceIndexPath.row]
-        tableData.removeAtIndex(sourceIndexPath.row)
-        tableData.insert(rowToMoveContent, atIndex: destinationIndexPath.row)
+        let rowToMove = tableData.removeAtIndex(sourceIndexPath.row)
+        tableData.insert(rowToMove, atIndex: destinationIndexPath.row)
         
     }
     
@@ -67,4 +87,16 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }
     }
+    
+    // MARK: - Helper Functions
+    
+    func configureImageModuleCell(cell: ImageModuleTableViewCell){
+        
+    }
+    
+    func configureTextModuleCell(cell: TextModuleTableViewCell){
+        
+    }
+    
+
 }
