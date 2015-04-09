@@ -126,9 +126,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
 
-        NSLog(@"new Viewcontroller stack %@", newViewControllerArray);
-        NSLog(@"navigation controller vc %@", navController.viewControllers);
-
         POSMailbox *mailbox = dict[@"mailbox"];
         POSFolder *folder = dict[@"folder"];
 

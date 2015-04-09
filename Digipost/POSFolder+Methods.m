@@ -156,7 +156,6 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
             }
         }];
     }];
-    NSLog(@"highest auth scope in this folder was %@", highestOAuthScopeInThisFolder);
     return highestOAuthScopeInThisFolder;
 }
 
