@@ -40,6 +40,11 @@
 		311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
 		311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
 		311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
+		311F22601AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
+		311F22611AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
+		311F22621AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
+		311F22631AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
+		311F22641AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BBF1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
@@ -1155,6 +1160,7 @@
 		311779561AAEFCA800229D02 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAccountTableViewCell.swift; sourceTree = "<group>"; };
 		3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAccountTableViewCell.xib; sourceTree = "<group>"; };
+		311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+Extension.swift"; sourceTree = "<group>"; };
 		316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
 		316D3BBC1A67F501004E3291 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
 		316D3BBD1A67F501004E3291 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
@@ -1847,6 +1853,7 @@
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
 				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
+				311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
@@ -2792,6 +2799,7 @@
 				EC51BA2B19DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4D19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				AF981F081AD525D200DE8B55 /* UITableView+Reorder.m in Sources */,
+				311F22621AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
 				ECF06D5D192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				ECBEDB9F1AA734A50052B11B /* Guide.swift in Sources */,
 				311779631AAEFCA800229D02 /* ReceiptView.swift in Sources */,
@@ -3067,6 +3075,7 @@
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
+				311F22601AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
 				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
@@ -3213,6 +3222,7 @@
 				EC2DCB431AB84EAB0063755E /* POSReceiptTableViewCell.m in Sources */,
 				EC2DCB441AB84EAB0063755E /* POSLetterViewController.m in Sources */,
 				EC2DCB451AB84EAB0063755E /* NSString+RandomNumber.m in Sources */,
+				311F22611AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
 				EC2DCB461AB84EAB0063755E /* Debug.swift in Sources */,
 				EC2DCB471AB84EAB0063755E /* MainAccountTableViewCell.swift in Sources */,
 				EC2DCB481AB84EAB0063755E /* NewFeaturesViewController.swift in Sources */,
@@ -3357,6 +3367,7 @@
 				EC2DCBF41AB864AB0063755E /* POSReceiptTableViewCell.m in Sources */,
 				EC2DCBF51AB864AB0063755E /* POSLetterViewController.m in Sources */,
 				EC2DCBF61AB864AB0063755E /* NSString+RandomNumber.m in Sources */,
+				311F22641AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
 				EC2DCBF71AB864AB0063755E /* Debug.swift in Sources */,
 				EC2DCBF81AB864AB0063755E /* MainAccountTableViewCell.swift in Sources */,
 				EC2DCBF91AB864AB0063755E /* NewFeaturesViewController.swift in Sources */,
@@ -3695,6 +3706,7 @@
 				ECF486E41A471A2E00E97519 /* UIViewController+BackButton.m in Sources */,
 				ECF486931A47157000E97519 /* POSOAuthManager.m in Sources */,
 				ECF486FC1A471A7B00E97519 /* POSLetterViewController+Additions.swift in Sources */,
+				311F22631AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
 				ECF486F51A471A3A00E97519 /* SHCOAuthViewController.m in Sources */,
 				EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */,
 				ECF486DA1A471A2E00E97519 /* POSNoRotationNavigationController.m in Sources */,
