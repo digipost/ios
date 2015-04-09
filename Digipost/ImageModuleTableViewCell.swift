@@ -11,6 +11,7 @@ import UIKit
 class ImageModuleTableViewCell: UITableViewCell {
 
     @IBOutlet var moduleImageView: UIImageView!
+    @IBOutlet var imageTextView: UITextField!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
