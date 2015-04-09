@@ -11,12 +11,14 @@ import UIKit
 extension UIImage{
     
     func resize(toSize size: CGSize, completionHandler: (resizedImage: UIImage, data: NSData) ->() ){
+        
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
             UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
             self.drawInRect(CGRectMake(0, 0, size.width, size.height))
             let resizedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
             let imageData = UIImagePNGRepresentation(resizedImage)
+            
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 completionHandler(resizedImage: resizedImage, data: imageData)
             })
@@ -24,11 +26,12 @@ extension UIImage{
     }
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate {
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate{
 
     @IBOutlet var tableView: UITableView!
-    var tableViewDataSource: ComposerTableViewDataSource?
-    var tableViewDelegate: ComposerTableViewDelegate?
+    
+    var tableViewDataSource: ComposerTableViewDataSource!
+    var tableViewDelegate: ComposerTableViewDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +42,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func setupTableView(){
         tableViewDataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
-        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView)
+        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView, withDataSource: tableViewDataSource)
         let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
         let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
@@ -48,9 +51,57 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.estimatedRowHeight = 44
     }
     
+    // MARK: - UITextVeiew Delegate
+    
+    func textViewDidChange(textView: UITextView) {
+        if let row = indexPathForCellContainingTextView(textView)?.row{
+            let newHeight = textView.frame.height
+            resizeCellHeight(newHeight, forCellAtRow: row)
+            tableViewDataSource.tableData[row].height = newHeight
+        }
+    }
+    
+//    func textViewDidBeginEditing(textView: UITextView) {
+//        currentlyActiveTextView = textView
+//        if let indexPath = indexPathForCellContainingTextView(textView){
+//            modules[indexPath.row].isEditing = true
+//            currentEditingIndexPath = indexPath
+//            let rect = tableView.rectForRowAtIndexPath(indexPath)
+//            tableView.scrollRectToVisible(rect, animated: true)
+//            
+//            //tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
+//            
+//        }
+//        
+//    }
+//    
+//    func textViewDidEndEditing(textView: UITextView) {
+//        if let index = indexPathForCellContainingTextView(textView)?.row{
+//            modules[index].contentText = textView.text
+//            modules[index].isEditing = false
+//        }
+//        currentlyActiveTextView = nil
+//        currentEditingIndexPath = nil
+//    }
+    
+    func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
+        let location = tableView.convertPoint(textView.center, fromView: textView)
+        return tableView.indexPathForRowAtPoint(location)
+    }
+    
+    
+    func resizeCellHeight(height: CGFloat, forCellAtRow row: Int) {
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        tableView.beginUpdates()
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as TextModuleTableViewCell
+        cell.frame.size.height = height
+        tableViewDataSource?.tableData[indexPath.row].height = height
+        tableView.endUpdates()
+    }
+    
     // MARK: - ModuleSelectorViewController Delegate
     
-    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didtSelectModule module: ComposerModule) {
+    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
         
         switch module.type{
             
@@ -65,7 +116,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             println()
         }
         
-        tableViewDataSource?.tableData.append(module)
+        tableViewDataSource.tableData.append(module)
+        tableView.reloadData()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
