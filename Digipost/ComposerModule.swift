@@ -37,11 +37,11 @@ class ComposerModule: NSObject {
     var text: String?
     
     // ImageModule properties
-    let image: UIImage?
+    var image: UIImage?
     
     //MARK: - Class Initialisers
     
-    init(textModuleWithFont font: UIFont){
+    init(moduleWithFont font: UIFont){
         self.type = .TextModule
         self.font = font
         textAlignment = .Left
@@ -49,7 +49,7 @@ class ComposerModule: NSObject {
         super.init()
     }
     
-    init(imageModuleWithImage image: UIImage){
+    init(moduleWithImage image: UIImage){
         self.type = .ImageModule
         self.image = image
         self.height = image.size.height
@@ -58,8 +58,9 @@ class ComposerModule: NSObject {
     
     //MARK: - Class Functions
     
-    func htmlRepresentation(){
+    func htmlRepresentation() -> String{
         //TODO: - Parse module to HTML
+        return ""
     }
     
     
