@@ -222,7 +222,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
 #else
 #endif
-    [BITHockeyManager sharedHockeyManager] startManager];
+    [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
