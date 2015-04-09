@@ -45,6 +45,21 @@
 		311F22621AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
 		311F22631AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
 		311F22641AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */; };
+		311F22651AD66E2200292068 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
+		311F22661AD66E2300292068 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
+		311F22671AD66E2400292068 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
+		311F22681AD66E2700292068 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
+		311F22691AD66E2800292068 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
+		311F226A1AD66E2900292068 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
+		311F226B1AD66E2A00292068 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
+		311F226C1AD66E3000292068 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
+		311F226D1AD66E3100292068 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
+		311F226E1AD66E3100292068 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
+		311F226F1AD66E3200292068 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
+		311F22701AD66E3500292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
+		311F22711AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
+		311F22721AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
+		311F22731AD66E3700292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BBF1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
@@ -2352,9 +2367,11 @@
 				EC4146ED1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
+				311F226D1AD66E3100292068 /* TextModuleTableViewCell.xib in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 				EC4146BB1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				311F22711AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */,
 				AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2429,9 +2446,11 @@
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */,
+				311F226C1AD66E3000292068 /* TextModuleTableViewCell.xib in Resources */,
 				EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */,
+				311F22701AD66E3500292068 /* ImageModuleTableViewCell.xib in Resources */,
 				EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2454,9 +2473,11 @@
 				EC2DCC841AB864AB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCC851AB864AB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */,
+				311F226F1AD66E3200292068 /* TextModuleTableViewCell.xib in Resources */,
 				EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */,
+				311F22721AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */,
 				EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2495,11 +2516,13 @@
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
 				AF477DFE1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
+				311F226E1AD66E3100292068 /* TextModuleTableViewCell.xib in Resources */,
 				EC4146BC1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
 				EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */,
 				EC4146C81AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				EC55F4341A2C718200A3192C /* Main_iPhone.storyboard in Resources */,
+				311F22731AD66E3700292068 /* ImageModuleTableViewCell.xib in Resources */,
 				EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */,
 				EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */,
 				AF2342381A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
@@ -2824,6 +2847,7 @@
 				ECF06D5819238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65F19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F6A1858E5790013F8C9 /* POSRootResource.m in Sources */,
+				311F22661AD66E2300292068 /* ImageModuleTableViewCell.swift in Sources */,
 				AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				EC31A63B1A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9E1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
@@ -2857,6 +2881,7 @@
 				EC2B64651A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECF06D67192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				EC2C82DC192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
+				311F22681AD66E2700292068 /* TextModuleTableViewCell.swift in Sources */,
 				EC3BC76A1A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AEE1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
 				EC181DB2192CC0430054C0E8 /* POSDocument+Methods.m in Sources */,
@@ -3244,6 +3269,7 @@
 				EC2DCB561AB84EAB0063755E /* POSMailbox+Methods.m in Sources */,
 				EC2DCB571AB84EAB0063755E /* IncreaseSecurityLevelViewController.swift in Sources */,
 				EC2DCB581AB84EAB0063755E /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				311F22691AD66E2800292068 /* TextModuleTableViewCell.swift in Sources */,
 				EC2DCB591AB84EAB0063755E /* POSDocumentsViewController.m in Sources */,
 				EC2DCB5A1AB84EAB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCB5B1AB84EAB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
@@ -3313,6 +3339,7 @@
 				EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCB971AB84EAB0063755E /* QCMethod.swift in Sources */,
 				EC2DCB981AB84EAB0063755E /* AccountTableViewDataSource.swift in Sources */,
+				311F22651AD66E2200292068 /* ImageModuleTableViewCell.swift in Sources */,
 				EC2DCB991AB84EAB0063755E /* POSAPIManager.m in Sources */,
 				EC2DCB9A1AB84EAB0063755E /* NSString+SHA1String.m in Sources */,
 				EC2DCB9B1AB84EAB0063755E /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -3389,6 +3416,7 @@
 				EC2DCC071AB864AB0063755E /* POSMailbox+Methods.m in Sources */,
 				EC2DCC081AB864AB0063755E /* IncreaseSecurityLevelViewController.swift in Sources */,
 				EC2DCC091AB864AB0063755E /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				311F226A1AD66E2900292068 /* TextModuleTableViewCell.swift in Sources */,
 				EC2DCC0A1AB864AB0063755E /* POSDocumentsViewController.m in Sources */,
 				EC2DCC0B1AB864AB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCC0C1AB864AB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
@@ -3458,6 +3486,7 @@
 				EC2DCC471AB864AB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCC481AB864AB0063755E /* QCMethod.swift in Sources */,
 				EC2DCC491AB864AB0063755E /* AccountTableViewDataSource.swift in Sources */,
+				311F22671AD66E2400292068 /* ImageModuleTableViewCell.swift in Sources */,
 				EC2DCC4A1AB864AB0063755E /* POSAPIManager.m in Sources */,
 				EC2DCC4B1AB864AB0063755E /* NSString+SHA1String.m in Sources */,
 				EC2DCC4C1AB864AB0063755E /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -3710,6 +3739,7 @@
 				ECF486F51A471A3A00E97519 /* SHCOAuthViewController.m in Sources */,
 				EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */,
 				ECF486DA1A471A2E00E97519 /* POSNoRotationNavigationController.m in Sources */,
+				311F226B1AD66E2A00292068 /* TextModuleTableViewCell.swift in Sources */,
 				ECBF75AA1AA85ACF00540BCA /* Debug.swift in Sources */,
 				ECF486DC1A471A2E00E97519 /* NSString+Convenience.m in Sources */,
 				ECD0B88F1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,

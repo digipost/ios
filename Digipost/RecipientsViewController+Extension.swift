@@ -23,7 +23,8 @@ extension RecipientViewController: UITableViewDataSource {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
         
         if recipientSearchController.active {
-            if let recipient = recipients[indexPath.row].name{
+            if let recipient = recipients[indexPath.row].name {
+                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
                 cell.textLabel?.text = recipient 
             }
         } else {
