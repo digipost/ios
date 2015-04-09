@@ -24,6 +24,8 @@ extern NSString *const kPushAttachmentsIdentifier;
 @interface SHCAttachmentsViewController : UITableViewController
 
 @property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-@property (strong, nonatomic) NSOrderedSet *attachments;
+
+// URI for the current document that shows its attachments
+@property (strong, nonatomic) NSString *currentDocumentUpdateURI;
 
 @end

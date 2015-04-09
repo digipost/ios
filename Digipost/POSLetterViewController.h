@@ -15,7 +15,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GAITrackedViewController.h>
+
+#import "GAI.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;
@@ -34,6 +35,9 @@ extern NSString *const kPushReceiptIdentifier;
 @property (strong, nonatomic) POSReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 @property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
+
+// index of the attachment showing, if its in a document list of multiple attachments
+@property (nonatomic) NSInteger indexOfAttachment;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController;
 - (void)reloadFromMetadata;

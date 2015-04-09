@@ -14,17 +14,12 @@
 // limitations under the License.
 //
 
-#import <HockeySDK/HockeySDK.h>
-#import <DDASLLogger.h>
-#import <DDTTYLogger.h>
 #import "POSFolder+Methods.h"
-#import <DDFileLogger.h>
-#import <GAI.h>
+#import "GAI.h"
 #import "POSDocumentsViewController.h"
-#import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
-#import <GAITracker.h>
-#import <UIAlertView+Blocks.h>
+#import "GAITracker.h"
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
@@ -35,12 +30,13 @@
 #import "POSFileManager.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
+#import <HockeySDK/HockeySDK.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
-@interface SHCAppDelegate () <BITHockeyManagerDelegate>
+@interface SHCAppDelegate ()
 
-@property (strong, nonatomic) DDFileLogger *fileLogger;
+//@property (strong, nonatomic) DDFileLogger *fileLogger;
 @property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
 
 @end
@@ -54,9 +50,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
     [self setupHockeySDK];
 
-    [self setupCocoaLumberjack];
+    //    [self setupCocoaLumberjack];
 
-    [self setupNetworkingLogging];
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
@@ -91,27 +86,42 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         UINavigationController *navController = [self.window topMasterNavigationController];
 
         UIViewController *topViewController = [self.window topMasterViewController];
-
+        //        NSLog(@"Topp VC %@",topViewController);
         [navController popToRootViewControllerAnimated:NO];
 
-        POSAccountViewController *accountViewController;
-        if ([navController.viewControllers[0] isKindOfClass:[POSAccountViewController class]]) {
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
+                SHCLoginViewController *loginViewController = navController.viewControllers[0];
+                [newViewControllerArray addObject:loginViewController];
+            }
+        }
+
+        AccountViewController *accountViewController;
+        if ([navController.viewControllers[0] isKindOfClass:[AccountViewController class]]) {
             accountViewController = navController.viewControllers[0];
         } else {
-            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
+            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
         }
 
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
 
-        NSMutableArray *newViewControllerArray = [NSMutableArray array];
-        // add account vc as second view controller in navigation controller
-        UIViewController *loginViewController = topViewController;
-        // for iphone root controller will be login controller
-        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
-            [newViewControllerArray addObject:loginViewController];
-            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kAccountViewControllerIdentifier];
-        }
+        //        // add account vc as second view controller in navigation controller
+        //        UIViewController *loginViewController = topViewController;
+        //        // for iphone root controller will be login controller
+        //        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
+        //            [newViewControllerArray addObject:loginViewController];
+        //            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
+        //        } else if ([loginViewController isKindOfClass:[UploadMenuViewController class]]){
+        //
+        //            loginViewController = navController.viewControllers[0];
+        //            if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
+        //                [newViewControllerArray addObject:loginViewController];
+        //            }
+        //
+        //        }
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
@@ -128,7 +138,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         documentsViewController.folderDisplayName = folder.displayName;
 
         [navController setViewControllers:newViewControllerArray
-                                 animated:YES];
+                                 animated:NO];
     }
 }
 
@@ -177,7 +187,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     } else {
         storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     }
-    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier : @"uploadNavigationController"];
+    UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
 
     POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
     uploadViewController.url = url;
@@ -189,7 +199,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
         [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
-                                                        completion:^{}];
+                                                        completion:^{
+                                                        }];
     } else {
         UISplitViewController *splitViewController = (id)rootNavController;
         UINavigationController *leftSideNavController = (id)splitViewController.viewControllers[0];
@@ -201,47 +212,51 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 - (void)setupHockeySDK
 {
-    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
-                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
-                                                               delegate:self];
+
+#if __IS_BETA__ == 0
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_LIVE_IDENTIFIER__];
+#elif __IS_BETA__ == 1
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
+#else
+#endif
     [[BITHockeyManager sharedHockeyManager] startManager];
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
-- (void)setupCocoaLumberjack
-{
-    // Enable Apple System Logger (log messages appear in the Console.app)
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-
-    // Enable Xcode debugger console (TTY) logger
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-
-    // If you want nice colors in Xcode's debugger console,
-    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
-    // on how to install the neccesary Xcode plugin.
-    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-
-    // Enable logging to file
-    self.fileLogger = [[DDFileLogger alloc] init];
-    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-    [self.fileLogger rollLogFileWithCompletionBlock:^{
-        [DDLog addLogger:self.fileLogger];
-    }];
-}
-
-- (void)setupNetworkingLogging
-{
-    [[POSAPIManager sharedManager] startLogging];
-}
+//- (void)setupCocoaLumberjack
+//{
+//    // Enable Apple System Logger (log messages appear in the Console.app)
+//    [DDLog addLogger:[DDASLLogger sharedInstance]];
+//
+//    // Enable Xcode debugger console (TTY) logger
+//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+//
+//    // If you want nice colors in Xcode's debugger console,
+//    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
+//    // on how to install the neccesary Xcode plugin.
+//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
+//
+//    // Enable logging to file
+//    self.fileLogger = [[DDFileLogger alloc] init];
+//    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+//    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+//    [self.fileLogger rollLogFileWithCompletionBlock:^{
+//        [DDLog addLogger:self.fileLogger];
+//    }];
+//}
 
 - (void)setupGoogleAnalytics
 {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
 
-    // Initialize tracker.
+// Initialize tracker.
+
+#if __IS_BETA__ == 0
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-1"];
-    [GAI sharedInstance].dispatchInterval = 5.0;
+#elif __IS_BETA__ == 1
+    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-2"];
+#endif
+    [GAI sharedInstance].dispatchInterval = 15.0;
 }
 
 @end

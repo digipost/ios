@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 #import "POSDocumentsViewController.h"
@@ -34,11 +34,10 @@
 #import "SHCAttachmentsViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
-#import <AHKActionSheet.h>
+#import <AHKActionSheet/AHKActionSheet.h>
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "UIViewController+ValidateOpening.h"
 #import "POSInvoice.h"
-#import "POSAccountViewController.h"
 #import "POSFoldersViewController.h"
 #import "NSPredicate+CommonPredicates.h"
 #import "POSDocumentTableViewCell.h"
@@ -114,6 +113,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
 
+    if ([self.navigationController isNavigationBarHidden]) {
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    }
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(uploadProgressDidChange:)
                                                  name:kAPIManagerUploadProgressChangedNotificationName
@@ -126,11 +129,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                              selector:@selector(refreshContent)
                                                  name:kRefreshDocumentsContentNotificationName
                                                object:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
     if (self.folderUri == nil) {
         POSFolder *folder = [POSFolder existingFolderWithName:self.folderName
                                        mailboxDigipostAddress:self.mailboxDigipostAddress
@@ -138,16 +136,28 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.folderUri = folder.uri;
         self.folderDisplayName = folder.displayName;
     }
+    [self.tableView reloadData];
 
     self.predicate = [NSPredicate predicateWithDocumentsForMailBoxDigipostAddress:self.mailboxDigipostAddress
                                                                  inFolderWithName:self.folderName];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+
     [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
+    //    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
+    //    [APIClient sharedClient] cancel
+
+    if (self.isEditing == YES) {
+        [self setEditing:NO animated:YES];
+    }
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kAPIManagerUploadProgressChangedNotificationName
@@ -171,7 +181,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         self.selectedDocumentUpdateUri = document.updateUri;
         SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)segue.destinationViewController;
         attachmentsViewController.documentsViewController = self;
-        attachmentsViewController.attachments = document.attachments;
+        attachmentsViewController.currentDocumentUpdateURI = document.updateUri;
     } else if ([segue.identifier isEqualToString:kPushLetterIdentifier]) {
         POSAttachment *attachment = (POSAttachment *)sender;
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
@@ -200,7 +210,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSInteger number = [super tableView:tableView
                   numberOfRowsInSection:section];
 
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile) {
         number++;
     }
 
@@ -210,13 +220,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile) {
         if (indexPath.row == 0) {
             POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
                                                                            forIndexPath:indexPath];
-            cell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
+            cell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
-            NSString *fileName = [[POSAPIManager sharedManager].uploadProgress userInfo][@"fileName"];
+            NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
             fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             cell.fileNameLabel.text = fileName;
             return cell;
@@ -265,6 +275,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
+    cell.selectionStyle = self.isEditing && cell.selected ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
 }
 
 #pragma mark - UITableViewDelegate
@@ -276,7 +287,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile) {
         if (indexPath.row == 0) {
             return nil;
         }
@@ -292,8 +303,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     NSIndexPath *actualIndexPathSelected = nil;
-    // adjust for index when uploading file
-    if ([POSAPIManager sharedManager].isUploadingFile) {
+    //     adjust for index when uploading file
+    if ([APIClient sharedClient].isUploadingFile) {
         actualIndexPathSelected = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
     } else {
         actualIndexPathSelected = indexPath;
@@ -301,30 +312,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:actualIndexPathSelected];
     POSAttachment *attachment = [document mainDocumentAttachment];
+    if (attachment == nil) {
+        [self updateFetchedResultsController];
+    }
+
     if ([document.attachments count] > 1) {
         [self performSegueWithIdentifier:kPushAttachmentsIdentifier
                                   sender:document];
-
-    } else if (attachment.openingReceiptUri) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
-                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
-                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
-                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
-                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                              switch (buttonIndex) {
-                                  case 0:
-                                      break;
-                                  case 1:
-                                  {
-                                      [self shouldValidateOpeningReceipt:document];
-                                      break;
-                                  }
-                                  case 2:
-                                      break;
-                                  default:
-                                      break;
-                              }
-                          }];
     } else {
         POSAttachment *attachment = [document mainDocumentAttachment];
         [self validateOpeningAttachment:attachment
@@ -335,45 +329,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                         [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
                                     }
             }
-            failure:^(NSError *error){
+            failure:^(NSError *error) {
+                                    NSLog(@"failed validating opening of document %@",error);
 
             }];
     }
-}
-
-- (void)shouldValidateOpeningReceipt:(POSDocument *)document
-{
-    POSAttachment *attachment = [document.attachments firstObject];
-    [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-        
-        [self validateOpeningAttachment:attachment
-                                success:^{
-                                    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                        ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-                                    } else {
-                                        
-                                        if ([document.attachments count] > 1) {
-                                            [self performSegueWithIdentifier:kPushAttachmentsIdentifier
-                                                                      sender:document];
-                                        } else {
-                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-                                        }
-                                    }
-                                }
-                                failure:^(NSError *error) {
-                                    [UIAlertView showWithTitle:error.errorTitle
-                                                       message:[error localizedDescription]
-                                             cancelButtonTitle:nil
-                                             otherButtonTitles:@[error.okButtonTitle]
-                                                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                          [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-                                                      }];
-                                }];
-    } failure:^(NSError *error) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-            
-        }];
-    }];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -440,10 +400,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
-                                    handler:^(AHKActionSheet *actionSheet, id item) {
-                                        if (item) {
-                                            [self moveSelectedDocumentsToFolder:folder];
-                                        }
+                                    handler:^(AHKActionSheet *actionSheet) {
+                                        [self moveSelectedDocumentsToFolder:folder];
                                     }];
         }
     }
@@ -454,11 +412,18 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)moveSelectedDocumentsToFolder:(POSFolder *)folder
 {
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = YES;
+    __block NSInteger numberOfDocumentsRemaining = [self.tableView indexPathsForSelectedRows].count;
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
 
         [self moveDocument:document
-                  toFolder:folder];
+                  toFolder:folder
+                   success:^{
+                      numberOfDocumentsRemaining = numberOfDocumentsRemaining - 1;
+                      if (numberOfDocumentsRemaining == 0) {
+                          [self updateContentsFromServerUserInitiatedRequest:@NO];
+                      }
+                   }];
     }
 
     [self deselectAllRows];
@@ -476,19 +441,22 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                         NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
                                                         (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
                                                         letterWord];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:deleteString message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete") style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+        [self deleteDocuments];
+        [self setEditing:NO animated:YES];
+    }];
 
-    [UIActionSheet showFromBarButtonItem:barButtonItem
-                                animated:YES
-                               withTitle:nil
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:deleteString
-                       otherButtonTitles:nil
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                    if (buttonIndex == 0) {
-                                        [self deleteDocuments];
-                                    }
-                                    [self setEditing:NO animated:YES];
-                                }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self setEditing:NO animated:YES];
+    }];
+    [alertController addAction:deleteAction];
+    [alertController addAction:cancelAction];
+    UIPopoverPresentationController *popPresenter = [alertController
+            popoverPresentationController];
+    popPresenter.sourceView = self.view;
+    popPresenter.barButtonItem = barButtonItem;
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)refreshContent
@@ -500,11 +468,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
+    //        return;
+    //    }
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = [userDidInititateRequest boolValue];
-    // @TODO refactor this
     // Saving uri for the open document in case we need to re fetch it later
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
@@ -514,69 +481,53 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         if (openedAttachmentURI == nil) {
         }
     }
-    [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.folderName
-        mailboxDigipostAddress:self.mailboxDigipostAddress
-        folderUri:self.folderUri
-        success:^{
-                                                               
-                                                               [self updateFetchedResultsController];
-                                                               [self programmaticallyEndRefresh];
-                                                               [self updateNavbar];
-                                                               [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                                               
-                                                               // If the user has just managed to enter a document with attachments _after_ the API call finished,
-                                                               // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
-                                                               // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
-                                                               if ([self.navigationController.topViewController isKindOfClass:[SHCAttachmentsViewController class]]) {
-                                                                   SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
-                                                                   
-                                                                   POSDocument *selectedDocument = [POSDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                                   
-                                                                   attachmentsViewController.attachments = selectedDocument.attachments;
-                                                               }
-                                                               
-                                                               // quickfix for a bug that causes attachments document to become nil
-                                                               // Refetches the showing attachment that lost its link to its document
-                                                               SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
-                                                               POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
-                                                               if (letterViewConctroller.attachment) {
-                                                                   if (letterViewConctroller.attachment.uri == nil ) {
-                                                                       POSAttachment *refetchedObject = [POSAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                                       [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
-                                                                   }
-                                                               }
-                                                               
-                                                               POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                               if (!rootResource.currentBankAccount) {
-                                                                   if ([self documentsNeedCurrentBankAccount]) {
-                                                                       [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
-                                                                   }
-                                                               }
+
+    // since all documents are deleted from database regularly, this ensures users won't get buggy data if between "updates" of all content
+    [self updateFetchedResultsController];
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
+        [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
+                                                  mailboxDigipostAddress:self.mailboxDigipostAddress
+                                                              attributes:responseDictionary];
+        [self updateFetchedResultsController];
+        [self programmaticallyEndRefresh];
+        [self updateNavbar];
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        // If the user has just managed to enter a document with attachments _after_ the API call finished,
+        // but _before_ the Core Data stuff has finished, tapping an attachment will cause the app to crash.
+        // To avoid this, let's check if the attachment vc is on top of the nav stack, and if it is - repopulate its data.
+        if ([self.navigationController.topViewController isKindOfClass:[SHCAttachmentsViewController class]]) {
+            SHCAttachmentsViewController *attachmentsViewController = (SHCAttachmentsViewController *)self.navigationController.topViewController;
+            
+            POSDocument *selectedDocument = [POSDocument existingDocumentWithUpdateUri:self.selectedDocumentUpdateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            attachmentsViewController.currentDocumentUpdateURI = selectedDocument.updateUri;
+            
         }
-        failure:^(NSError *error) {
-                                                               
-                                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                       // We were unauthorized, due to the session being invalid.
-                                                                       // Let's retry in the next run loop
-                                                                       [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                                                                       
-                                                                       return;
-                                                                   }
-                                                               }
-                                                               
-                                                               [self programmaticallyEndRefresh];
-                                                               
-                                                               [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                                               if ([userDidInititateRequest boolValue]){
-                                                                   [UIAlertView showWithTitle:error.errorTitle
-                                                                                      message:[error localizedDescription]
-                                                                            cancelButtonTitle:nil
-                                                                            otherButtonTitles:@[error.okButtonTitle]
-                                                                                     tapBlock:error.tapBlock];
-                                                               }
-        }];
+        
+        // quickfix for a bug that causes attachments document to become nil
+        // Refetches the showing attachment that lost its link to its document
+        SHCAppDelegate *appDelegate = (id) [UIApplication sharedApplication].delegate;
+        POSLetterViewController *letterViewConctroller = (id)appDelegate.letterViewController;
+        if (letterViewConctroller.attachment) {
+            if (letterViewConctroller.attachment.uri == nil ) {
+                POSAttachment *refetchedObject = [POSAttachment existingAttachmentWithUri:openedAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                [letterViewConctroller setAttachmentDoNotDismissPopover:refetchedObject];
+            }
+        }
+        
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        if (!rootResource.currentBankAccount) {
+            if ([self documentsNeedCurrentBankAccount]) {
+                [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
+            }
+        }
+    } failure:^(APIError *error) {
+        [self programmaticallyEndRefresh];
+        
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        if ([userDidInititateRequest boolValue]){
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        }
+    }];
 }
 
 - (void)updateNavbar
@@ -654,98 +605,65 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 }
 
-- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder
+- (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder success:(void (^)(void))success
 {
-    [[POSAPIManager sharedManager] moveDocument:document
-        toFolder:folder
-        withSuccess:^{
-                                        
-                                        document.folder = folder;
-                                        
-                                        [[POSModelManager sharedManager].managedObjectContext save:nil];
-                                        
-                                        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                        [self updateFetchedResultsController];
-                                        
-                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
-                                            if ([currentOpenDocument isEqual:document]){
-                                                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
-                                            }
-                                        }
+
+    [[APIClient sharedClient] moveDocument:document toFolder:folder success:^{
+//        document.folder = folder;
+
+        [[POSModelManager sharedManager] logSavingManagedObjectContext];
+        
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+//        [self updateFetchedResultsController];
+
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            if ([currentOpenDocument isEqual:document]){
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+            }
         }
-        failure:^(NSError *error) {
-                                            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                    // We were unauthorized, due to the session being invalid.
-                                                    // Let's retry in the next run loop
-                                                    double delayInSeconds = 0.0;
-                                                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                        [self moveDocument:document toFolder:folder];
-                                                    });
-                                                    
-                                                    return;
-                                                }
-                                            }
-                                            
-                                            [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                            
-                                            [UIAlertView showWithTitle:error.errorTitle
-                                                               message:[error localizedDescription]
-                                                     cancelButtonTitle:nil
-                                                     otherButtonTitles:@[error.okButtonTitle]
-                                                              tapBlock:error.tapBlock];
-        }];
+        success();
+    } failure:^(APIError *error) {
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+    }];
 }
 
 - (void)deleteDocuments
 {
+    __block NSInteger numberOfDocumentsRemaining = [self.tableView indexPathsForSelectedRows].count;
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPathOfSelectedRow];
-        [self deleteDocument:document];
+        [self deleteDocument:document success:^{
+            numberOfDocumentsRemaining = numberOfDocumentsRemaining - 1;
+            if (numberOfDocumentsRemaining == 0) {
+                [self updateContentsFromServerUserInitiatedRequest:@NO];
+            }
+        }];
     }
     [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
 
-- (void)deleteDocument:(POSDocument *)document
+- (void)deleteDocument:(POSDocument *)document success:(void (^)(void))success
 {
-    [[POSAPIManager sharedManager] deleteDocument:document
-        withSuccess:^{
-                                          [self updateFetchedResultsController];
-                                          
-                                          [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                          
-                                          if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                              
-                                              POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
-                                              if ([currentOpenDocument isEqual:document]){
-                                                  ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
-                                              }
-                                          }
+
+    [[APIClient sharedClient] deleteDocument:document.deleteUri success:^{
+        [self updateFetchedResultsController];
+        
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+        
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            POSDocument *currentOpenDocument = ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment.document;
+            if ([currentOpenDocument isEqual:document]){
+                ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = nil;
+            }
         }
-        failure:^(NSError *error) {
-                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                  if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                      // We were unauthorized, due to the session being invalid.
-                                                      // Let's retry in the next run loop
-                                                      [self performSelector:@selector(deleteDocument:) withObject:document afterDelay:0.0];
-                                                      
-                                                      return;
-                                                  }
-                                              }
-                                              
-                                              [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                              
-                                              [UIAlertView showWithTitle:error.errorTitle
-                                                                 message:[error localizedDescription]
-                                                       cancelButtonTitle:nil
-                                                       otherButtonTitles:@[error.okButtonTitle]
-                                                                tapBlock:error.tapBlock];
-        }];
+        success();
+    } failure:^(APIError *error) {
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
+    }];
 }
 
 - (BOOL)documentsNeedCurrentBankAccount
@@ -768,35 +686,16 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
-    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
+    //        return;
+    //    }
 
-    [[POSAPIManager sharedManager] updateBankAccountWithUri:uri
-                                                    success:nil
-                                                    failure:^(NSError *error) {
-                                                        
-                                                        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                // We were unauthorized, due to the session being invalid.
-                                                                // Let's retry in the next run loop
-                                                                double delayInSeconds = 0.0;
-                                                                dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                                                dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                                    [self updateCurrentBankAccountWithUri:uri];
-                                                                });
-                                                                
-                                                                return;
-                                                            }
-                                                        }
-                                                        
-                                                        [UIAlertView showWithTitle:error.errorTitle
-                                                                           message:[error localizedDescription]
-                                                                 cancelButtonTitle:nil
-                                                                 otherButtonTitles:@[error.okButtonTitle]
-                                                                          tapBlock:error.tapBlock];
-                                                    }];
+    [[APIClient sharedClient] updateBankAccountWithUri:uri success:^(NSDictionary *response) {
+
+    }
+        failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        }];
 }
 
 - (void)uploadProgressDidChange:(NSNotification *)notification
@@ -819,7 +718,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         if (uploadCell) {
-            uploadCell.progressView.progress = [POSAPIManager sharedManager].uploadProgress.fractionCompleted;
+            uploadCell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted; //[POSAPIManager sharedManager].uploadProgress.fractionCompleted;
         } else {
             // We've not found the upload cell - let's check if the topmost cell is visible.
             // If it is, that means we're missing the upload cell and we need to insert it.
@@ -839,6 +738,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             return;
         }
         [self updateContentsFromServerUserInitiatedRequest:@NO];
+        [self.tableView reloadData];
     });
 }
 

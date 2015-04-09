@@ -40,12 +40,15 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *loginView;
+@property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (strong, nonatomic) UIImageView *titleImageView;
+@property (strong, nonatomic) IBOutlet UIButton *replayOnboardingButton;
 
 @end
 
@@ -62,7 +65,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 
@@ -71,7 +74,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setToolbarHidden:YES animated:NO];
+
+    [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
+
     self.screenName = kLoginViewControllerScreenName;
 
     @try {
@@ -82,7 +87,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
@@ -92,38 +97,67 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
-    if ([OAuthToken oAuthTokenWithScope:kOauth2ScopeFull].refreshToken) {
-        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            // @ TODO WILL BUG fIRST TIME
-            POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    if ([OAuthToken isUserLoggedIn]) {
 
-            if ([resource.mailboxes.allObjects count] > 0) {
-                [self performSegueWithIdentifier:@"goToDocumentsFromLoginSegue"
-                                          sender:self];
-            }
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            [self presentAppropriateViewControllerForIPhone];
+        }
+
+        [Guide setOnboaringHasBeenWatched];
+
+    } else {
+
+        if ([Guide shouldShowOnboardingGuide]) {
+            [self presentOnboarding];
         }
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+
+    [self.navigationController setToolbarHidden:YES animated:NO];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
+
+    self.navigationItem.leftBarButtonItem = nil;
+    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
+    self.navigationItem.rightBarButtonItem = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+
         UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                              style:UIBarButtonItemStyleBordered
+                                                                              style:UIBarButtonItemStylePlain
                                                                              target:nil
                                                                              action:nil];
         self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (BOOL)shouldAutorotate
 {
-    [super viewWillAppear:animated];
+    return NO;
+}
 
-    UIImage *titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-    self.titleImageView = [[UIImageView alloc] initWithImage:titleImage];
-    self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-    self.navigationItem.titleView = self.titleImageView;
-    self.navigationItem.leftBarButtonItem = nil;
-    self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-    self.navigationItem.rightBarButtonItem = nil;
+- (NSUInteger)supportedInterfaceOrientations
+{
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskAll;
+    }
+}
+
+- (void)presentOnboarding
+{
+    [self.loginView setHidden:YES];
+
+    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
+    __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
+
+    [self presentViewController:onboardingViewController animated:NO completion:^{
+        onboardingViewController.onboardingLoginViewController.delegate = self;
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -139,49 +173,72 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         }
         oAuthViewController.delegate = self;
         oAuthViewController.scope = kOauth2ScopeFull;
-    } else if ([segue.identifier isEqualToString:@"goToDocumentsFromLoginSegue"]) {
-        POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        POSDocumentsViewController *documentsViewController = (id)segue.destinationViewController;
-        documentsViewController.folderName = kFolderInboxName;
-        documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+
+        [self performSelector:@selector(showLoginButtonsIfHidden) withObject:nil afterDelay:0.5];
     }
 }
 
-- (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+- (void)showLoginButtonsIfHidden
+{
+    if ([self.loginView isHidden]) {
+        [self.loginView setHidden:NO];
+    }
+}
+
+- (void)presentNewFeatures
 {
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        UIImage *titleImage;
-        if (UIInterfaceOrientationIsPortrait(toInterfaceOrientation)) {
-            titleImage = [UIImage imageNamed:@"navbar-icon-posten"];
-        } else {
-            titleImage = [UIImage imageNamed:@"navbar-icon-posten-iphone-landscape"];
-        }
-        self.titleImageView.image = titleImage;
-        self.titleImageView.frame = CGRectMake(0.0, 0.0, titleImage.size.width, titleImage.size.height);
-        self.navigationItem.titleView = self.titleImageView;
+        UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+        UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+        NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
+        newFeaturesController.delegate = self;
+        [self presentViewController:navigationController animated:NO completion:nil];
     }
 }
 
 #pragma mark - SHCOAuthViewControllerDelegate
 
-- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [self.navigationController dismissViewControllerAnimated:YES
-                                                      completion:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
-                                                            object:@NO];
+    if ([Guide shouldShowWhatsNewGuide] && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+        [self presentNewFeatures];
     } else {
-        POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-        if ([resource.mailboxes.allObjects count] == 1) {
-            [self performSegueWithIdentifier:kGoToInboxFolderAtStartupSegue
-                                      sender:self];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            
+            [self.navigationController dismissViewControllerAnimated:YES
+                                                          completion:^{
+
+                                                          }];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
+                                                                object:@NO];
         } else {
-            [self performSegueWithIdentifier:@"accountSegue"
-                                      sender:self];
+            [self presentAppropriateViewControllerForIPhone];
         }
     }
+}
+
+- (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
+{
+    if (backgroundImage != nil) {
+        self.loginBackgroundImageView.image = backgroundImage;
+    }
+
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
+        
+        [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
+
+    }];
+}
+
+#pragma mark - NewFeatures dismiss controller delegate
+
+- (void)newFeaturesViewControllerDidDismiss:(NewFeaturesViewController *)newFeaturesViewController
+{
+    [newFeaturesViewController dismissViewControllerAnimated:NO completion:^{
+        [self.loginView setHidden:NO];
+        [self presentAppropriateViewControllerForIPhone];
+    }];
 }
 
 #pragma mark - IBActions
@@ -191,8 +248,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     NSURL *url;
     if (sender == self.registerButton) {
         url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
-    } else {
-        url = [NSURL URLWithString:@"https://www.digipost.no/juridisk/#personvern"];
     }
 
     [UIActionSheet showFromRect:sender.frame
@@ -217,11 +272,51 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)popToSelf:(NSNotification *)notification
 {
+
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
+
         [self.navigationController popToViewController:self
                                               animated:YES];
-    } else {
     }
+}
+
+- (void)presentAppropriateViewControllerForIPhone
+{
+    POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+
+    if ([Guide shouldShowWhatsNewGuide]) {
+        [self presentNewFeatures];
+    } else if ([resource.mailboxes.allObjects count] == 1) {
+        [self presentDocumentsViewControllerWithViewControllerStack];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    } else {
+        [self performSegueWithIdentifier:@"accountSegue"
+                                  sender:self];
+        [self.navigationController setNavigationBarHidden:NO animated:NO];
+    }
+}
+
+- (void)presentDocumentsViewControllerWithViewControllerStack
+{
+    // Instantiate view controllers for the navigation controller stack
+    SHCLoginViewController *loginViewController = self;
+    AccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
+    POSFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
+
+    POSDocumentsViewController *documentsViewController = [self.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
+    POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    documentsViewController.folderName = kFolderInboxName;
+    documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
+
+    // Add the view controllers to the stack
+    NSMutableArray *viewControllerStack = [NSMutableArray array];
+    [viewControllerStack addObject:loginViewController];
+    [viewControllerStack addObject:accountViewController];
+    [viewControllerStack addObject:foldersViewController];
+    [viewControllerStack addObject:documentsViewController];
+
+    // Set the new view controller stack for the navigation controller
+    [self.navigationController setViewControllers:viewControllerStack animated:NO];
 }
 
 @end

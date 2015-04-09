@@ -25,5 +25,6 @@ extern NSString *const kFolderArchiveName;
 + (instancetype)existingFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 + (NSArray *)foldersForUserWithMailboxDigipostAddress:(NSString *)mailboxDigipostAddress inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (NSString *)displayName;
+- (NSString *)highestOAuth2ScopeForContainedDocuments;
 
 @end

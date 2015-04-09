@@ -10,10 +10,11 @@
 #import "POSNewFolderViewController.h"
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
-#import <MRProgress.h>
+#import "digipost-swift.h"
+#import <MRProgress/MRProgress.h>
 
 @interface POSNewFolderViewController () <UITextFieldDelegate>
 
@@ -63,7 +64,8 @@
                                message:NSLocalizedString(@"Wrong interface orientation text", @"")
                      cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok")
                      otherButtonTitles:nil
-                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+                              tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+                              }];
         }
     }
 }
@@ -89,15 +91,15 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath : indexPath];
-    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath : indexPath];
+    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath:indexPath];
     cell.imageView.image = folderIcon.bigSelectedImage;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath : indexPath];
-    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath : indexPath];
+    POSNewFolderCollectionViewCell *cell = (id)[collectionView cellForItemAtIndexPath:indexPath];
+    POSFolderIcon *folderIcon = (id)[self.dataSource objectAtIndexPath:indexPath];
     cell.imageView.image = folderIcon.bigImage;
 }
 
@@ -107,14 +109,15 @@
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:@""];
-    [[POSAPIManager sharedManager] createFolderWithName:self.textField.text
-        iconName:selectedIcon.name
-        forMailBox:self.mailbox
-        success:^{
+    if ([self.textField.text isEqualToString:[NSString string]] || self.textField.text == nil) {
+        return;
+    }
+    [[APIClient sharedClient] createFolder:self.textField.text iconName:selectedIcon.name mailBox:self.mailbox success:^{
+        
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                     [self.navigationController popViewControllerAnimated: YES];
-        }
-        failure:^(NSError *error) {
+    }
+        failure:^(APIError *error) {
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                     // TODO show error to user
                                                     if (error.code == -1011){
@@ -136,18 +139,13 @@
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:@""];
-    [[POSAPIManager sharedManager] changeFolder:self.selectedFolder
-        newName:self.textField.text
-        newIcon:selectedIcon.name
-        success:^{
+    [[APIClient sharedClient] changeName:self.selectedFolder newName:self.textField.text newIconName:selectedIcon.name success:^{
+        [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+        [self.navigationController popViewControllerAnimated: YES];
+    }
+        failure:^(APIError *error) {
                                             [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-                                            [self.navigationController popViewControllerAnimated: YES];
-        }
-        failure:^(NSError *error) {
-                                            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-                                            [UIAlertView showWithTitle: NSLocalizedString(@"Feil", @"Feil") message: NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                
-                                            }];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 

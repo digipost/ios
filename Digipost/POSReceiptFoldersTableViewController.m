@@ -14,8 +14,8 @@
 // limitations under the License.
 //
 
-#import <UIActionSheet+Blocks.h>
-#import <UIAlertView+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSReceiptFoldersTableViewController.h"
 #import "UIRefreshControl+Additions.h"
@@ -32,6 +32,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFolderTableViewDataSource.h"
 #import "POSReceiptsViewController.h"
+#import "digipost-swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";
@@ -97,18 +98,17 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [super viewWillAppear:animated];
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingReceipts];
+    [[APIClient sharedClient] cancelUpdatingReceipts];
 
     [self programmaticallyEndRefresh];
 
@@ -192,10 +192,10 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
-
-    [[POSAPIManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
-        uri:self.receiptsUri
-        success:^{
+    [[APIClient sharedClient] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^(NSDictionary *responseDictionary) {
+            [[POSModelManager sharedManager] updateCardAttributes:responseDictionary];
+            [[POSModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
+                                                                             attributes:responseDictionary];
             [self updateFetchedResultsController];
             [self programmaticallyEndRefresh];
             [self updateNavbar];
@@ -208,27 +208,13 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             [self.receiptFolderTableViewDataSource refreshContent];
             [self.tableView reloadData];
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
-        }
-        failure:^(NSError *error) {
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                return;
-            }
-        }
-
+    }
+        failure:^(APIError *error) {
             [self programmaticallyEndRefresh];
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
 
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }
         }];
 }
@@ -262,7 +248,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
     if (showTableViewBackgroundView) {
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
         if ([rootResource.numberOfCards integerValue] == 0) {
             self.noReceiptsLabel.text = NSLocalizedString(@"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", @"No cards");
         } else if ([rootResource.numberOfCardsReadyForVerification integerValue] == 0) {

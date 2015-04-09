@@ -299,12 +299,13 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (void)logExecuteFetchRequestWithError:(NSError *)error
 {
-    DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
+    //    DDLogError(@"Error executing fetch request: %@", [error localizedDescription]);
 }
 
 - (void)logSavingManagedObjectContextWithError:(NSError *)error
 {
-    DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+    //    DDLogError(@"Error saving managed object context: %@", [error localizedDescription]);
+    NSLog(@"%@", error);
 }
 
 - (void)logSavingManagedObjectContext
@@ -331,6 +332,16 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 
     return _managedObjectContext;
+}
+
+- (void)saveContextLogError
+{
+
+    NSError *error;
+    [self.managedObjectContext save:&error];
+    if (error) {
+        NSLog(@"%@", error);
+    }
 }
 
 - (NSManagedObjectModel *)managedObjectModel
@@ -374,14 +385,14 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
                                                          options:options
                                                            error:&error]) {
 
-        DDLogError(@"Error adding the persistent store to the coordinator: %@", [error localizedDescription]);
+        //        DDLogError(@"Error adding the persistent store to the coordinator: %@", [error localizedDescription]);
 
         if (retries) {
             // Delete the SQLite database file and try again
             NSError *error = nil;
             if (![[NSFileManager defaultManager] removeItemAtURL:storeUrl
                                                            error:&error]) {
-                DDLogError(@"Error removing item: %@", [error localizedDescription]);
+                //                DDLogError(@"Error removing item: %@", [error localizedDescription]);
             }
 
             _persistentStoreCoordinator = [self persistentStoreCoordinatorWithRetries:NO];

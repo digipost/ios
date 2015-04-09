@@ -25,7 +25,6 @@ extension UIFont {
         familyNamesArray.enumerateObjectsUsingBlock { (object , index, stop) -> Void in
             let familyName = object as NSString
             let names : NSArray = UIFont.fontNamesForFamilyName(familyName)
-            println(object)
             names.enumerateObjectsUsingBlock({ (obj , i, stop) -> Void in
                 println(obj)
             })

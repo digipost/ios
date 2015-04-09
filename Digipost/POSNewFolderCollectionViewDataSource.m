@@ -80,7 +80,7 @@
         }
     }];
     if (index == -999) {
-        DDLogError(@"no index found for %@", name);
+//        DDLogError(@"no index found for %@", name);
         NSAssert(index == -999, @"could not find correct index for icon");
     }
     return [NSIndexPath indexPathForRow:index

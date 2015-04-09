@@ -12,7 +12,7 @@
 #import "POSFolder+Methods.h"
 #import <CoreData/CoreData.h>
 #import "POSFolderIcon.h"
-#import "POSMailbox.h"
+#import "POSMailbox+Methods.h"
 
 @interface POSUploadTableViewDataSource ()
 
@@ -29,7 +29,6 @@
     if (self) {
         self.tableView = tableView;
         tableView.dataSource = self;
-        _fetchedResultsController.delegate = self;
     }
     return self;
 }
@@ -51,13 +50,26 @@
     UITableViewCell *cell;
     if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"FolderCellIdentifier" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
         cell.backgroundColor = RGB(64, 66, 69);
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
-    }
 
+    } else {
+        POSMailbox *mailbox = (id)objectInFetchedResultsController;
+        if (mailbox.owner.boolValue) {
+            UINib *cellNib = [UINib nibWithNibName:@"MainAccountTableViewCell" bundle:nil];
+            [self.tableView registerNib:cellNib forCellReuseIdentifier:@"mainAccountCellIdentifier"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"mainAccountCellIdentifier" forIndexPath:indexPath];
+
+
+        } else {
+            UINib *cellNib = [UINib nibWithNibName:@"AccountTableViewCell" bundle:nil];
+            [self.tableView registerNib:cellNib forCellReuseIdentifier:@"accountCellIdentifier"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"accountCellIdentifier" forIndexPath:indexPath];
+
+        }
+    }
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -77,8 +89,32 @@
         }
         foldercell.iconImageView.image = iconImage;
     } else {
+
         POSMailbox *mailbox = (id)objectInFetchedResultsController;
-        cell.textLabel.text = mailbox.name;
+
+        NSString *unreadItemsString = @"";
+
+        if (mailbox.unreadItemsInInbox.intValue == 1) {
+            NSString *str = NSLocalizedString(@"account view unread letter", @"Unread message");
+            unreadItemsString = [NSString stringWithFormat:@"%@ %@", mailbox.unreadItemsInInbox, str];
+        } else {
+            NSString *str = NSLocalizedString(@"account view unread letters", @"Unread messages");
+            unreadItemsString = [NSString stringWithFormat:@"%@ %@", mailbox.unreadItemsInInbox, str];
+        }
+
+        if ([cell isKindOfClass:[MainAccountTableViewCell class]]) {
+            MainAccountTableViewCell *mainCell = (MainAccountTableViewCell *)cell;
+            mainCell.accountNameLabel.text = mailbox.name;
+            mainCell.initialLabel.text = mailbox.name.initials;
+            mainCell.unreadMessages.text = unreadItemsString;
+
+        } else if ([cell isKindOfClass:[AccountTableViewCell class]]) {
+            AccountTableViewCell *accCell = (AccountTableViewCell *)cell;
+            accCell.accountNameLabel.text = mailbox.name;
+            accCell.initialLabel.text = mailbox.name.initials;
+            accCell.unreadMessages.text = unreadItemsString;
+            accCell.accountDescriptionLabel.text = NSLocalizedString(@"account description shared", @"Shared with you");
+        }
     }
 }
 
@@ -99,30 +135,39 @@
     [fetchRequest setEntity:entity];
     fetchRequest.predicate = [self predicate];
 
-    NSSortDescriptor *sortDescriptor = [self sortDescriptor];
-    [fetchRequest setSortDescriptors:@[ sortDescriptor ]];
+    fetchRequest.sortDescriptors = [self sortDescriptors];
+
     return fetchRequest;
 }
 
-- (NSSortDescriptor *)sortDescriptor
+- (NSArray *)sortDescriptors
 {
     if ([self.entityDescription isEqualToString:kFolderEntityName]) {
-
         NSSortDescriptor *indexDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
-        return indexDescriptor;
+        return @[indexDescriptor];
     } else {
-        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-        return nameDescriptor;
+        NSSortDescriptor *ownerDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
+                                                                        ascending:NO];
+        
+        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                       ascending:YES];
+        return @[ownerDescriptor, nameDescriptor];
     }
 }
 
 - (NSPredicate *)predicate
 {
-    if (self.selectedMailbox) {
-        return [NSPredicate predicateWithFormat:@"mailbox == %@", self.selectedMailbox];
+    if (self.selectedMailboxDigipostAddress) {
+        POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailboxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        return [NSPredicate predicateWithFormat:@"mailbox == %@", mailbox];
     } else {
         return nil;
     }
+}
+
+- (void)reloadFetchedResultsController
+{
+    self.fetchedResultsController = nil;
 }
 
 - (NSFetchedResultsController *)fetchedResultsController
@@ -137,6 +182,7 @@
     _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:[self fetchRequest] managedObjectContext:[POSModelManager sharedManager].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
     NSError *error;
     [_fetchedResultsController performFetch:&error];
+    _fetchedResultsController.delegate = self;
 
     if (error) {
         NSLog(@"%@", error);
@@ -160,11 +206,11 @@
     switch (type) {
 
         case NSFetchedResultsChangeInsert:
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeUpdate:
@@ -172,8 +218,8 @@
             break;
 
         case NSFetchedResultsChangeMove:
-            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
+            [tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationNone];
             break;
     }
 }
@@ -182,11 +228,11 @@
 {
     switch (type) {
         case NSFetchedResultsChangeInsert:
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
 
         case NSFetchedResultsChangeDelete:
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
         case NSFetchedResultsChangeUpdate:
         case NSFetchedResultsChangeMove:

@@ -1,16 +1,4 @@
-/* Copyright (C) Posten Norge AS
-
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
-
- http://www.apache.org/licenses/LICENSE-2.0
-
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License. */
+/* Copyright (C) Posten Norge AS Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. */
 
 "language of app" = "nb";
 
@@ -242,13 +230,16 @@
 "APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE" = "Last opp";
 
 /* Sign In */
-"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE" = "Logg inn";
+"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE" = "Logg inn i Digipost";
 
 /* New user */
 "LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "Ny bruker";
 
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
+
+/* Show information / Watch onboarding again */
+"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Vis informasjon";
 
 /* Archive */
 "FOLDER_NAME_ARCHIVE" = "Arkivet";
@@ -308,7 +299,7 @@
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Opprett mappe";
 
 /* Title for navbar at accounts view */
-"Accounts title" = "Kontoer";
+"Accounts title" = "Velg konto";
 
 /* Text for error telling about folder with name exits */
 "FOLDER ALREADY EXSISTS" = "Velg et annet navn";
@@ -385,10 +376,18 @@
 /* navbar title upload mailbox */
 "navbar title upload mailbox" = "Velg konto";
 
-"upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
+/* unread letters in account view */
+"account view unread letter" = ". ulest brev";
 
-/* No comment provided by engineer. */
-"" = "";
+"account view unread letters" = "uleste brev";
+
+/* logout button title */
+"log out button title" = "Logg ut";
+
+/* Account description */
+"account description shared" = "Delt med deg";
+
+"upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
 
 /* No comment provided by engineer. */
 "actions action sheet delete document" = "Slett";
@@ -479,9 +478,34 @@
 "cannot rename document need authentication alert cancel" = "OK";
 
 /* No comment provided by engineer. */
-"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
-
-/* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
 
+"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
+
+/* New features onboarding. */
+"new feature navbar title" = "Visste du at..?";
+
+"new feature barbutton title" = "Ferdig";
+
+"new feature share" = "Del postkassen din med\nandre i familien";
+
+"new feature folders" = "Bruk mapper for å\norganisere dine eposter";
+
+"new feature archive" = "Et helt eget arkiv\ndu kan fylle opp";
+
+/* Onboarding. */
+"onboarding button" = "KOM I GANG";
+
+"onboarding welcome" = "Velkommen til din\nsikre digitale postkasse";
+
 "PUBLIC_ENTITY" = "Offentlig";
+
+/* No comment provided by engineer. */
+"" = "";
+
+/* Title of alert */
+"Unknown error title" = "Noe feil skjedde";
+
+/* message for alert */
+"Uknown error message" = "Prøv igjen senere";
+

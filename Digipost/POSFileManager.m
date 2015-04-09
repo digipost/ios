@@ -50,13 +50,14 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 - (BOOL)decryptDataForBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel error:(NSError *__autoreleasing *)error
 {
     POSAttachment *attachment = (id)baseEncryptionModel;
-    
+
     OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
 
-    NSString *password = oauthToken.refreshToken;
+    NSString *password = oauthToken.password;
 
-    if (!password) {
-        DDLogError(@"Error: Can't decrypt data without a password");
+    if (password == nil || [password isEqualToString:NSString.string]) {
+
+        //        DDLogError(@"Error: Can't decrypt data without a password");
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -72,7 +73,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
-        DDLogError(@"Error: Can't decrypt data without an encrypted file at %@", encryptedFilePath);
+        //        DDLogError(@"Error: Can't decrypt data without an encrypted file at %@", encryptedFilePath);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -89,7 +90,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                                        options:NSDataReadingMappedIfSafe
                                                          error:&localError];
     if (localError) {
-        DDLogError(@"Error reading encrypted file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error reading encrypted file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -106,7 +107,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                                 password:password
                                                    error:&localError];
     if (localError) {
-        DDLogError(@"Error decrypting file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error decrypting file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -125,7 +126,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     if ([[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
         if (![[NSFileManager defaultManager] removeItemAtPath:decryptedFilePath
                                                         error:&localError]) {
-            DDLogError(@"Error removing decrypted file: %@", [localError localizedDescription]);
+            //            DDLogError(@"Error removing decrypted file: %@", [localError localizedDescription]);
 
             if (error) {
                 *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -141,7 +142,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     if (![decryptedFileData writeToFile:decryptedFilePath
                                 options:NSDataWritingAtomic
                                   error:&localError]) {
-        DDLogError(@"Error writing decrypted file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error writing decrypted file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerDecryptingErrorDomain
@@ -169,7 +170,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
         password = [oauthToken password];
     }
     if (!password) {
-        DDLogError(@"Error: Can't encrypt data without a password");
+        //        DDLogError(@"Error: Can't encrypt data without a password");
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -185,7 +186,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:decryptedFilePath]) {
-        DDLogError(@"Error: Can't encrypt data without a decrypted file at %@", decryptedFilePath);
+        //        DDLogError(@"Error: Can't encrypt data without a decrypted file at %@", decryptedFilePath);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -202,7 +203,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                                        options:NSDataReadingMappedIfSafe
                                                          error:&localError];
     if (localError) {
-        DDLogError(@"Error reading decrypted file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error reading decrypted file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -219,7 +220,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                                 password:password
                                                    error:&localError];
     if (localError) {
-        DDLogError(@"Error encrypting file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error encrypting file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -238,7 +239,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         if (![[NSFileManager defaultManager] removeItemAtPath:encryptedFilePath
                                                         error:&localError]) {
-            DDLogError(@"Error removing encrypted file: %@", [localError localizedDescription]);
+            //            DDLogError(@"Error removing encrypted file: %@", [localError localizedDescription]);
 
             if (error) {
                 *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -254,7 +255,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     if (![encryptedFileData writeToFile:encryptedFilePath
                                 options:NSDataWritingAtomic
                                   error:&localError]) {
-        DDLogError(@"Error writing encrypted file: %@", [localError localizedDescription]);
+        //        DDLogError(@"Error writing encrypted file: %@", [localError localizedDescription]);
 
         if (error) {
             *error = [NSError errorWithDomain:kFileManagerEncryptingErrorDomain
@@ -289,7 +290,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:folder
                                                                              error:&error];
     if (error) {
-        DDLogError(@"Error getting list of files: %@", [error localizedDescription]);
+        //        DDLogError(@"Error getting list of files: %@", [error localizedDescription]);
         return NO;
     } else {
         NSUInteger failures = 0;
@@ -299,7 +300,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
             if (![[NSFileManager defaultManager] removeItemAtPath:filePath
                                                             error:&error]) {
-                DDLogError(@"Error removing file: %@", [error localizedDescription]);
+                //                DDLogError(@"Error removing file: %@", [error localizedDescription]);
                 failures++;
             }
         }
@@ -351,7 +352,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                    withIntermediateDirectories:YES
                                                     attributes:nil
                                                          error:&error]) {
-        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
+//        DDLogError(@"Error creating folder: %@", [error localizedDescription]);
         return nil;
     }
 

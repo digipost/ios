@@ -15,13 +15,12 @@
 //
 
 #import "POSFolder+Methods.h"
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSFolderIcon.h"
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
-#import <UIAlertView+Blocks.h>
 #import "POSAPIManager.h"
 #import "POSModelManager.h"
 #import "POSFolderTableViewCell.h"
@@ -38,10 +37,9 @@
 #import "NSError+ExtraInfo.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSLetterViewController.h"
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
-#import "POSAccountViewController.h"
 #import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
@@ -61,7 +59,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 @interface POSFoldersViewController () <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSMutableArray *folders;
-@property (nonatomic) BOOL shouldShowAddNewFolderCell;
 @property (strong, nonatomic) POSFolder *inboxFolder;
 @property (strong, nonatomic) UploadImageController *uploadImageController;
 
@@ -73,7 +70,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewDidLoad
 {
-    self.shouldShowAddNewFolderCell = YES;
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
@@ -146,18 +142,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         navItem.title = currentMailbox.name;
         self.navigationItem.title = currentMailbox.name;
     }
+    [self setEditing:NO animated:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[POSAPIManager sharedManager] cancelUpdatingRootResource];
+    [[APIClient sharedClient] cancelUpdatingRootResource];
 
     [self programmaticallyEndRefresh];
 
@@ -208,7 +204,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         numberOfSections++;
     }
 
-    if (self.editing && [self.folders count] == 0) {
+    if ([self.folders count] == 0) {
         numberOfSections++;
     }
     return numberOfSections;
@@ -217,17 +213,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
-        if (__IS_BETA__ == 1) {
-            return 4;
-        }
         return 3; // Inbox, Receipts and upload
     } else {
-        if (self.isEditing && self.shouldShowAddNewFolderCell) {
-            // add new cell-cell is added
-            return [self.folders count] + 1;
-        } else {
-            return [self.folders count];
-        }
+        // add new cell-cell is added
+        return [self.folders count] + 1;
     }
 }
 
@@ -292,33 +281,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     return cell;
 }
 
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing
-             animated:animated];
-
-    if (editing) {
-        self.shouldShowAddNewFolderCell = YES;
-        if ([self.folders count] == 0) {
-            [self.tableView insertSections:[NSIndexSet indexSetWithIndex:1]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            [self.tableView insertRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                         inSection:1] ]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    } else if (animated) {
-        if ([self.folders count] == 0) {
-            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:1]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-        } else {
-            [self.tableView deleteRowsAtIndexPaths:@[ [NSIndexPath indexPathForRow:[self.folders count]
-                                                                         inSection:1] ]
-                                  withRowAnimation:UITableViewRowAnimationAutomatic];
-        }
-    }
-}
-
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -345,11 +307,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             break;
     }
     return NO;
-}
-
-- (void)tableView:(UITableView *)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.shouldShowAddNewFolderCell = NO;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
@@ -411,8 +368,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    [[POSAPIManager sharedManager] moveFolder:newSorting
-        mailbox:mailbox
+    [[APIClient sharedClient] moveFolder:newSorting mailbox:mailbox
         success:^{
                                           NSError *error;
                                           [[POSModelManager sharedManager].managedObjectContext save:&error];
@@ -420,7 +376,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                               [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
                                           }
         }
-        failure:^(NSError *error){}];
+        failure:^(APIError *error){
+        }];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -440,7 +397,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         POSFolder *folder = [self.folders objectAtIndex:indexPath.row];
         [self deleteFolder:folder
@@ -460,7 +416,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (indexPath.row >= [self.folders count]) {
         return UITableViewCellEditingStyleInsert;
     }
-
     if (self.tableView.isEditing) {
         return UITableViewCellEditingStyleDelete;
     }
@@ -509,39 +464,47 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
 
     if (self.isEditing == NO) {
-        if (indexPath.section == 0 && self.inboxFolder) {
-            switch (indexPath.row) {
-                case 0: {
-                    [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                              sender:self.inboxFolder];
-                    break;
-                }
-                case 1: {
-                    [self performSegueWithIdentifier:kPushReceiptsIdentifier
-                                              sender:nil];
-                    break;
-                }
-                case 2: {
-                    [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
+        switch (indexPath.section) {
+            case 0: {
+                switch (indexPath.row) {
+                    case 0: {
+                        [self performSegueWithIdentifier:kPushDocumentsIdentifier
+                                                  sender:self.inboxFolder];
+                        break;
+                    }
+                    case 1: {
+                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
+                                                  sender:nil];
+                        break;
+                    }
+                    case 2: {
+                        [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
 
-                    break;
-                } break;
-                case 3: {
-                    NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
-                    [[UIApplication sharedApplication] openURL:url];
+                        break;
+                    } break;
+                    case 3: {
+                        NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
+                        [[UIApplication sharedApplication] openURL:url];
+                        break;
+                    }
+                    default:
+                        break;
                 }
-                default:
-                    break;
-            }
-        } else {
-            [self performSegueWithIdentifier:kPushDocumentsIdentifier
-                                      sender:self.folders[indexPath.row]];
+            } break;
+            case 1:
+                if (indexPath.row == self.folders.count) {
+                    [self performSegueWithIdentifier:kEditFolderSegue
+                                              sender:self];
+
+                } else {
+                    [self performSegueWithIdentifier:kPushDocumentsIdentifier sender:self.folders[indexPath.row]];
+                }
+
+                break;
         }
     } else {
-        if (indexPath.section != 0) {
-            [self performSegueWithIdentifier:kEditFolderSegue
-                                      sender:self];
-        }
+        [self performSegueWithIdentifier:kEditFolderSegue
+                                  sender:self];
     }
 }
 
@@ -587,33 +550,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
-    if ([POSAPIManager sharedManager].isUpdatingRootResource) {
-        return;
-    }
-    [[POSAPIManager sharedManager] updateRootResourceWithSuccess:^{
+    [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
+        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
         self.rootResource = nil; // To force a refetch of this property
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
-    } failure:^(NSError *error) {
-        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                // We were unauthorized, due to the session being invalid.
-                // Let's retry in the next run loop
-                [self performSelector:@selector(updateContentsFromServerUserInitiatedRequest:) withObject:userDidInititateRequest afterDelay:0.0];
-                return;
-            }
-        }
-        
+    } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertView showWithTitle:error.errorTitle
-                               message:[error localizedDescription]
-                     cancelButtonTitle:nil
-                     otherButtonTitles:@[error.okButtonTitle]
-                              tapBlock:error.tapBlock];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }
+
     }];
 }
 
@@ -624,21 +572,18 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
-    [[POSAPIManager sharedManager] delteFolder:folder
-        success:^{
-            [self updateContentsFromServerUserInitiatedRequest:@NO];
-        }
-        failure:^(NSError *error) {
-                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                               
-                                           }];
+    [[APIClient sharedClient] deleteWithFolder:folder success:^{
+        [self updateContentsFromServerUserInitiatedRequest:@NO];
+    }
+        failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+          //                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+          //
+          //                                           }];
         }];
 }
 
-- (void)uploadProgressDidStart:(NSNotification *)notification
-{
-}
-- (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
+- (void)uploadProgressDidStart:(NSNotification *)notification{} - (IBAction)unwindToFoldersViewController:(UIStoryboardSegue *)unwindSegue
 {
 }
 @end

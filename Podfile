@@ -1,16 +1,19 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-platform :ios, '7.0'
+platform :ios, '8.0'
 
-link_with ['Digipost', 'Digipost-Beta', 'Digipost-Staging-Enterprise', 'Digipost-Test-Dpost Tests']
-
-pod 'AFNetworking', '~> 2.3.1'
-pod 'HockeySDK', '~> 3.5.2'
-pod 'CocoaLumberjack', '~> 1.6.5.1'
+pod 'AFNetworking', '~> 2.5.0'
 pod 'UIAlertView+Blocks', '~> 0.8'
 pod 'UIActionSheet+Blocks', '~> 0.8'
 pod 'LUKeychainAccess', '~> 1.2.0'
-pod 'GoogleAnalytics-iOS-SDK', '~> 3.0.3'
-pod 'RNCryptor', '~> 2.1'
+pod 'RNCryptor', '~> 2.2'
 pod 'MRProgress', '~> 0.4.3'
-pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => 'ffa91dce31891351da7f0dd5a35507677a89ac9e'
+pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
+pod 'Alamofire', '~> 1.1'
+pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
+
+use_frameworks!
+target 'Digipost-Test-Dpost Tests', :exclusive => true do
+    pod 'KIF', '~> 3.0', :configurations => ['Debug']
+    
+end

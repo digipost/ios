@@ -14,13 +14,13 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
-#import <UIActionSheet+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSLetterViewController.h"
 #import "POSAttachment.h"
 #import "POSDocument.h"
-#import <AHKActionSheet.h>
+#import <AHKActionSheet/AHKActionSheet.h>
 #import "POSFolder+Methods.h"
 #import "POSFileManager.h"
 #import "POSAPIManager.h"
@@ -36,7 +36,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
-#import <MRProgress.h>
+#import <MRProgress/MRProgress.h>
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSModelManager.h"
@@ -84,12 +84,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
+// just a helper function that lets us fetch current attachment if its been nilled out by Core data
+@property (nonatomic, strong) NSString *currentAttachmentURI;
+
 @end
 
 @implementation POSLetterViewController
 
-@synthesize attachment = _attachment;
 @synthesize receipt = _receipt;
+@synthesize attachment = _attachment;
 
 #pragma mark - NSObject
 
@@ -102,7 +105,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     @catch (NSException *exception)
     {
-        DDLogDebug(@"Caught an exception: %@", exception);
+        //        DDLogDebug(@"Caught an exception: %@", exception);
     }
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
@@ -138,7 +141,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
+
     [self reloadFromMetadata];
+
     [self pos_setDefaultBackButton];
     [self addTapGestureRecognizersToWebView:self.webView];
 
@@ -160,13 +165,43 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
+- (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
+{
+    POSDocument *document = attachment.document;
+    [[APIClient sharedClient] validateOpeningReceipt:attachment success:^{
+        [[APIClient sharedClient] updateDocument:document success:^(NSDictionary *responseDict) {
+
+            [[POSModelManager sharedManager] updateDocument:document
+                                             withAttributes:responseDict];
+            if (self.currentAttachmentURI == nil) {
+                self.attachment = document.attachments[self.indexOfAttachment];
+            } else {
+                self.attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+                self.attachment.openingReceiptUri = nil;
+            }
+
+            [[POSModelManager sharedManager] logSavingManagedObjectContext];
+            [self downloadAttachmentContent:self.attachment];
+        } failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:^{
+
+            }];
+        }];
+
+    } failure:^(APIError *error) {
+                                                 [UIAlertView showWithTitle:NSLocalizedString(@"Failed validating opening receipt title", @"title of alert telling user validation failed") message:@"" cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+                                                     [self.navigationController popViewControllerAnimated:YES];
+                                                 }];
+    }];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kaskForhigherAuthenticationLevelSegue]) {
         UINavigationController *navigationController = (UINavigationController *)segue.destinationViewController;
-        SHCOAuthViewController *OAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
-        OAuthViewController.delegate = self;
-        OAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+        SHCOAuthViewController *oAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
+        oAuthViewController.delegate = self;
+        oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }
 }
 
@@ -244,6 +279,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self unloadContent];
 
+    if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
+        [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    }
+
     [super viewDidDisappear:animated];
 }
 
@@ -300,7 +339,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
-    DDLogError(@"%@", [error localizedDescription]);
+    //    DDLogError(@"%@", [error localizedDescription]);
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
@@ -410,6 +449,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (POSAttachment *)attachment
 {
+    // if attachment is refreshed in background, it can be "lost", just refetch it, to get it back
+    if (_attachment == nil) {
+        if (self.currentAttachmentURI) {
+            _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
+    } else if (_attachment.uri == nil) {
+        if (self.currentAttachmentURI) {
+            _attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        }
+    }
     return _attachment;
 }
 
@@ -420,13 +469,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     BOOL new = attachment != _attachment;
 
     if (new) {
-        if (_attachment.needsAuthenticationToOpen) {
-            [_attachment deleteDecryptedFileIfExisting];
-            [_attachment deleteEncryptedFileIfExisting];
+        if (attachment.needsAuthenticationToOpen) {
+            [attachment deleteDecryptedFileIfExisting];
+            [attachment deleteEncryptedFileIfExisting];
         }
     }
     _attachment = attachment;
     _receipt = nil;
+
+    self.currentAttachmentURI = attachment.uri;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (self.masterViewControllerPopoverController) {
@@ -468,6 +519,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     _receipt = receipt;
     _attachment = nil;
+    _currentAttachmentURI = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         if (self.masterViewControllerPopoverController) {
@@ -536,10 +588,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [actionSheet addButtonWithTitle:folder.displayName
                                       image:image
                                        type:AHKActionSheetButtonTypeDefault
-                                    handler:^(AHKActionSheet *actionSheet, id item) {
-                                        if (item) {
-                                            [self moveDocument:self.attachment.document toFolder:folder];
-                                        }
+                                    handler:^(AHKActionSheet *actionSheet) {
+                                        [self moveDocument:self.attachment.document toFolder:folder];
                                     }];
         }
     }
@@ -549,45 +599,21 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)moveDocument:(POSDocument *)document toFolder:(POSFolder *)folder
 {
-    [[POSAPIManager sharedManager] moveDocument:document
-        toFolder:folder
-        withSuccess:^{
-                                        document.folder = folder;
-                                        
-                                        [[POSModelManager sharedManager].managedObjectContext save:nil];
-                                        
-                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            if ([self.attachment.document isEqual:document]){
-                                                self.attachment = nil;
-                                            }
-                                            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                        }else {
-                                            [self.navigationController popToViewController:self.documentsViewController animated:YES];
-                                        }
+    NSParameterAssert(document);
+    [[APIClient sharedClient] moveDocument:document toFolder:folder success:^{
+        document.folder = folder;
+        [[POSModelManager sharedManager].managedObjectContext save:nil];
+        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+            if ([self.attachment.document isEqual:document]){
+                self.attachment = nil;
+            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+        }else {
+            [self.navigationController popToViewController:self.documentsViewController animated:YES];
         }
-        failure:^(NSError *error) {
-                                            
-                                            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                    // We were unauthorized, due to the session being invalid.
-                                                    // Let's retry in the next run loop
-                                                    double delayInSeconds = 0.0;
-                                                    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-                                                    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                                                        [self moveDocument:document toFolder:folder];
-                                                    });
-                                                    
-                                                    return;
-                                                }
-                                            }
-                                            
-                                            
-                                            [UIAlertView showWithTitle:error.errorTitle
-                                                               message:[error localizedDescription]
-                                                     cancelButtonTitle:nil
-                                                     otherButtonTitles:@[error.okButtonTitle]
-                                                              tapBlock:error.tapBlock];
+    }
+        failure:^(APIError *error) {
+                                       [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -618,7 +644,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)loadContent
 {
     POSBaseEncryptedModel *baseEncryptionModel = nil;
-
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
     } else if (self.receipt) {
@@ -650,6 +675,38 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self setToolbarItems:toolbarItems animated:YES];
 }
 
+- (void)downloadAttachmentContent:(POSAttachment *)attachment
+{
+    [[APIClient sharedClient] downloadBaseEncryptionModel:attachment withProgress:self.progress success:^{
+        NSError *error = nil;
+        if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:attachment error:&error]) {
+            [UIAlertView showWithTitle:error.errorTitle
+                               message:[error localizedDescription]
+                     cancelButtonTitle:nil
+                     otherButtonTitles:@[error.okButtonTitle]
+                              tapBlock:error.tapBlock];
+        }
+        if ([self.attachment.fileType isEqualToString:@"html"]){
+            self.view.backgroundColor = [UIColor whiteColor];
+        }
+
+
+        NSURL *fileURL = [NSURL fileURLWithPath:[attachment decryptedFilePath]];
+        [self loadFileURL:fileURL];
+
+
+        if ([_attachment.read boolValue] == NO ) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+
+        }
+    }
+        failure:^(APIError *error) {
+                                                      if (self.attachment.needsAuthenticationToOpen) {
+                                                          [self showUnlockViewIfNotPresent];
+                                                      }
+        }];
+}
+
 - (void)loadContentFromWebWithBaseEncryptionModel:(POSBaseEncryptedModel *)baseEncryptionModel
 {
     NSParameterAssert(baseEncryptionModel);
@@ -658,7 +715,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.progressView.progress = 0.0;
     if ([self needsAuthenticationToOpen]) {
         [self showUnlockViewIfNotPresent];
-        [MRProgressOverlayView showOverlayAddedTo:self.view animated:YES];
+        return;
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.1
@@ -669,7 +726,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                  self.progressView.alpha = 1.0;
                              }
             }
-            completion:^(BOOL finished){}];
+            completion:^(BOOL finished){
+            }];
 
         progress = [[NSProgress alloc] initWithParent:nil
                                              userInfo:nil];
@@ -685,143 +743,104 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                    forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                       options:NSKeyValueObservingOptionNew
                       context:kSHCLetterViewControllerKVOContext];
-
         self.progress = progress;
     }
-    [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
+
+    [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
+
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
         POSAttachment *attachment = (id)baseEncryptionModel;
         __block POSDocument *document = attachment.document;
         NSString *subject = attachment.subject;
         NSString *updateURI = document.updateUri;
-        [[POSAPIManager sharedManager] updateDocument:attachment.document
-            success:^{
-                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-                                                  [self removeUnlockViewIfPresent];
-                                                  
-                                                  // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                                                  __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
-                                                  document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                  [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                                                      POSAttachment *attachment = (id)obj;
-                                                      if ([attachment.subject isEqualToString:subject]){
-                                                          changedBaseEncryptionModel = attachment;
-                                                      }
-                                                  }];
-                                                  
-                                                  [[POSAPIManager sharedManager] downloadBaseEncryptionModel:changedBaseEncryptionModel
-                                                                                                withProgress:progress
-                                                                                                     success:^{
-                                                                                                         NSError *error = nil;
-                                                                                                         if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                                                                                                             [UIAlertView showWithTitle:error.errorTitle
-                                                                                                                                message:[error localizedDescription]
-                                                                                                                      cancelButtonTitle:nil
-                                                                                                                      otherButtonTitles:@[error.okButtonTitle]
-                                                                                                                               tapBlock:error.tapBlock];
-                                                                                                         }
-                                                                                                         if ([self.attachment.fileType isEqualToString:@"html"]){
-                                                                                                             self.view.backgroundColor = [UIColor whiteColor];
-                                                                                                         }
-                                                                                                         
-                                                                                                         
-                                                                                                         NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                                                                                                         [self loadFileURL:fileURL];
-                                                                                                         
-                                                                                                         
-                                                                                                         if ([_attachment.read boolValue] == NO ) {
-                                                                                                             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                                                                                             
-                                                                                                         }
-                                                                                                     }
-                                                                                                     failure:^(NSError *error) {
-                                                                                                         if (self.attachment.needsAuthenticationToOpen) {
-                                                                                                             [self showUnlockViewIfNotPresent];
-                                                                                                         }
-                                                                                                     }];
-            }
-            failure:^(NSError *error) {
-                // show upload view controller here
 
-                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+        [[APIClient sharedClient] updateDocument:attachment.document success:^(NSDictionary *responseDictionary) {
+            [[POSModelManager sharedManager] updateDocument:attachment.document
+                                             withAttributes:responseDictionary];
+            [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+            [self removeUnlockViewIfPresent];
+
+            // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+            __block POSBaseEncryptedModel *changedBaseEncryptionModel = self.attachment;
+            document = [POSDocument existingDocumentWithUpdateUri:updateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                POSAttachment *attachment = (id)obj;
+                if ([attachment.subject isEqualToString:subject]){
+                    changedBaseEncryptionModel = attachment;
+                }
+            }];
+            [[APIClient sharedClient] downloadBaseEncryptionModel:changedBaseEncryptionModel withProgress:progress success:^{
+                NSError *error = nil;
+                if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                    [UIAlertView showWithTitle:error.errorTitle
+                                       message:[error localizedDescription]
+                             cancelButtonTitle:nil
+                             otherButtonTitles:@[error.okButtonTitle]
+                                      tapBlock:error.tapBlock];
+                }
+                if ([self.attachment.fileType isEqualToString:@"html"]){
+                    self.view.backgroundColor = [UIColor whiteColor];
+                }
+
+
+                NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+                [self loadFileURL:fileURL];
+
+
+                if ([_attachment.read boolValue] == NO ) {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+
+                }
+            }
+                                                          failure:^(APIError *error) {
+                                                              if (self.attachment.needsAuthenticationToOpen) {
+                                                                  [self showUnlockViewIfNotPresent];
+                                                              }
+                                                          }];
+        }
+            failure:^(APIError *error) {
+                                             // show upload view controller here
+
+                                             [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
             }];
     } else {
+        [[APIClient sharedClient] downloadBaseEncryptionModel:baseEncryptionModel withProgress:progress success:^{
 
-        [[POSAPIManager sharedManager] downloadBaseEncryptionModel:baseEncryptionModel
-            withProgress:progress
-            success:^{
-                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-                                                               
-                                                               // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                                                               POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
-                                                               if (self.attachment) {
-                                                                   changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                               } else {
-                                                                   changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                               }
-                                                               
-                                                               NSError *error = nil;
-                                                               if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
-                                                                   [UIAlertView showWithTitle:error.errorTitle
-                                                                                      message:[error localizedDescription]
-                                                                            cancelButtonTitle:nil
-                                                                            otherButtonTitles:@[error.okButtonTitle]
-                                                                                     tapBlock:error.tapBlock];
-                                                               }
-                                                               if (changedBaseEncryptionModel == nil ) {
-                                                                   return;
-                                                               }
-                                                               NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
-                                                               [self loadFileURL:fileURL];
-                                                               
-                                                               if ([_attachment.read boolValue] == NO ) {
-                                                                   [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                                               }
+            [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+
+            // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
+            POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
+            if (self.attachment) {
+                changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+            } else {
+                changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
             }
-            failure:^(NSError *error) {
-                                                               
-                                                               BOOL unauthorized = NO;
-                [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
-                                                               
-                                                               if ([[error domain] isEqualToString:kAPIManagerErrorDomain] &&
-                                                                   [error code] == SHCAPIManagerErrorCodeUnauthorized) {
-                                                                   unauthorized = YES;
-                                                               } else  if (error.code == SHCAPIManagerErrorCodeNeedHigherAuthenticationLevel) {
-                                                                   
-                                                               } else {
-                                                                   NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                                   if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                       if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                           unauthorized = YES;
-                                                                       }
-                                                                   }
-                                                               }
-                                                               
-                                                               if (unauthorized) {
-                                                                   // Because our baseEncryptionModel may have been changed while we downloaded the file, let's fetch it again
-                                                                   POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
-                                                                   if (self.attachment) {
-                                                                       changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                                   } else {
-                                                                       changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                                                   }
-                                                                   
-                                                                   // We were unauthorized, due to the session being invalid.
-                                                                   // Let's retry in the next run loop
-                                                                   [self performSelector:@selector(loadContentFromWebWithBaseEncryptionModel:) withObject:changedBaseEncryptionModel afterDelay:0.0];
-                                                                   
-                                                                   return;
-                                                               } else {
-                                                                   if ([self needsAuthenticationToOpen] == NO)  {
-                                                                       [UIAlertView showWithTitle:error.errorTitle
-                                                                                          message:[error localizedDescription]
-                                                                                cancelButtonTitle:nil
-                                                                                otherButtonTitles:@[error.okButtonTitle]
-                                                                                         tapBlock:error.tapBlock];
-                                                                   }
-                                                               }
-            }];
+
+            NSError *error = nil;
+            if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                [UIAlertView showWithTitle:error.errorTitle
+                                   message:[error localizedDescription]
+                         cancelButtonTitle:nil
+                         otherButtonTitles:@[error.okButtonTitle]
+                                  tapBlock:error.tapBlock];
+            }
+            if (changedBaseEncryptionModel == nil ) {
+                return;
+            }
+            NSURL *fileURL = [NSURL fileURLWithPath:[changedBaseEncryptionModel decryptedFilePath]];
+            [self loadFileURL:fileURL];
+
+            if ([_attachment.read boolValue] == NO ) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+            }
+        } failure:^(APIError *error) {
+
+            [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
+            if ([self needsAuthenticationToOpen] == NO)  {
+                [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            }
+        }];
     }
 }
 
@@ -858,7 +877,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)unloadContent
 {
-    [[POSAPIManager sharedManager] cancelDownloadingBaseEncryptionModels];
+    [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
@@ -872,6 +891,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
+
 - (BOOL)needsAuthenticationToOpen
 {
     if (self.attachment) {
@@ -879,6 +899,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else
         return NO;
 }
+
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
@@ -893,114 +914,68 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     NSAssert(self.attachment.document != nil, @"no document");
 
-    [[POSAPIManager sharedManager] moveDocument:self.attachment.document
-        toFolder:folder
-        withSuccess:^{
-                                        _attachment = nil;
-                                        if (self.documentsViewController) {
-                                            self.documentsViewController.needsReload = YES;
-                                            
-                                            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-                                                [self showEmptyView:YES];
-                                            } else {
-                                                // Becuase we might have been pushed from the attachments vc, make sure that we pop
-                                                // all the way back to the documents vc.
-                                                [self.navigationController popToViewController:self.documentsViewController animated:YES];
-                                            }
-                                        }
-                                        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-                                            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                            [self showEmptyView:YES];
-                                        }
+    [[APIClient sharedClient] moveDocument:self.attachment.document toFolder:folder success:^{
+        _attachment = nil;
+        if (self.documentsViewController) {
+            self.documentsViewController.needsReload = YES;
+
+            if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+                [self showEmptyView:YES];
+            } else {
+                // Becuase we might have been pushed from the attachments vc, make sure that we pop
+                // all the way back to the documents vc.
+                [self.navigationController popToViewController:self.documentsViewController animated:YES];
+            }
         }
-        failure:^(NSError *error) {
-                                            
-                                            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                    // We were unauthorized, due to the session being invalid.
-                                                    // Let's retry in the next run loop
-                                                    [self performSelector:@selector(moveDocumentToFolder:) withObject:folder afterDelay:0.0];
-                                                    
-                                                    return;
-                                                }
-                                            }
-                                            
-                                            [UIAlertView showWithTitle:error.errorTitle
-                                                               message:[error localizedDescription]
-                                                     cancelButtonTitle:nil
-                                                     otherButtonTitles:@[error.okButtonTitle]
-                                                              tapBlock:error.tapBlock];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+            [self showEmptyView:YES];
+        }
+    }
+        failure:^(APIError *error) {
+                                       [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
 - (void)deleteDocument
 {
-
     NSAssert(self.attachment != nil, @"no attachment document to delete");
-    [[POSAPIManager sharedManager] deleteDocument:self.attachment.document
-        withSuccess:^{
-                                          _attachment = nil;
-                                          if (self.documentsViewController) {
-                                              
-                                              self.documentsViewController.needsReload = YES;
-                                              // Becuase we might have been pushed from the attachments vc, make sure that we pop
-                                              // all the way back to the documents vc.
-                                              [self.navigationController popToViewController:self.documentsViewController animated:YES];
-                                          }
-                                          if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-                                              [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-                                              [self showEmptyView:YES];
-                                          }
+    [[APIClient sharedClient] deleteDocument:self.attachment.document.deleteUri success:^{
+        _attachment = nil;
+        if (self.documentsViewController) {
+            self.documentsViewController.needsReload = YES;
+            // Becuase we might have been pushed from the attachments vc, make sure that we pop
+            // all the way back to the documents vc.
+            [self.navigationController popToViewController:self.documentsViewController animated:YES];
         }
-        failure:^(NSError *error) {
-                                              NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                              if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                  if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                      // We were unauthorized, due to the session being invalid.
-                                                      // Let's retry in the next run loop
-                                                      [self performSelector:@selector(deleteDocument) withObject:nil afterDelay:0.0];
-                                                      
-                                                      return;
-                                                  }
-                                              }
-                                              
-                                              [UIAlertView showWithTitle:error.errorTitle
-                                                                 message:[error localizedDescription]
-                                                       cancelButtonTitle:nil
-                                                       otherButtonTitles:@[error.okButtonTitle]
-                                                                tapBlock:error.tapBlock];
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
+            [self showEmptyView:YES];
+        }
+    }
+        failure:^(APIError *error) {
+                                         [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
 - (void)deleteReceipt
+
 {
-    [[POSAPIManager sharedManager] deleteReceipt:self.receipt
-        withSuccess:^{
-                                         _receipt = nil;
-                                         if (self.receiptsViewController) {
-                                             self.receiptsViewController.needsReload = YES;
-                                             
-                                             // Becuase we might have been pushed from the attachments vc, make sure that we pop
-                                             // all the way back to the documents vc.
-                                             [self.navigationController popToViewController:self.receiptsViewController animated:YES];
-                                         }
+
+    //    [[APIClient sharedClient] deletere]
+    [[APIClient sharedClient] deleteReceipt:self.receipt success:^{
+        [[POSModelManager sharedManager] deleteReceipt:self.receipt];
+        _receipt = nil;
+        if (self.receiptsViewController) {
+            self.receiptsViewController.needsReload = YES;
+
+            // Becuase we might have been pushed from the attachments vc, make sure that we pop
+            // all the way back to the documents vc.
+            [self.navigationController popToViewController:self.receiptsViewController animated:YES];
         }
-        failure:^(NSError *error) {
-                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                     // We were unauthorized, due to the session being invalid.
-                                                     // Let's retry in the next run loop
-                                                     [self performSelector:@selector(deleteReceipt) withObject:nil afterDelay:0.0];
-                                                     return;
-                                                 }
-                                             }
-                                             [UIAlertView showWithTitle:error.errorTitle
-                                                                message:[error localizedDescription]
-                                                      cancelButtonTitle:nil
-                                                      otherButtonTitles:@[error.okButtonTitle]
-                                                               tapBlock:error.tapBlock];
+    }
+        failure:^(APIError *error) {
+                                        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -1018,18 +993,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)showRenameAlertView
 {
     POSDocument *document = self.attachment.document;
+
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"") message:NSLocalizedString(@"", @"") style:UIAlertViewStylePlainTextInput cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"") otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-        if (buttonIndex == 1){
+        if (buttonIndex == 1) {
             NSString *name = [alertView textFieldAtIndex:0].text;
             // do the actual change!
-            [[POSAPIManager sharedManager] changeNameOfDocument:document newName:name success:^{
+            [[APIClient sharedClient] changeName:document newName:name success: ^{
                 self.navigationItem.title = name;
                 self.attachment.subject = name;
                 [self loadContent];
                 [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
-            } failure:^(NSError *error) {
-                
-            }];
+            }
+                                         failure:^(APIError *error){
+                                             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+                                         }];
         }
     }];
     [alertView textFieldAtIndex:0].text = self.attachment.subject;
@@ -1125,6 +1102,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *message = nil;
     NSString *actionButtonTitle = nil;
     NSString *cancelButtonTitle = nil;
+    POSInvoice *invoice = self.attachment.invoice;
 
     if (self.attachment.invoice.timePaid) {
         title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE", @"The invoice has been registered");
@@ -1176,7 +1154,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)setInfoViewVisible:(BOOL)visible
 {
     if (visible && self.shadowView.alpha == 0.0) {
-
         if (self.popoverTableViewDataSourceAndDelegate == nil) {
             self.popoverTableViewDataSourceAndDelegate = [[POSLetterPopoverTableViewDataSourceAndDelegate alloc] init];
         }
@@ -1208,13 +1185,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             NSString *invoiceAmount = [POSInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp")
                                                                                         description:invoiceAmount]];
-
             [dateFormatter setDateFormat:@"dd.MM.YYYY"];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_DUEDATE", @"Forfallsdato")
                                                                                         description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto")
                                                                                         description:self.attachment.invoice.accountNumber]];
-
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID")
                                                                                         description:[NSString stringWithFormat:@"%@", self.attachment.invoice.kid]]];
             NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
@@ -1260,74 +1235,73 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     MRProgressOverlayView *overlayView = [MRProgressOverlayView showOverlayAddedTo:self.navigationController.view
                                                                           animated:YES];
     [overlayView setTitleLabelText:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"")];
-    [[POSAPIManager sharedManager] sendInvoiceToBank:self.attachment.invoice
-        withSuccess:^{
-                                             // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
-                                             // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
-                                             
-                                             [self updateDocuments];
 
-        }
-        failure:^(NSError *error) {
-                                                 [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-                                                 NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                 if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                     if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                         // We were unauthorized, due to the session being invalid.
-                                                         // Let's retry in the next run loop
-                                                         [self performSelector:@selector(sendInvoiceToBank) withObject:nil afterDelay:0.0];
-                                                         
-                                                         return;
-                                                     }
-                                                 }
-                                                 
-                                                 self.sendingInvoice = NO;
-                                                 
-                                                 [UIAlertView showWithTitle:error.errorTitle
-                                                                    message:[error localizedDescription]
-                                                          cancelButtonTitle:nil
-                                                          otherButtonTitles:@[error.okButtonTitle]
-                                                                   tapBlock:error.tapBlock];
+    [[APIClient sharedClient] sendInvoideToBank:self.attachment.invoice success:^{
+
+        // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
+        // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
+
+        [self updateDocuments];
+
+    }
+        failure:^(APIError *error) {
+                                            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+                                            NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+                                            if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+                                                if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:response]) {
+                                                    // We were unauthorized, due to the session being invalid.
+                                                    // Let's retry in the next run loop
+                                                    [self performSelector:@selector(sendInvoiceToBank) withObject:nil afterDelay:0.0];
+
+                                                    return;
+                                                }
+                                            }
+
+                                            self.sendingInvoice = NO;
+
+                                            [UIAlertView showWithTitle:error.errorTitle
+                                                               message:[error localizedDescription]
+                                                     cancelButtonTitle:nil
+                                                     otherButtonTitles:@[error.okButtonTitle]
+                                                              tapBlock:error.tapBlock];
         }];
 }
 
 - (void)updateDocuments
 {
-    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
-        return;
-    }
+    //    if ([POSAPIManager sharedManager].isUpdatingDocuments) {
+    //        return;
+    //    }
 
     NSString *attachmentUri = self.attachment.uri;
 
-    [[POSAPIManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
-        mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
-        folderUri:self.attachment.document.folder.uri
-        success:^{
-                                                               [self updateAttachmentWithAttachmentUri:attachmentUri];
-                                                               self.sendingInvoice = NO;
-                                                               NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
-                                                               [self setToolbarItems:toolbarItems animated:YES];
-                                                               [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+    [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name mailboxDigipostAdress:self.documentsViewController.mailboxDigipostAddress folderUri:self.attachment.document.folder.uri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
+        [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.attachment.document.folder.name
+                                                  mailboxDigipostAddress:self.documentsViewController.mailboxDigipostAddress
+                                                              attributes:responseDictionary];
+        [self updateAttachmentWithAttachmentUri:attachmentUri];
+        self.sendingInvoice = NO;
+        NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+        [self setToolbarItems:toolbarItems animated:YES];
+        [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+    } failure:^(NSError *error) {
+        NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            //                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
+            //                                                                       // We were unauthorized, due to the session being invalid.
+            //                                                                       // Let's retry in the next run loop
+            //                                                                       [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
+            //
+            //                                                                       return;
+            //                                                                   }
         }
-        failure:^(NSError *error) {
-                                                               
-                                                               NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                                               if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                                   if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                                       // We were unauthorized, due to the session being invalid.
-                                                                       // Let's retry in the next run loop
-                                                                       [self performSelector:@selector(updateDocuments) withObject:nil afterDelay:0.0];
-                                                                       
-                                                                       return;
-                                                                   }
-                                                               }
-                                                               
-                                                               [UIAlertView showWithTitle:error.errorTitle
-                                                                                  message:[error localizedDescription]
-                                                                        cancelButtonTitle:nil
-                                                                        otherButtonTitles:@[error.okButtonTitle]
-                                                                                 tapBlock:error.tapBlock];
-        }];
+
+        [UIAlertView showWithTitle:error.errorTitle
+                           message:[error localizedDescription]
+                 cancelButtonTitle:nil
+                 otherButtonTitles:@[error.okButtonTitle]
+                          tapBlock:error.tapBlock];
+    }];
 }
 
 - (void)updateAttachmentWithAttachmentUri:(NSString *)uri
@@ -1390,22 +1364,53 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)reloadFromMetadata
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (!self.attachment && !self.receipt) {
-            [self showEmptyView:YES];
+    if (self.attachment.openingReceiptUri) {
+
+        if ([self needsAuthenticationToOpen]) {
+            [self showUnlockViewIfNotPresent];
             return;
-        } else {
-            [self showEmptyView:NO];
         }
+
+        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
+                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
+                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                              switch (buttonIndex) {
+                                  case 0:
+                                      [self.navigationController popViewControllerAnimated:YES];
+                                      break;
+                                  case 1:
+                                  {
+                                      [self shouldValidateOpeningReceipt:self.attachment];
+                                      break;
+                                  }
+                                  case 2:
+                                      break;
+                                  default:
+                                      break;
+                              }
+                          }];
+
+    } else {
+
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+            if (!self.attachment && !self.receipt) {
+                [self showEmptyView:YES];
+                return;
+            } else {
+                [self showEmptyView:NO];
+            }
+        }
+
+        if ([self attachmentHasValidFileType] == NO) {
+            [self showInvalidFileTypeView];
+        }
+
+        [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
+
+        [self loadContent];
     }
-
-    if ([self attachmentHasValidFileType] == NO) {
-        [self showInvalidFileTypeView];
-    }
-
-    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
-
-    [self loadContent];
 }
 
 - (void)didTapInformationBarButtonItem:(id)sender
@@ -1422,10 +1427,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     [self showDeleteDocumentActionSheet];
 }
+
 - (void)didTapRenameDocumentBarButtonItem:(id)sender
 {
     if ([self needsAuthenticationToOpen]) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"cannot rename document need authentication alert title", @"") message:NSLocalizedString(@"cannot rename document need authentication alert message", @"") cancelButtonTitle:NSLocalizedString(@"cannot rename document need authentication alert cancel", @"") otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     } else {
         [self showRenameAlertView];
     }
@@ -1435,7 +1442,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     BOOL didOpen = [self showOpenInControllerFromBarButtonItem:sender];
     if (didOpen == NO) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     }
 }
 
@@ -1443,7 +1451,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     BOOL didOpen = [self showOpenInControllerFromBarButtonItem:nil];
     if (didOpen == NO) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){}];
+        [UIAlertView showWithTitle:NSLocalizedString(@"open file in external app failed title", @"") message:@"" cancelButtonTitle:NSLocalizedString(@"open file in external app OK button", @"") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+        }];
     }
 }
 - (void)didTapMoreOptionsBarButtonItem:(id)sender
@@ -1459,14 +1468,48 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                      animations:^{
                          self.shadowView.alpha = 0.0;
                      }];
-
     [self.navigationController.toolbar setTintAdjustmentMode:UIViewTintAdjustmentModeAutomatic];
     [self.navigationController.toolbar setUserInteractionEnabled:YES];
 }
 
-- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController
+- (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    [self loadContent];
+    // If a user logs into scope FULL with one fødselsnummer and then uses bankid with another fødselsnummer to auth IDporten, we need to tell the user that.
+    NSManagedObjectContext *context = [POSModelManager sharedManager].managedObjectContext;
+    POSRootResource *oldRootResource = [POSRootResource existingRootResourceInManagedObjectContext:context];
+
+    NSString *updateURI = self.attachment.document.updateUri;
+    OAuthToken *token = [OAuthToken oAuthTokenWithScope:scope];
+
+    [[APIClient sharedClient] updateRootResourceWithScope:scope success:^(NSDictionary *responseDict) {
+        POSRootResource *newRootResource = [POSRootResource rootResourceWithAttributes:responseDict inManagedObjectContext:context];
+        if ([oldRootResource.selfUri isEqualToString:newRootResource.selfUri]) {
+            NSString *folderName = self.attachment.document.folder.name;
+            NSString *digipostAdress = self.attachment.document.folder.mailbox.digipostAddress;
+            NSString *folderURI = self.attachment.document.folder.uri;
+            [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+            [[APIClient sharedClient] updateDocumentsInFolderWithName:folderName mailboxDigipostAdress:digipostAdress folderUri:folderURI token:token success:^(NSDictionary *responseDict) {
+                [[POSModelManager sharedManager] updateDocumentsInFolderWithName:folderName mailboxDigipostAddress:digipostAdress attributes:responseDict];
+                [self removeUnlockViewIfPresent];
+                [self reloadAttachmentWithUpdateURI:updateURI];
+                [self reloadFromMetadata];
+            } failure:^(APIError *error) {
+                
+            }];
+        }else {
+            // Show Alert to user and abort update
+            [self showUnlockViewIfNotPresent];
+        }
+    } failure:^(APIError *error){
+
+    }];
+}
+
+- (void)reloadAttachmentWithUpdateURI:(NSString *)updateUri;
+{
+    POSDocument *document = [POSDocument existingDocumentWithUpdateUri:updateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    self.attachment = [document mainDocumentAttachment];
+    POSBaseEncryptedModel *baseEncryptedMode = (POSBaseEncryptedModel *)self.attachment;
 }
 
 - (void)didTapUnlockButton:(id)sender

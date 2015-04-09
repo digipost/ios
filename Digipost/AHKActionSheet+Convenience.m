@@ -38,28 +38,28 @@
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet move document", @"title for move document in the multiple actions action sheet")
                               image:[UIImage imageNamed:@"Move"]
                                type:AHKActionSheetButtonTypeDefault
-                            handler:^(AHKActionSheet *actionSheet, id item) {
+                            handler:^(AHKActionSheet *actionSheet) {
                                 [letterViewController showMoveDocumentActionSheet];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet delete document", @"")
                               image:[UIImage imageNamed:@"Delete"]
                                type:AHKActionSheetButtonTypeDefault
-                            handler:^(AHKActionSheet *actionSheet, id item) {
+                            handler:^(AHKActionSheet *actionSheet) {
                                 [letterViewController showDeleteDocumentActionSheet];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet rename document", @"")
                               image:[UIImage imageNamed:@"New name"]
                                type:AHKActionSheetButtonTypeDefault
-                            handler:^(AHKActionSheet *actionSheet, id item) {
+                            handler:^(AHKActionSheet *actionSheet) {
                                 [letterViewController showRenameAlertView];
                             }];
 
     [actionSheet addButtonWithTitle:NSLocalizedString(@"actions action sheet open in app", @"")
                               image:[UIImage imageNamed:@"Open_in"]
                                type:AHKActionSheetButtonTypeDefault
-                            handler:^(AHKActionSheet *actionSheet, id item) {
+                            handler:^(AHKActionSheet *actionSheet) {
                                 [letterViewController showOpenInControllerModally];
                             }];
     return actionSheet;

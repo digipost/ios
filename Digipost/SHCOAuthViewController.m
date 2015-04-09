@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#import <UIAlertView+Blocks.h>
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLRequestSerialization.h>
 #import "SHCOAuthViewController.h"
 #import "NSString+RandomNumber.h"
@@ -53,6 +53,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
 
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 
     if (self.scope == kOauth2ScopeFull) {
@@ -71,6 +73,13 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
 - (void)setupUIForIncreasedAuthenticationLevelVC
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
@@ -81,7 +90,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 }
 
 #pragma mark - UIWebViewDelegate
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
@@ -113,8 +121,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                 // got an access code and a refresh code, and can dismiss this view controller
                 // and let the login view controller take over and push the folders view controller.
                 [self dismissViewControllerAnimated:YES completion:^{
-                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:)]) {
-                        [self.delegate OAuthViewControllerDidAuthenticate:self];
+                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                        [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
                     }
                 }];
                 }
@@ -174,7 +182,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
                  forAuthenticationChallenge:challenge];
         } else {
-            DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
+            //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
 
@@ -232,6 +240,9 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
     NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
+    if ([self.scope isEqualToString:kOauth2ScopeFull]) {
+        URLString = [URLString stringByAppendingString:@"?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
+    }
     NSError *error;
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:parameters error:&error];
     [self.webView loadRequest:request];

@@ -14,6 +14,10 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)
     }
     
+    convenience init(r: CGFloat, g: CGFloat, b: CGFloat, alpha:CGFloat) {
+        self.init(red: r/255, green: g/255, blue: b/255, alpha: alpha)
+    }
+    
     class func digipostSpaceGrey () -> UIColor {
         return UIColor(r: 64, g: 66, b: 69)
     }
@@ -21,4 +25,29 @@ extension UIColor {
     class func digipostGreyOne () -> UIColor {
         return UIColor(r: 239, g: 66, b: 69)
     }
+    
+    class func digipostProfileViewBackground () -> UIColor {
+        return UIColor(r: 232, g: 232, b: 232)
+    }
+    
+    class func digipostProfileViewInitials () -> UIColor {
+        return UIColor(r: 141, g: 141, b: 141)
+    }
+    
+    class func digipostProfileTextColor () -> UIColor {
+        return UIColor(r: 77, g: 79, b: 83)
+    }
+    
+    class func digipostAccountViewBackground () -> UIColor {
+        return UIColor(r: 248, g: 248, b: 248)
+    }
+    
+    class func digipostAccountCellSelectBackground () -> UIColor {
+        return UIColor(r: 230, g: 230, b: 230)
+    }
+    
+    class func digipostLogoutButtonTextColor () -> UIColor {
+        return UIColor(r: 255, g: 235, b: 235, alpha: 0.85)
+    }
+    
 }

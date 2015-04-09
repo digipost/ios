@@ -9,10 +9,10 @@
 #import "POSReceiptsViewController.h"
 #import "UIRefreshControl+Additions.h"
 #import "POSReceiptsTableViewDataSource.h"
-#import <UIActionSheet+Blocks.h>
+#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "NSError+ExtraInfo.h"
 #import "UIViewController+Additions.h"
-#import <AFNetworking.h>
+#import <AFNetworking/AFNetworking.h>
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "POSAPIManager.h"
@@ -21,7 +21,8 @@
 #import "POSReceipt.h"
 #import "POSDocumentsViewController.h"
 #import "UIViewController+BackButton.h"
-#import <UIAlertView+Blocks.h>
+#import "digipost-Swift.h"
+#import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 
 NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
@@ -52,10 +53,9 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
     [self.navigationItem setTitle:self.storeName];
-    self.receiptsTableViewDataSource = [POSReceiptsTableViewDataSource new];
+    self.receiptsTableViewDataSource = [[POSReceiptsTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     self.receiptsTableViewDataSource.storeName = self.storeName;
     self.tableView.delegate = self;
-    self.tableView.dataSource = self.receiptsTableViewDataSource;
 
     [self updateNavbar];
 
@@ -80,7 +80,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
 
     // Present persistent data before updating
-    //    [self updateFetchedResultsController];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -168,31 +167,12 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (void)deleteReceipt:(POSReceipt *)receipt
 {
-    [[POSAPIManager sharedManager] deleteReceipt:receipt
-        withSuccess:^{
+    [[APIClient sharedClient] deleteReceipt:receipt success:^{
                                          [self.receiptsTableViewDataSource resetFetchedResultsController];
                                          [self.tableView reloadData];
-        }
-        failure:^(NSError *error) {
-                                             
-                                             NSHTTPURLResponse *response = [error userInfo][AFNetworkingOperationFailingURLResponseErrorKey];
-                                             if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-                                                 if ([[POSAPIManager sharedManager] responseCodeIsUnauthorized:response]) {
-                                                     // We were unauthorized, due to the session being invalid.
-                                                     // Let's retry in the next run loop
-                                                     [self performSelector:@selector(deleteReceipt:) withObject:receipt afterDelay:0.0];
-                                                     
-                                                     return;
-                                                 }
-                                             }
-                                             
-                                             //        [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-                                             
-                                             [UIAlertView showWithTitle:error.errorTitle
-                                                                message:[error localizedDescription]
-                                                      cancelButtonTitle:nil
-                                                      otherButtonTitles:@[error.okButtonTitle]
-                                                               tapBlock:error.tapBlock];
+    }
+        failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -250,12 +230,26 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 
 - (void)deleteReceipts
 {
+    __block NSInteger numberOfDocumentsRemaining = [self.tableView indexPathsForSelectedRows].count;
     for (NSIndexPath *indexPathOfSelectedRow in [self.tableView indexPathsForSelectedRows]) {
         POSReceipt *receipt = [self.receiptsTableViewDataSource receiptAtIndexPath:indexPathOfSelectedRow];
-        [self deleteReceipt:receipt];
+        [[APIClient sharedClient] deleteReceipt:receipt success:^{
+            [[POSModelManager sharedManager] deleteReceipt:receipt];
+            [[POSModelManager sharedManager] logSavingManagedObjectContext];
+            numberOfDocumentsRemaining -= 1;
+            if (numberOfDocumentsRemaining == 0) {
+//                [self.receiptsTableViewDataSource resetFetchedResultsController];
+//                [self.tableView reloadData];
+                [self deselectAllRows];
+            }
+        } failure:^(APIError *error) {
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [self.receiptsTableViewDataSource resetFetchedResultsController];
+            [self.tableView reloadData];
+            [self deselectAllRows];
+        }];
     }
 
-    [self deselectAllRows];
     [self updateToolbarButtonItems];
 }
 

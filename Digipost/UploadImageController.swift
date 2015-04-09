@@ -120,9 +120,12 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
         return UIInterfaceOrientation.LandscapeLeft.rawValue
     }
-    
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        UIApplication.sharedApplication().statusBarStyle = .LightContent
+    }
     private func setupPickerController() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
+        imagePicker.navigationBar.translucent = false
         imagePicker.delegate = self
         imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo,kUTTypeMovie)
         return imagePicker

@@ -15,7 +15,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <GAI.h>
+#import "GAI.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 extern NSString *const kLoginNavigationControllerIdentifier;

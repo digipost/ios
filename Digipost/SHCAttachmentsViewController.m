@@ -14,10 +14,10 @@
 // limitations under the License.
 //
 
-#import <GAI.h>
-#import <GAIFields.h>
-#import <GAIDictionaryBuilder.h>
-#import <UIAlertView+Blocks.h>
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
+#import <UIAlertView_blocks/UIAlertView+Blocks.h>
 #import "SHCAttachmentsViewController.h"
 #import "SHCAttachmentTableViewCell.h"
 #import "POSAttachment.h"
@@ -39,6 +39,8 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 @interface SHCAttachmentsViewController ()
 
+@property (nonatomic, strong) NSOrderedSet *attachments;
+
 @end
 
 @implementation SHCAttachmentsViewController
@@ -50,7 +52,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [super viewDidLoad];
 
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleBordered
+                                                                          style:UIBarButtonItemStyleDone
                                                                          target:nil
                                                                          action:nil];
 
@@ -58,6 +60,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
     [self generateTableViewHeader];
     // select first row
+    self.attachments = [self attachmentsForCurrentDocument];
     POSAttachment *attachment = self.attachments[0];
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         [self validateOpeningAttachment:attachment
@@ -73,6 +76,12 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
                                                   }];
             }];
     }
+}
+
+- (NSOrderedSet *)attachmentsForCurrentDocument
+{
+    POSDocument *currentDocument = [POSDocument existingDocumentWithUpdateUri:self.currentDocumentUpdateURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    return currentDocument.attachments;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -99,6 +108,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     [tracker set:kGAIScreenName
            value:kAttachmentsViewControllerScreenName];
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    self.attachments = [self attachmentsForCurrentDocument];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -122,7 +132,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)reloadTableViewDataForDocument:(POSDocument *)document
 {
-
     self.attachments = document.attachments;
     [self.tableView reloadData];
 }
@@ -132,6 +141,9 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)generateTableViewHeader
 {
     POSAttachment *firstAttachment = [self.attachments firstObject];
+    if (firstAttachment == nil) {
+        firstAttachment = [self attachmentsForCurrentDocument].firstObject;
+    }
     UIView *tableHeaderView = [[UILabel alloc] initWithFrame:CGRectMake(0.0,
                                                                         0.0,
                                                                         CGRectGetWidth(self.view.frame),
@@ -195,6 +207,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self.documentsViewController;
         letterViewController.attachment = attachment;
+        letterViewController.indexOfAttachment = self.tableView.indexPathForSelectedRow.row;
     }
 }
 
@@ -227,28 +240,28 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 {
     POSAttachment *attachment = self.attachments[indexPath.row];
 
-    if (attachment.openingReceiptUri) {
-        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
-                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
-                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
-                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
-                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                              switch (buttonIndex) {
-                                  case 0:
-                                      break;
-                                  case 1:
-                                  {
-                                      [self shouldValidateOpeningReceipt:attachment];
-                                      break;
-                                  }
-                                  case 2:
-                                      break;
-                                  default:
-                                      break;
-                              }
-                          }];
-        return;
-    }
+    //    if (attachment.openingReceiptUri) {
+    //        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
+    //                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
+    //                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
+    //                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
+    //                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+    //                              switch (buttonIndex) {
+    //                                  case 0:
+    //                                      break;
+    //                                  case 1:
+    //                                  {
+    //                                      [self shouldValidateOpeningReceipt:attachment];
+    //                                      break;
+    //                                  }
+    //                                  case 2:
+    //                                      break;
+    //                                  default:
+    //                                      break;
+    //                              }
+    //                          }];
+    //        return;
+    //    }
     [self validateOpeningAttachment:attachment
         success:^{
                                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -271,34 +284,34 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
 {
     {
-        [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
-            [self validateOpeningAttachment:attachment
-                                    success:^{
-                                        POSAttachment *refetchedAttachment = [POSAttachment updateExistingAttachmentWithUriFromDictionary:attachmentAttributes existingAttachment:attachment inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-                                        [[POSModelManager sharedManager] logSavingManagedObjectContext];
-                                        [self reloadTableViewDataForDocument:refetchedAttachment.document];
-                                        
-                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-                                            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
-                                        } else {
-                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
-                                        }
-                                    }
-                                    failure:^(NSError *error) {
-                                        [UIAlertView showWithTitle:error.errorTitle
-                                                           message:[error localizedDescription]
-                                                 cancelButtonTitle:nil
-                                                 otherButtonTitles:@[error.okButtonTitle]
-                                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                              [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-                                                          }];
-                                    }];
-
-        } failure:^(NSError *error) {
-            [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                
-            }];
-        }];
+        //        [[POSAPIManager sharedManager] validateOpeningReceipt:attachment success:^(NSDictionary *attachmentAttributes) {
+        //            [self validateOpeningAttachment:attachment
+        //                                    success:^{
+        //                                        POSAttachment *refetchedAttachment = [POSAttachment updateExistingAttachmentWithUriFromDictionary:attachmentAttributes existingAttachment:attachment inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        //                                        [[POSModelManager sharedManager] logSavingManagedObjectContext];
+        //                                        [self reloadTableViewDataForDocument:refetchedAttachment.document];
+        //
+        //                                        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
+        //                                            ((SHCAppDelegate *)[UIApplication sharedApplication].delegate).letterViewController.attachment = attachment;
+        //                                        } else {
+        //                                            [self performSegueWithIdentifier:kPushLetterIdentifier sender:attachment];
+        //                                        }
+        //                                    }
+        //                                    failure:^(NSError *error) {
+        //                                        [UIAlertView showWithTitle:error.errorTitle
+        //                                                           message:[error localizedDescription]
+        //                                                 cancelButtonTitle:nil
+        //                                                 otherButtonTitles:@[error.okButtonTitle]
+        //                                                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        //                                                              [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+        //                                                          }];
+        //                                    }];
+        //
+        //        } failure:^(NSError *error) {
+        //            [UIAlertView showWithTitle:@"" message:@"" cancelButtonTitle:@"Ok" otherButtonTitles:@[] tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+        //
+        //            }];
+        //        }];
     }
 }
 @end

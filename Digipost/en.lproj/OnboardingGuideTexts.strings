@@ -1,0 +1,11 @@
+/* 
+  OnboardingGuideTexts.strings
+  Digipost
+
+  Created by Håkon Bogen on 04/03/15.
+  Copyright (c) 2015 Posten. All rights reserved.
+*/
+
+"onboarding_1" = "Receive all types of mail from \ncompanies, individuals and\npublic offices";
+"onboarding_2" = "Upload and add to your\n personal archive";
+"onboarding_3" = "Receive digital receipts\nin Digipost";

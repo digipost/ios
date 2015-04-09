@@ -19,6 +19,7 @@
 #import "SHCLoginViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
+#import "digipost-swift.h"
 
 @interface SHCSplitViewController ()
 
@@ -39,7 +40,7 @@
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
 
@@ -57,7 +58,7 @@
     }
     @catch (NSException *exception)
     {
-        DDLogWarn(@"Caught an exception: %@", exception);
+        //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
     POSLetterViewController *letterViewController = self.letterViewController;
@@ -68,11 +69,25 @@
         SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
         appDelegate.letterViewController = letterViewController;
     }
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+
+    if ([Guide shouldShowOnboardingGuide] == NO) {
+
+        if ([OAuthToken isUserLoggedIn]) {
+
+            if ([Guide shouldShowWhatsNewGuide]) {
+                [self presentNewFeatures];
+            }
+        }
+    }
+
     //    // TODO This should not be here
     // if acesstoken == nil {
     //    [self presentLoginViewController];
@@ -100,6 +115,14 @@
 - (void)presentLoginViewController:(NSNotification *)notification
 {
     [self presentLoginViewController];
+}
+
+- (void)presentNewFeatures
+{
+    [Guide setOnboaringHasBeenWatched];
+    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
+    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)presentLoginViewController

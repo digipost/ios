@@ -14,9 +14,9 @@
 // limitations under the License.
 //
 
-#import <GAI.h>
-#import <GAIFields.h>
-#import <GAIDictionaryBuilder.h>
+#import "GAI.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 #import "SHCBaseTableViewController.h"
 #import "POSModelManager.h"
 #import "POSRootResource.h"
