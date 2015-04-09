@@ -259,7 +259,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 #elif __IS_BETA__ == 1
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-2"];
 #endif
-    [GAI sharedInstance].dispatchInterval = 5.0;
+    [GAI sharedInstance].dispatchInterval = 15.0;
 }
 
 @end

@@ -21,17 +21,24 @@ extension APIClient {
                 return nil
             }()
             if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                let error = APIError.UnauthorizedOAuthTokenError()
+                error.responseText = serializedResponse?.description
+                track(error: error)
                 self.removeAccessTokenUsedInLastRequest()
-                failure(error: APIError.UnauthorizedOAuthTokenError())
+                failure(error: error)
             } else if let actualError = error as NSError!  {
                 dispatch_async(dispatch_get_main_queue(), {
-                    track(error: APIError(error: actualError))
-                    failure(error: APIError(error: actualError))
+                    let error = APIError(error: actualError)
+                    error.responseText = serializedResponse?.description
+                    track(error:error)
+                    failure(error: error)
                 })
             } else if (response as NSHTTPURLResponse).didFail()  {
                 let err = APIError(urlResponse: (response as NSHTTPURLResponse), jsonResponse: serializedResponse)
                 track(error: err)
+                dispatch_async(dispatch_get_main_queue(), {
                 failure(error:err)
+                })
             }else {
                 dispatch_async(dispatch_get_main_queue(), {
                     success()
@@ -49,11 +56,15 @@ extension APIClient {
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 if self.isUnauthorized(response as NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
-                    track(error: APIError.UnauthorizedOAuthTokenError())
-                    failure(error: APIError.UnauthorizedOAuthTokenError())
+                    let error = APIError.UnauthorizedOAuthTokenError()
+                    error.responseText = string
+                    track(error: error)
+                    failure(error: error)
                 } else if let actualError = error as NSError! {
-                    track(error: APIError(error: actualError))
-                    failure(error: APIError(error: actualError))
+                    let error = APIError(error: actualError)
+                    error.responseText = string
+                    track(error:error)
+                    failure(error: error)
                 } else {
                     var jsonError : NSError?
                     // TOODO make responseDictionary
@@ -111,9 +122,10 @@ extension APIClient {
             }.response { (request, response, object, error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), {
                     if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                        let error = APIError.UnauthorizedOAuthTokenError()
+                        track(error: error)
                         self.removeAccessTokenUsedInLastRequest()
-                        track(error: APIError.UnauthorizedOAuthTokenError())
-                        failure(error: APIError.UnauthorizedOAuthTokenError())
+                        failure(error: error)
                     } else if let actualError = error as NSError! {
                         track(error: APIError(error: actualError))
                         failure(error: APIError(error: actualError))
