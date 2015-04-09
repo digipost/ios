@@ -12,7 +12,7 @@ import UIKit
 extension RecipientViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if (self.recipientSearchController.active) {
+        if self.recipientSearchController.active {
             return self.recipients.count
         } else {
             return self.addedRecipients.count
@@ -21,17 +21,26 @@ extension RecipientViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
-        
+        cell.accessoryType = UITableViewCellAccessoryType.None
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+
         if recipientSearchController.active {
             if let recipient = recipients[indexPath.row].name {
-                cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-                cell.textLabel?.text = recipient 
+                cell.textLabel?.text = recipient
+
+                for r in addedRecipients {
+                    if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
+                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                    }
+                }
             }
         } else {
-            return cell
+            if let recipient = addedRecipients[indexPath.row].name {
+                cell.textLabel?.text = recipient
+            }
         }
+        
         return cell
-
     }
 }
 
@@ -40,6 +49,9 @@ extension RecipientViewController: UITableViewDelegate {
         if recipientSearchController.active {
             addedRecipients.append(recipients[indexPath.row])
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            tableView.reloadData()
+        } else {
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
         }
     }
 }
