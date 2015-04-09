@@ -1,0 +1,94 @@
+//
+//  ModuleSelectorViewController.swift
+//  ModuleSendEditor
+//
+//  Created by Henrik Holmsen on 23.02.15.
+//  Copyright (c) 2015 Nettbureau AS. All rights reserved.
+//
+
+import UIKit
+
+protocol ModuleSelectorViewControllerDelegate{
+    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didtSelectModule module: ComposerModule)
+    func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController)
+}
+
+class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    var imagePicker = UIImagePickerController()
+    var delegate: ModuleSelectorViewControllerDelegate?
+    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    @IBAction func addHeadline(sender: AnyObject) {
+        addTextModule(UIFontTextStyleHeadline)
+    }
+    
+    @IBAction func addSubheadline(sender: AnyObject) {
+        addTextModule(UIFontTextStyleSubheadline)
+    }
+
+    @IBAction func addBody(sender: AnyObject) {
+        addTextModule(UIFontTextStyleBody)
+    }
+ 
+    @IBAction func addCaption(sender: AnyObject) {
+        addTextModule(UIFontTextStyleCaption1)
+    }
+    @IBAction func addFootnote(sender: AnyObject) {
+        addTextModule(UIFontTextStyleFootnote)
+    }
+    
+    @IBAction func closeButtonAction(sender: UIButton) {
+        
+        if let del = delegate{
+            del.moduleSelectorViewControllerWasDismissed(self)
+        }
+    }
+    
+    func addTextModule(textStyle: String){
+        
+        if let del = delegate{
+            let selectedModule = ComposerModule(moduleWithFont:  UIFont.preferredFontForTextStyle(textStyle))
+            del.moduleSelectorViewController(self, didtSelectModule: selectedModule)
+        }
+    }
+    @IBAction func addImage(sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            imagePicker.allowsEditing = true
+            self.presentViewController(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+  
+        if let del = delegate{
+            
+            picker.dismissViewControllerAnimated(true, completion: nil)
+            let selectedModule = ComposerModule(moduleWithImage: image)
+            del.moduleSelectorViewController(self, didtSelectModule: selectedModule)
+        }
+        
+        
+    }
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
