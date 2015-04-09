@@ -25,15 +25,17 @@ extension RecipientViewController: UITableViewDataSource {
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
 
         if recipientSearchController.active {
-            if let recipient = recipients[indexPath.row].name {
-                cell.textLabel?.text = recipient
-
-                for r in addedRecipients {
-                    if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
-                        cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            if countElements(recipients) >= 0 {
+                if let recipient = recipients[indexPath.row].name {
+                    cell.textLabel?.text = recipient
+                    for r in addedRecipients {
+                        if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
+                            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                        }
                     }
                 }
             }
+            
         } else {
             if let recipient = addedRecipients[indexPath.row].name {
                 cell.textLabel?.text = recipient
@@ -48,10 +50,15 @@ extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if recipientSearchController.active {
             addedRecipients.append(recipients[indexPath.row])
-            tableView.deselectRowAtIndexPath(indexPath, animated: true)
-            tableView.reloadData()
-        } else {
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if recipientSearchController.active == false {
+            addedRecipients.removeAtIndex(indexPath.row)
         }
     }
 }
@@ -64,21 +71,14 @@ extension RecipientViewController: UISearchResultsUpdating {
             tableView.reloadData()
         }
         
-        APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
-            self.recipients = Recipient.recipients(jsonDict: responseDictionary)
-            self.tableView.reloadData()
-            
-            }) { (error) -> () in
-                println(error)
+        if (recipientSearchController.searchBar.text != nil) {
+            APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
+                self.recipients = Recipient.recipients(jsonDict: responseDictionary)
+                
+                }) { (error) -> () in
+                    println(error)
+            }
         }
-    }
-}
-
-extension RecipientViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if recipientSearchController.active == false {
-            addedRecipients.removeAtIndex(indexPath.row)
-            tableView.reloadData()
-        }
+        
     }
 }
