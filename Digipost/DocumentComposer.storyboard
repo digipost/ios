@@ -17,12 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="nFo-Ml-eBf">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-wY-uWH">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="RQv-iZ-5mC">
@@ -41,11 +37,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="76k-Jf-HTN"/>
-                            <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="nFo-Ml-eBf" secondAttribute="bottom" id="K6C-Fa-Ntq"/>
-                            <constraint firstItem="nFo-Ml-eBf" firstAttribute="top" secondItem="KD7-a2-Cro" secondAttribute="bottom" id="VN6-Mn-FX5"/>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="UHt-00-Igr" secondAttribute="topMargin" id="Fm4-AX-oUr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="Wdr-6p-C0B"/>
-                            <constraint firstItem="nFo-Ml-eBf" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="cEY-LP-JSF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nFo-Ml-eBf" secondAttribute="trailing" constant="-16" id="tTa-Te-xnw"/>
                             <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="tzV-06-SkE"/>
                         </constraints>
                     </view>
@@ -57,7 +50,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="searchBar" destination="nFo-Ml-eBf" id="Yhp-2D-Ylk"/>
                         <outlet property="tableView" destination="4lo-wY-uWH" id="iLQ-Yp-XD9"/>
                     </connections>
                 </viewController>
