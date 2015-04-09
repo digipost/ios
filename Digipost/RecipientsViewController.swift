@@ -11,8 +11,12 @@ import UIKit
 class RecipientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    var recipients = [Recipient]()
-    var addedRecipients = [Recipient]()
+    var recipients : [Recipient] = [Recipient]() {
+        didSet { tableView.reloadData() }
+    }
+    var addedRecipients : [Recipient] = [Recipient]() {
+        didSet { tableView.reloadData() }
+    }
     
     var recipientSearchController = UISearchController()
 
@@ -21,7 +25,7 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
         var tblView = UIView(frame: CGRectZero)
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
-        tableView.backgroundColor = UIColor.grayColor()
+        tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         
         self.recipientSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
