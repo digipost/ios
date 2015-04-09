@@ -48,12 +48,21 @@ extension RecipientViewController: UITableViewDataSource {
 
 extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var found = false
         if recipientSearchController.active {
-            addedRecipients.append(recipients[indexPath.row])
+            for (index, r) in enumerate(addedRecipients) {
+                if r.name == recipients[indexPath.row].name {
+                    tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+                    addedRecipients.removeAtIndex(index)
+                    tableView.reloadData()
+                    found = true
+                }
+            }
         }
         
+        if found == false { addedRecipients.append(recipients[indexPath.row]) }
+        
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
