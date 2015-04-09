@@ -9,8 +9,8 @@
 import UIKit
 
 class RecipientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     var recipients : [Recipient] = [Recipient]() {
         didSet { tableView.reloadData() }
     }
