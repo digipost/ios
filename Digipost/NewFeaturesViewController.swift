@@ -26,7 +26,7 @@ extension UIFont{
     }
 }
 
-class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
+class NewFeaturesViewController: GAITrackedViewController, UIScrollViewDelegate {
 
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var doneBarButton: UIBarButtonItem!
@@ -43,6 +43,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.screenName = "NewFeatures"
         
         whatsNewGuideItems = Guide.whatsNewGuideItems()
         let device = UIDevice.currentDevice().userInterfaceIdiom
