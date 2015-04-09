@@ -788,6 +788,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 static void *rowReorderGestureRecognizerKey = &rowReorderGestureRecognizerKey;
 - (UILongPressGestureRecognizer *) rowReorderGestureRecognizer {
 	UILongPressGestureRecognizer *g = objc_getAssociatedObject( self, rowReorderGestureRecognizerKey );
+    g.minimumPressDuration = 0.3;
 	return g;
 }
 - (void) setRowReorderGestureRecognizer: (UILongPressGestureRecognizer *) rowReorderGestureRecognizer {
