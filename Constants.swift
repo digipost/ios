@@ -63,6 +63,11 @@ struct Constants {
         static let mainAccountCellNibName = "MainAccountTableViewCell"
 
     }
+    
+    struct Composer {
+        static let imageModuleCellIdentifier = "ImageModuleCell"
+        static let textModuleCellIdentifier = "TextModuleCell"
+    }
 
 }
 
