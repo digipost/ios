@@ -28,7 +28,7 @@ class ComposerModule: NSObject {
     
     // Common properties
     let type: ComposerModuleType
-    var height:CGFloat?
+    var height:CGFloat
     
     // TextModule properties
     let font: UIFont?
