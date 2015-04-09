@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageModuleCell" rowHeight="161" id="KGk-i7-Jjw" customClass="ImageModuleTableViewCell" customModule="ModuleSendEditor" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="161"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hx3-HJ-jOV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hx3-HJ-jOV" secondAttribute="trailing" id="0cM-yc-xuJ"/>
+                    <constraint firstItem="hx3-HJ-jOV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="IV3-bz-D77"/>
+                    <constraint firstItem="hx3-HJ-jOV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="bGF-mb-oid"/>
+                    <constraint firstAttribute="bottom" secondItem="hx3-HJ-jOV" secondAttribute="bottom" id="gNk-HZ-Qvh"/>
+                    <constraint firstItem="hx3-HJ-jOV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yIX-7k-2Lg"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="bGF-mb-oid"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="moduleImageView" destination="hx3-HJ-jOV" id="ceD-1k-Zfv"/>
+            </connections>
+            <point key="canvasLocation" x="382" y="389.5"/>
+        </tableViewCell>
+    </objects>
+</document>
