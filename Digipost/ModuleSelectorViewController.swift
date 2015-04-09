@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ModuleSelectorViewControllerDelegate{
-    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didtSelectModule module: ComposerModule)
+    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule)
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController)
 }
 
@@ -58,7 +58,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         
         if let del = delegate{
             let selectedModule = ComposerModule(moduleWithFont:  UIFont.preferredFontForTextStyle(textStyle))
-            del.moduleSelectorViewController(self, didtSelectModule: selectedModule)
+            del.moduleSelectorViewController(self, didSelectModule: selectedModule)
         }
     }
     @IBAction func addImage(sender: UIButton) {
@@ -76,7 +76,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
             
             picker.dismissViewControllerAnimated(true, completion: nil)
             let selectedModule = ComposerModule(moduleWithImage: image)
-            del.moduleSelectorViewController(self, didtSelectModule: selectedModule)
+            del.moduleSelectorViewController(self, didSelectModule: selectedModule)
         }
         
         
