@@ -205,10 +205,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else {
 
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            
+
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
-
                                                           }];
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                                 object:@NO];
@@ -247,7 +246,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     NSURL *url;
     if (sender == self.registerButton) {
-        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#/"];
+        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
     }
 
     [UIActionSheet showFromRect:sender.frame
