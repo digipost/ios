@@ -82,7 +82,6 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
         if editingStyle == UITableViewCellEditingStyle.Delete{
             tableData.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
@@ -96,8 +95,18 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule: ComposerModule){
-    
+
     }
-    
+
+    func indexPath(#module: ComposerModule) -> NSIndexPath? {
+        return {
+            for (index, tableViewModule) in enumerate(self.tableData) {
+                if tableViewModule.isEqual(module) {
+                    return NSIndexPath(forRow: index, inSection: 0)
+                }
+            }
+            return nil
+        }()
+    }
 
 }

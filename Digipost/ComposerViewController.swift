@@ -118,6 +118,11 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
         tableViewDataSource.tableData.append(module)
         tableView.reloadData()
+        if let indexPath = tableViewDataSource.indexPath(module: module) {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
+            cell?.moduleTextView.becomeFirstResponder()
+        }
+
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
