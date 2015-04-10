@@ -246,7 +246,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     NSURL *url;
     if (sender == self.registerButton) {
-        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering#?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
+        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
     }
 
     [UIActionSheet showFromRect:sender.frame
