@@ -8,24 +8,6 @@
 
 import UIKit
 
-extension UIImage{
-    
-    func resize(toSize size: CGSize, completionHandler: (resizedImage: UIImage, data: NSData) ->() ){
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
-            UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
-            self.drawInRect(CGRectMake(0, 0, size.width, size.height))
-            let resizedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()
-            UIGraphicsEndImageContext()
-            let imageData = UIImagePNGRepresentation(resizedImage)
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                completionHandler(resizedImage: resizedImage, data: imageData)
-            })
-        })
-    }
-}
-
 class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
@@ -106,9 +88,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         case .ImageModule:
             
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
-            module.image?.resize(toSize: squareSize, completionHandler: { (resizedImage, data) -> () in
-                module.image = resizedImage
-            })
+            module.image?.scaleToSize(squareSize)
             
         case .TextModule:
             println()
