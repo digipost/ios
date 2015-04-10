@@ -48,18 +48,12 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
     
     @IBAction func closeButtonAction(sender: UIButton) {
-        
-        if let del = delegate{
-            del.moduleSelectorViewControllerWasDismissed(self)
-        }
+        delegate?.moduleSelectorViewControllerWasDismissed(self)
     }
     
     func addTextModule(textStyle: String){
-        
-        if let del = delegate{
-            let selectedModule = ComposerModule(moduleWithFont:  UIFont.preferredFontForTextStyle(textStyle))
-            del.moduleSelectorViewController(self, didSelectModule: selectedModule)
-        }
+        let selectedModule = ComposerModule(moduleWithFont:  UIFont.preferredFontForTextStyle(textStyle))
+        delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
     }
     @IBAction func addImage(sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
@@ -71,15 +65,9 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController!, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-  
-        if let del = delegate{
-            
-            picker.dismissViewControllerAnimated(true, completion: nil)
-            let selectedModule = ComposerModule(moduleWithImage: image)
-            del.moduleSelectorViewController(self, didSelectModule: selectedModule)
-        }
-        
-        
+        let selectedModule = ComposerModule(moduleWithImage: image)
+        delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
+        picker.dismissViewControllerAnimated(true, completion: nil)
     }
     /*
     // MARK: - Navigation
