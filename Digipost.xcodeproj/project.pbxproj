@@ -258,6 +258,7 @@
 		AF477E041A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF477E061A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		AF488CAF1AD7DC8C00FC32CC /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
 		AF6F5BCF1AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
 		AF6F5BD01AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
 		AF6F5BD11AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
@@ -1294,6 +1295,7 @@
 		AF2C68821AD59CE6007020DC /* ComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModule.swift; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+base64Representation.swift"; sourceTree = "<group>"; };
 		AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectorViewController.swift; sourceTree = "<group>"; };
 		AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocumentComposer.storyboard; sourceTree = "<group>"; };
 		AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
@@ -2065,6 +2067,7 @@
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */,
 				AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */,
+				AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3115,6 +3118,7 @@
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
+				AF488CAF1AD7DC8C00FC32CC /* UIImage+base64Representation.swift in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
