@@ -244,10 +244,6 @@
 		AF2C68791AD59533007020DC /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
 		AF2C687A1AD59533007020DC /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
 		AF2C687B1AD59533007020DC /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
-		AF2C687E1AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */; };
-		AF2C687F1AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */; };
-		AF2C68801AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */; };
-		AF2C68811AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */; };
 		AF2C68831AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
 		AF2C68841AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
 		AF2C68851AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
@@ -1040,6 +1036,8 @@
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06C189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECDEE06D189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		ECEDA5B51AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */; };
+		ECEDA5B61AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
 		ECF06D4D192363EF003BD200 /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
 		ECF06D4E192363EF003BD200 /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
@@ -1293,7 +1291,6 @@
 		AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextModuleTableViewCell.xib; sourceTree = "<group>"; };
 		AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModuleTableViewCell.swift; sourceTree = "<group>"; };
 		AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextModuleTableViewCell.swift; sourceTree = "<group>"; };
-		AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTableViewDelegate.swift; sourceTree = "<group>"; };
 		AF2C68821AD59CE6007020DC /* ComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModule.swift; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -1469,6 +1466,7 @@
 		ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
+		ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
 		ECF06D4A192363EF003BD200 /* POSReceiptsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptsViewController.h; sourceTree = "<group>"; };
 		ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsViewController.m; sourceTree = "<group>"; };
@@ -1877,7 +1875,7 @@
 				311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
-				AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */,
+				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
 				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
@@ -2898,7 +2896,6 @@
 				EC181DAD192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				ECD0B8941A820F2700DF3296 /* APIClient+Document.swift in Sources */,
 				83D75F771859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
-				AF2C68801AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */,
 				83D3550918619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC2352A41A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
 				3194C83F1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
@@ -3192,6 +3189,7 @@
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
+				ECEDA5B51AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
@@ -3223,7 +3221,6 @@
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
-				AF2C687E1AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */,
 				ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
@@ -3297,7 +3294,6 @@
 				EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */,
 				EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
-				AF2C687F1AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */,
 				EC2DCB6B1AB84EAB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
@@ -3340,6 +3336,7 @@
 				EC2DCB8F1AB84EAB0063755E /* UIColor+Convenience.m in Sources */,
 				EC2DCB901AB84EAB0063755E /* POSDocument.m in Sources */,
 				EC2DCB911AB84EAB0063755E /* OnboardingViewController.swift in Sources */,
+				ECEDA5B61AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				EC2DCB921AB84EAB0063755E /* UIImage+TintColor.swift in Sources */,
 				EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
 				EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */,
@@ -3445,7 +3442,6 @@
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
-				AF2C68811AD598D8007020DC /* ComposerTableViewDelegate.swift in Sources */,
 				EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,

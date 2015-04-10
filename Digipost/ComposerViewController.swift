@@ -26,12 +26,11 @@ extension UIImage{
     }
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate{
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
     
     var tableViewDataSource: ComposerTableViewDataSource!
-    var tableViewDelegate: ComposerTableViewDelegate!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +41,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func setupTableView(){
         tableViewDataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
-        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView)
         let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
         let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
