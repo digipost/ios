@@ -8,16 +8,6 @@
 
 import UIKit
 
-extension UIImage{
-    
-    var base64Representation: String{
-        get {
-            let imageData:NSData = UIImagePNGRepresentation(self)
-            return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        }
-    }
-}
-
 enum ComposerModuleType{
     case TextModule, ImageModule
 }
