@@ -1870,17 +1870,17 @@
 		AF981EED1AD5164800DE8B55 /* Document Composer */ = {
 			isa = PBXGroup;
 			children = (
-				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
+				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
 				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
 				311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
-				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
-				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
 				AF2C687D1AD598D8007020DC /* ComposerTableViewDelegate.swift */,
 				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
+				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
+				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
 			);
 			name = "Document Composer";
 			sourceTree = "<group>";
