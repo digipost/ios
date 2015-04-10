@@ -42,7 +42,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func setupTableView(){
         tableViewDataSource = ComposerTableViewDataSource(asDataSourceForTableView: tableView)
-        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView, withDataSource: tableViewDataSource)
+        tableViewDelegate = ComposerTableViewDelegate(asDelegateForTableView: tableView)
         let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
         let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
