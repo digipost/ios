@@ -22,9 +22,7 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var tblView = UIView(frame: CGRectZero)
-        tableView.tableFooterView = tblView
-        tableView.tableFooterView?.hidden = true
+        
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         
         self.recipientSearchController = ({
