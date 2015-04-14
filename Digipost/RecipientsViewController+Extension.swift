@@ -49,6 +49,7 @@ extension RecipientViewController: UITableViewDataSource {
 extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var found = false
+
         if recipientSearchController.active {
             for (index, r) in enumerate(addedRecipients) {
                 if r.name == recipients[indexPath.row].name {
@@ -58,9 +59,8 @@ extension RecipientViewController: UITableViewDelegate {
                     found = true
                 }
             }
+            if found == false { addedRecipients.append(recipients[indexPath.row]) }
         }
-        
-        if found == false { addedRecipients.append(recipients[indexPath.row]) }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
@@ -70,6 +70,26 @@ extension RecipientViewController: UITableViewDelegate {
             addedRecipients.removeAtIndex(indexPath.row)
         }
     }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        var footerView = UIView(frame: CGRectZero)
+        var singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapOnFooter:")
+        singleTap.numberOfTapsRequired = 1
+        singleTap.cancelsTouchesInView = false
+        tableView.addGestureRecognizer(singleTap)
+        
+        return footerView
+    }
+    
+    @IBAction func handleSingleTapOnFooter(tap: UIGestureRecognizer) {
+        let point = tap.locationInView(tableView)
+        let indexPath = self.tableView.indexPathForRowAtPoint(point)
+
+        if indexPath == nil {
+            recipientSearchController.active = false
+        }
+    }
+    
 }
 
 extension RecipientViewController: UISearchResultsUpdating {
@@ -80,7 +100,7 @@ extension RecipientViewController: UISearchResultsUpdating {
             tableView.reloadData()
         }
         
-        if (recipientSearchController.searchBar.text != nil) {
+        if (recipientSearchController.searchBar.text != "") {
             APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
                 self.recipients = Recipient.recipients(jsonDict: responseDictionary)
                 
@@ -93,14 +113,17 @@ extension RecipientViewController: UISearchResultsUpdating {
 }
 
 extension RecipientViewController: UISearchBarDelegate{
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
-        tableView.backgroundColor = UIColor(r: 227, g: 45, b: 34)
-        return true
-    }
-    
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        searchBar.backgroundColor = UIColor.whiteColor()
-        tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
-    }
+//    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+//        searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
+//        //tableView.backgroundColor = UIColor(r: 227, g: 45, b: 34)
+//        return true
+//    }
+//    
+//    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+//        searchBar.backgroundColor = UIColor.whiteColor()
+//        tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
+//        tableView.tableHeaderView?.backgroundColor = UIColor.blueColor()
+//    }
+
 }
+
