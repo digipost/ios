@@ -23,6 +23,7 @@ extension RecipientViewController: UITableViewDataSource {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         cell.accessoryType = UITableViewCellAccessoryType.None
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
 
         if recipientSearchController.active {
             if count(recipients) >= 0 {
@@ -44,6 +45,7 @@ extension RecipientViewController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension RecipientViewController: UITableViewDelegate {
@@ -100,7 +102,7 @@ extension RecipientViewController: UISearchResultsUpdating {
             tableView.reloadData()
         }
         
-        if (recipientSearchController.searchBar.text != "") {
+        if recipientSearchController.searchBar.text != "" {
             APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
                 self.recipients = Recipient.recipients(jsonDict: responseDictionary)
                 
@@ -108,7 +110,6 @@ extension RecipientViewController: UISearchResultsUpdating {
                     println(error)
             }
         }
-        
     }
 }
 
