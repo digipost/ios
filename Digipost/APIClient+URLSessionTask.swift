@@ -20,15 +20,15 @@ extension APIClient {
                 }
                 return nil
             }()
-            if self.isUnauthorized(response as NSHTTPURLResponse?) {
+            if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                 self.removeAccessTokenUsedInLastRequest()
                 failure(error: APIError.UnauthorizedOAuthTokenError())
             } else if let actualError = error as NSError!  {
                 dispatch_async(dispatch_get_main_queue(), {
                     failure(error: APIError(error: actualError))
                 })
-            } else if (response as NSHTTPURLResponse).didFail()  {
-                let err = APIError(urlResponse: (response as NSHTTPURLResponse), jsonResponse: serializedResponse)
+            } else if (response as! NSHTTPURLResponse).didFail()  {
+                let err = APIError(urlResponse: (response as! NSHTTPURLResponse), jsonResponse: serializedResponse)
                 failure(error:err)
             }else {
                 dispatch_async(dispatch_get_main_queue(), {
@@ -45,7 +45,7 @@ extension APIClient {
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
-                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     failure(error: APIError.UnauthorizedOAuthTokenError())
                 } else if let actualError = error as NSError! {
@@ -56,11 +56,11 @@ extension APIClient {
                     if let actualData = data as NSData? {
                         if actualData.length == 0 {
                             failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
-                        }else if (response as NSHTTPURLResponse).didFail()  {
+                        }else if (response as! NSHTTPURLResponse).didFail()  {
                             let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
                             failure(error:err)
                         } else {
-                            let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as Dictionary<String, AnyObject>
+                            let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
                             success(serializer)
                         }
                     } else {

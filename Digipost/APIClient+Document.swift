@@ -44,7 +44,7 @@ extension APIClient {
     }
     
     func moveDocument(document: POSDocument, toFolder folder: POSFolder, success: () -> Void , failure: (error: APIError) -> ()) {
-        let firstAttachment = document.attachments.firstObject as POSAttachment
+        let firstAttachment = document.attachments.firstObject as! POSAttachment
         let parameters : Dictionary<String,String> = {
             if folder.name.lowercaseString == Constants.FolderName.inbox.lowercaseString {
                 return [Constants.APIClient.AttributeKey.location : Constants.FolderName.inbox, Constants.APIClient.AttributeKey.subject : firstAttachment.subject]

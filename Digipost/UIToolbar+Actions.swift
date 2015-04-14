@@ -67,15 +67,15 @@ extension UIToolbar {
         if let attachment = letterViewController.attachment as POSAttachment? {
             if attachment.hasValidToPayInvoice() {
                 if (attachment.mainDocument.boolValue){
-                    items.addObjectsFromArray(itemsForValidInvoice(letterViewController))
+                    items.addObjectsFromArray(itemsForValidInvoice(letterViewController) as [AnyObject])
                 }else {
-                    items.addObjectsFromArray(itemsForAttachmentThatIsInvoice(letterViewController))
+                    items.addObjectsFromArray(itemsForAttachmentThatIsInvoice(letterViewController) as [AnyObject])
                 }
             } else {
-                items.addObjectsFromArray(itemsForStandardLetter(letterViewController))
+                items.addObjectsFromArray(itemsForStandardLetter(letterViewController) as [AnyObject])
             }
         }else {
-                items.addObjectsFromArray(itemsForReceipt(letterViewController))
+                items.addObjectsFromArray(itemsForReceipt(letterViewController) as [AnyObject])
         }
         
         self.tintColor = UIColor.digipostSpaceGrey()

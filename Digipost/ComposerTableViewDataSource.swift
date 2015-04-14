@@ -45,7 +45,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
             
         case .ImageModule:
         
-            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.imageModuleCellIdentifier, forIndexPath: indexPath) as ImageModuleTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.imageModuleCellIdentifier, forIndexPath: indexPath) as! ImageModuleTableViewCell
             
             configureImageModuleCell(cell, withModule: module)
             
@@ -57,7 +57,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         
         case .TextModule:
             
-            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as TextModuleTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as! TextModuleTableViewCell
             configureTextModuleCell(cell, withModule: module)
             
             if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){

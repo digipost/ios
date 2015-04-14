@@ -20,12 +20,12 @@ extension RecipientViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as UITableViewCell
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
         cell.accessoryType = UITableViewCellAccessoryType.None
         cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
 
         if recipientSearchController.active {
-            if countElements(recipients) >= 0 {
+            if count(recipients) >= 0 {
                 if let recipient = recipients[indexPath.row].name {
                     cell.textLabel?.text = recipient
                     for r in addedRecipients {

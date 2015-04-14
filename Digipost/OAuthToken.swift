@@ -94,15 +94,15 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }else if let token = oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
             return token
         }else {
-            return oAuthTokenWithScope(kOauth2ScopeFull)?
+            return oAuthTokenWithScope(kOauth2ScopeFull)
         }
     }
 
     required convenience init(coder decoder: NSCoder) {
         self.init()
-        self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as String!
-        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as String!
-        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as String!
+        self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as! String!
+        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as! String!
+        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
     }
 
     func encodeWithCoder(coder: NSCoder) {
@@ -231,7 +231,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     }
 
     class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
-        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
+        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as! NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
             if let token = actualDictionary[scope] as?  OAuthToken? {
                 return token
@@ -242,9 +242,9 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
 
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
         var tokenArray = Dictionary<String,AnyObject>()
-        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as NSDictionary?
+        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as! NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
-            for key in actualDictionary.allKeys as [String] {
+            for key in actualDictionary.allKeys as! [String] {
                 let object: AnyObject = actualDictionary[key] as AnyObject!
                 tokenArray[key] = object
             }

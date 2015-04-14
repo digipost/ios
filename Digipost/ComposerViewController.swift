@@ -73,7 +73,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func resizeCellHeight(height: CGFloat, forCellAtRow row: Int) {
         let indexPath = NSIndexPath(forRow: row, inSection: 0)
         tableView.beginUpdates()
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as TextModuleTableViewCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextModuleTableViewCell
         cell.frame.size.height = height
         tableViewDataSource?.tableData[indexPath.row].height = height
         tableView.endUpdates()
@@ -118,7 +118,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.destinationViewController.isKindOfClass(ModuleSelectorViewController){
-            let moduleSelectViewController = segue.destinationViewController as ModuleSelectorViewController
+            let moduleSelectViewController = segue.destinationViewController as! ModuleSelectorViewController
             moduleSelectViewController.delegate = self
         }
     }

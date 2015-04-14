@@ -16,7 +16,7 @@ class ExtendedTouchView: UIView {
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
         
         if pointInside(point, withEvent: event) {
-            for subview in subviews as [UIView] {
+            for subview in subviews as! [UIView] {
                 if subview .isKindOfClass(UIScrollView) {
                     return subview
                 }

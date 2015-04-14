@@ -68,7 +68,7 @@ class OnboardingLoginViewController: UIViewController {
     
     func presentActionSheetFromSenderWithURL(sender: UIButton, url: NSURL){
         UIActionSheet.showFromRect(sender.frame,
-            inView: sender.superview,
+            inView: sender.superview!,
             animated: true,
             withTitle: url.host,
             cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"),

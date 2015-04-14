@@ -53,7 +53,7 @@ class QCMethod
 			if reverseStartTime > 0 {
 				let groupAnim = CAAnimationGroup()
 				groupAnim.animations = [basicAnim]
-				groupAnim.duration = maxDurationFromAnimations(groupAnim.animations as [CAAnimation])
+				groupAnim.duration = maxDurationFromAnimations(groupAnim.animations as! [CAAnimation])
 				groupAnim.animations?.map{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
 				newAnim = groupAnim
 			}
@@ -73,7 +73,7 @@ class QCMethod
 			if reverseStartTime > 0 {
 				let groupAnim = CAAnimationGroup()
 				groupAnim.animations = [keyAnim]
-				groupAnim.duration = maxDurationFromAnimations(groupAnim.animations as [CAAnimation])
+				groupAnim.duration = maxDurationFromAnimations(groupAnim.animations as! [CAAnimation])
 				groupAnim.animations?.map{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
 				newAnim = groupAnim
 				}else{
@@ -82,7 +82,7 @@ class QCMethod
 		}
 		else if let groupAnim = anim as? CAAnimationGroup{
 			var newSubAnims : [CAAnimation] = []
-			for subAnim in groupAnim.animations as [CAAnimation] {
+			for subAnim in groupAnim.animations as! [CAAnimation] {
 				let newSubAnim = reverseAnimation(subAnim, totalDuration: totalDuration)
 				newSubAnims.append(newSubAnim)
 			}
@@ -108,7 +108,7 @@ class QCMethod
 	class func maxDurationOfEffectAnimation(anim : CAAnimation, sublayersCount : NSInteger) -> CFTimeInterval{
 		var maxDuration : CGFloat = 0
 		if let groupAnim = anim as? CAAnimationGroup{
-			for subAnim in groupAnim.animations as [CAAnimation]{
+			for subAnim in groupAnim.animations as! [CAAnimation]{
 				
 				var delay : CGFloat = 0
 				let instDelay = subAnim.valueForKey("instanceDelay")?.floatValue;
@@ -134,7 +134,7 @@ class QCMethod
 		CATransaction.setDisableActions(true)
 		
 		for aLayer in layers{
-			if let keys = aLayer.animationKeys() as [String]!{
+			if let keys = aLayer.animationKeys() as! [String]!{
 				for animKey in keys{
 					let anim = aLayer.animationForKey(animKey)
 					updateValueForAnim(anim, theLayer: aLayer);
@@ -156,7 +156,7 @@ class QCMethod
 				theLayer.setValue(keyAnim.values?.last, forKey: keyAnim.keyPath)
 			}
 			}else if let groupAnim = anim as? CAAnimationGroup{
-			for subAnim in groupAnim.animations as [CAAnimation]{
+			for subAnim in groupAnim.animations as! [CAAnimation]{
 				updateValueForAnim(subAnim, theLayer: theLayer)
 			}
 		}
@@ -203,11 +203,11 @@ class QCMethod
 			if let groupAnim = anim.copy() as? CAAnimationGroup{
 				var newSubAnimations : [CAAnimation] = []
 				for subAnim in groupAnim.animations{
-					newSubAnimations.append(subAnim.copy() as CAAnimation)
+					newSubAnimations.append(subAnim.copy() as! CAAnimation)
 				}
 				groupAnim.animations = newSubAnimations
 				let animations = groupAnim.animations
-				for sub in animations as [CAAnimation]{
+				for sub in animations as! [CAAnimation]{
 					setBeginTime(sub, idx)
 					//Reverse animation if needed
 					if reverseAnimation {
@@ -215,12 +215,12 @@ class QCMethod
 					}
 					
 				}
-				sublayer.addAnimation(groupAnim, forKey: key)
+				sublayer.addAnimation(groupAnim, forKey: key as String)
 			}
 			else{
-				let copiedAnim = anim.copy() as CAAnimation
+				let copiedAnim = anim.copy() as! CAAnimation
 				setBeginTime(copiedAnim, idx)
-				sublayer.addAnimation(copiedAnim, forKey: key)
+				sublayer.addAnimation(copiedAnim, forKey: key as String)
 			}
 			
 		}
