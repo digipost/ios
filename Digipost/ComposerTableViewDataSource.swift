@@ -47,7 +47,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.imageModuleCellIdentifier, forIndexPath: indexPath) as! ImageModuleTableViewCell
             
-            configureImageModuleCell(cell, withModule: module)
+            configureImageModuleCell(cell, withModule: module as! ComposerImageModule)
             
             if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
                 cell.hidden = true
@@ -58,7 +58,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         case .TextModule:
             
             let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as! TextModuleTableViewCell
-            configureTextModuleCell(cell, withModule: module)
+            configureTextModuleCell(cell, withModule: module as! ComposerTextModule)
             
             if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
                 cell.hidden = true
@@ -90,11 +90,11 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     
     // MARK: - Helper Functions
     
-    func configureImageModuleCell(cell: ImageModuleTableViewCell, withModule module: ComposerModule){
+    func configureImageModuleCell(cell: ImageModuleTableViewCell, withModule module: ComposerImageModule){
         cell.moduleImageView.image = module.image
     }
     
-    func configureTextModuleCell(cell: TextModuleTableViewCell, withModule: ComposerModule){
+    func configureTextModuleCell(cell: TextModuleTableViewCell, withModule: ComposerTextModule){
 
     }
 

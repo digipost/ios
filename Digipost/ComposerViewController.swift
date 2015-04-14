@@ -37,7 +37,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if let row = indexPathForCellContainingTextView(textView)?.row{
             let newHeight = textView.frame.height
             resizeCellHeight(newHeight, forCellAtRow: row)
-            tableViewDataSource.tableData[row].height = newHeight
+            
+            if let textModule = tableViewDataSource.tableData[row] as? ComposerTextModule{
+                textModule.height = newHeight
+            }
         }
     }
     
@@ -75,7 +78,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.beginUpdates()
         let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextModuleTableViewCell
         cell.frame.size.height = height
-        tableViewDataSource?.tableData[indexPath.row].height = height
         tableView.endUpdates()
     }
     
@@ -88,7 +90,11 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         case .ImageModule:
             
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
-            module.image?.scaleToSize(squareSize)
+            
+            if let imageModule = module as? ComposerImageModule {
+                imageModule.image?.scaleToSize(squareSize)
+            }
+            
             
         case .TextModule:
             println()
