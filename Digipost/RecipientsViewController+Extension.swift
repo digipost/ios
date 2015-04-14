@@ -113,18 +113,23 @@ extension RecipientViewController: UISearchResultsUpdating {
     }
 }
 
-extension RecipientViewController: UISearchBarDelegate{
-//    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-//        searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
-//        //tableView.backgroundColor = UIColor(r: 227, g: 45, b: 34)
-//        return true
-//    }
-//    
-//    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-//        searchBar.backgroundColor = UIColor.whiteColor()
-//        tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
-//        tableView.tableHeaderView?.backgroundColor = UIColor.blueColor()
-//    }
+extension RecipientViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        UIView.animateWithDuration(0.3,
+            animations: { () -> Void in
+                searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
+                searchBar.tintColor = UIColor.whiteColor()
+        })
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        UIView.animateWithDuration(0.3,
+            animations: { () -> Void in
+                searchBar.backgroundColor = UIColor.whiteColor()
+        })
+    }
 
 }
 
