@@ -66,8 +66,9 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         let selectedModule = ComposerImageModule(image: image)
+        dismissViewControllerAnimated(true, completion: nil)
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
-        picker.dismissViewControllerAnimated(true, completion: nil)
+        
     }
     /*
     // MARK: - Navigation

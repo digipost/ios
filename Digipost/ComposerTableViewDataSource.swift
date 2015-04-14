@@ -75,10 +75,9 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        
         let rowToMove = tableData.removeAtIndex(sourceIndexPath.row)
         tableData.insert(rowToMove, atIndex: destinationIndexPath.row)
-        
+        tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -94,8 +93,9 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         cell.moduleImageView.image = module.image
     }
     
-    func configureTextModuleCell(cell: TextModuleTableViewCell, withModule: ComposerTextModule){
-
+    func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: ComposerTextModule){
+        cell.moduleTextView.text = module.text
+        cell.moduleTextView.font = module.font
     }
 
     func indexPath(#module: ComposerModule) -> NSIndexPath? {

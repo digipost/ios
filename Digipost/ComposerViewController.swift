@@ -13,6 +13,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet var tableView: UITableView!
     
     var tableViewDataSource: ComposerTableViewDataSource!
+    var currentlyEditingTextView: UITextView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,34 +45,23 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
     }
     
-//    func textViewDidBeginEditing(textView: UITextView) {
-//        currentlyActiveTextView = textView
-//        if let indexPath = indexPathForCellContainingTextView(textView){
-//            modules[indexPath.row].isEditing = true
-//            currentEditingIndexPath = indexPath
-//            let rect = tableView.rectForRowAtIndexPath(indexPath)
-//            tableView.scrollRectToVisible(rect, animated: true)
-//            
-//            //tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Bottom, animated: true)
-//            
-//        }
-//        
-//    }
-//    
-//    func textViewDidEndEditing(textView: UITextView) {
-//        if let index = indexPathForCellContainingTextView(textView)?.row{
-//            modules[index].contentText = textView.text
-//            modules[index].isEditing = false
-//        }
-//        currentlyActiveTextView = nil
-//        currentEditingIndexPath = nil
-//    }
+    func textViewDidBeginEditing(textView: UITextView) {
+        currentlyEditingTextView = textView
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if let indexPath = indexPathForCellContainingTextView(textView){
+            if let textModule = tableViewDataSource.tableData[indexPath.row] as? ComposerTextModule {
+                textModule.text = textView.text
+            }
+        }
+        currentlyEditingTextView = nil
+    }
     
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
     }
-    
     
     func resizeCellHeight(height: CGFloat, forCellAtRow row: Int) {
         let indexPath = NSIndexPath(forRow: row, inSection: 0)
@@ -85,6 +75,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
         
+        tableViewDataSource.tableData.append(module)
+        tableView.reloadData()
+        
         switch module.type{
             
         case .ImageModule:
@@ -95,16 +88,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 imageModule.image?.scaleToSize(squareSize)
             }
             
-            
         case .TextModule:
-            println()
-        }
-        
-        tableViewDataSource.tableData.append(module)
-        tableView.reloadData()
-        if let indexPath = tableViewDataSource.indexPath(module: module) {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
-            cell?.moduleTextView.becomeFirstResponder()
+            
+            if let indexPath = tableViewDataSource.indexPath(module: module) {
+                let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
+                let textModule = module as? ComposerTextModule
+                cell?.moduleTextView.font = textModule?.font
+                cell?.moduleTextView.becomeFirstResponder()
+                currentlyEditingTextView = cell?.moduleTextView
+                cell?.moduleTextView.delegate = self
+            }
         }
 
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
@@ -126,6 +119,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if segue.destinationViewController.isKindOfClass(ModuleSelectorViewController){
             let moduleSelectViewController = segue.destinationViewController as! ModuleSelectorViewController
             moduleSelectViewController.delegate = self
+            
+        } else if segue.destinationViewController.isKindOfClass(PreviewViewController){
+            
+            if let textView = currentlyEditingTextView{
+                textView.resignFirstResponder()
+            }
+            
+            let previewViewController = segue.destinationViewController as! PreviewViewController
+            previewViewController.modules = tableViewDataSource.tableData
+            
         }
     }
     
