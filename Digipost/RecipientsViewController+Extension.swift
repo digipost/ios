@@ -91,3 +91,16 @@ extension RecipientViewController: UISearchResultsUpdating {
         
     }
 }
+
+extension RecipientViewController: UISearchBarDelegate{
+    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
+        searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
+        tableView.backgroundColor = UIColor(r: 227, g: 45, b: 34)
+        return true
+    }
+    
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchBar.backgroundColor = UIColor.whiteColor()
+        tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
+    }
+}

@@ -30,11 +30,12 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
         self.recipientSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-            controller.hidesNavigationBarDuringPresentation = false
+            controller.hidesNavigationBarDuringPresentation = true
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
-            controller.searchBar.sizeToFit()
+            controller.searchBar.frame.size = self.navigationController!.navigationBar.frame.size
             controller.searchBar.backgroundColor = UIColor.whiteColor()
+            controller.searchBar.delegate = self
             
             self.tableView.tableHeaderView = controller.searchBar
 
