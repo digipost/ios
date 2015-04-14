@@ -178,8 +178,9 @@ class APIError: NSError {
 
     func alertTitleAndMessage() -> (String,String) {
         // if the API error has no error code, it means we have to check the HTTP response code instead
-       // if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != nil {
-        if (true){
+        
+        if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != "" {
+            
             switch self.digipostErrorCode {
             case APIErrorConstants.ErrorCodes.folderNotEmpty:
                 return (NSLocalizedString("Not empty folder alert title",comment:"Title of alert informing user that folder is not empty"), NSLocalizedString("Not empty folder alert descrption ", comment: "Description of user telling folder is not empty"))
