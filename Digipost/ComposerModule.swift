@@ -36,6 +36,7 @@ class ComposerModule: NSObject {
         self.font = font
         textAlignment = .Left
         self.height = 44
+        self.isEditing = false
         super.init()
     }
     
@@ -43,6 +44,8 @@ class ComposerModule: NSObject {
         self.type = .ImageModule
         self.image = image
         self.height = image.size.height
+        self.isEditing = false
+        self.font = UIFont()
         super.init()
     }
     

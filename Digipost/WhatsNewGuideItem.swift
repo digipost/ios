@@ -19,7 +19,8 @@ class WhatsNewGuideItem {
     
     // Remove in swift 1.2
     init() {
-        
+        self.image = UIImage()
+        self.text = ""
     }
     
     convenience init?(index: Int) {

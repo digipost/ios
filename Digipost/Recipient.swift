@@ -25,6 +25,12 @@ class Recipient {
             self.name = name
         }
         else {
+            self.name = ""
+            self.address = ""
+            self.digipostAddress = ""
+            self.mobileNumber = ""
+            self.organizationNumber = ""
+            self.uri = ""
             return nil
         }
         
@@ -34,6 +40,8 @@ class Recipient {
         self.organizationNumber = recipient["organizationNumber"] as? String
         self.uri = recipient["uri"] as? String
     }
+    
+    
     
     
     class func recipients(#jsonDict: [String : AnyObject]) -> [Recipient] {

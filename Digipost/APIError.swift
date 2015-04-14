@@ -19,22 +19,25 @@ private struct APIErrorConstants {
 
 class APIError: NSError {
 
-    let digipostErrorCode : String?
+    let digipostErrorCode : String = ""
     let httpStatusCode : Int = 0
 
     init(error: NSError) {
+
         super.init(domain: error.domain, code: error.code, userInfo: error.userInfo)
     }
 
     override init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?) {
+
         super.init(domain: domain, code: code, userInfo: dict)
     }
 
     init(urlResponse: NSHTTPURLResponse, jsonResponse: Dictionary<String,AnyObject>?) {
+
         if let response = jsonResponse {
-            digipostErrorCode = response[APIErrorConstants.errorCode] as? String
+        //    digipostErrorCode = response[APIErrorConstants.errorCode] as? String
         }
-        httpStatusCode = urlResponse.statusCode
+   //     httpStatusCode = urlResponse.statusCode
         super.init(domain: Constants.Error.apiClientErrorDomain, code: APIErrorConstants.noErrorCode, userInfo: nil)
     }
 
@@ -175,8 +178,9 @@ class APIError: NSError {
 
     func alertTitleAndMessage() -> (String,String) {
         // if the API error has no error code, it means we have to check the HTTP response code instead
-        if (httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != nil) {
-            switch self.digipostErrorCode! {
+       // if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != nil {
+        if (true){
+            switch self.digipostErrorCode {
             case APIErrorConstants.ErrorCodes.folderNotEmpty:
                 return (NSLocalizedString("Not empty folder alert title",comment:"Title of alert informing user that folder is not empty"), NSLocalizedString("Not empty folder alert descrption ", comment: "Description of user telling folder is not empty"))
             default:
