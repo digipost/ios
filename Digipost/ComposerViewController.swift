@@ -15,6 +15,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     var tableViewDataSource: ComposerTableViewDataSource!
     var currentlyEditingTextView: UITextView?
 
+    // used when calculating size of textviews for cells that are bigger than one line
+    private var exampleTextView : UITextView?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()

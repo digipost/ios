@@ -41,7 +41,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         
         let module = tableData[indexPath.row]
 
-        switch module.type{
+        switch module.type {
             
         case .ImageModule:
         
@@ -65,9 +65,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
             }
             
             return cell
-        
         }
-        
     }
     
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -77,11 +75,12 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let rowToMove = tableData.removeAtIndex(sourceIndexPath.row)
         tableData.insert(rowToMove, atIndex: destinationIndexPath.row)
+        
         tableView.reloadData()
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete{
+        if editingStyle == UITableViewCellEditingStyle.Delete {
             tableData.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         }
@@ -96,6 +95,10 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: ComposerTextModule){
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
+    }
+
+   func composerModule(#atIndexPath: NSIndexPath) -> ComposerModule? {
+       return tableData[atIndexPath.row]
     }
 
     func indexPath(#module: ComposerModule) -> NSIndexPath? {
