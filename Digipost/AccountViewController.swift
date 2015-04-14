@@ -71,7 +71,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         updateContentsFromServerUseInitiateRequest(0)
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer!) -> Bool {
+    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
     
@@ -151,19 +151,22 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushFolders" {
-            let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow()!) as POSMailbox
-            let folderViewController: POSFoldersViewController = segue.destinationViewController as POSFoldersViewController
+            let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow()!) as! POSMailbox
+            let folderViewController: POSFoldersViewController = segue.destinationViewController as! POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
             tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: true)
 
         } else if segue.identifier == "gotoDocumentsFromAccountsSegue" {
-            let documentsView: POSDocumentsViewController = segue.destinationViewController as POSDocumentsViewController
+            let documentsView: POSDocumentsViewController = segue.destinationViewController as! POSDocumentsViewController
             let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
             let nameDescriptor: NSSortDescriptor = NSSortDescriptor(key: "owner", ascending: true)
-            let mailboxes: NSArray = rootResource.mailboxes.sortedArrayUsingDescriptors([nameDescriptor])
             
-            let userMailbox: POSMailbox = mailboxes[0] as POSMailbox
+            let set = rootResource.mailboxes as NSSet
+            let mailboxes = set.allObjects as NSArray
+            mailboxes.sortedArrayUsingDescriptors([nameDescriptor])
+
+            let userMailbox: POSMailbox = mailboxes[0] as! POSMailbox
             documentsView.mailboxDigipostAddress = userMailbox.digipostAddress
             documentsView.folderName = kFolderInboxName
         }
@@ -193,7 +196,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     func userDidConfirmLogout() {
         OAuthToken.removeAllTokens()
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
             letterViewController.receipt = nil

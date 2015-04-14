@@ -42,11 +42,11 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         
         if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo ){
-                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
+                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
                 
-                var refURL = info[UIImagePickerControllerReferenceURL] as NSURL?;
+                var refURL = info[UIImagePickerControllerReferenceURL] as! NSURL?;
                 if refURL == nil {
-                    refURL = info[UIImagePickerControllerMediaURL] as NSURL?;
+                    refURL = info[UIImagePickerControllerMediaURL] as! NSURL?;
                 }
                 if let actualMediaURL = refURL as NSURL! {
                     var fileName = "temp.jpg"
@@ -58,13 +58,13 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                             var iref = assetRep.fullResolutionImage().takeUnretainedValue()
                             var image = UIImage(CGImage: iref)
                             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-                            let documentsDir = paths.firstObject as NSString?
+                            let documentsDir = paths.firstObject as! NSString?
                             if let documentsDirectory = documentsDir {
                                 let localFilePath = documentsDirectory.stringByAppendingPathComponent(fileName)
                                 let data = UIImageJPEGRepresentation(image, 1.0)
                                 let couldCopy = data.writeToFile(localFilePath, atomically: true)
                                 let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                                let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                                let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                                 picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                                     appDelegate.uploadImageWithURL(localFileURL)
                                     UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -75,15 +75,15 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                             
                     })
                 } else {
-                    let image = info[UIImagePickerControllerOriginalImage] as UIImage
+                    let image = info[UIImagePickerControllerOriginalImage] as! UIImage
                     let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-                    let documentsDir = paths.firstObject as NSString?
+                    let documentsDir = paths.firstObject as! NSString?
                     if let documentsDirectory = documentsDir {
                         let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithJPGExtension())
                         let data = UIImageJPEGRepresentation(image, 1.0)
                         let couldCopy = data.writeToFile(localFilePath, atomically: true)
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                        let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                        let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                             appDelegate.uploadImageWithURL(localFileURL)
                             UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -91,11 +91,11 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     }
                 }
             } else {
-                let movieURL = info[UIImagePickerControllerMediaURL] as NSURL
+                let movieURL = info[UIImagePickerControllerMediaURL] as! NSURL
                 let moviePath = movieURL.path
-                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as NSDictionary?
+                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
                 let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-                let documentsDir = paths.firstObject as NSString?
+                let documentsDir = paths.firstObject as! NSString?
                 var name = movieURL.path?.componentsSeparatedByString("/").last as String!
                 name = name.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
                 if let documentsDirectory = documentsDir {
@@ -103,7 +103,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     let data = NSData(contentsOfURL: movieURL)!
                     let couldCopy = data.writeToFile(localFilePath, atomically: true)
                     let localFileURL = NSURL(fileURLWithPath: localFilePath)
-                    let appDelegate = UIApplication.sharedApplication().delegate as SHCAppDelegate
+                    let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                     picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                         appDelegate.uploadImageWithURL(localFileURL)
                         UIApplication.sharedApplication().statusBarStyle = .LightContent
@@ -127,7 +127,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         let imagePicker = UIImagePickerController()
         imagePicker.navigationBar.translucent = false
         imagePicker.delegate = self
-        imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo,kUTTypeMovie)
+        imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo,kUTTypeMovie) as [AnyObject]
         return imagePicker
     }
 }

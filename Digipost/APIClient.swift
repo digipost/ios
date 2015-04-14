@@ -79,7 +79,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func updateAuthorizationHeader(#oAuthToken: OAuthToken) {
-        if let accessToken = oAuthToken.accessToken? {
+        if let accessToken = oAuthToken.accessToken {
             self.additionalHeaders["Authorization"] = "Bearer \(accessToken)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             self.lastSetOauthTokenForAuthorizationHeader = oAuthToken
@@ -249,13 +249,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         // if we dont have token for the higher scope required
         var attachmentScope : String?
         if oAuthToken == nil && didChooseHigherScope {
-            let attachment = baseEncryptionModel as POSAttachment
+            let attachment = baseEncryptionModel as! POSAttachment
             attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
             oAuthToken = OAuthToken.oAuthTokenWithScope(attachmentScope!)
         }
 
         if oAuthToken == nil {
-            let attachment = baseEncryptionModel as POSAttachment
+            let attachment = baseEncryptionModel as! POSAttachment
             attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
             failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
@@ -294,7 +294,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         let maxFileSize = pow(Float(2),Float(20)) * 10
-        let fileSize = fileAttributes![NSFileSize] as Float
+        let fileSize = fileAttributes![NSFileSize] as! Float
 
         if (fileSize > maxFileSize) {
             let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
@@ -303,7 +303,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
-        if (rootResource.uploadDocumentUri.utf16Count) <= 0 {
+        if (count(rootResource.uploadDocumentUri.utf16)) <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
             failure(error: noUploadLinkError)
             return
@@ -364,7 +364,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             dispatch_async(dispatch_get_main_queue(), {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
-                if self.isUnauthorized(response as NSHTTPURLResponse?) {
+                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     self.uploadFile(url: url, folder: folder, success: success, failure: failure)
                 } else if (error != nil ){
@@ -459,7 +459,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
 
     func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
-        let HTTPResponse = response as NSHTTPURLResponse
+        let HTTPResponse = response as! NSHTTPURLResponse
         switch HTTPResponse {
         case 401:
             return true
@@ -487,7 +487,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)
         if findTag != nil {
             let mimeType = findTag.takeRetainedValue()
-            return mimeType
+            return mimeType as String
         }else {
             return ""
         }
