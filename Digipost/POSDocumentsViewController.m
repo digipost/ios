@@ -534,17 +534,18 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 {
     [super updateNavbar];
 
-    self.navigationItem.title = self.folderDisplayName;
+    UINavigationBar *navBar = [self.navigationController navigationBar];
 
     UIBarButtonItem *rightBarButtonItem = nil;
     if ([self numberOfRows] > 0) {
         rightBarButtonItem = self.editButtonItem;
+        navBar.topItem.rightBarButtonItem = self.editButtonItem;
     }
 
-    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-
     UIBarButtonItem *backBarButtonItem = self.navigationItem.leftBarButtonItem;
-    [self.navigationItem setLeftBarButtonItem:backBarButtonItem];
+    
+    navBar.topItem.title = self.folderDisplayName;
+    navBar.topItem.leftBarButtonItem = backBarButtonItem;
 }
 
 - (void)updateToolbarButtonItems

@@ -212,10 +212,10 @@
 		AF981F141AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F161AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
-		AF991E001ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
-		AF991E011ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
-		AF991E021ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
-		AF991E041ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
+		AF991E001ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
+		AF991E011ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
+		AF991E021ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
+		AF991E041ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
 		AFA069E81ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		AFA069E91ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		AFA069EA1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
@@ -232,6 +232,7 @@
 		AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		C7804B53EF3E62B11ADCEC52 /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7DCDA06F35E069315A58CE /* Pods_DigipostTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
@@ -742,6 +743,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		02E92A48BEFB80F1946E5131 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
@@ -766,6 +768,7 @@
 		599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test_Dpost_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7B74BFCC6AAF7C499107A01E /* Pods-DigipostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* POSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAPIManager.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* POSAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAPIManager.m; sourceTree = "<group>"; };
@@ -881,7 +884,7 @@
 		AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Reorder.m"; sourceTree = "<group>"; };
 		AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
-		AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeModuleParser.swift; sourceTree = "<group>"; };
+		AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModuleParser.swift; sourceTree = "<group>"; };
 		AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComposerModule.swift; path = "UITableView+Reorder/TextComposerModule.swift"; sourceTree = "<group>"; };
 		AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageComposerModule.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
@@ -1074,6 +1077,7 @@
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
+		FE7DCDA06F35E069315A58CE /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1472,7 +1476,7 @@
 		AFB730E91ADE590A009C98E6 /* Composer View */ = {
 			isa = PBXGroup;
 			children = (
-				AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */,
+				AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
 			);
@@ -2034,7 +2038,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		20D2E8330B70F4F2F5D0B93A /* Copy Pods Resources */ = {
+		1480D0F55E0BB04D9AA10FC2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2047,6 +2051,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		283D574EE0BEB49CBA74E022 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
@@ -2107,6 +2126,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B28F3788885D25A1F998C6E4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E902CF5D7D404E379E086565 /* Copy Pods Resources */ = {
@@ -2390,7 +2424,7 @@
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
 				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
-				AF991E021ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
+				AF991E021ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
 				31679B7D1ADE7FED005FE31B /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
@@ -2470,7 +2504,7 @@
 				ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				AF981F0D1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */,
-				AF991E001ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
+				AF991E001ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
@@ -2697,7 +2731,7 @@
 				AF2C68841AD59CE6007020DC /* ComposerModule.swift in Sources */,
 				EC2DCBB01AB84EAB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCBB11AB84EAB0063755E /* UIImage+Localization.swift in Sources */,
-				AF991E011ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
+				AF991E011ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
 				EC2DCBB21AB84EAB0063755E /* POSNotice.m in Sources */,
 				AF981EF71AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
@@ -2859,7 +2893,7 @@
 				EC2DCC651AB864AB0063755E /* POSModelManager.m in Sources */,
 				EC2DCC661AB864AB0063755E /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC2DCC671AB864AB0063755E /* POSUploadTableViewDataSource.m in Sources */,
-				AF991E041ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
+				AF991E041ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
 				EC2DCC681AB864AB0063755E /* UIViewController+BackButton.m in Sources */,
 				EC2DCC691AB864AB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCC6A1AB864AB0063755E /* POSFolder+Methods.m in Sources */,
