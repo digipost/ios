@@ -7,8 +7,6 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
-import Foundation
-
 extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var found = false

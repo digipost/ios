@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
-import Foundation
-
 extension RecipientViewController: UISearchResultsUpdating {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         recipients.removeAll(keepCapacity: false)

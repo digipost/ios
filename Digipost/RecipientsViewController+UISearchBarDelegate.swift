@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
-import Foundation
-
 extension RecipientViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {

@@ -6,9 +6,6 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
 extension RecipientViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
