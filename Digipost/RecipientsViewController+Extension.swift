@@ -75,7 +75,8 @@ extension RecipientViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         var footerView = UIView(frame: CGRectZero)
-        var singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapOnFooter:")
+        
+        var singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapOnEmptyTableView:")
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = false
         tableView.addGestureRecognizer(singleTap)
@@ -83,7 +84,7 @@ extension RecipientViewController: UITableViewDelegate {
         return footerView
     }
     
-    @IBAction func handleSingleTapOnFooter(tap: UIGestureRecognizer) {
+    @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
         let point = tap.locationInView(tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(point)
 
@@ -100,9 +101,7 @@ extension RecipientViewController: UISearchResultsUpdating {
         
         if recipientSearchController.searchBar.text == "" {
             tableView.reloadData()
-        }
-        
-        if recipientSearchController.searchBar.text != "" {
+        } else if recipientSearchController.searchBar.text != "" {
             APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
                 self.recipients = Recipient.recipients(jsonDict: responseDictionary)
                 
