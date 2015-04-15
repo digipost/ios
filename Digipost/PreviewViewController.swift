@@ -10,6 +10,7 @@ import UIKit
 
 class PreviewViewController: UIViewController {
     
+    var recipients = [Recipient]()
     var modules: [ComposerModule] = [ComposerModule](){
         
         didSet{

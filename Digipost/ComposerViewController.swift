@@ -14,6 +14,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     var tableViewDataSource: ComposerTableViewDataSource!
     var currentlyEditingTextView: UITextView?
+    var recipients = [Recipient]()
 
     // used when calculating size of textviews for cells that are bigger than one line
     private var exampleTextView : UITextView?
@@ -122,6 +123,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             
             let previewViewController = segue.destinationViewController as! PreviewViewController
             previewViewController.modules = tableViewDataSource.tableData
+            previewViewController.recipients = recipients
             
         }
     }
