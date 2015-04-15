@@ -18,13 +18,7 @@ class ComposerModuleParser{
                 
                 for module in modules {
                     
-                    if let imageModule = module as? ImageComposerModule {
-                        html += imageModule.htmlRepresentation()
-                    }
-                    
-                    if let textModule = module as? TextComposerModule {
-                        html += textModule.htmlRepresentation()
-                    }
+                    html += module.htmlRepresentation()
                     
                 }
                 
