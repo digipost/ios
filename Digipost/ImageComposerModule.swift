@@ -10,13 +10,15 @@ import Foundation
 
 class ImageComposerModule: ComposerModule {
     
-    var height:CGFloat
-    var image: UIImage?
+    var image: UIImage
 
     init(image: UIImage) {
         self.image = image
-        self.height = 44
         super.init()
+    }
+    
+    override func htmlRepresentation() -> String {
+        return "<img src=\"data:image/png;base64,\(image.base64Representation)\" alt=\"html_inline_image.png\" title=\"html_inline_image.png\" style=\"width:100%;\">"
     }
     
 }
