@@ -14,7 +14,6 @@ class ComposerModuleParser{
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
             
-            
             var internalStylesheet:NSString = ""
             if let stylesheetPath = NSBundle.mainBundle().pathForResource("stylesheet", ofType: "css"){
                 if let stylesheetContent = NSString(contentsOfFile: stylesheetPath, usedEncoding: nil, error: nil){
@@ -23,7 +22,7 @@ class ComposerModuleParser{
                 }
             }
             
-            var html = "<html><head>\(internalStylesheet)</head><body>"
+            var html = "<html><head><style>\(internalStylesheet)</style></head><body>"
             
             for module in modules {
                 
