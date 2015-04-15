@@ -18,7 +18,7 @@ class ImageComposerModule: ComposerModule {
     }
     
     override func htmlRepresentation() -> String {
-        return "<img src=\"data:image/png;base64,\(image.base64Representation)\" alt=\"html_inline_image.png\" title=\"html_inline_image.png\" style=\"width:100%;\">"
+        return "<img class=\"image\" src=\"data:image/png;base64,\(image.base64Representation)\" alt=\"html_inline_image.png\" title=\"html_inline_image.png\">"
     }
     
 }

@@ -163,6 +163,11 @@
 		AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF199D561AA72F07001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
+		AF1E55B11ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
+		AF1E55B21ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
+		AF1E55B31ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
+		AF1E55B41ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
+		AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
@@ -864,6 +869,7 @@
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
+		AF1E55B01ADEB000003AB3B2 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -1479,6 +1485,7 @@
 				AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
+				AF1E55B01ADEB000003AB3B2 /* stylesheet.css */,
 			);
 			name = "Composer View";
 			sourceTree = "<group>";
@@ -1938,6 +1945,7 @@
 				EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				311F226D1AD66E3100292068 /* TextModuleTableViewCell.xib in Resources */,
+				AF1E55B31ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
 				EC4146BB1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
@@ -1965,6 +1973,7 @@
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				AF2C68781AD59533007020DC /* ImageModuleTableViewCell.xib in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
+				AF1E55B11ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
@@ -1992,6 +2001,7 @@
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */,
 				311F226C1AD66E3000292068 /* TextModuleTableViewCell.xib in Resources */,
+				AF1E55B21ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */,
@@ -2019,6 +2029,7 @@
 				EC2DCC851AB864AB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */,
 				311F226F1AD66E3200292068 /* TextModuleTableViewCell.xib in Resources */,
+				AF1E55B41ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */,
@@ -2032,6 +2043,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
