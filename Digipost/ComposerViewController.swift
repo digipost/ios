@@ -37,8 +37,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func textViewDidChange(textView: UITextView) {
         if let row = indexPathForCellContainingTextView(textView)?.row{
             let newHeight = textView.frame.height
-            resizeCellHeight(newHeight, forCellAtRow: row)
-            
+            tableViewDataSource.resizeHeight(newHeight, forCellAtRow: row)
             if let textModule = tableViewDataSource.tableData[row] as? ComposerTextModule{
                 textModule.height = newHeight
             }
@@ -61,14 +60,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
-    }
-    
-    func resizeCellHeight(height: CGFloat, forCellAtRow row: Int) {
-        let indexPath = NSIndexPath(forRow: row, inSection: 0)
-        tableView.beginUpdates()
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextModuleTableViewCell
-        cell.frame.size.height = height
-        tableView.endUpdates()
     }
     
     // MARK: - ModuleSelectorViewController Delegate

@@ -108,5 +108,13 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
             return nil
         }()
     }
+    
+    func resizeHeight(height: CGFloat, forCellAtRow row: Int) {
+        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+        tableView.beginUpdates()
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextModuleTableViewCell
+        cell.frame.size.height = height
+        tableView.endUpdates()
+    }
 
 }
