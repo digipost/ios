@@ -11,13 +11,17 @@ import UIKit
 class PreviewViewController: UIViewController {
     
     var recipients = [Recipient]()
+    var modules = [ComposerModule]()
 
     @IBOutlet weak var recipientsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { (htmlString) -> () in
+            println(htmlString)
+        })
     }
     
 }
