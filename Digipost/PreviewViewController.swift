@@ -13,15 +13,27 @@ class PreviewViewController: UIViewController {
     var modules: [ComposerModule] = [ComposerModule](){
         
         didSet{
+            println("........................................")
+            println("           Composer Contents:          ")
+            println("........................................")
             
-            for module in modules {
+            for (index,module) in enumerate(modules) {
                 
-                if let textModule = module as? ComposerTextModule{
-                    println(textModule.text)
+                switch module.type{
+                    
+                case .TextModule:
+                    let textModule = module as? ComposerTextModule
+                    let text = textModule?.text
+                    println("TextModule: \(text!)")
+                case .ImageModule:
+                    let imageModule = module as? ComposerImageModule
+                    println("ImageModule")
                 }
+                
             }
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
