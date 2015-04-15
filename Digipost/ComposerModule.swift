@@ -8,24 +8,12 @@
 
 import UIKit
 
-enum ComposerModuleType{
-    case TextModule, ImageModule
-}
-
 class ComposerModule: NSObject {
 
-    let type: ComposerModuleType
-    
-    init(type: ComposerModuleType){
-        self.type = type
-    }
-    
     //MARK: - Class Functions
     
     func htmlRepresentation() -> String{
         //TODO: - Parse module to HTML
         return ""
     }
-    
-    
 }

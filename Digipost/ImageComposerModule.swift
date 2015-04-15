@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ComposerImageModule: ComposerModule {
+class ImageComposerModule: ComposerModule {
     
     var height:CGFloat
     var image: UIImage?
@@ -16,7 +16,7 @@ class ComposerImageModule: ComposerModule {
     init(image: UIImage) {
         self.image = image
         self.height = 44
-        super.init(type: .ImageModule)
+        super.init()
     }
     
 }

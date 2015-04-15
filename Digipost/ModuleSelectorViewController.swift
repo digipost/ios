@@ -52,7 +52,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func addTextModule(textStyle: String){
-        let selectedModule = ComposerTextModule(moduleWithFont: UIFont.preferredFontForTextStyle(textStyle))
+        let selectedModule = TextComposerModule(moduleWithFont: UIFont.preferredFontForTextStyle(textStyle))
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
     }
     @IBAction func addImage(sender: UIButton) {
@@ -65,7 +65,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        let selectedModule = ComposerImageModule(image: image)
+        let selectedModule = ImageComposerModule(image: image)
         dismissViewControllerAnimated(true, completion: nil)
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
         

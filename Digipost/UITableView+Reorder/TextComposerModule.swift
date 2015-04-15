@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ComposerTextModule: ComposerModule {
+class TextComposerModule: ComposerModule {
     
     var height:CGFloat
     let font: UIFont?
@@ -21,6 +21,6 @@ class ComposerTextModule: ComposerModule {
         textAlignment = .Left
         self.height = 44
         self.isEditing = false
-        super.init(type: .TextModule)
+        super.init()
     }
 }

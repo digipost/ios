@@ -327,21 +327,16 @@
 		AF981F141AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F161AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
-		AFA069E81ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */; };
-		AFA069E91ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */; };
-		AFA069EA1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */; };
-		AFA069EB1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */; };
-		AFA069EC1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */; };
-		AFA069EE1ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
-		AFA069EF1ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
-		AFA069F01ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
-		AFA069F11ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
-		AFA069F21ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
-		AFB730EB1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
-		AFB730EC1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
-		AFB730ED1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
-		AFB730EE1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
-		AFB730EF1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
+		AFA069E81ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		AFA069E91ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		AFA069EA1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		AFA069EB1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		AFA069EE1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
+		AFA069EF1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
+		AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
+		AFA069F11ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
+		AFA069F21ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -1350,9 +1345,8 @@
 		AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Reorder.m"; sourceTree = "<group>"; };
 		AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
-		AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComposerTextModule.swift; path = "UITableView+Reorder/ComposerTextModule.swift"; sourceTree = "<group>"; };
-		AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerImageModule.swift; sourceTree = "<group>"; };
-		AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeModuleParser.swift; sourceTree = "<group>"; };
+		AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComposerModule.swift; path = "UITableView+Reorder/TextComposerModule.swift"; sourceTree = "<group>"; };
+		AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageComposerModule.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
@@ -1946,8 +1940,8 @@
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
-				AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */,
-				AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */,
+				AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */,
+				AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */,
 				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				316ADCAA1ADE6DBC00A39A95 /* PreviewViewControllerExtensions */,
 				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
@@ -3043,10 +3037,10 @@
 				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
-				AFA069F01ADD225900AA2D54 /* ComposerImageModule.swift in Sources */,
+				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
 				AF981EF31AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
-				AFA069EA1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */,
+				AFA069EA1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				311779681AAEFCA800229D02 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3282,7 +3276,7 @@
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
-				AFA069EE1ADD225900AA2D54 /* ComposerImageModule.swift in Sources */,
+				AFA069EE1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */,
 				EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */,
@@ -3343,7 +3337,7 @@
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				311779661AAEFCA800229D02 /* UploadView.swift in Sources */,
-				AFA069E81ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */,
+				AFA069E81ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3441,10 +3435,10 @@
 				EC2DCB881AB84EAB0063755E /* POSLetterPopoverTableViewCell.m in Sources */,
 				EC2DCB891AB84EAB0063755E /* NSError+ExtraInfo.m in Sources */,
 				EC2DCB8A1AB84EAB0063755E /* UIScrollViewExtensions.swift in Sources */,
-				AFA069EF1ADD225900AA2D54 /* ComposerImageModule.swift in Sources */,
+				AFA069EF1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				EC2DCB8B1AB84EAB0063755E /* UIImageView+Color.swift in Sources */,
 				EC2DCB8C1AB84EAB0063755E /* String+Extensions.swift in Sources */,
-				AFA069E91ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */,
+				AFA069E91ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */,
 				EC2DCB8D1AB84EAB0063755E /* NSURLRequest+QueryParameters.m in Sources */,
 				EC2DCB8E1AB84EAB0063755E /* APIClient+URLSessionTask.swift in Sources */,
@@ -3556,7 +3550,7 @@
 				EC2DCC171AB864AB0063755E /* POSUploadViewController.m in Sources */,
 				EC2DCC181AB864AB0063755E /* UIColor+DigipostColors.swift in Sources */,
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
-				AFA069EC1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */,
+				AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
 				EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */,
@@ -3591,7 +3585,7 @@
 				EC2DCC361AB864AB0063755E /* POSFolderTableViewCell.m in Sources */,
 				31DAB3BE1ADE5A1E0096D441 /* RecipientsViewController+UISearchResultsUpdating.swift in Sources */,
 				EC2DCC371AB864AB0063755E /* NSPredicate+CommonPredicates.m in Sources */,
-				AFA069F21ADD225900AA2D54 /* ComposerImageModule.swift in Sources */,
+				AFA069F21ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				EC2DCC381AB864AB0063755E /* APIClient+Document.swift in Sources */,
 				EC2DCC391AB864AB0063755E /* POSLetterPopoverTableViewCell.m in Sources */,
 				EC2DCC3A1AB864AB0063755E /* NSError+ExtraInfo.m in Sources */,
@@ -3839,7 +3833,7 @@
 				ECF486F91A471A6900E97519 /* UIImageView+Color.swift in Sources */,
 				ECF486C91A471A1200E97519 /* POSDocumentTableViewCell.m in Sources */,
 				ECF4869D1A4715A900E97519 /* POSInvoice+Methods.swift in Sources */,
-				AFA069EB1ADD21E100AA2D54 /* ComposerTextModule.swift in Sources */,
+				AFA069EB1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				ECF4869E1A4715AC00E97519 /* POSInvoice.m in Sources */,
 				ECBF75B01AA85E6900540BCA /* Localization.swift in Sources */,
 				31B57FF91A6691E8008952DE /* AccountViewController.swift in Sources */,
@@ -3859,7 +3853,7 @@
 				ECF486A21A4715C500E97519 /* POSDocument.m in Sources */,
 				ECF486E21A471A2E00E97519 /* UIViewController+Additions.m in Sources */,
 				ECF486D91A471A2E00E97519 /* NSNumber+JsonParsing.m in Sources */,
-				AFA069F11ADD225900AA2D54 /* ComposerImageModule.swift in Sources */,
+				AFA069F11ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				ECF486E81A471A2E00E97519 /* NSString+RandomNumber.m in Sources */,
 				AF477E051A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				ECF486DE1A471A2E00E97519 /* AHKActionSheet+Convenience.m in Sources */,

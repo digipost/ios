@@ -17,7 +17,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     var recipients = [Recipient]()
 
     // used when calculating size of textviews for cells that are bigger than one line
-    private var exampleTextView : UITextView?
+    var exampleTextView : UITextView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,29 +32,31 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
         let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
         tableView.registerNib(imageModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.imageModuleCellIdentifier)
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.delegate = self
+//        tableView.estimatedRowHeight = 44
     }
     
     // MARK: - UITextVeiew Delegate
     
     func textViewDidChange(textView: UITextView) {
-        if let row = indexPathForCellContainingTextView(textView)?.row{
-            let newHeight = textView.frame.height
-            tableViewDataSource.resizeHeight(newHeight, forCellAtRow: row)
-            if let textModule = tableViewDataSource.tableData[row] as? ComposerTextModule{
-                textModule.height = newHeight
+        if let indexPath = indexPathForCellContainingTextView(textView){
+            if let textModule = tableViewDataSource.tableData[indexPath.row] as? TextComposerModule {
+                textModule.text = textView.text
             }
         }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
         currentlyEditingTextView = textView
+
     }
     
     func textViewDidEndEditing(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
-            if let textModule = tableViewDataSource.tableData[indexPath.row] as? ComposerTextModule {
+            if let textModule = tableViewDataSource.tableData[indexPath.row] as? TextComposerModule {
                 textModule.text = textView.text
             }
         }
@@ -73,21 +75,15 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableViewDataSource.tableData.append(module)
         tableView.reloadData()
         
-        switch module.type{
-            
-        case .ImageModule:
-            
+        if let imageModule = module as? ImageComposerModule {
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
-            
-            if let imageModule = module as? ComposerImageModule {
+            if let imageModule = module as? ImageComposerModule {
                 imageModule.image?.scaleToSize(squareSize)
             }
-            
-        case .TextModule:
-            
+        } else if let imageModule = module as? TextComposerModule {
             if let indexPath = tableViewDataSource.indexPath(module: module) {
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
-                let textModule = module as? ComposerTextModule
+                let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.font
                 cell?.moduleTextView.becomeFirstResponder()
                 currentlyEditingTextView = cell?.moduleTextView
