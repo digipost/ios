@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecipientViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class RecipientViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var recipients : [Recipient] = [Recipient]() {
