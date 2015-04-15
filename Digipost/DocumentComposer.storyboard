@@ -68,8 +68,37 @@
                     <view key="view" contentMode="scaleToFill" id="c6o-Fa-fxJ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RxK-m1-a5k">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="c8d-mq-tPe"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recipientCell" id="poq-rG-7Lm">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="poq-rG-7Lm" id="Su4-mB-BbY">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pyB-XH-9wo" id="Xoj-Jl-PAx"/>
+                                    <outlet property="delegate" destination="pyB-XH-9wo" id="rCv-BH-knr"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="RxK-m1-a5k" firstAttribute="top" secondItem="c6o-Fa-fxJ" secondAttribute="topMargin" id="Am5-Go-ir1"/>
+                            <constraint firstItem="RxK-m1-a5k" firstAttribute="leading" secondItem="c6o-Fa-fxJ" secondAttribute="leadingMargin" constant="-16" id="c5o-Gb-494"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RxK-m1-a5k" secondAttribute="trailing" constant="-16" id="qWh-A8-lv4"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="RxK-m1-a5k" id="kLv-cI-wOW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Vr-ns-UWb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
