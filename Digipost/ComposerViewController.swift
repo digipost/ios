@@ -119,6 +119,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             
             let previewViewController = segue.destinationViewController as! PreviewViewController
             previewViewController.recipients = recipients
+            previewViewController.modules = tableViewDataSource.tableData
             
         }
     }
