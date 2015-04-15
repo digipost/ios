@@ -25,6 +25,9 @@ extension ComposerViewController {
         if let textModule = module as? TextComposerModule {
             return height(textComposerModule: textModule)
         }
+        if let imageModule = module as? ImageComposerModule {
+            return imageModule.image.size.height
+        }
         return 44
     }
 
