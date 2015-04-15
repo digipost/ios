@@ -75,6 +75,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
+    self.loginButton.accessibilityLabel = @"Login";
+
     [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
 
     self.screenName = kLoginViewControllerScreenName;
@@ -205,7 +207,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else {
 
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            
+
             [self.navigationController dismissViewControllerAnimated:YES
                                                           completion:^{
 

@@ -62,9 +62,10 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         scrollView.delegate = self
         
-         welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
+        welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
         
         getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
+        getStartedButton.accessibilityLabel = "Get started"
         
     }
     

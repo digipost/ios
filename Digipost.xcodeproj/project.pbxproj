@@ -644,6 +644,11 @@
 		EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */; };
 		EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */; };
+		EC9E79151ADE8FA300EED08B /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9E79141ADE8FA300EED08B /* KIF.framework */; };
+		EC9E79161ADE8FB400EED08B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
+		EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */; };
+		EC9E791A1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */; };
+		EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
@@ -655,6 +660,7 @@
 		ECA618E61AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
+		ECB22AAE70950B1B6E1101DB /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
@@ -758,6 +764,7 @@
 		31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Recipients.swift"; sourceTree = "<group>"; };
 		31F4C88D1AD5471700E63129 /* Recipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipient.swift; sourceTree = "<group>"; };
 		599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test_Dpost_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* POSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAPIManager.h; sourceTree = "<group>"; };
@@ -881,6 +888,8 @@
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
+		CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1001,6 +1010,9 @@
 		EC9E790A1ADE8E7800EED08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostTests.swift; sourceTree = "<group>"; };
 		EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTests.swift; sourceTree = "<group>"; };
+		EC9E79141ADE8FA300EED08B /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/Pods-DigipostTests/KIF.framework"; sourceTree = "<group>"; };
+		EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+KIF.swift"; sourceTree = "<group>"; };
+		EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccessibilityLabels.swift; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1137,6 +1149,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9E79161ADE8FB400EED08B /* CoreGraphics.framework in Frameworks */,
+				EC9E79151ADE8FA300EED08B /* KIF.framework in Frameworks */,
+				ECB22AAE70950B1B6E1101DB /* Pods_DigipostTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1148,6 +1163,8 @@
 			children = (
 				CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */,
 				6419CDC77F32F4255423B47D /* Pods.release.xcconfig */,
+				5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */,
+				CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1242,6 +1259,7 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC9E79141ADE8FA300EED08B /* KIF.framework */,
 				EC2DCBEA1AB864990063755E /* Pods.framework */,
 				EC30219B1AB8483700812502 /* Pods.framework */,
 				EC3021911AB70E0A00812502 /* AdSupport.framework */,
@@ -1259,6 +1277,7 @@
 				83BAB9401855C0AD004A7BFB /* XCTest.framework */,
 				03E13B40CF574D28E1F2C73A /* Pods.framework */,
 				599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */,
+				CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1721,6 +1740,8 @@
 			isa = PBXGroup;
 			children = (
 				EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */,
+				EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */,
+				EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */,
 				EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */,
 				EC9E79091ADE8E7800EED08B /* Supporting Files */,
 			);
@@ -1821,9 +1842,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC9E790F1ADE8E7800EED08B /* Build configuration list for PBXNativeTarget "DigipostTests" */;
 			buildPhases = (
+				E16DD3FB950061F4049FE26C /* Check Pods Manifest.lock */,
 				EC9E79031ADE8E7700EED08B /* Sources */,
 				EC9E79041ADE8E7700EED08B /* Frameworks */,
 				EC9E79051ADE8E7700EED08B /* Resources */,
+				F9949A8BD389259712DCE6DC /* Embed Pods Frameworks */,
+				20D2E8330B70F4F2F5D0B93A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2010,6 +2034,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		20D2E8330B70F4F2F5D0B93A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2041,6 +2080,21 @@
 			showEnvVarsInLog = 0;
 		};
 		5E75E61529884F13ABC62E42 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E16DD3FB950061F4049FE26C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2172,6 +2226,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ $CONFIGURATION == Test ]; then\n   exec > /tmp/UITests-log.txt 2>&1\n   ./runtests.sh\n   open /tmp/UITests-log.txt\nfi";
+		};
+		F9949A8BD389259712DCE6DC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2352,6 +2421,7 @@
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
+				EC9E791A1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				AF488CAF1AD7DC8C00FC32CC /* UIImage+base64Representation.swift in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
@@ -2805,6 +2875,8 @@
 			files = (
 				EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */,
 				EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */,
+				EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */,
+				EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3278,15 +3350,18 @@
 		};
 		EC9E79101ADE8E7800EED08B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-DigipostTests",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3306,9 +3381,11 @@
 		};
 		EC9E79111ADE8E7800EED08B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3316,6 +3393,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-DigipostTests",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -3383,6 +3461,7 @@
 				EC9E79111ADE8E7800EED08B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
