@@ -11,8 +11,7 @@ import UIKit
 class PreviewViewController: UIViewController {
     
     var recipients = [Recipient]()
-    var modules: [ComposerModule] = [ComposerModule]()
-    
+
     @IBOutlet weak var recipientsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
