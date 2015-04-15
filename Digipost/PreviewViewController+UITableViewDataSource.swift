@@ -6,4 +6,17 @@
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
-import Foundation
+extension PreviewViewController: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return recipients.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! UITableViewCell
+        
+        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
+        cell.textLabel?.text = recipients[indexPath.row].name
+        
+        return cell
+    }
+}
