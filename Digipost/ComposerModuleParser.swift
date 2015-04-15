@@ -1,5 +1,5 @@
 //
-//  ComposeModuleParser.swift
+//  ComposerModuleParser.swift
 //  Digipost
 //
 //  Created by Henrik Holmsen on 15.04.15.
