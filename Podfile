@@ -11,7 +11,8 @@ pod 'MRProgress', '~> 0.4.3'
 pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
 pod 'Alamofire', '~> 1.1'
 use_frameworks!
-target 'Digipost-Test-Dpost Tests', :exclusive => true do
+
+target 'DigipostTests', :exclusive => true do
     pod 'KIF', '~> 3.0', :configurations => ['Debug']
     
 end
