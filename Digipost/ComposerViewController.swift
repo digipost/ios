@@ -78,7 +78,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if let imageModule = module as? ImageComposerModule {
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
             if let imageModule = module as? ImageComposerModule {
-                imageModule.image?.scaleToSize(squareSize)
+                imageModule.image.scaleToSize(squareSize)
             }
         } else if let imageModule = module as? TextComposerModule {
             if let indexPath = tableViewDataSource.indexPath(module: module) {

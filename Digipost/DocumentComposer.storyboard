@@ -43,6 +43,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hPs-XG-oFT">
+                        <barButtonItem key="leftBarButtonItem" title="X" id="qYl-fS-d4q">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="dismissViewController:" destination="9Ad-2g-amd" id="gVK-cl-RKA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="pCj-3A-YAg">
                             <connections>
                                 <segue destination="c7P-nT-vMt" kind="show" identifier="goToComposer" id="KLU-YQ-95J"/>

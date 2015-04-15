@@ -239,6 +239,11 @@
 		AF981F141AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F151AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
 		AF981F161AD565D500DE8B55 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */; };
+		AF991E001ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
+		AF991E011ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
+		AF991E021ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
+		AF991E031ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
+		AF991E041ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */; };
 		AFA069E81ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		AFA069E91ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		AFA069EA1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
@@ -1021,6 +1026,7 @@
 		AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Reorder.m"; sourceTree = "<group>"; };
 		AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeModuleParser.swift; sourceTree = "<group>"; };
 		AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComposerModule.swift; path = "UITableView+Reorder/TextComposerModule.swift"; sourceTree = "<group>"; };
 		AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageComposerModule.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
@@ -1596,6 +1602,7 @@
 		AFB730E91ADE590A009C98E6 /* Composer View */ = {
 			isa = PBXGroup;
 			children = (
+				AF991DFF1ADE8448000E6A01 /* ComposeModuleParser.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
 			);
@@ -2509,6 +2516,7 @@
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
 				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
+				AF991E021ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
 				31679B7D1ADE7FED005FE31B /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
@@ -2587,6 +2595,7 @@
 				ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				AF981F0D1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */,
+				AF991E001ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
@@ -2813,6 +2822,7 @@
 				AF2C68841AD59CE6007020DC /* ComposerModule.swift in Sources */,
 				EC2DCBB01AB84EAB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCBB11AB84EAB0063755E /* UIImage+Localization.swift in Sources */,
+				AF991E011ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
 				EC2DCBB21AB84EAB0063755E /* POSNotice.m in Sources */,
 				AF981EF71AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
@@ -2974,6 +2984,7 @@
 				EC2DCC651AB864AB0063755E /* POSModelManager.m in Sources */,
 				EC2DCC661AB864AB0063755E /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC2DCC671AB864AB0063755E /* POSUploadTableViewDataSource.m in Sources */,
+				AF991E041ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
 				EC2DCC681AB864AB0063755E /* UIViewController+BackButton.m in Sources */,
 				EC2DCC691AB864AB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCC6A1AB864AB0063755E /* POSFolder+Methods.m in Sources */,
@@ -3066,6 +3077,7 @@
 				ECF4869A1A4715A100E97519 /* POSModelManager.m in Sources */,
 				ECF486981A47159600E97519 /* POSFolder+Methods.m in Sources */,
 				ECF486C71A471A0E00E97519 /* POSFolderTableViewCell.m in Sources */,
+				AF991E031ADE8448000E6A01 /* ComposeModuleParser.swift in Sources */,
 				ECF487041A471A8000E97519 /* UploadImageController.swift in Sources */,
 				ECF486961A47158A00E97519 /* POSAttachment+Methods.swift in Sources */,
 				ECF486A11A4715C200E97519 /* POSDocument+Methods.m in Sources */,
