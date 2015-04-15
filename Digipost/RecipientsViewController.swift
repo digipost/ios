@@ -41,7 +41,12 @@ class RecipientViewController: UIViewController, UITableViewDataSource, UITableV
         })()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "goToComposer" {
+            if let navController = segue.destinationViewController as? UINavigationController,
+                let composerController = navController.viewControllers.first as? ComposerViewController {
+                    composerController.recipients = addedRecipients
+            }
+        }
     }
 }
