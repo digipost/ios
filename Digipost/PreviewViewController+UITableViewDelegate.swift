@@ -17,4 +17,5 @@ extension PreviewViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Mottakere"
     }
+
 }
