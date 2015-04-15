@@ -21,3 +21,4 @@ Pods
 oauth.h
 uiauto/results
 UI-Test.trace/instrument_data
+Podfile.lock
