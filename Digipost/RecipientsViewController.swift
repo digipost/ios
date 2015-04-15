@@ -49,4 +49,9 @@ class RecipientViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func dismissViewController(sender: AnyObject) {
+        self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+        })
+    }
 }
