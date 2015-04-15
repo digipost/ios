@@ -337,6 +337,11 @@
 		AFA069F01ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
 		AFA069F11ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
 		AFA069F21ADD225900AA2D54 /* ComposerImageModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */; };
+		AFB730EB1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
+		AFB730EC1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
+		AFB730ED1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
+		AFB730EE1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
+		AFB730EF1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -1347,6 +1352,7 @@
 		AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ComposerTextModule.swift; path = "UITableView+Reorder/ComposerTextModule.swift"; sourceTree = "<group>"; };
 		AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerImageModule.swift; sourceTree = "<group>"; };
+		AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeModuleParser.swift; sourceTree = "<group>"; };
 		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
@@ -1932,11 +1938,10 @@
 		AF981EED1AD5164800DE8B55 /* Document Composer */ = {
 			isa = PBXGroup;
 			children = (
-				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
-				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
+				AFB730E91ADE590A009C98E6 /* Composer View */,
 				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
 				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
-				31DAB3C01ADE5A660096D441 /* RecipientViewControllerExtensions */,
+				311F225F1AD668CE00292068 /* RecipientsViewController+Extension.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
@@ -1957,6 +1962,22 @@
 				AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */,
 			);
 			path = "UITableView+Reorder";
+			sourceTree = "<group>";
+		};
+		AFB730E91ADE590A009C98E6 /* Composer View */ = {
+			isa = PBXGroup;
+			children = (
+				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
+				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
+				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
+				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
+				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
+				AFA069ED1ADD225900AA2D54 /* ComposerImageModule.swift */,
+				AFA069E71ADD21E100AA2D54 /* ComposerTextModule.swift */,
+				AFB730EA1ADE5A4F009C98E6 /* ComposeModuleParser.swift */,
+			);
+			name = "Composer View";
 			sourceTree = "<group>";
 		};
 		AFC1A92C1A920B6A00E62F48 /* NewFeatures */ = {
@@ -2931,6 +2952,7 @@
 				311779591AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
+				AFB730ED1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */,
 				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				ECC9949F1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				316ADCA11ADE6D9F00A39A95 /* PreviewViewController+UITableViewDelegate.swift in Sources */,
@@ -3181,6 +3203,8 @@
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				311F22601AD668CE00292068 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				31DAB3B11ADE59550096D441 /* RecipientsViewController+UISearchResultsUpdating.swift in Sources */,
+				311F22601AD668CE00292068 /* RecipientsViewController+Extension.swift in Sources */,
+				AFB730EB1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */,
 				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
@@ -3327,6 +3351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFB730EC1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */,
 				EC2DCB3E1AB84EAB0063755E /* UploadGuideViewController.swift in Sources */,
 				EC2DCB3F1AB84EAB0063755E /* UILabel+Digipost.m in Sources */,
 				EC2DCB401AB84EAB0063755E /* Localization.swift in Sources */,
@@ -3558,6 +3583,7 @@
 				EC2DCC2F1AB864AB0063755E /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC2DCC301AB864AB0063755E /* UIWebView+Accessability.swift in Sources */,
 				EC2DCC311AB864AB0063755E /* OAuthToken.swift in Sources */,
+				AFB730EF1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */,
 				EC2DCC321AB864AB0063755E /* POSDocument+Methods.m in Sources */,
 				EC2DCC331AB864AB0063755E /* AccountTableViewCell.swift in Sources */,
 				EC2DCC341AB864AB0063755E /* APIClient.swift in Sources */,
@@ -3886,6 +3912,7 @@
 				ECF486F61A471A3A00E97519 /* SHCLoginViewController.m in Sources */,
 				ECF486C21A471A0E00E97519 /* POSFoldersViewController.m in Sources */,
 				ECF486D41A471A1A00E97519 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				AFB730EE1ADE5A4F009C98E6 /* ComposeModuleParser.swift in Sources */,
 				ECC08E081A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				ECF486D51A471A1A00E97519 /* POSLetterPopoverTableViewCell.m in Sources */,
 				316ADCA21ADE6D9F00A39A95 /* PreviewViewController+UITableViewDelegate.swift in Sources */,
