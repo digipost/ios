@@ -16,6 +16,9 @@ class TextModuleTableViewCell: UITableViewCell {
         // Initialization code
 //        moduleTextView.layer.borderWidth = 0.5
 //        moduleTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        
+        moduleTextView.inputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as? UIView
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
