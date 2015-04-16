@@ -13,7 +13,6 @@ class ComposerModule: NSObject {
     //MARK: - Class Functions
     
     func htmlRepresentation() -> String{
-        //TODO: - Parse module to HTML
         return ""
     }
 }

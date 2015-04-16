@@ -21,6 +21,7 @@ class TextComposerModule: ComposerModule {
     }
     
     override func htmlRepresentation() -> String {
+        
         var openingTag = ""
         var closeingTag = ""
         var alignment = ""
@@ -38,21 +39,27 @@ class TextComposerModule: ComposerModule {
         
         switch font{
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-            openingTag = "<H1 style=\"text-align: \(alignment)\">"
+            let cssClass = ""
+            openingTag = "<H1 class=\"\(cssClass)\" style=\"text-align: \(alignment)\">"
             closeingTag = "</H1>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-            openingTag = "<p style=\"text-align: \(alignment)\">"
+            let cssClass = ""
+            openingTag = "<p class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
             closeingTag = "</p>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-            openingTag = "<H2 style=\"text-align: \(alignment)\">"
+            let cssClass = ""
+            openingTag = "<H2 class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
             closeingTag = "</H2>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote):
-            openingTag = "<sup style=\"text-align: \(alignment)\">"
+            let cssClass = ""
+            openingTag = "<sup class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
             closeingTag = "</sup>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1):
-            openingTag = "<caption style=\"text-align: \(alignment)\">"
+            let cssClass = ""
+            openingTag = "<caption class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
             closeingTag = "</caption>"
         default:
+            let cssClass = ""
             openingTag = "<p>"
             closeingTag = "</p>"
         }
