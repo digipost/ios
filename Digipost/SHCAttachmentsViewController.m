@@ -50,14 +50,6 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleDone
-                                                                         target:nil
-                                                                         action:nil];
-
-    self.navigationItem.backBarButtonItem = backBarButtonItem;
-
     [self generateTableViewHeader];
     // select first row
     self.attachments = [self attachmentsForCurrentDocument];

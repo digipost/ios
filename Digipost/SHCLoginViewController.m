@@ -58,6 +58,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)dealloc
 {
+
     @try {
         [[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:kShowLoginViewControllerNotificationName
@@ -115,22 +116,22 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
 
-    self.navigationItem.leftBarButtonItem = nil;
+    //    self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
-        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                              style:UIBarButtonItemStylePlain
-                                                                             target:nil
-                                                                             action:nil];
-        self.navigationItem.backBarButtonItem = backBarButtonItem;
+        //        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
+        //                                                                              style:UIBarButtonItemStylePlain
+        //                                                                             target:nil
+        //                                                                             action:nil];
+        //        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 
@@ -300,10 +301,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     // Instantiate view controllers for the navigation controller stack
     SHCLoginViewController *loginViewController = self;
     AccountViewController *accountViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
+
     POSFoldersViewController *foldersViewController = [self.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
 
     POSDocumentsViewController *documentsViewController = [self.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
+
     POSMailbox *mailbox = [POSMailbox mailboxOwnerInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+
     documentsViewController.folderName = kFolderInboxName;
     documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
 
@@ -315,7 +319,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [viewControllerStack addObject:documentsViewController];
 
     // Set the new view controller stack for the navigation controller
-    [self.navigationController setViewControllers:viewControllerStack animated:NO];
+
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController setViewControllers:viewControllerStack animated:NO];
+    });
 }
 
 @end

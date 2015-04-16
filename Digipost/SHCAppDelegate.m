@@ -49,9 +49,9 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
 
     [self setupHockeySDK];
-
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-400, -400) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-200 forBarMetrics:UIBarMetricsDefault];
     //    [self setupCocoaLumberjack];
-
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
@@ -86,7 +86,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         UINavigationController *navController = [self.window topMasterNavigationController];
 
         UIViewController *topViewController = [self.window topMasterViewController];
-        //        NSLog(@"Topp VC %@",topViewController);
         [navController popToRootViewControllerAnimated:NO];
 
         NSMutableArray *newViewControllerArray = [NSMutableArray array];

@@ -60,6 +60,7 @@ class NewFeaturesViewController: GAITrackedViewController, UIScrollViewDelegate 
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         dispatch_once(&setupFeatures_dispatch_token){
             self.setupNewFeatures()
         }
@@ -125,7 +126,8 @@ class NewFeaturesViewController: GAITrackedViewController, UIScrollViewDelegate 
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationItem.hidesBackButton = true
+        super.viewWillAppear(animated)
+//        self.navigationItem.hidesBackButton = true
     }
     
     @IBAction func doneButtonAction(sender: AnyObject) {

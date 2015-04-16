@@ -144,7 +144,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self reloadFromMetadata];
 
-    [self pos_setDefaultBackButton];
     [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
