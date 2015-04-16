@@ -57,6 +57,20 @@
 		316ADCA61ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316ADCA41ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift */; };
 		316ADCA71ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316ADCA41ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift */; };
 		316ADCA91ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316ADCA41ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift */; };
+		316C0CF71ADFC3920037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
+		316C0CF81ADFC3930037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
+		316C0CF91ADFC3940037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
+		316C0CFA1ADFC3950037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
+		316C0CFC1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
+		316C0CFD1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
+		316C0CFE1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
+		316C0CFF1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
+		316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
+		316C0D081ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
+		316C0D091ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
+		316C0D0A1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
+		316C0D0B1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
+		316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
@@ -237,7 +251,6 @@
 		AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
-		C7804B53EF3E62B11ADCEC52 /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE7DCDA06F35E069315A58CE /* Pods_DigipostTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
@@ -748,7 +761,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		02E92A48BEFB80F1946E5131 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
@@ -762,6 +774,8 @@
 		31679B7A1ADE7FED005FE31B /* RecipientsViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		316ADC9E1ADE6D9F00A39A95 /* PreviewViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviewViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		316ADCA41ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PreviewViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposerInputAccesoryView.xib; sourceTree = "<group>"; };
+		316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerInputAccessoryView.swift; sourceTree = "<group>"; };
 		316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
 		316D3BBC1A67F501004E3291 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
 		316D3BBD1A67F501004E3291 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
@@ -773,7 +787,6 @@
 		599527DB3D1608BE265E9FEA /* Pods_Digipost_Test_Dpost_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test_Dpost_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6419CDC77F32F4255423B47D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		7B74BFCC6AAF7C499107A01E /* Pods-DigipostTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.debug.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFB8185861A80080A833 /* POSAPIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAPIManager.h; sourceTree = "<group>"; };
 		8342EFB9185861A80080A833 /* POSAPIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAPIManager.m; sourceTree = "<group>"; };
@@ -1083,7 +1096,6 @@
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
-		FE7DCDA06F35E069315A58CE /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1482,6 +1494,8 @@
 		AFB730E91ADE590A009C98E6 /* Composer View */ = {
 			isa = PBXGroup;
 			children = (
+				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
+				316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */,
 				AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
@@ -1858,7 +1872,6 @@
 				EC9E79041ADE8E7700EED08B /* Frameworks */,
 				EC9E79051ADE8E7700EED08B /* Resources */,
 				F9949A8BD389259712DCE6DC /* Embed Pods Frameworks */,
-				20D2E8330B70F4F2F5D0B93A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1941,6 +1954,7 @@
 				AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				8375DD401855C383009435B4 /* Main_iPad.storyboard in Resources */,
 				8375DD421855C383009435B4 /* Main_iPhone.storyboard in Resources */,
+				316C0CFE1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC4146ED1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
@@ -1969,6 +1983,7 @@
 				AF981EE71AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				AF2C68791AD59533007020DC /* TextModuleTableViewCell.xib in Resources */,
+				316C0CFC1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				AF2C68781AD59533007020DC /* ImageModuleTableViewCell.xib in Resources */,
@@ -1997,6 +2012,7 @@
 				AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCBD11AB84EAB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCBD21AB84EAB0063755E /* Main_iPhone.storyboard in Resources */,
+				316C0CFD1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */,
@@ -2025,6 +2041,7 @@
 				AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCC821AB864AB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCC831AB864AB0063755E /* Main_iPhone.storyboard in Resources */,
+				316C0CFF1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC2DCC841AB864AB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCC851AB864AB0063755E /* WhatsNewGuideTexts.strings in Resources */,
 				EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */,
@@ -2043,6 +2060,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2050,36 +2068,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1480D0F55E0BB04D9AA10FC2 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		283D574EE0BEB49CBA74E022 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		2F6C3F24F3DC4AEB8AFA7FD6 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2138,21 +2126,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		B28F3788885D25A1F998C6E4 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E902CF5D7D404E379E086565 /* Copy Pods Resources */ = {
@@ -2343,6 +2316,7 @@
 				EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */,
 				EC84DD5219FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				311779591AAEFCA800229D02 /* PeopleView.swift in Sources */,
+				316C0D0A1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
@@ -2412,6 +2386,7 @@
 				ECCC5CAD19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				EC68C07518AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
 				ECB4C66019B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
+				316C0CF81ADFC3930037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				ECF06D53192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
@@ -2582,6 +2557,7 @@
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
+				316C0D081ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
@@ -2625,6 +2601,7 @@
 				EC2DCB4B1AB84EAB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
 				EC2DCB4C1AB84EAB0063755E /* Guide.swift in Sources */,
 				EC2DCB4D1AB84EAB0063755E /* ReceiptView.swift in Sources */,
+				316C0CF71ADFC3920037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				EC2DCB4E1AB84EAB0063755E /* POSAttachment.m in Sources */,
 				EC2DCB4F1AB84EAB0063755E /* UIViewController+NeedsReload.m in Sources */,
 				EC2DCB501AB84EAB0063755E /* POSFileManager.m in Sources */,
@@ -2708,6 +2685,7 @@
 				ECEDA5B61AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				EC2DCB921AB84EAB0063755E /* UIImage+TintColor.swift in Sources */,
 				EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
+				316C0D091ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */,
 				EC2DCB951AB84EAB0063755E /* NSObject+RACConvenience.swift in Sources */,
 				EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */,
@@ -2812,6 +2790,7 @@
 				EC2DCC151AB864AB0063755E /* UploadMenuViewController.swift in Sources */,
 				EC2DCC161AB864AB0063755E /* AccountViewController.swift in Sources */,
 				EC2DCC171AB864AB0063755E /* POSUploadViewController.m in Sources */,
+				316C0D0B1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCC181AB864AB0063755E /* UIColor+DigipostColors.swift in Sources */,
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
 				AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
@@ -2881,6 +2860,7 @@
 				316ADCA31ADE6D9F00A39A95 /* PreviewViewController+UITableViewDelegate.swift in Sources */,
 				EC2DCC531AB864AB0063755E /* Constants.swift in Sources */,
 				EC2DCC541AB864AB0063755E /* UIWindow+Navigation.swift in Sources */,
+				316C0CF91ADFC3940037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				EC2DCC551AB864AB0063755E /* SHCBaseTableViewController.m in Sources */,
 				EC2DCC561AB864AB0063755E /* AHKActionSheet+Convenience.m in Sources */,
 				EC2DCC571AB864AB0063755E /* UIView+AutoLayout.m in Sources */,
@@ -2919,8 +2899,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */,
 				EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */,
+				316C0CFA1ADFC3950037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */,
 				EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
 			);
