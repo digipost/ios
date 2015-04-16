@@ -10,12 +10,21 @@ import UIKit
 
 class ComposerInputAccessoryView: UIView {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
     }
-    */
+    
+    @IBAction func alignLeft(sender: AnyObject) {
+        println("clicking left")
+    }
+    
+    @IBAction func alignCenter(sender: AnyObject) {
+        println("clicking center")
+    }
 
+    @IBAction func alignRight(sender: AnyObject) {
+        println("clicking right")
+    }
 }
