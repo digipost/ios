@@ -22,7 +22,7 @@ class ComposerModuleParser{
                 }
             }
             
-            var html = "<html><head><style>\(internalStylesheet)</style></head><body>"
+            var html = "<html><head><style>\(internalStylesheet)</style></head><body><section>"
             
             for module in modules {
                 
@@ -30,7 +30,7 @@ class ComposerModuleParser{
                 
             }
             
-            html += "</body></html>"
+            html += "</section></body></html>"
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 response(htmlString: html)

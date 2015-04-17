@@ -1,7 +1,14 @@
-body{
-    background-color: magenta;
+body {
+    font-size: 10px
 }
 
-.image{
+section { margin: 2em }
+
+section h1 { margin-bottom: 1em }
+
+.align-center { text-align: center }
+.align-right { text-align: right }
+
+.image {
     width: 100%;
 }

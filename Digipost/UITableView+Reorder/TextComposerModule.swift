@@ -50,14 +50,6 @@ class TextComposerModule: ComposerModule {
             let cssClass = ""
             openingTag = "<H2 class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
             closeingTag = "</H2>"
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleFootnote):
-            let cssClass = ""
-            openingTag = "<sup class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
-            closeingTag = "</sup>"
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleCaption1):
-            let cssClass = ""
-            openingTag = "<caption class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
-            closeingTag = "</caption>"
         default:
             let cssClass = ""
             openingTag = "<p>"
