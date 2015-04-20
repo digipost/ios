@@ -141,6 +141,11 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 	}
 }
 - (void) prepareForMoveOfRowAtPoint: (CGPoint) point {
+    
+    if( [self.delegate respondsToSelector: @selector(tableView:beganMovingRowAtPoint:)] ) {
+        [(id) self.delegate tableView: self beganMovingRowAtPoint: point];
+    }
+    
 	DLog( @"Gesture for row reordering recognized for touch at {%g,%g}", point.x, point.y );
 	NSIndexPath *indexPathOfPoint = [self indexPathForRowAtPoint: point];
 	// See if the datasource says we cannot move the selected row
@@ -178,6 +183,12 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 }
 
 - (void) movingRowIsAtPoint: (CGPoint) point  {
+
+    if( [self.delegate respondsToSelector: @selector(tableView:changedPositionOfRowAtPoint:)] ) {
+        [(id) self.delegate tableView: self changedPositionOfRowAtPoint: point];
+    }
+    
+    // Tell the delegate that we are about to make a move, if it wants to know
 	// Based on the point from the gesture, calculate where the center of
 	// the snap shot view being dragged should be. Clamp it so its center
 	// can go the full range of the visible tableview, but not beyond.
@@ -496,6 +507,10 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 #endif
 }
 - (void) finishMovingRowToPoint: (CGPoint) point  {
+    
+    if( [self.delegate respondsToSelector: @selector(tableView:endedMovingRowAtPoint:)] ) {
+        [(id) self.delegate tableView: self endedMovingRowAtPoint: point];
+    }
 	// If we are scrolling, stop
 	[self.reorderAutoScrollTimer invalidate];
 	self.reorderAutoScrollTimer = nil;

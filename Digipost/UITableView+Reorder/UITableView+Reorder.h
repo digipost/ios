@@ -48,6 +48,9 @@
 
 @protocol UITableViewDelegateReorderExtension <NSObject>
 @optional
+- (void) tableView: (UITableView *) tableView beganMovingRowAtPoint: (CGPoint) point;
+- (void) tableView: (UITableView *) tableView changedPositionOfRowAtPoint: (CGPoint) point;
+- (void) tableView: (UITableView *) tableView endedMovingRowAtPoint: (CGPoint) point;
 - (void) tableView: (UITableView *) tableView willMoveRowAtIndexPath: (NSIndexPath *) indexPath;
 - (void) tableView: (UITableView *) tableView willMovePlaceHolderFromIndexPath: (NSIndexPath *) fromIndexPath toIndexPath: (NSIndexPath *) toIndexPath;
 - (void) tableView: (UITableView *) tableView didMovePlaceHolderFromIndexPath: (NSIndexPath *) fromIndexPath toIndexPath: (NSIndexPath *) toIndexPath;

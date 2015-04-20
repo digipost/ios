@@ -15,7 +15,7 @@ import SingleLineKeyboardResize
     func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint)
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, TableViewReorderingDelegate {
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
 
     @IBOutlet var tableView: UITableView!
     
@@ -31,6 +31,20 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         setupTableView()
     }
     
+    // MARK: - TableView Delegate Reorder functions
+    
+    func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint) {
+        println("Began moving row at point \(point)")
+    }
+    
+    func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
+        println("Position of row changed to point: \(point)")
+    }
+    
+    func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
+        println("Position of moving row ended at point: \(point)")
+    }
+    
     // MARK: - TableView Setup
     
     func setupTableView(){
@@ -43,12 +57,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
-    
 
-
-    func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint) {
-        
-    }
     // MARK: - UITextVeiew Delegate
     
     func textViewDidChange(textView: UITextView) {
