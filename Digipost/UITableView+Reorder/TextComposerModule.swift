@@ -25,35 +25,36 @@ class TextComposerModule: ComposerModule {
         
         var openingTag = ""
         var closeingTag = ""
-        var alignment = ""
         
-        switch textAlignment{
+        let alignment : String = {
+            switch self.textAlignment{
         case NSTextAlignment.Left:
-            alignment = "left"
+            return  "align-left"
         case NSTextAlignment.Center:
-            alignment = "center"
+            return "align-center"
         case NSTextAlignment.Right:
-            alignment = "right"
+            return  "align-right"
         default:
-            alignment = "left"
+            return "align-left"
         }
+        }()
         
         switch font{
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-            let cssClass = ""
-            openingTag = "<H1 class=\"\(cssClass)\" style=\"text-align: \(alignment)\">"
+            let cssClass = alignment
+            openingTag = "<H1 class=\"\(cssClass)\""
             closeingTag = "</H1>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-            let cssClass = ""
-            openingTag = "<p class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
+            let cssClass = alignment
+            openingTag = "<p class=\"\(cssClass)\""
             closeingTag = "</p>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-            let cssClass = ""
-            openingTag = "<H2 class=\"\(cssClass)\"  style=\"text-align: \(alignment)\">"
+            let cssClass = alignment
+            openingTag = "<H2 class=\"\(cssClass)\">"
             closeingTag = "</H2>"
         default:
-            let cssClass = ""
-            openingTag = "<p>"
+            let cssClass = alignment
+            openingTag = "<p class=\"\(cssClass)\">"
             closeingTag = "</p>"
         }
         

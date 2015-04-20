@@ -6,6 +6,7 @@ section { margin: 2em }
 
 section h1 { margin-bottom: 1em }
 
+.align-left { text-align: left }
 .align-center { text-align: center }
 .align-right { text-align: right }
 
