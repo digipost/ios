@@ -11,20 +11,22 @@ import UIKit
 class ComposerInputAccessoryView: UIView {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var textView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
     
-    @IBAction func alignLeft(sender: AnyObject) {
-        println("clicking left")
+    @IBAction func alignContentLeft(sender: AnyObject) {
+        println(textView.text)
     }
     
-    @IBAction func alignCenter(sender: AnyObject) {
-        println("clicking center")
+    @IBAction func alignContentCenter(sender: AnyObject) {
+
     }
 
-    @IBAction func alignRight(sender: AnyObject) {
-        println("clicking right")
+    @IBAction func alignContentRight(sender: AnyObject) {
+
     }
 }
