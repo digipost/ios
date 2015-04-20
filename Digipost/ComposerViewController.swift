@@ -18,6 +18,8 @@ import SingleLineKeyboardResize
 class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
 
     @IBOutlet var tableView: UITableView!
+    var deleteComposerModuleView: DeleteComposerModuleView!
+    var initialIndexPathForMovingRow: NSIndexPath!
     
     var tableViewDataSource: ComposerTableViewDataSource!
     var currentlyEditingTextView: UITextView?
@@ -35,6 +37,12 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint) {
         println("Began moving row at point \(point)")
+        initialIndexPathForMovingRow = tableView.indexPathForRowAtPoint(point)
+        deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
+        deleteComposerModuleView.frame = CGRectMake(0, view.frame.height , self.view.frame.width, 88)
+        self.view.addSubview(deleteComposerModuleView)
+        deleteComposerModuleView.show()
+
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
@@ -43,6 +51,20 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
         println("Position of moving row ended at point: \(point)")
+        let translatedPoint = tableView.convertPoint(point, toView: deleteComposerModuleView)
+        if deleteComposerModuleView.pointInside(translatedPoint, withEvent: nil){
+            deleteComposerModule()
+        }
+        
+    }
+    
+    func deleteComposerModule(){
+        if initialIndexPathForMovingRow != nil {
+            println("Delete")
+        }
+        initialIndexPathForMovingRow = nil
+
+        deleteComposerModuleView.hide()
     }
     
     // MARK: - TableView Setup
@@ -146,6 +168,5 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             
         }
     }
-    
 
 }
