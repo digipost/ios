@@ -10,14 +10,14 @@
             <rect key="frame" x="0.0" y="0.0" width="596" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJk-DO-pLB">
-                    <rect key="frame" x="10" y="14" width="91" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJk-DO-pLB">
+                    <rect key="frame" x="10" y="14" width="87" height="21"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc4-QJ-Ey5">
-                    <rect key="frame" x="373" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="119" y="0.0" width="50" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjt-rN-OX5">
                             <rect key="frame" x="10" y="16" width="30" height="18"/>
@@ -29,7 +29,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="alignContentLeft:" destination="iN0-l3-epB" eventType="touchUpInside" id="h6y-yC-MEA"/>
+                                <action selector="alignContentLeft:" destination="iN0-l3-epB" eventType="touchUpInside" id="m4t-4O-JtM"/>
                             </connections>
                         </button>
                     </subviews>
@@ -48,7 +48,7 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsX-zM-PJB">
-                    <rect key="frame" x="424" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="170" y="0.0" width="50" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUW-OS-jQ0">
                             <rect key="frame" x="10" y="16" width="30" height="18"/>
@@ -60,7 +60,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="alignContentCenter:" destination="iN0-l3-epB" eventType="touchUpInside" id="KOU-Jw-esj"/>
+                                <action selector="alignContentCenter:" destination="iN0-l3-epB" eventType="touchUpInside" id="v2Q-zC-hl1"/>
                             </connections>
                         </button>
                     </subviews>
@@ -71,7 +71,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-8s-XzO">
-                    <rect key="frame" x="475" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="221" y="0.0" width="50" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjo-HN-BB0">
                             <rect key="frame" x="10" y="16" width="30" height="18"/>
@@ -83,7 +83,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="alignContentRight:" destination="iN0-l3-epB" eventType="touchUpInside" id="C4Z-oH-vBC"/>
+                                <action selector="alignContentRight:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Wi-aQ-hgj"/>
                             </connections>
                         </button>
                     </subviews>
@@ -93,9 +93,13 @@
                         <constraint firstAttribute="centerY" secondItem="Bjo-HN-BB0" secondAttribute="centerY" id="wKt-gh-mpd"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfe-dx-2Xy">
-                    <rect key="frame" x="534" y="10" width="44" height="30"/>
-                    <state key="normal" title="Ferdig">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfe-dx-2Xy">
+                    <rect key="frame" x="548" y="15" width="30" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="ZST-ah-Ft9"/>
+                        <constraint firstAttribute="width" constant="30" id="hEM-ma-meb"/>
+                    </constraints>
+                    <state key="normal" image="checkmark">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -118,8 +122,12 @@
                 <constraint firstItem="gc4-QJ-Ey5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ERp-KF-bhS"/>
                 <constraint firstItem="ygu-8s-XzO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="K8o-4S-Zhq"/>
                 <constraint firstAttribute="trailing" secondItem="ygu-8s-XzO" secondAttribute="trailing" id="LmC-Md-Cpb"/>
+                <constraint firstItem="ygu-8s-XzO" firstAttribute="leading" secondItem="MsX-zM-PJB" secondAttribute="trailing" constant="1" id="P2t-9F-DVb"/>
                 <constraint firstItem="MsX-zM-PJB" firstAttribute="leading" secondItem="gc4-QJ-Ey5" secondAttribute="trailing" constant="1" id="SWL-1W-tFP"/>
+                <constraint firstItem="gc4-QJ-Ey5" firstAttribute="leading" secondItem="KJk-DO-pLB" secondAttribute="trailing" constant="22" id="Vx5-WU-Ot9"/>
                 <constraint firstItem="Xfe-dx-2Xy" firstAttribute="leading" secondItem="ygu-8s-XzO" secondAttribute="trailing" constant="9" id="gKL-li-S5w"/>
+                <constraint firstItem="MsX-zM-PJB" firstAttribute="leading" secondItem="gc4-QJ-Ey5" secondAttribute="trailing" constant="1" id="gv9-QY-Lzg"/>
+                <constraint firstItem="ygu-8s-XzO" firstAttribute="leading" secondItem="MsX-zM-PJB" secondAttribute="trailing" constant="1" id="iba-W1-xIp"/>
                 <constraint firstAttribute="bottom" secondItem="gc4-QJ-Ey5" secondAttribute="bottom" id="jnz-ZE-kam"/>
                 <constraint firstItem="MsX-zM-PJB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="r5x-M9-i00"/>
                 <constraint firstAttribute="bottom" secondItem="gc4-QJ-Ey5" secondAttribute="bottom" id="xqf-B0-lbo"/>
@@ -127,7 +135,13 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="ERp-KF-bhS"/>
+                    <exclude reference="xqf-B0-lbo"/>
+                    <exclude reference="SWL-1W-tFP"/>
+                    <exclude reference="9kc-tM-ax2"/>
                     <exclude reference="LmC-Md-Cpb"/>
+                    <exclude reference="iba-W1-xIp"/>
+                    <exclude reference="gKL-li-S5w"/>
                 </mask>
             </variation>
             <connections>
@@ -142,6 +156,7 @@
     </objects>
     <resources>
         <image name="center" width="44" height="30"/>
+        <image name="checkmark" width="137" height="99"/>
         <image name="left" width="45" height="30"/>
         <image name="right" width="45" height="30"/>
     </resources>
