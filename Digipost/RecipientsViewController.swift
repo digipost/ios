@@ -23,12 +23,13 @@ class RecipientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "Legg til mottakere"
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         
         self.recipientSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
-            controller.hidesNavigationBarDuringPresentation = true
+            controller.hidesNavigationBarDuringPresentation = false
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.searchBarStyle = .Minimal
             controller.searchBar.frame.size = self.navigationController!.navigationBar.frame.size
@@ -50,6 +51,17 @@ class RecipientViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(false)
+        recipientSearchController.active = false
+        recipientSearchController.searchBar.frame = CGRectMake(0, 0, 0, 0)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(false)
+        recipientSearchController.searchBar.frame = self.navigationController!.navigationBar.frame
+    }
+ 
     @IBAction func dismissViewController(sender: AnyObject) {
         
         let alertController = UIAlertController(title: "Brev lukkes", message: "Vil du lagre utkastet før du avslutter?", preferredStyle: UIAlertControllerStyle.Alert)

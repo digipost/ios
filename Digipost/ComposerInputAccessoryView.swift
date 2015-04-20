@@ -39,7 +39,7 @@ class ComposerInputAccessoryView: UIView {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
             nameLabel.text = "Subheader"
         default:
-            nameLabel.text = "Boaaady"
+            nameLabel.text = "Body"
         }
     }
 }
