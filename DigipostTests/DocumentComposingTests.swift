@@ -24,11 +24,11 @@ class DocumentComposingTests: XCTestCase {
     func testGenerateSimpleHTML() {
         let exampleText = "Hello world!"
         let expectedHTMLContent = "<p>Hello world!</p>"
-
-        let textComposerModule = TextComposerModule(moduleWithFont: UIFont.systemFontOfSize(15))
+        let textComposerModule = TextComposerModule(moduleWithFont: UIFont.preferredFontForTextStyle(UIFontTextStyleBody))
         textComposerModule.text = exampleText
         let generatedHTML = textComposerModule.htmlRepresentation()
         XCTAssertTrue(generatedHTML == expectedHTMLContent, "generated html: \(generatedHTML) was not as excpeted: \(expectedHTMLContent)")
+
     }
 
 }
