@@ -27,6 +27,8 @@ class PreviewViewController: UIViewController {
             self.webView.loadHTMLString(htmlString, baseURL: nil)
         })
         
+        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
+        
         let footerView = NSBundle.mainBundle().loadNibNamed("AddRecipientTableFooterView", owner: self, options: nil)[0] as! UIView
         footerView.frame = CGRectMake(0, 0, view.frame.width, 80.0)
         footerView.backgroundColor = UIColor.clearColor()
@@ -36,10 +38,13 @@ class PreviewViewController: UIViewController {
         footerView.addGestureRecognizer(goToAddRecipientsTap)
         
         tableView.tableFooterView = footerView
-
-
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+
+    }
+
     @IBAction func goToAddRecipients(sender: AnyObject) {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
