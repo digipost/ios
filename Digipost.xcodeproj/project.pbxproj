@@ -1047,6 +1047,7 @@
 		EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+DigipostColors.swift"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
+		EC94DA7B1AE5217600AE574D /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
 		EC9E79071ADE8E7800EED08B /* DigipostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E790A1ADE8E7800EED08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3545,6 +3546,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EC94DA7B1AE5217600AE574D /* Model v1.14.xcdatamodel */,
 				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
 				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
 				ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */,
@@ -3559,7 +3561,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */;
+			currentVersion = EC94DA7B1AE5217600AE574D /* Model v1.14.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

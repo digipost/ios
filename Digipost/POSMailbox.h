@@ -13,15 +13,16 @@
 
 @interface POSMailbox : NSManagedObject
 
-@property (nonatomic, retain) NSString * createFolderUri;
-@property (nonatomic, retain) NSString * digipostAddress;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * owner;
-@property (nonatomic, retain) NSString * receiptsUri;
-@property (nonatomic, retain) NSString * updateFoldersUri;
-@property (nonatomic, retain) NSNumber * unreadItemsInInbox;
+@property (nonatomic, retain) NSString *createFolderUri;
+@property (nonatomic, retain) NSString *digipostAddress;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSNumber *owner;
+@property (nonatomic, retain) NSString *receiptsUri;
+@property (nonatomic, retain) NSString *updateFoldersUri;
+@property (nonatomic, retain) NSNumber *unreadItemsInInbox;
 @property (nonatomic, retain) NSSet *folders;
 @property (nonatomic, retain) NSSet *receipts;
+@property (nonatomic, retain) NSString *sendUri;
 @property (nonatomic, retain) POSRootResource *rootResource;
 @end
 
