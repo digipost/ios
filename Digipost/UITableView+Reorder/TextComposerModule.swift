@@ -10,35 +10,35 @@ import Foundation
 import UIKit
 
 class TextComposerModule: ComposerModule {
-    
+
     let font: UIFont
     var textAlignment: NSTextAlignment
     var text: String?
-    
+
     init(moduleWithFont font: UIFont) {
         self.font = font
         textAlignment = .Left
         super.init()
     }
-    
+
     override func htmlRepresentation() -> String {
-        
+
         var openingTag = ""
         var closeingTag = ""
-        
+
         let alignment : String = {
             switch self.textAlignment{
-        case NSTextAlignment.Left:
-            return  "align-left"
-        case NSTextAlignment.Center:
-            return "align-center"
-        case NSTextAlignment.Right:
-            return  "align-right"
-        default:
-            return "align-left"
-        }
-        }()
-        
+            case NSTextAlignment.Left:
+                return  "align-left"
+            case NSTextAlignment.Center:
+                return "align-center"
+            case NSTextAlignment.Right:
+                return  "align-right"
+            default:
+                return "align-left"
+            }
+            }()
+
         switch font{
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
             let cssClass = alignment
@@ -57,12 +57,12 @@ class TextComposerModule: ComposerModule {
             openingTag = "<p class=\"\(cssClass)\">"
             closeingTag = "</p>"
         }
-        
-        
+
+
         var html = openingTag
-        
+
         if let text = self.text {
-            
+
             for c in text{
                 if c == "\n"{
                     html += "<br>"
@@ -71,9 +71,9 @@ class TextComposerModule: ComposerModule {
                 }
             }
         }
-        
+
         html += closeingTag
-        
+
         return html
     }
     
