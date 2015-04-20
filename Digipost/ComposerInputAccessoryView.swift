@@ -22,6 +22,15 @@ class ComposerInputAccessoryView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()        
         setBackground(leftView)
+        
+        var alignLeftGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentLeft:")
+        leftView.addGestureRecognizer(alignLeftGestureRecognizer)
+        
+        var alignCenterGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentCenter:")
+        centerView.addGestureRecognizer(alignCenterGestureRecognizer)
+        
+        var alignRightGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentRight:")
+        rightView.addGestureRecognizer(alignRightGestureRecognizer)
     }
     
     @IBAction func alignContentLeft(sender: AnyObject) {
