@@ -18,8 +18,8 @@ class RecipientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        initialsView.layer.cornerRadius = 50
-        addedButton.layer.cornerRadius = 50
+        initialsView.layer.cornerRadius = 20
+        addedButton.layer.cornerRadius = 10
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -32,4 +32,5 @@ class RecipientTableViewCell: UITableViewCell {
         addressLabel.text = address
         addedButton.hidden = true
     }
+
 }

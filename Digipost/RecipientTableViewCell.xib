@@ -31,23 +31,23 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fornavn Etternavn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRa-Rc-QQP">
-                    <rect key="frame" x="95" y="16" width="150" height="21"/>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                    <rect key="frame" x="95" y="16" width="115" height="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address/organisasjonsnummer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34T-S8-lcX">
-                    <rect key="frame" x="95" y="40" width="238" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <rect key="frame" x="95" y="35" width="186" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-to-xdr">
-                    <rect key="frame" x="505" y="21" width="40" height="40"/>
+                    <rect key="frame" x="515" y="26" width="30" height="30"/>
                     <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="UhD-PW-3oZ"/>
-                        <constraint firstAttribute="width" constant="40" id="XWw-zf-NA0"/>
+                        <constraint firstAttribute="height" constant="30" id="UhD-PW-3oZ"/>
+                        <constraint firstAttribute="width" constant="30" id="XWw-zf-NA0"/>
                     </constraints>
                     <color key="tintColor" red="0.50196081399917603" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
