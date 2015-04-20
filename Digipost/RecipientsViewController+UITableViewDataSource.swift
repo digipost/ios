@@ -17,15 +17,21 @@ extension RecipientViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("Cell") as! UITableViewCell
-        cell.accessoryType = UITableViewCellAccessoryType.None
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue-Light", size: 14)
-        cell.selectionStyle = UITableViewCellSelectionStyle.None
-
+        
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
+        
+        let name = recipients[indexPath.row].name
+        let address = recipients[indexPath.row].address
+        
+        println(address)
+    
+        cell.initialsLabel.text = name?.initials()
+        cell.nameLabel.text = name
+        //cell.addressLabel.text = address
+        
         if recipientSearchController.active {
             if count(recipients) >= 0 {
                 if let recipient = recipients[indexPath.row].name {
-                    cell.textLabel?.text = recipient
                     for r in addedRecipients {
                         if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
                             cell.accessoryType = UITableViewCellAccessoryType.Checkmark
@@ -36,7 +42,7 @@ extension RecipientViewController: UITableViewDataSource {
             
         } else {
             if let recipient = addedRecipients[indexPath.row].name {
-                cell.textLabel?.text = recipient
+                
             }
         }
         

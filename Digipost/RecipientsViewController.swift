@@ -26,6 +26,8 @@ class RecipientViewController: UIViewController {
         self.title = "Legg til mottakere"
         
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
+        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
+        tableView.rowHeight = 80.0
         
         self.recipientSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -41,14 +43,12 @@ class RecipientViewController: UIViewController {
 
             return controller
         })()
-
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "recipientsAddedSegue" {
-            if let navController = segue.destinationViewController as? UINavigationController,
-                let composerController = navController.viewControllers.first as? ComposerViewController {
-                    composerController.recipients = addedRecipients
+            if let composerController = segue.destinationViewController as? ComposerViewController {
+                composerController.recipients = addedRecipients
             }
         }
     }
