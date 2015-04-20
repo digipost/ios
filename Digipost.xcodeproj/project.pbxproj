@@ -1244,24 +1244,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		31679B791ADE7E6B005FE31B /* RecipientsViewControllerExtensions */ = {
+		31679B791ADE7E6B005FE31B /* Recipients */ = {
 			isa = PBXGroup;
 			children = (
+				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
 				31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */,
 				31679B7A1ADE7FED005FE31B /* RecipientsViewController+UITableViewDataSource.swift */,
 				31679B681ADE7E61005FE31B /* RecipientsViewController+UISearchResultsUpdating.swift */,
 				31679B691ADE7E61005FE31B /* RecipientsViewController+UISearchBarDelegate.swift */,
+				31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */,
+				31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */,
+				31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */,
 			);
-			name = RecipientsViewControllerExtensions;
+			name = Recipients;
 			sourceTree = "<group>";
 		};
-		316ADCAA1ADE6DBC00A39A95 /* PreviewViewControllerExtensions */ = {
+		316ADCAA1ADE6DBC00A39A95 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
 				316ADC9E1ADE6D9F00A39A95 /* PreviewViewController+UITableViewDelegate.swift */,
 				316ADCA41ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift */,
 			);
-			name = PreviewViewControllerExtensions;
+			name = Preview;
 			sourceTree = "<group>";
 		};
 		8342EFBD1858CDA40080A833 /* Model */ = {
@@ -1521,22 +1526,9 @@
 		AF981EED1AD5164800DE8B55 /* Document Composer */ = {
 			isa = PBXGroup;
 			children = (
-				AFB730E91ADE590A009C98E6 /* Composer View */,
-				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
-				AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */,
-				31679B791ADE7E6B005FE31B /* RecipientsViewControllerExtensions */,
-				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
-				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
-				31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */,
-				31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */,
-				31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */,
-				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
-				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
-				AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */,
-				AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */,
-				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
-				316ADCAA1ADE6DBC00A39A95 /* PreviewViewControllerExtensions */,
-				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
+				AFB730E91ADE590A009C98E6 /* Composer */,
+				31679B791ADE7E6B005FE31B /* Recipients */,
+				316ADCAA1ADE6DBC00A39A95 /* Preview */,
 			);
 			name = "Document Composer";
 			sourceTree = "<group>";
@@ -1550,19 +1542,27 @@
 			path = "UITableView+Reorder";
 			sourceTree = "<group>";
 		};
-		AFB730E91ADE590A009C98E6 /* Composer View */ = {
+		AFB730E91ADE590A009C98E6 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
+				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
 				316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */,
+				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
 				AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */,
+				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
+				AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */,
+				AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */,
+				AF981F131AD565D500DE8B55 /* PlaceholderTextView.swift */,
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
 				AF1E55B01ADEB000003AB3B2 /* stylesheet.css */,
 				AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */,
 				AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */,
 			);
-			name = "Composer View";
+			name = Composer;
 			sourceTree = "<group>";
 		};
 		AFC1A92C1A920B6A00E62F48 /* NewFeatures */ = {
