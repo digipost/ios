@@ -14,10 +14,7 @@ class TextModuleTableViewCell: UITableViewCell {
     @IBOutlet var moduleTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-//        moduleTextView.layer.borderWidth = 0.5
-//        moduleTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        
+
         composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
         
         composerInputAccessoryView.textView = moduleTextView
@@ -36,14 +33,12 @@ class TextModuleTableViewCell: UITableViewCell {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
             composerInputAccessoryView.nameLabel.text = "Subheader"
         default:
-            composerInputAccessoryView.nameLabel.text = "Boaaady"
+            composerInputAccessoryView.nameLabel.text = "Body"
         }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

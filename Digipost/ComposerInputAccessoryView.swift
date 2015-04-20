@@ -17,6 +17,8 @@ class ComposerInputAccessoryView: UIView {
     @IBOutlet weak var centerView: UIView!
     @IBOutlet weak var rightView: UIView!
     
+    @IBOutlet weak var doneButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()        
         setBackground(leftView)
@@ -36,7 +38,10 @@ class ComposerInputAccessoryView: UIView {
     @IBAction func alignContentRight(sender: AnyObject) {
         textView.textAlignment = .Right
         setBackground(rightView)
-
+    }
+    
+    @IBAction func doneAction(sender: AnyObject) {
+        textView.resignFirstResponder()
     }
     
     func setBackground(view: UIView) {
@@ -44,7 +49,7 @@ class ComposerInputAccessoryView: UIView {
         centerView.backgroundColor = .clearColor()
         rightView.backgroundColor = .clearColor()
         
-        view.backgroundColor = 	UIColor(red: 235.0, green: 235.0, blue: 235.0, alpha: 1.0)
+        view.backgroundColor = 	UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
     }
     
     func setLabel() {
