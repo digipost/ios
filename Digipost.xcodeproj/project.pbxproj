@@ -216,6 +216,16 @@
 		AF6F5BD01AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
 		AF6F5BD11AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
 		AF6F5BD21AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
+		AF8F8A371AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
+		AF8F8A381AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
+		AF8F8A391AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
+		AF8F8A3A1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
+		AF8F8A3B1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
+		AF8F8A3D1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
+		AF8F8A3E1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
+		AF8F8A3F1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
+		AF8F8A401AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
+		AF8F8A411AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
 		AF981EE71AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
@@ -930,6 +940,8 @@
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+base64Representation.swift"; sourceTree = "<group>"; };
 		AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectorViewController.swift; sourceTree = "<group>"; };
+		AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteComposerModuleView.xib; sourceTree = "<group>"; };
+		AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteComposerModuleView.swift; sourceTree = "<group>"; };
 		AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocumentComposer.storyboard; sourceTree = "<group>"; };
 		AF981EEE1AD516A400DE8B55 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
 		AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
@@ -1547,6 +1559,8 @@
 				AF2C687C1AD59540007020DC /* ComposerTableViewCells */,
 				AF981F031AD525D200DE8B55 /* UITableView+Reorder */,
 				AF1E55B01ADEB000003AB3B2 /* stylesheet.css */,
+				AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */,
+				AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */,
 			);
 			name = "Composer View";
 			sourceTree = "<group>";
@@ -1998,6 +2012,7 @@
 				311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				AF477DFD1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				83C22B7D187EC66400A6B6F4 /* Images-Staging.xcassets in Resources */,
+				AF8F8A391AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
 				ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83C5719B18984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
@@ -2023,6 +2038,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
+				AF8F8A371AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
@@ -2059,6 +2075,7 @@
 				EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCBCD1AB84EAB0063755E /* Onboarding.storyboard in Resources */,
 				EC2DCBCE1AB84EAB0063755E /* Images-Shared.xcassets in Resources */,
+				AF8F8A381AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
 				EC2DCBCF1AB84EAB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCBD01AB84EAB0063755E /* Main_iPad.storyboard in Resources */,
 				AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
@@ -2089,6 +2106,7 @@
 				EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCC7E1AB864AB0063755E /* Onboarding.storyboard in Resources */,
 				EC2DCC7F1AB864AB0063755E /* Images-Shared.xcassets in Resources */,
+				AF8F8A3A1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
 				EC2DCC801AB864AB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCC811AB864AB0063755E /* Main_iPad.storyboard in Resources */,
 				AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
@@ -2114,6 +2132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
+				AF8F8A3B1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
 				ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */,
 				ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */,
 				ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */,
@@ -2434,6 +2453,7 @@
 				83D2F7EF18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A1A193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
 				EC31A63F1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */,
+				AF8F8A3F1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
 				83F7038318573641003DABE1 /* POSOAuthManager.m in Sources */,
 				ECC08E071A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */,
@@ -2510,6 +2530,7 @@
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
 				AF2C68831AD59CE6007020DC /* ComposerModule.swift in Sources */,
 				31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */,
+				AF8F8A3D1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
 				ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */,
 				ECA618E21AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
@@ -2667,6 +2688,7 @@
 				EC2DCB511AB84EAB0063755E /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC2DCB521AB84EAB0063755E /* UINavigationController+Extensions.swift in Sources */,
 				EC2DCB531AB84EAB0063755E /* ForceOrientationNavigationController.swift in Sources */,
+				AF8F8A3E1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
 				EC2DCB541AB84EAB0063755E /* POSAPIManager+PrivateMethods.m in Sources */,
 				ECA618E31AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */,
 				31679B701ADE7E61005FE31B /* RecipientsViewController+UISearchResultsUpdating.swift in Sources */,
@@ -2911,6 +2933,7 @@
 				311F22671AD66E2400292068 /* ImageModuleTableViewCell.swift in Sources */,
 				EC2DCC4A1AB864AB0063755E /* POSAPIManager.m in Sources */,
 				EC2DCC4B1AB864AB0063755E /* NSString+SHA1String.m in Sources */,
+				AF8F8A401AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
 				EC2DCC4C1AB864AB0063755E /* POSNewFolderCollectionViewCell.m in Sources */,
 				EC2DCC4D1AB864AB0063755E /* UploadMenuTableViewCell.swift in Sources */,
 				EC2DCC4E1AB864AB0063755E /* POSOAuthManager.m in Sources */,
@@ -2982,6 +3005,7 @@
 				ECAB1CF51AE4E4D200D72D41 /* Constants.swift in Sources */,
 				EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */,
 				EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
+				AF8F8A411AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
 				ECAB1CF41AE4E4C200D72D41 /* ComposerModuleParser.swift in Sources */,
 				ECAB1CE81AE4E28D00D72D41 /* PreviewViewController.swift in Sources */,
 			);
