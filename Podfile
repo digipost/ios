@@ -23,6 +23,6 @@ target 'DigipostTests', :exclusive => true do
     pod 'UIAlertView+Blocks', '~> 0.8'
     pod 'MRProgress', '~> 0.4.3'
     pod 'RNCryptor', '~> 2.2'
-    pod 'SingleLineKeyboardResize', '~> 0.1.1'
+    pod 'SingleLineKeyboardResize', '~> 0.1.2'
     use_frameworks!
 end

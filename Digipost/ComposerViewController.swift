@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AHKActionSheet
+import SingleLineKeyboardResize
 
 
 @objc protocol TableViewReorderingDelegate{
@@ -37,10 +39,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
         let imageModuleTableViewCellNib = UINib(nibName: "ImageModuleTableViewCell", bundle: nil)
         tableView.registerNib(imageModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.imageModuleCellIdentifier)
-//        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
-//        tableView.estimatedRowHeight = 44
-        
+
+        setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
     
 
