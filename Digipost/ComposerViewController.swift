@@ -43,6 +43,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if let indexPath = indexPathForCellContainingTextView(textView){
             if let textModule = tableViewDataSource.tableData[indexPath.row] as? TextComposerModule {
                 textModule.text = textView.text
+                textModule.textAlignment = textView.textAlignment
             }
         }
         tableView.beginUpdates()
@@ -85,6 +86,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
                 let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.font
+                cell?.setLabel(textModule!.font)
                 cell?.moduleTextView.becomeFirstResponder()
                 currentlyEditingTextView = cell?.moduleTextView
                 cell?.moduleTextView.delegate = self

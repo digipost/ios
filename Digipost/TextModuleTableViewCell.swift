@@ -9,7 +9,8 @@
 import UIKit
 
 class TextModuleTableViewCell: UITableViewCell {
-
+    var composerInputAccessoryView: ComposerInputAccessoryView!
+    
     @IBOutlet var moduleTextView: UITextView!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,12 +18,26 @@ class TextModuleTableViewCell: UITableViewCell {
 //        moduleTextView.layer.borderWidth = 0.5
 //        moduleTextView.layer.borderColor = UIColor.lightGrayColor().CGColor
         
-        let inputView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
+        composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
         
-        inputView.textView = moduleTextView
+        composerInputAccessoryView.textView = moduleTextView
         
-        moduleTextView.inputAccessoryView = inputView
+        moduleTextView.inputAccessoryView = composerInputAccessoryView
         
+    }
+    
+    func setLabel(font: UIFont) {
+        println(font)
+        switch font{
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
+            composerInputAccessoryView.nameLabel.text = "Headline"
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
+            composerInputAccessoryView.nameLabel.text = "Body"
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
+            composerInputAccessoryView.nameLabel.text = "Subheader"
+        default:
+            composerInputAccessoryView.nameLabel.text = "Boaaady"
+        }
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
