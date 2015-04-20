@@ -9,19 +9,12 @@
 extension RecipientViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        UIView.animateWithDuration(0.3,
-            animations: { () -> Void in
-                searchBar.backgroundColor = UIColor(r: 227, g: 45, b: 34)
-                searchBar.tintColor = UIColor.whiteColor()
-        })
+        
         return true
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        UIView.animateWithDuration(0.3,
-            animations: { () -> Void in
-                searchBar.backgroundColor = UIColor.whiteColor()
-        })
+        
     }
     
 }
