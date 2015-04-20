@@ -33,6 +33,11 @@
 		311F22701AD66E3500292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
 		311F22711AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
 		311F22721AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
+		31266D671AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
+		31266D681AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
+		31266D691AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
+		31266D6A1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
+		31266D6B1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
 		31679B6A1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
 		31679B6B1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
 		31679B6C1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
@@ -83,6 +88,7 @@
 		31952EFB1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
 		31952EFC1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
 		31952EFD1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
+		31952EFE1AE514FD00739600 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		31B57FF71A6691E3008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -794,6 +800,7 @@
 		311779561AAEFCA800229D02 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAccountTableViewCell.swift; sourceTree = "<group>"; };
 		3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAccountTableViewCell.xib; sourceTree = "<group>"; };
+		31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRecipientTableFooterView.xib; sourceTree = "<group>"; };
 		31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		31679B681ADE7E61005FE31B /* RecipientsViewController+UISearchResultsUpdating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UISearchResultsUpdating.swift"; sourceTree = "<group>"; };
 		31679B691ADE7E61005FE31B /* RecipientsViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
@@ -1508,6 +1515,7 @@
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */,
+				31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */,
 				31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
@@ -1984,6 +1992,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038818573C3A003DABE1 /* Localizable.strings in Resources */,
+				31266D691AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
 				EC4F547119CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				311848731A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				AF477DFD1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
@@ -2034,6 +2043,7 @@
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 				EC4146B91AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
 				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
+				31266D671AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2043,6 +2053,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2DCBCA1AB84EAB0063755E /* Localizable.strings in Resources */,
+				31266D681AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
 				EC2DCBCB1AB84EAB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCBCD1AB84EAB0063755E /* Onboarding.storyboard in Resources */,
@@ -2072,6 +2083,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2DCC7B1AB864AB0063755E /* Localizable.strings in Resources */,
+				31266D6A1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
 				EC2DCC7C1AB864AB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCC7E1AB864AB0063755E /* Onboarding.storyboard in Resources */,
@@ -2104,6 +2116,7 @@
 				ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */,
 				ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */,
 				ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */,
+				31266D6B1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
 				AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2950,6 +2963,7 @@
 				ECAB1CF91AE4E79200D72D41 /* UITableView+Reorder.m in Sources */,
 				ECAB1CF21AE4E44900D72D41 /* TextModuleTableViewCell.swift in Sources */,
 				ECAB1CEF1AE4E40300D72D41 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
+				31952EFE1AE514FD00739600 /* String+Extensions.swift in Sources */,
 				ECAB1CEB1AE4E2AD00D72D41 /* DocumentComposingTests.swift in Sources */,
 				316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				ECAB1CF31AE4E4B800D72D41 /* Recipient.swift in Sources */,
