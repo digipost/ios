@@ -8,7 +8,12 @@
 
 import UIKit
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate {
+
+@objc protocol TableViewReorderingDelegate{
+    func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint)
+}
+
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, TableViewReorderingDelegate {
 
     @IBOutlet var tableView: UITableView!
     
@@ -35,8 +40,14 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 //        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.delegate = self
 //        tableView.estimatedRowHeight = 44
+        
     }
     
+
+
+    func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint) {
+        
+    }
     // MARK: - UITextVeiew Delegate
     
     func textViewDidChange(textView: UITextView) {
