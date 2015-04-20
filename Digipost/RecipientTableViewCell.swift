@@ -18,8 +18,11 @@ class RecipientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        initialsView.layer.cornerRadius = 20
-        addedButton.layer.cornerRadius = 10
+        initialsView.layer.cornerRadius = initialsView.frame.size.width / 2
+        initialsView.clipsToBounds = true
+        
+        addedButton.layer.cornerRadius = addedButton.frame.size.width / 2
+        addedButton.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
