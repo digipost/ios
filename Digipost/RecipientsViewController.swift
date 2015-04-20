@@ -23,8 +23,8 @@ class RecipientViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Legg til mottakere"
-        
+        self.title = NSLocalizedString("recipients view navigation bar title", comment: "")
+
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 80.0
