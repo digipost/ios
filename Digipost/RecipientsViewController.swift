@@ -24,6 +24,7 @@ class RecipientViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Legg til mottakere"
+        
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         
         self.recipientSearchController = ({
@@ -40,10 +41,11 @@ class RecipientViewController: UIViewController {
 
             return controller
         })()
+
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "goToComposer" {
+        if segue.identifier == "recipientsAddedSegue" {
             if let navController = segue.destinationViewController as? UINavigationController,
                 let composerController = navController.viewControllers.first as? ComposerViewController {
                     composerController.recipients = addedRecipients
@@ -85,7 +87,6 @@ class RecipientViewController: UIViewController {
         alertController.addAction(quitAction)
         
         presentViewController(alertController, animated: true, completion: nil)
-        
         
     }
 }
