@@ -677,9 +677,29 @@
 		ECA618E31AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECA618E41AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECA618E61AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		ECAB1CE71AE4E28900D72D41 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
+		ECAB1CE81AE4E28D00D72D41 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
+		ECAB1CE91AE4E28F00D72D41 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
+		ECAB1CEB1AE4E2AD00D72D41 /* DocumentComposingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */; };
+		ECAB1CEC1AE4E39A00D72D41 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
+		ECAB1CED1AE4E3FE00D72D41 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
+		ECAB1CEE1AE4E40100D72D41 /* ComposerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */; };
+		ECAB1CEF1AE4E40300D72D41 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */; };
+		ECAB1CF01AE4E43200D72D41 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
+		ECAB1CF11AE4E44100D72D41 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
+		ECAB1CF21AE4E44900D72D41 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
+		ECAB1CF31AE4E4B800D72D41 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
+		ECAB1CF41AE4E4C200D72D41 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
+		ECAB1CF51AE4E4D200D72D41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
+		ECAB1CF61AE4E4E300D72D41 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
+		ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */; };
+		ECAB1CF91AE4E79200D72D41 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */; };
+		ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
+		ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
+		ECAB1CFD1AE4E87800D72D41 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAB1CFC1AE4E87800D72D41 /* Pods.framework */; };
+		ECAB1CFF1AE4E88900D72D41 /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
-		ECB22AAE70950B1B6E1101DB /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65118B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
@@ -1042,6 +1062,10 @@
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
 		ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLResponse+HTTP.swift"; sourceTree = "<group>"; };
+		ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentComposingTests.swift; sourceTree = "<group>"; };
+		ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostTests.xcconfig; sourceTree = "<group>"; };
+		ECAB1CFC1AE4E87800D72D41 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_DigipostTests.framework"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
 		ECB135491938C243000F9F7F /* POSAPIManager+PrivateMethods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSAPIManager+PrivateMethods.h"; sourceTree = "<group>"; };
 		ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSAPIManager+PrivateMethods.m"; sourceTree = "<group>"; };
@@ -1171,9 +1195,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAB1CFF1AE4E88900D72D41 /* Pods_DigipostTests.framework in Frameworks */,
+				ECAB1CFD1AE4E87800D72D41 /* Pods.framework in Frameworks */,
 				EC9E79161ADE8FB400EED08B /* CoreGraphics.framework in Frameworks */,
 				EC9E79151ADE8FA300EED08B /* KIF.framework in Frameworks */,
-				ECB22AAE70950B1B6E1101DB /* Pods_DigipostTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,6 +1306,8 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */,
+				ECAB1CFC1AE4E87800D72D41 /* Pods.framework */,
 				EC9E79141ADE8FA300EED08B /* KIF.framework */,
 				EC2DCBEA1AB864990063755E /* Pods.framework */,
 				EC30219B1AB8483700812502 /* Pods.framework */,
@@ -1335,6 +1362,7 @@
 				83A31B101855D919007045B9 /* Digipost-Staging-Enterprise-Info.plist */,
 				83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */,
 				EC55F4321A2C5C1A00A3192C /* Digipost-Test-QA-2.xcconfig */,
+				ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */,
 				83F703571855DD3A003DABE1 /* Digipost.xcconfig */,
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83F7038418573C3A003DABE1 /* Localizable.strings */,
@@ -1765,6 +1793,7 @@
 			isa = PBXGroup;
 			children = (
 				EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */,
+				ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */,
 				EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */,
 				EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */,
 				EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */,
@@ -2061,6 +2090,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
+				ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */,
+				ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */,
+				ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */,
 				AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2899,12 +2931,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECAB1CEE1AE4E40100D72D41 /* ComposerTableViewDataSource.swift in Sources */,
+				ECAB1CF91AE4E79200D72D41 /* UITableView+Reorder.m in Sources */,
+				ECAB1CF21AE4E44900D72D41 /* TextModuleTableViewCell.swift in Sources */,
+				ECAB1CEF1AE4E40300D72D41 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
+				ECAB1CEB1AE4E2AD00D72D41 /* DocumentComposingTests.swift in Sources */,
 				316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
+				ECAB1CF31AE4E4B800D72D41 /* Recipient.swift in Sources */,
+				ECAB1CEC1AE4E39A00D72D41 /* ComposerModule.swift in Sources */,
+				ECAB1CF11AE4E44100D72D41 /* ImageModuleTableViewCell.swift in Sources */,
 				EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */,
 				EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */,
+				ECAB1CF01AE4E43200D72D41 /* ModuleSelectorViewController.swift in Sources */,
+				ECAB1CE91AE4E28F00D72D41 /* ImageComposerModule.swift in Sources */,
+				ECAB1CED1AE4E3FE00D72D41 /* ComposerViewController.swift in Sources */,
+				ECAB1CE71AE4E28900D72D41 /* TextComposerModule.swift in Sources */,
 				316C0CFA1ADFC3950037C9D6 /* UIImage+base64Representation.swift in Sources */,
+				ECAB1CF61AE4E4E300D72D41 /* UIImage+Size.swift in Sources */,
+				ECAB1CF51AE4E4D200D72D41 /* Constants.swift in Sources */,
 				EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */,
 				EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
+				ECAB1CF41AE4E4C200D72D41 /* ComposerModuleParser.swift in Sources */,
+				ECAB1CE81AE4E28D00D72D41 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3378,7 +3426,7 @@
 		};
 		EC9E79101ADE8E7800EED08B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5AB2C4D45C59B1A8E720772D /* Pods-DigipostTests.debug.xcconfig */;
+			baseConfigurationReference = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -3387,9 +3435,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-DigipostTests",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3402,6 +3449,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
 			};
@@ -3409,7 +3457,7 @@
 		};
 		EC9E79111ADE8E7800EED08B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */;
+			baseConfigurationReference = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -3419,9 +3467,8 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-DigipostTests",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
@@ -3430,6 +3477,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
 			};
 			name = Release;

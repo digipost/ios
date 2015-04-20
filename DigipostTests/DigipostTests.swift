@@ -28,7 +28,7 @@ class DigipostTests: KIFTestCase {
 
     }
     
-    func testExample() {
+    func _testExample() {
         // This is an example of a functional test case.
         tester.tapViewWithAccessibilityLabel(AccessibilityLabels.Onboarding.getStartedButton)
         tester.tapViewWithAccessibilityLabel(AccessibilityLabels.Onboarding.loginButton)
