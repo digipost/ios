@@ -281,6 +281,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func send(htmlContent: String, url: NSURL, success: (() -> Void) , failure: (error: APIError) -> ()) {
+        
+    }
+
     func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(url.path!) == false {

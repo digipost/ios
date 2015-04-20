@@ -28,6 +28,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // used when calculating size of textviews for cells that are bigger than one line
     var exampleTextView : UITextView?
 
+    // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
+    var mailboxDigipostAddress : String?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -115,10 +118,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
-        
         tableViewDataSource.tableData.append(module)
         tableView.reloadData()
-        
         if let imageModule = module as? ImageComposerModule {
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
             if let imageModule = module as? ImageComposerModule {
@@ -165,6 +166,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             let previewViewController = segue.destinationViewController as! PreviewViewController
             previewViewController.recipients = recipients
             previewViewController.modules = tableViewDataSource.tableData
+            previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
             
         }
     }
