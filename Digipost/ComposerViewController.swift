@@ -15,11 +15,12 @@ import SingleLineKeyboardResize
     func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint)
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension, UITableViewDataSourceReorderExtension {
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
 
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
     var initialIndexPathForMovingRow: NSIndexPath!
+    var snapShotOfCellBeingMoved: UIView!
     
     var tableViewDataSource: ComposerTableViewDataSource!
     var currentlyEditingTextView: UITextView?
@@ -38,21 +39,19 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     // MARK: - TableView Delegate Reorder functions
     
-    func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint) {
-        println("Began moving row at point \(point)")
+    func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint, withSnapShotViewOfDraggingRow snapShotView: UIView!) {
         initialIndexPathForMovingRow = tableView.indexPathForRowAtPoint(point)
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
-
+        snapShotOfCellBeingMoved = snapShotView
+        snapShotOfCellBeingMoved.transform = CGAffineTransformMakeRotation(-0.02)
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
-        println("Position of row changed to point: \(point)")
     }
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
-        println("Position of moving row ended at point: \(point)")
         let translatedPoint = tableView.convertPoint(point, toView: deleteComposerModuleView)
         if deleteComposerModuleView.pointInside(translatedPoint, withEvent: nil){
             deleteComposerModule()
@@ -63,10 +62,12 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
     
     func deleteComposerModule(){
-        if initialIndexPathForMovingRow != nil {
-            println("Delete")
+        if let indexPath = initialIndexPathForMovingRow, snapShotView = snapShotOfCellBeingMoved{
+            println("Initial Index of cell: \(indexPath)")
+            snapShotView.alpha = 0
         }
         initialIndexPathForMovingRow = nil
+        snapShotOfCellBeingMoved = nil
         deleteComposerModuleView.hide()
         
     }
