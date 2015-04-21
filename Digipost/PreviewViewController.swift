@@ -19,7 +19,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     @IBOutlet weak var addRecipientsButton: UIButton!
     @IBOutlet weak var recipientsTableHeaderLabel: UILabel!
     @IBOutlet weak var previewTableHeaderLabel: UILabel!
-
+    @IBOutlet weak var topSpaceToTableViewConstraint: NSLayoutConstraint!
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
@@ -54,7 +54,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
             recipientsTableHeaderLabel.text = "\(localizedString) (0)"
         }
         previewTableHeaderLabel.text = NSLocalizedString("preview view table view header title", comment: "Preview table view header")
-        
     }
     
     @IBAction func didTapFooterView(sender: AnyObject) {
