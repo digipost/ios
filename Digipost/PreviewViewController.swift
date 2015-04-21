@@ -17,6 +17,8 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var addRecipientsButton: UIButton!
+    @IBOutlet weak var recipientsTableHeaderLabel: UILabel!
+    @IBOutlet weak var previewTableHeaderLabel: UILabel!
 
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
@@ -33,8 +35,8 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
             self.currentShowingHTMLContent = htmlString!
         })
         
-//        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
-//        tableView.rowHeight = 70.0
+        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
+        tableView.rowHeight = 65.0
 //        
 //        let footerView = NSBundle.mainBundle().loadNibNamed("AddRecipientTableFooterView", owner: self, options: nil)[0] as! UIView
 //        footerView.frame = CGRectMake(0, 0, view.frame.width, 80.0)
