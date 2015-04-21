@@ -37,20 +37,24 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
         
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 65.0
-//        
-//        let footerView = NSBundle.mainBundle().loadNibNamed("AddRecipientTableFooterView", owner: self, options: nil)[0] as! UIView
-//        footerView.frame = CGRectMake(0, 0, view.frame.width, 80.0)
-//        footerView.backgroundColor = UIColor.clearColor()
-//    
-//        var goToAddRecipientsTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapFooterView:")
-//        goToAddRecipientsTap.cancelsTouchesInView = false
-//        footerView.addGestureRecognizer(goToAddRecipientsTap)
-//        
-//        tableView.tableFooterView = footerView
+        var tblView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = tblView
+        tableView.tableFooterView?.hidden = true
+        tableView.backgroundColor = UIColor.digipostAccountViewBackground()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let localizedString = NSLocalizedString("recipients view table view header title", comment: "Recipients table view header")
+        if recipients.count > 0 {
+            recipientsTableHeaderLabel.text = "\(localizedString) (\(recipients.count))"
+        } else {
+            recipientsTableHeaderLabel.text = "\(localizedString) (0)"
+        }
+        previewTableHeaderLabel.text = NSLocalizedString("preview view table view header title", comment: "Preview table view header")
+        
     }
     
     @IBAction func didTapFooterView(sender: AnyObject) {
