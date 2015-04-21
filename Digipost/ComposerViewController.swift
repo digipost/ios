@@ -19,8 +19,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
-    var initialIndexPathForMovingRow: NSIndexPath!
-    var snapShotOfCellBeingMoved: UIView!
     
     var tableViewDataSource: ComposerTableViewDataSource!
     var currentlyEditingTextView: UITextView?
@@ -40,12 +38,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - TableView Delegate Reorder functions
     
     func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint, withSnapShotViewOfDraggingRow snapShotView: UIView!) {
-        initialIndexPathForMovingRow = tableView.indexPathForRowAtPoint(point)
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
-        snapShotOfCellBeingMoved = snapShotView
-        snapShotOfCellBeingMoved.transform = CGAffineTransformMakeRotation(-0.02)
+        snapShotView.transform = CGAffineTransformMakeRotation(-0.02)
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
@@ -62,14 +58,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
     
     func deleteComposerModule(){
-        if let indexPath = initialIndexPathForMovingRow, snapShotView = snapShotOfCellBeingMoved{
-            println("Initial Index of cell: \(indexPath)")
-            snapShotView.alpha = 0
-        }
-        initialIndexPathForMovingRow = nil
-        snapShotOfCellBeingMoved = nil
+        tableView.isDeletingRow = true
         deleteComposerModuleView.hide()
-        
     }
     
     // MARK: - TableView Setup
