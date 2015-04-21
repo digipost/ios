@@ -674,6 +674,13 @@
 		EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
+		EC9C1CA31AE6564B0082A69D /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
+		EC9C1CA41AE6564B0082A69D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
+		EC9C1CA51AE656780082A69D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218A1AB70DA800812502 /* libsqlite3.dylib */; };
+		EC9C1CA61AE656860082A69D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
+		EC9C1CA71AE656A00082A69D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
+		EC9C1CA81AE656AF0082A69D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
+		EC9C1CA91AE656CC0082A69D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
@@ -1107,6 +1114,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9C1CA91AE656CC0082A69D /* AdSupport.framework in Frameworks */,
+				EC9C1CA81AE656AF0082A69D /* CoreData.framework in Frameworks */,
+				EC9C1CA71AE656A00082A69D /* MobileCoreServices.framework in Frameworks */,
+				EC9C1CA61AE656860082A69D /* SystemConfiguration.framework in Frameworks */,
+				EC9C1CA51AE656780082A69D /* libsqlite3.dylib in Frameworks */,
+				EC9C1CA31AE6564B0082A69D /* libAdIdAccess.a in Frameworks */,
+				EC9C1CA41AE6564B0082A69D /* libGoogleAnalyticsServices.a in Frameworks */,
 				8375DD3C1855C383009435B4 /* CoreGraphics.framework in Frameworks */,
 				8375DD3D1855C383009435B4 /* UIKit.framework in Frameworks */,
 				8375DD3E1855C383009435B4 /* Foundation.framework in Frameworks */,
@@ -2916,6 +2930,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2939,6 +2954,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"\"$(PROJECT_DIR)/GAI\"/**",
+					"$(PROJECT_DIR)/GAI",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2955,6 +2972,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
@@ -2979,6 +2997,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"\"$(PROJECT_DIR)/GAI\"/**",
+					"$(PROJECT_DIR)/GAI",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "91c5cbf6-a887-40a8-b454-559172ff3399";
