@@ -65,10 +65,6 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Legg til mottakere" id="hPs-XG-oFT">
-                        <barButtonItem key="backBarButtonItem" title=" " id="cuQ-0I-pCn"/>
-                        <barButtonItem key="leftBarButtonItem" id="qYl-fS-d4q">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lagre" id="pCj-3A-YAg">
                             <connections>
                                 <action selector="didTapSaveBarButtonItem" destination="9Ad-2g-amd" id="dYu-kl-fax"/>
@@ -157,7 +153,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="wrG-p8-dnl"/>
                                 </constraints>
-                                <inset key="contentEdgeInsets" minX="40" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Legg til mottakere">
                                     <color key="titleColor" red="0.30196078430000001" green="0.30980392159999998" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -238,6 +234,7 @@
                         <outlet property="previewTableHeaderLabel" destination="uQu-eW-aSP" id="wmu-Xe-QlM"/>
                         <outlet property="recipientsTableHeaderLabel" destination="K0s-eQ-sFe" id="zID-Cv-tBB"/>
                         <outlet property="tableView" destination="RxK-m1-a5k" id="lK1-fz-aCF"/>
+                        <outlet property="topSpaceToTableViewConstraint" destination="rVr-WR-Hcb" id="lMs-0e-aEk"/>
                         <outlet property="webView" destination="hjq-iS-buR" id="qHU-C8-fMA"/>
                         <segue destination="9Ad-2g-amd" kind="show" identifier="addRecipientsSegue" id="rXO-im-ODV"/>
                     </connections>
