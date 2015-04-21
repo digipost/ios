@@ -521,3 +521,5 @@
 "recipients view navigation bar title" = "Legg til mottakere";
 "recipients view navigation bar right button save" = "Lagre";
 "recipients view table view header title" = "MOTTAKERE";
+"preview view table view header title" = "FORHÅNDSVISNING";
+
