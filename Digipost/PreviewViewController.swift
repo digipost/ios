@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController {
+class PreviewViewController: UIViewController, RecipientsViewControllerDelegate {
     
     var recipients = [Recipient]()
     var modules = [ComposerModule]()
@@ -49,11 +49,17 @@ class PreviewViewController: UIViewController {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
+            recipientsViewController.delegate = self
+        }
+    }
     
-    func addRecipientsFromSearch(addedRecipients: [Recipient]) {
-        recipients = addedRecipients
+    func addRecipients(addedRecipients: [Recipient]) {
+        self.recipients = addedRecipients
         tableView.reloadData()
-}
+    }
+    
     @IBAction func didTapSendButton(sender: AnyObject) {
 
        let a = APIClient.sharedClient
@@ -70,4 +76,5 @@ class PreviewViewController: UIViewController {
                 println(error)
         }
     }
+
 }
