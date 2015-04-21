@@ -44,6 +44,7 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
+                println(htttpURL)
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
@@ -141,6 +142,19 @@ extension APIClient {
         return task
     }
 
+    func urlSessionJSONTask(method: httpMethod, url: String, parameters: [String : AnyObject], success: ([String : AnyObject]) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
+        var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.HTTPMethod = method.rawValue
+        urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+
+        let task = jsonDataTask(urlRequest, success: success, failure: failure)
+        return task
+    }
+
     func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
@@ -163,5 +177,5 @@ extension APIClient {
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-    
+
 }

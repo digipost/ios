@@ -71,12 +71,9 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     
     @IBAction func didTapSendButton(sender: AnyObject) {
 
-       let a = APIClient.sharedClient
-
         let mailbox = POSMailbox.existingMailboxWithDigipostAddress(mailboxDigipostAddress, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
 
-        
-        APIClient.sharedClient.send(currentShowingHTMLContent!, uri: mailbox.sendUri, success: { () -> Void in
+        APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: mailbox.sendUri, success: { () -> Void in
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
 
             })

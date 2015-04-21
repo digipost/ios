@@ -166,6 +166,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             }
             previewViewController.recipients = recipients
             previewViewController.modules = tableViewDataSource.tableData
+            previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
         }
     }
 }

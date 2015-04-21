@@ -282,8 +282,34 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func send(htmlContent: String, uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
-        
+    func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
+
+        for recipient in recipients {
+
+        }
+//        authenticationLevel: "PASSWORD"
+//        deliveryMethod: "DIGIPOST"
+//        subject: "Kladd"
+        let url = NSURL(string: uri)
+        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        let parameters = ["subject" : "kladd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
+        validate(token: oauthToken) { () -> Void in
+            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters, success: { (responseJSON) -> Void in
+                println(responseJSON)
+            }, failure: { (error) -> () in
+                println(error)
+            })
+
+            //            lekt task = self.urlSessionJSONTask(url: uri, success: { (responseDict) -> Void in
+//
+//                println(responseDict)
+//            }, failure: { (error) -> () in
+//                println(error)
+//
+//            })
+            task!.resume()
+        }
+
     }
 
     func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
