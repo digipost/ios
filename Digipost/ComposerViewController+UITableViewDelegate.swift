@@ -21,13 +21,19 @@ extension ComposerViewController {
 
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let module = self.tableViewDataSource.composerModule(atIndexPath: indexPath)
-        if let textModule = module as? TextComposerModule {
-            return height(textComposerModule: textModule)
+        if tableView.editing == true {
+            return 88
+        } else {
+            let module = self.tableViewDataSource.composerModule(atIndexPath: indexPath)
+            if let textModule = module as? TextComposerModule {
+                return height(textComposerModule: textModule)
+            }
+            if let imageModule = module as? ImageComposerModule {
+                return self.view.frame.width
+            }
+            
         }
-        if let imageModule = module as? ImageComposerModule {
-            return self.view.frame.width
-        }
+        
         return 44
     }
     

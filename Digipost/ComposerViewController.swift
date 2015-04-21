@@ -41,14 +41,18 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
+        //snapShotView.transform = CGAffineTransformMakeScale(0.75, 0.75)
         snapShotView.transform = CGAffineTransformMakeRotation(-0.02)
         let offset = tableView.frame.origin.x
+        snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 44)
         snapShotView.frame.origin.x += offset
         view.addSubview(snapShotView)
+        tableView.editing = true
         
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
+        println(tableView.editing)
     }
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
@@ -58,6 +62,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         } else {
             deleteComposerModuleView.hide()
         }
+ 
+        tableView.editing = false
         
     }
     
