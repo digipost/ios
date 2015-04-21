@@ -29,8 +29,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="9Ad-2g-amd" id="zaR-HW-p7t"/>
-                                    <outlet property="delegate" destination="9Ad-2g-amd" id="Xds-xT-ndo"/>
+                                    <outlet property="dataSource" destination="9Ad-2g-amd" id="XvS-im-bY5"/>
+                                    <outlet property="delegate" destination="9Ad-2g-amd" id="VVd-O3-LUH"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -49,13 +49,13 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Lagre" id="pCj-3A-YAg">
                             <connections>
-                                <action selector="returnToPreviewViewController" destination="9Ad-2g-amd" id="tS1-Bl-Cof"/>
+                                <action selector="didTapSaveBarButtonItem" destination="9Ad-2g-amd" id="dYu-kl-fax"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="saveBarButtonItem" destination="pCj-3A-YAg" id="Wcd-7K-Qvb"/>
-                        <outlet property="tableView" destination="4lo-wY-uWH" id="iLQ-Yp-XD9"/>
+                        <outlet property="tableView" destination="4lo-wY-uWH" id="4zy-NR-fN2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyo-VB-O1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -115,7 +115,7 @@
                     <navigationItem key="navigationItem" title="Forhåndsvisning" id="u2c-rC-2Nd"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="tableView" destination="RxK-m1-a5k" id="kLv-cI-wOW"/>
+                        <outlet property="tableView" destination="RxK-m1-a5k" id="lK1-fz-aCF"/>
                         <outlet property="webView" destination="hjq-iS-buR" id="qHU-C8-fMA"/>
                         <segue destination="9Ad-2g-amd" kind="show" identifier="addRecipientsSegue" id="rXO-im-ODV"/>
                     </connections>

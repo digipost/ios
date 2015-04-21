@@ -46,13 +46,6 @@ extension RecipientViewController: UITableViewDelegate {
         return footerView
     }
     
-    @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
-        let point = tap.locationInView(tableView)
-        let indexPath = self.tableView.indexPathForRowAtPoint(point)
-        
-        if indexPath == nil {
-            recipientSearchController.active = false
-        }
-    }
+    
     
 }
