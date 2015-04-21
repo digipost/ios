@@ -153,6 +153,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
         }
         
@@ -165,5 +166,4 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             previewViewController.modules = tableViewDataSource.tableData
         }
     }
-
 }
