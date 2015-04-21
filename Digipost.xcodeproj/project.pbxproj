@@ -37,7 +37,6 @@
 		31266D681AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
 		31266D691AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
 		31266D6A1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
-		31266D6B1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31266D661AE5181100D32A81 /* AddRecipientTableFooterView.xib */; };
 		31679B6A1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
 		31679B6B1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
 		31679B6C1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31679B671ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift */; };
@@ -65,17 +64,14 @@
 		316C0CF71ADFC3920037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
 		316C0CF81ADFC3930037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
 		316C0CF91ADFC3940037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
-		316C0CFA1ADFC3950037C9D6 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
 		316C0CFC1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
 		316C0CFD1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
 		316C0CFE1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
 		316C0CFF1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
-		316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */; };
 		316C0D081ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
 		316C0D091ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
 		316C0D0A1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
 		316C0D0B1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
-		316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */; };
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		316D3BC01A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
@@ -87,8 +83,6 @@
 		31952EFA1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
 		31952EFB1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
 		31952EFC1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
-		31952EFD1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31952EF81AE50CA700739600 /* RecipientTableViewCell.swift */; };
-		31952EFE1AE514FD00739600 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		31B57FF71A6691E3008952DE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -193,7 +187,6 @@
 		AF1E55B21ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
 		AF1E55B31ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
 		AF1E55B41ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
-		AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
@@ -220,12 +213,10 @@
 		AF8F8A381AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
 		AF8F8A391AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
 		AF8F8A3A1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
-		AF8F8A3B1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF8F8A361AE5184500E8A6BA /* DeleteComposerModuleView.xib */; };
 		AF8F8A3D1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
 		AF8F8A3E1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
 		AF8F8A3F1AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
 		AF8F8A401AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
-		AF8F8A411AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8F8A3C1AE51AE500E8A6BA /* DeleteComposerModuleView.swift */; };
 		AF981EE71AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
 		AF981EE91AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF981EE61AD50F5F00DE8B55 /* DocumentComposer.storyboard */; };
@@ -263,7 +254,6 @@
 		AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		AFA069EE1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
 		AFA069EF1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
-		AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
 		AFA069F21ADD225900AA2D54 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
 		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -273,6 +263,7 @@
 		AFC1A9351A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		EC04AB7A1AE6402C006B7A22 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C19FC19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
@@ -683,13 +674,6 @@
 		EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
-		EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */; };
-		EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */; };
-		EC9E79151ADE8FA300EED08B /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC9E79141ADE8FA300EED08B /* KIF.framework */; };
-		EC9E79161ADE8FB400EED08B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
-		EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */; };
-		EC9E791A1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */; };
-		EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594C819FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
@@ -699,27 +683,6 @@
 		ECA618E31AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECA618E41AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
 		ECA618E61AC02918000B806D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
-		ECAB1CE71AE4E28900D72D41 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
-		ECAB1CE81AE4E28D00D72D41 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */; };
-		ECAB1CE91AE4E28F00D72D41 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069ED1ADD225900AA2D54 /* ImageComposerModule.swift */; };
-		ECAB1CEB1AE4E2AD00D72D41 /* DocumentComposingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */; };
-		ECAB1CEC1AE4E39A00D72D41 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
-		ECAB1CED1AE4E3FE00D72D41 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
-		ECAB1CEE1AE4E40100D72D41 /* ComposerTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */; };
-		ECAB1CEF1AE4E40300D72D41 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */; };
-		ECAB1CF01AE4E43200D72D41 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */; };
-		ECAB1CF11AE4E44100D72D41 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */; };
-		ECAB1CF21AE4E44900D72D41 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */; };
-		ECAB1CF31AE4E4B800D72D41 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F4C88D1AD5471700E63129 /* Recipient.swift */; };
-		ECAB1CF41AE4E4C200D72D41 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */; };
-		ECAB1CF51AE4E4D200D72D41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
-		ECAB1CF61AE4E4E300D72D41 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
-		ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */; };
-		ECAB1CF91AE4E79200D72D41 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = AF981F051AD525D200DE8B55 /* UITableView+Reorder.m */; };
-		ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
-		ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68751AD59533007020DC /* TextModuleTableViewCell.xib */; };
-		ECAB1CFD1AE4E87800D72D41 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAB1CFC1AE4E87800D72D41 /* Pods.framework */; };
-		ECAB1CFF1AE4E88900D72D41 /* Pods_DigipostTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */; };
 		ECB1354B1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB1354D1938C243000F9F7F /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
@@ -791,16 +754,6 @@
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		ECFD577D18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EC9E790D1ADE8E7800EED08B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 83BAB9171855C0AC004A7BFB;
-			remoteInfo = Digipost;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1076,7 +1029,6 @@
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC94DA7B1AE5217600AE574D /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
-		EC9E79071ADE8E7800EED08B /* DigipostTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC9E790A1ADE8E7800EED08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostTests.swift; sourceTree = "<group>"; };
 		EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTests.swift; sourceTree = "<group>"; };
@@ -1174,9 +1126,9 @@
 				83BAB91C1855C0AC004A7BFB /* Foundation.framework in Frameworks */,
 				EC30218E1AB70DC100812502 /* MobileCoreServices.framework in Frameworks */,
 				EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */,
-				EC30219F1AB8499700812502 /* libAdIdAccess.a in Frameworks */,
 				83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */,
 				15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */,
+				EC30219F1AB8499700812502 /* libAdIdAccess.a in Frameworks */,
 				EC3021A01AB8499700812502 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1216,17 +1168,6 @@
 				EC2DCC771AB864AB0063755E /* UIKit.framework in Frameworks */,
 				EC2DCC781AB864AB0063755E /* Pods.framework in Frameworks */,
 				EC2DCC791AB864AB0063755E /* libGoogleAnalyticsServices.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		EC9E79041ADE8E7700EED08B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ECAB1CFF1AE4E88900D72D41 /* Pods_DigipostTests.framework in Frameworks */,
-				ECAB1CFD1AE4E87800D72D41 /* Pods.framework in Frameworks */,
-				EC9E79161ADE8FB400EED08B /* CoreGraphics.framework in Frameworks */,
-				EC9E79151ADE8FA300EED08B /* KIF.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1331,7 +1272,6 @@
 				8375DD471855C383009435B4 /* Digipost-Test-Dpost.app */,
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
 				EC2DCC911AB864AB0063755E /* Digipost-qa2.app */,
-				EC9E79071ADE8E7800EED08B /* DigipostTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1925,26 +1865,6 @@
 			productReference = EC2DCC911AB864AB0063755E /* Digipost-qa2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC9E79061ADE8E7700EED08B /* DigipostTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC9E790F1ADE8E7800EED08B /* Build configuration list for PBXNativeTarget "DigipostTests" */;
-			buildPhases = (
-				E16DD3FB950061F4049FE26C /* Check Pods Manifest.lock */,
-				EC9E79031ADE8E7700EED08B /* Sources */,
-				EC9E79041ADE8E7700EED08B /* Frameworks */,
-				EC9E79051ADE8E7700EED08B /* Resources */,
-				F9949A8BD389259712DCE6DC /* Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC9E790E1ADE8E7800EED08B /* PBXTargetDependency */,
-			);
-			name = DigipostTests;
-			productName = DigipostTests;
-			productReference = EC9E79071ADE8E7800EED08B /* DigipostTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1952,7 +1872,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = POS;
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Posten;
 				TargetAttributes = {
 					8375DD351855C383009435B4 = {
@@ -1971,10 +1891,6 @@
 					};
 					EC2DCBEC1AB864AB0063755E = {
 						DevelopmentTeam = 4E3PDM5H84;
-					};
-					EC9E79061ADE8E7700EED08B = {
-						CreatedOnToolsVersion = 6.3;
-						TestTargetID = 83BAB9171855C0AC004A7BFB;
 					};
 				};
 			};
@@ -1996,7 +1912,6 @@
 				EC2DCB3B1AB84EAB0063755E /* DigipostBeta */,
 				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
 				EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */,
-				EC9E79061ADE8E7700EED08B /* DigipostTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2127,20 +2042,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC9E79051ADE8E7700EED08B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				316C0D001ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
-				AF8F8A3B1AE5184500E8A6BA /* DeleteComposerModuleView.xib in Resources */,
-				ECAB1CFA1AE4E7DF00D72D41 /* ImageModuleTableViewCell.xib in Resources */,
-				ECAB1CF81AE4E58000D72D41 /* DigipostTests.xcconfig in Resources */,
-				ECAB1CFB1AE4E7DF00D72D41 /* TextModuleTableViewCell.xib in Resources */,
-				31266D6B1AE5181100D32A81 /* AddRecipientTableFooterView.xib in Resources */,
-				AF1E55B51ADEB000003AB3B2 /* stylesheet.css in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -2175,21 +2076,6 @@
 			showEnvVarsInLog = 0;
 		};
 		5E75E61529884F13ABC62E42 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		E16DD3FB950061F4049FE26C /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2321,21 +2207,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ $CONFIGURATION == Test ]; then\n   exec > /tmp/UITests-log.txt 2>&1\n   ./runtests.sh\n   open /tmp/UITests-log.txt\nfi";
-		};
-		F9949A8BD389259712DCE6DC /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2488,10 +2359,9 @@
 				ECDC58941935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB7192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8371A6E701D00708A75 /* APIError.swift in Sources */,
-				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
+				EC04AB7A1AE6402C006B7A22 /* ImageComposerModule.swift in Sources */,
 				AF991E021ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
 				31679B7D1ADE7FED005FE31B /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
-				AFA069F01ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
 				AF0A8F161A8EABB400A5A8E7 /* UIScrollViewExtensions.swift in Sources */,
 				AF981EF31AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				AFA069EA1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
@@ -2521,7 +2391,6 @@
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
-				EC9E791A1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				AF488CAF1AD7DC8C00FC32CC /* UIImage+base64Representation.swift in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
@@ -2979,47 +2848,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC9E79031ADE8E7700EED08B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ECAB1CEE1AE4E40100D72D41 /* ComposerTableViewDataSource.swift in Sources */,
-				ECAB1CF91AE4E79200D72D41 /* UITableView+Reorder.m in Sources */,
-				ECAB1CF21AE4E44900D72D41 /* TextModuleTableViewCell.swift in Sources */,
-				ECAB1CEF1AE4E40300D72D41 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
-				31952EFE1AE514FD00739600 /* String+Extensions.swift in Sources */,
-				ECAB1CEB1AE4E2AD00D72D41 /* DocumentComposingTests.swift in Sources */,
-				316C0D0C1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
-				ECAB1CF31AE4E4B800D72D41 /* Recipient.swift in Sources */,
-				ECAB1CEC1AE4E39A00D72D41 /* ComposerModule.swift in Sources */,
-				ECAB1CF11AE4E44100D72D41 /* ImageModuleTableViewCell.swift in Sources */,
-				EC9E790C1ADE8E7800EED08B /* DigipostTests.swift in Sources */,
-				EC9E79131ADE8EBE00EED08B /* ComposerTests.swift in Sources */,
-				ECAB1CF01AE4E43200D72D41 /* ModuleSelectorViewController.swift in Sources */,
-				ECAB1CE91AE4E28F00D72D41 /* ImageComposerModule.swift in Sources */,
-				31952EFD1AE50CA700739600 /* RecipientTableViewCell.swift in Sources */,
-				ECAB1CED1AE4E3FE00D72D41 /* ComposerViewController.swift in Sources */,
-				ECAB1CE71AE4E28900D72D41 /* TextComposerModule.swift in Sources */,
-				316C0CFA1ADFC3950037C9D6 /* UIImage+base64Representation.swift in Sources */,
-				ECAB1CF61AE4E4E300D72D41 /* UIImage+Size.swift in Sources */,
-				ECAB1CF51AE4E4D200D72D41 /* Constants.swift in Sources */,
-				EC9E79181ADE915C00EED08B /* XCTestCase+KIF.swift in Sources */,
-				EC9E791B1ADE97AA00EED08B /* AccessibilityLabels.swift in Sources */,
-				AF8F8A411AE51AE500E8A6BA /* DeleteComposerModuleView.swift in Sources */,
-				ECAB1CF41AE4E4C200D72D41 /* ComposerModuleParser.swift in Sources */,
-				ECAB1CE81AE4E28D00D72D41 /* PreviewViewController.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EC9E790E1ADE8E7800EED08B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 83BAB9171855C0AC004A7BFB /* Digipost */;
-			targetProxy = EC9E790D1ADE8E7800EED08B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
@@ -3261,11 +3090,8 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GAI",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(PROJECT_DIR)/GAI\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3301,11 +3127,8 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GAI",
-				);
+				LIBRARY_SEARCH_PATHS = "\"$(PROJECT_DIR)/GAI\"";
+				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3479,64 +3302,6 @@
 			};
 			name = Release;
 		};
-		EC9E79101ADE8E7800EED08B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = DigipostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-			};
-			name = Debug;
-		};
-		EC9E79111ADE8E7800EED08B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = DigipostTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3581,15 +3346,6 @@
 			buildConfigurations = (
 				EC2DCC8F1AB864AB0063755E /* Debug */,
 				EC2DCC901AB864AB0063755E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC9E790F1ADE8E7800EED08B /* Build configuration list for PBXNativeTarget "DigipostTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC9E79101ADE8E7800EED08B /* Debug */,
-				EC9E79111ADE8E7800EED08B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

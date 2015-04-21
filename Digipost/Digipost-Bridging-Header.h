@@ -29,3 +29,4 @@
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
 #import "UITableView+Reorder.h"
+#import "POSMailBox+Methods.h"
