@@ -287,26 +287,17 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         for recipient in recipients {
 
         }
-//        authenticationLevel: "PASSWORD"
-//        deliveryMethod: "DIGIPOST"
-//        subject: "Kladd"
         let url = NSURL(string: uri)
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let parameters = ["subject" : "kladd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
         validate(token: oauthToken) { () -> Void in
             let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters, success: { (responseJSON) -> Void in
                 println(responseJSON)
+                let sendableDocument = SendableDocument(dictionary: responseJSON)
+
             }, failure: { (error) -> () in
                 println(error)
             })
-
-            //            lekt task = self.urlSessionJSONTask(url: uri, success: { (responseDict) -> Void in
-//
-//                println(responseDict)
-//            }, failure: { (error) -> () in
-//                println(error)
-//
-//            })
             task!.resume()
         }
 
