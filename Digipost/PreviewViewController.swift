@@ -15,7 +15,7 @@ class PreviewViewController: UIViewController {
 
     @IBOutlet weak var recipientsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var webView: UIWebView!
+    @IBOutlet weak var webView: UIWebView!
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
