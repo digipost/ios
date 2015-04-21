@@ -153,21 +153,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.destinationViewController.isKindOfClass(ModuleSelectorViewController){
-            let moduleSelectViewController = segue.destinationViewController as! ModuleSelectorViewController
             moduleSelectViewController.delegate = self
-            
-        } else if segue.destinationViewController.isKindOfClass(PreviewViewController){
+        }
+        
+        if let previewViewController = segue.destinationViewController as? PreviewViewController{
             
             if let textView = currentlyEditingTextView{
                 textView.resignFirstResponder()
             }
-            
-            let previewViewController = segue.destinationViewController as! PreviewViewController
             previewViewController.recipients = recipients
             previewViewController.modules = tableViewDataSource.tableData
-            previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
-            
         }
     }
 
