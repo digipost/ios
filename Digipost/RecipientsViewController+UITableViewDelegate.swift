@@ -14,7 +14,8 @@ extension RecipientViewController: UITableViewDelegate {
         if recipientSearchController.active {
             for (index, r) in enumerate(addedRecipients) {
                 if r.name == recipients[indexPath.row].name {
-                    tableView.cellForRowAtIndexPath(indexPath)?.accessoryType = UITableViewCellAccessoryType.None
+                    let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
+                    cell.addedButton.hidden = true
                     addedRecipients.removeAtIndex(index)
                     tableView.reloadData()
                     found = true
