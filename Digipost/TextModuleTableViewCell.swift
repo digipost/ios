@@ -11,7 +11,7 @@ import UIKit
 class TextModuleTableViewCell: UITableViewCell {
     var composerInputAccessoryView: ComposerInputAccessoryView!
     
-    @IBOutlet var moduleTextView: UITextView!
+    @IBOutlet var moduleTextView: PlaceholderTextView!
     override func awakeFromNib() {
         super.awakeFromNib()
 

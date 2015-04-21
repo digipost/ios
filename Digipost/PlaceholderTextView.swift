@@ -8,37 +8,59 @@
 
 import UIKit
 
-class PlaceholderTextView: UITextView {
+
+class PlaceholderTextView: UITextView, UITextViewDelegate {
     
-    var placeholderLabel: UILabel = UILabel()
-    var placeholderColor: UIColor = UIColor.lightGrayColor()
-    var placeholderText: String = ""
+    @IBInspectable var placeholder: String!
     
     required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    init(frame: CGRect, withPlaceholderText placeholderText: String){
-        self.placeholderText = placeholderText
-        let textContainer = NSTextContainer(size: frame.size)
-        super.init(frame: frame, textContainer: textContainer)
-        
-        placeholderLabel.frame = frame
-        placeholderLabel.backgroundColor = UIColor.clearColor()
-        placeholderLabel.text = placeholderText
-        self.addSubview(placeholderLabel)
-        self.sendSubviewToBack(placeholderLabel)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange:", name: UITextViewTextDidChangeNotification, object: nil)
+        super.init(coder: aDecoder)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange:", name: UITextViewTextDidChangeNotification, object: self)
+        delegate = self
     }
     
     deinit{
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
-
     
-    func textDidChange(notification:NSNotification?) -> (Void) {
-        println("Text changed")
+    func textDidChange(notification: NSNotification?) -> (Void) {
+        if let object = notification?.object as? PlaceholderTextView{
+            if object == self {
+                
+                if text.isEmpty {
+                    addPlaceholder()
+                } else if textColor == UIColor.lightGrayColor(){
+                    text = ""
+                    textColor = UIColor.blackColor()
+                }
+            }
+        }
+
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        println()
+    }
+    
+    func addPlaceholder(){
+       
+        placeholder = {
+            switch self.font {
+            case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
+                return "Enter a Headline"
+            case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
+                return "Enter a Body"
+            case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
+                return "Enter a Subheadline"
+            default:
+                return "Enter text"
+            }
+            }()
+        
+        textColor = UIColor.lightGrayColor()
+        text = placeholder
+        let markerStartPosition = NSMakeRange(0, 0)
+        selectedRange = markerStartPosition
     }
     
     /*
