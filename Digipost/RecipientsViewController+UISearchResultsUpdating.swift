@@ -15,7 +15,7 @@ extension RecipientViewController: UISearchResultsUpdating {
         } else if recipientSearchController.searchBar.text != "" {
             APIClient.sharedClient.getRecipients(recipientSearchController.searchBar.text, success: { (responseDictionary) -> Void in
                 self.recipients = Recipient.recipients(jsonDict: responseDictionary)
-                
+                self.tableView.reloadData()
                 }) { (error) -> () in
                     println(error)
             }

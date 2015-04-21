@@ -24,12 +24,14 @@ extension RecipientViewController: UITableViewDelegate {
             if found == false { addedRecipients.append(recipients[indexPath.row]) }
         }
         
+        tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if recipientSearchController.active == false {
             addedRecipients.removeAtIndex(indexPath.row)
+            tableView.reloadData()
         }
     }
     
