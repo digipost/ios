@@ -15,7 +15,7 @@ import SingleLineKeyboardResize
     func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint)
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension, UITableViewDataSourceReorderExtension {
 
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
@@ -42,8 +42,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         println("Began moving row at point \(point)")
         initialIndexPathForMovingRow = tableView.indexPathForRowAtPoint(point)
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
-        deleteComposerModuleView.frame = CGRectMake(0, view.frame.height , self.view.frame.width, 88)
-        self.view.addSubview(deleteComposerModuleView)
+        deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
 
     }
@@ -57,6 +56,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let translatedPoint = tableView.convertPoint(point, toView: deleteComposerModuleView)
         if deleteComposerModuleView.pointInside(translatedPoint, withEvent: nil){
             deleteComposerModule()
+        } else {
+            deleteComposerModuleView.hide()
         }
         
     }
@@ -66,8 +67,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             println("Delete")
         }
         initialIndexPathForMovingRow = nil
-
         deleteComposerModuleView.hide()
+        
     }
     
     // MARK: - TableView Setup

@@ -17,6 +17,11 @@ class DeleteComposerModuleView: UIView {
         // Drawing code
     }
     */
+    
+    func addToView(view: UIView) {
+        self.frame = CGRectMake(0, view.frame.height, view.frame.width, 88)
+        view.addSubview(self)
+    }
 
     func show() {
         
