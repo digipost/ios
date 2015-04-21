@@ -46,11 +46,12 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="cuQ-0I-pCn"/>
                         <barButtonItem key="leftBarButtonItem" id="qYl-fS-d4q">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Lagre" id="pCj-3A-YAg">
                             <connections>
-                                <action selector="dismissViewController:" destination="9Ad-2g-amd" id="gVK-cl-RKA"/>
+                                <action selector="returnToPreviewViewController" destination="9Ad-2g-amd" id="tS1-Bl-Cof"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Lagre" id="pCj-3A-YAg"/>
                     </navigationItem>
                     <connections>
                         <outlet property="saveBarButtonItem" destination="pCj-3A-YAg" id="Wcd-7K-Qvb"/>
