@@ -17,8 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-wY-uWH">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Søk på personer eller bedrifter" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sMN-8A-iEG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Cu1-Wo-Vkp"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-wY-uWH">
+                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recipientCell" rowHeight="80" id="RQv-iZ-5mC" customClass="RecipientTableViewCell" customModule="Digipost" customModuleProvider="target">
@@ -29,18 +36,33 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="9Ad-2g-amd" id="XvS-im-bY5"/>
-                                    <outlet property="delegate" destination="9Ad-2g-amd" id="VVd-O3-LUH"/>
+                                    <outlet property="dataSource" destination="9Ad-2g-amd" id="QW2-63-Y2M"/>
+                                    <outlet property="delegate" destination="9Ad-2g-amd" id="HxF-tJ-Jf1"/>
                                 </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="76k-Jf-HTN"/>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="sMN-8A-iEG" secondAttribute="bottom" id="CT0-9b-R8r"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sMN-8A-iEG" secondAttribute="trailing" constant="-16" id="CjW-Jp-6oR"/>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="UHt-00-Igr" secondAttribute="topMargin" id="Fm4-AX-oUr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="OwY-da-BIf"/>
+                            <constraint firstItem="sMN-8A-iEG" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="PWP-g1-EQb"/>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="Tea-eH-g7T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="Wdr-6p-C0B"/>
+                            <constraint firstItem="sMN-8A-iEG" firstAttribute="top" secondItem="KD7-a2-Cro" secondAttribute="bottom" id="gKF-Ei-qGz"/>
                             <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="tzV-06-SkE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="yFr-ar-gjQ"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="76k-Jf-HTN"/>
+                                <exclude reference="Fm4-AX-oUr"/>
+                                <exclude reference="Wdr-6p-C0B"/>
+                                <exclude reference="tzV-06-SkE"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Legg til mottakere" id="hPs-XG-oFT">
                         <barButtonItem key="backBarButtonItem" title=" " id="cuQ-0I-pCn"/>
@@ -55,7 +77,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="saveBarButtonItem" destination="pCj-3A-YAg" id="Wcd-7K-Qvb"/>
-                        <outlet property="tableView" destination="4lo-wY-uWH" id="4zy-NR-fN2"/>
+                        <outlet property="searchBar" destination="sMN-8A-iEG" id="2Eg-Yk-TA0"/>
+                        <outlet property="tableView" destination="4lo-wY-uWH" id="kYs-gE-ya2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyo-VB-O1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
