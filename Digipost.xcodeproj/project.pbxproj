@@ -648,6 +648,10 @@
 		EC60D64819D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC63A8351A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		EC63A8371A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
+		EC67AA291AE67E4900B08328 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67AA281AE67E4900B08328 /* SendableDocument.swift */; };
+		EC67AA2A1AE67E4900B08328 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67AA281AE67E4900B08328 /* SendableDocument.swift */; };
+		EC67AA2B1AE67E4900B08328 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67AA281AE67E4900B08328 /* SendableDocument.swift */; };
+		EC67AA2C1AE67E4900B08328 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67AA281AE67E4900B08328 /* SendableDocument.swift */; };
 		EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
 		EC68C07518AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
@@ -1007,6 +1011,7 @@
 		EC63A83D1A6E74EB00708A75 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		EC63A8431A6E7C1800708A75 /* ModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Convenience.swift"; sourceTree = "<group>"; };
+		EC67AA281AE67E4900B08328 /* SendableDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendableDocument.swift; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -1252,6 +1257,7 @@
 				83DB4AE5188D1F4E00515022 /* POSReceipt.m */,
 				83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */,
 				83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */,
+				EC67AA281AE67E4900B08328 /* SendableDocument.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1493,8 +1499,8 @@
 		AFB730E91ADE590A009C98E6 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
-				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
 				316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */,
@@ -2346,6 +2352,7 @@
 				8364D71B185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				EC25AADF189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				ECF06D53192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
+				EC67AA2B1AE67E4900B08328 /* SendableDocument.swift in Sources */,
 				837574BC1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				83F703631855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				EC41C70A19C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
@@ -2529,6 +2536,7 @@
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
+				EC67AA291AE67E4900B08328 /* SendableDocument.swift in Sources */,
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				311779661AAEFCA800229D02 /* UploadView.swift in Sources */,
 				AFA069E81ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
@@ -2688,6 +2696,7 @@
 				EC2DCBB71AB84EAB0063755E /* UIViewController+BackButton.m in Sources */,
 				EC2DCBB81AB84EAB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCBB91AB84EAB0063755E /* POSFolder+Methods.m in Sources */,
+				EC67AA2A1AE67E4900B08328 /* SendableDocument.swift in Sources */,
 				EC2DCBBA1AB84EAB0063755E /* APIError.swift in Sources */,
 				AF981EF21AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				EC2DCBBB1AB84EAB0063755E /* UploadView.swift in Sources */,
@@ -2822,6 +2831,7 @@
 				EC2DCC561AB864AB0063755E /* AHKActionSheet+Convenience.m in Sources */,
 				EC2DCC571AB864AB0063755E /* UIView+AutoLayout.m in Sources */,
 				EC2DCC581AB864AB0063755E /* POSUploadTableViewCell.m in Sources */,
+				EC67AA2C1AE67E4900B08328 /* SendableDocument.swift in Sources */,
 				EC2DCC591AB864AB0063755E /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				316ADCA91ADE6DB300A39A95 /* PreviewViewController+UITableViewDataSource.swift in Sources */,
 				EC2DCC5A1AB864AB0063755E /* POSFoldersViewController.m in Sources */,
