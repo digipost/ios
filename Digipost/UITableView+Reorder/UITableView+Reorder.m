@@ -537,37 +537,58 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 	self.reorderAutoScrollTimer = nil;
 	self.reorderAutoScrollRate = 0;
 
-	// We are finished so we are moving to the toIndexPathForRowBeingMoved
-	if( self.toIndexPathForRowBeingMoved ) {
-		// Get the cell coordinates so we know where its center is
-		UITableViewCell *endCell = [self cellForRowAtIndexPath: self.toIndexPathForRowBeingMoved];
-		// Make the snap shot cell nicely disappear
-		[UIView animateWithDuration: 0.25 animations: ^{
-			self.snapShotOfCellBeingMoved.center = CGPointMake( self.snapShotOfCellBeingMoved.center.x, endCell.center.y );
-		} completion: ^( BOOL finished ) {
-			// Clear 'snapShotOfCellBeingMoved' so the cell will
-			// draw instead of drawing a blank space.
-			UIView *tempSnapShotHolder = self.snapShotOfCellBeingMoved;
-			self.snapShotOfCellBeingMoved = nil;
-			[self reloadRowsAtIndexPaths: @[self.toIndexPathForRowBeingMoved] withRowAnimation: UITableViewRowAnimationNone];
-			// Maybe I should delay this removal or animate it to
-			// prevent flicker? Animate its alpha to zero then remove?
-			[UIView animateWithDuration: 0.1 animations:^{
-				tempSnapShotHolder.alpha = 0.0;
-			} completion:^(BOOL finished) {
-				[tempSnapShotHolder removeFromSuperview];
-			}];
+    if (self.isDeletingRow) {
+        
+        UIView *tempSnapShotHolder = self.snapShotOfCellBeingMoved;
+        self.snapShotOfCellBeingMoved = nil;
+        [UIView animateWithDuration:0.1 animations:^{
+            tempSnapShotHolder.alpha = 0.0;
+        } completion:^(BOOL finished) {
+            [tempSnapShotHolder removeFromSuperview];
+            [self beginUpdates];
+            if( [self.dataSource respondsToSelector: @selector(tableView:commitEditingStyle:forRowAtIndexPath:)] ) {
+                [self.dataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.fromIndexPathOfRowBeingMoved];
+            }
+            [self endUpdates];
+        }];
+        
 
-			// Tell the table view's datasource the the row has been
-			// moved so it can make the datasource match the display
-			if( [self.dataSource respondsToSelector: @selector(tableView:moveRowAtIndexPath:toIndexPath:)] ) {
-				[self.dataSource tableView: self moveRowAtIndexPath: self.fromIndexPathOfRowBeingMoved toIndexPath: self.toIndexPathForRowBeingMoved];
-			}
-
-			self.fromIndexPathOfRowBeingMoved = nil;
-			self.toIndexPathForRowBeingMoved = nil;
-		}];
-	}
+    } else {
+        
+        // We are finished so we are moving to the toIndexPathForRowBeingMoved
+        if( self.toIndexPathForRowBeingMoved ) {
+            // Get the cell coordinates so we know where its center is
+            UITableViewCell *endCell = [self cellForRowAtIndexPath: self.toIndexPathForRowBeingMoved];
+            // Make the snap shot cell nicely disappear
+            [UIView animateWithDuration: 0.25 animations: ^{
+                self.snapShotOfCellBeingMoved.center = CGPointMake( self.snapShotOfCellBeingMoved.center.x, endCell.center.y );
+            } completion: ^( BOOL finished ) {
+                // Clear 'snapShotOfCellBeingMoved' so the cell will
+                // draw instead of drawing a blank space.
+                UIView *tempSnapShotHolder = self.snapShotOfCellBeingMoved;
+                self.snapShotOfCellBeingMoved = nil;
+                [self reloadRowsAtIndexPaths: @[self.toIndexPathForRowBeingMoved] withRowAnimation: UITableViewRowAnimationNone];
+                // Maybe I should delay this removal or animate it to
+                // prevent flicker? Animate its alpha to zero then remove?
+                [UIView animateWithDuration: 0.1 animations:^{
+                    tempSnapShotHolder.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    [tempSnapShotHolder removeFromSuperview];
+                }];
+                
+                // Tell the table view's datasource the the row has been
+                // moved so it can make the datasource match the display
+                if( [self.dataSource respondsToSelector: @selector(tableView:moveRowAtIndexPath:toIndexPath:)] ) {
+                    [self.dataSource tableView: self moveRowAtIndexPath: self.fromIndexPathOfRowBeingMoved toIndexPath: self.toIndexPathForRowBeingMoved];
+                }
+                
+                self.fromIndexPathOfRowBeingMoved = nil;
+                self.toIndexPathForRowBeingMoved = nil;
+            }];
+        }
+        
+    }
+	
 }
 
 // Alternative on cancel:
