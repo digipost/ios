@@ -12,12 +12,18 @@ extension PreviewViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! UITableViewCell
-        cell.textLabel?.text = recipients[indexPath.row].name
-        //let address = recipients[indexPath.row].name
         
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
+        
+        let name = recipients[indexPath.row].name
+        let address = recipients[indexPath.row].address
+        
+        cell.nameLabel.text = name
+        cell.addressLabel.text = name
+        cell.initialsLabel.text = name?.initials()
+        cell.addedButton.hidden = false
         //cell.loadCell(name!, address: address!)
-        cell.textLabel?.font = UIFont(name: "HelveticaNeue", size: 12)
+
         return cell
     }
 }
