@@ -27,7 +27,7 @@ class RecipientViewController: UIViewController {
 
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
-        tableView.rowHeight = 80.0
+        tableView.rowHeight = 70.0
         
         self.recipientSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
