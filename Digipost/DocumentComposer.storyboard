@@ -159,7 +159,13 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="ZaW-fI-J6U"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="Forhåndsvisning" id="u2c-rC-2Nd"/>
+                    <navigationItem key="navigationItem" title="Forhåndsvisning" id="u2c-rC-2Nd">
+                        <barButtonItem key="rightBarButtonItem" title="Send" id="ldZ-Tf-wNU">
+                            <connections>
+                                <action selector="didTapSendButton:" destination="pyB-XH-9wo" id="wHy-Eq-FYd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addRecipientsButton" destination="Hwn-Jm-yK2" id="tSm-gh-80P"/>
