@@ -52,7 +52,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
-        println(tableView.editing)
     }
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
