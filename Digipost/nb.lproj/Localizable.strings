@@ -516,3 +516,8 @@
 
 
 "PUBLIC_ENTITY" = "Offentlig";
+
+/* Document Composer */
+"recipients view navigation bar title" = "Legg til mottakere";
+"recipients view navigation bar right button save" = "Lagre";
+
