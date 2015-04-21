@@ -23,6 +23,8 @@ class RecipientTableViewCell: UITableViewCell {
         
         addedButton.layer.cornerRadius = addedButton.frame.size.width / 2
         addedButton.clipsToBounds = true
+        
+        addedButton.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
