@@ -15,8 +15,9 @@ protocol RecipientsViewControllerDelegate {
 class RecipientViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    var delegate: RecipientsViewControllerDelegate?
+    var recipientDelegate: RecipientsViewControllerDelegate?
 
     var recipients : [Recipient] = [Recipient]()
     var addedRecipients : [Recipient] = [Recipient]()
@@ -33,64 +34,20 @@ class RecipientViewController: UIViewController {
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 70.0
         
-        self.recipientSearchController = {
-            let controller = UISearchController(searchResultsController: nil)
-            controller.searchResultsUpdater = self
-            controller.hidesNavigationBarDuringPresentation = false
-            controller.dimsBackgroundDuringPresentation = false
-            controller.searchBar.searchBarStyle = .Minimal
-            controller.searchBar.frame.size = self.navigationController!.navigationBar.frame.size
-            controller.searchBar.backgroundColor = UIColor.whiteColor()
-            controller.searchBar.delegate = self
-            return controller
-        }()
-
-        self.presentViewController(self.recipientSearchController, animated: true) { () -> Void in
-
-        }
+        searchBar.delegate = self
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        recipientSearchController.searchBar.frame = self.navigationController!.navigationBar.frame
-    }
-// 
-//    @IBAction func dismissViewController(sender: AnyObject) {
-//        
-//        let alertController = UIAlertController(title: "Brev lukkes", message: "Vil du lagre utkastet før du avslutter?", preferredStyle: UIAlertControllerStyle.Alert)
-//        let saveDraftAction = UIAlertAction(title: "Lagre utkast",
-//            style: UIAlertActionStyle.Default)
-//            { [unowned self, alertController] (action: UIAlertAction!) -> Void in
-//            println("Saved")
-//                self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-//                })
-//        }
-//        
-//        let quitAction = UIAlertAction(title: "Lukk",
-//            style: UIAlertActionStyle.Destructive)
-//            { [unowned self, alertController] (action: UIAlertAction!) -> Void in
-//                
-//                self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
-//                })
-//        }
-//        
-//        alertController.addAction(saveDraftAction)
-//        alertController.addAction(quitAction)
-//        
-//        presentViewController(alertController, animated: true, completion: nil)
-//    }
 
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
         let point = tap.locationInView(tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(point)
         
         if indexPath == nil {
-            recipientSearchController.active = false
+            searchBar.resignFirstResponder()
         }
     }
 
     @IBAction func didTapSaveBarButtonItem() {
-        delegate?.addRecipients(addedRecipients)
+        recipientDelegate?.addRecipients(addedRecipients)
 
         self.navigationController?.popViewControllerAnimated(true)
     }

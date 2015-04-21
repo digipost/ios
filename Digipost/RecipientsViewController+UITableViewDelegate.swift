@@ -11,7 +11,7 @@ extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var found = false
         
-        if recipientSearchController.active {
+        if searchBar.isFirstResponder() {
             for (index, r) in enumerate(addedRecipients) {
                 if r.name == recipients[indexPath.row].name {
                     let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
@@ -29,7 +29,7 @@ extension RecipientViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if recipientSearchController.active == false {
+        if searchBar.isFirstResponder() == false {
             addedRecipients.removeAtIndex(indexPath.row)
             tableView.reloadData()
         }

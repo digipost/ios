@@ -14,7 +14,27 @@ extension RecipientViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        
+        searchBar.resignFirstResponder()
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        recipients.removeAll(keepCapacity: false)
+        
+        if searchBar.text == "" {
+            tableView.reloadData()
+        } else if searchBar.text != "" {
+            APIClient.sharedClient.getRecipients(searchBar.text, success: { (responseDictionary) -> Void in
+                self.recipients = Recipient.recipients(jsonDict: responseDictionary)
+                self.tableView.reloadData()
+                }) { (error) -> () in
+                    println(error)
+            }
+        }
+
+    }
 }

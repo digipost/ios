@@ -9,7 +9,7 @@
 extension RecipientViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if self.recipientSearchController.active {
+        if searchBar.isFirstResponder() {
             return self.recipients.count
         } else {
             return self.addedRecipients.count
@@ -20,11 +20,12 @@ extension RecipientViewController: UITableViewDataSource {
         
         var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
         
-        if recipientSearchController.active {
-            if count(recipients) >= 0 {
+        if searchBar.isFirstResponder() {
+            if count(recipients) > 0 {
                 if let recipient = recipients[indexPath.row].name {
                     cell.initialsLabel.text = recipient.initials()
                     cell.nameLabel.text = recipient
+                    cell.addedButton.hidden = true
                     for r in addedRecipients {
                         if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
                             cell.addedButton.hidden = false
@@ -32,7 +33,6 @@ extension RecipientViewController: UITableViewDataSource {
                     }
                 }
             }
-            
         } else {
             if let recipient = addedRecipients[indexPath.row].name {
                 cell.nameLabel.text = recipient
