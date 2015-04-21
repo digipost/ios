@@ -33,6 +33,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
         })
         
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
+        tableView.rowHeight = 70.0
         
         let footerView = NSBundle.mainBundle().loadNibNamed("AddRecipientTableFooterView", owner: self, options: nil)[0] as! UIView
         footerView.frame = CGRectMake(0, 0, view.frame.width, 80.0)
@@ -51,7 +52,10 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
-            recipientsViewController.delegate = self
+            recipientsViewController.recipientDelegate = self
+            if recipients.count > 0 {
+                recipientsViewController.addedRecipients = recipients
+            }
         }
     }
     
