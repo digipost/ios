@@ -545,11 +545,11 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
             tempSnapShotHolder.alpha = 0.0;
         } completion:^(BOOL finished) {
             [tempSnapShotHolder removeFromSuperview];
-            [self beginUpdates];
+            
             if( [self.dataSource respondsToSelector: @selector(tableView:commitEditingStyle:forRowAtIndexPath:)] ) {
                 [self.dataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.fromIndexPathOfRowBeingMoved];
             }
-            [self endUpdates];
+            [self reloadData];
             self.isDeletingRow = false;
         }];
         
