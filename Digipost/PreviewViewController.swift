@@ -33,21 +33,19 @@ class PreviewViewController: UIViewController {
         footerView.frame = CGRectMake(0, 0, view.frame.width, 80.0)
         footerView.backgroundColor = UIColor.clearColor()
     
-        var goToAddRecipientsTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "goToAddRecipients:")
+        var goToAddRecipientsTap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapFooterView:")
         goToAddRecipientsTap.cancelsTouchesInView = false
         footerView.addGestureRecognizer(goToAddRecipientsTap)
         
         tableView.tableFooterView = footerView
     }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-
-    }
-
-    @IBAction func goToAddRecipients(sender: AnyObject) {
+    func didTapFooterView(sender: AnyObject) {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
-
     
+    func addRecipientsFromSearch(addedRecipients: [Recipient]) {
+        recipients = addedRecipients
+        tableView.reloadData()
+    }
 }
