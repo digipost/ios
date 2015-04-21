@@ -30,6 +30,10 @@ extension ComposerViewController {
         }
         return 44
     }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
+    }
 
     func height(#textComposerModule: TextComposerModule) -> CGFloat {
         let textView = UITextView()
