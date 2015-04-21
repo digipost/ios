@@ -10,6 +10,7 @@ import UIKit
 
 class RecipientViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     
     var recipients : [Recipient] = [Recipient]() {
         didSet { tableView.reloadData() }
@@ -24,7 +25,8 @@ class RecipientViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = NSLocalizedString("recipients view navigation bar title", comment: "")
-
+        saveBarButtonItem.title = NSLocalizedString("recipients view navigation bar right button save", comment: "Title for bar button item")
+                
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 70.0
