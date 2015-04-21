@@ -7,15 +7,9 @@
 //
 
 extension PreviewViewController: UITableViewDelegate {
-    
-//    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        var footerView = UIView(frame: CGRectZero)
-//        
-//        return footerView
+//    
+//    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//             
 //    }
     
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Mottakere"
-    }
-
 }
