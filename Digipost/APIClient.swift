@@ -1,4 +1,5 @@
 //
+
 //  APIClient.swift
 //  Digipost
 //
@@ -29,8 +30,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case put = "PUT"
         case get = "GET"
     }
-
-    //var disposable : RACDisposable?
 
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
         let manager = AFHTTPSessionManager(baseURL: nil)
@@ -283,23 +282,76 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
-
-        for recipient in recipients {
-
-        }
         let url = NSURL(string: uri)
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        let parameters = ["subject" : "kladd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
+        let parameters = ["subject" : "klasrdd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
         validate(token: oauthToken) { () -> Void in
             let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters, success: { (responseJSON) -> Void in
                 println(responseJSON)
                 let sendableDocument = SendableDocument(dictionary: responseJSON)
+                sendableDocument.recipients = recipients
+                let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
+                self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
+                    println(success)
 
+                }, failure: { (error) -> () in
+                   println(error)
+                })
             }, failure: { (error) -> () in
+
                 println(error)
             })
             task!.resume()
         }
+    }
+
+    func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
+
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+            var subject : String?
+
+            let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            formData.appendPartWithFormData(data, name:"subject")
+
+            let fileData = NSData(contentsOfURL: fileURL)
+            formData.appendPartWithFileData(fileData, name:"file", fileName: "test.html", mimeType:"text/html")
+            }, error: nil)
+        urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
+        fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+        }
+
+        fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                println(totalBytesSent)
+//                let totalSent = totalBytesSent as Int64
+//                self.uploadProgress?.completedUnitCount = totalSent
+            })
+        }
+
+        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.removeTemporaryUploadFiles()
+                self.isUploadingFile = false
+                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
+                    self.removeAccessTokenUsedInLastRequest()
+//                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
+                } else if (error != nil ){
+                    failure(error: APIError(error: error!))
+                }
+
+                if success != nil {
+                    success!()
+                }
+            })
+        })
+        task!.resume()
+
+
+
+
+
+
+
 
     }
 

@@ -56,6 +56,17 @@ class SendableDocument {
         }
     }
 
+    func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
+        POSFileManager.sharedFileManager().uploadsFolderPath()
+        let filePath = POSFileManager.sharedFileManager().uploadsFolderPath().stringByAppendingPathComponent("temp.html")
+        if NSFileManager.defaultManager().createFileAtPath(filePath, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
+            return NSURL(fileURLWithPath: filePath)
+        } else {
+            println(filePath)
+            return nil
+        }
+    }
+
     class func draftParameters() -> [ String : String] {
         return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password]
     }
