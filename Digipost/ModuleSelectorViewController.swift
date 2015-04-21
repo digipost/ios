@@ -35,13 +35,6 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     @IBAction func addBody(sender: AnyObject) {
         addTextModule(UIFontTextStyleBody)
     }
- 
-    @IBAction func addCaption(sender: AnyObject) {
-        addTextModule(UIFontTextStyleCaption1)
-    }
-    @IBAction func addFootnote(sender: AnyObject) {
-        addTextModule(UIFontTextStyleFootnote)
-    }
     
     @IBAction func closeButtonAction(sender: UIButton) {
         delegate?.moduleSelectorViewControllerWasDismissed(self)
