@@ -142,10 +142,6 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 }
 - (void) prepareForMoveOfRowAtPoint: (CGPoint) point {
     
-    if( [self.delegate respondsToSelector: @selector(tableView:beganMovingRowAtPoint:)] ) {
-        [(id) self.delegate tableView: self beganMovingRowAtPoint: point];
-    }
-    
 	DLog( @"Gesture for row reordering recognized for touch at {%g,%g}", point.x, point.y );
 	NSIndexPath *indexPathOfPoint = [self indexPathForRowAtPoint: point];
 	// See if the datasource says we cannot move the selected row
@@ -171,6 +167,11 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 #else
 		   [self addSubview: self.snapShotOfCellBeingMoved];
 #endif
+           // ADDED FOR DIGPOST INTEGRATION
+           if( [self.delegate respondsToSelector:@selector(tableView:beganMovingRowAtPoint:withSnapShotViewOfDraggingRow:)]) {
+               [(id) self.delegate tableView: self beganMovingRowAtPoint: point withSnapShotViewOfDraggingRow: self.snapShotOfCellBeingMoved];
+           }
+           
 		   self.reorderTouchOffset = CGPointMake( self.snapShotOfCellBeingMoved.center.x - point.x, self.snapShotOfCellBeingMoved.center.y - point.y);
 		   // Record the location of the cell to be moved
 		   self.fromIndexPathOfRowBeingMoved = indexPathOfPoint;
@@ -184,6 +185,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 
 - (void) movingRowIsAtPoint: (CGPoint) point  {
 
+    // ADDED FOR DIGPOST INTEGRATION
     if( [self.delegate respondsToSelector: @selector(tableView:changedPositionOfRowAtPoint:)] ) {
         [(id) self.delegate tableView: self changedPositionOfRowAtPoint: point];
     }
@@ -507,10 +509,12 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 #endif
 }
 - (void) finishMovingRowToPoint: (CGPoint) point  {
-    
+
+    // ADDED FOR DIGPOST INTEGRATION
     if( [self.delegate respondsToSelector: @selector(tableView:endedMovingRowAtPoint:)] ) {
         [(id) self.delegate tableView: self endedMovingRowAtPoint: point];
     }
+    
 	// If we are scrolling, stop
 	[self.reorderAutoScrollTimer invalidate];
 	self.reorderAutoScrollTimer = nil;
