@@ -48,6 +48,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
+    
     override init() {
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -281,7 +282,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func send(htmlContent: String, url: NSURL, success: (() -> Void) , failure: (error: APIError) -> ()) {
+    func send(htmlContent: String, uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
         
     }
 

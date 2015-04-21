@@ -17,14 +17,19 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var webView: UIWebView!
 
+
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
+
+    var currentShowingHTMLContent : String?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { [unowned self] (htmlString) -> ()  in
             self.webView.loadHTMLString(htmlString, baseURL: nil)
+            self.currentShowingHTMLContent = htmlString!
         })
         
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
@@ -44,8 +49,25 @@ class PreviewViewController: UIViewController {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
     
+    
     func addRecipientsFromSearch(addedRecipients: [Recipient]) {
         recipients = addedRecipients
         tableView.reloadData()
+}
+    @IBAction func didTapSendButton(sender: AnyObject) {
+
+       let a = APIClient.sharedClient
+
+        let mailbox = POSMailbox.existingMailboxWithDigipostAddress(mailboxDigipostAddress, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+
+        
+        APIClient.sharedClient.send(currentShowingHTMLContent!, uri: mailbox.sendUri, success: { () -> Void in
+            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+
+            })
+
+            }) { (error) -> () in
+                println(error)
+        }
     }
 }
