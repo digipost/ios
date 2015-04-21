@@ -550,6 +550,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
                 [self.dataSource tableView:self commitEditingStyle:UITableViewCellEditingStyleDelete forRowAtIndexPath:self.fromIndexPathOfRowBeingMoved];
             }
             [self endUpdates];
+            self.isDeletingRow = false;
         }];
         
 
