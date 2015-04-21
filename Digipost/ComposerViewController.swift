@@ -42,6 +42,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
         snapShotView.transform = CGAffineTransformMakeRotation(-0.02)
+        let offset = tableView.frame.origin.x
+        snapShotView.frame.origin.x += offset
+        view.addSubview(snapShotView)
+        
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
@@ -59,6 +63,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func deleteComposerModule(){
         tableView.isDeletingRow = true
+        // Deleting of cell is processed in the UITableView+Reorder Category
         deleteComposerModuleView.hide()
     }
     
