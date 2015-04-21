@@ -20,21 +20,14 @@ extension RecipientViewController: UITableViewDataSource {
         
         var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
         
-        let name = recipients[indexPath.row].name
-        let address = recipients[indexPath.row].address
-        
-        println(address)
-    
-        cell.initialsLabel.text = name?.initials()
-        cell.nameLabel.text = name
-        //cell.addressLabel.text = address
-        
         if recipientSearchController.active {
             if count(recipients) >= 0 {
                 if let recipient = recipients[indexPath.row].name {
+                    cell.initialsLabel.text = recipient.initials()
+                    cell.nameLabel.text = recipient
                     for r in addedRecipients {
                         if r.name == recipient && r.digipostAddress == recipients[indexPath.row].digipostAddress {
-                            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+                            cell.addedButton.hidden = false
                         }
                     }
                 }
@@ -42,7 +35,9 @@ extension RecipientViewController: UITableViewDataSource {
             
         } else {
             if let recipient = addedRecipients[indexPath.row].name {
-                
+                cell.nameLabel.text = recipient
+                cell.initialsLabel.text = recipient.initials()
+                cell.addedButton.hidden = false
             }
         }
         
