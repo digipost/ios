@@ -10,6 +10,7 @@
 
 @interface UITableView (Reorder)
 
+@property (nonatomic) BOOL isDeletingRow;
 @property (nonatomic) BOOL allowsLongPressToReorder;
 @property (nonatomic) BOOL allowsLongPressToReorderDuringEditing;
 

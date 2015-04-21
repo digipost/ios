@@ -48,6 +48,20 @@
 
 @implementation UITableView (Reorder)
 
+
+// ADDED FOR DIGPOST INTEGRATION
+static void *isDeletingRowKey = &isDeletingRowKey;
+
+- (void) setIsDeletingRow:(BOOL)isDeletingRow {
+    objc_setAssociatedObject(self, isDeletingRowKey, [NSNumber numberWithBool:isDeletingRow], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL) isDeletingRow {
+    BOOL isDeleting = [objc_getAssociatedObject(self, isDeletingRowKey) boolValue];
+    return isDeleting;
+}
+// END DIGIPOST INTEGRATION
+
 static void *allowsLongPressToReorderKey = &allowsLongPressToReorderKey;
 - (void) setAllowsLongPressToReorder: (BOOL) allowsLongPressToReorder {
 #ifdef CONFIGURATION_VALIDATION
@@ -171,6 +185,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
            if( [self.delegate respondsToSelector:@selector(tableView:beganMovingRowAtPoint:withSnapShotViewOfDraggingRow:)]) {
                [(id) self.delegate tableView: self beganMovingRowAtPoint: point withSnapShotViewOfDraggingRow: self.snapShotOfCellBeingMoved];
            }
+           // END DIGIPOST INTEGRATION
            
 		   self.reorderTouchOffset = CGPointMake( self.snapShotOfCellBeingMoved.center.x - point.x, self.snapShotOfCellBeingMoved.center.y - point.y);
 		   // Record the location of the cell to be moved
@@ -189,6 +204,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
     if( [self.delegate respondsToSelector: @selector(tableView:changedPositionOfRowAtPoint:)] ) {
         [(id) self.delegate tableView: self changedPositionOfRowAtPoint: point];
     }
+    // END DIGIPOST INTEGRATION
     
     // Tell the delegate that we are about to make a move, if it wants to know
 	// Based on the point from the gesture, calculate where the center of
@@ -514,6 +530,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
     if( [self.delegate respondsToSelector: @selector(tableView:endedMovingRowAtPoint:)] ) {
         [(id) self.delegate tableView: self endedMovingRowAtPoint: point];
     }
+    // END DIGIPOST INTEGRATION
     
 	// If we are scrolling, stop
 	[self.reorderAutoScrollTimer invalidate];
