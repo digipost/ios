@@ -304,6 +304,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Send brev" id="DpV-8n-mTd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yq-SM-Qz5">
+                            <connections>
+                                <action selector="cancelButtonAction:" destination="hzi-BN-YG0" id="OAj-8E-wTV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Forhåndsvisning" id="rVV-tC-IVb">
                             <connections>
                                 <segue destination="pyB-XH-9wo" kind="show" id="od5-zP-ZUb"/>

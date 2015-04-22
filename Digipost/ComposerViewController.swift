@@ -146,6 +146,35 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
+    
+    // MARK: - Button Actions
+    
+    @IBAction func cancelButtonAction(sender: UIBarButtonItem) {
+        
+        let alertController = UIAlertController(title: "Brev lukkes", message: "Vil du lagre utkastet før du avslutter?", preferredStyle: UIAlertControllerStyle.Alert)
+        let saveDraftAction = UIAlertAction(title: "Lagre utkast",
+            style: UIAlertActionStyle.Default)
+            { [unowned self, alertController] (action: UIAlertAction!) -> Void in
+                println("Saved")
+                self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                })
+        }
+        
+        let quitAction = UIAlertAction(title: "Lukk",
+            style: UIAlertActionStyle.Destructive)
+            { [unowned self, alertController] (action: UIAlertAction!) -> Void in
+                
+                self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                })
+        }
+        
+        alertController.addAction(saveDraftAction)
+        alertController.addAction(quitAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+
+        
+    }
 
     override func didReceiveMemoryWarning() {	
         super.didReceiveMemoryWarning()
