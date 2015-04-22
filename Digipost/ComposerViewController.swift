@@ -20,6 +20,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
     
+    @IBOutlet weak var previewButton: UIBarButtonItem!
+    @IBOutlet weak var documentTitleLabel: UILabel!
     @IBOutlet weak var documentTitleTextField: UITextField!
     var tableViewDataSource: ComposerTableViewDataSource!
     var recipients = [Recipient]()
@@ -32,6 +34,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("composer view navigation bar title", comment: "Composer title")
+        previewButton.title = NSLocalizedString("composer view preview button title", comment: "Preview button title")
+        documentTitleLabel.text = NSLocalizedString("composer view document title label", comment: "Title label")
+        documentTitleTextField.placeholder = NSLocalizedString("composer view title placeholder", comment: "Title placeholder text")
         documentTitleTextField.delegate = self
         setupTableView()
     }

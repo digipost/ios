@@ -533,6 +533,13 @@
 "preview view recipients header title one recipient" = "1 MOTTAKER";
 "preview view recipients header title recipients" = "MOTTAKERE";
 
+"composer view navigation bar title" = "Send brev";
+"composer view preview button title" = "Forhåndsvisning";
+"composer view document title label" = "Tittel:";
+"composer view title placeholder" = "Trykk for å legge til en tittel";
 
+"text composer module headline placeholder" = "Legg til overift";
+"text composer module subheadline placeholder" = "Legg til en underoverskrift";
+"text composer module body placeholder" = "Legg til brødtekst";
 
 

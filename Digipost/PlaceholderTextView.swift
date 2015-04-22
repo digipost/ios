@@ -12,13 +12,13 @@ extension PlaceholderTextView{
     var placeholder: String {
         switch self.font {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-            return "Enter a Headline"
+            return NSLocalizedString("text composer module headline placeholder", comment: "placeholder for headline")
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-            return "Enter a Body"
+            return NSLocalizedString("text composer module body placeholder", comment: "placeholder for body")
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-            return "Enter a Subheadline"
+            return NSLocalizedString("text composer module subheadline placeholder", comment: "placeholder for subheadline")
         default:
-            return "Enter text"
+            return NSLocalizedString("text composer module body placeholder", comment: "placeholder for headline")
         }
     }
 }
