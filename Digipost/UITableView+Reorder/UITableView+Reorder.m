@@ -171,13 +171,20 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 		   }
 		   // Get the view to drag up and down the screen
 		   self.snapShotOfCellBeingMoved = [self snapShotViewOfCellAtIndexPath: indexPathOfPoint];
+           
+           // ADDED FOR DIGPOST INTEGRATION
+           self.snapShotOfCellBeingMoved.frame = CGRectMake(self.frame.origin.x, point.y, self.snapShotOfCellBeingMoved.frame.size.width, self.snapShotOfCellBeingMoved.frame.size.width);
+           // END DIGIPOST INTEGRATION
+           
 		   // Add the floating apparition of the cell being moved to the tableview
+           
 #ifdef ANIMATE_SNAPSHOT_SUBVIEW
 		   self.snapShotOfCellBeingMoved.alpha = 0.0;
 		   [self addSubview: self.snapShotOfCellBeingMoved];
 		   [UIView animateWithDuration: 0.2 animations: ^{
 			   self.snapShotOfCellBeingMoved.alpha = 1.0;
 		   }];
+           
 #else
 		   [self addSubview: self.snapShotOfCellBeingMoved];
 #endif
@@ -185,9 +192,10 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
            if( [self.delegate respondsToSelector:@selector(tableView:beganMovingRowAtPoint:withSnapShotViewOfDraggingRow:)]) {
                [(id) self.delegate tableView: self beganMovingRowAtPoint: point withSnapShotViewOfDraggingRow: self.snapShotOfCellBeingMoved];
            }
-           // END DIGIPOST INTEGRATION
            
 		   self.reorderTouchOffset = CGPointMake( self.snapShotOfCellBeingMoved.center.x - point.x, self.snapShotOfCellBeingMoved.center.y - point.y);
+           // END DIGIPOST INTEGRATION
+           
 		   // Record the location of the cell to be moved
 		   self.fromIndexPathOfRowBeingMoved = indexPathOfPoint;
 		   self.toIndexPathForRowBeingMoved = indexPathOfPoint;
@@ -210,7 +218,11 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 	// Based on the point from the gesture, calculate where the center of
 	// the snap shot view being dragged should be. Clamp it so its center
 	// can go the full range of the visible tableview, but not beyond.
-	CGFloat newCenterY = point.y + self.reorderTouchOffset.y;
+    
+    // ADDED FOR DIGPOST INTEGRATION
+    CGFloat newCenterY = point.y; // ALTERATION FOR DIGIPOST
+	// CGFloat newCenterY = point.y + self.reorderTouchOffset.y; // REMOVED FOR DIGIPOST CONFIGURATION
+    // END DIGIPOST INTEGRATION
 	if( newCenterY < self.contentOffset.y + self.contentInset.top )
 		newCenterY = self.contentOffset.y + self.contentInset.top;
 	if( newCenterY > CGRectGetMaxY(self.bounds) - self.contentInset.bottom )
