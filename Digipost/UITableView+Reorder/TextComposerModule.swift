@@ -42,11 +42,11 @@ class TextComposerModule: ComposerModule {
         switch font{
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
             let cssClass = alignment
-            openingTag = "<H1 class=\"\(cssClass)\""
+            openingTag = "<H1 class=\"\(cssClass)\">"
             closeingTag = "</H1>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
             let cssClass = alignment
-            openingTag = "<p class=\"\(cssClass)\""
+            openingTag = "<p class=\"\(cssClass)\">"
             closeingTag = "</p>"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
             let cssClass = alignment
