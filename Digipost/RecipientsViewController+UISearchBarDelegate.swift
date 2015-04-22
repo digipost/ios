@@ -8,9 +8,8 @@
 
 extension RecipientViewController: UISearchBarDelegate {
     
-    func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
-        
-        return true
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        tableView.reloadData()
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -36,5 +35,6 @@ extension RecipientViewController: UISearchBarDelegate {
             }
         }
 
+        tableView.reloadData()
     }
 }
