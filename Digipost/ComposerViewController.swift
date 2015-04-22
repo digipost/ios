@@ -44,7 +44,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         deleteComposerModuleView.show()
         snapShotView.transform = CGAffineTransformMakeRotation(-0.02)
         let offset = tableView.frame.origin.x
-        snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 44)
+        snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 88)
         snapShotView.frame.origin.x += offset
         view.addSubview(snapShotView)
         tableView.editing = true
