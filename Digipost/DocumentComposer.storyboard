@@ -115,10 +115,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-Jm-yK2">
-                                        <rect key="frame" x="0.0" y="41" width="600" height="72"/>
+                                        <rect key="frame" x="0.0" y="41" width="600" height="65"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="72" id="wrG-p8-dnl"/>
+                                            <constraint firstAttribute="height" constant="65" id="wrG-p8-dnl"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                                         <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -129,15 +129,15 @@
                                             <action selector="didTapFooterView:" destination="pyB-XH-9wo" eventType="touchUpInside" id="Ewi-9Z-DXx"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="composer arrow" translatesAutoresizingMaskIntoConstraints="NO" id="798-5d-JbH">
-                                        <rect key="frame" x="574" y="70" width="8" height="15"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="composer arrow" translatesAutoresizingMaskIntoConstraints="NO" id="798-5d-JbH">
+                                        <rect key="frame" x="574" y="67" width="8" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="J6U-WJ-zbT"/>
                                             <constraint firstAttribute="width" constant="8" id="Nnb-ns-oZx"/>
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sce-VR-UDf">
-                                        <rect key="frame" x="0.0" y="112" width="600" height="42"/>
+                                        <rect key="frame" x="0.0" y="105" width="600" height="42"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PREVIEW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btM-x3-cJJ">
                                                 <rect key="frame" x="8" y="12" width="584" height="18"/>
@@ -155,7 +155,7 @@
                                         </constraints>
                                     </view>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjq-iS-buR">
-                                        <rect key="frame" x="10" y="153" width="580" height="456"/>
+                                        <rect key="frame" x="10" y="146" width="580" height="456"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="456" id="xKH-Uu-kzv"/>
@@ -259,7 +259,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
                                             <rect key="frame" x="57" y="8" width="513" height="30"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         </textField>
