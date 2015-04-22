@@ -451,6 +451,10 @@
 		EC0D2DE31AE786A800595A61 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
 		EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC0D2DE51AE786A800595A61 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
+		EC0D2DED1AE79C7700595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
+		EC0D2DEE1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
+		EC0D2DEF1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
+		EC0D2DF01AE79C7B00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
 		EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC0F2B7A19B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
@@ -2183,6 +2187,7 @@
 				EC4146BB1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
 				EC0D2D231AE7836300595A61 /* Images-Prod.xcassets in Resources */,
 				311F22711AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */,
+				EC0D2DED1AE79C7700595A61 /* RecipientTableViewCell.xib in Resources */,
 				AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2236,6 +2241,7 @@
 				EC0D2DD71AE786A800595A61 /* DocumentComposer.storyboard in Resources */,
 				EC0D2DD81AE786A800595A61 /* Images-Prod.xcassets in Resources */,
 				EC0D2DD91AE786A800595A61 /* Main_iPhone.storyboard in Resources */,
+				EC0D2DEE1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */,
 				EC0D2DDA1AE786A800595A61 /* ComposerInputAccesoryView.xib in Resources */,
 				EC0D2DDB1AE786A800595A61 /* OnboardingGuideTexts.strings in Resources */,
 				EC0D2DDC1AE786A800595A61 /* WhatsNewGuideTexts.strings in Resources */,
@@ -2267,6 +2273,7 @@
 				AF981EE81AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCBD11AB84EAB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCBD21AB84EAB0063755E /* Main_iPhone.storyboard in Resources */,
+				EC0D2DF01AE79C7B00595A61 /* RecipientTableViewCell.xib in Resources */,
 				316C0CFD1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
@@ -2298,6 +2305,7 @@
 				AF981EEC1AD50F6000DE8B55 /* DocumentComposer.storyboard in Resources */,
 				EC2DCC821AB864AB0063755E /* Images-Prod.xcassets in Resources */,
 				EC2DCC831AB864AB0063755E /* Main_iPhone.storyboard in Resources */,
+				EC0D2DEF1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */,
 				316C0CFF1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC2DCC841AB864AB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCC851AB864AB0063755E /* WhatsNewGuideTexts.strings in Resources */,
