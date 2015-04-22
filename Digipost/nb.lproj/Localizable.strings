@@ -529,3 +529,10 @@
 "preview view add button title" = "Legg til mottakere";
 "preview view add or edit button title" = "Legg til eller rediger mottakere";
 
+"preview view recipients header title no recipients" = "INGEN MOTTAKERE";
+"preview view recipients header title one recipient" = "1 MOTTAKER";
+"preview view recipients header title recipients" = "MOTTAKERE";
+
+
+
+
