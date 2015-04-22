@@ -47,7 +47,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
-    
+
     override init() {
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -284,23 +284,48 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
         let url = NSURL(string: uri)
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        let parameters = ["subject" : "kladd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
+        let sendableDocument = SendableDocument(recipients: recipients)
+        let parameters = sendableDocument.draftParameters()
+        println(parameters)
         validate(token: oauthToken) { () -> Void in
-            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters, success: { (responseJSON) -> Void in
+            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
                 println(responseJSON)
-                let sendableDocument = SendableDocument(dictionary: responseJSON)
+                sendableDocument.setupWithJSONContent(responseJSON)
                 sendableDocument.recipients = recipients
                 println(htmlContent)
                 let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
                 self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
+                    self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
+                        sendableDocument.setupWithJSONContent(responseDictionary)
+                        println(responseDictionary)
+                        let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
+                            success()
+                            }, failure: { (error) -> () in
+                                println(error)
+                        })
+                        task!.resume()
+
+                        }, failure: { (error) -> () in
+                            println(error)
+                    })
                     println(success)
-
-                }, failure: { (error) -> () in
-                   println(error)
+                    }, failure: { (error) -> () in
+                        println(error)
                 })
-            }, failure: { (error) -> () in
+                }, failure: { (error) -> () in
+                    println(error)
+            })
+            task!.resume()
+        }
+    }
 
-                println(error)
+    func getUpdatedSendableDocument(sendableDocument: SendableDocument, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(token: oauthToken) { () -> Void in
+            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
+                success(responseDictionary: responseDictionary)
+                }, failure: { (error) -> () in
+                    failure(error: error)
             })
             task!.resume()
         }
@@ -328,8 +353,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 println(totalBytesSent)
-//                let totalSent = totalBytesSent as Int64
-//                self.uploadProgress?.completedUnitCount = totalSent
+                //                let totalSent = totalBytesSent as Int64
+                //                self.uploadProgress?.completedUnitCount = totalSent
             })
         }
 
@@ -344,7 +369,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
-//                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
+                    //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
                 } else if (error != nil ){
                     failure(error: APIError(error: error!))
                 }
@@ -355,14 +380,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             })
         })
         task!.resume()
-
-
-
-
-
-
-
-
     }
 
     func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
@@ -564,7 +581,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         APIClient.sharedClient.taskCounter--
         APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
     }
-
+    
     private class func mimeType(#fileType:String) -> String {
         let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil).takeUnretainedValue()
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)

@@ -18,6 +18,8 @@ class SendableDocumentConstants {
     static let deleteMessageRelPostfix = "delete_message"
     static let addContentRelPostfix = "add_content"
     static let updateMessageRelPostfix = "update_message"
+    static let selfRelPostfix = "self"
+    static let sendRelPostfix = "send"
 
     static let link = "link"
     static let rel = "rel"
@@ -30,12 +32,22 @@ class SendableDocument {
     var deleteMessageUri : String?
     var addContentUri : String?
     var updateMessageUri : String?
+    var getSelfUri : String?
+    var sendUri : String?
     var status : String?
 
     var recipients = [Recipient]()
 
     init(dictionary: [String : AnyObject]) {
-        if let linkArray = dictionary[SendableDocumentConstants.link] as? [[String : String]] {
+        setupWithJSONContent(dictionary)
+    }
+
+    init(recipients: [Recipient]) {
+        self.recipients = recipients
+    }
+
+    func setupWithJSONContent(jsonDictionary: [String : AnyObject]) {
+        if let linkArray = jsonDictionary[SendableDocumentConstants.link] as? [[String : String]] {
             for link in linkArray {
                 if let relLink = link[SendableDocumentConstants.rel] {
                     switch relLink.lastPathComponent {
@@ -48,6 +60,13 @@ class SendableDocument {
                     case SendableDocumentConstants.addContentRelPostfix:
                         addContentUri = link[SendableDocumentConstants.uri] as String?
                         break
+                    case SendableDocumentConstants.selfRelPostfix:
+                        getSelfUri = link[SendableDocumentConstants.uri] as String?
+                        break
+                    case SendableDocumentConstants.sendRelPostfix:
+                        sendUri = link[SendableDocumentConstants.uri] as String?
+                        break
+
                     default:
                         break
                     }
@@ -55,6 +74,7 @@ class SendableDocument {
             }
         }
     }
+
 
     func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
         POSFileManager.sharedFileManager().uploadsFolderPath()
@@ -67,7 +87,10 @@ class SendableDocument {
         }
     }
 
-    class func draftParameters() -> [ String : String] {
-        return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password]
+   func draftParameters() -> [ String : AnyObject] {
+    let digipostAddresses = self.recipients.map { (recipient) -> [String : String] in
+        return [ "digipost-address" : recipient.digipostAddress!]
+    }
+    return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password, "recipient": digipostAddresses]
     }
 }
