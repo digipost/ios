@@ -258,6 +258,35 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d7U-0Z-Byu">
                                 <rect key="frame" x="10" y="0.0" width="580" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="NEa-lf-bJP">
+                                    <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYJ-Bc-Ms3">
+                                            <rect key="frame" x="10" y="0.0" width="51" height="44"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.72941176470588232" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
+                                            <rect key="frame" x="62" y="8" width="513" height="30"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" id="1oR-jj-he0"/>
+                                        <constraint firstAttribute="bottom" secondItem="Nf5-by-pCG" secondAttribute="bottom" constant="6" id="5pD-0P-HZa"/>
+                                        <constraint firstAttribute="bottom" secondItem="EYJ-Bc-Ms3" secondAttribute="bottom" id="8Vb-OV-UNz"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="62" id="T81-jC-Oa3"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="5" id="U9c-Th-Hhe"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="1" id="iU0-BT-wf9"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" constant="8" id="xi9-LZ-iGY"/>
+                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="10" id="zez-vI-KhV"/>
+                                    </constraints>
+                                </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="G6K-pE-SLa">
                                     <rect key="frame" x="0.0" y="130" width="580" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -316,6 +345,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="documentTitleTextField" destination="Nf5-by-pCG" id="VAN-7V-q28"/>
                         <outlet property="tableView" destination="d7U-0Z-Byu" id="P9C-0D-TYM"/>
                     </connections>
                 </viewController>

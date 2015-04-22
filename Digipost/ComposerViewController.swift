@@ -20,6 +20,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
     
+    @IBOutlet weak var documentTitleTextField: UITextField!
     var tableViewDataSource: ComposerTableViewDataSource!
     var recipients = [Recipient]()
 
