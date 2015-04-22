@@ -171,9 +171,13 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         alertController.addAction(saveDraftAction)
         alertController.addAction(quitAction)
         
-        presentViewController(alertController, animated: true, completion: nil)
-
-        
+        if tableViewDataSource.tableData.isEmpty{
+            self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+            })
+        } else {
+            presentViewController(alertController, animated: true, completion: nil)
+        }
+    
     }
 
     override func didReceiveMemoryWarning() {	
