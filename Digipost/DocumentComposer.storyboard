@@ -258,7 +258,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
-                                            <rect key="frame" x="57" y="8" width="513" height="30"/>
+                                            <rect key="frame" x="51" y="8" width="513" height="30"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -269,9 +269,9 @@
                                         <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" id="1oR-jj-he0"/>
                                         <constraint firstAttribute="bottom" secondItem="Nf5-by-pCG" secondAttribute="bottom" constant="6" id="5pD-0P-HZa"/>
                                         <constraint firstAttribute="bottom" secondItem="EYJ-Bc-Ms3" secondAttribute="bottom" id="8Vb-OV-UNz"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="57" id="T81-jC-Oa3"/>
-                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="10" id="U9c-Th-Hhe"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="1" id="iU0-BT-wf9"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="51" id="T81-jC-Oa3"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="16" id="U9c-Th-Hhe"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="-5" id="iU0-BT-wf9"/>
                                         <constraint firstItem="Nf5-by-pCG" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" constant="8" id="xi9-LZ-iGY"/>
                                         <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="5" id="zez-vI-KhV"/>
                                     </constraints>
