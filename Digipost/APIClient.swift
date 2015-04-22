@@ -284,12 +284,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
         let url = NSURL(string: uri)
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        let parameters = ["subject" : "klasrdd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
+        let parameters = ["subject" : "kladd", "deliveryMethod" : "DIGIPOST", "authenticationLevel" : "PASSWORD"]
         validate(token: oauthToken) { () -> Void in
             let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters, success: { (responseJSON) -> Void in
                 println(responseJSON)
                 let sendableDocument = SendableDocument(dictionary: responseJSON)
                 sendableDocument.recipients = recipients
+                println(htmlContent)
                 let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
                 self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
                     println(success)
@@ -314,10 +315,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             formData.appendPartWithFormData(data, name:"subject")
 
             let fileData = NSData(contentsOfURL: fileURL)
+            let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
+            println(string)
             formData.appendPartWithFileData(fileData, name:"file", fileName: "test.html", mimeType:"text/html")
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
+
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
@@ -332,6 +337,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             dispatch_async(dispatch_get_main_queue(), {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
+                println(response as! NSHTTPURLResponse)
+                println(anyObject)
+                let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
+                println(s)
+
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
 //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
@@ -508,8 +518,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 assert(false, "NO oauthtoken present in app. Log out!")
             }
             // has found higher level oAuthToken that is outdated, try refreshing a lower level token
-
-
         }
     }
 
