@@ -15,7 +15,7 @@ import SingleLineKeyboardResize
     func tableView(tableView: UITableView, didStartReorderingRowAtPoint point: CGPoint)
 }
 
-class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
+class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
 
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
@@ -32,6 +32,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        documentTitleTextField.delegate = self
         setupTableView()
     }
     
@@ -84,7 +85,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
 
-    // MARK: - UITextVeiew Delegate
+    // MARK: - UITextView Delegate
     
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
@@ -100,6 +101,13 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
+    }
+    
+    // MARK: - UITextFieldDelegate
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
     
     // MARK: - ModuleSelectorViewController Delegate
