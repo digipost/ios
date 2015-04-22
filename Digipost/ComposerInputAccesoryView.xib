@@ -7,23 +7,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ComposerInputAccessoryView" customModule="Digipost" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="596" height="50"/>
+            <rect key="frame" x="0.0" y="5" width="596" height="36"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Component" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJk-DO-pLB">
-                    <rect key="frame" x="10" y="14" width="87" height="21"/>
+                    <rect key="frame" x="10" y="8" width="87" height="21"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gc4-QJ-Ey5">
-                    <rect key="frame" x="119" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="119" y="0.0" width="50" height="36"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjt-rN-OX5">
-                            <rect key="frame" x="10" y="16" width="30" height="18"/>
+                            <rect key="frame" x="13" y="11" width="25" height="14"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="18" id="7eh-Q8-CGJ"/>
-                                <constraint firstAttribute="width" constant="30" id="KKo-6r-HjS"/>
+                                <constraint firstAttribute="height" constant="14" id="7eh-Q8-CGJ"/>
+                                <constraint firstAttribute="width" constant="25" id="KKo-6r-HjS"/>
                             </constraints>
                             <state key="normal" title="Button" image="left">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,13 +48,13 @@
                     </variation>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsX-zM-PJB">
-                    <rect key="frame" x="170" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="170" y="0.0" width="50" height="36"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUW-OS-jQ0">
-                            <rect key="frame" x="10" y="16" width="30" height="18"/>
+                            <rect key="frame" x="13" y="11" width="25" height="14"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="30" id="1cR-BJ-AZO"/>
-                                <constraint firstAttribute="height" constant="18" id="p1G-YY-T4t"/>
+                                <constraint firstAttribute="width" constant="25" id="1cR-BJ-AZO"/>
+                                <constraint firstAttribute="height" constant="14" id="p1G-YY-T4t"/>
                             </constraints>
                             <state key="normal" title="Button" image="center">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -71,13 +71,13 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-8s-XzO">
-                    <rect key="frame" x="221" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="221" y="0.0" width="50" height="36"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjo-HN-BB0">
-                            <rect key="frame" x="10" y="16" width="30" height="18"/>
+                            <rect key="frame" x="13" y="11" width="25" height="14"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="18" id="Sgd-a4-bIJ"/>
-                                <constraint firstAttribute="width" constant="30" id="Vcm-c2-Fuc"/>
+                                <constraint firstAttribute="height" constant="14" id="Sgd-a4-bIJ"/>
+                                <constraint firstAttribute="width" constant="25" id="Vcm-c2-Fuc"/>
                             </constraints>
                             <state key="normal" title="Button" image="right">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,10 +94,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfe-dx-2Xy">
-                    <rect key="frame" x="548" y="15" width="30" height="20"/>
+                    <rect key="frame" x="558" y="11" width="20" height="15"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="20" id="ZST-ah-Ft9"/>
-                        <constraint firstAttribute="width" constant="30" id="hEM-ma-meb"/>
+                        <constraint firstAttribute="height" constant="15" id="ZST-ah-Ft9"/>
+                        <constraint firstAttribute="width" constant="20" id="hEM-ma-meb"/>
                     </constraints>
                     <state key="normal" image="checkmark">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,7 +151,7 @@
                 <outlet property="nameLabel" destination="KJk-DO-pLB" id="hYt-6M-4RB"/>
                 <outlet property="rightView" destination="ygu-8s-XzO" id="3cX-So-Xph"/>
             </connections>
-            <point key="canvasLocation" x="425" y="55"/>
+            <point key="canvasLocation" x="425" y="62"/>
         </view>
     </objects>
     <resources>
