@@ -34,6 +34,7 @@ extension RecipientViewController: UITableViewDataSource {
         } else {
             if let recipient = addedRecipients[indexPath.row] as Recipient? {
                 cell.loadCell(recipient: recipient)
+                cell.addedButton.hidden = false
             }
         }
         
