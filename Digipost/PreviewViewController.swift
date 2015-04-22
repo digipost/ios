@@ -49,8 +49,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
                 
-        
-        if recipients.count > 0 {
+        if recipients.count == 0 {
             recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title no recipients", comment: "Recipients view header no recipients")
         } else if recipients.count == 1 {
             recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title one recipient", comment: "Recipients view header one recipient")
