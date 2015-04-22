@@ -8,18 +8,17 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController, RecipientsViewControllerDelegate {
+class PreviewViewController: UIViewController, RecipientsViewControllerDelegate, UIWebViewDelegate {
     
     var recipients = [Recipient]()
     var modules = [ComposerModule]()
 
-    @IBOutlet weak var recipientsLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var addRecipientsButton: UIButton!
-    @IBOutlet weak var recipientsTableHeaderLabel: UILabel!
-    @IBOutlet weak var previewTableHeaderLabel: UILabel!
-    @IBOutlet weak var topSpaceToTableViewConstraint: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var webViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var recipientsHeaderLabel: UILabel!
+    @IBOutlet weak var previewHeaderLabel: UILabel!
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
@@ -29,36 +28,38 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        webView.delegate = self
+        webView.scrollView.scrollEnabled = false
         
         ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { [unowned self] (htmlString) -> ()  in
             self.webView.loadHTMLString(htmlString, baseURL: nil)
             self.currentShowingHTMLContent = htmlString!
-        })
+            
+            })
         
         self.title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         
-        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
-        tableView.rowHeight = 65.0
-        var tblView = UIView(frame: CGRectZero)
-        tableView.tableFooterView = tblView
-        tableView.tableFooterView?.hidden = true
-        tableView.backgroundColor = UIColor.digipostAccountViewBackground()
-        
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width, height: self.webView.scrollView.contentSize.height + 300)
+        webViewHeightConstraint.constant = self.webView.scrollView.contentSize.height
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
                 
-        let localizedString = NSLocalizedString("recipients view table view header title", comment: "Recipients table view header")
+        
         if recipients.count > 0 {
-            recipientsTableHeaderLabel.text = "\(localizedString) (\(recipients.count))"
-            addRecipientsButton.setTitle(NSLocalizedString("preview view add or edit button title", comment: " "), forState: .Normal)
+            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title no recipients", comment: "Recipients view header no recipients")
+        } else if recipients.count == 1 {
+            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title one recipient", comment: "Recipients view header one recipient")
         } else {
-            recipientsTableHeaderLabel.text = "\(localizedString) (0)"
-            addRecipientsButton.setTitle(NSLocalizedString("preview view add button title", comment: " "), forState: .Normal)
-
+            let localizedString = NSLocalizedString("preview view recipients header title recipients", comment: "Recipients view header many recipients")
+            recipientsHeaderLabel.text = "\(recipients.count) \(localizedString)"
         }
-        previewTableHeaderLabel.text = NSLocalizedString("preview view table view header title", comment: "Preview table view header")
+        
+        previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
     
     }
     
@@ -77,7 +78,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     
     func addRecipients(addedRecipients: [Recipient]) {
         self.recipients = addedRecipients
-        tableView.reloadData()
     }
     
     @IBAction func didTapSendButton(sender: AnyObject) {
