@@ -29,8 +29,8 @@ class PlaceholderTextView: UITextView, UITextViewDelegate {
                 
                 if text.isEmpty {
                     addPlaceholder()
-                } else if textColor == UIColor.lightGrayColor(){
-                    text = ""
+                } else if text.hasSuffix(placeholder){
+                    text = text.firstLetter()
                     textColor = UIColor.blackColor()
                 }
             }
@@ -58,7 +58,7 @@ class PlaceholderTextView: UITextView, UITextViewDelegate {
             }()
         
         textColor = UIColor.lightGrayColor()
-        text = placeholder
+        text = placeholder ?? ""
         let markerStartPosition = NSMakeRange(0, 0)
         selectedRange = markerStartPosition
     }
