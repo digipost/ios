@@ -526,3 +526,6 @@
 
 "preview view table view header title" = "FORHÅNDSVISNING";
 "preview view navigation bar title" = "Forhåndsvisning";
+"preview view add button title" = "Legg til mottakere";
+"preview view add or edit button title" = "Legg til eller rediger mottakere";
+
