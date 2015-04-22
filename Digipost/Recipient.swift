@@ -24,8 +24,7 @@ class Recipient {
     init?(recipient: [String : AnyObject]) {
         if let name = recipient["name"] as? String {
             self.name = name
-        }
-        else {
+        } else {
             self.name = ""
             self.address = [AnyObject]()
             self.digipostAddress = ""
@@ -34,6 +33,7 @@ class Recipient {
             self.uri = ""
             return nil
         }
+        
         self.address = recipient["address"] as? [AnyObject]
         self.digipostAddress = recipient["digipost-address"] as? String
         self.mobileNumber = recipient["mobile-number"] as? String
