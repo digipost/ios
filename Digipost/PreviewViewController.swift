@@ -42,7 +42,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
-        self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width, height: self.webView.scrollView.contentSize.height + 300)
+        scrollView.contentSize = CGSize(width: self.scrollView.frame.width, height: self.webView.scrollView.contentSize.height + 300)
         webViewHeightConstraint.constant = self.webView.scrollView.contentSize.height
     }
     
