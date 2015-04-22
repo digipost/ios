@@ -9,12 +9,15 @@
 import UIKit
 
 class RecipientTableViewCell: UITableViewCell {
+    @IBOutlet weak var initialsViewImageView: UIImageView!
     @IBOutlet weak var initialsLabel: UILabel!
     @IBOutlet weak var initialsView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addedButton: UIButton!
 
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -25,6 +28,7 @@ class RecipientTableViewCell: UITableViewCell {
         addedButton.clipsToBounds = true
         
         addedButton.hidden = true
+        initialsViewImageView.hidden = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

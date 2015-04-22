@@ -13,12 +13,19 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVH-6w-X1y">
                     <rect key="frame" x="15" y="15" width="35" height="35"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nr2-pV-4bb">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nr2-pV-4bb">
                             <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="company" translatesAutoresizingMaskIntoConstraints="NO" id="AIL-1o-8Nu">
+                            <rect key="frame" x="8" y="10" width="20" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="B7e-UU-KRN"/>
+                                <constraint firstAttribute="height" constant="25" id="hgO-nw-ewr"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.40000000596046448" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -27,8 +34,16 @@
                         <constraint firstItem="nr2-pV-4bb" firstAttribute="leading" secondItem="QVH-6w-X1y" secondAttribute="leading" id="P8x-hD-10N"/>
                         <constraint firstAttribute="trailing" secondItem="nr2-pV-4bb" secondAttribute="trailing" id="U3v-8t-3MI"/>
                         <constraint firstAttribute="height" constant="35" id="mPp-5s-Iut"/>
+                        <constraint firstAttribute="centerY" secondItem="AIL-1o-8Nu" secondAttribute="centerY" id="nbH-sV-Q6m"/>
                         <constraint firstItem="nr2-pV-4bb" firstAttribute="top" secondItem="QVH-6w-X1y" secondAttribute="top" id="rnh-wI-Vxf"/>
+                        <constraint firstAttribute="bottom" secondItem="AIL-1o-8Nu" secondAttribute="bottom" id="z9h-5L-I6m"/>
+                        <constraint firstAttribute="centerX" secondItem="AIL-1o-8Nu" secondAttribute="centerX" id="zm5-0u-w57"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="nbH-sV-Q6m"/>
+                        </mask>
+                    </variation>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fornavn Etternavn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YRa-Rc-QQP">
                     <rect key="frame" x="60" y="15" width="449" height="16"/>
@@ -42,8 +57,8 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-to-xdr">
-                    <rect key="frame" x="530" y="21" width="25" height="25"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9f3-to-xdr">
+                    <rect key="frame" x="530" y="20" width="25" height="25"/>
                     <color key="backgroundColor" red="0.49411764705882355" green="0.82745098039215681" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="UhD-PW-3oZ"/>
@@ -74,12 +89,14 @@
                 <outlet property="addressLabel" destination="34T-S8-lcX" id="dFi-Gk-GWb"/>
                 <outlet property="initialsLabel" destination="nr2-pV-4bb" id="fT7-4o-0Vq"/>
                 <outlet property="initialsView" destination="QVH-6w-X1y" id="ydF-h8-0eO"/>
+                <outlet property="initialsViewImageView" destination="AIL-1o-8Nu" id="sBV-fN-zMA"/>
                 <outlet property="nameLabel" destination="YRa-Rc-QQP" id="hrH-69-2o4"/>
             </connections>
             <point key="canvasLocation" x="361.5" y="130.5"/>
         </view>
     </objects>
     <resources>
+        <image name="company" width="36" height="52"/>
         <image name="recipient-checkmark" width="31" height="26"/>
     </resources>
 </document>
