@@ -525,6 +525,7 @@
                                     <constraint firstItem="4Xi-Bw-oEZ" firstAttribute="leading" secondItem="UdP-WD-i2e" secondAttribute="leading" id="Euv-9W-9c9"/>
                                     <constraint firstAttribute="trailing" secondItem="7MW-hP-uya" secondAttribute="trailing" id="Hpu-xI-zYC"/>
                                     <constraint firstItem="8Jv-5F-Y42" firstAttribute="centerY" secondItem="7MW-hP-uya" secondAttribute="centerY" constant="0.5" id="JaV-Pf-OcL"/>
+                                    <constraint firstAttribute="height" constant="300" id="N2c-xW-7et"/>
                                     <constraint firstItem="4Xi-Bw-oEZ" firstAttribute="top" secondItem="jvq-hT-1CL" secondAttribute="bottom" constant="5" id="NSH-Od-biH"/>
                                     <constraint firstItem="7MW-hP-uya" firstAttribute="top" secondItem="psk-Za-mo5" secondAttribute="bottom" constant="-8" id="NTC-Hg-Ucq"/>
                                     <constraint firstItem="jvq-hT-1CL" firstAttribute="leading" secondItem="tjT-g5-4Z4" secondAttribute="leading" id="OMJ-Sv-eAa"/>
@@ -552,6 +553,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="UdP-WD-i2e" secondAttribute="trailing" constant="-16" id="obr-R3-qs8"/>
                             <constraint firstItem="UdP-WD-i2e" firstAttribute="leading" secondItem="YjZ-ng-Y1u" secondAttribute="leadingMargin" constant="-16" id="qWJ-CX-Piu"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Dyc-VV-ANl"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jog-1s-EPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
