@@ -9,14 +9,13 @@
 import UIKit
 
 
-class PlaceholderTextView: UITextView, UITextViewDelegate {
+class PlaceholderTextView: UITextView {
     
-    @IBInspectable var placeholder: String!
+    var placeholder: String!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange:", name: UITextViewTextDidChangeNotification, object: self)
-        delegate = self
     }
     
     deinit{
@@ -36,10 +35,6 @@ class PlaceholderTextView: UITextView, UITextViewDelegate {
             }
         }
 
-    }
-    
-    func textViewDidBeginEditing(textView: UITextView) {
-        println()
     }
     
     func addPlaceholder(){
@@ -62,13 +57,5 @@ class PlaceholderTextView: UITextView, UITextViewDelegate {
         let markerStartPosition = NSMakeRange(0, 0)
         selectedRange = markerStartPosition
     }
-    
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
