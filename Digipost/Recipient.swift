@@ -15,10 +15,11 @@ private struct RecipientConstants {
 class Recipient {
     let name: String?
     let digipostAddress: String?
-    let address: String?
+    let address: [AnyObject]?
     let mobileNumber: String?
     let organizationNumber: String?
     let uri: String?
+    
     
     init?(recipient: [String : AnyObject]) {
         if let name = recipient["name"] as? String {
@@ -26,27 +27,22 @@ class Recipient {
         }
         else {
             self.name = ""
-            self.address = ""
+            self.address = [AnyObject]()
             self.digipostAddress = ""
             self.mobileNumber = ""
             self.organizationNumber = ""
             self.uri = ""
             return nil
         }
-        
-        self.address = recipient["address"] as? String
-        self.digipostAddress = recipient["digipostAddress"] as? String
-        self.mobileNumber = recipient["mobileNubmer"] as? String
-        self.organizationNumber = recipient["organizationNumber"] as? String
+        self.address = recipient["address"] as? [AnyObject]
+        self.digipostAddress = recipient["digipost-address"] as? String
+        self.mobileNumber = recipient["mobile-number"] as? String
+        self.organizationNumber = recipient["organisation-number"] as? String
         self.uri = recipient["uri"] as? String
     }
-    
-    
-    
-    
+
     class func recipients(#jsonDict: [String : AnyObject]) -> [Recipient] {
         var recipients = [Recipient]()
-        
         
         if let recipientArray = jsonDict["recipient"] as? [[String : AnyObject]] {
             for recipientDict in recipientArray {
