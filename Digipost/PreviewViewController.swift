@@ -48,14 +48,18 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+                
         let localizedString = NSLocalizedString("recipients view table view header title", comment: "Recipients table view header")
         if recipients.count > 0 {
             recipientsTableHeaderLabel.text = "\(localizedString) (\(recipients.count))"
+            addRecipientsButton.setTitle(NSLocalizedString("preview view add or edit button title", comment: " "), forState: .Normal)
         } else {
             recipientsTableHeaderLabel.text = "\(localizedString) (0)"
+            addRecipientsButton.setTitle(NSLocalizedString("preview view add button title", comment: " "), forState: .Normal)
+
         }
         previewTableHeaderLabel.text = NSLocalizedString("preview view table view header title", comment: "Preview table view header")
+    
     }
     
     @IBAction func didTapFooterView(sender: AnyObject) {
