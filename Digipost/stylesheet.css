@@ -2,9 +2,9 @@ body {
     font-size: 10px
 }
 
-section { margin: 2em }
+div { margin: 2em }
 
-section h1 { margin-bottom: 1em }
+div h1 { margin-bottom: 1em }
 
 .align-left { text-align: left }
 .align-center { text-align: center }
