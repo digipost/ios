@@ -8,10 +8,22 @@
 
 import UIKit
 
+extension PlaceholderTextView{
+    var placeholder: String {
+        switch self.font {
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
+            return "Enter a Headline"
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
+            return "Enter a Body"
+        case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
+            return "Enter a Subheadline"
+        default:
+            return "Enter text"
+        }
+    }
+}
 
 class PlaceholderTextView: UITextView {
-    
-    var placeholder: String!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -38,22 +50,8 @@ class PlaceholderTextView: UITextView {
     }
     
     func addPlaceholder(){
-       
-        placeholder = {
-            switch self.font {
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-                return "Enter a Headline"
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-                return "Enter a Body"
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-                return "Enter a Subheadline"
-            default:
-                return "Enter text"
-            }
-            }()
-        
         textColor = UIColor.lightGrayColor()
-        text = placeholder ?? ""
+        text = placeholder
         let markerStartPosition = NSMakeRange(0, 0)
         selectedRange = markerStartPosition
     }
