@@ -15,14 +15,9 @@ extension PreviewViewController: UITableViewDataSource {
         
         var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
         
-        let name = recipients[indexPath.row].name
-        let address = recipients[indexPath.row].address
-        
-        cell.nameLabel.text = name
-        cell.addressLabel.text = name
-        cell.initialsLabel.text = name?.initials()
-        cell.addedButton.hidden = false
-        //cell.loadCell(name!, address: address!)
+        if let recipient = recipients[indexPath.row] as Recipient? {
+            cell.loadCell(recipient: recipient)
+        }
 
         return cell
     }

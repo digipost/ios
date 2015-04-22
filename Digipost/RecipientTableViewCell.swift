@@ -35,11 +35,36 @@ class RecipientTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func loadCell(name: String, address: String) {
-        initialsLabel.text = name.initials()
-        nameLabel.text = name
-        addressLabel.text = address
+    func loadCell(#recipient: Recipient) {
+        nameLabel.text = recipient.name
         addedButton.hidden = true
+        
+        initialsLabel.text = recipient.name!.initials()
+        initialsViewImageView.hidden = true
+        addressLabel.text = generateAddressString(recipient)
+        
+        if recipient.organizationNumber != nil {
+            initialsLabel.text = ""
+            initialsViewImageView.hidden = false
+            addressLabel.text = "Org.nr \(recipient.organizationNumber!)"
+        }
     }
+    
+    
+    func generateAddressString(recipient: Recipient) -> String {
+        if let address : [AnyObject] = recipient.address {
+            if address.count != 0 {
+                if let street = address[0]["street"] as? String,
+                    let houseNumber = address[0]["house-number"] as? String,
+                    let houseLetter = address[0]["house-letter"] as? String,
+                    let zipCode = address[0]["zip-code"] as? String,
+                    let city = address[0]["city"] as? String {
+                        return "\(street) \(houseNumber)\(houseLetter) \(zipCode) \(city)"
+                }
+            }
+        }
 
+        
+        return recipient.digipostAddress!
+    }
 }
