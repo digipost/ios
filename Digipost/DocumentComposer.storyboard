@@ -263,16 +263,16 @@
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYJ-Bc-Ms3">
-                                            <rect key="frame" x="10" y="0.0" width="51" height="44"/>
+                                            <rect key="frame" x="5" y="0.0" width="51" height="44"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.72941176470588232" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
-                                            <rect key="frame" x="62" y="8" width="513" height="30"/>
+                                            <rect key="frame" x="57" y="8" width="513" height="30"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         </textField>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -280,11 +280,11 @@
                                         <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" id="1oR-jj-he0"/>
                                         <constraint firstAttribute="bottom" secondItem="Nf5-by-pCG" secondAttribute="bottom" constant="6" id="5pD-0P-HZa"/>
                                         <constraint firstAttribute="bottom" secondItem="EYJ-Bc-Ms3" secondAttribute="bottom" id="8Vb-OV-UNz"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="62" id="T81-jC-Oa3"/>
-                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="5" id="U9c-Th-Hhe"/>
+                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="57" id="T81-jC-Oa3"/>
+                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="10" id="U9c-Th-Hhe"/>
                                         <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="1" id="iU0-BT-wf9"/>
                                         <constraint firstItem="Nf5-by-pCG" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" constant="8" id="xi9-LZ-iGY"/>
-                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="10" id="zez-vI-KhV"/>
+                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="5" id="zez-vI-KhV"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="G6K-pE-SLa">
