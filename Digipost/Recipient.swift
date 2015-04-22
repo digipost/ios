@@ -55,5 +55,14 @@ class Recipient {
         return recipients
     }
     
+    func firstName() -> String {
+        if self.organizationNumber != nil {
+            return self.name!
+        } else {
+            let name = self.name
+            var nameArray = split(name!) {$0 == " "}
+            return nameArray[0]
+        }
+    }
 }
 
