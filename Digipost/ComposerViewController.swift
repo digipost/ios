@@ -21,7 +21,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     var deleteComposerModuleView: DeleteComposerModuleView!
     
     var tableViewDataSource: ComposerTableViewDataSource!
-    var currentlyEditingTextView: UITextView?
     var recipients = [Recipient]()
 
     // used when calculating size of textviews for cells that are bigger than one line
@@ -41,7 +40,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
-        //snapShotView.transform = CGAffineTransformMakeScale(0.75, 0.75)
         snapShotView.transform = CGAffineTransformMakeRotation(-0.02)
         let offset = tableView.frame.origin.x
         snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 44)
@@ -98,20 +96,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.endUpdates()
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        currentlyEditingTextView = textView
-
-    }
-    
-    func textViewDidEndEditing(textView: UITextView) {
-        if let indexPath = indexPathForCellContainingTextView(textView){
-            if let textModule = tableViewDataSource.tableData[indexPath.row] as? TextComposerModule {
-                textModule.text = textView.text
-            }
-        }
-        currentlyEditingTextView = nil
-    }
-    
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
@@ -135,7 +119,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 cell?.moduleTextView.addPlaceholder()
                 cell?.setLabel(textModule!.font)
                 cell?.moduleTextView.becomeFirstResponder()
-                currentlyEditingTextView = cell?.moduleTextView
                 cell?.moduleTextView.delegate = self
             }
         }
@@ -194,10 +177,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{
-            
-            if let textView = currentlyEditingTextView{
-                textView.resignFirstResponder()
-            }
+
             previewViewController.recipients = recipients
             previewViewController.modules = tableViewDataSource.tableData
             previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
