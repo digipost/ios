@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SingleLineKeyboardResize
 
 protocol RecipientsViewControllerDelegate {
     func addRecipients(recipients: [Recipient])
@@ -34,8 +35,10 @@ class RecipientViewController: UIViewController {
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 65.0
         
-        
         searchBar.delegate = self
+        searchBar.returnKeyType = UIReturnKeyType.Done
+        
+        setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
 
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {

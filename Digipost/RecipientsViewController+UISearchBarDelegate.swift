@@ -21,6 +21,10 @@ extension RecipientViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         recipients.removeAll(keepCapacity: false)
         
