@@ -94,11 +94,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjq-iS-buR">
-                                <rect key="frame" x="16" y="287" width="568" height="249"/>
+                                <rect key="frame" x="16" y="312" width="568" height="224"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </webView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nh2-ac-LIR">
-                                <rect key="frame" x="0.0" y="252" width="600" height="38"/>
+                                <rect key="frame" x="0.0" y="277" width="600" height="38"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PREVIEW" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQu-eW-aSP">
                                         <rect key="frame" x="15" y="10" width="504" height="18"/>
@@ -148,7 +148,7 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-Jm-yK2">
-                                <rect key="frame" x="0.0" y="172" width="600" height="80"/>
+                                <rect key="frame" x="0.0" y="197" width="600" height="80"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="wrG-p8-dnl"/>
@@ -163,10 +163,10 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="RxK-m1-a5k">
-                                <rect key="frame" x="0.0" y="37" width="600" height="135"/>
+                                <rect key="frame" x="0.0" y="37" width="600" height="160"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="135" id="bDv-ce-tI2"/>
+                                    <constraint firstAttribute="height" constant="160" id="bDv-ce-tI2"/>
                                     <constraint firstAttribute="height" constant="200" id="c8d-mq-tPe"/>
                                 </constraints>
                                 <prototypes>
