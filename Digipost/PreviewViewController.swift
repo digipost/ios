@@ -35,6 +35,8 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate 
             self.currentShowingHTMLContent = htmlString!
         })
         
+        self.title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
+        
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 65.0
         var tblView = UIView(frame: CGRectZero)

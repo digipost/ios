@@ -34,6 +34,7 @@ class RecipientViewController: UIViewController {
         tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 65.0
         
+        
         searchBar.delegate = self
     }
 
