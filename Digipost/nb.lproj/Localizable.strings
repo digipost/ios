@@ -556,3 +556,8 @@
 "image table view cell title" = "Bilde";
 "module selector title" = "Hva ønsker du å legge til?";
 
+/* module accessory view */
+"headline title" = "Overskrift";
+"subheadline title" = "Liten overskrift";
+"normal text title" = "Normal tekst";
+
