@@ -38,7 +38,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
             })
         
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
-        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         
         navigationController?.delegate = self
@@ -64,7 +63,15 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
 
     }
-    
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
+        let recipientNames = self.recipients.map { (recipient) -> String in
+            return recipient.firstName()
+        }
+        addRecipientsButton.fitAsManyStringsAsPossible(recipientNames)
+    }
     @IBAction func didTapFooterView(sender: AnyObject) {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
