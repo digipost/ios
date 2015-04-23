@@ -25,24 +25,28 @@ extension PlaceholderTextView{
 
 class PlaceholderTextView: UITextView {
     
+    private var placeholderLabel: UILabel!
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidChange:", name: UITextViewTextDidChangeNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: self)
     }
     
     deinit{
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    func textDidChange(notification: NSNotification?) -> (Void) {
+    func textViewDidChange(notification: NSNotification?) -> (Void) {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
-                if text.isEmpty {
+                if count(text) > 0 {
+                    if placeholderLabel != nil {
+                        placeholderLabel.removeFromSuperview()
+                        placeholderLabel = nil
+                    }
+                } else {
                     addPlaceholder()
-                } else if text.hasSuffix(placeholder){
-                    text = text.firstLetter()
-                    textColor = UIColor.blackColor()
                 }
             }
         }
@@ -50,10 +54,12 @@ class PlaceholderTextView: UITextView {
     }
     
     func addPlaceholder(){
-        textColor = UIColor.lightGrayColor()
-        text = placeholder
-        let markerStartPosition = NSMakeRange(0, 0)
-        selectedRange = markerStartPosition
+        let cursorPosition = self.caretRectForPosition(self.selectedTextRange?.start)
+        placeholderLabel = UILabel(frame: CGRectMake(cursorPosition.origin.x, cursorPosition.origin.y, frame.width, cursorPosition.height))
+        placeholderLabel.text = placeholder
+        placeholderLabel.textColor = UIColor.lightGrayColor()
+        placeholderLabel.font = font
+        addSubview(placeholderLabel)
     }
 
 }
