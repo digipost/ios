@@ -24,16 +24,15 @@ class TextModuleTableViewCell: UITableViewCell {
     }
     
     func setLabel(font: UIFont) {
-        println(font)
         switch font{
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-            composerInputAccessoryView.nameLabel.text = "Headline"
+            composerInputAccessoryView.nameLabel.text = NSLocalizedString("headline title", comment: "headline title")
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-            composerInputAccessoryView.nameLabel.text = "Body"
+            composerInputAccessoryView.nameLabel.text = NSLocalizedString("normal text title", comment: "headline title")
         case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-            composerInputAccessoryView.nameLabel.text = "Subheader"
+            composerInputAccessoryView.nameLabel.text = NSLocalizedString("subheadline title", comment: "headline title")
         default:
-            composerInputAccessoryView.nameLabel.text = "Body"
+            composerInputAccessoryView.nameLabel.text = NSLocalizedString("headline title", comment: "headline title")
         }
     }
 
