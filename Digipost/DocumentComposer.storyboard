@@ -441,7 +441,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="UdP-WD-i2e" firstAttribute="top" secondItem="VwL-re-boj" secondAttribute="bottom" constant="280" id="Dyc-VV-ANl"/>
                             <constraint firstItem="1Xh-U1-3Pa" firstAttribute="top" secondItem="UdP-WD-i2e" secondAttribute="bottom" id="Ns1-cw-Ht2"/>

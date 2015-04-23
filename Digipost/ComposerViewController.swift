@@ -25,6 +25,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet weak var documentTitleTextField: UITextField!
     var tableViewDataSource: ComposerTableViewDataSource!
     var recipients = [Recipient]()
+    
+    var dimView: UIView!
 
     // used when calculating size of textviews for cells that are bigger than one line
     var exampleTextView : UITextView?
@@ -155,6 +157,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
     
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
+        dimBackground()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -193,6 +196,26 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
     
     }
+    
+    func dimBackground(){
+        if dimView == nil {
+            dimView = UIView(frame: UIScreen.mainScreen().bounds)
+            dimView.backgroundColor = UIColor.blackColor()
+            dimView.alpha = 0
+            view.addSubview(dimView)
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.dimView.alpha = 0.5
+            })
+        } else {
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.dimView.alpha = 0
+            }, completion: { (Bool) -> Void in
+                self.dimView.removeFromSuperview()
+                self.dimView = nil
+            })
+        }
+    }
 
     override func didReceiveMemoryWarning() {	
         super.didReceiveMemoryWarning()
@@ -205,6 +228,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
         if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
+            dimBackground()
         }
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{
