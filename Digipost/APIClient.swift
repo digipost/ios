@@ -55,7 +55,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
         additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        
         self.session = theSession
+    }
+
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+        if __IS_BETA__ == 1 {
+            if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+                if challenge.protectionSpace.host == "dpost.camelon.os.ergo.no" {
+                    let credential = NSURLCredential(trust: challenge.protectionSpace.serverTrust)
+                    completionHandler(.UseCredential,credential)
+                }
+            }
+        }
     }
 
     func removeAccessTokenUsedInLastRequest() {
