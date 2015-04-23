@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController, RecipientsViewControllerDelegate, UIWebViewDelegate {
+class PreviewViewController: UIViewController, RecipientsViewControllerDelegate, UIWebViewDelegate, UINavigationControllerDelegate {
     
     var recipients = [Recipient]()
     var modules = [ComposerModule]()
@@ -23,7 +23,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
-
     var currentShowingHTMLContent : String?
 
 
@@ -42,6 +41,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
         addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         
+        navigationController?.delegate = self
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -62,19 +62,29 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
         }
         
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
-    
+
     }
     
     @IBAction func didTapFooterView(sender: AnyObject) {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
     
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {        
+        if let composerViewController = viewController as? ComposerViewController {
+            composerViewController.recipients = recipients
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
             recipientsViewController.recipientDelegate = self
             if recipients.count > 0 {
                 recipientsViewController.addedRecipients = recipients
             }
+        }
+        
+        if let composerViewController = segue.destinationViewController as? ComposerViewController {
+            composerViewController.recipients = recipients
         }
     }
     
