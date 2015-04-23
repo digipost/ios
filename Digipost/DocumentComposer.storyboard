@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -27,14 +27,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4lo-wY-uWH">
                                 <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recipientCell" rowHeight="80" id="RQv-iZ-5mC" customClass="RecipientTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RQv-iZ-5mC" id="uIv-97-76M">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="9Ad-2g-amd" id="QW2-63-Y2M"/>
                                     <outlet property="delegate" destination="9Ad-2g-amd" id="HxF-tJ-Jf1"/>
@@ -355,7 +347,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Forhåndsvisning" id="5jj-bQ-bUU">
                             <connections>
-                                <segue destination="pyB-XH-9wo" kind="show" id="Uht-Uz-hDe"/>
+                                <action selector="previewButtonTapped:" destination="hzi-BN-YG0" id="7dr-hw-Ukh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -364,6 +356,7 @@
                         <outlet property="documentTitleTextField" destination="Nf5-by-pCG" id="VAN-7V-q28"/>
                         <outlet property="previewButton" destination="5jj-bQ-bUU" id="AZE-NN-7pr"/>
                         <outlet property="tableView" destination="d7U-0Z-Byu" id="P9C-0D-TYM"/>
+                        <segue destination="pyB-XH-9wo" kind="show" identifier="goToPreview" id="LP5-CD-B3Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBT-DS-JQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
