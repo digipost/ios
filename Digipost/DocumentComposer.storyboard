@@ -388,9 +388,13 @@
                                         <color key="textColor" red="0.30196078431372547" green="0.30980392156862746" blue="0.32549019607843138" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yB0-rk-SPi">
-                                        <rect key="frame" x="543" y="11" width="40" height="30"/>
-                                        <state key="normal" title="Close">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yB0-rk-SPi">
+                                        <rect key="frame" x="568" y="19" width="15" height="15"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="15" id="V7b-rW-Iy4"/>
+                                            <constraint firstAttribute="width" constant="15" id="xZd-9a-eaC"/>
+                                        </constraints>
+                                        <state key="normal" image="close module selector icon">
                                             <color key="titleColor" red="0.30196078430000001" green="0.30980392159999998" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -403,20 +407,25 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="moduleCell" textLabel="FX0-S6-dX1" style="IBUITableViewCellStyleDefault" id="3xJ-K9-v6L">
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="moduleCell" rowHeight="47" id="3xJ-K9-v6L">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3xJ-K9-v6L" id="R35-iE-wAS">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Normal tekst" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FX0-S6-dX1">
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add module icon" translatesAutoresizingMaskIntoConstraints="NO" id="WQR-K7-kfc">
+                                                            <rect key="frame" x="579" y="16" width="13" height="13"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="13" id="9hJ-0q-Bgw"/>
+                                                                <constraint firstAttribute="height" constant="13" id="qkb-iC-qCh"/>
+                                                            </constraints>
+                                                        </imageView>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="WQR-K7-kfc" secondAttribute="trailing" id="ZkT-uU-Bme"/>
+                                                        <constraint firstAttribute="centerY" secondItem="WQR-K7-kfc" secondAttribute="centerY" id="fyB-yx-ZOy"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
-                                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </tableViewCell>
                                         </prototypes>
                                         <sections/>
@@ -468,6 +477,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="add module icon" width="25" height="25"/>
+        <image name="close module selector icon" width="30" height="30"/>
         <image name="composer arrow" width="14" height="25"/>
     </resources>
 </document>
