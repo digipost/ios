@@ -1231,7 +1231,6 @@
 				835C74E318867603006C6F4F /* POSInvoice.h */,
 				835C74E418867603006C6F4F /* POSInvoice.m */,
 				83D75F661858E5790013F8C9 /* POSRootResource.h */,
-				31F4C88D1AD5471700E63129 /* Recipient.swift */,
 				83D75F671858E5790013F8C9 /* POSRootResource.m */,
 				EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */,
 				EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */,
@@ -1252,6 +1251,7 @@
 				83DB4AE5188D1F4E00515022 /* POSReceipt.m */,
 				83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */,
 				83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */,
+				31F4C88D1AD5471700E63129 /* Recipient.swift */,
 				EC67AA281AE67E4900B08328 /* SendableDocument.swift */,
 			);
 			name = Model;
