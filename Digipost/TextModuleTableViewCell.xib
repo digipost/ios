@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hr6-UR-nUr" customClass="PlaceholderTextView" customModule="Digipost" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                        <rect key="frame" x="15" y="0.0" width="290" height="43"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -24,8 +24,8 @@
                 <constraints>
                     <constraint firstItem="Hr6-UR-nUr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ile-nB-Ra1"/>
                     <constraint firstAttribute="bottom" secondItem="Hr6-UR-nUr" secondAttribute="bottom" id="UYF-0h-HHY"/>
-                    <constraint firstItem="Hr6-UR-nUr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gHV-3r-E3R"/>
-                    <constraint firstAttribute="trailing" secondItem="Hr6-UR-nUr" secondAttribute="trailing" id="nWF-VG-bGg"/>
+                    <constraint firstItem="Hr6-UR-nUr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="gHV-3r-E3R"/>
+                    <constraint firstAttribute="trailing" secondItem="Hr6-UR-nUr" secondAttribute="trailing" constant="15" id="nWF-VG-bGg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
