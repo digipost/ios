@@ -162,20 +162,7 @@
 {
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
-// done
-- (void)updateNavbar
-{
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:self
-                                                                         action:@selector(popViewController)];
 
-    backBarButtonItem.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
-    backBarButtonItem.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
-    if ([self isKindOfClass:[POSFoldersViewController class]]) {
-        self.navigationItem.backBarButtonItem = backBarButtonItem;
-    }
-}
 - (void)popViewController
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
@@ -207,7 +194,7 @@
     }
 
     [self.tableView reloadData];
-    [self updateNavbar];
+    //    [self updateNavbar];
 }
 
 - (void)programmaticallyEndRefresh
@@ -244,6 +231,7 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 }
+
 - (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
 {
     NSString *text = nil;

@@ -29,7 +29,6 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         var error: NSError?
         
         if !controller.performFetch(&error){
-            println(error?.localizedDescription)
         }
         
         return controller

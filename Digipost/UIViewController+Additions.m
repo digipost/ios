@@ -18,7 +18,7 @@
                                                                          action:@selector(popViewController)];
 
     if ([self isKindOfClass:[POSFoldersViewController class]]) {
-        self.navigationItem.backBarButtonItem = backBarButtonItem;
+//        self.navigationItem.backBarButtonItem = backBarButtonItem;
     }
 }
 

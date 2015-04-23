@@ -50,13 +50,26 @@
     UITableViewCell *cell;
     if ([objectInFetchedResultsController isKindOfClass:[POSFolder class]]) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"FolderCellIdentifier" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
         cell.backgroundColor = RGB(64, 66, 69);
-    } else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
-    }
 
+    } else {
+        POSMailbox *mailbox = (id)objectInFetchedResultsController;
+        if (mailbox.owner.boolValue) {
+            UINib *cellNib = [UINib nibWithNibName:@"MainAccountTableViewCell" bundle:nil];
+            [self.tableView registerNib:cellNib forCellReuseIdentifier:@"mainAccountCellIdentifier"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"mainAccountCellIdentifier" forIndexPath:indexPath];
+
+
+        } else {
+            UINib *cellNib = [UINib nibWithNibName:@"AccountTableViewCell" bundle:nil];
+            [self.tableView registerNib:cellNib forCellReuseIdentifier:@"accountCellIdentifier"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"accountCellIdentifier" forIndexPath:indexPath];
+
+        }
+    }
+    
+    [self configureCell:cell atIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -76,8 +89,32 @@
         }
         foldercell.iconImageView.image = iconImage;
     } else {
+
         POSMailbox *mailbox = (id)objectInFetchedResultsController;
-        cell.textLabel.text = mailbox.name;
+
+        NSString *unreadItemsString = @"";
+
+        if (mailbox.unreadItemsInInbox.intValue == 1) {
+            NSString *str = NSLocalizedString(@"account view unread letter", @"Unread message");
+            unreadItemsString = [NSString stringWithFormat:@"%@ %@", mailbox.unreadItemsInInbox, str];
+        } else {
+            NSString *str = NSLocalizedString(@"account view unread letters", @"Unread messages");
+            unreadItemsString = [NSString stringWithFormat:@"%@ %@", mailbox.unreadItemsInInbox, str];
+        }
+
+        if ([cell isKindOfClass:[MainAccountTableViewCell class]]) {
+            MainAccountTableViewCell *mainCell = (MainAccountTableViewCell *)cell;
+            mainCell.accountNameLabel.text = mailbox.name;
+            mainCell.initialLabel.text = mailbox.name.initials;
+            mainCell.unreadMessages.text = unreadItemsString;
+
+        } else if ([cell isKindOfClass:[AccountTableViewCell class]]) {
+            AccountTableViewCell *accCell = (AccountTableViewCell *)cell;
+            accCell.accountNameLabel.text = mailbox.name;
+            accCell.initialLabel.text = mailbox.name.initials;
+            accCell.unreadMessages.text = unreadItemsString;
+            accCell.accountDescriptionLabel.text = NSLocalizedString(@"account description shared", @"Shared with you");
+        }
     }
 }
 
@@ -98,19 +135,23 @@
     [fetchRequest setEntity:entity];
     fetchRequest.predicate = [self predicate];
 
-    NSSortDescriptor *sortDescriptor = [self sortDescriptor];
-    [fetchRequest setSortDescriptors:@[ sortDescriptor ]];
+    fetchRequest.sortDescriptors = [self sortDescriptors];
+
     return fetchRequest;
 }
 
-- (NSSortDescriptor *)sortDescriptor
+- (NSArray *)sortDescriptors
 {
     if ([self.entityDescription isEqualToString:kFolderEntityName]) {
         NSSortDescriptor *indexDescriptor = [[NSSortDescriptor alloc] initWithKey:@"index" ascending:YES];
-        return indexDescriptor;
+        return @[indexDescriptor];
     } else {
-        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-        return nameDescriptor;
+        NSSortDescriptor *ownerDescriptor = [[NSSortDescriptor alloc] initWithKey:@"owner"
+                                                                        ascending:NO];
+        
+        NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name"
+                                                                       ascending:YES];
+        return @[ownerDescriptor, nameDescriptor];
     }
 }
 

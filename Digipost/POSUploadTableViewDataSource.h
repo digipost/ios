@@ -7,6 +7,8 @@
 //
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <digipost-Swift.h>
+
 @class POSMailbox;
 
 @interface POSUploadTableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>

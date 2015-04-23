@@ -20,19 +20,22 @@
 
 - (void)setMenuButton
 {
+    return;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
     [self setTitle:@"backButton"];
-    [self.navigationItem setLeftBarButtonItem:backButton];
+    //    [self.navigationItem setLeftBarButtonItem:backButton];
 }
 
 - (void)pos_setDefaultBackButton
 {
+    return;
+
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back"]
                                                                    style:UIBarButtonItemStyleDone
                                                                   target:self
                                                                   action:@selector(pos_popViewController)];
     [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
-    [self.navigationItem setLeftBarButtonItem:backButton];
+    //    [self.navigationItem setLeftBarButtonItem:backButton];
     backButton.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
     backButton.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
 }

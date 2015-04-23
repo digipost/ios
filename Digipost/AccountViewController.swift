@@ -76,6 +76,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer.delegate = self
     }
 
@@ -89,27 +90,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
-            
-            showingItem.hidesBackButton = true
-                        
-            if showingItem.respondsToSelector("setLeftBarButtonItem:") {
-                showingItem.setLeftBarButtonItem(nil, animated: false)
-            }
-            
             if showingItem.respondsToSelector("setRightBarButtonItem:") {
                 showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
             }
-            if showingItem.respondsToSelector("setBackBarButtonItem:") {
-                showingItem.backBarButtonItem = nil
-            }
-            
+
             showingItem.title = title
         }
 
         navigationItem.setHidesBackButton(true, animated: false)
-        navigationItem.backBarButtonItem = nil
-        navigationItem.leftBarButtonItem = nil
-        
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
         
@@ -144,10 +132,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     // MARK: - TableViewDelegate
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         var cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
         cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
-        
         performSegueWithIdentifier("PushFolders", sender: self)
     }
     
@@ -218,6 +204,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         tableView.reloadData()
         APIClient.sharedClient.logout()
+        OAuthToken.removeAllTokens()
+        POSModelManager.sharedManager().deleteAllObjects()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 

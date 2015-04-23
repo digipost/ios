@@ -30,6 +30,8 @@
 #import "POSFileManager.h"
 #import "oauth.h"
 #import "Digipost-Swift.h"
+#import <HockeySDK/HockeySDK.h>
+#import <HockeySDK/BITHockeyManager.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
@@ -47,10 +49,10 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    //    [self setupHockeySDK];
-
+    [self setupHockeySDK];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-400, -400) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-200 forBarMetrics:UIBarMetricsDefault];
     //    [self setupCocoaLumberjack];
-
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
 
@@ -85,7 +87,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         UINavigationController *navController = [self.window topMasterNavigationController];
 
         UIViewController *topViewController = [self.window topMasterViewController];
-        //        NSLog(@"Topp VC %@",topViewController);
         [navController popToRootViewControllerAnimated:NO];
 
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
@@ -124,9 +125,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
-
-        NSLog(@"new Viewcontroller stack %@", newViewControllerArray);
-        NSLog(@"navigation controller vc %@", navController.viewControllers);
 
         POSMailbox *mailbox = dict[@"mailbox"];
         POSFolder *folder = dict[@"folder"];
@@ -211,15 +209,18 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     }
 }
 #pragma mark - Private methods
-//
-//- (void)setupHockeySDK
-//{
-//    [[BITHockeyManager sharedHockeyManager] configureWithBetaIdentifier:__HOCKEY_BETA_IDENTIFIER__
-//                                                         liveIdentifier:__HOCKEY_LIVE_IDENTIFIER__
-//                                                               delegate:self];
-//    [[BITHockeyManager sharedHockeyManager] startManager];
-//    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
-//}
+
+- (void)setupHockeySDK
+{
+
+#if __IS_BETA__ == 0
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_LIVE_IDENTIFIER__];
+#elif __IS_BETA__ == 1
+    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
+#else
+#endif
+    [[BITHockeyManager sharedHockeyManager] startManager];
+}
 
 //- (void)setupCocoaLumberjack
 //{
@@ -247,9 +248,14 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
 
-    // Initialize tracker.
+// Initialize tracker.
+
+#if __IS_BETA__ == 0
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-1"];
-    [GAI sharedInstance].dispatchInterval = 5.0;
+#elif __IS_BETA__ == 1
+    self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-46373710-2"];
+#endif
+    [GAI sharedInstance].dispatchInterval = 15.0;
 }
 
 @end

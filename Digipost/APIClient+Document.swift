@@ -71,8 +71,6 @@ extension APIClient {
                 failure(error: error)
             }
         }
-//        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-//        println("choosing highest scope: \(highestToken)")
         validate(token: token, thenPerformTask: task!)
     }
     

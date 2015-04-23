@@ -37,6 +37,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
@@ -49,11 +50,14 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     }
     self.tableView.delegate = self;
     self.howtoUploadImageView.hidden = YES;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+
     if ([self pos_hasBackButton] == NO) {
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(closeView)];
         self.navigationItem.rightBarButtonItem = barButtonItem;
@@ -65,6 +69,8 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     } failure:^(APIError *error){
 
     }];
+
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
 }
 
 - (void)closeView

@@ -12,7 +12,7 @@ private struct onboardingViewControllerConstants {
     static let showOnboardingLoginViewControllerSegue = "showOnboardingLoginViewControllerSegue"
 }
 
-class OnboardingViewController: UIViewController, UIScrollViewDelegate {
+class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
     
     // Backgrounds
     @IBOutlet var bgImageView: UIImageView!
@@ -59,6 +59,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.screenName = "Onboarding"
         modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
         scrollView.delegate = self
         

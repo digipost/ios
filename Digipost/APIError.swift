@@ -9,7 +9,7 @@
 import UIKit
 
 
-private struct APIErrorConstants {
+ struct APIErrorConstants {
     static let errorCode = "error-code"
     struct ErrorCodes {
         static let folderNotEmpty = "FOLDER_NOT_EMPTY"
@@ -20,7 +20,8 @@ private struct APIErrorConstants {
 class APIError: NSError {
 
     let digipostErrorCode : String = ""
-    let httpStatusCode : Int = 0
+    var httpStatusCode : Int = 0
+    var responseText : String?
 
     init(error: NSError) {
 
@@ -37,7 +38,8 @@ class APIError: NSError {
         if let response = jsonResponse {
         //    digipostErrorCode = response[APIErrorConstants.errorCode] as? String
         }
-   //     httpStatusCode = urlResponse.statusCode
+        responseText = jsonResponse?.description
+        httpStatusCode = urlResponse.statusCode
         super.init(domain: Constants.Error.apiClientErrorDomain, code: APIErrorConstants.noErrorCode, userInfo: nil)
     }
 
@@ -57,11 +59,6 @@ class APIError: NSError {
     }
 
     func userNeedsHigherAuthenticationLevel() -> Bool {
-        //        if code == Constants.error.code {
-        //
-        //        }
-        //
-
         if code == Constants.Error.Code.NeedHigherAuthenticationLevel {
             return true
         }
@@ -185,19 +182,21 @@ class APIError: NSError {
             case APIErrorConstants.ErrorCodes.folderNotEmpty:
                 return (NSLocalizedString("Not empty folder alert title",comment:"Title of alert informing user that folder is not empty"), NSLocalizedString("Not empty folder alert descrption ", comment: "Description of user telling folder is not empty"))
             default:
-                return ("Error","")
+                return (
+                    NSLocalizedString("Unknown error title",comment:"Title of alert") , NSLocalizedString("Uknown error message", comment:"message for alert")
+                )
             }
 
         } else {
             switch Int32(self.code) {
             case CFNetworkErrors.CFErrorHTTPConnectionLost.rawValue:
-                return ("connection lost","")
+                return ("Connection lost","")
             case CFNetworkErrors.CFURLErrorTimedOut.rawValue:
                 return ("Timeout", "")
             case CFNetworkErrors.CFURLErrorCannotConnectToHost.rawValue:
                 fallthrough
             case CFNetworkErrors.CFURLErrorCannotFindHost.rawValue:
-                return ("cannot connect to host","")
+                return ("Cannot connect to host","")
             case CFNetworkErrors.CFURLErrorResourceUnavailable.rawValue:
                 return ("Server nede","")
             case CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue:
@@ -211,7 +210,7 @@ class APIError: NSError {
             case CFNetworkErrors.CFURLErrorUnknown.rawValue:
                 return ("Noe feil skjedde, prøv igjen","")
             default:
-                return ("Error","")
+                return (NSLocalizedString("Unknown error title",comment:"Title of alert"),NSLocalizedString("Uknown error message", comment:"message for alert"))
             }
         }
     }

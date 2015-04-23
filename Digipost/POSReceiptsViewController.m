@@ -49,7 +49,6 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self pos_setDefaultBackButton];
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.deleteBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", @"Delete");
     [self.navigationItem setTitle:self.storeName];

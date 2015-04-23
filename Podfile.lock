@@ -1,0 +1,103 @@
+PODS:
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.3):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - AHKActionSheet (0.2.0)
+  - Alamofire (1.2.1)
+  - HockeySDK (3.6.2)
+  - LUKeychainAccess (1.2.4)
+  - MRProgress (0.4.3):
+    - MRProgress/ActivityIndicator (= 0.4.3)
+    - MRProgress/Blur (= 0.4.3)
+    - MRProgress/Circular (= 0.4.3)
+    - MRProgress/Helper (= 0.4.3)
+    - MRProgress/Icons (= 0.4.3)
+    - MRProgress/MessageInterceptor (= 0.4.3)
+    - MRProgress/NavigationBarProgress (= 0.4.3)
+    - MRProgress/Overlay (= 0.4.3)
+    - MRProgress/Stopable (= 0.4.3)
+    - MRProgress/WeakProxy (= 0.4.3)
+  - MRProgress/ActivityIndicator (0.4.3):
+    - MRProgress/Stopable
+  - MRProgress/Blur (0.4.3):
+    - MRProgress/Helper
+  - MRProgress/Circular (0.4.3):
+    - MRProgress/Helper
+    - MRProgress/Stopable
+  - MRProgress/Helper (0.4.3)
+  - MRProgress/Icons (0.4.3)
+  - MRProgress/MessageInterceptor (0.4.3)
+  - MRProgress/NavigationBarProgress (0.4.3)
+  - MRProgress/Overlay (0.4.3):
+    - MRProgress/ActivityIndicator
+    - MRProgress/Blur
+    - MRProgress/Circular
+    - MRProgress/Helper
+    - MRProgress/Icons
+  - MRProgress/Stopable (0.4.3):
+    - MRProgress/Helper
+  - MRProgress/WeakProxy (0.4.3)
+  - RNCryptor (2.2)
+  - SingleLineKeyboardResize (0.1.2)
+  - UIActionSheet+Blocks (0.9)
+  - UIAlertView+Blocks (0.9)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5.0)
+  - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
+  - Alamofire (~> 1.1)
+  - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
+  - LUKeychainAccess (~> 1.2.0)
+  - MRProgress (~> 0.4.3)
+  - RNCryptor (~> 2.2)
+  - SingleLineKeyboardResize (~> 0.1.2)
+  - UIActionSheet+Blocks (~> 0.8)
+  - UIAlertView+Blocks (~> 0.8)
+
+EXTERNAL SOURCES:
+  AHKActionSheet:
+    :commit: 84f116697e8187fb7f654d771df64690dd8860eb
+    :git: https://github.com/haaakon/AHKActionSheet.git
+  HockeySDK:
+    :branch: develop
+    :git: https://github.com/bitstadium/HockeySDK-iOS.git
+
+CHECKOUT OPTIONS:
+  AHKActionSheet:
+    :commit: 84f116697e8187fb7f654d771df64690dd8860eb
+    :git: https://github.com/haaakon/AHKActionSheet.git
+  HockeySDK:
+    :commit: 6ea387fcdabb29599b8c6d3c335e9841939d6c1f
+    :git: https://github.com/bitstadium/HockeySDK-iOS.git
+
+SPEC CHECKSUMS:
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
+  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
+  HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
+  LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
+  MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
+  RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
+  SingleLineKeyboardResize: 9a61d8b61bf1b228e0a701b9b45ff4e11c7035b3
+  UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
+  UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
+
+COCOAPODS: 0.36.3

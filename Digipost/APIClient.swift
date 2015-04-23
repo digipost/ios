@@ -143,7 +143,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 failure(error: error)
             }
         }
-        println("choosing highest scope: \(highestToken)")
 
         validate(token: highestToken, thenPerformTask: task!)
     }
@@ -512,7 +511,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 validationSuccess()
                 }, failure: { (error) -> Void in
                     // TODO handle failure
-                    println(error)
+//                    println(error)
             })
         }else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
 
@@ -534,7 +533,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
                 }, failure: { (error) -> Void in
                     // TODO handle failure
-                    println(error)
+//                    println(error)
             })
         }else if (oAuthToken == nil) {
             assert(false," something wrong with oauth token")

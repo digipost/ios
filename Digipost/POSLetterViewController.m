@@ -144,7 +144,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
     [self reloadFromMetadata];
 
-    [self pos_setDefaultBackButton];
     [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
@@ -1509,9 +1508,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     POSDocument *document = [POSDocument existingDocumentWithUpdateUri:updateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     self.attachment = [document mainDocumentAttachment];
-    NSLog(@"attachment uri %@", self.attachment.uri);
     POSBaseEncryptedModel *baseEncryptedMode = (POSBaseEncryptedModel *)self.attachment;
-    NSLog(@"baseencrypt model  %@", baseEncryptedMode);
 }
 
 - (void)didTapUnlockButton:(id)sender

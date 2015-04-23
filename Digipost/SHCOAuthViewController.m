@@ -90,7 +90,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 }
 
 #pragma mark - UIWebViewDelegate
-
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // When localhost is trying to load, it means the app is trying to log in with OAuth2

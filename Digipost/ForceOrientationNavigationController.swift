@@ -20,7 +20,6 @@ class ForceOrientationNavigationController: UINavigationController {
     }
     
     override func shouldAutorotate() -> Bool {
-
         return true
     }
     

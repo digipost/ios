@@ -30,3 +30,4 @@
 #import "NSError+ExtraInfo.h"
 #import "UITableView+Reorder.h"
 #import "POSMailBox+Methods.h"
+#import "GAIDictionaryBuilder.h"

@@ -26,7 +26,7 @@ extension UIFont{
     }
 }
 
-class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
+class NewFeaturesViewController: GAITrackedViewController, UIScrollViewDelegate {
 
     @IBOutlet var navBar: UINavigationItem!
     @IBOutlet var doneBarButton: UIBarButtonItem!
@@ -43,6 +43,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.screenName = "NewFeatures"
         
         whatsNewGuideItems = Guide.whatsNewGuideItems()
         let device = UIDevice.currentDevice().userInterfaceIdiom
@@ -59,6 +60,7 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         dispatch_once(&setupFeatures_dispatch_token){
             self.setupNewFeatures()
         }
@@ -124,7 +126,8 @@ class NewFeaturesViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationItem.hidesBackButton = true
+        super.viewWillAppear(animated)
+//        self.navigationItem.hidesBackButton = true
     }
     
     @IBAction func doneButtonAction(sender: AnyObject) {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
@@ -714,6 +714,8 @@
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
+		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
+		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
@@ -742,6 +744,9 @@
 		ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
+		ECD89DE51AD661100014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
+		ECD89DE61AD6699B0014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
+		ECD89DE71AD6699D0014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
 		ECDB9A031A5A904E0013DF4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
@@ -1032,6 +1037,7 @@
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC94DA7B1AE5217600AE574D /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
+		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
 		EC9E790A1ADE8E7800EED08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostTests.swift; sourceTree = "<group>"; };
@@ -1078,6 +1084,7 @@
 		ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Document.swift"; sourceTree = "<group>"; };
 		ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+APIError.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
+		ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		ECDB9A021A5A904E0013DF4F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
@@ -1348,6 +1355,7 @@
 				EC55F4321A2C5C1A00A3192C /* Digipost-Test-QA-2.xcconfig */,
 				ECAB1CF71AE4E58000D72D41 /* DigipostTests.xcconfig */,
 				83F703571855DD3A003DABE1 /* Digipost.xcconfig */,
+				EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */,
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83F7038418573C3A003DABE1 /* Localizable.strings */,
 				83BAB9271855C0AC004A7BFB /* main.m */,
@@ -1607,6 +1615,7 @@
 		EC1A6C2F18BBA32100269428 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */,
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
 				31F4C88B1AD545D200E63129 /* APIClient+Recipients.swift */,
@@ -1897,7 +1906,7 @@
 						};
 					};
 					EC2DCB3B1AB84EAB0063755E = {
-						DevelopmentTeam = KMS8B8MK42;
+						DevelopmentTeam = 4E3PDM5H84;
 					};
 					EC2DCBEC1AB864AB0063755E = {
 						DevelopmentTeam = 4E3PDM5H84;
@@ -1949,6 +1958,7 @@
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				31952EF71AE50A0B00739600 /* RecipientTableViewCell.xib in Resources */,
 				AF1E55B11ADEB000003AB3B2 /* stylesheet.css in Resources */,
+				EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
@@ -2008,6 +2018,7 @@
 				316C0CFD1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
+				EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
 				EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */,
 				311F226C1AD66E3000292068 /* TextModuleTableViewCell.xib in Resources */,
 				AF1E55B21ADEB000003AB3B2 /* stylesheet.css in Resources */,
@@ -2381,6 +2392,7 @@
 				31679B6A1ADE7E61005FE31B /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
+				ECD89DE51AD661100014A0B4 /* GoogleAnalytics.swift in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
@@ -2696,6 +2708,7 @@
 				EC2DCBB01AB84EAB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCBB11AB84EAB0063755E /* UIImage+Localization.swift in Sources */,
 				AF991E011ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
+				ECD89DE61AD6699B0014A0B4 /* GoogleAnalytics.swift in Sources */,
 				EC2DCBB21AB84EAB0063755E /* POSNotice.m in Sources */,
 				AF981EF71AD516DF00DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
@@ -2855,6 +2868,7 @@
 				AF2C68861AD59CE6007020DC /* ComposerModule.swift in Sources */,
 				EC2DCC611AB864AB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCC621AB864AB0063755E /* UIImage+Localization.swift in Sources */,
+				ECD89DE71AD6699D0014A0B4 /* GoogleAnalytics.swift in Sources */,
 				EC2DCC631AB864AB0063755E /* POSNotice.m in Sources */,
 				AF981EFB1AD516E100DE8B55 /* RecipientsViewController.swift in Sources */,
 				EC2DCC641AB864AB0063755E /* POSAttachment+Methods.swift in Sources */,
@@ -3011,7 +3025,7 @@
 		};
 		83BAB9511855C0AD004A7BFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703571855DD3A003DABE1 /* Digipost.xcconfig */;
+			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3036,8 +3050,12 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "\"$(PROJECT_DIR)/GAI\"";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GAI",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3073,8 +3091,12 @@
 				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "\"$(PROJECT_DIR)/GAI\"";
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/GAI",
+				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "0f776ead-e4f7-4822-8e40-a01d75d923b1";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -3084,7 +3106,7 @@
 		};
 		EC0D2DE91AE786A800595A61 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */;
+			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3125,7 +3147,7 @@
 		};
 		EC0D2DEA1AE786A800595A61 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Staging-Enterprise.xcconfig */;
+			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

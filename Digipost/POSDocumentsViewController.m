@@ -79,6 +79,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)viewDidLoad
 {
+    self.navigationItem.hidesBackButton = false;
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
@@ -102,7 +103,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self addAccountsAnFoldersVCToDoucmentHierarchy];
 
     [self updateToolbarButtonItems];
-    [self pos_setDefaultBackButton];
+    //    [self pos_setDefaultBackButton];
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = NO;
 }
 
@@ -152,9 +153,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    //    [[POSAPIManager sharedManager] cancelUpdatingDocuments];
-    //    [APIClient sharedClient] cancel
-
     if (self.isEditing == YES) {
         [self setEditing:NO animated:YES];
     }
@@ -219,7 +217,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     if ([APIClient sharedClient].isUploadingFile) {
         if (indexPath.row == 0) {
             POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
@@ -275,7 +272,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
-    cell.selectionStyle = self.isEditing && cell.selected ? UITableViewCellSelectionStyleNone : UITableViewCellSelectionStyleDefault;
+    cell.multipleSelectionBackgroundView = [UIView new];
 }
 
 #pragma mark - UITableViewDelegate
@@ -648,7 +645,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)deleteDocument:(POSDocument *)document success:(void (^)(void))success
 {
-
     [[APIClient sharedClient] deleteDocument:document.deleteUri success:^{
         [self updateFetchedResultsController];
         
@@ -687,10 +683,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
-    //    if ([POSAPIManager sharedManager].isUpdatingBankAccount) {
-    //        return;
-    //    }
-
     [[APIClient sharedClient] updateBankAccountWithUri:uri success:^(NSDictionary *response) {
 
     }

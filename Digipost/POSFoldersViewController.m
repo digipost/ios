@@ -73,7 +73,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self.tableView setAllowsSelectionDuringEditing:YES];
     self.baseEntity = [[POSModelManager sharedManager] folderEntity];
 
-    [self pos_setDefaultBackButton];
     self.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:NSStringFromSelector(@selector(index))
                                                             ascending:YES
                                                              selector:@selector(compare:)] ];
@@ -106,18 +105,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             currentMailbox = [POSMailbox mailboxInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         }
         navItem.title = currentMailbox.name;
-        if (navItem.leftBarButtonItem == nil) {
-            UIImage *image = [UIImage imageNamed:@"back"];
-            UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:image
-                                                                           style:UIBarButtonItemStyleDone
-                                                                          target:self
-                                                                          action:@selector(popViewController)];
-            backButton.title = @" ";
-            backButton.accessibilityLabel = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
-            backButton.accessibilityHint = NSLocalizedString(@"Accessability backbutton title", @"name of back button");
-            [backButton setImageInsets:UIEdgeInsetsMake(3, -8, 0, 0)];
-            [navItem setLeftBarButtonItem:backButton];
-        }
         [navItem setRightBarButtonItem:self.editButtonItem];
     }
     if (navItem.rightBarButtonItem == nil) {
