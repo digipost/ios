@@ -353,6 +353,7 @@
 		EC0D2DEE1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
 		EC0D2DEF1AE79C7A00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
 		EC0D2DF01AE79C7B00595A61 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31952EF61AE50A0B00739600 /* RecipientTableViewCell.xib */; };
+		EC0DDF7B1AE91D60002B97DF /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0DDF7A1AE91D60002B97DF /* UIButton+Recipient.swift */; };
 		EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
 		EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
@@ -931,6 +932,7 @@
 		EC0D2D211AE7831B00595A61 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC0D2DEB1AE786A800595A61 /* Digipost-QA-2 copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-QA-2 copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0D2DEC1AE786A900595A61 /* Digipost-QA-2 copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost-QA-2 copy-Info.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost-QA-2 copy-Info.plist"; sourceTree = "<absolute>"; };
+		EC0DDF7A1AE91D60002B97DF /* UIButton+Recipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Recipient.swift"; sourceTree = "<group>"; };
 		EC0F2B7619B893350019212E /* POSUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadViewController.h; sourceTree = "<group>"; };
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
@@ -1221,6 +1223,7 @@
 			isa = PBXGroup;
 			children = (
 				AF981EFC1AD516F800DE8B55 /* PreviewViewController.swift */,
+				EC0DDF7A1AE91D60002B97DF /* UIButton+Recipient.swift */,
 			);
 			name = Preview;
 			sourceTree = "<group>";
@@ -2385,6 +2388,7 @@
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				316C0D081ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
+				EC0DDF7B1AE91D60002B97DF /* UIButton+Recipient.swift in Sources */,
 				ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
