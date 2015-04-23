@@ -25,8 +25,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet weak var documentTitleTextField: UITextField!
     var tableViewDataSource: ComposerTableViewDataSource!
     var recipients = [Recipient]()
-    
-    var dimView: UIView!
 
     // used when calculating size of textviews for cells that are bigger than one line
     var exampleTextView : UITextView?
@@ -68,6 +66,11 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 88)
         snapShotView.frame.origin.x += offset
         view.addSubview(snapShotView)
+        UIView.animateWithDuration(0.2, animations: { () -> Void in
+            self.tableView.frame.size.height -= self.deleteComposerModuleView.frame.height
+        }) { (Bool) -> Void in
+            self.tableView.setNeedsLayout()
+        }
         tableView.editing = true
         
     }
@@ -153,12 +156,14 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             }
         }
         
-        dimBackground()
+        let dimView = view as? DimView
+        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
-        dimBackground()
+        let dimView = view as? DimView
+        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -197,26 +202,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
     
     }
-    
-    func dimBackground(){
-        if dimView == nil {
-            dimView = UIView(frame: UIScreen.mainScreen().bounds)
-            dimView.backgroundColor = UIColor.blackColor()
-            dimView.alpha = 0
-            view.addSubview(dimView)
-            
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.dimView.alpha = 0.5
-            })
-        } else {
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                self.dimView.alpha = 0
-            }, completion: { (Bool) -> Void in
-                self.dimView.removeFromSuperview()
-                self.dimView = nil
-            })
-        }
-    }
 
     override func didReceiveMemoryWarning() {	
         super.didReceiveMemoryWarning()
@@ -229,7 +214,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
         if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
-            dimBackground()
+            
+            let dimView = view as? DimView
+            dimView?.dim()
         }
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{

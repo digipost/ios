@@ -156,6 +156,10 @@
 		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		AFEB99C11AE8FD370099D924 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB99C01AE8FD370099D924 /* DimView.swift */; };
+		AFEB99C21AE8FD370099D924 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB99C01AE8FD370099D924 /* DimView.swift */; };
+		AFEB99C31AE8FD370099D924 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB99C01AE8FD370099D924 /* DimView.swift */; };
+		AFEB99C41AE8FD370099D924 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEB99C01AE8FD370099D924 /* DimView.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
 		EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
@@ -905,6 +909,7 @@
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
+		AFEB99C01AE8FD370099D924 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
 		CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1491,6 +1496,7 @@
 		AFB730E91ADE590A009C98E6 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				AFEB99C01AE8FD370099D924 /* DimView.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
@@ -2320,6 +2326,7 @@
 				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
+				AFEB99C11AE8FD370099D924 /* DimView.swift in Sources */,
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
 				31679B741ADE7E61005FE31B /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */,
@@ -2470,6 +2477,7 @@
 				EC0D2D721AE786A800595A61 /* Dispatch.swift in Sources */,
 				EC0D2D731AE786A800595A61 /* UIRefreshControl+Additions.m in Sources */,
 				EC0D2D741AE786A800595A61 /* POSAccountViewTableViewDataSource.m in Sources */,
+				AFEB99C41AE8FD370099D924 /* DimView.swift in Sources */,
 				EC0D2D751AE786A800595A61 /* UIWebView+Accessability.swift in Sources */,
 				EC0D2D761AE786A800595A61 /* OAuthToken.swift in Sources */,
 				EC0D2D771AE786A800595A61 /* POSDocument+Methods.m in Sources */,
@@ -2635,6 +2643,7 @@
 				EC2DCB861AB84EAB0063755E /* NSPredicate+CommonPredicates.m in Sources */,
 				EC2DCB871AB84EAB0063755E /* APIClient+Document.swift in Sources */,
 				EC2DCB881AB84EAB0063755E /* POSLetterPopoverTableViewCell.m in Sources */,
+				AFEB99C21AE8FD370099D924 /* DimView.swift in Sources */,
 				EC2DCB891AB84EAB0063755E /* NSError+ExtraInfo.m in Sources */,
 				EC2DCB8A1AB84EAB0063755E /* UIScrollViewExtensions.swift in Sources */,
 				AFA069EF1ADD225900AA2D54 /* ImageComposerModule.swift in Sources */,
@@ -2785,6 +2794,7 @@
 				EC2DCC2D1AB864AB0063755E /* Dispatch.swift in Sources */,
 				EC2DCC2E1AB864AB0063755E /* UIRefreshControl+Additions.m in Sources */,
 				EC2DCC2F1AB864AB0063755E /* POSAccountViewTableViewDataSource.m in Sources */,
+				AFEB99C31AE8FD370099D924 /* DimView.swift in Sources */,
 				EC2DCC301AB864AB0063755E /* UIWebView+Accessability.swift in Sources */,
 				EC2DCC311AB864AB0063755E /* OAuthToken.swift in Sources */,
 				EC2DCC321AB864AB0063755E /* POSDocument+Methods.m in Sources */,

@@ -241,7 +241,7 @@
                         <viewControllerLayoutGuide type="top" id="opl-Ht-hva"/>
                         <viewControllerLayoutGuide type="bottom" id="2KC-Tl-kD0"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8b9-OH-zQ6">
+                    <view key="view" contentMode="scaleToFill" id="8b9-OH-zQ6" customClass="DimView" customModule="Digipost" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -321,6 +321,11 @@
                             <constraint firstAttribute="trailing" secondItem="d7U-0Z-Byu" secondAttribute="trailing" constant="10" id="5lQ-0a-EqD"/>
                             <constraint firstItem="d7U-0Z-Byu" firstAttribute="top" secondItem="opl-Ht-hva" secondAttribute="bottom" id="cfM-y7-Uky"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dimColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" title="Send brev" id="DpV-8n-mTd">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yq-SM-Qz5">
