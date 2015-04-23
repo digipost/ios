@@ -86,6 +86,7 @@
         <attribute name="numberOfCards" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfCardsReadyForVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="numberOfReceiptsHiddenUntilVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="searchUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="selfUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unreadItemsInInbox" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="uploadDocumentUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -98,6 +99,6 @@
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
         <element name="Mailbox" positionX="79" positionY="207" width="128" height="210"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
-        <element name="RootResource" positionX="-360" positionY="27" width="128" height="285"/>
+        <element name="RootResource" positionX="-360" positionY="27" width="128" height="300"/>
     </elements>
 </model>
