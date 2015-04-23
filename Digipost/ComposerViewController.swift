@@ -152,7 +152,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 cell?.moduleTextView.delegate = self
             }
         }
-
+        
+        dimBackground()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     

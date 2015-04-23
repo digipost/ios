@@ -102,5 +102,15 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         
         return cell
     }
+    
+    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+        for touch: AnyObject in touches {
+            let location = touch.locationInView(moduleSelectorView)
+            if moduleSelectorView.pointInside(location, withEvent: event) == false{
+                self.delegate?.moduleSelectorViewControllerWasDismissed(self)
+            }
+            
+        }
+    }
 
 }
