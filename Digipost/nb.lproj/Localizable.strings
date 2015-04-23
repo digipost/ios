@@ -522,6 +522,7 @@
 "recipients view navigation bar right button save" = "Lagre";
 "recipients view table view header title" = "MOTTAKERE";
 "recipients view add recipients button title" = "Legg til mottakere";
+"recipients view search bar placeholder" = "Søk på personer eller bedrifter";
 
 
 "preview view table view header title" = "FORHÅNDSVISNING";

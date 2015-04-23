@@ -36,6 +36,7 @@ class RecipientViewController: UIViewController {
         tableView.rowHeight = 65.0
         
         searchBar.delegate = self
+        searchBar.placeholder = NSLocalizedString("recipients view search bar placeholder", comment: "placeholder text")
         searchBar.returnKeyType = UIReturnKeyType.Done
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
