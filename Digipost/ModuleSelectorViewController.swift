@@ -34,9 +34,9 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         var tblView = UIView(frame: CGRectZero)
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
-        
+        tableView.scrollEnabled = false
     }
-
+    
     func addHeadline() {
         addTextModule(UIFontTextStyleHeadline)
     }
