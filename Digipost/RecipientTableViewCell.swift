@@ -39,7 +39,7 @@ class RecipientTableViewCell: UITableViewCell {
         nameLabel.text = recipient.name
         addedButton.hidden = true
         
-        initialsLabel.text = recipient.name!.initials()
+        initialsLabel.text = recipient.name.initials()
         initialsViewImageView.hidden = true
         addressLabel.text = generateAddressString(recipient)
         

@@ -25,6 +25,7 @@ class SendableDocumentConstants {
     static let rel = "rel"
     static let uri = "uri"
 
+    static let tempFileName = "temp.html"
 }
 
 
@@ -75,10 +76,9 @@ class SendableDocument {
         }
     }
 
-
     func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
         POSFileManager.sharedFileManager().uploadsFolderPath()
-        let filePath = POSFileManager.sharedFileManager().uploadsFolderPath().stringByAppendingPathComponent("temp.html")
+        let filePath = POSFileManager.sharedFileManager().uploadsFolderPath().stringByAppendingPathComponent(SendableDocumentConstants.tempFileName)
         if NSFileManager.defaultManager().createFileAtPath(filePath, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
             return NSURL(fileURLWithPath: filePath)
         } else {
@@ -89,8 +89,8 @@ class SendableDocument {
 
    func draftParameters() -> [ String : AnyObject] {
     let digipostAddresses = self.recipients.map { (recipient) -> [String : String] in
-        return [ "digipost-address" : recipient.digipostAddress!]
+        return [ Constants.Recipient.digipostAddress : recipient.digipostAddress!]
     }
-    return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password, "recipient": digipostAddresses]
+    return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password, Constants.Recipient.recipient: digipostAddresses]
     }
 }

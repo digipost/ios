@@ -25,7 +25,7 @@ extension RecipientViewController: UITableViewDataSource {
                 if let recipient = recipients[indexPath.row] as Recipient? {
                     cell.loadCell(recipient: recipient)
                     for r in addedRecipients {
-                        if r.name! == recipient.name && r.digipostAddress! == recipients[indexPath.row].digipostAddress! {
+                        if r.name == recipient.name && r.digipostAddress! == recipients[indexPath.row].digipostAddress! {
                             cell.addedButton.hidden = false
                         }
                     }

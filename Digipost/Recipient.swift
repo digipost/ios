@@ -8,12 +8,9 @@
 
 import Foundation
 
-private struct RecipientConstants {
-    static let name: String = "name"
-}
 
 class Recipient {
-    let name: String?
+    let name: String
     let digipostAddress: String?
     let address: [AnyObject]?
     let mobileNumber: String?
@@ -22,29 +19,23 @@ class Recipient {
     
     
     init?(recipient: [String : AnyObject]) {
-        if let name = recipient["name"] as? String {
-            self.name = name
+        self.address = recipient[Constants.Recipient.address] as? [AnyObject]
+        self.digipostAddress = recipient[Constants.Recipient.digipostAddress] as? String
+        self.mobileNumber = recipient[Constants.Recipient.mobileNumber] as? String
+        self.organizationNumber = recipient[Constants.Recipient.organizationNumber] as? String
+        self.uri = recipient[Constants.Recipient.uri] as? String
+        if let actualName = recipient[Constants.Recipient.name] as? String {
+            self.name = actualName
         } else {
             self.name = ""
-            self.address = [AnyObject]()
-            self.digipostAddress = ""
-            self.mobileNumber = ""
-            self.organizationNumber = ""
-            self.uri = ""
             return nil
         }
-        
-        self.address = recipient["address"] as? [AnyObject]
-        self.digipostAddress = recipient["digipost-address"] as? String
-        self.mobileNumber = recipient["mobile-number"] as? String
-        self.organizationNumber = recipient["organisation-number"] as? String
-        self.uri = recipient["uri"] as? String
     }
 
     class func recipients(#jsonDict: [String : AnyObject]) -> [Recipient] {
         var recipients = [Recipient]()
         
-        if let recipientArray = jsonDict["recipient"] as? [[String : AnyObject]] {
+        if let recipientArray = jsonDict[Constants.Recipient.recipient] as? [[String : AnyObject]] {
             for recipientDict in recipientArray {
                 if let recipient = Recipient(recipient: recipientDict) {
                     recipients.append(recipient)
