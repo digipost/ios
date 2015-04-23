@@ -537,6 +537,10 @@
 "composer view preview button title" = "Forhåndsvisning";
 "composer view document title label" = "Tittel:";
 "composer view title placeholder" = "Trykk for å legge til en tittel";
+"composer view close alert title" = "Brev lukkes";
+"composer view close alert message" = "Vil du lagre utkastet før du avslutter";
+"composer view close alert save draft button title" = "Lagre utkast";
+"composer view close alert quit button title" = "Lukk";
 
 "text composer module headline placeholder" = "Legg til overift";
 "text composer module subheadline placeholder" = "Legg til en underoverskrift";

@@ -47,7 +47,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let tableHeaderView = tableView.tableHeaderView
         var border = CALayer()
         var width = CGFloat(1.0)
-        border.borderColor = UIColor.darkGrayColor().CGColor
+        border.borderColor = UIColor.lightGrayColor().CGColor
         border.frame = CGRect(x: 0, y: tableHeaderView!.frame.size.height - width, width:  tableHeaderView!.frame.size.width, height: tableHeaderView!.frame.size.height)
         
         border.borderWidth = width
@@ -162,8 +162,11 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     @IBAction func cancelButtonAction(sender: UIBarButtonItem) {
         
-        let alertController = UIAlertController(title: "Brev lukkes", message: "Vil du lagre utkastet før du avslutter?", preferredStyle: UIAlertControllerStyle.Alert)
-        let saveDraftAction = UIAlertAction(title: "Lagre utkast",
+        let alertController = UIAlertController(title: NSLocalizedString("composer view close alert title", comment: "alert title"),
+            message: NSLocalizedString("composer view close alert message", comment: "close alert message"),
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let saveDraftAction = UIAlertAction(title: NSLocalizedString("composer view close alert save draft button title", comment: "button title"),
             style: UIAlertActionStyle.Default)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 println("Saved")
@@ -171,7 +174,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 })
         }
         
-        let quitAction = UIAlertAction(title: "Lukk",
+        let quitAction = UIAlertAction(title: NSLocalizedString("composer view close alert quit button title", comment: "button title"),
             style: UIAlertActionStyle.Destructive)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 
