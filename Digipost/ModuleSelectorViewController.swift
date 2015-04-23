@@ -13,38 +13,52 @@ protocol ModuleSelectorViewControllerDelegate{
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController)
 }
 
-class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var imagePicker = UIImagePickerController()
     var delegate: ModuleSelectorViewControllerDelegate?
+    @IBOutlet weak var moduleSelectorView: UIView!
     
+    @IBOutlet weak var moduleSelectorViewBottomConstraint: NSLayoutConstraint!
+
+    let moduleTypeStrings = [NSLocalizedString("small headline table view cell title", comment: "Title for table view cell"),
+                            NSLocalizedString("big headline table view cell title", comment: "Title for table view cell"),
+                            NSLocalizedString("normal text table view cell title", comment: "Title for table view cell"),
+                            NSLocalizedString("image table view cell title", comment: "Title for table view cell")]
+    
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        var tblView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = tblView
+        tableView.tableFooterView?.hidden = true
+        
     }
 
-    @IBAction func addHeadline(sender: AnyObject) {
+    func addHeadline() {
         addTextModule(UIFontTextStyleHeadline)
     }
     
-    @IBAction func addSubheadline(sender: AnyObject) {
+    func addSubheadline() {
         addTextModule(UIFontTextStyleSubheadline)
     }
 
-    @IBAction func addBody(sender: AnyObject) {
+    func addBody() {
         addTextModule(UIFontTextStyleBody)
     }
     
     @IBAction func closeButtonAction(sender: UIButton) {
-        delegate?.moduleSelectorViewControllerWasDismissed(self)
+        self.delegate?.moduleSelectorViewControllerWasDismissed(self)
     }
     
     func addTextModule(textStyle: String){
         let selectedModule = TextComposerModule(moduleWithFont: UIFont.preferredFontForTextStyle(textStyle))
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
     }
-    @IBAction func addImage(sender: UIButton) {
+    
+    func addImage() {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
             imagePicker.delegate = self
             imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
@@ -59,14 +73,34 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
         
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch indexPath {
+        case 0:
+            addHeadline()
+        case 1:
+            addSubheadline()
+        case 2:
+            addBody()
+        case 3:
+            addImage()
+        default:
+            addBody()
+        }
     }
-    */
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("moduleCell") as! UITableViewCell
+        
+        cell.textLabel?.text = moduleTypeStrings[indexPath.row]
+        
+        return cell
+    }
 
 }
