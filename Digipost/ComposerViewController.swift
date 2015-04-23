@@ -77,6 +77,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
     }
     
+    @IBAction func previewButtonTapped(sender: AnyObject) {
+        self.performSegueWithIdentifier("goToPreview", sender: self)
+    }
+    
     func deleteComposerModule(){
         tableView.isDeletingRow = true
         // Deleting of cell is processed in the UITableView+Reorder Category
