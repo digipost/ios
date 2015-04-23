@@ -18,8 +18,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     var imagePicker = UIImagePickerController()
     var delegate: ModuleSelectorViewControllerDelegate?
     @IBOutlet weak var moduleSelectorView: UIView!
-    
-    @IBOutlet weak var moduleSelectorViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var moduleSelectorViewTitle: UILabel!
 
     let moduleTypeStrings = [NSLocalizedString("big headline table view cell title", comment: "Title for table view cell"),
                             NSLocalizedString("small headline table view cell title", comment: "Title for table view cell"),
@@ -35,6 +34,8 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
         tableView.scrollEnabled = false
+        
+        moduleSelectorViewTitle.text = NSLocalizedString("module selector title", comment: "module selector view title")
     }
     
     func addHeadline() {
