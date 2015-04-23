@@ -34,8 +34,11 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
         tableView.scrollEnabled = false
+        tableView.rowHeight = 50
         
         moduleSelectorViewTitle.text = NSLocalizedString("module selector title", comment: "module selector view title")
+        
+        
     }
     
     func addHeadline() {
