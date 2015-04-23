@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -223,6 +223,7 @@
                         <outlet property="previewHeaderLabel" destination="btM-x3-cJJ" id="MbZ-Bk-t7l"/>
                         <outlet property="recipientsHeaderLabel" destination="AGp-So-hdJ" id="XMZ-2t-arc"/>
                         <outlet property="scrollView" destination="tUB-e6-jb3" id="tF2-RJ-oLf"/>
+                        <outlet property="sendButton" destination="ldZ-Tf-wNU" id="4EE-y3-6aM"/>
                         <outlet property="webView" destination="hjq-iS-buR" id="qHU-C8-fMA"/>
                         <outlet property="webViewHeightConstraint" destination="xKH-Uu-kzv" id="exv-kw-1yr"/>
                         <segue destination="9Ad-2g-amd" kind="show" identifier="addRecipientsSegue" id="rXO-im-ODV"/>

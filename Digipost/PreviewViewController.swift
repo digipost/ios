@@ -19,6 +19,7 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
     @IBOutlet weak var webViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var recipientsHeaderLabel: UILabel!
     @IBOutlet weak var previewHeaderLabel: UILabel!
+    @IBOutlet weak var sendButton: UIBarButtonItem!
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
@@ -38,7 +39,8 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
             })
         
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
-        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients"), forState: .Normal)
+        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
+        sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         
     }
     
