@@ -60,18 +60,4 @@ class ComposerInputAccessoryView: UIView {
         
         view.backgroundColor = 	UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
     }
-    
-    func setLabel() {
-        let font = textView.font
-        switch font {
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-            nameLabel.text = "Headline"
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-            nameLabel.text = "Body"
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-            nameLabel.text = "Subheader"
-        default:
-            nameLabel.text = "Body"
-        }
-    }
 }
