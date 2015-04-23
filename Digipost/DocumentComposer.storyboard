@@ -129,7 +129,7 @@
                                             <action selector="didTapFooterView:" destination="pyB-XH-9wo" eventType="touchUpInside" id="Ewi-9Z-DXx"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="composer arrow" translatesAutoresizingMaskIntoConstraints="NO" id="798-5d-JbH">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="composer arrow" translatesAutoresizingMaskIntoConstraints="NO" id="798-5d-JbH">
                                         <rect key="frame" x="574" y="67" width="8" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="J6U-WJ-zbT"/>
@@ -155,10 +155,10 @@
                                         </constraints>
                                     </view>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjq-iS-buR">
-                                        <rect key="frame" x="10" y="146" width="580" height="456"/>
+                                        <rect key="frame" x="10" y="146" width="580" height="380"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="456" id="xKH-Uu-kzv"/>
+                                            <constraint firstAttribute="height" constant="380" id="xKH-Uu-kzv"/>
                                         </constraints>
                                     </webView>
                                 </subviews>
@@ -166,12 +166,12 @@
                                     <constraint firstItem="Hwn-Jm-yK2" firstAttribute="leading" secondItem="tUB-e6-jb3" secondAttribute="leading" id="4Bf-RX-a53"/>
                                     <constraint firstItem="hs4-fa-GBe" firstAttribute="leading" secondItem="tUB-e6-jb3" secondAttribute="leading" id="9Ib-MX-Vhk"/>
                                     <constraint firstItem="Hwn-Jm-yK2" firstAttribute="top" secondItem="hs4-fa-GBe" secondAttribute="bottom" id="9Mz-XT-kXj"/>
-                                    <constraint firstItem="798-5d-JbH" firstAttribute="centerY" secondItem="Hwn-Jm-yK2" secondAttribute="centerY" id="Db7-im-fN6"/>
+                                    <constraint firstItem="798-5d-JbH" firstAttribute="centerY" secondItem="Hwn-Jm-yK2" secondAttribute="centerY" constant="1" id="Db7-im-fN6"/>
                                     <constraint firstItem="hjq-iS-buR" firstAttribute="top" secondItem="sce-VR-UDf" secondAttribute="bottom" constant="-1" id="FFr-2p-Cni"/>
                                     <constraint firstItem="hjq-iS-buR" firstAttribute="leading" secondItem="tUB-e6-jb3" secondAttribute="leading" constant="10" id="H9Y-fD-q3X"/>
                                     <constraint firstItem="Hwn-Jm-yK2" firstAttribute="top" secondItem="tUB-e6-jb3" secondAttribute="top" id="P45-sY-hJo"/>
                                     <constraint firstAttribute="centerX" secondItem="Hwn-Jm-yK2" secondAttribute="centerX" id="SFS-A0-GFz"/>
-                                    <constraint firstAttribute="bottom" secondItem="hjq-iS-buR" secondAttribute="bottom" id="SX7-hf-1Hy"/>
+                                    <constraint firstAttribute="bottom" secondItem="hjq-iS-buR" secondAttribute="bottom" constant="10" id="SX7-hf-1Hy"/>
                                     <constraint firstItem="hjq-iS-buR" firstAttribute="leading" secondItem="tUB-e6-jb3" secondAttribute="leading" id="UKX-Jg-Scb"/>
                                     <constraint firstItem="hjq-iS-buR" firstAttribute="top" secondItem="Hwn-Jm-yK2" secondAttribute="bottom" id="VN3-1J-VlJ"/>
                                     <constraint firstAttribute="trailing" secondItem="sce-VR-UDf" secondAttribute="trailing" id="bj6-S8-dpP"/>
