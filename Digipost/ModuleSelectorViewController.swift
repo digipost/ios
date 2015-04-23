@@ -21,8 +21,8 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     
     @IBOutlet weak var moduleSelectorViewBottomConstraint: NSLayoutConstraint!
 
-    let moduleTypeStrings = [NSLocalizedString("small headline table view cell title", comment: "Title for table view cell"),
-                            NSLocalizedString("big headline table view cell title", comment: "Title for table view cell"),
+    let moduleTypeStrings = [NSLocalizedString("big headline table view cell title", comment: "Title for table view cell"),
+                            NSLocalizedString("small headline table view cell title", comment: "Title for table view cell"),
                             NSLocalizedString("normal text table view cell title", comment: "Title for table view cell"),
                             NSLocalizedString("image table view cell title", comment: "Title for table view cell")]
     
@@ -76,7 +76,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        switch indexPath {
+        switch indexPath.row {
         case 0:
             addHeadline()
         case 1:
