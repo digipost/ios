@@ -547,4 +547,10 @@
 "text composer module subheadline placeholder" = "Legg til en underoverskrift";
 "text composer module body placeholder" = "Legg til brødtekst";
 
+/* Module selector view*/
+"normal text table view cell title" = "Normal tekst";
+"big headline table view cell title" = "Overskrift stor";
+"small headline table view cell title" = "Overskrift liten";
+"image table view cell title" = "Bilde";
+
 
