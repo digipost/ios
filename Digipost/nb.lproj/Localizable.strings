@@ -1,16 +1,4 @@
-/* Copyright (C) Posten Norge AS
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- http://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License. */
+/* Copyright (C) Posten Norge AS Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. */
 
 "language of app" = "nb";
 
@@ -388,21 +376,18 @@
 /* navbar title upload mailbox */
 "navbar title upload mailbox" = "Velg konto";
 
-"upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
-
 /* unread letters in account view */
 "account view unread letter" = ". ulest brev";
-"account view unread letters" = "uleste brev";
 
-/* Account description */
-"account description shared" = "Delt med deg";
+"account view unread letters" = "uleste brev";
 
 /* logout button title */
 "log out button title" = "Logg ut";
 
+/* Account description */
+"account description shared" = "Delt med deg";
 
-/* No comment provided by engineer. */
-"" = "";
+"upload guide image accessability hint" = " Åpne filen der den er lagret og klikk på Åpne i eller eksportikonet. Opplastning til Digipost støttes blant annet av Safari, Dropbox og Drive";
 
 /* No comment provided by engineer. */
 "actions action sheet delete document" = "Slett";
@@ -493,10 +478,9 @@
 "cannot rename document need authentication alert cancel" = "OK";
 
 /* No comment provided by engineer. */
-"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
-
-/* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
+
+"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
 
 /* New features onboarding. */
 "new feature navbar title" = "Visste du at..?";
@@ -514,50 +498,80 @@
 
 "onboarding welcome" = "Velkommen til din\nsikre digitale postkasse";
 
-
 "PUBLIC_ENTITY" = "Offentlig";
 
 /* Document Composer */
 "recipients view navigation bar title" = "Legg til mottakere";
+
 "recipients view navigation bar right button save" = "Lagre";
+
 "recipients view table view header title" = "MOTTAKERE";
+
 "recipients view add recipients button title" = "Legg til mottakere";
+
 "recipients view search bar placeholder" = "Søk på personer eller bedrifter";
 
-
-"preview view table view header title" = "FORHÅNDSVISNING";
 "preview view navigation bar title" = "Forhåndsvisning";
+
 "preview view add button title" = "Legg til mottakere";
+
 "preview view add or edit button title" = "Legg til eller rediger mottakere";
 
 "preview view recipients header title no recipients" = "INGEN MOTTAKERE";
+
 "preview view recipients header title one recipient" = "1 MOTTAKER";
+
 "preview view recipients header title recipients" = "MOTTAKERE";
+
 "preview view recipients add recipients button title" = "Legg til mottakere";
+
 "preview view recipients send button title" = "Send";
 
 "composer view navigation bar title" = "Send brev";
+
 "composer view preview button title" = "Forhåndsvisning";
+
 "composer view document title label" = "Tittel:";
+
 "composer view title placeholder" = "Trykk for å legge til en tittel";
+
 "composer view close alert title" = "Brev lukkes";
+
 "composer view close alert message" = "Vil du lagre utkastet før du avslutter";
+
 "composer view close alert save draft button title" = "Lagre utkast";
+
 "composer view close alert quit button title" = "Lukk";
 
 "text composer module headline placeholder" = "Legg til overift";
+
 "text composer module subheadline placeholder" = "Legg til en underoverskrift";
+
 "text composer module body placeholder" = "Legg til brødtekst";
 
-/* Module selector view*/
+/* Module selector view */
 "normal text table view cell title" = "Normal tekst";
+
 "big headline table view cell title" = "Overskrift stor";
+
 "small headline table view cell title" = "Overskrift liten";
+
 "image table view cell title" = "Bilde";
+
 "module selector title" = "Hva ønsker du å legge til?";
 
 /* module accessory view */
 "headline title" = "Overskrift";
+
 "subheadline title" = "Liten overskrift";
+
 "normal text title" = "Normal tekst";
+
+/* No comment provided by engineer. */
+"" = "";
+
+"preview view table view header title" = "FORHÅNDSVISNING";
+
+/* the end of recipients string when it overflows its size */
+"recipients add more button overflow text" = " og %d fler";
 

@@ -28,13 +28,18 @@ extension UIButton {
             if i != 0 {
                 string = string.stringByAppendingString(", \(strings[i])")
             }
-            let localizedMorePersons = remainingStrings == 0 ? "" : " og \(remainingStrings) fler"
+            let localizedEnding = String.localizedStringWithFormat(NSLocalizedString("recipients add more button overflow text", comment: "the end of recipients string when it overflows its size"), remainingStrings)
+            let localizedMorePersons = remainingStrings == 0 ? "" : localizedEnding
             let allPersonsWithMorePersonsString = "\(string)\(localizedMorePersons)"
             self.setTitle(allPersonsWithMorePersonsString, forState: .Normal)
             let sizeFits = self.sizeThatFits(currentSize)
-            println()
             if sizeFits.width > currentSize.width {
-                self.setTitle(lastFittedString, forState: .Normal)
+                if lastFittedString == "" {
+                    self.setTitle(allPersonsWithMorePersonsString, forState: .Normal)
+                    break
+                } else {
+                    self.setTitle(lastFittedString, forState: .Normal)
+                }
             } else {
                 lastFittedString = allPersonsWithMorePersonsString
             }
