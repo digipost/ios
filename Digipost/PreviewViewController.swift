@@ -37,7 +37,8 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
             
             })
         
-        self.title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
+        title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
+        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients"), forState: .Normal)
         
     }
     
