@@ -39,20 +39,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleLabel.text = NSLocalizedString("composer view document title label", comment: "Title label")
         documentTitleTextField.placeholder = NSLocalizedString("composer view title placeholder", comment: "Title placeholder text")
         documentTitleTextField.delegate = self
-        addBottomBorderToHeaderView()
         setupTableView()
-    }
-    
-    func addBottomBorderToHeaderView() {
-        let tableHeaderView = tableView.tableHeaderView
-        var border = CALayer()
-        var width = CGFloat(1.0)
-        border.borderColor = UIColor.lightGrayColor().CGColor
-        border.frame = CGRect(x: 0, y: tableHeaderView!.frame.size.height - width, width:  tableHeaderView!.frame.size.width, height: tableHeaderView!.frame.size.height)
-        
-        border.borderWidth = width
-        tableHeaderView!.layer.addSublayer(border)
-        tableHeaderView!.layer.masksToBounds = true
     }
     
     // MARK: - TableView Delegate Reorder functions

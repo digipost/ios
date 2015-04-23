@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -252,29 +252,49 @@
                                     <rect key="frame" x="0.0" y="0.0" width="580" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYJ-Bc-Ms3">
-                                            <rect key="frame" x="5" y="0.0" width="51" height="44"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.72941176470588232" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
-                                            <rect key="frame" x="51" y="8" width="513" height="30"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                        </textField>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kGY-Ab-zd2">
+                                            <rect key="frame" x="0.0" y="0.0" width="580" height="43"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EYJ-Bc-Ms3">
+                                                    <rect key="frame" x="10" y="0.0" width="51" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="OyF-Cb-fUm"/>
+                                                        <constraint firstAttribute="width" constant="51" id="bf4-5w-PJj"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.72941176470588232" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Trykk for å legge til en tittel" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-by-pCG">
+                                                    <rect key="frame" x="54" y="1" width="521" height="44"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="44" id="Xej-TM-wiA"/>
+                                                        <constraint firstAttribute="width" constant="521" id="zs3-2f-rYY"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="5" id="7p1-hk-Aph"/>
+                                                <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="-7" id="Fcd-bb-e86"/>
+                                                <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="top" secondItem="kGY-Ab-zd2" secondAttribute="top" id="VKs-q8-6cr"/>
+                                                <constraint firstAttribute="bottom" secondItem="EYJ-Bc-Ms3" secondAttribute="bottom" constant="-1" id="fIa-C7-BXl"/>
+                                                <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="-7" id="gax-1H-hxS"/>
+                                                <constraint firstAttribute="bottom" secondItem="Nf5-by-pCG" secondAttribute="bottom" constant="-2" id="k10-bZ-DN9"/>
+                                                <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="kGY-Ab-zd2" secondAttribute="leading" constant="10" id="oIx-le-WbY"/>
+                                                <constraint firstItem="Nf5-by-pCG" firstAttribute="top" secondItem="kGY-Ab-zd2" secondAttribute="top" constant="1" id="wSV-be-apr"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" id="1oR-jj-he0"/>
-                                        <constraint firstAttribute="bottom" secondItem="Nf5-by-pCG" secondAttribute="bottom" constant="6" id="5pD-0P-HZa"/>
-                                        <constraint firstAttribute="bottom" secondItem="EYJ-Bc-Ms3" secondAttribute="bottom" id="8Vb-OV-UNz"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="51" id="T81-jC-Oa3"/>
-                                        <constraint firstAttribute="trailing" secondItem="Nf5-by-pCG" secondAttribute="trailing" constant="16" id="U9c-Th-Hhe"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="leading" secondItem="EYJ-Bc-Ms3" secondAttribute="trailing" constant="-5" id="iU0-BT-wf9"/>
-                                        <constraint firstItem="Nf5-by-pCG" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" constant="8" id="xi9-LZ-iGY"/>
-                                        <constraint firstItem="EYJ-Bc-Ms3" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" constant="5" id="zez-vI-KhV"/>
+                                        <constraint firstItem="kGY-Ab-zd2" firstAttribute="leading" secondItem="NEa-lf-bJP" secondAttribute="leading" id="4tE-6K-ONG"/>
+                                        <constraint firstItem="kGY-Ab-zd2" firstAttribute="top" secondItem="NEa-lf-bJP" secondAttribute="top" id="af9-ws-7Dq"/>
+                                        <constraint firstAttribute="trailing" secondItem="kGY-Ab-zd2" secondAttribute="trailing" id="ajz-Xh-9Lj"/>
+                                        <constraint firstAttribute="bottom" secondItem="kGY-Ab-zd2" secondAttribute="bottom" constant="1" id="yux-6q-j0Z"/>
                                     </constraints>
                                 </view>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="G6K-pE-SLa">
