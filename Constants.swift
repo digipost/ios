@@ -73,7 +73,7 @@ struct Constants {
         static let recipient = "recipient"
         static let address = "address"
         static let mobileNumber = "mobile-number"
-        static let organizationNumber = "organization-number"
+        static let organizationNumber = "organisation-number"
         static let uri = "uri"
         static let digipostAddress = "digipost-address"
     }
