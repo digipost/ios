@@ -51,10 +51,13 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     
     func recipientDeletedFromRecipientViewController(notification: NSNotification) {
         let receivedRecipient = notification.object as! Recipient
-        for (index, recipient) in enumerate(recipients) {
-            if recipient.digipostAddress == receivedRecipient.digipostAddress {
-                recipients.removeAtIndex(index)
-                break
+        
+        if recipients.count > 0 {
+            for (index, recipient) in enumerate(recipients) {
+                if recipient.digipostAddress == receivedRecipient.digipostAddress {
+                    recipients.removeAtIndex(index)
+                    break
+                }
             }
         }
     }

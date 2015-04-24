@@ -36,9 +36,9 @@ NSString *const kMailboxEntityName = @"Mailbox";
 + (instancetype)mailboxWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSEntityDescription *entity = [[POSModelManager sharedManager] mailboxEntity];
+
     POSMailbox *mailbox = [[POSMailbox alloc] initWithEntity:entity
                               insertIntoManagedObjectContext:managedObjectContext];
-
     NSString *digipostAddress = attributes[kMailboxDigipostAddressAPIKey];
     mailbox.digipostAddress = [digipostAddress isKindOfClass:[NSString class]] ? digipostAddress : nil;
     NSString *name = attributes[kMailboxNameAPIKey];
@@ -129,7 +129,6 @@ NSString *const kMailboxEntityName = @"Mailbox";
     if (error) {
         [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
     }
-
     return [results firstObject];
 }
 
