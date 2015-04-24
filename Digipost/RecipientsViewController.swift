@@ -16,7 +16,7 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
     
     var recipients : [Recipient] = [Recipient]()
     var addedRecipients : [Recipient] = [Recipient]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,16 +33,17 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
         
-        navigationController?.delegate = self
-
-    }
-
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
-        if let previewViewController = viewController as? PreviewViewController {
-            previewViewController.recipients = addedRecipients
-        }
+        
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        removeKeyboardNotificationListeners()
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+
+    }
+
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
         let point = tap.locationInView(tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(point)
