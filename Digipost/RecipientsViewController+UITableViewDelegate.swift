@@ -53,7 +53,4 @@ extension RecipientViewController: UITableViewDelegate {
         
         return footerView
     }
-    
-    
-    
 }

@@ -34,15 +34,10 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
         
-        
     }
     
     override func viewWillDisappear(animated: Bool) {
         removeKeyboardNotificationListeners()
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-
     }
 
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
