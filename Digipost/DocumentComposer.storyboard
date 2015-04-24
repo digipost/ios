@@ -32,6 +32,21 @@
                                     <outlet property="delegate" destination="9Ad-2g-amd" id="HxF-tJ-Jf1"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nu-ib-8ud">
+                                <rect key="frame" x="150" y="466" width="300" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="FO1-zH-ITg"/>
+                                    <constraint firstAttribute="height" constant="50" id="Mvk-7E-NjR"/>
+                                </constraints>
+                                <state key="normal" title="Angre">
+                                    <color key="titleColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="undoButtonTapped:" destination="9Ad-2g-amd" eventType="touchUpInside" id="HyX-xo-8PF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -39,12 +54,14 @@
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="sMN-8A-iEG" secondAttribute="bottom" id="CT0-9b-R8r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sMN-8A-iEG" secondAttribute="trailing" constant="-16" id="CjW-Jp-6oR"/>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="UHt-00-Igr" secondAttribute="topMargin" id="Fm4-AX-oUr"/>
+                            <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="6nu-ib-8ud" secondAttribute="bottom" constant="20" id="Iig-8f-MMP"/>
                             <constraint firstAttribute="bottomMargin" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="OwY-da-BIf"/>
                             <constraint firstItem="sMN-8A-iEG" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="PWP-g1-EQb"/>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="Tea-eH-g7T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="Wdr-6p-C0B"/>
                             <constraint firstItem="sMN-8A-iEG" firstAttribute="top" secondItem="KD7-a2-Cro" secondAttribute="bottom" id="gKF-Ei-qGz"/>
                             <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="tzV-06-SkE"/>
+                            <constraint firstAttribute="centerX" secondItem="6nu-ib-8ud" secondAttribute="centerX" id="uhD-NB-IAS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="yFr-ar-gjQ"/>
                         </constraints>
                         <variation key="default">
@@ -67,6 +84,8 @@
                         <outlet property="saveBarButtonItem" destination="pCj-3A-YAg" id="Wcd-7K-Qvb"/>
                         <outlet property="searchBar" destination="sMN-8A-iEG" id="2Eg-Yk-TA0"/>
                         <outlet property="tableView" destination="4lo-wY-uWH" id="kYs-gE-ya2"/>
+                        <outlet property="undoButton" destination="6nu-ib-8ud" id="YlO-jH-o7W"/>
+                        <outlet property="undoButtonBottomConstraint" destination="Iig-8f-MMP" id="RGX-mL-3q9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xyo-VB-O1w" userLabel="First Responder" sceneMemberID="firstResponder"/>
