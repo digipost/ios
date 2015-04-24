@@ -16,6 +16,7 @@ extension RecipientViewController: UITableViewDelegate {
                 if r.name == recipients[indexPath.row].name {
                     let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
                     cell.addedButton.hidden = true
+                    NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
                     addedRecipients.removeAtIndex(index)
                     tableView.reloadData()
                     found = true
