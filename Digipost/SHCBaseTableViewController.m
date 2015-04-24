@@ -104,6 +104,10 @@
     [self updateNavbar];
 }
 
+- (void)updateNavbar
+{
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
