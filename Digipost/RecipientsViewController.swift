@@ -16,7 +16,11 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
     
     var recipients : [Recipient] = [Recipient]()
     var addedRecipients : [Recipient] = [Recipient]()
+    var deletedRecipient: Recipient?
 
+    @IBOutlet weak var undoButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var undoButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,11 +37,28 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
         searchBar.setShowsCancelButton(false, animated: true)
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
-        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        undoButtonBottomConstraint.constant = -400
     }
     
     override func viewWillDisappear(animated: Bool) {
         removeKeyboardNotificationListeners()
+    }
+    
+    @IBAction func undoButtonTapped(sender: AnyObject) {
+        if deletedRecipient != nil {
+            addedRecipients.append(deletedRecipient!)
+            tableView.reloadData()
+            deletedRecipient = nil
+            
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.undoButtonBottomConstraint.constant = -100
+                self.undoButton.layoutIfNeeded()
+            })
+        }
     }
 
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
