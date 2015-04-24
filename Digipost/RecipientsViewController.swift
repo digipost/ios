@@ -30,6 +30,7 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("recipients view search bar placeholder", comment: "placeholder text")
         searchBar.returnKeyType = UIReturnKeyType.Done
+        searchBar.setShowsCancelButton(false, animated: true)
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
         
