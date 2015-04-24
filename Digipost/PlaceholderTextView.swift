@@ -87,11 +87,17 @@ class PlaceholderTextView: UITextView {
     
     func addPlaceholder(){
         if placeholderLabel == nil{
-            let cursorPosition = self.caretRectForPosition(self.selectedTextRange?.start)
-            placeholderLabel = UILabel(frame: CGRectMake(cursorPosition.origin.x, cursorPosition.origin.y, frame.width, cursorPosition.height))
-            placeholderLabel.text = placeholder
-            placeholderLabel.textColor = UIColor.lightGrayColor()
-            placeholderLabel.font = font
+            
+            placeholderLabel = {
+                let cursorPosition = self.caretRectForPosition(self.selectedTextRange?.start)
+                let label = UILabel(frame: CGRectMake(cursorPosition.origin.x, cursorPosition.origin.y, self.frame.width, cursorPosition.height))
+                label.text = self.placeholder
+                label.textColor = UIColor.lightGrayColor()
+                label.font = self.font
+                return label
+            }()
+            
+
             addSubview(placeholderLabel)
         }
     }
