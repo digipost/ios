@@ -194,11 +194,11 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
 
-    NSInteger fromDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
-                                            inUnit:NSEraCalendarUnit
+    NSInteger fromDay = [calendar ordinalityOfUnit:NSCalendarUnitDay
+                                            inUnit:NSCalendarUnitEra
                                            forDate:date];
-    NSInteger toDay = [calendar ordinalityOfUnit:NSDayCalendarUnit
-                                          inUnit:NSEraCalendarUnit
+    NSInteger toDay = [calendar ordinalityOfUnit:NSCalendarUnitDay
+                                          inUnit:NSCalendarUnitEra
                                          forDate:nowDate];
 
     NSInteger dayDiff = abs((int)toDay - (int)fromDay);
