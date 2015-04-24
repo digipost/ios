@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PreviewViewController: UIViewController, RecipientsViewControllerDelegate, UIWebViewDelegate, UINavigationControllerDelegate {
+class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationControllerDelegate {
     
     var recipients = [Recipient]()
     var modules = [ComposerModule]()
@@ -50,15 +50,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-                
-        if recipients.count == 0 {
-            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title no recipients", comment: "Recipients view header no recipients")
-        } else if recipients.count == 1 {
-            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title one recipient", comment: "Recipients view header one recipient")
-        } else {
-            let localizedString = NSLocalizedString("preview view recipients header title recipients", comment: "Recipients view header many recipients")
-            recipientsHeaderLabel.text = "\(recipients.count) \(localizedString)"
-        }
         
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
 
@@ -71,7 +62,18 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
             return recipient.firstName()
         }
         addRecipientsButton.fitAsManyStringsAsPossible(recipientNames)
+        
+        if recipients.count == 0 {
+            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title no recipients", comment: "Recipients view header no recipients")
+        } else if recipients.count == 1 {
+            recipientsHeaderLabel.text = NSLocalizedString("preview view recipients header title one recipient", comment: "Recipients view header one recipient")
+        } else {
+            let localizedString = NSLocalizedString("preview view recipients header title recipients", comment: "Recipients view header many recipients")
+            recipientsHeaderLabel.text = "\(recipients.count) \(localizedString)"
+        }
+        
     }
+    
     @IBAction func didTapFooterView(sender: AnyObject) {
         performSegueWithIdentifier("addRecipientsSegue", sender: self)
     }
@@ -84,7 +86,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
-            recipientsViewController.recipientDelegate = self
             if recipients.count > 0 {
                 recipientsViewController.addedRecipients = recipients
             }
@@ -93,10 +94,6 @@ class PreviewViewController: UIViewController, RecipientsViewControllerDelegate,
         if let composerViewController = segue.destinationViewController as? ComposerViewController {
             composerViewController.recipients = recipients
         }
-    }
-    
-    func addRecipients(addedRecipients: [Recipient]) {
-        self.recipients = addedRecipients
     }
     
     @IBAction func didTapSendButton(sender: AnyObject) {
