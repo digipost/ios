@@ -21,11 +21,9 @@ extension ComposerViewController{
         snapShotView.frame.size = CGSizeMake(snapShotView.frame.width, 88)
         snapShotView.frame.origin.x += offset
         view.addSubview(snapShotView)
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
-            self.tableView.frame.size.height -= self.deleteComposerModuleView.frame.height
-            }) { (Bool) -> Void in
-                self.tableView.setNeedsLayout()
-        }
+        
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, deleteComposerModuleView.frame.height, 0)
+
         tableView.editing = true
         
     }
@@ -40,7 +38,7 @@ extension ComposerViewController{
         } else {
             deleteComposerModuleView.hide()
         }
-        
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         tableView.editing = false
         
     }

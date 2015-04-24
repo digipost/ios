@@ -71,6 +71,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
+        cell.moduleTextView.contentText = module.text ?? ""
     }
 
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
