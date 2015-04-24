@@ -114,11 +114,26 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
             composerViewController.recipients = recipients
         }
     }
+
+    func animateShowingUserHasToAddRecipientsBeforeSending() {
+        let oldColor = self.addRecipientsButton.titleLabel?.textColor
+        UIView.transitionWithView(self.addRecipientsButton, duration: 0.4, options: UIViewAnimationOptions.LayoutSubviews, animations: { () -> Void in
+            self.addRecipientsButton.layer.setAffineTransform(CGAffineTransformMakeScale(1.09, 1.09))
+            }) { (complete) -> Void in
+                UIView.transitionWithView(self.addRecipientsButton, duration: 0.4, options: UIViewAnimationOptions.LayoutSubviews, animations: { () -> Void in
+                    self.addRecipientsButton.layer.setAffineTransform(CGAffineTransformMakeScale(1.0, 1.0))
+                    }) { (complete) -> Void in
+                }
+        }
+    }
     
     @IBAction func didTapSendButton(sender: AnyObject) {
+        if recipients.count == 0 {
+            animateShowingUserHasToAddRecipientsBeforeSending()
+            return
+        }
 
         let mailbox = POSMailbox.existingMailboxWithDigipostAddress(mailboxDigipostAddress, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
-
         APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: mailbox.sendUri, success: { () -> Void in
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
 
