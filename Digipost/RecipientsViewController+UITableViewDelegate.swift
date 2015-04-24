@@ -13,7 +13,7 @@ extension RecipientViewController: UITableViewDelegate {
         
         if searchBar.isFirstResponder() {
             for (index, r) in enumerate(addedRecipients) {
-                if r.name == recipients[indexPath.row].name {
+                if r.digipostAddress == recipients[indexPath.row].digipostAddress {
                     let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
                     cell.addedButton.hidden = true
                     NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: r, userInfo: nil)
@@ -37,7 +37,6 @@ extension RecipientViewController: UITableViewDelegate {
         }
         
         tableView.reloadData()
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
