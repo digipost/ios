@@ -21,7 +21,10 @@ extension RecipientViewController: UITableViewDelegate {
                     found = true
                 }
             }
-            if found == false { addedRecipients.append(recipients[indexPath.row]) }
+            if found == false {
+                addedRecipients.append(recipients[indexPath.row])
+                NSNotificationCenter.defaultCenter().postNotificationName("addRecipientNotification", object: recipients[indexPath.row], userInfo: nil)
+            }
         }
         
         tableView.reloadData()
@@ -30,6 +33,7 @@ extension RecipientViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if searchBar.isFirstResponder() == false {
+            NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
             addedRecipients.removeAtIndex(indexPath.row)
             tableView.reloadData()
         }
