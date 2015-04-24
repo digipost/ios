@@ -16,7 +16,7 @@ extension RecipientViewController: UITableViewDelegate {
                 if r.name == recipients[indexPath.row].name {
                     let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
                     cell.addedButton.hidden = true
-                    NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: r, userInfo: nil)
                     addedRecipients.removeAtIndex(index)
                     tableView.reloadData()
                     found = true
@@ -28,19 +28,16 @@ extension RecipientViewController: UITableViewDelegate {
             }
         } else {
             NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
+            deletedRecipient = addedRecipients[indexPath.row]
             addedRecipients.removeAtIndex(indexPath.row)
+            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                self.undoButtonBottomConstraint.constant = 20
+                self.undoButton.layoutIfNeeded()
+            })
         }
         
         tableView.reloadData()
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if searchBar.isFirstResponder() == false {
-            NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
-            addedRecipients.removeAtIndex(indexPath.row)
-            tableView.reloadData()
-        }
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
