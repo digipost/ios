@@ -33,7 +33,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nu-ib-8ud">
-                                <rect key="frame" x="150" y="466" width="300" height="50"/>
+                                <rect key="frame" x="22" y="466" width="552" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="FO1-zH-ITg"/>
@@ -43,6 +43,11 @@
                                     <color key="titleColor" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="FO1-zH-ITg"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="undoButtonTapped:" destination="9Ad-2g-amd" eventType="touchUpInside" id="HyX-xo-8PF"/>
                                 </connections>
@@ -50,6 +55,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="6nu-ib-8ud" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="6" id="18C-1I-vol"/>
+                            <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="6nu-ib-8ud" secondAttribute="trailing" constant="-574" id="73Z-Ts-rGF"/>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="76k-Jf-HTN"/>
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="top" secondItem="sMN-8A-iEG" secondAttribute="bottom" id="CT0-9b-R8r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sMN-8A-iEG" secondAttribute="trailing" constant="-16" id="CjW-Jp-6oR"/>
@@ -60,15 +67,18 @@
                             <constraint firstItem="4lo-wY-uWH" firstAttribute="leading" secondItem="UHt-00-Igr" secondAttribute="leadingMargin" constant="-16" id="Tea-eH-g7T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="Wdr-6p-C0B"/>
                             <constraint firstItem="sMN-8A-iEG" firstAttribute="top" secondItem="KD7-a2-Cro" secondAttribute="bottom" id="gKF-Ei-qGz"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6nu-ib-8ud" secondAttribute="trailing" constant="10" id="m2M-Zc-OVY"/>
                             <constraint firstItem="JHi-J7-6lH" firstAttribute="top" secondItem="4lo-wY-uWH" secondAttribute="bottom" id="tzV-06-SkE"/>
                             <constraint firstAttribute="centerX" secondItem="6nu-ib-8ud" secondAttribute="centerX" id="uhD-NB-IAS"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4lo-wY-uWH" secondAttribute="trailing" constant="-16" id="yFr-ar-gjQ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
+                                <exclude reference="73Z-Ts-rGF"/>
                                 <exclude reference="76k-Jf-HTN"/>
                                 <exclude reference="Fm4-AX-oUr"/>
                                 <exclude reference="Wdr-6p-C0B"/>
+                                <exclude reference="uhD-NB-IAS"/>
                                 <exclude reference="tzV-06-SkE"/>
                             </mask>
                         </variation>
