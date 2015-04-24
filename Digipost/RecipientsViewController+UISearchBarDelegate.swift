@@ -21,6 +21,7 @@ extension RecipientViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.text = ""
         tableView.reloadData()
     }
     
