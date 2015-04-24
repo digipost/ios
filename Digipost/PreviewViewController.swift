@@ -39,8 +39,24 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientReceivedFromRecipientViewController:", name: "addRecipientNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientDeletedFromRecipientViewController:", name: "deleteRecipientNotification", object: nil)
+
         navigationController?.delegate = self
+    }
+    
+    func recipientReceivedFromRecipientViewController(notification: NSNotification) {
+        recipients.append(notification.object as! Recipient)
+    }
+    
+    func recipientDeletedFromRecipientViewController(notification: NSNotification) {
+        let receivedRecipient = notification.object as! Recipient
+        for (index, recipient) in enumerate(recipients) {
+            if recipient.digipostAddress == receivedRecipient.digipostAddress {
+                recipients.removeAtIndex(index)
+                break
+            }
+        }
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
@@ -50,7 +66,6 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
 
     }
@@ -81,6 +96,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {        
         if let composerViewController = viewController as? ComposerViewController {
             composerViewController.recipients = recipients
+            NSNotificationCenter.defaultCenter().removeObserver(self)
         }
     }
 
