@@ -26,6 +26,9 @@ extension RecipientViewController: UITableViewDelegate {
                 addedRecipients.append(recipients[indexPath.row])
                 NSNotificationCenter.defaultCenter().postNotificationName("addRecipientNotification", object: recipients[indexPath.row], userInfo: nil)
             }
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
+            addedRecipients.removeAtIndex(indexPath.row)
         }
         
         tableView.reloadData()
