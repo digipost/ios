@@ -26,13 +26,6 @@ extension PlaceholderTextView{
 class PlaceholderTextView: UITextView {
     
     private var placeholderLabel: UILabel!
-    var contentText: String = ""{
-        didSet{
-            if count(text) == 0 {
-                addPlaceholder()
-            }
-        }
-    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -48,7 +41,6 @@ class PlaceholderTextView: UITextView {
     func textViewDidChange(notification: NSNotification?) {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
-                contentText = text
                 
                 if count(text) > 0 {
                     if placeholderLabel != nil {
@@ -66,7 +58,7 @@ class PlaceholderTextView: UITextView {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
-                contentText = text
+                
             }
         }
     }
@@ -75,7 +67,9 @@ class PlaceholderTextView: UITextView {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
-                contentText = text
+                if count(text) == 0 {
+                    addPlaceholder()
+                }
             }
         }
     }

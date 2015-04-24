@@ -71,7 +71,8 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
-        cell.moduleTextView.contentText = module.text ?? ""
+
+        
     }
 
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
@@ -81,8 +82,9 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
         let rowToMove = tableData.removeAtIndex(sourceIndexPath.row)
         tableData.insert(rowToMove, atIndex: destinationIndexPath.row)
-
         tableView.reloadData()
+        let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) as? TextModuleTableViewCell
+        cell?.moduleTextView.becomeFirstResponder()
     }
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {

@@ -102,7 +102,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
                 let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.font
-                cell?.moduleTextView.addPlaceholder()
                 cell?.setLabel(textModule!.font)
                 cell?.moduleTextView.becomeFirstResponder()
                 cell?.moduleTextView.delegate = self
