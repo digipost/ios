@@ -52,12 +52,12 @@ extension APIClient {
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     let error = APIError.UnauthorizedOAuthTokenError()
-                    error.responseText = string as! String
+                    error.responseText = string as? String
                     track(error: error)
                     failure(error: error)
                 } else if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
-                    error.responseText = string as! String
+                    error.responseText = string as? String
                     track(error:error)
                     failure(error: error)
                 } else {
