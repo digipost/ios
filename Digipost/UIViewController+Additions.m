@@ -12,14 +12,6 @@
 @implementation UIViewController (Additions)
 - (void)updateNavbar
 {
-    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-                                                                          style:UIBarButtonItemStyleBordered
-                                                                         target:self
-                                                                         action:@selector(popViewController)];
-
-    if ([self isKindOfClass:[POSFoldersViewController class]]) {
-//        self.navigationItem.backBarButtonItem = backBarButtonItem;
-    }
 }
 
 - (void)popViewController

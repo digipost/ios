@@ -540,7 +540,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
 
     UIBarButtonItem *backBarButtonItem = self.navigationItem.leftBarButtonItem;
-    
+
     navBar.topItem.title = self.folderDisplayName;
     navBar.topItem.leftBarButtonItem = backBarButtonItem;
 }

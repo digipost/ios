@@ -171,10 +171,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                               failure(error);
                           }
         }
-        failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            
+        failure:^(NSURLSessionDataTask *task, NSError *error) {            
             if (failure) {
                               // Check to see if the request failed because the refresh token was denied
 

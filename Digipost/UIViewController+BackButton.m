@@ -21,7 +21,6 @@
 - (void)setMenuButton
 {
     return;
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] init];
     [self setTitle:@"backButton"];
     //    [self.navigationItem setLeftBarButtonItem:backButton];
 }
