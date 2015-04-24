@@ -110,6 +110,10 @@
 		AF2C68831AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
 		AF2C68841AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
 		AF2C68861AD59CE6007020DC /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF2C68821AD59CE6007020DC /* ComposerModule.swift */; };
+		AF37C0981AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
+		AF37C0991AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
+		AF37C09A1AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
+		AF37C09B1AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
 		AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		AF488CAF1AD7DC8C00FC32CC /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */; };
@@ -894,6 +898,7 @@
 		AF2C68761AD59533007020DC /* ImageModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModuleTableViewCell.swift; sourceTree = "<group>"; };
 		AF2C68771AD59533007020DC /* TextModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextModuleTableViewCell.swift; sourceTree = "<group>"; };
 		AF2C68821AD59CE6007020DC /* ComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModule.swift; sourceTree = "<group>"; };
+		AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewControlller+TableViewReorderDelegate.swift"; sourceTree = "<group>"; };
 		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		AF488CAE1AD7DC8C00FC32CC /* UIImage+base64Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+base64Representation.swift"; sourceTree = "<group>"; };
@@ -1509,6 +1514,7 @@
 			children = (
 				AFEB99C01AE8FD370099D924 /* DimView.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
 				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
@@ -2400,6 +2406,7 @@
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
+				AF37C0981AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
@@ -2540,6 +2547,7 @@
 				EC0D2DA11AE786A800595A61 /* AHKActionSheet+Convenience.m in Sources */,
 				EC0D2DA21AE786A800595A61 /* UIView+AutoLayout.m in Sources */,
 				EC0D2DA31AE786A800595A61 /* POSUploadTableViewCell.m in Sources */,
+				AF37C09B1AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				EC0D2DA41AE786A800595A61 /* SendableDocument.swift in Sources */,
 				EC0D2DA51AE786A800595A61 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				EC0D2DA71AE786A800595A61 /* POSFoldersViewController.m in Sources */,
@@ -2718,6 +2726,7 @@
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
 				EC2DCBB41AB84EAB0063755E /* POSModelManager.m in Sources */,
 				EC2DCBB51AB84EAB0063755E /* SHCAppDelegate+Appearance.swift in Sources */,
+				AF37C0991AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				EC2DCBB61AB84EAB0063755E /* POSUploadTableViewDataSource.m in Sources */,
 				31679B751ADE7E61005FE31B /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				EC2DCBB71AB84EAB0063755E /* UIViewController+BackButton.m in Sources */,
@@ -2797,6 +2806,7 @@
 				EC2DCC211AB864AB0063755E /* POSInvoice.m in Sources */,
 				EC2DCC221AB864AB0063755E /* POSBaseEncryptedModel.m in Sources */,
 				EC2DCC231AB864AB0063755E /* UIViewController+ValidateOpening.m in Sources */,
+				AF37C09A1AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				EC2DCC241AB864AB0063755E /* UIToolbar+Actions.swift in Sources */,
 				EC2DCC251AB864AB0063755E /* POSReceiptsViewController.m in Sources */,
 				EC2DCC261AB864AB0063755E /* SHCAttachmentsViewController.m in Sources */,
