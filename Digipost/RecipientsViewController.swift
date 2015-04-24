@@ -9,22 +9,14 @@
 import UIKit
 import SingleLineKeyboardResize
 
-protocol RecipientsViewControllerDelegate {
-    func addRecipients(recipients: [Recipient])
-}
-
-class RecipientViewController: UIViewController {
+class RecipientViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var saveBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    var recipientDelegate: RecipientsViewControllerDelegate?
-
     var recipients : [Recipient] = [Recipient]()
     var addedRecipients : [Recipient] = [Recipient]()
     
-    var recipientSearchController : UISearchController!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,8 +32,17 @@ class RecipientViewController: UIViewController {
         searchBar.returnKeyType = UIReturnKeyType.Done
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
+        
+        navigationController?.delegate = self
+
     }
 
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        if let previewViewController = viewController as? PreviewViewController {
+            previewViewController.recipients = addedRecipients
+        }
+    }
+    
     @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
         let point = tap.locationInView(tableView)
         let indexPath = self.tableView.indexPathForRowAtPoint(point)
@@ -52,8 +53,6 @@ class RecipientViewController: UIViewController {
     }
 
     @IBAction func didTapSaveBarButtonItem() {
-        recipientDelegate?.addRecipients(addedRecipients)
-
         self.navigationController?.popViewControllerAnimated(true)
     }
 }
