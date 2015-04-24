@@ -91,6 +91,11 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             tableData.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+        } else if editingStyle == UITableViewCellEditingStyle.Insert{
+            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell{
+               configureTextModuleCell(cell, withModule: composerModule(atIndexPath: indexPath) as! TextComposerModule)
+            }
+            
         }
     }
 
