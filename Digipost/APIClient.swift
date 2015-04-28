@@ -300,10 +300,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         println(parameters)
         validate(token: oauthToken) { () -> Void in
             let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
-                println(responseJSON)
                 sendableDocument.setupWithJSONContent(responseJSON)
                 sendableDocument.recipients = recipients
-                println(htmlContent)
                 let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
                 self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
                     self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
@@ -312,19 +310,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                         let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
                             success()
                             }, failure: { (error) -> () in
-                                println(error)
+                                failure(error: error)
                         })
                         task!.resume()
 
                         }, failure: { (error) -> () in
-                            println(error)
+                            failure(error: error)
                     })
-                    println(success)
                     }, failure: { (error) -> () in
-                        println(error)
+                        failure(error: error)
                 })
                 }, failure: { (error) -> () in
-                    println(error)
+                    failure(error: error)
             })
             task!.resume()
         }
@@ -442,7 +439,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
-        var userInfo = Dictionary<NSObject,AnyObject>()
+        var userInfo = Dictionary <NSObject,AnyObject>()
         userInfo["fileName"] = fileName
         self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
         self.uploadProgress!.totalUnitCount = Int64(fileSize)
