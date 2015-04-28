@@ -14,3 +14,7 @@ pod 'SingleLineKeyboardResize', '~> 0.1.2'
 pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
 
 use_frameworks!
+
+target 'DigipostUITests', :exclusive => true do
+    pod 'KIF', '~> 3.0', :configurations => ['Debug']
+end

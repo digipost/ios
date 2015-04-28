@@ -11,6 +11,6 @@ import Foundation
 struct AccessibilityLabels {
     struct Onboarding {
         static let getStartedButton = "Get started"
-        static let loginButton = "Login"
+        static let loginButton = "Login Digipost"
     }
 }
