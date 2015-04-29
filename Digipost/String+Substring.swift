@@ -13,12 +13,20 @@ extension String
     subscript(i: Int) -> Character {
         return self[advance(startIndex, i)]
     }
+
+    // O(n)
     subscript (r: Range<Int>) -> String {
         get {
-            let startIndex = advance(self.startIndex, r.startIndex)
-            let endIndex = advance(startIndex, r.endIndex - r.startIndex)
+            var counter = 0
+            var currentIndex = self.startIndex
+            var stringInRange = ""
+            while counter < r.endIndex && currentIndex < self.endIndex {
+                currentIndex = currentIndex.successor()
+                stringInRange.append(self[currentIndex])
+                counter++
+            }
+            return stringInRange
 
-            return self[Range(start: startIndex, end: endIndex)]
         }
     }
 }

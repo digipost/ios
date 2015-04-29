@@ -129,7 +129,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         storeInKeyChain()
     }
 
-    convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInString: String?) {
+    convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInSeconds: NSNumber?) {
         self.init()
 
         if let acutalRefreshToken = refreshToken as String? {
@@ -139,8 +139,8 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
         }
-        if let actualExpirationDate = expiresInString as String? {
-            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.toInt())
+        if let actualExpirationDate = expiresInSeconds as NSNumber? {
+            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue)
             self.expires = expirationDate
         }
 
@@ -153,8 +153,8 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
         anAccessToken = attributes["access_token"] as? String
-        let expiresInString = attributes["expires_in"] as? String
-        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInString:expiresInString)
+        let expiresInSeconds = attributes["expires_in"] as? NSNumber
+        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
         storeInKeyChain()
     }
 
@@ -322,7 +322,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     override var debugDescription: String {
         let accessTokenRepresentation : String = {
             if let token = self.accessToken as String? {
-                return token[0...4]
+                return "HAS_TOKEN"
             } else {
                 return "NO_TOKEN"
             }
@@ -330,15 +330,15 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
 
         let refreshTokenRepresentation : String = {
             if let token = self.refreshToken as String? {
-                return token[0...4]
+                return "HAS_TOKEN"
             } else {
                 return "NO_TOKEN"
             }
             }()
 
+        let dateFormatter = NSDateFormatter()
         let expirationDateRepresentation : String = {
             if let actualExpirationDate = self.expires {
-                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
                 return dateFormatter.stringFromDate(actualExpirationDate)
             } else {

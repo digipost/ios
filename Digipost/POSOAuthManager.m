@@ -115,9 +115,8 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               NSString *refreshToken = responseDict[kOAuth2RefreshToken];
               NSString *accessToken = responseDict[kOAuth2AccessToken];
-              NSString *expiresInString = responseDict[kOAuth2ExpiresIn];
-
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInString:expiresInString];
+              NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInSeconds:expiresInSeconds];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.
