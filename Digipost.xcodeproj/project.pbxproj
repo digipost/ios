@@ -745,6 +745,11 @@
 		ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
 		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		ECC04BC81AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
+		ECC04BC91AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
+		ECC04BCA1AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
+		ECC04BCB1AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
+		ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
@@ -1104,6 +1109,7 @@
 		ECBEDB9C1AA734A50052B11B /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		ECC04BC71AF0E05700B99B52 /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -1730,6 +1736,7 @@
 			isa = PBXGroup;
 			children = (
 				ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */,
+				ECC04BC71AF0E05700B99B52 /* Int+Random.swift */,
 				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
 				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
 				ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */,
@@ -2530,6 +2537,7 @@
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
+				ECC04BC81AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				AF981EF11AD516DC00DE8B55 /* ComposerViewController.swift in Sources */,
 				ECDB9A031A5A904E0013DF4F /* Constants.swift in Sources */,
@@ -2596,6 +2604,7 @@
 				EC0D2D3B1AE786A800595A61 /* POSAttachment.m in Sources */,
 				EC0D2D3C1AE786A800595A61 /* UIViewController+NeedsReload.m in Sources */,
 				EC0D2D3D1AE786A800595A61 /* POSFileManager.m in Sources */,
+				ECC04BCB1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				EC0D2D3E1AE786A800595A61 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC0D2D3F1AE786A800595A61 /* UINavigationController+Extensions.swift in Sources */,
 				EC0D2D401AE786A800595A61 /* ForceOrientationNavigationController.swift in Sources */,
@@ -2852,6 +2861,7 @@
 				EC2DCB9F1AB84EAB0063755E /* POSMailbox.m in Sources */,
 				EC2DCBA01AB84EAB0063755E /* POSNoRotationNavigationController.m in Sources */,
 				EC2DCBA11AB84EAB0063755E /* POSLetterPopoverView.m in Sources */,
+				ECC04BC91AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				EC2DCBA21AB84EAB0063755E /* Constants.swift in Sources */,
 				EC2DCBA31AB84EAB0063755E /* UIWindow+Navigation.swift in Sources */,
 				EC2DCBA41AB84EAB0063755E /* SHCBaseTableViewController.m in Sources */,
@@ -2953,6 +2963,7 @@
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
 				EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
+				ECC04BCA1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,
 				EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCC201AB864AB0063755E /* OnboardingLoginViewController.swift in Sources */,
@@ -3059,6 +3070,7 @@
 			files = (
 				EC65BE671AEF7EC300E9B46F /* UIButton+Recipient.swift in Sources */,
 				ECB8D88E1AEF804B007BDAD3 /* LoginTests.swift in Sources */,
+				ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */,
 				ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */,
 			);
@@ -3543,6 +3555,7 @@
 			baseConfigurationReference = 367D01C6F590E721A697B3FD /* Pods-DigipostUITests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -3571,6 +3584,7 @@
 			baseConfigurationReference = 3296E62CB78FB9920FE7BD38 /* Pods-DigipostUITests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

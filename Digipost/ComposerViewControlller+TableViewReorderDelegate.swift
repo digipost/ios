@@ -25,8 +25,9 @@ extension ComposerViewController{
             snapshotImageView.frame.size = CGSizeMake(tableView.frame.size.width - offset , 66)
             snapshotImageView.frame.origin.x = offset
             view.addSubview(snapshotImageView)
-            UIView.animateWithDuration(0.4, delay: 0.05, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
-//                snapShotView.transform = CGAffineTransformMakeRotation(-0.03)
+            UIView.animateWithDuration(0.4, delay: 0.03, usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+                let randomValue = Int.random(-4...4)
+                snapShotView.transform = CGAffineTransformMakeRotation(-(CGFloat(randomValue) * 0.01))
             }, completion: { (complete) -> Void in
 
             })
@@ -37,6 +38,7 @@ extension ComposerViewController{
     }
     
     func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
+        
     }
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
@@ -48,7 +50,7 @@ extension ComposerViewController{
         }
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         tableView.editing = false
-        
+
     }
     
     func deleteComposerModule(){
