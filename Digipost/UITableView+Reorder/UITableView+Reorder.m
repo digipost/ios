@@ -173,7 +173,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 		   self.snapShotOfCellBeingMoved = [self snapShotViewOfCellAtIndexPath: indexPathOfPoint];
            
            // ADDED FOR DIGPOST INTEGRATION
-           self.snapShotOfCellBeingMoved.frame = CGRectMake(self.frame.origin.x, point.y, self.snapShotOfCellBeingMoved.frame.size.width, self.snapShotOfCellBeingMoved.frame.size.width);
+           self.snapShotOfCellBeingMoved.frame = CGRectMake(self.frame.origin.x, point.y, self.snapShotOfCellBeingMoved.frame.size.width - 80, self.snapShotOfCellBeingMoved.frame.size.width);
            // END DIGIPOST INTEGRATION
            
 		   // Add the floating apparition of the cell being moved to the tableview
@@ -192,6 +192,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
            if( [self.delegate respondsToSelector:@selector(tableView:beganMovingRowAtPoint:withSnapShotViewOfDraggingRow:)]) {
                [(id) self.delegate tableView: self beganMovingRowAtPoint: point withSnapShotViewOfDraggingRow: self.snapShotOfCellBeingMoved];
            }
+           NSLog(@"%@",self.snapShotOfCellBeingMoved);
            
 		   self.reorderTouchOffset = CGPointMake( self.snapShotOfCellBeingMoved.center.x - point.x, self.snapShotOfCellBeingMoved.center.y - point.y);
            // END DIGIPOST INTEGRATION
@@ -538,6 +539,7 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 }
 - (void) finishMovingRowToPoint: (CGPoint) point  {
 
+
     // ADDED FOR DIGPOST INTEGRATION
     if( [self.delegate respondsToSelector: @selector(tableView:endedMovingRowAtPoint:)] ) {
         [(id) self.delegate tableView: self endedMovingRowAtPoint: point];
@@ -662,7 +664,8 @@ static void *allowsLongPressToReorderDuringEditingKey = &allowsLongPressToReorde
 		//snapShot.layer.shadowPath = [[UIBezierPath bezierPathWithRect:snapShot.layer.bounds] CGPath];
 	} else {
 		// make an image from the pressed tableview cell
-		UIGraphicsBeginImageContextWithOptions( touchedCell.bounds.size, NO, 0 );
+        CGFloat minimumSize = fmax(65,touchedCell.bounds.size.height);
+		UIGraphicsBeginImageContextWithOptions( CGSizeMake(touchedCell.bounds.size.width, fmin(88,minimumSize)) , NO, 0 );
 		[touchedCell.layer renderInContext:UIGraphicsGetCurrentContext()];
 		UIImage *cellImage = UIGraphicsGetImageFromCurrentImageContext();
 		UIGraphicsEndImageContext();
