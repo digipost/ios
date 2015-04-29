@@ -9,7 +9,7 @@
 import Foundation
 
 struct GoogleAnalyticsConstants {
-    static let errorCategory = "APIError"
+    static let errorCategory = "API Error"
     static let actionCategory = "Action"
 }
 
@@ -28,6 +28,7 @@ func track(#didShowToUserInController: UIViewController?, error: APIError) {
         }
 
     }()
+
     let label : String =  {
         if (error.domain == Constants.Error.apiErrorDomainOAuthUnauthorized) {
             return "Oauth unauthorized : \(OAuthToken.oAuthTokenWithHighestScopeInStorage()?.debugDescription) "
