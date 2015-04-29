@@ -26,7 +26,6 @@ class UploadGuideViewController: UIViewController {
             uploadImage.image = UIImage.localizedImage(interfaceOrientation)
             self.setImageForOrientation(interfaceOrientation)
         }
-        self.pos_setDefaultBackButton()
         view.updateConstraints()
     }
     
