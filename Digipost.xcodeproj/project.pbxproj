@@ -1099,7 +1099,7 @@
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
 		ECB8D88D1AEF804B007BDAD3 /* LoginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
-		ECB8D8921AEFA719007BDAD3 /* vpn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = vpn.sh; sourceTree = "<group>"; };
+		ECB8D8921AEFA719007BDAD3 /* vpn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = vpn.sh; path = ../Digipost/vpn.sh; sourceTree = "<group>"; };
 		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
 		ECBEDB9C1AA734A50052B11B /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1663,7 +1663,6 @@
 		EC1A6C2F18BBA32100269428 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				ECB8D8921AEFA719007BDAD3 /* vpn.sh */,
 				ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */,
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
@@ -1843,6 +1842,7 @@
 		EC65BE5B1AEF7E7300E9B46F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				ECB8D8921AEFA719007BDAD3 /* vpn.sh */,
 				EC65BE5C1AEF7E7300E9B46F /* Info.plist */,
 				EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */,
 				EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */,
@@ -2403,7 +2403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Digipost/vpn.sh\"\nsleep 13";
+			shellScript = "\"${SRCROOT}/Digipost/vpn.sh\"\nsleep 10\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
