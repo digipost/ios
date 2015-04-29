@@ -153,8 +153,10 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               NSString *accessToken = responseDict[kOAuth2AccessToken];
+              NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
               if ([accessToken isKindOfClass:[NSString class]]) {
                   OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                  [oauthToken setExpiryDate:expiresInSeconds];
                   oauthToken.accessToken = accessToken;
                   [[APIClient sharedClient] updateAuthorizationHeader:scope];
                   if (success) {

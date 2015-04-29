@@ -13,18 +13,24 @@ struct GoogleAnalyticsConstants {
     static let actionCategory = "Action"
 }
 
-func track(#error: APIError) {
+
+func track(#didShowToUserInController: UIViewController?, error: APIError) {
     let tracker = GAI.sharedInstance().defaultTracker
     let errorAction : String = {
-        if (error.code == APIErrorConstants.noErrorCode) {
-            return "HTTP \(error.httpStatusCode)"
-        }else {
-            return "\(error.code)"
+        var fullString = ""
+        if let actualViewController = didShowToUserInController {
+            fullString = fullString.stringByAppendingString(NSStringFromClass(actualViewController.dynamicType))
         }
+        if (error.code == APIErrorConstants.noErrorCode) {
+            return fullString.stringByAppendingString("HTTP \(error.httpStatusCode)")
+        }else {
+            return fullString.stringByAppendingString("\(error.code)")
+        }
+
     }()
     let label : String =  {
         if (error.domain == Constants.Error.apiErrorDomainOAuthUnauthorized) {
-            return "Oauth failed - highest token : \(OAuthToken.oAuthTokenWithHighestScopeInStorage()?.debugDescription) "
+            return "Oauth unauthorized : \(OAuthToken.oAuthTokenWithHighestScopeInStorage()?.debugDescription) "
         }else {
             if error.responseText == nil {
                 return error.description
@@ -33,7 +39,6 @@ func track(#error: APIError) {
         }
     }()
     let dictionary = GAIDictionaryBuilder.createEventWithCategory(GoogleAnalyticsConstants.errorCategory, action: errorAction, label: label, value: nil).build()
-
     tracker.send(dictionary  as [NSObject : AnyObject])
 }
 

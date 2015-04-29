@@ -129,6 +129,13 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         storeInKeyChain()
     }
 
+    func setExpiryDate(expiresInSeconds: NSNumber?) {
+        if let actualExpirationDate = expiresInSeconds as NSNumber? {
+            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue)
+            self.expires = expirationDate
+        }
+    }
+
     convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInSeconds: NSNumber?) {
         self.init()
 
@@ -322,18 +329,20 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     override var debugDescription: String {
         let accessTokenRepresentation : String = {
             if let token = self.accessToken as String? {
-                return "HAS_TOKEN"
-            } else {
-                return "NO_TOKEN"
+                if token != "" {
+                    return "HAS_TOKEN"
+                }
             }
+            return "NO_TOKEN"
             }()
 
         let refreshTokenRepresentation : String = {
             if let token = self.refreshToken as String? {
-                return "HAS_TOKEN"
-            } else {
-                return "NO_TOKEN"
+                if token != "" {
+                    return "HAS_TOKEN"
+                }
             }
+            return "NO_TOKEN"
             }()
 
         let dateFormatter = NSDateFormatter()
@@ -347,6 +356,6 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             }
             }()
         let dateTodayFormatted = dateFormatter.stringFromDate(NSDate())
-        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation) today: \(dateTodayFormatted)"
+        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope),  today: \(dateTodayFormatted), expires: \(expirationDateRepresentation)"
     }
 }

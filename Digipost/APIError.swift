@@ -8,7 +8,6 @@
 
 import UIKit
 
-
  struct APIErrorConstants {
     static let errorCode = "error-code"
     struct ErrorCodes {

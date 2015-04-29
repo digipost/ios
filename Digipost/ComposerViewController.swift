@@ -103,7 +103,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
