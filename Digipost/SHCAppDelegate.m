@@ -223,28 +223,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
-//- (void)setupCocoaLumberjack
-//{
-//    // Enable Apple System Logger (log messages appear in the Console.app)
-//    [DDLog addLogger:[DDASLLogger sharedInstance]];
-//
-//    // Enable Xcode debugger console (TTY) logger
-//    [DDLog addLogger:[DDTTYLogger sharedInstance]];
-//
-//    // If you want nice colors in Xcode's debugger console,
-//    // go to https://github.com/robbiehanson/XcodeColors and follow instructions
-//    // on how to install the neccesary Xcode plugin.
-//    [[DDTTYLogger sharedInstance] setColorsEnabled:YES];
-//
-//    // Enable logging to file
-//    self.fileLogger = [[DDFileLogger alloc] init];
-//    self.fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-//    self.fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-//    [self.fileLogger rollLogFileWithCompletionBlock:^{
-//        [DDLog addLogger:self.fileLogger];
-//    }];
-//}
-
 - (void)setupGoogleAnalytics
 {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
