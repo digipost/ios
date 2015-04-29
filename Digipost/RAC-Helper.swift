@@ -18,22 +18,4 @@ struct RAC {
         self.keyPath = keyPath
         self.nilValue = nilValue
     }
-    
-//    func assignSignal(signal : RACSignal) {
-//        signal.setKeyPath(self.keyPath, onObject: self.target, nilValue: self.nilValue)
-//    }
 }
-//
-//func RACObserve(target: NSObject!, keyPath: String) -> RACSignal  {
-//    return target.rac_valuesForKeyPath(keyPath, observer: target)
-//}
-//
-//infix operator ~> {}
-//func ~> (signal: RACSignal, rac: RAC) {
-//    rac.assignSignal(signal)
-//}
-//
-//infix operator <~ {}
-//func <~ (rac: RAC, signal: RACSignal) {
-//    rac.assignSignal(signal)
-//}
