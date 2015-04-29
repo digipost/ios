@@ -16,7 +16,7 @@ class LoginTests: KIFTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
-    
+
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -35,7 +35,8 @@ class LoginTests: KIFTestCase {
         getToLoginScreenIfPossible()
         tester.waitForTimeInterval(2)
         tester.tapViewWithAccessibilityLabel(AccessibilityLabels.Onboarding.loginButton)
-        tester.waitForTimeInterval(2)
+        tester.waitForTimeInterval(10)
+        tester.tapScreenAtPoint(CGPointMake(150, 200))
         tester.tapScreenAtPoint(CGPointMake(150, 200))
         tester.waitForSoftwareKeyboard()
         tester.enterTextIntoCurrentFirstResponder("Your fnr here")
