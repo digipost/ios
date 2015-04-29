@@ -194,7 +194,7 @@ class APIError: NSError {
             case CFNetworkErrors.CFURLErrorResourceUnavailable.rawValue:
                 return ("Server nede","")
             case CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue:
-                return ("Not connected to internet","")
+                return (NSLocalizedString("not connected to internet alert title", comment: ""), NSLocalizedString("not connected to internet alert message", comment: ""))
             case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
                 return ("Du har skrudd av datatrafikk","")
             case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue:

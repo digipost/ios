@@ -500,12 +500,18 @@
 
 "PUBLIC_ENTITY" = "Offentlig";
 
-/* No comment provided by engineer. */
-"" = "";
-
 /* Title of alert */
 "Unknown error title" = "Noe feil skjedde";
 
 /* message for alert */
 "Uknown error message" = "Prøv igjen senere";
+
+/* No comment provided by engineer. */
+"" = "";
+
+/* No comment provided by engineer. */
+"not connected to internet alert message" = "Koble til, og prøv igjen";
+
+/* No comment provided by engineer. */
+"not connected to internet alert title" = "Du er ikke koblet til internett";
 
