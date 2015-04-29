@@ -326,7 +326,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             } else {
                 return "NO_TOKEN"
             }
-        }()
+            }()
 
         let refreshTokenRepresentation : String = {
             if let token = self.refreshToken as String? {
@@ -345,6 +345,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
                 return "NO_DATE"
             }
             }()
-        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation)"
+        let dateTodayFormatted = dateFormatter.stringFromDate(NSDate())
+        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation) today: \(dateTodayFormatted)"
     }
 }
