@@ -49,8 +49,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
 
     [self setupHockeySDK];
-    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-400, -400) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-200 forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
+    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-400 forBarMetrics:UIBarMetricsDefault];
     //    [self setupCocoaLumberjack];
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
@@ -197,7 +197,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
-        [rootNavController.topViewController presentViewController:uploadNavigationController animated:YES
+        [rootNavController.topViewController presentViewController:uploadNavigationController
+                                                          animated:YES
                                                         completion:^{
                                                         }];
     } else {
