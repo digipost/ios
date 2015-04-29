@@ -340,6 +340,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         let expirationDateRepresentation : String = {
             if let actualExpirationDate = self.expires {
                 dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+                dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
                 return dateFormatter.stringFromDate(actualExpirationDate)
             } else {
                 return "NO_DATE"
