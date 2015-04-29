@@ -34,6 +34,7 @@ NSString *const kOAuth2GrantType = @"grant_type";
 
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
+NSString *const kOAuth2ExpiresIn = @"expires_in";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
@@ -95,7 +96,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedInstance = [[POSOAuthManager alloc] init];
+      sharedInstance = [[POSOAuthManager alloc] init];
     });
 
     return sharedInstance;
@@ -110,34 +111,34 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
-                          NSDictionary *responseDict = (NSDictionary *)responseObject;
-                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
-                              NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-                              NSString *accessToken = responseDict[kOAuth2AccessToken];
-                              
-                              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope];
-                              if (oAuthToken != nil ) {
+          NSDictionary *responseDict = (NSDictionary *)responseObject;
+          if ([responseDict isKindOfClass:[NSDictionary class]]) {
+              NSString *refreshToken = responseDict[kOAuth2RefreshToken];
+              NSString *accessToken = responseDict[kOAuth2AccessToken];
+              NSString *expiresInString = responseDict[kOAuth2ExpiresIn];
 
-                                  // We only call the success block if the access token is set.
-                                  // The refresh token is not strictly neccesary at this point.
-                                  if (success) {
-                                      success();
-                                      return;
-                                  }
-                              }
-                          }
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInString:expiresInString];
+              if (oAuthToken != nil) {
+                  // We only call the success block if the access token is set.
+                  // The refresh token is not strictly neccesary at this point.
+                  if (success) {
+                      success();
+                      return;
+                  }
+              }
+          }
 
-                          if (failure) {
-                              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
-                                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
-                              failure(error);
-                          }
+          if (failure) {
+              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                               userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response") }];
+              failure(error);
+          }
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          if (failure) {
-                              failure(error);
-                          }
+          if (failure) {
+              failure(error);
+          }
         }];
 }
 
@@ -150,51 +151,51 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
-                          NSDictionary *responseDict = (NSDictionary *)responseObject;
-                          if ([responseDict isKindOfClass:[NSDictionary class]]) {
-                              NSString *accessToken = responseDict[kOAuth2AccessToken];
-                              if ([accessToken isKindOfClass:[NSString class]]) {
-                                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-                                  oauthToken.accessToken = accessToken;
-                                  [[APIClient sharedClient] updateAuthorizationHeader:scope];
-                                  if (success) {
-                                      success();
-                                      return;
-                                  }
-                              }
-                          }
+          NSDictionary *responseDict = (NSDictionary *)responseObject;
+          if ([responseDict isKindOfClass:[NSDictionary class]]) {
+              NSString *accessToken = responseDict[kOAuth2AccessToken];
+              if ([accessToken isKindOfClass:[NSString class]]) {
+                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                  oauthToken.accessToken = accessToken;
+                  [[APIClient sharedClient] updateAuthorizationHeader:scope];
+                  if (success) {
+                      success();
+                      return;
+                  }
+              }
+          }
 
-                          if (failure) {
-                              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
-                                                               userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response")}];
-                              failure(error);
-                          }
+          if (failure) {
+              NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                   code:SHCOAuthErrorCodeMissingAccessTokenResponse
+                                               userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response") }];
+              failure(error);
+          }
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            
-            if (failure) {
-                              // Check to see if the request failed because the refresh token was denied
+          NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
 
-                              if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response] ) {
-                                  if ([scope isEqualToString: kOauth2ScopeFull]) {
-                                      NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                             code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
-                                                                         userInfo:@{NSLocalizedDescriptionKey: NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message")}];
-                                      failure(customError);
-                                  } else {
-                                      // remove token and retry request
-                                      OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-                                      [oAuthToken removeFromKeyChain];
-                                      OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
-                                      [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
-                                  }
-                              } else {
-                                  failure(error);
-                              }
-                          }
+          if (failure) {
+              // Check to see if the request failed because the refresh token was denied
+
+              if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response]) {
+                  if ([scope isEqualToString:kOauth2ScopeFull]) {
+                      NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                 code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
+                                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
+                      failure(customError);
+                  } else {
+                      // remove token and retry request
+                      OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
+                      [oAuthToken removeFromKeyChain];
+                      OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
+                      [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
+                  }
+              } else {
+                  failure(error);
+              }
+          }
         }];
 }
 

@@ -13,6 +13,7 @@ private struct Keys {
     static let refreshTokenKey = "refreshToken"
     static let accessTokenKey = "accessToken"
     static let scopeKey = "scope"
+    static let expiresKey = "expires"
 }
 
 struct AuthenticationLevel {
@@ -35,6 +36,8 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             storeInKeyChain()
         }
     }
+
+    var expires : NSDate?
 
     var scope: String?
 
@@ -103,12 +106,14 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as! String!
         self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as! String!
         self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
+        self.expires = decoder.decodeObjectForKey(Keys.expiresKey) as! NSDate!
     }
 
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encodeObject(self.scope, forKey: Keys.scopeKey)
+        coder.encodeObject(self.expires, forKey: Keys.expiresKey)
     }
 
     convenience init?(refreshToken: String?, scope: String) {
@@ -124,7 +129,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         storeInKeyChain()
     }
 
-    convenience init?(refreshToken: String?, accessToken: String?, scope:String) {
+    convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInString: String?) {
         self.init()
 
         if let acutalRefreshToken = refreshToken as String? {
@@ -133,6 +138,10 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
 
         if let actualAccessToken = accessToken as String? {
             self.accessToken = actualAccessToken
+        }
+        if let actualExpirationDate = expiresInString as String? {
+            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.toInt())
+            self.expires = expirationDate
         }
 
         self.scope = scope
@@ -144,7 +153,8 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
         anAccessToken = attributes["access_token"] as? String
-        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope)
+        let expiresInString = attributes["expires_in"] as? String
+        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInString:expiresInString)
         storeInKeyChain()
     }
 
@@ -310,6 +320,31 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
     }
 
     override var debugDescription: String {
-        return "accessToken: \(accessToken), refreshToken: \(refreshToken), scope: \(scope)"
+        let accessTokenRepresentation : String = {
+            if let token = self.accessToken as String? {
+                return token[0...4]
+            } else {
+                return "NO_TOKEN"
+            }
+        }()
+
+        let refreshTokenRepresentation : String = {
+            if let token = self.refreshToken as String? {
+                return token[0...4]
+            } else {
+                return "NO_TOKEN"
+            }
+            }()
+
+        let expirationDateRepresentation : String = {
+            if let actualExpirationDate = self.expires {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
+                return dateFormatter.stringFromDate(actualExpirationDate)
+            } else {
+                return "NO_DATE"
+            }
+            }()
+        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation)"
     }
 }

@@ -209,14 +209,5 @@ class APIError: NSError {
             }
         }
     }
-
-
-    //~~==                                              [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //          //
-    //          //
-    //
-    //
-
     var shouldBeShownToUser : Bool = true
-
 }

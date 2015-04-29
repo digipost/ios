@@ -29,4 +29,16 @@ extension NSDate {
         dateString = dateString.stringByAppendingString(".mov")
         return dateString
     }
+
+    func dateByAdding(#seconds: Int?) -> NSDate? {
+        if seconds == nil {
+            return nil
+        }
+        let calendar = NSCalendar.currentCalendar()
+        var components = NSDateComponents()
+        components.second = seconds!
+        return calendar.dateByAddingComponents(components, toDate: self, options: nil)
+    }
+
 }
+
