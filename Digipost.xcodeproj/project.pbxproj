@@ -388,7 +388,6 @@
 		EC2DCB921AB84EAB0063755E /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC2DCB951AB84EAB0063755E /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		EC2DCB971AB84EAB0063755E /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		EC2DCB981AB84EAB0063755E /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -552,7 +551,6 @@
 		EC2DCC431AB864AB0063755E /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2DCC441AB864AB0063755E /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		EC2DCC451AB864AB0063755E /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC2DCC461AB864AB0063755E /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC2DCC471AB864AB0063755E /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		EC2DCC481AB864AB0063755E /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		EC2DCC491AB864AB0063755E /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -808,8 +806,6 @@
 		EC63A8381A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		EC63A8391A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		EC63A83A1A6E73E500708A75 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
-		EC63A83B1A6E744300708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
-		EC63A83C1A6E744400708A75 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC63A8411A6E74EB00708A75 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A83D1A6E74EB00708A75 /* APITests.swift */; };
 		EC63A8471A6E7C1800708A75 /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8431A6E7C1800708A75 /* ModelTests.swift */; };
 		EC63A84D1A6E7DF200708A75 /* XCTestCase+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */; };
@@ -916,9 +912,6 @@
 		ECC54E961AF0FC9D00F14CE9 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC54E931AF0FC9D00F14CE9 /* String+Substring.swift */; };
 		ECC54E971AF0FC9D00F14CE9 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC54E931AF0FC9D00F14CE9 /* String+Substring.swift */; };
 		ECC54E981AF0FC9D00F14CE9 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC54E931AF0FC9D00F14CE9 /* String+Substring.swift */; };
-		ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
-		ECC74FC11A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
-		ECC74FC21A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		ECC9949E1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		ECC9949F1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
@@ -1364,7 +1357,6 @@
 		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		ECC54E931AF0FC9D00F14CE9 /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
-		ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+RACConvenience.swift"; sourceTree = "<group>"; };
 		ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
@@ -1862,7 +1854,6 @@
 				ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */,
 				ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */,
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
-				ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */,
 				ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */,
 				ECC08E041A5BE8DB004C829D /* APIResponse.swift */,
 				EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */,
@@ -2761,7 +2752,6 @@
 				EC2352A01A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551D1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622B19393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
-				ECC74FC11A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
 				ECD0B89A1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				31B57FFC1A6691EC008952DE /* AccountTableViewDataSource.swift in Sources */,
 				3117795E1AAEFCA800229D02 /* QCMethod.swift in Sources */,
@@ -2835,7 +2825,6 @@
 				EC82ACBF19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				EC56AAB81A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577C18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
-				EC63A83C1A6E744400708A75 /* NSObject+RACConvenience.swift in Sources */,
 				83F7037D18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC0C1A1419347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				ECD0B88D1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
@@ -3029,7 +3018,6 @@
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
-				ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
 				AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */,
@@ -3165,7 +3153,6 @@
 				EC2DCB921AB84EAB0063755E /* UIImage+TintColor.swift in Sources */,
 				EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
 				EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */,
-				EC2DCB951AB84EAB0063755E /* NSObject+RACConvenience.swift in Sources */,
 				EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCB971AB84EAB0063755E /* QCMethod.swift in Sources */,
 				EC2DCB981AB84EAB0063755E /* AccountTableViewDataSource.swift in Sources */,
@@ -3301,7 +3288,6 @@
 				EC2DCC431AB864AB0063755E /* UIImage+TintColor.swift in Sources */,
 				EC2DCC441AB864AB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
 				EC2DCC451AB864AB0063755E /* NSNumber+JsonParsing.m in Sources */,
-				EC2DCC461AB864AB0063755E /* NSObject+RACConvenience.swift in Sources */,
 				EC2DCC471AB864AB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCC481AB864AB0063755E /* QCMethod.swift in Sources */,
 				EC2DCC491AB864AB0063755E /* AccountTableViewDataSource.swift in Sources */,
@@ -3435,7 +3421,6 @@
 				EC55F3FA1A2C5ACC00A3192C /* UIImage+TintColor.swift in Sources */,
 				EC55F3FB1A2C5ACC00A3192C /* SHCAttachmentTableViewCell.m in Sources */,
 				EC55F3FC1A2C5ACC00A3192C /* NSNumber+JsonParsing.m in Sources */,
-				ECC74FC21A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
 				ECD0B89C1A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				31B57FFE1A6691ED008952DE /* AccountTableViewDataSource.swift in Sources */,
 				311779601AAEFCA800229D02 /* QCMethod.swift in Sources */,
@@ -3512,7 +3497,6 @@
 				ECF486D21A471A1A00E97519 /* POSLetterPopoverView.m in Sources */,
 				ECF486D11A471A1600E97519 /* POSLetterViewController.m in Sources */,
 				ECF486E51A471A2E00E97519 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
-				EC63A83B1A6E744300708A75 /* NSObject+RACConvenience.swift in Sources */,
 				ECF486D01A471A1600E97519 /* POSReceiptTableViewCell.m in Sources */,
 				ECF486E71A471A2E00E97519 /* UILabel+Digipost.m in Sources */,
 				ECF486BB1A4719F400E97519 /* UINavigationController+Extensions.swift in Sources */,
