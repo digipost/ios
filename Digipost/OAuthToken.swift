@@ -356,6 +356,6 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
             }
             }()
         let dateTodayFormatted = dateFormatter.stringFromDate(NSDate())
-        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope),  today: \(dateTodayFormatted), expires: \(expirationDateRepresentation)"
+        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation), date now: \(dateTodayFormatted)"
     }
 }
