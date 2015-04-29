@@ -33,11 +33,12 @@ func track(#error: APIError) {
         }
     }()
     let dictionary = GAIDictionaryBuilder.createEventWithCategory(GoogleAnalyticsConstants.errorCategory, action: errorAction, label: label, value: nil).build()
-    tracker.send(dictionary)
+
+    tracker.send(dictionary  as [NSObject : AnyObject])
 }
 
 func track(#eventName: String, extraInfo: String?) {
     let tracker = GAI.sharedInstance().defaultTracker
     let dictionary = GAIDictionaryBuilder.createEventWithCategory(GoogleAnalyticsConstants.actionCategory, action: eventName, label: extraInfo, value: nil).build()
-    tracker.send(dictionary)
+     tracker.send(dictionary  as [NSObject : AnyObject])
 }

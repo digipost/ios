@@ -1,32 +1,32 @@
 PODS:
-  - AFNetworking (2.5.1):
-    - AFNetworking/NSURLConnection (= 2.5.1)
-    - AFNetworking/NSURLSession (= 2.5.1)
-    - AFNetworking/Reachability (= 2.5.1)
-    - AFNetworking/Security (= 2.5.1)
-    - AFNetworking/Serialization (= 2.5.1)
-    - AFNetworking/UIKit (= 2.5.1)
-  - AFNetworking/NSURLConnection (2.5.1):
+  - AFNetworking (2.5.3):
+    - AFNetworking/NSURLConnection (= 2.5.3)
+    - AFNetworking/NSURLSession (= 2.5.3)
+    - AFNetworking/Reachability (= 2.5.3)
+    - AFNetworking/Security (= 2.5.3)
+    - AFNetworking/Serialization (= 2.5.3)
+    - AFNetworking/UIKit (= 2.5.3)
+  - AFNetworking/NSURLConnection (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.1):
+  - AFNetworking/NSURLSession (2.5.3):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.1)
-  - AFNetworking/Security (2.5.1)
-  - AFNetworking/Serialization (2.5.1)
-  - AFNetworking/UIKit (2.5.1):
+  - AFNetworking/Reachability (2.5.3)
+  - AFNetworking/Security (2.5.3)
+  - AFNetworking/Serialization (2.5.3)
+  - AFNetworking/UIKit (2.5.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
-  - Alamofire (1.1.4)
-  - HockeySDK (3.6.2)
-  - KIF (3.1.2):
-    - KIF/XCTest (= 3.1.2)
-  - KIF/XCTest (3.1.2)
-  - LUKeychainAccess (1.2.2)
+  - Alamofire (1.2.1)
+  - HockeySDK (3.6.4)
+  - KIF (3.2.1):
+    - KIF/XCTest (= 3.2.1)
+  - KIF/XCTest (3.2.1)
+  - LUKeychainAccess (1.2.4)
   - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator (= 0.4.3)
     - MRProgress/Blur (= 0.4.3)
@@ -59,8 +59,8 @@ PODS:
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.3)
   - RNCryptor (2.2)
-  - UIActionSheet+Blocks (0.8.1)
-  - UIAlertView+Blocks (0.8.1)
+  - UIActionSheet+Blocks (0.9)
+  - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
@@ -87,19 +87,19 @@ CHECKOUT OPTIONS:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
   HockeySDK:
-    :commit: e2d35454f9fddf6d37b437a0f4d00eaefc0d2b96
+    :commit: 718e407276f92deb1efa1789847a611b5cfd70da
     :git: https://github.com/bitstadium/HockeySDK-iOS.git
 
 SPEC CHECKSUMS:
-  AFNetworking: 10e85a00bb0f475124e4ff2677bf15693b2c1523
+  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
-  Alamofire: 6a2cbaebe78a6d469bc55ee37f0a24ba22af76ac
-  HockeySDK: 51ade1aff04463137e852797d2eb4dfb2511d6a9
-  KIF: e08915d78a220480599837e9a760deee64453d76
-  LUKeychainAccess: 708702536726877384ecc4cf2f2040ad393038ba
+  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
+  HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
+  LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
-  UIActionSheet+Blocks: 7fdab45fc8f15ac2dc1cd65af1470746600b5f46
-  UIAlertView+Blocks: 45c3d3b7194906702d3e9a14c7ece5581505646d
+  UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
+  UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
 COCOAPODS: 0.36.3

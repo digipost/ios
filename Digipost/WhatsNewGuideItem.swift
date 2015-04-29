@@ -17,11 +17,6 @@ class WhatsNewGuideItem {
         self.text = text
     }
     
-    // Remove in swift 1.2
-    init() {
-        
-    }
-    
     convenience init?(index: Int) {
         let image = UIImage(named:WhatsNewGuideItem.nameForIndex(index))
         let text =  LocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index),tableName:GuideConstants.whatsNewTableName, comment:"") as String?
@@ -29,7 +24,7 @@ class WhatsNewGuideItem {
         if image == nil || text == nil {
             debugIfNil(image, "could not find image named \(WhatsNewGuideItem.nameForIndex(index)) index:\(index)")
             debugIfNil(image, "could not find localized string \(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index)) in table \(GuideConstants.whatsNewTableName) index: \(index)")
-            self.init()
+            self.init(image:UIImage(),text:"")
             return nil
         } else {
             self.init(image:image!,text:text!)

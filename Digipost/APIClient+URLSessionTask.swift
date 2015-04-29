@@ -20,7 +20,7 @@ extension APIClient {
                 }
                 return nil
             }()
-            if self.isUnauthorized(response as NSHTTPURLResponse?) {
+            if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                 let error = APIError.UnauthorizedOAuthTokenError()
                 error.responseText = serializedResponse?.description
                 track(error: error)
@@ -33,8 +33,8 @@ extension APIClient {
                     track(error:error)
                     failure(error: error)
                 })
-            } else if (response as NSHTTPURLResponse).didFail()  {
-                let err = APIError(urlResponse: (response as NSHTTPURLResponse), jsonResponse: serializedResponse)
+            } else if (response as! NSHTTPURLResponse).didFail()  {
+                let err = APIError(urlResponse: (response as! NSHTTPURLResponse), jsonResponse: serializedResponse)
                 track(error: err)
                 dispatch_async(dispatch_get_main_queue(), {
                 failure(error:err)
@@ -57,12 +57,12 @@ extension APIClient {
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     let error = APIError.UnauthorizedOAuthTokenError()
-                    error.responseText = string
+                    error.responseText = string as! String
                     track(error: error)
                     failure(error: error)
                 } else if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
-                    error.responseText = string
+                    error.responseText = string as! String
                     track(error:error)
                     failure(error: error)
                 } else {

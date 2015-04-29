@@ -19,8 +19,8 @@ import UIKit
 
 class APIError: NSError {
 
-    let digipostErrorCode : String?
-    let httpStatusCode : Int = 0
+    var digipostErrorCode : String?
+    var httpStatusCode : Int = 0
     var responseText : String?
 
     init(error: NSError) {
