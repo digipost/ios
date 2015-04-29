@@ -308,6 +308,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: noUploadLinkError)
             return
         }
+
         // TODO CANCEL UPLOADING FILES && DELETE TEMP FILES
         //
         //    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files

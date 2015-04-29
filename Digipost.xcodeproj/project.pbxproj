@@ -452,7 +452,7 @@
 		EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
+		EC2DCBD81AB84EAB0063755E /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
 		EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		EC2DCBE21AB8642E0063755E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
@@ -615,7 +615,7 @@
 		EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
+		EC2DCC891AB864AB0063755E /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
 		EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		EC2E9E371A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */; };
@@ -648,11 +648,11 @@
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC3BC7691A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC3BC76A1A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
-		EC4146B91AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
-		EC4146BA1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
-		EC4146BB1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
-		EC4146BC1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
-		EC4146BD1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
+		EC4146B91AA7366D003DBF47 /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
+		EC4146BA1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
+		EC4146BB1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
+		EC4146BC1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
+		EC4146BD1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */; };
 		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C61AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146C71AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
@@ -1280,7 +1280,7 @@
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
-		EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-5-0.xcassets"; sourceTree = "<group>"; };
+		EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-5-1.xcassets"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewGuideItem.swift; sourceTree = "<group>"; };
@@ -1763,7 +1763,7 @@
 			children = (
 				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
 				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
-				EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */,
+				EC4146B81AA7366D003DBF47 /* 2-5-1.xcassets */,
 				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
 				EC4146BE1AA736A8003DBF47 /* Old images */,
 				AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */,
@@ -2238,7 +2238,7 @@
 				EC97409E19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93719D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				8375DD431855C383009435B4 /* InfoPlist.strings in Resources */,
-				EC4146BB1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				EC4146BB1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */,
 				AFC1A92A1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342371A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2262,7 +2262,7 @@
 				EC97409D19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93619D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83A31B071855D706007045B9 /* InfoPlist.strings in Resources */,
-				EC4146BA1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				EC4146BA1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */,
 				AFC1A9291A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342361A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2287,7 +2287,7 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
-				EC4146B91AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				EC4146B91AA7366D003DBF47 /* 2-5-1.xcassets in Resources */,
 				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2312,7 +2312,7 @@
 				EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */,
 				EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */,
-				EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */,
+				EC2DCBD81AB84EAB0063755E /* 2-5-1.xcassets in Resources */,
 				EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2336,7 +2336,7 @@
 				EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */,
 				EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
-				EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */,
+				EC2DCC891AB864AB0063755E /* 2-5-1.xcassets in Resources */,
 				EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2357,7 +2357,7 @@
 				EC55F4281A2C5ACC00A3192C /* Main_iPhone.storyboard in Resources */,
 				EC55F4291A2C5ACC00A3192C /* foundmonmed-webfont.ttf in Resources */,
 				311848751A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
-				EC4146BD1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				EC4146BD1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */,
 				AFC1A92B1A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				EC4146C91AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				AF477DFF1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
@@ -2374,7 +2374,7 @@
 				EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */,
 				AF477DFE1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				EC56AACC1A24C92900720109 /* documents.json in Resources */,
-				EC4146BC1AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
+				EC4146BC1AA7366D003DBF47 /* 2-5-1.xcassets in Resources */,
 				EC141E1A1A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json in Resources */,
 				EC4146C81AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				311848741A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
