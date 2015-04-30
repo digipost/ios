@@ -429,7 +429,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
                 validationSuccess(chosenToken: newToken!)
                 }, failure: { (error) -> Void in
-                    self.deleteRefreshTokensAndLogoutUser()
+                    if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
+                        self.deleteRefreshTokensAndLogoutUser()
+                    }
             })
         }else if (oAuthToken == nil) {
             assert(false," something wrong with oauth token")
