@@ -64,8 +64,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                         name:kShowLoginViewControllerNotificationName
                                                       object:nil];
     }
-    @catch (NSException *exception)
-    {
+    @catch (NSException *exception) {
         //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 }
@@ -86,8 +85,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                      name:kShowLoginViewControllerNotificationName
                                                    object:nil];
     }
-    @catch (NSException *exception)
-    {
+    @catch (NSException *exception) {
         //        DDLogWarn(@"Caught an exception: %@", exception);
     }
 
@@ -156,9 +154,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
     __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
 
-    [self presentViewController:onboardingViewController animated:NO completion:^{
-        onboardingViewController.onboardingLoginViewController.delegate = self;
-    }];
+    [self presentViewController:onboardingViewController
+                       animated:NO
+                     completion:^{
+                       onboardingViewController.onboardingLoginViewController.delegate = self;
+                     }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -224,21 +224,23 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         self.loginBackgroundImageView.image = backgroundImage;
     }
 
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO completion:^{
-        
-        [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
+    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO
+                                                                               completion:^{
 
-    }];
+                                                                                 [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
+
+                                                                               }];
 }
 
 #pragma mark - NewFeatures dismiss controller delegate
 
 - (void)newFeaturesViewControllerDidDismiss:(NewFeaturesViewController *)newFeaturesViewController
 {
-    [newFeaturesViewController dismissViewControllerAnimated:NO completion:^{
-        [self.loginView setHidden:NO];
-        [self presentAppropriateViewControllerForIPhone];
-    }];
+    [newFeaturesViewController dismissViewControllerAnimated:NO
+                                                  completion:^{
+                                                    [self.loginView setHidden:NO];
+                                                    [self presentAppropriateViewControllerForIPhone];
+                                                  }];
 }
 
 #pragma mark - IBActions
@@ -258,9 +260,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
          destructiveButtonTitle:nil
               otherButtonTitles:@[ NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari") ]
                        tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                           if (buttonIndex == 0) {
-                               [[UIApplication sharedApplication] openURL:url];
-                           }
+                         if (buttonIndex == 0) {
+                             [[UIApplication sharedApplication] openURL:url];
+                         }
                        }];
 }
 
@@ -321,7 +323,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     // Set the new view controller stack for the navigation controller
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.navigationController setViewControllers:viewControllerStack animated:NO];
+      [self.navigationController setViewControllers:viewControllerStack animated:NO];
     });
 }
 
