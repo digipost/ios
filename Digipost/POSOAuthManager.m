@@ -180,7 +180,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
           if (failure) {
               // Check to see if the request failed because the refresh token was denied
 
-              if ([[APIClient sharedClient] responseCodeForOAuthIsUnauthorized:task.response]) {
+              if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
                   if ([scope isEqualToString:kOauth2ScopeFull]) {
                       NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                  code:SHCOAuthErrorCodeInvalidRefreshTokenResponse

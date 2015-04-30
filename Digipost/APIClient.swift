@@ -466,6 +466,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         //        }
     }
 
+    func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {
+        let HTTPResponse = response as! NSHTTPURLResponse
+        switch HTTPResponse {
+        case 400:
+            return true
+        case 401:
+            return true
+        case 403:
+            return true
+        default:
+            return false
+        }
+    }
 
     func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
         let HTTPResponse = response as! NSHTTPURLResponse
