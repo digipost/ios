@@ -12,7 +12,6 @@ extension UIAlertController {
     
     class func presentAlertControllerWithAPIError(apiError: APIError, presentingViewController: UIViewController) {
         if apiError.shouldBeShownToUser {
-            track(didShowToUserInController: presentingViewController, apiError)
             let alertController = UIAlertController(title: apiError.alertTitle, message: apiError.altertMessage, preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
@@ -28,7 +27,6 @@ extension UIAlertController {
     
     class func presentAlertControllerWithAPIError(apiError: APIError, presentingViewController: UIViewController, didTapOkClosure: () -> Void ) {
         if apiError.shouldBeShownToUser {
-            track(didShowToUserInController: presentingViewController, apiError)
             let alertController = UIAlertController(title: apiError.alertTitle, message: apiError.altertMessage, preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
