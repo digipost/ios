@@ -29,3 +29,4 @@
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
 #import "GAIDictionaryBuilder.h"
+#import "POSOAuthManager.h"

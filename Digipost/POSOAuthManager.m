@@ -191,12 +191,27 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
                       [oAuthToken removeFromKeyChain];
                       OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
-                      [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
+                      if (currentlyHighestOauthToken != nil) {
+                          [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
+                      }
                   }
               } else {
-                  failure(error);
+                  NSString *errorType = @"error";
+                  if (dict != nil) {
+                      if ([dict[errorType] isEqualToString:@"invalid_grant"]) {
+                          NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                     code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
+                                                                 userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
+                          failure(customError);
+                      } else {
+                          failure(error);
+                      }
+                  } else {
+                      failure(error);
+                  }
               }
           }
+
         }];
 }
 

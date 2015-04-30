@@ -398,14 +398,24 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: scope, success: {
                 validationSuccess()
                 }, failure: { (error) -> Void in
-                    // TODO handle failure
-//                    println(error)
+                    if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
+                        self.deleteRefreshTokensAndLogoutUser()
+                    }
             })
-        }else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
-
-        } else {
-
+        } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
         }
+    }
+
+    private func deleteRefreshTokensAndLogoutUser() {
+        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
+            letterViewController.attachment = nil
+            letterViewController.receipt = nil
+        }
+        APIClient.sharedClient.logout()
+        OAuthToken.removeAllTokens()
+        POSModelManager.sharedManager().deleteAllObjects()
+        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
     private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void)  {
@@ -418,10 +428,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
                 let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
                 validationSuccess(chosenToken: newToken!)
-
                 }, failure: { (error) -> Void in
-                    // TODO handle failure
-//                    println(error)
+                    self.deleteRefreshTokensAndLogoutUser()
             })
         }else if (oAuthToken == nil) {
             assert(false," something wrong with oauth token")
@@ -434,8 +442,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 assert(false, "NO oauthtoken present in app. Log out!")
             }
             // has found higher level oAuthToken that is outdated, try refreshing a lower level token
-
-
         }
     }
 
