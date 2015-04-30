@@ -325,37 +325,4 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }
-
-    override var debugDescription: String {
-        let accessTokenRepresentation : String = {
-            if let token = self.accessToken as String? {
-                if token != "" {
-                    return "HAS_TOKEN"
-                }
-            }
-            return "NO_TOKEN"
-            }()
-
-        let refreshTokenRepresentation : String = {
-            if let token = self.refreshToken as String? {
-                if token != "" {
-                    return "HAS_TOKEN"
-                }
-            }
-            return "NO_TOKEN"
-            }()
-
-        let dateFormatter = NSDateFormatter()
-        let expirationDateRepresentation : String = {
-            if let actualExpirationDate = self.expires {
-                dateFormatter.dateStyle = NSDateFormatterStyle.MediumStyle
-                dateFormatter.timeStyle = NSDateFormatterStyle.MediumStyle
-                return dateFormatter.stringFromDate(actualExpirationDate)
-            } else {
-                return "NO_DATE"
-            }
-            }()
-        let dateTodayFormatted = dateFormatter.stringFromDate(NSDate())
-        return "accessToken: \(accessTokenRepresentation), refreshToken: \(refreshTokenRepresentation), scope: \(scope), expires: \(expirationDateRepresentation), date now: \(dateTodayFormatted)"
-    }
 }
