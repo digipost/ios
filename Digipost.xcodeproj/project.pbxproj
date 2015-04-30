@@ -346,7 +346,6 @@
 		EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
-		EC2DCB6B1AB84EAB0063755E /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
@@ -509,7 +508,6 @@
 		EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
-		EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
@@ -897,11 +895,6 @@
 		ECC08DFB1A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08DFC1A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08DFD1A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
-		ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
-		ECC08E001A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
-		ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
-		ECC08E021A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
-		ECC08E031A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
 		ECC08E061A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
 		ECC08E071A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
@@ -947,9 +940,6 @@
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20419F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		ECD1C20519F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
-		ECD89DE51AD661100014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
-		ECD89DE61AD6699B0014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
-		ECD89DE71AD6699D0014A0B4 /* GoogleAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */; };
 		ECDB9A031A5A904E0013DF4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		ECDB9A041A5A904E0013DF4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
 		ECDB9A051A5A904E0013DF4F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
@@ -1354,7 +1344,6 @@
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		ECC54E931AF0FC9D00F14CE9 /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
 		ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
@@ -1366,7 +1355,6 @@
 		ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Document.swift"; sourceTree = "<group>"; };
 		ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+APIError.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
-		ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAnalytics.swift; sourceTree = "<group>"; };
 		ECDB9A021A5A904E0013DF4F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
@@ -1848,13 +1836,11 @@
 		EC1A6C2F18BBA32100269428 /* Client */ = {
 			isa = PBXGroup;
 			children = (
-				ECD89DE41AD661100014A0B4 /* GoogleAnalytics.swift */,
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
 				ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */,
 				ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */,
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
-				ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */,
 				ECC08E041A5BE8DB004C829D /* APIResponse.swift */,
 				EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */,
 				83F7037F18573641003DABE1 /* POSOAuthManager.h */,
@@ -2710,7 +2696,6 @@
 				311779591AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6219239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB11A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
-				ECC08E011A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				ECC9949F1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				83DB4AE8188D1F4E00515022 /* POSReceipt.m in Sources */,
 				AFD508BD1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2844,7 +2829,6 @@
 				ECF06D6119239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EB01A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC9949E1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
-				ECC08E001A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				AFD508BC1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				AF199D541AA72F05001F252A /* OnboardingLoginViewController.swift in Sources */,
 				83DB4AE7188D1F4E00515022 /* POSReceipt.m in Sources */,
@@ -2976,7 +2960,6 @@
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
-				ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -3047,7 +3030,6 @@
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
-				ECD89DE51AD661100014A0B4 /* GoogleAnalytics.swift in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
@@ -3111,7 +3093,6 @@
 				EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */,
 				EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
-				EC2DCB6B1AB84EAB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
 				EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -3182,7 +3163,6 @@
 				EC2DCBAF1AB84EAB0063755E /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				EC2DCBB01AB84EAB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCBB11AB84EAB0063755E /* UIImage+Localization.swift in Sources */,
-				ECD89DE61AD6699B0014A0B4 /* GoogleAnalytics.swift in Sources */,
 				EC2DCBB21AB84EAB0063755E /* POSNotice.m in Sources */,
 				EC2DCBB31AB84EAB0063755E /* POSAttachment+Methods.swift in Sources */,
 				EC2DCBB41AB84EAB0063755E /* POSModelManager.m in Sources */,
@@ -3246,7 +3226,6 @@
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
-				EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,
 				EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -3317,7 +3296,6 @@
 				EC2DCC601AB864AB0063755E /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				EC2DCC611AB864AB0063755E /* SHCLoginViewController.m in Sources */,
 				EC2DCC621AB864AB0063755E /* UIImage+Localization.swift in Sources */,
-				ECD89DE71AD6699D0014A0B4 /* GoogleAnalytics.swift in Sources */,
 				EC2DCC631AB864AB0063755E /* POSNotice.m in Sources */,
 				EC2DCC641AB864AB0063755E /* POSAttachment+Methods.swift in Sources */,
 				EC2DCC651AB864AB0063755E /* POSModelManager.m in Sources */,
@@ -3380,7 +3358,6 @@
 				3117795B1AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				EC55F3DD1A2C5ACC00A3192C /* UIViewController+Additions.m in Sources */,
 				EC55F3DE1A2C5ACC00A3192C /* NSDate+Extensions.swift in Sources */,
-				ECC08E031A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				ECC994A11AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				EC55F3DF1A2C5ACC00A3192C /* POSReceipt.m in Sources */,
 				AFD508BE1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -3507,7 +3484,6 @@
 				ECF4869E1A4715AC00E97519 /* POSInvoice.m in Sources */,
 				ECBF75B01AA85E6900540BCA /* Localization.swift in Sources */,
 				31B57FF91A6691E8008952DE /* AccountViewController.swift in Sources */,
-				ECC08E021A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				EC63A8471A6E7C1800708A75 /* ModelTests.swift in Sources */,
 				ECF486F31A471A3600E97519 /* SHCBaseTableViewController.m in Sources */,
 				ECF487051A471A8000E97519 /* UploadGuideViewController.swift in Sources */,
