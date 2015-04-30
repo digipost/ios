@@ -41,6 +41,9 @@ NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
 NSString *const kOauth2ScopeFull_Idporten3 = @"IDPORTEN_3";
 NSString *const kOauth2ScopeFull_Idporten4 = @"IDPORTEN_4";
 
+NSString *const kOauth2ErrorResponse = @"error";
+NSString *const kOauth2InvalidGrant = @"invalid_grant";
+
 // Internal Keychain key consts
 NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 
@@ -182,10 +185,15 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
               if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
                   if ([scope isEqualToString:kOauth2ScopeFull]) {
-                      NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                 code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
-                                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
-                      failure(customError);
+                      if (dict != nil) {
+                          if ([dict[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
+                              NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
+                                                                         code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
+                                                                     userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
+                              failure(customError);
+                          }
+                      }
+
                   } else {
                       // remove token and retry request
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
@@ -195,23 +203,8 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                           [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
                       }
                   }
-              } else {
-                  NSString *errorType = @"error";
-                  if (dict != nil) {
-                      if ([dict[errorType] isEqualToString:@"invalid_grant"]) {
-                          NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
-                                                                     code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
-                                                                 userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
-                          failure(customError);
-                      } else {
-                          failure(error);
-                      }
-                  } else {
-                      failure(error);
-                  }
               }
           }
-
         }];
 }
 
