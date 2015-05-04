@@ -8,19 +8,21 @@
 
 import UIKit
 
-class FontPickerViewController: UIViewController {
+class FontPickerViewController: UIViewController, UITableViewDelegate {
+
+    @IBOutlet weak var tableView : UITableView!
+
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // Did select font!
     }
-    
+
 
     /*
     // MARK: - Navigation
