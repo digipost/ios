@@ -297,7 +297,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let sendableDocument = SendableDocument(recipients: recipients)
         let parameters = sendableDocument.draftParameters()
-        println(parameters)
         validate(token: oauthToken) { () -> Void in
             let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
                 sendableDocument.setupWithJSONContent(responseJSON)
@@ -359,22 +358,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                println(totalBytesSent)
-                //                let totalSent = totalBytesSent as Int64
-                //                self.uploadProgress?.completedUnitCount = totalSent
-            })
         }
 
         let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
-                println(response as! NSHTTPURLResponse)
-                println(anyObject)
                 let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
-                println(s)
-
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)

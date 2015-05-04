@@ -27,7 +27,6 @@ extension APIClient {
                 dispatch_async(dispatch_get_main_queue(), {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
-                    track(error:error)
                     failure(error: error)
                 })
             } else if (response as! NSHTTPURLResponse).didFail()  {
@@ -47,18 +46,15 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
-                println(htttpURL)
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 if self.isUnauthorized(response as! NSHTTPURLResponse?) {
                     self.removeAccessTokenUsedInLastRequest()
                     let error = APIError.UnauthorizedOAuthTokenError()
                     error.responseText = string as? String
-                    track(error: error)
                     failure(error: error)
                 } else if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
                     error.responseText = string as? String
-                    track(error:error)
                     failure(error: error)
                 } else {
                     var jsonError : NSError?
@@ -68,7 +64,6 @@ extension APIClient {
                             failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
                         }else if (response as! NSHTTPURLResponse).didFail()  {
                             let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
-                            track(error: err)
                             failure(error:err)
                         } else {
                             let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
@@ -118,11 +113,9 @@ extension APIClient {
                 dispatch_async(dispatch_get_main_queue(), {
                     if self.isUnauthorized(response as NSHTTPURLResponse?) {
                         let error = APIError.UnauthorizedOAuthTokenError()
-                        track(error: error)
                         self.removeAccessTokenUsedInLastRequest()
                         failure(error: error)
                     } else if let actualError = error as NSError! {
-                        track(error: APIError(error: actualError))
                         failure(error: APIError(error: actualError))
                     } else {
                         success(url: completedURL!)
