@@ -696,6 +696,11 @@
 		EC30D7BA1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7BB1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7BC1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
+		EC30D7BE1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */; };
+		EC30D7BF1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */; };
+		EC30D7C01AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */; };
+		EC30D7C11AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */; };
+		EC30D7C21AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */; };
 		EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
@@ -1021,6 +1026,7 @@
 		EC3021911AB70E0A00812502 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		EC30219B1AB8483700812502 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
+		EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FontPickerViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
@@ -1562,6 +1568,7 @@
 				AFEB99C01AE8FD370099D924 /* DimView.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
 				EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */,
+				EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */,
 				AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				AF981F0C1AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift */,
@@ -2428,6 +2435,7 @@
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				31952EF91AE50CA700739600 /* RecipientTableViewCell.swift in Sources */,
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
+				EC30D7BE1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
 				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
@@ -2654,6 +2662,7 @@
 				EC0D2D691AE786A800595A61 /* SHCAttachmentsViewController.m in Sources */,
 				EC0D2D6A1AE786A800595A61 /* ComposerTableViewDataSource.swift in Sources */,
 				EC0D2D6B1AE786A800595A61 /* NSString+CoreDataConvenience.m in Sources */,
+				EC30D7C11AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC0D2D6C1AE786A800595A61 /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC0D2D6D1AE786A800595A61 /* main.m in Sources */,
 				EC0D2D6E1AE786A800595A61 /* SHCAppDelegate.m in Sources */,
@@ -2753,6 +2762,7 @@
 				EC2DCB421AB84EAB0063755E /* POSDocumentTableViewCell.m in Sources */,
 				EC2DCB431AB84EAB0063755E /* POSReceiptTableViewCell.m in Sources */,
 				EC2DCB441AB84EAB0063755E /* POSLetterViewController.m in Sources */,
+				EC30D7BF1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC2DCB451AB84EAB0063755E /* NSString+RandomNumber.m in Sources */,
 				EC2DCB461AB84EAB0063755E /* Debug.swift in Sources */,
 				EC2DCB471AB84EAB0063755E /* MainAccountTableViewCell.swift in Sources */,
@@ -2979,6 +2989,7 @@
 				EC2DCC261AB864AB0063755E /* SHCAttachmentsViewController.m in Sources */,
 				AF981F121AD53FEF00DE8B55 /* ComposerTableViewDataSource.swift in Sources */,
 				EC2DCC271AB864AB0063755E /* NSString+CoreDataConvenience.m in Sources */,
+				EC30D7C01AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC2DCC281AB864AB0063755E /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC2DCC291AB864AB0063755E /* main.m in Sources */,
 				EC2DCC2A1AB864AB0063755E /* SHCAppDelegate.m in Sources */,
@@ -3076,6 +3087,7 @@
 				ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */,
 				ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */,
+				EC30D7C21AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC30D7BC1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
