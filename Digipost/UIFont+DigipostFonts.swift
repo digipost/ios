@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 
 extension UIFont {
+
+    class func commonWebFonts () -> [UIFont] {
+        return [UIFont]()
+    }
+
     class func digipostRegularFont() -> UIFont {
         let regularFont = UIFont.systemFontOfSize(17)
         return regularFont

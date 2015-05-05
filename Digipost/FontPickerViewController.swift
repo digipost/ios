@@ -8,30 +8,23 @@
 
 import UIKit
 
-class FontPickerViewController: UIViewController, UITableViewDelegate {
+protocol FontPickerViewControllerDelegate {
+    func fontPickerViewController(fontPickerViewController : FontPickerViewController, didSelectFont font: UIFont)
+}
 
-    @IBOutlet weak var tableView : UITableView!
+class FontPickerViewController: UITableViewController {
 
-    
+    let fonts = UIFont.commonWebFonts()
+    var delegate : FontPickerViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        let nib = UINib(nibName: "FontPickerTableViewCell", bundle: NSBundle.mainBundle())
+        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // Did select font!
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let font = fonts[indexPath.row]
+        delegate?.fontPickerViewController(self, didSelectFont: font)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
