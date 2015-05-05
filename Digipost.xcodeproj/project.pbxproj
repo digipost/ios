@@ -225,7 +225,6 @@
 		EC0D2D5C1AE786A800595A61 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA069E71ADD21E100AA2D54 /* TextComposerModule.swift */; };
 		EC0D2D5D1AE786A800595A61 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		EC0D2D5E1AE786A800595A61 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
-		EC0D2D5F1AE786A800595A61 /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		EC0D2D601AE786A800595A61 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		EC0D2D611AE786A800595A61 /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		EC0D2D621AE786A800595A61 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
@@ -271,7 +270,6 @@
 		EC0D2D8A1AE786A800595A61 /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC0D2D8B1AE786A800595A61 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		EC0D2D8C1AE786A800595A61 /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC0D2D8D1AE786A800595A61 /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC0D2D8E1AE786A800595A61 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		EC0D2D8F1AE786A800595A61 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		EC0D2D901AE786A800595A61 /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -351,7 +349,6 @@
 		EC0D2DDF1AE786A800595A61 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = AF1E55B01ADEB000003AB3B2 /* stylesheet.css */; };
 		EC0D2DE01AE786A800595A61 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC0D2DE11AE786A800595A61 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		EC0D2DE21AE786A800595A61 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
 		EC0D2DE31AE786A800595A61 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2C68741AD59533007020DC /* ImageModuleTableViewCell.xib */; };
 		EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC0D2DE51AE786A800595A61 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
@@ -423,7 +420,6 @@
 		EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
-		EC2DCB6B1AB84EAB0063755E /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
@@ -465,7 +461,6 @@
 		EC2DCB921AB84EAB0063755E /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC2DCB951AB84EAB0063755E /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		EC2DCB971AB84EAB0063755E /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		EC2DCB981AB84EAB0063755E /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -530,7 +525,6 @@
 		EC2DCBD51AB84EAB0063755E /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
 		EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		EC2DCBEF1AB864AB0063755E /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
@@ -578,7 +572,6 @@
 		EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
-		EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
 		EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
@@ -620,7 +613,6 @@
 		EC2DCC431AB864AB0063755E /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2DCC441AB864AB0063755E /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		EC2DCC451AB864AB0063755E /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC2DCC461AB864AB0063755E /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		EC2DCC471AB864AB0063755E /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		EC2DCC481AB864AB0063755E /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		EC2DCC491AB864AB0063755E /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -685,7 +677,6 @@
 		EC2DCC861AB864AB0063755E /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
 		EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		EC3021771AB70C2300812502 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
@@ -710,7 +701,6 @@
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
-		EC4146B91AA7366D003DBF47 /* 2-5-0.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */; };
 		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
 		EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
@@ -751,6 +741,7 @@
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
+		EC95BA111AF8FE9F00CB903F /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
@@ -776,9 +767,7 @@
 		ECC04BCB1AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
 		ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC04BC71AF0E05700B99B52 /* Int+Random.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
-		ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */; };
 		ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
-		ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */; };
 		ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
@@ -1047,7 +1036,6 @@
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
-		EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "2-5-0.xcassets"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewGuideItem.swift; sourceTree = "<group>"; };
@@ -1138,9 +1126,7 @@
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC04BC71AF0E05700B99B52 /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RAC-Helper.swift"; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+RACConvenience.swift"; sourceTree = "<group>"; };
 		ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
@@ -1611,7 +1597,6 @@
 			children = (
 				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
 				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
-				EC4146B81AA7366D003DBF47 /* 2-5-0.xcassets */,
 				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
 				EC4146BE1AA736A8003DBF47 /* Old images */,
 				AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */,
@@ -1702,8 +1687,6 @@
 				ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */,
 				ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */,
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
-				ECC74FBF1A6D27D4000FFC2C /* NSObject+RACConvenience.swift */,
-				ECC08DFE1A5BE8A4004C829D /* RAC-Helper.swift */,
 				ECC08E041A5BE8DB004C829D /* APIResponse.swift */,
 				EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */,
 				83F7037F18573641003DABE1 /* POSOAuthManager.h */,
@@ -2102,7 +2085,6 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
-				EC4146B91AA7366D003DBF47 /* 2-5-0.xcassets in Resources */,
 				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 			);
@@ -2133,7 +2115,6 @@
 				EC0D2DDF1AE786A800595A61 /* stylesheet.css in Resources */,
 				EC0D2DE01AE786A800595A61 /* LaunchScreen.xib in Resources */,
 				EC0D2DE11AE786A800595A61 /* InfoPlist.strings in Resources */,
-				EC0D2DE21AE786A800595A61 /* 2-5-0.xcassets in Resources */,
 				EC5828161AF8CB7A00899520 /* FontPickerTableViewCell.xib in Resources */,
 				EC0D2DE31AE786A800595A61 /* ImageModuleTableViewCell.xib in Resources */,
 				EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */,
@@ -2168,7 +2149,6 @@
 				AF1E55B21ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */,
-				EC2DCBD81AB84EAB0063755E /* 2-5-0.xcassets in Resources */,
 				311F22701AD66E3500292068 /* ImageModuleTableViewCell.xib in Resources */,
 				EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */,
@@ -2200,7 +2180,6 @@
 				AF1E55B41ADEB000003AB3B2 /* stylesheet.css in Resources */,
 				EC2DCC871AB864AB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
-				EC2DCC891AB864AB0063755E /* 2-5-0.xcassets in Resources */,
 				EC5828151AF8CB7A00899520 /* FontPickerTableViewCell.xib in Resources */,
 				311F22721AD66E3600292068 /* ImageModuleTableViewCell.xib in Resources */,
 				EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */,
@@ -2522,7 +2501,6 @@
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
-				ECC08DFF1A5BE8A4004C829D /* RAC-Helper.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2574,7 +2552,6 @@
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
-				ECC74FC01A6D27D4000FFC2C /* NSObject+RACConvenience.swift in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				AF981EEF1AD516A400DE8B55 /* RecipientsViewController.swift in Sources */,
 				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
@@ -2689,7 +2666,6 @@
 				EC0D2D5C1AE786A800595A61 /* TextComposerModule.swift in Sources */,
 				EC0D2D5D1AE786A800595A61 /* UIViewController+Additions.m in Sources */,
 				EC0D2D5E1AE786A800595A61 /* NSDate+Extensions.swift in Sources */,
-				EC0D2D5F1AE786A800595A61 /* RAC-Helper.swift in Sources */,
 				EC0D2D601AE786A800595A61 /* UIDevice+Extension.swift in Sources */,
 				EC0D2D611AE786A800595A61 /* POSReceipt.m in Sources */,
 				EC0D2D621AE786A800595A61 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2737,7 +2713,6 @@
 				EC0D2D8A1AE786A800595A61 /* UIImage+TintColor.swift in Sources */,
 				EC0D2D8B1AE786A800595A61 /* SHCAttachmentTableViewCell.m in Sources */,
 				EC0D2D8C1AE786A800595A61 /* NSNumber+JsonParsing.m in Sources */,
-				EC0D2D8D1AE786A800595A61 /* NSObject+RACConvenience.swift in Sources */,
 				EC0D2D8E1AE786A800595A61 /* UIAlertController+APIError.swift in Sources */,
 				EC0D2D8F1AE786A800595A61 /* QCMethod.swift in Sources */,
 				EC0D2D901AE786A800595A61 /* AccountTableViewDataSource.swift in Sources */,
@@ -2849,7 +2824,6 @@
 				EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */,
 				EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
-				EC2DCB6B1AB84EAB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
 				EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2903,7 +2877,6 @@
 				EC2DCB931AB84EAB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
 				316C0D091ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCB941AB84EAB0063755E /* NSNumber+JsonParsing.m in Sources */,
-				EC2DCB951AB84EAB0063755E /* NSObject+RACConvenience.swift in Sources */,
 				EC2DCB961AB84EAB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCB971AB84EAB0063755E /* QCMethod.swift in Sources */,
 				EC2DCB981AB84EAB0063755E /* AccountTableViewDataSource.swift in Sources */,
@@ -3016,7 +2989,6 @@
 				AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
-				EC2DCC1C1AB864AB0063755E /* RAC-Helper.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
 				ECC04BCA1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,
@@ -3066,7 +3038,6 @@
 				EC2DCC431AB864AB0063755E /* UIImage+TintColor.swift in Sources */,
 				EC2DCC441AB864AB0063755E /* SHCAttachmentTableViewCell.m in Sources */,
 				EC2DCC451AB864AB0063755E /* NSNumber+JsonParsing.m in Sources */,
-				EC2DCC461AB864AB0063755E /* NSObject+RACConvenience.swift in Sources */,
 				EC2DCC471AB864AB0063755E /* UIAlertController+APIError.swift in Sources */,
 				EC2DCC481AB864AB0063755E /* QCMethod.swift in Sources */,
 				EC2DCC491AB864AB0063755E /* AccountTableViewDataSource.swift in Sources */,
@@ -3128,6 +3099,7 @@
 				EC5828121AF8CB7A00899520 /* FontPickerTableViewCell.swift in Sources */,
 				EC65BE671AEF7EC300E9B46F /* UIButton+Recipient.swift in Sources */,
 				ECB8D88E1AEF804B007BDAD3 /* LoginTests.swift in Sources */,
+				EC95BA111AF8FE9F00CB903F /* ComposerViewController.swift in Sources */,
 				ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */,
 				ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */,
 				ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */,
