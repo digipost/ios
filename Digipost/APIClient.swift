@@ -326,6 +326,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func getDrafts(uri: String, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+        let offset = 0
+        let length = 50000
+
+        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
+            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
+                success(responseDictionary: responseDictionary)
+            }, failure: { (error) -> () in
+                failure(error: error)
+            })
+        })
+    }
+
     func getUpdatedSendableDocument(sendableDocument: SendableDocument, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(token: oauthToken) { () -> Void in
