@@ -177,7 +177,7 @@ class APIError: NSError {
         
         if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != "" {
             
-            switch self.digipostErrorCode {
+            switch self.digipostErrorCode! {
             case APIErrorConstants.ErrorCodes.folderNotEmpty:
                 return (NSLocalizedString("Not empty folder alert title",comment:"Title of alert informing user that folder is not empty"), NSLocalizedString("Not empty folder alert descrption ", comment: "Description of user telling folder is not empty"))
             default:
