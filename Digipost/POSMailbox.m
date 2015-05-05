@@ -11,7 +11,6 @@
 #import "POSReceipt.h"
 #import "POSRootResource.h"
 
-
 @implementation POSMailbox
 
 @dynamic createFolderUri;
@@ -24,5 +23,6 @@
 @dynamic folders;
 @dynamic receipts;
 @dynamic rootResource;
+@dynamic sendUri;
 
 @end

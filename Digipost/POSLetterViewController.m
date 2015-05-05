@@ -1101,7 +1101,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *message = nil;
     NSString *actionButtonTitle = nil;
     NSString *cancelButtonTitle = nil;
-    POSInvoice *invoice = self.attachment.invoice;
 
     if (self.attachment.invoice.timePaid) {
         title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_TITLE", @"The invoice has been registered");
@@ -1508,7 +1507,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     POSDocument *document = [POSDocument existingDocumentWithUpdateUri:updateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     self.attachment = [document mainDocumentAttachment];
-    POSBaseEncryptedModel *baseEncryptedMode = (POSBaseEncryptedModel *)self.attachment;
 }
 
 - (void)didTapUnlockButton:(id)sender

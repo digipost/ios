@@ -9,7 +9,9 @@
 import Foundation
 
 extension String {
-
+    
+    var length: Int { return count(self) }
+    
     func initials() -> String {
         
         var arr = split(self) { $0 == " " }

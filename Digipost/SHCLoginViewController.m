@@ -75,6 +75,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     [super viewDidLoad];
 
+    self.loginButton.accessibilityLabel = @"Login Digipost";
+
     [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
 
     self.screenName = kLoginViewControllerScreenName;

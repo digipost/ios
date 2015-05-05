@@ -28,5 +28,7 @@
 #import "POSRootResource.h"
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
+#import "UITableView+Reorder.h"
+#import "POSMailBox+Methods.h"
 #import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"

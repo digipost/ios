@@ -59,6 +59,7 @@ PODS:
     - MRProgress/Helper
   - MRProgress/WeakProxy (0.4.3)
   - RNCryptor (2.2)
+  - SingleLineKeyboardResize (0.1.2)
   - UIActionSheet+Blocks (0.9)
   - UIAlertView+Blocks (0.9)
 
@@ -71,6 +72,7 @@ DEPENDENCIES:
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
+  - SingleLineKeyboardResize (~> 0.1.2)
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
 
@@ -99,7 +101,8 @@ SPEC CHECKSUMS:
   LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
+  SingleLineKeyboardResize: 9a61d8b61bf1b228e0a701b9b45ff4e11c7035b3
   UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.37.0

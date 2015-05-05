@@ -21,7 +21,7 @@
 {
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-info"]
                                                         landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-info-iphone-landscape"]
-                                                                      style:UIBarButtonItemStyleBordered
+                                                                      style:UIBarButtonItemStylePlain
                                                                      target:target
                                                                      action:action];
     return barButtonItem;
@@ -31,7 +31,7 @@
 {
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navbar-icon-action"]
                                                         landscapeImagePhone:[UIImage imageNamed:@"navbar-icon-action-iphone-landscape"]
-                                                                      style:UIBarButtonItemStyleBordered
+                                                                      style:UIBarButtonItemStylePlain
                                                                      target:target
                                                                      action:action];
     return barButtonItem;

@@ -36,7 +36,7 @@ extension APIClient {
     
     func moveFolder(folderArray: Array<POSFolder>, mailbox: POSMailbox, success: () -> Void , failure: (error: APIError) -> ()) {
         let folders = folderArray.map({ (folder: POSFolder) -> Dictionary<String,String> in
-            return [ Constants.APIClient.AttributeKey.identifier : folder.folderId.stringValue, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon: folder.iconName]
+            return [ Constants.APIClient.AttributeKey.identifier : folder.folderId.stringValue, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon: folder.iconName ]
         })
         let parameters = [Constants.APIClient.AttributeKey.folder : folders]
         let task = urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success) { (error) -> () in

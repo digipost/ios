@@ -31,6 +31,7 @@
 #import "oauth.h"
 #import "Digipost-Swift.h"
 #import <HockeySDK/HockeySDK.h>
+#import <HockeySDK/BITHockeyManager.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
@@ -220,7 +221,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 #else
 #endif
     [[BITHockeyManager sharedHockeyManager] startManager];
-    [[BITHockeyManager sharedHockeyManager].authenticator authenticateInstallation];
 }
 
 - (void)setupGoogleAnalytics

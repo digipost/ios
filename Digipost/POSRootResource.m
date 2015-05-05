@@ -28,6 +28,7 @@ NSString *const kRootResourceMailboxesAPIKey = @"mailbox";
 NSString *const kRootResourcePrimaryAccountAPIKey = @"primaryAccount";
 NSString *const kRootResourceLinkAPIKey = @"link";
 NSString *const kRootResourceLinkLogoutAPIKeySuffix = @"logout";
+NSString *const kRootResourceLinkSearchAPIKeySuffix = @"search";
 NSString *const kRootResourceLinkSelfAPIKeySuffix = @"self";
 NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
 NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = @"current_bank_account";
@@ -52,6 +53,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 @dynamic unreadItemsInInbox;
 @dynamic uploadDocumentUri;
 @dynamic selfUri;
+@dynamic searchUri;
 
 // Relationships
 @dynamic mailboxes;
@@ -99,6 +101,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
                         rootResource.logoutUri = uri;
                     } else if ([rel hasSuffix:kRootResourceLinkSelfAPIKeySuffix]) {
                         rootResource.selfUri = uri;
+                    } else if ([rel hasSuffix:kRootResourceLinkSearchAPIKeySuffix]) {
+                        rootResource.searchUri = uri;
                     }
                 }
             }

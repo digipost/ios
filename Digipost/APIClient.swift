@@ -1,4 +1,5 @@
 //
+
 //  APIClient.swift
 //  Digipost
 //
@@ -30,8 +31,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case get = "GET"
     }
 
-    //var disposable : RACDisposable?
-
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
         let manager = AFHTTPSessionManager(baseURL: nil)
         manager.requestSerializer = AFHTTPRequestSerializer()
@@ -48,6 +47,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
+
     override init() {
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
@@ -55,8 +55,20 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
         additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+
         self.session = theSession
     }
+
+    #if IS_BETA
+    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if challenge.protectionSpace.host == "dpost.camelon.os.ergo.no" {
+                let credential = NSURLCredential(trust: challenge.protectionSpace.serverTrust)
+                completionHandler(.UseCredential,credential)
+            }
+        }
+    }
+    #endif
 
     func removeAccessTokenUsedInLastRequest() {
         lastSetOauthTokenForAuthorizationHeader?.accessToken = nil
@@ -280,6 +292,107 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
+        let url = NSURL(string: uri)
+        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        let sendableDocument = SendableDocument(recipients: recipients)
+        let parameters = sendableDocument.draftParameters()
+        validate(token: oauthToken) { () -> Void in
+            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
+                sendableDocument.setupWithJSONContent(responseJSON)
+                sendableDocument.recipients = recipients
+                let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
+                self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
+                    self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
+                        sendableDocument.setupWithJSONContent(responseDictionary)
+                        println(responseDictionary)
+                        let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
+                            success()
+                            }, failure: { (error) -> () in
+                                failure(error: error)
+                        })
+                        task!.resume()
+
+                        }, failure: { (error) -> () in
+                            failure(error: error)
+                    })
+                    }, failure: { (error) -> () in
+                        failure(error: error)
+                })
+                }, failure: { (error) -> () in
+                    failure(error: error)
+            })
+            task!.resume()
+        }
+    }
+
+    func getDrafts(uri: String, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+        let offset = 0
+        let length = 50000
+
+        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
+            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
+                success(responseDictionary: responseDictionary)
+            }, failure: { (error) -> () in
+                failure(error: error)
+            })
+        })
+    }
+
+    func getUpdatedSendableDocument(sendableDocument: SendableDocument, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(token: oauthToken) { () -> Void in
+            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
+                success(responseDictionary: responseDictionary)
+                }, failure: { (error) -> () in
+                    failure(error: error)
+            })
+            task!.resume()
+        }
+    }
+
+    func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
+
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+            var subject : String?
+
+            let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+            formData.appendPartWithFormData(data, name:"subject")
+
+            let fileData = NSData(contentsOfURL: fileURL)
+            let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
+            println(string)
+            formData.appendPartWithFileData(fileData, name:"file", fileName: "test.html", mimeType:"text/html")
+            }, error: nil)
+        urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
+
+        fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+
+        }
+
+        fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
+        }
+
+        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
+            dispatch_async(dispatch_get_main_queue(), {
+                self.removeTemporaryUploadFiles()
+                self.isUploadingFile = false
+                let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
+                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
+                    self.removeAccessTokenUsedInLastRequest()
+                    //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
+                } else if (error != nil ){
+                    failure(error: APIError(error: error!))
+                }
+
+                if success != nil {
+                    success!()
+                }
+            })
+        })
+        task!.resume()
+    }
+
     func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(url.path!) == false {
@@ -330,7 +443,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
-        var userInfo = Dictionary<NSObject,AnyObject>()
+        var userInfo = Dictionary <NSObject,AnyObject>()
         userInfo["fileName"] = fileName
         self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
         self.uploadProgress!.totalUnitCount = Int64(fileSize)
@@ -503,7 +616,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         APIClient.sharedClient.taskCounter--
         APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
     }
-
+    
     private class func mimeType(#fileType:String) -> String {
         let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil).takeUnretainedValue()
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)

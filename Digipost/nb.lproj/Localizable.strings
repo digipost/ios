@@ -500,18 +500,64 @@
 
 "PUBLIC_ENTITY" = "Offentlig";
 
-/* Title of alert */
-"Unknown error title" = "Noe feil skjedde";
+/* Document Composer */
+"recipients view navigation bar title" = "Legg til mottakere";
+
+"recipients view navigation bar right button save" = "Lagre";
+
+"recipients view table view header title" = "MOTTAKERE";
+
+"recipients view add recipients button title" = "Legg til mottakere";
+
+"recipients view search bar placeholder" = "Søk på personer eller bedrifter";
+
+"preview view navigation bar title" = "Forhåndsvisning";
+
+"preview view add button title" = "Legg til mottakere";
+
+"preview view add or edit button title" = "Legg til eller rediger mottakere";
+
+"preview view recipients header title no recipients" = "INGEN MOTTAKERE";
+
+"preview view recipients header title one recipient" = "1 MOTTAKER";
+
+"preview view recipients header title recipients" = "MOTTAKERE";
+
+"preview view recipients add recipients button title" = "Legg til mottakere";
+
+"preview view recipients send button title" = "Send";
+
+"composer view navigation bar title" = "Send brev";
+
+"composer view preview button title" = "Forhåndsvisning";
+
+"composer view document title label" = "Tittel:";
+
+"composer view title placeholder" = "Trykk for å legge til en tittel";
+
+"composer view close alert title" = "Brev lukkes";
+
+"composer view close alert message" = "Vil du lagre utkastet før du avslutter";
+
+"composer view close alert save draft button title" = "Lagre utkast";
+
+"composer view close alert quit button title" = "Lukk";
+"headline title" = "Overskrift";
+
+"subheadline title" = "Liten overskrift";
 
 /* message for alert */
-"Uknown error message" = "Prøv igjen senere";
+"normal text title" = "Normal tekst";
 
 /* No comment provided by engineer. */
 "" = "";
 
 /* No comment provided by engineer. */
 "not connected to internet alert message" = "Koble til, og prøv igjen";
+"preview view table view header title" = "FORHÅNDSVISNING";
 
 /* No comment provided by engineer. */
 "not connected to internet alert title" = "Du er ikke koblet til internett";
+/* the end of recipients string when it overflows its size */
+"recipients add more button overflow text" = " og %d fler";
 

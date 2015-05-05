@@ -1309,11 +1309,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             [downloadTask cancelByProducingResumeData:^(NSData *resumeData) {}];
             counter++;
         }
-
-        if (counter > 0) {
-            NSString *downloadWord = counter > 1 ? @"downloads" : @"download";
-//            DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, downloadWord);
-        }
     }];
 }
 
@@ -1885,11 +1880,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         [uploadTask cancel];
         counter++;
     }
-
-    if (counter > 0) {
-        NSString *uploadWord = counter > 1 ? @"uploads" : @"upload";
-        //        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, uploadWord);
-    }
 }
 
 - (void)removeTemporaryUploadFiles
@@ -2025,11 +2015,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)networkRequestDidFinish:(NSNotification *)notification
 {
-    NSURLRequest *request = [[notification object] originalRequest];
-    NSURLResponse *response = [[notification object] response];
     NSError *error = [[notification object] error];
-
-    NSUInteger responseStatusCode = [(NSHTTPURLResponse *)response statusCode];
 
     if (error) {
         //        DDLogDebug(@"[Error] %@ %@ (%ld): %@", [request HTTPMethod], [[response URL] absoluteString], (long)responseStatusCode, error);
@@ -2064,11 +2050,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
             [task cancel];
             counter++;
         }
-    }
-
-    if (counter > 0) {
-        NSString *requestWord = counter > 1 ? @"requests" : @"request";
-        //        DDLogInfo(@"%lu %@ canceled", (unsigned long)counter, requestWord);
     }
 }
 

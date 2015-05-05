@@ -61,8 +61,23 @@ struct Constants {
         static let mainAccountCellIdentifier = "mainAccountCellIdentifier"
         static let accountCellNibName = "AccountTableViewCell"
         static let mainAccountCellNibName = "MainAccountTableViewCell"
-
     }
+    
+    struct Composer {
+        static let imageModuleCellIdentifier = "ImageModuleCell"
+        static let textModuleCellIdentifier = "TextModuleCell"
+    }
+
+    struct Recipient {
+        static let name = "name"
+        static let recipient = "recipient"
+        static let address = "address"
+        static let mobileNumber = "mobile-number"
+        static let organizationNumber = "organisation-number"
+        static let uri = "uri"
+        static let digipostAddress = "digipost-address"
+    }
+
 
 }
 
