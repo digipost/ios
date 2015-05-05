@@ -1867,9 +1867,9 @@
 		EC58280B1AF8C7F000899520 /* Font picker */ = {
 			isa = PBXGroup;
 			children = (
+				EC26DDB01AF8B160002337AF /* FontPickerViewController.xib */,
 				EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */,
 				EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */,
-				EC26DDB01AF8B160002337AF /* FontPickerViewController.xib */,
 				EC58280C1AF8CB7A00899520 /* FontPickerTableViewCell.swift */,
 				EC58280D1AF8CB7A00899520 /* FontPickerTableViewCell.xib */,
 			);
