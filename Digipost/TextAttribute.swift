@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TextAttribute : HTMLRepresentable {
+struct TextAttribute : HTMLRepresentable, DebugPrintable {
 
     var textAlignment : NSTextAlignment?
     var font : UIFont?
@@ -44,5 +44,9 @@ struct TextAttribute : HTMLRepresentable {
 
     func htmlRepresentation() -> String {
         return ""
+    }
+
+    var debugDescription : String {
+        return "font : \(font) textAlignment: \(textAlignment?.rawValue)"
     }
 }

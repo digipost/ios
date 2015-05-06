@@ -68,11 +68,15 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         composerInputAccessoryView.setupWithStandardLayout(self, selector: Selector("didTapTextAttributeButton:"))
     }
 
-    func currentFirstResponder() -> UITextView? {
+    func currentEditingComposerModuleAndTextView() -> (TextComposerModule, UITextView)? {
         for cell in self.tableView.visibleCells() {
             if let textModuleCell = cell as? TextModuleTableViewCell {
                 if textModuleCell.moduleTextView.isFirstResponder() {
-                    return textModuleCell.moduleTextView as UITextView
+                    if let indexPath = indexPathForCellContainingTextView(textModuleCell.moduleTextView){
+                        if let textModule = composerModules[indexPath.row] as? TextComposerModule {
+                            return (textModule,textModuleCell.moduleTextView)
+                        }
+                    }
                 }
             }
         }
@@ -82,9 +86,10 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func didTapTextAttributeButton(sender: UIButton) {
         // do something with the current view!
         if let textAttributeButton = sender as? TextAttributeButton {
-            let firstResponder = currentFirstResponder()
-            firstResponder?.style(textAttribute: textAttributeButton.textAttribute)
-            composerInputAccessoryView.refreshUIWithTextAttribute(textAttributeButton.textAttribute)
+            if let editingComposerModuleAndTextView = currentEditingComposerModuleAndTextView() as (TextComposerModule, UITextView)! {
+                editingComposerModuleAndTextView.1.style(textAttribute: textAttributeButton.textAttribute)
+                composerInputAccessoryView.refreshUIWithTextAttribute(textAttributeButton.textAttribute)
+            }
         }
     }
 
@@ -114,7 +119,11 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
 
     func textViewDidBeginEditing(textView: UITextView) {
-        println(textView)
+        if let textModule = composerModules[textView.tag] as? TextComposerModule {
+            println(textModule.textAttribute())
+            println(textView.tag)
+            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
+        }
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
