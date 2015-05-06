@@ -60,6 +60,7 @@ PODS:
   - MRProgress/WeakProxy (0.4.3)
   - RNCryptor (2.2)
   - SingleLineKeyboardResize (0.1.2)
+  - SingleLineShakeAnimation (0.0.2)
   - UIActionSheet+Blocks (0.9)
   - UIAlertView+Blocks (0.9)
 
@@ -73,6 +74,7 @@ DEPENDENCIES:
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
   - SingleLineKeyboardResize (~> 0.1.2)
+  - SingleLineShakeAnimation
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
 
@@ -102,6 +104,7 @@ SPEC CHECKSUMS:
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
   SingleLineKeyboardResize: 9a61d8b61bf1b228e0a701b9b45ff4e11c7035b3
+  SingleLineShakeAnimation: 7ecfd7ad796a5514a38cb7f0596cd4ef033bda40
   UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 

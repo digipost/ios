@@ -12,6 +12,7 @@ pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :
 pod 'Alamofire', '~> 1.1'
 pod 'SingleLineKeyboardResize', '~> 0.1.2'
 pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
+pod 'SingleLineShakeAnimation'
 
 use_frameworks!
 
