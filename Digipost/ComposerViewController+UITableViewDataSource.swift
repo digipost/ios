@@ -10,12 +10,12 @@ import UIKit
 
 extension ComposerViewController : UITableViewDataSource {
     
-   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var rowCount = tableData.count
+        var rowCount = composerModules.count
         rowCount = tableView.adjustedValueForReorderingOfRowCount(rowCount, forSection: section)
         return rowCount
     }
@@ -24,7 +24,7 @@ extension ComposerViewController : UITableViewDataSource {
 
         let indexPathFromVisibleIndexPath = tableView.dataSourceIndexPathFromVisibleIndexPath(indexPath)
 
-        let module = tableData[indexPath.row]
+        let module = composerModules[indexPath.row]
 
         let cell : UITableViewCell = {
             if let imageModule = module as? ImageComposerModule {
@@ -32,9 +32,9 @@ extension ComposerViewController : UITableViewDataSource {
                 self.configureImageModuleCell(cell, withModule: imageModule)
                 return cell
             } else if let textModule = module as? TextComposerModule {
-
                 let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as! TextModuleTableViewCell
                 self.configureTextModuleCell(cell, withModule: textModule)
+                cell.moduleTextView.tag = indexPath.row
                 return cell
             } else {
                 assert(false)
@@ -52,6 +52,7 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
+        cell.moduleTextView.delegate = self
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
         cell.moduleTextView.inputAccessoryView = composerInputAccessoryView
@@ -62,8 +63,8 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let rowToMove = tableData.removeAtIndex(sourceIndexPath.row)
-        tableData.insert(rowToMove, atIndex: destinationIndexPath.row)
+        let rowToMove = composerModules.removeAtIndex(sourceIndexPath.row)
+        composerModules.insert(rowToMove, atIndex: destinationIndexPath.row)
         tableView.reloadData()
         let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) as? TextModuleTableViewCell
         cell?.moduleTextView.becomeFirstResponder()
@@ -71,7 +72,7 @@ extension ComposerViewController : UITableViewDataSource {
 
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            tableData.removeAtIndex(indexPath.row)
+            composerModules.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         } else if editingStyle == UITableViewCellEditingStyle.Insert{
             if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell{
@@ -82,16 +83,13 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     // MARK: - Helper Functions
-
-
-
     func composerModule(#atIndexPath: NSIndexPath) -> ComposerModule? {
-        return tableData[atIndexPath.row]
+        return composerModules[atIndexPath.row]
     }
 
     func indexPath(#module: ComposerModule) -> NSIndexPath? {
         return {
-            for (index, tableViewModule) in enumerate(self.tableData) {
+            for (index, tableViewModule) in enumerate(self.composerModules) {
                 if tableViewModule.isEqual(module) {
                     return NSIndexPath(forRow: index, inSection: 0)
                 }

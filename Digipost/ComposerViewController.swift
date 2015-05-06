@@ -23,17 +23,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     @IBOutlet weak var previewButton: UIBarButtonItem!
     @IBOutlet weak var documentTitleLabel: UILabel!
     @IBOutlet weak var documentTitleTextField: UITextField!
+
     var recipients = [Recipient]()
    
-    var tableData = [ComposerModule]()
+    var composerModules = [ComposerModule]()
 
     // used when calculating size of textviews for cells that are bigger than one line
     var exampleTextView : UITextView?
 
-
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
-
     var composerInputAccessoryView : ComposerInputAccessoryView!
 
     override func viewDidLoad() {
@@ -45,7 +44,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleTextField.placeholder = NSLocalizedString("composer view title placeholder", comment: "Title placeholder text")
         documentTitleTextField.delegate = self
         setupTableView()
-        composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
     }
     
     
@@ -61,15 +59,18 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.registerNib(imageModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.imageModuleCellIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
-
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
+    }
+
+    func setupComposerInputAccessoryView() {
+        composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
     }
 
     // MARK: - UITextView Delegate
     
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
-            if let textModule = tableData[indexPath.row] as? TextComposerModule {
+            if let textModule = composerModules[indexPath.row] as? TextComposerModule {
                 textModule.text = textView.text
                 textModule.textAlignment = textView.textAlignment
             }
@@ -77,23 +78,38 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.beginUpdates()
         tableView.endUpdates()
     }
-    
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        let indexPath = NSIndexPath(forRow: textField.tag, inSection: 0)
+
+        let textComposerModule = composerModules[textField.tag]
+        if let inputAccessoryView = textField.inputAccessoryView as? ComposerInputAccessoryView {
+            
+            
+        }
+
+        return false
+    }
+
+    func textViewDidBeginEditing(textView: UITextView) {
+        println(textView)
+    }
+
+    func textFieldDidBeginEditing(textField: UITextField) {
+        println(tableView.indexPathForSelectedRow())
+        println(textField)
+    }
+
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
     }
-    
-    // MARK: - UITextFieldDelegate
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return false
-    }
-    
+
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
-        tableData.append(module)
+        composerModules.append(module)
         tableView.reloadData()
         if let imageModule = module as? ImageComposerModule {
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
@@ -106,8 +122,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.font
 //                cell?.setLabel(textModule!.font)
-                cell?.moduleTextView.becomeFirstResponder()
                 cell?.moduleTextView.delegate = self
+                cell?.moduleTextView.becomeFirstResponder()
             }
         }
         
@@ -149,7 +165,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         alertController.addAction(saveDraftAction)
         alertController.addAction(quitAction)
         
-        if tableData.isEmpty{
+        if composerModules.isEmpty{
             self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
             })
         } else {
@@ -176,7 +192,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{
             previewViewController.recipients = recipients
-            previewViewController.modules = tableData
+            previewViewController.modules = composerModules
             previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
         }
     }

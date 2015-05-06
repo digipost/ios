@@ -10,12 +10,24 @@ import UIKit
 
 class TextAttributeButton: UIButton {
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
+    let textAttribute : TextAttribute
+
+    init(frame: CGRect, textAttribute: TextAttribute) {
+        self.textAttribute = textAttribute
+        super.init(frame: frame)
     }
-    */
+
+    required init(coder aDecoder: NSCoder) {
+        self.textAttribute = TextAttribute()
+        super.init(coder: aDecoder)
+    }
+
+    func indicateSelectedIfMatchingStyle(anotherTextAttribute : TextAttribute) {
+        if self.textAttribute.hasOneOrMoreMatchesWith(textAttribute: anotherTextAttribute) {
+            self.backgroundColor = UIColor.redColor()
+        }else {
+            self.backgroundColor = UIColor.whiteColor()
+        }
+    }
 
 }

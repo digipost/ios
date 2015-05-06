@@ -26,10 +26,21 @@ class ComposerInputAccessoryView: UIView {
 //    
 //    @IBOutlet weak var doneButton: UIButton!
 
+
+
+
+
     var containedViews = [UIView]()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()        
+    func setupWithTextComposerModule(textComposerModule : TextComposerModule) {
+
+        for view in containedViews {
+            if let composerTypeButton = view as? ComposerTypeButton {
+                composerTypeButton.setTitle("Headline", forState: .Normal)
+            } else if let textAttributeButton = view as? TextAttributeButton   {
+                
+            }
+        }
     }
 
     func addViewsToAccessoryBar(views: [UIView]) {
@@ -63,8 +74,7 @@ class ComposerInputAccessoryView: UIView {
     }
 //    
 //    @IBAction func alignContentLeft(sender: AnyObject) {
-//        textView.textAlignment = .Left
-//        setBackground(leftView)
+///        setBackground(leftView)
 //    }
 //    
 //    @IBAction func alignContentCenter(sender: AnyObject) {
