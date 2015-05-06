@@ -13,6 +13,7 @@ pod 'Alamofire', '~> 1.1'
 pod 'SingleLineKeyboardResize', '~> 0.1.2'
 pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
 pod 'SingleLineShakeAnimation'
+pod 'Cartography', '~> 0.5.0'
 
 use_frameworks!
 

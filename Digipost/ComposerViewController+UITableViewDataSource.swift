@@ -1,31 +1,16 @@
 //
-//  ComposerTableViewDataSource.swift
+//  ComposerViewController+UITableViewDataSource.swift
 //  Digipost
 //
-//  Created by Henrik Holmsen on 08.04.15.
+//  Created by Håkon Bogen on 06/05/15.
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
 
 import UIKit
 
-class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
-
-    let tableView: UITableView
-    var tableData = [ComposerModule]()
-
-    // MARK: - Class initialiser
-
-    init(asDataSourceForTableView tableView: UITableView){
-
-        self.tableView = tableView
-        super.init()
-        tableView.allowsLongPressToReorder = true
-        tableView.dataSource = self
-    }
-
-    // MARK: - UITableView Datasource
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+extension ComposerViewController : UITableViewDataSource {
+    
+   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
@@ -62,8 +47,6 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
         return cell
     }
 
-
-
     func configureImageModuleCell(cell: ImageModuleTableViewCell, withModule module: ImageComposerModule){
         cell.moduleImageView.image = module.image
     }
@@ -71,8 +54,7 @@ class ComposerTableViewDataSource: NSObject, UITableViewDataSource {
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
-
-        
+        cell.moduleTextView.inputAccessoryView = composerInputAccessoryView
     }
 
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -24,7 +24,7 @@ extension ComposerViewController {
         if tableView.editing == true {
             return 88
         } else {
-            let module = self.tableViewDataSource.composerModule(atIndexPath: indexPath)
+            let module = composerModule(atIndexPath: indexPath)
             if let textModule = module as? TextComposerModule {
                 return height(textComposerModule: textModule)
             }

@@ -7,57 +7,86 @@
 //
 
 import UIKit
+import Cartography
+
+struct ComposerInputAccessoryViewConstants {
+    static let leftMargin = 5
+    static let height : CGFloat = 44
+    static let width : CGFloat = 44
+}
 
 class ComposerInputAccessoryView: UIView {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var textView: UITextView!
-    
-    @IBOutlet weak var leftView: UIView!
-    @IBOutlet weak var centerView: UIView!
-    @IBOutlet weak var rightView: UIView!
-    
-    @IBOutlet weak var doneButton: UIButton!
-    
+//    @IBOutlet weak var nameLabel: UILabel!
+//    @IBOutlet weak var textView: UITextView!
+//    
+//    @IBOutlet weak var leftView: UIView!
+//    @IBOutlet weak var centerView: UIView!
+//    @IBOutlet weak var rightView: UIView!
+//    
+//    @IBOutlet weak var doneButton: UIButton!
+
+    var containedViews = [UIView]()
+
     override func awakeFromNib() {
         super.awakeFromNib()        
-        setBackground(leftView)
-        
-        var alignLeftGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentLeft:")
-        leftView.addGestureRecognizer(alignLeftGestureRecognizer)
-        
-        var alignCenterGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentCenter:")
-        centerView.addGestureRecognizer(alignCenterGestureRecognizer)
-        
-        var alignRightGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "alignContentRight:")
-        rightView.addGestureRecognizer(alignRightGestureRecognizer)
-    }
-    
-    @IBAction func alignContentLeft(sender: AnyObject) {
-        textView.textAlignment = .Left
-        setBackground(leftView)
-    }
-    
-    @IBAction func alignContentCenter(sender: AnyObject) {
-        textView.textAlignment = .Center
-        setBackground(centerView)
-
     }
 
-    @IBAction func alignContentRight(sender: AnyObject) {
-        textView.textAlignment = .Right
-        setBackground(rightView)
+    func addViewsToAccessoryBar(views: [UIView]) {
+        for view in views {
+            addViewToAccessoryBar(view)
+        }
     }
-    
-    @IBAction func doneAction(sender: AnyObject) {
-        textView.resignFirstResponder()
+
+    func addViewToAccessoryBar(view: UIView) {
+        self.addSubview(view)
+        if containedViews.count == 0 {
+            layout(self, view) { firstView, secondView in
+                secondView.width == 44
+                secondView.height == 44
+                secondView.left == firstView.left + 5
+                secondView.top == firstView.top
+            }
+        } else {
+            let leftMostView = containedViews.last as UIView!
+            layout(leftMostView, view) { firstView, secondView in
+                secondView.width == 44
+                secondView.height == 44
+                secondView.left == firstView.right + 5
+            }
+            layout(self, view) { firstView, secondView in
+                secondView.top == firstView.top
+            }
+        }
+
+        containedViews.append(view)
     }
-    
-    func setBackground(view: UIView) {
-        leftView.backgroundColor = .clearColor()
-        centerView.backgroundColor = .clearColor()
-        rightView.backgroundColor = .clearColor()
-        
-        view.backgroundColor = 	UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
-    }
+//    
+//    @IBAction func alignContentLeft(sender: AnyObject) {
+//        textView.textAlignment = .Left
+//        setBackground(leftView)
+//    }
+//    
+//    @IBAction func alignContentCenter(sender: AnyObject) {
+//        textView.textAlignment = .Center
+//        setBackground(centerView)
+//
+//    }
+//
+//    @IBAction func alignContentRight(sender: AnyObject) {
+//        textView.textAlignment = .Right
+//        setBackground(rightView)
+//    }
+//    
+//    @IBAction func doneAction(sender: AnyObject) {
+//        textView.resignFirstResponder()
+//    }
+//    
+//    func setBackground(view: UIView) {
+//        leftView.backgroundColor = .clearColor()
+//        centerView.backgroundColor = .clearColor()
+//        rightView.backgroundColor = .clearColor()
+//        
+//        view.backgroundColor = 	UIColor(red: 0, green: 0, blue: 0, alpha: 0.1)
+//    }
 }

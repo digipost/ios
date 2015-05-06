@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
   - Alamofire (1.2.1)
+  - Cartography (0.5.0)
   - HockeySDK (3.6.4)
   - KIF (3.2.1):
     - KIF/XCTest (= 3.2.1)
@@ -68,6 +69,7 @@ DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 1.1)
+  - Cartography (~> 0.5.0)
   - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
   - KIF (~> 3.0)
   - LUKeychainAccess (~> 1.2.0)
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
+  Cartography: 774e5cc446f5a6bca5d4345c5aa6af9a1fe74dc6
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
   KIF: ef1691e54e1d969c3b4fd0b5b56a3d7ddf37f216
   LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714

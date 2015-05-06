@@ -19,6 +19,7 @@ extension ComposerViewController{
         deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)[0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
+        
         if let snapshotImageView = snapShotView as? UIImageView {
             let offset = tableView.frame.origin.x + 4
             snapshotImageView.contentMode = UIViewContentMode.ScaleAspectFill
