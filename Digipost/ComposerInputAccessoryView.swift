@@ -16,29 +16,41 @@ struct ComposerInputAccessoryViewConstants {
 }
 
 class ComposerInputAccessoryView: UIView {
-
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var textView: UITextView!
-//    
-//    @IBOutlet weak var leftView: UIView!
-//    @IBOutlet weak var centerView: UIView!
-//    @IBOutlet weak var rightView: UIView!
-//    
-//    @IBOutlet weak var doneButton: UIButton!
-
-
-
-
-
     var containedViews = [UIView]()
 
-    func setupWithTextComposerModule(textComposerModule : TextComposerModule) {
+    func setupWithStandardLayout(withControlEventInTarget: UIViewController, selector: Selector) {
+        let composerTypeButton = ComposerTypeButton(frame: CGRectMake(0, 0, 44, 44))
+        composerTypeButton.setTitle("Headline", forState: .Normal)
+        self.addViewToAccessoryBar(composerTypeButton)
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Left), target: withControlEventInTarget, selector: selector))
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Center), target: withControlEventInTarget, selector: selector))
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Right), target: withControlEventInTarget, selector: selector))
+    }
 
+
+    func refreshUIWithTextAttribute(textAttribute: TextAttribute) {
+        for view in containedViews {
+            if let textAttributeButton = view as? TextAttributeButton   {
+                if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textAttribute) {
+                    textAttributeButton.backgroundColor = UIColor.redColor()
+                } else {
+                    textAttributeButton.backgroundColor = UIColor.blackColor()
+                }
+            }
+        }
+    }
+
+    func refreshUIWithTextComposerModule(textComposerModule : TextComposerModule) {
         for view in containedViews {
             if let composerTypeButton = view as? ComposerTypeButton {
+                // do the actual
                 composerTypeButton.setTitle("Headline", forState: .Normal)
             } else if let textAttributeButton = view as? TextAttributeButton   {
-                
+                if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textComposerModule.textAttribute()) {
+                    textAttributeButton.backgroundColor = UIColor.redColor()
+                } else {
+                    textAttributeButton.backgroundColor = UIColor.whiteColor()
+                }
             }
         }
     }
@@ -53,7 +65,7 @@ class ComposerInputAccessoryView: UIView {
         self.addSubview(view)
         if containedViews.count == 0 {
             layout(self, view) { firstView, secondView in
-                secondView.width == 44
+                secondView.width == 60
                 secondView.height == 44
                 secondView.left == firstView.left + 5
                 secondView.top == firstView.top

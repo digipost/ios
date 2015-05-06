@@ -52,10 +52,12 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
-        cell.moduleTextView.delegate = self
+        
         cell.moduleTextView.text = module.text
         cell.moduleTextView.font = module.font
+        println(composerInputAccessoryView)
         cell.moduleTextView.inputAccessoryView = composerInputAccessoryView
+        cell.moduleTextView.delegate = self
     }
 
     func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {

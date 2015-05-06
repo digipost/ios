@@ -13,7 +13,13 @@ class TextComposerModule: ComposerModule {
 
     let font: UIFont
     var textAlignment: NSTextAlignment
+
+    func textAttribute() -> TextAttribute {
+        return TextAttribute(font: font, textAlignment: textAlignment)
+    }
+
     var text: String?
+
     var placeholder: String {
         switch self.font {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):

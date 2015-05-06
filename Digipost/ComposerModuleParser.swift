@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ComposerModuleParser{
+class ComposerModuleParser {
     
     class func parseComposerModuleContentToHTML(modules: [ComposerModule], response: (htmlString: String?)->()){
         

@@ -12,9 +12,11 @@ class TextAttributeButton: UIButton {
 
     let textAttribute : TextAttribute
 
-    init(frame: CGRect, textAttribute: TextAttribute) {
+    init(textAttribute: TextAttribute, target: UIViewController, selector: Selector) {
         self.textAttribute = textAttribute
-        super.init(frame: frame)
+        super.init(frame: CGRectMake(0, 0, 55, 44))
+        self.setTitle("Test", forState: .Normal)
+        self.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
     }
 
     required init(coder aDecoder: NSCoder) {

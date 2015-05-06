@@ -44,6 +44,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleTextField.placeholder = NSLocalizedString("composer view title placeholder", comment: "Title placeholder text")
         documentTitleTextField.delegate = self
         setupTableView()
+        setupComposerInputAccessoryView()
     }
     
     
@@ -64,6 +65,27 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     func setupComposerInputAccessoryView() {
         composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
+        composerInputAccessoryView.setupWithStandardLayout(self, selector: Selector("didTapTextAttributeButton:"))
+    }
+
+    func currentFirstResponder() -> UITextView? {
+        for cell in self.tableView.visibleCells() {
+            if let textModuleCell = cell as? TextModuleTableViewCell {
+                if textModuleCell.moduleTextView.isFirstResponder() {
+                    return textModuleCell.moduleTextView as UITextView
+                }
+            }
+        }
+            return nil
+    }
+
+    func didTapTextAttributeButton(sender: UIButton) {
+        // do something with the current view!
+        if let textAttributeButton = sender as? TextAttributeButton {
+            let firstResponder = currentFirstResponder()
+            firstResponder?.style(textAttribute: textAttributeButton.textAttribute)
+            composerInputAccessoryView.refreshUIWithTextAttribute(textAttributeButton.textAttribute)
+        }
     }
 
     // MARK: - UITextView Delegate
@@ -85,8 +107,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
         let textComposerModule = composerModules[textField.tag]
         if let inputAccessoryView = textField.inputAccessoryView as? ComposerInputAccessoryView {
-            
-            
+
         }
 
         return false
@@ -97,8 +118,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
-        println(tableView.indexPathForSelectedRow())
-        println(textField)
+        if let textModule = composerModules[textField.tag] as? TextComposerModule {
+            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
+        }
     }
 
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
@@ -121,7 +143,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
                 let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.font
-//                cell?.setLabel(textModule!.font)
                 cell?.moduleTextView.delegate = self
                 cell?.moduleTextView.becomeFirstResponder()
             }
