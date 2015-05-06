@@ -703,6 +703,16 @@
 		EC30B2C31AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
 		EC30B2C41AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
 		EC30B2C51AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
+		EC30B2C71AFA512200121441 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C61AFA512200121441 /* UITextView+Composer.swift */; };
+		EC30B2C81AFA512200121441 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C61AFA512200121441 /* UITextView+Composer.swift */; };
+		EC30B2C91AFA512200121441 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C61AFA512200121441 /* UITextView+Composer.swift */; };
+		EC30B2CA1AFA512200121441 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C61AFA512200121441 /* UITextView+Composer.swift */; };
+		EC30B2CB1AFA512200121441 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C61AFA512200121441 /* UITextView+Composer.swift */; };
+		EC30B2CD1AFA560F00121441 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */; };
+		EC30B2CE1AFA560F00121441 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */; };
+		EC30B2CF1AFA560F00121441 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */; };
+		EC30B2D01AFA560F00121441 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */; };
+		EC30B2D11AFA560F00121441 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */; };
 		EC30D7B81AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7B91AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7BA1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
@@ -1049,6 +1059,8 @@
 		EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTypeButton.swift; sourceTree = "<group>"; };
 		EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributeButton.swift; sourceTree = "<group>"; };
 		EC30B2C01AFA36B800121441 /* TextAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttribute.swift; sourceTree = "<group>"; };
+		EC30B2C61AFA512200121441 /* UITextView+Composer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Composer.swift"; sourceTree = "<group>"; };
+		EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLRepresentable.swift; sourceTree = "<group>"; };
 		EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
 		EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FontPickerViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
@@ -1590,11 +1602,13 @@
 			children = (
 				AFEB99C01AE8FD370099D924 /* DimView.swift */,
 				AF981EF01AD516DC00DE8B55 /* ComposerViewController.swift */,
+				EC30B2C61AFA512200121441 /* UITextView+Composer.swift */,
 				AF37C0971AEA1D3B00586318 /* ComposerViewControlller+TableViewReorderDelegate.swift */,
 				ECEDA5B41AD7D6DA00848160 /* ComposerViewController+UITableViewDelegate.swift */,
 				EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */,
 				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
 				316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */,
+				EC30B2CC1AFA560F00121441 /* HTMLRepresentable.swift */,
 				EC30B2C01AFA36B800121441 /* TextAttribute.swift */,
 				EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */,
 				EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */,
@@ -2486,6 +2500,7 @@
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				AF981F061AD525D200DE8B55 /* UITableView+Reorder.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
+				EC30B2CD1AFA560F00121441 /* HTMLRepresentable.swift in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
@@ -2601,6 +2616,7 @@
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				ECF06D51192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
+				EC30B2C71AFA512200121441 /* UITextView+Composer.swift in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
@@ -2680,6 +2696,7 @@
 				EC0D2D501AE786A800595A61 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC0D2D511AE786A800595A61 /* NSManagedObject+Attributes.swift in Sources */,
 				EC0D2D521AE786A800595A61 /* POSRootResource.m in Sources */,
+				EC30B2CA1AFA512200121441 /* UITextView+Composer.swift in Sources */,
 				EC0D2D531AE786A800595A61 /* ExtendedTouchView.swift in Sources */,
 				EC0D2D541AE786A800595A61 /* UploadMenuDataSource.swift in Sources */,
 				EC30B2B21AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
@@ -2716,6 +2733,7 @@
 				EC0D2D731AE786A800595A61 /* UIRefreshControl+Additions.m in Sources */,
 				EC0D2D741AE786A800595A61 /* POSAccountViewTableViewDataSource.m in Sources */,
 				AFEB99C41AE8FD370099D924 /* DimView.swift in Sources */,
+				EC30B2D01AFA560F00121441 /* HTMLRepresentable.swift in Sources */,
 				EC0D2D751AE786A800595A61 /* UIWebView+Accessability.swift in Sources */,
 				EC0D2D761AE786A800595A61 /* OAuthToken.swift in Sources */,
 				EC0D2D771AE786A800595A61 /* POSDocument+Methods.m in Sources */,
@@ -2817,6 +2835,7 @@
 				AF981F071AD525D200DE8B55 /* UITableView+Reorder.m in Sources */,
 				EC2DCB4B1AB84EAB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
 				EC2DCB4C1AB84EAB0063755E /* Guide.swift in Sources */,
+				EC30B2CE1AFA560F00121441 /* HTMLRepresentable.swift in Sources */,
 				EC2DCB4D1AB84EAB0063755E /* ReceiptView.swift in Sources */,
 				316C0CF71ADFC3920037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				EC2DCB4E1AB84EAB0063755E /* POSAttachment.m in Sources */,
@@ -2932,6 +2951,7 @@
 				EC2DCBA91AB84EAB0063755E /* POSFoldersViewController.m in Sources */,
 				AF6F5BD01AD6681C00D3D81C /* ModuleSelectorViewController.swift in Sources */,
 				EC2DCBAA1AB84EAB0063755E /* Model.xcdatamodeld in Sources */,
+				EC30B2C81AFA512200121441 /* UITextView+Composer.swift in Sources */,
 				EC2DCBAB1AB84EAB0063755E /* POSLetterViewController+Additions.swift in Sources */,
 				31F4C8921AD554F700E63129 /* Recipient.swift in Sources */,
 				EC2DCBAC1AB84EAB0063755E /* POSNewFolderViewController.m in Sources */,
@@ -3011,6 +3031,7 @@
 				EC2DCC111AB864AB0063755E /* POSRootResource.m in Sources */,
 				EC2DCC121AB864AB0063755E /* ExtendedTouchView.swift in Sources */,
 				EC2DCC131AB864AB0063755E /* UploadMenuDataSource.swift in Sources */,
+				EC30B2C91AFA512200121441 /* UITextView+Composer.swift in Sources */,
 				EC2DCC141AB864AB0063755E /* SHCSplitViewController.m in Sources */,
 				EC2DCC151AB864AB0063755E /* UploadMenuViewController.swift in Sources */,
 				EC30B2B11AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
@@ -3047,6 +3068,7 @@
 				EC2DCC2E1AB864AB0063755E /* UIRefreshControl+Additions.m in Sources */,
 				EC2DCC2F1AB864AB0063755E /* POSAccountViewTableViewDataSource.m in Sources */,
 				AFEB99C31AE8FD370099D924 /* DimView.swift in Sources */,
+				EC30B2CF1AFA560F00121441 /* HTMLRepresentable.swift in Sources */,
 				EC2DCC301AB864AB0063755E /* UIWebView+Accessability.swift in Sources */,
 				EC2DCC311AB864AB0063755E /* OAuthToken.swift in Sources */,
 				EC2DCC321AB864AB0063755E /* POSDocument+Methods.m in Sources */,
@@ -3143,6 +3165,8 @@
 				EC30B2B31AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
 				EC30D7C21AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC30D7BC1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */,
+				EC30B2D11AFA560F00121441 /* HTMLRepresentable.swift in Sources */,
+				EC30B2CB1AFA512200121441 /* UITextView+Composer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
