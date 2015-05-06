@@ -688,6 +688,21 @@
 		EC30B2B11AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */; };
 		EC30B2B21AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */; };
 		EC30B2B31AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */; };
+		EC30B2B51AFA31A800121441 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */; };
+		EC30B2B61AFA31A800121441 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */; };
+		EC30B2B71AFA31A800121441 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */; };
+		EC30B2B81AFA31A800121441 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */; };
+		EC30B2B91AFA31A800121441 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */; };
+		EC30B2BB1AFA336B00121441 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */; };
+		EC30B2BC1AFA336B00121441 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */; };
+		EC30B2BD1AFA336B00121441 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */; };
+		EC30B2BE1AFA336B00121441 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */; };
+		EC30B2BF1AFA336B00121441 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */; };
+		EC30B2C11AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
+		EC30B2C21AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
+		EC30B2C31AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
+		EC30B2C41AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
+		EC30B2C51AFA36B800121441 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30B2C01AFA36B800121441 /* TextAttribute.swift */; };
 		EC30D7B81AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7B91AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
 		EC30D7BA1AF7A57E004D04CE /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */; };
@@ -1031,6 +1046,9 @@
 		EC3021911AB70E0A00812502 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		EC30219B1AB8483700812502 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTypeButton.swift; sourceTree = "<group>"; };
+		EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributeButton.swift; sourceTree = "<group>"; };
+		EC30B2C01AFA36B800121441 /* TextAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttribute.swift; sourceTree = "<group>"; };
 		EC30D7B71AF7A57D004D04CE /* FontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
 		EC30D7BD1AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FontPickerViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
@@ -1577,6 +1595,9 @@
 				EC30B2AE1AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift */,
 				316C0CFB1ADFF04A0037C9D6 /* ComposerInputAccesoryView.xib */,
 				316C0D071ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift */,
+				EC30B2C01AFA36B800121441 /* TextAttribute.swift */,
+				EC30B2BA1AFA336B00121441 /* TextAttributeButton.swift */,
+				EC30B2B41AFA31A800121441 /* ComposerTypeButton.swift */,
 				AF6F5BCE1AD6681C00D3D81C /* ModuleSelectorViewController.swift */,
 				AF991DFF1ADE8448000E6A01 /* ComposerModuleParser.swift */,
 				AF2C68821AD59CE6007020DC /* ComposerModule.swift */,
@@ -2448,6 +2469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
+				EC30B2C11AFA36B800121441 /* TextAttribute.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */,
@@ -2502,6 +2524,7 @@
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
+				EC30B2B51AFA31A800121441 /* ComposerTypeButton.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2513,6 +2536,7 @@
 				ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				AF991E001ADE8448000E6A01 /* ComposerModuleParser.swift in Sources */,
+				EC30B2BB1AFA336B00121441 /* TextAttributeButton.swift in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
@@ -2651,6 +2675,7 @@
 				EC0D2D4D1AE786A800595A61 /* APIClient+Recipients.swift in Sources */,
 				EC0D2D4E1AE786A800595A61 /* APIClient+Folder.swift in Sources */,
 				EC65BE661AEF7EC300E9B46F /* UIButton+Recipient.swift in Sources */,
+				EC30B2B81AFA31A800121441 /* ComposerTypeButton.swift in Sources */,
 				EC0D2D4F1AE786A800595A61 /* WhatsNewGuideItem.swift in Sources */,
 				EC0D2D501AE786A800595A61 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC0D2D511AE786A800595A61 /* NSManagedObject+Attributes.swift in Sources */,
@@ -2662,6 +2687,7 @@
 				EC0D2D561AE786A800595A61 /* UploadMenuViewController.swift in Sources */,
 				EC0D2D571AE786A800595A61 /* AccountViewController.swift in Sources */,
 				EC0D2D581AE786A800595A61 /* POSUploadViewController.m in Sources */,
+				EC30B2C41AFA36B800121441 /* TextAttribute.swift in Sources */,
 				EC0D2D591AE786A800595A61 /* ComposerInputAccessoryView.swift in Sources */,
 				EC0D2D5A1AE786A800595A61 /* UIColor+DigipostColors.swift in Sources */,
 				EC0D2D5B1AE786A800595A61 /* PeopleView.swift in Sources */,
@@ -2730,6 +2756,7 @@
 				EC0D2D9B1AE786A800595A61 /* POSLetterPopoverView.m in Sources */,
 				EC0D2D9D1AE786A800595A61 /* Constants.swift in Sources */,
 				EC0D2D9E1AE786A800595A61 /* UIWindow+Navigation.swift in Sources */,
+				EC30B2BE1AFA336B00121441 /* TextAttributeButton.swift in Sources */,
 				EC0D2D9F1AE786A800595A61 /* UIImage+base64Representation.swift in Sources */,
 				EC0D2DA01AE786A800595A61 /* SHCBaseTableViewController.m in Sources */,
 				EC0D2DA11AE786A800595A61 /* AHKActionSheet+Convenience.m in Sources */,
@@ -2773,6 +2800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2DCB3E1AB84EAB0063755E /* UploadGuideViewController.swift in Sources */,
+				EC30B2C21AFA36B800121441 /* TextAttribute.swift in Sources */,
 				EC2DCB3F1AB84EAB0063755E /* UILabel+Digipost.m in Sources */,
 				EC2DCB401AB84EAB0063755E /* Localization.swift in Sources */,
 				EC2DCB411AB84EAB0063755E /* UploadImageController.swift in Sources */,
@@ -2827,6 +2855,7 @@
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
+				EC30B2B61AFA31A800121441 /* ComposerTypeButton.swift in Sources */,
 				EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCB6F1AB84EAB0063755E /* OnboardingLoginViewController.swift in Sources */,
 				EC2DCB701AB84EAB0063755E /* POSInvoice.m in Sources */,
@@ -2838,6 +2867,7 @@
 				EC2DCB761AB84EAB0063755E /* NSString+CoreDataConvenience.m in Sources */,
 				EC2DCB771AB84EAB0063755E /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC2DCB781AB84EAB0063755E /* main.m in Sources */,
+				EC30B2BC1AFA336B00121441 /* TextAttributeButton.swift in Sources */,
 				EC2DCB791AB84EAB0063755E /* SHCAppDelegate.m in Sources */,
 				EC2DCB7A1AB84EAB0063755E /* POSFolder.m in Sources */,
 				EC2DCB7B1AB84EAB0063755E /* NSString+Convenience.m in Sources */,
@@ -2976,6 +3006,7 @@
 				EC2DCC0D1AB864AB0063755E /* APIClient+Folder.swift in Sources */,
 				EC2DCC0E1AB864AB0063755E /* WhatsNewGuideItem.swift in Sources */,
 				EC2DCC0F1AB864AB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
+				EC30B2B71AFA31A800121441 /* ComposerTypeButton.swift in Sources */,
 				EC2DCC101AB864AB0063755E /* NSManagedObject+Attributes.swift in Sources */,
 				EC2DCC111AB864AB0063755E /* POSRootResource.m in Sources */,
 				EC2DCC121AB864AB0063755E /* ExtendedTouchView.swift in Sources */,
@@ -2987,6 +3018,7 @@
 				EC2DCC171AB864AB0063755E /* POSUploadViewController.m in Sources */,
 				316C0D0B1ADFF33D0037C9D6 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCC181AB864AB0063755E /* UIColor+DigipostColors.swift in Sources */,
+				EC30B2C31AFA36B800121441 /* TextAttribute.swift in Sources */,
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
 				AFA069EC1ADD21E100AA2D54 /* TextComposerModule.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
@@ -3055,6 +3087,7 @@
 				EC2DCC521AB864AB0063755E /* POSLetterPopoverView.m in Sources */,
 				EC2DCC531AB864AB0063755E /* Constants.swift in Sources */,
 				EC2DCC541AB864AB0063755E /* UIWindow+Navigation.swift in Sources */,
+				EC30B2BD1AFA336B00121441 /* TextAttributeButton.swift in Sources */,
 				316C0CF91ADFC3940037C9D6 /* UIImage+base64Representation.swift in Sources */,
 				EC2DCC551AB864AB0063755E /* SHCBaseTableViewController.m in Sources */,
 				EC2DCC561AB864AB0063755E /* AHKActionSheet+Convenience.m in Sources */,
@@ -3097,12 +3130,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC30B2C51AFA36B800121441 /* TextAttribute.swift in Sources */,
 				EC5828121AF8CB7A00899520 /* FontPickerTableViewCell.swift in Sources */,
 				EC65BE671AEF7EC300E9B46F /* UIButton+Recipient.swift in Sources */,
 				ECB8D88E1AEF804B007BDAD3 /* LoginTests.swift in Sources */,
 				EC95BA111AF8FE9F00CB903F /* ComposerViewController.swift in Sources */,
 				ECC04BCC1AF0E05700B99B52 /* Int+Random.swift in Sources */,
+				EC30B2BF1AFA336B00121441 /* TextAttributeButton.swift in Sources */,
 				ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */,
+				EC30B2B91AFA31A800121441 /* ComposerTypeButton.swift in Sources */,
 				ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */,
 				EC30B2B31AFA266800121441 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
 				EC30D7C21AF7A6E0004D04CE /* FontPickerViewController+TableViewDataSource.swift in Sources */,
