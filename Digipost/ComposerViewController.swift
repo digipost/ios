@@ -80,7 +80,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 }
             }
         }
-            return nil
+        return nil
     }
 
     func didTapTextAttributeButton(sender: UIButton) {
@@ -89,6 +89,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             if let editingComposerModuleAndTextView = currentEditingComposerModuleAndTextView() as (TextComposerModule, UITextView)! {
                 editingComposerModuleAndTextView.1.style(textAttribute: textAttributeButton.textAttribute)
                 composerInputAccessoryView.refreshUIWithTextAttribute(textAttributeButton.textAttribute)
+                let textComposerModule = editingComposerModuleAndTextView.0
+                textComposerModule.textAttribute = textComposerModule.textAttribute.textAttributeByAddingTextAttribute(textAttributeButton.textAttribute)
             }
         }
     }
@@ -99,7 +101,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if let indexPath = indexPathForCellContainingTextView(textView){
             if let textModule = composerModules[indexPath.row] as? TextComposerModule {
                 textModule.text = textView.text
-                textModule.textAlignment = textView.textAlignment
+                textModule.textAttribute.textAlignment = textView.textAlignment
             }
         }
         tableView.beginUpdates()
@@ -120,7 +122,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     func textViewDidBeginEditing(textView: UITextView) {
         if let textModule = composerModules[textView.tag] as? TextComposerModule {
-            println(textModule.textAttribute())
+            println(textModule.textAttribute)
             println(textView.tag)
             composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
         }
@@ -151,7 +153,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             if let indexPath = indexPath(module: module) {
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
                 let textModule = module as? TextComposerModule
-                cell?.moduleTextView.font = textModule?.font
+                cell?.moduleTextView.font = textModule?.textAttribute.font
                 cell?.moduleTextView.delegate = self
                 cell?.moduleTextView.becomeFirstResponder()
             }

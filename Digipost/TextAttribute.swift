@@ -25,6 +25,23 @@ struct TextAttribute : HTMLRepresentable, DebugPrintable {
         return false
     }
 
+    func textAttributeByAddingTextAttribute(otherTextAttribute: TextAttribute) -> TextAttribute {
+        let newFont : UIFont? = {
+            if let actualFont = otherTextAttribute.font {
+                return actualFont
+            }
+            return self.font
+        }()
+
+        let newTextAlignment : NSTextAlignment? = {
+            if let actualTextAlignment = otherTextAttribute.textAlignment {
+                return actualTextAlignment
+            }
+            return self.textAlignment
+        }()
+        return TextAttribute(font: newFont, textAlignment: newTextAlignment)
+    }
+
     init(font: UIFont) {
         self.font = font
     }
@@ -33,7 +50,7 @@ struct TextAttribute : HTMLRepresentable, DebugPrintable {
         self.textAlignment = textAlignment
     }
 
-    init(font: UIFont, textAlignment aTextAligntment : NSTextAlignment) {
+    init(font: UIFont?, textAlignment aTextAligntment : NSTextAlignment?) {
         self.font = font
         self.textAlignment = aTextAligntment
     }

@@ -11,17 +11,13 @@ import UIKit
 
 class TextComposerModule: ComposerModule {
 
-    let font: UIFont
-    var textAlignment: NSTextAlignment
 
-    func textAttribute() -> TextAttribute {
-        return TextAttribute(font: font, textAlignment: textAlignment)
-    }
+    var textAttribute : TextAttribute
 
     var text: String?
 
     var placeholder: String {
-        switch self.font {
+        switch self.textAttribute.font! {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
             return "Enter a Headline"
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
@@ -34,8 +30,7 @@ class TextComposerModule: ComposerModule {
     }
 
     init(moduleWithFont font: UIFont) {
-        self.font = font
-        textAlignment = .Left
+        textAttribute = TextAttribute(font: font, textAlignment: .Left)
         super.init()
     }
 
@@ -49,19 +44,23 @@ class TextComposerModule: ComposerModule {
             var closeingTag = ""
             
             let alignment : String = {
-                switch self.textAlignment{
-                case NSTextAlignment.Left:
-                    return  "align-left"
-                case NSTextAlignment.Center:
-                    return "align-center"
-                case NSTextAlignment.Right:
-                    return  "align-right"
-                default:
-                    return "align-left"
+                if let actualAlignment = self.textAttribute.textAlignment {
+                    switch actualAlignment {
+                    case NSTextAlignment.Left:
+                        return  "align-left"
+                    case NSTextAlignment.Center:
+                        return "align-center"
+                    case NSTextAlignment.Right:
+                        return  "align-right"
+                    default:
+                        return "align-left"
+                    }
                 }
+                        return "align-left"
                 }()
-            
-            switch font{
+
+           if let actualFont = self.textAttribute.font {
+            switch actualFont {
             case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
                 let cssClass = alignment
                 openingTag = "<H1 class=\"\(cssClass)\">"
@@ -79,12 +78,13 @@ class TextComposerModule: ComposerModule {
                 openingTag = "<p class=\"\(cssClass)\">"
                 closeingTag = "</p>"
             }
-            
-            
+
+            }
+
             var html = openingTag
-            
+
             if let text = self.text {
-                
+
                 for c in text{
                     if c == "\n"{
                         html += "<br>"

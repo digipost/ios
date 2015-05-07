@@ -46,7 +46,7 @@ class ComposerInputAccessoryView: UIView {
                 // do the actual
                 composerTypeButton.setTitle("Headline", forState: .Normal)
             } else if let textAttributeButton = view as? TextAttributeButton   {
-                if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textComposerModule.textAttribute()) {
+                if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textComposerModule.textAttribute) {
                     textAttributeButton.backgroundColor = UIColor.redColor()
                 } else {
                     textAttributeButton.backgroundColor = UIColor.whiteColor()
