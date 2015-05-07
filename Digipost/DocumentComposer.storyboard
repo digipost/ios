@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AGW-FE-ok7">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -321,28 +321,7 @@
                                 <view key="tableFooterView" contentMode="scaleToFill" id="G6K-pE-SLa">
                                     <rect key="frame" x="0.0" y="130" width="580" height="88"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2SY-Th-nb8">
-                                            <rect key="frame" x="226" y="20" width="127" height="48"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="DX9-do-I5V"/>
-                                                <constraint firstAttribute="width" constant="127" id="t2i-GW-Ut9"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="38"/>
-                                            <state key="normal" title="⊕">
-                                                <color key="titleColor" red="0.85098039219999999" green="0.086274509799999996" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="7xl-o0-2lt" kind="presentation" modalPresentationStyle="overFullScreen" id="atx-Ei-5ni"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstAttribute="centerY" secondItem="2SY-Th-nb8" secondAttribute="centerY" id="mlo-cS-Ysc"/>
-                                        <constraint firstAttribute="centerX" secondItem="2SY-Th-nb8" secondAttribute="centerX" constant="0.5" id="t2t-Lz-koO"/>
-                                    </constraints>
                                 </view>
                             </tableView>
                         </subviews>
@@ -377,11 +356,12 @@
                         <outlet property="previewButton" destination="5jj-bQ-bUU" id="AZE-NN-7pr"/>
                         <outlet property="tableView" destination="d7U-0Z-Byu" id="P9C-0D-TYM"/>
                         <segue destination="pyB-XH-9wo" kind="show" identifier="goToPreview" id="LP5-CD-B3Q"/>
+                        <segue destination="7xl-o0-2lt" kind="presentation" identifier="presentModuleSelectorSegue" modalPresentationStyle="overFullScreen" id="pdx-dC-iFK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pBT-DS-JQf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="415" y="1065"/>
+            <point key="canvasLocation" x="519" y="1031"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="yKF-uR-qdF">
@@ -511,7 +491,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jog-1s-EPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1829" y="880"/>
+            <point key="canvasLocation" x="1551" y="922"/>
         </scene>
     </scenes>
     <resources>

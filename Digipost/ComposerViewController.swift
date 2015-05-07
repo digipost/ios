@@ -35,6 +35,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     var mailboxDigipostAddress : String?
     var composerInputAccessoryView : ComposerInputAccessoryView!
 
+
+    var addComposerModuleButton : AddComposerModuleButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsLongPressToReorder = true
@@ -45,14 +48,19 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleTextField.delegate = self
         setupTableView()
         setupComposerInputAccessoryView()
+        addComposerModuleButton = AddComposerModuleButton.layoutInView(self.view)
+        addComposerModuleButton.addTarget(self, action: Selector("didTapAddComposerModuleButton:"), forControlEvents: .TouchUpInside)
     }
-    
-    
+
+    func didTapAddComposerModuleButton(button: UIButton) {
+        performSegueWithIdentifier("presentModuleSelectorSegue", sender: self)
+    }
+
     @IBAction func previewButtonTapped(sender: AnyObject) {
         self.performSegueWithIdentifier("goToPreview", sender: self)
     }
+
     // MARK: - TableView Setup
-    
     func setupTableView(){
         let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
         tableView.registerNib(textModuleTableViewCellNib, forCellReuseIdentifier: Constants.Composer.textModuleCellIdentifier)
