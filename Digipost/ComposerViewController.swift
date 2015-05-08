@@ -53,7 +53,14 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
 
     func didTapAddComposerModuleButton(button: UIButton) {
-        performSegueWithIdentifier("presentModuleSelectorSegue", sender: self)
+        let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
+        moduleSelectorViewController.modalPresentationStyle = .Custom
+        moduleSelectorViewController.transitioningDelegate = self
+
+        presentViewController(moduleSelectorViewController, animated: true) { () -> Void in
+
+        }
+
     }
 
     @IBAction func previewButtonTapped(sender: AnyObject) {
@@ -167,14 +174,14 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             }
         }
         
-        let dimView = view as? DimView
-        dimView?.dim()
+//        let dimView = view as? DimView
+//        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
-        let dimView = view as? DimView
-        dimView?.dim()
+//        let dimView = view as? DimView
+//        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -226,8 +233,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
             
-            let dimView = view as? DimView
-            dimView?.dim()
+//            let dimView = view as? DimView
+//            dimView?.dim()
         }
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{
