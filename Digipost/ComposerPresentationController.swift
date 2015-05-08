@@ -9,5 +9,22 @@
 import UIKit
 
 class ComposerPresentationController: UIPresentationController {
-   
+
+    var preferredHeight : CGFloat
+    var preferredYOrigin : CGFloat
+
+    override func shouldPresentInFullscreen() -> Bool {
+        return false
+    }
+
+    override func frameOfPresentedViewInContainerView() -> CGRect {
+        let bounds = UIScreen.mainScreen().bounds
+        println(bounds)
+        return CGRectMake(0, 400, bounds.size.width, 300)
+    }
+
+    override func presentationTransitionWillBegin() {
+
+    }
+
 }
