@@ -10,8 +10,8 @@ import UIKit
 
 class ComposerPresentationController: UIPresentationController {
 
-    var preferredHeight : CGFloat
-    var preferredYOrigin : CGFloat
+    var preferredHeight : CGFloat?
+    var preferredYOrigin : CGFloat?
 
     override func shouldPresentInFullscreen() -> Bool {
         return false
