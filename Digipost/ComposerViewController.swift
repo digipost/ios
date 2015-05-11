@@ -56,6 +56,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
         moduleSelectorViewController.modalPresentationStyle = .Custom
         moduleSelectorViewController.transitioningDelegate = self
+        moduleSelectorViewController.delegate = self
 
         presentViewController(moduleSelectorViewController, animated: true) { () -> Void in
 
