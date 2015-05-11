@@ -21,6 +21,7 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
+#import "GAIDictionaryBuilder.h"
 #import "oauth.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -28,6 +29,10 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
 // Google Analytics screen name
 NSString *const kOAuthViewControllerScreenName = @"OAuth";
+
+NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
+NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
+
 
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
@@ -93,10 +98,10 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
+    NSLog(@"%@",request.URL.host);
     if ([request.URL.host isEqualToString:@"localhost"]) {
 
         NSDictionary *parameters = [request queryParameters];
-
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
 
@@ -104,13 +109,13 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
 
-            if (![state isEqualToString:currentState]) {
-                [self presentAuthenticationWebView];
+            if ([state isEqualToString:currentState] == NO ) {
+                [self handleWrongOAuthStateWithMissingState:NO];
                 return NO;
             }
-
         } else {
-            NSAssert(NO, @"No state parameter sent, this should not happen");
+            [self handleWrongOAuthStateWithMissingState:YES];
+            return NO;
         }
 
         if (parameters[kOAuth2Code]) {
@@ -136,6 +141,8 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
                                   }];
                 }];
         } else {
+            // TODO: Fail harder if no state parameter.
+            // LOG to server - Analytics, show jøran before shipping
             NSAssert(NO, @"No code parameter sent, this should not happen");
         }
 
@@ -155,6 +162,27 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 #endif
 
     return YES;
+}
+
+- (void)handleWrongOAuthStateWithMissingState:(BOOL) missingState {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login state error title", @"title for informing user that Oauth state is wrong") message:NSLocalizedString(@"Oauth login state error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }]];
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+    if (missingState) {
+        // track Google Analytics
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+    } else {
+        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+    }
+
+    [self presentViewController:alertController animated:YES completion:^{
+
+    }];
+
+
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -240,9 +268,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
     NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
-    if ([self.scope isEqualToString:kOauth2ScopeFull]) {
-        URLString = [URLString stringByAppendingString:@"?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
-    }
     NSError *error;
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:parameters error:&error];
     [self.webView loadRequest:request];
