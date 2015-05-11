@@ -15,6 +15,19 @@ protocol ModuleSelectorViewControllerDelegate{
 
 class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
 
+    var textAttributes : [TextAttribute]
+
+    required init(coder aDecoder: NSCoder) {
+        self.textAttributes = [TextAttribute]()
+        super.init(coder: aDecoder)
+    }
+
+    class func setup(#textAttributes: [TextAttribute]) -> ModuleSelectorViewController {
+        let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
+        moduleSelectorViewController.textAttributes = textAttributes
+        return moduleSelectorViewController
+    }
+
     var imagePicker = UIImagePickerController()
     var delegate: ModuleSelectorViewControllerDelegate?
     @IBOutlet weak var moduleSelectorView: UIView!
@@ -35,20 +48,6 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         tableView.tableFooterView?.hidden = true
         tableView.scrollEnabled = false
         tableView.rowHeight = 50
-        
-        moduleSelectorViewTitle.text = NSLocalizedString("module selector title", comment: "module selector view title")
-    }
-    
-    func addHeadline() {
-        addTextModule(UIFontTextStyleHeadline)
-    }
-    
-    func addSubheadline() {
-        addTextModule(UIFontTextStyleSubheadline)
-    }
-
-    func addBody() {
-        addTextModule(UIFontTextStyleBody)
     }
     
     @IBAction func closeButtonAction(sender: UIButton) {
@@ -78,18 +77,21 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        switch indexPath.row {
-        case 0:
-            addHeadline()
-        case 1:
-            addSubheadline()
-        case 2:
-            addBody()
-        case 3:
-            addImage()
-        default:
-            addBody()
-        }
+//        switch indexPath.row {
+//        case 0:
+//            addHeadline()
+//        case 1:
+//            addSubheadline()
+//        case 2:
+//            addBody()
+//        case 3:
+//            addImage()
+//        default:
+//            addBody()
+//        }
+//        dismissViewControllerAnimated(true, completion: { () -> Void in
+//
+//        })
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -105,14 +107,15 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         return cell
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-        for touch: AnyObject in touches {
-            let location = touch.locationInView(moduleSelectorView)
-            if moduleSelectorView.pointInside(location, withEvent: event) == false{
-                self.delegate?.moduleSelectorViewControllerWasDismissed(self)
-            }
-            
-        }
-    }
+//    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+
+//        for touch: AnyObject in touches {
+//            let location = touch.locationInView(moduleSelectorView)
+//            if moduleSelectorView.pointInside(location, withEvent: event) == false{
+//                self.delegate?.moduleSelectorViewControllerWasDismissed(self)
+//            }
+//            
+//        }
+//    }
 
 }
