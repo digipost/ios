@@ -33,7 +33,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 
-
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
@@ -109,7 +108,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
 
-            if ([state isEqualToString:currentState] == NO ) {
+            if ([state isEqualToString:currentState] == NO) {
                 [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
@@ -121,26 +120,28 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
         }
 
         if (parameters[kOAuth2Code]) {
-            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code] scope:self.scope
+            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+                scope:self.scope
                 success:^{
 
-                // The OAuth manager has successfully authenticated with code - which means we've
-                // got an access code and a refresh code, and can dismiss this view controller
-                // and let the login view controller take over and push the folders view controller.
-                [self dismissViewControllerAnimated:YES completion:^{
-                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                        [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                    }
-                }];
+                  // The OAuth manager has successfully authenticated with code - which means we've
+                  // got an access code and a refresh code, and can dismiss this view controller
+                  // and let the login view controller take over and push the folders view controller.
+                  [self dismissViewControllerAnimated:YES
+                                           completion:^{
+                                             if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                 [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                             }
+                                           }];
                 }
                 failure:^(NSError *error) {
-                [UIAlertView showWithTitle:error.errorTitle
-                                   message:[error localizedDescription]
-                         cancelButtonTitle:nil
-                         otherButtonTitles:@[error.okButtonTitle]
-                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                  [UIAlertView showWithTitle:error.errorTitle
+                                     message:[error localizedDescription]
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@[ error.okButtonTitle ]
+                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self presentAuthenticationWebView];
-                                  }];
+                                    }];
                 }];
         } else {
             [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
@@ -165,25 +166,16 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     return YES;
 }
 
-- (void)informUserThatOauthFailedThenDismissViewController {
+- (void)informUserThatOauthFailedThenDismissViewController
+{
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login error title", @"title for informing user that something critical is wrong") message:NSLocalizedString(@"Oauth login error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert")
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                                      }]];
 
     [self presentViewController:alertController animated:YES completion:nil];
-}
-
-- (void)handleWrongOAuthStateWithMissingState:(BOOL) missingState {
-
-    if (missingState) {
-        // track Google Analytics
-    } else {
-    }
-
-
-
-
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -233,9 +225,10 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 
 - (void)didTapCloseBarButtonItem:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
 
-    }];
+                             }];
 }
 
 - (void)presentAuthenticationWebView
