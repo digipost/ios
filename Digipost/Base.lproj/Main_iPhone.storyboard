@@ -334,13 +334,13 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-1t-g98" userLabel="Sender Label">
-                                            <rect key="frame" x="30" y="33" width="165" height="21"/>
+                                            <rect key="frame" x="32" y="33" width="163" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKe-Yp-E2z" userLabel="Subject Label">
-                                            <rect key="frame" x="30" y="11" width="240" height="24"/>
+                                            <rect key="frame" x="32" y="11" width="238" height="24"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -375,7 +375,6 @@
                                         <constraint firstItem="tKe-Yp-E2z" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="topMargin" constant="3" id="5TA-bT-HjC"/>
                                         <constraint firstItem="HcC-gk-Zok" firstAttribute="top" secondItem="uUo-YN-s20" secondAttribute="bottom" constant="8" id="9vF-zQ-ce5"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="top" secondItem="kfJ-1t-g98" secondAttribute="top" constant="2" id="BzQ-I1-dvv"/>
-                                        <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="HcC-gk-Zok" secondAttribute="trailing" constant="6" id="Drq-x5-lgF"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="skL-A1-Mcb" secondAttribute="trailing" constant="8" id="GMQ-fc-qrS"/>
                                         <constraint firstItem="skL-A1-Mcb" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="topMargin" constant="8" id="Ghe-Zw-GfR"/>
                                         <constraint firstItem="skL-A1-Mcb" firstAttribute="leading" secondItem="tKe-Yp-E2z" secondAttribute="trailing" constant="26" id="I7O-1i-edJ"/>
@@ -383,12 +382,13 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="HcC-gk-Zok" secondAttribute="bottom" constant="3.5" id="V76-IN-4xd"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="4W8-5K-T1U" secondAttribute="bottom" constant="4" id="YlA-SJ-yYg"/>
                                         <constraint firstItem="uUo-YN-s20" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leading" constant="8" id="dK7-ar-5uP"/>
+                                        <constraint firstItem="tKe-Yp-E2z" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" constant="24" id="e7a-gA-QOQ"/>
                                         <constraint firstItem="HcC-gk-Zok" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" id="eTL-IT-ags"/>
+                                        <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" constant="24" id="gUi-Gf-pYR"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="top" secondItem="skL-A1-Mcb" secondAttribute="bottom" constant="6" id="hLh-jw-npC"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="top" secondItem="tKe-Yp-E2z" secondAttribute="bottom" constant="-2" id="hvp-SP-0FJ"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="trailing" secondItem="skL-A1-Mcb" secondAttribute="trailing" id="nBV-Fj-8Yj"/>
                                         <constraint firstItem="4W8-5K-T1U" firstAttribute="bottom" secondItem="kfJ-1t-g98" secondAttribute="bottom" constant="-1.5" id="np4-nc-Fnq"/>
-                                        <constraint firstItem="tKe-Yp-E2z" firstAttribute="leading" secondItem="uUo-YN-s20" secondAttribute="trailing" constant="6" id="ry1-KU-dsd"/>
                                         <constraint firstItem="uUo-YN-s20" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="topMargin" constant="5" id="uyh-SZ-Byx"/>
                                     </constraints>
                                 </tableViewCellContentView>
