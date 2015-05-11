@@ -97,11 +97,11 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
-    NSLog(@"%@",request.URL.host);
     if ([request.URL.host isEqualToString:@"localhost"]) {
-
         NSDictionary *parameters = [request queryParameters];
+
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
 
@@ -110,11 +110,13 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             self.stateParameter = nil;
 
             if ([state isEqualToString:currentState] == NO ) {
-                [self handleWrongOAuthStateWithMissingState:NO];
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+                [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
         } else {
-            [self handleWrongOAuthStateWithMissingState:YES];
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+            [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
 
@@ -141,9 +143,8 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                   }];
                 }];
         } else {
-            // TODO: Fail harder if no state parameter.
-            // LOG to server - Analytics, show jøran before shipping
-            NSAssert(NO, @"No code parameter sent, this should not happen");
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
+            [self informUserThatOauthFailedThenDismissViewController];
         }
 
         return NO;
@@ -164,23 +165,23 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     return YES;
 }
 
-- (void)handleWrongOAuthStateWithMissingState:(BOOL) missingState {
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login state error title", @"title for informing user that Oauth state is wrong") message:NSLocalizedString(@"Oauth login state error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
-
-    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"", @"") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+- (void)informUserThatOauthFailedThenDismissViewController {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login error title", @"title for informing user that something critical is wrong") message:NSLocalizedString(@"Oauth login error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }]];
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
+
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)handleWrongOAuthStateWithMissingState:(BOOL) missingState {
+
     if (missingState) {
         // track Google Analytics
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
     } else {
-        [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
     }
 
-    [self presentViewController:alertController animated:YES completion:^{
 
-    }];
 
 
 }
