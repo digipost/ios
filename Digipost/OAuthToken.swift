@@ -37,9 +37,84 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
     }
 
-    var expires : NSDate?
+    var expires : NSDate
 
     var scope: String?
+
+    init(expiryDate: NSDate) {
+        self.expires = expiryDate
+        super.init()
+    }
+
+    required convenience init(coder decoder: NSCoder) {
+        // If token is archived without expirydate, for example if upgrading from an older client, set expirydate to now(), to force reauthentication
+        let expires : NSDate = {
+            if let expiryDate =  decoder.decodeObjectForKey(Keys.expiresKey) as? NSDate {
+                return expiryDate
+            } else {
+                return NSDate()
+            }
+            }()
+        self.init(expiryDate: expires)
+        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
+        self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as? String
+        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as? String
+    }
+
+    // Initializer used when migrating from single scope to multiple scopes - version 2.3
+    convenience init?(refreshToken: String?, scope: String) {
+        self.init(expiryDate:NSDate())
+
+        if let acutalRefreshToken = refreshToken as String? {
+            self.refreshToken = acutalRefreshToken
+        } else {
+            return nil
+        }
+
+        self.scope = scope
+        storeInKeyChain()
+    }
+
+    convenience init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
+        if let expirationDate = NSDate().dateByAdding(seconds: expiresInSeconds.integerValue) {
+            self.init(expiryDate: expirationDate)
+        } else {
+            self.init(expiryDate: NSDate())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        if let acutalRefreshToken = refreshToken as String? {
+            self.refreshToken = acutalRefreshToken
+        }
+
+        if let actualAccessToken = accessToken as String? {
+            self.accessToken = actualAccessToken
+        }
+        self.scope = scope
+        storeInKeyChain()
+    }
+
+    convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
+        var aRefreshToken: String?
+        var anAccessToken: String?
+        aRefreshToken = attributes["refresh_token"] as? String
+        anAccessToken = attributes["access_token"] as? String
+        if let expiresInSeconds = attributes["expires_in"] as? NSNumber {
+            self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
+        } else {
+            self.init(expiryDate: NSDate())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        storeInKeyChain()
+    }
+
+    // bug in swift compiler requires to set all instance variables before returning nil from an initializer
+    private func setAllInstanceVariablesToNil() {
+        self.refreshToken = nil
+        self.accessToken = nil
+        self.scope = nil
+    }
 
     class func levelForScope(aScope: String)-> Int {
         switch aScope {
@@ -101,14 +176,6 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         }
     }
 
-    required convenience init(coder decoder: NSCoder) {
-        self.init()
-        self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as! String!
-        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as! String!
-        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
-        self.expires = decoder.decodeObjectForKey(Keys.expiresKey) as! NSDate!
-    }
-
     func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
@@ -116,53 +183,13 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         coder.encodeObject(self.expires, forKey: Keys.expiresKey)
     }
 
-    convenience init?(refreshToken: String?, scope: String) {
-        self.init()
-
-        if let acutalRefreshToken = refreshToken as String? {
-            self.refreshToken = acutalRefreshToken
-        } else {
-            return nil
-        }
-
-        self.scope = scope
-        storeInKeyChain()
-    }
-
-    func setExpiryDate(expiresInSeconds: NSNumber?) {
+    func setExpireDate(expiresInSeconds: NSNumber?) {
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
-            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue)
-            self.expires = expirationDate
+            if let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue) {
+                self.expires = expirationDate
+                storeInKeyChain()
+            }
         }
-    }
-
-    convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInSeconds: NSNumber?) {
-        self.init()
-
-        if let acutalRefreshToken = refreshToken as String? {
-            self.refreshToken = acutalRefreshToken
-        }
-
-        if let actualAccessToken = accessToken as String? {
-            self.accessToken = actualAccessToken
-        }
-        if let actualExpirationDate = expiresInSeconds as NSNumber? {
-            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue)
-            self.expires = expirationDate
-        }
-
-        self.scope = scope
-        storeInKeyChain()
-    }
-
-    convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
-        var aRefreshToken: String?
-        var anAccessToken: String?
-        aRefreshToken = attributes["refresh_token"] as? String
-        anAccessToken = attributes["access_token"] as? String
-        let expiresInSeconds = attributes["expires_in"] as? NSNumber
-        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
-        storeInKeyChain()
     }
 
     class func isUserLoggedIn() -> Bool {
