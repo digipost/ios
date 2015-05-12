@@ -113,6 +113,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func validateFullScope(#then: () -> Void) {
+        validateOAuthToken(kOauth2ScopeFull) {
+            self.updateAuthorizationHeader(kOauth2ScopeFull)
+            then()
+        }
+    }
+
     func validate(#token: OAuthToken?, then: () -> Void) {
         validate(oAuthToken: token) { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -124,28 +131,19 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = __ROOT_RESOURCE_URI__
-        let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.updateRootResource(success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validate(token: highestToken) {
+            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+            task!.resume()
         }
-
-        validate(token: highestToken, thenPerformTask: task!)
     }
 
     func updateRootResource(#scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let rootResource = __ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
-        let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.updateRootResource(scope: scope, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+            task?.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
