@@ -3034,7 +3034,7 @@
 		};
 		83BAB9511855C0AD004A7BFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
+			baseConfigurationReference = 83F703571855DD3A003DABE1 /* Digipost.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
