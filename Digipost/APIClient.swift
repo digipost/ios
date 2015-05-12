@@ -419,7 +419,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void)  {
-        if (oAuthToken?.accessToken != nil) {
+        if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
             return
         }
@@ -436,6 +436,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }else if (oAuthToken == nil) {
             assert(false," something wrong with oauth token")
         } else {
+            // jump to another level for example from idporten 4 to bankID fullhighauth
             oAuthToken?.removeFromKeyChain()
             let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
             if (lowerLevelOAuthToken != nil) {

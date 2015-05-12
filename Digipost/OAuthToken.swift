@@ -23,7 +23,7 @@ struct AuthenticationLevel {
     static let idPorten3 = "IDPORTEN_3"
 }
 
-class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
+class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
 
     var refreshToken: String? {
         didSet {
@@ -226,6 +226,17 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         var existingTokens = OAuthToken.oAuthTokens()
         existingTokens[scope!] = self
         LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+    }
+
+    func hasExpired() -> Bool {
+        if accessToken == nil {
+            return true
+        }
+        let todayDate = NSDate()
+        if expires.isLaterThan(todayDate) {
+            return false
+        }
+        return true
     }
 
     func canBeRefreshedByRefreshToken() -> Bool {
