@@ -21,6 +21,7 @@
 #import "NSURLRequest+QueryParameters.h"
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
+#import "GAIDictionaryBuilder.h"
 #import "oauth.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
@@ -28,6 +29,9 @@ NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
 
 // Google Analytics screen name
 NSString *const kOAuthViewControllerScreenName = @"OAuth";
+
+NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
+NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
@@ -92,9 +96,9 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
     // When localhost is trying to load, it means the app is trying to log in with OAuth2
     if ([request.URL.host isEqualToString:@"localhost"]) {
-
         NSDictionary *parameters = [request queryParameters];
 
         if (parameters[kOAuth2State]) {
@@ -104,39 +108,44 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
 
-            if (![state isEqualToString:currentState]) {
-                [self presentAuthenticationWebView];
+            if ([state isEqualToString:currentState] == NO) {
+                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+                [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
-
         } else {
-            NSAssert(NO, @"No state parameter sent, this should not happen");
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+            [self informUserThatOauthFailedThenDismissViewController];
+            return NO;
         }
 
         if (parameters[kOAuth2Code]) {
-            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code] scope:self.scope
+            [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
+                scope:self.scope
                 success:^{
 
-                // The OAuth manager has successfully authenticated with code - which means we've
-                // got an access code and a refresh code, and can dismiss this view controller
-                // and let the login view controller take over and push the folders view controller.
-                [self dismissViewControllerAnimated:YES completion:^{
-                    if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                        [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                    }
-                }];
+                  // The OAuth manager has successfully authenticated with code - which means we've
+                  // got an access code and a refresh code, and can dismiss this view controller
+                  // and let the login view controller take over and push the folders view controller.
+                  [self dismissViewControllerAnimated:YES
+                                           completion:^{
+                                             if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                 [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                             }
+                                           }];
                 }
                 failure:^(NSError *error) {
-                [UIAlertView showWithTitle:error.errorTitle
-                                   message:[error localizedDescription]
-                         cancelButtonTitle:nil
-                         otherButtonTitles:@[error.okButtonTitle]
-                                  tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                  [UIAlertView showWithTitle:error.errorTitle
+                                     message:[error localizedDescription]
+                           cancelButtonTitle:nil
+                           otherButtonTitles:@[ error.okButtonTitle ]
+                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                       [self presentAuthenticationWebView];
-                                  }];
+                                    }];
                 }];
         } else {
-            NSAssert(NO, @"No code parameter sent, this should not happen");
+            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
+            [self informUserThatOauthFailedThenDismissViewController];
         }
 
         return NO;
@@ -155,6 +164,18 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 #endif
 
     return YES;
+}
+
+- (void)informUserThatOauthFailedThenDismissViewController
+{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login error title", @"title for informing user that something critical is wrong") message:NSLocalizedString(@"Oauth login error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert")
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                                      }]];
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -204,9 +225,10 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 - (void)didTapCloseBarButtonItem:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:^{
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
 
-    }];
+                             }];
 }
 
 - (void)presentAuthenticationWebView
@@ -240,9 +262,6 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 - (void)authenticateWithParameters:(NSDictionary *)parameters
 {
     NSString *URLString = [__SERVER_URI__ stringByAppendingPathComponent:__AUTHENTICATION_URI__];
-    if ([self.scope isEqualToString:kOauth2ScopeFull]) {
-        URLString = [URLString stringByAppendingString:@"?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
-    }
     NSError *error;
     NSURLRequest *request = [[AFHTTPRequestSerializer serializer] requestWithMethod:@"GET" URLString:URLString parameters:parameters error:&error];
     [self.webView loadRequest:request];
