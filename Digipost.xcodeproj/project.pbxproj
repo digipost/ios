@@ -442,7 +442,6 @@
 		EC2DCC4B1AB864AB0063755E /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
 		EC2DCC4C1AB864AB0063755E /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
 		EC2DCC4D1AB864AB0063755E /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
-		EC2DCC4E1AB864AB0063755E /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		EC2DCC4F1AB864AB0063755E /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
 		EC2DCC501AB864AB0063755E /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
 		EC2DCC511AB864AB0063755E /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
@@ -547,6 +546,15 @@
 		EC56AAC31A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */; };
 		EC56AACA1A24C7DD00720109 /* rootresource.json in Resources */ = {isa = PBXBuildFile; fileRef = EC56AAC91A24C7DD00720109 /* rootresource.json */; };
 		EC56AACC1A24C92900720109 /* documents.json in Resources */ = {isa = PBXBuildFile; fileRef = EC56AACB1A24C92900720109 /* documents.json */; };
+		EC5E76C31B0267320097CDF9 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
+		EC5E76C51B02679F0097CDF9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC5E76C41B02679F0097CDF9 /* Pods.framework */; };
+		EC5E76DF1B0269CA0097CDF9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
+		EC5E771E1B026CE20097CDF9 /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
+		EC5E771F1B026D2E0097CDF9 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
+		EC5E77201B026D350097CDF9 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
+		EC5E77211B026DCD0097CDF9 /* ValidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */; };
+		EC5E77221B026DCD0097CDF9 /* InvalidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */; };
+		EC5E77231B026DCD0097CDF9 /* ValidOAuthTokenHigherSecurity.json in Resources */ = {isa = PBXBuildFile; fileRef = EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */; };
 		EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC60D64819D4559F00E03AAB /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
 		EC63A8351A6E701D00708A75 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
@@ -569,7 +577,6 @@
 		EC7C1AEC1A25CFFB00BE62DC /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		EC7C1AEE1A25CFFB00BE62DC /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		EC7C1AEF1A25CFFB00BE62DC /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
-		EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
 		EC7C1B561A25FBB900BE62DC /* ValidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */; };
 		EC7C1B581A25FBC700BE62DC /* InvalidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */; };
 		EC7C1B591A25FBFB00BE62DC /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
@@ -771,6 +778,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 8375DD351855C383009435B4;
 			remoteInfo = "Digipost-Test-Dpost";
+		};
+		EC5E76BA1B0266360097CDF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC2DCB3B1AB84EAB0063755E;
+			remoteInfo = DigipostBeta;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -983,6 +997,9 @@
 		EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digipost_Test_Dpost_Tests.swift; sourceTree = "<group>"; };
 		EC56AAC91A24C7DD00720109 /* rootresource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rootresource.json; sourceTree = "<group>"; };
 		EC56AACB1A24C92900720109 /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
+		EC5E76B41B0266360097CDF9 /* DigipostModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC5E76B71B0266360097CDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC5E76C41B02679F0097CDF9 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
 		EC63A8341A6E701D00708A75 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		EC63A83D1A6E74EB00708A75 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
@@ -999,7 +1016,7 @@
 		EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadTableViewDataSource.h; sourceTree = "<group>"; };
 		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
 		EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
-		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTests.swift; sourceTree = "<group>"; };
+		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthTests.swift; path = "../Digipost-Test-Dpost Tests/OAuthTests.swift"; sourceTree = "<group>"; };
 		EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthToken.json; sourceTree = "<group>"; };
 		EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidOAuthToken.json; sourceTree = "<group>"; };
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
@@ -1150,6 +1167,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC5E76B11B0266360097CDF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5E76DF1B0269CA0097CDF9 /* UIKit.framework in Frameworks */,
+				EC5E76C51B02679F0097CDF9 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1205,6 +1231,7 @@
 				ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
+				EC5E76B51B0266360097CDF9 /* DigipostModelTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
 				EC30215F1AB70B9F00812502 /* GoogleAnalytics */,
@@ -1223,6 +1250,7 @@
 				EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */,
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
 				EC2DCC911AB864AB0063755E /* Digipost-qa2.app */,
+				EC5E76B41B0266360097CDF9 /* DigipostModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1230,6 +1258,7 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC5E76C41B02679F0097CDF9 /* Pods.framework */,
 				EC2DCBEA1AB864990063755E /* Pods.framework */,
 				EC30219B1AB8483700812502 /* Pods.framework */,
 				EC3021911AB70E0A00812502 /* AdSupport.framework */,
@@ -1634,7 +1663,6 @@
 				EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */,
 				EC63A83D1A6E74EB00708A75 /* APITests.swift */,
 				EC63A8431A6E7C1800708A75 /* ModelTests.swift */,
-				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */,
 				EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */,
 				EC141E181A6F956500EAAA3A /* json */,
@@ -1647,6 +1675,23 @@
 			isa = PBXGroup;
 			children = (
 				EC56AAC11A24C7BA00720109 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC5E76B51B0266360097CDF9 /* DigipostModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
+				EC5E76B61B0266360097CDF9 /* Supporting Files */,
+			);
+			path = DigipostModelTests;
+			sourceTree = "<group>";
+		};
+		EC5E76B61B0266360097CDF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC5E76B71B0266360097CDF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1754,6 +1799,25 @@
 			productReference = EC56AABE1A24C7BA00720109 /* Digipost-Test-Dpost Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		EC5E76B31B0266360097CDF9 /* DigipostModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC5E76BC1B0266370097CDF9 /* Build configuration list for PBXNativeTarget "DigipostModelTests" */;
+			buildPhases = (
+				EC5E76B01B0266360097CDF9 /* Sources */,
+				EC5E76B11B0266360097CDF9 /* Frameworks */,
+				EC5E76B21B0266360097CDF9 /* Resources */,
+				EC5E76C01B0266DC0097CDF9 /* Copy pods resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EC5E76BB1B0266360097CDF9 /* PBXTargetDependency */,
+			);
+			name = DigipostModelTests;
+			productName = DigipostModelTests;
+			productReference = EC5E76B41B0266360097CDF9 /* DigipostModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1785,6 +1849,10 @@
 						CreatedOnToolsVersion = 6.1;
 						TestTargetID = 8375DD351855C383009435B4;
 					};
+					EC5E76B31B0266360097CDF9 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = EC2DCB3B1AB84EAB0063755E;
+					};
 				};
 			};
 			buildConfigurationList = 83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */;
@@ -1806,6 +1874,7 @@
 				8375DD351855C383009435B4 /* Digipost-Test-Dpost */,
 				EC56AABD1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */,
+				EC5E76B31B0266360097CDF9 /* DigipostModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1927,6 +1996,16 @@
 				EC1D6B791A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				31B13B141A6E92050052792C /* Images-Shared.xcassets in Resources */,
 				EC4146EE1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC5E76B21B0266360097CDF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5E77211B026DCD0097CDF9 /* ValidOAuthToken.json in Resources */,
+				EC5E77231B026DCD0097CDF9 /* ValidOAuthTokenHigherSecurity.json in Resources */,
+				EC5E77221B026DCD0097CDF9 /* InvalidOAuthToken.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2127,6 +2206,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EC5E76C01B0266DC0097CDF9 /* Copy pods resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy pods resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost-Test-Dpost Tests/Pods-Digipost-Test-Dpost Tests-resources.sh\"";
 		};
 		EC76A6BA19BF121900D80B01 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2553,6 +2646,7 @@
 				EC2DCBF21AB864AB0063755E /* UploadImageController.swift in Sources */,
 				EC2DCBF31AB864AB0063755E /* POSDocumentTableViewCell.m in Sources */,
 				EC2DCBF41AB864AB0063755E /* POSReceiptTableViewCell.m in Sources */,
+				EC5E76C31B0267320097CDF9 /* POSOAuthManager.m in Sources */,
 				EC2DCBF51AB864AB0063755E /* POSLetterViewController.m in Sources */,
 				EC2DCBF61AB864AB0063755E /* NSString+RandomNumber.m in Sources */,
 				EC2DCBF71AB864AB0063755E /* Debug.swift in Sources */,
@@ -2641,7 +2735,6 @@
 				EC2DCC4B1AB864AB0063755E /* NSString+SHA1String.m in Sources */,
 				EC2DCC4C1AB864AB0063755E /* POSNewFolderCollectionViewCell.m in Sources */,
 				EC2DCC4D1AB864AB0063755E /* UploadMenuTableViewCell.swift in Sources */,
-				EC2DCC4E1AB864AB0063755E /* POSOAuthManager.m in Sources */,
 				EC2DCC4F1AB864AB0063755E /* APIResponse.swift in Sources */,
 				EC2DCC501AB864AB0063755E /* POSMailbox.m in Sources */,
 				EC2DCC511AB864AB0063755E /* POSNoRotationNavigationController.m in Sources */,
@@ -2798,7 +2891,6 @@
 				ECF486D31A471A1A00E97519 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				ECF486EA1A471A2E00E97519 /* NSError+ExtraInfo.m in Sources */,
 				ECF486E91A471A2E00E97519 /* NSURLRequest+QueryParameters.m in Sources */,
-				EC7C1AF11A25D3C400BE62DC /* OAuthTests.swift in Sources */,
 				ECF486D71A471A1F00E97519 /* POSUploadViewController.m in Sources */,
 				ECF486CE1A471A1200E97519 /* POSReceiptsTableViewDataSource.m in Sources */,
 				ECF4869B1A4715A300E97519 /* POSFileManager.m in Sources */,
@@ -2809,6 +2901,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC5E76B01B0266360097CDF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC5E77201B026D350097CDF9 /* NSDate+Extensions.swift in Sources */,
+				EC5E771E1B026CE20097CDF9 /* OAuthTests.swift in Sources */,
+				EC5E771F1B026D2E0097CDF9 /* OAuthToken.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -2816,6 +2918,11 @@
 			isa = PBXTargetDependency;
 			target = 8375DD351855C383009435B4 /* Digipost-Test-Dpost */;
 			targetProxy = EC56AAC41A24C7BA00720109 /* PBXContainerItemProxy */;
+		};
+		EC5E76BB1B0266360097CDF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC2DCB3B1AB84EAB0063755E /* DigipostBeta */;
+			targetProxy = EC5E76BA1B0266360097CDF9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3347,6 +3454,64 @@
 			};
 			name = Release;
 		};
+		EC5E76BD1B0266370097CDF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DigipostModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost copy.app/Digipost copy";
+			};
+			name = Debug;
+		};
+		EC5E76BE1B0266370097CDF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DigipostModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost copy.app/Digipost copy";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -3400,6 +3565,15 @@
 			buildConfigurations = (
 				EC56AAC61A24C7BA00720109 /* Debug */,
 				EC56AAC71A24C7BA00720109 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC5E76BC1B0266370097CDF9 /* Build configuration list for PBXNativeTarget "DigipostModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC5E76BD1B0266370097CDF9 /* Debug */,
+				EC5E76BE1B0266370097CDF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
