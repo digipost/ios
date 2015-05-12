@@ -147,47 +147,31 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                self.updateBankAccount(uri: uri, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
+            task?.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.sendInvoideToBank(invoice, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure)
+            task?.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized  {
-                self.updateReceiptsInMailboxWithDigipostAddress(digipostAddress, uri: uri, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
+            task?.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.deleteReceipt(receipt, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
+            task?.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
@@ -219,8 +203,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             success()
             return
         }
-        let task = urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
-        validateTokensThenPerformTask(task!)
+        validateFullScope {
+            let task = self.urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
+            task?.resume()
+        }
     }
 
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
@@ -387,20 +373,28 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     private func validateOAuthToken(scope: String, validationSuccess: () -> Void)  {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
-        if (oAuthToken?.accessToken != nil) {
+        if oAuthToken?.hasExpired() == false {
             validationSuccess()
             return
         }
 
         if (oAuthToken?.refreshToken != nil) {
+
             POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: scope, success: {
+
                 validationSuccess()
+
                 }, failure: { (error) -> Void in
+
                     if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
+                    } else {
+                        // TODO: LOG
                     }
+
             })
         } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
+            // TODO: LOG
         }
     }
 
