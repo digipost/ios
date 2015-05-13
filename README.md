@@ -24,6 +24,14 @@ pod install
 ```
 Etter pod-ene er installert, åpne *.xcworkspace*-filen i Xcode. Prosjektet er nå klart til å bygges og kjøres i simulator.
 
+Hvis du bruker rbenv og bundler er også Cocoapods versjonert i `Gemfile`. For å bruke en lokal versjon:
+
+```
+bundle install
+
+./bin/pod install
+```
+
 ## Systemkrav
 
 Digipost for iOS er bygget for iOS versjon 7.
