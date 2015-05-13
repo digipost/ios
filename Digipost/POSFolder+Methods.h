@@ -8,7 +8,7 @@
 
 #import "POSFolder.h"
 // Core Data model entity names
-NSString *const kFolderEntityName;
+extern NSString *const kFolderEntityName;
 
 // Hard-coded folder names that we'll use until all folders are made dynamic in the Digipost system
 extern NSString *const kFolderInboxName;

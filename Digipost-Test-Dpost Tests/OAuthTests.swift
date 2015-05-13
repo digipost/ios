@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 import LUKeychainAccess
 
-class OAuthTests: XCTestCase {
+class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     
     override func setUp() {
         super.setUp()
@@ -18,9 +18,9 @@ class OAuthTests: XCTestCase {
     }
     
     override func tearDown() {
-        LUKeychainAccess.standardKeychainAccess().deleteAll()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        OAuthToken.removeAllTokens()
+        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func jsonDictionaryFromFile(filename: String) -> Dictionary<String, AnyObject> {
@@ -48,23 +48,31 @@ class OAuthTests: XCTestCase {
 //
     func testOauthFromDictionary() {
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let token = OAuthToken(attributes: oAuthDictionary, scope: "scope")
+        let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull)
         XCTAssertNotNil(token, "no valid token was created")
         
     }
     
     func testOauthFromStrings() {
+        LUKeychainAccess.standardKeychainAccess().errorHandler = self
         let accesstoken = "accesstoken"
+        let fierje = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
 
-        let token = OAuthToken(refreshToken: "refresh", accessToken: accesstoken, scope: kOauth2ScopeFull, expiresInSeconds: 15)
+        let token = OAuthToken(refreshToken: "refreifasfkalerjwerw", accessToken: accesstoken, scope: kOauth2ScopeFull, expiresInSeconds: 15)
         println(token?.refreshToken)
+        println(token)
         
         let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         println(fetchedToken?.refreshToken)
         println(fetchedToken?.accessToken)
+        println(fetchedToken?.expires)
 
         XCTAssertNotNil(fetchedToken, "could not store oauthtoken to keychain")
         XCTAssertEqual(fetchedToken!.accessToken!, accesstoken, "wrong accesstoken stored")
+    }
+
+    func keychainAccess(keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
+        println(error)
     }
 //    func testMultipleScopedTokensInKeychain() {
 //        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
