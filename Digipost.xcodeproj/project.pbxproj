@@ -61,6 +61,8 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		87C9E7581B0605F20019AA07 /* Digipost-QA2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E7571B0605F20019AA07 /* Digipost-QA2.plist */; };
+		87C9E75B1B0606670019AA07 /* Digipost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E75A1B0606670019AA07 /* Digipost.plist */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
@@ -676,7 +678,6 @@
 		837574B91891041C00902218 /* POSUploadTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewCell.m; sourceTree = "<group>"; };
 		839FC5851883F61100666350 /* UIViewController+ValidateOpening.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ValidateOpening.h"; sourceTree = "<group>"; };
 		839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ValidateOpening.m"; sourceTree = "<group>"; };
-		83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Enterprise-Info.plist"; sourceTree = "<group>"; };
 		83A31B101855D919007045B9 /* Digipost-Camelon.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Camelon.plist"; sourceTree = "<group>"; };
 		83B6BE9A1897A987006D9B20 /* SHCSplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHCSplitViewController.h; sourceTree = "<group>"; };
 		83B6BE9B1897A987006D9B20 /* SHCSplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHCSplitViewController.m; sourceTree = "<group>"; };
@@ -684,7 +685,6 @@
 		83BAB91B1855C0AC004A7BFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		83BAB91F1855C0AC004A7BFB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		83BAB9231855C0AC004A7BFB /* Digipost-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Digipost-Info.plist"; sourceTree = "<group>"; };
 		83BAB9251855C0AC004A7BFB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83BAB9271855C0AC004A7BFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		83BAB9291855C0AC004A7BFB /* Digipost-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Prefix.pch"; sourceTree = "<group>"; };
@@ -734,7 +734,6 @@
 		83DB4AF3188D963400515022 /* POSBaseEncryptedModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSBaseEncryptedModel.h; sourceTree = "<group>"; };
 		83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSBaseEncryptedModel.m; sourceTree = "<group>"; };
 		83F703571855DD3A003DABE1 /* Digipost.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Digipost.xcconfig; sourceTree = "<group>"; };
-		83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Enterprise.xcconfig"; sourceTree = "<group>"; };
 		83F703591855DED4003DABE1 /* Digipost-Camelon.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "Digipost-Camelon.xcconfig"; sourceTree = "<group>"; };
 		83F7035F1855E7A9003DABE1 /* POSFoldersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFoldersViewController.h; sourceTree = "<group>"; };
 		83F703601855E7A9003DABE1 /* POSFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFoldersViewController.m; sourceTree = "<group>"; };
@@ -750,6 +749,9 @@
 		83F7037F18573641003DABE1 /* POSOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		87C9E7571B0605F20019AA07 /* Digipost-QA2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-QA2.plist"; sourceTree = "<group>"; };
+		87C9E7591B0606190019AA07 /* DigipostBeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DigipostBeta.plist; sourceTree = "<group>"; };
+		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
@@ -803,7 +805,6 @@
 		EC2C82D8192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSAccountViewTableViewDataSource.h; sourceTree = "<group>"; };
 		EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSAccountViewTableViewDataSource.m; sourceTree = "<group>"; };
 		EC2DCBE01AB84EAB0063755E /* Digipost copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC2DCBE11AB84EAC0063755E /* DigipostBeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = DigipostBeta.plist; path = /Users/hakonbogen/dev/Digi2Real/DigipostBeta.plist; sourceTree = "<absolute>"; };
 		EC2DCBEA1AB864990063755E /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC2DCC911AB864AB0063755E /* Digipost-qa2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-qa2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+ModelAssertions.swift"; sourceTree = "<group>"; };
@@ -844,7 +845,6 @@
 		EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Size.swift"; sourceTree = "<group>"; };
 		EC5508511958563F00B7B8E8 /* POSNoRotationNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNoRotationNavigationController.h; sourceTree = "<group>"; };
 		EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNoRotationNavigationController.m; sourceTree = "<group>"; };
-		EC55F4311A2C5ACC00A3192C /* Digipost-QA2.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost-QA2.plist"; path = "/Users/hakonbogen/dev/Digi2Real/Digipost-QA2.plist"; sourceTree = "<absolute>"; };
 		EC55F4321A2C5C1A00A3192C /* Digipost-QA2.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-QA2.xcconfig"; sourceTree = "<group>"; };
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		EC56AAC11A24C7BA00720109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1173,16 +1173,14 @@
 				EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */,
 				ECAB707918C0997A009731FF /* oauth.h */,
 				83BAB9291855C0AC004A7BFB /* Digipost-Prefix.pch */,
-				83BAB9231855C0AC004A7BFB /* Digipost-Info.plist */,
+				87C9E75A1B0606670019AA07 /* Digipost.plist */,
 				83F703571855DD3A003DABE1 /* Digipost.xcconfig */,
-				EC2DCBE11AB84EAC0063755E /* DigipostBeta.plist */,
+				87C9E7591B0606190019AA07 /* DigipostBeta.plist */,
 				EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */,
+				87C9E7571B0605F20019AA07 /* Digipost-QA2.plist */,
 				EC55F4321A2C5C1A00A3192C /* Digipost-QA2.xcconfig */,
-				EC55F4311A2C5ACC00A3192C /* Digipost-QA2.plist */,
 				83A31B101855D919007045B9 /* Digipost-Camelon.plist */,
 				83F703591855DED4003DABE1 /* Digipost-Camelon.xcconfig */,
-				83A31B0F1855D919007045B9 /* Digipost-Enterprise-Info.plist */,
-				83F703581855DEBD003DABE1 /* Digipost-Enterprise.xcconfig */,
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83F7038418573C3A003DABE1 /* Localizable.strings */,
 				83BAB9271855C0AC004A7BFB /* main.m */,
@@ -1759,6 +1757,7 @@
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
+				87C9E75B1B0606670019AA07 /* Digipost.plist in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
@@ -1837,6 +1836,7 @@
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */,
+				87C9E7581B0605F20019AA07 /* Digipost-QA2.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
