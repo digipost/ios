@@ -97,8 +97,8 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
-    // When localhost is trying to load, it means the app is trying to log in with OAuth2
-    if ([request.URL.host isEqualToString:@"localhost"]) {
+    // Trap requests to the URL used when OAuth authentication dialog finishes
+    if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
 
         if (parameters[kOAuth2State]) {
