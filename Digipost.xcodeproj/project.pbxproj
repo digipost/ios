@@ -398,6 +398,142 @@
 		EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		EC27518B1B061D010007125D /* DigipostModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27518A1B061D010007125D /* DigipostModelTests.swift */; };
+		EC2751911B061D550007125D /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
+		EC2751921B061D550007125D /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
+		EC2751931B061D550007125D /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
+		EC2751941B061D550007125D /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
+		EC2751951B061D550007125D /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
+		EC2751961B061D550007125D /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
+		EC2751971B061D550007125D /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
+		EC2751981B061D550007125D /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
+		EC2751991B061D550007125D /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
+		EC27519A1B061D550007125D /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
+		EC27519B1B061D550007125D /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */; };
+		EC27519C1B061D550007125D /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
+		EC27519D1B061D550007125D /* POSReceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AE5188D1F4E00515022 /* POSReceipt.m */; };
+		EC27519E1B061D550007125D /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
+		EC27519F1B061D5A0007125D /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
+		EC2751A01B061D5A0007125D /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
+		EC2751A11B061D5A0007125D /* POSAPIManager+PrivateMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB1354A1938C243000F9F7F /* POSAPIManager+PrivateMethods.m */; };
+		EC2751A21B061D5A0007125D /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
+		EC2751A31B061D5A0007125D /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
+		EC2751A41B061D5A0007125D /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
+		EC2751A51B061D5A0007125D /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
+		EC2751A61B061D5A0007125D /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
+		EC2751A71B061D5A0007125D /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
+		EC2751A81B061D5A0007125D /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
+		EC2751A91B061D5A0007125D /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
+		EC2751AA1B061D5A0007125D /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
+		EC2751AB1B061D5A0007125D /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
+		EC2751AC1B061D5A0007125D /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
+		EC2751AD1B061D5A0007125D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
+		EC2751AE1B061D5A0007125D /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
+		EC2751AF1B061D5A0007125D /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
+		EC2751B01B061D5A0007125D /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
+		EC2751B11B061D5A0007125D /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
+		EC2751B21B061D5A0007125D /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
+		EC2751B31B061D5A0007125D /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
+		EC2751B41B061D5A0007125D /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
+		EC2751B51B061D680007125D /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
+		EC2751B61B061D680007125D /* SHCSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B6BE9B1897A987006D9B20 /* SHCSplitViewController.m */; };
+		EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */; };
+		EC2751B81B061D680007125D /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
+		EC2751B91B061D680007125D /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
+		EC2751BA1B061D6C0007125D /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
+		EC2751BB1B061D6C0007125D /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
+		EC2751BC1B061D6E0007125D /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
+		EC2751BD1B061D720007125D /* POSFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* POSFoldersViewController.m */; };
+		EC2751BE1B061D720007125D /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
+		EC2751BF1B061D720007125D /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
+		EC2751C01B061D720007125D /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
+		EC2751C11B061D720007125D /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
+		EC2751C21B061D720007125D /* POSFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* POSFolderTableViewCell.m */; };
+		EC2751C31B061D760007125D /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
+		EC2751C41B061D760007125D /* POSDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* POSDocumentTableViewCell.m */; };
+		EC2751C51B061D760007125D /* POSReceiptFoldersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEA188D287600515022 /* POSReceiptFoldersTableViewController.m */; };
+		EC2751C61B061D760007125D /* POSReceiptFolderTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D50192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m */; };
+		EC2751C71B061D760007125D /* POSReceiptFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5519238E68003BD200 /* POSReceiptFolderTableViewCell.m */; };
+		EC2751C81B061D760007125D /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
+		EC2751C91B061D760007125D /* POSReceiptsTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */; };
+		EC2751CA1B061D760007125D /* POSReceiptTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AEF188D419A00515022 /* POSReceiptTableViewCell.m */; };
+		EC2751CB1B061D760007125D /* POSUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* POSUploadTableViewCell.m */; };
+		EC2751CC1B061D790007125D /* POSLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* POSLetterViewController.m */; };
+		EC2751CD1B061D7E0007125D /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
+		EC2751CE1B061D7E0007125D /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
+		EC2751CF1B061D7E0007125D /* POSLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */; };
+		EC2751D01B061D7E0007125D /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
+		EC2751D11B061D820007125D /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
+		EC2751D21B061D820007125D /* POSUploadTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */; };
+		EC2751D31B061D890007125D /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
+		EC2751D41B061D890007125D /* POSAPIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFB9185861A80080A833 /* POSAPIManager.m */; };
+		EC2751D51B061D960007125D /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */; };
+		EC2751D61B061DBC0007125D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
+		EC2751D71B061DBC0007125D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
+		EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
+		EC2751D91B061DBC0007125D /* APIClient+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */; };
+		EC2751DA1B061DBC0007125D /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
+		EC2751DB1B061DBC0007125D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
+		EC2751DC1B061DBC0007125D /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
+		EC2751DD1B061DBC0007125D /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
+		EC2751DE1B061DBF0007125D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
+		EC2751DF1B061DBF0007125D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
+		EC2751E01B061DC20007125D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDB9A021A5A904E0013DF4F /* Constants.swift */; };
+		EC2751E11B061DC80007125D /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
+		EC2751E21B061DC80007125D /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
+		EC2751E31B061DC80007125D /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
+		EC2751E41B061DC80007125D /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
+		EC2751E51B061DC80007125D /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B64621A66928D00AB6085 /* Dispatch.swift */; };
+		EC2751E61B061DC80007125D /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
+		EC2751E71B061DC80007125D /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
+		EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
+		EC2751E91B061DC80007125D /* UIColor+DigipostColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */; };
+		EC2751EA1B061DC80007125D /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
+		EC2751EB1B061DC80007125D /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
+		EC2751EC1B061DC80007125D /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
+		EC2751ED1B061DC80007125D /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
+		EC2751EE1B061DC80007125D /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
+		EC2751EF1B061DC80007125D /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
+		EC2751F01B061DC80007125D /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
+		EC2751F11B061DC80007125D /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
+		EC2751F21B061DC80007125D /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		EC2751F31B061DCC0007125D /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
+		EC2751F41B061DD00007125D /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
+		EC2751F51B061DD00007125D /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
+		EC2751F61B061DD00007125D /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
+		EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
+		EC2751F81B061DD00007125D /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
+		EC2751F91B061DD50007125D /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
+		EC2751FA1B061DD50007125D /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
+		EC2751FB1B061DD50007125D /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
+		EC2751FC1B061DD50007125D /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779561AAEFCA800229D02 /* UploadView.swift */; };
+		EC2751FD1B061DD50007125D /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
+		EC2751FE1B061DD50007125D /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
+		EC2751FF1B061DD80007125D /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
+		EC2752001B061DDD0007125D /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		EC2752011B061DDD0007125D /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
+		EC2752021B061DDD0007125D /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
+		EC2752031B061DDD0007125D /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
+		EC2752041B061DE00007125D /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
+		EC2752051B061DE30007125D /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
+		EC2752061B061DE30007125D /* UnlockHighAuthenticationLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */; };
+		EC2752071B061DE80007125D /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
+		EC2752081B061DE80007125D /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
+		EC2752091B061DE80007125D /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
+		EC27520A1B061DE80007125D /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
+		EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
+		EC27520C1B061E060007125D /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
+		EC27520D1B061E060007125D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
+		EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
+		EC27520F1B061E120007125D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
+		EC2752101B061E160007125D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
+		EC2752111B061E1B0007125D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
+		EC2752121B061E250007125D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
+		EC2752131B061E2F0007125D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
+		EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218A1AB70DA800812502 /* libsqlite3.dylib */; };
+		EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
+		EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
+		EC27521C1B0622130007125D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27521B1B0622130007125D /* Pods.framework */; };
 		EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B64621A66928D00AB6085 /* Dispatch.swift */; };
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
@@ -958,6 +1094,11 @@
 		EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImageView+Color.swift"; path = "../UIImageView+Color.swift"; sourceTree = "<group>"; };
 		EC25AADB189A7F1100709AA2 /* UIView+AutoLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoLayout.h"; sourceTree = "<group>"; };
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
+		EC2751861B061D010007125D /* DigipostModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC2751891B061D010007125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC27518A1B061D010007125D /* DigipostModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostModelTests.swift; sourceTree = "<group>"; };
+		EC2752171B061E6E0007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		EC27521B1B0622130007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverView.h; sourceTree = "<group>"; };
 		EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverView.m; sourceTree = "<group>"; };
 		EC2B64621A66928D00AB6085 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
@@ -1170,6 +1311,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EC2751831B061D000007125D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC27521C1B0622130007125D /* Pods.framework in Frameworks */,
+				EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */,
+				EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */,
+				EC2752131B061E2F0007125D /* CoreData.framework in Frameworks */,
+				EC2752121B061E250007125D /* AdSupport.framework in Frameworks */,
+				EC2752111B061E1B0007125D /* MobileCoreServices.framework in Frameworks */,
+				EC2752101B061E160007125D /* UIKit.framework in Frameworks */,
+				EC27520F1B061E120007125D /* Foundation.framework in Frameworks */,
+				EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */,
+				EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */,
+				EC27520C1B061E060007125D /* libAdIdAccess.a in Frameworks */,
+				EC27520D1B061E060007125D /* libGoogleAnalyticsServices.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EC2DCBBC1AB84EAB0063755E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1277,6 +1437,7 @@
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				EC9E79081ADE8E7800EED08B /* DigipostTests */,
 				EC65BE5A1AEF7E7300E9B46F /* DigipostUITests */,
+				EC2751871B061D010007125D /* DigipostModelTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
 				EC30215F1AB70B9F00812502 /* GoogleAnalytics */,
@@ -1294,6 +1455,7 @@
 				EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */,
 				EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */,
 				87C9E7FF1B0610BC0019AA07 /* Digipost-localhost.app */,
+				EC2751861B061D010007125D /* DigipostModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1301,6 +1463,8 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EC27521B1B0622130007125D /* Pods.framework */,
+				EC2752171B061E6E0007125D /* Pods.framework */,
 				EC0D2D211AE7831B00595A61 /* Pods.framework */,
 				ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */,
 				ECAB1CFC1AE4E87800D72D41 /* Pods.framework */,
@@ -1664,6 +1828,23 @@
 			name = "LetterView popup";
 			sourceTree = "<group>";
 		};
+		EC2751871B061D010007125D /* DigipostModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				EC27518A1B061D010007125D /* DigipostModelTests.swift */,
+				EC2751881B061D010007125D /* Supporting Files */,
+			);
+			path = DigipostModelTests;
+			sourceTree = "<group>";
+		};
+		EC2751881B061D010007125D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EC2751891B061D010007125D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		EC2C82D7192A176400A6D4B8 /* Accounts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1830,6 +2011,25 @@
 			productReference = EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EC2751851B061D000007125D /* DigipostModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EC2751901B061D020007125D /* Build configuration list for PBXNativeTarget "DigipostModelTests" */;
+			buildPhases = (
+				EC2751821B061D000007125D /* Sources */,
+				EC2751831B061D000007125D /* Frameworks */,
+				EC2751841B061D000007125D /* Resources */,
+				EC2752191B061ED60007125D /* Copy pods resources */,
+				EC27521A1B061EFA0007125D /* Embed pods frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DigipostModelTests;
+			productName = DigipostModelTests;
+			productReference = EC2751861B061D010007125D /* DigipostModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EC2DCB3B1AB84EAB0063755E /* DigipostBeta */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC2DCBDD1AB84EAB0063755E /* Build configuration list for PBXNativeTarget "DigipostBeta" */;
@@ -1910,6 +2110,9 @@
 							};
 						};
 					};
+					EC2751851B061D000007125D = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					EC2DCB3B1AB84EAB0063755E = {
 						DevelopmentTeam = 4E3PDM5H84;
 					};
@@ -1942,6 +2145,7 @@
 				EC0D2D251AE786A800595A61 /* Digipost-Camelon */,
 				87C9E75C1B0610BC0019AA07 /* Digipost-localhost */,
 				EC65BE581AEF7E7200E9B46F /* DigipostUITests */,
+				EC2751851B061D000007125D /* DigipostModelTests */,
 			);
 		};
 /* End PBXProject section */
@@ -2017,6 +2221,13 @@
 				EC0D2DE11AE786A800595A61 /* InfoPlist.strings in Resources */,
 				EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */,
 				EC0D2DE51AE786A800595A61 /* AccountTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC2751841B061D000007125D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2258,6 +2469,34 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EC2752191B061ED60007125D /* Copy pods resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy pods resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
+		};
+		EC27521A1B061EFA0007125D /* Embed pods frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed pods frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"";
 		};
 		EC2DCB3C1AB84EAB0063755E /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2759,6 +2998,137 @@
 				EC0D2DBC1AE786A800595A61 /* POSFolder+Methods.m in Sources */,
 				EC0D2DBD1AE786A800595A61 /* APIError.swift in Sources */,
 				EC0D2DBF1AE786A800595A61 /* UploadView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC2751821B061D000007125D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC27519B1B061D550007125D /* POSDocument+Methods.m in Sources */,
+				EC2751C41B061D760007125D /* POSDocumentTableViewCell.m in Sources */,
+				EC2751E31B061DC80007125D /* Localization.swift in Sources */,
+				EC2751D41B061D890007125D /* POSAPIManager.m in Sources */,
+				EC2751BB1B061D6C0007125D /* SHCLoginViewController.m in Sources */,
+				EC2751C51B061D760007125D /* POSReceiptFoldersTableViewController.m in Sources */,
+				EC2751941B061D550007125D /* POSInvoice.m in Sources */,
+				EC27519E1B061D550007125D /* POSBaseEncryptedModel.m in Sources */,
+				EC2751DC1B061DBC0007125D /* OAuthToken.swift in Sources */,
+				EC2751F81B061DD00007125D /* ExtendedTouchView.swift in Sources */,
+				EC2751B31B061D5A0007125D /* UIViewController+ValidateOpening.m in Sources */,
+				EC2751DE1B061DBF0007125D /* POSInvoice+Methods.swift in Sources */,
+				EC2752001B061DDD0007125D /* AccountViewController.swift in Sources */,
+				EC2751A41B061D5A0007125D /* AHKActionSheet+Convenience.m in Sources */,
+				EC2751E71B061DC80007125D /* String+Extensions.swift in Sources */,
+				EC2751F21B061DC80007125D /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
+				EC2751A51B061D5A0007125D /* NSString+CoreDataConvenience.m in Sources */,
+				EC2751991B061D550007125D /* POSFolder+Methods.m in Sources */,
+				EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */,
+				EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */,
+				EC2751AE1B061D5A0007125D /* NSString+RandomNumber.m in Sources */,
+				EC2751EB1B061DC80007125D /* UIImage+Localization.swift in Sources */,
+				EC2751DA1B061DBC0007125D /* APIClient+URLSessionTask.swift in Sources */,
+				EC2751A01B061D5A0007125D /* POSNoRotationNavigationController.m in Sources */,
+				EC2751D11B061D820007125D /* POSUploadViewController.m in Sources */,
+				EC2751B81B061D680007125D /* SHCAttachmentTableViewCell.m in Sources */,
+				EC2751F01B061DC80007125D /* UIWindow+Navigation.swift in Sources */,
+				EC2751A91B061D5A0007125D /* UIRefreshControl+Additions.m in Sources */,
+				EC2751AA1B061D5A0007125D /* UIViewController+BackButton.m in Sources */,
+				EC2751A61B061D5A0007125D /* UIColor+Convenience.m in Sources */,
+				EC27520A1B061DE80007125D /* UploadImageController.swift in Sources */,
+				EC2751F31B061DCC0007125D /* UIImageView+Color.swift in Sources */,
+				EC2751B11B061D5A0007125D /* NSString+SHA1String.m in Sources */,
+				EC2752011B061DDD0007125D /* AccountTableViewDataSource.swift in Sources */,
+				EC2751E41B061DC80007125D /* UIAlertController+APIError.swift in Sources */,
+				EC2751C61B061D760007125D /* POSReceiptFolderTableViewDataSource.m in Sources */,
+				EC2751B61B061D680007125D /* SHCSplitViewController.m in Sources */,
+				EC2751AF1B061D5A0007125D /* NSURLRequest+QueryParameters.m in Sources */,
+				EC27519F1B061D5A0007125D /* NSNumber+JsonParsing.m in Sources */,
+				EC2751BC1B061D6E0007125D /* POSAccountViewTableViewDataSource.m in Sources */,
+				EC2751BE1B061D720007125D /* POSNewFolderViewController.m in Sources */,
+				EC2751CF1B061D7E0007125D /* POSLetterPopoverTableViewMobelObject.m in Sources */,
+				EC2751E21B061DC80007125D /* Debug.swift in Sources */,
+				EC2752071B061DE80007125D /* UploadMenuViewController.swift in Sources */,
+				EC2751C71B061D760007125D /* POSReceiptFolderTableViewCell.m in Sources */,
+				EC2751B21B061D5A0007125D /* UIViewController+NeedsReload.m in Sources */,
+				EC2751BA1B061D6C0007125D /* SHCOAuthViewController.m in Sources */,
+				EC2751D61B061DBC0007125D /* APIError.swift in Sources */,
+				EC2751961B061D550007125D /* POSMailbox+Methods.m in Sources */,
+				EC2752041B061DE00007125D /* UIImage+TintColor.swift in Sources */,
+				EC2752061B061DE30007125D /* UnlockHighAuthenticationLevelView.swift in Sources */,
+				EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */,
+				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
+				EC2751EC1B061DC80007125D /* UIImage+Size.swift in Sources */,
+				EC2751C21B061D720007125D /* POSFolderTableViewCell.m in Sources */,
+				EC2751CB1B061D760007125D /* POSUploadTableViewCell.m in Sources */,
+				EC2751981B061D550007125D /* POSAttachment.m in Sources */,
+				EC2751DB1B061DBC0007125D /* APIResponse.swift in Sources */,
+				EC2751E51B061DC80007125D /* Dispatch.swift in Sources */,
+				EC2751D71B061DBC0007125D /* APIClient.swift in Sources */,
+				EC2751C91B061D760007125D /* POSReceiptsTableViewDataSource.m in Sources */,
+				EC2751D31B061D890007125D /* POSOAuthManager.m in Sources */,
+				EC2751A11B061D5A0007125D /* POSAPIManager+PrivateMethods.m in Sources */,
+				EC2751C01B061D720007125D /* POSFolderIcon.m in Sources */,
+				EC2751B41B061D5A0007125D /* NSFetchedResultsController+Additions.m in Sources */,
+				EC2751BF1B061D720007125D /* POSNewFolderCollectionViewDataSource.m in Sources */,
+				EC2751AB1B061D5A0007125D /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
+				EC2751DF1B061DBF0007125D /* POSAttachment+Methods.swift in Sources */,
+				EC2751D51B061D960007125D /* NSURLResponse+HTTP.swift in Sources */,
+				EC2751EE1B061DC80007125D /* UINavigationController+Extensions.swift in Sources */,
+				EC2751CE1B061D7E0007125D /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				EC2751CD1B061D7E0007125D /* POSLetterPopoverView.m in Sources */,
+				EC2752021B061DDD0007125D /* AccountTableViewCell.swift in Sources */,
+				EC27519D1B061D550007125D /* POSReceipt.m in Sources */,
+				EC2751EA1B061DC80007125D /* UIFont+DigipostFonts.swift in Sources */,
+				EC27519C1B061D550007125D /* POSDocument.m in Sources */,
+				EC2751CC1B061D790007125D /* POSLetterViewController.m in Sources */,
+				EC2751F41B061DD00007125D /* Guide.swift in Sources */,
+				EC2752091B061DE80007125D /* UploadMenuTableViewCell.swift in Sources */,
+				EC2751911B061D550007125D /* POSModelManager.m in Sources */,
+				EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */,
+				EC2751B91B061D680007125D /* SHCBaseTableViewController.m in Sources */,
+				EC2751F91B061DD50007125D /* PeopleView.swift in Sources */,
+				EC2751951B061D550007125D /* POSRootResource.m in Sources */,
+				EC27518B1B061D010007125D /* DigipostModelTests.swift in Sources */,
+				EC2751971B061D550007125D /* POSMailbox.m in Sources */,
+				EC2751C31B061D760007125D /* POSDocumentsViewController.m in Sources */,
+				EC2751B51B061D680007125D /* SHCAppDelegate.m in Sources */,
+				EC2751C11B061D720007125D /* POSNewFolderCollectionViewCell.m in Sources */,
+				EC2751CA1B061D760007125D /* POSReceiptTableViewCell.m in Sources */,
+				EC2751F11B061DC80007125D /* UIScrollViewExtensions.swift in Sources */,
+				EC2751C81B061D760007125D /* POSReceiptsViewController.m in Sources */,
+				EC2751D01B061D7E0007125D /* POSLetterPopoverTableViewCell.m in Sources */,
+				EC2751AC1B061D5A0007125D /* UIView+AutoLayout.m in Sources */,
+				EC2751D21B061D820007125D /* POSUploadTableViewDataSource.m in Sources */,
+				EC2751E61B061DC80007125D /* NSDate+Extensions.swift in Sources */,
+				EC2751F61B061DD00007125D /* NewFeaturesViewController.swift in Sources */,
+				EC2751FA1B061DD50007125D /* QCMethod.swift in Sources */,
+				EC2752051B061DE30007125D /* POSLetterViewController+Additions.swift in Sources */,
+				EC2751D91B061DBC0007125D /* APIClient+Folder.swift in Sources */,
+				EC2751931B061D550007125D /* POSNotice.m in Sources */,
+				EC2751A81B061D5A0007125D /* UIViewController+Additions.m in Sources */,
+				EC2751E11B061DC80007125D /* UIDevice+Extension.swift in Sources */,
+				EC2751A71B061D5A0007125D /* NSPredicate+CommonPredicates.m in Sources */,
+				EC2751A31B061D5A0007125D /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
+				EC2751F51B061DD00007125D /* WhatsNewGuideItem.swift in Sources */,
+				EC2751A21B061D5A0007125D /* NSString+Convenience.m in Sources */,
+				EC2751FD1B061DD50007125D /* OnboardingViewController.swift in Sources */,
+				EC2751ED1B061DC80007125D /* UIToolbar+Actions.swift in Sources */,
+				EC2751FC1B061DD50007125D /* UploadView.swift in Sources */,
+				EC27519A1B061D550007125D /* POSFolder.m in Sources */,
+				EC2751FB1B061DD50007125D /* ReceiptView.swift in Sources */,
+				EC2751921B061D550007125D /* POSFileManager.m in Sources */,
+				EC2751DD1B061DBC0007125D /* NSManagedObject+Attributes.swift in Sources */,
+				EC2751EF1B061DC80007125D /* UIWebView+Accessability.swift in Sources */,
+				EC2751AD1B061D5A0007125D /* UILabel+Digipost.m in Sources */,
+				EC2751E91B061DC80007125D /* UIColor+DigipostColors.swift in Sources */,
+				EC2752081B061DE80007125D /* UploadMenuDataSource.swift in Sources */,
+				EC2752031B061DDD0007125D /* MainAccountTableViewCell.swift in Sources */,
+				EC2751FE1B061DD50007125D /* OnboardingLoginViewController.swift in Sources */,
+				EC2751B01B061D5A0007125D /* NSError+ExtraInfo.m in Sources */,
+				EC2751FF1B061DD80007125D /* IncreaseSecurityLevelViewController.swift in Sources */,
+				EC2751BD1B061D720007125D /* POSFoldersViewController.m in Sources */,
+				EC2751E01B061DC20007125D /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3427,6 +3797,69 @@
 			};
 			name = Release;
 		};
+		EC27518E1B061D020007125D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83F703571855DD3A003DABE1 /* Digipost.xcconfig */;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DigipostModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GAI",
+				);
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EC27518F1B061D020007125D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Debug-iphoneos",
+				);
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = DigipostModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/GAI",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+			};
+			name = Release;
+		};
 		EC2DCBDE1AB84EAB0063755E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */;
@@ -3682,6 +4115,15 @@
 			buildConfigurations = (
 				EC0D2DE91AE786A800595A61 /* Debug */,
 				EC0D2DEA1AE786A800595A61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EC2751901B061D020007125D /* Build configuration list for PBXNativeTarget "DigipostModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC27518E1B061D020007125D /* Debug */,
+				EC27518F1B061D020007125D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
