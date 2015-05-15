@@ -336,6 +336,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
@@ -344,26 +345,26 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 self.uploadProgress?.completedUnitCount = totalSent
             })
         }
+        validateFullScope { () -> Void in
+            let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.removeTemporaryUploadFiles()
+                    self.isUploadingFile = false
+                    if self.isUnauthorized(response as! NSHTTPURLResponse?) {
+                        self.removeAccessTokenUsedInLastRequest()
+                        self.uploadFile(url: url, folder: folder, success: success, failure: failure)
+                    } else if (error != nil ){
+                        failure(error: APIError(error: error!))
+                    }
 
-        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                self.removeTemporaryUploadFiles()
-                self.isUploadingFile = false
-                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                    self.removeAccessTokenUsedInLastRequest()
-                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-                } else if (error != nil ){
-                    failure(error: APIError(error: error!))
-                }
-
-                if success != nil {
-                    success!()
-                }
+                    if success != nil {
+                        success!()
+                    }
+                })
             })
-        })
-
+            task.resume()
+        }
         self.isUploadingFile = true
-        validateTokensThenPerformTask(task)
     }
 
     func removeTemporaryUploadFiles () {
