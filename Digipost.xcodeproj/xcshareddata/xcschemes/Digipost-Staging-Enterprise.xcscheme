@@ -43,7 +43,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC0D2D251AE786A800595A61"
-               BuildableName = "Digipost-QA-2 copy.app"
+               BuildableName = "Digipost-Camelon.app"
                BlueprintName = "Digipost-Camelon"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>

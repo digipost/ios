@@ -2801,7 +2801,7 @@
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
 					"__IS_BETA__=$(IS_BETA)",
 				);
-				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
+				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2842,7 +2842,7 @@
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
 					"__IS_BETA__=$(IS_BETA)",
 				);
-				INFOPLIST_FILE = "Digipost/Digipost-Info.plist";
+				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2883,7 +2883,7 @@
 					"__IS_BETA__=$(IS_BETA)",
 					STAGING,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Camelon.plist";
+				INFOPLIST_FILE = "Digipost/Digipost-Camelon.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2924,7 +2924,7 @@
 					"__IS_BETA__=$(IS_BETA)",
 					STAGING,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Digipost/Digipost-Camelon.plist";
+				INFOPLIST_FILE = "Digipost/Digipost-Camelon.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -2965,7 +2965,7 @@
 				);
 				HOCKEY_BETA_IDENTIFIER = "\\@\\\"404089363671e36ce59a1d75bc92254a\\\"";
 				HOCKEY_LIVE_IDENTIFIER = "\\@\\\"404089363671e36ce59a1d75bc92254a\\\"";
-				INFOPLIST_FILE = "$(SRCROOT)/DigipostBeta.plist";
+				INFOPLIST_FILE = Digipost/DigipostBeta.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				IS_BETA = 1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3008,7 +3008,7 @@
 				);
 				HOCKEY_BETA_IDENTIFIER = "\\@\\\"404089363671e36ce59a1d75bc92254a\\\"";
 				HOCKEY_LIVE_IDENTIFIER = "\\@\\\"404089363671e36ce59a1d75bc92254a\\\"";
-				INFOPLIST_FILE = "$(SRCROOT)/DigipostBeta.plist";
+				INFOPLIST_FILE = Digipost/DigipostBeta.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				IS_BETA = 1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3049,7 +3049,7 @@
 					"__IS_BETA__=$(IS_BETA)",
 					STAGING,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Digipost-QA2.plist";
+				INFOPLIST_FILE = "Digipost/Digipost-QA2.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -3090,7 +3090,7 @@
 					"__IS_BETA__=$(IS_BETA)",
 					STAGING,
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/Digipost-QA2.plist";
+				INFOPLIST_FILE = "Digipost/Digipost-QA2.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
