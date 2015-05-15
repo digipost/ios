@@ -775,7 +775,7 @@
 		EC0C1A1B1934A5B3007CB53E /* UIColor+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Convenience.h"; sourceTree = "<group>"; };
 		EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Convenience.m"; sourceTree = "<group>"; };
 		EC0D2D211AE7831B00595A61 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
-		EC0D2DEB1AE786A800595A61 /* Digipost-QA-2 copy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-QA-2 copy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Camelon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC0F2B7619B893350019212E /* POSUploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadViewController.h; sourceTree = "<group>"; };
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
@@ -1112,7 +1112,7 @@
 				83BAB9181855C0AC004A7BFB /* Digipost.app */,
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
 				EC2DCC911AB864AB0063755E /* Digipost-qa2.app */,
-				EC0D2DEB1AE786A800595A61 /* Digipost-QA-2 copy.app */,
+				EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */,
 				EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */,
 			);
 			name = Products;
@@ -1627,7 +1627,7 @@
 			);
 			name = "Digipost-Camelon";
 			productName = Digipost;
-			productReference = EC0D2DEB1AE786A800595A61 /* Digipost-QA-2 copy.app */;
+			productReference = EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EC2DCB3B1AB84EAB0063755E /* DigipostBeta */ = {
@@ -2891,7 +2891,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
-				PRODUCT_NAME = "Digipost-QA-2 copy";
+				PRODUCT_NAME = "Digipost-Camelon";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2932,7 +2932,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
-				PRODUCT_NAME = "Digipost-QA-2 copy";
+				PRODUCT_NAME = "Digipost-Camelon";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;

@@ -34,6 +34,20 @@
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC0D2D251AE786A800595A61"
+               BuildableName = "Digipost-QA-2 copy.app"
+               BlueprintName = "Digipost-Camelon"
+               ReferencedContainer = "container:Digipost.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -56,9 +70,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8375DD351855C383009435B4"
-            BuildableName = "Digipost-Test-Dpost.app"
-            BlueprintName = "Digipost-Test-Dpost"
+            BlueprintIdentifier = "EC0D2D251AE786A800595A61"
+            BuildableName = "Digipost-Camelon.app"
+            BlueprintName = "Digipost-Camelon"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -72,12 +86,13 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8375DD351855C383009435B4"
-            BuildableName = "Digipost-Test-Dpost.app"
-            BlueprintName = "Digipost-Test-Dpost"
+            BlueprintIdentifier = "EC0D2D251AE786A800595A61"
+            BuildableName = "Digipost-Camelon.app"
+            BlueprintName = "Digipost-Camelon"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -101,7 +116,8 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8375DD351855C383009435B4"
