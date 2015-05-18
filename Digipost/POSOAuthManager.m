@@ -35,6 +35,7 @@ NSString *const kOAuth2GrantType = @"grant_type";
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
 NSString *const kOAuth2ExpiresIn = @"expires_in";
+NSString *const kOAuth2IDToken = @"id_token";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
@@ -119,6 +120,9 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
               NSString *refreshToken = responseDict[kOAuth2RefreshToken];
               NSString *accessToken = responseDict[kOAuth2AccessToken];
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
+              NSString *idToken = responseDict[kOAuth2IDToken];
+              
+
               OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInSeconds:expiresInSeconds];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
