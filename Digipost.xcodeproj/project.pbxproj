@@ -398,7 +398,6 @@
 		EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		EC2352A21A0BBF1B0071624C /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2352A11A0BBF1B0071624C /* UIImageView+Color.swift */; };
 		EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
-		EC27518B1B061D010007125D /* DigipostModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC27518A1B061D010007125D /* DigipostModelTests.swift */; };
 		EC2751911B061D550007125D /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
 		EC2751921B061D550007125D /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
 		EC2751931B061D550007125D /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
@@ -534,6 +533,7 @@
 		EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
 		EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
 		EC27521C1B0622130007125D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27521B1B0622130007125D /* Pods.framework */; };
+		EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
 		EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B64621A66928D00AB6085 /* Dispatch.swift */; };
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
@@ -888,10 +888,6 @@
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
 		ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
-		ECB8D88E1AEF804B007BDAD3 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB8D88D1AEF804B007BDAD3 /* LoginTests.swift */; };
-		ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */; };
-		ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */; };
-		ECB8D8931AEFA719007BDAD3 /* vpn.sh in Resources */ = {isa = PBXBuildFile; fileRef = ECB8D8921AEFA719007BDAD3 /* vpn.sh */; };
 		ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
 		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
@@ -1077,7 +1073,6 @@
 		EC0F2B7719B893350019212E /* POSUploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadViewController.m; sourceTree = "<group>"; };
 		EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+DigipostFonts.swift"; sourceTree = "<group>"; };
 		EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SHCAppDelegate+Appearance.swift"; sourceTree = "<group>"; };
-		EC141E191A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = oAuthTokenNoAccessToken.json; sourceTree = "<group>"; };
 		EC14B93419D1ADAB00570923 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = ../LaunchScreen.xib; sourceTree = "<group>"; };
 		EC181DA8192C92D60054C0E8 /* Model v1. 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1. 7.xcdatamodel"; sourceTree = "<group>"; };
 		EC181DA9192C9D320054C0E8 /* NSPredicate+CommonPredicates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSPredicate+CommonPredicates.h"; sourceTree = "<group>"; };
@@ -1086,7 +1081,6 @@
 		EC181DAF192CC0430054C0E8 /* POSDocument+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "POSDocument+Methods.m"; path = "../POSDocument+Methods.m"; sourceTree = "<group>"; };
 		EC181DB3192CC47B0054C0E8 /* POSFolder+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSFolder+Methods.h"; sourceTree = "<group>"; };
 		EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSFolder+Methods.m"; sourceTree = "<group>"; };
-		EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthTokenHigherSecurity.json; sourceTree = "<group>"; };
 		EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+URLSessionTask.swift"; sourceTree = "<group>"; };
 		EC2352991A0B9AFD0071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		EC23529C1A0BA6690071624C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
@@ -1096,7 +1090,6 @@
 		EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoLayout.m"; sourceTree = "<group>"; };
 		EC2751861B061D010007125D /* DigipostModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2751891B061D010007125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC27518A1B061D010007125D /* DigipostModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostModelTests.swift; sourceTree = "<group>"; };
 		EC2752171B061E6E0007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC27521B1B0622130007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverView.h; sourceTree = "<group>"; };
@@ -1149,15 +1142,12 @@
 		EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncreaseSecurityLevelViewController.swift; sourceTree = "<group>"; };
 		EC56AAC11A24C7BA00720109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digipost_Test_Dpost_Tests.swift; sourceTree = "<group>"; };
-		EC56AAC91A24C7DD00720109 /* rootresource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rootresource.json; sourceTree = "<group>"; };
-		EC56AACB1A24C92900720109 /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
 		EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Localization.swift"; sourceTree = "<group>"; };
 		EC63A8341A6E701D00708A75 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		EC63A83D1A6E74EB00708A75 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		EC63A8431A6E7C1800708A75 /* ModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Convenience.swift"; sourceTree = "<group>"; };
 		EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC65BE5C1AEF7E7300E9B46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -1169,9 +1159,7 @@
 		EC76A6BB19BF2D3500D80B01 /* POSUploadTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSUploadTableViewDataSource.h; sourceTree = "<group>"; };
 		EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSUploadTableViewDataSource.m; sourceTree = "<group>"; };
 		EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
-		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthTests.swift; sourceTree = "<group>"; };
-		EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthToken.json; sourceTree = "<group>"; };
-		EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidOAuthToken.json; sourceTree = "<group>"; };
+		EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OAuthTests.swift; path = "../Digipost-Test-Dpost Tests/OAuthTests.swift"; sourceTree = "<group>"; };
 		EC7E6CC719C0A0A60002D26D /* Model v1.9.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.9.xcdatamodel"; sourceTree = "<group>"; };
 		EC7F9DBD1AB701080060E8BF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extensions.swift"; sourceTree = "<group>"; };
@@ -1182,12 +1170,7 @@
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
-		EC9E790A1ADE8E7800EED08B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigipostTests.swift; sourceTree = "<group>"; };
-		EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTests.swift; sourceTree = "<group>"; };
 		EC9E79141ADE8FA300EED08B /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/Pods-DigipostTests/KIF.framework"; sourceTree = "<group>"; };
-		EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "XCTestCase+KIF.swift"; path = "../DigipostTests/XCTestCase+KIF.swift"; sourceTree = "<group>"; };
-		EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccessibilityLabels.swift; path = ../DigipostTests/AccessibilityLabels.swift; sourceTree = "<group>"; };
 		ECA1A9F61898FFDE00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPhone.strings; sourceTree = "<group>"; };
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1195,7 +1178,6 @@
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
 		ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLResponse+HTTP.swift"; sourceTree = "<group>"; };
-		ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentComposingTests.swift; sourceTree = "<group>"; };
 		ECAB1CFC1AE4E87800D72D41 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_DigipostTests.framework"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
@@ -1209,8 +1191,6 @@
 		ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Convenience.m"; sourceTree = "<group>"; };
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
-		ECB8D88D1AEF804B007BDAD3 /* LoginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
-		ECB8D8921AEFA719007BDAD3 /* vpn.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = vpn.sh; path = ../Digipost/vpn.sh; sourceTree = "<group>"; };
 		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
 		ECBEDB9C1AA734A50052B11B /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1435,8 +1415,6 @@
 				ECA618E11AC02918000B806D /* NSURLResponse+HTTP.swift */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
-				EC9E79081ADE8E7800EED08B /* DigipostTests */,
-				EC65BE5A1AEF7E7300E9B46F /* DigipostUITests */,
 				EC2751871B061D010007125D /* DigipostModelTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
@@ -1670,19 +1648,6 @@
 			name = Upload;
 			sourceTree = "<group>";
 		};
-		EC141E181A6F956500EAAA3A /* json */ = {
-			isa = PBXGroup;
-			children = (
-				EC56AAC91A24C7DD00720109 /* rootresource.json */,
-				EC7C1B551A25FBB900BE62DC /* ValidOAuthToken.json */,
-				EC141E191A6F958A00EAAA3A /* oAuthTokenNoAccessToken.json */,
-				EC7C1B571A25FBC700BE62DC /* InvalidOAuthToken.json */,
-				EC1D6B781A273C7000740CD4 /* ValidOAuthTokenHigherSecurity.json */,
-				EC56AACB1A24C92900720109 /* documents.json */,
-			);
-			name = json;
-			sourceTree = "<group>";
-		};
 		EC1A6C2D18BBA2F200269428 /* Base classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -1831,7 +1796,7 @@
 		EC2751871B061D010007125D /* DigipostModelTests */ = {
 			isa = PBXGroup;
 			children = (
-				EC27518A1B061D010007125D /* DigipostModelTests.swift */,
+				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC2751881B061D010007125D /* Supporting Files */,
 			);
 			path = DigipostModelTests;
@@ -1892,10 +1857,8 @@
 				EC56AAC21A24C7BA00720109 /* Digipost_Test_Dpost_Tests.swift */,
 				EC63A83D1A6E74EB00708A75 /* APITests.swift */,
 				EC63A8431A6E7C1800708A75 /* ModelTests.swift */,
-				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */,
 				EC2E9E361A6E8BD50085FBD9 /* XCTestCase+ModelAssertions.swift */,
-				EC141E181A6F956500EAAA3A /* json */,
 				EC56AAC01A24C7BA00720109 /* Supporting Files */,
 			);
 			path = "Digipost-Test-Dpost Tests";
@@ -1905,45 +1868,6 @@
 			isa = PBXGroup;
 			children = (
 				EC56AAC11A24C7BA00720109 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EC65BE5A1AEF7E7300E9B46F /* DigipostUITests */ = {
-			isa = PBXGroup;
-			children = (
-				EC65BE5B1AEF7E7300E9B46F /* Supporting Files */,
-			);
-			path = DigipostUITests;
-			sourceTree = "<group>";
-		};
-		EC65BE5B1AEF7E7300E9B46F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				ECB8D8921AEFA719007BDAD3 /* vpn.sh */,
-				EC65BE5C1AEF7E7300E9B46F /* Info.plist */,
-				EC9E79191ADE97AA00EED08B /* AccessibilityLabels.swift */,
-				EC9E79171ADE915C00EED08B /* XCTestCase+KIF.swift */,
-				ECB8D88D1AEF804B007BDAD3 /* LoginTests.swift */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		EC9E79081ADE8E7800EED08B /* DigipostTests */ = {
-			isa = PBXGroup;
-			children = (
-				EC9E790B1ADE8E7800EED08B /* DigipostTests.swift */,
-				ECAB1CEA1AE4E2AD00D72D41 /* DocumentComposingTests.swift */,
-				EC9E79121ADE8EBE00EED08B /* ComposerTests.swift */,
-				EC9E79091ADE8E7800EED08B /* Supporting Files */,
-			);
-			path = DigipostTests;
-			sourceTree = "<group>";
-		};
-		EC9E79091ADE8E7800EED08B /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EC9E790A1ADE8E7800EED08B /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2283,7 +2207,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECB8D8931AEFA719007BDAD3 /* vpn.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3017,6 +2940,7 @@
 				EC2751F81B061DD00007125D /* ExtendedTouchView.swift in Sources */,
 				EC2751B31B061D5A0007125D /* UIViewController+ValidateOpening.m in Sources */,
 				EC2751DE1B061DBF0007125D /* POSInvoice+Methods.swift in Sources */,
+				EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */,
 				EC2752001B061DDD0007125D /* AccountViewController.swift in Sources */,
 				EC2751A41B061D5A0007125D /* AHKActionSheet+Convenience.m in Sources */,
 				EC2751E71B061DC80007125D /* String+Extensions.swift in Sources */,
@@ -3089,7 +3013,6 @@
 				EC2751B91B061D680007125D /* SHCBaseTableViewController.m in Sources */,
 				EC2751F91B061DD50007125D /* PeopleView.swift in Sources */,
 				EC2751951B061D550007125D /* POSRootResource.m in Sources */,
-				EC27518B1B061D010007125D /* DigipostModelTests.swift in Sources */,
 				EC2751971B061D550007125D /* POSMailbox.m in Sources */,
 				EC2751C31B061D760007125D /* POSDocumentsViewController.m in Sources */,
 				EC2751B51B061D680007125D /* SHCAppDelegate.m in Sources */,
@@ -3400,9 +3323,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECB8D88E1AEF804B007BDAD3 /* LoginTests.swift in Sources */,
-				ECB8D88F1AEF80B0007BDAD3 /* XCTestCase+KIF.swift in Sources */,
-				ECB8D8901AEF80BD007BDAD3 /* AccessibilityLabels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
