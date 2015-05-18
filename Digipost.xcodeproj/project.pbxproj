@@ -534,6 +534,12 @@
 		EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
 		EC27521C1B0622130007125D /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC27521B1B0622130007125D /* Pods.framework */; };
 		EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
+		EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522A1B09D2920007125D /* InvalidOAuthToken.json */; };
+		EC2752311B09D2920007125D /* documents.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522B1B09D2920007125D /* documents.json */; };
+		EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522C1B09D2920007125D /* oAuthTokenNoAccessToken.json */; };
+		EC2752331B09D2920007125D /* rootresource.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522D1B09D2920007125D /* rootresource.json */; };
+		EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522E1B09D2920007125D /* ValidOAuthToken.json */; };
+		EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522F1B09D2920007125D /* ValidOAuthTokenHigherSecurity.json */; };
 		EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B64621A66928D00AB6085 /* Dispatch.swift */; };
 		EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
@@ -1092,6 +1098,12 @@
 		EC2751891B061D010007125D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EC2752171B061E6E0007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		EC27521B1B0622130007125D /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
+		EC27522A1B09D2920007125D /* InvalidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidOAuthToken.json; sourceTree = "<group>"; };
+		EC27522B1B09D2920007125D /* documents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = documents.json; sourceTree = "<group>"; };
+		EC27522C1B09D2920007125D /* oAuthTokenNoAccessToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = oAuthTokenNoAccessToken.json; sourceTree = "<group>"; };
+		EC27522D1B09D2920007125D /* rootresource.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rootresource.json; sourceTree = "<group>"; };
+		EC27522E1B09D2920007125D /* ValidOAuthToken.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthToken.json; sourceTree = "<group>"; };
+		EC27522F1B09D2920007125D /* ValidOAuthTokenHigherSecurity.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidOAuthTokenHigherSecurity.json; sourceTree = "<group>"; };
 		EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverView.h; sourceTree = "<group>"; };
 		EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverView.m; sourceTree = "<group>"; };
 		EC2B64621A66928D00AB6085 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
@@ -1796,6 +1808,7 @@
 		EC2751871B061D010007125D /* DigipostModelTests */ = {
 			isa = PBXGroup;
 			children = (
+				EC2752251B09D14E0007125D /* json */,
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				EC2751881B061D010007125D /* Supporting Files */,
 			);
@@ -1808,6 +1821,19 @@
 				EC2751891B061D010007125D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EC2752251B09D14E0007125D /* json */ = {
+			isa = PBXGroup;
+			children = (
+				EC27522A1B09D2920007125D /* InvalidOAuthToken.json */,
+				EC27522B1B09D2920007125D /* documents.json */,
+				EC27522C1B09D2920007125D /* oAuthTokenNoAccessToken.json */,
+				EC27522D1B09D2920007125D /* rootresource.json */,
+				EC27522E1B09D2920007125D /* ValidOAuthToken.json */,
+				EC27522F1B09D2920007125D /* ValidOAuthTokenHigherSecurity.json */,
+			);
+			name = json;
 			sourceTree = "<group>";
 		};
 		EC2C82D7192A176400A6D4B8 /* Accounts */ = {
@@ -2152,6 +2178,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC2752311B09D2920007125D /* documents.json in Resources */,
+				EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */,
+				EC2752331B09D2920007125D /* rootresource.json in Resources */,
+				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
+				EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */,
+				EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
