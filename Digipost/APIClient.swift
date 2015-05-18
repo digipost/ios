@@ -99,13 +99,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return urlString
     }
 
-    func validateTokensThenPerformTask(task: NSURLSessionTask) {
-        validateOAuthToken(kOauth2ScopeFull) {
-            self.updateAuthorizationHeader(kOauth2ScopeFull)
-            task.resume()
-        }
-    }
-
     func validate(#token: OAuthToken?, thenPerformTask task: NSURLSessionTask) {
         validate(oAuthToken: token) { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -114,8 +107,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func validateFullScope(#then: () -> Void) {
-        validateOAuthToken(kOauth2ScopeFull) {
-            self.updateAuthorizationHeader(kOauth2ScopeFull)
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(oAuthToken: fullToken) { (chosenToken) -> Void in
+            self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
         }
     }
@@ -372,45 +366,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
     }
 
-    private func validateOAuthToken(scope: String, validationSuccess: () -> Void)  {
-        let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
-        if oAuthToken?.hasExpired() == false {
-            validationSuccess()
-            return
-        }
-
-        if (oAuthToken?.refreshToken != nil) {
-
-            POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: scope, success: {
-
-                validationSuccess()
-
-                }, failure: { (error) -> Void in
-
-                    if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
-                        self.deleteRefreshTokensAndLogoutUser()
-                    } else {
-                        // TODO: LOG
-                    }
-
-            })
-        } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
-            // TODO: LOG
-        }
-    }
-
-    private func deleteRefreshTokensAndLogoutUser() {
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
-        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
-            letterViewController.attachment = nil
-            letterViewController.receipt = nil
-        }
-        APIClient.sharedClient.logout()
-        OAuthToken.removeAllTokens()
-        POSModelManager.sharedManager().deleteAllObjects()
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
-    }
-
     private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void)  {
         if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
@@ -444,6 +399,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             // has found higher level oAuthToken that is outdated, try refreshing a lower level token
         }
+    }
+
+    private func deleteRefreshTokensAndLogoutUser() {
+        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
+            letterViewController.attachment = nil
+            letterViewController.receipt = nil
+        }
+        APIClient.sharedClient.logout()
+        OAuthToken.removeAllTokens()
+        POSModelManager.sharedManager().deleteAllObjects()
+        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
     func cancelUpdatingReceipts() {
