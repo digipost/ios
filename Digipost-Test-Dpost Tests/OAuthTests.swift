@@ -117,6 +117,23 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertTrue(allTokensAfterDeletion.count == 0, "could not delete token database, should be 0, was \(allTokensAfterDeletion.count)")
     }
 
+    func testTimeOutToken() {
+        let expectation = expectationWithDescription("Waiting for timeout on oauthToken")
+        let timeout : NSTimeInterval = 10
+        let fullToken = OAuthToken(refreshToken: "refreshtoken", accessToken: "accessToken", scope: kOauth2ScopeFull, expiresInSeconds: timeout)
+        XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(NSDate()) and it expired \(fullToken?.expires)")
+
+        dispatch(after: timeout + 3) {
+            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(NSDate()) and it expired \(fullToken?.expires)")
+            expectation.fulfill()
+        }
+
+        waitForExpectationsWithTimeout(timeout + 5, handler: { (error) -> Void in
+            XCTAssertNil(error, "\(error)")
+        })
+    }
+
     func testRenewAccessTokensForMultipleOauthTokens(){
         let newAccessTokenFull = "new Acesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
@@ -125,8 +142,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
         let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
-        
-        
+
         let fetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let fetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
         let fetchedIdPorten4 = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
