@@ -3,7 +3,7 @@ before_script:
   - cp oauth.example.h oauth.h
 language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
-xcode_scheme: Digipost-Beta
+xcode_scheme: DigipostBeta
 xcode_sdk: iphonesimulator
 
 before_install:
