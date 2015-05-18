@@ -5,3 +5,6 @@ language: objective-c
 xcode_workspace: Digipost.xcworkspace # path to your xcodeproj folder
 xcode_scheme: Digipost-Beta
 xcode_sdk: iphonesimulator
+
+before_install:
+  - gem install cocoapods -v '0.37.1'
