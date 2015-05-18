@@ -426,10 +426,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                         self.deleteRefreshTokensAndLogoutUser()
                     }
             })
-        }else if (oAuthToken == nil) {
+        } else if (oAuthToken == nil) {
             assert(false," something wrong with oauth token")
         } else {
             // jump to another level for example from idporten 4 to bankID fullhighauth
+            if let actualOAuthToken = oAuthToken {
+                if actualOAuthToken.hasExpired() {
+                    actualOAuthToken.accessToken = nil
+                }
+            }
             oAuthToken?.removeFromKeyChain()
             let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
             if (lowerLevelOAuthToken != nil) {
