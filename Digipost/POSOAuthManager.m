@@ -204,7 +204,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                   } else {
                       // remove token and retry request
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-                      [oAuthToken removeFromKeyChain];
+                      [oAuthToken removeFromKeychainIfNoAccessToken];
                       OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
                       if (currentlyHighestOauthToken != nil) {
                           [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
