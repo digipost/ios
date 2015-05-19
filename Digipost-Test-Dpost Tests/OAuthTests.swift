@@ -14,13 +14,11 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
     }
     
     override func tearDown() {
         super.tearDown()
         OAuthToken.removeAllTokens()
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
     
     func jsonDictionaryFromFile(filename: String) -> Dictionary<String, AnyObject> {
