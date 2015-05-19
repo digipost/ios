@@ -107,8 +107,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[APIClient sharedClient] cancelUpdatingReceipts];
-
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];

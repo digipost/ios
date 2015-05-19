@@ -401,25 +401,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
-    func cancelUpdatingReceipts() {
-
-    }
-
-    func cancelDownloadingBaseEncryptionModels() {
-
-    }
-
-    func cancelUpdatingRootResource () {
-        //        - (void)cancelUpdatingRootResource
-        //            {
-        //                NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
-        //                NSString *pathSuffix = [URL lastPathComponent];
-        //                [self cancelRequestsWithPathSuffix:pathSuffix];
-        //
-        //                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
-        //        }
-    }
-
     func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {
         let HTTPResponse = response as! NSHTTPURLResponse
         switch HTTPResponse.statusCode {

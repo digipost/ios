@@ -755,7 +755,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         self.progress = progress;
     }
 
-    [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     NSString *baseEncryptionModelUri = baseEncryptionModel.uri;
 
     if (baseEncryptionModelUri == nil && self.attachment.openingReceiptUri != nil) {
@@ -891,7 +890,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 - (void)unloadContent
 {
-    [[APIClient sharedClient] cancelDownloadingBaseEncryptionModels];
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 

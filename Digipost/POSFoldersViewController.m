@@ -139,8 +139,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[APIClient sharedClient] cancelUpdatingRootResource];
-
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
