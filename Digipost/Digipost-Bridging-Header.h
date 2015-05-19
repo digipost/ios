@@ -30,3 +30,5 @@
 #import "NSError+ExtraInfo.h"
 #import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"
+#import "oauth.h"
+#import <CommonCrypto/CommonCrypto.h>

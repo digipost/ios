@@ -1060,6 +1060,8 @@
 		ECF487031A471A8000E97519 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		ECF487041A471A8000E97519 /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		ECF487051A471A8000E97519 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
+		ECFAE2661B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
+		ECFAE2681B0B622B0029CAD0 /* String+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */; };
 		ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
 		ECFD14A71A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
 		ECFD14A81A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
@@ -1376,6 +1378,9 @@
 		ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+Additions.m"; sourceTree = "<group>"; };
 		ECF06D68192398C3003BD200 /* POSReceiptsTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptsTableViewDataSource.h; sourceTree = "<group>"; };
 		ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsTableViewDataSource.m; sourceTree = "<group>"; };
+		ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthToken+IDToken.swift"; sourceTree = "<group>"; };
+		ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Crypto.swift"; sourceTree = "<group>"; };
+		ECFAE2691B0B64A50029CAD0 /* libcommonCrypto.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcommonCrypto.dylib; path = usr/lib/system/libcommonCrypto.dylib; sourceTree = SDKROOT; };
 		ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
@@ -1579,6 +1584,7 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				ECFAE2691B0B64A50029CAD0 /* libcommonCrypto.dylib */,
 				EC2DCBEA1AB864990063755E /* Pods.framework */,
 				EC30219B1AB8483700812502 /* Pods.framework */,
 				EC3021911AB70E0A00812502 /* AdSupport.framework */,
@@ -1843,6 +1849,7 @@
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
 				ECC08E041A5BE8DB004C829D /* APIResponse.swift */,
 				EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */,
+				ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */,
 				83F7037F18573641003DABE1 /* POSOAuthManager.h */,
 				83F7038018573641003DABE1 /* POSOAuthManager.m */,
 				8342EFB8185861A80080A833 /* POSAPIManager.h */,
@@ -1898,6 +1905,7 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */,
 				ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */,
 				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
 				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
@@ -2931,6 +2939,7 @@
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
+				ECFAE2681B0B622B0029CAD0 /* String+Crypto.swift in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
@@ -3032,6 +3041,7 @@
 				EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
+				ECFAE2661B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
 				EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
@@ -3902,6 +3912,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3943,6 +3954,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
+					"$(SDKROOT)/usr/lib/system",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
