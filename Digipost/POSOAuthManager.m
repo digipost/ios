@@ -18,7 +18,6 @@
 #import "POSOAuthManager.h"
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
-#import "POSAPIManager.h"
 #import "POSFileManager.h"
 #import "digipost-Swift.h"
 #import "oauth.h"
@@ -51,6 +50,14 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
+
+// Custom NSError consts
+NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
+
+// Notification names
+NSString *const kAPIManagerUploadProgressStartedNotificationName = @"UploadProgressStartedNotification";
+NSString *const kAPIManagerUploadProgressChangedNotificationName = @"UploadProgressChangedNotification";
+NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProgressFinishedNotification";
 
 @interface POSOAuthManager ()
 

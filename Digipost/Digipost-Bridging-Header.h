@@ -18,7 +18,6 @@
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
 #import "POSAccountViewTableViewDataSource.h"
-#import "POSAPIManager.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIRefreshControl+Additions.h"
 #import "POSMailbox.h"

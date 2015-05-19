@@ -11,7 +11,6 @@
 #import "POSFolder+Methods.h"
 #import "POSModelManager.h"
 #import "UIViewController+BackButton.h"
-#import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
 #import "digipost-swift.h"
 #import "POSNewFolderViewController.h"

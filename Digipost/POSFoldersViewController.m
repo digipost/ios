@@ -21,7 +21,6 @@
 #import "POSFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
-#import "POSAPIManager.h"
 #import "POSModelManager.h"
 #import "POSFolderTableViewCell.h"
 #import "POSDocument+Methods.h"

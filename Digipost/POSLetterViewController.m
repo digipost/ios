@@ -23,7 +23,6 @@
 #import <AHKActionSheet/AHKActionSheet.h>
 #import "POSFolder+Methods.h"
 #import "POSFileManager.h"
-#import "POSAPIManager.h"
 #import "POSFolderIcon.h"
 #import "UIColor+Convenience.h"
 #import "UIViewController+BackButton.h"
