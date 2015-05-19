@@ -22,14 +22,14 @@ extension APIClient {
 
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success,failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
     
     func deleteDocument(uri: String, success: () -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: uri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
@@ -44,21 +44,21 @@ extension APIClient {
             }()
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
-    
+
     func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         validate(token: token) { () -> Void in
             let task = self.urlSessionJSONTask(url: folderUri,  success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
-    
-    func updateDocument(document:POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+
+    func updateDocument(document: POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: document.updateUri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
  

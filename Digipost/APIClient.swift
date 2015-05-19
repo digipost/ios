@@ -127,7 +127,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let rootResource = __ROOT_RESOURCE_URI__
         validate(token: highestToken) {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
-            task!.resume()
+            task.resume()
         }
     }
 
@@ -136,35 +136,35 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.updateAuthorizationHeader(scope)
         validateFullScope {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
     func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
     func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
@@ -178,7 +178,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 failure(error: error)
             }
         }
-        validate(token: highestToken, thenPerformTask: task!)
+        validate(token: highestToken, thenPerformTask: task)
     }
 
     func logout () {
@@ -199,7 +199,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 
@@ -254,7 +254,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                         failure(error: error)
                     }
             })
-            task!.resume()
+            task.resume()
         }
     }
 
@@ -381,10 +381,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                         self.deleteRefreshTokensAndLogoutUser()
                     }
             })
-        } else if (oAuthToken == nil) {
-            assert(false," something wrong with oauth token")
         } else {
-            // jump to another level for example from idporten 4 to bankID fullhighauth
+            // if oauthoken does not have a refreshtoken, it means its a higher level token
+            // jump to a higher or lower level based on if you have tokens that are valid
             if let actualOAuthToken = oAuthToken {
                 if actualOAuthToken.hasExpired() {
                     actualOAuthToken.accessToken = nil

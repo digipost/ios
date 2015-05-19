@@ -14,7 +14,7 @@ extension APIClient {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
     
@@ -22,7 +22,7 @@ extension APIClient {
         let parameters = [Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
     
@@ -33,7 +33,7 @@ extension APIClient {
         let parameters = [Constants.APIClient.AttributeKey.folder : folders]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
     
@@ -41,7 +41,7 @@ extension APIClient {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon : folder.iconName]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success, failure: failure)
-            task?.resume()
+            task.resume()
         }
     }
 }

@@ -12,7 +12,7 @@ import Alamofire
 
 extension APIClient {
 
-    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             let serializedResponse : Dictionary<String,AnyObject>? = {
                 if let data = data {
@@ -46,7 +46,7 @@ extension APIClient {
         return task
     }
 
-    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
@@ -84,7 +84,7 @@ extension APIClient {
     }
 
 
-    func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let downloadURL = NSURL(string: encryptionModel.uri)
         var urlRequest = NSMutableURLRequest(URL: downloadURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
@@ -140,7 +140,7 @@ extension APIClient {
     }
 
     // Only GET allowed
-    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
@@ -152,7 +152,7 @@ extension APIClient {
         return task
     }
 
-    func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
@@ -163,7 +163,7 @@ extension APIClient {
         return task
     }
 
-    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
