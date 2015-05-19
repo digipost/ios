@@ -20,12 +20,7 @@ extension APIClient {
                 }
                 return nil
             }()
-            if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                let error = APIError.UnauthorizedOAuthTokenError()
-                error.responseText = serializedResponse?.description
-                self.removeAccessTokenUsedInLastRequest()
-                failure(error: error)
-            } else if let actualError = error as NSError!  {
+            if let actualError = error as NSError!  {
                 dispatch_async(dispatch_get_main_queue(), {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
@@ -51,22 +46,16 @@ extension APIClient {
             dispatch_async(dispatch_get_main_queue(), {
                 let htttpURL = response as? NSHTTPURLResponse
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
-                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                    self.removeAccessTokenUsedInLastRequest()
-                    let error = APIError.UnauthorizedOAuthTokenError()
-                    error.responseText = string as String?
-                    failure(error: error)
-                } else if let actualError = error as NSError! {
+                 if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
                     error.responseText = string as String?
                     failure(error: error)
                 } else {
                     var jsonError : NSError?
-                    // TOODO make responseDictionary
                     if let actualData = data as NSData? {
                         if actualData.length == 0 {
-                            failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
-                        }else if (response as! NSHTTPURLResponse).didFail()  {
+                            failure(error:APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil)))
+                        } else if (response as! NSHTTPURLResponse).didFail()  {
                             let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
                             failure(error:err)
                         } else {
@@ -115,11 +104,7 @@ extension APIClient {
                 }
             }.response { (request, response, object, error) -> Void in
                 dispatch_async(dispatch_get_main_queue(), {
-                    if self.isUnauthorized(response as NSHTTPURLResponse?) {
-                        let error = APIError.UnauthorizedOAuthTokenError()
-                        self.removeAccessTokenUsedInLastRequest()
-                        failure(error: error)
-                    } else if let actualError = error as NSError! {
+                     if let actualError = error as NSError! {
                         failure(error: APIError(error: actualError))
                     } else {
                         success(url: completedURL!)
