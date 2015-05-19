@@ -63,15 +63,11 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
 
     // Initializer used when migrating from single scope to multiple scopes - version 2.3
     convenience init?(refreshToken: String?, scope: String) {
-        self.init(expiryDate:NSDate())
-
-        if let acutalRefreshToken = refreshToken as String? {
-            self.refreshToken = acutalRefreshToken
-        } else {
+        self.init(refreshToken: refreshToken, accessToken: nil, scope: scope, expiresInSeconds: 1)
+        if refreshToken == nil {
+            self.removeFromKeyChain()
             return nil
         }
-
-        self.scope = scope
         storeInKeyChain()
     }
 
