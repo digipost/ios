@@ -99,13 +99,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return urlString
     }
 
-    func validate(#token: OAuthToken?, thenPerformTask task: NSURLSessionTask) {
-        validate(oAuthToken: token) { (chosenToken) -> Void in
-            self.updateAuthorizationHeader(oAuthToken: chosenToken)
-            task.resume()
-        }
-    }
-
     func validateFullScope(#then: () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(oAuthToken: fullToken) { (chosenToken) -> Void in
@@ -170,15 +163,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-        self.updateAuthorizationHeader(oAuthToken: highestToken!)
-        let task  = urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized  {
-                failure(error: error)
-            } else {
-                failure(error: error)
-            }
+        validate(token: highestToken) { () -> Void in
+            let task = self.urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success, failure: failure)
+            task.resume()
         }
-        validate(token: highestToken, thenPerformTask: task)
     }
 
     func logout () {
