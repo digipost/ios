@@ -72,7 +72,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
     }
 
     convenience init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
-        if let expirationDate = NSDate().dateByAdding(seconds: 10) {
+        if let expirationDate = NSDate().dateByAdding(seconds: expiresInSeconds.integerValue) {
             self.init(expiryDate: expirationDate)
         } else {
             self.init(expiryDate: NSDate())
@@ -181,7 +181,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
 
     func setExpireDate(expiresInSeconds: NSNumber?) {
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
-            if let expirationDate = NSDate().dateByAdding(seconds: 10) {
+            if let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue) {
                 self.expires = expirationDate
                 storeInKeyChain()
             }
