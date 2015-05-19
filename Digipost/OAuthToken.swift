@@ -65,7 +65,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
     convenience init?(refreshToken: String?, scope: String) {
         self.init(refreshToken: refreshToken, accessToken: nil, scope: scope, expiresInSeconds: 1)
         if refreshToken == nil {
-            self.removeFromKeyChain()
+            self.removeFromKeychainIfNoAccessToken()
             return nil
         }
         storeInKeyChain()
@@ -196,7 +196,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         return true
     }
 
-    func removeFromKeyChain() {
+    func removeFromKeychainIfNoAccessToken() {
         if accessToken == nil {
             var existingTokens = OAuthToken.oAuthTokens()
             existingTokens[scope!] = nil
@@ -206,7 +206,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
 
     func removeFromKeyChainIfNotValid() {
         if accessToken == nil && refreshToken == nil {
-            removeFromKeyChain()
+            removeFromKeychainIfNoAccessToken()
         }
     }
 

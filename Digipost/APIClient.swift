@@ -377,7 +377,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                     actualOAuthToken.accessToken = nil
                 }
             }
-            oAuthToken?.removeFromKeyChain()
+            oAuthToken?.removeFromKeychainIfNoAccessToken()
             let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess)
