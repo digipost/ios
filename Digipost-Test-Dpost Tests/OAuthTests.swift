@@ -44,31 +44,30 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         return token!
     }
 
-    func testOauthFromDictionary() {
+    func testCreateTokenFromJsonDictionary() {
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull)
         XCTAssertNotNil(token, "no valid token was created")
-        
     }
     
-    func testOauthFromStrings() {
+    func testCreateTokenFromStrings() {
         LUKeychainAccess.standardKeychainAccess().errorHandler = self
         let accesstoken = "accesstoken"
-        let fierje = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
 
         let token = OAuthToken(refreshToken: "refreifasfkalerjwerw", accessToken: accesstoken, scope: kOauth2ScopeFull, expiresInSeconds: 15)
         let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         XCTAssertNotNil(fetchedToken, "could not store oauthtoken to keychain")
         XCTAssertEqual(fetchedToken!.accessToken!, accesstoken, "wrong accesstoken stored")
-
     }
 
+    // just in case there is a general error with keychain
     func keychainAccess(keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
-        println(error)
         XCTAssertTrue(false, "got an error message \(error) from keychain")
     }
 
-    func testMultipleScopedTokensInKeychain() {
+
+    func testKeepTokensWithDifferentScopesInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
@@ -78,7 +77,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     // creates a token, fetches it from keychain, adds a new access token, then refetches to see if it did get updated
-    func testUpdateSameTokenMultipleTimes () {
+    func testUpdateSameTokenMultipleTimes() {
         let newAccessToken = "newAccessToken"
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         
@@ -92,7 +91,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertTrue(alteredToken!.accessToken! == refetchedToken!.accessToken!, "\(alteredToken!.accessToken!) not similar to \(refetchedToken!.accessToken!)")
     }
 
-    func testMultipleScopes() {
+    func testCreateTokensWithAllScopesAndStoreInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
@@ -102,7 +101,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
     }
 
-    func testdeleteAllTokens () {
+    func testdeleteAllTokensInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
@@ -115,7 +114,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertTrue(allTokensAfterDeletion.count == 0, "could not delete token database, should be 0, was \(allTokensAfterDeletion.count)")
     }
 
-    func testTimeOutToken() {
+    func testIfTokenExpiresAfterTimeOut() {
         let expectation = expectationWithDescription("Waiting for timeout on oauthToken")
         let timeout : NSTimeInterval = 10
         let fullToken = OAuthToken(refreshToken: "refreshtoken", accessToken: "accessToken", scope: kOauth2ScopeFull, expiresInSeconds: timeout)
@@ -132,7 +131,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         })
     }
 
-    func testRenewAccessTokensForMultipleOauthTokens(){
+    func testRenewAccessTokensForMultipleDifferentTokens() {
         let newAccessTokenFull = "new Acesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
         let newAccessTokenIdPorten4 = "new Acesstoken for idporten4"
