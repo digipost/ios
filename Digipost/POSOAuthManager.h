@@ -34,6 +34,7 @@ extern NSString *const kOauth2ScopeFullHighAuth;
 extern NSString *const kOauth2ScopeFull_Idporten3;
 extern NSString *const kOauth2ScopeFull_Idporten4;
 extern NSString *const kKeychainAccessRefreshTokenKey;
+extern NSString *const kOAuth2IDToken;
 
 extern NSString *const kOAuth2AccessToken;
 extern NSString *const kOAuth2RefreshToken;

@@ -161,6 +161,12 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable{
         aRefreshToken = attributes["refresh_token"] as? String
         anAccessToken = attributes["access_token"] as? String
         let expiresInSeconds = attributes["expires_in"] as? NSNumber
+        let idToken = attributes[kOAuth2IDToken] as? String
+
+//        if OAuthToken.idTokenIsValid(idToken) == false {
+//            return nil
+//        }
+
         self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
         storeInKeyChain()
     }
