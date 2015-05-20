@@ -22,6 +22,15 @@ typedef NS_ENUM(NSUInteger, SHCOAuthErrorCode) {
     SHCOAuthErrorCodeInvalidRefreshTokenResponse
 };
 
+// Custom NSError consts
+extern NSString *const kAPIManagerErrorDomain;
+
+// Notification names
+extern NSString *const kAPIManagerUploadProgressStartedNotificationName;
+extern NSString *const kAPIManagerUploadProgressChangedNotificationName;
+extern NSString *const kAPIManagerUploadProgressFinishedNotificationName;
+
+
 // Digipost OAuth2 API consts
 extern NSString *const kOAuth2ClientID;
 extern NSString *const kOAuth2RedirectURI;

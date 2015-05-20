@@ -28,7 +28,6 @@
 #import "NSError+ExtraInfo.h"
 #import "POSDocument.h"
 #import "POSRootResource.h"
-#import "POSAPIManager.h"
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFolderTableViewDataSource.h"
 #import "POSReceiptsViewController.h"
@@ -108,8 +107,6 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[APIClient sharedClient] cancelUpdatingReceipts];
-
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];

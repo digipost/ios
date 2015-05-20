@@ -18,7 +18,6 @@
 #import "POSOAuthManager.h"
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
-#import "POSAPIManager.h"
 #import "POSFileManager.h"
 #import "digipost-Swift.h"
 #import "oauth.h"
@@ -52,6 +51,14 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
+
+// Custom NSError consts
+NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
+
+// Notification names
+NSString *const kAPIManagerUploadProgressStartedNotificationName = @"UploadProgressStartedNotification";
+NSString *const kAPIManagerUploadProgressChangedNotificationName = @"UploadProgressChangedNotification";
+NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProgressFinishedNotification";
 
 @interface POSOAuthManager ()
 
@@ -163,7 +170,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
               if ([accessToken isKindOfClass:[NSString class]]) {
                   OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-                  [oauthToken setExpiryDate:expiresInSeconds];
+                  [oauthToken setExpireDate:expiresInSeconds];
                   oauthToken.accessToken = accessToken;
                   [[APIClient sharedClient] updateAuthorizationHeader:scope];
                   if (success) {
@@ -201,7 +208,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                   } else {
                       // remove token and retry request
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-                      [oAuthToken removeFromKeyChain];
+                      [oAuthToken removeFromKeychainIfNoAccessToken];
                       OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
                       if (currentlyHighestOauthToken != nil) {
                           [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
