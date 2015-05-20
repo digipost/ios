@@ -116,7 +116,8 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
-    NSString *nonce = [NSString randomNumberString];
+    NSString *nonce = [NSString secureRandomString];
+
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,

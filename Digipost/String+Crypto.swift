@@ -20,4 +20,11 @@ extension String {
         let hash = HMAC.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
         return hash
     }
+
+    func secureRandom() -> String {
+        let length = 50
+        let data = NSMutableData(length: Int(length))
+        let result = SecRandomCopyBytes(kSecRandomDefault, length, UnsafeMutablePointer<UInt8>(data!.mutableBytes))
+        return "\(result)"
+    }
 }
