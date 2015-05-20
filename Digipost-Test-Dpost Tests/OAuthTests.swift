@@ -34,6 +34,8 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         return jsonDictionary
     }
 
+    var mockNonce = "71847238419735435"
+
     func mockTokenWithScope(scope: String) -> OAuthToken {
 
 
@@ -43,15 +45,13 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         } else {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthTokenHigherSecurity.json")
         }
-        let nonce = NSString.randomNumberString()
-        let token = OAuthToken(attributes: oAuthDictionary, scope: scope, nonce: nonce)
+        let token = OAuthToken(attributes: oAuthDictionary, scope: scope, nonce: mockNonce)
         return token!
     }
 
     func testCreateTokenFromJsonDictionary() {
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let nonce = NSString.randomNumberString()
-        let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: nonce)
+        let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
         XCTAssertNotNil(token, "no valid token was created")
     }
     
@@ -76,8 +76,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let nonce = NSString.randomNumberString()
-        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: nonce)
+        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 2, "token did not correctly store in database")
     }
