@@ -334,15 +334,17 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
         var tokenArray = Dictionary<String,AnyObject>()
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as! NSDictionary?
-        if let actualDictionary = dictionary as NSDictionary? {
-            for key in actualDictionary.allKeys as! [String] {
-                let object: AnyObject = actualDictionary[key] as AnyObject!
-                tokenArray[key] = object
+        if let actualDictionary = dictionary {
+            for key in actualDictionary.allKeys {
+                if let actualKey = key as? String {
+                    let object: AnyObject = actualDictionary[actualKey]!
+                    tokenArray[actualKey] = object
+                }
             }
         }
         return tokenArray
     }
-
+    
     class func oAuthScope(scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
         switch otherScope {
         case kOauth2ScopeFull:
