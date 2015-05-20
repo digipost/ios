@@ -15,7 +15,7 @@ extension String {
         let charKey = secret.cStringUsingEncoding(NSUTF8StringEncoding)!
         let charData = self.cStringUsingEncoding(NSASCIIStringEncoding)!
         let digestLength = Int(CC_SHA256_DIGEST_LENGTH)
-        var resultPointer = UnsafeMutablePointer<Void>.alloc(digestLength)
+        var resultPointer = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLength)
         let result: Void = CCHmac(CCHmacAlgorithm(kCCPRFHmacAlgSHA256), charKey, charKey.count, charData, charData.count, resultPointer)
         let HMAC = NSData(bytes: resultPointer, length: digestLength)
         let hash = HMAC.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.EncodingEndLineWithCarriageReturn)
