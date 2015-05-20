@@ -38,7 +38,6 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
 
     func mockTokenWithScope(scope: String) -> OAuthToken {
 
-
         var oAuthDictionary: Dictionary<String,AnyObject>!
         if scope == kOauth2ScopeFull {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
@@ -134,6 +133,14 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         waitForExpectationsWithTimeout(timeout + 5, handler: { (error) -> Void in
             XCTAssertNil(error, "\(error)")
         })
+    }
+
+    func testTokenDifferingNonceThanClient() {
+        let nonce = NSString.randomNumberString()
+        let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: nonce)
+        XCTAssertNil(token, "should not be able to create token with scope")
+
     }
 
     func testRenewAccessTokensForMultipleDifferentTokens() {
