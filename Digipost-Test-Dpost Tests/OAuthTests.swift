@@ -14,6 +14,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     
     override func setUp() {
         super.setUp()
+        OAuthToken.removeAllTokens()
     }
     
     override func tearDown() {
@@ -34,19 +35,23 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     func mockTokenWithScope(scope: String) -> OAuthToken {
+
+
         var oAuthDictionary: Dictionary<String,AnyObject>!
         if scope == kOauth2ScopeFull {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         } else {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthTokenHigherSecurity.json")
         }
-        let token = OAuthToken(attributes: oAuthDictionary, scope: scope)
+        let nonce = NSString.randomNumberString()
+        let token = OAuthToken(attributes: oAuthDictionary, scope: scope, nonce: nonce)
         return token!
     }
 
     func testCreateTokenFromJsonDictionary() {
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull)
+        let nonce = NSString.randomNumberString()
+        let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: nonce)
         XCTAssertNotNil(token, "no valid token was created")
     }
     
@@ -71,7 +76,8 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth)
+        let nonce = NSString.randomNumberString()
+        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: nonce)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 2, "token did not correctly store in database")
     }
