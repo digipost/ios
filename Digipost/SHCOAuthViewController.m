@@ -121,7 +121,6 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
         if (parameters[kOAuth2Code]) {
             [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
                                                             scope:self.scope
-                                                            nonce:currentState
                                                           success:^{
                   // The OAuth manager has successfully authenticated with code - which means we've
                   // got an access code and a refresh code, and can dismiss this view controller

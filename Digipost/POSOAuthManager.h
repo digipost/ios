@@ -56,7 +56,7 @@ extern NSString *const kOAuth2ErrorDomain;
 
 + (instancetype)sharedManager;
 
-- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope nonce:(NSString *)nonce success:(void (^)(void))success failure:(void (^)(NSError *))failure;
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end
