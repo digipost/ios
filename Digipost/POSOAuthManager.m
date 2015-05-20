@@ -113,7 +113,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
     return sharedInstance;
 }
 
-- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope nonce:(NSString *)nonce success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
@@ -128,9 +128,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
               NSString *accessToken = responseDict[kOAuth2AccessToken];
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
               NSString *idToken = responseDict[kOAuth2IDToken];
-              
-
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInSeconds:expiresInSeconds];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.

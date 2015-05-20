@@ -80,8 +80,8 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.stateParameter = nil;
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
@@ -101,38 +101,37 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
 
+        // Copy and reset the state parameter, as we're done checking its value for now
+        NSString *currentState = [self.stateParameter copy];
+        self.stateParameter = nil;
+
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
-
-            // Copy and reset the state parameter, as we're done checking its value for now
-            NSString *currentState = [self.stateParameter copy];
-            self.stateParameter = nil;
-
             if ([state isEqualToString:currentState] == NO) {
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+//                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+//            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
             [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
 
         if (parameters[kOAuth2Code]) {
             [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
-                scope:self.scope
-                success:^{
-
+                                                            scope:self.scope
+                                                            nonce:currentState
+                                                          success:^{
                   // The OAuth manager has successfully authenticated with code - which means we've
                   // got an access code and a refresh code, and can dismiss this view controller
                   // and let the login view controller take over and push the folders view controller.
-                  [self dismissViewControllerAnimated:YES
-                                           completion:^{
-                                             if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                                                 [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                                             }
-                                           }];
+                    [self dismissViewControllerAnimated:YES
+                                             completion:^{
+                                                 if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                     [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                                 }
+                                             }];
                 }
                 failure:^(NSError *error) {
                   [UIAlertView showWithTitle:error.errorTitle
@@ -144,7 +143,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                     }];
                 }];
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
+//            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
             [self informUserThatOauthFailedThenDismissViewController];
         }
 

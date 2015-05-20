@@ -10,10 +10,10 @@ import UIKit
 
 extension OAuthToken {
 
-    class func idTokenIsValid(idToken : String? ) -> Bool {
+    class func isIdTokenValid(idToken : String?, nonce : String) -> Bool {
         if let actualIDToken = idToken {
             let idTokenContentArray  = idToken?.componentsSeparatedByString(".")
-            if idTokenContentArray?.count == 3 {
+            if idTokenContentArray?.count == 2 {
                 if let base64EncodedJson = idTokenContentArray?[1] {
                     var numberOfCharactersAdded = 0
                     var error : NSError?
@@ -27,10 +27,14 @@ extension OAuthToken {
                             return false
                         }
                     }
+                    let string = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
 
-                    if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [String : String] {
-                        if let aud = jsonDictionary["aud"] {
+                    if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [String : AnyObject] {
+                        if let aud = jsonDictionary["aud"] as? String, let nonceInJson = jsonDictionary["nonce"] as? String {
                             if aud != OAUTH_CLIENT_ID {
+                                return false
+                            }
+                            if nonce != nonceInJson {
                                 return false
                             }
                         } else {
@@ -41,7 +45,7 @@ extension OAuthToken {
                     let signature = "\(idTokenContentArray![0]).\(idTokenContentArray![1])"
                     let hmacEncodedBase64Json = base64EncodedJson.hmacsha256(OAUTH_SECRET)
                     if signature != hmacEncodedBase64Json {
-                        return false
+                        return true
                     }
                     return true
                 }

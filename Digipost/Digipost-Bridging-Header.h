@@ -31,3 +31,4 @@
 #import "POSOAuthManager.h"
 #import "oauth.h"
 #import <CommonCrypto/CommonCrypto.h>
+#import "NSString+RandomNumber.h"

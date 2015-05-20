@@ -90,16 +90,18 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         storeInKeyChain()
     }
 
-    convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
+    convenience init?(attributes: Dictionary <String,AnyObject>, scope: String, nonce: String) {
         var aRefreshToken: String?
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
         anAccessToken = attributes["access_token"] as? String
         let idToken = attributes[kOAuth2IDToken] as? String
+        if OAuthToken.isIdTokenValid(idToken, nonce: nonce) == false {
+            self.init(expiryDate: NSDate())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
 
-//        if OAuthToken.idTokenIsValid(idToken) == false {
-//            return nil
-//        }
         if let expiresInSeconds = attributes["expires_in"] as? NSNumber {
             self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
         } else {
@@ -256,8 +258,10 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
 
     func storeInKeyChain() {
         var existingTokens = OAuthToken.oAuthTokens()
-        existingTokens[scope!] = self
-        LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+        if let actualScope = scope {
+            existingTokens[actualScope] = self
+            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+        }
     }
 
     func hasExpired() -> Bool {
