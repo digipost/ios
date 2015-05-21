@@ -13,7 +13,3 @@ pod 'Alamofire', '~> 1.1'
 pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
 
 use_frameworks!
-target 'Digipost-Test-Dpost Tests', :exclusive => true do
-    pod 'KIF', '~> 3.0', :configurations => ['Debug']
-    
-end

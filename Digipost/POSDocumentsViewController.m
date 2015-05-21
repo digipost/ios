@@ -25,7 +25,6 @@
 #import "POSDocumentTableViewCell.h"
 #import "POSAttachment.h"
 #import "UIColor+Convenience.h"
-#import "POSAPIManager.h"
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSFolder+Methods.h"

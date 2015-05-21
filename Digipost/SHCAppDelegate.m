@@ -23,7 +23,6 @@
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
-#import "POSAPIManager.h"
 #import "POSMailbox+Methods.h"
 #import "POSLetterViewController.h"
 #import "SHCLoginViewController.h"

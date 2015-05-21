@@ -40,5 +40,9 @@ extension NSDate {
         return calendar.dateByAddingComponents(components, toDate: self, options: nil)
     }
 
+    func isLaterThan(aDate: NSDate) -> Bool {
+        let isLater = self.compare(aDate) == NSComparisonResult.OrderedDescending
+        return isLater
+    }
 }
 

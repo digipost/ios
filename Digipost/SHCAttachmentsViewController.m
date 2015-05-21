@@ -25,7 +25,6 @@
 #import "SHCAppDelegate.h"
 #import "POSLetterViewController.h"
 #import "UIViewController+ValidateOpening.h"
-#import "POSAPIManager.h"
 #import "NSError+ExtraInfo.h"
 #import "UIView+AutoLayout.h"
 #import "UILabel+Digipost.h"
