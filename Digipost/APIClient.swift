@@ -191,12 +191,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     */
     private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
+        self.session.invalidateAndCancel()
+        Alamofire.Manager.sharedInstance.session.invalidateAndCancel()
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
-        let logoutURI = rootResource.logoutUri
         if rootResource == nil {
             success()
             return
         }
+        let logoutURI = rootResource.logoutUri
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
         validateFullScope(success: {
             let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
