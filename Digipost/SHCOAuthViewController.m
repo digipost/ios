@@ -232,7 +232,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
-    self.stateParameter = [NSString randomNumberString];
+    self.stateParameter = [NSString secureRandomString];
 
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
