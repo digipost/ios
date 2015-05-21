@@ -223,10 +223,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
+            POSFileManager.sharedFileManager().removeAllFiles()
 
         }) { (error) -> Void in
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
+            POSFileManager.sharedFileManager().removeAllFiles()
         }
 
 
