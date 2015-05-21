@@ -8,6 +8,11 @@
 
 import UIKit
 
+private struct OAuthTokenIdTokenConstants {
+    static let nonce = "nonce"
+    static let aud = "aud"
+}
+
 extension OAuthToken {
 
     class func isIdTokenValid(idToken : String?, nonce : String) -> Bool {
@@ -30,7 +35,7 @@ extension OAuthToken {
                     let string = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
 
                     if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [String : AnyObject] {
-                        if let aud = jsonDictionary["aud"] as? String, let nonceInJson = jsonDictionary["nonce"] as? String {
+                        if let aud = jsonDictionary[OAuthTokenIdTokenConstants.aud] as? String, let nonceInJson = jsonDictionary[OAuthTokenIdTokenConstants.nonce] as? String {
                             if aud != OAUTH_CLIENT_ID {
                                 return false
                             }
