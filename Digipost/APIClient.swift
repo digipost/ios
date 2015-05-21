@@ -395,7 +395,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func removeTemporaryUploadFiles () {
         let uploadsPath = POSFileManager.sharedFileManager().uploadsFolderPath()
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
-
     }
 
     private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
@@ -441,8 +440,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             letterViewController.receipt = nil
         }
         APIClient.sharedClient.logout()
-        OAuthToken.removeAllTokens()
-        POSModelManager.sharedManager().deleteAllObjects()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
