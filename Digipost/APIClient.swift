@@ -99,19 +99,27 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return urlString
     }
 
+    private func validateFullScope(#success: () -> Void, failure: ((error: NSError) -> Void)?) {
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
+            self.updateAuthorizationHeader(oAuthToken: chosenToken)
+            success()
+        }, failure:failure )
+    }
+
     func validateFullScope(#then: () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        validate(oAuthToken: fullToken) { (chosenToken) -> Void in
+        validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
-        }
+        },failure: nil)
     }
 
     func validate(#token: OAuthToken?, then: () -> Void) {
-        validate(oAuthToken: token) { (chosenToken) -> Void in
+        validate(oAuthToken: token, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
-        }
+        }, failure: nil)
     }
 
     func updateRootResource(#success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
@@ -169,13 +177,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func logout () {
+    func logout() {
         logout(success: { () -> Void in
             // get run for every time a sucessful scope logs out
             }) { (error) -> () in
                 // just in case, delete token
-                OAuthToken.removeAllTokens()
-                POSModelManager.sharedManager().deleteAllObjects()
         }
     }
 
@@ -186,7 +192,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             success()
             return
         }
-        validateFullScope {
+        // if validation fails, just delete everything to make sure user will get correctly logged out in app
+        validateFullScope(success: {
             let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
             task.resume()
 
@@ -205,16 +212,20 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
                 self.validate(token: idPorten4Token, then: {
                     let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
-                    task.resume()
+                task.resume()
                 })
             }
 
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
+
+        }) { (error) -> Void in
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
         }
-        
-        // TODO: Scenario: user tries to logout, is offline and token has run out. Then model objects won't get deleted.
-        // Add a failureblock on the success block
+
+
+
 
     }
 
@@ -379,12 +390,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func removeTemporaryUploadFiles () {
         let uploadsPath = POSFileManager.sharedFileManager().uploadsFolderPath()
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
+
     }
 
-    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void)  {
+    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) -> APIClient? {
         if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
-            return
+            return nil
         }
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
@@ -395,6 +407,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                     if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
                     }
+                    failure?(error: error)
             })
         } else {
             // if oauthoken does not have a refreshtoken, it means its a higher level token
@@ -409,11 +422,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             oAuthToken?.removeFromKeychainIfNoAccessToken()
             let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
             if (lowerLevelOAuthToken != nil) {
-                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess)
+                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
                 assert(false, "NO oauthtoken present in app. Log out!")
             }
         }
+        return nil
     }
 
     private func deleteRefreshTokensAndLogoutUser() {
