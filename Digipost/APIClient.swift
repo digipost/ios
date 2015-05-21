@@ -171,9 +171,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func logout () {
         logout(success: { () -> Void in
-            OAuthToken.removeAllTokens()
-            POSModelManager.sharedManager().deleteAllObjects()
+            // get run for every time a sucessful scope logs out
             }) { (error) -> () in
+                // just in case, delete token
                 OAuthToken.removeAllTokens()
                 POSModelManager.sharedManager().deleteAllObjects()
         }
@@ -181,14 +181,41 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        let logoutURI = rootResource.logoutUri
         if rootResource == nil {
             success()
             return
         }
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
             task.resume()
+
+            if let fullHighAuthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
+                self.validate(token: fullHighAuthToken, then: {
+                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+                    task.resume()
+                })
+            }
+            if let idPorten3Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+                self.validate(token: idPorten3Token, then: {
+                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+                    task.resume()
+                })
+            }
+            if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+                self.validate(token: idPorten4Token, then: {
+                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+                    task.resume()
+                })
+            }
+
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
         }
+        
+        // TODO: Scenario: user tries to logout, is offline and token has run out. Then model objects won't get deleted.
+        // Add a failureblock on the success block
+
     }
 
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
