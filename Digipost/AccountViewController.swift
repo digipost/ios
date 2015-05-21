@@ -200,10 +200,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
-        tableView.reloadData()
         APIClient.sharedClient.logout()
-        OAuthToken.removeAllTokens()
-        POSModelManager.sharedManager().deleteAllObjects()
+        tableView.reloadData()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
