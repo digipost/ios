@@ -181,10 +181,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         logout(success: { () -> Void in
             // get run for every time a sucessful scope logs out
             }) { (error) -> () in
-                // just in case, delete token
+                // gets run for every failed request
         }
     }
 
+    /**
+    success and failure blocks are run multiple times depending on how many requests are done
+    logs out OAuth tokens for all scopes in storage
+
+    */
     private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         let logoutURI = rootResource.logoutUri
@@ -393,10 +398,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     }
 
-    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) -> APIClient? {
+    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
         if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
-            return nil
+            return 
         }
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
@@ -427,7 +432,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 assert(false, "NO oauthtoken present in app. Log out!")
             }
         }
-        return nil
     }
 
     private func deleteRefreshTokensAndLogoutUser() {
