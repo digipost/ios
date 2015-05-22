@@ -51,6 +51,7 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 @dynamic invoice;
 @dynamic origin;
 @dynamic endToEndEncrypted;
+@dynamic userKeyEncrypted;
 
 #pragma mark - Public methods
 
@@ -82,10 +83,13 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
     attachment.type = [type isKindOfClass:[NSString class]] ? type : nil;
 
     NSString *origin = attributes[NSStringFromSelector(@selector(origin))];
-    attachment.origin = [type isKindOfClass:[NSString class]] ? origin : nil;
+    attachment.origin = [origin isKindOfClass:[NSString class]] ? origin : nil;
 
     NSNumber *endToEndEncrypted = attributes[NSStringFromSelector(@selector(endToEndEncrypted))];
     attachment.endToEndEncrypted = [endToEndEncrypted isKindOfClass:[NSNumber class]] ? endToEndEncrypted : nil;
+
+    NSNumber *userKeyEncrypted = attributes[NSStringFromSelector(@selector(userKeyEncrypted))];
+    attachment.userKeyEncrypted = [userKeyEncrypted isKindOfClass:[NSNumber class]] ? userKeyEncrypted : nil;
 
     NSArray *links = attributes[kAttachmentLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {
