@@ -177,11 +177,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func logout() {
-        logout(success: { () -> Void in
-            // get run for every time a sucessful scope logs out
-            }) { (error) -> () in
+    func logoutThenDeleteAllStoredData() {
+        cancelAllRunningTasks { () -> Void in
+            self.logout(success: { () -> Void in
+                // get run for every time a sucessful scope logs out
+                }) { (error) -> () in
                 // gets run for every failed request
+            }
         }
     }
 
@@ -191,8 +193,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     */
     private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
-        self.session.invalidateAndCancel()
-        Alamofire.Manager.sharedInstance.session.invalidateAndCancel()
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         if rootResource == nil {
             success()
@@ -232,10 +232,23 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             POSModelManager.sharedManager().deleteAllObjects()
             POSFileManager.sharedFileManager().removeAllFiles()
         }
+    }
 
+    func cancelAllRunningTasks(then: () -> Void) {
+        self.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            self.cancelTasks(dataTasks)
+            self.cancelTasks(uploadTasks)
+            self.cancelTasks(dataTasks)
+            then()
+        }
+    }
 
-
-
+    private func cancelTasks(tasks: [AnyObject]) {
+        for object in tasks {
+            if let task = object as? NSURLSessionTask {
+                task.cancel()
+            }
+        }
     }
 
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
