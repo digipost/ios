@@ -456,7 +456,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
-        APIClient.sharedClient.logout()
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 
