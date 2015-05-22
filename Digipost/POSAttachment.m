@@ -50,6 +50,7 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 @dynamic document;
 @dynamic invoice;
 @dynamic origin;
+@dynamic endToEndEncrypted;
 
 #pragma mark - Public methods
 
