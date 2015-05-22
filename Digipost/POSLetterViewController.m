@@ -667,6 +667,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
     NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
+    if ([self isUserKeyEncrypted]) {
+        [self showLockedViewCanBeUnlocked:NO];
+        return;
+    }
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
         if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
