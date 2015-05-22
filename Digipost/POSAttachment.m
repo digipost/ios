@@ -84,6 +84,9 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
     NSString *origin = attributes[NSStringFromSelector(@selector(origin))];
     attachment.origin = [type isKindOfClass:[NSString class]] ? origin : nil;
 
+    NSNumber *endToEndEncrypted = attributes[NSStringFromSelector(@selector(endToEndEncrypted))];
+    attachment.endToEndEncrypted = [endToEndEncrypted isKindOfClass:[NSNumber class]] ? endToEndEncrypted : nil;
+
     NSArray *links = attributes[kAttachmentLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {
         for (NSDictionary *link in links) {
