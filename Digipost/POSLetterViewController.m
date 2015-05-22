@@ -711,7 +711,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
         failure:^(APIError *error) {
           if (self.attachment.needsAuthenticationToOpen) {
-              [self showUnlockViewIfNotPresent];
+              [self showLockedViewCanBeUnlocked:YES];
           }
         }];
 }
@@ -723,7 +723,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSProgress *progress = nil;
     self.progressView.progress = 0.0;
     if ([self needsAuthenticationToOpen]) {
-        [self showUnlockViewIfNotPresent];
+        [self showLockedViewCanBeUnlocked:YES];
+        return;
+    }
+    if ([self isUserKeyEncrypted]) {
+        [self showLockedViewCanBeUnlocked:NO];
         return;
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
@@ -803,7 +807,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                   }
                   failure:^(APIError *error) {
                     if (self.attachment.needsAuthenticationToOpen) {
-                        [self showUnlockViewIfNotPresent];
+                        [self showLockedViewCanBeUnlocked:YES];
                     }
                   }];
             }
@@ -855,15 +859,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
 }
 
-- (void)showUnlockViewIfNotPresent
+- (void)showLockedViewCanBeUnlocked:(BOOL) canBeUnlocked
 {
-    if ([self needsAuthenticationToOpen]) {
+    if ([self needsAuthenticationToOpen] || [self isUserKeyEncrypted]) {
         if (self.unlockView == nil) {
             NSArray *theView = [[NSBundle mainBundle] loadNibNamed:@"UnlockHighAuthenticationLevelView" owner:self options:nil];
             self.unlockView = [theView objectAtIndex:0];
             [self.view addSubview:self.unlockView];
             [self.unlockView needsUpdateConstraints];
             self.unlockView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.view.frame.origin.y + 20);
+            [self.unlockView setup:canBeUnlocked];
             [self.unlockView.unlockButton addTarget:self action:@selector(didTapUnlockButton:) forControlEvents:UIControlEventTouchUpInside];
         } else {
             self.unlockView.alpha = 1;
@@ -910,6 +915,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         return self.attachment.needsAuthenticationToOpen;
     } else
         return NO;
+}
+
+- (BOOL)isUserKeyEncrypted {
+    if (self.attachment) {
+        return self.attachment.userKeyEncrypted.boolValue;
+    } else {
+        return NO;
+    }
 }
 
 - (void)showInvalidFileTypeView
@@ -1400,7 +1413,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (self.attachment.openingReceiptUri) {
 
         if ([self needsAuthenticationToOpen]) {
-            [self showUnlockViewIfNotPresent];
+            [self showLockedViewCanBeUnlocked:YES];
             return;
         }
 
@@ -1548,7 +1561,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                   }];
           } else {
               // Show Alert to user and abort update
-              [self showUnlockViewIfNotPresent];
+              [self showLockedViewCanBeUnlocked:YES];
           }
         }
         failure:^(APIError *error){
