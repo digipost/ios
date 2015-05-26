@@ -87,7 +87,6 @@ extension APIClient {
         let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
             let baseEncryptionModel : POSBaseEncryptedModel? = {
                 if let attachment = encryptionModel as? POSAttachment {
-                    println(POSModelManager.sharedManager().managedObjectContext)
                     return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel?
                 } else {
                     return POSReceipt.existingReceiptWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
