@@ -9,7 +9,6 @@
 #import "NSString+Hmac.h"
 #include <CommonCrypto/CommonDigest.h>
 #include <CommonCrypto/CommonHMAC.h>
-#import "NSData+RFC4648Base64Encoding.h"
 
 @implementation NSString (Hmac)
 
@@ -23,9 +22,8 @@
     CCHmac(kCCHmacAlgSHA256, cKey, strlen(cKey), cData, strlen(cData), cHMAC);
     NSData *HMAC = [[NSData alloc] initWithBytes:cHMAC
                                           length:sizeof(cHMAC)];
-    NSString *hash = [HMAC pos_urlSafeBase64EncodedString];
+    NSString *hash = [HMAC base64EncodedStringWithOptions:kNilOptions];
     return hash;
 }
-
 
 @end
