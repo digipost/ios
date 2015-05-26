@@ -874,6 +874,7 @@
 		EC669D681B149A49004F97B6 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
 		EC669D691B149A54004F97B6 /* NSString+Hmac.m in Sources */ = {isa = PBXBuildFile; fileRef = EC669D561B1479D8004F97B6 /* NSString+Hmac.m */; };
 		EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */ = {isa = PBXBuildFile; fileRef = EC68A07B1B14A86600D15CA3 /* InvalidTokenDifferingAud.json */; };
+		EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */ = {isa = PBXBuildFile; fileRef = EC68A07D1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json */; };
 		EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		EC68C07318AA2BE300A94770 /* POSLetterPopoverTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07218AA2BE300A94770 /* POSLetterPopoverTableViewCell.m */; };
 		EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */; };
@@ -1167,6 +1168,7 @@
 		EC669D571B1479D8004F97B6 /* NSString+Hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hmac.h"; sourceTree = "<group>"; };
 		EC669D601B1498BE004F97B6 /* ValidTokenExpiresSoon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidTokenExpiresSoon.json; sourceTree = "<group>"; };
 		EC68A07B1B14A86600D15CA3 /* InvalidTokenDifferingAud.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidTokenDifferingAud.json; sourceTree = "<group>"; };
+		EC68A07D1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InvalidTokenDifferingSignature.json; sourceTree = "<group>"; };
 		EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewDataSourceAndDelegate.h; sourceTree = "<group>"; };
 		EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSLetterPopoverTableViewDataSourceAndDelegate.m; sourceTree = "<group>"; };
 		EC68C07118AA2BE300A94770 /* POSLetterPopoverTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSLetterPopoverTableViewCell.h; sourceTree = "<group>"; };
@@ -1841,6 +1843,7 @@
 				EC669D601B1498BE004F97B6 /* ValidTokenExpiresSoon.json */,
 				EC27522F1B09D2920007125D /* ValidOAuthTokenHigherSecurity.json */,
 				EC68A07B1B14A86600D15CA3 /* InvalidTokenDifferingAud.json */,
+				EC68A07D1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json */,
 			);
 			name = json;
 			sourceTree = "<group>";
@@ -2192,6 +2195,7 @@
 				EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
+				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
 				EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */,
 				EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */,
 				EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */,

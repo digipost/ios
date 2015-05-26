@@ -144,6 +144,12 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertNil(token, "should not be able to create token with differing aud than client")
     }
 
+    func testTokenWithIDTokenWithDifferingSignatureThanClient() {
+        let invalidAuthDictionary = jsonDictionaryFromFile("InvalidTokenDifferingSignature.json")
+        let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
+        XCTAssertNil(token, "should not be able to create token with differing id_token signature than client")
+    }
+
     func testRenewAccessTokensForMultipleDifferentTokens() {
         let newAccessTokenFull = "new Acesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
