@@ -21,10 +21,4 @@ extension String {
         return hash
     }
 
-    func secureRandom() -> String {
-        let length = 50
-        let data = NSMutableData(length: Int(length))
-        let result = SecRandomCopyBytes(kSecRandomDefault, length, UnsafeMutablePointer<UInt8>(data!.mutableBytes))
-        return "\(result)"
-    }
 }

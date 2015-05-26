@@ -23,11 +23,10 @@
     return [NSString stringWithFormat:@"%u", arc4random() % UINT32_MAX];
 }
 
-+ (int)secureRandom {
-    NSInteger length = 50;
-    uint8_t data[length];
-    int result = SecRandomCopyBytes(kSecRandomDefault, length, data);
-    return result;
++ (int32_t)secureRandom {
+    int32_t randomNumber = 0;
+    SecRandomCopyBytes(kSecRandomDefault, 4, (uint8_t*) &randomNumber);
+    return randomNumber;
 }
 
 + (NSString *)secureRandomString {

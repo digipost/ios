@@ -46,9 +46,11 @@ extension OAuthToken {
                             return false
                         }
                     }
+
                     let signature = idTokenContentArray![0]
-                    let hmacEncodedJson = NSString.pos_hmacsha256(idTokenContentArray![1], secret: OAUTH_SECRET)
-                    if signature != hmacEncodedJson {
+                    let tokenContent = idTokenContentArray![1]
+                    let hmacEncodedTokenContent = NSString.pos_hmacsha256(tokenContent, secret: OAUTH_SECRET)
+                    if signature != hmacEncodedTokenContent {
                         return false
                     }
                     return true
