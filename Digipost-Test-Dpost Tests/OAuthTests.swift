@@ -46,6 +46,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         }
         let token = OAuthToken(attributes: oAuthDictionary, scope: scope, nonce: mockNonce)
         return token!
+
     }
 
     func testCreateTokenFromJsonDictionary() {
@@ -53,23 +54,11 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
         XCTAssertNotNil(token, "no valid token was created")
     }
-    
-    func testCreateTokenFromStrings() {
-        LUKeychainAccess.standardKeychainAccess().errorHandler = self
-        let accesstoken = "accesstoken"
-        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-
-        let token = OAuthToken(refreshToken: "refreifasfkalerjwerw", accessToken: accesstoken, scope: kOauth2ScopeFull, expiresInSeconds: 15)
-        let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        XCTAssertNotNil(fetchedToken, "could not store oauthtoken to keychain")
-        XCTAssertEqual(fetchedToken!.accessToken!, accesstoken, "wrong accesstoken stored")
-    }
 
     // just in case there is a general error with keychain
     func keychainAccess(keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
         XCTAssertTrue(false, "got an error message \(error) from keychain")
     }
-
 
     func testKeepTokensWithDifferentScopesInKeychain() {
         let fullToken = mockTokenWithScope(kOauth2ScopeFull)
@@ -121,7 +110,8 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     func testIfTokenExpiresAfterTimeOut() {
         let expectation = expectationWithDescription("Waiting for timeout on oauthToken")
         let timeout : NSTimeInterval = 10
-        let fullToken = OAuthToken(refreshToken: "refreshtoken", accessToken: "accessToken", scope: kOauth2ScopeFull, expiresInSeconds: timeout)
+        let oAuthDictionary = jsonDictionaryFromFile("ValidTokenExpiresSoon.json")
+        let fullToken = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
         XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(NSDate()) and it expired \(fullToken?.expires)")
 
         dispatch(after: timeout + 3) {
