@@ -34,7 +34,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         return jsonDictionary
     }
 
-    var mockNonce = "71847238419735435"
+    var mockNonce = "-880201503"
 
     func mockTokenWithScope(scope: String) -> OAuthToken {
 
@@ -109,14 +109,20 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
 
     func testIfTokenExpiresAfterTimeOut() {
         let expectation = expectationWithDescription("Waiting for timeout on oauthToken")
-        let timeout : NSTimeInterval = 10
+        let timeout : NSTimeInterval = 8
         let oAuthDictionary = jsonDictionaryFromFile("ValidTokenExpiresSoon.json")
         let fullToken = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
         XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(NSDate()) and it expired \(fullToken?.expires)")
 
+
+        dispatch(after: timeout - 3) {
+            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+            XCTAssertFalse(fetchedToken!.hasExpired(), "token should not have expired yet, Time: \(NSDate()), it expires: \(fetchedToken?.expires)")
+        }
+
         dispatch(after: timeout + 3) {
             let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(NSDate()) and it expired \(fullToken?.expires)")
+            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(NSDate()) and it expired \(fetchedToken?.expires)")
             expectation.fulfill()
         }
 
