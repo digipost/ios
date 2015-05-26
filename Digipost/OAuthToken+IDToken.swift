@@ -47,9 +47,8 @@ extension OAuthToken {
                         }
                     }
                     let signature = idTokenContentArray![0]
-                    let hmacEncodedBase64Json = idTokenContentArray![1].hmacsha256(OAUTH_SECRET)
-                    if signature != hmacEncodedBase64Json {
-                        // TODO: Not correct base64 encoding , returning true in all cases to ensure its possible to log into app
+                    let hmacEncodedJson = NSString.pos_hmacsha256(idTokenContentArray![1], secret: OAUTH_SECRET)
+                    if signature != hmacEncodedJson {
                         return false
                     }
                     return true

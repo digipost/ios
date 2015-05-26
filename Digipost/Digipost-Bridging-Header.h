@@ -32,3 +32,4 @@
 #import "oauth.h"
 #import <CommonCrypto/CommonCrypto.h>
 #import "NSString+RandomNumber.h"
+#import "NSString+Hmac.h"
