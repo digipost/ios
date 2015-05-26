@@ -71,11 +71,12 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         storeInKeyChain()
     }
 
-    convenience init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
+    private init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
         if let expirationDate = NSDate().dateByAdding(seconds: expiresInSeconds.integerValue) {
-            self.init(expiryDate: expirationDate)
+            self.expires = expirationDate
         } else {
-            self.init(expiryDate: NSDate())
+            self.expires = NSDate()
+            super.init()
             self.setAllInstanceVariablesToNil()
             return nil
         }
@@ -87,6 +88,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
             self.accessToken = actualAccessToken
         }
         self.scope = scope
+        super.init()
         storeInKeyChain()
     }
 
@@ -194,37 +196,6 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
             }
         }
     }
-
-//    convenience init?(refreshToken: String?, accessToken: String?, scope:String, expiresInSeconds: NSNumber?) {
-//        self.init()
-//
-//        if let acutalRefreshToken = refreshToken as String? {
-//            self.refreshToken = acutalRefreshToken
-//        }
-//
-//        if let actualAccessToken = accessToken as String? {
-//            self.accessToken = actualAccessToken
-//        }
-//        if let actualExpirationDate = expiresInSeconds as NSNumber? {
-//            let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue)
-//            self.expires = expirationDate
-//        }
-//
-//        self.scope = scope
-//        storeInKeyChain()
-//    }
-//
-//    convenience init?(attributes: Dictionary<String,AnyObject>, scope: String) {
-//        var aRefreshToken: String?
-//        var anAccessToken: String?
-//        aRefreshToken = attributes["refresh_token"] as? String
-//        anAccessToken = attributes["access_token"] as? String
-//        let expiresInSeconds = attributes["expires_in"] as? NSNumber
-//
-//
-//        self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
-//        storeInKeyChain()
-//    }
 
     class func isUserLoggedIn() -> Bool {
         let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
