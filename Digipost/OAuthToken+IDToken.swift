@@ -32,7 +32,7 @@ extension OAuthToken {
                             return false
                         }
                     }
-                    let string = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
+                    let jsonDataAsString = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
 
                     if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [String : AnyObject] {
                         if let aud = jsonDictionary[OAuthTokenIdTokenConstants.aud] as? String, let nonceInJson = jsonDictionary[OAuthTokenIdTokenConstants.nonce] as? String {
@@ -46,12 +46,11 @@ extension OAuthToken {
                             return false
                         }
                     }
-
-                    let signature = "\(idTokenContentArray![1])"
-                    let hmacEncodedBase64Json = base64EncodedJson.hmacsha256(OAUTH_SECRET)
+                    let signature = idTokenContentArray![0]
+                    let hmacEncodedBase64Json = idTokenContentArray![1].hmacsha256(OAUTH_SECRET)
                     if signature != hmacEncodedBase64Json {
                         // TODO: Not correct base64 encoding , returning true in all cases to ensure its possible to log into app
-                        return true
+                        return false
                     }
                     return true
                 }
