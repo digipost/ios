@@ -219,7 +219,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
                 self.validate(token: idPorten4Token, then: {
                     let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
-                task.resume()
+                    task.resume()
                 })
             }
 
