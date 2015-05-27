@@ -101,12 +101,11 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
 
-        // Copy and reset the state parameter, as we're done checking its value for now
-        NSString *currentState = [self.stateParameter copy];
-        self.stateParameter = nil;
-
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
+            // Copy and reset the state parameter, as we're done checking its value for now
+            NSString *currentState = [self.stateParameter copy];
+            self.stateParameter = nil;
             if ([state isEqualToString:currentState] == NO) {
 //                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
                 [self informUserThatOauthFailedThenDismissViewController];
