@@ -848,9 +848,7 @@
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC3533541B0C74B900523419 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
-		EC3533551B0C74CA00523419 /* String+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */; };
 		EC3533561B0C7A8300523419 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
-		EC3533571B0C7AAE00523419 /* String+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
@@ -923,7 +921,6 @@
 		ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
 		ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */; };
 		ECFAE2661B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
-		ECFAE2681B0B622B0029CAD0 /* String+Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */; };
 		ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
 		ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
@@ -1247,7 +1244,6 @@
 		ECF06D68192398C3003BD200 /* POSReceiptsTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptsTableViewDataSource.h; sourceTree = "<group>"; };
 		ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsTableViewDataSource.m; sourceTree = "<group>"; };
 		ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OAuthToken+IDToken.swift"; sourceTree = "<group>"; };
-		ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Crypto.swift"; sourceTree = "<group>"; };
 		ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
@@ -1776,7 +1772,6 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				ECFAE2671B0B622B0029CAD0 /* String+Crypto.swift */,
 				ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */,
 				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
 				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
@@ -2596,7 +2591,6 @@
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
-				ECFAE2681B0B622B0029CAD0 /* String+Crypto.swift in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
@@ -3098,7 +3092,6 @@
 				EC2751FE1B061DD50007125D /* OnboardingLoginViewController.swift in Sources */,
 				EC2751B01B061D5A0007125D /* NSError+ExtraInfo.m in Sources */,
 				EC2751FF1B061DD80007125D /* IncreaseSecurityLevelViewController.swift in Sources */,
-				EC3533551B0C74CA00523419 /* String+Crypto.swift in Sources */,
 				EC2751BD1B061D720007125D /* POSFoldersViewController.m in Sources */,
 				EC2751E01B061DC20007125D /* Constants.swift in Sources */,
 			);
@@ -3321,7 +3314,6 @@
 				EC2DCC3D1AB864AB0063755E /* String+Extensions.swift in Sources */,
 				EC2DCC3E1AB864AB0063755E /* NSURLRequest+QueryParameters.m in Sources */,
 				EC2DCC3F1AB864AB0063755E /* APIClient+URLSessionTask.swift in Sources */,
-				EC3533571B0C7AAE00523419 /* String+Crypto.swift in Sources */,
 				EC2DCC401AB864AB0063755E /* UIColor+Convenience.m in Sources */,
 				EC2DCC411AB864AB0063755E /* POSDocument.m in Sources */,
 				EC2DCC421AB864AB0063755E /* OnboardingViewController.swift in Sources */,
