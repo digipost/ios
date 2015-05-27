@@ -19,7 +19,7 @@ enum DpostLogSeverity : String {
 @objc
 class Logger {
 
-    struct Constants {
+    private struct Constants {
         static let severity = "severity"
         static let message = "message"
 
