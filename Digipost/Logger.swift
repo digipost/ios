@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 enum DpostLogSeverity : String {
     case Debug = "DEBUG"
     case Info = "INFO"
@@ -16,6 +15,8 @@ enum DpostLogSeverity : String {
     case Error = "ERROR"
 }
 
+
+@objc
 class Logger {
 
     struct Constants {
@@ -28,10 +29,26 @@ class Logger {
         static let currentlyEnabled = false
     }
 
-    class func dpostLog(severity: String, message: String) {
-        if Constants.currentlyEnabled {
-            let parameters = [ Constants.severity : severity, Constants.message : message ]
-            APIClient.sharedClient.postLog(Constants.uri, parameters: parameters)
+    class func dpostLogDebug(message: String) {
+        dpostLog(DpostLogSeverity.Debug, message: message)
+    }
+
+    class func dpostLogInfo(message: String) {
+        dpostLog(DpostLogSeverity.Info, message: message)
+    }
+
+    class func dpostLogWarn(message: String) {
+        dpostLog(DpostLogSeverity.Warn, message: message)
+    }
+
+    class func dpostLogError(message: String) {
+        dpostLog(DpostLogSeverity.Error, message: message)
+    }
+
+    private class func dpostLog(severity: DpostLogSeverity, message: String) {
+        if Logger.Constants.currentlyEnabled {
+            let parameters = [ Logger.Constants.severity : severity.rawValue, Logger.Constants.message : message ]
+            APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters)
         }
     }
 

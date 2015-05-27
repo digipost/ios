@@ -349,7 +349,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.isUploadingFile = true
     }
 
-    func postLog(uri: String, parameters: [ String : AnyObject]) {
+    func postLog(#uri: String, parameters: [String : AnyObject]) {
         self.urlSessionTask(httpMethod.post, url: uri, parameters: parameters, success: { () -> Void in
             println("success")
         }) { (error) -> Void in
