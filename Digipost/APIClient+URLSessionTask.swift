@@ -85,13 +85,17 @@ extension APIClient {
         var completedURL : NSURL?
         let downloadURI = encryptionModel.uri
         let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
-            let baseEncryptionModel : POSBaseEncryptedModel = {
+            let baseEncryptionModel : POSBaseEncryptedModel? = {
                 if let attachment = encryptionModel as? POSAttachment {
-                    return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
+                    return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel?
                 } else {
                     return POSReceipt.existingReceiptWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
                 }}()
-            let filePath = baseEncryptionModel.decryptedFilePath()
+            // model was deleted while downloading
+            if baseEncryptionModel == nil {
+                return NSURL(string: "")! // Alamofire won't allow returning nil, so creating a blank url with stop the download (Alamofire will be removed soon anyway)
+            }
+            let filePath = baseEncryptionModel!.decryptedFilePath()
             if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
                 NSFileManager.defaultManager().removeItemAtPath(filePath, error: nil)
             }
