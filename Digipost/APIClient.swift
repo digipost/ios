@@ -246,7 +246,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
             self.cancelTasks(dataTasks)
             self.cancelTasks(uploadTasks)
-            self.cancelTasks(dataTasks)
+            self.cancelTasks(downloadTasks)
             then()
         }
     }
