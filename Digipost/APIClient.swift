@@ -179,6 +179,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func logoutThenDeleteAllStoredData() {
         cancelAllRunningTasks { () -> Void in
+
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
@@ -204,33 +205,40 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
             task.resume()
 
-            if let fullHighAuthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
-                self.validate(token: fullHighAuthToken, then: {
-                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
-                    task.resume()
-                })
-            }
-            if let idPorten3Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
-                self.validate(token: idPorten3Token, then: {
-                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
-                    task.resume()
-                })
-            }
-            if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
-                self.validate(token: idPorten4Token, then: {
-                    let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
-                    task.resume()
-                })
-            }
+            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
 
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
             POSFileManager.sharedFileManager().removeAllFiles()
 
-        }) { (error) -> Void in
+            }) { (error) -> Void in
+
+            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
             POSFileManager.sharedFileManager().removeAllFiles()
+        }
+    }
+
+    private func logoutHigherLevelTokens(logoutUri: String, success: () -> Void, failure: (error: APIError) -> ()) {
+        if let fullHighAuthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
+            self.validate(token: fullHighAuthToken, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
+        }
+        if let idPorten3Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+            self.validate(token: idPorten3Token, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
+        }
+        if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+            self.validate(token: idPorten4Token, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
         }
     }
 
@@ -417,7 +425,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
         if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
-            return 
+            return
         }
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
