@@ -10,6 +10,6 @@
 
 @interface NSString (Hmac)
 
-+ (NSString *)pos_hmacsha256:(NSString *)data secret:(NSString *)key;
++ (NSString *)pos_base64HmacSha256:(NSString *)data secret:(NSString *)key;
 
 @end
