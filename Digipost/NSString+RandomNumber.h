@@ -19,6 +19,6 @@
 @interface NSString (RandomNumber)
 
 + (NSString *)randomNumberString;
-+ (NSString*)secureRandomString;
++ (NSString *)secureRandomString;
 
 @end
