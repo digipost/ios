@@ -418,11 +418,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func postLog(#uri: String, parameters: [String : AnyObject]) {
-        self.urlSessionTask(httpMethod.post, url: uri, parameters: parameters, success: { () -> Void in
+        let baseUri = __SERVER_URI__
+        let completeUri = "\(baseUri)\(uri)"
+
+        let task = self.urlSessionTask(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
             println("success")
         }) { (error) -> Void in
             println(error)
         }
+        task.resume()
     }
 
     func removeTemporaryUploadFiles () {
