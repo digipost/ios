@@ -84,28 +84,31 @@ extension APIClient {
         }
 
         let isAttachment = encryptionModel is POSAttachment
+        let encryptionmodelURI = encryptionModel.uri
 
-        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, reponse) -> NSURL! in
-
+        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, response) -> NSURL! in
             let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
                 if isAttachment {
-                     return POSAttachment.existingAttachmentWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                     return POSAttachment.existingAttachmentWithUri(encryptionmodelURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
                 } else {
-                    return POSReceipt.existingReceiptWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                    return POSReceipt.existingReceiptWithUri(encryptionmodelURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
                 }
             }()
 
             if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {
                 return NSURL.fileURLWithPath(filePath)
-            }else {
+            } else {
                 return nil
             }
 
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
                     failure(error: APIError(error: error))
+                } else if let actualFileUrl = fileURL {
+                        success(url:actualFileUrl)
+                } else {
+                    // TODO dLog
                 }
-                success(url:fileURL)
         })
         return task
     }
