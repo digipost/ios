@@ -75,7 +75,7 @@ extension APIClient {
     func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
 
         var completedURL : NSURL?
-        let downloadURI = encryptionModel.uri
+        let encryptedModelUri = encryptionModel.uri
         let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
 
@@ -84,14 +84,13 @@ extension APIClient {
         }
 
         let isAttachment = encryptionModel is POSAttachment
-        let encryptionmodelURI = encryptionModel.uri
 
         let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, response) -> NSURL! in
             let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
                 if isAttachment {
-                     return POSAttachment.existingAttachmentWithUri(encryptionmodelURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                     return POSAttachment.existingAttachmentWithUri(encryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
                 } else {
-                    return POSReceipt.existingReceiptWithUri(encryptionmodelURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                    return POSReceipt.existingReceiptWithUri(encryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
                 }
             }()
 
