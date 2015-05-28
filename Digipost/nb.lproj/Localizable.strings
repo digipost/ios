@@ -507,11 +507,17 @@
 "Uknown error message" = "Prøv igjen senere";
 
 /* No comment provided by engineer. */
-"" = "";
-
-/* No comment provided by engineer. */
 "not connected to internet alert message" = "Koble til, og prøv igjen";
 
 /* No comment provided by engineer. */
 "not connected to internet alert title" = "Du er ikke koblet til internett";
+
+/* No comment provided by engineer. */
+"unlock view label can not unlock letter" = "Brevet kan ikke åpnes i appen, fordi det er ende-til-ende kryptert. Logg inn på digipost.no for å lese brevet.";
+
+/* No comment provided by engineer. */
+"unlock view label can unlock letter" = "Avsenderen krever at du logger inn på et annet sikkerhetsnivå for å åpne brevet";
+
+/* No comment provided by engineer. */
+"" = "";
 

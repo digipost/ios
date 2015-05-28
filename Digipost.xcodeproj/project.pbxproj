@@ -1054,6 +1054,7 @@
 		CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
 		EC0C1A0C19338A82007CB53E /* POSNewFolderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNewFolderViewController.h; sourceTree = "<group>"; };
@@ -4095,6 +4096,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */,
 				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
 				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
 				ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */,
@@ -4109,7 +4111,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */;
+			currentVersion = EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
