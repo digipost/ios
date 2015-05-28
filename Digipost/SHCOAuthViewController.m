@@ -23,6 +23,7 @@
 #import "NSError+ExtraInfo.h"
 #import "GAIDictionaryBuilder.h"
 #import "oauth.h"
+#import "digipost-swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
@@ -96,7 +97,6 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
     // Trap requests to the URL used when OAuth authentication dialog finishes
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
@@ -109,12 +109,12 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             self.stateParameter = nil;
 
             if ([state isEqualToString:currentState] == NO) {
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+                [Logger dpostLogError:@"State parameter differ from stored value"];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+            [Logger dpostLogError:@"Missing state parameter"];
             [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
@@ -144,7 +144,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                     }];
                 }];
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
+            [Logger dpostLogError:@"Missing code parameter"];
             [self informUserThatOauthFailedThenDismissViewController];
         }
 

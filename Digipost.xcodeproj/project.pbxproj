@@ -906,6 +906,11 @@
 		ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
 		ECF06D731923A637003BD200 /* POSReceiptsTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */; };
+		ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
+		ECF1C05E1B1460AF00DCB8A5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
+		ECF1C05F1B1460AF00DCB8A5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
+		ECF1C0601B1460AF00DCB8A5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
+		ECF1C0611B1460AF00DCB8A5 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
 		ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
 		ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
@@ -1223,6 +1228,7 @@
 		ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+Additions.m"; sourceTree = "<group>"; };
 		ECF06D68192398C3003BD200 /* POSReceiptsTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSReceiptsTableViewDataSource.h; sourceTree = "<group>"; };
 		ECF06D721923A637003BD200 /* POSReceiptsTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSReceiptsTableViewDataSource.m; sourceTree = "<group>"; };
+		ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
@@ -1690,6 +1696,7 @@
 			children = (
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
+				ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */,
 				ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */,
 				ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */,
 				EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */,
@@ -2575,6 +2582,7 @@
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
+				ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
@@ -2705,6 +2713,7 @@
 				87C9E77C1B0610BC0019AA07 /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				87C9E77D1B0610BC0019AA07 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				87C9E77E1B0610BC0019AA07 /* APIClient+Folder.swift in Sources */,
+				ECF1C0611B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				87C9E77F1B0610BC0019AA07 /* WhatsNewGuideItem.swift in Sources */,
 				87C9E7801B0610BC0019AA07 /* POSReceiptFolderTableViewCell.m in Sources */,
 				87C9E7811B0610BC0019AA07 /* NSManagedObject+Attributes.swift in Sources */,
@@ -2835,6 +2844,7 @@
 				EC0D2D4B1AE786A800595A61 /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC0D2D4C1AE786A800595A61 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				EC0D2D4E1AE786A800595A61 /* APIClient+Folder.swift in Sources */,
+				ECF1C0601B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC0D2D4F1AE786A800595A61 /* WhatsNewGuideItem.swift in Sources */,
 				EC0D2D501AE786A800595A61 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC0D2D511AE786A800595A61 /* NSManagedObject+Attributes.swift in Sources */,
@@ -3094,6 +3104,7 @@
 				EC2DCB5A1AB84EAB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCB5B1AB84EAB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				EC2DCB5C1AB84EAB0063755E /* APIClient+Folder.swift in Sources */,
+				ECF1C05E1B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC2DCB5D1AB84EAB0063755E /* WhatsNewGuideItem.swift in Sources */,
 				EC2DCB5E1AB84EAB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC2DCB5F1AB84EAB0063755E /* NSManagedObject+Attributes.swift in Sources */,
@@ -3224,6 +3235,7 @@
 				EC2DCC0B1AB864AB0063755E /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				EC2DCC0C1AB864AB0063755E /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				EC2DCC0D1AB864AB0063755E /* APIClient+Folder.swift in Sources */,
+				ECF1C05F1B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC2DCC0E1AB864AB0063755E /* WhatsNewGuideItem.swift in Sources */,
 				EC2DCC0F1AB864AB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC2DCC101AB864AB0063755E /* NSManagedObject+Attributes.swift in Sources */,

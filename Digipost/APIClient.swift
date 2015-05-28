@@ -415,6 +415,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.isUploadingFile = true
     }
 
+    func postLog(#uri: String, parameters: [String : AnyObject]) {
+        let baseUri = __SERVER_URI__
+        let completeUri = "\(baseUri)\(uri)"
+
+        let task = self.urlSessionTask(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
+            DLog("successfully sent log")
+        }) { (error) -> Void in
+            DLog("Could not send\(parameters) , error: \(error)")
+        }
+        task.resume()
+    }
+
     func removeTemporaryUploadFiles () {
         let uploadsPath = POSFileManager.sharedFileManager().uploadsFolderPath()
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
