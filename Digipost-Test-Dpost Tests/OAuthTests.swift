@@ -132,9 +132,9 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     func testTokenDifferingNonceThanClient() {
-        let nonce = NSString.randomNumberString()
+        let invalidNonce = "invalidNonce"
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: nonce)
+        let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: invalidNonce)
         XCTAssertNil(token, "should not be able to create token with differing nonce than provided")
     }
 
