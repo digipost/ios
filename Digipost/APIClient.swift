@@ -10,7 +10,6 @@ import Foundation
 import MobileCoreServices
 import Darwin
 import AFNetworking
-import Alamofire
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
 
@@ -36,6 +35,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let manager = AFHTTPSessionManager(baseURL: nil)
         manager.requestSerializer = AFHTTPRequestSerializer()
         manager.responseSerializer = AFHTTPResponseSerializer()
+        #if __ACCEPT_SELF_SIGNED_CERTIFICATES__
+            manager.securityPolicy.allowInvalidCertificates = true
+        #endif
         return manager
         }()
 
@@ -304,11 +306,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    if error.code == Constants.Error.Code.oAuthUnathorized  {
-                        self.downloadBaseEncryptionModel(baseEncryptionModel, withProgress: progress, success: success, failure: failure)
-                    } else {
-                        failure(error: error)
-                    }
+                    failure(error: error)
             })
             task.resume()
         }

@@ -3586,6 +3586,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				OTHER_SWIFT_FLAGS = "-D__ACCEPT_SELF_SIGNED_CERTIFICATES__";
 				PRODUCT_NAME = "Digipost-localhost";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";
@@ -3628,6 +3629,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				OTHER_SWIFT_FLAGS = "-D__ACCEPT_SELF_SIGNED_CERTIFICATES__";
 				PRODUCT_NAME = "Digipost-localhost";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";

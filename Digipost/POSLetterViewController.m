@@ -108,10 +108,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kDocumentsViewEditingStatusChangedNotificationName
                                                   object:nil];
-    NSString *currentScope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
-    if (currentScope != kOauth2ScopeFull) {
-        [self.attachment deleteDecryptedFileIfExisting];
-        [self.attachment deleteEncryptedFileIfExisting];
+    if (self.attachment) {
+        NSString *currentScope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+        if (currentScope != kOauth2ScopeFull) {
+            [self.attachment deleteDecryptedFileIfExisting];
+            [self.attachment deleteEncryptedFileIfExisting];
+        }
     }
 }
 

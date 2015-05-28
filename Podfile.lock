@@ -21,7 +21,6 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
-  - Alamofire (1.2.1)
   - HockeySDK (3.6.4)
   - LUKeychainAccess (1.2.4)
   - MRProgress (0.4.3):
@@ -62,7 +61,6 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
-  - Alamofire (~> 1.1)
   - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
@@ -89,7 +87,6 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
-  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
   LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
