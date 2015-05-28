@@ -26,7 +26,7 @@ class Logger {
         static let uri = "/post/log/mobile/ios"
 
         // enable when endpoint is ready
-        static let currentlyEnabled = false
+        static let currentlyEnabled = true
     }
 
     class func dpostLogDebug(message: String) {
@@ -50,6 +50,15 @@ class Logger {
             let parameters = [ Logger.Constants.severity : severity.rawValue, Logger.Constants.message : message ]
             APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters)
         }
+        DLog(message)
     }
 
+
+
+}
+
+ func DLog(message: String, function: String = __FUNCTION__) {
+    #if DEBUG
+        println("\(function): \(message)")
+    #endif
 }

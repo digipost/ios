@@ -422,9 +422,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let completeUri = "\(baseUri)\(uri)"
 
         let task = self.urlSessionTask(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
-            println("success")
+            DLog("successfully sent log")
         }) { (error) -> Void in
-            println(error)
+            DLog("Could not send\(parameters) , error: \(error)")
         }
         task.resume()
     }
