@@ -10,7 +10,6 @@ import Foundation
 import MobileCoreServices
 import Darwin
 import AFNetworking
-import Alamofire
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
 
@@ -36,6 +35,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let manager = AFHTTPSessionManager(baseURL: nil)
         manager.requestSerializer = AFHTTPRequestSerializer()
         manager.responseSerializer = AFHTTPResponseSerializer()
+        #if __ACCEPT_SELF_SIGNED_CERTIFICATES__
+            manager.securityPolicy.allowInvalidCertificates = true
+        #endif
         return manager
         }()
 
