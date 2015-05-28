@@ -8,7 +8,6 @@
 
 import UIKit
 
-import Alamofire
 
 extension APIClient {
 
@@ -74,49 +73,41 @@ extension APIClient {
 
 
     func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
-        let downloadURL = NSURL(string: encryptionModel.uri)
-        var urlRequest = NSMutableURLRequest(URL: downloadURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = method.rawValue
-        for (key, value) in self.additionalHeaders {
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
-        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-        Alamofire.Manager.sharedInstance.startRequestsImmediately = false
+
         var completedURL : NSURL?
         let downloadURI = encryptionModel.uri
-        let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
-            let baseEncryptionModel : POSBaseEncryptedModel? = {
-                if let attachment = encryptionModel as? POSAttachment {
-                    return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel?
-                } else {
-                    return POSReceipt.existingReceiptWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
-                }}()
-            // model was deleted while downloading
-            if baseEncryptionModel == nil {
-                return NSURL(string: "")! // Alamofire won't allow returning nil, so creating a blank url with stop the download (Alamofire will be removed soon anyway)
-            }
-            let filePath = baseEncryptionModel!.decryptedFilePath()
-            if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-                NSFileManager.defaultManager().removeItemAtPath(filePath, error: nil)
-            }
-            let fileURL = NSURL(fileURLWithPath: filePath)!
-            completedURL = fileURL
-            return fileURL
-            }.progress { (bytesRead, totalBytesRead, totalBytesExcpedtedToRead) -> Void in
-                if let actualProgress = progress as NSProgress! {
-                    actualProgress.completedUnitCount = totalBytesRead
-                }
-            }.response { (request, response, object, error) -> Void in
-                dispatch_async(dispatch_get_main_queue(), {
-                     if let actualError = error as NSError! {
-                        failure(error: APIError(error: actualError))
-                    } else {
-                        success(url: completedURL!)
-                    }
-                })
+        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
+        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
+
+        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, NSURLSessionDownloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
+            progress?.completedUnitCount = totalBytesWritten
         }
-        self.lastPerformedTask = request.task
-        return request.task
+
+        let isAttachment = encryptionModel is POSAttachment
+
+        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, reponse) -> NSURL! in
+
+            let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
+                if isAttachment {
+                     return POSAttachment.existingAttachmentWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                } else {
+                    return POSReceipt.existingReceiptWithUri(encryptionModel.uri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                }
+            }()
+
+            if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {
+                return NSURL.fileURLWithPath(filePath)
+            }else {
+                return nil
+            }
+
+            }, completionHandler: { (response, fileURL, error) -> Void in
+                if let actualError = error {
+                    failure(error: APIError(error: error))
+                }
+                success(url:fileURL)
+        })
+        return task
     }
 
     func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
