@@ -43,6 +43,7 @@ extern NSString *const kOauth2ScopeFullHighAuth;
 extern NSString *const kOauth2ScopeFull_Idporten3;
 extern NSString *const kOauth2ScopeFull_Idporten4;
 extern NSString *const kKeychainAccessRefreshTokenKey;
+extern NSString *const kOAuth2IDToken;
 
 extern NSString *const kOAuth2AccessToken;
 extern NSString *const kOAuth2RefreshToken;
@@ -55,7 +56,7 @@ extern NSString *const kOAuth2ErrorDomain;
 
 + (instancetype)sharedManager;
 
-- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
+- (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure;
 - (void)refreshAccessTokenWithRefreshToken:(NSString *)refreshToken scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *error))failure;
 
 @end

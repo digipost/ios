@@ -34,6 +34,8 @@ NSString *const kOAuth2GrantType = @"grant_type";
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
 NSString *const kOAuth2ExpiresIn = @"expires_in";
+NSString *const kOAuth2IDToken = @"id_token";
+NSString *const kOAuth2Nonce = @"nonce";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
@@ -114,19 +116,19 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    NSString *nonce = [NSString secureRandomString];
+
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
-                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
+                                 kOAuth2Nonce : nonce};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-              NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-              NSString *accessToken = responseDict[kOAuth2AccessToken];
-              NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInSeconds:expiresInSeconds];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.

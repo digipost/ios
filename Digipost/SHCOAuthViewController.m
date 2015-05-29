@@ -81,8 +81,8 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.stateParameter = nil;
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
@@ -103,11 +103,9 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
-
             // Copy and reset the state parameter, as we're done checking its value for now
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
-
             if ([state isEqualToString:currentState] == NO) {
                 [Logger dpostLogError:@"State parameter differ from stored value"];
                 [self informUserThatOauthFailedThenDismissViewController];
@@ -121,18 +119,17 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 
         if (parameters[kOAuth2Code]) {
             [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
-                scope:self.scope
-                success:^{
-
+                                                            scope:self.scope
+                                                          success:^{
                   // The OAuth manager has successfully authenticated with code - which means we've
                   // got an access code and a refresh code, and can dismiss this view controller
                   // and let the login view controller take over and push the folders view controller.
-                  [self dismissViewControllerAnimated:YES
-                                           completion:^{
-                                             if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                                                 [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                                             }
-                                           }];
+                    [self dismissViewControllerAnimated:YES
+                                             completion:^{
+                                                 if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                     [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                                 }
+                                             }];
                 }
                 failure:^(NSError *error) {
                   [UIAlertView showWithTitle:error.errorTitle
@@ -234,7 +231,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
-    self.stateParameter = [NSString randomNumberString];
+    self.stateParameter = [NSString secureRandomString];
 
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
