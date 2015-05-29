@@ -28,7 +28,7 @@ extension OAuthToken {
                         base64Data = NSData(base64EncodedString: alteredBase64EncodedJson, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
                         alteredBase64EncodedJson = alteredBase64EncodedJson.stringByAppendingString("=")
                         numberOfCharactersAdded++
-                        if numberOfCharactersAdded > 7 {
+                        if numberOfCharactersAdded > 2 {
                             return false
                         }
                     }
