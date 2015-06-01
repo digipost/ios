@@ -150,11 +150,25 @@ extension APIClient {
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-    
+
+    func urlSessionTaskWithNoAuthorizationHeader(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+        let url = NSURL(string: url)
+        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.HTTPMethod = method.rawValue
+        urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
+        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        urlRequest.setValue(contentType, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
+
+        let task = dataTask(urlRequest, success: success, failure: failure)
+        return task
+    }
 }

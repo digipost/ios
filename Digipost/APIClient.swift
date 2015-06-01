@@ -418,8 +418,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func postLog(#uri: String, parameters: [String : AnyObject]) {
         let baseUri = __SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
-
-        let task = self.urlSessionTask(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
+        let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
             DLog("successfully sent log")
         }) { (error) -> Void in
             DLog("Could not send\(parameters) , error: \(error)")
@@ -463,7 +462,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                assert(false, "NO oauthtoken present in app. Log out!")
+                Logger.dpostLogError("User revoked token and had no lower level token to fall back on")
             }
         }
     }
