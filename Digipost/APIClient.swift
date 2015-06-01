@@ -444,6 +444,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 }, failure: { (error) -> Void in
                     if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
+                    } else {
+                        Logger.dpostLogError("Deleting oauth tokens and logout user. Not invalid refresh token.  error: \(error)")
                     }
                     failure?(error: error)
             })
