@@ -1,23 +1,23 @@
 PODS:
-  - AFNetworking (2.5.3):
-    - AFNetworking/NSURLConnection (= 2.5.3)
-    - AFNetworking/NSURLSession (= 2.5.3)
-    - AFNetworking/Reachability (= 2.5.3)
-    - AFNetworking/Security (= 2.5.3)
-    - AFNetworking/Serialization (= 2.5.3)
-    - AFNetworking/UIKit (= 2.5.3)
-  - AFNetworking/NSURLConnection (2.5.3):
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.5.3):
+  - AFNetworking/NSURLSession (2.5.4):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/Reachability (2.5.3)
-  - AFNetworking/Security (2.5.3)
-  - AFNetworking/Serialization (2.5.3)
-  - AFNetworking/UIKit (2.5.3):
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
@@ -59,7 +59,7 @@ PODS:
   - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.5.0)
+  - AFNetworking (~> 2.5.4)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
   - LUKeychainAccess (~> 1.2.0)
@@ -85,7 +85,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/bitstadium/HockeySDK-iOS.git
 
 SPEC CHECKSUMS:
-  AFNetworking: e1d86c2a96bb5d2e7408da36149806706ee122fe
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
   LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
