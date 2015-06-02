@@ -905,6 +905,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)unloadContent
 {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
+    if (self.attachment) {
+        NSString *currentScope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+        if (currentScope != kOauth2ScopeFull) {
+            [self.attachment deleteEncryptedFileIfExisting];
+        }
+    }
 }
 
 - (BOOL)attachmentHasValidFileType
