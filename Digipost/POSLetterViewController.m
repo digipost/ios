@@ -475,6 +475,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(POSAttachment *)attachment
 {
+    [self unloadContent];
 
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
@@ -526,6 +527,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setReceipt:(POSReceipt *)receipt
 {
+    [self unloadContent];
     BOOL new = receipt != _receipt;
 
     _receipt = receipt;
