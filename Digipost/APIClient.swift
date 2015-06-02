@@ -372,6 +372,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         userInfo["fileName"] = fileName
         let progress = NSProgress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
+        self.uploadProgress = progress
         let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
