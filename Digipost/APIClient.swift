@@ -261,6 +261,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func cancelLastDownloadingBaseEncryptionModel() {
+        self.fileTransferSessionManager.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            self.cancelTasks(downloadTasks)
+        }
+    }
+
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
@@ -364,8 +370,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
         var userInfo = Dictionary<NSObject,AnyObject>()
         userInfo["fileName"] = fileName
-        self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
-        self.uploadProgress!.totalUnitCount = Int64(fileSize)
+        let progress = NSProgress(parent: nil, userInfo:userInfo)
+        progress.totalUnitCount = Int64(fileSize)
         let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
@@ -384,13 +390,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
-
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let totalSent = totalBytesSent as Int64
-                self.uploadProgress?.completedUnitCount = totalSent
+                if let actualProgress = self.uploadProgress {
+                    actualProgress.completedUnitCount = totalSent
+                }
             })
         }
         validateFullScope { () -> Void in

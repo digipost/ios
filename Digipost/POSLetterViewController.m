@@ -293,6 +293,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     }
 
+
     [super viewDidDisappear:animated];
 }
 
@@ -727,6 +728,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSParameterAssert(baseEncryptionModel);
 
     NSProgress *progress = nil;
+    [[APIClient sharedClient] cancelLastDownloadingBaseEncryptionModel];
+
     self.progressView.progress = 0.0;
     if ([self needsAuthenticationToOpen]) {
         [self showLockedViewCanBeUnlocked:YES];
@@ -738,26 +741,23 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.1
-            delay:0.6
-            options:UIViewAnimationOptionCurveEaseInOut
-            animations:^{
-              if ([self needsAuthenticationToOpen] == NO) {
-                  self.progressView.alpha = 1.0;
-              }
-            }
-            completion:^(BOOL finished){
-            }];
-
-        progress = [[NSProgress alloc] initWithParent:nil
-                                             userInfo:nil];
-        NSInteger fileSize = [self.attachment.fileSize integerValue];
-        progress.totalUnitCount = (int64_t)fileSize;
-
+                              delay:0.6
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             if ([self needsAuthenticationToOpen] == NO) {
+                                 self.progressView.alpha = 1.0;
+                                 self.webView.alpha = 0.0;
+                             }
+                         }
+                         completion:^(BOOL finished){
+                         }];
         if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
             [self.progress removeObserver:self
                                forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                                   context:kSHCLetterViewControllerKVOContext];
         }
+        NSInteger fileSize = [self.attachment.fileSize integerValue];
+        progress = [NSProgress progressWithTotalUnitCount:(int64_t) fileSize];
         [progress addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                       options:NSKeyValueObservingOptionNew
@@ -899,6 +899,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }];
     }
 }
+
 - (void)unloadContent
 {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
