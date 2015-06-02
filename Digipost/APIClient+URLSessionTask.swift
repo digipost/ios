@@ -78,8 +78,7 @@ extension APIClient {
         let encryptedModelUri = encryptionModel.uri
         let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-
-        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, NSURLSessionDownloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
+        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
             progress?.completedUnitCount = totalBytesWritten
         }
 
@@ -102,7 +101,9 @@ extension APIClient {
 
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
-                    failure(error: APIError(error: error))
+                    if (error.code != NSURLErrorCancelled) {
+                        failure(error: APIError(error: error))
+                    }
                 } else if let actualFileUrl = fileURL {
                         success(url:actualFileUrl)
                 } else {
