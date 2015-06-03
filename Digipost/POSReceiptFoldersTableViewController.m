@@ -211,7 +211,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
             [self showTableViewBackgroundView:([self.receiptFolderTableViewDataSource numberOfReceiptGroups] == 0)];
 
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }
         }];
 }

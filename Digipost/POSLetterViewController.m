@@ -628,7 +628,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 
@@ -861,7 +861,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
               [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
               if ([self needsAuthenticationToOpen] == NO) {
-                  [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+                  [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
               }
             }];
     }
@@ -975,7 +975,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 
@@ -997,7 +997,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 
@@ -1019,7 +1019,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 
@@ -1056,7 +1056,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                          }
                                                          failure:^(APIError *error) {
-                                                           [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+                                                             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
                                                          }];
                                                  }
                                                }];

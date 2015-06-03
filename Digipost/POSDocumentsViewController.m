@@ -521,7 +521,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
         if ([userDidInititateRequest boolValue]){
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }
     }];
 }
@@ -618,7 +618,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         success();
     } failure:^(APIError *error) {
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
     }];
 }
 
@@ -653,7 +653,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         success();
     } failure:^(APIError *error) {
-        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
     }];
 }
@@ -682,7 +682,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     }
         failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 

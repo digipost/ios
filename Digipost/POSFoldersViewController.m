@@ -544,7 +544,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
         if ([userDidInititateRequest boolValue]) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }
 
     }];
@@ -561,7 +561,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         [self updateContentsFromServerUserInitiatedRequest:@NO];
     }
         failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
           //                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
           //
           //                                           }];

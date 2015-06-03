@@ -170,7 +170,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                                          [self.tableView reloadData];
     }
         failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
         }];
 }
 
@@ -241,7 +241,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                 [self deselectAllRows];
             }
         } failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
             [self.receiptsTableViewDataSource resetFetchedResultsController];
             [self.tableView reloadData];
             [self deselectAllRows];
