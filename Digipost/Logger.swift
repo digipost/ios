@@ -25,8 +25,21 @@ class Logger {
 
         static let uri = "/post/log/mobile/ios"
 
-        // enable when endpoint is ready
-        static let currentlyEnabled = true
+    }
+
+    /**
+    Log an error to digipost log service on a specific format. 
+    Example on format with a single String:
+    Logger dpostLogError:@"Description: State-parameter returned from server differed from what client sent | Location: Showing OAuth Login Screen | UI: User will get an error and be asked to try logging in again | Cause: Server is broken or man in the middle"];
+
+    :param: description   Explanation on what caused the error
+    :param: location       Where in the app the error happened
+    :param: UI             How will it look to the user
+    :param: cause          What most likely caused the error
+    */
+    class func dpostLogError(description: String, location: String, UI: String, cause: String ) {
+        let message = "Description: \(description) | Location: \(location) | UI: \(UI) | Cause: \(cause)"
+        dpostLogError(message)
     }
 
     class func dpostLogDebug(message: String) {
@@ -46,13 +59,10 @@ class Logger {
     }
 
     private class func dpostLog(severity: DpostLogSeverity, message: String) {
-        if Logger.Constants.currentlyEnabled {
-            let parameters = [ Logger.Constants.severity : severity.rawValue, Logger.Constants.message : message ]
-            APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters)
-        }
+        let parameters = [ Logger.Constants.severity : severity.rawValue, Logger.Constants.message : message ]
+        APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters)
         DLog(message)
     }
-
 
 
 }
