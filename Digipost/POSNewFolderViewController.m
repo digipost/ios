@@ -131,7 +131,7 @@
                                                             
                                                         }];
                                                     } else {
-                                                        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
+                                                        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                                     }
         }];
 }
@@ -149,7 +149,7 @@
     }
         failure:^(APIError *error) {
             [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self didTapOkClosure:nil];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
