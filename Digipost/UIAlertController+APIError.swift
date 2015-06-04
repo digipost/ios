@@ -25,9 +25,7 @@ extension UIAlertController {
 
             if presentingViewController.navigationController?.topViewController == presentingViewController && presentingViewController.presentedViewController == nil {
                 presentingViewController.presentViewController(alertController, animated: true, completion:nil)
-                var descriptionWithNoForbiddenCharacters = "\(presentingViewController)".stringByReplacingOccurrencesOfString("<", withString: "")
-                descriptionWithNoForbiddenCharacters = descriptionWithNoForbiddenCharacters.stringByReplacingOccurrencesOfString(">", withString: "")
-                Logger.dpostLogError("API error shown to user, code:\(apiError.code), digipostErrorcode: \(apiError.digipostErrorCode) VC: \(descriptionWithNoForbiddenCharacters) ")
+                Logger.dpostLogError("API error shown to user, code:\(apiError.code), digipostErrorcode: \(apiError.digipostErrorCode)")
             }
         }
     }
