@@ -78,8 +78,7 @@ extension APIClient {
         let encryptedModelUri = encryptionModel.uri
         let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-
-        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, NSURLSessionDownloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
+        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
             progress?.completedUnitCount = totalBytesWritten
         }
 
@@ -102,7 +101,9 @@ extension APIClient {
 
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
-                    failure(error: APIError(error: error))
+                    if (error.code != NSURLErrorCancelled) {
+                        failure(error: APIError(error: error))
+                    }
                 } else if let actualFileUrl = fileURL {
                         success(url:actualFileUrl)
                 } else {
@@ -150,11 +151,25 @@ extension APIClient {
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-    
+
+    func urlSessionTaskWithNoAuthorizationHeader(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+        let url = NSURL(string: url)
+        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.HTTPMethod = method.rawValue
+        urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
+        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        urlRequest.setValue(contentType, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
+
+        let task = dataTask(urlRequest, success: success, failure: failure)
+        return task
+    }
 }

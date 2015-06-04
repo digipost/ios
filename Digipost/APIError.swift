@@ -186,7 +186,7 @@ class APIError: NSError {
             case CFNetworkErrors.CFErrorHTTPConnectionLost.rawValue:
                 return ("Connection lost","")
             case CFNetworkErrors.CFURLErrorTimedOut.rawValue:
-                return ("Timeout", "")
+                return (NSLocalizedString("timeout alert title", comment: ""), NSLocalizedString("timeout alert message", comment: ""))
             case CFNetworkErrors.CFURLErrorCannotConnectToHost.rawValue:
                 fallthrough
             case CFNetworkErrors.CFURLErrorCannotFindHost.rawValue:
@@ -195,6 +195,8 @@ class APIError: NSError {
                 return ("Server nede","")
             case CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue:
                 return (NSLocalizedString("not connected to internet alert title", comment: ""), NSLocalizedString("not connected to internet alert message", comment: ""))
+            case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue :
+                return (NSLocalizedString("lost network connection alert title", comment: ""), NSLocalizedString("lost network connection alert message", comment: ""))
             case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
                 return ("Du har skrudd av datatrafikk","")
             case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue:

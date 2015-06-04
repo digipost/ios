@@ -9,35 +9,24 @@
 import UIKit
 
 extension UIAlertController {
-    
     class func presentAlertControllerWithAPIError(apiError: APIError, presentingViewController: UIViewController) {
-        if apiError.shouldBeShownToUser {
-            let alertController = UIAlertController(title: apiError.alertTitle, message: apiError.altertMessage, preferredStyle: UIAlertControllerStyle.Alert)
-            
-            let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-                
-            })
-            
-            alertController.addAction(okAction)
-            presentingViewController.presentViewController(alertController, animated: true, completion: { () -> Void in
-                
-            })
-        }
+        presentAlertControllerWithAPIError(apiError, presentingViewController: presentingViewController, didTapOkClosure: nil)
     }
     
-    class func presentAlertControllerWithAPIError(apiError: APIError, presentingViewController: UIViewController, didTapOkClosure: () -> Void ) {
+    class func presentAlertControllerWithAPIError(apiError: APIError, presentingViewController: UIViewController, didTapOkClosure: (() -> Void)? = nil) {
         if apiError.shouldBeShownToUser {
             let alertController = UIAlertController(title: apiError.alertTitle, message: apiError.altertMessage, preferredStyle: UIAlertControllerStyle.Alert)
             
             let okAction = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (alertAction) -> Void in
-                didTapOkClosure()
+                didTapOkClosure?()
             })
-            
+
             alertController.addAction(okAction)
-            presentingViewController.presentViewController(alertController, animated: true, completion: { () -> Void in
-                
-            })
-            
+
+            if presentingViewController.navigationController?.topViewController == presentingViewController && presentingViewController.presentedViewController == nil {
+                presentingViewController.presentViewController(alertController, animated: true, completion:nil)
+                Logger.dpostLogError("API error shown to user, code:\(apiError.code), digipostErrorcode: \(apiError.digipostErrorCode)")
+            }
         }
     }
     

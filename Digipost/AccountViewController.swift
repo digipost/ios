@@ -119,7 +119,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
         }) { (error) -> () in
             if (userDidInitiateRequest == 1) {
-                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self)
+                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
             }
             
             if let actualRefreshControl = self.refreshControl {

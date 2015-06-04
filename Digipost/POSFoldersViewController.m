@@ -109,6 +109,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
     }
+
 }
 
 - (void)popViewController
@@ -258,8 +259,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
 
     if (!unreadCounterHidden) {
-        NSInteger unread = [POSDocument numberOfUnreadDocumentsForMailboxFolder:self.inboxFolder inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%li", (long)unread];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@",rootResource.unreadItemsInInbox];
     }
 
     return cell;

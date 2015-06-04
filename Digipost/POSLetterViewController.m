@@ -186,11 +186,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 [self downloadAttachmentContent:self.attachment];
               }
               failure:^(APIError *error) {
-                [UIAlertController presentAlertControllerWithAPIError:error
-                                             presentingViewController:self
-                                                      didTapOkClosure:^{
-
-                                                      }];
+                  [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
               }];
 
         }
@@ -292,6 +288,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if ([UIApplication sharedApplication].statusBarStyle != UIStatusBarStyleLightContent) {
         [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     }
+
 
     [super viewDidDisappear:animated];
 }
@@ -474,6 +471,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setAttachment:(POSAttachment *)attachment
 {
+    [self unloadContent];
 
     self.errorLabel.alpha = 0;
     BOOL new = attachment != _attachment;
@@ -525,6 +523,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)setReceipt:(POSReceipt *)receipt
 {
+    [self unloadContent];
     BOOL new = receipt != _receipt;
 
     _receipt = receipt;
@@ -625,7 +624,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -727,6 +726,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSParameterAssert(baseEncryptionModel);
 
     NSProgress *progress = nil;
+    [[APIClient sharedClient] cancelLastDownloadingBaseEncryptionModel];
+
     self.progressView.progress = 0.0;
     if ([self needsAuthenticationToOpen]) {
         [self showLockedViewCanBeUnlocked:YES];
@@ -738,26 +739,23 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.1
-            delay:0.6
-            options:UIViewAnimationOptionCurveEaseInOut
-            animations:^{
-              if ([self needsAuthenticationToOpen] == NO) {
-                  self.progressView.alpha = 1.0;
-              }
-            }
-            completion:^(BOOL finished){
-            }];
-
-        progress = [[NSProgress alloc] initWithParent:nil
-                                             userInfo:nil];
-        NSInteger fileSize = [self.attachment.fileSize integerValue];
-        progress.totalUnitCount = (int64_t)fileSize;
-
+                              delay:0.6
+                            options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             if ([self needsAuthenticationToOpen] == NO) {
+                                 self.progressView.alpha = 1.0;
+                                 self.webView.alpha = 0.0;
+                             }
+                         }
+                         completion:^(BOOL finished){
+                         }];
         if ([self.progress respondsToSelector:@selector(removeObserver:forKeyPath:context:)]) {
             [self.progress removeObserver:self
                                forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                                   context:kSHCLetterViewControllerKVOContext];
         }
+        NSInteger fileSize = [self.attachment.fileSize integerValue];
+        progress = [NSProgress progressWithTotalUnitCount:(int64_t) fileSize];
         [progress addObserver:self
                    forKeyPath:NSStringFromSelector(@selector(fractionCompleted))
                       options:NSKeyValueObservingOptionNew
@@ -899,9 +897,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }];
     }
 }
+
 - (void)unloadContent
 {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
+    if (self.attachment) {
+        // for added security on higher authentication level files, we prefer users to download the file every time it is opened, and delted immedeately after user navigates away from the file.
+        NSString *currentScope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+        if (currentScope != kOauth2ScopeFull) {
+            [self.attachment deleteEncryptedFileIfExisting];
+        }
+    }
 }
 
 - (BOOL)attachmentHasValidFileType
@@ -966,7 +972,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -988,7 +994,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -1010,7 +1016,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           }
         }
         failure:^(APIError *error) {
-          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }
 
@@ -1047,7 +1053,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName object:nil];
                                                          }
                                                          failure:^(APIError *error) {
-                                                           [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+                                                             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                                          }];
                                                  }
                                                }];

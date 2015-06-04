@@ -261,6 +261,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
+    func cancelLastDownloadingBaseEncryptionModel() {
+        self.fileTransferSessionManager.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            self.cancelTasks(downloadTasks)
+        }
+    }
+
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
@@ -364,8 +370,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
         var userInfo = Dictionary<NSObject,AnyObject>()
         userInfo["fileName"] = fileName
-        self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
-        self.uploadProgress!.totalUnitCount = Int64(fileSize)
+        let progress = NSProgress(parent: nil, userInfo:userInfo)
+        progress.totalUnitCount = Int64(fileSize)
+        self.uploadProgress = progress
         let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
@@ -384,13 +391,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
-
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let totalSent = totalBytesSent as Int64
-                self.uploadProgress?.completedUnitCount = totalSent
+                if let actualProgress = self.uploadProgress {
+                    actualProgress.completedUnitCount = totalSent
+                }
             })
         }
         validateFullScope { () -> Void in
@@ -418,8 +426,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func postLog(#uri: String, parameters: [String : AnyObject]) {
         let baseUri = __SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
-
-        let task = self.urlSessionTask(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
+        let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
             DLog("successfully sent log")
         }) { (error) -> Void in
             DLog("Could not send\(parameters) , error: \(error)")
@@ -445,8 +452,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 }, failure: { (error) -> Void in
                     if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
+                    } else {
+                        failure?(error: error)
                     }
-                    failure?(error: error)
             })
         } else {
             // if oauthoken does not have a refreshtoken, it means its a higher level token
@@ -463,7 +471,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                assert(false, "NO oauthtoken present in app. Log out!")
+                Logger.dpostLogError("User revoked token and had no lower level token to fall back on")
             }
         }
     }

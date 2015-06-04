@@ -521,3 +521,12 @@
 /* No comment provided by engineer. */
 "" = "";
 
+/* Lets user tap it to dismiss alert */
+"Oauth login error button title" = "Ok";
+
+/* message for informing user that Oauth state is wrong */
+"Oauth login error message" = "Det oppstod en feil. Prøv å logge inn på nytt, eller kontakt kundeservice";
+
+/* title for informing user that something critical is wrong */
+"Oauth login error title" = "Noe gikk galt";
+
