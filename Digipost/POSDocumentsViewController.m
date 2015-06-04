@@ -618,7 +618,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         success();
     } failure:^(APIError *error) {
         [self showTableViewBackgroundView:([self numberOfRows] == 0)];
-
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
     }];
 }
 
