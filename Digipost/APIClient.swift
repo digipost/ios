@@ -418,9 +418,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let baseUri = __SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
         let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
-            DLog("Successfully sent: \(parameters)")
+            DLog("Successfully sent log with parameters: \(parameters)")
         }) { (error) -> Void in
-            DLog("Could not send: \(parameters), got error: \(error)")
+            DLog("Could not send log with parameters: \(parameters), got error: \(error)")
         }
         task.resume()
     }
