@@ -901,7 +901,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)unloadContent
 {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
-    if (self.attachment) {
+    if (self.attachment.authenticationLevel) {
         // for added security on higher authentication level files, we prefer users to download the file every time it is opened, and delted immedeately after user navigates away from the file.
         NSString *currentScope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
         if (currentScope != kOauth2ScopeFull) {
