@@ -106,9 +106,8 @@ extension APIClient {
                     }
                 } else if let actualFileUrl = fileURL {
                         success(url:actualFileUrl)
-                } else {
-                    // TODO dLog
                 }
+                // we get here if the request was canceled, should do nothing.
         })
         return task
     }

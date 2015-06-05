@@ -347,15 +347,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return
         }
 
-        // TODO CANCEL UPLOADING FILES && DELETE TEMP FILES
-        //
-        //    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
-        //    if (self.isUploadingFile) {
-        //    [self cancelUploadingFiles];
-        //    }
-        //
-        //    [self removeTemporaryUploadFiles];
-
         removeTemporaryUploadFiles()
 
         let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
