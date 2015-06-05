@@ -107,12 +107,12 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
             if ([state isEqualToString:currentState] == NO) {
-                [Logger dpostLogError:@"State parameter differ from stored value"];
+                [Logger dpostLogError:@"State parameter returned from server differed from what client sent" location:@"Showing OAuth login screen" UI:@"User will get an error and be asked to try logging in again" cause:@"Server is broken or possible man in the middle attack"];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
         } else {
-            [Logger dpostLogError:@"Missing state parameter"];
+            [Logger dpostLogError:@"Could not find OAuth state-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
@@ -141,7 +141,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                     }];
                 }];
         } else {
-            [Logger dpostLogError:@"Missing code parameter"];
+            [Logger dpostLogError:@"Could not find OAuth code-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
         }
 

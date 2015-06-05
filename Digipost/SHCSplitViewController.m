@@ -87,10 +87,6 @@
             }
         }
     }
-
-    //    // TODO This should not be here
-    // if acesstoken == nil {
-    //    [self presentLoginViewController];
 }
 
 #pragma mark - Properties

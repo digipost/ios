@@ -13,7 +13,7 @@ extension UIStoryboard {
         let device = UIDevice.currentDevice().userInterfaceIdiom
         switch device {
         case .Phone:
-            return UIStoryboard(name: "Main_iPhone", bundle: nil) // TODO: Move storyboard name to constants
+            return UIStoryboard(name: "Main_iPhone", bundle: nil) 
         case .Pad:
             return UIStoryboard(name: "Main_iPad", bundle: nil)
         case .Unspecified:

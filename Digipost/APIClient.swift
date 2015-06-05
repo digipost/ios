@@ -347,15 +347,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return
         }
 
-        // TODO CANCEL UPLOADING FILES && DELETE TEMP FILES
-        //
-        //    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
-        //    if (self.isUploadingFile) {
-        //    [self cancelUploadingFiles];
-        //    }
-        //
-        //    [self removeTemporaryUploadFiles];
-
         removeTemporaryUploadFiles()
 
         let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
@@ -427,9 +418,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let baseUri = __SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
         let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
-            DLog("successfully sent log")
+            DLog("Successfully sent log with parameters: \(parameters)")
         }) { (error) -> Void in
-            DLog("Could not send\(parameters) , error: \(error)")
+            DLog("Could not send log with parameters: \(parameters), got error: \(error)")
         }
         task.resume()
     }
@@ -471,7 +462,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                Logger.dpostLogError("User revoked token and had no lower level token to fall back on")
+                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Something wrong with storing OAuth Tokens")
+                self.deleteRefreshTokensAndLogoutUser()
             }
         }
     }
