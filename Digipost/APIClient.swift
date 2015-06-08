@@ -460,17 +460,24 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
                 Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Something wrong with storing OAuth Tokens")
-                self.deleteRefreshTokensAndLogoutUser()
             }
         }
     }
 
+    /**
+    Called when refresh tokens are invalidated server side
+    */
     private func deleteRefreshTokensAndLogoutUser() {
         let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
+
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        fullToken?.accessToken = nil
+        fullToken?.refreshToken = nil
+
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
