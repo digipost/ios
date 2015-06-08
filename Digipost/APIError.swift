@@ -210,6 +210,8 @@ class APIError: NSError {
 //                return ("Skru på roaming for å bruke digipost","")
 //            case CFNetworkErrors.CFURLErrorUnknown.rawValue:
 //                return ("Noe feil skjedde, prøv igjen","")
+            case 401:
+                return (NSLocalizedString("user not authenticated error title", comment: ""), NSLocalizedString("user not authenticated error message", comment: ""))
             default:
                 return (NSLocalizedString("Unknown error title",comment:"Title of alert"),NSLocalizedString("Uknown error message", comment:"message for alert"))
             }

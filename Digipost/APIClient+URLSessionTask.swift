@@ -43,7 +43,7 @@ extension APIClient {
     func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                let htttpURL = response as? NSHTTPURLResponse
+                let httpURL = response as? NSHTTPURLResponse
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                  if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
@@ -53,9 +53,16 @@ extension APIClient {
                     var jsonError : NSError?
                     if let actualData = data as NSData? {
                         if actualData.length == 0 {
-                            failure(error:APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil)))
+                            let code : Int = {
+                                if httpURL == nil {
+                                    return Constants.Error.Code.UnknownError.rawValue
+                                } else {
+                                    return httpURL!.statusCode
+                                }
+                            }()
+                            failure(error:APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)))
                         } else if (response as! NSHTTPURLResponse).didFail()  {
-                            let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
+                            let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: httpURL!.statusCode, userInfo: nil)
                             failure(error:err)
                         } else {
                             let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
