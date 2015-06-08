@@ -397,10 +397,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 dispatch_async(dispatch_get_main_queue(), {
                     self.removeTemporaryUploadFiles()
                     self.isUploadingFile = false
-                    if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                        self.removeAccessTokenUsedInLastRequest()
-                        self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-                    } else if (error != nil ){
+                    if (error != nil ){
                         failure(error: APIError(error: error!))
                     }
 
