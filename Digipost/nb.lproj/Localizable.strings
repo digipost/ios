@@ -530,3 +530,15 @@
 /* title for informing user that something critical is wrong */
 "Oauth login error title" = "Noe gikk galt";
 
+/* No comment provided by engineer. */
+"lost network connection alert message" = "Prøv igjen";
+
+/* No comment provided by engineer. */
+"lost network connection alert title" = "Mistet koblingen med internett";
+
+/* No comment provided by engineer. */
+"timeout alert message" = "Prøv igjen";
+
+/* No comment provided by engineer. */
+"timeout alert title" = "Koblingen tok for lang tid";
+
