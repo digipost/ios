@@ -167,13 +167,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
 {
+    NSString *documentURI = attachment.document.updateUri;
     POSDocument *document = attachment.document;
+
     [[APIClient sharedClient] validateOpeningReceipt:attachment
         success:^{
+
           [[APIClient sharedClient] updateDocument:document
               success:^(NSDictionary *responseDict) {
-
-                [[POSModelManager sharedManager] updateDocument:document
+                  POSDocument *refetchedDocument = [POSDocument existingDocumentWithUpdateUri:documentURI inManagedObjectContext:[[POSModelManager sharedManager] managedObjectContext]];
+                  [[POSModelManager sharedManager] updateDocument:refetchedDocument
                                                  withAttributes:responseDict];
                 if (self.currentAttachmentURI == nil) {
                     self.attachment = document.attachments[self.indexOfAttachment];
@@ -1326,6 +1329,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     //        return;
     //    }
 
+
+    if (self.attachment.document.folder == nil && self.currentAttachmentURI != nil) {
+        self.attachment = [POSAttachment existingAttachmentWithUri:self.currentAttachmentURI inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    }
     NSString *attachmentUri = self.attachment.uri;
 
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.attachment.document.folder.name
@@ -1423,31 +1430,23 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)reloadFromMetadata
 {
     if (self.attachment.openingReceiptUri) {
-
         if ([self needsAuthenticationToOpen]) {
             [self showLockedViewCanBeUnlocked:YES];
             return;
         }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering") message: NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet") preferredStyle:UIAlertControllerStyleAlert];
 
-        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
-                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
-                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
-                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
-                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                            switch (buttonIndex) {
-                                case 0:
-                                    [self.navigationController popViewControllerAnimated:YES];
-                                    break;
-                                case 1: {
-                                    [self shouldValidateOpeningReceipt:self.attachment];
-                                    break;
-                                }
-                                case 2:
-                                    break;
-                                default:
-                                    break;
-                            }
-                          }];
+
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Avbryt", @"Avbryt") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            [self.navigationController popViewControllerAnimated:YES];
+        }];
+        UIAlertAction *sendAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self shouldValidateOpeningReceipt:self.attachment];
+        }];
+
+        [alertController addAction:cancelAction];
+        [alertController addAction:sendAction];
+        [self presentViewController:alertController animated:YES completion:nil];
 
     } else {
 
