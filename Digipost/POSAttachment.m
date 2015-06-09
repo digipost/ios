@@ -120,6 +120,9 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    if (uri == nil ) {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
     fetchRequest.fetchLimit = 1;
