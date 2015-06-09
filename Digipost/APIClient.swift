@@ -172,7 +172,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+        let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
+        let highestToken = OAuthToken.oAuthTokenWithScope(scope)
         validate(token: highestToken) { () -> Void in
             let task = self.urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success, failure: failure)
             task.resume()
