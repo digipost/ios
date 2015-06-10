@@ -116,6 +116,7 @@ extension APIClient {
                     if (error.code != NSURLErrorCancelled) {
                         if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
                             OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                            Logger.dpostLogWarning("user got their access token revoked and will try to fetch a new using their refresh token", location: "downloading a file", UI: "User waiting for file to complete download", cause: "might be a problem with clock on users device")
                             self.validateFullScope {
                                 failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                             }
@@ -160,6 +161,7 @@ extension APIClient {
         let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                Logger.dpostLogWarning("user got their access token revoked and will try to fetch a new using their refresh token", location: "somewhere a jsonDataTask is performed, ex: downloading list of documents, list of folders", UI: "User waiting for the request to finish", cause: "might be a problem with clock on users device")
                 self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
@@ -185,6 +187,7 @@ extension APIClient {
         let task = dataTask(urlRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                Logger.dpostLogWarning("user got their access token revoked and will try to fetch a new using their refresh token", location: "doing a data task, ex renaming file, moving a document or folder", UI: "User is waiting for a data task to finish", cause: "might be a problem with clock on users device")
                 self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
