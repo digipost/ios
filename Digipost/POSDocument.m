@@ -94,6 +94,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSParameterAssert(updateUri);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.fetchLimit = 1;
