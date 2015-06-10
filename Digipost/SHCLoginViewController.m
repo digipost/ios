@@ -277,8 +277,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
 
+
         [self.navigationController popToViewController:self
                                               animated:YES];
+        NSDictionary *userInfo = notification.userInfo;
+        if (userInfo) {
+            if ([userInfo[@"alert"] isMemberOfClass:[UIAlertController class]]) {
+                UIAlertController *alertController = userInfo[@"alert"];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+        }
     }
 }
 
