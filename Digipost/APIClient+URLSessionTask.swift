@@ -25,7 +25,7 @@ extension APIClient {
                     error.responseText = serializedResponse?.description
                     failure(error: error)
                 })
-            } else if self.isUnauthorized(response as? NSHTTPURLResponse) {
+            } else if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
                 let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
                 failure(error:error)
             }  else if (response as! NSHTTPURLResponse).didFail()  {
@@ -62,7 +62,7 @@ extension APIClient {
                             return httpResponse!.statusCode
                         }
                         }()
-                    if self.isUnauthorized(httpResponse) {
+                    if NSHTTPURLResponse.isUnathorized(httpResponse) {
                         let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
                         failure(error:error)
                     } else {
@@ -114,7 +114,7 @@ extension APIClient {
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
                     if (error.code != NSURLErrorCancelled) {
-                        if self.isUnauthorized(response as? NSHTTPURLResponse) {
+                        if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
                             OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                             self.validateFullScope {
                                 failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
