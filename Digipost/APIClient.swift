@@ -182,7 +182,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func logoutThenDeleteAllStoredData() {
         cancelAllRunningTasks { () -> Void in
-
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
@@ -303,7 +302,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
         }
-
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
 
@@ -460,7 +458,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Something wrong with storing OAuth Tokens")
+                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
+                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.NoOAuthTokenPresent.rawValue, userInfo: nil))
             }
         }
     }
@@ -480,7 +479,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         fullToken?.refreshToken = nil
 
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
+        let alertController = UIAlertController.forcedLogoutAlertController()
+        let userInfo  : [NSObject : AnyObject] = [ "alert" as NSObject : alertController as AnyObject]
+        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil, userInfo: userInfo)
     }
 
     func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {
