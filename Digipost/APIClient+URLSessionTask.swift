@@ -115,7 +115,7 @@ extension APIClient {
                 if let actualError = error {
                     if (error.code != NSURLErrorCancelled) {
                         if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
-                            OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                            OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                             self.validateFullScope {
                                 failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                             }
@@ -159,7 +159,7 @@ extension APIClient {
 
         let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                 self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
@@ -184,7 +184,7 @@ extension APIClient {
 
         let task = dataTask(urlRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                OAuthToken.removeAcessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                 self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
