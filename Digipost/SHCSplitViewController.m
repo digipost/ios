@@ -110,7 +110,21 @@
 
 - (void)presentLoginViewController:(NSNotification *)notification
 {
-    [self presentLoginViewController];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        POSLetterViewController *letterViewController = self.letterViewController;
+        if (letterViewController) {
+            [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
+        }
+        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier
+                                  sender:nil];
+        NSDictionary *userInfo = notification.userInfo;
+        if (userInfo) {
+            if ([userInfo[@"alert"] isMemberOfClass:[UIAlertController class]]) {
+                UIAlertController *alertController = userInfo[@"alert"];
+                [self.presentedViewController presentViewController:alertController animated:YES completion:nil];
+            }
+        }
+    });
 }
 
 - (void)presentNewFeatures
@@ -123,13 +137,6 @@
 
 - (void)presentLoginViewController
 {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        POSLetterViewController *letterViewController = self.letterViewController;
-    if (letterViewController) {
-        [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
-    }
-    [self performSegueWithIdentifier:kPresentLoginModallyIdentifier
-                              sender:nil];
-    });
+
 }
 @end
