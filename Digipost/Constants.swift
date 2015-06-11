@@ -51,6 +51,7 @@ struct Constants {
             case uploadFailed = 4005
             case NeedHigherAuthenticationLevel = 4006
             case UnknownError = 4007
+            case NoOAuthTokenPresent = 4008
         }
         static let apiClientErrorScopeKey = "scope"
     }

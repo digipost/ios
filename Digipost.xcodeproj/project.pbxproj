@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
@@ -893,6 +893,13 @@
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
 		ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
+		ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FA1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FB1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FC1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FD1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FE1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
+		ECA5A5FF1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
@@ -1203,6 +1210,7 @@
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
+		ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+Authorization.swift"; sourceTree = "<group>"; };
 		ECAB1CFC1AE4E87800D72D41 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		ECAB1CFE1AE4E88900D72D41 /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostTests.framework; path = "Pods/../build/Debug-iphoneos/Pods_DigipostTests.framework"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
@@ -1779,6 +1787,7 @@
 		EC2352971A0B907E0071624C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */,
 				EC24840A1B206EE300FC372C /* NSURLResponse+HTTP.swift */,
 				ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */,
 				ECBF75A61AA85ACF00540BCA /* Debug.swift */,
@@ -2064,6 +2073,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = POS;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Posten;
 				TargetAttributes = {
@@ -2688,6 +2698,7 @@
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				ECF06D51192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
+				ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
@@ -2821,6 +2832,7 @@
 				87C9E7C51B0610BC0019AA07 /* AHKActionSheet+Convenience.m in Sources */,
 				87C9E7C61B0610BC0019AA07 /* UIView+AutoLayout.m in Sources */,
 				87C9E7C71B0610BC0019AA07 /* POSUploadTableViewCell.m in Sources */,
+				ECA5A5FD1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				87C9E7C81B0610BC0019AA07 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				87C9E7C91B0610BC0019AA07 /* POSFoldersViewController.m in Sources */,
 				87C9E7CA1B0610BC0019AA07 /* Model.xcdatamodeld in Sources */,
@@ -2954,6 +2966,7 @@
 				EC0D2DA11AE786A800595A61 /* AHKActionSheet+Convenience.m in Sources */,
 				EC0D2DA21AE786A800595A61 /* UIView+AutoLayout.m in Sources */,
 				EC0D2DA31AE786A800595A61 /* POSUploadTableViewCell.m in Sources */,
+				ECA5A5FC1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				EC0D2DA51AE786A800595A61 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				EC0D2DA71AE786A800595A61 /* POSFoldersViewController.m in Sources */,
 				EC0D2DA91AE786A800595A61 /* Model.xcdatamodeld in Sources */,
@@ -3062,6 +3075,7 @@
 				EC2752091B061DE80007125D /* UploadMenuTableViewCell.swift in Sources */,
 				EC2751911B061D550007125D /* POSModelManager.m in Sources */,
 				EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */,
+				ECA5A5FF1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				EC2751B91B061D680007125D /* SHCBaseTableViewController.m in Sources */,
 				EC2751F91B061DD50007125D /* PeopleView.swift in Sources */,
 				EC3533541B0C74B900523419 /* OAuthToken+IDToken.swift in Sources */,
@@ -3218,6 +3232,7 @@
 				EC2DCBA51AB84EAB0063755E /* AHKActionSheet+Convenience.m in Sources */,
 				EC2DCBA61AB84EAB0063755E /* UIView+AutoLayout.m in Sources */,
 				EC2DCBA71AB84EAB0063755E /* POSUploadTableViewCell.m in Sources */,
+				ECA5A5FA1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				EC2DCBA81AB84EAB0063755E /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				EC2DCBA91AB84EAB0063755E /* POSFoldersViewController.m in Sources */,
 				EC2DCBAA1AB84EAB0063755E /* Model.xcdatamodeld in Sources */,
@@ -3351,6 +3366,7 @@
 				EC2DCC561AB864AB0063755E /* AHKActionSheet+Convenience.m in Sources */,
 				EC2DCC571AB864AB0063755E /* UIView+AutoLayout.m in Sources */,
 				EC2DCC581AB864AB0063755E /* POSUploadTableViewCell.m in Sources */,
+				ECA5A5FB1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				EC2DCC591AB864AB0063755E /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				EC2DCC5A1AB864AB0063755E /* POSFoldersViewController.m in Sources */,
 				EC2DCC5B1AB864AB0063755E /* Model.xcdatamodeld in Sources */,
@@ -3378,6 +3394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECA5A5FE1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3535,8 +3552,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -3562,7 +3579,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9f058381-ea34-4114-a07b-f5154e09e25f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -3577,8 +3594,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -3604,7 +3621,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9f058381-ea34-4114-a07b-f5154e09e25f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3955,8 +3972,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -3982,7 +3999,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
+				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -3997,7 +4014,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4024,7 +4041,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
+				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

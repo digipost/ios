@@ -370,7 +370,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
 
-    class func removeAcessTokenForOAuthTokenWithScope(scope: String) {
+    class func removeAccessTokenForOAuthTokenWithScope(scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }

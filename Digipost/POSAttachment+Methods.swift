@@ -19,7 +19,10 @@ extension POSAttachment {
         return false
     }
     
-    func needsAuthenticationToOpen() -> Bool{
+    func needsAuthenticationToOpen() -> Bool {
+        if self.authenticationLevel == nil {
+            return false
+        }
         if self.authenticationLevel == AuthenticationLevel.idPorten4 || self.authenticationLevel == AuthenticationLevel.idPorten3 || self.authenticationLevel == AuthenticationLevel.twoFactor {
             if authenticationLevel == nil {
                 return false
