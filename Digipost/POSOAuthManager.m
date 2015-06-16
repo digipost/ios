@@ -178,7 +178,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
               }
           }
 
-          if (failure) {
+            if (failure) {
               NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                    code:SHCOAuthErrorCodeMissingAccessTokenResponse
                                                userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response") }];

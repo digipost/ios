@@ -82,7 +82,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
-
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
                                                                        alpha:0.95]];

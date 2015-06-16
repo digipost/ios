@@ -1438,8 +1438,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             return;
         }
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering") message: NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet") preferredStyle:UIAlertControllerStyleAlert];
-
-
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Avbryt", @"Avbryt") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
             [self.navigationController popViewControllerAnimated:YES];
         }];
