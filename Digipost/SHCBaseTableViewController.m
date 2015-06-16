@@ -186,7 +186,6 @@
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
-        NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
     }
 
     // Because we don't know which subclass inherits from the base controller,

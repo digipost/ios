@@ -185,7 +185,6 @@
     _fetchedResultsController.delegate = self;
 
     if (error) {
-        NSLog(@"%@", error);
     }
 
     return _fetchedResultsController;

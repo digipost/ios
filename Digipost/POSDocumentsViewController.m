@@ -328,7 +328,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
             }
             failure:^(NSError *error) {
-                                    NSLog(@"failed validating opening of document %@",error);
 
             }];
     }
