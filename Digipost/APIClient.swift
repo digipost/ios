@@ -172,7 +172,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+        let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
+        let highestToken = OAuthToken.oAuthTokenWithScope(scope)
         validate(token: highestToken) { () -> Void in
             let task = self.urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success, failure: failure)
             task.resume()
@@ -181,7 +182,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func logoutThenDeleteAllStoredData() {
         cancelAllRunningTasks { () -> Void in
-
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
@@ -302,7 +302,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
         }
-
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
 
@@ -397,10 +396,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 dispatch_async(dispatch_get_main_queue(), {
                     self.removeTemporaryUploadFiles()
                     self.isUploadingFile = false
-                    if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                        self.removeAccessTokenUsedInLastRequest()
-                        self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-                    } else if (error != nil ){
+                    if (error != nil ){
                         failure(error: APIError(error: error!))
                     }
 
@@ -462,20 +458,30 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Something wrong with storing OAuth Tokens")
-                self.deleteRefreshTokensAndLogoutUser()
+                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
+                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.NoOAuthTokenPresent.rawValue, userInfo: nil))
             }
         }
     }
 
+    /**
+    Called when refresh tokens are invalidated server side
+    */
     private func deleteRefreshTokensAndLogoutUser() {
         let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
+
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        fullToken?.accessToken = nil
+        fullToken?.refreshToken = nil
+
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
+        let alertController = UIAlertController.forcedLogoutAlertController()
+        let userInfo  : [NSObject : AnyObject] = [ "alert" as NSObject : alertController as AnyObject]
+        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil, userInfo: userInfo)
     }
 
     func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {

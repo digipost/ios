@@ -182,29 +182,36 @@ class APIError: NSError {
             }
 
         } else {
+            /**
+            *  Commented code is values that are interesting and we might add in next release of digipost, depending on which codes are frequently shown to user.
+            *  written 8. june - release 2.5.2
+            */
             switch Int32(self.code) {
-            case CFNetworkErrors.CFErrorHTTPConnectionLost.rawValue:
-                return ("Connection lost","")
+
+//            case CFNetworkErrors.CFErrorHTTPConnectionLost.rawValue:
+//                return ("Connection lost","")
             case CFNetworkErrors.CFURLErrorTimedOut.rawValue:
                 return (NSLocalizedString("timeout alert title", comment: ""), NSLocalizedString("timeout alert message", comment: ""))
-            case CFNetworkErrors.CFURLErrorCannotConnectToHost.rawValue:
-                fallthrough
-            case CFNetworkErrors.CFURLErrorCannotFindHost.rawValue:
-                return ("Cannot connect to host","")
-            case CFNetworkErrors.CFURLErrorResourceUnavailable.rawValue:
-                return ("Server nede","")
+//            case CFNetworkErrors.CFURLErrorCannotConnectToHost.rawValue:
+//                fallthrough
+//            case CFNetworkErrors.CFURLErrorCannotFindHost.rawValue:
+//                return ("Cannot connect to host","")
+//            case CFNetworkErrors.CFURLErrorResourceUnavailable.rawValue:
+//                return ("Server nede","")
             case CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue:
                 return (NSLocalizedString("not connected to internet alert title", comment: ""), NSLocalizedString("not connected to internet alert message", comment: ""))
             case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue :
                 return (NSLocalizedString("lost network connection alert title", comment: ""), NSLocalizedString("lost network connection alert message", comment: ""))
-            case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
-                return ("Du har skrudd av datatrafikk","")
-            case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue:
-                return ("Mistet koblingen med server","")
-            case CFNetworkErrors.CFURLErrorInternationalRoamingOff.rawValue:
-                return ("Skru på roaming for å bruke digipost","")
-            case CFNetworkErrors.CFURLErrorUnknown.rawValue:
-                return ("Noe feil skjedde, prøv igjen","")
+//            case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
+//                return ("Du har skrudd av datatrafikk","")
+//            case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue:
+//                return ("Mistet koblingen med server","")
+//            case CFNetworkErrors.CFURLErrorInternationalRoamingOff.rawValue:
+//                return ("Skru på roaming for å bruke digipost","")
+//            case CFNetworkErrors.CFURLErrorUnknown.rawValue:
+//                return ("Noe feil skjedde, prøv igjen","")
+            case 401:
+                return (NSLocalizedString("user not authenticated error title", comment: ""), NSLocalizedString("user not authenticated error message", comment: ""))
             default:
                 return (NSLocalizedString("Unknown error title",comment:"Title of alert"),NSLocalizedString("Uknown error message", comment:"message for alert"))
             }

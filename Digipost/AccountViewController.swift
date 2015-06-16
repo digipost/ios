@@ -21,7 +21,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         logoutBarButtonVariable = logoutBarButtonItem
         logoutButtonVariable = logoutButton
         
@@ -82,6 +81,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .Plain, target: nil, action: nil)
         self.navigationController?.navigationBarHidden = false
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")

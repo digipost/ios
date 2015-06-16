@@ -49,7 +49,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
     [self setupHockeySDK];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-400 forBarMetrics:UIBarMetricsDefault];
+
     //    [self setupCocoaLumberjack];
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];

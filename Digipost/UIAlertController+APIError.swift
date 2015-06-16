@@ -29,5 +29,11 @@ extension UIAlertController {
             }
         }
     }
-    
+
+    class func forcedLogoutAlertController() -> UIAlertController {
+        let alertController = UIAlertController(title:NSLocalizedString("Oauth login error title", comment:""), message: NSLocalizedString("Oauth login error message", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        let alertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil)
+        alertController.addAction(alertAction)
+        return alertController
+    }
 }

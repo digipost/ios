@@ -347,20 +347,22 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         return false
     }
 
-    class func oAuthScopeForAuthenticationLevel(authenticationLevel: String) -> String {
-        switch authenticationLevel {
-        case AuthenticationLevel.password:
-            return kOauth2ScopeFull
-        case AuthenticationLevel.twoFactor:
-            return kOauth2ScopeFullHighAuth
-        case AuthenticationLevel.idPorten3:
-            return kOauth2ScopeFull_Idporten3;
-        case AuthenticationLevel.idPorten4:
-            return kOauth2ScopeFull_Idporten4
-
-        default:
-            return authenticationLevel
+    class func oAuthScopeForAuthenticationLevel(authenticationLevel: String?) -> String {
+        if let actualAuthenticationLevel = authenticationLevel {
+            switch actualAuthenticationLevel {
+            case AuthenticationLevel.password:
+                return kOauth2ScopeFull
+            case AuthenticationLevel.twoFactor:
+                return kOauth2ScopeFullHighAuth
+            case AuthenticationLevel.idPorten3:
+                return kOauth2ScopeFull_Idporten3;
+            case AuthenticationLevel.idPorten4:
+                return kOauth2ScopeFull_Idporten4
+            default:
+                break
+            }
         }
+        return kOauth2ScopeFull
     }
 
     class func removeAllTokens() {
@@ -368,7 +370,7 @@ class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
         LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
 
-    class func removeAcessTokenForOAuthTokenWithScope(scope: String) {
+    class func removeAccessTokenForOAuthTokenWithScope(scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }

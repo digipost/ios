@@ -186,16 +186,18 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
           }
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-          NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-
+            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            NSDictionary *responseDictionary;
+            if (data ) {
+                responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            }
           if (failure) {
               // Check to see if the request failed because the refresh token was denied
 
               if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
                   if ([scope isEqualToString:kOauth2ScopeFull]) {
-                      if (dict != nil) {
-                          if ([dict[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
+                      if (responseDictionary != nil) {
+                          if ([responseDictionary[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
                               NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                          code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                      userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
