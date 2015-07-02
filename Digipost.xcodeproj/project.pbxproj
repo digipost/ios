@@ -1246,6 +1246,13 @@
 		ECB2BFF01B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFF11B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFF21B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
+		ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFF71B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFF81B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFF91B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFFA1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFFC1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
@@ -1611,6 +1618,7 @@
 		ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComposerModule.swift; path = "UITableView+Reorder/TextComposerModule.swift"; sourceTree = "<group>"; };
 		ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Reorder.h"; path = "UITableView+Reorder/UITableView+Reorder.h"; sourceTree = "<group>"; };
 		ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+Reorder.m"; path = "UITableView+Reorder/UITableView+Reorder.m"; sourceTree = "<group>"; };
+		ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+StandardComposerFonts.swift"; sourceTree = "<group>"; };
 		ECB3A64D18B379F8002D8C22 /* POSNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
@@ -2349,22 +2357,20 @@
 				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
 				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
 				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
-				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
 				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
 				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
-				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
 				ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */,
 				ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */,
 				ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */,
 				ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */,
+				ECB2BFF41B456E01008E32E8 /* Model */,
+				ECB2BFF31B456DAD008E32E8 /* Composer */,
 				ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */,
 				ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */,
 				ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */,
 				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
-				ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */,
-				ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */,
 				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
 				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
 				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
@@ -2376,6 +2382,25 @@
 				ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */,
 			);
 			name = SendEditor;
+			sourceTree = "<group>";
+		};
+		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Composer;
+			sourceTree = "<group>";
+		};
+		ECB2BFF41B456E01008E32E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */,
+				ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */,
+				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
+				ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */,
+				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3122,6 +3147,7 @@
 				ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */,
 				ECB2BFEC1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83DB4AF0188D419A00515022 /* POSReceiptTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
@@ -3296,6 +3322,7 @@
 				87C9E7601B0610BC0019AA07 /* UILabel+Digipost.m in Sources */,
 				87C9E7611B0610BC0019AA07 /* Localization.swift in Sources */,
 				ECB2BFF01B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFFA1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				87C9E7621B0610BC0019AA07 /* UploadImageController.swift in Sources */,
 				87C9E7631B0610BC0019AA07 /* POSDocumentTableViewCell.m in Sources */,
 				87C9E7641B0610BC0019AA07 /* POSReceiptTableViewCell.m in Sources */,
@@ -3470,6 +3497,7 @@
 				EC0D2D291AE786A800595A61 /* UILabel+Digipost.m in Sources */,
 				EC0D2D2B1AE786A800595A61 /* Localization.swift in Sources */,
 				ECB2BFEF1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFF91B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				EC0D2D2C1AE786A800595A61 /* UploadImageController.swift in Sources */,
 				EC0D2D2D1AE786A800595A61 /* POSDocumentTableViewCell.m in Sources */,
 				EC0D2D2E1AE786A800595A61 /* POSReceiptTableViewCell.m in Sources */,
@@ -3784,6 +3812,7 @@
 				ECB2BE831B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				EC2751ED1B061DC80007125D /* UIToolbar+Actions.swift in Sources */,
 				EC2751FC1B061DD50007125D /* UploadView.swift in Sources */,
+				ECB2BFFC1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				EC27519A1B061D550007125D /* POSFolder.m in Sources */,
 				EC669D691B149A54004F97B6 /* NSString+Hmac.m in Sources */,
 				EC2751FB1B061DD50007125D /* ReceiptView.swift in Sources */,
@@ -3816,6 +3845,7 @@
 				EC2DCB3F1AB84EAB0063755E /* UILabel+Digipost.m in Sources */,
 				EC2DCB401AB84EAB0063755E /* Localization.swift in Sources */,
 				ECB2BFED1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFF71B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				EC2DCB411AB84EAB0063755E /* UploadImageController.swift in Sources */,
 				EC2DCB421AB84EAB0063755E /* POSDocumentTableViewCell.m in Sources */,
 				EC2DCB431AB84EAB0063755E /* POSReceiptTableViewCell.m in Sources */,
@@ -3990,6 +4020,7 @@
 				EC2DCBF01AB864AB0063755E /* UILabel+Digipost.m in Sources */,
 				EC2DCBF11AB864AB0063755E /* Localization.swift in Sources */,
 				ECB2BFEE1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFF81B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				EC2DCBF21AB864AB0063755E /* UploadImageController.swift in Sources */,
 				EC2DCBF31AB864AB0063755E /* POSDocumentTableViewCell.m in Sources */,
 				EC2DCBF41AB864AB0063755E /* POSReceiptTableViewCell.m in Sources */,
@@ -4164,6 +4195,7 @@
 				ECB2BE7B1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				ECB2BF4E1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */,
 				ECB2BFF11B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
+				ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				ECB2BEE51B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
 				ECB2BEB31B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				ECB2BEF31B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,

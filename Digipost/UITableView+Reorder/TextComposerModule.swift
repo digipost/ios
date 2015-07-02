@@ -13,8 +13,21 @@ class TextComposerModule: ComposerModule {
 
 
     var textAttribute : TextAttribute
+    var text: NSAttributedString!
+    var styling = [TextAttribute]()
 
-    var text: String?
+    class func headlineModule() -> TextComposerModule {
+        var textComposerModule = TextComposerModule()
+        textComposerModule.text = NSAttributedString(string: "", attributes: [NSFontAttributeName : UIFont.headlineH1()])
+        return textComposerModule
+    }
+
+    class func paragraphModule() -> TextComposerModule {
+        var textComposerModule = TextComposerModule()
+        textComposerModule.text = NSAttributedString(string: "", attributes: [NSFontAttributeName : UIFont.headlineH1()])
+        return textComposerModule
+    }
+
 
     var placeholder: String {
         switch self.textAttribute.font! {
@@ -27,6 +40,11 @@ class TextComposerModule: ComposerModule {
         default:
             return "Enter text"
         }
+    }
+
+    override init() {
+        self.textAttribute = TextAttribute(font: UIFont.systemFontOfSize(17), textAlignment: .Left)
+        super.init()
     }
 
     init(moduleWithFont font: UIFont) {
@@ -83,17 +101,17 @@ class TextComposerModule: ComposerModule {
 
             var html = openingTag
 
-            if let text = self.text {
+//            if let text = self.text {
+//
+//                for c in text{
+//                    if c == "\n"{
+//                        html += "<br>"
+//                    } else {
+//                        html += "\(c)"
+//                    }
+//                }
+//            }
 
-                for c in text{
-                    if c == "\n"{
-                        html += "<br>"
-                    } else {
-                        html += "\(c)"
-                    }
-                }
-            }
-            
             html += closeingTag
             
             return html
