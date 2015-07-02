@@ -19,10 +19,7 @@ extension APIClient {
                 }
                 return nil
             }()
-            if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                self.removeAccessTokenUsedInLastRequest()
-                failure(error: APIError.UnauthorizedOAuthTokenError())
-            } else if let actualError = error as NSError!  {
+            if let actualError = error as NSError!  {
                 dispatch_async(dispatch_get_main_queue(), {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
@@ -33,7 +30,9 @@ extension APIClient {
                 failure(error:error)
             }  else if (response as! NSHTTPURLResponse).didFail()  {
                 let err = APIError(urlResponse: (response as! NSHTTPURLResponse), jsonResponse: serializedResponse)
-                failure(error:err)
+                dispatch_async(dispatch_get_main_queue(), {
+                    failure(error:err)
+                })
             }else {
                 dispatch_async(dispatch_get_main_queue(), {
                     success()
@@ -50,11 +49,7 @@ extension APIClient {
                 let httpResponse = response as? NSHTTPURLResponse
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
                 // if error happens in client, for example no internet, timeout ect.
-                    self.removeAccessTokenUsedInLastRequest()
-                    let error = APIError.UnauthorizedOAuthTokenError()
-                    error.responseText = string as? String
-                    failure(error: error)
-                } else if let actualError = error as NSError! {
+                if let actualError = error as NSError! {
                     let error = APIError(error: actualError)
                     error.responseText = string as? String
                     failure(error: error)
@@ -162,29 +157,19 @@ extension APIClient {
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
-        let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
 
+        let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
                 OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                 Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "somewhere a jsonDataTask is performed, ex: downloading list of documents, list of folders", UI: "User waiting for the request to finish", cause: "might be a problem with clock on users device, or token was revoked")
-
-    func urlSessionJSONTask(method: httpMethod, url: String, parameters: [String : AnyObject], success: ([String : AnyObject]) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
-        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
-        var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = method.rawValue
-        urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-        for (key, value) in self.additionalHeaders {
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-}
                 self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
             } else {
                 failure(error: error)
             }
-        
+        }
 
-        let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task
     }
 

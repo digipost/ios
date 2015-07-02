@@ -334,57 +334,57 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let sendableDocument = SendableDocument(recipients: recipients)
         let parameters = sendableDocument.draftParameters()
-        validate(token: oauthToken) { () -> Void in
-            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
-                sendableDocument.setupWithJSONContent(responseJSON)
-                sendableDocument.recipients = recipients
-                let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
-                self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
-                    self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
-                        sendableDocument.setupWithJSONContent(responseDictionary)
-                        println(responseDictionary)
-                        let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
-                            success()
-                            }, failure: { (error) -> () in
-                                failure(error: error)
-                        })
-                        task!.resume()
-
-                        }, failure: { (error) -> () in
-                            failure(error: error)
-                    })
-                    }, failure: { (error) -> () in
-                        failure(error: error)
-                })
-                }, failure: { (error) -> () in
-                    failure(error: error)
-            })
-            task!.resume()
-        }
+//        validate(token: oauthToken) { () -> Void in
+//            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
+//                sendableDocument.setupWithJSONContent(responseJSON)
+//                sendableDocument.recipients = recipients
+//                let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
+//                self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
+//                    self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
+//                        sendableDocument.setupWithJSONContent(responseDictionary)
+//                        println(responseDictionary)
+//                        let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
+//                            success()
+//                            }, failure: { (error) -> () in
+//                                failure(error: error)
+//                        })
+//                        task!.resume()
+//
+//                        }, failure: { (error) -> () in
+//                            failure(error: error)
+//                    })
+//                    }, failure: { (error) -> () in
+//                        failure(error: error)
+//                })
+//                }, failure: { (error) -> () in
+//                    failure(error: error)
+//            })
+//            task!.resume()
+//        }
     }
 
     func getDrafts(uri: String, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
         let offset = 0
         let length = 50000
 
-        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
-            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
-                success(responseDictionary: responseDictionary)
-            }, failure: { (error) -> () in
-                failure(error: error)
-            })
-        })
+//        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
+//            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
+//                success(responseDictionary: responseDictionary)
+//            }, failure: { (error) -> () in
+//                failure(error: error)
+//            })
+//        })
     }
 
     func getUpdatedSendableDocument(sendableDocument: SendableDocument, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(token: oauthToken) { () -> Void in
-            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
-                success(responseDictionary: responseDictionary)
-                }, failure: { (error) -> () in
-                    failure(error: error)
-            })
-            task!.resume()
+//            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
+//                success(responseDictionary: responseDictionary)
+//                }, failure: { (error) -> () in
+//                    failure(error: error)
+//            })
+//            task!.resume()
         }
     }
 
@@ -399,7 +399,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let fileData = NSData(contentsOfURL: fileURL)
             let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
             println(string)
-            formData.appendPartWithFileData(fileData, name:"file", fileName: "test.html", mimeType:"text/html")
+            formData.appendPartWithFileData(fileData, name: "file", fileName: "test.html", mimeType:"text/html")
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
 
@@ -415,12 +415,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
                 let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
-                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                    self.removeAccessTokenUsedInLastRequest()
+//                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
+//                    self.removeAccessTokenUsedInLastRequest()
                     //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-                } else if (error != nil ){
-                    failure(error: APIError(error: error!))
-                }
+//                } else if (error != nil ){
+//                    failure(error: APIError(error: error!))
+//                }
 
                 if success != nil {
                     success!()

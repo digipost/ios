@@ -22,7 +22,7 @@ extension APIClient {
                 failure(error: error)
             }
         }
-        validateTokensThenPerformTask(task!)
+//        validateTokensThenPerformTask(task!)
     }
 
 
