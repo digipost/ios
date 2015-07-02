@@ -18,7 +18,6 @@
 #import "POSOAuthManager.h"
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
-#import "POSAPIManager.h"
 #import "POSFileManager.h"
 #import "digipost-Swift.h"
 #import "oauth.h"
@@ -35,6 +34,8 @@ NSString *const kOAuth2GrantType = @"grant_type";
 NSString *const kOAuth2AccessToken = @"access_token";
 NSString *const kOAuth2RefreshToken = @"refresh_token";
 NSString *const kOAuth2ExpiresIn = @"expires_in";
+NSString *const kOAuth2IDToken = @"id_token";
+NSString *const kOAuth2Nonce = @"nonce";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
@@ -51,6 +52,14 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
+
+// Custom NSError consts
+NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
+
+// Notification names
+NSString *const kAPIManagerUploadProgressStartedNotificationName = @"UploadProgressStartedNotification";
+NSString *const kAPIManagerUploadProgressChangedNotificationName = @"UploadProgressChangedNotification";
+NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProgressFinishedNotification";
 
 @interface POSOAuthManager ()
 
@@ -107,19 +116,19 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
 
 - (void)authenticateWithCode:(NSString *)code scope:(NSString *)scope success:(void (^)(void))success failure:(void (^)(NSError *))failure
 {
+    NSString *nonce = [NSString secureRandomString];
+
     NSDictionary *parameters = @{kOAuth2GrantType : kOAuth2Code,
                                  kOAuth2Code : code,
-                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI};
+                                 kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
+                                 kOAuth2Nonce : nonce};
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-              NSString *refreshToken = responseDict[kOAuth2RefreshToken];
-              NSString *accessToken = responseDict[kOAuth2AccessToken];
-              NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithRefreshToken:refreshToken accessToken:accessToken scope:scope expiresInSeconds:expiresInSeconds];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.
@@ -159,7 +168,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
               if ([accessToken isKindOfClass:[NSString class]]) {
                   OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
-                  [oauthToken setExpiryDate:expiresInSeconds];
+                  [oauthToken setExpireDate:expiresInSeconds];
                   oauthToken.accessToken = accessToken;
                   [[APIClient sharedClient] updateAuthorizationHeader:scope];
                   if (success) {
@@ -169,7 +178,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
               }
           }
 
-          if (failure) {
+            if (failure) {
               NSError *error = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                    code:SHCOAuthErrorCodeMissingAccessTokenResponse
                                                userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE", @"Missing access token response") }];
@@ -177,16 +186,18 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
           }
         }
         failure:^(NSURLSessionDataTask *task, NSError *error) {
-          NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
-          NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-
+            NSData *data = error.userInfo[@"com.alamofire.serialization.response.error.data"];
+            NSDictionary *responseDictionary;
+            if (data ) {
+                responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            }
           if (failure) {
               // Check to see if the request failed because the refresh token was denied
 
               if ([[APIClient sharedClient] responseCodeForOAuthRefreshTokenRenewaIsUnauthorized:task.response]) {
                   if ([scope isEqualToString:kOauth2ScopeFull]) {
-                      if (dict != nil) {
-                          if ([dict[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
+                      if (responseDictionary != nil) {
+                          if ([responseDictionary[kOauth2ErrorResponse] isEqualToString:kOauth2InvalidGrant]) {
                               NSError *customError = [NSError errorWithDomain:kOAuth2ErrorDomain
                                                                          code:SHCOAuthErrorCodeInvalidRefreshTokenResponse
                                                                      userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"GENERIC_REFRESH_TOKEN_INVALID_MESSAGE", @"Refresh token invalid message") }];
@@ -197,7 +208,7 @@ NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
                   } else {
                       // remove token and retry request
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
-                      [oAuthToken removeFromKeyChain];
+                      [oAuthToken removeFromKeychainIfNoAccessToken];
                       OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
                       if (currentlyHighestOauthToken != nil) {
                           [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];

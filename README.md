@@ -11,7 +11,7 @@ App-en i ferdig bygget versjon kan [lastes ned fra App Store](http://itunes.appl
 
 ### 1. Tilgang til OAuth API
 
-Digipost for iOS bruker Digiposts OAuth API. For å kunne bruke dette API-et må du registrere en *OAuth Consumer*. Informasjon om hvordan du gjør dette finner du i [Digiposts API-dokumentasjon](https://www.digipost.no/plattform/privat/).
+Digipost for iOS bruker Digiposts OAuth API. For å kunne bruke dette API-et må du registrere en *OAuth Consumer*. Informasjon om hvordan du gjør dette finner du i [Digiposts API-dokumentasjon](https://www.digipost.no/plattform/api/).
 
 Når du har registrert din nye applikasjon, og fått en *client-id* og en *oauth-secret*, lager du en kopi av filen `oauth.example.h`, fyller ut med dine verdier og lagrer filen som `oauth.h`.
 

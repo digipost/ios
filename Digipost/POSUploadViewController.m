@@ -11,7 +11,6 @@
 #import "POSFolder+Methods.h"
 #import "POSModelManager.h"
 #import "UIViewController+BackButton.h"
-#import "POSAPIManager+PrivateMethods.h"
 #import "POSUploadTableViewDataSource.h"
 #import "digipost-swift.h"
 #import "POSNewFolderViewController.h"
@@ -103,7 +102,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
         [[APIClient sharedClient] uploadFileWithUrl:self.url folder:self.chosenFolder success:^{
            [[NSNotificationCenter defaultCenter] postNotificationName:kAPIManagerUploadProgressFinishedNotificationName object:nil];
         } failure:^(APIError *error){
-
+            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 
         //        [[POSAPIManager sharedManager] uploadFileWithURL:self.url toFolder:self.chosenFolder success:^{

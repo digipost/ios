@@ -27,7 +27,6 @@
     fetchedResultsController.delegate = delegate;
     NSError *error = nil;
     if (![fetchedResultsController performFetch:&error]) {
-        NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
     }
 
     return fetchedResultsController;

@@ -8,11 +8,10 @@
 
 import UIKit
 
-import Alamofire
 
 extension APIClient {
 
-    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    private func dataTask(urlRequest: NSURLRequest, success: () -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             let serializedResponse : Dictionary<String,AnyObject>? = {
                 if let data = data {
@@ -29,7 +28,10 @@ extension APIClient {
                     error.responseText = serializedResponse?.description
                     failure(error: error)
                 })
-            } else if (response as! NSHTTPURLResponse).didFail()  {
+            } else if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
+                let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
+                failure(error:error)
+            }  else if (response as! NSHTTPURLResponse).didFail()  {
                 let err = APIError(urlResponse: (response as! NSHTTPURLResponse), jsonResponse: serializedResponse)
                 failure(error:err)
             }else {
@@ -42,12 +44,12 @@ extension APIClient {
         return task
     }
 
-    func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask? {
+    private func jsonDataTask(urlrequest: NSURLRequest, success: (Dictionary <String, AnyObject>) -> Void , failure: (error: APIError) -> () ) -> NSURLSessionTask {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
-                let htttpURL = response as? NSHTTPURLResponse
+                let httpResponse = response as? NSHTTPURLResponse
                 let string = NSString(data: data, encoding: NSASCIIStringEncoding)
-                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
+                // if error happens in client, for example no internet, timeout ect.
                     self.removeAccessTokenUsedInLastRequest()
                     let error = APIError.UnauthorizedOAuthTokenError()
                     error.responseText = string as? String
@@ -58,19 +60,28 @@ extension APIClient {
                     failure(error: error)
                 } else {
                     var jsonError : NSError?
-                    // TOODO make responseDictionary
-                    if let actualData = data as NSData? {
-                        if actualData.length == 0 {
-                            failure(error:APIError(error:  NSError(domain: "", code: 232, userInfo: nil)))
-                        }else if (response as! NSHTTPURLResponse).didFail()  {
-                            let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: htttpURL!.statusCode, userInfo: nil)
-                            failure(error:err)
+                    let code : Int = {
+                        if httpResponse == nil {
+                            return Constants.Error.Code.UnknownError.rawValue
                         } else {
-                            let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
-                            success(serializer)
+                            return httpResponse!.statusCode
                         }
+                        }()
+                    if NSHTTPURLResponse.isUnathorized(httpResponse) {
+                        let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
+                        failure(error:error)
                     } else {
-                        success(Dictionary<String, AnyObject>())
+                        if let actualData = data as NSData? {
+                            if actualData.length == 0 {
+                                failure(error:APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)))
+                            } else if (response as! NSHTTPURLResponse).didFail()  {
+                                let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: httpResponse!.statusCode, userInfo: nil)
+                                failure(error:err)
+                            } else {
+                                let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
+                                success(serializer)
+                            }
+                        }
                     }
                 }
             })
@@ -79,54 +90,54 @@ extension APIClient {
         return task
     }
 
-
-    func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
-        let downloadURL = NSURL(string: encryptionModel.uri)
-        var urlRequest = NSMutableURLRequest(URL: downloadURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = method.rawValue
-        for (key, value) in self.additionalHeaders {
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
-        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
-        Alamofire.Manager.sharedInstance.startRequestsImmediately = false
+    func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         var completedURL : NSURL?
-        let downloadURI = encryptionModel.uri
-        let request = Alamofire.download(urlRequest) { (tempURL, response) -> (NSURL) in
-            let baseEncryptionModel : POSBaseEncryptedModel = {
-                if let attachment = encryptionModel as? POSAttachment {
-                    return POSAttachment.existingAttachmentWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
-                } else {
-                    return POSReceipt.existingReceiptWithUri(downloadURI, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext!) as POSBaseEncryptedModel
-                }}()
-            let filePath = baseEncryptionModel.decryptedFilePath()
-            if NSFileManager.defaultManager().fileExistsAtPath(filePath) {
-                NSFileManager.defaultManager().removeItemAtPath(filePath, error: nil)
-            }
-            let fileURL = NSURL(fileURLWithPath: filePath)!
-            completedURL = fileURL
-            return fileURL
-            }.progress { (bytesRead, totalBytesRead, totalBytesExcpedtedToRead) -> Void in
-                if let actualProgress = progress as NSProgress! {
-                    actualProgress.completedUnitCount = totalBytesRead
-                }
-            }.response { (request, response, object, error) -> Void in
-                dispatch_async(dispatch_get_main_queue(), {
-                    if self.isUnauthorized(response as NSHTTPURLResponse?) {
-                        let error = APIError.UnauthorizedOAuthTokenError()
-                        self.removeAccessTokenUsedInLastRequest()
-                        failure(error: error)
-                    } else if let actualError = error as NSError! {
-                        failure(error: APIError(error: actualError))
-                    } else {
-                        success(url: completedURL!)
-                    }
-                })
+        let encryptedModelUri = encryptionModel.uri
+        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
+        urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
+        fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
+            progress?.completedUnitCount = totalBytesWritten
         }
-        self.lastPerformedTask = request.task
-        return request.task
+
+        let isAttachment = encryptionModel is POSAttachment
+
+        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, response) -> NSURL! in
+            let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
+                if isAttachment {
+                    return POSAttachment.existingAttachmentWithUri(encryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                } else {
+                    return POSReceipt.existingReceiptWithUri(encryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
+                }
+            }()
+
+            if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {
+                return NSURL.fileURLWithPath(filePath)
+            } else {
+                return nil
+            }
+
+            }, completionHandler: { (response, fileURL, error) -> Void in
+                if let actualError = error {
+                    if (error.code != NSURLErrorCancelled) {
+                        if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
+                            OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                            Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "downloading a file", UI: "User waiting for file to complete download", cause: "might be a problem with clock on users device, or token was revoked")
+                            self.validateFullScope {
+                                failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                            }
+                        } else {
+                            failure(error: APIError(error: error))
+                        }
+                    }
+                } else if let actualFileUrl = fileURL {
+                    success(url:actualFileUrl)
+                }
+                // we get here if the request was canceled, should do nothing.
+        })
+        return task
     }
 
-    func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
+    private func isUnauthorized(urlResponse: NSHTTPURLResponse?) -> Bool {
         if let actualResponse = urlResponse as NSHTTPURLResponse! {
             if (actualResponse.statusCode == 403 || actualResponse.statusCode == 401) {
                 return true
@@ -135,18 +146,27 @@ extension APIClient {
         return false
     }
 
-    // Only GET allowed
-    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    /**
+    GET a request to server that fetches json structures, like list of documents, list of folders.
+
+    :param: url       url to fetch data from
+    :param: success   block with json data that has to be inserted to database
+    :param: failure   failure block with error that should be sent to present a UIAlertcontroller with API error
+
+    :returns: a task to resume when the request should be started
+    */
+    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
+        let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
 
-        let task = jsonDataTask(urlRequest, success: success, failure: failure)
-        return task
-    }
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "somewhere a jsonDataTask is performed, ex: downloading list of documents, list of folders", UI: "User waiting for the request to finish", cause: "might be a problem with clock on users device, or token was revoked")
 
     func urlSessionJSONTask(method: httpMethod, url: String, parameters: [String : AnyObject], success: ([String : AnyObject]) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
@@ -155,33 +175,55 @@ extension APIClient {
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
+}
+                self.validateFullScope {
+                    failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                }
+            } else {
+                failure(error: error)
+            }
+        
 
         let task = jsonDataTask(urlRequest, success: success, failure: failure)
         return task
     }
 
-    func urlSessionTask(method: httpMethod, url:String, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>? = nil, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
+        if let actualParameters = parameters {
+            urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        }
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
-        let task = dataTask(urlRequest, success: success, failure: failure)
+
+        let task = dataTask(urlRequest, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
+                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "doing a data task, ex renaming file, moving a document or folder", UI: "User is waiting for a data task to finish", cause: "might be a problem with clock on users device, or token was revoked")
+                self.validateFullScope {
+                    failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                }
+            } else {
+                failure(error: error)
+            }
+        }
+
         return task
     }
 
-    func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask? {
+    func urlSessionTaskWithNoAuthorizationHeader(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
         var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
-        for (key, value) in self.additionalHeaders {
-            urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
+        urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
+        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        urlRequest.setValue(contentType, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
+
         let task = dataTask(urlRequest, success: success, failure: failure)
         return task
     }
-
 }

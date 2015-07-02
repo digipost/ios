@@ -251,7 +251,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     NSURL *url;
     if (sender == self.registerButton) {
-        url = [NSURL URLWithString:@"https://www.digipost.no/app/registrering?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"];
+        url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"]];
     }
 
     [UIActionSheet showFromRect:sender.frame
@@ -279,8 +279,16 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
 
+
         [self.navigationController popToViewController:self
                                               animated:YES];
+        NSDictionary *userInfo = notification.userInfo;
+        if (userInfo) {
+            if ([userInfo[@"alert"] isMemberOfClass:[UIAlertController class]]) {
+                UIAlertController *alertController = userInfo[@"alert"];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+        }
     }
 }
 

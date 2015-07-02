@@ -40,6 +40,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 
     [self updateNavbar];
 
@@ -76,6 +77,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
 
@@ -188,7 +190,6 @@
 
     NSError *error = nil;
     if (![self.fetchedResultsController performFetch:&error]) {
-        NSLog(@"Error performing fetchedResultsController fetch: %@", [error localizedDescription]);
     }
 
     // Because we don't know which subclass inherits from the base controller,

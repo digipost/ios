@@ -98,7 +98,6 @@
     [_fetchedResultsController performFetch:&error];
 
     if (error) {
-        NSLog(@"%@", error);
     }
 
     return _fetchedResultsController;

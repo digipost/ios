@@ -11,9 +11,9 @@
 #import "POSFolderIcon.h"
 #import "POSNewFolderCollectionViewCell.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
-#import "POSAPIManager.h"
 #import "POSNewFolderCollectionViewDataSource.h"
 #import "digipost-swift.h"
+#import "POSMailbox+Methods.h"
 #import <MRProgress/MRProgress.h>
 
 @interface POSNewFolderViewController () <UITextFieldDelegate>
@@ -27,6 +27,8 @@
 
 - (IBAction)saveButtonTapped:(id)sender;
 
+@property (strong, nonatomic) NSString *currentMailBoxDigipostAddress;
+
 @end
 
 @implementation POSNewFolderViewController
@@ -34,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.currentMailBoxDigipostAddress = self.mailbox.digipostAddress;
 
     self.dataSource = [[POSNewFolderCollectionViewDataSource alloc] initAsDataSourceForCollectionView:self.collectionView];
     self.collectionView.delegate = self;
@@ -112,22 +115,23 @@
     if ([self.textField.text isEqualToString:[NSString string]] || self.textField.text == nil) {
         return;
     }
+
+    if (self.mailbox.createFolderUri == nil ) {
+        self.mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.currentMailBoxDigipostAddress inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    }
+
     [[APIClient sharedClient] createFolder:self.textField.text iconName:selectedIcon.name mailBox:self.mailbox success:^{
-        
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
                                                     [self.navigationController popViewControllerAnimated: YES];
     }
-        failure:^(APIError *error) {
+                                   failure:^(APIError *error) {
                                                     [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
-                                                    // TODO show error to user
                                                     if (error.code == -1011){
                                                         [UIAlertView showWithTitle: NSLocalizedString(@"Folder allready exists title", @"Title of the error telling user folder with the name allready exists") message: NSLocalizedString(@"Folder allready exists text", @"Text for error telling about folder with name exits") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                             
                                                         }];
                                                     } else {
-                                                        [UIAlertView showWithTitle: NSLocalizedString(@"Feil", @"Feil") message: NSLocalizedString(@"Noe feil skjedde. ", @"Noe feil skjedde. ") cancelButtonTitle: NSLocalizedString(@"Ok", @"Ok") otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                                            
-                                                        }];
+                                                        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                                     }
         }];
 }
@@ -144,7 +148,7 @@
         [self.navigationController popViewControllerAnimated: YES];
     }
         failure:^(APIError *error) {
-                                            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
+            [MRProgressOverlayView dismissOverlayForView: self.navigationController.view animated: YES];
             [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
         }];
 }

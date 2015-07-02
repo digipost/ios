@@ -23,7 +23,6 @@
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
 #import "SHCAppDelegate.h"
-#import "POSAPIManager.h"
 #import "POSMailbox+Methods.h"
 #import "POSLetterViewController.h"
 #import "SHCLoginViewController.h"
@@ -51,7 +50,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
     [self setupHockeySDK];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
-    [[UIBarButtonItem appearance] setBackgroundVerticalPositionAdjustment:-400 forBarMetrics:UIBarMetricsDefault];
+
     //    [self setupCocoaLumberjack];
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];

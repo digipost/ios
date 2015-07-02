@@ -25,7 +25,6 @@
 #import "SHCAppDelegate.h"
 #import "POSLetterViewController.h"
 #import "UIViewController+ValidateOpening.h"
-#import "POSAPIManager.h"
 #import "NSError+ExtraInfo.h"
 #import "UIView+AutoLayout.h"
 #import "UILabel+Digipost.h"
@@ -230,30 +229,11 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (self.attachments.count == 0 ) {
+        self.attachments = [self attachmentsForCurrentDocument];
+    }
     POSAttachment *attachment = self.attachments[indexPath.row];
 
-    //    if (attachment.openingReceiptUri) {
-    //        [UIAlertView showWithTitle:NSLocalizedString(@"Avsender krever lesekvittering", @"Avsender krever lesekvittering")
-    //                           message:NSLocalizedString(@"Hvis du åpner dette brevet", @"Hvis du åpner dette brevet")
-    //                 cancelButtonTitle:NSLocalizedString(@"Avbryt", @"Avbryt")
-    //                 otherButtonTitles:@[ NSLocalizedString(@"Åpne brevet og send kvittering", @"Åpne brevet og send kvittering") ]
-    //                          tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-    //                              switch (buttonIndex) {
-    //                                  case 0:
-    //                                      break;
-    //                                  case 1:
-    //                                  {
-    //                                      [self shouldValidateOpeningReceipt:attachment];
-    //                                      break;
-    //                                  }
-    //                                  case 2:
-    //                                      break;
-    //                                  default:
-    //                                      break;
-    //                              }
-    //                          }];
-    //        return;
-    //    }
     [self validateOpeningAttachment:attachment
         success:^{
                                 if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {

@@ -11,7 +11,6 @@ import Foundation
 import MobileCoreServices
 import Darwin
 import AFNetworking
-import Alamofire
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
 
@@ -35,6 +34,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let manager = AFHTTPSessionManager(baseURL: nil)
         manager.requestSerializer = AFHTTPRequestSerializer()
         manager.responseSerializer = AFHTTPResponseSerializer()
+        #if __ACCEPT_SELF_SIGNED_CERTIFICATES__
+            manager.securityPolicy.allowInvalidCertificates = true
+        #endif
         return manager
         }()
 
@@ -111,130 +113,170 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return urlString
     }
 
-    func validateTokensThenPerformTask(task: NSURLSessionTask) {
-        validateOAuthToken(kOauth2ScopeFull) {
-            self.updateAuthorizationHeader(kOauth2ScopeFull)
-            task.resume()
-        }
+    private func validateFullScope(#success: () -> Void, failure: ((error: NSError) -> Void)?) {
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
+            self.updateAuthorizationHeader(oAuthToken: chosenToken)
+            success()
+        }, failure:failure )
     }
 
-    func validate(#token: OAuthToken?, thenPerformTask task: NSURLSessionTask) {
-        validate(oAuthToken: token) { (chosenToken) -> Void in
+    func validateFullScope(#then: () -> Void) {
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
-            task.resume()
-        }
+            then()
+        },failure: nil)
     }
 
     func validate(#token: OAuthToken?, then: () -> Void) {
-        validate(oAuthToken: token) { (chosenToken) -> Void in
+        validate(oAuthToken: token, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
-        }
+        }, failure: nil)
     }
 
     func updateRootResource(#success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = __ROOT_RESOURCE_URI__
-        let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.updateRootResource(success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validate(token: highestToken) {
+            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+            task.resume()
         }
-
-        validate(token: highestToken, thenPerformTask: task!)
     }
 
     func updateRootResource(#scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let rootResource = __ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
-        let task = urlSessionJSONTask(url: rootResource, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.updateRootResource(scope: scope, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+            task.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                self.updateBankAccount(uri: uri, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
+            task.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.sendInvoideToBank(invoice, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure)
+            task.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionJSONTask(url: uri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized  {
-                self.updateReceiptsInMailboxWithDigipostAddress(digipostAddress, uri: uri, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
+            task.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
-        let task = urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized {
-                self.deleteReceipt(receipt, success: success, failure: failure)
-            } else {
-                failure(error: error)
-            }
+        validateFullScope {
+            let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
+            task.resume()
         }
-        validateTokensThenPerformTask(task!)
     }
 
     func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-        self.updateAuthorizationHeader(oAuthToken: highestToken!)
-        let task  = urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.oAuthUnathorized  {
-                failure(error: error)
-            } else {
-                failure(error: error)
+        let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
+        let highestToken = OAuthToken.oAuthTokenWithScope(scope)
+        validate(token: highestToken) { () -> Void in
+            let task = self.urlSessionTask(httpMethod.post, url:attachment.openingReceiptUri, success: success, failure: failure)
+            task.resume()
+        }
+    }
+
+    func logoutThenDeleteAllStoredData() {
+        cancelAllRunningTasks { () -> Void in
+            self.logout(success: { () -> Void in
+                // get run for every time a sucessful scope logs out
+                }) { (error) -> () in
+                // gets run for every failed request
             }
         }
-        validate(token: highestToken, thenPerformTask: task!)
     }
 
-    func logout () {
-        logout(success: { () -> Void in
-            OAuthToken.removeAllTokens()
-            POSModelManager.sharedManager().deleteAllObjects()
-            }) { (error) -> () in
-                OAuthToken.removeAllTokens()
-                POSModelManager.sharedManager().deleteAllObjects()
-        }
-    }
+    /**
+    success and failure blocks are run multiple times depending on how many requests are done
+    logs out OAuth tokens for all scopes in storage
 
+    */
     private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         if rootResource == nil {
             success()
             return
         }
-        let task = urlSessionTask(httpMethod.post, url: rootResource.logoutUri, success: success, failure: failure)
-        validateTokensThenPerformTask(task!)
+        let logoutURI = rootResource.logoutUri
+        // if validation fails, just delete everything to make sure user will get correctly logged out in app
+        validateFullScope(success: {
+            let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+            task.resume()
+
+            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
+            POSFileManager.sharedFileManager().removeAllFiles()
+
+            }) { (error) -> Void in
+
+            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+
+            OAuthToken.removeAllTokens()
+            POSModelManager.sharedManager().deleteAllObjects()
+            POSFileManager.sharedFileManager().removeAllFiles()
+        }
+    }
+
+    private func logoutHigherLevelTokens(logoutUri: String, success: () -> Void, failure: (error: APIError) -> ()) {
+        if let fullHighAuthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
+            self.validate(token: fullHighAuthToken, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
+        }
+        if let idPorten3Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
+            self.validate(token: idPorten3Token, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
+        }
+        if let idPorten4Token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+            self.validate(token: idPorten4Token, then: {
+                let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
+                task.resume()
+            })
+        }
+    }
+
+    func cancelAllRunningTasks(then: () -> Void) {
+        self.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            self.cancelTasks(dataTasks)
+            self.cancelTasks(uploadTasks)
+            self.cancelTasks(downloadTasks)
+            then()
+        }
+    }
+
+    private func cancelTasks(tasks: [AnyObject]) {
+        for object in tasks {
+            if let task = object as? NSURLSessionTask {
+                task.cancel()
+            }
+        }
+    }
+
+    func cancelLastDownloadingBaseEncryptionModel() {
+        self.fileTransferSessionManager.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
+            self.cancelTasks(downloadTasks)
+        }
     }
 
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
@@ -272,7 +314,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
         }
-
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
         let baseEncryptedModelUri = baseEncryptionModel.uri
 
@@ -282,13 +323,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    if error.code == Constants.Error.Code.oAuthUnathorized  {
-                        self.downloadBaseEncryptionModel(baseEncryptionModel, withProgress: progress, success: success, failure: failure)
-                    } else {
-                        failure(error: error)
-                    }
+                    failure(error: error)
             })
-            task!.resume()
+            task.resume()
         }
     }
 
@@ -422,15 +459,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return
         }
 
-        // TODO CANCEL UPLOADING FILES && DELETE TEMP FILES
-        //
-        //    // We're good to go - let's cancel any ongoing uploads and delete any previous temporary files
-        //    if (self.isUploadingFile) {
-        //    [self cancelUploadingFiles];
-        //    }
-        //
-        //    [self removeTemporaryUploadFiles];
-
         removeTemporaryUploadFiles()
 
         let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
@@ -445,8 +473,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
         var userInfo = Dictionary <NSObject,AnyObject>()
         userInfo["fileName"] = fileName
-        self.uploadProgress = NSProgress(parent: nil, userInfo:userInfo)
-        self.uploadProgress!.totalUnitCount = Int64(fileSize)
+        let progress = NSProgress(parent: nil, userInfo:userInfo)
+        progress.totalUnitCount = Int64(fileSize)
+        self.uploadProgress = progress
         let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
@@ -470,29 +499,39 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let totalSent = totalBytesSent as Int64
-                self.uploadProgress?.completedUnitCount = totalSent
+                if let actualProgress = self.uploadProgress {
+                    actualProgress.completedUnitCount = totalSent
+                }
             })
         }
+        validateFullScope { () -> Void in
+            let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.removeTemporaryUploadFiles()
+                    self.isUploadingFile = false
+                    if (error != nil ){
+                        failure(error: APIError(error: error!))
+                    }
 
-        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
-                self.removeTemporaryUploadFiles()
-                self.isUploadingFile = false
-                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-                    self.removeAccessTokenUsedInLastRequest()
-                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-                } else if (error != nil ){
-                    failure(error: APIError(error: error!))
-                }
-
-                if success != nil {
-                    success!()
-                }
+                    if success != nil {
+                        success!()
+                    }
+                })
             })
-        })
-
+            task.resume()
+        }
         self.isUploadingFile = true
-        validateTokensThenPerformTask(task)
+    }
+
+    func postLog(#uri: String, parameters: [String : AnyObject]) {
+        let baseUri = __SERVER_URI__
+        let completeUri = "\(baseUri)\(uri)"
+        let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
+            DLog("Successfully sent log with parameters: \(parameters)")
+        }) { (error) -> Void in
+            DLog("Could not send log with parameters: \(parameters), got error: \(error)")
+        }
+        task.resume()
     }
 
     func removeTemporaryUploadFiles () {
@@ -500,39 +539,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
     }
 
-    private func validateOAuthToken(scope: String, validationSuccess: () -> Void)  {
-        let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
-        if (oAuthToken?.accessToken != nil) {
-            validationSuccess()
-            return
-        }
-
-        if (oAuthToken?.refreshToken != nil) {
-            POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: scope, success: {
-                validationSuccess()
-                }, failure: { (error) -> Void in
-                    if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
-                        self.deleteRefreshTokensAndLogoutUser()
-                    }
-            })
-        } else if (oAuthToken == nil && scope == kOauth2ScopeFull) {
-        }
-    }
-
-    private func deleteRefreshTokensAndLogoutUser() {
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
-        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
-            letterViewController.attachment = nil
-            letterViewController.receipt = nil
-        }
-        APIClient.sharedClient.logout()
-        OAuthToken.removeAllTokens()
-        POSModelManager.sharedManager().deleteAllObjects()
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
-    }
-
-    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void)  {
-        if (oAuthToken?.accessToken != nil) {
+    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
+        if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
             return
         }
@@ -544,39 +552,49 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 }, failure: { (error) -> Void in
                     if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
+                    } else {
+                        failure?(error: error)
                     }
             })
-        }else if (oAuthToken == nil) {
-            assert(false," something wrong with oauth token")
         } else {
-            oAuthToken?.removeFromKeyChain()
+            // if oauthoken does not have a refreshtoken, it means its a higher level token
+            // delete the token and "jump" to a higher or lower level based on if you have valid tokens for that scope
+            // for example when refreshing list with idporten 4, then jumping down to full scope if the idporten 4 token was expired
+
+            if let actualOAuthToken = oAuthToken {
+                if actualOAuthToken.hasExpired() {
+                    actualOAuthToken.accessToken = nil
+                }
+            }
+            oAuthToken?.removeFromKeychainIfNoAccessToken()
             let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
             if (lowerLevelOAuthToken != nil) {
-                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess)
+                validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
-                assert(false, "NO oauthtoken present in app. Log out!")
+                Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
+                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.NoOAuthTokenPresent.rawValue, userInfo: nil))
             }
-            // has found higher level oAuthToken that is outdated, try refreshing a lower level token
         }
     }
 
-    func cancelUpdatingReceipts() {
+    /**
+    Called when refresh tokens are invalidated server side
+    */
+    private func deleteRefreshTokensAndLogoutUser() {
+        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
+            letterViewController.attachment = nil
+            letterViewController.receipt = nil
+        }
 
-    }
+        let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        fullToken?.accessToken = nil
+        fullToken?.refreshToken = nil
 
-    func cancelDownloadingBaseEncryptionModels() {
-
-    }
-
-    func cancelUpdatingRootResource () {
-        //        - (void)cancelUpdatingRootResource
-        //            {
-        //                NSURL *URL = [NSURL URLWithString:__ROOT_RESOURCE_URI__];
-        //                NSString *pathSuffix = [URL lastPathComponent];
-        //                [self cancelRequestsWithPathSuffix:pathSuffix];
-        //
-        //                self.state = SHCAPIManagerStateUpdatingRootResourceFailed;
-        //        }
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
+        let alertController = UIAlertController.forcedLogoutAlertController()
+        let userInfo  : [NSObject : AnyObject] = [ "alert" as NSObject : alertController as AnyObject]
+        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil, userInfo: userInfo)
     }
 
     func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {

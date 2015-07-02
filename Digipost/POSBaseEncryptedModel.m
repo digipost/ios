@@ -64,7 +64,6 @@
     NSString *humanReadableURLString = [[[POSFileManager sharedFileManager] decryptedFilesFolderPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", title, self.fileType]];
     [[NSFileManager defaultManager] copyItemAtPath:[self decryptedFilePath] toPath:humanReadableURLString error:&error];
     if (error) {
-        NSLog(@"%@", error);
     }
     self.tempHumanReadablePathForFile = humanReadableURLString;
     return humanReadableURLString;

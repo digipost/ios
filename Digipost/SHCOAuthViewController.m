@@ -23,6 +23,7 @@
 #import "NSError+ExtraInfo.h"
 #import "GAIDictionaryBuilder.h"
 #import "oauth.h"
+#import "digipost-swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPresentOAuthModallyIdentifier = @"PresentOAuthModally";
@@ -80,8 +81,8 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.stateParameter = nil;
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
@@ -96,43 +97,39 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    id<GAITracker> tracker = [GAI sharedInstance].defaultTracker;
     // Trap requests to the URL used when OAuth authentication dialog finishes
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
 
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
-
             // Copy and reset the state parameter, as we're done checking its value for now
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
-
             if ([state isEqualToString:currentState] == NO) {
-                [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"State parameter differ from stored value" value:nil] build]];
+                [Logger dpostLogError:@"State parameter returned from server differed from what client sent" location:@"Showing OAuth login screen" UI:@"User will get an error and be asked to try logging in again" cause:@"Server is broken or possible man in the middle attack"];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing state parameter" value:nil] build]];
+            [Logger dpostLogError:@"Could not find OAuth state-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
 
         if (parameters[kOAuth2Code]) {
             [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
-                scope:self.scope
-                success:^{
-
+                                                            scope:self.scope
+                                                          success:^{
                   // The OAuth manager has successfully authenticated with code - which means we've
                   // got an access code and a refresh code, and can dismiss this view controller
                   // and let the login view controller take over and push the folders view controller.
-                  [self dismissViewControllerAnimated:YES
-                                           completion:^{
-                                             if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                                                 [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                                             }
-                                           }];
+                    [self dismissViewControllerAnimated:YES
+                                             completion:^{
+                                                 if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                     [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                                 }
+                                             }];
                 }
                 failure:^(NSError *error) {
                   [UIAlertView showWithTitle:error.errorTitle
@@ -144,7 +141,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                     }];
                 }];
         } else {
-            [tracker send:[[GAIDictionaryBuilder createEventWithCategory:kGoogleAnalyticsErrorEventCategory action:kGoogleAnalyticsErrorEventAction label:@"Missing code parameter" value:nil] build]];
+            [Logger dpostLogError:@"Could not find OAuth code-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
         }
 
@@ -234,7 +231,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
-    self.stateParameter = [NSString randomNumberString];
+    self.stateParameter = [NSString secureRandomString];
 
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,

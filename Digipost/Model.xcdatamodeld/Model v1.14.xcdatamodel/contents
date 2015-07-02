@@ -2,6 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Attachment" representedClassName="POSAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
+        <attribute name="endToEndEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="fileType" attributeType="String" syncable="YES"/>
         <attribute name="mainDocument" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -11,6 +12,7 @@
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userKeyEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="document" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="attachments" inverseEntity="Document" syncable="YES"/>
         <relationship name="invoice" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Invoice" inverseName="attachment" inverseEntity="Invoice" syncable="YES"/>
     </entity>

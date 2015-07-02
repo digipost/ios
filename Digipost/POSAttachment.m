@@ -50,6 +50,8 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 @dynamic document;
 @dynamic invoice;
 @dynamic origin;
+@dynamic endToEndEncrypted;
+@dynamic userKeyEncrypted;
 
 #pragma mark - Public methods
 
@@ -81,7 +83,13 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
     attachment.type = [type isKindOfClass:[NSString class]] ? type : nil;
 
     NSString *origin = attributes[NSStringFromSelector(@selector(origin))];
-    attachment.origin = [type isKindOfClass:[NSString class]] ? origin : nil;
+    attachment.origin = [origin isKindOfClass:[NSString class]] ? origin : nil;
+
+    NSNumber *endToEndEncrypted = attributes[NSStringFromSelector(@selector(endToEndEncrypted))];
+    attachment.endToEndEncrypted = [endToEndEncrypted isKindOfClass:[NSNumber class]] ? endToEndEncrypted : nil;
+
+    NSNumber *userKeyEncrypted = attributes[NSStringFromSelector(@selector(userKeyEncrypted))];
+    attachment.userKeyEncrypted = [userKeyEncrypted isKindOfClass:[NSNumber class]] ? userKeyEncrypted : nil;
 
     NSArray *links = attributes[kAttachmentLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {
@@ -112,6 +120,9 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 
 + (instancetype)existingAttachmentWithUri:(NSString *)uri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    if (uri == nil ) {
+        return nil;
+    }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
     fetchRequest.fetchLimit = 1;

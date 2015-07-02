@@ -41,6 +41,11 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 {
     NSMutableOrderedSet *attachmentsMutable = [NSMutableOrderedSet orderedSetWithOrderedSet:self.attachments];
     [attachmentsMutable addObject:value];
+    [attachmentsMutable sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        POSAttachment *attachment1 = (id) obj1;
+        POSAttachment *attachment2 = (id) obj2;
+        return [attachment1.subject compare:attachment2.subject];
+    }];
     self.attachments = [NSOrderedSet orderedSetWithOrderedSet:attachmentsMutable];
 }
 
@@ -94,6 +99,7 @@ NSString *const kDocumentAttachmentAPIKey = @"attachment";
 
 + (instancetype)existingDocumentWithUpdateUri:(NSString *)updateUri inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSParameterAssert(updateUri);
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.fetchLimit = 1;

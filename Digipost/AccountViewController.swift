@@ -21,7 +21,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         logoutBarButtonVariable = logoutBarButtonItem
         logoutButtonVariable = logoutButton
         
@@ -82,6 +81,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .Plain, target: nil, action: nil)
         self.navigationController?.navigationBarHidden = false
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
@@ -119,7 +119,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             }
         }) { (error) -> () in
             if (userDidInitiateRequest == 1) {
-                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self)
+                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
             }
             
             if let actualRefreshControl = self.refreshControl {
@@ -200,10 +200,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
         tableView.reloadData()
-        APIClient.sharedClient.logout()
-        OAuthToken.removeAllTokens()
-        POSModelManager.sharedManager().deleteAllObjects()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
 

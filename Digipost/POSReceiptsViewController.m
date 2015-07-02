@@ -15,7 +15,6 @@
 #import <AFNetworking/AFNetworking.h>
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
-#import "POSAPIManager.h"
 #import "UIViewController+Additions.h"
 #import "POSReceiptTableViewCell.h"
 #import "POSReceipt.h"

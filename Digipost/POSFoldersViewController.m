@@ -21,7 +21,6 @@
 #import "POSFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
-#import "POSAPIManager.h"
 #import "POSModelManager.h"
 #import "POSFolderTableViewCell.h"
 #import "POSDocument+Methods.h"
@@ -155,8 +154,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [[APIClient sharedClient] cancelUpdatingRootResource];
-
     [self programmaticallyEndRefresh];
 
     [super viewWillDisappear:animated];
@@ -276,8 +273,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
 
     if (!unreadCounterHidden) {
-        NSInteger unread = [POSDocument numberOfUnreadDocumentsForMailboxFolder:self.inboxFolder inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%li", (long)unread];
+        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@",rootResource.unreadItemsInInbox];
     }
 
     return cell;

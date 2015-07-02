@@ -25,7 +25,6 @@
 #import "POSDocumentTableViewCell.h"
 #import "POSAttachment.h"
 #import "UIColor+Convenience.h"
-#import "POSAPIManager.h"
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSFolder+Methods.h"
@@ -80,6 +79,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)viewDidLoad
 {
     self.navigationItem.hidesBackButton = false;
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
+
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
@@ -327,7 +328,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                     }
             }
             failure:^(NSError *error) {
-                                    NSLog(@"failed validating opening of document %@",error);
 
             }];
     }

@@ -18,9 +18,8 @@
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
 #import "POSAccountViewTableViewDataSource.h"
-#import "POSAPIManager.h"
 #import <AFNetworking/AFNetworking.h>
-#import "UIRefreshControl+Additions.m"
+#import "UIRefreshControl+Additions.h"
 #import "POSMailbox.h"
 #import "POSLetterViewController.h"
 #import "POSFolder+Methods.h"
@@ -33,3 +32,7 @@
 #import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"
 #import "UIView+AutoLayout.h"
+#import "oauth.h"
+#import <CommonCrypto/CommonCrypto.h>
+#import "NSString+RandomNumber.h"
+#import "NSString+Hmac.h"
