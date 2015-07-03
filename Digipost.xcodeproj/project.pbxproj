@@ -1253,6 +1253,14 @@
 		ECB2BFFA1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFC1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
+		ECB2BFFE1B4679B2008E32E8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
+		ECB2C0001B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0011B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0021B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0031B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0041B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0051B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
+		ECB2C0061B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
@@ -1619,6 +1627,7 @@
 		ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Reorder.h"; path = "UITableView+Reorder/UITableView+Reorder.h"; sourceTree = "<group>"; };
 		ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+Reorder.m"; path = "UITableView+Reorder/UITableView+Reorder.m"; sourceTree = "<group>"; };
 		ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+StandardComposerFonts.swift"; sourceTree = "<group>"; };
+		ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTests.swift; sourceTree = "<group>"; };
 		ECB3A64D18B379F8002D8C22 /* POSNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
@@ -2238,6 +2247,7 @@
 			children = (
 				EC2752251B09D14E0007125D /* json */,
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
+				ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */,
 				EC2751881B061D010007125D /* Supporting Files */,
 			);
 			path = DigipostModelTests;
@@ -2355,7 +2365,6 @@
 				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
 				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,
 				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
-				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
 				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
@@ -2368,12 +2377,12 @@
 				ECB2BFF41B456E01008E32E8 /* Model */,
 				ECB2BFF31B456DAD008E32E8 /* Composer */,
 				ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */,
+				ECB2BFFD1B457672008E32E8 /* New Group */,
 				ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */,
 				ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */,
 				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
 				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
 				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
-				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
 				ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */,
 				ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */,
@@ -2387,6 +2396,8 @@
 		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
+				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 			);
 			name = Composer;
 			sourceTree = "<group>";
@@ -2401,6 +2412,13 @@
 				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		ECB2BFFD1B457672008E32E8 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3140,6 +3158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				ECB2C0001B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
@@ -3315,6 +3334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BEA41B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				ECB2C0041B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				EC2484201B206F5B00FC372C /* Constants.swift in Sources */,
 				ECB2BF701B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				87C9E75F1B0610BC0019AA07 /* UploadGuideViewController.swift in Sources */,
@@ -3490,6 +3510,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BEA31B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				ECB2C0031B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				EC24841F1B206F5B00FC372C /* Constants.swift in Sources */,
 				ECB2BF6F1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC0D2D281AE786A800595A61 /* UploadGuideViewController.swift in Sources */,
@@ -3699,6 +3720,7 @@
 				EC2751F01B061DC80007125D /* UIWindow+Navigation.swift in Sources */,
 				EC2751A91B061D5A0007125D /* UIRefreshControl+Additions.m in Sources */,
 				EC2751AA1B061D5A0007125D /* UIViewController+BackButton.m in Sources */,
+				ECB2BFFE1B4679B2008E32E8 /* Logger.swift in Sources */,
 				ECB2BFF21B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
 				EC2751A61B061D5A0007125D /* UIColor+Convenience.m in Sources */,
 				EC27520A1B061DE80007125D /* UploadImageController.swift in Sources */,
@@ -3808,6 +3830,7 @@
 				EC2751A21B061D5A0007125D /* NSString+Convenience.m in Sources */,
 				ECB2BEE61B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
 				EC2751FD1B061DD50007125D /* OnboardingViewController.swift in Sources */,
+				ECB2C0061B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				ECB2BFA11B452F2A008E32E8 /* Recipient.swift in Sources */,
 				ECB2BE831B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				EC2751ED1B061DC80007125D /* UIToolbar+Actions.swift in Sources */,
@@ -3838,6 +3861,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BEA11B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				ECB2C0011B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				EC24841D1B206F5A00FC372C /* Constants.swift in Sources */,
 				ECB2BF6D1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC2DCB3E1AB84EAB0063755E /* UploadGuideViewController.swift in Sources */,
@@ -4013,6 +4037,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BEA21B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				ECB2C0021B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				EC24841E1B206F5A00FC372C /* Constants.swift in Sources */,
 				ECB2BF6E1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC2DCBEF1AB864AB0063755E /* UploadGuideViewController.swift in Sources */,
@@ -4201,6 +4226,7 @@
 				ECB2BEF31B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
 				ECB2BF781B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				ECB2BE971B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
+				ECB2C0051B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				ECB2BFAE1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				ECB2BE821B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				ECB2BE9E1B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
