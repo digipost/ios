@@ -43,11 +43,23 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
     }
 
     func appendCharactersToEndOfString(characters: String) {
+        let shouldRemoveFirstString : Bool = {
+            if self.attributedText.string == " " {
+                return true
+            }
+            return false
+        }()
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         let endOfStringAttributes = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
         let appendingAttributedString = NSAttributedString(string: characters, attributes: endOfStringAttributes)
+        // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
+        if shouldRemoveFirstString {
+            mutableAttributedString.mutableString.replaceCharactersInRange(NSMakeRange(0, 1), withString: "")
+        }
         mutableAttributedString.appendAttributedString(appendingAttributedString)
+
         attributedText = mutableAttributedString
+
     }
 
     func setTextAlignment(alignment: NSTextAlignment) {
