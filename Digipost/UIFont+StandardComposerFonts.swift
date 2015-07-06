@@ -10,19 +10,19 @@ import UIKit
 
 extension UIFont {
     
-    class func headlineH1 () -> UIFont {
+    class func headlineH1() -> UIFont {
         return UIFont.boldSystemFontOfSize(22)
     }
 
-    class func headlineH2 () -> UIFont {
+    class func headlineH2() -> UIFont {
         return UIFont.boldSystemFontOfSize(20)
     }
 
-    class func headlineH3 () -> UIFont {
+    class func headlineH3() -> UIFont {
         return UIFont.boldSystemFontOfSize(18)
     }
 
-    class func paragraph () -> UIFont {
+    class func paragraph() -> UIFont {
         return UIFont.systemFontOfSize(15)
     }
 

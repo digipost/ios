@@ -52,8 +52,7 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
-        
-        cell.moduleTextView.text = module.text.string
+        cell.moduleTextView.text = module.attributedText.string
         cell.moduleTextView.font = module.textAttribute.font!
         println(composerInputAccessoryView)
         cell.moduleTextView.inputAccessoryView = composerInputAccessoryView

@@ -5,7 +5,7 @@
 //  Created by Håkon Bogen on 03/07/15.
 //  Copyright (c) 2015 Posten. All rights reserved.
 //
-
+//
 import UIKit
 import XCTest
 
@@ -21,16 +21,14 @@ class ComposerTests: XCTestCase {
         super.tearDown()
     }
 
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    static let testString = "hello world"
+    
+    func testTextAlignmentHTMLRepresentation() {
+        let wantedOutput = "<p>\(ComposerTests.testString)</p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.setTextAlignment(NSTextAlignment.Right)
+        textComposerModule.appendCharactersToEndOfString(ComposerTests.testString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
 }

@@ -78,18 +78,23 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
 
-//        let module : ComposerModule = {
-//            switch indexPath.row {
-//            case 0:
-//                return TextComposerModule()
-//            case 1:
-//            case 2:
-//            case 3:
-//            default:
-//            }
-//        }
+        let module : ComposerModule = {
+            switch indexPath.row {
+            case 0:
+                return TextComposerModule.headlineModule()
+            case 1:
+                return TextComposerModule.paragraphModule()
+            case 2:
+                fallthrough
+            case 3:
+                fallthrough
+            default:
+                break;
+            }
+            return TextComposerModule.paragraphModule()
+        }()
+
         delegate?.moduleSelectorViewController(self, didSelectModule: ComposerModule())
-//
 //        dismissViewControllerAnimated(true, completion: { () -> Void in
 //
 //        })

@@ -116,7 +116,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
             if let textModule = composerModules[indexPath.row] as? TextComposerModule {
-                textModule.text = textView.attributedText
+                textModule.attributedText = textView.attributedText
                 textModule.textAttribute.textAlignment = textView.textAlignment
             }
         }

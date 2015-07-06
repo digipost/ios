@@ -43,7 +43,7 @@ extension ComposerViewController {
 
     func height(#textComposerModule: TextComposerModule) -> CGFloat {
         let textView = UITextView()
-        textView.text = textComposerModule.text.string
+        textView.text = textComposerModule.attributedText.string
         textView.font = textComposerModule.textAttribute.font!
         textView.frame.size.width = self.tableView.frame.size.width - 40 // TODO: use the actual margin!
         let size = textView.sizeThatFits(CGSizeMake(textView.frame.size.width, 1000))
