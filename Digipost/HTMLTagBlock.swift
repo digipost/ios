@@ -45,7 +45,6 @@ struct HTMLTagBlock : HTMLRepresentable {
     }
 
     mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>) {
-        println(value as! UIFont)
         let tag = HTMLTag(attribute: attribute, value: value, range: range)
         self.tags.append(tag)
     }
@@ -54,14 +53,15 @@ struct HTMLTagBlock : HTMLRepresentable {
         var representation = (self.content as NSString).mutableCopy() as! NSMutableString
         var index = 0
         var newContent = ""
-        let regex = NSRegularExpression(pattern: "</?[a-z][a-z0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
+        let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
+
         for tag in tags {
-            let tagLength = lengthOfAllTagsBeforeIndex(index, inString: representation as String)
+            let tagLength = lengthOfAllTagsBeforeIndex(index, inString: representation as NSString)
             let startTagIndex = tag.range.startIndex + tagLength
             let endTagIndex = tag.range.endIndex + tagLength
             representation.insertString(tag.endTag, atIndex: endTagIndex)
             representation.insertString(tag.startTag, atIndex: startTagIndex)
-            index = index + tag.startTag.length + tag.endTag.length
+            index = index + tag.range.startIndex + tag.startTag.length + tag.range.endIndex + tag.endTag.length
         }
         let selfTag = HTMLTag(tagBlockType: self.type)
         return "\(selfTag.startTag)\(representation)\(selfTag.endTag)"
@@ -77,9 +77,10 @@ struct HTMLTagBlock : HTMLRepresentable {
         return false
     }
 
-    func lengthOfAllTagsBeforeIndex(index: Int, inString string: String) -> Int {
-        let regex = NSRegularExpression(pattern: "</?[a-z][a-z0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
-        let allMatches = regex!.matchesInString(string, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, index))
+    func lengthOfAllTagsBeforeIndex(index: Int, inString string: NSString) -> Int {
+        var error : NSError?
+        let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace, error: &error)
+        let allMatches = regex!.matchesInString(string as String, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, index))
         var totalLength = 0
         for match in allMatches as! [NSTextCheckingResult] {
             totalLength += match.range.length

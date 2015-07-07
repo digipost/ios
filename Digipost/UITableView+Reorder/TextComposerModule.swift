@@ -64,13 +64,21 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         attributedText = mutableAttributedString
     }
 
-    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, atRange range: NSRange) {
+    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) {
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired) { (attributes, inRange, stop) -> Void in
             if let font = attributes[NSFontAttributeName] as? UIFont {
                 var fontDescriptor = font.fontDescriptor()
                 let existingTraits = fontDescriptor.symbolicTraits
-                let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(fontTrait)
+                let newTraits : UIFontDescriptorSymbolicTraits =  {
+                    if enabled {
+                        return existingTraits | fontTrait
+                    } else {
+
+                        return existingTraits ^ fontTrait
+                    }
+                    }()
+                let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
                 let newFont  = UIFont(descriptor: newFontDescriptor!, size: font.pointSize )
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: range)
             }
@@ -105,12 +113,8 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
     }
 
     override func htmlRepresentation() -> String {
-        println(self.attributedText.string)
-
-
         var htmlTagBlock = HTMLTagBlock(type: self.type, content: self.attributedText.string)
         attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
-            println("attributes \(attributeDict) at range \(range)")
             for (attributeKey, attributeValue) in attributeDict {
                 // just skip the font attribute that is the outer main tag block
                 if attributeKey == NSFontAttributeName {
@@ -172,18 +176,6 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
             }
 
             var html = openingTag
-
-//            if let text = self.text {
-//
-//                for c in text{
-//                    if c == "\n"{
-//                        html += "<br>"
-//                    } else {
-//                        html += "\(c)"
-//                    }
-//                }
-//            }
-
             html += closeingTag
             
             return html
