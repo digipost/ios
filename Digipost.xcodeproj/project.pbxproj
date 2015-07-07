@@ -907,6 +907,20 @@
 		EC8B94781B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B94791B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B947A1B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
+		EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A0F1B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A101B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A111B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A121B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A131B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A141B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
+		EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A181B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A191B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A1A1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A1B1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A1C1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A1D1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
@@ -1585,6 +1599,8 @@
 		EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLContent.swift; sourceTree = "<group>"; };
 		EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLTag.swift; sourceTree = "<group>"; };
 		EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Composer.swift"; sourceTree = "<group>"; };
+		EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StylePicker.storyboard; sourceTree = "<group>"; };
+		EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerViewController.swift; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
@@ -2365,6 +2381,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EC8F4A151B4C0A5700D07922 /* StylePicker */ = {
+			isa = PBXGroup;
+			children = (
+				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
+				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
+			);
+			name = StylePicker;
+			sourceTree = "<group>";
+		};
 		ECB2BE511B452E84008E32E8 /* SendEditor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2398,6 +2423,7 @@
 				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
 				ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */,
 				ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */,
+				EC8F4A151B4C0A5700D07922 /* StylePicker */,
 				ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */,
 				ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */,
 				ECB2BFF41B456E01008E32E8 /* Model */,
@@ -2409,6 +2435,7 @@
 				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
 				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
 				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
+				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
 				ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */,
 				ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */,
@@ -2423,7 +2450,6 @@
 			isa = PBXGroup;
 			children = (
 				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
-				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 			);
 			name = Composer;
 			sourceTree = "<group>";
@@ -2673,6 +2699,7 @@
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
+				EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
@@ -2702,6 +2729,7 @@
 				ECB2BF621B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BF311B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				ECB2BFD71B452F2A008E32E8 /* stylesheet.css in Resources */,
+				EC8F4A121B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				87C9E8021B06117E0019AA07 /* Digipost-localhost.plist in Resources */,
 				87C9E8041B0612330019AA07 /* Digipost-localhost.xcconfig in Resources */,
 				87C9E7EC1B0610BC0019AA07 /* MainAccountTableViewCell.xib in Resources */,
@@ -2752,6 +2780,7 @@
 				EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */,
 				ECB2BF3E1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BFD61B452F2A008E32E8 /* stylesheet.css in Resources */,
+				EC8F4A111B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC0D2DE51AE786A800595A61 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2772,6 +2801,7 @@
 				ECB2BEED1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFD91B452F2A008E32E8 /* stylesheet.css in Resources */,
 				ECB2BF251B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
+				EC8F4A141B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
 				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
@@ -2788,6 +2818,7 @@
 			files = (
 				EC2DCBCA1AB84EAB0063755E /* Localizable.strings in Resources */,
 				ECB2BF3C1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
+				EC8F4A0F1B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2DCBCB1AB84EAB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCBCD1AB84EAB0063755E /* Onboarding.storyboard in Resources */,
@@ -2821,6 +2852,7 @@
 			files = (
 				EC2DCC7B1AB864AB0063755E /* Localizable.strings in Resources */,
 				ECB2BF3D1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
+				EC8F4A101B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2DCC7C1AB864AB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCC7E1AB864AB0063755E /* Onboarding.storyboard in Resources */,
@@ -2857,6 +2889,7 @@
 				ECB2BF631B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BF401B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BE741B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
+				EC8F4A131B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				ECB2BF241B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				ECB2BEC81B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				ECB2BEEC1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
@@ -3240,6 +3273,7 @@
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
 				ECB2BEBC1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
+				EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				ECB2BF831B452F1B008E32E8 /* String+Substring.swift in Sources */,
 				ECB2BE761B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
@@ -3419,6 +3453,7 @@
 				87C9E7801B0610BC0019AA07 /* POSReceiptFolderTableViewCell.m in Sources */,
 				87C9E7811B0610BC0019AA07 /* NSManagedObject+Attributes.swift in Sources */,
 				ECB2BEC01B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
+				EC8F4A1B1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				87C9E7821B0610BC0019AA07 /* POSRootResource.m in Sources */,
 				ECB2BF871B452F1B008E32E8 /* String+Substring.swift in Sources */,
 				ECB2BE7A1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
@@ -3598,6 +3633,7 @@
 				EC0D2D501AE786A800595A61 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC0D2D511AE786A800595A61 /* NSManagedObject+Attributes.swift in Sources */,
 				ECB2BEBF1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
+				EC8F4A1A1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC0D2D521AE786A800595A61 /* POSRootResource.m in Sources */,
 				ECB2BF861B452F1B008E32E8 /* String+Substring.swift in Sources */,
 				ECB2BE791B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
@@ -3777,6 +3813,7 @@
 				EC2751AF1B061D5A0007125D /* NSURLRequest+QueryParameters.m in Sources */,
 				ECB2BEA61B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				EC27519F1B061D5A0007125D /* NSNumber+JsonParsing.m in Sources */,
+				EC8F4A1D1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC2751BC1B061D6E0007125D /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC2751BE1B061D720007125D /* POSNewFolderViewController.m in Sources */,
 				EC2751CF1B061D7E0007125D /* POSLetterPopoverTableViewMobelObject.m in Sources */,
@@ -3956,6 +3993,7 @@
 				EC2DCB5E1AB84EAB0063755E /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC2DCB5F1AB84EAB0063755E /* NSManagedObject+Attributes.swift in Sources */,
 				ECB2BEBD1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
+				EC8F4A181B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC2DCB601AB84EAB0063755E /* POSRootResource.m in Sources */,
 				ECB2BF841B452F1B008E32E8 /* String+Substring.swift in Sources */,
 				ECB2BE771B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
@@ -4135,6 +4173,7 @@
 				EC2DCC101AB864AB0063755E /* NSManagedObject+Attributes.swift in Sources */,
 				EC2DCC111AB864AB0063755E /* POSRootResource.m in Sources */,
 				ECB2BEBE1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
+				EC8F4A191B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC2DCC121AB864AB0063755E /* ExtendedTouchView.swift in Sources */,
 				ECB2BF851B452F1B008E32E8 /* String+Substring.swift in Sources */,
 				ECB2BE781B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
@@ -4303,6 +4342,7 @@
 				ECB2BF6A1B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				ECB2BFB51B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				ECB2BE901B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
+				EC8F4A1C1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				ECB2BE891B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				ECB2BE661B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */,
 				ECB2BEFA1B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */,
