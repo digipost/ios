@@ -13,17 +13,20 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
 
 
     var textAttribute : TextAttribute
+    var type : HTMLTagBlockType
     var attributedText: NSAttributedString!
     var styling = [TextAttribute]()
 
     class func headlineModule() -> TextComposerModule {
         var textComposerModule = TextComposerModule()
+        textComposerModule.type = .H1
         textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.headlineH1()])
         return textComposerModule
     }
 
     class func paragraphModule() -> TextComposerModule {
         var textComposerModule = TextComposerModule()
+        textComposerModule.type = .Paragraph
         textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.paragraph()])
         let endOfStringAttributes = textComposerModule.attributedText.attributesAtIndex(textComposerModule.attributedText.length - 1 , effectiveRange: nil)
         return textComposerModule
@@ -49,6 +52,7 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
             }
             return false
         }()
+
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         let endOfStringAttributes = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
         let appendingAttributedString = NSAttributedString(string: characters, attributes: endOfStringAttributes)
@@ -57,9 +61,22 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
             mutableAttributedString.mutableString.replaceCharactersInRange(NSMakeRange(0, 1), withString: "")
         }
         mutableAttributedString.appendAttributedString(appendingAttributedString)
+        attributedText = mutableAttributedString
+    }
+
+    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, atRange range: NSRange) {
+        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired) { (attributes, inRange, stop) -> Void in
+            if let font = attributes[NSFontAttributeName] as? UIFont {
+                var fontDescriptor = font.fontDescriptor()
+                let existingTraits = fontDescriptor.symbolicTraits
+                let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(fontTrait)
+                let newFont  = UIFont(descriptor: newFontDescriptor!, size: font.pointSize )
+                mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: range)
+            }
+        }
 
         attributedText = mutableAttributedString
-
     }
 
     func setTextAlignment(alignment: NSTextAlignment) {
@@ -77,35 +94,30 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
 
     override init() {
         self.textAttribute = TextAttribute(font: UIFont.systemFontOfSize(17), textAlignment: .Left)
+        self.type = .Unknown
         super.init()
     }
 
     init(moduleWithFont font: UIFont) {
         textAttribute = TextAttribute(font: font, textAlignment: .Left)
+        self.type = .Unknown
         super.init()
     }
 
     override func htmlRepresentation() -> String {
+        println(self.attributedText.string)
 
-        var (htmlTagBlock, font) : (HTMLTagBlock, UIFont) = {
-            var htmlTagBlock : HTMLTagBlock?
-            var htmlTagBlockFont : UIFont?
-            self.attributedText.enumerateAttribute(NSFontAttributeName, inRange: NSMakeRange(0, self.attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (font, range, stop) -> Void in
-                if let actualFont = font as? UIFont {
-                    let textAtRange = (self.attributedText.string as NSString).substringWithRange(range)
-                    htmlTagBlock = HTMLTagBlock(font: actualFont, content: textAtRange)
-                    htmlTagBlockFont = actualFont
-                }
-            }
-            return (htmlTagBlock!, htmlTagBlockFont!)
-        }()
 
+        var htmlTagBlock = HTMLTagBlock(type: self.type, content: self.attributedText.string)
         attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
+            println("attributes \(attributeDict) at range \(range)")
             for (attributeKey, attributeValue) in attributeDict {
                 // just skip the font attribute that is the outer main tag block
                 if attributeKey == NSFontAttributeName {
-                    if attributeValue.isEqual(font) {
-                        continue
+                    if let attributeFont = attributeValue as? UIFont {
+                        if HTMLTagBlock.isHTMLTagBlockFont(attributeFont) {
+                            continue
+                        }
                     }
                 }
 

@@ -22,12 +22,30 @@ class ComposerTests: XCTestCase {
     }
 
     static let testString = "hello world"
+
+    static let otherTestString = "This is sparta"
     
-    func testTextAlignmentHTMLRepresentation() {
+    func testParagraph() {
         let wantedOutput = "<p>\(ComposerTests.testString)</p>"
         var textComposerModule = TextComposerModule.paragraphModule()
-        textComposerModule.setTextAlignment(NSTextAlignment.Right)
         textComposerModule.appendCharactersToEndOfString(ComposerTests.testString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
+    func testBoldInParagraph() {
+        let wantedOutput = "<p>\(ComposerTests.testString)<b>\(ComposerTests.otherTestString)</b></p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(ComposerTests.testString)
+        textComposerModule.appendCharactersToEndOfString(ComposerTests.otherTestString)
+
+
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(ComposerTests.otherTestString)
+
+        //.rangeOfString(ComposerTests.otherTestString, options: NSStringCompareOptions.LiteralSearch, range: nil, locale: nil)
+
+
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, atRange:rangeOfString)
+
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 

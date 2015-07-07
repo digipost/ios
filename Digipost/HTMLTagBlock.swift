@@ -38,8 +38,14 @@ struct HTMLTagBlock : HTMLRepresentable {
         }
         self.content = content
     }
-    
+
+    init(type: HTMLTagBlockType, content : String) {
+        self.type = type
+        self.content = content
+    }
+
     mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>) {
+        println(value as! UIFont)
         let tag = HTMLTag(attribute: attribute, value: value, range: range)
         self.tags.append(tag)
     }
@@ -47,14 +53,8 @@ struct HTMLTagBlock : HTMLRepresentable {
     func htmlRepresentation() -> String {
         var representation = (self.content as NSString).mutableCopy() as! NSMutableString
         var index = 0
-
         var newContent = ""
-
-
         let regex = NSRegularExpression(pattern: "</?[a-z][a-z0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
-
-//        regex?.stringByReplacingMatchesInString(representation, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, representation.length), withTemplate: "OIM")
-
         for tag in tags {
             let tagLength = lengthOfAllTagsBeforeIndex(index, inString: representation as String)
             let startTagIndex = tag.range.startIndex + tagLength
@@ -63,8 +63,18 @@ struct HTMLTagBlock : HTMLRepresentable {
             representation.insertString(tag.startTag, atIndex: startTagIndex)
             index = index + tag.startTag.length + tag.endTag.length
         }
-        return (representation as String)
+        let selfTag = HTMLTag(tagBlockType: self.type)
+        return "\(selfTag.startTag)\(representation)\(selfTag.endTag)"
+    }
 
+    static func isHTMLTagBlockFont(font: UIFont) -> Bool {
+        if font.isEqual(UIFont.headlineH1()) {
+            return true
+        } else if font.isEqual(UIFont.paragraph()) {
+            return true
+        }
+
+        return false
     }
 
     func lengthOfAllTagsBeforeIndex(index: Int, inString string: String) -> Int {

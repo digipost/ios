@@ -21,6 +21,22 @@ struct HTMLTag {
     let type : HTMLTagType
     let range : Range<Int>
 
+    init(tagBlockType: HTMLTagBlockType) {
+        self.range = Range(start: 0, end: 0)
+        self.type = {
+            switch tagBlockType {
+            case HTMLTagBlockType.H1:
+                return HTMLTagType.H1
+            case HTMLTagBlockType.Paragraph:
+                return HTMLTagType.Paragraph
+            default:
+                return HTMLTagType.Unknown
+            }
+        }()
+
+
+    }
+
     init(attribute: NSObject, value : AnyObject, range : Range<Int>) {
 
         let aFont = UIFont()
@@ -31,9 +47,10 @@ struct HTMLTag {
             case NSFontAttributeName:
                 if let actualFont = value as? UIFont {
                     let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
-                    if symbolicTraits == .TraitItalic {
+                    let symb = UIFontDescriptorSymbolicTraits(symbolicTraits.rawValue)
+                    if symbolicTraits & .TraitItalic == .TraitItalic {
                         return HTMLTagType.Italic
-                    } else if symbolicTraits == .TraitBold {
+                    } else if symbolicTraits & .TraitBold == .TraitBold {
                         return HTMLTagType.Bold
                     }
                     return HTMLTagType.Paragraph
