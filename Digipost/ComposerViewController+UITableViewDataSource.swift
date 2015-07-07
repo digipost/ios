@@ -25,6 +25,7 @@ extension ComposerViewController : UITableViewDataSource {
         let indexPathFromVisibleIndexPath = tableView.dataSourceIndexPathFromVisibleIndexPath(indexPath)
 
         let module = composerModules[indexPath.row]
+        let textModule = module as? TextComposerModule
 
         let cell : UITableViewCell = {
             if let imageModule = module as? ImageComposerModule {

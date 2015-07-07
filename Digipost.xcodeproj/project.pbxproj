@@ -921,6 +921,13 @@
 		EC8F4A1B1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1C1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1D1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
+		EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A201B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A211B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A221B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A231B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A241B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
@@ -1601,6 +1608,7 @@
 		EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Composer.swift"; sourceTree = "<group>"; };
 		EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StylePicker.storyboard; sourceTree = "<group>"; };
 		EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerViewController.swift; sourceTree = "<group>"; };
+		EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StylePickerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
@@ -2386,6 +2394,7 @@
 			children = (
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
+				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
 			);
 			name = StylePicker;
 			sourceTree = "<group>";
@@ -3295,6 +3304,7 @@
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				ECB2BE841B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
+				EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
@@ -3475,6 +3485,7 @@
 				87C9E78C1B0610BC0019AA07 /* NSDate+Extensions.swift in Sources */,
 				ECB2BE881B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				87C9E78D1B0610BC0019AA07 /* UIDevice+Extension.swift in Sources */,
+				EC8F4A231B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				87C9E78E1B0610BC0019AA07 /* POSReceipt.m in Sources */,
 				87C9E78F1B0610BC0019AA07 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				87C9E7901B0610BC0019AA07 /* OnboardingLoginViewController.swift in Sources */,
@@ -3655,6 +3666,7 @@
 				EC0D2D5E1AE786A800595A61 /* NSDate+Extensions.swift in Sources */,
 				ECB2BE871B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC0D2D601AE786A800595A61 /* UIDevice+Extension.swift in Sources */,
+				EC8F4A221B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				EC0D2D611AE786A800595A61 /* POSReceipt.m in Sources */,
 				EC0D2D621AE786A800595A61 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC0D2D631AE786A800595A61 /* OnboardingLoginViewController.swift in Sources */,
@@ -3835,6 +3847,7 @@
 				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
 				EC2751EC1B061DC80007125D /* UIImage+Size.swift in Sources */,
 				ECB2BE911B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
+				EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				EC2751C21B061D720007125D /* POSFolderTableViewCell.m in Sources */,
 				EC2751CB1B061D760007125D /* POSUploadTableViewCell.m in Sources */,
 				EC2751981B061D550007125D /* POSAttachment.m in Sources */,
@@ -4015,6 +4028,7 @@
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
 				ECB2BE851B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
+				EC8F4A201B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
 				EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCB6F1AB84EAB0063755E /* OnboardingLoginViewController.swift in Sources */,
@@ -4195,6 +4209,7 @@
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
 				ECB2BE861B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,
+				EC8F4A211B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCC201AB864AB0063755E /* OnboardingLoginViewController.swift in Sources */,
 				EC2DCC211AB864AB0063755E /* POSInvoice.m in Sources */,
@@ -4321,6 +4336,7 @@
 				ECB2BE9E1B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
 				ECB2BEA51B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				ECB2BF5C1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
+				EC8F4A241B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				ECB2BF471B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				ECA5A5FE1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				ECB2BEAC1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
