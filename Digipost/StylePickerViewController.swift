@@ -8,7 +8,20 @@
 
 import UIKit
 
+protocol StylePickerViewControllerDelegate {
+
+    func didSelectStyle(stylePickerViewController : StylePickerViewController)
+
+}
+
 class StylePickerViewController: UIViewController {
+
+    static let storyboardIdentifier = "stylePickerViewController"
+
+    func setupForAttributedString(attributedString: NSAttributedString )  {
+
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

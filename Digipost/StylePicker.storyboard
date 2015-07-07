@@ -1,7 +1,110 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
-    <scenes/>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="9kq-Jj-xB8">
+            <objects>
+                <navigationController id="UBu-uo-nem" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Hq-4v-Eg0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Ozs-T3-Qiz" kind="relationship" relationship="rootViewController" id="KKI-BM-qhk"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fYh-Ey-Dlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-44" y="683"/>
+        </scene>
+        <!--Style Picker View Controller-->
+        <scene sceneID="Ht9-18-iLN">
+            <objects>
+                <viewController storyboardIdentifier="stylePickerViewController" id="Ozs-T3-Qiz" customClass="StylePickerViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Lz-Mk-sDU"/>
+                        <viewControllerLayoutGuide type="bottom" id="89u-Hu-Wnb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BqO-oi-dWh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-jr-Dk3">
+                                <rect key="frame" x="0.0" y="70" width="600" height="530"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonGridCell" rowHeight="55" id="7TZ-jg-gD3">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7TZ-jg-gD3" id="jnm-DH-H28">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZIv-5W-pQI">
+                                                    <rect key="frame" x="50" y="13" width="500" height="29"/>
+                                                    <segments>
+                                                        <segment title="First"/>
+                                                        <segment title="Second"/>
+                                                        <segment title=""/>
+                                                        <segment title=""/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZIv-5W-pQI" firstAttribute="leading" secondItem="jnm-DH-H28" secondAttribute="leadingMargin" constant="42" id="KFP-Ti-xAl"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="ZIv-5W-pQI" secondAttribute="bottom" constant="5" id="gjx-ML-q73"/>
+                                                <constraint firstItem="ZIv-5W-pQI" firstAttribute="top" secondItem="jnm-DH-H28" secondAttribute="topMargin" constant="5" id="ns5-3E-psk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="ZIv-5W-pQI" secondAttribute="trailing" constant="42" id="p6X-hg-HKv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-3C-q8y">
+                                <rect key="frame" x="16" y="0.0" width="568" height="61"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="MMO-jK-und"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oT2-3C-q8y" firstAttribute="top" secondItem="BqO-oi-dWh" secondAttribute="topMargin" id="5v7-M3-xn9"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HA3-jr-Dk3" secondAttribute="bottom" id="CKA-fg-p3G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oT2-3C-q8y" secondAttribute="trailing" id="LWR-tq-ciL"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="oT2-3C-q8y" secondAttribute="bottom" constant="10" id="Qzp-Nc-01E"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="2Lz-Mk-sDU" secondAttribute="bottom" id="TAd-nW-DDC"/>
+                            <constraint firstItem="oT2-3C-q8y" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leadingMargin" id="V2a-Bf-4it"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="2Lz-Mk-sDU" secondAttribute="bottom" constant="35" id="WUX-tm-zRH"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leadingMargin" constant="-16" id="bCY-gv-lWX"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="centerX" secondItem="oT2-3C-q8y" secondAttribute="centerX" id="c4Q-yn-Qsy"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HA3-jr-Dk3" secondAttribute="bottom" constant="-55" id="hcr-52-gHU"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leading" id="imF-e8-Ruu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HA3-jr-Dk3" secondAttribute="trailing" constant="-16" id="qhH-zh-r8w"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="TAd-nW-DDC"/>
+                                <exclude reference="WUX-tm-zRH"/>
+                                <exclude reference="hcr-52-gHU"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="oV3-RT-1JU"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ruP-Mf-CwP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="676" y="683"/>
+        </scene>
+    </scenes>
 </document>

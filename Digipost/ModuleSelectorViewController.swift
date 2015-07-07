@@ -76,8 +76,6 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-
-
         let module : ComposerModule = {
             switch indexPath.row {
             case 0:
@@ -93,11 +91,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
             }
             return TextComposerModule.paragraphModule()
         }()
-
-        delegate?.moduleSelectorViewController(self, didSelectModule: ComposerModule())
-//        dismissViewControllerAnimated(true, completion: { () -> Void in
-//
-//        })
+        delegate?.moduleSelectorViewController(self, didSelectModule: module)
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

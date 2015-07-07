@@ -158,6 +158,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
+
         composerModules.append(module)
         tableView.reloadData()
         if let imageModule = module as? ImageComposerModule {
@@ -171,18 +172,18 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let textModule = module as? TextComposerModule
                 cell?.moduleTextView.font = textModule?.textAttribute.font
                 cell?.moduleTextView.delegate = self
+                let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
+                let rootVC = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as! StylePickerViewController
+                cell!.moduleTextView.inputView = rootVC.view
+                cell?.moduleTextView.reloadInputViews()
                 cell?.moduleTextView.becomeFirstResponder()
+                cell?.moduleTextView.reloadInputViews()
             }
         }
-        
-//        let dimView = view as? DimView
-//        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
-//        let dimView = view as? DimView
-//        dimView?.dim()
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -205,7 +206,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let quitAction = UIAlertAction(title: NSLocalizedString("composer view close alert quit button title", comment: "button title"),
             style: UIAlertActionStyle.Destructive)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
-                
+
                 self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                 })
         }
