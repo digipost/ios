@@ -22,6 +22,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     @IBOutlet weak var segmentedControl : UISegmentedControl!
 
 
+    var textStyleModels : [[TextStyleModel]] = { TextStyleModel.allTextStyleModels() }()
+
     func setupForAttributedString(attributedString: NSAttributedString )  {
 
 
@@ -29,11 +31,9 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.dataSource = self
         tableView.delegate = self
-
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

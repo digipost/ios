@@ -17,10 +17,18 @@ extension StylePickerViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.textStyleModels.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let arrayOfModels = self.textStyleModels[indexPath.row]
+        let cell : UITableViewCell = {
+            if arrayOfModels.count == 1 {
+                return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
+            } else {
+                return tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+            }
+            }()
         return UITableViewCell()
     }
 }
