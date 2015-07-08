@@ -18,7 +18,6 @@
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
-		6D8D2CD493B26C0AA8B0BDBA /* Pods_DigipostUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B5FF331BACFD6363E6EA315 /* Pods_DigipostUITests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
@@ -891,57 +890,49 @@
 		EC8B94661B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
 		EC8B94671B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
 		EC8B94681B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
-		EC8B94691B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
 		EC8B946A1B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
 		EC8B946C1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B946D1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B946E1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B946F1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B94701B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
-		EC8B94711B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B94721B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		EC8B94741B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B94751B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B94761B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B94771B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B94781B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
-		EC8B94791B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8B947A1B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A0F1B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A101B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A111B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A121B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A131B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A141B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
 		EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A181B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A191B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1A1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1B1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
-		EC8F4A1C1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1D1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A201B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A211B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A221B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A231B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
-		EC8F4A241B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A271B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A281B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A291B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A2A1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A2B1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
-		EC8F4A2C1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A2D1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC8F4A301B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC8F4A311B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC8F4A321B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC8F4A331B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
-		EC8F4A341B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC8F4A351B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A371B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
+		EC8F4A381B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
+		EC8F4A391B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
+		EC8F4A3A1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
+		EC8F4A3B1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
@@ -954,360 +945,308 @@
 		ECA5A5FB1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A5FC1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A5FD1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
-		ECA5A5FE1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A5FF1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A6011B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
-		ECA5A6021B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
 		ECA5A6031B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
 		ECB2BE611B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE621B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE631B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE641B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE651B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
-		ECB2BE661B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE671B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE691B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE6A1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE6B1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE6C1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
-		ECB2BE6D1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE6E1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE701B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE711B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE721B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE731B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
-		ECB2BE741B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE751B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		ECB2BE761B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE771B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE781B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE791B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE7A1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
-		ECB2BE7B1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE7C1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		ECB2BE7D1B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE7E1B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE7F1B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE801B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE811B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
-		ECB2BE821B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE831B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
 		ECB2BE841B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE851B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE861B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE871B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE881B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
-		ECB2BE891B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE8A1B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
 		ECB2BE8B1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE8C1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE8D1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE8E1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE8F1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
-		ECB2BE901B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE911B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		ECB2BE921B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE931B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE941B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE951B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE961B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
-		ECB2BE971B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE981B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		ECB2BE991B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BE9A1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BE9B1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BE9C1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BE9D1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
-		ECB2BE9E1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BE9F1B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA11B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA21B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA31B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA41B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
-		ECB2BEA51B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA61B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		ECB2BEA71B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEA81B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEA91B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEAA1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEAB1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
-		ECB2BEAC1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEAD1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
 		ECB2BEAE1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEAF1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEB01B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEB11B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEB21B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
-		ECB2BEB31B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEB41B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
 		ECB2BEB51B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEB61B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEB71B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEB81B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEB91B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
-		ECB2BEBA1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEBB1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		ECB2BEBC1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEBD1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEBE1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEBF1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEC01B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
-		ECB2BEC11B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEC21B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
 		ECB2BEC31B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BEC41B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BEC51B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BEC61B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BEC71B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
-		ECB2BEC81B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BEC91B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
 		ECB2BED21B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED31B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED41B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED51B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED61B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
-		ECB2BED71B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED81B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
 		ECB2BED91B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEDA1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEDB1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEDC1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEDD1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
-		ECB2BEDE1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEDF1B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		ECB2BEE01B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE11B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE21B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE31B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE41B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
-		ECB2BEE51B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE61B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
 		ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEE81B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEE91B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEEA1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEEB1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
-		ECB2BEEC1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEED1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		ECB2BEEE1B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEEF1B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEF01B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEF11B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEF21B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
-		ECB2BEF31B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEF41B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		ECB2BEF51B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BEF61B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BEF71B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BEF81B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BEF91B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
-		ECB2BEFA1B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BEFB1B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF041B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF051B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF061B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF071B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
-		ECB2BF081B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF091B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF191B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF1A1B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF1B1B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF1C1B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
-		ECB2BF1D1B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF1E1B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		ECB2BF1F1B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF201B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF211B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF221B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF231B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
-		ECB2BF241B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF251B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
 		ECB2BF261B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF271B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF281B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF291B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF2A1B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
-		ECB2BF2B1B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF2C1B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		ECB2BF2D1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF2E1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF2F1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF301B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF311B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
-		ECB2BF321B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF331B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
 		ECB2BF341B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF351B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF361B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF371B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF381B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
-		ECB2BF391B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF3A1B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF3C1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF3D1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF3E1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF3F1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
-		ECB2BF401B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF411B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		ECB2BF421B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF431B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF441B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF451B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF461B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
-		ECB2BF471B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF481B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		ECB2BF491B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF4A1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF4B1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF4C1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF4D1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
-		ECB2BF4E1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF4F1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		ECB2BF501B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF511B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF521B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF531B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF541B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
-		ECB2BF551B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF561B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
 		ECB2BF571B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF581B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF591B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF5A1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF5B1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
-		ECB2BF5C1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF5D1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		ECB2BF5E1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF5F1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF601B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF611B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF621B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
-		ECB2BF631B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF641B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		ECB2BF651B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF661B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF671B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF681B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF691B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
-		ECB2BF6A1B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF6B1B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF6D1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF6E1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF6F1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF701B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
-		ECB2BF711B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF721B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		ECB2BF731B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF741B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF751B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF761B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF771B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
-		ECB2BF781B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF791B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		ECB2BF831B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF841B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF851B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF861B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF871B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
-		ECB2BF881B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF891B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
 		ECB2BF941B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF951B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF961B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF971B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF981B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
-		ECB2BF991B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF9A1B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		ECB2BF9B1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BF9C1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BF9D1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BF9E1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BF9F1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
-		ECB2BFA01B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BFA11B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		ECB2BFA21B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA31B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA41B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA51B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA61B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
-		ECB2BFA71B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA81B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		ECB2BFA91B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFAA1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFAB1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFAC1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFAD1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
-		ECB2BFAE1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFAF1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		ECB2BFB01B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB11B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB21B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB31B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB41B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
-		ECB2BFB51B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB61B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		ECB2BFB71B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFB81B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFB91B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFBA1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFBB1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
-		ECB2BFBC1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFBD1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		ECB2BFBE1B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFBF1B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFC01B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFC11B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFC21B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
-		ECB2BFC31B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFC41B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFC61B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFC71B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFC81B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFC91B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
-		ECB2BFCA1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFCB1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		ECB2BFCC1B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFCD1B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFCE1B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFCF1B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFD01B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
-		ECB2BFD11B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFD21B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFD31B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFD41B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFD51B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFD61B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFD71B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
-		ECB2BFD81B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFD91B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		ECB2BFE51B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFE61B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFE71B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFE81B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFE91B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
-		ECB2BFEA1B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFEB1B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		ECB2BFEC1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFED1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFEE1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFEF1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFF01B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
-		ECB2BFF11B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFF21B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
 		ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFF71B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFF81B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFF91B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFA1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
-		ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFC1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFE1B4679B2008E32E8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
 		ECB2C0061B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
@@ -1316,7 +1255,6 @@
 		ECB2C00A1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB2C00B1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB2C00C1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
-		ECB2C00D1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB2C00E1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
@@ -1355,16 +1293,6 @@
 		ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EC65BE5F1AEF7E7300E9B46F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EC2DCBEC1AB864AB0063755E;
-			remoteInfo = "Digipost-QA-2";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1593,7 +1521,6 @@
 		EC63A83D1A6E74EB00708A75 /* APITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		EC63A8431A6E7C1800708A75 /* ModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		EC63A8491A6E7DF100708A75 /* XCTestCase+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Convenience.swift"; sourceTree = "<group>"; };
-		EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DigipostUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC669D561B1479D8004F97B6 /* NSString+Hmac.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hmac.m"; sourceTree = "<group>"; };
 		EC669D571B1479D8004F97B6 /* NSString+Hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hmac.h"; sourceTree = "<group>"; };
 		EC669D601B1498BE004F97B6 /* ValidTokenExpiresSoon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ValidTokenExpiresSoon.json; sourceTree = "<group>"; };
@@ -1625,6 +1552,7 @@
 		EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StylePickerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
 		EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyleModel.swift; sourceTree = "<group>"; };
+		EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiselectSegmentedControl.swift; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
@@ -1860,14 +1788,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC65BE561AEF7E7200E9B46F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6D8D2CD493B26C0AA8B0BDBA /* Pods_DigipostUITests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -1942,7 +1862,6 @@
 				EC2DCBE01AB84EAB0063755E /* Digipost copy.app */,
 				EC2DCC911AB864AB0063755E /* Digipost-qa2.app */,
 				EC0D2DEB1AE786A800595A61 /* Digipost-Camelon.app */,
-				EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */,
 				87C9E7FF1B0610BC0019AA07 /* Digipost-localhost.app */,
 				EC2751861B061D010007125D /* DigipostModelTests.xctest */,
 			);
@@ -2408,6 +2327,7 @@
 		EC8F4A151B4C0A5700D07922 /* StylePicker */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */,
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
 				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
@@ -2626,28 +2546,6 @@
 			productReference = EC2DCC911AB864AB0063755E /* Digipost-qa2.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC65BE581AEF7E7200E9B46F /* DigipostUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = EC65BE631AEF7E7300E9B46F /* Build configuration list for PBXNativeTarget "DigipostUITests" */;
-			buildPhases = (
-				ECB8D8911AEFA6EA007BDAD3 /* Connect VPN */,
-				0CFAABAAA555B03C6D8F8899 /* Check Pods Manifest.lock */,
-				EC65BE551AEF7E7200E9B46F /* Sources */,
-				EC65BE561AEF7E7200E9B46F /* Frameworks */,
-				EC65BE571AEF7E7200E9B46F /* Resources */,
-				6AE8A542E61F3B94650314B6 /* Embed Pods Frameworks */,
-				2CDE0ACA0DB954F8EE81B937 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				EC65BE601AEF7E7300E9B46F /* PBXTargetDependency */,
-			);
-			name = DigipostUITests;
-			productName = DigipostUITests;
-			productReference = EC65BE591AEF7E7200E9B46F /* DigipostUITests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2676,10 +2574,6 @@
 					EC2DCBEC1AB864AB0063755E = {
 						DevelopmentTeam = 4E3PDM5H84;
 					};
-					EC65BE581AEF7E7200E9B46F = {
-						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = EC2DCBEC1AB864AB0063755E;
-					};
 				};
 			};
 			buildConfigurationList = 83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */;
@@ -2701,7 +2595,6 @@
 				EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */,
 				EC0D2D251AE786A800595A61 /* Digipost-Camelon */,
 				87C9E75C1B0610BC0019AA07 /* Digipost-localhost */,
-				EC65BE581AEF7E7200E9B46F /* DigipostUITests */,
 				EC2751851B061D000007125D /* DigipostModelTests */,
 			);
 		};
@@ -2756,7 +2649,6 @@
 				ECB2BF621B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BF311B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				ECB2BFD71B452F2A008E32E8 /* stylesheet.css in Resources */,
-				EC8F4A121B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				87C9E8021B06117E0019AA07 /* Digipost-localhost.plist in Resources */,
 				87C9E8041B0612330019AA07 /* Digipost-localhost.xcconfig in Resources */,
 				87C9E7EC1B0610BC0019AA07 /* MainAccountTableViewCell.xib in Resources */,
@@ -2807,7 +2699,6 @@
 				EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */,
 				ECB2BF3E1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BFD61B452F2A008E32E8 /* stylesheet.css in Resources */,
-				EC8F4A111B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC0D2DE51AE786A800595A61 /* AccountTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2828,7 +2719,6 @@
 				ECB2BEED1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFD91B452F2A008E32E8 /* stylesheet.css in Resources */,
 				ECB2BF251B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
-				EC8F4A141B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
 				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
@@ -2845,7 +2735,6 @@
 			files = (
 				EC2DCBCA1AB84EAB0063755E /* Localizable.strings in Resources */,
 				ECB2BF3C1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
-				EC8F4A0F1B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2DCBCB1AB84EAB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCBCD1AB84EAB0063755E /* Onboarding.storyboard in Resources */,
@@ -2879,7 +2768,6 @@
 			files = (
 				EC2DCC7B1AB864AB0063755E /* Localizable.strings in Resources */,
 				ECB2BF3D1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
-				EC8F4A101B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				EC2DCC7C1AB864AB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCC7E1AB864AB0063755E /* Onboarding.storyboard in Resources */,
@@ -2907,57 +2795,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC65BE571AEF7E7200E9B46F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ECB2BF321B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
-				ECB2BFD81B452F2A008E32E8 /* stylesheet.css in Resources */,
-				ECB2BF631B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
-				ECB2BF401B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
-				ECB2BE741B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
-				EC8F4A131B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
-				ECB2BF241B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
-				ECB2BEC81B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
-				ECB2BEEC1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
-				ECB2BFCA1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
-				ECA5A6021B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0CFAABAAA555B03C6D8F8899 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		2CDE0ACA0DB954F8EE81B937 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostUITests/Pods-DigipostUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		577B676BC2F6293A35EF45DF /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2986,21 +2826,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6AE8A542E61F3B94650314B6 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostUITests/Pods-DigipostUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		87C9E75D1B0610BC0019AA07 /* Check Pods Manifest.lock */ = {
@@ -3226,20 +3051,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ECB8D8911AEFA6EA007BDAD3 /* Connect VPN */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Connect VPN";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Digipost/vpn.sh\"\nsleep 10\n";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3385,6 +3196,7 @@
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
+				EC8F4A371B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
@@ -3568,6 +3380,7 @@
 				87C9E7BE1B0610BC0019AA07 /* APIResponse.swift in Sources */,
 				87C9E7BF1B0610BC0019AA07 /* POSMailbox.m in Sources */,
 				87C9E7C01B0610BC0019AA07 /* POSNoRotationNavigationController.m in Sources */,
+				EC8F4A3B1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				87C9E7C11B0610BC0019AA07 /* POSLetterPopoverView.m in Sources */,
 				87C9E7C31B0610BC0019AA07 /* UIWindow+Navigation.swift in Sources */,
 				87C9E7C41B0610BC0019AA07 /* SHCBaseTableViewController.m in Sources */,
@@ -3751,6 +3564,7 @@
 				EC0D2D981AE786A800595A61 /* APIResponse.swift in Sources */,
 				EC0D2D991AE786A800595A61 /* POSMailbox.m in Sources */,
 				EC0D2D9A1AE786A800595A61 /* POSNoRotationNavigationController.m in Sources */,
+				EC8F4A3A1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				EC0D2D9B1AE786A800595A61 /* POSLetterPopoverView.m in Sources */,
 				EC0D2D9E1AE786A800595A61 /* UIWindow+Navigation.swift in Sources */,
 				EC0D2DA01AE786A800595A61 /* SHCBaseTableViewController.m in Sources */,
@@ -4117,6 +3931,7 @@
 				EC2DCB9E1AB84EAB0063755E /* APIResponse.swift in Sources */,
 				EC2DCB9F1AB84EAB0063755E /* POSMailbox.m in Sources */,
 				EC2DCBA01AB84EAB0063755E /* POSNoRotationNavigationController.m in Sources */,
+				EC8F4A381B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				EC2DCBA11AB84EAB0063755E /* POSLetterPopoverView.m in Sources */,
 				EC2DCBA31AB84EAB0063755E /* UIWindow+Navigation.swift in Sources */,
 				EC2DCBA41AB84EAB0063755E /* SHCBaseTableViewController.m in Sources */,
@@ -4300,6 +4115,7 @@
 				EC2DCC4F1AB864AB0063755E /* APIResponse.swift in Sources */,
 				EC2DCC501AB864AB0063755E /* POSMailbox.m in Sources */,
 				EC2DCC511AB864AB0063755E /* POSNoRotationNavigationController.m in Sources */,
+				EC8F4A391B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				EC2DCC521AB864AB0063755E /* POSLetterPopoverView.m in Sources */,
 				EC2DCC541AB864AB0063755E /* UIWindow+Navigation.swift in Sources */,
 				EC2DCC551AB864AB0063755E /* SHCBaseTableViewController.m in Sources */,
@@ -4341,72 +4157,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EC65BE551AEF7E7200E9B46F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ECB2BF2B1B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */,
-				ECB2BF551B452F0C008E32E8 /* ImageComposerModule.swift in Sources */,
-				ECB2BFA71B452F2A008E32E8 /* RecipientsViewController.swift in Sources */,
-				ECB2BF391B452F0C008E32E8 /* FontPickerViewController.swift in Sources */,
-				ECB2BF711B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
-				ECB2BE7B1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
-				EC8B94791B4ABE07005C4CC4 /* String+Composer.swift in Sources */,
-				ECB2BF4E1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */,
-				EC8F4A341B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
-				ECB2BFF11B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
-				ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
-				ECB2BEE51B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
-				ECB2BEB31B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
-				ECB2BEF31B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
-				ECB2BF781B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
-				ECB2BE971B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
-				ECB2BFAE1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
-				EC8F4A2C1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
-				ECB2BE821B452EC5008E32E8 /* ComposerModule.swift in Sources */,
-				EC8B94691B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
-				ECB2BE9E1B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
-				ECB2BEA51B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
-				ECB2BF5C1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
-				EC8F4A241B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
-				ECB2BF471B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
-				ECA5A5FE1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
-				ECB2BEAC1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
-				ECB2BEBA1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
-				ECB2BFEA1B452F8C008E32E8 /* TextComposerModule.swift in Sources */,
-				ECB2BFD11B452F2A008E32E8 /* SendableDocument.swift in Sources */,
-				ECB2BF881B452F1B008E32E8 /* String+Substring.swift in Sources */,
-				ECB2BFC31B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */,
-				ECB2BFBC1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
-				ECB2BEDE1B452EED008E32E8 /* TextAttributeButton.swift in Sources */,
-				ECB2BE6D1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
-				ECB2BFA01B452F2A008E32E8 /* Recipient.swift in Sources */,
-				ECB2BF081B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
-				ECB2BED71B452EED008E32E8 /* TextAttribute.swift in Sources */,
-				EC8B94711B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */,
-				ECB2BF1D1B452F0C008E32E8 /* DimView.swift in Sources */,
-				ECB2C00D1B469628008E32E8 /* HTMLTagBlock.swift in Sources */,
-				ECB2BF991B452F2A008E32E8 /* PreviewViewController.swift in Sources */,
-				ECB2BF6A1B452F0C008E32E8 /* Int+Random.swift in Sources */,
-				ECB2BFB51B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
-				ECB2BE901B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
-				EC8F4A1C1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
-				ECB2BE891B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
-				ECB2BE661B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */,
-				ECB2BEFA1B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */,
-				ECB2BEC11B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		EC65BE601AEF7E7300E9B46F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */;
-			targetProxy = EC65BE5F1AEF7E7300E9B46F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
@@ -4570,7 +4321,7 @@
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4612,7 +4363,7 @@
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -4824,7 +4575,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = DigipostModelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GAI",
@@ -4868,7 +4619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				INFOPLIST_FILE = DigipostModelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(CONFIGURATION_BUILD_DIR)";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GAI",
@@ -5047,60 +4798,6 @@
 			};
 			name = Release;
 		};
-		EC65BE611AEF7E7300E9B46F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Camelon.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = DigipostUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost-qa2.app/Digipost-qa2";
-			};
-			name = Debug;
-		};
-		EC65BE621AEF7E7300E9B46F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83F703591855DED4003DABE1 /* Digipost-Camelon.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = DigipostUITests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost-qa2.app/Digipost-qa2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -5163,15 +4860,6 @@
 			buildConfigurations = (
 				EC2DCC8F1AB864AB0063755E /* Debug */,
 				EC2DCC901AB864AB0063755E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EC65BE631AEF7E7300E9B46F /* Build configuration list for PBXNativeTarget "DigipostUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EC65BE611AEF7E7300E9B46F /* Debug */,
-				EC65BE621AEF7E7300E9B46F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
