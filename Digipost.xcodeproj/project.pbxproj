@@ -928,6 +928,20 @@
 		EC8F4A231B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A241B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
+		EC8F4A271B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A281B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A291B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A2A1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A2B1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A2C1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A2D1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
+		EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A301B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A311B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A321B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A331B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A341B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
+		EC8F4A351B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
@@ -1609,6 +1623,8 @@
 		EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StylePicker.storyboard; sourceTree = "<group>"; };
 		EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerViewController.swift; sourceTree = "<group>"; };
 		EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StylePickerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
+		EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyleModel.swift; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostBeta.xcconfig; sourceTree = "<group>"; };
@@ -2394,7 +2410,9 @@
 			children = (
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
+				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
+				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 			);
 			name = StylePicker;
 			sourceTree = "<group>";
@@ -2420,13 +2438,11 @@
 				ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */,
 				ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */,
 				ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */,
-				ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */,
 				ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */,
 				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
 				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,
 				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
 				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
-				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
 				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
 				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
@@ -2466,6 +2482,8 @@
 		ECB2BFF41B456E01008E32E8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */,
+				ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */,
 				EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */,
 				ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */,
 				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
@@ -3299,6 +3317,7 @@
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
+				EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BF731B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
@@ -3399,6 +3418,7 @@
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				ECB2BED21B452EED008E32E8 /* TextAttribute.swift in Sources */,
+				EC8F4A271B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				EC2484171B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
@@ -3480,6 +3500,7 @@
 				87C9E7891B0610BC0019AA07 /* UIColor+DigipostColors.swift in Sources */,
 				ECB2BE6C1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				87C9E78A1B0610BC0019AA07 /* PeopleView.swift in Sources */,
+				EC8F4A331B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BF771B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				87C9E78B1B0610BC0019AA07 /* UIViewController+Additions.m in Sources */,
 				87C9E78C1B0610BC0019AA07 /* NSDate+Extensions.swift in Sources */,
@@ -3580,6 +3601,7 @@
 				87C9E7D61B0610BC0019AA07 /* POSUploadTableViewDataSource.m in Sources */,
 				87C9E7D71B0610BC0019AA07 /* UIViewController+BackButton.m in Sources */,
 				ECB2BED61B452EED008E32E8 /* TextAttribute.swift in Sources */,
+				EC8F4A2B1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				87C9E7D81B0610BC0019AA07 /* POSFolderIcon.m in Sources */,
 				87C9E7D91B0610BC0019AA07 /* POSFolder+Methods.m in Sources */,
 				87C9E7DA1B0610BC0019AA07 /* APIError.swift in Sources */,
@@ -3661,6 +3683,7 @@
 				EC0D2D5A1AE786A800595A61 /* UIColor+DigipostColors.swift in Sources */,
 				ECB2BE6B1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				EC0D2D5B1AE786A800595A61 /* PeopleView.swift in Sources */,
+				EC8F4A321B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BF761B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC0D2D5D1AE786A800595A61 /* UIViewController+Additions.m in Sources */,
 				EC0D2D5E1AE786A800595A61 /* NSDate+Extensions.swift in Sources */,
@@ -3761,6 +3784,7 @@
 				EC0D2DB81AE786A800595A61 /* POSUploadTableViewDataSource.m in Sources */,
 				EC0D2DBA1AE786A800595A61 /* UIViewController+BackButton.m in Sources */,
 				ECB2BED51B452EED008E32E8 /* TextAttribute.swift in Sources */,
+				EC8F4A2A1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC0D2DBB1AE786A800595A61 /* POSFolderIcon.m in Sources */,
 				EC0D2DBC1AE786A800595A61 /* POSFolder+Methods.m in Sources */,
 				EC0D2DBD1AE786A800595A61 /* APIError.swift in Sources */,
@@ -3842,6 +3866,7 @@
 				EC2752041B061DE00007125D /* UIImage+TintColor.swift in Sources */,
 				ECB2BF721B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				ECB2BE7C1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
+				EC8F4A351B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				EC2752061B061DE30007125D /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */,
 				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
@@ -3942,6 +3967,7 @@
 				ECB2BED81B452EED008E32E8 /* TextAttribute.swift in Sources */,
 				EC2752081B061DE80007125D /* UploadMenuDataSource.swift in Sources */,
 				EC2752031B061DDD0007125D /* MainAccountTableViewCell.swift in Sources */,
+				EC8F4A2D1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC2751FE1B061DD50007125D /* OnboardingLoginViewController.swift in Sources */,
 				EC2751B01B061D5A0007125D /* NSError+ExtraInfo.m in Sources */,
 				EC2751FF1B061DD80007125D /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -4023,6 +4049,7 @@
 				EC2DCB671AB84EAB0063755E /* UIColor+DigipostColors.swift in Sources */,
 				ECB2BE691B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				EC2DCB681AB84EAB0063755E /* PeopleView.swift in Sources */,
+				EC8F4A301B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BF741B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
@@ -4123,6 +4150,7 @@
 				EC2DCBB61AB84EAB0063755E /* POSUploadTableViewDataSource.m in Sources */,
 				EC2DCBB71AB84EAB0063755E /* UIViewController+BackButton.m in Sources */,
 				ECB2BED31B452EED008E32E8 /* TextAttribute.swift in Sources */,
+				EC8F4A281B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC2DCBB81AB84EAB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCBB91AB84EAB0063755E /* POSFolder+Methods.m in Sources */,
 				EC2DCBBA1AB84EAB0063755E /* APIError.swift in Sources */,
@@ -4204,6 +4232,7 @@
 				EC2DCC191AB864AB0063755E /* PeopleView.swift in Sources */,
 				ECB2BE6A1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				EC2DCC1A1AB864AB0063755E /* UIViewController+Additions.m in Sources */,
+				EC8F4A311B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BF751B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
@@ -4304,6 +4333,7 @@
 				EC2DCC671AB864AB0063755E /* POSUploadTableViewDataSource.m in Sources */,
 				EC2DCC681AB864AB0063755E /* UIViewController+BackButton.m in Sources */,
 				ECB2BED41B452EED008E32E8 /* TextAttribute.swift in Sources */,
+				EC8F4A291B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC2DCC691AB864AB0063755E /* POSFolderIcon.m in Sources */,
 				EC2DCC6A1AB864AB0063755E /* POSFolder+Methods.m in Sources */,
 				EC2DCC6B1AB864AB0063755E /* APIError.swift in Sources */,
@@ -4323,6 +4353,7 @@
 				ECB2BE7B1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC8B94791B4ABE07005C4CC4 /* String+Composer.swift in Sources */,
 				ECB2BF4E1B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */,
+				EC8F4A341B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				ECB2BFF11B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
 				ECB2BFFB1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				ECB2BEE51B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
@@ -4331,6 +4362,7 @@
 				ECB2BF781B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				ECB2BE971B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
 				ECB2BFAE1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
+				EC8F4A2C1B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				ECB2BE821B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				EC8B94691B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
 				ECB2BE9E1B452EC5008E32E8 /* ComposerViewController.swift in Sources */,

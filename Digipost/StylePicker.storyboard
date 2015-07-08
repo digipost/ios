@@ -37,7 +37,7 @@
                                 <rect key="frame" x="0.0" y="70" width="600" height="530"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonGridCell" rowHeight="55" id="7TZ-jg-gD3">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="buttonGridCell" rowHeight="55" id="7TZ-jg-gD3" customClass="SegmentedControlTableViewCell" customModule="Digipost" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7TZ-jg-gD3" id="jnm-DH-H28">
@@ -51,6 +51,9 @@
                                                         <segment title=""/>
                                                         <segment title=""/>
                                                     </segments>
+                                                    <connections>
+                                                        <action selector="valueChanged:" destination="7TZ-jg-gD3" eventType="valueChanged" id="x5Y-qE-c0w"/>
+                                                    </connections>
                                                 </segmentedControl>
                                             </subviews>
                                             <constraints>
@@ -60,6 +63,9 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="ZIv-5W-pQI" secondAttribute="trailing" constant="42" id="p6X-hg-HKv"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="segmentedControl" destination="ZIv-5W-pQI" id="hT9-QF-oCn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

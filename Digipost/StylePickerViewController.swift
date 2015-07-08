@@ -10,13 +10,17 @@ import UIKit
 
 protocol StylePickerViewControllerDelegate {
 
-    func didSelectStyle(stylePickerViewController : StylePickerViewController)
+    func StylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController)
 
 }
 
-class StylePickerViewController: UIViewController {
+class StylePickerViewController: UIViewController, UITableViewDelegate, SegmentedControlTableViewCellDelegate {
 
     static let storyboardIdentifier = "stylePickerViewController"
+
+    @IBOutlet weak var tableView : UITableView!
+    @IBOutlet weak var segmentedControl : UISegmentedControl!
+
 
     func setupForAttributedString(attributedString: NSAttributedString )  {
 
@@ -25,6 +29,9 @@ class StylePickerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
+
 
         // Do any additional setup after loading the view.
     }
@@ -34,6 +41,10 @@ class StylePickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+
+    func segmentedControlTableViewCellDidSelectControlAtIndex(segmentedControlTableViewCell: SegmentedControlTableViewCell, indexTapped: Int) {
+
+    }
 
     /*
     // MARK: - Navigation
