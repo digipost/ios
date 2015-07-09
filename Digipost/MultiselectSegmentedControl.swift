@@ -49,13 +49,12 @@ protocol MultiselectSegmentedControlDelegate {
         }
     }
 
-    public override func prepareForInterfaceBuilder() {
+    override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.setup()
     }
 
     func didTapButton(button: UIButton) {
-
         if selectedIndexes[button.tag] {
             selectedIndexes[button.tag] = false
             button.backgroundColor = segmentBackgroundColor
@@ -86,8 +85,7 @@ protocol MultiselectSegmentedControlDelegate {
             if iconFileNames.count > i {
                 let iconName = iconFileNames[i]
                 let image = UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)
-                let newImage = image?.scaleToSize(CGSizeMake(image!.size.width / 2 , image!.size.height / 2))
-                button.setImage(newImage, forState: .Normal)
+                button.setImage(image, forState: .Normal)
             }
 
             layout(self, button) { mainView, button in
