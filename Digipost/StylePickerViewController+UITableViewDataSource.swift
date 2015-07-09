@@ -26,9 +26,11 @@ extension StylePickerViewController : UITableViewDataSource {
             if arrayOfModels.count == 1 {
                 return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
             } else {
-                return tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+                let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+                cell.delegate = self
+                return cell
             }
             }()
-        return UITableViewCell()
+        return cell
     }
 }

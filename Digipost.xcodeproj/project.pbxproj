@@ -1274,6 +1274,12 @@
 		ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
+		ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD6888D1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD6888E1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD6888F1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD688901B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD688911B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
@@ -1645,6 +1651,7 @@
 		ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Document.swift"; sourceTree = "<group>"; };
 		ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+APIError.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
+		ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+StylePickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
 		ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
@@ -2381,6 +2388,7 @@
 				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
 				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
 				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
+				ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */,
 				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
 				ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */,
 				ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */,
@@ -3138,6 +3146,7 @@
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
+				ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
@@ -3322,6 +3331,7 @@
 				87C9E78E1B0610BC0019AA07 /* POSReceipt.m in Sources */,
 				87C9E78F1B0610BC0019AA07 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				87C9E7901B0610BC0019AA07 /* OnboardingLoginViewController.swift in Sources */,
+				ECD688901B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				87C9E7911B0610BC0019AA07 /* POSInvoice.m in Sources */,
 				87C9E7921B0610BC0019AA07 /* POSBaseEncryptedModel.m in Sources */,
 				87C9E7931B0610BC0019AA07 /* UIViewController+ValidateOpening.m in Sources */,
@@ -3506,6 +3516,7 @@
 				EC0D2D611AE786A800595A61 /* POSReceipt.m in Sources */,
 				EC0D2D621AE786A800595A61 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC0D2D631AE786A800595A61 /* OnboardingLoginViewController.swift in Sources */,
+				ECD6888F1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC0D2D641AE786A800595A61 /* POSInvoice.m in Sources */,
 				EC0D2D651AE786A800595A61 /* POSBaseEncryptedModel.m in Sources */,
 				EC0D2D661AE786A800595A61 /* UIViewController+ValidateOpening.m in Sources */,
@@ -3708,6 +3719,7 @@
 				EC2751DF1B061DBF0007125D /* POSAttachment+Methods.swift in Sources */,
 				EC2751EE1B061DC80007125D /* UINavigationController+Extensions.swift in Sources */,
 				EC2751CE1B061D7E0007125D /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				ECD688911B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2751CD1B061D7E0007125D /* POSLetterPopoverView.m in Sources */,
 				EC2752021B061DDD0007125D /* AccountTableViewCell.swift in Sources */,
 				EC27519D1B061D550007125D /* POSReceipt.m in Sources */,
@@ -3873,6 +3885,7 @@
 				EC2DCB6D1AB84EAB0063755E /* POSReceipt.m in Sources */,
 				EC2DCB6E1AB84EAB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCB6F1AB84EAB0063755E /* OnboardingLoginViewController.swift in Sources */,
+				ECD6888D1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2DCB701AB84EAB0063755E /* POSInvoice.m in Sources */,
 				EC2DCB711AB84EAB0063755E /* POSBaseEncryptedModel.m in Sources */,
 				EC2DCB721AB84EAB0063755E /* UIViewController+ValidateOpening.m in Sources */,
@@ -4057,6 +4070,7 @@
 				EC2DCC1F1AB864AB0063755E /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2DCC201AB864AB0063755E /* OnboardingLoginViewController.swift in Sources */,
 				EC2DCC211AB864AB0063755E /* POSInvoice.m in Sources */,
+				ECD6888E1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2DCC221AB864AB0063755E /* POSBaseEncryptedModel.m in Sources */,
 				EC2DCC231AB864AB0063755E /* UIViewController+ValidateOpening.m in Sources */,
 				EC2DCC241AB864AB0063755E /* UIToolbar+Actions.swift in Sources */,

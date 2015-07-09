@@ -10,7 +10,7 @@ import UIKit
 
 protocol StylePickerViewControllerDelegate {
 
-    func StylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel)
+    func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool)
 
 }
 
@@ -23,24 +23,16 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     var delegate : StylePickerViewControllerDelegate?
 
-
     var textStyleModels : [[TextStyleModel]] = { TextStyleModel.allTextStyleModels() }()
 
     func setupForAttributedString(attributedString: NSAttributedString )  {
-
 
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         tableView.dataSource = self
         tableView.delegate = self
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
@@ -49,7 +41,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
         let model = models[atIndex]
 
-        delegate?.StylePickerViewControllerDidSelectStyle(self, textStyleModel: model)
+        delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
 
         for (model, index) in enumerate(models) {
 

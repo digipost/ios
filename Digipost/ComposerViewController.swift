@@ -47,7 +47,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleTextField.placeholder = NSLocalizedString("composer view title placeholder", comment: "Title placeholder text")
         documentTitleTextField.delegate = self
         setupTableView()
-        setupComposerInputAccessoryView()
         addComposerModuleButton = AddComposerModuleButton.layoutInView(self.view)
         addComposerModuleButton.addTarget(self, action: Selector("didTapAddComposerModuleButton:"), forControlEvents: .TouchUpInside)
     }
@@ -57,7 +56,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         moduleSelectorViewController.modalPresentationStyle = .Custom
         moduleSelectorViewController.transitioningDelegate = self
         moduleSelectorViewController.delegate = self
-
         presentViewController(moduleSelectorViewController, animated: true) { () -> Void in
 
         }
@@ -138,15 +136,13 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     func textViewDidBeginEditing(textView: UITextView) {
         if let textModule = composerModules[textView.tag] as? TextComposerModule {
-            println(textModule.textAttribute)
-            println(textView.tag)
-            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
+//            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
         }
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
         if let textModule = composerModules[textField.tag] as? TextComposerModule {
-            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
+//            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
         }
     }
 
@@ -173,8 +169,9 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 cell?.moduleTextView.font = textModule?.textAttribute.font
                 cell?.moduleTextView.delegate = self
                 let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
-                let rootVC = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as! StylePickerViewController
-                cell!.moduleTextView.inputView = rootVC.view
+                let stylePickerViewController = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as! StylePickerViewController
+                stylePickerViewController.delegate = self
+                cell!.moduleTextView.inputView = stylePickerViewController.view
                 cell?.moduleTextView.reloadInputViews()
                 cell?.moduleTextView.becomeFirstResponder()
                 cell?.moduleTextView.reloadInputViews()
@@ -234,9 +231,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         
         if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
-            
-//            let dimView = view as? DimView
-//            dimView?.dim()
         }
         
         if let previewViewController = segue.destinationViewController as? PreviewViewController{
