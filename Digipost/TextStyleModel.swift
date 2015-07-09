@@ -13,14 +13,16 @@ enum TextStyleModelType {
     case Text
 }
 
-struct TextStyleModel {
+class TextStyleModel {
 
     let value : Any
     let preferredIconName : String
+    var enabled : Bool
 
     init(value: Any, preferredIconName: String ) {
         self.value = value
         self.preferredIconName = preferredIconName
+        enabled = false
     }
 
     private static func boldTextStyleModel() -> TextStyleModel {

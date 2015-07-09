@@ -23,29 +23,42 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     var delegate : StylePickerViewControllerDelegate?
 
-    var textStyleModels : [[TextStyleModel]] = { TextStyleModel.allTextStyleModels() }()
+    var textStyleModels : [[TextStyleModel]]!
 
     func setupForAttributedString(attributedString: NSAttributedString )  {
 
+    }
+
+    func currentSelectedAttributes() -> [TextStyleModel] {
+        let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> Array<TextStyleModel> in
+            return arrayOfModels.filter { (element) -> Bool in
+                let booleanValue = element.enabled
+                return element.enabled
+            }
+        }
+        return selectedTextStyles
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        textStyleModels = TextStyleModel.allTextStyleModels()
     }
 
     func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
         let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell)
-        let models = textStyleModels[indexPath!.row]
+        var models = textStyleModels[indexPath!.row]
 
-        let model = models[atIndex]
+        var model = models[atIndex]
+        model.enabled = newValue
 
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
 
         for (model, index) in enumerate(models) {
 
         }
+
     }
 
 

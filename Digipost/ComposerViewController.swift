@@ -36,6 +36,8 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     var composerInputAccessoryView : ComposerInputAccessoryView!
 
 
+    weak var stylePickerViewController : StylePickerViewController?
+
     var addComposerModuleButton : AddComposerModuleButton!
 
     override func viewDidLoad() {
@@ -110,7 +112,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
 
     // MARK: - UITextView Delegate
-    
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
             if let textModule = composerModules[indexPath.row] as? TextComposerModule {
@@ -171,6 +172,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
                 let stylePickerViewController = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as! StylePickerViewController
                 stylePickerViewController.delegate = self
+                self.stylePickerViewController = stylePickerViewController
                 cell!.moduleTextView.inputView = stylePickerViewController.view
                 cell?.moduleTextView.reloadInputViews()
                 cell?.moduleTextView.becomeFirstResponder()

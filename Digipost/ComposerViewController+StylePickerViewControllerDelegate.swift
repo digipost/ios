@@ -12,19 +12,33 @@ extension ComposerViewController : StylePickerViewControllerDelegate {
 
     func stylePickerViewControllerDidSelectStyle(stylePickerViewController: StylePickerViewController, textStyleModel: TextStyleModel, enabled: Bool) {
         if let (composerModule, textView) = self.currentEditingComposerModuleAndTextView() {
-            let range = textView.selectedRange
-            switch textStyleModel.value {
-            case let symbolicTrait as UIFontDescriptorSymbolicTraits:
-                println(symbolicTrait)
-                composerModule.setFontTrait(symbolicTrait, enabled: enabled, atRange: range)
-                textView.attributedText = composerModule.attributedText
-                textView.selectedRange = range
-                break
-            default:
-                break
-            }
+            self.setStyle(textStyleModel, forComposerModule: composerModule, textView: textView)
+        }
+    }
+
+    func setStyle(textStyleModel: TextStyleModel, forComposerModule composerModule: TextComposerModule, textView: UITextView, var range : NSRange? = nil) {
+        if range == nil {
+            range = textView.selectedRange
+        } else {
 
         }
 
+        var setAttributes : [NSObject : AnyObject]? = nil
+
+        switch textStyleModel.value {
+        case let symbolicTrait as UIFontDescriptorSymbolicTraits:
+            setAttributes = composerModule.setFontTrait(symbolicTrait, enabled: textStyleModel.enabled, atRange: range!)
+            textView.attributedText = composerModule.attributedText
+            textView.selectedRange = range!
+
+            break
+        default:
+            break
+        }
+        if range!.length == 0 {
+            if let actualSetAttributes = setAttributes {
+                textView.typingAttributes = actualSetAttributes
+            }
+        }
     }
 }

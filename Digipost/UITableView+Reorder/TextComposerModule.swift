@@ -64,26 +64,44 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         attributedText = mutableAttributedString
     }
 
-    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) {
+    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) -> [NSObject : AnyObject] {
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
-        attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired) { (attributes, inRange, stop) -> Void in
+        var returnDictionary = [NSObject : AnyObject]()
+        attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.allZeros) { (attributes, inRange, stop) -> Void in
             if let font = attributes[NSFontAttributeName] as? UIFont {
-                var fontDescriptor = font.fontDescriptor()
-                let existingTraits = fontDescriptor.symbolicTraits
-                let newTraits : UIFontDescriptorSymbolicTraits =  {
-                    if enabled {
-                        return existingTraits | fontTrait
-                    } else {
-                        return existingTraits ^ fontTrait
-                    }
-                    }()
-                let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
-                let newFont  = UIFont(descriptor: newFontDescriptor!, size: font.pointSize )
+                let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: range)
+                returnDictionary[NSFontAttributeName] = newFont
+            }
+        }
+
+        if range.length == 0 {
+            let existingAttributes = attributedText.attributesAtIndex(range.location - 1, effectiveRange: nil)
+            if let font = existingAttributes[NSFontAttributeName] as? UIFont {
+                let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
+                returnDictionary[NSFontAttributeName] = newFont
             }
         }
 
         attributedText = mutableAttributedString
+
+        return returnDictionary
+
+    }
+
+    func newFont(existingFont: UIFont, newFontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool) -> UIFont {
+        var fontDescriptor = existingFont.fontDescriptor()
+        let existingTraits = fontDescriptor.symbolicTraits
+        let newTraits : UIFontDescriptorSymbolicTraits =  {
+            if enabled {
+                return existingTraits | newFontTrait
+            } else {
+                return existingTraits ^ newFontTrait
+            }
+            }()
+        let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
+        let newFont  = UIFont(descriptor: newFontDescriptor!, size: existingFont.pointSize )
+        return newFont
     }
 
     func setTextAlignment(alignment: NSTextAlignment) {
