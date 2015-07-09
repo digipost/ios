@@ -26,8 +26,8 @@ extension String {
         return self[0..<index] + string + self[index..<length]
     }
 
-    func splitWithCharacter(character : Character, listString: String) -> [String] {
-        let list = listString.componentsSeparatedByString("\(character)")
+    func splitWithString(string: String, listString: String) -> [String] {
+        let list = listString.componentsSeparatedByString(string)
         var trimmed = [String]()
         for value in list {
             let whitespace = NSCharacterSet.whitespaceCharacterSet()

@@ -74,7 +74,6 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
                     if enabled {
                         return existingTraits | fontTrait
                     } else {
-
                         return existingTraits ^ fontTrait
                     }
                     }()

@@ -10,7 +10,7 @@ import UIKit
 
 protocol StylePickerViewControllerDelegate {
 
-    func StylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController)
+    func StylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel)
 
 }
 
@@ -20,6 +20,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     @IBOutlet weak var tableView : UITableView!
     @IBOutlet weak var segmentedControl : UISegmentedControl!
+
+    var delegate : StylePickerViewControllerDelegate?
 
 
     var textStyleModels : [[TextStyleModel]] = { TextStyleModel.allTextStyleModels() }()
@@ -40,11 +42,20 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
-    func segmentedControlTableViewCellDidSelectControlAtIndex(segmentedControlTableViewCell: SegmentedControlTableViewCell, indexTapped: Int) {
+    func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
+        let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell)
+        let models = textStyleModels[indexPath!.row]
 
+        let model = models[atIndex]
+
+        delegate?.StylePickerViewControllerDidSelectStyle(self, textStyleModel: model)
+
+        for (model, index) in enumerate(models) {
+
+        }
     }
+
 
     /*
     // MARK: - Navigation

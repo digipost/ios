@@ -8,38 +8,28 @@
 import Foundation
 import Cartography
 
+protocol MultiselectSegmentedControlDelegate {
+
+    // see selectedIndexes to find out what indexes are selected
+    func multiselectSegmentedControlValueChanged(multiselectSegmentedControl: MultiselectSegmentedControl)
+
+}
+
 @IBDesignable public class MultiselectSegmentedControl : UIView {
 
+    var selectedIndexes = [Bool]()
+    var delegate : MultiselectSegmentedControlDelegate?
+
+    var valueChangedClosure: ((value: Bool, atIndex: Int) -> Void)?
+
+    @IBInspectable public var segmentSelectedBackgroundColor : UIColor = UIColor.grayColor()
+    @IBInspectable public var segmentBackgroundColor : UIColor = UIColor.whiteColor()
+    @IBInspectable public var foregroundColor : UIColor = UIColor.blackColor()
+    @IBInspectable public var numberOfSegments : Int = 2
+
     private var iconFileNames = [String]()
-
     private var buttons = [UIButton]()
-
-    private var selectedIndex = [Bool]()
-
-    @IBInspectable public var segmentSelectedBackgroundColor : UIColor = UIColor.grayColor() {
-        didSet {
-
-        }
-    }
-
-    @IBInspectable public var segmentBackgroundColor : UIColor = UIColor.whiteColor() {
-        didSet {
-
-        }
-    }
-
-    @IBInspectable public var foregroundColor : UIColor = UIColor.redColor() {
-        didSet {
-
-        }
-    }
-
-    @IBInspectable public var numberOfSegments : Int = 0 {
-        didSet {
-
-        }
-    }
-
+    private var hasDoneLayout = false
 
     @IBInspectable public var iconFileNamesList : String {
         set(newList) {
@@ -50,7 +40,6 @@ import Cartography
         }
     }
 
-    private var hasDoneLayout = false
 
     public override func layoutSubviews() {
         super.layoutSubviews()
@@ -66,13 +55,17 @@ import Cartography
     }
 
     func didTapButton(button: UIButton) {
-        if selectedIndex[button.tag] {
-            selectedIndex[button.tag] = false
+
+        if selectedIndexes[button.tag] {
+            selectedIndexes[button.tag] = false
             button.backgroundColor = segmentBackgroundColor
+            valueChangedClosure?(value: false, atIndex: button.tag)
         } else {
             button.backgroundColor = segmentSelectedBackgroundColor
-            selectedIndex[button.tag] = true
+            selectedIndexes[button.tag] = true
+            valueChangedClosure?(value: true, atIndex: button.tag)
         }
+        delegate?.multiselectSegmentedControlValueChanged(self)
     }
 
     /**
@@ -82,7 +75,7 @@ import Cartography
         let widthPerSegment = self.frame.size.width / CGFloat(self.numberOfSegments)
         var leftSideButton : UIButton?
         for i in 0..<self.numberOfSegments {
-            selectedIndex.append(false)
+            selectedIndexes.append(false)
             let button = UIButton(frame: CGRectZero)
             button.backgroundColor = segmentBackgroundColor
             button.addTarget(self, action: Selector("didTapButton:"), forControlEvents: UIControlEvents.TouchUpInside)
@@ -92,7 +85,9 @@ import Cartography
             button.setTitleColor(self.foregroundColor, forState: UIControlState.Normal)
             if iconFileNames.count > i {
                 let iconName = iconFileNames[i]
-                button.setImage(UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil), forState: .Normal)
+                let image = UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)
+                let newImage = image?.scaleToSize(CGSizeMake(image!.size.width / 2 , image!.size.height / 2))
+                button.setImage(newImage, forState: .Normal)
             }
 
             layout(self, button) { mainView, button in

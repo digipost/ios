@@ -9,25 +9,27 @@
 import Foundation
 
 protocol SegmentedControlTableViewCellDelegate {
-    func segmentedControlTableViewCellDidSelectControlAtIndex(segmentedControlTableViewCell: SegmentedControlTableViewCell, indexTapped: Int)
-
+    func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int)
 }
 
 class SegmentedControlTableViewCell: UITableViewCell {
 
-    var delegate : SegmentedControlTableViewCellDelegate?
 
-    @IBOutlet weak var segmentedControl : UISegmentedControl!
+    @IBOutlet weak var multiselectSegmentedControl : MultiselectSegmentedControl!
+
+    var delegate : SegmentedControlTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        multiselectSegmentedControl.valueChangedClosure = { (newValue, index) -> Void in
+            delegate?.segmentedControlTableViewCellValueChanged(self, newValue: newValue, atIndex: index)
+        }
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    @IBAction func valueChanged(sender: UISegmentedControl) {
 
-    }
 }
