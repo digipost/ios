@@ -1280,6 +1280,7 @@
 		ECD6888F1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		ECD688901B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		ECD688911B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
+		ECD688921B4EBE2600746077 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		ECF06D4C192363EF003BD200 /* POSReceiptsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D4B192363EF003BD200 /* POSReceiptsViewController.m */; };
@@ -3641,6 +3642,7 @@
 				EC2751F21B061DC80007125D /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				EC2751A51B061D5A0007125D /* NSString+CoreDataConvenience.m in Sources */,
 				ECB2BE981B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
+				ECD688921B4EBE2600746077 /* MultiselectSegmentedControl.swift in Sources */,
 				EC2751991B061D550007125D /* POSFolder+Methods.m in Sources */,
 				EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */,
 				EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */,
