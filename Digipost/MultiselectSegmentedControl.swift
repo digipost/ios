@@ -28,8 +28,6 @@ protocol MultiselectSegmentedControlDelegate {
     @IBInspectable public var numberOfSegments : Int = 2
 
     private var iconFileNames = [String]()
-    private var buttons = [UIButton]()
-    private var hasDoneLayout = false
 
     @IBInspectable public var iconFileNamesList : String {
         set(newList) {
@@ -40,18 +38,24 @@ protocol MultiselectSegmentedControlDelegate {
         }
     }
 
-
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        if hasDoneLayout == false {
-            hasDoneLayout = true
-            setup()
-        }
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
     }
 
     override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.setup()
+    }
+
+    public func setButtonSelectedState(selected: Bool, atIndex index: Int) {
+        let tag = index
+        selectedIndexes[tag] = selected
+        for view in subviews {
+            if let button = view as? UIButton where view.tag == tag  {
+                button.backgroundColor = selected ? segmentSelectedBackgroundColor : segmentBackgroundColor
+            }
+        }
     }
 
     func didTapButton(button: UIButton) {
@@ -71,14 +75,13 @@ protocol MultiselectSegmentedControlDelegate {
     Internal setup, must only be called once
     */
     private func setup() {
-        let widthPerSegment = self.frame.size.width / CGFloat(self.numberOfSegments)
         var leftSideButton : UIButton?
         for i in 0..<self.numberOfSegments {
             selectedIndexes.append(false)
             let button = UIButton(frame: CGRectZero)
             button.backgroundColor = segmentBackgroundColor
             button.addTarget(self, action: Selector("didTapButton:"), forControlEvents: UIControlEvents.TouchUpInside)
-            button.tag = i
+            button.tag = (i)
             self.addSubview(button)
             let bundle = NSBundle(forClass: self.dynamicType)
             button.setTitleColor(self.foregroundColor, forState: UIControlState.Normal)
@@ -89,7 +92,6 @@ protocol MultiselectSegmentedControlDelegate {
             }
 
             layout(self, button) { mainView, button in
-                button.width == widthPerSegment
                 button.top == mainView.top
                 button.bottom == mainView.bottom
             }
@@ -98,14 +100,23 @@ protocol MultiselectSegmentedControlDelegate {
                 layout(self, button) { mainView, button in
                     button.left == mainView.left
                 }
+
                 leftSideButton = button
+
             } else {
                 layout(leftSideButton!, button) { leftSideButton, button in
                     button.left == leftSideButton.right
+                    button.width == leftSideButton.width
                 }
+
                 leftSideButton = button
             }
         }
+
+        layout(self, leftSideButton!) { mainView, button in
+            button.right == mainView.right
+        }
+
     }
 
 

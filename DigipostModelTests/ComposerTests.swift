@@ -66,4 +66,6 @@ class ComposerTests: XCTestCase {
 
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
+
+    
 }

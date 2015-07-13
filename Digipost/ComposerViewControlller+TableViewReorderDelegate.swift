@@ -38,9 +38,6 @@ extension ComposerViewController{
         tableView.editing = true
     }
     
-    func tableView(tableView: UITableView!, changedPositionOfRowAtPoint point: CGPoint) {
-        
-    }
     
     func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
         let translatedPoint = tableView.convertPoint(point, toView: deleteComposerModuleView)
@@ -52,6 +49,10 @@ extension ComposerViewController{
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         tableView.editing = false
 
+        if let indexPath = tableView.indexPathForRowAtPoint(point) {
+            let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
+            cell?.moduleTextView.delegate = self
+        }
     }
     
     func deleteComposerModule(){

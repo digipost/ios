@@ -33,6 +33,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
+
     var composerInputAccessoryView : ComposerInputAccessoryView!
 
 
@@ -111,6 +112,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
     }
 
+    func textViewDidChangeSelection(textView: UITextView) {
+        let range = textView.selectedRange
+        if range.length > 0 {
+            let attributedString = textView.attributedText.attributedSubstringFromRange(range)
+            stylePickerViewController?.setupForAttributedString(attributedString)
+        } else {
+            stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: textView.typingAttributes))
+        }
+    }
+
     // MARK: - UITextView Delegate
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
@@ -136,21 +147,18 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
 
     func textViewDidBeginEditing(textView: UITextView) {
-        if let textModule = composerModules[textView.tag] as? TextComposerModule {
-//            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
-        }
+
     }
 
     func textFieldDidBeginEditing(textField: UITextField) {
-        if let textModule = composerModules[textField.tag] as? TextComposerModule {
-//            composerInputAccessoryView.refreshUIWithTextComposerModule(textModule)
-        }
+
     }
 
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
     }
+    
 
     // MARK: - ModuleSelectorViewController Delegate
     
@@ -170,9 +178,13 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 cell?.moduleTextView.font = textModule?.textAttribute.font
                 cell?.moduleTextView.delegate = self
                 let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
-                let stylePickerViewController = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as! StylePickerViewController
+                let stylePickerViewController : StylePickerViewController = {
+                    if self.stylePickerViewController == nil {
+                        self.stylePickerViewController = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as? StylePickerViewController
+                    }
+                    return self.stylePickerViewController!
+                }()
                 stylePickerViewController.delegate = self
-                self.stylePickerViewController = stylePickerViewController
                 cell!.moduleTextView.inputView = stylePickerViewController.view
                 cell?.moduleTextView.reloadInputViews()
                 cell?.moduleTextView.becomeFirstResponder()
@@ -197,7 +209,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let saveDraftAction = UIAlertAction(title: NSLocalizedString("composer view close alert save draft button title", comment: "button title"),
             style: UIAlertActionStyle.Default)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
-                println("Saved")
                 self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                 })
         }

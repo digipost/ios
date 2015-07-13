@@ -17,6 +17,7 @@ extension StylePickerViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
         return self.textStyleModels.count
     }
 
@@ -28,6 +29,9 @@ extension StylePickerViewController : UITableViewDataSource {
             } else {
                 let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
                 cell.delegate = self
+                for (index, model) in enumerate(arrayOfModels) {
+                    cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
+                }
                 return cell
             }
             }()

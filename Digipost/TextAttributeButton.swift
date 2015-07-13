@@ -27,7 +27,7 @@ class TextAttributeButton: UIButton {
     func indicateSelectedIfMatchingStyle(anotherTextAttribute : TextAttribute) {
         if self.textAttribute.hasOneOrMoreMatchesWith(textAttribute: anotherTextAttribute) {
             self.backgroundColor = UIColor.redColor()
-        }else {
+        } else {
             self.backgroundColor = UIColor.whiteColor()
         }
     }

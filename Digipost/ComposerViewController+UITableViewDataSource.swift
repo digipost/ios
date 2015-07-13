@@ -39,6 +39,7 @@ extension ComposerViewController : UITableViewDataSource {
                 return cell
             } else {
                 assert(false)
+                return UITableViewCell()
             }
             }()
 
@@ -53,10 +54,7 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
-        cell.moduleTextView.text = module.attributedText.string
-        cell.moduleTextView.font = module.textAttribute.font!
-        println(composerInputAccessoryView)
-        cell.moduleTextView.inputAccessoryView = composerInputAccessoryView
+        cell.moduleTextView.attributedText = module.attributedText
         cell.moduleTextView.delegate = self
     }
 

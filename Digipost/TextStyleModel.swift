@@ -49,4 +49,5 @@ class TextStyleModel {
         let multiButtonStyleArray = [boldTextStyleModel(), italicTextStyleModel(), underlineTextStyleModel()]
         return [multiButtonStyleArray]
     }
+
 }

@@ -25,12 +25,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     var textStyleModels : [[TextStyleModel]]!
 
-    func setupForAttributedString(attributedString: NSAttributedString )  {
-
-    }
-
     func currentSelectedAttributes() -> [TextStyleModel] {
-        let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> Array<TextStyleModel> in
+        let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> [TextStyleModel] in
             return arrayOfModels.filter { (element) -> Bool in
                 let booleanValue = element.enabled
                 return element.enabled
@@ -54,10 +50,32 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         model.enabled = newValue
 
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
+    }
 
-        for (model, index) in enumerate(models) {
+    func setupForAttributedString(attributedString: NSAttributedString )  {
+        let allModels = textStyleModels.flatMap({ (array) -> Array<TextStyleModel> in
+            return array
+        })
 
+        for model in allModels {
+            switch model.value {
+            case let value as UIFontDescriptorSymbolicTraits:
+                if value == UIFontDescriptorSymbolicTraits.TraitBold {
+                    model.enabled = attributedString.isBold()
+                } else if value == UIFontDescriptorSymbolicTraits.TraitItalic {
+                    model.enabled = attributedString.isItalic()
+                }
+                break
+            default:
+                break
+            }
         }
+
+        self.tableView.reloadData()
+    }
+
+
+    private func setBoldAttributeSelected() {
 
     }
 
