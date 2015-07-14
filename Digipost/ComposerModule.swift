@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposerModule: NSObject {
+class ComposerModule : NSObject, HTMLRepresentable {
 
     //MARK: - Class Functions
     

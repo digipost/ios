@@ -67,5 +67,38 @@ class ComposerTests: XCTestCase {
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
-    
+    func testBoldAndItalicInParagraph() {
+        let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b>\(Strings.three)<i>\(Strings.four)</i></p>"
+
+        var textComposerModule = TextComposerModule.paragraphModule()
+
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfString)
+
+        textComposerModule.appendCharactersToEndOfString(Strings.three)
+        textComposerModule.appendCharactersToEndOfString(Strings.four)
+
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: false, atRange:rangeOfStringThree)
+
+        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitItalic, enabled: true, atRange:rangeOfStringFour)
+
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+
+    }
+
+    func testHeadline1() {
+        let wantedOutput = "<h1>\(Strings.one)\(Strings.two)</h1>"
+        var textComposerModule = TextComposerModule.headlineModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true , atRange:rangeOfString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
 }

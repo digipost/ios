@@ -62,7 +62,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         presentViewController(moduleSelectorViewController, animated: true) { () -> Void in
 
         }
-
     }
 
     @IBAction func previewButtonTapped(sender: AnyObject) {
@@ -134,15 +133,25 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.endUpdates()
     }
 
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            if let indexPath = indexPathForCellContainingTextView(textView){
+                if let textModule = composerModules[indexPath.row] as? TextComposerModule {
+                    textModule.appendNewParagraph()
+                    textView.attributedText = textModule.attributedText
+                    tableView.beginUpdates()
+                    tableView.endUpdates()
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let indexPath = NSIndexPath(forRow: textField.tag, inSection: 0)
-
-        let textComposerModule = composerModules[textField.tag]
-        if let inputAccessoryView = textField.inputAccessoryView as? ComposerInputAccessoryView {
-
-        }
-
         return false
     }
 
@@ -163,7 +172,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
-
         composerModules.append(module)
         tableView.reloadData()
         if let imageModule = module as? ImageComposerModule {
@@ -175,7 +183,6 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             if let indexPath = indexPath(module: module) {
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
                 let textModule = module as? TextComposerModule
-                cell?.moduleTextView.font = textModule?.textAttribute.font
                 cell?.moduleTextView.delegate = self
                 let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
                 let stylePickerViewController : StylePickerViewController = {

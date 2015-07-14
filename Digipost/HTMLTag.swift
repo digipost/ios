@@ -46,6 +46,10 @@ struct HTMLTag {
 
             case NSFontAttributeName:
                 if let actualFont = value as? UIFont {
+                    if actualFont == UIFont.headlineH1() {
+                        return HTMLTagType.H1
+                    }
+
                     let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
                     let symb = UIFontDescriptorSymbolicTraits(symbolicTraits.rawValue)
                     if symbolicTraits & .TraitItalic == .TraitItalic {

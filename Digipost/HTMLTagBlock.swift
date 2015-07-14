@@ -63,8 +63,14 @@ struct HTMLTagBlock : HTMLRepresentable {
             representation.insertString(tag.startTag, atIndex: startTagIndex)
             index = index + tag.range.startIndex + tag.startTag.length + tag.range.endIndex + tag.endTag.length
         }
+
         let selfTag = HTMLTag(tagBlockType: self.type)
-        return "\(selfTag.startTag)\(representation)\(selfTag.endTag)"
+
+        let representationWithoutNewline = representation.stringByReplacingOccurrencesOfString("\n", withString: "") as String
+        if selfTag.type != HTMLTagType.Paragraph {
+            return "\(representationWithoutNewline)"
+        }
+        return "\(selfTag.startTag)\(representationWithoutNewline)\(selfTag.endTag)"
     }
 
     static func isHTMLTagBlockFont(font: UIFont) -> Bool {

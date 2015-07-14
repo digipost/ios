@@ -79,7 +79,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         let module : ComposerModule = {
             switch indexPath.row {
             case 0:
-                return TextComposerModule.headlineModule()
+                return TextComposerModule.paragraphModule()
             case 1:
                 return TextComposerModule.paragraphModule()
             case 2:

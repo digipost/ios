@@ -28,7 +28,6 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         var textComposerModule = TextComposerModule()
         textComposerModule.type = .Paragraph
         textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.paragraph()])
-        let endOfStringAttributes = textComposerModule.attributedText.attributesAtIndex(textComposerModule.attributedText.length - 1 , effectiveRange: nil)
         return textComposerModule
     }
 
@@ -64,6 +63,14 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         attributedText = mutableAttributedString
     }
 
+    func appendNewParagraph() {
+        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSFontAttributeName : UIFont.paragraph()])
+        // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
+        mutableAttributedString.appendAttributedString(appendingAttributedString)
+        attributedText = mutableAttributedString
+    }
+
     func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) -> [NSObject : AnyObject] {
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         var returnDictionary = [NSObject : AnyObject]()
@@ -86,7 +93,6 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         attributedText = mutableAttributedString
 
         return returnDictionary
-
     }
 
     func newFont(existingFont: UIFont, newFontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool) -> UIFont {
@@ -133,20 +139,33 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         var htmlTagBlock = HTMLTagBlock(type: self.type, content: self.attributedText.string)
         attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
             for (attributeKey, attributeValue) in attributeDict {
-                // just skip the font attribute that is the outer main tag block
+
                 if attributeKey == NSFontAttributeName {
                     if let attributeFont = attributeValue as? UIFont {
-                        if HTMLTagBlock.isHTMLTagBlockFont(attributeFont) {
+                        if attributeFont == UIFont.paragraph() {
                             continue
                         }
                     }
                 }
 
-                htmlTagBlock.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+
+                // skip ranges that are only a newline
+                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+                if stringAtSubstring == "\n" {
+                    continue
+                }
+
+                // paragraph style does not need to get added as a separate block yet.
+                if attributeKey == "NSParagraphStyle" {
+                } else {
+                    htmlTagBlock.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+                }
             }
         }
 
-        return htmlTagBlock.htmlRepresentation()
+        let htmlContent = htmlTagBlock.htmlRepresentation()
+        
+        return htmlContent
 
         if attributedText.string == placeholder {
             return ""

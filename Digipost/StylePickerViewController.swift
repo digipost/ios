@@ -43,13 +43,14 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     }
 
     func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
-        let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell)
-        var models = textStyleModels[indexPath!.row]
+        if let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell) {
+        var models = textStyleModels[indexPath.row]
 
         var model = models[atIndex]
         model.enabled = newValue
 
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
+        }
     }
 
     func setupForAttributedString(attributedString: NSAttributedString )  {
