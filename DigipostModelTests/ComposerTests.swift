@@ -119,6 +119,41 @@ class ComposerTests: XCTestCase {
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
+    func testThreeParagraphsWithCompleteStylingOnOne() {
+        let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p><b>\(Strings.three)</b></p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.three)
+
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
+
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
+    func testThreeParagraphsWithPartialStylingOnOne() {
+        let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p><b>\(Strings.three)</b>\(Strings.four)</p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.three)
+
+        textComposerModule.appendCharactersToEndOfString(Strings.four)
+
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
+
+
+        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringFour)
+
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
     func testHeadline1() {
         let wantedOutput = "<h1>\(Strings.one)\(Strings.two)</h1>"
         var textComposerModule = TextComposerModule.headlineModule()

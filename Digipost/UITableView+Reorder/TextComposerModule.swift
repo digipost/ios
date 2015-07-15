@@ -158,7 +158,7 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
                     if stringsSplitByNewline.count == 1 {
                         if  currentEditingTagBlock == nil {
                             currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
                         } else {
                             currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
                         }
