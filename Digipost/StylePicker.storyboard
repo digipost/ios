@@ -33,8 +33,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-jr-Dk3">
-                                <rect key="frame" x="0.0" y="45" width="600" height="555"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-jr-Dk3">
+                                <rect key="frame" x="0.0" y="28" width="600" height="572"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlCell" rowHeight="55" id="7TZ-jg-gD3" customClass="SegmentedControlTableViewCell" customModule="Digipost" customModuleProvider="target">
@@ -81,13 +81,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-3C-q8y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="46"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-3C-q8y">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="MMO-jK-und"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Tekst"/>
+                                    <segment title="TEKST"/>
                                     <segment title="AVSNITT"/>
                                 </segments>
                                 <color key="tintColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
