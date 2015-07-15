@@ -99,13 +99,23 @@ class ComposerTests: XCTestCase {
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
-    func testMultipleParagraphs() {
+    func testTwoParagraphs() {
         let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p>"
         var textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
-        
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
+    func testThreeParagraphs() {
+        let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p>\(Strings.three)</p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.three)
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 

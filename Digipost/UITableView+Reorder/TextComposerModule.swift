@@ -154,32 +154,24 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
                     currentEditingTagBlock = nil
                 }
 
-
-                if stringsSplitByNewline.count == 1 {
-                    if attributeKey != "NSParagraphStyle" && currentEditingTagBlock == nil {
-                        currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-                        currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+                if attributeKey != "NSParagraphStyle" {
+                    if stringsSplitByNewline.count == 1 {
+                        if  currentEditingTagBlock == nil {
+                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
+                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+                        } else {
+                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+                        }
                     } else {
-                        currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+                        var currentIndex = 0
+                        for string in stringsSplitByNewline {
+                            if string.isEmpty == false {
+                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
+                                htmlTagBlocks.append(currentEditingTagBlock!)
+                            }
+                            currentEditingTagBlock = nil
+                        }
                     }
-                } else {
-                    var currentIndex = 0
-                    for string in stringsSplitByNewline {
-                        currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
-                        htmlTagBlocks.append(currentEditingTagBlock!)
-                        currentEditingTagBlock = nil
-                    }
-                }
-
-
-
-                // paragraph style does not need to get added as a separate block yet.
-                if attributeKey == "NSParagraphStyle" {
-
-                } else if currentEditingTagBlock == nil {
-
-                } else {
-
                 }
             }
         }
