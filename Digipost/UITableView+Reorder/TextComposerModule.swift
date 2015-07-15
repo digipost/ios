@@ -137,17 +137,16 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
 
     override func htmlRepresentation() -> String {
         var htmlTagBlocks = [HTMLTagBlock]()
-//        var htmlTagBlock = HTMLTagBlock(type: self.type, content: self.attributedText.string)
         var hadNewLine = false
         var currentEditingTagBlock : HTMLTagBlock?
         var currentRange : NSRange?
         var htmlContent = ""
-        println(attributedText)
         attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
             for (attributeKey, attributeValue) in attributeDict {
                 let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
                 // skip ranges that are only a newline
-//                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
+
                 if (stringAtSubstring.rangeOfString("\n", options: NSStringCompareOptions.CaseInsensitiveSearch) != nil){
                     if currentEditingTagBlock != nil {
                         htmlTagBlocks.append(currentEditingTagBlock!)
@@ -155,17 +154,36 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
                     currentEditingTagBlock = nil
                 }
 
+
+                if stringsSplitByNewline.count == 1 {
+                    if attributeKey != "NSParagraphStyle" && currentEditingTagBlock == nil {
+                        currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
+                        currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+                    } else {
+                        currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+                    }
+                } else {
+                    var currentIndex = 0
+                    for string in stringsSplitByNewline {
+                        currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
+                        htmlTagBlocks.append(currentEditingTagBlock!)
+                        currentEditingTagBlock = nil
+                    }
+                }
+
+
+
                 // paragraph style does not need to get added as a separate block yet.
                 if attributeKey == "NSParagraphStyle" {
 
                 } else if currentEditingTagBlock == nil {
-                    currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-                    currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!)
+
                 } else {
-                    currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+
                 }
             }
         }
+
         if let actualEditingTagBlock = currentEditingTagBlock {
             htmlTagBlocks.append(actualEditingTagBlock)
         }

@@ -45,6 +45,15 @@ class ComposerTests: XCTestCase {
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
+    func testWholeBoldParagraph() {
+        let wantedOutput = "<p><b>\(Strings.one)</b></p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.one)
+        textComposerModule.setFontTrait(.TraitBold, enabled: true , atRange:rangeOfString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
     func testTwoBoldRangesInParagraph() {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b>\(Strings.three)<b>\(Strings.four)</b></p>"
         var textComposerModule = TextComposerModule.paragraphModule()
@@ -88,7 +97,16 @@ class ComposerTests: XCTestCase {
         textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitItalic, enabled: true, atRange:rangeOfStringFour)
 
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
 
+    func testMultipleParagraphs() {
+        let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p>"
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
     func testHeadline1() {

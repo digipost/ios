@@ -33,7 +33,7 @@ struct HTMLTagBlock : HTMLRepresentable {
         case UIFont.paragraph():
             type = .Paragraph
         default:
-            type = .Unknown
+            type = .Paragraph
             break
         }
         self.content = content
@@ -48,7 +48,7 @@ struct HTMLTagBlock : HTMLRepresentable {
             case UIFont.paragraph():
                 type = .Paragraph
             default:
-                type = .Unknown
+                type = .Paragraph
                 break
             }
         } else {
