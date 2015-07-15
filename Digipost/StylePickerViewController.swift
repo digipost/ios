@@ -39,7 +39,14 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+        segmentedControl.setupWithDigipostFont()
         textStyleModels = TextStyleModel.allTextStyleModels()
+        tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 0.01))
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        segmentedControl.removeBorders()
     }
 
     func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
