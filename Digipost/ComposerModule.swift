@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ComposerModule : NSObject, HTMLRepresentable {
+class ComposerModule : NSObject {
 
     //MARK: - Class Functions
     
-    func htmlRepresentation() -> String{
+    func htmlRepresentation() -> NSString{
         return ""
     }
 }

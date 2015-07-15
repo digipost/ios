@@ -16,6 +16,8 @@ class ComposerTests: XCTestCase {
         static let two = " on a trip for Titan."
         static let three = "Giordano Bruno"
         static let four = " visiting Andromeda."
+        static let five = "We are all in the gutter, but some of us are looking at the stars."
+        static let six = "Which came first - time or space?"
     }
 
     override func setUp() {
@@ -26,6 +28,11 @@ class ComposerTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+    }
+
+    private func setFontTraits(fontTraits: UIFontDescriptorSymbolicTraits, string: String, enabled: Bool, textComposerModule: TextComposerModule) {
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(string)
+        textComposerModule.setFontTrait(fontTraits, enabled: enabled , atRange:rangeOfString)
     }
 
     func testParagraph() {
@@ -80,7 +87,6 @@ class ComposerTests: XCTestCase {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b>\(Strings.three)<i>\(Strings.four)</i></p>"
 
         var textComposerModule = TextComposerModule.paragraphModule()
-
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
 
@@ -95,6 +101,26 @@ class ComposerTests: XCTestCase {
 
         let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
         textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitItalic, enabled: true, atRange:rangeOfStringFour)
+
+        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+    }
+
+    func testLotsOfBoldRangesInMultipleParagraphs() {
+        let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b></p><p>\(Strings.three)<b>\(Strings.four)</b>\(Strings.five)</p><p><b>\(Strings.six)</b></p>"
+
+        var textComposerModule = TextComposerModule.paragraphModule()
+        textComposerModule.appendCharactersToEndOfString(Strings.one)
+        textComposerModule.appendCharactersToEndOfString(Strings.two)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.three)
+        textComposerModule.appendCharactersToEndOfString(Strings.four)
+        textComposerModule.appendCharactersToEndOfString(Strings.five)
+        textComposerModule.appendNewParagraph()
+        textComposerModule.appendCharactersToEndOfString(Strings.six)
+
+        setFontTraits(.TraitBold, string: Strings.two, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.TraitBold, string: Strings.four, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.TraitBold, string: Strings.six, enabled: true, textComposerModule: textComposerModule)
 
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
@@ -142,18 +168,15 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.three)
-
         textComposerModule.appendCharactersToEndOfString(Strings.four)
 
         let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
         textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
 
-
-        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringFour)
-
+        println(textComposerModule.attributedText)
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
+
     func testHeadline1() {
         let wantedOutput = "<h1>\(Strings.one)\(Strings.two)</h1>"
         var textComposerModule = TextComposerModule.headlineModule()

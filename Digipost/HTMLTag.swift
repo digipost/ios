@@ -19,10 +19,8 @@ enum HTMLTagType : String {
 struct HTMLTag {
 
     let type : HTMLTagType
-    let range : Range<Int>
 
     init(tagBlockType: HTMLTagBlockType) {
-        self.range = Range(start: 0, end: 0)
         self.type = {
             switch tagBlockType {
             case HTMLTagBlockType.H1:
@@ -35,13 +33,12 @@ struct HTMLTag {
         }()
     }
 
-    init(attribute: NSObject, value: AnyObject, range: Range<Int>) {
+    init(attribute: NSObject, value: AnyObject) {
 
         let aFont = UIFont()
         self.type = {
 
             switch attribute {
-
             case NSFontAttributeName:
                 if let actualFont = value as? UIFont {
                     if actualFont == UIFont.headlineH1() {
@@ -62,7 +59,6 @@ struct HTMLTag {
                 return HTMLTagType.Paragraph
             }}()
 
-        self.range = range
     }
 
 

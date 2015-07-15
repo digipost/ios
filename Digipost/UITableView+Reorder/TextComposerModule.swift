@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TextComposerModule: ComposerModule, HTMLRepresentable {
+class TextComposerModule: ComposerModule {
 
 
     var textAttribute : TextAttribute
@@ -50,7 +50,7 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
                 return true
             }
             return false
-        }()
+            }()
 
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         let endOfStringAttributes = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
@@ -135,107 +135,130 @@ class TextComposerModule: ComposerModule, HTMLRepresentable {
         super.init()
     }
 
-    override func htmlRepresentation() -> String {
-        var htmlTagBlocks = [HTMLTagBlock]()
+    override func htmlRepresentation() -> NSString {
+        var htmlSections = [HTMLSection]()
         var hadNewLine = false
         var currentEditingTagBlock : HTMLTagBlock?
         var currentRange : NSRange?
         var htmlContent = ""
-        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
-            for (attributeKey, attributeValue) in attributeDict {
-                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
-                // skip ranges that are only a newline
-                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
 
-                if (stringAtSubstring.rangeOfString("\n", options: NSStringCompareOptions.CaseInsensitiveSearch) != nil){
-                    if currentEditingTagBlock != nil {
-                        htmlTagBlocks.append(currentEditingTagBlock!)
-                    }
-                    currentEditingTagBlock = nil
-                }
 
-                if attributeKey != "NSParagraphStyle" {
-                    if stringsSplitByNewline.count == 1 {
-                        if  currentEditingTagBlock == nil {
-                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
-                        } else {
-                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
-                        }
-                    } else {
-                        var currentIndex = 0
-                        for string in stringsSplitByNewline {
-                            if string.isEmpty == false {
-                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
-                                htmlTagBlocks.append(currentEditingTagBlock!)
-                            }
-                            currentEditingTagBlock = nil
-                        }
+        let stringsSplitByNewline = attributedText.string.componentsSeparatedByString("\n")
+
+        var stringIndex = 0
+        var wholeString = ""
+
+
+
+        for string in stringsSplitByNewline {
+            println(string)
+            var tagBlocksInString = [HTMLTagBlock]()
+            attributedText.enumerateAttributesInRange(NSMakeRange(stringIndex, string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
+                for (attributeKey, attributeValue) in attributeDict {
+                    if attributeKey == "NSParagraphStyle" {
+                        continue
                     }
+
+                    let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+
+                    let tagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, range: range)
+                    tagBlocksInString.append(tagBlock)
                 }
             }
-        }
 
-        if let actualEditingTagBlock = currentEditingTagBlock {
-            htmlTagBlocks.append(actualEditingTagBlock)
+            let section = HTMLSection(content: string, tagBlocks: tagBlocksInString)
+            htmlSections.append(section)
+            currentEditingTagBlock = nil
         }
+        //
+        //        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
+        //            for (attributeKey, attributeValue) in attributeDict {
+        //                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+        //                // skip ranges that are only a newline
+        //                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //
+        //                if attributeKey != "NSParagraphStyle" {
+        //                    if stringsSplitByNewline.count == 1 {
+        //                        if currentEditingTagBlock == nil {
+        //                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
+        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
+        //                        } else {
+        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+        //                        }
+        //                    } else {
+        //                        var currentIndex = 0
+        //                        for string in stringsSplitByNewline {
+        //                            if string == "\n" {
+        //                                currentEditingTagBlock = nil
+        //                            }
+        //                            if string.isEmpty == false {
+        //                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
+        //                                htmlTagBlocks.append(currentEditingTagBlock!)
+        //                            }
+        //                            currentEditingTagBlock = nil
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
 
-        for htmlTagBlock in htmlTagBlocks {
-            htmlContent += htmlTagBlock.htmlRepresentation()
+
+
+
+
+
+        // WORKING IMPLEMENTATION
+
+        //        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
+        //            for (attributeKey, attributeValue) in attributeDict {
+        //                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+        //                // skip ranges that are only a newline
+        //                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
+        //
+        //                if attributeKey != "NSParagraphStyle" {
+        //                    if stringsSplitByNewline.count == 1 {
+        //                        if currentEditingTagBlock == nil {
+        //                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
+        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
+        //                        } else {
+        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
+        //                        }
+        //                    } else {
+        //                        var currentIndex = 0
+        //                        for string in stringsSplitByNewline {
+        //                            if string == "\n" {
+        //                                currentEditingTagBlock = nil
+        //                            }
+        //                            if string.isEmpty == false {
+        //                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
+        //                                htmlTagBlocks.append(currentEditingTagBlock!)
+        //                            }
+        //                            currentEditingTagBlock = nil
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        
+
+
+        for htmlSection in htmlSections {
+            htmlContent += htmlSection.htmlRepresentation(htmlSection.content) as String
         }
 
         return htmlContent
-
-        if attributedText.string == placeholder {
-            return ""
-        } else {
-            var openingTag = ""
-            var closeingTag = ""
-            
-            let alignment : String = {
-                if let actualAlignment = self.textAttribute.textAlignment {
-                    switch actualAlignment {
-                    case NSTextAlignment.Left:
-                        return  "align-left"
-                    case NSTextAlignment.Center:
-                        return "align-center"
-                    case NSTextAlignment.Right:
-                        return  "align-right"
-                    default:
-                        return "align-left"
-                    }
-                }
-                        return "align-left"
-                }()
-
-           if let actualFont = self.textAttribute.font {
-            switch actualFont {
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
-                let cssClass = alignment
-                openingTag = "<H1 class=\"\(cssClass)\">"
-                closeingTag = "</H1>"
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
-                let cssClass = alignment
-                openingTag = "<p class=\"\(cssClass)\">"
-                closeingTag = "</p>"
-            case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
-                let cssClass = alignment
-                openingTag = "<H2 class=\"\(cssClass)\">"
-                closeingTag = "</H2>"
-            default:
-                let cssClass = alignment
-                openingTag = "<p class=\"\(cssClass)\">"
-                closeingTag = "</p>"
-            }
-
-            }
-
-            var html = openingTag
-            html += closeingTag
-            
-            return html
-        }
-    
     }
     
 }

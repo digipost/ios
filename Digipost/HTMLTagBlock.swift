@@ -19,87 +19,27 @@ enum HTMLTagBlockType {
 
 struct HTMLTagBlock : HTMLRepresentable {
 
-    let type : HTMLTagBlockType
+    let tag : HTMLTag
+    var range : NSRange
 
-    var tags = [HTMLTag]()
-
-    var content : String
-
-    init(font : UIFont, content : String) {
-        switch font {
-        case UIFont.headlineH1():
-            type = .H1
-            break
-        case UIFont.paragraph():
-            type = .Paragraph
-        default:
-            type = .Paragraph
-            break
-        }
-        self.content = content
+    init(key: NSObject, value: AnyObject, range: NSRange) {
+        self.tag = HTMLTag(attribute: key, value: value)
+        self.range = range
     }
 
-    init(key: NSObject, value: AnyObject, content : String) {
-        if key == NSFontAttributeName {
-            switch value as! UIFont {
-            case UIFont.headlineH1():
-                type = .H1
-                break
-            case UIFont.paragraph():
-                type = .Paragraph
-            default:
-                type = .Paragraph
-                break
-            }
-        } else {
-            type = .Unknown
-        }
-        self.content = content
-
-    }
-
-    init(type: HTMLTagBlockType, content : String) {
-        self.type = type
-        self.content = content
-    }
-
-    mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>) {
-        let tag = HTMLTag(attribute: attribute, value: value, range: range)
-        self.tags.append(tag)
-    }
-
-    mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>, content: String) {
-        let tag = HTMLTag(attribute: attribute, value: value, range: range)
-        self.content += content
-        self.tags.append(tag)
-    }
-
-    func htmlRepresentation() -> String {
-        var representation = (self.content as NSString).mutableCopy() as! NSMutableString
+    func htmlRepresentation(inString: NSString) -> NSString {
+        var representation = (inString as NSString).mutableCopy() as! NSMutableString
         var index = 0
         var newContent = ""
+
         let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
 
-        for tag in tags {
-            let tagLength = lengthOfAllTagsBeforeIndex(index, inString: representation as NSString)
-            let startTagIndex = tag.range.startIndex + tagLength
-            let endTagIndex = tag.range.endIndex + tagLength
-            if tag.type != .Paragraph {
-                representation.insertString(tag.endTag, atIndex: endTagIndex)
-                representation.insertString(tag.startTag, atIndex: startTagIndex)
-                index = index + tag.range.startIndex + tag.startTag.length + tag.range.endIndex + tag.endTag.length
-            } else {
-                index += tag.range.endIndex - tag.range.startIndex
-            }
+        if range.location + range.length < inString.length {
+            let subString = inString.substringWithRange(range)
+            return "\(tag.startTag)\(subString)\(tag.endTag)"
         }
 
-        let selfTag = HTMLTag(tagBlockType: self.type)
-
-        let representationWithoutNewline = representation.stringByReplacingOccurrencesOfString("\n", withString: "") as String
-        if selfTag.type != HTMLTagType.Paragraph {
-            return "\(representationWithoutNewline)"
-        }
-        return "\(selfTag.startTag)\(representationWithoutNewline)\(selfTag.endTag)"
+        return "\(tag.startTag)\(tag.endTag)"
     }
 
     static func isHTMLTagBlockFont(font: UIFont) -> Bool {
@@ -112,17 +52,7 @@ struct HTMLTagBlock : HTMLRepresentable {
         return false
     }
 
-    func lengthOfAllTagsBeforeIndex(index: Int, inString string: NSString) -> Int {
-        var error : NSError?
-        let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace, error: &error)
-        let allMatches = regex!.matchesInString(string as String, options: NSMatchingOptions.allZeros, range: NSMakeRange(0, index))
-        var totalLength = 0
-        for match in allMatches as! [NSTextCheckingResult] {
-            totalLength += match.range.length
-        }
-
-        return totalLength
-    }
+    
 
 
 }

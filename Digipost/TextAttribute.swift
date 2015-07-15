@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TextAttribute : HTMLRepresentable, DebugPrintable {
+struct TextAttribute : DebugPrintable {
 
     var textAlignment : NSTextAlignment?
     var font : UIFont?
