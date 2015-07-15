@@ -33,11 +33,9 @@ struct HTMLTag {
                 return HTMLTagType.Unknown
             }
         }()
-
-
     }
 
-    init(attribute: NSObject, value : AnyObject, range : Range<Int>) {
+    init(attribute: NSObject, value: AnyObject, range: Range<Int>) {
 
         let aFont = UIFont()
         self.type = {

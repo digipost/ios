@@ -39,6 +39,25 @@ struct HTMLTagBlock : HTMLRepresentable {
         self.content = content
     }
 
+    init(key: NSObject, value: AnyObject, content : String) {
+        if key == NSFontAttributeName {
+            switch value as! UIFont {
+            case UIFont.headlineH1():
+                type = .H1
+                break
+            case UIFont.paragraph():
+                type = .Paragraph
+            default:
+                type = .Unknown
+                break
+            }
+        } else {
+            type = .Unknown
+        }
+        self.content = content
+
+    }
+
     init(type: HTMLTagBlockType, content : String) {
         self.type = type
         self.content = content
@@ -46,6 +65,12 @@ struct HTMLTagBlock : HTMLRepresentable {
 
     mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>) {
         let tag = HTMLTag(attribute: attribute, value: value, range: range)
+        self.tags.append(tag)
+    }
+
+    mutating func addAttribute(attribute : NSObject, value : AnyObject, atRange range: Range<Int>, content: String) {
+        let tag = HTMLTag(attribute: attribute, value: value, range: range)
+        self.content += content
         self.tags.append(tag)
     }
 
@@ -59,9 +84,13 @@ struct HTMLTagBlock : HTMLRepresentable {
             let tagLength = lengthOfAllTagsBeforeIndex(index, inString: representation as NSString)
             let startTagIndex = tag.range.startIndex + tagLength
             let endTagIndex = tag.range.endIndex + tagLength
-            representation.insertString(tag.endTag, atIndex: endTagIndex)
-            representation.insertString(tag.startTag, atIndex: startTagIndex)
-            index = index + tag.range.startIndex + tag.startTag.length + tag.range.endIndex + tag.endTag.length
+            if tag.type != .Paragraph {
+                representation.insertString(tag.endTag, atIndex: endTagIndex)
+                representation.insertString(tag.startTag, atIndex: startTagIndex)
+                index = index + tag.range.startIndex + tag.startTag.length + tag.range.endIndex + tag.endTag.length
+            } else {
+                index += tag.range.endIndex - tag.range.startIndex
+            }
         }
 
         let selfTag = HTMLTag(tagBlockType: self.type)

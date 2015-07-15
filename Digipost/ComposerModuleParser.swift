@@ -24,9 +24,7 @@ class ComposerModuleParser {
             var html = "<html><head><style>\(internalStylesheet)</style></head><body><div>"
             
             for module in modules {
-                
                 html += module.htmlRepresentation()
-                
             }
             
             html += "</div></body></html>"
