@@ -2245,6 +2245,7 @@
 		EC23529A1A0BA1040071624C /* LetterView popup */ = {
 			isa = PBXGroup;
 			children = (
+				ECB2BF931B452F2A008E32E8 /* stylesheet.css */,
 				EC29512718BF7FDB00A80C28 /* POSLetterPopoverView.h */,
 				EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */,
 				EC68C06E18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.h */,
@@ -2364,6 +2365,11 @@
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */,
+				ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */,
+				ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */,
+				ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */,
+				ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */,
+				ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */,
 			);
 			name = StylePicker;
 			sourceTree = "<group>";
@@ -2373,44 +2379,21 @@
 			children = (
 				ECB2BF0A1B452F0C008E32E8 /* DimView.swift */,
 				ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */,
-				ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */,
-				ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */,
-				ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */,
-				ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */,
-				ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */,
-				ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */,
-				ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */,
-				ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */,
-				ECB2BF931B452F2A008E32E8 /* stylesheet.css */,
-				ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */,
-				ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */,
-				ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */,
-				ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */,
-				ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */,
-				ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */,
-				ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */,
-				ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */,
-				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
-				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,
-				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
-				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
-				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
-				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
-				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
-				ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */,
-				ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */,
+				ECE6F50F1B58F35C000FDCA0 /* Recipient */,
 				EC8F4A151B4C0A5700D07922 /* StylePicker */,
 				ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */,
 				ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */,
 				ECB2BFF41B456E01008E32E8 /* Model */,
 				ECB2BFF31B456DAD008E32E8 /* Composer */,
-				ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */,
 				ECB2BFFD1B457672008E32E8 /* New Group */,
 				ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */,
-				ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */,
-				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
-				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
-				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
+			);
+			name = SendEditor;
+			sourceTree = "<group>";
+		};
+		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
+			isa = PBXGroup;
+			children = (
 				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 				ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */,
 				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
@@ -2419,14 +2402,22 @@
 				ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */,
 				ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */,
 				ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */,
-			);
-			name = SendEditor;
-			sourceTree = "<group>";
-		};
-		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
-			isa = PBXGroup;
-			children = (
+				ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */,
+				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
+				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
+				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
+				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
+				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
+				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
+				ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */,
+				ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */,
+				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
+				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,
 				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
+				ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */,
+				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
+				ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */,
+				ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */,
 			);
 			name = Composer;
 			sourceTree = "<group>";
@@ -2442,10 +2433,13 @@
 				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
 				EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */,
 				ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */,
+				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
 				ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */,
+				ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */,
 				ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */,
 				EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */,
-				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
+				ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */,
+				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -2455,6 +2449,20 @@
 			children = (
 			);
 			name = "New Group";
+			sourceTree = "<group>";
+		};
+		ECE6F50F1B58F35C000FDCA0 /* Recipient */ = {
+			isa = PBXGroup;
+			children = (
+				ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */,
+				ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */,
+				ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */,
+				ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */,
+				ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */,
+				ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */,
+				ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */,
+			);
+			name = Recipient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
