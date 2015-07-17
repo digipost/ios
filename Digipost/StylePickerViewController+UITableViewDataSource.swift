@@ -17,7 +17,6 @@ extension StylePickerViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
         return self.textStyleModels.count
     }
 

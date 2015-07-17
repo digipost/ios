@@ -33,16 +33,13 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     @IBOutlet weak var moduleSelectorView: UIView!
     @IBOutlet weak var moduleSelectorViewTitle: UILabel!
 
-    let moduleTypeStrings = [NSLocalizedString("big headline table view cell title", comment: "Title for table view cell"),
-                            NSLocalizedString("small headline table view cell title", comment: "Title for table view cell"),
-                            NSLocalizedString("normal text table view cell title", comment: "Title for table view cell"),
+    let moduleTypeStrings = [NSLocalizedString("normal text table view cell title", comment: "Title for table view cell"),
                             NSLocalizedString("image table view cell title", comment: "Title for table view cell")]
     
     @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         var tblView = UIView(frame: CGRectZero)
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
@@ -76,12 +73,18 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let module : ComposerModule = {
+        let module : ComposerModule? = {
             switch indexPath.row {
             case 0:
                 return TextComposerModule.paragraphModule()
             case 1:
-                return TextComposerModule.paragraphModule()
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+                    self.imagePicker.delegate = self
+                    self.imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                    self.imagePicker.allowsEditing = true
+                    self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                }
+                break
             case 2:
                 fallthrough
             case 3:
@@ -89,33 +92,20 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
             default:
                 break;
             }
-            return TextComposerModule.paragraphModule()
+            return nil
         }()
-        delegate?.moduleSelectorViewController(self, didSelectModule: module)
+        if let selectedModule = module {
+            delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
+        }
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return moduleTypeStrings.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         var cell = self.tableView.dequeueReusableCellWithIdentifier("moduleCell") as! UITableViewCell
-        
         cell.textLabel?.text = moduleTypeStrings[indexPath.row]
-        
         return cell
     }
-    
-//    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
-
-//        for touch: AnyObject in touches {
-//            let location = touch.locationInView(moduleSelectorView)
-//            if moduleSelectorView.pointInside(location, withEvent: event) == false{
-//                self.delegate?.moduleSelectorViewControllerWasDismissed(self)
-//            }
-//            
-//        }
-//    }
-
 }
