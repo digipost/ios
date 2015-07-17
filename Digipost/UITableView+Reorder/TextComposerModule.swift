@@ -91,7 +91,6 @@ class TextComposerModule: ComposerModule {
         }
 
         attributedText = mutableAttributedString
-
         return returnDictionary
     }
 
@@ -106,7 +105,7 @@ class TextComposerModule: ComposerModule {
             }
             }()
         let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
-        let newFont  = UIFont(descriptor: newFontDescriptor!, size: existingFont.pointSize )
+        let newFont  = UIFont(descriptor: newFontDescriptor!, size: existingFont.pointSize)
         return newFont
     }
 
@@ -142,16 +141,16 @@ class TextComposerModule: ComposerModule {
         var currentRange : NSRange?
         var htmlContent = ""
 
-
         let stringsSplitByNewline = attributedText.string.componentsSeparatedByString("\n")
 
         var stringIndex = 0
         var wholeString = ""
 
-
-
         for string in stringsSplitByNewline {
             println(string)
+            if string.isEmpty {
+                continue
+            }
             var tagBlocksInString = [HTMLTagBlock]()
             attributedText.enumerateAttributesInRange(NSMakeRange(stringIndex, string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
                 for (attributeKey, attributeValue) in attributeDict {
@@ -160,8 +159,9 @@ class TextComposerModule: ComposerModule {
                     }
 
                     let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+                    let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
-                    let tagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, range: range)
+                    let tagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, range: rangeInHTMLTagBlock)
                     tagBlocksInString.append(tagBlock)
                 }
             }
@@ -169,90 +169,8 @@ class TextComposerModule: ComposerModule {
             let section = HTMLSection(content: string, tagBlocks: tagBlocksInString)
             htmlSections.append(section)
             currentEditingTagBlock = nil
+            stringIndex += string.length + "\n".length
         }
-        //
-        //        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
-        //            for (attributeKey, attributeValue) in attributeDict {
-        //                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
-        //                // skip ranges that are only a newline
-        //                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //
-        //                if attributeKey != "NSParagraphStyle" {
-        //                    if stringsSplitByNewline.count == 1 {
-        //                        if currentEditingTagBlock == nil {
-        //                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
-        //                        } else {
-        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
-        //                        }
-        //                    } else {
-        //                        var currentIndex = 0
-        //                        for string in stringsSplitByNewline {
-        //                            if string == "\n" {
-        //                                currentEditingTagBlock = nil
-        //                            }
-        //                            if string.isEmpty == false {
-        //                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
-        //                                htmlTagBlocks.append(currentEditingTagBlock!)
-        //                            }
-        //                            currentEditingTagBlock = nil
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-
-
-
-
-
-
-        // WORKING IMPLEMENTATION
-
-        //        attributedText.enumerateAttributesInRange(NSMakeRange(0, attributedText.string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
-        //            for (attributeKey, attributeValue) in attributeDict {
-        //                let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
-        //                // skip ranges that are only a newline
-        //                let stringsSplitByNewline = stringAtSubstring.componentsSeparatedByString("\n")
-        //
-        //                if attributeKey != "NSParagraphStyle" {
-        //                    if stringsSplitByNewline.count == 1 {
-        //                        if currentEditingTagBlock == nil {
-        //                            currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: stringAtSubstring)
-        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: NSMakeRange(0, stringAtSubstring.length).toRange()!)
-        //                        } else {
-        //                            currentEditingTagBlock!.addAttribute(attributeKey, value: attributeValue, atRange: range.toRange()!,content: stringAtSubstring)
-        //                        }
-        //                    } else {
-        //                        var currentIndex = 0
-        //                        for string in stringsSplitByNewline {
-        //                            if string == "\n" {
-        //                                currentEditingTagBlock = nil
-        //                            }
-        //                            if string.isEmpty == false {
-        //                                currentEditingTagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, content: string)
-        //                                htmlTagBlocks.append(currentEditingTagBlock!)
-        //                            }
-        //                            currentEditingTagBlock = nil
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        
-
 
         for htmlSection in htmlSections {
             htmlContent += htmlSection.htmlRepresentation(htmlSection.content) as String

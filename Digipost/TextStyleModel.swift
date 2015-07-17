@@ -37,6 +37,22 @@ class TextStyleModel {
         return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "")
     }
 
+    private static func h1StyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "")
+    }
+
+    private static func h2StyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "")
+    }
+
+    private static func h3StyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.headlineH3(), preferredIconName: "")
+    }
+
+    private static func paragraphStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "")
+    }
+
     /**
     Returns array with array of text style models.
     Where there are more than one model in the array, the ui should show them in
@@ -47,6 +63,7 @@ class TextStyleModel {
     */
     static func allTextStyleModels() -> [[TextStyleModel]] {
         let multiButtonStyleArray = [boldTextStyleModel(), italicTextStyleModel(), underlineTextStyleModel()]
+        let stylePickerArray = [h1StyleModel(), h2StyleModel(), h3StyleModel(), paragraphStyleModel()]
         return [multiButtonStyleArray]
     }
 
