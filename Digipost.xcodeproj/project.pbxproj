@@ -941,6 +941,12 @@
 		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
+		ECA39C9A1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
+		ECA39C9B1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
+		ECA39C9C1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
+		ECA39C9D1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
+		ECA39C9E1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
+		ECA39C9F1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
 		ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
@@ -1588,6 +1594,7 @@
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
+		ECA39C991B78BC580083BEBB /* Array+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+NSRange.swift"; sourceTree = "<group>"; };
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
 		ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+Authorization.swift"; sourceTree = "<group>"; };
@@ -2431,6 +2438,7 @@
 				ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */,
 				ECCC94A01B56A7000054AFA6 /* HTMLSection.swift */,
 				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
+				ECA39C991B78BC580083BEBB /* Array+NSRange.swift */,
 				EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */,
 				ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */,
 				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
@@ -3173,6 +3181,7 @@
 				ECB2BF731B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
+				ECA39C9A1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				ECB2BE841B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				83DB4AE6188D1F4E00515022 /* POSReceipt.m in Sources */,
 				EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -3361,6 +3370,7 @@
 				ECB2BF771B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				87C9E78B1B0610BC0019AA07 /* UIViewController+Additions.m in Sources */,
 				87C9E78C1B0610BC0019AA07 /* NSDate+Extensions.swift in Sources */,
+				ECA39C9E1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				ECB2BE881B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				87C9E78D1B0610BC0019AA07 /* UIDevice+Extension.swift in Sources */,
 				EC8F4A231B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -3549,6 +3559,7 @@
 				ECB2BF761B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC0D2D5D1AE786A800595A61 /* UIViewController+Additions.m in Sources */,
 				EC0D2D5E1AE786A800595A61 /* NSDate+Extensions.swift in Sources */,
+				ECA39C9D1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				ECB2BE871B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC0D2D601AE786A800595A61 /* UIDevice+Extension.swift in Sources */,
 				EC8F4A221B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -3737,6 +3748,7 @@
 				EC2752061B061DE30007125D /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */,
 				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
+				ECA39C9F1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				EC2751EC1B061DC80007125D /* UIImage+Size.swift in Sources */,
 				ECB2BE911B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
 				EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -3925,6 +3937,7 @@
 				ECB2BF741B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC2DCB691AB84EAB0063755E /* UIViewController+Additions.m in Sources */,
 				EC2DCB6A1AB84EAB0063755E /* NSDate+Extensions.swift in Sources */,
+				ECA39C9B1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				ECB2BE851B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2DCB6C1AB84EAB0063755E /* UIDevice+Extension.swift in Sources */,
 				EC8F4A201B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -4113,6 +4126,7 @@
 				ECB2BF751B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC2DCC1B1AB864AB0063755E /* NSDate+Extensions.swift in Sources */,
 				EC2DCC1D1AB864AB0063755E /* UIDevice+Extension.swift in Sources */,
+				ECA39C9C1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
 				ECB2BE861B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2DCC1E1AB864AB0063755E /* POSReceipt.m in Sources */,
 				EC8F4A211B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
