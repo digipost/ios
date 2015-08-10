@@ -77,7 +77,7 @@ class TextComposerModule: ComposerModule {
         attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.allZeros) { (attributes, inRange, stop) -> Void in
             if let font = attributes[NSFontAttributeName] as? UIFont {
                 let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
-                mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: range)
+                mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: inRange)
                 returnDictionary[NSFontAttributeName] = newFont
             }
         }
@@ -161,8 +161,8 @@ class TextComposerModule: ComposerModule {
                     let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
                     let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
-                    let tagBlock = HTMLTagBlock(key: attributeKey, value: attributeValue, range: rangeInHTMLTagBlock)
-                    tagBlocksInString.append(tagBlock)
+                    let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey , value: attributeValue, range: rangeInHTMLTagBlock)
+                    tagBlocksInString.extend(tagBlocks)
                 }
             }
 

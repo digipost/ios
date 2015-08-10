@@ -14,13 +14,17 @@ enum HTMLTagBlockType {
     case H2
     case H3
     case Unknown
-
 }
 
 struct HTMLTagBlock : HTMLRepresentable {
 
     let tag : HTMLTag
     var range : NSRange
+
+    init(tag: HTMLTag, range: NSRange) {
+        self.tag = tag
+        self.range = range
+    }
 
     init(key: NSObject, value: AnyObject, range: NSRange) {
         self.tag = HTMLTag(attribute: key, value: value)
@@ -38,8 +42,20 @@ struct HTMLTagBlock : HTMLRepresentable {
             let subString = inString.substringWithRange(range)
             return "\(tag.startTag)\(subString)\(tag.endTag)"
         }
-
         return "\(tag.startTag)\(tag.endTag)"
+    }
+
+
+    static func tagBlocks(key: NSObject, value: AnyObject, range: NSRange) -> [HTMLTagBlock] {
+        var tagBlocks = [HTMLTagBlock]()
+
+        let tags = HTMLTag.tags(key, value: value)
+        for tag in tags {
+            let tagBlock = HTMLTagBlock(tag: tag, range: range)
+            tagBlocks.append(tagBlock)
+        }
+
+        return tagBlocks
     }
 
     static func isHTMLTagBlockFont(font: UIFont) -> Bool {

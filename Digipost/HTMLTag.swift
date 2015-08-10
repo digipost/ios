@@ -20,17 +20,9 @@ struct HTMLTag {
 
     let type : HTMLTagType
 
-    init(tagBlockType: HTMLTagBlockType) {
-        self.type = {
-            switch tagBlockType {
-            case HTMLTagBlockType.H1:
-                return HTMLTagType.H1
-            case HTMLTagBlockType.Paragraph:
-                return HTMLTagType.Paragraph
-            default:
-                return HTMLTagType.Unknown
-            }
-        }()
+
+    init(type: HTMLTagType) {
+        self.type = type
     }
 
     init(attribute: NSObject, value: AnyObject) {
@@ -58,9 +50,31 @@ struct HTMLTag {
             default:
                 return HTMLTagType.Paragraph
             }}()
-
     }
 
+    static func tags(attribute: NSObject, value: AnyObject) -> [HTMLTag] {
+        var tags = [HTMLTag]()
+
+        if let actualFont = value as? UIFont {
+            if actualFont == UIFont.headlineH1() {
+                tags.append(HTMLTag(type: HTMLTagType.H1))
+                return tags
+            }
+            let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
+            let symb = UIFontDescriptorSymbolicTraits(symbolicTraits.rawValue)
+            if symbolicTraits & .TraitItalic == .TraitItalic {
+                tags.append(HTMLTag(type: HTMLTagType.Italic))
+            }
+            if symbolicTraits & .TraitBold == .TraitBold {
+                tags.append(HTMLTag(type: HTMLTagType.Bold))
+            }
+        }
+        if tags.count == 0 {
+            tags.append(HTMLTag(type: HTMLTagType.Paragraph))
+        }
+
+        return tags
+    }
 
     var startTag : String {
         return type.rawValue
