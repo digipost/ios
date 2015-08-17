@@ -857,6 +857,42 @@
 		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
 		EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
+		EC42F2371B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F2381B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F2391B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F23A1B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F23B1B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F23C1B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
+		EC42F23E1B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F23F1B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F2401B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F2411B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F2421B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F2431B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
+		EC42F2451B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F2461B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F2471B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F2481B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F2491B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F24A1B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
+		EC42F24C1B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F24D1B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F24E1B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F24F1B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F2501B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F2511B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
+		EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F2541B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F2551B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F2561B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F2571B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F2581B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
+		EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
+		EC42F25B1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
+		EC42F25C1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
+		EC42F25D1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
+		EC42F25E1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
+		EC42F25F1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
 		EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
@@ -1537,6 +1573,13 @@
 		EC4146F01AA76130003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146F21AA76135003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
+		EC42F2361B81C755005785DE /* Editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Editor.js; sourceTree = "<group>"; };
+		EC42F23D1B81C760005785DE /* Editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Editor.html; sourceTree = "<group>"; };
+		EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLEditorViewController.swift; sourceTree = "<group>"; };
+		EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputViewController.swift; sourceTree = "<group>"; };
+		EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInputViewController.xib; sourceTree = "<group>"; };
+		EC42F2591B81E138005785DE /* CustomInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInputView.m; sourceTree = "<group>"; };
+		EC42F2601B81E1A3005785DE /* CustomInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInputView.h; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
@@ -2368,8 +2411,8 @@
 				EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */,
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
-				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
+				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */,
 				ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */,
@@ -2401,6 +2444,13 @@
 		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				EC42F2361B81C755005785DE /* Editor.js */,
+				EC42F23D1B81C760005785DE /* Editor.html */,
+				EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */,
+				EC42F2601B81E1A3005785DE /* CustomInputView.h */,
+				EC42F2591B81E138005785DE /* CustomInputView.m */,
+				EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */,
+				EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */,
 				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
 				ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */,
 				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
@@ -2671,11 +2721,14 @@
 				EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
+				EC42F23E1B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				87C9E75B1B0606670019AA07 /* Digipost.plist in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
+				EC42F2371B81C755005785DE /* Editor.js in Resources */,
 				EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
+				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
@@ -2697,6 +2750,7 @@
 				87C9E7EB1B0610BC0019AA07 /* foundmonreg-webfont.ttf in Resources */,
 				ECB2BF621B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BF311B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
+				EC42F23B1B81C755005785DE /* Editor.js in Resources */,
 				ECB2BFD71B452F2A008E32E8 /* stylesheet.css in Resources */,
 				87C9E8021B06117E0019AA07 /* Digipost-localhost.plist in Resources */,
 				87C9E8041B0612330019AA07 /* Digipost-localhost.xcconfig in Resources */,
@@ -2709,6 +2763,8 @@
 				87C9E7F01B0610BC0019AA07 /* Main_iPad.storyboard in Resources */,
 				87C9E7F11B0610BC0019AA07 /* Images-Prod.xcassets in Resources */,
 				87C9E7F21B0610BC0019AA07 /* Main_iPhone.storyboard in Resources */,
+				EC42F2571B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
+				EC42F2421B81C760005785DE /* Editor.html in Resources */,
 				87C9E7F31B0610BC0019AA07 /* OnboardingGuideTexts.strings in Resources */,
 				87C9E7F41B0610BC0019AA07 /* WhatsNewGuideTexts.strings in Resources */,
 				87C9E7F51B0610BC0019AA07 /* foundmonmed-webfont.ttf in Resources */,
@@ -2734,7 +2790,9 @@
 				EC0D2DD61AE786A800595A61 /* Main_iPad.storyboard in Resources */,
 				ECB2BE721B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				EC0D2DD81AE786A800595A61 /* Images-Prod.xcassets in Resources */,
+				EC42F2411B81C760005785DE /* Editor.html in Resources */,
 				EC0D2DD91AE786A800595A61 /* Main_iPhone.storyboard in Resources */,
+				EC42F2561B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				ECB2BF221B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				ECB2BFC81B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				EC0D2DDB1AE786A800595A61 /* OnboardingGuideTexts.strings in Resources */,
@@ -2745,6 +2803,7 @@
 				ECB2BEC61B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC0D2DE01AE786A800595A61 /* LaunchScreen.xib in Resources */,
 				EC0D2DE11AE786A800595A61 /* InfoPlist.strings in Resources */,
+				EC42F23A1B81C755005785DE /* Editor.js in Resources */,
 				EC0D2DE41AE786A800595A61 /* NewFeatures.storyboard in Resources */,
 				ECB2BF3E1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BFD61B452F2A008E32E8 /* stylesheet.css in Resources */,
@@ -2764,9 +2823,11 @@
 				EC2752311B09D2920007125D /* documents.json in Resources */,
 				ECB2BF411B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BF331B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
+				EC42F2581B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				ECB2BEED1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFD91B452F2A008E32E8 /* stylesheet.css in Resources */,
+				EC42F23C1B81C755005785DE /* Editor.js in Resources */,
 				ECB2BF251B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
@@ -2774,6 +2835,7 @@
 				EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */,
 				EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */,
 				EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */,
+				EC42F2431B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE751B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2787,6 +2849,7 @@
 				EC2DCBCB1AB84EAB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCBCD1AB84EAB0063755E /* Onboarding.storyboard in Resources */,
+				EC42F23F1B81C760005785DE /* Editor.html in Resources */,
 				ECB2BEC41B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC2DCBCE1AB84EAB0063755E /* Images-Shared.xcassets in Resources */,
 				EC2DCBCF1AB84EAB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
@@ -2803,10 +2866,12 @@
 				EC2DCBD61AB84EAB0063755E /* LaunchScreen.xib in Resources */,
 				EC2DCBD71AB84EAB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCBD91AB84EAB0063755E /* NewFeatures.storyboard in Resources */,
+				EC42F2381B81C755005785DE /* Editor.js in Resources */,
 				ECB2BEE81B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFC61B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				EC2DCBDA1AB84EAB0063755E /* AccountTableViewCell.xib in Resources */,
 				ECB2BF201B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
+				EC42F2541B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				ECB2BFD41B452F2A008E32E8 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2820,6 +2885,7 @@
 				EC2DCC7C1AB864AB0063755E /* foundmonreg-webfont.ttf in Resources */,
 				EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */,
 				EC2DCC7E1AB864AB0063755E /* Onboarding.storyboard in Resources */,
+				EC42F2401B81C760005785DE /* Editor.html in Resources */,
 				ECB2BEC51B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC2DCC7F1AB864AB0063755E /* Images-Shared.xcassets in Resources */,
 				EC2DCC801AB864AB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
@@ -2836,10 +2902,12 @@
 				EC2DCC881AB864AB0063755E /* InfoPlist.strings in Resources */,
 				EC2DCC8A1AB864AB0063755E /* NewFeatures.storyboard in Resources */,
 				EC2DCC8B1AB864AB0063755E /* AccountTableViewCell.xib in Resources */,
+				EC42F2391B81C755005785DE /* Editor.js in Resources */,
 				ECB2BEE91B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFC71B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				87C9E7581B0605F20019AA07 /* Digipost-QA2.plist in Resources */,
 				ECB2BF211B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
+				EC42F2551B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				ECB2BFD51B452F2A008E32E8 /* stylesheet.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3130,14 +3198,17 @@
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
+				EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2484101B206F1A00FC372C /* POSDocument+Methods.m in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				ECB2BF651B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
+				EC42F24C1B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				83DB4AEB188D287600515022 /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
+				EC42F2451B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */,
 				EC24840B1B206EE300FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
@@ -3319,14 +3390,17 @@
 				87C9E76A1B0610BC0019AA07 /* UIImage+Size.swift in Sources */,
 				87C9E76B1B0610BC0019AA07 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				87C9E76C1B0610BC0019AA07 /* NSFetchedResultsController+Additions.m in Sources */,
+				EC42F25E1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D621B149937004F97B6 /* NSString+Hmac.m in Sources */,
 				87C9E76D1B0610BC0019AA07 /* Guide.swift in Sources */,
 				ECB2BF691B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				87C9E76E1B0610BC0019AA07 /* ReceiptView.swift in Sources */,
 				87C9E76F1B0610BC0019AA07 /* POSAttachment.m in Sources */,
+				EC42F2501B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				87C9E7701B0610BC0019AA07 /* UIViewController+NeedsReload.m in Sources */,
 				87C9E7711B0610BC0019AA07 /* POSFileManager.m in Sources */,
 				87C9E7721B0610BC0019AA07 /* POSReceiptFoldersTableViewController.m in Sources */,
+				EC42F2491B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				87C9E7731B0610BC0019AA07 /* UINavigationController+Extensions.swift in Sources */,
 				87C9E7741B0610BC0019AA07 /* ForceOrientationNavigationController.swift in Sources */,
 				87C9E7771B0610BC0019AA07 /* SHCOAuthViewController.m in Sources */,
@@ -3508,14 +3582,17 @@
 				EC0D2D351AE786A800595A61 /* UIImage+Size.swift in Sources */,
 				EC0D2D361AE786A800595A61 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				EC0D2D381AE786A800595A61 /* NSFetchedResultsController+Additions.m in Sources */,
+				EC42F25D1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D631B149938004F97B6 /* NSString+Hmac.m in Sources */,
 				EC0D2D391AE786A800595A61 /* Guide.swift in Sources */,
 				ECB2BF681B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC0D2D3A1AE786A800595A61 /* ReceiptView.swift in Sources */,
 				EC0D2D3B1AE786A800595A61 /* POSAttachment.m in Sources */,
+				EC42F24F1B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				EC0D2D3C1AE786A800595A61 /* UIViewController+NeedsReload.m in Sources */,
 				EC0D2D3D1AE786A800595A61 /* POSFileManager.m in Sources */,
 				EC0D2D3E1AE786A800595A61 /* POSReceiptFoldersTableViewController.m in Sources */,
+				EC42F2481B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				EC0D2D3F1AE786A800595A61 /* UINavigationController+Extensions.swift in Sources */,
 				EC0D2D401AE786A800595A61 /* ForceOrientationNavigationController.swift in Sources */,
 				EC0D2D441AE786A800595A61 /* SHCOAuthViewController.m in Sources */,
@@ -3697,14 +3774,17 @@
 				ECB2BE981B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
 				EC2751991B061D550007125D /* POSFolder+Methods.m in Sources */,
 				EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */,
+				EC42F25F1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC2751AE1B061D5A0007125D /* NSString+RandomNumber.m in Sources */,
 				EC2751EB1B061DC80007125D /* UIImage+Localization.swift in Sources */,
 				EC2751DA1B061DBC0007125D /* APIClient+URLSessionTask.swift in Sources */,
 				ECB2BF5D1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
+				EC42F2511B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				EC2751A01B061D5A0007125D /* POSNoRotationNavigationController.m in Sources */,
 				EC2751D11B061D820007125D /* POSUploadViewController.m in Sources */,
 				EC2751B81B061D680007125D /* SHCAttachmentTableViewCell.m in Sources */,
+				EC42F24A1B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				EC2484271B206F7200FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				ECB2BEDF1B452EED008E32E8 /* TextAttributeButton.swift in Sources */,
 				EC2751F01B061DC80007125D /* UIWindow+Navigation.swift in Sources */,
@@ -3886,14 +3966,17 @@
 				EC2DCB491AB84EAB0063755E /* UIImage+Size.swift in Sources */,
 				EC2DCB4A1AB84EAB0063755E /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				EC2DCB4B1AB84EAB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
+				EC42F25B1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D641B149939004F97B6 /* NSString+Hmac.m in Sources */,
 				EC2DCB4C1AB84EAB0063755E /* Guide.swift in Sources */,
 				ECB2BF661B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC2DCB4D1AB84EAB0063755E /* ReceiptView.swift in Sources */,
 				EC2DCB4E1AB84EAB0063755E /* POSAttachment.m in Sources */,
+				EC42F24D1B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				EC2DCB4F1AB84EAB0063755E /* UIViewController+NeedsReload.m in Sources */,
 				EC2DCB501AB84EAB0063755E /* POSFileManager.m in Sources */,
 				EC2DCB511AB84EAB0063755E /* POSReceiptFoldersTableViewController.m in Sources */,
+				EC42F2461B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				EC2DCB521AB84EAB0063755E /* UINavigationController+Extensions.swift in Sources */,
 				EC2DCB531AB84EAB0063755E /* ForceOrientationNavigationController.swift in Sources */,
 				EC2DCB551AB84EAB0063755E /* SHCOAuthViewController.m in Sources */,
@@ -4075,14 +4158,17 @@
 				EC2DCBFA1AB864AB0063755E /* UIImage+Size.swift in Sources */,
 				EC2DCBFB1AB864AB0063755E /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				EC2DCBFC1AB864AB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
+				EC42F25C1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2DCBFD1AB864AB0063755E /* Guide.swift in Sources */,
 				EC2DCBFE1AB864AB0063755E /* ReceiptView.swift in Sources */,
 				ECB2BF671B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC2DCBFF1AB864AB0063755E /* POSAttachment.m in Sources */,
 				EC2DCC001AB864AB0063755E /* UIViewController+NeedsReload.m in Sources */,
+				EC42F24E1B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				EC2DCC011AB864AB0063755E /* POSFileManager.m in Sources */,
 				EC2DCC021AB864AB0063755E /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC2DCC031AB864AB0063755E /* UINavigationController+Extensions.swift in Sources */,
+				EC42F2471B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				EC2DCC041AB864AB0063755E /* ForceOrientationNavigationController.swift in Sources */,
 				EC2DCC061AB864AB0063755E /* SHCOAuthViewController.m in Sources */,
 				EC2DCC071AB864AB0063755E /* POSMailbox+Methods.m in Sources */,

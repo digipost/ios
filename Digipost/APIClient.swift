@@ -14,6 +14,9 @@ import AFNetworking
 
 class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
 
+
+    var stylepickerViewController : StylePickerViewController!
+
     class var sharedClient: APIClient {
         struct Singleton {
             static let sharedClient = APIClient()
@@ -398,7 +401,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
             let fileData = NSData(contentsOfURL: fileURL)
             let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
-            println(string)
             formData.appendPartWithFileData(fileData, name: "file", fileName: "test.html", mimeType:"text/html")
             }, error: nil)
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")

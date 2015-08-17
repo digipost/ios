@@ -44,6 +44,10 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 0.01))
     }
 
+    func viewForInputView() -> UIView {
+        return self.view
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.removeBorders()

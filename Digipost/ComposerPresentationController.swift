@@ -19,7 +19,6 @@ class ComposerPresentationController: UIPresentationController {
 
     override func frameOfPresentedViewInContainerView() -> CGRect {
         let bounds = UIScreen.mainScreen().bounds
-        println(bounds)
         return CGRectMake(0, 400, bounds.size.width, 300)
     }
 
