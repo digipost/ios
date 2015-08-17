@@ -11,7 +11,7 @@ import Cartography
 import WebKit
 
 
-class HTMLEditorViewController: UIViewController {
+class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StylePickerViewControllerDelegate {
 
     var webView : WKWebView!
 
@@ -19,10 +19,17 @@ class HTMLEditorViewController: UIViewController {
 
     var customInputView : CustomInputView!
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        webView = WKWebView(frame: CGRectMake(0, 0, 0, 0))
+        var userContentController = WKUserContentController()
+        var webViewConfiguration = WKWebViewConfiguration()
+        userContentController.addScriptMessageHandler(self, name: "observe")
+        webViewConfiguration.userContentController = userContentController
+
+        webView = WKWebView(frame: CGRectMake(0, 0, 0, 0),configuration: webViewConfiguration)
 
         view.addSubview(webView)
 
@@ -42,6 +49,7 @@ class HTMLEditorViewController: UIViewController {
             }
             return self.stylePickerViewController!
             }()
+        stylePickerViewController.delegate = self
 
         customInputView = CustomInputView()
         APIClient.sharedClient.stylepickerViewController = stylePickerViewController
@@ -55,5 +63,13 @@ class HTMLEditorViewController: UIViewController {
         }
     }
 
+
+    func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool) {
+        println(textStyleModel.value)
+    }
+
+    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        println(message.body)
+    }
 }
 
