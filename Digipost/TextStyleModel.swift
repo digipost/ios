@@ -19,38 +19,42 @@ class TextStyleModel {
     let preferredIconName : String
     var enabled : Bool
 
-    init(value: Any, preferredIconName: String ) {
+    // keyword used around to mark what kind of style it is
+    var keyword : String
+
+    init(value: Any, preferredIconName: String, keyword : String ) {
         self.value = value
         self.preferredIconName = preferredIconName
         enabled = false
+        self.keyword = keyword
     }
 
     private static func boldTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitBold, preferredIconName: "")
+        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitBold, preferredIconName: "", keyword: "Bold")
     }
 
     private static func italicTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitItalic, preferredIconName: "")
+        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitItalic, preferredIconName: "", keyword: "Italic")
     }
 
     private static func underlineTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "")
+        return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "", keyword: "underline")
     }
 
     private static func h1StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "")
+        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "", keyword: "h1")
     }
 
     private static func h2StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "")
+        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "", keyword: "h2")
     }
 
     private static func h3StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH3(), preferredIconName: "")
+        return TextStyleModel(value: UIFont.headlineH3(), preferredIconName: "", keyword: "h3")
     }
 
     private static func paragraphStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "")
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "paragraph")
     }
 
     /**
@@ -64,7 +68,7 @@ class TextStyleModel {
     static func allTextStyleModels() -> [[TextStyleModel]] {
         let multiButtonStyleArray = [boldTextStyleModel(), italicTextStyleModel(), underlineTextStyleModel()]
         let stylePickerArray = [h1StyleModel(), h2StyleModel(), h3StyleModel(), paragraphStyleModel()]
-        return [multiButtonStyleArray]
+        return [multiButtonStyleArray, stylePickerArray]
     }
 
 }

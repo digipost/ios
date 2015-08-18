@@ -9,7 +9,7 @@
 import UIKit
 
 extension StylePickerViewController : UITableViewDataSource {
-    
+
 
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -24,14 +24,23 @@ extension StylePickerViewController : UITableViewDataSource {
         let arrayOfModels = self.textStyleModels[indexPath.row]
         let cell : UITableViewCell = {
             if arrayOfModels.count == 1 {
+                // single choice type cell
                 return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
             } else {
-                let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
-                cell.delegate = self
-                for (index, model) in enumerate(arrayOfModels) {
-                    cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
+                // multi select type cell
+                let firstObject = arrayOfModels.first!
+                    if firstObject.value is UIFont {
+                        let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
+                        return cell
+                    } else {
+                        let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+                        cell.delegate = self
+                        for (index, model) in enumerate(arrayOfModels) {
+                            cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
+                        }
+                        return cell
+
                 }
-                return cell
             }
             }()
         return cell

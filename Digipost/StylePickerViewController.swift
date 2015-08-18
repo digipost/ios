@@ -61,6 +61,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         model.enabled = newValue
 
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
+
         }
     }
 
@@ -87,19 +88,34 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     }
 
 
-    private func setBoldAttributeSelected() {
+    func setKeywordsEnabled(keywords: [String]) {
+        var selectedModels = [TextStyleModel]()
 
+        let allTextStyleModels = textStyleModels.flatMap({ (array) -> Array<TextStyleModel> in
+            return array
+        })
+
+        for model in allTextStyleModels {
+            if contains(keywords, model.keyword) {
+                selectedModels.append(model)
+                model.enabled = true
+            } else {
+                model.enabled = false
+            }
+        }
+
+        self.tableView.reloadData()
     }
 
 
-    /*
-    // MARK: - Navigation
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let selectedTextStyleModels = textStyleModels[indexPath.row]
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if selectedTextStyleModels.count > 1 {
+            if let newView = NSBundle.mainBundle().loadNibNamed("StylePickerDetailListView", owner: self, options: nil).first as? UIView {
+                self.view.addSubview(newView)
+            }
+        }
     }
-    */
 
 }

@@ -29,7 +29,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         userContentController.addScriptMessageHandler(self, name: "observe")
         webViewConfiguration.userContentController = userContentController
 
-        webView = WKWebView(frame: CGRectMake(0, 0, 0, 0),configuration: webViewConfiguration)
+        webView = WKWebView(frame: CGRectMake(0, 0, 0, 0), configuration: webViewConfiguration)
 
         view.addSubview(webView)
 
@@ -49,6 +49,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
             }
             return self.stylePickerViewController!
             }()
+
         stylePickerViewController.delegate = self
 
         customInputView = CustomInputView()
@@ -63,13 +64,23 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         }
     }
 
-
     func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool) {
-        println(textStyleModel.value)
+        webView.toggleKeyword(textStyleModel.keyword)
     }
 
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+        if let stringMessage = message.body as? String {
+            let jsonData = stringMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            var error : NSError?
+            if let responseDictionary = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [NSObject : [String]] {
+                if responseDictionary["style"] != nil {
+                    stylePickerViewController.setKeywordsEnabled(responseDictionary["style"]!)
+                }
+            }
+        }
+
         println(message.body)
+
     }
 }
 

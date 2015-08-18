@@ -221,6 +221,12 @@
 		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC03596E1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC03596F1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC0359701B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC0359711B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC0359721B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
 		EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
@@ -1311,6 +1317,12 @@
 		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
+		ECC683321B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
+		ECC683331B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
+		ECC683341B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
+		ECC683351B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
+		ECC683361B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
+		ECC683371B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
 		ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
@@ -1489,6 +1501,7 @@
 		CA0DE6E00DF276A6BB4DA4FB /* Pods_DigipostTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StylePickerDetailListView.xib; sourceTree = "<group>"; };
 		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -1712,6 +1725,7 @@
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+JavascriptStyling.swift"; sourceTree = "<group>"; };
 		ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
@@ -2410,6 +2424,7 @@
 			children = (
 				EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */,
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
+				EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
 				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
@@ -2447,6 +2462,7 @@
 				EC42F2361B81C755005785DE /* Editor.js */,
 				EC42F23D1B81C760005785DE /* Editor.html */,
 				EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */,
+				ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */,
 				EC42F2601B81E1A3005785DE /* CustomInputView.h */,
 				EC42F2591B81E138005785DE /* CustomInputView.m */,
 				EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */,
@@ -2712,6 +2728,7 @@
 				ECA5A6011B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */,
 				ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
+				EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
@@ -2759,6 +2776,7 @@
 				87C9E7EE1B0610BC0019AA07 /* Images-Shared.xcassets in Resources */,
 				ECB2BFC91B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				87C9E7EF1B0610BC0019AA07 /* UnlockHighAuthenticationLevelView.xib in Resources */,
+				EC0359711B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				ECB2BEC71B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				87C9E7F01B0610BC0019AA07 /* Main_iPad.storyboard in Resources */,
 				87C9E7F11B0610BC0019AA07 /* Images-Prod.xcassets in Resources */,
@@ -2800,6 +2818,7 @@
 				EC0D2DDC1AE786A800595A61 /* WhatsNewGuideTexts.strings in Resources */,
 				EC0D2DDD1AE786A800595A61 /* foundmonmed-webfont.ttf in Resources */,
 				ECB2BEEA1B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
+				EC0359701B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				ECB2BEC61B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC0D2DE01AE786A800595A61 /* LaunchScreen.xib in Resources */,
 				EC0D2DE11AE786A800595A61 /* InfoPlist.strings in Resources */,
@@ -2821,6 +2840,7 @@
 				ECB2BEC91B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC669D611B1498BF004F97B6 /* ValidTokenExpiresSoon.json in Resources */,
 				EC2752311B09D2920007125D /* documents.json in Resources */,
+				EC0359721B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				ECB2BF411B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				ECB2BF331B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				EC42F2581B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
@@ -2855,6 +2875,7 @@
 				EC2DCBCF1AB84EAB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCBD01AB84EAB0063755E /* Main_iPad.storyboard in Resources */,
 				EC2DCBD11AB84EAB0063755E /* Images-Prod.xcassets in Resources */,
+				EC03596E1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				EC2DCBD21AB84EAB0063755E /* Main_iPhone.storyboard in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
@@ -2891,6 +2912,7 @@
 				EC2DCC801AB864AB0063755E /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				EC2DCC811AB864AB0063755E /* Main_iPad.storyboard in Resources */,
 				EC2DCC821AB864AB0063755E /* Images-Prod.xcassets in Resources */,
+				EC03596F1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				EC2DCC831AB864AB0063755E /* Main_iPhone.storyboard in Resources */,
 				EC2DCC841AB864AB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCC851AB864AB0063755E /* WhatsNewGuideTexts.strings in Resources */,
@@ -3234,6 +3256,7 @@
 				EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				ECB2BF831B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				ECC683321B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				ECB2BE761B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
@@ -3426,6 +3449,7 @@
 				EC8F4A1B1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				87C9E7821B0610BC0019AA07 /* POSRootResource.m in Sources */,
 				ECB2BF871B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				ECC683361B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				ECB2BE7A1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				87C9E7831B0610BC0019AA07 /* ExtendedTouchView.swift in Sources */,
 				87C9E7841B0610BC0019AA07 /* UploadMenuDataSource.swift in Sources */,
@@ -3618,6 +3642,7 @@
 				EC8F4A1A1B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC0D2D521AE786A800595A61 /* POSRootResource.m in Sources */,
 				ECB2BF861B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				ECC683351B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				ECB2BE791B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC0D2D531AE786A800595A61 /* ExtendedTouchView.swift in Sources */,
 				EC0D2D541AE786A800595A61 /* UploadMenuDataSource.swift in Sources */,
@@ -3810,6 +3835,7 @@
 				EC27519F1B061D5A0007125D /* NSNumber+JsonParsing.m in Sources */,
 				EC2751BC1B061D6E0007125D /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC2751BE1B061D720007125D /* POSNewFolderViewController.m in Sources */,
+				ECC683371B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				EC2751CF1B061D7E0007125D /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECB2BEF41B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
 				EC2751E21B061DC80007125D /* Debug.swift in Sources */,
@@ -4002,6 +4028,7 @@
 				EC8F4A181B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC2DCB601AB84EAB0063755E /* POSRootResource.m in Sources */,
 				ECB2BF841B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				ECC683331B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				ECB2BE771B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCB611AB84EAB0063755E /* ExtendedTouchView.swift in Sources */,
 				EC2DCB621AB84EAB0063755E /* UploadMenuDataSource.swift in Sources */,
@@ -4194,6 +4221,7 @@
 				EC8F4A191B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				EC2DCC121AB864AB0063755E /* ExtendedTouchView.swift in Sources */,
 				ECB2BF851B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				ECC683341B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
 				ECB2BE781B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC2DCC131AB864AB0063755E /* UploadMenuDataSource.swift in Sources */,
 				EC2DCC141AB864AB0063755E /* SHCSplitViewController.m in Sources */,
