@@ -81,7 +81,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y5M-Ea-E7f">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l8W-F1-4n4">
@@ -141,53 +141,48 @@
             </objects>
             <point key="canvasLocation" x="676" y="683"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="kdc-AE-kcX">
+        <!--Title-->
+        <scene sceneID="RLg-2p-SQj">
             <objects>
-                <viewController id="Hfx-hm-fFK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="stylePickerDetailListViewController" id="Cv4-pP-hTJ" customClass="StylePickerDetailListViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ckH-Qk-R2J"/>
-                        <viewControllerLayoutGuide type="bottom" id="loh-75-cdW"/>
+                        <viewControllerLayoutGuide type="top" id="zbF-Aj-wnT"/>
+                        <viewControllerLayoutGuide type="bottom" id="ISi-Pr-euI"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="e3X-m9-9eS">
+                    <view key="view" contentMode="scaleToFill" id="r5P-Gn-gMQ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ixo-fq-8in">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="3ej-fk-nIE"/>
-                                </items>
-                            </navigationBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0je-jE-7tu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1QQ-Ak-5by">
                                 <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9tR-NN-v1j">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9tR-NN-v1j" id="I8T-1z-eux">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-E0-GQI">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Velg stil" id="PqM-c4-vug">
+                                        <barButtonItem key="leftBarButtonItem" title="Tilbake" id="yZB-5Y-isI"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="0je-jE-7tu" secondAttribute="trailing" constant="-16" id="XOq-To-ro6"/>
-                            <constraint firstItem="ixo-fq-8in" firstAttribute="top" secondItem="e3X-m9-9eS" secondAttribute="topMargin" id="akn-6I-rd7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ixo-fq-8in" secondAttribute="trailing" constant="-16" id="bXd-AN-TY5"/>
-                            <constraint firstItem="ixo-fq-8in" firstAttribute="leading" secondItem="e3X-m9-9eS" secondAttribute="leadingMargin" constant="-16" id="d4H-mE-EuY"/>
-                            <constraint firstItem="0je-jE-7tu" firstAttribute="leading" secondItem="e3X-m9-9eS" secondAttribute="leadingMargin" constant="-16" id="lgZ-YZ-vH2"/>
-                            <constraint firstItem="0je-jE-7tu" firstAttribute="top" secondItem="ixo-fq-8in" secondAttribute="bottom" id="ocS-HU-Tgx"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="0je-jE-7tu" secondAttribute="bottom" id="wON-iK-D03"/>
+                            <constraint firstItem="1QQ-Ak-5by" firstAttribute="top" secondItem="0Pu-E0-GQI" secondAttribute="bottom" id="CS4-o0-nYB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Pu-E0-GQI" secondAttribute="trailing" constant="-16" id="NCc-6a-8Kb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="1QQ-Ak-5by" secondAttribute="trailing" constant="-16" id="Ot3-Ug-t6c"/>
+                            <constraint firstItem="1QQ-Ak-5by" firstAttribute="leading" secondItem="r5P-Gn-gMQ" secondAttribute="leadingMargin" constant="-16" id="PVC-Sg-xWb"/>
+                            <constraint firstItem="0Pu-E0-GQI" firstAttribute="top" secondItem="r5P-Gn-gMQ" secondAttribute="topMargin" id="lTD-z4-KzF"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="1QQ-Ak-5by" secondAttribute="bottom" id="vM8-15-lJE"/>
+                            <constraint firstItem="0Pu-E0-GQI" firstAttribute="leading" secondItem="r5P-Gn-gMQ" secondAttribute="leadingMargin" constant="-16" id="vwE-cp-htz"/>
+                            <constraint firstItem="1QQ-Ak-5by" firstAttribute="top" secondItem="0Pu-E0-GQI" secondAttribute="bottom" id="xXf-Yt-4nv"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="uQz-F2-uTE"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JxA-R2-AJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcT-fT-Kp5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1505" y="683"/>
+            <point key="canvasLocation" x="1471" y="683"/>
         </scene>
     </scenes>
 </document>

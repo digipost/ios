@@ -227,6 +227,12 @@
 		EC0359701B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0359711B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0359721B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
+		EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
+		EC0359751B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
+		EC0359761B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
+		EC0359771B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
+		EC0359781B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
+		EC0359791B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
 		EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
@@ -1502,6 +1508,7 @@
 		CBF883D640F357C652CBF4C9 /* Pods-DigipostTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostTests/Pods-DigipostTests.release.xcconfig"; sourceTree = "<group>"; };
 		CDF1AC9A09A1768C2A4D6E17 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StylePickerDetailListView.xib; sourceTree = "<group>"; };
+		EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerDetailListViewController.swift; sourceTree = "<group>"; };
 		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -2157,6 +2164,15 @@
 			name = NewFeatures;
 			sourceTree = "<group>";
 		};
+		EC03597A1B8368830025214C /* StylePickerDetailListView */ = {
+			isa = PBXGroup;
+			children = (
+				EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */,
+				EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */,
+			);
+			name = StylePickerDetailListView;
+			sourceTree = "<group>";
+		};
 		EC0F2B7519B8930E0019212E /* Upload */ = {
 			isa = PBXGroup;
 			children = (
@@ -2424,8 +2440,8 @@
 			children = (
 				EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */,
 				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
-				EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */,
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
+				EC03597A1B8368830025214C /* StylePickerDetailListView */,
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
 				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
@@ -3318,6 +3334,7 @@
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC24840D1B206F0100FC372C /* Constants.swift in Sources */,
 				AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */,
+				EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				ECB2BFB71B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
@@ -3511,6 +3528,7 @@
 				87C9E7A91B0610BC0019AA07 /* POSLetterPopoverTableViewCell.m in Sources */,
 				87C9E7AA1B0610BC0019AA07 /* NSError+ExtraInfo.m in Sources */,
 				87C9E7AB1B0610BC0019AA07 /* UIScrollViewExtensions.swift in Sources */,
+				EC0359781B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				EC24841B1B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				ECB2BFBB1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				87C9E7AD1B0610BC0019AA07 /* String+Extensions.swift in Sources */,
@@ -3704,6 +3722,7 @@
 				EC0D2D7F1AE786A800595A61 /* POSLetterPopoverTableViewCell.m in Sources */,
 				EC0D2D801AE786A800595A61 /* NSError+ExtraInfo.m in Sources */,
 				EC0D2D811AE786A800595A61 /* UIScrollViewExtensions.swift in Sources */,
+				EC0359771B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				EC24841A1B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				ECB2BFBA1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				EC0D2D831AE786A800595A61 /* String+Extensions.swift in Sources */,
@@ -3897,6 +3916,7 @@
 				ECB2BF791B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				EC2751911B061D550007125D /* POSModelManager.m in Sources */,
 				ECB2BF891B452F1B008E32E8 /* String+Substring.swift in Sources */,
+				EC0359791B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				ECB2BF481B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */,
 				ECA5A5FF1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
@@ -4090,6 +4110,7 @@
 				EC2DCB881AB84EAB0063755E /* POSLetterPopoverTableViewCell.m in Sources */,
 				EC2DCB891AB84EAB0063755E /* NSError+ExtraInfo.m in Sources */,
 				EC2DCB8A1AB84EAB0063755E /* UIScrollViewExtensions.swift in Sources */,
+				EC0359751B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				EC2484181B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				ECB2BFB81B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				EC2DCB8C1AB84EAB0063755E /* String+Extensions.swift in Sources */,
@@ -4283,6 +4304,7 @@
 				EC2DCC3A1AB864AB0063755E /* NSError+ExtraInfo.m in Sources */,
 				EC2DCC3B1AB864AB0063755E /* UIScrollViewExtensions.swift in Sources */,
 				EC2DCC3D1AB864AB0063755E /* String+Extensions.swift in Sources */,
+				EC0359761B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				EC2484191B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				ECB2BFB91B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				EC2DCC3E1AB864AB0063755E /* NSURLRequest+QueryParameters.m in Sources */,

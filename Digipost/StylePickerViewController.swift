@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Cartography
 
 protocol StylePickerViewControllerDelegate {
 
@@ -24,6 +25,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     var delegate : StylePickerViewControllerDelegate?
 
     var textStyleModels : [[TextStyleModel]]!
+
+    var stylePickerDetailListViewController : StylePickerDetailListViewController?
 
     func currentSelectedAttributes() -> [TextStyleModel] {
         let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> [TextStyleModel] in
@@ -112,8 +115,35 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         let selectedTextStyleModels = textStyleModels[indexPath.row]
 
         if selectedTextStyleModels.count > 1 {
-            if let newView = NSBundle.mainBundle().loadNibNamed("StylePickerDetailListView", owner: self, options: nil).first as? UIView {
+            let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
+            let viewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? UIViewController
+            if let newView = viewController?.view {
                 self.view.addSubview(newView)
+
+                var group = constrain(self.view, newView ) { firstView, secondView in
+                    secondView.left == firstView.right
+                    secondView.width == firstView.width
+                    secondView.top == firstView.top
+                    secondView.bottom == firstView.bottom
+                }
+                self.view.layoutIfNeeded()
+
+                UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                    layout(self.view, newView, replace: group) { firstView, secondView in
+                        secondView.left == firstView.left
+                        secondView.top == firstView.top
+                        secondView.right == firstView.right
+                        secondView.bottom == firstView.bottom
+                    }
+                    self.view.layoutIfNeeded()
+
+                }, completion: { (complete) -> Void in
+
+                })
+
+                stylePickerDetailListViewController = viewController as? StylePickerDetailListViewController
+                stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
+
             }
         }
     }
