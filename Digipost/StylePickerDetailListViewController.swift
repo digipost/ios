@@ -34,7 +34,6 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
-
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -48,15 +47,16 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         let textStyleModel = textStyleModels[indexPath.row]
         if let actualName = textStyleModel.name {
             cell.textLabel?.text = actualName
+        } else {
+            cell.textLabel?.text = textStyleModel.keyword
         }
-        cell.textLabel?.text = textStyleModel.keyword
 
         return cell
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let textStyleModel = textStyleModels[indexPath.row]
-
+        textStyleModels.setTextStyleModelEnabledAndAllOthersDisabled(textStyleModel)
         delegate?.stylePickerDetailLIstViewControllerDidSelectTextStyleModel(self, textStyleModel: textStyleModel)
 
     }

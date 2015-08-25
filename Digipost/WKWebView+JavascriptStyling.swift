@@ -16,9 +16,12 @@ extension WKWebView {
     }
 
     private func executeCommand(keyword : String) {
-        if keyword == "h1" {
+        if keyword == "h1" || keyword == "h2" || keyword == "p" {
+            evaluateJavaScript("document.execCommand('formatBlock', false, '\(keyword)');", completionHandler: { (response, error) -> Void in
 
-            evaluateJavaScript("document.execCommand('formatBlock', false, '<h1>');", completionHandler: { (response, error) -> Void in
+            })
+        } else if keyword == "align-left" || keyword == "align-right" || keyword == "align-center" {
+            evaluateJavaScript("DigipostEditor.setClassNamedForSelectedNode('\(keyword)');", completionHandler: { (response, error) -> Void in
 
             })
         } else {

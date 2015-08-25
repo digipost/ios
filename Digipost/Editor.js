@@ -24,6 +24,14 @@ DigipostEditor.currentStyling = function(e) {
     DigipostEditor.addStyleIfPresentInSelection(styling, "Bold");
     DigipostEditor.addStyleIfPresentInSelection(styling, "Italic");
     DigipostEditor.addStyleIfPresentInSelection(styling, "h1");
+    DigipostEditor.addStyleIfPresentInSelection(styling, "h2");
+    DigipostEditor.addStyleIfPresentInSelection(styling, "p");
+
+    // group that does not show up in ordinary checks for styling,
+    // TOOD search for classes on current nodes instead
+    DigipostEditor.addStyleIfPresentInSelection(styling, "align-left");
+    DigipostEditor.addStyleIfPresentInSelection(styling, "align-center");
+    DigipostEditor.addStyleIfPresentInSelection(styling, "align-right");
     return styling;
 }
 
@@ -31,6 +39,11 @@ DigipostEditor.addStyleIfPresentInSelection = function(arrayToAddTo, styleName) 
     if (DigipostEditor.selectionHasStyle(styleName)) {
         arrayToAddTo.push(styleName);
     }
+}
+
+DigipostEditor.setClassNamedForSelectedNode = function(cssClass) {
+    var parentNode = window.getSelection().focusNode.parentNode;
+    $(parentNode).addClass(cssClass);
 }
 
 /**

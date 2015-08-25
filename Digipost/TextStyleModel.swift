@@ -50,7 +50,7 @@ class TextStyleModel {
     }
 
     private static func h2StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "", keyword: "h2")
+        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "", keyword: "h2", name: "Medium overskrift")
     }
 
     private static func h3StyleModel() -> TextStyleModel {
@@ -58,7 +58,19 @@ class TextStyleModel {
     }
 
     private static func paragraphStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "paragraph")
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "p", name: "Brødtekst")
+    }
+
+    private static func leftAlignStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-left")
+    }
+
+    private static func rightAlignStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-right")
+    }
+
+    private static func centerAlignStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-center")
     }
 
     /**
@@ -69,10 +81,13 @@ class TextStyleModel {
     :returns: array with array of textstylemodels
 
     */
-    static func allTextStyleModels() -> [[TextStyleModel]] {
+    static func allTextStyleModels() -> [[[TextStyleModel]]] {
         let multiButtonStyleArray = [boldTextStyleModel(), italicTextStyleModel(), underlineTextStyleModel()]
-        let stylePickerArray = [h1StyleModel(), h2StyleModel(), h3StyleModel(), paragraphStyleModel()]
-        return [multiButtonStyleArray, stylePickerArray]
+        var aParagraphStyleModel = paragraphStyleModel()
+        aParagraphStyleModel.enabled = true
+        let stylePickerArray = [h1StyleModel(), h2StyleModel(), h3StyleModel(), aParagraphStyleModel]
+        let buttonGroups = [[multiButtonStyleArray, stylePickerArray], [[leftAlignStyleModel(), centerAlignStyleModel(), rightAlignStyleModel()]]]
+        return buttonGroups
     }
 
 }

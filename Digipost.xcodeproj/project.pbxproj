@@ -864,6 +864,12 @@
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC3533541B0C74B900523419 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
 		EC3533561B0C7A8300523419 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
+		EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
+		EC3A4F171B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
+		EC3A4F181B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
+		EC3A4F191B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
+		EC3A4F1A1B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
+		EC3A4F1B1B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
@@ -1586,6 +1592,7 @@
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
+		EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+TextStyleModel.swift"; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
@@ -2443,6 +2450,7 @@
 				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
 				EC03597A1B8368830025214C /* StylePickerDetailListView */,
 				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
+				EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */,
 				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
 				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
 				ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */,
@@ -3215,6 +3223,7 @@
 			files = (
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
+				EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
 				ECB2BF571B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
@@ -3409,6 +3418,7 @@
 			files = (
 				ECB2BEA41B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				EC2484201B206F5B00FC372C /* Constants.swift in Sources */,
+				EC3A4F1A1B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF701B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				87C9E75F1B0610BC0019AA07 /* UploadGuideViewController.swift in Sources */,
 				ECB2BF5B1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
@@ -3603,6 +3613,7 @@
 			files = (
 				ECB2BEA31B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				EC24841F1B206F5B00FC372C /* Constants.swift in Sources */,
+				EC3A4F191B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF6F1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC0D2D281AE786A800595A61 /* UploadGuideViewController.swift in Sources */,
 				ECB2BF5A1B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
@@ -3797,6 +3808,7 @@
 			files = (
 				ECB2BEBB1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				EC2751C41B061D760007125D /* POSDocumentTableViewCell.m in Sources */,
+				EC3A4F1B1B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				EC2751E31B061DC80007125D /* Localization.swift in Sources */,
 				ECB2BE8A1B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2751BB1B061D6C0007125D /* SHCLoginViewController.m in Sources */,
@@ -3991,6 +4003,7 @@
 			files = (
 				ECB2BEA11B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				EC24841D1B206F5A00FC372C /* Constants.swift in Sources */,
+				EC3A4F171B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF6D1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC2DCB3E1AB84EAB0063755E /* UploadGuideViewController.swift in Sources */,
 				ECB2BF581B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
@@ -4185,6 +4198,7 @@
 			files = (
 				ECB2BEA21B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				EC24841E1B206F5A00FC372C /* Constants.swift in Sources */,
+				EC3A4F181B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF6E1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				EC2DCBEF1AB864AB0063755E /* UploadGuideViewController.swift in Sources */,
 				ECB2BF591B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,

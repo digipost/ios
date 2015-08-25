@@ -24,14 +24,14 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     var delegate : StylePickerViewControllerDelegate?
 
-    var textStyleModels : [[TextStyleModel]]!
+    var textStyleModels : [[[TextStyleModel]]]!
 
     var stylePickerDetailListViewController : StylePickerDetailListViewController?
 
     var stylePickerDetailListViewControllerConstraintGroup : ConstraintGroup?
 
     func currentSelectedAttributes() -> [TextStyleModel] {
-        let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> [TextStyleModel] in
+        let selectedTextStyles = currentShowingTextStyleModels().flatMap { (arrayOfModels) -> [TextStyleModel] in
             return arrayOfModels.filter { (element) -> Bool in
                 let booleanValue = element.enabled
                 return element.enabled
@@ -53,6 +53,11 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         return self.view
     }
 
+    func currentShowingTextStyleModels() -> [[TextStyleModel]] {
+        let selectedIndex = segmentedControl.selectedSegmentIndex
+        return textStyleModels[selectedIndex]
+    }
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.removeBorders()
@@ -60,18 +65,18 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
     func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
         if let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell) {
-        var models = textStyleModels[indexPath.row]
+            var models = currentShowingTextStyleModels()[indexPath.row]
 
-        var model = models[atIndex]
-        model.enabled = newValue
+            var model = models[atIndex]
+            model.enabled = newValue
 
-        delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
+            delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
 
         }
     }
 
     func setupForAttributedString(attributedString: NSAttributedString )  {
-        let allModels = textStyleModels.flatMap({ (array) -> Array<TextStyleModel> in
+        let allModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
             return array
         })
 
@@ -96,7 +101,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     func setKeywordsEnabled(keywords: [String]) {
         var selectedModels = [TextStyleModel]()
 
-        let allTextStyleModels = textStyleModels.flatMap({ (array) -> Array<TextStyleModel> in
+        let allTextStyleModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
             return array
         })
 
@@ -113,16 +118,14 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedTextStyleModels = textStyleModels[indexPath.row]
+        let selectedTextStyleModels = currentShowingTextStyleModels()[indexPath.row]
 
         if selectedTextStyleModels.count > 1 {
             let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
-
             self.stylePickerDetailListViewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? StylePickerDetailListViewController
             stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
             stylePickerDetailListViewController?.delegate = self
             animateDetailListViewController(shouldShowView: true)
-
         }
     }
 
@@ -184,4 +187,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         animateDetailListViewController(shouldShowView: false)
     }
 
+    @IBAction func segmentedControlValueChanged(sender : UISegmentedControl) {
+        self.tableView.reloadData()
+    }
 }

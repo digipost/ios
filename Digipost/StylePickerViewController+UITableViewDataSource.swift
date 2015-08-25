@@ -17,11 +17,11 @@ extension StylePickerViewController : UITableViewDataSource {
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.textStyleModels.count
+        return self.currentShowingTextStyleModels().count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let arrayOfModels = self.textStyleModels[indexPath.row]
+        let arrayOfModels = currentShowingTextStyleModels()[indexPath.row]
         let cell : UITableViewCell = {
             if arrayOfModels.count == 1 {
                 // single choice type cell
@@ -31,6 +31,9 @@ extension StylePickerViewController : UITableViewDataSource {
                 let firstObject = arrayOfModels.first!
                     if firstObject.value is UIFont {
                         let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
+                        let models = arrayOfModels.selectedTextStyleModel()
+                        cell.detailTextLabel?.text = models?.name
+                        cell.textLabel?.text = "Stil"
                         return cell
                     } else {
                         let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
@@ -39,7 +42,6 @@ extension StylePickerViewController : UITableViewDataSource {
                             cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
                         }
                         return cell
-
                 }
             }
             }()
