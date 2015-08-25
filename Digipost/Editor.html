@@ -1,33 +1,36 @@
 <html>
     <head>
+        <meta name="viewport" content="initial-scale=1.0" />
         <style>
 
 html {
-    margin: 20 20 20 20;
-
 }
 
 body {
 
-<!--    min-height: 100%;-->
-
-<!--    overflow: hidden;-->
 
 }
+
 
 #editor {
+    margin: 10 10 10 10;
     background-color: #f0f0f0;
-}
 
-        </style>
+}
+        .align-center {
+            text-align: center;
+        }
+
+.align-right {
+            text-align: right;
+        }
+            </style>
     </head>
 
 <body>
+    <script type="text/javascript" src="Editor.js"> </script>
 
-<script type="text/javascript" src="Editor.js">
-    </script>
-
-<div id="editor" contentEditable="true" >
+<div class="city" id="editor" contentEditable="true" >
     <p> Hello world!</p>
 </div>
 

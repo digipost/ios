@@ -15,7 +15,7 @@ protocol StylePickerViewControllerDelegate {
 
 }
 
-class StylePickerViewController: UIViewController, UITableViewDelegate, SegmentedControlTableViewCellDelegate {
+class StylePickerViewController: UIViewController, UITableViewDelegate, SegmentedControlTableViewCellDelegate, StylePickerDetailListViewControllerDelegate {
 
     static let storyboardIdentifier = "stylePickerViewController"
 
@@ -27,6 +27,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     var textStyleModels : [[TextStyleModel]]!
 
     var stylePickerDetailListViewController : StylePickerDetailListViewController?
+
+    var stylePickerDetailListViewControllerConstraintGroup : ConstraintGroup?
 
     func currentSelectedAttributes() -> [TextStyleModel] {
         let selectedTextStyles = textStyleModels.flatMap { (arrayOfModels) -> [TextStyleModel] in
@@ -110,42 +112,76 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         self.tableView.reloadData()
     }
 
-
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedTextStyleModels = textStyleModels[indexPath.row]
 
         if selectedTextStyleModels.count > 1 {
             let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
-            let viewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? UIViewController
-            if let newView = viewController?.view {
-                self.view.addSubview(newView)
 
+            self.stylePickerDetailListViewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? StylePickerDetailListViewController
+            stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
+            stylePickerDetailListViewController?.delegate = self
+            animateDetailListViewController(shouldShowView: true)
+
+        }
+    }
+
+    private func animateDetailListViewController(#shouldShowView: Bool) {
+        if shouldShowView {
+
+            if let newView = self.stylePickerDetailListViewController?.view {
+                self.view.addSubview(newView)
                 var group = constrain(self.view, newView ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
                     secondView.top == firstView.top
                     secondView.bottom == firstView.bottom
                 }
+
                 self.view.layoutIfNeeded()
 
                 UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                    layout(self.view, newView, replace: group) { firstView, secondView in
+                    self.stylePickerDetailListViewControllerConstraintGroup = layout(self.view, newView, replace: group) { firstView, secondView in
                         secondView.left == firstView.left
                         secondView.top == firstView.top
                         secondView.right == firstView.right
                         secondView.bottom == firstView.bottom
                     }
+
                     self.view.layoutIfNeeded()
 
-                }, completion: { (complete) -> Void in
+                    }, completion: { (complete) -> Void in
 
                 })
+            }
+        } else {
 
-                stylePickerDetailListViewController = viewController as? StylePickerDetailListViewController
-                stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
+            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                var group = layout(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
+                    secondView.left == firstView.right
+                    secondView.width == firstView.width
+                    secondView.top == firstView.top
+                    secondView.bottom == firstView.bottom
+                }
 
+                }, completion: { (complete) -> Void in
+                    self.stylePickerDetailListViewController?.view.removeFromSuperview()
+                    self.stylePickerDetailListViewController = nil
+            })
+
+            if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
+                self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
             }
         }
+    }
+
+    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel) {
+        animateDetailListViewController(shouldShowView: false)
+        delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: textStyleModel, enabled: true)
+    }
+
+    func stylePickerDetailLIstViewControllerDidTapBackButton(stylePickerDetailListViewController: StylePickerDetailListViewController) {
+        animateDetailListViewController(shouldShowView: false)
     }
 
 }

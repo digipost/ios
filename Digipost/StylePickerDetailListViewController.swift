@@ -11,15 +11,22 @@ import UIKit
 protocol StylePickerDetailListViewControllerDelegate {
 
     func stylePickerDetailLIstViewControllerDidTapBackButton(stylePickerDetailListViewController: StylePickerDetailListViewController)
+    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel)
+
 }
 
-class StylePickerDetailListViewController: UIViewController, UITableViewDataSource {
+class StylePickerDetailListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var textStyleModels : [TextStyleModel]!
 
+    var delegate : StylePickerDetailListViewControllerDelegate?
+
+    @IBOutlet var tableView : UITableView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,41 +44,21 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let textStyleModel = textStyleModels[indexPath.row]
+        if let actualName = textStyleModel.name {
+            cell.textLabel?.text = actualName
+        }
+        cell.textLabel?.text = textStyleModel.keyword
 
-        return tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
-
-//        let arrayOfModels = self.textStyleModels[indexPath.row]
-//        let cell : UITableViewCell = {
-//            if arrayOfModels.count == 1 {
-//                // single choice type cell
-//            } else {
-//                // multi select type cell
-//                let firstObject = arrayOfModels.first!
-//                    if firstObject.value is UIFont {
-//                        let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
-//                        return cell
-//                    } else {
-//                        let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
-//                        cell.delegate = self
-//                        for (index, model) in enumerate(arrayOfModels) {
-//                            cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
-//                        }
-//                        return cell
-//
-//                }
-//            }
-//            }()
-//        return cell
+        return cell
     }
 
-    /*
-    // MARK: - Navigation
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let textStyleModel = textStyleModels[indexPath.row]
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        delegate?.stylePickerDetailLIstViewControllerDidSelectTextStyleModel(self, textStyleModel: textStyleModel)
+
     }
-    */
-
 }
+

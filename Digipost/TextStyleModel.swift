@@ -20,13 +20,17 @@ class TextStyleModel {
     var enabled : Bool
 
     // keyword used around to mark what kind of style it is
-    var keyword : String
+    let keyword : String
 
-    init(value: Any, preferredIconName: String, keyword : String ) {
+    //  Human readable name for the text style ex. "Big headline" for h1
+    let name : String?
+
+    init(value: Any, preferredIconName: String, keyword : String, name : String? = nil) {
         self.value = value
         self.preferredIconName = preferredIconName
         enabled = false
         self.keyword = keyword
+        self.name = name
     }
 
     private static func boldTextStyleModel() -> TextStyleModel {
@@ -42,7 +46,7 @@ class TextStyleModel {
     }
 
     private static func h1StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "", keyword: "h1")
+        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "", keyword: "h1", name: "Stor overskrift")
     }
 
     private static func h2StyleModel() -> TextStyleModel {

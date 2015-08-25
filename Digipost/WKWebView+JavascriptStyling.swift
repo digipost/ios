@@ -16,10 +16,18 @@ extension WKWebView {
     }
 
     private func executeCommand(keyword : String) {
+        if keyword == "h1" {
 
-        evaluateJavaScript("document.execCommand('\(keyword)', false, null);", completionHandler: { (response, error) -> Void in
+            evaluateJavaScript("document.execCommand('formatBlock', false, '<h1>');", completionHandler: { (response, error) -> Void in
 
-        })
+            })
+        } else {
+            evaluateJavaScript("document.execCommand('\(keyword)', false, null);", completionHandler: { (response, error) -> Void in
+
+            })
+        }
+
+
 
     }
 
