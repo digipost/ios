@@ -1,4 +1,29 @@
 
+var DigipostEditor = {};
+
+//// Textalignment
+var alignmentEnum = {
+    left: "left",
+    right: "right",
+    center: "center"
+};
+
+var TextAlignment = function (alignment) {
+    this.alignment = alignment;
+};
+
+TextAlignment.prototype.stringValue = function() {
+    return "align-" + this.alignment;
+};
+
+TextAlignment.allAlignments = function() {
+    var alignments = []
+    for(var key in alignmentEnum) {
+        var value = alignmentEnum[key];
+        alignments.push("align-" + value);
+    }
+    return alignments;
+};
 
 // returns an array with style strings to native app.
 // all values not present are non-active
@@ -8,15 +33,25 @@
 
 document.addEventListener("selectionchange", function() {
                           var style = DigipostEditor.currentStyling();
-                          var returnDictionary = { "style" : style };
-                          var jsonString = JSON.stringify(returnDictionary);
+                          var parentNode = window.getSelection().focusNode.parentNode;
 
+                          var classes = parentNode.classList
+
+                          console.log(classes[0]);
+
+                          var returnDictionary = {
+                          "style" : style,
+                          "classes" : classes
+                          };
+
+
+
+                          var jsonString = JSON.stringify(returnDictionary);
+                          // observe is a keyword the native code listens for, it triggers a callback in the app.
                           window.webkit.messageHandlers.observe.postMessage(jsonString);
 
                           });
 
-
-var DigipostEditor = {};
 
 // returns a comma separated list of the styling in the current selection
 DigipostEditor.currentStyling = function(e) {
@@ -32,6 +67,7 @@ DigipostEditor.currentStyling = function(e) {
     DigipostEditor.addStyleIfPresentInSelection(styling, "align-left");
     DigipostEditor.addStyleIfPresentInSelection(styling, "align-center");
     DigipostEditor.addStyleIfPresentInSelection(styling, "align-right");
+
     return styling;
 }
 
@@ -41,8 +77,20 @@ DigipostEditor.addStyleIfPresentInSelection = function(arrayToAddTo, styleName) 
     }
 }
 
+DigipostEditor.setAlignment = function(anAlignment) {
+    var parentNode = window.getSelection().focusNode.parentNode;
+    var allAlignments = TextAlignment.allAlignments();
+
+    for (index in allAlignments) {
+        $(parentNode).removeClass(allAlignments[index]);
+    }
+
+    $(parentNode).addClass(anAlignment);
+}
+
 DigipostEditor.setClassNamedForSelectedNode = function(cssClass) {
     var parentNode = window.getSelection().focusNode.parentNode;
+    
     $(parentNode).addClass(cssClass);
 }
 

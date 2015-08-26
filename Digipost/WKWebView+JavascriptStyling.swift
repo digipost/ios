@@ -21,7 +21,7 @@ extension WKWebView {
 
             })
         } else if keyword == "align-left" || keyword == "align-right" || keyword == "align-center" {
-            evaluateJavaScript("DigipostEditor.setClassNamedForSelectedNode('\(keyword)');", completionHandler: { (response, error) -> Void in
+            evaluateJavaScript("DigipostEditor.setAlignment('\(keyword)');", completionHandler: { (response, error) -> Void in
 
             })
         } else {

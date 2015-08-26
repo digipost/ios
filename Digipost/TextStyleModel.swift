@@ -62,15 +62,15 @@ class TextStyleModel {
     }
 
     private static func leftAlignStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-left")
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "left", keyword: "align-left")
     }
 
     private static func rightAlignStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-right")
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "right", keyword: "align-right")
     }
 
     private static func centerAlignStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "align-center")
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "center", keyword: "align-center")
     }
 
     /**
