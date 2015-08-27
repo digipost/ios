@@ -16,7 +16,7 @@ enum TextStyleModelType {
 class TextStyleModel {
 
     let value : Any
-    let preferredIconName : String
+    let preferredIconName : String?
     var enabled : Bool
 
     // keyword used around to mark what kind of style it is
@@ -25,7 +25,7 @@ class TextStyleModel {
     //  Human readable name for the text style ex. "Big headline" for h1
     let name : String?
 
-    init(value: Any, preferredIconName: String, keyword : String, name : String? = nil) {
+    init(value: Any, preferredIconName: String? = nil, keyword : String, name : String? = nil) {
         self.value = value
         self.preferredIconName = preferredIconName
         enabled = false
@@ -34,31 +34,31 @@ class TextStyleModel {
     }
 
     private static func boldTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitBold, preferredIconName: "", keyword: "Bold")
+        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitBold, preferredIconName: "Bold", keyword: "Bold")
     }
 
     private static func italicTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitItalic, preferredIconName: "", keyword: "Italic")
+        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitItalic, preferredIconName: "Italic", keyword: "Italic")
     }
 
     private static func underlineTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "", keyword: "underline")
+        return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "Link", keyword: "underline")
     }
 
     private static func h1StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH1(), preferredIconName: "", keyword: "h1", name: "Stor overskrift")
+        return TextStyleModel(value: UIFont.headlineH1(), keyword: "h1", name: "Stor overskrift")
     }
 
     private static func h2StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH2(), preferredIconName: "", keyword: "h2", name: "Medium overskrift")
+        return TextStyleModel(value: UIFont.headlineH2(), keyword: "h2", name: "Medium overskrift")
     }
 
     private static func h3StyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.headlineH3(), preferredIconName: "", keyword: "h3")
+        return TextStyleModel(value: UIFont.headlineH3(), keyword: "h3")
     }
 
     private static func paragraphStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "", keyword: "p", name: "Brødtekst")
+        return TextStyleModel(value: UIFont.paragraph(), keyword: "p", name: "Brødtekst")
     }
 
     private static func leftAlignStyleModel() -> TextStyleModel {

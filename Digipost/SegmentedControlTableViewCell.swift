@@ -28,6 +28,13 @@ class SegmentedControlTableViewCell: UITableViewCell {
 
     }
 
+    func setupWithModels(textStyleModels : [TextStyleModel] ) {
+
+        for (index, model) in enumerate(textStyleModels) {
+            multiselectSegmentedControl.setImage(UIImage(named: model.preferredIconName!)!, atIndex: index)
+        }
+    }
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

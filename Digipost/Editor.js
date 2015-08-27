@@ -25,33 +25,35 @@ TextAlignment.allAlignments = function() {
     return alignments;
 };
 
+document.addEventListener("selectionchange", function() {
+                          DigipostEditor.reportBackCurrentStyling();
+                          });
+
+
 // returns an array with style strings to native app.
 // all values not present are non-active
 //
 // Example output:
 // { "style: : ["Bold", "Italic"] }
 
-document.addEventListener("selectionchange", function() {
-                          var style = DigipostEditor.currentStyling();
-                          var parentNode = window.getSelection().focusNode.parentNode;
+DigipostEditor.reportBackCurrentStyling = function() {
 
-                          var classes = parentNode.classList
+    var style = DigipostEditor.currentStyling();
+    var parentNode = window.getSelection().focusNode.parentNode;
 
-                          console.log(classes[0]);
+    var classes = parentNode.classList
 
-                          var returnDictionary = {
-                          "style" : style,
-                          "classes" : classes
-                          };
+    console.log(classes[0]);
 
+    var returnDictionary = {
+        "style" : style,
+        "classes" : classes
+    };
 
-
-                          var jsonString = JSON.stringify(returnDictionary);
-                          // observe is a keyword the native code listens for, it triggers a callback in the app.
-                          window.webkit.messageHandlers.observe.postMessage(jsonString);
-
-                          });
-
+    var jsonString = JSON.stringify(returnDictionary);
+    // observe is a keyword the native code listens for, it triggers a callback in the app.
+    window.webkit.messageHandlers.observe.postMessage(jsonString);
+};
 
 // returns a comma separated list of the styling in the current selection
 DigipostEditor.currentStyling = function(e) {

@@ -97,24 +97,37 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         self.tableView.reloadData()
     }
 
-
-    func setKeywordsEnabled(keywords: [String]) {
+    func setCurrentStyling(styling : [NSObject : AnyObject]) {
         var selectedModels = [TextStyleModel]()
 
-        let allTextStyleModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
-            return array
-        })
+        if let styleArray = styling["style"] as? [String], classesDictionary = styling["classes"] as? [NSObject : AnyObject]  {
 
-        for model in allTextStyleModels {
-            if contains(keywords, model.keyword) {
-                selectedModels.append(model)
-                model.enabled = true
-            } else {
-                model.enabled = false
+            let allTextStyleModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
+                return array
+            })
+
+            var classesArray = [String]()
+
+            for (key, value) in classesDictionary {
+                if key == "length" {
+                    continue
+                }
+
+                if let actualValue = value as? String {
+                    classesArray.append(actualValue)
+                }
             }
-        }
 
-        self.tableView.reloadData()
+            for model in allTextStyleModels {
+                if contains(classesArray, model.keyword) || contains(styleArray, model.keyword) {
+                    selectedModels.append(model)
+                    model.enabled = true
+                } else {
+                    model.enabled = false
+                }
+            }
+            self.tableView.reloadData()
+        }
     }
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

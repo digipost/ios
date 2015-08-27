@@ -72,10 +72,8 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         if let stringMessage = message.body as? String {
             let jsonData = stringMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             var error : NSError?
-            if let responseDictionary = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [NSObject : [String]] {
-                if responseDictionary["style"] != nil {
-                    stylePickerViewController.setKeywordsEnabled(responseDictionary["style"]!)
-                }
+            if let responseDictionary = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [NSObject : AnyObject] {
+                stylePickerViewController.setCurrentStyling(responseDictionary)
             }
         }
 

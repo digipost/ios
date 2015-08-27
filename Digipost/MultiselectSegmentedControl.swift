@@ -29,6 +29,8 @@ protocol MultiselectSegmentedControlDelegate {
 
     private var iconFileNames = [String]()
 
+    private var buttons = [UIButton]()
+
     @IBInspectable public var iconFileNamesList : String {
         set(newList) {
             iconFileNames = iconFileNamesList.splitWithString(",", listString: newList)
@@ -46,6 +48,11 @@ protocol MultiselectSegmentedControlDelegate {
     override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.setup()
+    }
+
+    public func setImage(image : UIImage, atIndex index: Int) {
+        let button = buttons[index]
+        button.setImage(image, forState: UIControlState.Normal)
     }
 
     public func setButtonSelectedState(selected: Bool, atIndex index: Int) {
@@ -79,6 +86,7 @@ protocol MultiselectSegmentedControlDelegate {
         for i in 0..<self.numberOfSegments {
             selectedIndexes.append(false)
             let button = UIButton(frame: CGRectZero)
+            buttons.append(button)
             button.backgroundColor = segmentBackgroundColor
             button.addTarget(self, action: Selector("didTapButton:"), forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = (i)

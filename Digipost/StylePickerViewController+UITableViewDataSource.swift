@@ -28,20 +28,20 @@ extension StylePickerViewController : UITableViewDataSource {
                 return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
             } else {
                 // multi select type cell
-                let firstObject = arrayOfModels.first!
-                    if firstObject.value is UIFont {
-                        let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
-                        let models = arrayOfModels.selectedTextStyleModel()
-                        cell.detailTextLabel?.text = models?.name
-                        cell.textLabel?.text = "Stil"
-                        return cell
-                    } else {
-                        let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
-                        cell.delegate = self
-                        for (index, model) in enumerate(arrayOfModels) {
-                            cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
-                        }
-                        return cell
+                if let preferredIconName = arrayOfModels.first!.preferredIconName {
+                    let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+                    cell.delegate = self
+                    for (index, model) in enumerate(arrayOfModels) {
+                        cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
+                    }
+                    cell.setupWithModels(arrayOfModels)
+                    return cell
+                } else {
+                    let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
+                    let models = arrayOfModels.selectedTextStyleModel()
+                    cell.detailTextLabel?.text = models?.name
+                    cell.textLabel?.text = "Stil"
+                    return cell
                 }
             }
             }()
