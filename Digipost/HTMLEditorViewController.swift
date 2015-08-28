@@ -18,8 +18,18 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     var stylePickerViewController : StylePickerViewController!
 
     var customInputView : CustomInputView!
+    
+    @IBOutlet weak var previewButton: UIBarButtonItem!
+
+    var currentShowingBodyInnnerHTML : String?
+
+    var recipients = [Recipient]()
+
+    // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
+    var mailboxDigipostAddress : String?
 
 
+    private var isShowingCustomStylePicker : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,14 +64,33 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
         customInputView = CustomInputView()
         APIClient.sharedClient.stylepickerViewController = stylePickerViewController
-        customInputView.setShowCustomInputViewEnabled(true, containedInScrollView: webView.scrollView)
-
         if let filePath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "html") {
             if let url = NSURL(fileURLWithPath: filePath) {
                 let request = NSURLRequest(URL: url)
                 webView.loadRequest(request)
             }
         }
+        setupNavBarButtonItems()
+    }
+
+
+    func setupNavBarButtonItems() {
+        let currentRightBarButtonItem = self.navigationItem.rightBarButtonItem
+        let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .Done, target: self, action: Selector("toggleEditingStyle"))
+        let barButtonItems = [ currentRightBarButtonItem!, toggleEditingStyleModeBarButtonItem ]
+        self.navigationItem.rightBarButtonItems = barButtonItems
+    }
+
+    func toggleEditingStyle() {
+        customInputView.setShowCustomInputViewEnabled(isShowingCustomStylePicker == false, containedInScrollView: webView.scrollView)
+        isShowingCustomStylePicker = isShowingCustomStylePicker == false
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
+        navigationController?.navigationBar.tintColor = UIColor.blackColor()
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
     }
 
     func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool) {
@@ -73,12 +102,29 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
             let jsonData = stringMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
             var error : NSError?
             if let responseDictionary = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [NSObject : AnyObject] {
-                stylePickerViewController.setCurrentStyling(responseDictionary)
+                if let actualBodyInnerHTML = responseDictionary["bodyInnerHTML"] as? String {
+                    self.currentShowingBodyInnnerHTML = actualBodyInnerHTML
+                    self.performSegueWithIdentifier("showPreviewSegue", sender: self)
+                } else {
+                    stylePickerViewController.setCurrentStyling(responseDictionary)
+                }
             }
         }
+    }
 
-        println(message.body)
+    @IBAction func didTapPreviewButton(sender: UIBarButtonItem) {
+        // Todo: show spinner while loading
+        self.webView.startGettingBodyInnerHTML()
+    }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let previewViewController = segue.destinationViewController as? PreviewViewController{
+            previewViewController.recipients = recipients
+            previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
+            previewViewController.currentShowingHTMLContent = currentShowingBodyInnnerHTML
+
+        }
     }
 }
+
 

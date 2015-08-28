@@ -2483,6 +2483,7 @@
 		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
 			isa = PBXGroup;
 			children = (
+				ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */,
 				EC42F2361B81C755005785DE /* Editor.js */,
 				EC42F23D1B81C760005785DE /* Editor.html */,
 				EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */,
@@ -2506,7 +2507,6 @@
 				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
 				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
 				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
-				ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */,
 				ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */,
 				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
 				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,

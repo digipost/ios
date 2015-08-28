@@ -137,3 +137,14 @@ DigipostEditor.isElement = function() {
     return ""
 }
 
+
+DigipostEditor.bodyInnerHTML = function () {
+    var bodyInnerHTML = document.body.innerHTML
+    var returnDictionary = {
+        "bodyInnerHTML" : bodyInnerHTML
+    };
+
+    var jsonString = JSON.stringify(returnDictionary);
+    // observe is a keyword the native code listens for, it triggers a callback in the app.
+    window.webkit.messageHandlers.observe.postMessage(jsonString);
+}

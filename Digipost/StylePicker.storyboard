@@ -33,8 +33,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-jr-Dk3">
-                                <rect key="frame" x="0.0" y="28" width="600" height="572"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ld-u8-8y5">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="2"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HA3-jr-Dk3">
+                                <rect key="frame" x="0.0" y="48" width="600" height="571"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="segmentedControlCell" rowHeight="55" id="7TZ-jg-gD3" customClass="SegmentedControlTableViewCell" customModule="Digipost" customModuleProvider="target">
@@ -73,18 +77,21 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="pickerCell" textLabel="y5M-Ea-E7f" detailTextLabel="l8W-F1-4n4" style="IBUITableViewCellStyleValue1" id="ARz-T3-AWJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="104.5" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ARz-T3-AWJ" id="hZa-cf-Ih7">
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y5M-Ea-E7f">
+                                                    <rect key="frame" x="15" y="12" width="31.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l8W-F1-4n4">
+                                                    <rect key="frame" x="523.5" y="12" width="41.5" height="19.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -95,8 +102,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-3C-q8y">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="29"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oT2-3C-q8y">
+                                <rect key="frame" x="0.0" y="1" width="600" height="46"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="MMO-jK-und"/>
                                 </constraints>
@@ -112,17 +119,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oT2-3C-q8y" firstAttribute="top" secondItem="BqO-oi-dWh" secondAttribute="topMargin" id="5v7-M3-xn9"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="HA3-jr-Dk3" secondAttribute="bottom" id="CKA-fg-p3G"/>
+                            <constraint firstItem="oT2-3C-q8y" firstAttribute="top" secondItem="BqO-oi-dWh" secondAttribute="topMargin" constant="1" id="5v7-M3-xn9"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="HA3-jr-Dk3" secondAttribute="bottom" constant="-19" id="CKA-fg-p3G"/>
+                            <constraint firstItem="oT2-3C-q8y" firstAttribute="top" secondItem="5Ld-u8-8y5" secondAttribute="bottom" constant="-1" id="KER-OK-9O9"/>
                             <constraint firstAttribute="trailing" secondItem="oT2-3C-q8y" secondAttribute="trailing" id="LWR-tq-ciL"/>
-                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="oT2-3C-q8y" secondAttribute="bottom" id="Qzp-Nc-01E"/>
+                            <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="oT2-3C-q8y" secondAttribute="bottom" constant="2" id="Qzp-Nc-01E"/>
+                            <constraint firstItem="5Ld-u8-8y5" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leadingMargin" constant="-16" id="StK-8G-5gS"/>
                             <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="2Lz-Mk-sDU" secondAttribute="bottom" id="TAd-nW-DDC"/>
                             <constraint firstItem="oT2-3C-q8y" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leading" id="V2a-Bf-4it"/>
                             <constraint firstItem="HA3-jr-Dk3" firstAttribute="top" secondItem="2Lz-Mk-sDU" secondAttribute="bottom" constant="35" id="WUX-tm-zRH"/>
                             <constraint firstItem="HA3-jr-Dk3" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leadingMargin" constant="-16" id="bCY-gv-lWX"/>
                             <constraint firstItem="HA3-jr-Dk3" firstAttribute="centerX" secondItem="oT2-3C-q8y" secondAttribute="centerX" id="c4Q-yn-Qsy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Ld-u8-8y5" secondAttribute="trailing" constant="-16" id="crq-nu-BRW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="HA3-jr-Dk3" secondAttribute="bottom" constant="-55" id="hcr-52-gHU"/>
                             <constraint firstItem="HA3-jr-Dk3" firstAttribute="leading" secondItem="BqO-oi-dWh" secondAttribute="leading" id="imF-e8-Ruu"/>
+                            <constraint firstItem="5Ld-u8-8y5" firstAttribute="top" secondItem="BqO-oi-dWh" secondAttribute="topMargin" id="pf1-YA-Zj0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HA3-jr-Dk3" secondAttribute="trailing" constant="-16" id="qhH-zh-r8w"/>
                         </constraints>
                         <variation key="default">
@@ -161,12 +172,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="Lfy-ZY-B1W" style="IBUITableViewCellStyleDefault" id="hmt-sf-8Pp">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hmt-sf-8Pp" id="LTg-lu-fPA">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Lfy-ZY-B1W">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -179,9 +192,16 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Pu-E0-GQI">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Velg stil" id="PqM-c4-vug">
-                                        <barButtonItem key="leftBarButtonItem" title="Tilbake" id="yZB-5Y-isI"/>
+                                        <barButtonItem key="leftBarButtonItem" image="back" id="yZB-5Y-isI">
+                                            <connections>
+                                                <action selector="didTapBackBarButtonItem:" destination="Cv4-pP-hTJ" id="uRk-PS-RpB"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -200,6 +220,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="uQz-F2-uTE"/>
                     <connections>
+                        <outlet property="navigationBar" destination="0Pu-E0-GQI" id="9CH-4h-wMT"/>
                         <outlet property="tableView" destination="1QQ-Ak-5by" id="408-YR-9pF"/>
                     </connections>
                 </viewController>
@@ -208,4 +229,7 @@
             <point key="canvasLocation" x="1471" y="683"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="13" height="21"/>
+    </resources>
 </document>

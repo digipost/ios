@@ -24,6 +24,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
+
     var currentShowingHTMLContent : String?
 
 
@@ -32,12 +33,12 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         webView.delegate = self
         webView.scrollView.scrollEnabled = false
         
-        ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { [unowned self] (htmlString) -> ()  in
-            self.webView.loadHTMLString(htmlString, baseURL: nil)
-            self.currentShowingHTMLContent = htmlString!
-            
-            })
-        
+//        ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { [unowned self] (htmlString) -> ()  in
+
+            self.webView.loadHTMLString(currentShowingHTMLContent, baseURL: nil)
+
+//            })
+
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientReceivedFromRecipientViewController:", name: "addRecipientNotification", object: nil)

@@ -23,10 +23,16 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
 
     @IBOutlet var tableView : UITableView!
 
+    @IBOutlet var navigationBar : UINavigationBar!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
+    }
+
+    @IBAction func didTapBackBarButtonItem(sender: UIBarButtonItem) {
+        delegate?.stylePickerDetailLIstViewControllerDidTapBackButton(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +40,13 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
+        navigationBar.tintColor = UIColor.blackColor()
+        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.blackColor() ]
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }

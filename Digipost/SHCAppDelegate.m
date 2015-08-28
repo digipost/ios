@@ -28,8 +28,8 @@
 #import "SHCLoginViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
-#import "Digipost-Swift.h"
 #import <HockeySDK/HockeySDK.h>
+#import "Digipost-Swift.h"
 #import <HockeySDK/BITHockeyManager.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";

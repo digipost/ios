@@ -23,6 +23,11 @@ class CustomInputViewController: UIInputViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
+    }
+
         // load the nib file
 //        var calculatorNib = UINib(nibName: "DeleteComposerModuleView", bundle: nil)
         // instantiate the view

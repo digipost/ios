@@ -32,9 +32,12 @@ extension WKWebView {
 
             })
         }
+    }
 
+    func startGettingBodyInnerHTML() {
+        evaluateJavaScript("DigipostEditor.bodyInnerHTML();", completionHandler: { (response, error) -> Void in
 
-
+        })
     }
 
 }

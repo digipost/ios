@@ -23,6 +23,8 @@ static Class NewWebBrowserViewClass = Nil;
     for (UIView *subview in aView.subviews) {
         if ([NSStringFromClass([subview class]) hasPrefix:[NSString stringWithFormat:@"%s", kWKContentViewName]]) {
             return subview;
+        } else if ([NSStringFromClass([subview class]) hasPrefix:[NSString stringWithFormat:@"%s", newWebBrowserViewClassName]]) {
+            return subview;
         }
     }
     return nil;

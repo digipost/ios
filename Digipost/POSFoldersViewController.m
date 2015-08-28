@@ -106,6 +106,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         navItem.title = currentMailbox.name;
         [navItem setRightBarButtonItem:self.editButtonItem];
     }
+
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
     }
@@ -120,7 +121,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 {
     UIStoryboard *documentComposerStoryboard = [UIStoryboard storyboardWithName:@"DocumentComposer" bundle:nil];
     UINavigationController *navigationController = (id)[documentComposerStoryboard instantiateInitialViewController];
-    ComposerViewController *composerViewController = (id)navigationController.viewControllers[0];
+    HTMLEditorViewController *composerViewController = (id)navigationController.viewControllers[0];
+
     composerViewController.mailboxDigipostAddress = self.selectedMailBoxDigipostAdress;
 
     [self presentViewController:navigationController animated:YES completion:nil];
@@ -274,7 +276,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
     if (!unreadCounterHidden) {
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@",rootResource.unreadItemsInInbox];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
     }
 
     return cell;
@@ -335,45 +337,46 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     }
 
     [self.folders enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        POSFolder *folder = (id)obj;
-        if (idx == destinationIndexPath.row){
-            [newSorting setObject:firstFolder atIndexedSubscript:idx];
-            firstFolder.index = @( idx );
-        } else if (idx == sourceIndexPath.row){
-            if (movingUpwards){
-                POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
-                [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
-                objatBeforeindex.index = @( idx );
-            }else {
-                POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx  + 1];
-                [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
-                objNextIndex.index = @( idx );
-            }
-        } else if(idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
-            POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
-            [newSorting setObject: objatBeforeindex  atIndexedSubscript:idx];
-            objatBeforeindex.index = @( idx );
-        } else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
-            POSFolder *objNextIndex = (id) [self.folders objectAtIndex:idx + 1];
-            [newSorting setObject: objNextIndex  atIndexedSubscript:idx];
-            objNextIndex.index = @( idx );
-        } else {
-            [newSorting setObject:obj atIndexedSubscript:idx];
-            folder.index = @( idx );
-        }
+      POSFolder *folder = (id)obj;
+      if (idx == destinationIndexPath.row) {
+          [newSorting setObject:firstFolder atIndexedSubscript:idx];
+          firstFolder.index = @(idx);
+      } else if (idx == sourceIndexPath.row) {
+          if (movingUpwards) {
+              POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
+              [newSorting setObject:objatBeforeindex atIndexedSubscript:idx];
+              objatBeforeindex.index = @(idx);
+          } else {
+              POSFolder *objNextIndex = (id)[self.folders objectAtIndex:idx + 1];
+              [newSorting setObject:objNextIndex atIndexedSubscript:idx];
+              objNextIndex.index = @(idx);
+          }
+      } else if (idx >= destinationIndexPath.row && (idx <= sourceIndexPath.row) && movingUpwards) {
+          POSFolder *objatBeforeindex = (id)[self.folders objectAtIndex:idx - 1];
+          [newSorting setObject:objatBeforeindex atIndexedSubscript:idx];
+          objatBeforeindex.index = @(idx);
+      } else if (idx <= destinationIndexPath.row && (idx >= sourceIndexPath.row) && !movingUpwards) {
+          POSFolder *objNextIndex = (id)[self.folders objectAtIndex:idx + 1];
+          [newSorting setObject:objNextIndex atIndexedSubscript:idx];
+          objNextIndex.index = @(idx);
+      } else {
+          [newSorting setObject:obj atIndexedSubscript:idx];
+          folder.index = @(idx);
+      }
     }];
 
     self.folders = newSorting;
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
 
-    [[APIClient sharedClient] moveFolder:newSorting mailbox:mailbox
+    [[APIClient sharedClient] moveFolder:newSorting
+        mailbox:mailbox
         success:^{
-                                          NSError *error;
-                                          [[POSModelManager sharedManager].managedObjectContext save:&error];
-                                          if (error){
-                                              [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
-                                          }
+          NSError *error;
+          [[POSModelManager sharedManager].managedObjectContext save:&error];
+          if (error) {
+              [[POSModelManager sharedManager] logSavingManagedObjectContextWithError:error];
+          }
         }
         failure:^(APIError *error){
         }];
@@ -550,16 +553,16 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)updateContentsFromServerUserInitiatedRequest:(NSNumber *)userDidInititateRequest
 {
     [[APIClient sharedClient] updateRootResourceWithSuccess:^(NSDictionary *responseDict) {
-        [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
-        self.rootResource = nil; // To force a refetch of this property
-        [self updateFetchedResultsController];
-        [self programmaticallyEndRefresh];
-        [self updateNavbar];
+      [[POSModelManager sharedManager] updateRootResourceWithAttributes:responseDict];
+      self.rootResource = nil; // To force a refetch of this property
+      [self updateFetchedResultsController];
+      [self programmaticallyEndRefresh];
+      [self updateNavbar];
     } failure:^(APIError *error) {
-        [self programmaticallyEndRefresh];
-        if ([userDidInititateRequest boolValue]) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-        }
+      [self programmaticallyEndRefresh];
+      if ([userDidInititateRequest boolValue]) {
+          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+      }
 
     }];
 }
@@ -571,11 +574,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath
 {
-    [[APIClient sharedClient] deleteWithFolder:folder success:^{
-        [self updateContentsFromServerUserInitiatedRequest:@NO];
-    }
+    [[APIClient sharedClient] deleteWithFolder:folder
+        success:^{
+          [self updateContentsFromServerUserInitiatedRequest:@NO];
+        }
         failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
           //                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
           //
           //                                           }];
