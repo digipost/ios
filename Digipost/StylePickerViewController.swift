@@ -98,6 +98,11 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     }
 
     func setCurrentStyling(styling : [NSObject : AnyObject]) {
+        // if the stylepicker isnt shown, don't update it
+        if self.view.superview == nil {
+            return
+        }
+
         var selectedModels = [TextStyleModel]()
 
         if let styleArray = styling["style"] as? [String], classesDictionary = styling["classes"] as? [NSObject : AnyObject]  {

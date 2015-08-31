@@ -11,7 +11,7 @@ import Cartography
 import WebKit
 
 
-class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StylePickerViewControllerDelegate {
+class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StylePickerViewControllerDelegate, ModuleSelectorViewControllerDelegate {
 
     var webView : WKWebView!
 
@@ -77,8 +77,13 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     func setupNavBarButtonItems() {
         let currentRightBarButtonItem = self.navigationItem.rightBarButtonItem
         let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .Done, target: self, action: Selector("toggleEditingStyle"))
-        let barButtonItems = [ currentRightBarButtonItem!, toggleEditingStyleModeBarButtonItem ]
+        let addNewModuleBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add")!, style: .Done, target: self, action: Selector("didTapAddNewModuleBarButtonItem:"))
+        let barButtonItems = [ currentRightBarButtonItem!, toggleEditingStyleModeBarButtonItem, addNewModuleBarButtonItem ]
         self.navigationItem.rightBarButtonItems = barButtonItems
+    }
+
+    func didTapAddNewModuleBarButtonItem(sender: UIButton) {
+        performSegueWithIdentifier("presentModuleSelectorSegue", sender: self)
     }
 
     func toggleEditingStyle() {
@@ -123,8 +128,22 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
             previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
             previewViewController.currentShowingHTMLContent = currentShowingBodyInnnerHTML
 
+        } else if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
+            moduleSelectViewController.delegate = self
         }
     }
+
+    func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
+
+    }
+
+    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
+
+        if let imageModule = module as? ImageComposerModule {
+            webView.insertImageWithBase64Data(imageModule.image.base64Representation)
+        }
+
+        moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
+    }
+
 }
-
-

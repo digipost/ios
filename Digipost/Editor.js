@@ -43,8 +43,6 @@ DigipostEditor.reportBackCurrentStyling = function() {
 
     var classes = parentNode.classList
 
-    console.log(classes[0]);
-
     var returnDictionary = {
         "style" : style,
         "classes" : classes
@@ -107,14 +105,11 @@ DigipostEditor.selectionHasStyle = function(styleName) {
 
     var currentSelectedElement = DigipostEditor.isElement();
 
-    console.log(currentSelectedElement);
-
     if($(currentSelectedElement).is(styleName)){
         return true;
     }
 
     return document.queryCommandState(styleName);
-
 }
 
  /**
@@ -137,6 +132,17 @@ DigipostEditor.isElement = function() {
     return ""
 }
 
+DigipostEditor.appendImageFromBase64Data = function(base64Data) {
+    var imageHTMLObject = "<div contentEditable=\"true\" ><img src=\"data:image/png;base64," + base64Data + "\"/> <p><br></p></div>"
+    var focusNode = window.getSelection().focusNode;
+    if (focusNode == null) {
+        $("div").last().after(imageHTMLObject);
+    } else {
+        var parentNode = window.getSelection().focusNode.parentNode;
+        $(parentNode).after(imageHTMLObject);
+    }
+
+}
 
 DigipostEditor.bodyInnerHTML = function () {
     var bodyInnerHTML = document.body.innerHTML
