@@ -19,6 +19,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
     var customInputView : CustomInputView!
     
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var previewButton: UIBarButtonItem!
 
     var currentShowingBodyInnnerHTML : String?
@@ -45,10 +46,14 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
         layout(self.view, webView) { firstView, secondView in
             secondView.left == firstView.left
-            secondView.top == firstView.top + 44
             secondView.right == firstView.right
             secondView.bottom == firstView.bottom
         }
+
+        layout(titleTextField, webView) { firstView,secondView in
+            secondView.top == firstView.bottom + 5
+        }
+
 
         webView.userInteractionEnabled = true
 
@@ -73,6 +78,10 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         setupNavBarButtonItems()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        self.webView.startFocus()
+    }
 
     func setupNavBarButtonItems() {
         let currentRightBarButtonItem = self.navigationItem.rightBarButtonItem
