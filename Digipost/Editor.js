@@ -25,9 +25,31 @@ TextAlignment.allAlignments = function() {
     return alignments;
 };
 
+window.addEventListener("load", function load(event){
+                        window.removeEventListener("load", load, false); //remove listener, no longer needed
+                        DigipostEditor.togglePlaceholder(true);
+
+                        // remove placeholder first time element is clicked
+                        document.getElementById("editor").onclick = function(){
+                        DigipostEditor.togglePlaceholder(false);
+
+                        document.getElementById("editor").removeEventListener("onclick", onclick, false); //remove listener, no longer needed
+
+                        };
+
+                        document.getElementById("editor").addEventListener("blur", function blur(event){
+                                                                           var editable = document.querySelector('div[contenteditable]')
+                                                                           var content = editable.innerHTML;
+                                                                           content = content.replace(/<div>/g, '<p>');
+                                                                           content = content.replace(/<\/div>/g, '</p>');
+                                                                           editable.innerHTML = content;
+                                                                           },false);
+                        },false);
+
 document.addEventListener("selectionchange", function() {
                           DigipostEditor.reportBackCurrentStyling();
                           });
+
 
 
 // returns an array with style strings to native app.
@@ -90,7 +112,6 @@ DigipostEditor.setAlignment = function(anAlignment) {
 
 DigipostEditor.setClassNamedForSelectedNode = function(cssClass) {
     var parentNode = window.getSelection().focusNode.parentNode;
-    
     $(parentNode).addClass(cssClass);
 }
 
@@ -141,11 +162,23 @@ DigipostEditor.appendImageFromBase64Data = function(base64Data) {
         var parentNode = window.getSelection().focusNode.parentNode;
         $(parentNode).after(imageHTMLObject);
     }
+}
 
+DigipostEditor.togglePlaceholder = function (shouldShow) {
+    var placeHolderText = "<p>Skriv her...</p>";
+    if (shouldShow) {
+        console.log("should show");
+        document.getElementById("editor").innerHTML = placeHolderText;
+    } else {
+        var existingText = document.getElementById("editor").innerHTML;
+        if (existingText == placeHolderText) {
+            document.getElementById("editor").innerHTML = "<p> </p>";
+        }
+    }
 }
 
 DigipostEditor.bodyInnerHTML = function () {
-    var bodyInnerHTML = document.body.innerHTML
+    var bodyInnerHTML = document.body.innerHTML;
     var returnDictionary = {
         "bodyInnerHTML" : bodyInnerHTML
     };

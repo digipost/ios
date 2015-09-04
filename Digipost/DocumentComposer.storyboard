@@ -285,14 +285,18 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="DpV-8n-mTd">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yq-SM-Qz5"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1yq-SM-Qz5">
+                            <connections>
+                                <action selector="didTapCancelButton:" destination="hzi-BN-YG0" id="Eqs-oq-HT6"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Neste" id="5jj-bQ-bUU">
                             <connections>
                                 <action selector="didTapPreviewButton:" destination="hzi-BN-YG0" id="W04-xz-JZY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="previewButton" destination="5jj-bQ-bUU" id="tJX-R6-0Lo"/>
                         <outlet property="titleTextField" destination="hDX-TT-HFf" id="q00-Tz-yZT"/>

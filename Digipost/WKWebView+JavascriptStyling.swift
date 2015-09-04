@@ -45,4 +45,38 @@ extension WKWebView {
 
         })
     }
+
+    func startFocus() {
+        evaluateJavaScript("DigipostEditor.becomeFirstResponder();", completionHandler: { (response, error) -> Void in
+
+        })
+    }
+
+    func insertTextModule()  {
+        evaluateJavaScript("DigipostEditor.insertTextModule();", completionHandler: { (response, error) -> Void in
+
+        })
+    }
+
+    func startLoadingWebViewContent() {
+        let editorFilepath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "html")
+        let editorJavascriptFilepath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "js")
+        if UIDevice.currentDevice().model == "iPhone Simulator" {
+            let url = NSURL(fileURLWithPath: editorFilepath!)
+            let request = NSURLRequest(URL: url!)
+            self.loadRequest(request)
+        } else {
+            let fileMgr = NSFileManager.defaultManager()
+            let temporaryWebContentDirectoryPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
+            var error: NSError? = nil
+            NSFileManager.defaultManager().createDirectoryAtPath(temporaryWebContentDirectoryPath, withIntermediateDirectories: true, attributes: nil, error: &error)
+            let finalPath = temporaryWebContentDirectoryPath.stringByAppendingPathComponent(editorFilepath!.lastPathComponent)
+            if NSFileManager.defaultManager().fileExistsAtPath(finalPath) == false {
+                if NSFileManager.defaultManager().copyItemAtPath(editorFilepath!, toPath: finalPath, error: &error) {
+
+                }
+            }
+            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: finalPath)!))
+        }
+    }
 }

@@ -54,7 +54,6 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
             secondView.top == firstView.bottom + 5
         }
 
-
         webView.userInteractionEnabled = true
 
         let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
@@ -69,14 +68,11 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
         customInputView = CustomInputView()
         APIClient.sharedClient.stylepickerViewController = stylePickerViewController
-        if let filePath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "html") {
-            if let url = NSURL(fileURLWithPath: filePath) {
-                let request = NSURLRequest(URL: url)
-                webView.loadRequest(request)
-            }
-        }
+        webView.startLoadingWebViewContent()
         setupNavBarButtonItems()
     }
+
+    
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
@@ -129,6 +125,10 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     @IBAction func didTapPreviewButton(sender: UIBarButtonItem) {
         // Todo: show spinner while loading
         self.webView.startGettingBodyInnerHTML()
+    }
+
+    @IBAction func didTapCancelButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

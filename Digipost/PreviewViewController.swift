@@ -32,18 +32,11 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         super.viewDidLoad()
         webView.delegate = self
         webView.scrollView.scrollEnabled = false
-        
-//        ComposerModuleParser.parseComposerModuleContentToHTML(modules, response: { [unowned self] (htmlString) -> ()  in
-
-            self.webView.loadHTMLString(currentShowingHTMLContent, baseURL: nil)
-
-//            })
-
+        self.webView.loadHTMLString(currentShowingHTMLContent, baseURL: nil)
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientReceivedFromRecipientViewController:", name: "addRecipientNotification", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientDeletedFromRecipientViewController:", name: "deleteRecipientNotification", object: nil)
-
         navigationController?.delegate = self
     }
     
