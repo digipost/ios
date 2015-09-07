@@ -68,7 +68,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
         customInputView = CustomInputView()
         APIClient.sharedClient.stylepickerViewController = stylePickerViewController
-        webView.startLoadingWebViewContent()
+        webView.startLoadingWebViewContent(NSBundle(forClass: self.dynamicType))
         setupNavBarButtonItems()
     }
 
@@ -155,4 +155,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
     }
 
+    private func currentBundle() -> NSBundle {
+        return NSBundle(forClass: self.dynamicType)
+    }
 }

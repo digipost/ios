@@ -15,6 +15,25 @@ extension WKWebView {
         executeCommand(keyword)
     }
 
+    private func executeCommand(type: TextStyleModelType) {
+
+        switch type {
+        case .Paragraph, .H1:
+            evaluateJavaScript("document.execCommand('formatBlock', false, '\(type.rawValue)');", completionHandler: { (response, error) -> Void in
+
+            })
+            break
+
+        case .OrderedList, .UnorderedList:
+
+            break
+        default:
+            evaluateJavaScript("document.execCommand('\(type.rawValue)', false, null);", completionHandler: { (response, error) -> Void in
+
+            })
+        }
+    }
+
     private func executeCommand(keyword : String) {
         if keyword == "h1" || keyword == "h2" || keyword == "p" {
             evaluateJavaScript("document.execCommand('formatBlock', false, '\(keyword)');", completionHandler: { (response, error) -> Void in
@@ -26,7 +45,6 @@ extension WKWebView {
 
                 })
             })
-
         } else {
             evaluateJavaScript("document.execCommand('\(keyword)', false, null);", completionHandler: { (response, error) -> Void in
 
@@ -52,31 +70,46 @@ extension WKWebView {
         })
     }
 
-    func insertTextModule()  {
+    func insertTextModule() {
         evaluateJavaScript("DigipostEditor.insertTextModule();", completionHandler: { (response, error) -> Void in
 
         })
     }
 
-    func startLoadingWebViewContent() {
-        let editorFilepath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "html")
-        let editorJavascriptFilepath = NSBundle(forClass: self.dynamicType).pathForResource("Editor", ofType: "js")
+    func insertListElement(ordered: Bool) {
+        evaluateJavaScript("DigipostEditor.insertListElement(\(ordered));", completionHandler: { (response, error) -> Void in
+
+        })
+    }
+
+    func startLoadingWebViewContent(bundle: NSBundle) {
+        let editorFilepath = bundle.pathForResource("Editor", ofType: "html")
+        let editorJavascriptFilepath = bundle.pathForResource("Editor", ofType: "js")
         if UIDevice.currentDevice().model == "iPhone Simulator" {
             let url = NSURL(fileURLWithPath: editorFilepath!)
             let request = NSURLRequest(URL: url!)
             self.loadRequest(request)
         } else {
-            let fileMgr = NSFileManager.defaultManager()
-            let temporaryWebContentDirectoryPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
-            var error: NSError? = nil
-            NSFileManager.defaultManager().createDirectoryAtPath(temporaryWebContentDirectoryPath, withIntermediateDirectories: true, attributes: nil, error: &error)
-            let finalPath = temporaryWebContentDirectoryPath.stringByAppendingPathComponent(editorFilepath!.lastPathComponent)
-            if NSFileManager.defaultManager().fileExistsAtPath(finalPath) == false {
-                if NSFileManager.defaultManager().copyItemAtPath(editorFilepath!, toPath: finalPath, error: &error) {
-
-                }
-            }
-            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: finalPath)!))
+            let editorFinalPath = loadFileIntoTempWebDirectoryForWKWebViewReading(editorFilepath!)
+            loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
+            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: editorFinalPath)!))
         }
+    }
+
+    private func loadFileIntoTempWebDirectoryForWKWebViewReading(path : String) -> String! {
+        let temporaryWebContentDirectoryPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
+        var error: NSError? = nil
+        NSFileManager.defaultManager().createDirectoryAtPath(temporaryWebContentDirectoryPath, withIntermediateDirectories: true, attributes: nil, error: &error)
+        let finalPath = temporaryWebContentDirectoryPath.stringByAppendingPathComponent(path.lastPathComponent)
+        if NSFileManager.defaultManager().fileExistsAtPath(finalPath) == false {
+            if NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath, error: &error) {
+
+            }
+        }
+        if error != nil {
+            return nil
+        }
+
+        return finalPath
     }
 }

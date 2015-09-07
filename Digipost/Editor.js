@@ -93,6 +93,14 @@ DigipostEditor.currentStyling = function(e) {
     return styling;
 }
 
+DigipostEditor.insertListElement = function(ordered) {
+    if (ordered) {
+        document.execCommand("insertorderedlist");
+    } else {
+        document.execCommand("insertunorderedlist");
+    }
+}
+
 DigipostEditor.addStyleIfPresentInSelection = function(arrayToAddTo, styleName) {
     if (DigipostEditor.selectionHasStyle(styleName)) {
         arrayToAddTo.push(styleName);

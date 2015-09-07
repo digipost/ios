@@ -9,8 +9,15 @@
 import Foundation
 
 
-enum TextStyleModelType {
-    case Text
+enum TextStyleModelType : String {
+    case Bold = "Bold"
+    case Italic = "Italic"
+    case Underline = "underline"
+    case Paragraph = "p"
+    case H1 = "h1"
+    case H2 = "h2"
+    case OrderedList = "orderedList"
+    case UnorderedList = "unorderedList"
 }
 
 class TextStyleModel {
@@ -22,27 +29,40 @@ class TextStyleModel {
     // keyword used around to mark what kind of style it is
     let keyword : String
 
+    let type : TextStyleModelType
+
     //  Human readable name for the text style ex. "Big headline" for h1
     let name : String?
 
-    init(value: Any, preferredIconName: String? = nil, keyword : String, name : String? = nil) {
+    init(value: Any, preferredIconName: String? = nil, keyword : String, name : String? = nil, type : TextStyleModelType = .Bold) {
         self.value = value
         self.preferredIconName = preferredIconName
         enabled = false
         self.keyword = keyword
         self.name = name
+        self.type = type
+    }
+
+    init(preferredIconName : String? = nil, type: TextStyleModelType) {
+        self.type = type
+        self.preferredIconName = preferredIconName
+        enabled = false
+        // deprecated
+        self.keyword = "s"
+        self.name = nil
+        self.value = UIFont()
     }
 
     private static func boldTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitBold, preferredIconName: "Bold", keyword: "Bold")
+        return TextStyleModel(preferredIconName: "Bold", type: .Bold)
     }
 
     private static func italicTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: UIFontDescriptorSymbolicTraits.TraitItalic, preferredIconName: "Italic", keyword: "Italic")
+        return TextStyleModel(preferredIconName: "Italic", type: .Italic)
     }
 
     private static func underlineTextStyleModel() -> TextStyleModel {
-        return TextStyleModel(value: NSUnderlineStyle.StyleSingle, preferredIconName: "Link", keyword: "underline")
+        return TextStyleModel(preferredIconName: "Underline", type: .Underline)
     }
 
     private static func h1StyleModel() -> TextStyleModel {
@@ -71,6 +91,14 @@ class TextStyleModel {
 
     private static func centerAlignStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "center", keyword: "align-center")
+    }
+
+    private static func orderedListStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "orderedList", keyword: "orderedList", type: .OrderedList)
+    }
+
+    private static func unorderedListStyleModel() -> TextStyleModel {
+        return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "unorderedList", keyword: "unorderedList", type: .UnorderedList)
     }
 
     /**
