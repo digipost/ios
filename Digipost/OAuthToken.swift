@@ -23,7 +23,7 @@ struct AuthenticationLevel {
     static let idPorten3 = "IDPORTEN_3"
 }
 
-class OAuthToken: NSObject, NSCoding, DebugPrintable, Printable {
+class OAuthToken: NSObject, NSCoding, CustomDebugStringConvertible, CustomStringConvertible {
 
     var refreshToken: String? {
         didSet {

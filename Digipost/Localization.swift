@@ -17,7 +17,7 @@ Version of NSLocalizedString that does not return key if does not find the local
 
 :returns: a localized string if it finds it, else nil
 */
-func LocalizedString(key: String, #tableName: String, #comment: String) -> String? {
+func LocalizedString(key: String, tableName: String, comment: String) -> String? {
     let string = NSLocalizedString(key, tableName: tableName, comment: comment)
     if (string == key) {
         return nil

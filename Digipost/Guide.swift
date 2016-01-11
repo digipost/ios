@@ -26,7 +26,7 @@ class Guide : NSObject {
     }
     
     class var versionStringWithDashesInsteadOfPeriods : String  {
-        let versionString : AnyObject = NSBundle.mainBundle().infoDictionary![GuideConstants.shortVersionString]!
+        let versionString : AnyObject = NSBundle.mainBundle().infoDictionary![GuideConstants.shortVersionString as! String]!
         let versionStringWithDashesInsteadOfPeriods = versionString.stringByReplacingOccurrencesOfString(".", withString: "-")
         return versionStringWithDashesInsteadOfPeriods
     }
@@ -81,9 +81,9 @@ class Guide : NSObject {
     
     :returns: the text as index, else nil
     */
-    class func onboardingText(#forIndex: Int) -> String? {
+    class func onboardingText(forIndex forIndex: Int) -> String? {
         let string = LocalizedString("onboarding_\(forIndex)", tableName: GuideConstants.onboardingTableName, comment: "")
-        debugIfNil(string, " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
+        debugIfNil(string, message: " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
         return string
     }
 

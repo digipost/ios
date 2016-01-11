@@ -33,7 +33,7 @@ class ReceiptView: UIView {
 	
 	required init(coder aDecoder: NSCoder)
 	{
-		super.init(coder: aDecoder)
+		super.init(coder: aDecoder)!
 		setupLayers()
 	}
 	
@@ -142,65 +142,65 @@ class ReceiptView: UIView {
 	
 	func setupLayerFrames(){
 		if kvitto != nil{
-			kvitto.frame = CGRectMake(0.52926 * kvitto.superlayer.bounds.width, 0.25353 * kvitto.superlayer.bounds.height, 0.11058 * kvitto.superlayer.bounds.width, 0.16411 * kvitto.superlayer.bounds.height)
+			kvitto.frame = CGRectMake(0.52926 * kvitto.superlayer!.bounds.width, 0.25353 * kvitto.superlayer!.bounds.height, 0.11058 * kvitto.superlayer!.bounds.width, 0.16411 * kvitto.superlayer!.bounds.height)
 		}
 		if receiptbody != nil{
-			receiptbody.frame = CGRectMake(0, 0,  receiptbody.superlayer.bounds.width,  receiptbody.superlayer.bounds.height)
+			receiptbody.frame = CGRectMake(0, 0,  receiptbody.superlayer!.bounds.width,  receiptbody.superlayer!.bounds.height)
 			receiptbody.path  = receiptbodyPathWithBounds(receiptbody.bounds).CGPath;
 		}
 		if receiptline1 != nil{
-			receiptline1.frame = CGRectMake(0.14209 * receiptline1.superlayer.bounds.width, 0.23395 * receiptline1.superlayer.bounds.height, 0.71582 * receiptline1.superlayer.bounds.width, 0.00521 * receiptline1.superlayer.bounds.height)
+			receiptline1.frame = CGRectMake(0.14209 * receiptline1.superlayer!.bounds.width, 0.23395 * receiptline1.superlayer!.bounds.height, 0.71582 * receiptline1.superlayer!.bounds.width, 0.00521 * receiptline1.superlayer!.bounds.height)
 			receiptline1.path  = receiptline1PathWithBounds(receiptline1.bounds).CGPath;
 		}
 		if receiptline2 != nil{
-			receiptline2.frame = CGRectMake(0.14209 * receiptline2.superlayer.bounds.width, 0.3373 * receiptline2.superlayer.bounds.height, 0.71582 * receiptline2.superlayer.bounds.width, 0.00521 * receiptline2.superlayer.bounds.height)
+			receiptline2.frame = CGRectMake(0.14209 * receiptline2.superlayer!.bounds.width, 0.3373 * receiptline2.superlayer!.bounds.height, 0.71582 * receiptline2.superlayer!.bounds.width, 0.00521 * receiptline2.superlayer!.bounds.height)
 			receiptline2.path  = receiptline2PathWithBounds(receiptline2.bounds).CGPath;
 		}
 		if receiptline3 != nil{
-			receiptline3.frame = CGRectMake(0.14209 * receiptline3.superlayer.bounds.width, 0.439 * receiptline3.superlayer.bounds.height, 0.45943 * receiptline3.superlayer.bounds.width, 0.00649 * receiptline3.superlayer.bounds.height)
+			receiptline3.frame = CGRectMake(0.14209 * receiptline3.superlayer!.bounds.width, 0.439 * receiptline3.superlayer!.bounds.height, 0.45943 * receiptline3.superlayer!.bounds.width, 0.00649 * receiptline3.superlayer!.bounds.height)
 			receiptline3.path  = receiptline3PathWithBounds(receiptline3.bounds).CGPath;
 		}
 		if receiptline4 != nil{
-			receiptline4.frame = CGRectMake(0.71905 * receiptline4.superlayer.bounds.width, 0.74761 * receiptline4.superlayer.bounds.height, 0.14604 * receiptline4.superlayer.bounds.width, 0 * receiptline4.superlayer.bounds.height)
+			receiptline4.frame = CGRectMake(0.71905 * receiptline4.superlayer!.bounds.width, 0.74761 * receiptline4.superlayer!.bounds.height, 0.14604 * receiptline4.superlayer!.bounds.width, 0 * receiptline4.superlayer!.bounds.height)
 			receiptline4.path  = receiptline4PathWithBounds(receiptline4.bounds).CGPath;
 		}
 		if kort != nil{
 			kort.setValue(0, forKeyPath:"transform.rotation")
-			kort.frame = CGRectMake(0.29749 * kort.superlayer.bounds.width, 0.35561 * kort.superlayer.bounds.height, 0.19086 * kort.superlayer.bounds.width, 0.12454 * kort.superlayer.bounds.height)
+			kort.frame = CGRectMake(0.29749 * kort.superlayer!.bounds.width, 0.35561 * kort.superlayer!.bounds.height, 0.19086 * kort.superlayer!.bounds.width, 0.12454 * kort.superlayer!.bounds.height)
 			kort.setValue(-4 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 		}
 		if cardbody != nil{
-			cardbody.frame = CGRectMake(0.02118 * cardbody.superlayer.bounds.width, 0, 0.97882 * cardbody.superlayer.bounds.width,  cardbody.superlayer.bounds.height)
+			cardbody.frame = CGRectMake(0.02118 * cardbody.superlayer!.bounds.width, 0, 0.97882 * cardbody.superlayer!.bounds.width,  cardbody.superlayer!.bounds.height)
 			cardbody.path  = cardbodyPathWithBounds(cardbody.bounds).CGPath;
 		}
 		if magneticstripe != nil{
             let device = UIDevice.currentDevice().userInterfaceIdiom
             var xPosition = CGFloat(0.0)
             if device == .Pad { xPosition += 0.9 }
-			magneticstripe.frame = CGRectMake(xPosition, 0.17773 * magneticstripe.superlayer.bounds.height, 0.97806 * magneticstripe.superlayer.bounds.width, 0.1412 * magneticstripe.superlayer.bounds.height)
+			magneticstripe.frame = CGRectMake(xPosition, 0.17773 * magneticstripe.superlayer!.bounds.height, 0.97806 * magneticstripe.superlayer!.bounds.width, 0.1412 * magneticstripe.superlayer!.bounds.height)
 			magneticstripe.path  = magneticstripePathWithBounds(magneticstripe.bounds).CGPath;
 		}
 		if litenkvadrat != nil{
-			litenkvadrat.frame = CGRectMake(0.09455 * litenkvadrat.superlayer.bounds.width, 0.46439 * litenkvadrat.superlayer.bounds.height, 0.13016 * litenkvadrat.superlayer.bounds.width, 0.19831 * litenkvadrat.superlayer.bounds.height)
+			litenkvadrat.frame = CGRectMake(0.09455 * litenkvadrat.superlayer!.bounds.width, 0.46439 * litenkvadrat.superlayer!.bounds.height, 0.13016 * litenkvadrat.superlayer!.bounds.width, 0.19831 * litenkvadrat.superlayer!.bounds.height)
 		}
 		if hologram != nil{
-			hologram.frame = CGRectMake(-0.04324 * hologram.superlayer.bounds.width, -0.24421 * hologram.superlayer.bounds.height, 1.05952 * hologram.superlayer.bounds.width, 1.0761 * hologram.superlayer.bounds.height)
+			hologram.frame = CGRectMake(-0.04324 * hologram.superlayer!.bounds.width, -0.24421 * hologram.superlayer!.bounds.height, 1.05952 * hologram.superlayer!.bounds.width, 1.0761 * hologram.superlayer!.bounds.height)
 			hologram.path  = hologramPathWithBounds(hologram.bounds).CGPath;
 		}
 		if hologramline != nil{
 			hologramline.setValue(0, forKeyPath:"transform.rotation")
-			hologramline.frame = CGRectMake(0.27767 * hologramline.superlayer.bounds.width, 0.46101 * hologramline.superlayer.bounds.height, 0.50564 * hologramline.superlayer.bounds.width, 0 * hologramline.superlayer.bounds.height)
+			hologramline.frame = CGRectMake(0.27767 * hologramline.superlayer!.bounds.width, 0.46101 * hologramline.superlayer!.bounds.height, 0.50564 * hologramline.superlayer!.bounds.width, 0 * hologramline.superlayer!.bounds.height)
 			hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 			hologramline.path  = hologramlinePathWithBounds(hologramline.bounds).CGPath;
 		}
 		if hologramline2 != nil{
 			hologramline2.setValue(0, forKeyPath:"transform.rotation")
-			hologramline2.frame = CGRectMake(0.28461 * hologramline2.superlayer.bounds.width, 0.61608 * hologramline2.superlayer.bounds.height, 0.19681 * hologramline2.superlayer.bounds.width, 0 * hologramline2.superlayer.bounds.height)
+			hologramline2.frame = CGRectMake(0.28461 * hologramline2.superlayer!.bounds.width, 0.61608 * hologramline2.superlayer!.bounds.height, 0.19681 * hologramline2.superlayer!.bounds.width, 0 * hologramline2.superlayer!.bounds.height)
 			hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
 			hologramline2.path  = hologramline2PathWithBounds(hologramline2.bounds).CGPath;
 		}
 		if animationText != nil{
-			animationText.frame = CGRectMake(0.00464 * animationText.superlayer.bounds.width, 0.60015 * animationText.superlayer.bounds.height, 0.99071 * animationText.superlayer.bounds.width, 0.28032 * animationText.superlayer.bounds.height)
+			animationText.frame = CGRectMake(0.00464 * animationText.superlayer!.bounds.width, 0.60015 * animationText.superlayer!.bounds.height, 0.99071 * animationText.superlayer!.bounds.width, 0.28032 * animationText.superlayer!.bounds.height)
 		}
 	}
 	

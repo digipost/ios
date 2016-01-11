@@ -150,7 +150,7 @@ extension APIClient {
 
     :returns: a task to resume when the request should be started
     */
-    func urlSessionJSONTask(#url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+    func urlSessionJSONTask(url url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
         var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue

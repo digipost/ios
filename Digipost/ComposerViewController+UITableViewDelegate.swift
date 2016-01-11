@@ -41,7 +41,7 @@ extension ComposerViewController {
         return UITableViewCellEditingStyle.None
     }
 
-    func height(#textComposerModule: TextComposerModule) -> CGFloat {
+    func height(textComposerModule textComposerModule: TextComposerModule) -> CGFloat {
         let textView = UITextView()
         textView.attributedText = textComposerModule.attributedText
         textView.frame.size.width = self.tableView.frame.size.width - 40 // TODO: use the actual margin!

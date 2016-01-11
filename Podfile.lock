@@ -21,8 +21,8 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
-  - Alamofire (1.2.1)
-  - Cartography (0.5.0)
+  - Alamofire (3.1.4)
+  - Cartography (0.6.0)
   - HockeySDK (3.6.4)
   - LUKeychainAccess (1.2.4)
   - MRProgress (0.4.3):
@@ -58,21 +58,23 @@ PODS:
   - MRProgress/WeakProxy (0.4.3)
   - RNCryptor (2.2)
   - SingleLineKeyboardResize (0.1.2)
-  - SingleLineShakeAnimation (0.0.2)
+  - SingleLineShakeAnimation (0.0.4)
   - UIActionSheet+Blocks (0.9)
   - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.4)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
-  - Alamofire (~> 1.1)
-  - Cartography (~> 0.5.0)
+  - Alamofire (~> 3.1.4)
+  - Cartography (~> 0.6.0)
   - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
-  - SingleLineKeyboardResize (~> 0.1.2)
-  - SingleLineShakeAnimation
+  - SingleLineKeyboardResize (from `https://github.com/haaakon/SingleLineKeyboardResize`,
+    branch `master`)
+  - SingleLineShakeAnimation (from `https://github.com/haaakon/SingleLineShakeAnimation`,
+    branch `master`)
   - UIActionSheet+Blocks (~> 0.8)
   - UIAlertView+Blocks (~> 0.8)
 
@@ -83,6 +85,12 @@ EXTERNAL SOURCES:
   HockeySDK:
     :branch: develop
     :git: https://github.com/bitstadium/HockeySDK-iOS.git
+  SingleLineKeyboardResize:
+    :branch: master
+    :git: https://github.com/haaakon/SingleLineKeyboardResize
+  SingleLineShakeAnimation:
+    :branch: master
+    :git: https://github.com/haaakon/SingleLineShakeAnimation
 
 CHECKOUT OPTIONS:
   AHKActionSheet:
@@ -91,18 +99,24 @@ CHECKOUT OPTIONS:
   HockeySDK:
     :commit: 718e407276f92deb1efa1789847a611b5cfd70da
     :git: https://github.com/bitstadium/HockeySDK-iOS.git
+  SingleLineKeyboardResize:
+    :commit: 08fb3a22efbe4a5c737a83be8764803181ab71cd
+    :git: https://github.com/haaakon/SingleLineKeyboardResize
+  SingleLineShakeAnimation:
+    :commit: e5bbc52ca4be384253a4a24b0681f96270885feb
+    :git: https://github.com/haaakon/SingleLineShakeAnimation
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
-  Alamofire: 1acfdf179aff68b41a48dff70c1ac7fa263e2bcb
-  Cartography: 774e5cc446f5a6bca5d4345c5aa6af9a1fe74dc6
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
+  Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
   HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
   LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
   SingleLineKeyboardResize: 9a61d8b61bf1b228e0a701b9b45ff4e11c7035b3
-  SingleLineShakeAnimation: 7ecfd7ad796a5514a38cb7f0596cd4ef033bda40
+  SingleLineShakeAnimation: 76ded3c73d7247bacb0523afaf0fad0165b730b6
   UIActionSheet+Blocks: e180b7dad0a721ab7f212ac9742af799008bb358
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 

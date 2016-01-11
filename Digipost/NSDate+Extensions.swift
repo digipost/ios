@@ -30,7 +30,7 @@ extension NSDate {
         return dateString
     }
 
-    func dateByAdding(#seconds: Int?) -> NSDate? {
+    func dateByAdding(seconds seconds: Int?) -> NSDate? {
         if seconds == nil {
             return nil
         }

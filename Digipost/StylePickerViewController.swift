@@ -147,7 +147,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         }
     }
 
-    private func animateDetailListViewController(#shouldShowView: Bool) {
+    private func animateDetailListViewController(shouldShowView shouldShowView: Bool) {
         if shouldShowView {
 
             if let newView = self.stylePickerDetailListViewController?.view {

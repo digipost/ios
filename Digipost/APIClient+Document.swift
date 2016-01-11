@@ -48,7 +48,7 @@ extension APIClient {
         }
     }
 
-    func updateDocumentsInFolder(#name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
+    func updateDocumentsInFolder(name name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: (Dictionary<String,AnyObject>) -> Void, failure: (error: APIError) -> ()) {
         validate(token: token) { () -> Void in
             let task = self.urlSessionJSONTask(url: folderUri,  success: success, failure: failure)
             task.resume()

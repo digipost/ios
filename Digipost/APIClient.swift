@@ -95,7 +95,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateAuthorizationHeader(#oAuthToken: OAuthToken) {
+    func updateAuthorizationHeader(oAuthToken oAuthToken: OAuthToken) {
         if let accessToken = oAuthToken.accessToken {
             self.additionalHeaders["Authorization"] = "Bearer \(accessToken)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -116,7 +116,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return urlString
     }
 
-    private func validateFullScope(#success: () -> Void, failure: ((error: NSError) -> Void)?) {
+    private func validateFullScope(success success: () -> Void, failure: ((error: NSError) -> Void)?) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -124,7 +124,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }, failure:failure )
     }
 
-    func validateFullScope(#then: () -> Void) {
+    func validateFullScope(then then: () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -132,14 +132,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         },failure: nil)
     }
 
-    func validate(#token: OAuthToken?, then: () -> Void) {
+    func validate(token token: OAuthToken?, then: () -> Void) {
         validate(oAuthToken: token, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
         }, failure: nil)
     }
 
-    func updateRootResource(#success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateRootResource(success success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = __ROOT_RESOURCE_URI__
@@ -149,7 +149,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateRootResource(#scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateRootResource(scope scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let rootResource = __ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
         validateFullScope {
@@ -158,7 +158,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateBankAccount(#uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateBankAccount(uri uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
             task.resume()
@@ -210,7 +210,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     logs out OAuth tokens for all scopes in storage
 
     */
-    private func logout(#success: () -> Void, failure: (error: APIError) -> ()) {
+    private func logout(success success: () -> Void, failure: (error: APIError) -> ()) {
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
         if rootResource == nil {
             success()
@@ -432,7 +432,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         task!.resume()
     }
 
-    func uploadFile(#url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
+    func uploadFile(url url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
         let fileManager = NSFileManager.defaultManager()
         if fileManager.fileExistsAtPath(url.path!) == false {
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
@@ -525,7 +525,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.isUploadingFile = true
     }
 
-    func postLog(#uri: String, parameters: [String : AnyObject]) {
+    func postLog(uri uri: String, parameters: [String : AnyObject]) {
         let baseUri = __SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
         let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
@@ -541,7 +541,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
     }
 
-    private func validate(#oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
+    private func validate(oAuthToken oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
         if oAuthToken?.hasExpired() == false {
             validationSuccess(chosenToken: oAuthToken!)
             return
@@ -637,7 +637,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
     }
     
-    private class func mimeType(#fileType:String) -> String {
+    private class func mimeType(fileType fileType:String) -> String {
         let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil).takeUnretainedValue()
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)
         if findTag != nil {

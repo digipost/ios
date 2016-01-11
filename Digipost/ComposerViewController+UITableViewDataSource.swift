@@ -83,11 +83,11 @@ extension ComposerViewController : UITableViewDataSource {
     }
 
     // MARK: - Helper Functions
-    func composerModule(#atIndexPath: NSIndexPath) -> ComposerModule? {
+    func composerModule(atIndexPath atIndexPath: NSIndexPath) -> ComposerModule? {
         return composerModules[atIndexPath.row]
     }
 
-    func indexPath(#module: ComposerModule) -> NSIndexPath? {
+    func indexPath(module module: ComposerModule) -> NSIndexPath? {
         return {
             for (index, tableViewModule) in enumerate(self.composerModules) {
                 if tableViewModule.isEqual(module) {

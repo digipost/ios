@@ -62,7 +62,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                             if let documentsDirectory = documentsDir {
                                 let localFilePath = documentsDirectory.stringByAppendingPathComponent(fileName)
                                 let data = UIImageJPEGRepresentation(image, 1.0)
-                                let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                                let couldCopy = data!.writeToFile(localFilePath, atomically: true)
                                 let localFileURL = NSURL(fileURLWithPath: localFilePath)
                                 let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                                 picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -81,7 +81,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     if let documentsDirectory = documentsDir {
                         let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithJPGExtension())
                         let data = UIImageJPEGRepresentation(image, 1.0)
-                        let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                        let couldCopy = data!.writeToFile(localFilePath, atomically: true)
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
                         let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -117,17 +117,20 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         //        let orientation = UIApplication.sharedApplication().statusBarOrientation
         return UIInterfaceOrientation.LandscapeLeft
     }
+
     func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
         return UIInterfaceOrientation.LandscapeLeft.rawValue
     }
+
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         UIApplication.sharedApplication().statusBarStyle = .LightContent
     }
+
     private func setupPickerController() -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.navigationBar.translucent = false
         imagePicker.delegate = self
-        imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo,kUTTypeMovie) as [AnyObject]
+        imagePicker.mediaTypes = NSArray(objects:kUTTypeImage,kUTTypeVideo,kUTTypeMovie) as! [String]
         return imagePicker
     }
 }

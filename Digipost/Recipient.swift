@@ -32,7 +32,7 @@ class Recipient {
         }
     }
 
-    class func recipients(#jsonDict: [String : AnyObject]) -> [Recipient] {
+    class func recipients(jsonDict jsonDict: [String : AnyObject]) -> [Recipient] {
         var recipients = [Recipient]()
         
         if let recipientArray = jsonDict[Constants.Recipient.recipient] as? [[String : AnyObject]] {

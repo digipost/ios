@@ -19,10 +19,10 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
 
     required init(coder aDecoder: NSCoder) {
         self.textAttributes = [TextAttribute]()
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
 
-    class func setup(#textAttributes: [TextAttribute]) -> ModuleSelectorViewController {
+    class func setup(textAttributes textAttributes: [TextAttribute]) -> ModuleSelectorViewController {
         let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
         moduleSelectorViewController.textAttributes = textAttributes
         return moduleSelectorViewController
@@ -104,7 +104,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("moduleCell") as! UITableViewCell
+        let cell = self.tableView.dequeueReusableCellWithIdentifier("moduleCell", forIndexPath: indexPath)
         cell.textLabel?.text = moduleTypeStrings[indexPath.row]
         return cell
     }

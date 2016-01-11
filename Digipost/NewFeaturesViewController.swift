@@ -22,6 +22,8 @@ extension UIFont{
             return UIFont(name: "HelveticaNeue", size: 17)!
         case .Unspecified:
             return UIFont(name: "HelveticaNeue", size: 17)!
+        default:
+            break
         }
     }
 }

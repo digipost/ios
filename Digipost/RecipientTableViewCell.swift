@@ -35,7 +35,7 @@ class RecipientTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func loadCell(#recipient: Recipient) {
+    func loadCell(recipient recipient: Recipient) {
         nameLabel.text = recipient.name
         addedButton.hidden = true
         

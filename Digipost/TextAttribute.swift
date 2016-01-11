@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct TextAttribute : DebugPrintable {
+struct TextAttribute : CustomDebugStringConvertible {
 
     var textAlignment : NSTextAlignment?
     var font : UIFont?
 
-    func hasOneOrMoreMatchesWith(#textAttribute : TextAttribute) -> Bool {
+    func hasOneOrMoreMatchesWith(textAttribute textAttribute : TextAttribute) -> Bool {
         if self.textAlignment == textAttribute.textAlignment && self.textAlignment != nil  {
             return true
         }
