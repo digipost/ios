@@ -10,19 +10,19 @@ import Foundation
 
 extension String {
     
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
     
     func initials() -> String {
         
-        var arr = split(self) { $0 == " " }
-        
+        var arr = self.componentsSeparatedByString(" ")
+
         if arr.count == 0 { return "" }
         
         return  arr[0].firstLetter() + arr[arr.count - 1].firstLetter()
     }
     
     func firstLetter() -> String {
-        for c in self {
+        for c in self.characters {
             return "\(c)"
         }
         

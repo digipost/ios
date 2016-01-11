@@ -87,29 +87,26 @@ extension WKWebView {
         let editorJavascriptFilepath = bundle.pathForResource("Editor", ofType: "js")
         if UIDevice.currentDevice().model == "iPhone Simulator" {
             let url = NSURL(fileURLWithPath: editorFilepath!)
-            let request = NSURLRequest(URL: url!)
+            let request = NSURLRequest(URL: url)
             self.loadRequest(request)
         } else {
             let editorFinalPath = loadFileIntoTempWebDirectoryForWKWebViewReading(editorFilepath!)
             loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
-            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: editorFinalPath)!))
+            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: editorFinalPath)))
         }
     }
 
     private func loadFileIntoTempWebDirectoryForWKWebViewReading(path : String) -> String! {
-        let temporaryWebContentDirectoryPath = NSTemporaryDirectory().stringByAppendingPathComponent("www")
-        var error: NSError? = nil
-        NSFileManager.defaultManager().createDirectoryAtPath(temporaryWebContentDirectoryPath, withIntermediateDirectories: true, attributes: nil, error: &error)
-        let finalPath = temporaryWebContentDirectoryPath.stringByAppendingPathComponent(path.lastPathComponent)
-        if NSFileManager.defaultManager().fileExistsAtPath(finalPath) == false {
-            if NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath, error: &error) {
-
-            }
+        let url = NSURL(string: NSTemporaryDirectory())
+        let temporaryWebContentDirectoryPath = url?.URLByAppendingPathComponent("www")
+        
+        try! NSFileManager.defaultManager().createDirectoryAtURL(temporaryWebContentDirectoryPath!, withIntermediateDirectories: true, attributes: nil)
+        let pathUrl = NSURL(fileURLWithPath: path)
+        let finalPath = temporaryWebContentDirectoryPath!.URLByAppendingPathComponent(pathUrl.lastPathComponent!)
+        if NSFileManager.defaultManager().fileExistsAtPath(finalPath.absoluteString) == false {
+            try! NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath.absoluteString)
         }
-        if error != nil {
-            return nil
-        }
-
-        return finalPath
+        
+        return finalPath.absoluteString
     }
 }

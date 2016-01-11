@@ -35,9 +35,9 @@ extension NSDate {
             return nil
         }
         let calendar = NSCalendar.currentCalendar()
-        var components = NSDateComponents()
+        let components = NSDateComponents()
         components.second = seconds!
-        return calendar.dateByAddingComponents(components, toDate: self, options: nil)
+        return calendar.dateByAddingComponents(components, toDate: self, options: NSCalendarOptions())
     }
 
     func isLaterThan(aDate: NSDate) -> Bool {

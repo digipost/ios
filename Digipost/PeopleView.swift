@@ -30,7 +30,7 @@ class PeopleView: UIView {
 		setupLayers()
 	}
 	
-	required init(coder aDecoder: NSCoder)
+	required init?(coder aDecoder: NSCoder)
 	{
 		super.init(coder: aDecoder)
 		setupLayers()
@@ -132,51 +132,51 @@ class PeopleView: UIView {
 	
 	func setupLayerFrames(){
 		if Bigperson != nil{
-			Bigperson.frame = CGRectMake(0.30635 * Bigperson.superlayer.bounds.width, 0.33243 * Bigperson.superlayer.bounds.height, 0.06734 * Bigperson.superlayer.bounds.width, 0.1556 * Bigperson.superlayer.bounds.height)
+			Bigperson.frame = CGRectMake(0.30635 * Bigperson.superlayer!.bounds.width, 0.33243 * Bigperson.superlayer!.bounds.height, 0.06734 * Bigperson.superlayer!.bounds.width, 0.1556 * Bigperson.superlayer!.bounds.height)
 		}
 		if bigpersonhead != nil{
-			bigpersonhead.frame = CGRectMake(0.10297 * bigpersonhead.superlayer.bounds.width, 0, 0.77916 * bigpersonhead.superlayer.bounds.width, 0.3725 * bigpersonhead.superlayer.bounds.height)
+			bigpersonhead.frame = CGRectMake(0.10297 * bigpersonhead.superlayer!.bounds.width, 0, 0.77916 * bigpersonhead.superlayer!.bounds.width, 0.3725 * bigpersonhead.superlayer!.bounds.height)
 			bigpersonhead.path  = bigpersonheadPathWithBounds(bigpersonhead.bounds).CGPath;
 		}
 		if bigpersonbody != nil{
-			bigpersonbody.frame = CGRectMake(0, 0.47183 * bigpersonbody.superlayer.bounds.height,  bigpersonbody.superlayer.bounds.width, 0.52817 * bigpersonbody.superlayer.bounds.height)
+			bigpersonbody.frame = CGRectMake(0, 0.47183 * bigpersonbody.superlayer!.bounds.height,  bigpersonbody.superlayer!.bounds.width, 0.52817 * bigpersonbody.superlayer!.bounds.height)
 			bigpersonbody.path  = bigpersonbodyPathWithBounds(bigpersonbody.bounds).CGPath;
 		}
 		if Smallperson != nil{
-			Smallperson.frame = CGRectMake(0.38386 * Smallperson.superlayer.bounds.width, 0.35543 * Smallperson.superlayer.bounds.height, 0.04418 * Smallperson.superlayer.bounds.width, 0.10961 * Smallperson.superlayer.bounds.height)
+			Smallperson.frame = CGRectMake(0.38386 * Smallperson.superlayer!.bounds.width, 0.35543 * Smallperson.superlayer!.bounds.height, 0.04418 * Smallperson.superlayer!.bounds.width, 0.10961 * Smallperson.superlayer!.bounds.height)
 		}
 		if smallpersonhead != nil{
-			smallpersonhead.frame = CGRectMake(0.10297 * smallpersonhead.superlayer.bounds.width, 0, 0.77916 * smallpersonhead.superlayer.bounds.width, 0.35689 * smallpersonhead.superlayer.bounds.height)
+			smallpersonhead.frame = CGRectMake(0.10297 * smallpersonhead.superlayer!.bounds.width, 0, 0.77916 * smallpersonhead.superlayer!.bounds.width, 0.35689 * smallpersonhead.superlayer!.bounds.height)
 			smallpersonhead.path  = smallpersonheadPathWithBounds(smallpersonhead.bounds).CGPath;
 		}
 		if smallpersonbody != nil{
-			smallpersonbody.frame = CGRectMake(0, 0.49397 * smallpersonbody.superlayer.bounds.height,  smallpersonbody.superlayer.bounds.width, 0.50603 * smallpersonbody.superlayer.bounds.height)
+			smallpersonbody.frame = CGRectMake(0, 0.49397 * smallpersonbody.superlayer!.bounds.height,  smallpersonbody.superlayer!.bounds.width, 0.50603 * smallpersonbody.superlayer!.bounds.height)
 			smallpersonbody.path  = smallpersonbodyPathWithBounds(smallpersonbody.bounds).CGPath;
 		}
 		if Bag != nil{
-			Bag.frame = CGRectMake(0.53438 * Bag.superlayer.bounds.width, 0.35058 * Bag.superlayer.bounds.height, 0.16375 * Bag.superlayer.bounds.width, 0.13745 * Bag.superlayer.bounds.height)
+			Bag.frame = CGRectMake(0.53438 * Bag.superlayer!.bounds.width, 0.35058 * Bag.superlayer!.bounds.height, 0.16375 * Bag.superlayer!.bounds.width, 0.13745 * Bag.superlayer!.bounds.height)
 		}
 		if bagbody != nil{
-			bagbody.frame = CGRectMake(0.01376 * bagbody.superlayer.bounds.width, 0.12663 * bagbody.superlayer.bounds.height, 0.97983 * bagbody.superlayer.bounds.width, 0.87337 * bagbody.superlayer.bounds.height)
+			bagbody.frame = CGRectMake(0.01376 * bagbody.superlayer!.bounds.width, 0.12663 * bagbody.superlayer!.bounds.height, 0.97983 * bagbody.superlayer!.bounds.width, 0.87337 * bagbody.superlayer!.bounds.height)
 			bagbody.path  = bagbodyPathWithBounds(bagbody.bounds).CGPath;
 		}
 		if baghandle != nil{
-			baghandle.frame = CGRectMake(0.39153 * baghandle.superlayer.bounds.width, 0, 0.2243 * baghandle.superlayer.bounds.width, 0.11039 * baghandle.superlayer.bounds.height)
+			baghandle.frame = CGRectMake(0.39153 * baghandle.superlayer!.bounds.width, 0, 0.2243 * baghandle.superlayer!.bounds.width, 0.11039 * baghandle.superlayer!.bounds.height)
 			baghandle.path  = baghandlePathWithBounds(baghandle.bounds).CGPath;
 		}
 		if Group != nil{
-			Group.frame = CGRectMake(0, 0.3403 * Group.superlayer.bounds.height,  Group.superlayer.bounds.width, 0.09677 * Group.superlayer.bounds.height)
+			Group.frame = CGRectMake(0, 0.3403 * Group.superlayer!.bounds.height,  Group.superlayer!.bounds.width, 0.09677 * Group.superlayer!.bounds.height)
 		}
 		if baglid != nil{
-			baglid.frame = CGRectMake(0, 0.00022 * baglid.superlayer.bounds.height,  baglid.superlayer.bounds.width, 0 * baglid.superlayer.bounds.height)
+			baglid.frame = CGRectMake(0, 0.00022 * baglid.superlayer!.bounds.height,  baglid.superlayer!.bounds.width, 0 * baglid.superlayer!.bounds.height)
 			baglid.path  = baglidPathWithBounds(baglid.bounds).CGPath;
 		}
 		if baglock != nil{
-			baglock.frame = CGRectMake(0.44363 * baglock.superlayer.bounds.width, 0, 0.11274 * baglock.superlayer.bounds.width,  baglock.superlayer.bounds.height)
+			baglock.frame = CGRectMake(0.44363 * baglock.superlayer!.bounds.width, 0, 0.11274 * baglock.superlayer!.bounds.width,  baglock.superlayer!.bounds.height)
 			baglock.path  = baglockPathWithBounds(baglock.bounds).CGPath;
 		}
 		if animationText != nil{
-			animationText.frame = CGRectMake(0.00464 * animationText.superlayer.bounds.width, 0.60152 * animationText.superlayer.bounds.height, 0.99027 * animationText.superlayer.bounds.width, 0.27901 * animationText.superlayer.bounds.height)
+			animationText.frame = CGRectMake(0.00464 * animationText.superlayer!.bounds.width, 0.60152 * animationText.superlayer!.bounds.height, 0.99027 * animationText.superlayer!.bounds.width, 0.27901 * animationText.superlayer!.bounds.height)
 		}
 	}
 	

@@ -393,7 +393,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
 
-        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+        let urlRequest = try! fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
             var subject : String?
 
             let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
@@ -402,7 +402,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let fileData = NSData(contentsOfURL: fileURL)
             let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
             formData.appendPartWithFileData(fileData, name: "file", fileName: "test.html", mimeType:"text/html")
-            }, error: nil)
+            })
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
 
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
@@ -439,11 +439,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             failure(error: error)
         }
         var error : NSError?
-        let fileAttributes = fileManager.attributesOfItemAtPath(url.path!, error: &error)
-        if let actualError = error {
-            failure(error: APIError(error: actualError))
-            return
-        }
+        let fileAttributes : [String:AnyObject]? = {
+            do {
+                return try fileManager.attributesOfItemAtPath(url.path!)
+            }catch let error as NSError{
+                failure(error: APIError(error: error))
+                return nil
+            }
+        }()
 
         let maxFileSize = pow(Float(2),Float(20)) * 10
         let fileSize = fileAttributes![NSFileSize] as! Float
@@ -455,7 +458,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
 
         let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
-        if (count(rootResource.uploadDocumentUri.utf16)) <= 0 {
+        if rootResource.uploadDocumentUri.characters.count <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
             failure(error: noUploadLinkError)
             return
@@ -465,11 +468,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
         let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
         let fileName = url.lastPathComponent
-        let filePath = uploadsFolderPath.stringByAppendingPathComponent(fileName!)
-        let uploadURL = NSURL(fileURLWithPath: filePath)
+        let uploadURL = uploadsFolderPath.urlRepresentation().URLByAppendingPathComponent(fileName!)
 
-        if fileManager.moveItemAtURL(url, toURL: uploadURL!, error: &error) == false {
-            failure(error: APIError(error: error!))
+        do{
+            try fileManager.moveItemAtURL(url, toURL: uploadURL)
+        }catch let error as NSError{
+            failure(error: APIError(error: error))
         }
 
         let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
@@ -478,8 +482,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let progress = NSProgress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
-        let lastPathComponent : NSString = uploadURL?.lastPathComponent as NSString!
+        let lastPathComponent : NSString = uploadURL.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
+        
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
             var subject : String?
             if let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")  {
@@ -491,9 +496,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             formData.appendPartWithFormData(data, name:"subject")
 
-            let fileData = NSData(contentsOfURL: uploadURL!)
+            let fileData = NSData(contentsOfURL: uploadURL)
             formData.appendPartWithFileData(fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
-            }, error: nil)
+            })
+        
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
         }
@@ -638,10 +644,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     private class func mimeType(fileType fileType:String) -> String {
-        let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil).takeUnretainedValue()
+        let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil)!.takeUnretainedValue()
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)
         if findTag != nil {
-            let mimeType = findTag.takeRetainedValue()
+            let mimeType = findTag!.takeRetainedValue()
             return mimeType as String
         }else {
             return ""

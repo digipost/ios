@@ -71,10 +71,10 @@ class TextComposerModule: ComposerModule {
         attributedText = mutableAttributedString
     }
 
-    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) -> [NSObject : AnyObject] {
+    func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) -> [String : AnyObject] {
         var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
-        var returnDictionary = [NSObject : AnyObject]()
-        attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions.allZeros) { (attributes, inRange, stop) -> Void in
+        var returnDictionary = [String : AnyObject]()
+        attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions()) { (attributes, inRange, stop) -> Void in
             if let font = attributes[NSFontAttributeName] as? UIFont {
                 let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
                 mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: inRange)
@@ -99,13 +99,15 @@ class TextComposerModule: ComposerModule {
         let existingTraits = fontDescriptor.symbolicTraits
         let newTraits : UIFontDescriptorSymbolicTraits =  {
             if enabled {
-                return existingTraits | newFontTrait
+                 let result = existingTraits.rawValue | newFontTrait.rawValue
+                return UIFontDescriptorSymbolicTraits(rawValue: result)
             } else {
-                return existingTraits ^ newFontTrait
+                let result = existingTraits.rawValue ^ newFontTrait.rawValue
+                return UIFontDescriptorSymbolicTraits(rawValue: result)
             }
             }()
         let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
-        let newFont  = UIFont(descriptor: newFontDescriptor!, size: existingFont.pointSize)
+        let newFont  = UIFont(descriptor: newFontDescriptor, size: existingFont.pointSize)
         return newFont
     }
 
@@ -147,12 +149,12 @@ class TextComposerModule: ComposerModule {
         var wholeString = ""
 
         for string in stringsSplitByNewline {
-            println(string)
+            print(string)
             if string.isEmpty {
                 continue
             }
             var tagBlocksInString = [HTMLTagBlock]()
-            attributedText.enumerateAttributesInRange(NSMakeRange(stringIndex, string.length), options: NSAttributedStringEnumerationOptions.allZeros) { (attributeDict, range, stop) -> Void in
+            attributedText.enumerateAttributesInRange(NSMakeRange(stringIndex, string.length), options: NSAttributedStringEnumerationOptions()) { (attributeDict, range, stop) -> Void in
                 for (attributeKey, attributeValue) in attributeDict {
                     if attributeKey == "NSParagraphStyle" {
                         continue
@@ -162,7 +164,7 @@ class TextComposerModule: ComposerModule {
                     let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
                     let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey , value: attributeValue, range: rangeInHTMLTagBlock)
-                    tagBlocksInString.extend(tagBlocks)
+                    tagBlocksInString.appendContentsOf(tagBlocks)
                 }
             }
 

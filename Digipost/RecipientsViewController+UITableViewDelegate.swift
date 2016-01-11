@@ -12,7 +12,7 @@ extension RecipientViewController: UITableViewDelegate {
         var found = false
         
         if searchBar.isFirstResponder() {
-            for (index, r) in enumerate(addedRecipients) {
+            for (index, r) in addedRecipients.enumerate() {
                 if r.digipostAddress == recipients[indexPath.row].digipostAddress {
                     let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
                     cell.addedButton.hidden = true

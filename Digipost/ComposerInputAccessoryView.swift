@@ -64,7 +64,7 @@ class ComposerInputAccessoryView: UIView {
     func addViewToAccessoryBar(view: UIView) {
         self.addSubview(view)
         if containedViews.count == 0 {
-            layout(self, view) { firstView, secondView in
+            constrain(self, view) { firstView, secondView in
                 secondView.width == 60
                 secondView.height == 44
                 secondView.left == firstView.left + 5
@@ -72,12 +72,12 @@ class ComposerInputAccessoryView: UIView {
             }
         } else {
             let leftMostView = containedViews.last as UIView!
-            layout(leftMostView, view) { firstView, secondView in
+            constrain(leftMostView, view) { firstView, secondView in
                 secondView.width == 44
                 secondView.height == 44
                 secondView.left == firstView.right + 5
             }
-            layout(self, view) { firstView, secondView in
+            constrain(self, view) { firstView, secondView in
                 secondView.top == firstView.top
             }
         }

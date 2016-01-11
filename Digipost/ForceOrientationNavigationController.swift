@@ -23,16 +23,16 @@ class ForceOrientationNavigationController: UINavigationController {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> Int {
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         let device = UIDevice.currentDevice().userInterfaceIdiom
         
         switch device {
         case .Phone:
-            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+            return UIInterfaceOrientationMask.Portrait
         case .Pad:
-            return Int(UIInterfaceOrientationMask.Landscape.rawValue)
+            return UIInterfaceOrientationMask.Landscape
         default:
-            return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+            return UIInterfaceOrientationMask.Portrait
         }
     }
     

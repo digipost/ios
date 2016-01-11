@@ -23,7 +23,7 @@ extension ComposerViewController : StylePickerViewControllerDelegate {
 
         }
 
-        var setAttributes : [NSObject : AnyObject]? = nil
+        var setAttributes : [String : AnyObject]? = nil
 
         switch textStyleModel.value {
         case let symbolicTrait as UIFontDescriptorSymbolicTraits:

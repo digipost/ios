@@ -51,7 +51,7 @@ class Recipient {
             return self.name
         } else {
             let name = self.name
-            var nameArray = split(name) {$0 == " "}
+            var nameArray = name.componentsSeparatedByString(" ")
             return nameArray[0]
         }
     }

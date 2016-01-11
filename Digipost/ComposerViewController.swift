@@ -16,31 +16,31 @@ import SingleLineKeyboardResize
 }
 
 class ComposerViewController: UIViewController, ModuleSelectorViewControllerDelegate, UITextViewDelegate, UITextFieldDelegate, UITableViewDelegate, UITableViewDelegateReorderExtension {
-
+    
     @IBOutlet var tableView: UITableView!
     var deleteComposerModuleView: DeleteComposerModuleView!
     
     @IBOutlet weak var previewButton: UIBarButtonItem!
     @IBOutlet weak var documentTitleLabel: UILabel!
     @IBOutlet weak var documentTitleTextField: UITextField!
-
+    
     var recipients = [Recipient]()
-   
+    
     var composerModules = [ComposerModule]()
-
+    
     // used when calculating size of textviews for cells that are bigger than one line
     var exampleTextView : UITextView?
-
+    
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
-
+    
     var composerInputAccessoryView : ComposerInputAccessoryView!
-
-
+    
+    
     weak var stylePickerViewController : StylePickerViewController?
-
+    
     var addComposerModuleButton : AddComposerModuleButton!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.allowsLongPressToReorder = true
@@ -53,21 +53,21 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         addComposerModuleButton = AddComposerModuleButton.layoutInView(self.view)
         addComposerModuleButton.addTarget(self, action: Selector("didTapAddComposerModuleButton:"), forControlEvents: .TouchUpInside)
     }
-
+    
     func didTapAddComposerModuleButton(button: UIButton) {
         let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
         moduleSelectorViewController.modalPresentationStyle = .Custom
         moduleSelectorViewController.transitioningDelegate = self
         moduleSelectorViewController.delegate = self
         presentViewController(moduleSelectorViewController, animated: true) { () -> Void in
-
+            
         }
     }
-
+    
     @IBAction func previewButtonTapped(sender: AnyObject) {
         self.performSegueWithIdentifier("goToPreview", sender: self)
     }
-
+    
     // MARK: - TableView Setup
     func setupTableView(){
         let textModuleTableViewCellNib = UINib(nibName: "TextModuleTableViewCell", bundle: nil)
@@ -78,14 +78,14 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.dataSource = self
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
-
+    
     func setupComposerInputAccessoryView() {
         composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
         composerInputAccessoryView.setupWithStandardLayout(self, selector: Selector("didTapTextAttributeButton:"))
     }
-
+    
     func currentEditingComposerModuleAndTextView() -> (TextComposerModule, UITextView)? {
-        for cell in self.tableView.visibleCells() {
+        for cell in self.tableView.visibleCells {
             if let textModuleCell = cell as? TextModuleTableViewCell {
                 if textModuleCell.moduleTextView.isFirstResponder() {
                     if let indexPath = indexPathForCellContainingTextView(textModuleCell.moduleTextView){
@@ -98,7 +98,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         }
         return nil
     }
-
+    
     func didTapTextAttributeButton(sender: UIButton) {
         // do something with the current view!
         if let textAttributeButton = sender as? TextAttributeButton {
@@ -110,7 +110,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             }
         }
     }
-
+    
     func textViewDidChangeSelection(textView: UITextView) {
         let range = textView.selectedRange
         if range.length > 0 {
@@ -120,7 +120,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: textView.typingAttributes))
         }
     }
-
+    
     // MARK: - UITextView Delegate
     func textViewDidChange(textView: UITextView) {
         if let indexPath = indexPathForCellContainingTextView(textView){
@@ -132,7 +132,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         tableView.beginUpdates()
         tableView.endUpdates()
     }
-
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             if let indexPath = indexPathForCellContainingTextView(textView){
@@ -145,30 +145,30 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
                 }
             }
         }
-
+        
         return true
     }
-
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         let indexPath = NSIndexPath(forRow: textField.tag, inSection: 0)
         return false
     }
-
+    
     func textViewDidBeginEditing(textView: UITextView) {
-
+        
     }
-
+    
     func textFieldDidBeginEditing(textField: UITextField) {
-
+        
     }
-
+    
     func indexPathForCellContainingTextView(textView: UITextView) -> NSIndexPath? {
         let location = tableView.convertPoint(textView.center, fromView: textView)
         return tableView.indexPathForRowAtPoint(location)
     }
     
-
+    
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
@@ -223,7 +223,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         let quitAction = UIAlertAction(title: NSLocalizedString("composer view close alert quit button title", comment: "button title"),
             style: UIAlertActionStyle.Destructive)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
-
+                
                 self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
                 })
         }
@@ -237,16 +237,16 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         } else {
             presentViewController(alertController, animated: true, completion: nil)
         }
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {	
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     // MARK: - Navigation
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{

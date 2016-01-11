@@ -13,30 +13,30 @@ protocol SegmentedControlTableViewCellDelegate {
 }
 
 class SegmentedControlTableViewCell: UITableViewCell {
-
-
+    
+    
     @IBOutlet weak var multiselectSegmentedControl : MultiselectSegmentedControl!
-
+    
     var delegate : SegmentedControlTableViewCellDelegate?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         multiselectSegmentedControl.valueChangedClosure = { (newValue, index) -> Void in
-            delegate?.segmentedControlTableViewCellValueChanged(self, newValue: newValue, atIndex: index)
+            self.delegate?.segmentedControlTableViewCellValueChanged(self, newValue: newValue, atIndex: index)
         }
-
+        
     }
-
+    
     func setupWithModels(textStyleModels : [TextStyleModel] ) {
-
-        for (index, model) in enumerate(textStyleModels) {
+        
+        for (index, model) in textStyleModels.enumerate() {
             multiselectSegmentedControl.setImage(UIImage(named: model.preferredIconName!)!, atIndex: index)
         }
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }

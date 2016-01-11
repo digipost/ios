@@ -11,7 +11,8 @@ import UIKit
 extension String
 {
     subscript(i: Int) -> Character {
-        return self[advance(startIndex, i)]
+        let result = self.startIndex.advancedBy(i)
+        return self[result]
     }
 
     // O(n)

@@ -13,8 +13,8 @@ import Cartography
 private struct AddComposerModuleButtonConstants {
     static let width : CGFloat = 44
     static let height : CGFloat = 44
-    static let bottomMargin : Double = 20
-    static let rightMargin : Double = 20
+    static let bottomMargin : CGFloat = 20
+    static let rightMargin : CGFloat = 20
 
 }
 
@@ -51,11 +51,12 @@ class AddComposerModuleButton: UIButton {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
         let keyboardFrameConvertedToViewFrame = self.superview!.convertRect(keyboardFrame!, fromView: nil)
-        let curveAnimationOption = UIViewAnimationOptions(UInt(animationCurve))
-        let options = UIViewAnimationOptions.BeginFromCurrentState | curveAnimationOption
+        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve))
+        let options = UIViewAnimationOptions.BeginFromCurrentState.union(curveAnimationOption)
         self.layoutIfNeeded()
+        
         UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.constraintGroup = constrain(self, replace: self.constraintGroup) { view in
                 view.bottom == view.superview!.bottom - keyboardFrameConvertedToViewFrame.size.height - AddComposerModuleButtonConstants.bottomMargin
@@ -72,10 +73,10 @@ class AddComposerModuleButton: UIButton {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue()
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
         let keyboardFrameConvertedToViewFrame = self.superview!.convertRect(keyboardFrame!, fromView: nil)
-        let curveAnimationOption = UIViewAnimationOptions(UInt(animationCurve))
-        let options = UIViewAnimationOptions.BeginFromCurrentState | curveAnimationOption
+        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve))
+        let options = UIViewAnimationOptions.BeginFromCurrentState.union(curveAnimationOption)
         self.layoutIfNeeded()
         UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.constraintGroup = constrain(self, replace: self.constraintGroup) { view in

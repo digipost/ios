@@ -18,6 +18,8 @@ extension UIStoryboard {
             return UIStoryboard(name: "Main_iPad", bundle: nil)
         case .Unspecified:
             return UIStoryboard(name: "Main_iPhone", bundle: nil)
+        default:
+            return UIStoryboard(name: "Main_iPhone", bundle: nil)
         }
     }
 }

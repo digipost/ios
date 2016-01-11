@@ -50,8 +50,8 @@ class SendableDocument {
     func setupWithJSONContent(jsonDictionary: [String : AnyObject]) {
         if let linkArray = jsonDictionary[SendableDocumentConstants.link] as? [[String : String]] {
             for link in linkArray {
-                if let relLink = link[SendableDocumentConstants.rel] {
-                    switch relLink.lastPathComponent {
+                if let relLink = link[SendableDocumentConstants.rel], let relURL = NSURL(string: relLink), let actualLastPathComponent = relURL.lastPathComponent {
+                    switch actualLastPathComponent {
                     case SendableDocumentConstants.deleteMessageRelPostfix:
                         deleteMessageUri = link[SendableDocumentConstants.uri] as String?
                         break
@@ -77,12 +77,10 @@ class SendableDocument {
     }
 
     func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
-        POSFileManager.sharedFileManager().uploadsFolderPath()
-        let filePath = POSFileManager.sharedFileManager().uploadsFolderPath().stringByAppendingPathComponent(SendableDocumentConstants.tempFileName)
-        if NSFileManager.defaultManager().createFileAtPath(filePath, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
-            return NSURL(fileURLWithPath: filePath)
+        let fileUrl = NSURL(fileURLWithPath: POSFileManager.sharedFileManager().uploadsFolderPath()).URLByAppendingPathComponent(SendableDocumentConstants.tempFileName)
+        if NSFileManager.defaultManager().createFileAtPath(fileUrl.absoluteString, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
+            return NSURL(fileURLWithPath: fileUrl.absoluteString)
         } else {
-            println(filePath)
             return nil
         }
     }

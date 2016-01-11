@@ -31,7 +31,7 @@ extension StylePickerViewController : UITableViewDataSource {
                 if let preferredIconName = arrayOfModels.first!.preferredIconName {
                     let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
                     cell.delegate = self
-                    for (index, model) in enumerate(arrayOfModels) {
+                    for (index, model) in arrayOfModels.enumerate() {
                         cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
                     }
                     cell.setupWithModels(arrayOfModels)

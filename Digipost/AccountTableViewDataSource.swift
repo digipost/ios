@@ -26,10 +26,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         var controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext:managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         controller.delegate = self
         
-        var error: NSError?
-        
-        if !controller.performFetch(&error){
-        }
+        try! controller.performFetch()
         
         return controller
         }()

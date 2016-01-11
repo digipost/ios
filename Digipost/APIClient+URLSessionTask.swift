@@ -15,7 +15,7 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             let serializedResponse : Dictionary<String,AnyObject>? = {
                 if let data = data {
-                    return NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: nil) as? Dictionary<String,AnyObject>
+                    return try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String,AnyObject>
                 }
                 return nil
             }()
@@ -47,14 +47,15 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlrequest, completionHandler: { (data, response, error) -> Void in
             dispatch_async(dispatch_get_main_queue(), {
                 let httpResponse = response as? NSHTTPURLResponse
-                let string = NSString(data: data, encoding: NSASCIIStringEncoding)
+                
+                
                 // if error happens in client, for example no internet, timeout ect.
-                if let actualError = error as NSError! {
+                if let actualError = error as NSError!, let actualData = data {
                     let error = APIError(error: actualError)
+                    let string = NSString(data: actualData, encoding: NSASCIIStringEncoding)
                     error.responseText = string as? String
                     failure(error: error)
                 } else {
-                    var jsonError : NSError?
                     let code : Int = {
                         if httpResponse == nil {
                             return Constants.Error.Code.UnknownError.rawValue
@@ -73,7 +74,7 @@ extension APIClient {
                                 let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: httpResponse!.statusCode, userInfo: nil)
                                 failure(error:err)
                             } else {
-                                let serializer = NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments, error: &jsonError) as! Dictionary<String, AnyObject>
+                                let serializer = try! NSJSONSerialization.JSONObjectWithData(actualData, options: NSJSONReadingOptions.AllowFragments) as! Dictionary<String, AnyObject>
                                 success(serializer)
                             }
                         }
@@ -86,9 +87,8 @@ extension APIClient {
     }
 
     func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
-        var completedURL : NSURL?
         let encryptedModelUri = encryptionModel.uri
-        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
+        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil)
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
             progress?.completedUnitCount = totalBytesWritten
@@ -152,7 +152,7 @@ extension APIClient {
     */
     func urlSessionJSONTask(url url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
-        var urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        let urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
@@ -175,10 +175,11 @@ extension APIClient {
 
     func urlSessionTask(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>? = nil, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
-        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        let urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
+        
         if let actualParameters = parameters {
-            urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+            urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted)
         }
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
@@ -201,9 +202,9 @@ extension APIClient {
 
     func urlSessionTaskWithNoAuthorizationHeader(method: httpMethod, url:String, parameters: Dictionary<String,AnyObject>, success: () -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
-        var urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        let urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = method.rawValue
-        urlRequest.HTTPBody = NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted, error: nil)
+        urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
         urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
         let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
         urlRequest.setValue(contentType, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)

@@ -13,7 +13,7 @@ class DimView: UIView {
     private var dimView: UIView!
     @IBInspectable var dimColor: UIColor!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

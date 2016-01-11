@@ -35,22 +35,22 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var userContentController = WKUserContentController()
-        var webViewConfiguration = WKWebViewConfiguration()
+        let userContentController = WKUserContentController()
+        let webViewConfiguration = WKWebViewConfiguration()
         userContentController.addScriptMessageHandler(self, name: "observe")
         webViewConfiguration.userContentController = userContentController
 
         webView = WKWebView(frame: CGRectMake(0, 0, 0, 0), configuration: webViewConfiguration)
 
         view.addSubview(webView)
-
-        layout(self.view, webView) { firstView, secondView in
+        
+        constrain(self.view, webView) { firstView, secondView in
             secondView.left == firstView.left
             secondView.right == firstView.right
             secondView.bottom == firstView.bottom
         }
 
-        layout(titleTextField, webView) { firstView,secondView in
+        constrain(titleTextField, webView) { firstView,secondView in
             secondView.top == firstView.bottom + 5
         }
 
@@ -110,8 +110,8 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
         if let stringMessage = message.body as? String {
             let jsonData = stringMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
-            var error : NSError?
-            if let responseDictionary = NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [NSObject : AnyObject] {
+            
+            if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments) as? [NSObject : AnyObject] {
                 if let actualBodyInnerHTML = responseDictionary["bodyInnerHTML"] as? String {
                     self.currentShowingBodyInnnerHTML = actualBodyInnerHTML
                     self.performSegueWithIdentifier("showPreviewSegue", sender: self)

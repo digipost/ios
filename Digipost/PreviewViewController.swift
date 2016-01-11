@@ -13,7 +13,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     
     var recipients = [Recipient]()
     var modules = [ComposerModule]()
-
+    
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var addRecipientsButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -21,18 +21,21 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     @IBOutlet weak var recipientsHeaderLabel: UILabel!
     @IBOutlet weak var previewHeaderLabel: UILabel!
     @IBOutlet weak var sendButton: UIBarButtonItem!
-
+    
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
     var mailboxDigipostAddress : String?
-
+    
     var currentShowingHTMLContent : String?
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
         webView.scrollView.scrollEnabled = false
-        self.webView.loadHTMLString(currentShowingHTMLContent, baseURL: nil)
+        
+        if let actualCurrentShowingHTMLContent = currentShowingHTMLContent{
+            self.webView.loadHTMLString(actualCurrentShowingHTMLContent, baseURL: nil)
+        }
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientReceivedFromRecipientViewController:", name: "addRecipientNotification", object: nil)
@@ -48,7 +51,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         let receivedRecipient = notification.object as! Recipient
         
         if recipients.count > 0 {
-            for (index, recipient) in enumerate(recipients) {
+            for (index, recipient) in recipients.enumerate() {
                 if recipient.digipostAddress == receivedRecipient.digipostAddress {
                     recipients.removeAtIndex(index)
                     break
@@ -65,9 +68,9 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
-
+        
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
@@ -97,7 +100,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
             NSNotificationCenter.defaultCenter().removeObserver(self)
         }
     }
-
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
             if recipients.count > 0 {
@@ -109,10 +112,10 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
             composerViewController.recipients = recipients
         }
     }
-
+    
     func animateShowingUserHasToAddRecipientsBeforeSending() {
         addRecipientsButton.shake(.Horizontal, numberOfTimes: 9, totalDuration: 0.6) {
-
+            
         }
     }
     
@@ -121,16 +124,16 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
             animateShowingUserHasToAddRecipientsBeforeSending()
             return
         }
-
+        
         let mailbox = POSMailbox.existingMailboxWithDigipostAddress(mailboxDigipostAddress, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
         APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: mailbox.sendUri, success: { () -> Void in
             self.dismissViewControllerAnimated(true, completion: { () -> Void in
-
+                
             })
-
+            
             }) { (error) -> () in
-                println(error)
+                print(error)
         }
     }
-
+    
 }

@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 extension UIFont {
-
+    
     class func commonWebFonts () -> [UIFont] {
         return [UIFont]()
     }
-
+    
     class func digipostRegularFont() -> UIFont {
         let regularFont = UIFont.systemFontOfSize(17)
         return regularFont
@@ -30,9 +30,9 @@ extension UIFont {
         familyNamesArray.enumerateObjectsUsingBlock { (object , index, stop) -> Void in
             let familyName = object as! NSString
             let names : NSArray = UIFont.fontNamesForFamilyName(familyName as String)
-            println(object)
+            print(object)
             names.enumerateObjectsUsingBlock({ (obj , i, stop) -> Void in
-                println(obj)
+                print(obj)
             })
         }
     }

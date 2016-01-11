@@ -124,7 +124,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             }
 
             for model in allTextStyleModels {
-                if contains(classesArray, model.keyword) || contains(styleArray, model.keyword) {
+                if classesArray.contains(model.keyword) || styleArray.contains(model.keyword) {
                     selectedModels.append(model)
                     model.enabled = true
                 } else {
@@ -162,7 +162,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
                 self.view.layoutIfNeeded()
 
                 UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                    self.stylePickerDetailListViewControllerConstraintGroup = layout(self.view, newView, replace: group) { firstView, secondView in
+                    self.stylePickerDetailListViewControllerConstraintGroup = constrain(self.view, newView, replace: group) { firstView, secondView in
                         secondView.left == firstView.left
                         secondView.top == firstView.top
                         secondView.right == firstView.right
@@ -178,7 +178,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         } else {
 
             UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                var group = layout(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
+                var group = constrain(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
                     secondView.top == firstView.top
@@ -190,7 +190,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
                     self.stylePickerDetailListViewController = nil
             })
 
-            if let selectedIndexPath = self.tableView.indexPathForSelectedRow() {
+            if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
                 self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
             }
         }

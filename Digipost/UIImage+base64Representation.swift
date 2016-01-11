@@ -13,7 +13,7 @@ import UIKit
 extension UIImage{
     
     var base64Representation: String{
-        let imageData:NSData = UIImagePNGRepresentation(self)
-        return imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.allZeros)
+        let imageData = UIImagePNGRepresentation(self)
+        return imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
     }
 }

@@ -19,7 +19,7 @@ class TextAttributeButton: UIButton {
         self.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         self.textAttribute = TextAttribute()
         super.init(coder: aDecoder)
     }

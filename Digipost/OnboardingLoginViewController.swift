@@ -47,7 +47,7 @@ class OnboardingLoginViewController: UIViewController {
         if let onboardingViewController = self.parentViewController{
             let backgroundSize = onboardingViewController.view.layer.bounds.size
             UIGraphicsBeginImageContextWithOptions(backgroundSize, true, 0)
-            onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext())
+            onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
             backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
         }

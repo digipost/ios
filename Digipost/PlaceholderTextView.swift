@@ -10,7 +10,8 @@ import UIKit
 
 extension PlaceholderTextView{
     var placeholder: String {
-        switch self.font {
+
+        switch self.font! {
         case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
             return NSLocalizedString("text composer module headline placeholder", comment: "placeholder for headline")
         case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
@@ -27,7 +28,7 @@ class PlaceholderTextView: UITextView {
     
     private var placeholderLabel: UILabel!
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: self)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidEndEditing:", name: UITextViewTextDidEndEditingNotification, object: self)
@@ -42,7 +43,7 @@ class PlaceholderTextView: UITextView {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
-                if count(text) > 0 {
+                if text.characters.count > 0 {
                     if placeholderLabel != nil {
                         removePlaceholder()
                     }
@@ -67,7 +68,7 @@ class PlaceholderTextView: UITextView {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
-                if count(text) == 0 {
+                if text.characters.count == 0 {
                     addPlaceholder()
                 }
             }
@@ -83,7 +84,7 @@ class PlaceholderTextView: UITextView {
         if placeholderLabel == nil{
             
             placeholderLabel = {
-                let cursorPosition = self.caretRectForPosition(self.selectedTextRange?.start)
+                let cursorPosition = self.caretRectForPosition(self.selectedTextRange!.start)
                 let label = UILabel(frame: CGRectMake(cursorPosition.origin.x, cursorPosition.origin.y, self.frame.width, cursorPosition.height))
                 label.text = self.placeholder
                 label.textColor = UIColor.lightGrayColor()

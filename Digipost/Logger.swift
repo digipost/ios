@@ -15,8 +15,6 @@ enum DpostLogSeverity : String {
     case Error = "ERROR"
 }
 
-
-@objc
 class Logger {
 
     private struct Constants {
@@ -70,6 +68,6 @@ class Logger {
 
 func DLog(message: String, function: String = __FUNCTION__) {
     #if DEBUG
-        println("\(function): \(message)")
+        print("\(function): \(message)")
     #endif
 }

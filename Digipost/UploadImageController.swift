@@ -37,9 +37,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
             })
         }
     }
-    
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
-        
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo ){
                 let mediaInfo = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
@@ -117,9 +115,8 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
         //        let orientation = UIApplication.sharedApplication().statusBarOrientation
         return UIInterfaceOrientation.LandscapeLeft
     }
-
-    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> Int {
-        return UIInterfaceOrientation.LandscapeLeft.rawValue
+    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.LandscapeLeft
     }
 
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {

@@ -9,52 +9,52 @@ import Foundation
 import Cartography
 
 protocol MultiselectSegmentedControlDelegate {
-
+    
     // see selectedIndexes to find out what indexes are selected
     func multiselectSegmentedControlValueChanged(multiselectSegmentedControl: MultiselectSegmentedControl)
-
+    
 }
 
 @IBDesignable public class MultiselectSegmentedControl : UIView {
-
+    
     var selectedIndexes = [Bool]()
     var delegate : MultiselectSegmentedControlDelegate?
-
+    
     var valueChangedClosure: ((value: Bool, atIndex: Int) -> Void)?
-
+    
     @IBInspectable public var segmentSelectedBackgroundColor : UIColor = UIColor.grayColor()
     @IBInspectable public var segmentBackgroundColor : UIColor = UIColor.whiteColor()
     @IBInspectable public var foregroundColor : UIColor = UIColor.blackColor()
     @IBInspectable public var numberOfSegments : Int = 2
-
+    
     private var iconFileNames = [String]()
-
+    
     private var buttons = [UIButton]()
-
+    
     @IBInspectable public var iconFileNamesList : String {
         set(newList) {
             iconFileNames = iconFileNamesList.splitWithString(",", listString: newList)
         }
         get {
-            return ",".join(iconFileNames)
+            return iconFileNames.joinWithSeparator(",")
         }
     }
-
+    
     public override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
-
+    
     override public func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.setup()
     }
-
+    
     public func setImage(image : UIImage, atIndex index: Int) {
         let button = buttons[index]
         button.setImage(image, forState: UIControlState.Normal)
     }
-
+    
     public func setButtonSelectedState(selected: Bool, atIndex index: Int) {
         let tag = index
         selectedIndexes[tag] = selected
@@ -64,7 +64,7 @@ protocol MultiselectSegmentedControlDelegate {
             }
         }
     }
-
+    
     func didTapButton(button: UIButton) {
         if selectedIndexes[button.tag] {
             selectedIndexes[button.tag] = false
@@ -77,10 +77,10 @@ protocol MultiselectSegmentedControlDelegate {
         }
         delegate?.multiselectSegmentedControlValueChanged(self)
     }
-
+    
     /**
-    Internal setup, must only be called once
-    */
+     Internal setup, must only be called once
+     */
     private func setup() {
         var leftSideButton : UIButton?
         for i in 0..<self.numberOfSegments {
@@ -98,34 +98,34 @@ protocol MultiselectSegmentedControlDelegate {
                 let image = UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)
                 button.setImage(image, forState: .Normal)
             }
-
-            layout(self, button) { mainView, button in
+            
+            constrain(self, button) { mainView, button in
                 button.top == mainView.top
                 button.bottom == mainView.bottom
             }
-
+            
             if leftSideButton == nil  {
-                layout(self, button) { mainView, button in
+                constrain(self, button) { mainView, button in
                     button.left == mainView.left
                 }
-
+                
                 leftSideButton = button
-
+                
             } else {
-                layout(leftSideButton!, button) { leftSideButton, button in
+                constrain(leftSideButton!, button) { leftSideButton, button in
                     button.left == leftSideButton.right
                     button.width == leftSideButton.width
                 }
-
+                
                 leftSideButton = button
             }
         }
-
-        layout(self, leftSideButton!) { mainView, button in
+        
+        constrain(self, leftSideButton!) { mainView, button in
             button.right == mainView.right
         }
-
+        
     }
-
-
+    
+    
 }

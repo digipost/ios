@@ -16,8 +16,11 @@ class ComposerModuleParser {
             
             var internalStylesheet:NSString = ""
             if let stylesheetPath = NSBundle.mainBundle().pathForResource("stylesheet", ofType: "css"){
-                if let stylesheetContent = NSString(contentsOfFile: stylesheetPath, usedEncoding: nil, error: nil){
+                do{
+                    let stylesheetContent = try NSString(contentsOfFile: stylesheetPath, encoding: NSASCIIStringEncoding)
                     internalStylesheet = stylesheetContent
+                }catch let error{
+                    
                 }
             }
             

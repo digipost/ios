@@ -53,15 +53,15 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.screenName = kOAuthViewControllerScreenName;
-
+    
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
-
+    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-
+    
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-
+    
     if (self.scope == kOauth2ScopeFull) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
@@ -72,9 +72,9 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     } else {
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
-
+    
     [self presentAuthenticationWebView];
-
+    
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
@@ -90,7 +90,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
                                                                                                                         alpha:0.8] }
-
+     
                                                          forState:UIControlStateNormal];
 }
 
@@ -169,9 +169,9 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Oauth login error button title", @"Lets user tap it to dismiss alert")
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
-                                                        [self dismissViewControllerAnimated:YES completion:nil];
+                                                          [self dismissViewControllerAnimated:YES completion:nil];
                                                       }]];
-
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -194,7 +194,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-
+        
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
@@ -203,16 +203,16 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
-
+    
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.authenticated = YES;
-
+    
     [connection cancel];
-
+    
     [self.webView loadRequest:self.failedURLRequest];
 }
 
@@ -224,7 +224,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     [self dismissViewControllerAnimated:YES
                              completion:^{
-
+                                 
                              }];
 }
 
@@ -232,13 +232,13 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString secureRandomString];
-
+    
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
                                  kOAuth2State : self.stateParameter,
                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
-
+    
     [self authenticateWithParameters:parameters];
 }
 

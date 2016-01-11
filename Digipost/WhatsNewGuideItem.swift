@@ -22,8 +22,8 @@ class WhatsNewGuideItem {
         let text =  LocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index),tableName:GuideConstants.whatsNewTableName, comment:"") as String?
         
         if image == nil || text == nil {
-            debugIfNil(image, "could not find image named \(WhatsNewGuideItem.nameForIndex(index)) index:\(index)")
-            debugIfNil(image, "could not find localized string \(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index)) in table \(GuideConstants.whatsNewTableName) index: \(index)")
+            debugIfNil(image, message: "could not find image named \(WhatsNewGuideItem.nameForIndex(index)) index:\(index)")
+            debugIfNil(image, message: "could not find localized string \(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(index)) in table \(GuideConstants.whatsNewTableName) index: \(index)")
             self.init(image:UIImage(),text:"")
             return nil
         } else {

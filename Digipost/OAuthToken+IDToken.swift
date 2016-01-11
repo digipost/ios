@@ -14,7 +14,7 @@ private struct OAuthTokenIdTokenConstants {
 }
 
 extension OAuthToken {
-
+    
     class func isIdTokenValid(idToken : String?, nonce : String) -> Bool {
         if let actualIDToken = idToken {
             let idTokenContentArray  = idToken?.componentsSeparatedByString(".")
@@ -33,20 +33,24 @@ extension OAuthToken {
                         }
                     }
                     let jsonDataAsString = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
-
-                    if let jsonDictionary = NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as? [String : AnyObject] {
-                        if let aud = jsonDictionary[OAuthTokenIdTokenConstants.aud] as? String, let nonceInJson = jsonDictionary[OAuthTokenIdTokenConstants.nonce] as? String {
-                            if aud != OAUTH_CLIENT_ID {
+                    
+                    do{
+                        if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments) as? [String : AnyObject] {
+                            if let aud = jsonDictionary[OAuthTokenIdTokenConstants.aud] as? String, let nonceInJson = jsonDictionary[OAuthTokenIdTokenConstants.nonce] as? String {
+                                if aud != OAUTH_CLIENT_ID {
+                                    return false
+                                }
+                                if nonce != nonceInJson {
+                                    return false
+                                }
+                            } else {
                                 return false
                             }
-                            if nonce != nonceInJson {
-                                return false
-                            }
-                        } else {
-                            return false
                         }
+                    }catch{
+                        return false
                     }
-
+                    
                     let signature = idTokenContentArray![0]
                     let tokenContent = idTokenContentArray![1]
                     let hmacEncodedTokenContent = NSString.pos_base64HmacSha256(tokenContent, secret: OAUTH_SECRET)
@@ -57,8 +61,8 @@ extension OAuthToken {
                 }
             }
         }
-
+        
         return false
-
+        
     }
 }

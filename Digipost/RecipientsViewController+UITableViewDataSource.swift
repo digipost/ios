@@ -21,7 +21,7 @@ extension RecipientViewController: UITableViewDataSource {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
         
         if searchBar.isFirstResponder() {
-            if count(recipients) > 0 {
+            if recipients.count > 0 {
                 if let recipient = recipients[indexPath.row] as Recipient? {
                     cell.loadCell(recipient: recipient)
                     for r in addedRecipients {

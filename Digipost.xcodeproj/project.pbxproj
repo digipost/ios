@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
@@ -1383,6 +1383,12 @@
 		ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECFD14A51A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib */; };
 		ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */; };
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
+		F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F8053D681C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F8053D691C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F8053D6A1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F8053D6B1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1778,6 +1784,7 @@
 		ECFD14A91A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnlockHighAuthenticationLevelView.swift; sourceTree = "<group>"; };
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
+		F8053D661C43DB6800DB0CA9 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2325,6 +2332,7 @@
 				ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */,
 				AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */,
 				AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */,
+				F8053D661C43DB6800DB0CA9 /* String+URL.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3247,6 +3255,7 @@
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2484101B206F1A00FC372C /* POSDocument+Methods.m in Sources */,
+				F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				ECB2BF651B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
@@ -3442,6 +3451,7 @@
 				87C9E76C1B0610BC0019AA07 /* NSFetchedResultsController+Additions.m in Sources */,
 				EC42F25E1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D621B149937004F97B6 /* NSString+Hmac.m in Sources */,
+				F8053D6B1C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				87C9E76D1B0610BC0019AA07 /* Guide.swift in Sources */,
 				ECB2BF691B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				87C9E76E1B0610BC0019AA07 /* ReceiptView.swift in Sources */,
@@ -3637,6 +3647,7 @@
 				EC0D2D381AE786A800595A61 /* NSFetchedResultsController+Additions.m in Sources */,
 				EC42F25D1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D631B149938004F97B6 /* NSString+Hmac.m in Sources */,
+				F8053D6A1C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				EC0D2D391AE786A800595A61 /* Guide.swift in Sources */,
 				ECB2BF681B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC0D2D3A1AE786A800595A61 /* ReceiptView.swift in Sources */,
@@ -3832,6 +3843,7 @@
 				EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */,
 				EC42F25F1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */,
+				F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				EC2751AE1B061D5A0007125D /* NSString+RandomNumber.m in Sources */,
 				EC2751EB1B061DC80007125D /* UIImage+Localization.swift in Sources */,
 				EC2751DA1B061DBC0007125D /* APIClient+URLSessionTask.swift in Sources */,
@@ -4027,6 +4039,7 @@
 				EC2DCB4B1AB84EAB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
 				EC42F25B1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC669D641B149939004F97B6 /* NSString+Hmac.m in Sources */,
+				F8053D681C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				EC2DCB4C1AB84EAB0063755E /* Guide.swift in Sources */,
 				ECB2BF661B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC2DCB4D1AB84EAB0063755E /* ReceiptView.swift in Sources */,
@@ -4222,6 +4235,7 @@
 				EC2DCBFC1AB864AB0063755E /* NSFetchedResultsController+Additions.m in Sources */,
 				EC42F25C1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2DCBFD1AB864AB0063755E /* Guide.swift in Sources */,
+				F8053D691C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				EC2DCBFE1AB864AB0063755E /* ReceiptView.swift in Sources */,
 				ECB2BF671B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				EC2DCBFF1AB864AB0063755E /* POSAttachment.m in Sources */,

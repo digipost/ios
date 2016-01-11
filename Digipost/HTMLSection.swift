@@ -30,7 +30,8 @@ class HTMLSection: HTMLRepresentable {
         var representation = (inString as NSString).mutableCopy() as! NSMutableString
         var index = 0
         var newContent = ""
-        let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.allZeros, error: nil)
+
+        let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions())
         var addedRanges = [NSRange]()
 
         for tagBlock in tagBlocks {
@@ -72,8 +73,7 @@ class HTMLSection: HTMLRepresentable {
 
     func lengthOfAllTagsBeforeIndex(index: Int, inString string: NSString) -> Int {
         var error : NSError?
-        println(string.length)
-        let regex = NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace, error: &error)
+        let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace)
         let range : NSRange = {
             if index > string.length {
                 return NSMakeRange(0, string.length)
@@ -82,7 +82,7 @@ class HTMLSection: HTMLRepresentable {
             }
         }()
 
-        let allMatches = regex!.matchesInString(string as String, options: NSMatchingOptions.allZeros, range: range )
+        let allMatches = regex.matchesInString(string as String, options: NSMatchingOptions(), range: range )
         var totalLength = 0
         for match in allMatches as! [NSTextCheckingResult] {
             totalLength += match.range.length

@@ -24,7 +24,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         logoutBarButtonVariable = logoutBarButtonItem
         logoutButtonVariable = logoutButton
         
-        if let firstVC: UIViewController = navigationController?.viewControllers[0] as? UIViewController {
+        if let firstVC: UIViewController = navigationController?.viewControllers[0] {
             if firstVC.navigationItem.rightBarButtonItem == nil {
                 firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
             }
@@ -76,7 +76,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.interactivePopGestureRecognizer.delegate = self
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -151,11 +151,11 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PushFolders" {
-            let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow()!) as! POSMailbox
+            let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow!) as! POSMailbox
             let folderViewController: POSFoldersViewController = segue.destinationViewController as! POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
-            tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow()!, animated: true)
+            tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
 
         } else if segue.identifier == "gotoDocumentsFromAccountsSegue" {
             let documentsView: POSDocumentsViewController = segue.destinationViewController as! POSDocumentsViewController

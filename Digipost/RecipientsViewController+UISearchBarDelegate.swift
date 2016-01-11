@@ -37,14 +37,14 @@ extension RecipientViewController: UISearchBarDelegate {
         if searchBar.text == "" {
             tableView.reloadData()
         } else if searchBar.text != "" {
-            APIClient.sharedClient.getRecipients(searchBar.text, success: { (responseDictionary) -> Void in
+            APIClient.sharedClient.getRecipients(searchBar.text!, success: { (responseDictionary) -> Void in
                 self.recipients = Recipient.recipients(jsonDict: responseDictionary)
                 self.tableView.reloadData()
                 }) { (error) -> () in
-                    println(error)
+                    print(error)
             }
         }
-
+        
         tableView.reloadData()
     }
 }

@@ -8,19 +8,18 @@
 
 import UIKit
 
-extension FontPickerViewController : UITableViewDataSource {
+extension FontPickerViewController {
     
-
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return fonts.count
     }
-
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
         configureCell(cell, atIndexPath: indexPath)
         return cell
     }
-
+    
     func configureCell(cell : UITableViewCell, atIndexPath: NSIndexPath) {
         let font = fonts[atIndexPath.row]
         cell.detailTextLabel?.text = font.fontName
