@@ -39,9 +39,9 @@ struct HTMLTag {
 
                     let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
                     let symb = UIFontDescriptorSymbolicTraits(rawValue: symbolicTraits.rawValue)
-                    if symbolicTraits == .TraitItalic {
+                    if symbolicTraits.contains(.TraitItalic) {
                         return HTMLTagType.Italic
-                    } else if symbolicTraits == .TraitBold {
+                    } else if symbolicTraits.contains(.TraitBold) {
                         return HTMLTagType.Bold
                     }
                     return HTMLTagType.Paragraph
@@ -62,10 +62,10 @@ struct HTMLTag {
             }
             let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
             let symb = UIFontDescriptorSymbolicTraits(rawValue: symbolicTraits.rawValue)
-            if symbolicTraits == .TraitItalic {
+            if symbolicTraits.contains(.TraitItalic) {
                 tags.append(HTMLTag(type: HTMLTagType.Italic))
             }
-            if symbolicTraits == .TraitBold {
+            if symbolicTraits.contains(.TraitBold) {
                 tags.append(HTMLTag(type: HTMLTagType.Bold))
             }
         }
