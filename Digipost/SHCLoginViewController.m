@@ -25,7 +25,7 @@
 #import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 NSString *const kLoginNavigationControllerIdentifier = @"LoginNavigationController";

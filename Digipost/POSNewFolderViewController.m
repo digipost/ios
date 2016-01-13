@@ -12,7 +12,7 @@
 #import "POSNewFolderCollectionViewCell.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSNewFolderCollectionViewDataSource.h"
-#import "digipost-swift.h"
+#import "Digipost-Swift.h"
 #import "POSMailbox+Methods.h"
 #import <MRProgress/MRProgress.h>
 

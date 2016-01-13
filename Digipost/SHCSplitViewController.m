@@ -19,7 +19,7 @@
 #import "SHCLoginViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
-#import "digipost-swift.h"
+#import "Digipost-Swift.h"
 
 @interface SHCSplitViewController ()
 

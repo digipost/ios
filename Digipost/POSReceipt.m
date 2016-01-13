@@ -19,7 +19,7 @@
 #import "POSMailbox.h"
 #import "NSString+SHA1String.h"
 #import "POSFileManager.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 
 // Core Data model entity names
 NSString *const kReceiptEntityName = @"Receipt";

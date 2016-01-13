@@ -20,7 +20,7 @@
 #import "POSReceipt.h"
 #import "POSDocumentsViewController.h"
 #import "UIViewController+BackButton.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 
 NSString *const kPushReceiptIdentifier = @"PushReceipt";

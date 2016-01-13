@@ -12,7 +12,7 @@
 #import "POSModelManager.h"
 #import "UIViewController+BackButton.h"
 #import "POSUploadTableViewDataSource.h"
-#import "digipost-swift.h"
+#import "Digipost-Swift.h"
 #import "POSNewFolderViewController.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 

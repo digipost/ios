@@ -7,7 +7,7 @@
 //
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import <digipost-Swift.h>
+#import <Digipost-Swift.h>
 
 @class POSMailbox;
 

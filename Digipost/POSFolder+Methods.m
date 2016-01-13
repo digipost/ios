@@ -11,10 +11,9 @@
 #import "POSModelManager.h"
 #import "POSAttachment.h"
 #import "NSPredicate+CommonPredicates.h"
-#import "digipost-Swift.h"
 #import "POSDocument.h"
 #import "NSString+CoreDataConvenience.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 
 NSString *const kFolderEntityName = @"Folder";
 

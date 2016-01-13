@@ -17,7 +17,7 @@
 #import "UIViewController+ValidateOpening.h"
 #import "POSAttachment.h"
 #import "NSError+ExtraInfo.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 
 @implementation UIViewController (ValidateOpening)
 

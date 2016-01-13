@@ -19,7 +19,7 @@
 #import "NSString+RandomNumber.h"
 #import "LUKeychainAccess.h"
 #import "POSFileManager.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 #import "oauth.h"
 
 // Digipost OAuth2 API consts

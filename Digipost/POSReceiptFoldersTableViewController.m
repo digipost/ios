@@ -31,7 +31,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSReceiptFolderTableViewDataSource.h"
 #import "POSReceiptsViewController.h"
-#import "digipost-swift.h"
+#import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushReceiptsIdentifier = @"PushReceipts";

@@ -8,7 +8,7 @@
 
 #import "SHCDocumentsViewController+NavigationHierarchy.h"
 #import "POSFoldersViewController.h"
-#import "digipost-swift.h"
+#import "Digipost-Swift.h"
 
 @implementation POSDocumentsViewController (NavigationHierarchy)
 - (void)addAccountsAnFoldersVCToDoucmentHierarchy

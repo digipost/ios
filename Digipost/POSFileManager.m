@@ -21,7 +21,7 @@
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "POSBaseEncryptedModel.h"
-#import "digipost-Swift.h"
+#import "Digipost-Swift.h"
 
 // Custom NSError consts
 NSString *const kFileManagerDecryptingErrorDomain = @"FileManagerDecryptingErrorDomain";
