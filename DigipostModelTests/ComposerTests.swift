@@ -185,7 +185,7 @@ class ComposerTests: XCTestCase {
         let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
         textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
 
-        println(textComposerModule.attributedText)
+        print(textComposerModule.attributedText)
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
