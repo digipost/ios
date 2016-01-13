@@ -11,7 +11,7 @@ pod 'MRProgress', '~> 0.4.3'
 pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
 pod 'Alamofire', '~> 3.1.4'
 pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :branch => 'master'
-pod 'HockeySDK', :git => 'https://github.com/bitstadium/HockeySDK-iOS.git', :branch => 'develop'
+pod 'HockeySDK', '~> 3.6.4'
 pod 'SingleLineShakeAnimation', :git => 'https://github.com/haaakon/SingleLineShakeAnimation', :branch => 'master'
 pod 'Cartography', '~> 0.6.0'
 

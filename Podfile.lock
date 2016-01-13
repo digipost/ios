@@ -24,7 +24,7 @@ PODS:
   - Alamofire (3.1.4)
   - Cartography (0.6.0)
   - HockeySDK (3.6.4)
-  - LUKeychainAccess (1.2.4)
+  - LUKeychainAccess (1.2.5)
   - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator (= 0.4.3)
     - MRProgress/Blur (= 0.4.3)
@@ -67,7 +67,7 @@ DEPENDENCIES:
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 3.1.4)
   - Cartography (~> 0.6.0)
-  - HockeySDK (from `https://github.com/bitstadium/HockeySDK-iOS.git`, branch `develop`)
+  - HockeySDK (~> 3.6.4)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
@@ -82,9 +82,6 @@ EXTERNAL SOURCES:
   AHKActionSheet:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
-  HockeySDK:
-    :branch: develop
-    :git: https://github.com/bitstadium/HockeySDK-iOS.git
   SingleLineKeyboardResize:
     :branch: master
     :git: https://github.com/haaakon/SingleLineKeyboardResize
@@ -96,9 +93,6 @@ CHECKOUT OPTIONS:
   AHKActionSheet:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
-  HockeySDK:
-    :commit: 718e407276f92deb1efa1789847a611b5cfd70da
-    :git: https://github.com/bitstadium/HockeySDK-iOS.git
   SingleLineKeyboardResize:
     :commit: 08fb3a22efbe4a5c737a83be8764803181ab71cd
     :git: https://github.com/haaakon/SingleLineKeyboardResize
@@ -111,8 +105,8 @@ SPEC CHECKSUMS:
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
-  HockeySDK: 3554819315c10e7db89a46bfd61e1bb9090683d5
-  LUKeychainAccess: 6479edb12cf06e11ff3336f796959eedbc58f714
+  HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535
   SingleLineKeyboardResize: bc07bf854e3f57f4485fa5e62267e1590b5c879a
