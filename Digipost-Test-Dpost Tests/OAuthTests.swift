@@ -28,10 +28,14 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertNotNil(path, "wrong filename")
         let data = NSData(contentsOfFile: path!)
         XCTAssertNotNil(data, "wrong filename")
-        var error : NSError?
-        let jsonDictionary = NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments, error: &error) as! Dictionary<String,AnyObject>
-        XCTAssertNil(error, "could not read json")
-        return jsonDictionary
+        do{
+            let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! Dictionary<String,AnyObject>
+            return jsonDictionary
+        }catch let error{
+            XCTAssertNil(error, "could not read json")
+            return Dictionary<String, AnyObject>()
+        }
+        
     }
 
     var mockNonce = "-880201503"
