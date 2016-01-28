@@ -110,11 +110,16 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     if (navItem.rightBarButtonItem == nil) {
         navItem.rightBarButtonItem = self.editButtonItem;
     }
-
-    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentDocumentComposer)];
-    NSArray *items = @[ composeButton ];
-    self.toolbarItems = items;
-    [self.navigationController setToolbarHidden:NO];
+    
+    
+    /**
+     Functionality to show composer VC
+     */
+    //    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(presentDocumentComposer)];
+    //    NSArray *items = @[ composeButton ];
+    //    self.toolbarItems = items;
+    
+    [self.navigationController setToolbarHidden:YES];
 }
 
 - (void)presentDocumentComposer
