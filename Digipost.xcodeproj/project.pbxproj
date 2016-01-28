@@ -1626,6 +1626,16 @@
 		F8E675DC1C4653C900A6DD04 /* Digipost-QA.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8E675DA1C4653C900A6DD04 /* Digipost-QA.plist */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		EC65BE5F1AEF7E7300E9B46F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EC2DCBEC1AB864AB0063755E;
+			remoteInfo = "Digipost-QA-2";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
@@ -2933,9 +2943,9 @@
 			productReference = EC2DCBE01AB84EAB0063755E /* Digipost copy.app */;
 			productType = "com.apple.product-type.application";
 		};
-		EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */ = {
+		EC2DCBEC1AB864AB0063755E /* Digipost-QA */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EC2DCC8E1AB864AB0063755E /* Build configuration list for PBXNativeTarget "Digipost-QA-2" */;
+			buildConfigurationList = EC2DCC8E1AB864AB0063755E /* Build configuration list for PBXNativeTarget "Digipost-QA" */;
 			buildPhases = (
 				EC2DCBED1AB864AB0063755E /* Check Pods Manifest.lock */,
 				EC2DCBEE1AB864AB0063755E /* Sources */,
@@ -2948,7 +2958,7 @@
 			);
 			dependencies = (
 			);
-			name = "Digipost-QA-2";
+			name = "Digipost-QA";
 			productName = Digipost;
 			productReference = EC2DCC911AB864AB0063755E /* Digipost-qa2.app */;
 			productType = "com.apple.product-type.application";
@@ -3019,7 +3029,7 @@
 			targets = (
 				83BAB9171855C0AC004A7BFB /* Digipost */,
 				EC2DCB3B1AB84EAB0063755E /* DigipostBeta */,
-				EC2DCBEC1AB864AB0063755E /* Digipost-QA-2 */,
+				EC2DCBEC1AB864AB0063755E /* Digipost-QA */,
 				EC0D2D251AE786A800595A61 /* Digipost-Camelon */,
 				87C9E75C1B0610BC0019AA07 /* Digipost-localhost */,
 				EC2751851B061D000007125D /* DigipostModelTests */,
@@ -4966,6 +4976,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		EC65BE601AEF7E7300E9B46F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EC2DCBEC1AB864AB0063755E /* Digipost-QA */;
+			targetProxy = EC65BE5F1AEF7E7300E9B46F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -5530,8 +5548,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Posten Norge AS";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Posten Norge AS";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -5557,7 +5575,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
+				PROVISIONING_PROFILE = "b2a27feb-0c5f-4388-a3e6-4760798648cb";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -5572,8 +5590,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Arne Moen (4ZL82BP93Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -5599,7 +5617,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "0097ccab-0100-49ad-aa76-a036c165bc01";
+				PROVISIONING_PROFILE = "b2a27feb-0c5f-4388-a3e6-4760798648cb";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -5749,7 +5767,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EC2DCC8E1AB864AB0063755E /* Build configuration list for PBXNativeTarget "Digipost-QA-2" */ = {
+		EC2DCC8E1AB864AB0063755E /* Build configuration list for PBXNativeTarget "Digipost-QA" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EC2DCC8F1AB864AB0063755E /* Debug */,
