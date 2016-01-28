@@ -31,7 +31,11 @@ class SegmentedControlTableViewCell: UITableViewCell {
     func setupWithModels(textStyleModels : [TextStyleModel] ) {
         
         for (index, model) in textStyleModels.enumerate() {
-            multiselectSegmentedControl.setImage(UIImage(named: model.preferredIconName!)!, atIndex: index)
+            if let actualImage = UIImage(named:  model.preferredIconName!) {
+                multiselectSegmentedControl.setImage(actualImage, atIndex: index)
+            } else {
+                multiselectSegmentedControl.setImage(UIImage(named: "Bold")!, atIndex: index)
+            }
         }
     }
     
