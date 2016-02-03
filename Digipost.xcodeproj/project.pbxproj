@@ -1504,7 +1504,6 @@
 		87C9E7591B0606190019AA07 /* DigipostBeta.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DigipostBeta.plist; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
 		87C9E7FF1B0610BC0019AA07 /* Digipost-localhost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-localhost.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		87C9E8001B0610BD0019AA07 /* Digipost-Camelon copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Digipost-Camelon copy-Info.plist"; path = "/Users/jvl/projects/digipost/ios/Digipost-Camelon copy-Info.plist"; sourceTree = "<absolute>"; };
 		87C9E8011B06117E0019AA07 /* Digipost-localhost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-localhost.plist"; sourceTree = "<group>"; };
 		87C9E8031B0612330019AA07 /* Digipost-localhost.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-localhost.xcconfig"; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -1969,7 +1968,6 @@
 				83BAB9191855C0AC004A7BFB /* Products */,
 				EC30215F1AB70B9F00812502 /* GoogleAnalytics */,
 				29E65A4E416873C25D1B4292 /* Pods */,
-				87C9E8001B0610BD0019AA07 /* Digipost-Camelon copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2711,7 +2709,7 @@
 				ORGANIZATIONNAME = Posten;
 				TargetAttributes = {
 					83BAB9171855C0AC004A7BFB = {
-						DevelopmentTeam = KMS8B8MK42;
+						DevelopmentTeam = WERKB43HPJ;
 						SystemCapabilities = {
 							com.apple.DataProtection = {
 								enabled = 1;
@@ -2725,7 +2723,7 @@
 						DevelopmentTeam = 4E3PDM5H84;
 					};
 					EC2DCBEC1AB864AB0063755E = {
-						DevelopmentTeam = 4E3PDM5H84;
+						DevelopmentTeam = WERKB43HPJ;
 					};
 				};
 			};
@@ -4489,7 +4487,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4531,7 +4529,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
-				ENABLE_BITCODE = YES;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4583,6 +4581,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				PRODUCT_BUNDLE_IDENTIFIER = no.ftl.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -4599,8 +4598,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -4625,6 +4624,7 @@
 					"$(SDKROOT)/usr/lib/system",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				PRODUCT_BUNDLE_IDENTIFIER = no.ftl.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -4975,8 +4975,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -5002,7 +5002,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "b2a27feb-0c5f-4388-a3e6-4760798648cb";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
@@ -5017,8 +5017,8 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -5044,7 +5044,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_NAME = "Digipost-qa2";
-				PROVISIONING_PROFILE = "b2a27feb-0c5f-4388-a3e6-4760798648cb";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

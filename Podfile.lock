@@ -23,7 +23,9 @@ PODS:
   - AHKActionSheet (0.2.0)
   - Alamofire (3.1.4)
   - Cartography (0.6.0)
-  - HockeySDK (3.6.4)
+  - HockeySDK (3.8.5):
+    - HockeySDK/AllFeaturesLib (= 3.8.5)
+  - HockeySDK/AllFeaturesLib (3.8.5)
   - LUKeychainAccess (1.2.5)
   - MRProgress (0.4.3):
     - MRProgress/ActivityIndicator (= 0.4.3)
@@ -67,7 +69,7 @@ DEPENDENCIES:
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 3.1.4)
   - Cartography (~> 0.6.0)
-  - HockeySDK (~> 3.6.4)
+  - HockeySDK (~> 3.8.5)
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
@@ -105,7 +107,7 @@ SPEC CHECKSUMS:
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
-  HockeySDK: c07cdd580296737edcd0963e292c19885a53f563
+  HockeySDK: dd11a2b9da3372fd025643bee5bc10c8c613d169
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
   MRProgress: c82426f06ff685f8b684e604b7ac395bbc9fc06e
   RNCryptor: c68678461a2c7474a55db9a6a98834c22d51f535

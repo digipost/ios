@@ -15,7 +15,12 @@ extension APIClient {
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             let serializedResponse : Dictionary<String,AnyObject>? = {
                 if let data = data {
-                    return try! NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String,AnyObject>
+                    do {
+                        return try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String,AnyObject>
+                        
+                    } catch {
+                        return nil
+                    }
                 }
                 return nil
             }()
