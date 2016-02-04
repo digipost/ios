@@ -11,8 +11,8 @@ import UIKit
 class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     
     let tableView:UITableView
-
-    private lazy var fetchedResultsController : NSFetchedResultsController = {
+    
+    lazy var fetchedResultsController : NSFetchedResultsController = {
         
         // Create and configure a fetch request with the Book entity.
         let fetchRequest = NSFetchRequest(entityName: "Mailbox")
@@ -24,23 +24,32 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
         fetchRequest.sortDescriptors = [ownerDescriptor,nameDescriptor]
         
         var controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext:managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        controller.delegate = self
         
-        try! controller.performFetch()
+        do {
+            try controller.performFetch()
+        } catch let error {
+            print(error)
+        }
         
         return controller
-        }()
+    }()
     
     // MARK: - Class initialiser
     
     init(asDataSourceForTableView tableView: UITableView){
-        
         self.tableView = tableView
         super.init()
         tableView.dataSource = self
+        fetchedResultsController.delegate = self
+    }
+    
+    func startListeningToCoreDataChanges() {
         self.fetchedResultsController.delegate = self
     }
     
+    func stopListeningToCoreDataChanges() {
+        self.fetchedResultsController.delegate = nil
+    }
     // MARK: - UITableViewDataSource
     
     // Set number of sections in tableView
@@ -54,15 +63,14 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     // Set number of rows in section
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        let sectionInfo = self.fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
-            return sectionInfo.numberOfObjects
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell?
-
+        
         let mailBox = fetchMailBox(atIndexPath: indexPath)
         
         if mailBox.owner == 0 {
@@ -80,7 +88,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     // Customize the appearance of table view cells.
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath, mailBox: POSMailbox){
-
+        
         let rootResource = mailBox.rootResource
         
         var unreadItemsString = ""
@@ -127,7 +135,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
         
         switch type {
-        
+            
         case NSFetchedResultsChangeType.Insert:
             self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         case NSFetchedResultsChangeType.Delete:

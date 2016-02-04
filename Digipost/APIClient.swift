@@ -218,23 +218,24 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
         let logoutURI = rootResource.logoutUri
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
+        POSModelManager.sharedManager().deleteAllObjects()
         validateFullScope(success: {
             let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
             task.resume()
-
+            
             self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
-
+            
             OAuthToken.removeAllTokens()
             POSModelManager.sharedManager().deleteAllObjects()
             POSFileManager.sharedFileManager().removeAllFiles()
-
+            
             }) { (error) -> Void in
-
-            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
-
-            OAuthToken.removeAllTokens()
-            POSModelManager.sharedManager().deleteAllObjects()
-            POSFileManager.sharedFileManager().removeAllFiles()
+                
+                self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+                
+                OAuthToken.removeAllTokens()
+                POSModelManager.sharedManager().deleteAllObjects()
+                POSFileManager.sharedFileManager().removeAllFiles()
         }
     }
 

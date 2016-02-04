@@ -33,7 +33,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             firstVC.navigationItem.titleView = nil
             
         }
-    
+        
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
                 if rootResource == true {
@@ -51,13 +51,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         tableView.registerNib(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
         tableView.registerNib(UINib(nibName: Constants.Account.accountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
-                
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         
-        var tblView = UIView(frame: CGRectZero)
+        let tblView = UIView(frame: CGRectZero)
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
         tableView.backgroundColor = UIColor.digipostAccountViewBackground()
@@ -65,7 +65,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
     }
-
+    
     func refreshContentFromServer() {
         updateContentsFromServerUseInitiateRequest(0)
     }
@@ -73,12 +73,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
-    
+
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
-
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .Plain, target: nil, action: nil)
@@ -93,10 +93,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             if showingItem.respondsToSelector("setRightBarButtonItem:") {
                 showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
             }
-
+            
             showingItem.title = title
         }
-
+        
         navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
@@ -117,15 +117,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             if let actualRefreshControl = self.refreshControl {
                 self.refreshControl?.endRefreshing()
             }
-        }) { (error) -> () in
-            if (userDidInitiateRequest == 1) {
-                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
-            }
-            
-            if let actualRefreshControl = self.refreshControl {
-                self.refreshControl?.endRefreshing()
-            }
-            // Notify user about error?
+            }) { (error) -> () in
+                if (userDidInitiateRequest == 1) {
+                    UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
+                }
+                
+                if let actualRefreshControl = self.refreshControl {
+                    self.refreshControl?.endRefreshing()
+                }
+                // Notify user about error?
         }
     }
     
@@ -156,7 +156,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
             POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
             tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
-
+            
         } else if segue.identifier == "gotoDocumentsFromAccountsSegue" {
             let documentsView: POSDocumentsViewController = segue.destinationViewController as! POSDocumentsViewController
             let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
@@ -165,15 +165,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             let set = rootResource.mailboxes as NSSet
             let mailboxes = set.allObjects as NSArray
             mailboxes.sortedArrayUsingDescriptors([nameDescriptor])
-
+            
             let userMailbox: POSMailbox = mailboxes[0] as! POSMailbox
             documentsView.mailboxDigipostAddress = userMailbox.digipostAddress
             documentsView.folderName = kFolderInboxName
         }
     }
-
+    
     // MARK: - Logout
-
+    
     @IBAction func logoutButtonTapped(sender: UIButton) {
         logoutUser()
     }
@@ -201,8 +201,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             letterViewController.receipt = nil
         }
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
-        tableView.reloadData()
+        dataSource?.stopListeningToCoreDataChanges()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
     }
-
+    
+    
 }
