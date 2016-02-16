@@ -19,6 +19,7 @@
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
 #import "GAITracker.h"
+#import "GAIFields.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSModelManager.h"
 #import "POSUploadViewController.h"
@@ -226,6 +227,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
+    [self.googleAnalyticsTracker set:kGAIAnonymizeIp value:[@YES stringValue]];    
     [GAI sharedInstance].dispatchInterval = 40.0;
 }
 
