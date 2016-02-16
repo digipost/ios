@@ -69,8 +69,7 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     [self.refreshControl initializeRefreshControlText];
     [self.refreshControl updateRefreshControlTextRefreshing:YES];
 
-    self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
-                                                      alpha:1.0];
+    self.refreshControl.tintColor = [UIColor colorWithWhite:0.4 alpha:1.0];
 
     // This is a hack to force iOS to make up its mind as to what the value of the refreshControl's frame.origin.y should be.
     [self.refreshControl beginRefreshing];
@@ -89,9 +88,10 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow
-                                  animated:YES];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];   
+    [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
+
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     if (self.isEditing) {
