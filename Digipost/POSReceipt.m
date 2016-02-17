@@ -13,7 +13,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
 #import "POSReceipt.h"
 #import "POSModelManager.h"
 #import "POSMailbox.h"
@@ -105,8 +104,7 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     if ([timeOfPurchseString isKindOfClass:[NSString class]]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
-
-        receipt.timeOfPurchase = [dateFormatter dateFromString:timeOfPurchseString];
+        receipt.timeOfPurchase = [dateFormatter dateFromString:[timeOfPurchseString validDateFormat]];
     }
 
     NSArray *links = attributes[kReceiptLinkAPIKey];
