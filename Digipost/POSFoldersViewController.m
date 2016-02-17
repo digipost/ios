@@ -231,16 +231,23 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     NSString *folderName;
     UIImage *iconImage;
     BOOL arrowHidden = NO;
-    BOOL unreadCounterHidden = YES;
+    BOOL unreadCounterHidden = TRUE;
 
     POSFolderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kFolderTableViewCellIdentifier
                                                                    forIndexPath:indexPath];
+    
+    POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
+                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    NSNumber *unreadItemsInInbox = mailbox.unreadItemsInInbox;
+    
     if (indexPath.section == 0 && self.inboxFolder) {
         switch (indexPath.row) {
             case 0: {
                 folderName = [self.inboxFolder displayName];
                 iconImage = [UIImage imageNamed:@"list-icon-inbox"];
-                unreadCounterHidden = NO;
+                if([unreadItemsInInbox intValue] > 0){
+                    unreadCounterHidden = FALSE;
+                }
             } break;
             case 1: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
@@ -280,12 +287,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     cell.unreadCounterLabel.hidden = unreadCounterHidden;
 
     if (!unreadCounterHidden) {
-        POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", rootResource.unreadItemsInInbox];
+        cell.unreadCounterLabel.text = [NSString stringWithFormat:@"%@", mailbox.unreadItemsInInbox];
     }
 
     return cell;
 }
+
 
 #pragma mark - UITableViewDelegate
 
