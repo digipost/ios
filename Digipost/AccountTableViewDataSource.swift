@@ -88,9 +88,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     // Customize the appearance of table view cells.
     func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath, mailBox: POSMailbox){
-        
-        let rootResource = mailBox.rootResource
-        
+                
         var unreadItemsString = ""
         if let unreadItems = mailBox.unreadItemsInInbox {
             var str = ""
