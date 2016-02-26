@@ -59,8 +59,6 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
-		87C9E7581B0605F20019AA07 /* Digipost-QA2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E7571B0605F20019AA07 /* Digipost-QA2.plist */; };
-		87C9E75B1B0606670019AA07 /* Digipost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E75A1B0606670019AA07 /* Digipost.plist */; };
 		87C9E75F1B0610BC0019AA07 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		87C9E7601B0610BC0019AA07 /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
 		87C9E7611B0610BC0019AA07 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
@@ -208,8 +206,6 @@
 		87C9E7F71B0610BC0019AA07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
 		87C9E7F81B0610BC0019AA07 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		87C9E7F91B0610BC0019AA07 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
-		87C9E8021B06117E0019AA07 /* Digipost-localhost.plist in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E8011B06117E0019AA07 /* Digipost-localhost.plist */; };
-		87C9E8041B0612330019AA07 /* Digipost-localhost.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 87C9E8031B0612330019AA07 /* Digipost-localhost.xcconfig */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
@@ -992,8 +988,6 @@
 		EC8F4A3A1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		EC8F4A3B1B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
-		EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
-		EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EC95B0581AD5181A00633345 /* DigipostBeta.xcconfig */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		ECA39C9A1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
 		ECA39C9B1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
@@ -1010,8 +1004,6 @@
 		ECA5A5FC1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A5FD1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
 		ECA5A5FF1B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
-		ECA5A6011B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
-		ECA5A6031B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
 		ECB2BE611B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE621B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
 		ECB2BE631B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
@@ -1389,7 +1381,11 @@
 		F8053D6A1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6B1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
-		F8E675D81C4651E600A6DD04 /* Digipost-QA.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F8E675D71C4651E600A6DD04 /* Digipost-QA.xcconfig */; };
+		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F84270F51C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F84270F61C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F84270F71C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F84270F81C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
 		F8E675DB1C4653C900A6DD04 /* Digipost-QA.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8E675DA1C4653C900A6DD04 /* Digipost-QA.plist */; };
 /* End PBXBuildFile section */
 
@@ -1786,6 +1782,7 @@
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
 		F8053D661C43DB6800DB0CA9 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
+		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F8E675D71C4651E600A6DD04 /* Digipost-QA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-QA.xcconfig"; sourceTree = "<group>"; };
 		F8E675DA1C4653C900A6DD04 /* Digipost-QA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-QA.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2337,6 +2334,7 @@
 				AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */,
 				AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */,
 				F8053D661C43DB6800DB0CA9 /* String+URL.swift */,
+				F84270F31C74634B00F71553 /* NSString+Date.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2705,7 +2703,7 @@
 			attributes = {
 				CLASSPREFIX = POS;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Posten;
 				TargetAttributes = {
 					83BAB9171855C0AC004A7BFB = {
@@ -2762,10 +2760,8 @@
 				ECB2BF1F1B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				ECB2BF2D1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				ECB2BEC31B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
-				ECA5A6011B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */,
 				ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
-				F8E675D81C4651E600A6DD04 /* Digipost-QA.xcconfig in Resources */,
 				EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
@@ -2778,11 +2774,9 @@
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
 				EC42F23E1B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
-				87C9E75B1B0606670019AA07 /* Digipost.plist in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC42F2371B81C755005785DE /* Editor.js in Resources */,
-				EC95B0591AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
 				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
@@ -2807,8 +2801,6 @@
 				ECB2BF311B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				EC42F23B1B81C755005785DE /* Editor.js in Resources */,
 				ECB2BFD71B452F2A008E32E8 /* stylesheet.css in Resources */,
-				87C9E8021B06117E0019AA07 /* Digipost-localhost.plist in Resources */,
-				87C9E8041B0612330019AA07 /* Digipost-localhost.xcconfig in Resources */,
 				87C9E7EC1B0610BC0019AA07 /* MainAccountTableViewCell.xib in Resources */,
 				87C9E7ED1B0610BC0019AA07 /* Onboarding.storyboard in Resources */,
 				87C9E7EE1B0610BC0019AA07 /* Images-Shared.xcassets in Resources */,
@@ -2872,7 +2864,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECA5A6031B2A0227001F2DC6 /* Digipost.debug.xcconfig in Resources */,
 				ECB2BFCB1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				ECB2BF641B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BEC91B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
@@ -2917,7 +2908,6 @@
 				EC2DCBD21AB84EAB0063755E /* Main_iPhone.storyboard in Resources */,
 				EC2DCBD31AB84EAB0063755E /* OnboardingGuideTexts.strings in Resources */,
 				EC2DCBD41AB84EAB0063755E /* WhatsNewGuideTexts.strings in Resources */,
-				EC95B05A1AD5181A00633345 /* DigipostBeta.xcconfig in Resources */,
 				ECB2BE701B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				ECB2BF2E1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				ECB2BF5F1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
@@ -2965,7 +2955,6 @@
 				EC42F2391B81C755005785DE /* Editor.js in Resources */,
 				ECB2BEE91B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFC71B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
-				87C9E7581B0605F20019AA07 /* Digipost-QA2.plist in Resources */,
 				ECB2BF211B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				EC42F2551B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				ECB2BFD51B452F2A008E32E8 /* stylesheet.css in Resources */,
@@ -3325,6 +3314,7 @@
 				ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
+				F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */,
 				ECCC94A11B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67211B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
@@ -3521,6 +3511,7 @@
 				ECD688901B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				87C9E7911B0610BC0019AA07 /* POSInvoice.m in Sources */,
 				87C9E7921B0610BC0019AA07 /* POSBaseEncryptedModel.m in Sources */,
+				F84270F81C74634B00F71553 /* NSString+Date.swift in Sources */,
 				ECCC94A51B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67251B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				87C9E7931B0610BC0019AA07 /* UIViewController+ValidateOpening.m in Sources */,
@@ -3717,6 +3708,7 @@
 				ECD6888F1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC0D2D641AE786A800595A61 /* POSInvoice.m in Sources */,
 				EC0D2D651AE786A800595A61 /* POSBaseEncryptedModel.m in Sources */,
+				F84270F71C74634B00F71553 /* NSString+Date.swift in Sources */,
 				ECCC94A41B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67241B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				EC0D2D661AE786A800595A61 /* UIViewController+ValidateOpening.m in Sources */,
@@ -4109,6 +4101,7 @@
 				ECD6888D1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2DCB701AB84EAB0063755E /* POSInvoice.m in Sources */,
 				EC2DCB711AB84EAB0063755E /* POSBaseEncryptedModel.m in Sources */,
+				F84270F51C74634B00F71553 /* NSString+Date.swift in Sources */,
 				ECCC94A21B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67221B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				EC2DCB721AB84EAB0063755E /* UIViewController+ValidateOpening.m in Sources */,
@@ -4305,6 +4298,7 @@
 				ECD6888E1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2DCC221AB864AB0063755E /* POSBaseEncryptedModel.m in Sources */,
 				EC2DCC231AB864AB0063755E /* UIViewController+ValidateOpening.m in Sources */,
+				F84270F61C74634B00F71553 /* NSString+Date.swift in Sources */,
 				ECCC94A31B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67231B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				EC2DCC241AB864AB0063755E /* UIToolbar+Actions.swift in Sources */,
@@ -4488,6 +4482,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4666,6 +4661,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "-D__ACCEPT_SELF_SIGNED_CERTIFICATES__";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.posten.Digipost-localhost";
 				PRODUCT_NAME = "Digipost-localhost";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";
@@ -4709,6 +4705,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "-D__ACCEPT_SELF_SIGNED_CERTIFICATES__";
+				PRODUCT_BUNDLE_IDENTIFIER = "no.posten.Digipost-localhost";
 				PRODUCT_NAME = "Digipost-localhost";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";
@@ -4750,6 +4747,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "no.posten.Digipost-Staging.enterprise";
 				PRODUCT_NAME = "Digipost-Camelon";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -4791,6 +4789,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "no.posten.Digipost-Staging.enterprise";
 				PRODUCT_NAME = "Digipost-Camelon";
 				PROVISIONING_PROFILE = "2c3d5214-4fa3-4ad0-8d48-beea7a4f63af";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -4834,6 +4833,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.digipost.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -4877,6 +4877,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "no.digipost.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 			};
@@ -4917,6 +4918,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.enterprise;
 				PRODUCT_NAME = "Digipost copy";
 				PROVISIONING_PROFILE = "c721db8c-b176-4519-b8ef-3a3128ccf465";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -4960,6 +4962,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.enterprise;
 				PRODUCT_NAME = "Digipost copy";
 				PROVISIONING_PROFILE = "c721db8c-b176-4519-b8ef-3a3128ccf465";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -5001,6 +5004,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
 				PRODUCT_NAME = "Digipost-qa2";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
@@ -5043,6 +5047,7 @@
 					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost.qa;
 				PRODUCT_NAME = "Digipost-qa2";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
