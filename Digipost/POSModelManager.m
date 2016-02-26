@@ -183,9 +183,12 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
                                                   inManagedObjectContext:self.managedObjectContext];
 
     // Get a list of all old receipts
-    NSArray *oldReceipts = [POSReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress
-                                                          inManagedObjectContext:self.managedObjectContext];
-
+    //NSArray *oldReceipts = [POSReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress
+     //                                                     inManagedObjectContext:self.managedObjectContext];
+    
+    //Delete old receipts
+    [POSReceipt deleteAllReceiptsInManagedObjectContext: self.managedObjectContext];
+    
     NSArray *receipts = attributes[kReceiptReceiptAPIKey];
     if ([receipts isKindOfClass:[NSArray class]]) {
         for (NSDictionary *receiptDict in receipts) {
@@ -199,9 +202,9 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 
     // Delete the old ones
-    for (POSReceipt *oldReceipt in oldReceipts) {
-        [self.managedObjectContext deleteObject:oldReceipt];
-    }
+    //for (POSReceipt *oldReceipt in oldReceipts) {
+    //    [self.managedObjectContext deleteObject:oldReceipt];
+    //}
 
     // And finally, save changes
     NSError *error = nil;
