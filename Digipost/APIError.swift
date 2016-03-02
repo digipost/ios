@@ -35,7 +35,7 @@ class APIError: NSError {
     init(urlResponse: NSHTTPURLResponse, jsonResponse: Dictionary<String,AnyObject>?) {
         
         if let response = jsonResponse {
-            //    digipostErrorCode = response[APIErrorConstants.errorCode] as? String
+                digipostErrorCode = response[APIErrorConstants.errorCode] as? String
         }
         responseText = jsonResponse?.description
         httpStatusCode = urlResponse.statusCode
@@ -174,8 +174,8 @@ class APIError: NSError {
     
     func alertTitleAndMessage() -> (String,String) {
         // if the API error has no error code, it means we have to check the HTTP response code instead
-        
-        if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != "" {
+
+        if httpStatusCode != APIErrorConstants.noErrorCode && digipostErrorCode != "" && digipostErrorCode != nil{
             
             switch self.digipostErrorCode! {
             case APIErrorConstants.ErrorCodes.folderNotEmpty:
