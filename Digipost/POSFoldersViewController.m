@@ -142,12 +142,12 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
     if (self.selectedMailBoxDigipostAdress) {
         POSMailbox *currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                              inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        UINavigationItem *navItem = self.navigationController.navigationBar.items[0];
-        navItem.title = currentMailbox.name;
+        UINavigationBar *navBar = [self.navigationController navigationBar];
+        navBar.topItem.rightBarButtonItem = self.editButtonItem;
+        navBar.topItem.title = currentMailbox.name;
         self.navigationItem.title = currentMailbox.name;
     }
     [self setEditing:NO animated:YES];
