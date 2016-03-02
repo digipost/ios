@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension NSString {
+public extension NSString {
     func validDateFormat() -> NSString? {
         if let r: NSRange = self.rangeOfString(".", options: NSStringCompareOptions.BackwardsSearch){
             if r.length > 0 {
