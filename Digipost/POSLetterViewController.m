@@ -676,22 +676,43 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self showLockedViewCanBeUnlocked:NO];
         return;
     }
+    
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
+        
         if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
                                                                              error:&error]) {
             [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
             return;
         }
+                
 
         NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         [self loadFileURL:fileURL];
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
+    [self updateCurrentDocument];
+}
 
+-(void)updateCurrentDocument
+{    
+    [[APIClient sharedClient] updateDocument:self.attachment.document
+                                     success:^(NSDictionary *responseDict) {
+                                         POSDocument *refetchedDocument = [POSDocument existingDocumentWithUpdateUri:self.attachment.document.updateUri inManagedObjectContext:[[POSModelManager sharedManager] managedObjectContext]];
+                                         [[POSModelManager sharedManager] updateDocument:refetchedDocument withAttributes:responseDict];
+                                         [self updateToolbar];
+                                     }failure:^(APIError *error) {
+                                         [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+                                     }
+     ];
+}
+
+-(void)updateToolbar
+{
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
     [self setToolbarItems:toolbarItems animated:YES];
+    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];  
 }
 
 - (void)downloadAttachmentContent:(POSAttachment *)attachment
@@ -1294,8 +1315,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
           // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata
           // to be able to correctly display the contents of the alertview if the user taps the "sent to bank" button.
 
-          [self updateDocuments];
-
+            self.sendingInvoice = NO;
+            [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
+            [self updateCurrentDocument];
         }
         failure:^(APIError *error) {
           [MRProgressOverlayView dismissOverlayForView:self.navigationController.view animated:YES];
