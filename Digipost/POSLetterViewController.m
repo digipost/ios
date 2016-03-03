@@ -692,7 +692,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
-    [self updateCurrentDocument];
+    if(self.attachment){
+        [self updateCurrentDocument];
+    }
+    NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+    [self setToolbarItems:toolbarItems animated:YES];
 }
 
 -(void)updateCurrentDocument
@@ -701,18 +705,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                      success:^(NSDictionary *responseDict) {
                                          POSDocument *refetchedDocument = [POSDocument existingDocumentWithUpdateUri:self.attachment.document.updateUri inManagedObjectContext:[[POSModelManager sharedManager] managedObjectContext]];
                                          [[POSModelManager sharedManager] updateDocument:refetchedDocument withAttributes:responseDict];
-                                         [self updateToolbar];
+                                         [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];
                                      }failure:^(APIError *error) {
                                          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                      }
      ];
-}
-
--(void)updateToolbar
-{
-    NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
-    [self setToolbarItems:toolbarItems animated:YES];
-    [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];  
 }
 
 - (void)downloadAttachmentContent:(POSAttachment *)attachment
