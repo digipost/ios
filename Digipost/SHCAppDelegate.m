@@ -29,9 +29,7 @@
 #import "SHCLoginViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
-#import <HockeySDK/HockeySDK.h>
 #import "Digipost-Swift.h"
-#import <HockeySDK/BITHockeyManager.h>
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
@@ -49,7 +47,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-    [self setupHockeySDK];
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
 
     //    [self setupCocoaLumberjack];
@@ -210,18 +207,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     }
 }
 #pragma mark - Private methods
-
-- (void)setupHockeySDK
-{
-
-#if __IS_BETA__ == 0
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_LIVE_IDENTIFIER__];
-#elif __IS_BETA__ == 1
-    [[BITHockeyManager sharedHockeyManager] configureWithIdentifier:__HOCKEY_BETA_IDENTIFIER__];
-#else
-#endif
-    [[BITHockeyManager sharedHockeyManager] startManager];
-}
 
 - (void)setupGoogleAnalytics
 {
