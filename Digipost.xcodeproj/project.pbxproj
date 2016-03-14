@@ -186,10 +186,8 @@
 		87C9E7E21B0610BC0019AA07 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		87C9E7E31B0610BC0019AA07 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		87C9E7E41B0610BC0019AA07 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
-		87C9E7E51B0610BC0019AA07 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
 		87C9E7E61B0610BC0019AA07 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		87C9E7E71B0610BC0019AA07 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		87C9E7E81B0610BC0019AA07 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		87C9E7EA1B0610BC0019AA07 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		87C9E7EB1B0610BC0019AA07 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		87C9E7EC1B0610BC0019AA07 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
@@ -361,10 +359,8 @@
 		EC0D2DC61AE786A800595A61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		EC0D2DC71AE786A800595A61 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		EC0D2DC81AE786A800595A61 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
-		EC0D2DC91AE786A800595A61 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
 		EC0D2DCA1AE786A800595A61 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		EC0D2DCB1AE786A800595A61 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EC0D2DCC1AE786A800595A61 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		EC0D2DCE1AE786A800595A61 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		EC0D2DD01AE786A800595A61 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC0D2DD11AE786A800595A61 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
@@ -531,8 +527,6 @@
 		EC2752091B061DE80007125D /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC27520A1B061DE80007125D /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
-		EC27520C1B061E060007125D /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
-		EC27520D1B061E060007125D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
 		EC27520F1B061E120007125D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		EC2752101B061E160007125D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
@@ -680,10 +674,8 @@
 		EC2DCBC21AB84EAB0063755E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		EC2DCBC31AB84EAB0063755E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		EC2DCBC41AB84EAB0063755E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
-		EC2DCBC51AB84EAB0063755E /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
 		EC2DCBC61AB84EAB0063755E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		EC2DCBC71AB84EAB0063755E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EC2DCBC81AB84EAB0063755E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		EC2DCBCA1AB84EAB0063755E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		EC2DCBCB1AB84EAB0063755E /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC2DCBCC1AB84EAB0063755E /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
@@ -827,10 +819,8 @@
 		EC2DCC731AB864AB0063755E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
 		EC2DCC741AB864AB0063755E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		EC2DCC751AB864AB0063755E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
-		EC2DCC761AB864AB0063755E /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
 		EC2DCC771AB864AB0063755E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		EC2DCC781AB864AB0063755E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		EC2DCC791AB864AB0063755E /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		EC2DCC7B1AB864AB0063755E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		EC2DCC7C1AB864AB0063755E /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC2DCC7D1AB864AB0063755E /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
@@ -853,8 +843,6 @@
 		EC30218E1AB70DC100812502 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		EC3021901AB70DD400812502 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
 		EC3021921AB70E0A00812502 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
-		EC30219F1AB8499700812502 /* libAdIdAccess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217C1AB70D9400812502 /* libAdIdAccess.a */; };
-		EC3021A01AB8499700812502 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */; };
 		EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
@@ -1381,6 +1369,8 @@
 		F8053D6A1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6B1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
+		F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
+		F80F27541C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
 		F84270F51C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
 		F84270F61C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -1575,18 +1565,6 @@
 		EC30215D1AB70AE800812502 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		EC3021761AB70C2300812502 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EC3021781AB70C2A00812502 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		EC30217C1AB70D9400812502 /* libAdIdAccess.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdIdAccess.a; path = GAI/libAdIdAccess.a; sourceTree = "<group>"; };
-		EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GAI/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
-		EC30217E1AB70D9400812502 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
-		EC30217F1AB70D9400812502 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		EC3021801AB70D9400812502 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GAI/GAIEcommerceFields.h; sourceTree = "<group>"; };
-		EC3021811AB70D9400812502 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GAI/GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		EC3021821AB70D9400812502 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GAI/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		EC3021831AB70D9400812502 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = GAI/GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		EC3021841AB70D9400812502 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GAI/GAIFields.h; sourceTree = "<group>"; };
-		EC3021851AB70D9400812502 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GAI/GAILogger.h; sourceTree = "<group>"; };
-		EC3021861AB70D9400812502 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GAI/GAITrackedViewController.h; sourceTree = "<group>"; };
-		EC3021871AB70D9400812502 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GAI/GAITracker.h; sourceTree = "<group>"; };
 		EC30218A1AB70DA800812502 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		EC30218D1AB70DC100812502 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		EC30218F1AB70DD400812502 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -1782,6 +1760,17 @@
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
 		F8053D661C43DB6800DB0CA9 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
+		F80F27451C93064A0069378C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
+		F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		F80F27471C93064A0069378C /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GAI/GAIEcommerceFields.h; sourceTree = "<group>"; };
+		F80F27481C93064A0069378C /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GAI/GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		F80F27491C93064A0069378C /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GAI/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		F80F274A1C93064A0069378C /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = GAI/GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		F80F274B1C93064A0069378C /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GAI/GAIFields.h; sourceTree = "<group>"; };
+		F80F274C1C93064A0069378C /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GAI/GAILogger.h; sourceTree = "<group>"; };
+		F80F274D1C93064A0069378C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GAI/GAITrackedViewController.h; sourceTree = "<group>"; };
+		F80F274E1C93064A0069378C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GAI/GAITracker.h; sourceTree = "<group>"; };
+		F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GAI/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		F8E675D71C4651E600A6DD04 /* Digipost-QA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-QA.xcconfig"; sourceTree = "<group>"; };
@@ -1803,8 +1792,7 @@
 				EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */,
 				83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */,
 				15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */,
-				EC30219F1AB8499700812502 /* libAdIdAccess.a in Frameworks */,
-				EC3021A01AB8499700812502 /* libGoogleAnalyticsServices.a in Frameworks */,
+				F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1820,10 +1808,8 @@
 				87C9E7E21B0610BC0019AA07 /* Foundation.framework in Frameworks */,
 				87C9E7E31B0610BC0019AA07 /* MobileCoreServices.framework in Frameworks */,
 				87C9E7E41B0610BC0019AA07 /* SystemConfiguration.framework in Frameworks */,
-				87C9E7E51B0610BC0019AA07 /* libAdIdAccess.a in Frameworks */,
 				87C9E7E61B0610BC0019AA07 /* UIKit.framework in Frameworks */,
 				87C9E7E71B0610BC0019AA07 /* Pods.framework in Frameworks */,
-				87C9E7E81B0610BC0019AA07 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1839,10 +1825,8 @@
 				EC0D2DC61AE786A800595A61 /* Foundation.framework in Frameworks */,
 				EC0D2DC71AE786A800595A61 /* MobileCoreServices.framework in Frameworks */,
 				EC0D2DC81AE786A800595A61 /* SystemConfiguration.framework in Frameworks */,
-				EC0D2DC91AE786A800595A61 /* libAdIdAccess.a in Frameworks */,
 				EC0D2DCA1AE786A800595A61 /* UIKit.framework in Frameworks */,
 				EC0D2DCB1AE786A800595A61 /* Pods.framework in Frameworks */,
-				EC0D2DCC1AE786A800595A61 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1860,8 +1844,6 @@
 				EC27520F1B061E120007125D /* Foundation.framework in Frameworks */,
 				EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */,
 				EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */,
-				EC27520C1B061E060007125D /* libAdIdAccess.a in Frameworks */,
-				EC27520D1B061E060007125D /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1877,10 +1859,8 @@
 				EC2DCBC21AB84EAB0063755E /* Foundation.framework in Frameworks */,
 				EC2DCBC31AB84EAB0063755E /* MobileCoreServices.framework in Frameworks */,
 				EC2DCBC41AB84EAB0063755E /* SystemConfiguration.framework in Frameworks */,
-				EC2DCBC51AB84EAB0063755E /* libAdIdAccess.a in Frameworks */,
 				EC2DCBC61AB84EAB0063755E /* UIKit.framework in Frameworks */,
 				EC2DCBC71AB84EAB0063755E /* Pods.framework in Frameworks */,
-				EC2DCBC81AB84EAB0063755E /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1896,10 +1876,9 @@
 				EC2DCC731AB864AB0063755E /* Foundation.framework in Frameworks */,
 				EC2DCC741AB864AB0063755E /* MobileCoreServices.framework in Frameworks */,
 				EC2DCC751AB864AB0063755E /* SystemConfiguration.framework in Frameworks */,
-				EC2DCC761AB864AB0063755E /* libAdIdAccess.a in Frameworks */,
 				EC2DCC771AB864AB0063755E /* UIKit.framework in Frameworks */,
 				EC2DCC781AB864AB0063755E /* Pods.framework in Frameworks */,
-				EC2DCC791AB864AB0063755E /* libGoogleAnalyticsServices.a in Frameworks */,
+				F80F27541C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1964,7 +1943,7 @@
 				EC2751871B061D010007125D /* DigipostModelTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
-				EC30215F1AB70B9F00812502 /* GoogleAnalytics */,
+				EC30215F1AB70B9F00812502 /* GAI */,
 				29E65A4E416873C25D1B4292 /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -2407,23 +2386,22 @@
 			name = Accounts;
 			sourceTree = "<group>";
 		};
-		EC30215F1AB70B9F00812502 /* GoogleAnalytics */ = {
+		EC30215F1AB70B9F00812502 /* GAI */ = {
 			isa = PBXGroup;
 			children = (
-				EC30217C1AB70D9400812502 /* libAdIdAccess.a */,
-				EC30217D1AB70D9400812502 /* libGoogleAnalyticsServices.a */,
-				EC30217E1AB70D9400812502 /* GAI.h */,
-				EC30217F1AB70D9400812502 /* GAIDictionaryBuilder.h */,
-				EC3021801AB70D9400812502 /* GAIEcommerceFields.h */,
-				EC3021811AB70D9400812502 /* GAIEcommerceProduct.h */,
-				EC3021821AB70D9400812502 /* GAIEcommerceProductAction.h */,
-				EC3021831AB70D9400812502 /* GAIEcommercePromotion.h */,
-				EC3021841AB70D9400812502 /* GAIFields.h */,
-				EC3021851AB70D9400812502 /* GAILogger.h */,
-				EC3021861AB70D9400812502 /* GAITrackedViewController.h */,
-				EC3021871AB70D9400812502 /* GAITracker.h */,
+				F80F27451C93064A0069378C /* GAI.h */,
+				F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */,
+				F80F27471C93064A0069378C /* GAIEcommerceFields.h */,
+				F80F27481C93064A0069378C /* GAIEcommerceProduct.h */,
+				F80F27491C93064A0069378C /* GAIEcommerceProductAction.h */,
+				F80F274A1C93064A0069378C /* GAIEcommercePromotion.h */,
+				F80F274B1C93064A0069378C /* GAIFields.h */,
+				F80F274C1C93064A0069378C /* GAILogger.h */,
+				F80F274D1C93064A0069378C /* GAITrackedViewController.h */,
+				F80F274E1C93064A0069378C /* GAITracker.h */,
+				F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */,
 			);
-			name = GoogleAnalytics;
+			name = GAI;
 			sourceTree = "<group>";
 		};
 		EC4146BE1AA736A8003DBF47 /* Old images */ = {
