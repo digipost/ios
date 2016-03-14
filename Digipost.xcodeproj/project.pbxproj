@@ -2684,7 +2684,7 @@
 				CLASSPREFIX = POS;
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = Posten;
+				ORGANIZATIONNAME = "Posten Norge AS";
 				TargetAttributes = {
 					83BAB9171855C0AC004A7BFB = {
 						DevelopmentTeam = KMS8B8MK42;
