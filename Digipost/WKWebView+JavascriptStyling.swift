@@ -66,7 +66,7 @@ extension WKWebView {
         })
     }
 
-    func insertImageWithBase64Data(var base64: String) {
+    func insertImageWithBase64Data( base64: String) {
         evaluateJavaScript("DigipostEditor.appendImageFromBase64Data('\(base64)');", completionHandler: { (response, error) -> Void in
 
         })

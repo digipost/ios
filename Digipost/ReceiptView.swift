@@ -245,8 +245,8 @@ class ReceiptView: UIView {
 				}
 			}
 			else{
-				var totalDuration : CGFloat = 2.3
-				var offset = progress * totalDuration
+				let totalDuration : CGFloat = 2.3
+				let offset = progress * totalDuration
 				for layer in self.layerWithAnims{
 					layer.timeOffset = CFTimeInterval(offset)
 				}
@@ -255,7 +255,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptbodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1.1]
 		strokeEndAnim.keyTimes = [0, 0.625, 1]
 		strokeEndAnim.duration = 2.11
@@ -266,7 +266,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline1Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.909, 1]
 		strokeEndAnim.duration = 2.11
@@ -277,7 +277,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline2Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [1, 0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.0162, 0.907, 1]
 		strokeEndAnim.duration = 2.11
@@ -288,7 +288,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline3Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.902, 1]
 		strokeEndAnim.duration = 2.1
@@ -299,7 +299,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline4Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.903, 1]
 		strokeEndAnim.duration = 2.1
@@ -310,7 +310,7 @@ class ReceiptView: UIView {
 	}
 	
 	func cardbodyAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.623, 1]
 		strokeEndAnim.duration = 1.73
@@ -321,7 +321,7 @@ class ReceiptView: UIView {
 	}
 	
 	func magneticstripeAnimation() -> CAKeyframeAnimation{
-		var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
@@ -335,7 +335,7 @@ class ReceiptView: UIView {
 	}
 	
 	func hologramAnimation() -> CAKeyframeAnimation{
-		var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+		let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
 		transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
 			 NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
@@ -349,7 +349,7 @@ class ReceiptView: UIView {
 	}
 	
 	func hologramlineAnimation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.868, 1]
 		strokeEndAnim.duration = 2.28
@@ -360,7 +360,7 @@ class ReceiptView: UIView {
 	}
 	
 	func hologramline2Animation() -> CAKeyframeAnimation{
-		var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+		let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
 		strokeEndAnim.values   = [0, 0, 1]
 		strokeEndAnim.keyTimes = [0, 0.877, 1]
 		strokeEndAnim.duration = 2.27
@@ -373,8 +373,11 @@ class ReceiptView: UIView {
 	//MARK: - Bezier Path
 	
 	func receiptbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var receiptbodyPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let receiptbodyPath = UIBezierPath()
+		let minX = CGFloat(bound.minX)
+        let minY = bound.minY
+        let w = bound.width
+        let h = bound.height;
 		
 		receiptbodyPath.moveToPoint(CGPointMake(minX + 0.72742 * w, minY))
 		receiptbodyPath.addLineToPoint(CGPointMake(minX + w, minY))
@@ -394,7 +397,7 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline1PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var receiptline1Path = UIBezierPath()
+		let receiptline1Path = UIBezierPath()
 		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		receiptline1Path.moveToPoint(CGPointMake(minX, minY))

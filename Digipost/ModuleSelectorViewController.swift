@@ -48,7 +48,7 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var tblView = UIView(frame: CGRectZero)
+        let tblView = UIView(frame: CGRectZero)
         tableView.tableFooterView = tblView
         tableView.tableFooterView?.hidden = true
         tableView.scrollEnabled = false

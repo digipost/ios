@@ -48,7 +48,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .CompareCaseInsensitive) == CFComparisonResult.CompareEqualTo ){
-                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
+                _ = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
                 
                 var refURL = info[UIImagePickerControllerReferenceURL] as! NSURL?;
                 if refURL == nil {
@@ -59,16 +59,16 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     let assetLibrary = ALAssetsLibrary()
                     assetLibrary.assetForURL(actualMediaURL , resultBlock: { (asset: ALAsset!) -> Void in
                         if let actualAsset = asset as ALAsset? {
-                            var assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
+                            let assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
                             fileName = assetRep.filename()
-                            var iref = assetRep.fullResolutionImage().takeUnretainedValue()
-                            var image = UIImage(CGImage: iref)
+                            let iref = assetRep.fullResolutionImage().takeUnretainedValue()
+                            let image = UIImage(CGImage: iref)
                             let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
                             let documentsDir = paths.firstObject as! NSString?
                             if let documentsDirectory = documentsDir {
                                 let localFilePath = documentsDirectory.stringByAppendingPathComponent(fileName)
                                 let data = UIImageJPEGRepresentation(image, 1.0)
-                                let couldCopy = data!.writeToFile(localFilePath, atomically: true)
+                                _ = data!.writeToFile(localFilePath, atomically: true)
                                 let localFileURL = NSURL(fileURLWithPath: localFilePath)
                                 let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                                 picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -87,7 +87,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                     if let documentsDirectory = documentsDir {
                         let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithJPGExtension())
                         let data = UIImageJPEGRepresentation(image, 1.0)
-                        let couldCopy = data!.writeToFile(localFilePath, atomically: true)
+                        _ = data!.writeToFile(localFilePath, atomically: true)
                         let localFileURL = NSURL(fileURLWithPath: localFilePath)
                         let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                         picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
@@ -98,8 +98,8 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 }
             } else {
                 let movieURL = info[UIImagePickerControllerMediaURL] as! NSURL
-                let moviePath = movieURL.path
-                let mediaInfo = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
+                _ = movieURL.path
+                _ = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
                 let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
                 let documentsDir = paths.firstObject as! NSString?
                 var name = movieURL.path?.componentsSeparatedByString("/").last as String!
@@ -107,7 +107,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 if let documentsDirectory = documentsDir {
                     let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithMOVExtension())
                     let data = NSData(contentsOfURL: movieURL)!
-                    let couldCopy = data.writeToFile(localFilePath, atomically: true)
+                    _ = data.writeToFile(localFilePath, atomically: true)
                     let localFileURL = NSURL(fileURLWithPath: localFilePath)
                     let appDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
                     picker.presentingViewController?.dismissViewControllerAnimated(true, completion: { () -> Void in
