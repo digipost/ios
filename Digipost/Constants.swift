@@ -22,7 +22,7 @@ struct Constants {
     struct APIClient {
         static let taskCounter = "taskCounter"
         static var baseURL : String {
-            return __SERVER_URI__
+            return k__SERVER_URI__
         }
         
         struct AttributeKey {

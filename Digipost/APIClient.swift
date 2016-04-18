@@ -64,7 +64,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         super.init()
         let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
         sessionConfiguration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        let contentType = "application/vnd.digipost-\(k__API_VERSION__)+json"
         additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
         let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
 
@@ -149,7 +149,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateRootResource(success success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
-        let rootResource = __ROOT_RESOURCE_URI__
+        let rootResource = k__ROOT_RESOURCE_URI__
         validate(token: highestToken) {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
             task.resume()
@@ -157,7 +157,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func updateRootResource(scope scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let rootResource = __ROOT_RESOURCE_URI__
+        let rootResource = k__ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
         validateFullScope {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
@@ -540,7 +540,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func postLog(uri uri: String, parameters: [String : AnyObject]) {
-        let baseUri = __SERVER_URI__
+        let baseUri = k__SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
         let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
             DLog("Successfully sent log with parameters: \(parameters)")

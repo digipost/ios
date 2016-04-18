@@ -164,7 +164,8 @@ extension APIClient {
     :returns: a task to resume when the request should be started
     */
     func urlSessionJSONTask(url url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
-        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: __SERVER_URI__))
+        
+        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: k__SERVER_URI__))
         let urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
         for (key, value) in self.additionalHeaders {
@@ -219,7 +220,7 @@ extension APIClient {
         urlRequest.HTTPMethod = method.rawValue
         urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parameters, options: NSJSONWritingOptions.PrettyPrinted)
         urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
-        let contentType = "application/vnd.digipost-\(__API_VERSION__)+json"
+        let contentType = "application/vnd.digipost-\(k__API_VERSION__)+json"
         urlRequest.setValue(contentType, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
 
         let task = dataTask(urlRequest, success: success, failure: failure)

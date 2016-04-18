@@ -52,6 +52,7 @@
 #import <CommonCrypto/CommonCrypto.h>
 #import "NSString+RandomNumber.h"
 #import "NSString+Hmac.h"
+#import "Macros.h"
 
 //#import "CJWWebView+HackishAccessoryHiding.h"
 #import "CustomInputView.h"
