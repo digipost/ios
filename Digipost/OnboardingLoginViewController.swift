@@ -63,7 +63,7 @@ class OnboardingLoginViewController: UIViewController {
     }
     
     @IBAction func registerButtonAction(sender: UIButton) {
-        if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering#/") {
+        if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
            presentActionSheetFromSenderWithURL(sender, url: newUserURL)
         }
     }

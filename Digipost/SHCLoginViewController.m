@@ -251,9 +251,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     NSURL *url;
     if (sender == self.registerButton) {
-        url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=digipost_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker"]];
+        url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]];
     }
-
+    
     [UIActionSheet showFromRect:sender.frame
                          inView:[sender superview]
                        animated:YES
