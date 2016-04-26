@@ -148,7 +148,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
     [self.navigationController.toolbar setBarTintColor:[UIColor digipostSpaceGrey]];
 }
 
@@ -482,9 +481,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     // since all documents are deleted from database regularly, this ensures users won't get buggy data if between "updates" of all content
     [self updateFetchedResultsController];
     [[APIClient sharedClient] updateDocumentsInFolderWithName:self.folderName mailboxDigipostAdress:self.mailboxDigipostAddress folderUri:self.folderUri token:[OAuthToken oAuthTokenWithHighestScopeInStorage] success:^(NSDictionary *responseDictionary) {
+        
         [[POSModelManager sharedManager] updateDocumentsInFolderWithName:self.folderName
                                                   mailboxDigipostAddress:self.mailboxDigipostAddress
                                                               attributes:responseDictionary];
+        
         [self updateFetchedResultsController];
         [self programmaticallyEndRefresh];
         [self updateNavbar];
@@ -517,6 +518,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                 [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
             }
         }
+        
+        //Update badge with unread letters
+        if ([self.folderName isEqualToString:@"Inbox"]) {
+            NSNumber *unread = [[POSModelManager sharedManager] numberOfUnreadDocumentsInfolder:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress];
+            [UIApplication sharedApplication].applicationIconBadgeNumber = [unread integerValue];
+        }
+        
     } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
         

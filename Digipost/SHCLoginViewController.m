@@ -120,7 +120,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
-
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     //    self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;

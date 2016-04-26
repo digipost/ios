@@ -151,6 +151,26 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
+- (NSNumber*) numberOfUnreadDocumentsInfolder:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress {
+    NSArray *documents = [POSDocument allDocumentsInFolderWithName:folderName
+                                               mailboxDigipostAddress:digipostAddress
+                                               inManagedObjectContext:self.managedObjectContext];
+    
+    __block NSNumber *unread = @(0);
+    
+    [documents enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        POSDocument *document = obj;
+        [document.attachments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            POSAttachment *attachment = obj;
+            if ([attachment.mainDocument boolValue] == YES && [attachment.read boolValue] == NO){
+                unread = @([unread intValue] + 1);
+            }
+        }];
+    }];  
+    
+    return unread;
+}
+
 - (void)updateDocument:(POSDocument *)document withAttributes:(NSDictionary *)attributes
 {
     [document updateWithAttributes:attributes

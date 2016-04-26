@@ -149,7 +149,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         navBar.topItem.rightBarButtonItem = self.editButtonItem;
         navBar.topItem.title = currentMailbox.name;
         self.navigationItem.title = currentMailbox.name;
+        
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [currentMailbox.unreadItemsInInbox integerValue];
     }
+    
     [self setEditing:NO animated:YES];
 }
 

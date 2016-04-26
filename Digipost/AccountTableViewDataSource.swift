@@ -22,7 +22,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     lazy var fetchedResultsController : NSFetchedResultsController = {
         
-        // Create and configure a fetch request with the Book entity.
+        // Create and configure a fetch request with the Mailbox entity.
         let fetchRequest = NSFetchRequest(entityName: "Mailbox")
         let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
         
@@ -153,6 +153,8 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
             self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
             self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
         }
+        
+        Badge.setCombinedUnreadLettersBadge(fetchedResultsController.fetchedObjects as! [POSMailbox])
     }
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
