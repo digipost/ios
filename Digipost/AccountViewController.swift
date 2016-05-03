@@ -204,10 +204,13 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     func userDidConfirmLogout() {
         let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        appDelegate.revokeGCMToken();
+        
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
             letterViewController.receipt = nil
         }
+        
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         dataSource?.stopListeningToCoreDataChanges()
         NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)

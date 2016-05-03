@@ -29,6 +29,7 @@
 #import "SHCLoginViewController.h"
 #import "POSFileManager.h"
 #import "oauth.h"
+#import <Google/CloudMessaging.h>
 #import "Digipost-Swift.h"
 
 NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
@@ -38,6 +39,12 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 //@property (strong, nonatomic) DDFileLogger *fileLogger;
 @property (strong, nonatomic) id<GAITracker> googleAnalyticsTracker;
 
+//GCM
+@property(nonatomic, assign) BOOL connectedToGCM;
+@property(nonatomic, strong) void (^registrationHandler)
+(NSString *registrationToken, NSError *error);
+@property(nonatomic, strong) NSString* registrationToken;
+
 @end
 
 @implementation SHCAppDelegate
@@ -46,20 +53,184 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
-
-    //    [self setupCocoaLumberjack];
+    
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
-
+    
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [SHCAppDelegate setupAppearance];
-
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
+    
+    _registrationKey = @"onRegistrationCompleted";
+    
     return YES;
 }
 
+//GCM Start
+
+- (void) initGCM{
+    
+    if([self GCMTokenExist] == NO){
+        [self registerGCM];
+    }
+}
+
+- (BOOL) GCMTokenExist{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
+    fetchRequest.resultType = NSDictionaryResultType;
+    NSError *error = nil;
+    NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:&error];
+
+    if (results.count > 0){
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+-(void)storeGCMToken: (NSString*) token {
+    [[POSModelManager sharedManager] deleteAllGCMTokens];
+    GCMToken *gcmtoken = [NSEntityDescription insertNewObjectForEntityForName:@"GCMToken" inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
+    gcmtoken.token = token;
+    NSError *error;
+    [[POSModelManager sharedManager].managedObjectContext save:&error];
+}
+
+- (void) registerGCM{
+    [self initGCMConfig];
+    
+    // Register for remote notifications
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+    [self initGCMHandler];
+}
+
+-(void)initGCMConfig{
+    
+    NSError* configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
+    
+    // [START start_gcm_service]
+    
+    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
+    gcmConfig.receiverDelegate = self;
+    [[GCMService sharedInstance] startWithConfig:gcmConfig];
+    
+    // [END start_gcm_service]
+}
+
+-(void) initGCMHandler {
+    __weak typeof(self) weakSelf = self;
+    
+    // Handler for registration token request
+    _registrationHandler = ^(NSString *registrationToken, NSError *error){
+        if (registrationToken != nil) {
+            weakSelf.registrationToken = registrationToken;
+            
+            [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken 
+                                               success:^{
+                                                   [weakSelf storeGCMToken: registrationToken];
+                                               } failure:^(APIError *error){
+                                                   NSLog(@"Token submit failed!");
+                                               }
+             ];
+            
+            NSLog(@"Registration Token: %@", registrationToken);
+            NSDictionary *userInfo = @{@"registrationToken":registrationToken};
+            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+                                                                object:nil
+                                                              userInfo:userInfo];
+        } else {
+            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
+            NSDictionary *userInfo = @{@"error":error.localizedDescription};
+            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+                                                                object:nil
+                                                              userInfo:userInfo];
+        }
+    };
+}
+
+// [START receive_apns_token]
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    // [END receive_apns_token]
+    // [START get_gcm_reg_token]
+    // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
+    GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
+    instanceIDConfig.delegate = self;
+    // Start the GGLInstanceID shared instance with the that config and request a registration
+    // token to enable reception of notifications
+    [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
+    _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
+                             kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
+    
+    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                        scope:kGGLInstanceIDScopeGCM
+                                                      options:_registrationOptions
+                                                      handler:_registrationHandler];
+}
+
+// [START connect_gcm_service]
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // Connect to the GCM server to receive non-APNS notifications
+    [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
+        if (error) {
+            NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
+        } else {
+            _connectedToGCM = true;
+            NSLog(@"Connected to GCM");
+        }
+    }];
+}
+// [END connect_gcm_service]
+
+// [START disconnect_gcm_service]
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+    [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
+    
+    [[GCMService sharedInstance] disconnect];
+    _connectedToGCM = NO;
+}
+// [END disconnect_gcm_service]
+
+// GCM [START on_token_refresh]
+- (void)onTokenRefresh {
+    NSLog(@"The GCM registration token needs to be changed.");
+    [[POSModelManager sharedManager] deleteAllGCMTokens];
+    [self initGCMConfig];
+    [self initGCMHandler];
+    
+    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
+                                                        scope:kGGLInstanceIDScopeGCM
+                                                      options:_registrationOptions
+                                                      handler:_registrationHandler];
+}
+
+-(void)revokeGCMToken{
+    
+    [self initGCMConfig];
+    
+    GGLInstanceIDDeleteTokenHandler handler = ^void(NSError *error) {
+        if (error) {
+            NSLog(@"Failed to delete GCM token");
+        } else {
+            NSLog(@"Successfully deleted GCM token");
+        }
+    };
+    
+    [[GGLInstanceID sharedInstance] deleteTokenWithAuthorizedEntity:_gcmSenderID scope:kGGLInstanceIDScopeGCM handler:handler];
+}
+
+//GCM END
 - (void)startUploading:(NSNotification *)notification
 {
     NSDictionary *dict = notification.userInfo;
@@ -80,31 +251,31 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         return;
     }
     if (dict[@"mailbox"]) {
-
+        
         UINavigationController *navController = [self.window topMasterNavigationController];
-
+        
         UIViewController *topViewController = [self.window topMasterViewController];
         [navController popToRootViewControllerAnimated:NO];
-
+        
         NSMutableArray *newViewControllerArray = [NSMutableArray array];
-
+        
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
                 SHCLoginViewController *loginViewController = navController.viewControllers[0];
                 [newViewControllerArray addObject:loginViewController];
             }
         }
-
+        
         AccountViewController *accountViewController;
         if ([navController.viewControllers[0] isKindOfClass:[AccountViewController class]]) {
             accountViewController = navController.viewControllers[0];
         } else {
             accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
         }
-
+        
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
-
+        
         //        // add account vc as second view controller in navigation controller
         //        UIViewController *loginViewController = topViewController;
         //        // for iphone root controller will be login controller
@@ -122,18 +293,18 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
-
+        
         POSMailbox *mailbox = dict[@"mailbox"];
         POSFolder *folder = dict[@"folder"];
-
+        
         NSAssert([mailbox isKindOfClass:[POSMailbox class]], @"not correct class");
-
+        
         folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress;
         documentsViewController.folderName = folder.name;
         documentsViewController.mailboxDigipostAddress = mailbox.digipostAddress;
         documentsViewController.folderUri = folder.uri;
         documentsViewController.folderDisplayName = folder.displayName;
-
+        
         [navController setViewControllers:newViewControllerArray
                                  animated:NO];
     }
@@ -143,18 +314,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-    [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
-}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-}
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
@@ -185,14 +349,14 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     }
     UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
-
+    
     POSUploadViewController *uploadViewController = (id)uploadNavigationController.topViewController;
     uploadViewController.url = url;
     NSInteger numberOfMailboxes = [POSMailbox numberOfMailboxesStoredInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     if (numberOfMailboxes == 1) {
         uploadViewController.isShowingFolders = YES;
     }
-
+    
     UINavigationController *rootNavController = (id)self.window.rootViewController;
     if ([rootNavController isKindOfClass:[UINavigationController class]]) {
         [rootNavController.topViewController presentViewController:uploadNavigationController

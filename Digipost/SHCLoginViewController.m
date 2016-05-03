@@ -25,6 +25,7 @@
 #import "POSOAuthManager.h"
 #import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
+#import "SHCAppDelegate.h"
 #import "Digipost-Swift.h"
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
@@ -204,6 +205,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
+    
+    //successfull login
+    //initialize gcm notification, if its not already existing.
+    SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+    [appDelegate initGCM];
+    
     if ([Guide shouldShowWhatsNewGuide] && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self presentNewFeatures];
     } else {

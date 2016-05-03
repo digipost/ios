@@ -23,6 +23,7 @@
 #import "POSInvoice.h"
 #import "POSReceipt.h"
 #import "POSMailbox+Methods.h"
+#import "Digipost-Swift.h"
 
 NSString *const kSQLiteDatabaseName = @"database";
 NSString *const kSQLiteDatabaseExtension = @"sqlite";
@@ -244,13 +245,22 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
+- (void)deleteAllGCMTokens
+{
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"GCMToken"];
+    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+    NSError *deleteError = nil;
+    [self.persistentStoreCoordinator executeRequest:delete withContext:_managedObjectContext error:&deleteError];    
+}
+
 - (void)deleteAllObjects
 {
     [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
     [POSReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
     [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
     [POSMailbox deleteAllMailboxesInManagedObjectContext:self.managedObjectContext];
-
+    [self deleteAllGCMTokens];
+    
     // Save changes
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
@@ -384,6 +394,8 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     return _persistentStoreCoordinator;
 }
+
+
 
 #pragma mark - Private methods
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D131" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
     <entity name="Attachment" representedClassName="POSAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
         <attribute name="endToEndEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -37,6 +37,10 @@
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Document" inverseName="folder" inverseEntity="Document" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
+    </entity>
+    <entity name="GCMToken" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Invoice" representedClassName="POSInvoice" syncable="YES">
         <attribute name="accountNumber" attributeType="String" syncable="YES"/>
@@ -102,5 +106,6 @@
         <element name="Mailbox" positionX="79" positionY="207" width="128" height="210"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
         <element name="RootResource" positionX="-360" positionY="27" width="128" height="300"/>
+        <element name="GCMToken" positionX="-162" positionY="-72" width="128" height="75"/>
     </elements>
 </model>

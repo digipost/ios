@@ -119,6 +119,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     //    NSArray *items = @[ composeButton ];
     //    self.toolbarItems = items;
     
+    //initialize gcm notification, if its not already existing.
+    SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
+    [appDelegate initGCM];
+    
     [self.navigationController setToolbarHidden:YES];
 }
 

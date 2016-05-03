@@ -33,6 +33,8 @@ struct Constants {
             static let name = "name"
             static let icon = "icon"
             static let folder = "folder"
+            static let token = "token"
+            static let device = "device"
         }
         
     }

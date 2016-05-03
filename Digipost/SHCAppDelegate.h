@@ -14,15 +14,23 @@
 // limitations under the License.
 //
 
+#import <Google/CloudMessaging.h>
 #import <UIKit/UIKit.h>
 
 @class POSLetterViewController;
 
-@interface SHCAppDelegate : UIResponder <UIApplicationDelegate>
+@interface SHCAppDelegate : UIResponder <UIApplicationDelegate, GGLInstanceIDDelegate, GCMReceiverDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) POSLetterViewController *letterViewController;
 
+//GCM
+@property(nonatomic, readonly, strong) NSString *registrationKey;
+@property(nonatomic, readonly, strong) NSString *gcmSenderID;
+@property(nonatomic, readonly, strong) NSDictionary *registrationOptions;
+
 - (void)uploadImageWithURL:(NSURL *)url;
+- (void)initGCM;
+- (void)revokeGCMToken;
 
 @end

@@ -43,6 +43,7 @@
 - (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
 - (void)deleteReceipt:(POSReceipt *)receipt;
 - (void)deleteAllObjects;
+- (void)deleteAllGCMTokens;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;
 - (NSEntityDescription *)folderEntity;
