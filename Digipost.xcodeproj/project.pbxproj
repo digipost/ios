@@ -460,7 +460,6 @@
 		F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */; };
 		F80B63551CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */; };
 		F80B63581CD37CB900AE9DE5 /* Digipost-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */; };
-		F80B635A1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -468,6 +467,8 @@
 		F875D56D1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F885F8A21CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
+		F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
+		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
 		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
@@ -1080,7 +1081,7 @@
 		F8053D661C43DB6800DB0CA9 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
 		F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-Test.plist"; sourceTree = "<group>"; };
 		F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-Test.xcconfig"; sourceTree = "<group>"; };
-		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F27451C93064A0069378C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
 		F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
 		F80F27471C93064A0069378C /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GAI/GAIEcommerceFields.h; sourceTree = "<group>"; };
@@ -1096,6 +1097,7 @@
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
+		F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8AE1CDF1CD374B40009B2F9 /* Digipost-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AE7AD31CCE1158009D139F /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
@@ -1212,7 +1214,6 @@
 		83BAB90F1855C0AC004A7BFB = {
 			isa = PBXGroup;
 			children = (
-				F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */,
 				83BAB9211855C0AC004A7BFB /* Digipost */,
 				EC56AABF1A24C7BA00720109 /* Digipost-Test-Dpost Tests */,
 				EC2751871B061D010007125D /* DigipostModelTests */,
@@ -1287,6 +1288,7 @@
 		83BAB9221855C0AC004A7BFB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F88B7FEC1CD8DC00009CC671 /* GCM */,
 				F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */,
 				F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */,
 				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
@@ -1822,6 +1824,31 @@
 			name = Recipient;
 			sourceTree = "<group>";
 		};
+		F88B7FEC1CD8DC00009CC671 /* GCM */ = {
+			isa = PBXGroup;
+			children = (
+				F88B7FEE1CD8DC11009CC671 /* Prod */,
+				F88B7FED1CD8DC06009CC671 /* QA */,
+			);
+			name = GCM;
+			sourceTree = "<group>";
+		};
+		F88B7FED1CD8DC06009CC671 /* QA */ = {
+			isa = PBXGroup;
+			children = (
+				F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */,
+			);
+			name = QA;
+			sourceTree = "<group>";
+		};
+		F88B7FEE1CD8DC11009CC671 /* Prod */ = {
+			isa = PBXGroup;
+			children = (
+				F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */,
+			);
+			name = Prod;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1956,6 +1983,7 @@
 				ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
+				F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
 				F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */,
 				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
@@ -1976,7 +2004,6 @@
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
-				F80B635A1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */,
 				ECB2BFD31B452F2A008E32E8 /* stylesheet.css in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
@@ -2007,6 +2034,7 @@
 				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
 				EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */,
 				EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */,
+				F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */,
 				EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */,
 				EC42F2431B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE751B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
