@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0720"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
-               BuildableName = "Digipost-qa2.app"
-               BlueprintName = "Digipost-QA"
+               BlueprintIdentifier = "F8AE1BE91CD374B40009B2F9"
+               BuildableName = "Digipost-Test.app"
+               BlueprintName = "Digipost-Test"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,23 +28,13 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EC2751851B061D000007125D"
-               BuildableName = "DigipostModelTests.xctest"
-               BlueprintName = "DigipostModelTests"
-               ReferencedContainer = "container:Digipost.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
-            BuildableName = "Digipost-qa2.app"
-            BlueprintName = "Digipost-QA"
+            BlueprintIdentifier = "F8AE1BE91CD374B40009B2F9"
+            BuildableName = "Digipost-Test.app"
+            BlueprintName = "Digipost-Test"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -65,18 +55,13 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
-            BuildableName = "Digipost-qa2.app"
-            BlueprintName = "Digipost-QA"
+            BlueprintIdentifier = "F8AE1BE91CD374B40009B2F9"
+            BuildableName = "Digipost-Test.app"
+            BlueprintName = "Digipost-Test"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
-         <AdditionalOption
-            key = "NSZombieEnabled"
-            value = "YES"
-            isEnabled = "YES">
-         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
@@ -89,9 +74,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EC2DCBEC1AB864AB0063755E"
-            BuildableName = "Digipost-qa2.app"
-            BlueprintName = "Digipost-QA"
+            BlueprintIdentifier = "F8AE1BE91CD374B40009B2F9"
+            BuildableName = "Digipost-Test.app"
+            BlueprintName = "Digipost-Test"
             ReferencedContainer = "container:Digipost.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
