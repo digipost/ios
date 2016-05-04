@@ -63,19 +63,10 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     
-    _registrationKey = @"onRegistrationCompleted";
-    
     return YES;
 }
 
 //GCM Start
-
-- (void) initGCM{
-    
-    if([self GCMTokenExist] == NO){
-        [self registerGCM];
-    }
-}
 
 - (BOOL) GCMTokenExist{
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
@@ -95,23 +86,15 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     GCMToken *gcmtoken = [NSEntityDescription insertNewObjectForEntityForName:@"GCMToken" inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     gcmtoken.token = token;
     NSError *error;
+    
     [[POSModelManager sharedManager].managedObjectContext save:&error];
 }
 
-- (void) registerGCM{
-    [self initGCMConfig];
+- (void) initGCM{
+    NSLog(@"GCMTokenExist %d", [self GCMTokenExist]);
     
-    // Register for remote notifications
-    UIUserNotificationType allNotificationTypes =
-    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
-    [self initGCMHandler];
-}
-
--(void)initGCMConfig{
+    if([self GCMTokenExist] == NO){
+    _registrationKey = @"onRegistrationCompleted";
     
     NSError* configureError;
     [[GGLContext sharedInstance] configureWithError:&configureError];
@@ -125,10 +108,13 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     gcmConfig.receiverDelegate = self;
     [[GCMService sharedInstance] startWithConfig:gcmConfig];
     
-    // [END start_gcm_service]
-}
-
--(void) initGCMHandler {
+    // Register for remote notifications
+    UIUserNotificationType allNotificationTypes =
+    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     __weak typeof(self) weakSelf = self;
     
     // Handler for registration token request
@@ -139,6 +125,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
             [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken 
                                                success:^{
                                                    [weakSelf storeGCMToken: registrationToken];
+                                                   NSLog(@"Token submit success!");
                                                } failure:^(APIError *error){
                                                    NSLog(@"Token submit failed!");
                                                }
@@ -157,6 +144,8 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
                                                               userInfo:userInfo];
         }
     };
+    }
+
 }
 
 // [START receive_apns_token]
@@ -206,19 +195,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 - (void)onTokenRefresh {
     NSLog(@"The GCM registration token needs to be changed.");
     [[POSModelManager sharedManager] deleteAllGCMTokens];
-    [self initGCMConfig];
-    [self initGCMHandler];
-    
-    [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
-                                                        scope:kGGLInstanceIDScopeGCM
-                                                      options:_registrationOptions
-                                                      handler:_registrationHandler];
+    [self initGCM];
 }
 
 -(void)revokeGCMToken{
-    
-    [self initGCMConfig];
-    
+        
     GGLInstanceIDDeleteTokenHandler handler = ^void(NSError *error) {
         if (error) {
             NSLog(@"Failed to delete GCM token");
@@ -226,6 +207,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
             NSLog(@"Successfully deleted GCM token");
         }
     };
+    
+    NSError* configureError;
+    [[GGLContext sharedInstance] configureWithError:&configureError];
+    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
     
     [[GGLInstanceID sharedInstance] deleteTokenWithAuthorizedEntity:_gcmSenderID scope:kGGLInstanceIDScopeGCM handler:handler];
 }
