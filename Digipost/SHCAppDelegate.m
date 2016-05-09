@@ -53,6 +53,9 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if(launchOptions){
+        [self submitGAEventAppOpenedFromNotification];
+    }
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
@@ -214,6 +217,19 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
     
     [[GGLInstanceID sharedInstance] deleteTokenWithAuthorizedEntity:_gcmSenderID scope:kGGLInstanceIDScopeGCM handler:handler];
+}
+
+
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{    
+    [self submitGAEventAppOpenedFromNotification];
+}
+
+-(void) submitGAEventAppOpenedFromNotification{
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"app-launch-origin"
+                                                          action:@"push"
+                                                           label:@"app-launch-origin-push"
+                                                           value:nil] build]];
 }
 
 //GCM END
