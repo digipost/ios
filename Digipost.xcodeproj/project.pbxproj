@@ -1925,6 +1925,9 @@
 					83BAB9171855C0AC004A7BFB = {
 						DevelopmentTeam = KMS8B8MK42;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.DataProtection = {
 								enabled = 1;
 							};
@@ -1939,6 +1942,9 @@
 					F8AE1BE91CD374B40009B2F9 = {
 						DevelopmentTeam = KMS8B8MK42;
 						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
 							com.apple.DataProtection = {
 								enabled = 0;
 							};
