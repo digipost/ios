@@ -52,15 +52,15 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    if(launchOptions){
-        [self submitGAEventAppOpenedFromNotification];
-    }
-    
+{    
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
+    
+    if(launchOptions == NULL){
+        [self submitAppLaunchGAEvent: @"normal"];
+    }
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [SHCAppDelegate setupAppearance];
@@ -93,9 +93,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [[POSModelManager sharedManager].managedObjectContext save:&error];
 }
 
-- (void) initGCM{
-    NSLog(@"GCMTokenExist %d", [self GCMTokenExist]);
-    
+- (void) initGCM{    
     if([self GCMTokenExist] == NO){
     _registrationKey = @"onRegistrationCompleted";
     
@@ -128,19 +126,15 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
             [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken 
                                                success:^{
                                                    [weakSelf storeGCMToken: registrationToken];
-                                                   NSLog(@"Token submit success!");
                                                } failure:^(APIError *error){
-                                                   NSLog(@"Token submit failed!");
                                                }
              ];
             
-            NSLog(@"Registration Token: %@", registrationToken);
             NSDictionary *userInfo = @{@"registrationToken":registrationToken};
             [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
                                                                 object:nil
                                                               userInfo:userInfo];
         } else {
-            NSLog(@"Registration to GCM failed with error: %@", error.localizedDescription);
             NSDictionary *userInfo = @{@"error":error.localizedDescription};
             [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
                                                                 object:nil
@@ -179,7 +173,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
             NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
         } else {
             _connectedToGCM = true;
-            NSLog(@"Connected to GCM");
         }
     }];
 }
@@ -196,7 +189,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 // GCM [START on_token_refresh]
 - (void)onTokenRefresh {
-    NSLog(@"The GCM registration token needs to be changed.");
     [[POSModelManager sharedManager] deleteAllGCMTokens];
     [self initGCM];
 }
@@ -221,14 +213,16 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 
 -(void) application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{    
-    [self submitGAEventAppOpenedFromNotification];
+    [self submitAppLaunchGAEvent: @"push"];
 }
 
--(void) submitGAEventAppOpenedFromNotification{
+-(void) submitAppLaunchGAEvent: (NSString *)action{
+    NSString *category = @"app-launch-origin";
+    NSString *label = [NSString stringWithFormat:@"%@-%@", category, action];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"app-launch-origin"
-                                                          action:@"push"
-                                                           label:@"app-launch-origin-push"
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
+                                                          action:action
+                                                           label:label
                                                            value:nil] build]];
 }
 
