@@ -44,6 +44,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 @property(nonatomic, strong) void (^registrationHandler)
 (NSString *registrationToken, NSError *error);
 @property(nonatomic, strong) NSString* registrationToken;
+@property(nonatomic, strong) NSDate* notificationReceived;
 
 @end
 
@@ -52,22 +53,19 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
     [self checkForOldOAuthTokens];
     [self setupGoogleAnalytics];
-    
-    if(launchOptions == NULL){
-        [self submitAppLaunchGAEvent: @"normal"];
-    }
-    
+        
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     
     return YES;
 }
+
 
 //GCM Start
 
@@ -156,17 +154,37 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     // Start the GGLInstanceID shared instance with the that config and request a registration
     // token to enable reception of notifications
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
+    
+#ifdef STAGING
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
                              kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
-    
+#else
+    _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
+                                 kGGLInstanceIDAPNSServerTypeSandboxOption:@NO};
+#endif
+     
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions
                                                       handler:_registrationHandler];
 }
 
+-(void) GAEventLaunchType{
+
+    NSTimeInterval elapsedTimeSinceLastNotification = [[NSDate date] timeIntervalSinceDate:_notificationReceived];
+    
+    if(elapsedTimeSinceLastNotification > 0 && elapsedTimeSinceLastNotification < 900.0f){
+        _notificationReceived = NULL;
+        [self submitAppLaunchGAEvent: @"push"];
+    }else{
+        [self submitAppLaunchGAEvent: @"normal"];
+    }
+}
+
 // [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [self GAEventLaunchType];
+    
     // Connect to the GCM server to receive non-APNS notifications
     [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
         if (error) {
@@ -212,8 +230,9 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 }
 
 
--(void) application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{    
-    [self submitAppLaunchGAEvent: @"push"];
+-(void) application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
+    _notificationReceived = [NSDate date];
+    completionHandler(UIBackgroundFetchResultNewData);
 }
 
 -(void) submitAppLaunchGAEvent: (NSString *)action{
