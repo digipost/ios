@@ -71,17 +71,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         self.session = theSession
     }
 
-    #if IS_BETA
-    func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if challenge.protectionSpace.host == "dpost.camelon.os.ergo.no" {
-                let credential = NSURLCredential(trust: challenge.protectionSpace.serverTrust)
-                completionHandler(.UseCredential,credential)
-            }
-        }
-    }
-    #endif
-
     func removeAccessTokenUsedInLastRequest() {
         lastSetOauthTokenForAuthorizationHeader?.accessToken = nil
     }

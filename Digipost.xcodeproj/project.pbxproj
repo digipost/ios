@@ -458,8 +458,6 @@
 		F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */; };
-		F80B63551CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */; };
-		F80B63581CD37CB900AE9DE5 /* Digipost-Test.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */; };
 		F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -705,7 +703,6 @@
 		F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 		F8AE7AD71CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
-		F8BA967E1CC4B95400DED1BE /* Digipost.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -814,8 +811,6 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
-		87C9E8011B06117E0019AA07 /* Digipost-localhost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-localhost.plist"; sourceTree = "<group>"; };
-		87C9E8031B0612330019AA07 /* Digipost-localhost.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-localhost.xcconfig"; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
@@ -1298,8 +1293,6 @@
 				87C9E75A1B0606670019AA07 /* Digipost.plist */,
 				ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */,
 				83F703571855DD3A003DABE1 /* Digipost.release.xcconfig */,
-				87C9E8011B06117E0019AA07 /* Digipost-localhost.plist */,
-				87C9E8031B0612330019AA07 /* Digipost-localhost.xcconfig */,
 				83F7036F1856340C003DABE1 /* Shared.xcconfig */,
 				83BAB9241855C0AC004A7BFB /* InfoPlist.strings */,
 				83F7038418573C3A003DABE1 /* Localizable.strings */,
@@ -1919,7 +1912,7 @@
 			attributes = {
 				CLASSPREFIX = POS;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Posten Norge AS";
 				TargetAttributes = {
 					83BAB9171855C0AC004A7BFB = {
@@ -2003,7 +1996,6 @@
 				EC42F23E1B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
-				F8BA967E1CC4B95400DED1BE /* Digipost.debug.xcconfig in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC42F2371B81C755005785DE /* Editor.js in Resources */,
 				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
@@ -2052,7 +2044,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
-				F80B63581CD37CB900AE9DE5 /* Digipost-Test.xcconfig in Resources */,
 				F8AE1CBC1CD374B40009B2F9 /* ImageModuleTableViewCell.xib in Resources */,
 				F8AE1CBD1CD374B40009B2F9 /* DocumentComposer.storyboard in Resources */,
 				F8AE1CBE1CD374B40009B2F9 /* FontPickerTableViewCell.xib in Resources */,
@@ -2061,7 +2052,6 @@
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
 				F8AE1CC21CD374B40009B2F9 /* StylePickerDetailListView.xib in Resources */,
 				F8AE1CC31CD374B40009B2F9 /* MainAccountTableViewCell.xib in Resources */,
-				F80B63551CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */,
 				F8AE1CC41CD374B40009B2F9 /* RecipientTableViewCell.xib in Resources */,
 				F8AE1CC51CD374B40009B2F9 /* Onboarding.storyboard in Resources */,
 				F8AE1CC61CD374B40009B2F9 /* Images-Shared.xcassets in Resources */,
@@ -2978,7 +2968,6 @@
 					"__API_VERSION__=$(API_VERSION)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3025,7 +3014,6 @@
 					"__API_VERSION__=$(API_VERSION)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -3064,10 +3052,7 @@
 					"__ACCEPT_SELF_SIGNED_CERTIFICATES__=$(ACCEPT_SELF_SIGNED_CERTIFICATES)",
 					"__SERVER_URI__=$(SERVER_URI)",
 					"__API_VERSION__=$(API_VERSION)",
-					"__HOCKEY_BETA_IDENTIFIER__=$(HOCKEY_BETA_IDENTIFIER)",
-					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
 					STAGING,
 				);
@@ -3107,10 +3092,7 @@
 					"__ACCEPT_SELF_SIGNED_CERTIFICATES__=$(ACCEPT_SELF_SIGNED_CERTIFICATES)",
 					"__SERVER_URI__=$(SERVER_URI)",
 					"__API_VERSION__=$(API_VERSION)",
-					"__HOCKEY_BETA_IDENTIFIER__=$(HOCKEY_BETA_IDENTIFIER)",
-					"__HOCKEY_LIVE_IDENTIFIER__=$(HOCKEY_LIVE_IDENTIFIER)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
 					"DEBUG=1",
 				);
@@ -3155,7 +3137,6 @@
 					"__API_VERSION__=$(API_VERSION)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 					STAGING,
 				);
 				INFOPLIST_FILE = "Digipost/Digipost-Test.plist";
@@ -3205,7 +3186,6 @@
 					"__API_VERSION__=$(API_VERSION)",
 					"__LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL)",
 					"__GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)",
-					"__IS_BETA__=$(IS_BETA)",
 				);
 				INFOPLIST_FILE = "Digipost/Digipost-Test.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
