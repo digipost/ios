@@ -66,9 +66,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     return YES;
 }
 
-
-//GCM Start
-
 - (BOOL) GCMTokenExist{
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
     fetchRequest.resultType = NSDictionaryResultType;
@@ -100,14 +97,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     
     NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
     _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
-    
-    // [START start_gcm_service]
-    
+        
     GCMConfig *gcmConfig = [GCMConfig defaultConfig];
     gcmConfig.receiverDelegate = self;
     [[GCMService sharedInstance] startWithConfig:gcmConfig];
     
-    // Register for remote notifications
     UIUserNotificationType allNotificationTypes =
     (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
     UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
@@ -116,7 +110,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     
     __weak typeof(self) weakSelf = self;
     
-    // Handler for registration token request
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
             weakSelf.registrationToken = registrationToken;
@@ -143,16 +136,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 
 }
 
-// [START receive_apns_token]
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-    // [END receive_apns_token]
-    // [START get_gcm_reg_token]
-    // Create a config and set a delegate that implements the GGLInstaceIDDelegate protocol.
     GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
     instanceIDConfig.delegate = self;
-    // Start the GGLInstanceID shared instance with the that config and request a registration
-    // token to enable reception of notifications
+
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
     
 #ifdef STAGING
@@ -181,11 +169,9 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     }
 }
 
-// [START connect_gcm_service]
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+
     [self GAEventLaunchType];
-    
-    // Connect to the GCM server to receive non-APNS notifications
     [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
         if (error) {
             NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
@@ -194,18 +180,13 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
         }
     }];
 }
-// [END connect_gcm_service]
 
-// [START disconnect_gcm_service]
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
-    
     [[GCMService sharedInstance] disconnect];
     _connectedToGCM = NO;
 }
-// [END disconnect_gcm_service]
 
-// GCM [START on_token_refresh]
 - (void)onTokenRefresh {
     [[POSModelManager sharedManager] deleteAllGCMTokens];
     [self initGCM];
@@ -245,7 +226,6 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
                                                            value:nil] build]];
 }
 
-//GCM END
 - (void)startUploading:(NSNotification *)notification
 {
     NSDictionary *dict = notification.userInfo;
