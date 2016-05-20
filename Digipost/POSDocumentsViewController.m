@@ -104,8 +104,12 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self addAccountsAnFoldersVCToDoucmentHierarchy];
 
     [self updateToolbarButtonItems];
-    //    [self pos_setDefaultBackButton];
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = NO;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)appWillEnterForeground:(NSNotification *)notification {
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated

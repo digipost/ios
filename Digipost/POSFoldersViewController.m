@@ -124,6 +124,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [appDelegate initGCM];
     
     [self.navigationController setToolbarHidden:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+}
+
+- (void)appWillEnterForeground:(NSNotification *)notification {
+    [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
 - (void)presentDocumentComposer
