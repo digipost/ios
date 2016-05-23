@@ -97,17 +97,12 @@
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
     [tracker set:kGAIScreenName
            value:self.screenName];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
 
     if (self.needsReload) {
         self.needsReload = NO;
         [self updateFetchedResultsController];
     }
-    [self updateNavbar];
-}
-
-- (void)updateNavbar
-{
 }
 
 - (void)viewWillDisappear:(BOOL)animated

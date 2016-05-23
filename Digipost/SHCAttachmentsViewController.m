@@ -98,7 +98,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
     // This screen name value will remain set on the tracker and sent with hits until it is set to a new value or to nil.
     [tracker set:kGAIScreenName
            value:kAttachmentsViewControllerScreenName];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    [tracker send:[[GAIDictionaryBuilder createScreenView] build]];
     self.attachments = [self attachmentsForCurrentDocument];
 }
 
