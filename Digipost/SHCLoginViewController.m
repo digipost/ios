@@ -118,11 +118,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [[POSModelManager sharedManager] deleteAllGCMTokens];
 
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
-    
+
     //    self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
@@ -205,12 +206,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
 {
-    
+
     //successfull login
     //initialize gcm notification, if its not already existing.
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     [appDelegate initGCM];
-    
+
     if ([Guide shouldShowWhatsNewGuide] && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
         [self presentNewFeatures];
     } else {
@@ -261,7 +262,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if (sender == self.registerButton) {
         url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]];
     }
-    
+
     [UIActionSheet showFromRect:sender.frame
                          inView:[sender superview]
                        animated:YES
