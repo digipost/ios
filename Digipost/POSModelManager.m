@@ -250,7 +250,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"GCMToken"];
     NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
     NSError *deleteError = nil;
-    [self.persistentStoreCoordinator executeRequest:delete withContext:_managedObjectContext error:&deleteError];    
+    [self.persistentStoreCoordinator executeRequest:delete withContext:self.managedObjectContext error:&deleteError];    
 }
 
 - (void)deleteAllObjects
