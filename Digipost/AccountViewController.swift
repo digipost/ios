@@ -72,6 +72,9 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
+                
+        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        appDelegate.initGCM();
     }
     
     func refreshContentFromServer() {
