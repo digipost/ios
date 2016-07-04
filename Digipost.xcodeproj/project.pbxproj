@@ -468,6 +468,7 @@
 		F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
 		F8A3D2771D2A9533003F0C1D /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
@@ -1139,6 +1140,7 @@
 				EC2752111B061E1B0007125D /* MobileCoreServices.framework in Frameworks */,
 				EC2752101B061E160007125D /* UIKit.framework in Frameworks */,
 				EC27520F1B061E120007125D /* Foundation.framework in Frameworks */,
+				F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */,
 				EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */,
 				EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */,
 			);
