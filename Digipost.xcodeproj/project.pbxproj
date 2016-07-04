@@ -467,6 +467,7 @@
 		F885F8A21CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
+		F8A3D2771D2A9533003F0C1D /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
 		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
@@ -704,6 +705,16 @@
 		F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 		F8AE7AD71CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F8A3D2751D2A8DA1003F0C1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 83BAB9171855C0AC004A7BFB;
+			remoteInfo = Digipost;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1876,6 +1887,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				F8A3D2761D2A8DA1003F0C1D /* PBXTargetDependency */,
 			);
 			name = DigipostModelTests;
 			productName = DigipostModelTests;
@@ -2482,6 +2494,7 @@
 				ECB2BE7C1B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC8F4A351B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
 				EC2752061B061DE30007125D /* UnlockHighAuthenticationLevelView.swift in Sources */,
+				F8A3D2771D2A9533003F0C1D /* NSString+Date.swift in Sources */,
 				EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */,
 				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
 				ECA39C9F1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
@@ -2800,6 +2813,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F8A3D2761D2A8DA1003F0C1D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 83BAB9171855C0AC004A7BFB /* Digipost */;
+			targetProxy = F8A3D2751D2A8DA1003F0C1D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		83BAB9241855C0AC004A7BFB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -3032,6 +3053,7 @@
 		};
 		EC27518E1B061D020007125D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;

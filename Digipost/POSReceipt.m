@@ -100,11 +100,11 @@ NSString *const kReceiptLinkUriAPIKeySuffix = @"get_receipt_as_html";
     NSString *storeName = attributes[NSStringFromSelector(@selector(storeName))];
     receipt.storeName = [storeName isKindOfClass:[NSString class]] ? storeName : nil;
 
-    NSString *timeOfPurchseString = attributes[NSStringFromSelector(@selector(timeOfPurchase))];
-    if ([timeOfPurchseString isKindOfClass:[NSString class]]) {
+    NSString *timeOfPurchaseString = attributes[NSStringFromSelector(@selector(timeOfPurchase))];
+    if ([timeOfPurchaseString isKindOfClass:[NSString class]]) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss";
-        receipt.timeOfPurchase = [dateFormatter dateFromString:[timeOfPurchseString validDateFormat]];
+        receipt.timeOfPurchase = [dateFormatter dateFromString:[timeOfPurchaseString validDateFormat]];
     }
 
     NSArray *links = attributes[kReceiptLinkAPIKey];
