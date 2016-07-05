@@ -26,14 +26,14 @@ class TextComposerModule: ComposerModule {
     var styling = [TextAttribute]()
 
     class func headlineModule() -> TextComposerModule {
-        var textComposerModule = TextComposerModule()
+        let textComposerModule = TextComposerModule()
         textComposerModule.type = .H1
         textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.headlineH1()])
         return textComposerModule
     }
 
     class func paragraphModule() -> TextComposerModule {
-        var textComposerModule = TextComposerModule()
+        let textComposerModule = TextComposerModule()
         textComposerModule.type = .Paragraph
         textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.paragraph()])
         return textComposerModule
@@ -60,7 +60,7 @@ class TextComposerModule: ComposerModule {
             return false
             }()
 
-        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         let endOfStringAttributes = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
         let appendingAttributedString = NSAttributedString(string: characters, attributes: endOfStringAttributes)
         // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
@@ -72,7 +72,7 @@ class TextComposerModule: ComposerModule {
     }
 
     func appendNewParagraph() {
-        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSFontAttributeName : UIFont.paragraph()])
         // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
         mutableAttributedString.appendAttributedString(appendingAttributedString)
@@ -80,7 +80,7 @@ class TextComposerModule: ComposerModule {
     }
 
     func setFontTrait(fontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool, atRange range: NSRange) -> [String : AnyObject] {
-        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         var returnDictionary = [String : AnyObject]()
         attributedText.enumerateAttributesInRange(range, options: NSAttributedStringEnumerationOptions()) { (attributes, inRange, stop) -> Void in
             if let font = attributes[NSFontAttributeName] as? UIFont {
