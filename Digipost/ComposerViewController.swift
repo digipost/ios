@@ -59,7 +59,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         documentTitleTextField.delegate = self
         setupTableView()
         addComposerModuleButton = AddComposerModuleButton.layoutInView(self.view)
-        addComposerModuleButton.addTarget(self, action: Selector("didTapAddComposerModuleButton:"), forControlEvents: .TouchUpInside)
+        addComposerModuleButton.addTarget(self, action: #selector(ComposerViewController.didTapAddComposerModuleButton(_:)), forControlEvents: .TouchUpInside)
     }
     
     func didTapAddComposerModuleButton(button: UIButton) {
@@ -89,7 +89,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func setupComposerInputAccessoryView() {
         composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
-        composerInputAccessoryView.setupWithStandardLayout(self, selector: Selector("didTapTextAttributeButton:"))
+        composerInputAccessoryView.setupWithStandardLayout(self, selector: #selector(ComposerViewController.didTapTextAttributeButton(_:)))
     }
     
     func currentEditingComposerModuleAndTextView() -> (TextComposerModule, UITextView)? {

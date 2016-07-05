@@ -89,8 +89,8 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
     func setupNavBarButtonItems() {
         let currentRightBarButtonItem = self.navigationItem.rightBarButtonItem
-        let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .Done, target: self, action: Selector("toggleEditingStyle"))
-        let addNewModuleBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add")!, style: .Done, target: self, action: Selector("didTapAddNewModuleBarButtonItem:"))
+        let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .Done, target: self, action: #selector(HTMLEditorViewController.toggleEditingStyle))
+        let addNewModuleBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add")!, style: .Done, target: self, action: #selector(HTMLEditorViewController.didTapAddNewModuleBarButtonItem(_:)))
         let barButtonItems = [ currentRightBarButtonItem!, toggleEditingStyleModeBarButtonItem, addNewModuleBarButtonItem ]
         self.navigationItem.rightBarButtonItems = barButtonItems
     }

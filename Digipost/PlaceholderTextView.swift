@@ -38,9 +38,9 @@ class PlaceholderTextView: UITextView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidChange:", name: UITextViewTextDidChangeNotification, object: self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidEndEditing:", name: UITextViewTextDidEndEditingNotification, object: self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "textViewDidBeginEditing:", name: UITextViewTextDidBeginEditingNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: UITextViewTextDidEndEditingNotification, object: self)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: UITextViewTextDidBeginEditingNotification, object: self)
     }
     
     deinit{

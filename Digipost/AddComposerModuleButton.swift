@@ -50,8 +50,8 @@ class AddComposerModuleButton: UIButton {
     }
 
     private func setupKeyboardAnimation(withSuperView: UIView) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
 
     func keyboardWillShow(notification: NSNotification) {

@@ -52,7 +52,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.digipostGreyOne()
-        refreshControl?.addTarget(self, action: "refreshContentFromServer", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(AccountViewController.refreshContentFromServer), forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl!)
         
         // Configure Tableview
@@ -101,7 +101,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
-            if showingItem.respondsToSelector("setRightBarButtonItem:") {
+            if showingItem.respondsToSelector(Selector("setRightBarButtonItem:")) {
                 showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
             }
             

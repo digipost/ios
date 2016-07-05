@@ -97,7 +97,7 @@ protocol MultiselectSegmentedControlDelegate {
             let button = UIButton(frame: CGRectZero)
             buttons.append(button)
             button.backgroundColor = segmentBackgroundColor
-            button.addTarget(self, action: Selector("didTapButton:"), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(MultiselectSegmentedControl.didTapButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
             button.tag = (i)
             self.addSubview(button)
             let bundle = NSBundle(forClass: self.dynamicType)

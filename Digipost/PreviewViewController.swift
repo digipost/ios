@@ -46,8 +46,8 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         }
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientReceivedFromRecipientViewController:", name: "addRecipientNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "recipientDeletedFromRecipientViewController:", name: "deleteRecipientNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PreviewViewController.recipientReceivedFromRecipientViewController(_:)), name: "addRecipientNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PreviewViewController.recipientDeletedFromRecipientViewController(_:)), name: "deleteRecipientNotification", object: nil)
         navigationController?.delegate = self
     }
     
