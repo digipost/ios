@@ -27,7 +27,6 @@ extension UIButton {
             return
         }
         self.setTitle("", forState: UIControlState.Normal)
-        let containerView = self.superview
         let currentSize = CGSizeMake(self.frame.size.width - RecipientButtonExtensionConstants.widthMargin, self.frame.size.height)
         var string = strings[0]
         var lastFittedString = ""

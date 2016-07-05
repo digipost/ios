@@ -81,7 +81,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     func updateAuthorizationHeader(scope: String) {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
-        if let accessToken = oAuthToken?.accessToken {
+        if (oAuthToken?.accessToken != nil) {
             self.additionalHeaders["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(oAuthToken!.accessToken!)", forHTTPHeaderField: "Authorization")
             self.lastSetOauthTokenForAuthorizationHeader = oAuthToken
@@ -282,9 +282,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
-        var baseEncryptedModelIsAttachment = false
         if let attachment = baseEncryptionModel as? POSAttachment {
-            baseEncryptedModelIsAttachment = true
             let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
             if scope == kOauth2ScopeFull {
                 highestScope = kOauth2ScopeFull
@@ -315,9 +313,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             return
         }
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
-        let baseEncryptedModelUri = baseEncryptionModel.uri
-
-        let oAuthTokenInStorage = OAuthToken.oAuthTokenWithScope(highestScope!)
+        OAuthToken.oAuthTokenWithScope(highestScope!)
 
         validate(token: oAuthToken) { () -> Void in
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
@@ -330,10 +326,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
-        let url = NSURL(string: uri)
-        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        let sendableDocument = SendableDocument(recipients: recipients)
-        let parameters = sendableDocument.draftParameters()
+//        let url = NSURL(string: uri)
+//        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+//        let sendableDocument = SendableDocument(recipients: recipients)
+//        let parameters = sendableDocument.draftParameters()
 //        validate(token: oauthToken) { () -> Void in
 //            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
 //                sendableDocument.setupWithJSONContent(responseJSON)
@@ -364,8 +360,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func getDrafts(uri: String, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
-        let offset = 0
-        let length = 50000
+//        let offset = 0
+//        let length = 50000
 
 //        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
 //            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
@@ -391,13 +387,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
 
         let urlRequest = try! fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
-            var subject : String?
 
             let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             formData.appendPartWithFormData(data, name:"subject")
 
             let fileData = NSData(contentsOfURL: fileURL)
-            let string = NSString(data: fileData!, encoding: NSASCIIStringEncoding)
             formData.appendPartWithFileData(fileData, name: "file", fileName: "test.html", mimeType:"text/html")
             })
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
@@ -413,7 +407,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             dispatch_async(dispatch_get_main_queue(), {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
-                let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
+                //let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
+                
 //                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
 //                    self.removeAccessTokenUsedInLastRequest()
                     //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
@@ -435,7 +430,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
             failure(error: error)
         }
-        var error : NSError?
         let fileAttributes : [String:AnyObject]? = {
             do {
                 return try fileManager.attributesOfItemAtPath(url.path!)

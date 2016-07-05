@@ -24,12 +24,11 @@ private struct OAuthTokenIdTokenConstants {
 extension OAuthToken {
     
     class func isIdTokenValid(idToken : String?, nonce : String) -> Bool {
-        if let actualIDToken = idToken {
+        if (idToken != nil) {
             let idTokenContentArray  = idToken?.componentsSeparatedByString(".")
             if idTokenContentArray?.count == 2 {
                 if let base64EncodedJson = idTokenContentArray?[1] {
                     var numberOfCharactersAdded = 0
-                    var error : NSError?
                     var alteredBase64EncodedJson = base64EncodedJson
                     var base64Data : NSData?
                     while base64Data == nil {
@@ -40,7 +39,6 @@ extension OAuthToken {
                             return false
                         }
                     }
-                    let jsonDataAsString = NSString(data: base64Data!, encoding: NSASCIIStringEncoding)
                     
                     do{
                         if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments) as? [String : AnyObject] {

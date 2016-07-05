@@ -79,7 +79,6 @@ class HTMLSection: HTMLRepresentable {
     }
 
     func lengthOfAllTagsBeforeIndex(index: Int, inString string: NSString) -> Int {
-        var error : NSError?
         let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace)
         let range : NSRange = {
             if index > string.length {

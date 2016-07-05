@@ -40,11 +40,9 @@ struct HTMLTagBlock : HTMLRepresentable {
     }
     
     func htmlRepresentation(inString: NSString) -> NSString {
-        var representation = (inString as NSString).mutableCopy() as! NSMutableString
-        var index = 0
-        var newContent = ""
-        
-        let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions())
+    //    var representation = (inString as NSString).mutableCopy() as! NSMutableString
+    //    var newContent = ""
+    //    let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions())
         
         if range.location + range.length < inString.length {
             let subString = inString.substringWithRange(range)
