@@ -119,7 +119,7 @@ class TextStyleModel {
     */
     static func allTextStyleModels() -> [[[TextStyleModel]]] {
         let multiButtonStyleArray = [boldTextStyleModel(), italicTextStyleModel(), underlineTextStyleModel()]
-        var aParagraphStyleModel = paragraphStyleModel()
+        let aParagraphStyleModel = paragraphStyleModel()
         aParagraphStyleModel.enabled = true
         let stylePickerArray = [h1StyleModel(), h2StyleModel(), h3StyleModel(), aParagraphStyleModel]
         let buttonGroups = [[multiButtonStyleArray, stylePickerArray], [[leftAlignStyleModel(), centerAlignStyleModel(), rightAlignStyleModel()]]]

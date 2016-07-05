@@ -246,8 +246,8 @@ class UploadView: UIView {
                 }
             }
             else{
-                var totalDuration : CGFloat = 3.83
-                var offset = progress * totalDuration
+                let totalDuration : CGFloat = 3.83
+                let offset = progress * totalDuration
                 for layer in self.layerWithAnims{
                     layer.timeOffset = CFTimeInterval(offset)
                 }
@@ -256,7 +256,7 @@ class UploadView: UIView {
     }
     
     func flashAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
@@ -270,7 +270,7 @@ class UploadView: UIView {
     }
     
     func bodyAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.605, 1]
         strokeEndAnim.duration = 1.99
@@ -281,7 +281,7 @@ class UploadView: UIView {
     }
     
     func handleAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.497, 0.819, 1]
         strokeEndAnim.duration = 2.42
@@ -292,7 +292,7 @@ class UploadView: UIView {
     }
     
     func lensAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)),
@@ -306,7 +306,7 @@ class UploadView: UIView {
     }
     
     func lineAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.853, 1]
         strokeEndAnim.duration = 3.36
@@ -317,7 +317,7 @@ class UploadView: UIView {
     }
     
     func line2Animation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.836, 1]
         strokeEndAnim.duration = 2.91
@@ -328,7 +328,7 @@ class UploadView: UIView {
     }
     
     func line3Animation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.906, 1]
         strokeEndAnim.duration = 3.72
@@ -339,7 +339,7 @@ class UploadView: UIView {
     }
     
     func ArrowAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
@@ -356,13 +356,13 @@ class UploadView: UIView {
     //MARK: - Bezier Path
     
     func flashPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var flashPath = UIBezierPath(ovalInRect: bound)
+        let flashPath = UIBezierPath(ovalInRect: bound)
         return flashPath;
     }
     
     func bodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var bodyPath = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let bodyPath = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         bodyPath.moveToPoint(CGPointMake(minX + 0.66686 * w, minY + 0.18883 * h))
         bodyPath.addLineToPoint(CGPointMake(minX + 0.66686 * w, minY + 0.18883 * h))
@@ -381,8 +381,8 @@ class UploadView: UIView {
     }
     
     func handlePathWithBounds(bound: CGRect) -> UIBezierPath{
-        var handlePath = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let handlePath = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         handlePath.moveToPoint(CGPointMake(minX + 0.22186 * w, minY))
         handlePath.addCurveToPoint(CGPointMake(minX, minY + h), controlPoint1:CGPointMake(minX + 0.13063 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.86674 * h))
@@ -394,12 +394,12 @@ class UploadView: UIView {
     }
     
     func lensPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var lensPath = UIBezierPath(ovalInRect: bound)
+        let lensPath = UIBezierPath(ovalInRect: bound)
         return lensPath;
     }
     
     func linePathWithBounds(bound: CGRect) -> UIBezierPath{
-        var linePath = UIBezierPath()
+        let linePath = UIBezierPath()
         
         var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
@@ -413,8 +413,8 @@ class UploadView: UIView {
     }
     
     func line2PathWithBounds(bound: CGRect) -> UIBezierPath{
-        var line2Path = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let line2Path = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         line2Path.moveToPoint(CGPointMake(minX, minY))
         line2Path.addLineToPoint(CGPointMake(minX + w, minY + h))
@@ -423,8 +423,8 @@ class UploadView: UIView {
     }
     
     func line3PathWithBounds(bound: CGRect) -> UIBezierPath{
-        var line3Path = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let line3Path = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         line3Path.moveToPoint(CGPointMake(minX * w, minY))
         line3Path.addLineToPoint(CGPointMake(minX * w, minY + h))
@@ -433,8 +433,8 @@ class UploadView: UIView {
     }
     
     func arrowbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var arrowbodyPath = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let arrowbodyPath = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         arrowbodyPath.moveToPoint(CGPointMake(minX * w, minY + h))
         arrowbodyPath.addLineToPoint(CGPointMake(minX * w, minY))
@@ -443,8 +443,8 @@ class UploadView: UIView {
     }
     
     func leftarrowPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var leftarrowPath = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let leftarrowPath = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         leftarrowPath.moveToPoint(CGPointMake(minX, minY + h))
         leftarrowPath.addLineToPoint(CGPointMake(minX + w, minY))
@@ -453,8 +453,8 @@ class UploadView: UIView {
     }
     
     func rightarrowPathWithBounds(bound: CGRect) -> UIBezierPath{
-        var rightarrowPath = UIBezierPath()
-        var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+        let rightarrowPath = UIBezierPath()
+        let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
         
         rightarrowPath.moveToPoint(CGPointMake(minX + w, minY + h))
         rightarrowPath.addLineToPoint(CGPointMake(minX, minY))

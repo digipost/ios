@@ -218,8 +218,8 @@ class PeopleView: UIView {
 				}
 			}
 			else{
-				var totalDuration : CGFloat = 2.88
-				var offset = progress * totalDuration
+				let totalDuration : CGFloat = 2.88
+				let offset = progress * totalDuration
 				for layer in self.layerWithAnims{
 					layer.timeOffset = CFTimeInterval(offset)
 				}
@@ -228,7 +228,7 @@ class PeopleView: UIView {
 	}
 	
     func bigpersonheadAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
@@ -242,7 +242,7 @@ class PeopleView: UIView {
     }
     
     func bigpersonbodyAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1.1]
         strokeEndAnim.keyTimes = [0, 0.623, 1]
         strokeEndAnim.duration = 1.58
@@ -253,7 +253,7 @@ class PeopleView: UIView {
     }
     
     func smallpersonheadAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(1.4, 1.4, 1.4)),
@@ -267,7 +267,7 @@ class PeopleView: UIView {
     }
     
     func smallpersonbodyAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1.1]
         strokeEndAnim.keyTimes = [0, 0.682, 1]
         strokeEndAnim.duration = 1.97
@@ -278,7 +278,7 @@ class PeopleView: UIView {
     }
     
     func bagbodyAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.829, 1]
         strokeEndAnim.duration = 2.05
@@ -289,7 +289,7 @@ class PeopleView: UIView {
     }
     
     func baghandleAnimation() -> CAKeyframeAnimation{
-        var strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
+        let strokeEndAnim      = CAKeyframeAnimation(keyPath:"strokeEnd")
         strokeEndAnim.values   = [0, 0, 1]
         strokeEndAnim.keyTimes = [0, 0.877, 1]
         strokeEndAnim.duration = 2.33
@@ -300,7 +300,7 @@ class PeopleView: UIView {
     }
     
     func GroupAnimation() -> CAKeyframeAnimation{
-        var transformAnim      = CAKeyframeAnimation(keyPath:"transform")
+        let transformAnim      = CAKeyframeAnimation(keyPath:"transform")
         transformAnim.values   = [NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)),
             NSValue(CATransform3D: CATransform3DMakeScale(0, 0, 0)), 
             NSValue(CATransform3D: CATransform3DMakeScale(1.5, 1.5, 1.5)), 
@@ -316,8 +316,8 @@ class PeopleView: UIView {
 	//MARK: - Bezier Path
 	
 	func bigpersonheadPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var bigpersonheadPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let bigpersonheadPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		bigpersonheadPath.moveToPoint(CGPointMake(minX + 0.5 * w, minY))
 		bigpersonheadPath.addCurveToPoint(CGPointMake(minX, minY + 0.5 * h), controlPoint1:CGPointMake(minX + 0.22386 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.22386 * h))
@@ -329,8 +329,8 @@ class PeopleView: UIView {
 	}
 	
 	func bigpersonbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var bigpersonbodyPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let bigpersonbodyPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		bigpersonbodyPath.moveToPoint(CGPointMake(minX + 0.36031 * w, minY))
 		bigpersonbodyPath.addLineToPoint(CGPointMake(minX + 0.01807 * w, minY + 0.75578 * h))
@@ -347,8 +347,8 @@ class PeopleView: UIView {
 	}
 	
 	func smallpersonheadPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var smallpersonheadPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let smallpersonheadPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		smallpersonheadPath.moveToPoint(CGPointMake(minX + 0.5 * w, minY))
 		smallpersonheadPath.addCurveToPoint(CGPointMake(minX, minY + 0.5 * h), controlPoint1:CGPointMake(minX + 0.22386 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.22386 * h))
@@ -360,8 +360,8 @@ class PeopleView: UIView {
 	}
 	
 	func smallpersonbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var smallpersonbodyPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let smallpersonbodyPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		smallpersonbodyPath.moveToPoint(CGPointMake(minX + 0.36031 * w, minY))
 		smallpersonbodyPath.addLineToPoint(CGPointMake(minX + 0.01807 * w, minY + 0.75578 * h))
@@ -378,8 +378,8 @@ class PeopleView: UIView {
 	}
 	
 	func bagbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var bagbodyPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let bagbodyPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		bagbodyPath.moveToPoint(CGPointMake(minX + 0.06125 * w, minY))
 		bagbodyPath.addCurveToPoint(CGPointMake(minX, minY + 0.08211 * h), controlPoint1:CGPointMake(minX + 0.02742 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.03676 * h))
@@ -396,8 +396,8 @@ class PeopleView: UIView {
 	}
 	
 	func baghandlePathWithBounds(bound: CGRect) -> UIBezierPath{
-		var baghandlePath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let baghandlePath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		baghandlePath.moveToPoint(CGPointMake(minX + w, minY + h))
 		baghandlePath.addCurveToPoint(CGPointMake(minX + 0.86085 * w, minY + 0.00671 * h), controlPoint1:CGPointMake(minX + w, minY + 0.79547 * h), controlPoint2:CGPointMake(minX + 0.95433 * w, minY + 0.17765 * h))
@@ -410,8 +410,8 @@ class PeopleView: UIView {
 	}
 	
 	func baglidPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var baglidPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let baglidPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		baglidPath.moveToPoint(CGPointMake(minX, minY * h))
 		baglidPath.addLineToPoint(CGPointMake(minX + w, minY * h))
@@ -421,7 +421,7 @@ class PeopleView: UIView {
 	}
 	
 	func baglockPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var baglockPath = UIBezierPath(rect: bound)
+		let baglockPath = UIBezierPath(rect: bound)
 		return baglockPath;
 	}
 

@@ -24,8 +24,9 @@ extension String {
     :param: string String to insert
     :returns: String formed from self inserting string at index
     */
-    func insert (var index: Int, _ string: String) -> String {
+    func insert (index: Int, string: String) -> String {
         //  Edge cases, prepend and append
+
         if index > length {
             return self + string
         } else if index < 0 {
