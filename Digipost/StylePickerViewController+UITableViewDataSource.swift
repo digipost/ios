@@ -33,7 +33,7 @@ extension StylePickerViewController : UITableViewDataSource {
         let cell : UITableViewCell = {
             if arrayOfModels.count == 1 {
                 // single choice type cell
-                return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) as! UITableViewCell
+                return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) 
             } else {
                 // multi select type cell
                 if let preferredIconName = arrayOfModels.first!.preferredIconName {
@@ -45,7 +45,7 @@ extension StylePickerViewController : UITableViewDataSource {
                     cell.setupWithModels(arrayOfModels)
                     return cell
                 } else {
-                    let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) as! UITableViewCell
+                    let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) 
                     let models = arrayOfModels.selectedTextStyleModel()
                     cell.detailTextLabel?.text = models?.name
                     cell.textLabel?.text = "Stil"

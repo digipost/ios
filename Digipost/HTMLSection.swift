@@ -90,7 +90,7 @@ class HTMLSection: HTMLRepresentable {
 
         let allMatches = regex.matchesInString(string as String, options: NSMatchingOptions(), range: range )
         var totalLength = 0
-        for match in allMatches as! [NSTextCheckingResult] {
+        for match in allMatches {
             totalLength += match.range.length
         }
 

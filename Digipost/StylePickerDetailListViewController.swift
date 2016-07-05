@@ -64,7 +64,7 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
         let textStyleModel = textStyleModels[indexPath.row]
         if let actualName = textStyleModel.name {
             cell.textLabel?.text = actualName
