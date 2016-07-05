@@ -630,13 +630,13 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     private class func incrementTaskCounter() {
         APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
-        APIClient.sharedClient.taskCounter++
+        APIClient.sharedClient.taskCounter += 1
         APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
     }
 
     private class func decrementTaskCounter() {
         APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
-        APIClient.sharedClient.taskCounter--
+        APIClient.sharedClient.taskCounter -= 1
         APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
     }
     

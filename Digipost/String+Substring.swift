@@ -32,7 +32,7 @@ extension String
             while counter < r.endIndex && currentIndex < self.endIndex {
                 currentIndex = currentIndex.successor()
                 stringInRange.append(self[currentIndex])
-                counter++
+                counter += 1
             }
             return stringInRange
 

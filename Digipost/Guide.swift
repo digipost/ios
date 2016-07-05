@@ -78,7 +78,7 @@ class Guide : NSObject {
         var guideItems = [WhatsNewGuideItem]()
         while let whatsNewItem = WhatsNewGuideItem(index: index) {
             guideItems.append(whatsNewItem)
-            index++
+            index += 1
         }
         return guideItems
     }
