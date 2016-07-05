@@ -24,26 +24,22 @@ extension ComposerViewController : StylePickerViewControllerDelegate {
         }
     }
 
-    func setStyle(textStyleModel: TextStyleModel, forComposerModule composerModule: TextComposerModule, textView: UITextView, var range : NSRange? = nil) {
-        if range == nil {
-            range = textView.selectedRange
-        } else {
-
-        }
-
+    func setStyle(textStyleModel: TextStyleModel, forComposerModule composerModule: TextComposerModule, textView: UITextView, range : NSRange? = nil) {
+        let selectionRange = range != nil ? range : textView.selectedRange
+        
         var setAttributes : [String : AnyObject]? = nil
 
         switch textStyleModel.value {
         case let symbolicTrait as UIFontDescriptorSymbolicTraits:
-            setAttributes = composerModule.setFontTrait(symbolicTrait, enabled: textStyleModel.enabled, atRange: range!)
+            setAttributes = composerModule.setFontTrait(symbolicTrait, enabled: textStyleModel.enabled, atRange: selectionRange!)
             textView.attributedText = composerModule.attributedText
-            textView.selectedRange = range!
+            textView.selectedRange = selectionRange!
 
             break
         default:
             break
         }
-        if range!.length == 0 {
+        if selectionRange!.length == 0 {
             if let actualSetAttributes = setAttributes {
                 textView.typingAttributes = actualSetAttributes
             }
