@@ -134,7 +134,7 @@ extension APIClient {
                                 failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                             }
                         } else {
-                            failure(error: APIError(error: error))
+                            failure(error: APIError(error: actualError))
                         }
                     }
                 } else if let actualFileUrl = fileURL {
