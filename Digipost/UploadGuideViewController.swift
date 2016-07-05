@@ -31,8 +31,8 @@ class UploadGuideViewController: UIViewController {
         if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
             uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.Portrait)
         } else {
-            uploadImage.image = UIImage.localizedImage(interfaceOrientation)
-            self.setImageForOrientation(interfaceOrientation)
+            uploadImage.image = UIImage.localizedImage(UIApplication.sharedApplication().statusBarOrientation)
+            self.setImageForOrientation(UIApplication.sharedApplication().statusBarOrientation)
         }
         view.updateConstraints()
     }
