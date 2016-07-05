@@ -1021,9 +1021,9 @@ static void *reorderAutoScrollTimerKey = &reorderAutoScrollTimerKey;
 	// If there are custom row heights, make sure the proper rows are being set...
 	if( [self.delegate respondsToSelector: @selector(tableView:heightForRowAtIndexPath:)] ) {
 		// See if I can find rows with different heights...
-		CGFloat	h0;
+        CGFloat	h0 = 0.0;
 		NSIndexPath	*indexPathForH0;
-		CGFloat h1;
+		CGFloat h1 = 0.0;
 		NSIndexPath	*indexPathForH1;
 		NSInteger sectionCount = [self.dataSource numberOfSectionsInTableView: self];
 		for( NSInteger section = 0; section < sectionCount; ++section ) {
