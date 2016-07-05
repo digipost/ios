@@ -103,7 +103,7 @@ class TextComposerModule: ComposerModule {
     }
 
     func newFont(existingFont: UIFont, newFontTrait: UIFontDescriptorSymbolicTraits, enabled: Bool) -> UIFont {
-        var fontDescriptor = existingFont.fontDescriptor()
+        let fontDescriptor = existingFont.fontDescriptor()
         let existingTraits = fontDescriptor.symbolicTraits
         let newTraits : UIFontDescriptorSymbolicTraits =  {
             if enabled {

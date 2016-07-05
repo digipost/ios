@@ -75,7 +75,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         if let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell) {
             var models = currentShowingTextStyleModels()[indexPath.row]
 
-            var model = models[atIndex]
+            let model = models[atIndex]
             model.enabled = newValue
 
             delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: model, enabled: newValue)
@@ -160,7 +160,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
             if let newView = self.stylePickerDetailListViewController?.view {
                 self.view.addSubview(newView)
-                var group = constrain(self.view, newView ) { firstView, secondView in
+                let group = constrain(self.view, newView ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
                     secondView.top == firstView.top

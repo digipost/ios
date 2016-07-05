@@ -398,7 +398,7 @@ class ReceiptView: UIView {
 	
 	func receiptline1PathWithBounds(bound: CGRect) -> UIBezierPath{
 		let receiptline1Path = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		receiptline1Path.moveToPoint(CGPointMake(minX, minY))
 		receiptline1Path.addLineToPoint(CGPointMake(minX + w, minY + h))
@@ -407,8 +407,8 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline2PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var receiptline2Path = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let receiptline2Path = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		receiptline2Path.moveToPoint(CGPointMake(minX, minY))
 		receiptline2Path.addLineToPoint(CGPointMake(minX + w, minY + h))
@@ -417,8 +417,8 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline3PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var receiptline3Path = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let receiptline3Path = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		receiptline3Path.moveToPoint(CGPointMake(minX, minY))
 		receiptline3Path.addLineToPoint(CGPointMake(minX + w, minY + h))
@@ -427,8 +427,8 @@ class ReceiptView: UIView {
 	}
 	
 	func receiptline4PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var receiptline4Path = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let receiptline4Path = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		receiptline4Path.moveToPoint(CGPointMake(minX, minY * h))
 		receiptline4Path.addLineToPoint(CGPointMake(minX + w, minY * h))
@@ -437,8 +437,8 @@ class ReceiptView: UIView {
 	}
 	
 	func cardbodyPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var cardbodyPath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let cardbodyPath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		cardbodyPath.moveToPoint(CGPointMake(minX + 0.04842 * w, minY))
 		cardbodyPath.addCurveToPoint(CGPointMake(minX, minY + 0.07448 * h), controlPoint1:CGPointMake(minX + 0.02168 * w, minY), controlPoint2:CGPointMake(minX, minY + 0.03335 * h))
@@ -455,18 +455,18 @@ class ReceiptView: UIView {
 	}
 	
 	func magneticstripePathWithBounds(bound: CGRect) -> UIBezierPath{
-		var magneticstripePath = UIBezierPath(rect: bound)
+		let magneticstripePath = UIBezierPath(rect: bound)
 		return magneticstripePath;
 	}
 	
 	func hologramPathWithBounds(bound: CGRect) -> UIBezierPath{
-		var hologramPath = UIBezierPath(roundedRect:bound, cornerRadius:3)
+		let hologramPath = UIBezierPath(roundedRect:bound, cornerRadius:3)
 		return hologramPath;
 	}
 	
 	func hologramlinePathWithBounds(bound: CGRect) -> UIBezierPath{
-		var hologramlinePath = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let hologramlinePath = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		hologramlinePath.moveToPoint(CGPointMake(minX + w, minY * h))
 		hologramlinePath.addLineToPoint(CGPointMake(minX, minY * h))
@@ -477,8 +477,8 @@ class ReceiptView: UIView {
 	}
 	
 	func hologramline2PathWithBounds(bound: CGRect) -> UIBezierPath{
-		var hologramline2Path = UIBezierPath()
-		var minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
+		let hologramline2Path = UIBezierPath()
+		let minX = CGFloat(bound.minX), minY = bound.minY, w = bound.width, h = bound.height;
 		
 		hologramline2Path.moveToPoint(CGPointMake(minX + w, minY * h))
 		hologramline2Path.addLineToPoint(CGPointMake(minX, minY * h))
