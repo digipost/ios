@@ -35,7 +35,6 @@ struct HTMLTag {
 
     init(attribute: NSObject, value: AnyObject) {
 
-        let aFont = UIFont()
         self.type = {
 
             switch attribute {
@@ -46,7 +45,6 @@ struct HTMLTag {
                     }
 
                     let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
-                    let symb = UIFontDescriptorSymbolicTraits(rawValue: symbolicTraits.rawValue)
                     if symbolicTraits.contains(.TraitItalic) {
                         return HTMLTagType.Italic
                     } else if symbolicTraits.contains(.TraitBold) {
@@ -69,7 +67,6 @@ struct HTMLTag {
                 return tags
             }
             let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
-            let symb = UIFontDescriptorSymbolicTraits(rawValue: symbolicTraits.rawValue)
             if symbolicTraits.contains(.TraitItalic) {
                 tags.append(HTMLTag(type: HTMLTagType.Italic))
             }

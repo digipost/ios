@@ -36,7 +36,7 @@ extension ComposerViewController {
             if let textModule = module as? TextComposerModule {
                 return height(textComposerModule: textModule)
             }
-            if let imageModule = module as? ImageComposerModule {
+            if ((module as? ImageComposerModule) != nil) {
                 return self.view.frame.width
             }
             

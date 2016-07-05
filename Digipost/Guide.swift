@@ -48,9 +48,8 @@ class Guide : NSObject {
     class func shouldShowWhatsNewGuide() -> Bool {
         
         // String format for images, for example iPhone: "2-5-0_1-iphone"
-        
-        if let firstImage = UIImage(named: WhatsNewGuideItem.nameForIndex(1)) {
-            if let firstText = NSLocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(1),tableName:GuideConstants.whatsNewTableName, comment:"") as String? {
+        if (UIImage(named: WhatsNewGuideItem.nameForIndex(1)) != nil) {
+            if ((NSLocalizedString(WhatsNewGuideItem.guideItemNameForIndexWithoutUserInterfaceIdiom(1),tableName:GuideConstants.whatsNewTableName, comment:"") as String?) != nil) {
                 if hasShownWhatsNewGuideForCurrentVersion == false {
                     return true
                 }

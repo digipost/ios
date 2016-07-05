@@ -27,7 +27,7 @@ class ComposerModuleParser {
                 do{
                     let stylesheetContent = try NSString(contentsOfFile: stylesheetPath, encoding: NSASCIIStringEncoding)
                     internalStylesheet = stylesheetContent
-                }catch let error{
+                }catch _{
                     
                 }
             }

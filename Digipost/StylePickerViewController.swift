@@ -41,7 +41,6 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     func currentSelectedAttributes() -> [TextStyleModel] {
         let selectedTextStyles = currentShowingTextStyleModels().flatMap { (arrayOfModels) -> [TextStyleModel] in
             return arrayOfModels.filter { (element) -> Bool in
-                let booleanValue = element.enabled
                 return element.enabled
             }
         }
@@ -186,7 +185,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         } else {
 
             UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                var group = constrain(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
+                _ = constrain(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
                     secondView.top == firstView.top

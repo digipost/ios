@@ -73,10 +73,10 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     func testKeepTokensWithDifferentScopesInKeychain() {
-        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
-        let anotherToken = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
+        _ = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 2, "token did not correctly store in database")
     }
@@ -84,7 +84,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     // creates a token, fetches it from keychain, adds a new access token, then refetches to see if it did get updated
     func testUpdateSameTokenMultipleTimes() {
         let newAccessToken = "newAccessToken"
-        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
+        mockTokenWithScope(kOauth2ScopeFull)
         
         let refetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         XCTAssertNotNil(refetchedToken, "no valid token was created")
@@ -92,25 +92,25 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         refetchedToken!.accessToken = newAccessToken
         
         let alteredToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        let acc = alteredToken?.accessToken!
+        //let acc = alteredToken?.accessToken!
         XCTAssertTrue(alteredToken!.accessToken! == refetchedToken!.accessToken!, "\(alteredToken!.accessToken!) not similar to \(refetchedToken!.accessToken!)")
     }
 
     func testCreateTokensWithAllScopesAndStoreInKeychain() {
-        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
-        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        mockTokenWithScope(kOauth2ScopeFull)
+        mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertNil(idPorten3.refreshToken, "idporten3 token should not have refresh token")
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
     }
 
     func testdeleteAllTokensInKeychain() {
-        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
-        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
-        let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        mockTokenWithScope(kOauth2ScopeFull)
+        mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
         
@@ -166,10 +166,10 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let newAccessTokenFull = "new Acesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
         let newAccessTokenIdPorten4 = "new Acesstoken for idporten4"
-        let fullToken = mockTokenWithScope(kOauth2ScopeFull)
-        let fullHighAuth = mockTokenWithScope(kOauth2ScopeFullHighAuth)
-        let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        let idPorten4 = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        mockTokenWithScope(kOauth2ScopeFull)
+        mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
 
         let fetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let fetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
