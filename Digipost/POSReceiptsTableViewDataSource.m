@@ -179,6 +179,8 @@
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationNone];
             break;
+        default:
+            break;
     }
 }
 
