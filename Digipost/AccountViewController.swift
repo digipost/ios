@@ -125,7 +125,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
             POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
-            if let actualRefreshControl = self.refreshControl {
+            if (self.refreshControl != nil) {
                 self.refreshControl?.endRefreshing()
             }
             }) { (error) -> () in
@@ -133,7 +133,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                     UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
                 }
                 
-                if let actualRefreshControl = self.refreshControl {
+                if (self.refreshControl != nil) {
                     self.refreshControl?.endRefreshing()
                 }
                 // Notify user about error?
