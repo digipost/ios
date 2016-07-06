@@ -20,7 +20,7 @@
                         <color key="backgroundColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
-                        <segue destination="2Dt-Hy-BfT" kind="relationship" relationship="rootViewController" id="yj5-wA-9kV"/>
+                        <segue destination="2Dt-Hy-BfT" identifier="NoRotationNavController" kind="relationship" relationship="rootViewController" id="yj5-wA-9kV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9fB-qu-XvY" kind="relationship" relationship="rootViewController" id="xZ4-Ca-r0Z"/>
+                        <segue destination="9fB-qu-XvY" identifier="NavigationControllerSegue" kind="relationship" relationship="rootViewController" id="xZ4-Ca-r0Z"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On7-mx-Ra5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -77,7 +77,7 @@
                         <barButtonItem key="leftBarButtonItem" title="CANCEL" id="Hnu-zz-RH5" userLabel="Cancel Bar Button Item">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="jRh-L6-T4p" kind="unwind" unwindAction="unwindToLoginViewController:" id="Afd-7M-whm"/>
+                                <segue destination="jRh-L6-T4p" kind="unwind" identifier="exitOAuthSegue" unwindAction="unwindToLoginViewController:" id="Afd-7M-whm"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -869,7 +869,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BPe-EW-mWm" kind="relationship" relationship="rootViewController" id="YI9-NF-89n"/>
+                        <segue destination="BPe-EW-mWm" identifier="fromNavigationControllerSegue" kind="relationship" relationship="rootViewController" id="YI9-NF-89n"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wm3-FM-FqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -965,7 +965,7 @@
             <objects>
                 <navigationController storyboardIdentifier="uploadNavigationController" definesPresentationContext="YES" id="0DB-fH-a37" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="FW3-kC-k62">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="8A7-WS-7db">
+                        <barButtonItem key="rightBarButtonItem" id="8A7-WS-7db">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="umw-mv-Rjf">
                                 <rect key="frame" x="233" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -989,7 +989,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="4z4-Au-vJv" kind="relationship" relationship="rootViewController" id="3jD-Vn-Y8D"/>
+                        <segue destination="4z4-Au-vJv" identifier="FromNavigationController" kind="relationship" relationship="rootViewController" id="3jD-Vn-Y8D"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou0-X5-HPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1363,7 +1363,7 @@
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="2tg-7S-duO"/>
-                        <barButtonItem title="Item" image="Move" id="a5W-FN-Zke">
+                        <barButtonItem image="Move" id="a5W-FN-Zke">
                             <color key="tintColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="inA-Jz-1qb"/>
@@ -1375,7 +1375,7 @@
                             <color key="tintColor" red="0.25098039215686274" green="0.25882352941176467" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="6rc-UH-qxc"/>
-                        <barButtonItem title="Item" image="Open_in" id="VHR-Vd-7Vz">
+                        <barButtonItem image="Open_in" id="VHR-Vd-7Vz">
                             <color key="tintColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </toolbarItems>
@@ -1390,7 +1390,7 @@
                         <outlet property="progressView" destination="hqz-1p-hA0" id="qaE-ag-UKL"/>
                         <outlet property="shadowView" destination="UZq-Nf-q1o" id="ehi-lv-bNn"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
-                        <segue destination="iIu-uD-AEh" kind="unwind" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
+                        <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
                         <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
                     </connections>
                 </viewController>
@@ -1613,10 +1613,10 @@
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6ll-nd-HYD"/>
+        <segue reference="svS-B5-imh"/>
         <segue reference="vJp-VT-rtF"/>
-        <segue reference="nJS-Zx-WgQ"/>
-        <segue reference="2IH-85-kgn"/>
-        <segue reference="Kl9-xn-mhN"/>
         <segue reference="3jD-Vn-Y8D"/>
+        <segue reference="eq9-PM-agO"/>
     </inferredMetricsTieBreakers>
 </document>
