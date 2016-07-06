@@ -50,14 +50,14 @@ class ComposerTests: XCTestCase {
 
     func testParagraph() {
         let wantedOutput = "<p>\(Strings.one)</p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
     }
 
     func testBoldInParagraph() {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b></p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
@@ -67,7 +67,7 @@ class ComposerTests: XCTestCase {
 
     func testWholeBoldParagraph() {
         let wantedOutput = "<p><b>\(Strings.one)</b></p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.one)
         textComposerModule.setFontTrait(.TraitBold, enabled: true , atRange:rangeOfString)
@@ -76,7 +76,7 @@ class ComposerTests: XCTestCase {
 
     func testTwoBoldRangesInParagraph() {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b>\(Strings.three)<b>\(Strings.four)</b></p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
 
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
@@ -99,7 +99,7 @@ class ComposerTests: XCTestCase {
     func testBoldAndItalicInParagraph() {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b>\(Strings.three)<i>\(Strings.four)</i></p>"
 
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendCharactersToEndOfString(Strings.three)
@@ -117,7 +117,7 @@ class ComposerTests: XCTestCase {
     func testLotsOfBoldRangesInMultipleParagraphs() {
         let wantedOutput = "<p>\(Strings.one)<b>\(Strings.two)</b></p><p>\(Strings.three)<b>\(Strings.four)</b>\(Strings.five)</p><p><b>\(Strings.six)</b></p>"
 
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendNewParagraph()
@@ -136,7 +136,7 @@ class ComposerTests: XCTestCase {
 
     func testTwoParagraphs() {
         let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
@@ -145,7 +145,7 @@ class ComposerTests: XCTestCase {
 
     func testThreeParagraphs() {
         let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p>\(Strings.three)</p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
@@ -156,7 +156,7 @@ class ComposerTests: XCTestCase {
 
     func testMixedBoldAndItalicInSingleParagraph() {
         let wantedOutput = "<p><b>\(Strings.one)</b><i><b>\(Strings.two)</i></b><i>\(Strings.three)</i></p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendCharactersToEndOfString(Strings.three)
@@ -168,7 +168,7 @@ class ComposerTests: XCTestCase {
 
     func testThreeParagraphsWithCompleteStylingOnOne() {
         let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p><b>\(Strings.three)</b></p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
@@ -182,7 +182,7 @@ class ComposerTests: XCTestCase {
 
     func testThreeParagraphsWithPartialStylingOnOne() {
         let wantedOutput = "<p>\(Strings.one)</p><p>\(Strings.two)</p><p><b>\(Strings.three)</b>\(Strings.four)</p>"
-        var textComposerModule = TextComposerModule.paragraphModule()
+        let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
@@ -199,7 +199,7 @@ class ComposerTests: XCTestCase {
 
     func testHeadline1() {
         let wantedOutput = "<h1>\(Strings.one)\(Strings.two)</h1>"
-        var textComposerModule = TextComposerModule.headlineModule()
+        let textComposerModule = TextComposerModule.headlineModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
