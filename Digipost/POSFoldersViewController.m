@@ -593,7 +593,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (void)updateNavbar
 {
-    [super updateNavbar];
 }
 
 - (void)deleteFolder:(POSFolder *)folder atIndexPath:(NSIndexPath *)indexPath

@@ -541,7 +541,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)updateNavbar
 {
-    [super updateNavbar];
 
     UINavigationBar *navBar = [self.navigationController navigationBar];
 

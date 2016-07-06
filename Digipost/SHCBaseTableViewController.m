@@ -42,8 +42,6 @@
     [super viewDidLoad];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@" " style:UIBarButtonItemStylePlain target:nil action:nil];
 
-    [self updateNavbar];
-
     // This line makes the tableview hide its separator lines for empty cells
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
@@ -164,6 +162,10 @@
     NSAssert(NO, @"This method needs to be overridden in subclass");
 }
 
+-(void)updateNavbar{
+    NSAssert(NO, @"This method needs to be overridden in subclass");
+}
+
 - (void)popViewController
 {
     NSAssert(self.navigationController != nil, @"no nav controller");
@@ -194,7 +196,6 @@
     }
 
     [self.tableView reloadData];
-    //    [self updateNavbar];
 }
 
 - (void)programmaticallyEndRefresh
