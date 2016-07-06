@@ -143,7 +143,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     return NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskPortrait;
