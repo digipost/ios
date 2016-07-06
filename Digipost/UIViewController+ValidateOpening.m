@@ -27,21 +27,10 @@
         if (success) {
             success();
         }
-        // letter does not have uri when idporten 4
-        
     } else if (!attachment.uri) {
         success();
         return;
-        // If the attachment doesn't have a uri, it probably means the letter requires
-        // an opening receipt or something else that Digipost knows the app can't handle.
-        if (failure) {
-            NSError *error = [NSError errorWithDomain:kAttachmentOpeningValidAuthenticationLevel
-                                                 code:SHCAttachmentOpeningValidationErrorCodeNoAttachmentUri
-                                             userInfo:@{ NSLocalizedDescriptionKey : NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE", @"Generic validation error message") }];
-            error.errorTitle = NSLocalizedString(@"ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE", @"Unable to open letter");
-            failure(error);
-        }
-    } else {
+    }else {
         if (success) {
             success();
         }
