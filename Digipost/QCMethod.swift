@@ -62,7 +62,7 @@ class QCMethod
                 let groupAnim = CAAnimationGroup()
                 groupAnim.animations = [basicAnim]
                 groupAnim.duration = maxDurationFromAnimations(groupAnim.animations!)
-                groupAnim.animations?.map{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
+                groupAnim.animations?.forEach{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
                 newAnim = groupAnim
             }
             else{
@@ -82,7 +82,7 @@ class QCMethod
                 let groupAnim = CAAnimationGroup()
                 groupAnim.animations = [keyAnim]
                 groupAnim.duration = maxDurationFromAnimations(groupAnim.animations!)
-                groupAnim.animations?.map{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
+                groupAnim.animations?.forEach{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
                 newAnim = groupAnim
             }else{
                 newAnim = keyAnim
@@ -96,7 +96,7 @@ class QCMethod
             }
             
             groupAnim.animations = newSubAnims
-            groupAnim.animations?.map{$0.setValue(kCAFillModeBoth, forKey: "fillMod")}
+            groupAnim.animations?.forEach{$0.setValue(kCAFillModeBoth, forKey: "fillMode")}
             groupAnim.duration = maxDurationFromAnimations(newSubAnims)
             newAnim = groupAnim
         }else{
@@ -178,11 +178,10 @@ class QCMethod
         let sublayers = layer.sublayers
         let sublayersCount = sublayers!.count
         
-        var setBeginTime =
+        let setBeginTime =
         {
             (subAnim:CAAnimation, sublayerIdx:NSInteger) -> Void  in
             
-            var delay : CGFloat = 0
             let instDelay = subAnim.valueForKey("instanceDelay")?.floatValue;
             if (instDelay != nil) {
                 let instanceDelay = CGFloat(instDelay!)

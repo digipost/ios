@@ -120,9 +120,9 @@ class TextComposerModule: ComposerModule {
     }
 
     func setTextAlignment(alignment: NSTextAlignment) {
-        var mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
-        let endOfStringAttributes = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
-        var paragraphStyle = NSMutableParagraphStyle()
+        let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
+        _ = attributedText.attributesAtIndex(attributedText.length - 1 , effectiveRange: nil)
+        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = alignment
         mutableAttributedString.addAttribute(NSParagraphStyleAttributeName , value: paragraphStyle, range:  NSMakeRange(0, attributedText.length))
         attributedText = mutableAttributedString

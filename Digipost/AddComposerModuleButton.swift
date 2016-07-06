@@ -81,7 +81,7 @@ class AddComposerModuleButton: UIButton {
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
         let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
-        let keyboardFrameConvertedToViewFrame = self.superview!.convertRect(keyboardFrame!, fromView: nil)
+        self.superview!.convertRect(keyboardFrame!, fromView: nil)
         let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve))
         let options = UIViewAnimationOptions.BeginFromCurrentState.union(curveAnimationOption)
         self.layoutIfNeeded()

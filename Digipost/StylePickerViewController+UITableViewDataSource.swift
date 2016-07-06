@@ -36,7 +36,7 @@ extension StylePickerViewController : UITableViewDataSource {
                 return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) 
             } else {
                 // multi select type cell
-                if let preferredIconName = arrayOfModels.first!.preferredIconName {
+                if arrayOfModels.first!.preferredIconName != nil {
                     let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
                     cell.delegate = self
                     for (index, model) in arrayOfModels.enumerate() {

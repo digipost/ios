@@ -159,7 +159,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        let indexPath = NSIndexPath(forRow: textField.tag, inSection: 0)
+       // let indexPath = NSIndexPath(forRow: textField.tag, inSection: 0)
         return false
     }
     
@@ -182,15 +182,15 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
         composerModules.append(module)
         tableView.reloadData()
-        if let imageModule = module as? ImageComposerModule {
+
+        if (module as? ImageComposerModule) != nil {
             let squareSize = CGSizeMake(tableView.frame.width, tableView.frame.width)
             if let imageModule = module as? ImageComposerModule {
                 imageModule.image.scaleToSize(squareSize)
             }
-        } else if let imageModule = module as? TextComposerModule {
+        } else if (module as? TextComposerModule) != nil {
             if let indexPath = indexPath(module: module) {
                 let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
-                let textModule = module as? TextComposerModule
                 cell?.moduleTextView.delegate = self
                 let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
                 let stylePickerViewController : StylePickerViewController = {
@@ -225,6 +225,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             style: UIAlertActionStyle.Default)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                alertController.title
                 })
         }
         
@@ -233,6 +234,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 
                 self.navigationController?.dismissViewControllerAnimated(true, completion: { () -> Void in
+                alertController.title
                 })
         }
         
