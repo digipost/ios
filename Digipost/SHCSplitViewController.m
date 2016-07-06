@@ -66,7 +66,7 @@
     if (letterViewController) {
         self.delegate = letterViewController;
 
-        SHCAppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        SHCAppDelegate *appDelegate = (SHCAppDelegate*) [UIApplication sharedApplication].delegate;
         appDelegate.letterViewController = letterViewController;
     }
     if ([OAuthToken isUserLoggedIn] == NO) {
