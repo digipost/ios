@@ -64,28 +64,24 @@ class OnboardingLoginViewController: UIViewController {
     
     @IBAction func registerButtonAction(sender: UIButton) {
         if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
-           presentActionSheetFromSenderWithURL(sender, url: newUserURL)
+           presentAlertFromSenderWithUrl(sender, url: newUserURL)
         }
     }
     
     @IBAction func privacyButtonAction(sender: UIButton) {
         if let privacyURL = NSURL(string: "https://www.digipost.no/juridisk/#personvern") {
-            presentActionSheetFromSenderWithURL(sender, url: privacyURL)
+            presentAlertFromSenderWithUrl(sender, url: privacyURL)
         }
     }
     
-    func presentActionSheetFromSenderWithURL(sender: UIButton, url: NSURL){
-        UIActionSheet.showFromRect(sender.frame,
-            inView: sender.superview!,
-            animated: true,
-            withTitle: url.host,
-            cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"),
-            destructiveButtonTitle: nil,
-            otherButtonTitles: [NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari")]
-            ) { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
-                if buttonIndex == 0 {
-                    UIApplication.sharedApplication().openURL(url)
-                }
-        }
+    func presentAlertFromSenderWithUrl(sender: UIButton, url: NSURL){
+        let alert = UIAlertController(title: url.host, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari"), style: .Default,handler: {(alert: UIAlertAction!) in
+            UIApplication.sharedApplication().openURL(url)
+        }))
+        
+        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: {(alert: UIAlertAction!) in }))
+        
+        presentViewController(alert, animated: true, completion: nil)
     }
 }

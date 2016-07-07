@@ -157,18 +157,26 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
                                                         NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
                                                         (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
                                                         receiptWord];
+    
+    
+    UIAlertController * registrationAlertController = [UIAlertController
+                                                       alertControllerWithTitle:nil
+                                                       message:nil
+                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* open = [UIAlertAction actionWithTitle:deleteString style:UIAlertActionStyleDestructive
+                        handler:^(UIAlertAction * action){
+                               [self deleteReceipts];
+                        }];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIAlertActionStyleCancel
+                        handler:^(UIAlertAction * action){}];
+    
+    [registrationAlertController addAction:open];
+    [registrationAlertController addAction:cancel];
+    
+    [self presentViewController:registrationAlertController animated:YES completion:nil];
 
-    [UIActionSheet showFromBarButtonItem:barButtonItem
-                                animated:YES
-                               withTitle:nil
-                       cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                  destructiveButtonTitle:deleteString
-                       otherButtonTitles:nil
-                                tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                                    if (buttonIndex == 0) {
-                                        [self deleteReceipts];
-                                    }
-                                }];
 }
 
 - (void)deleteReceipt:(POSReceipt *)receipt
