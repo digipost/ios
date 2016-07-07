@@ -105,8 +105,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         var urlString: String = ""
         if let actualArguments  = arguments {
             for (key,value) in actualArguments {
-                let escapedKey = key.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!
-                urlString = "\(urlString)&\(escapedKey)=\(value.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!)"
+                let escapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+                urlString = "\(urlString)&\(escapedKey)=\(value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)"
             }
         }
         return urlString
@@ -483,7 +483,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             } else {
                 subject = fileName
             }
-            subject = subject!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            subject = subject!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             formData.appendPartWithFormData(data, name:"subject")
 
