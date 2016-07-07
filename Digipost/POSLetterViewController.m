@@ -359,16 +359,29 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else if ([request.URL isFileURL]) {
         return YES;
     } else {
-        [UIActionSheet showInView:self.webView
-                         withTitle:[request.URL host]
-                 cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-            destructiveButtonTitle:nil
-                 otherButtonTitles:@[ NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari") ]
-                          tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                            if (buttonIndex == 0) {
-                                [[UIApplication sharedApplication] openURL:request.URL];
-                            }
-                          }];
+        
+        UIAlertController * alert = [UIAlertController
+                                    alertControllerWithTitle:[request.URL host]
+                                    message:nil
+                                    preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction* open = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [[UIApplication sharedApplication] openURL:request.URL];
+                               }];
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction * action)
+                                 {
+                                     
+                                 }];
+        [alert addAction:open];
+        [alert addAction:cancel];
+        
+        [self presentViewController:alert animated:YES completion:nil];
         return NO;
     }
 }
