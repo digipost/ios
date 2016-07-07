@@ -20,7 +20,7 @@ extension APIClient {
 
     func getRecipients(searchString: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         let encodedSearchString:String =  searchString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        let safeString = encodedSearchString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+        let safeString = encodedSearchString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
         let searchUri = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext).searchUri
         let urlString = "\(searchUri)?recipientId=\(safeString!)"
         urlSessionJSONTask(url: urlString, success: success) { (error) -> () in

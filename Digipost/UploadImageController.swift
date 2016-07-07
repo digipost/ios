@@ -103,7 +103,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
                 let documentsDir = paths.firstObject as! NSString?
                 var name = movieURL.path?.componentsSeparatedByString("/").last as String!
-                name = name.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)
+                name = name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
                 if let documentsDirectory = documentsDir {
                     let localFilePath = documentsDirectory.stringByAppendingPathComponent(NSDate().prettyStringWithMOVExtension())
                     let data = NSData(contentsOfURL: movieURL)!
