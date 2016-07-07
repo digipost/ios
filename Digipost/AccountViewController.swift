@@ -196,11 +196,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                 }
             })
         } else {
-            UIActionSheet.showFromBarButtonItem(logoutBarButtonItem, animated: true, withTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), destructiveButtonTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), otherButtonTitles: nil, tapBlock: { (actionSheet: UIActionSheet!, buttonIndex: Int) -> Void in
-                if buttonIndex == 0 {
+            let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: UIAlertActionStyle.Default,handler: {(alert: UIAlertAction!) in
                     self.userDidConfirmLogout()
-                }
-            })
+                }))
+            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Default,
+                handler: {(alert: UIAlertAction!) in }))
+            
+            presentViewController(logoutAlertController, animated: true, completion: nil)
+
         }
     }
     
