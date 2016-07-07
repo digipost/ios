@@ -201,7 +201,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
                 self.userDidConfirmLogout()
             }))
             
-            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in }))
+            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: {(alert: UIAlertAction!) in }))
             
             presentViewController(logoutAlertController, animated: true, completion: nil)
         }
