@@ -23,7 +23,6 @@
 #import "POSMailbox+Methods.h"
 #import "POSFoldersViewController.h"
 #import "POSOAuthManager.h"
-#import "UIActionSheet+Blocks.h"
 #import "SHCSplitViewController.h"
 #import "SHCAppDelegate.h"
 #import "Digipost-Swift.h"
@@ -262,19 +261,29 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     if (sender == self.registerButton) {
         url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]];
     }
+    
+    UIAlertController * registrationAlertController = [UIAlertController
+                                  alertControllerWithTitle:[url host]
+                                  message:nil
+                                  preferredStyle:UIAlertControllerStyleActionSheet];
 
-    [UIActionSheet showFromRect:sender.frame
-                         inView:[sender superview]
-                       animated:YES
-                      withTitle:[url host]
-              cancelButtonTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-         destructiveButtonTitle:nil
-              otherButtonTitles:@[ NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari") ]
-                       tapBlock:^(UIActionSheet *actionSheet, NSInteger buttonIndex) {
-                         if (buttonIndex == 0) {
+    UIAlertAction* open = [UIAlertAction
+                         actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
                              [[UIApplication sharedApplication] openURL:url];
-                         }
-                       }];
+                         }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                             style:UIAlertActionStyleCancel
+                             handler:^(UIAlertAction * action)
+                             {
+                                 
+                             }];
+    [registrationAlertController addAction:open];
+    [registrationAlertController addAction:cancel];
+    
+    [self presentViewController:registrationAlertController animated:YES completion:nil];
 }
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
