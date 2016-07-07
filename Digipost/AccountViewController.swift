@@ -72,7 +72,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
-                
+        
         let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
         appDelegate.initGCM();
     }
@@ -84,7 +84,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
-
+    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -128,14 +128,14 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             if let actualRefreshControl = self.refreshControl {
                 actualRefreshControl.endRefreshing()
             }
-            }) { (error) -> () in
-                if (userDidInitiateRequest == 1) {
-                    UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
-                }
-                
-                if let actualRefreshControl = self.refreshControl {
-                    actualRefreshControl.endRefreshing()
-                }
+        }) { (error) -> () in
+            if (userDidInitiateRequest == 1) {
+                UIAlertController.presentAlertControllerWithAPIError(error, presentingViewController: self, didTapOkClosure: nil)
+            }
+            
+            if let actualRefreshControl = self.refreshControl {
+                actualRefreshControl.endRefreshing()
+            }
         }
     }
     
@@ -203,7 +203,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             
             logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Default, handler: {(alert: UIAlertAction!) in }))
             
-            presentViewController(logoutAlertController, animated: true, completion: nil)        }
+            presentViewController(logoutAlertController, animated: true, completion: nil)
+        }
     }
     
     func userDidConfirmLogout() {
