@@ -146,15 +146,15 @@ class TextComposerModule: ComposerModule {
 
     override func htmlRepresentation() -> NSString {
         var htmlSections = [HTMLSection]()
-        var hadNewLine = false
-        var currentEditingTagBlock : HTMLTagBlock?
-        var currentRange : NSRange?
+        //var hadNewLine = false
+        //var currentEditingTagBlock : HTMLTagBlock?
+        //var currentRange : NSRange?
         var htmlContent = ""
 
         let stringsSplitByNewline = attributedText.string.componentsSeparatedByString("\n")
 
         var stringIndex = 0
-        var wholeString = ""
+        //var wholeString = ""
 
         for string in stringsSplitByNewline {
             print(string)
@@ -168,7 +168,7 @@ class TextComposerModule: ComposerModule {
                         continue
                     }
 
-                    let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
+                    //let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
                     let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
                     let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey , value: attributeValue, range: rangeInHTMLTagBlock)
@@ -178,7 +178,7 @@ class TextComposerModule: ComposerModule {
 
             let section = HTMLSection(content: string, tagBlocks: tagBlocksInString)
             htmlSections.append(section)
-            currentEditingTagBlock = nil
+            //currentEditingTagBlock = nil
             stringIndex += string.length + "\n".length
         }
 
