@@ -72,8 +72,7 @@ class QCMethod
         }
         else if let keyAnim = anim as? CAKeyframeAnimation{
             if !anim.autoreverses{
-                let values = keyAnim.values?.reverse()
-                keyAnim.values = values as! [AnyObject]
+                keyAnim.values = keyAnim.values?.reverse()
                 reverseTimingFunction(keyAnim)
             }
             keyAnim.beginTime = CFTimeInterval(reverseStartTime)
