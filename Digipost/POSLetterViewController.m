@@ -16,7 +16,6 @@
 
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
-#import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSLetterViewController.h"
 #import "POSAttachment.h"
 #import "POSDocument.h"

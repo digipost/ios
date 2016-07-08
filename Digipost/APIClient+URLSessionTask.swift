@@ -101,7 +101,7 @@ extension APIClient {
 
     func urlSessionDownloadTask(method: httpMethod, encryptionModel: POSBaseEncryptedModel, acceptHeader: String, progress: NSProgress?, success: (url: NSURL) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let encryptedModelUri = encryptionModel.uri
-        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil)
+        let urlRequest = fileTransferSessionManager.requestSerializer.requestWithMethod("GET", URLString: encryptionModel.uri, parameters: nil, error: nil)
         urlRequest.allHTTPHeaderFields![Constants.HTTPHeaderKeys.accept] = acceptHeader
         fileTransferSessionManager.setDownloadTaskDidWriteDataBlock { (session, downloadTask, bytesWritten, totalBytesWritten, totalBytesExptextedToWrite) -> Void in
             progress?.completedUnitCount = totalBytesWritten
@@ -109,7 +109,7 @@ extension APIClient {
 
         let isAttachment = encryptionModel is POSAttachment
 
-        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, response) -> NSURL! in
+        let task = fileTransferSessionManager.downloadTaskWithRequest(urlRequest, progress: nil, destination: { (url, response) -> NSURL in
             let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
                 if isAttachment {
                     return POSAttachment.existingAttachmentWithUri(encryptedModelUri, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
@@ -121,12 +121,12 @@ extension APIClient {
             if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {
                 return NSURL.fileURLWithPath(filePath)
             } else {
-                return nil
+                return NSURL()
             }
 
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
-                    if (error.code != NSURLErrorCancelled) {
+                    if (error!.code != NSURLErrorCancelled) {
                         if NSHTTPURLResponse.isUnathorized(response as? NSHTTPURLResponse) {
                             OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                             Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "downloading a file", UI: "User waiting for file to complete download", cause: "might be a problem with clock on users device, or token was revoked")

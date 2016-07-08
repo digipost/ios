@@ -125,6 +125,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
+        progress:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
@@ -161,6 +162,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
     [self.sessionManager POST:__ACCESS_TOKEN_URI__
         parameters:parameters
+        progress:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {

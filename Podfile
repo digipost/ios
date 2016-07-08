@@ -2,7 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
 
-pod 'AFNetworking', '~> 2.5.4'
+pod 'AFNetworking', '~> 3.1.0'
 pod 'UIAlertView+Blocks', '~> 0.8'
 pod 'LUKeychainAccess', '~> 1.2.0'
 pod 'RNCryptor', '~> 2.2'

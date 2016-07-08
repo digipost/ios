@@ -385,15 +385,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
-
-        let urlRequest = try! fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil,  constructingBodyWithBlock: { (formData) -> Void in
 
             let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            formData.appendPartWithFormData(data, name:"subject")
+            formData.appendPartWithFormData(data!, name:"subject")
 
             let fileData = NSData(contentsOfURL: fileURL)
-            formData.appendPartWithFileData(fileData, name: "file", fileName: "test.html", mimeType:"text/html")
-            })
+            formData.appendPartWithFileData(fileData!, name: "file", fileName: "test.html", mimeType:"text/html")
+            },error: nil)
+        
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
 
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
@@ -421,7 +421,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 }
             })
         })
-        task!.resume()
+        task.resume()
     }
 
     func uploadFile(url url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
@@ -476,7 +476,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let lastPathComponent : NSString = uploadURL.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         
-        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: serverUploadURL?.absoluteString, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
             var subject : String?
             if let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")  {
                 subject = fileName?.substringToIndex(rangeOfExtension.startIndex)
@@ -485,11 +485,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
             subject = subject!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
             let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            formData.appendPartWithFormData(data, name:"subject")
+            formData.appendPartWithFormData(data!, name:"subject")
 
             let fileData = NSData(contentsOfURL: uploadURL)
-            formData.appendPartWithFileData(fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
-            })
+            formData.appendPartWithFileData(fileData!, name:"file", fileName: fileName!, mimeType:"application/pdf")
+        }, error: nil)
         
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
         fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in

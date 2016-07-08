@@ -17,7 +17,6 @@
 #import "POSFolder+Methods.h"
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import "POSFolderIcon.h"
-#import <AFNetworking/AFURLConnectionOperation.h>
 #import "POSFoldersViewController.h"
 #import "POSNewFolderViewController.h"
 #import "NSPredicate+CommonPredicates.h"
