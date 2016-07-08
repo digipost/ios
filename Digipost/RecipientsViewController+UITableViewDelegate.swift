@@ -49,7 +49,8 @@ extension RecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRectZero)
         
-        let singleTap = UITapGestureRecognizer(target: self, action: "handleSingleTapOnEmptyTableView:")
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(RecipientViewController.handleSingleTapOnEmptyTableView))
+        
         singleTap.numberOfTapsRequired = 1
         singleTap.cancelsTouchesInView = false
         tableView.addGestureRecognizer(singleTap)

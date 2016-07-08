@@ -762,4 +762,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     // todo do stuff here when authenticated
 }
 
+-(void)documentTableViewCellDidTapEditingButton: (id)sender{
+}
+
 @end

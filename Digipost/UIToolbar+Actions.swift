@@ -20,7 +20,7 @@ extension UIToolbar {
     
     func invoiceButtonInLetterController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
         let invoiceButton =  UIButton(frame: CGRectMake(0, 0, 170, 44))
-        invoiceButton.addTarget(letterViewController, action: Selector("didTapInvoice:"), forControlEvents: UIControlEvents.TouchUpInside)
+        invoiceButton.addTarget(letterViewController, action: #selector(letterViewController.didTapInvoice), forControlEvents: UIControlEvents.TouchUpInside)
         invoiceButton.setTitle(letterViewController.attachment.invoice.titleForInvoiceButtonLabel(letterViewController.sendingInvoice), forState: UIControlState.Normal)
         invoiceButton.setTitleColor(UIColor.digipostSpaceGrey(), forState: UIControlState.Normal)
         invoiceButton.titleLabel?.font = UIFont.systemFontOfSize(15)
@@ -31,33 +31,33 @@ extension UIToolbar {
     }
     
     func infoBarButtonItemInLetterViewController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
-        let infoBarButtonItem = UIBarButtonItem(image: UIImage(named: "Info"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapInformationBarButtonItem:"))
+        let infoBarButtonItem = UIBarButtonItem(image: UIImage(named: "Info"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(POSLetterViewController.didTapInformationBarButtonItem))
         infoBarButtonItem.accessibilityLabel = NSLocalizedString("actions toolbar info accessibility label", comment: "read when user taps the info button on voice over")
         return infoBarButtonItem
     }
     
     func moveDocumentBarButtonItemInLetterViewController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
-        let moveDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Move"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapMoveDocumentBarButtonItem:"))
+        let moveDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Move"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(POSLetterViewController.didTapMoveDocumentBarButtonItem))
         
         moveDocumentBarButtonItem.accessibilityLabel = NSLocalizedString("actions toolbar move accessibility label", comment: "read when user taps move button on voice over")
         return moveDocumentBarButtonItem
     }
     
     func deleteDocumentBarButtonItemInLetterViewController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
-        let deleteDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Delete"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapDeleteDocumentBarButtonItem:"))
+        let deleteDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Delete"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(POSLetterViewController.didTapDeleteDocumentBarButtonItem))
         deleteDocumentBarButtonItem.accessibilityLabel = NSLocalizedString("actions toolbar delete accessibility label", comment: "read when user taps delete button on voice over")
         return deleteDocumentBarButtonItem
     }
     
     func renameDocumentBarButtonItemInLetterViewController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
-        let renameDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "New name"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapRenameDocumentBarButtonItem:"))
+        let renameDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "New name"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(POSLetterViewController.didTapRenameDocumentBarButtonItem))
         
         renameDocumentBarButtonItem.accessibilityLabel = NSLocalizedString("actions toolbar rename accessibility label", comment: "read when user taps rename button on voice over")
         return renameDocumentBarButtonItem
     }
     
     func openDocumentBarButtonItemInLetterViewController(letterViewController: POSLetterViewController) -> UIBarButtonItem {
-        let openDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Open_in"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapOpenDocumentInExternalAppBarButtonItem:"))
+        let openDocumentBarButtonItem = UIBarButtonItem(image: UIImage(named: "Open_in"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(POSLetterViewController.didTapOpenDocumentInExternalAppBarButtonItem))
         
         openDocumentBarButtonItem.accessibilityLabel = NSLocalizedString("actions toolbar openIn accessibility label", comment: "read when user taps openIn button on voice over")
         return openDocumentBarButtonItem
@@ -93,7 +93,7 @@ extension UIToolbar {
     private func itemsForValidInvoice (letterViewController: POSLetterViewController) -> NSArray {
         let items = NSMutableArray()
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        let moreOptionsBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: Selector("didTapMoreOptionsBarButtonItem:"))
+        let moreOptionsBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(letterViewController.didTapMoreOptionsBarButtonItem))
         items.addObject(invoiceButtonInLetterController(letterViewController))
         items.addObject(flexibleSpaceBarButtonItem)
         items.addObject(moreOptionsBarButtonItem)

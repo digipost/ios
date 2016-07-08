@@ -53,4 +53,6 @@ NSString *const kDocumentTableViewCellIdentifier = @"DocumentCellIdentifier";
     }
 }
 
+-(void)documentTableViewCellDidTapEditingButton:(id)sender{}
+
 @end
