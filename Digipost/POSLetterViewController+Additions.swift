@@ -40,7 +40,7 @@ extension POSLetterViewController {
             }
         }
         
-        if let updatedFileURL = fileURL {
+        if let _ = fileURL {
             //            let interactionController = UIDocumentInteractionController(URL: updatedFileURL)
             //            let canOpen = interactionController.presentOptionsMenuFromRect(CGRectZero, inView: UIView(frame: CGRectZero), animated: false)
             //            interactionController.dismissMenuAnimated(false)

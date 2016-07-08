@@ -47,9 +47,9 @@ extension UIWindow {
             let navigationController = topMasterNavigationController()
             if let viewControllers = navigationController?.viewControllers as NSArray? {
                 if (viewControllers.count == 3){
-                    if let rootcontroller = viewControllers[0] as? AccountViewController {
-                        if let secondController = viewControllers[1] as? POSFoldersViewController {
-                            if let thirdController = viewControllers[2] as? POSDocumentsViewController {
+                    if let _ = viewControllers[0] as? AccountViewController {
+                        if let _ = viewControllers[1] as? POSFoldersViewController {
+                            if let _ = viewControllers[2] as? POSDocumentsViewController {
                                 return true
                             }
                         }
