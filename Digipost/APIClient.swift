@@ -483,7 +483,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             } else {
                 subject = fileName
             }
-            subject = subject!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+
             let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             formData.appendPartWithFormData(data!, name:"subject")
 

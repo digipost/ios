@@ -23,7 +23,6 @@ extension NSDate {
         dateFormatter.dateFormat = "dd MMM YY HH:mm:ss"
         var dateString = "IMG "
         dateString = dateString.stringByAppendingString(dateFormatter.stringFromDate(self))
-        dateString = dateString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         dateString = dateString.stringByAppendingString(".jpg")
         return dateString
     }
@@ -33,7 +32,6 @@ extension NSDate {
         dateFormatter.dateFormat = "dd MMM YY HH:mm:ss"
         var dateString = "MOV "
         dateString = dateString.stringByAppendingString(dateFormatter.stringFromDate(self))
-        dateString = dateString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!
         dateString = dateString.stringByAppendingString(".mov")
         return dateString
     }
