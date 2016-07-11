@@ -20,7 +20,7 @@
                         <color key="backgroundColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     </toolbar>
                     <connections>
-                        <segue destination="2Dt-Hy-BfT" identifier="NoRotationNavController" kind="relationship" relationship="rootViewController" id="yj5-wA-9kV"/>
+                        <segue destination="2Dt-Hy-BfT" kind="relationship" identifier="NoRotationNavController" relationship="rootViewController" id="yj5-wA-9kV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9fB-qu-XvY" identifier="NavigationControllerSegue" kind="relationship" relationship="rootViewController" id="xZ4-Ca-r0Z"/>
+                        <segue destination="9fB-qu-XvY" kind="relationship" identifier="NavigationControllerSegue" relationship="rootViewController" id="xZ4-Ca-r0Z"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="On7-mx-Ra5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -225,7 +225,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                             </textField>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-Aa-hoH">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-Aa-hoH">
                                 <rect key="frame" x="20" y="145" width="280" height="287"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="4" id="tCM-ra-uyg">
@@ -869,7 +869,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BPe-EW-mWm" identifier="fromNavigationControllerSegue" kind="relationship" relationship="rootViewController" id="YI9-NF-89n"/>
+                        <segue destination="BPe-EW-mWm" kind="relationship" identifier="fromNavigationControllerSegue" relationship="rootViewController" id="YI9-NF-89n"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wm3-FM-FqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -989,7 +989,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="4z4-Au-vJv" identifier="FromNavigationController" kind="relationship" relationship="rootViewController" id="3jD-Vn-Y8D"/>
+                        <segue destination="4z4-Au-vJv" kind="relationship" identifier="FromNavigationController" relationship="rootViewController" id="3jD-Vn-Y8D"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou0-X5-HPH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1613,10 +1613,10 @@
         <image name="popover-bg" width="310" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vJp-VT-rtF"/>
         <segue reference="6ll-nd-HYD"/>
         <segue reference="svS-B5-imh"/>
-        <segue reference="vJp-VT-rtF"/>
-        <segue reference="3jD-Vn-Y8D"/>
+        <segue reference="WBk-6x-J5R"/>
         <segue reference="eq9-PM-agO"/>
     </inferredMetricsTieBreakers>
 </document>
