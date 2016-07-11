@@ -24,7 +24,6 @@
 #import "SHCAppDelegate.h"
 #import "POSDocumentsViewController.h"
 #import "POSFoldersViewController.h"
-#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "POSInvoice.h"
 #import "POSAttachment.h"
 #import "POSDocument.h"

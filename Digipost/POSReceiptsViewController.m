@@ -17,7 +17,6 @@
 #import "POSReceiptsViewController.h"
 #import "UIRefreshControl+Additions.h"
 #import "POSReceiptsTableViewDataSource.h"
-#import <UIActionSheet_Blocks/UIActionSheet+Blocks.h>
 #import "NSError+ExtraInfo.h"
 #import "UIViewController+Additions.h"
 #import <AFNetworking/AFNetworking.h>
