@@ -653,17 +653,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
+                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
                             <rect key="frame" x="0.0" y="138" width="320" height="185"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-folder-fly" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
-                                    <rect key="frame" x="85" y="0.0" width="203" height="233"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="203" id="GtI-Pm-p8H"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="232" id="c9U-I3-rvf"/>
-                                    </constraints>
-                                </imageView>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
                                     <rect key="frame" x="30" y="144" width="260" height="20.5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="fNk-yO-pLp"/>
@@ -672,14 +665,21 @@
                                     <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tom_mappe_breven" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
+                                    <rect key="frame" x="110" y="8" width="101" height="117"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="GtI-Pm-p8H"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="c9U-I3-rvf"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="EJR-4a-CZ8" secondAttribute="bottom" constant="20" id="4dU-gg-VhP"/>
                                 <constraint firstItem="EJR-4a-CZ8" firstAttribute="leading" secondItem="l2F-in-Zag" secondAttribute="leading" constant="30" id="7fP-bn-yOd"/>
-                                <constraint firstAttribute="centerX" secondItem="sf8-FE-eTx" secondAttribute="centerX" constant="-26.5" id="BZ9-FA-Uf2"/>
-                                <constraint firstItem="sf8-FE-eTx" firstAttribute="top" secondItem="l2F-in-Zag" secondAttribute="top" id="F1h-nT-Ndj"/>
-                                <constraint firstItem="EJR-4a-CZ8" firstAttribute="top" secondItem="sf8-FE-eTx" secondAttribute="bottom" constant="-89" id="Qb4-f7-a7K"/>
+                                <constraint firstAttribute="centerX" secondItem="sf8-FE-eTx" secondAttribute="centerX" constant="-0.5" id="BZ9-FA-Uf2"/>
+                                <constraint firstItem="sf8-FE-eTx" firstAttribute="top" secondItem="l2F-in-Zag" secondAttribute="top" constant="8" id="F1h-nT-Ndj"/>
+                                <constraint firstItem="EJR-4a-CZ8" firstAttribute="top" secondItem="sf8-FE-eTx" secondAttribute="bottom" constant="19" id="Qb4-f7-a7K"/>
                                 <constraint firstAttribute="trailing" secondItem="EJR-4a-CZ8" secondAttribute="trailing" constant="30" id="qXf-ZT-i3y"/>
                             </constraints>
                         </view>
@@ -1601,6 +1601,7 @@
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-background-ipad" width="1024" height="768"/>
         <image name="popover-bg" width="310" height="24"/>
+        <image name="tom_mappe_breven" width="132" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
