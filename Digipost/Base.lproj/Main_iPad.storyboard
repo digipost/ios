@@ -653,11 +653,11 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
-                            <rect key="frame" x="0.0" y="138" width="320" height="185"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l2F-in-Zag" userLabel="No Documents View">
+                            <rect key="frame" x="0.0" y="117" width="320" height="227.5"/>
                             <subviews>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
-                                    <rect key="frame" x="30" y="144" width="260" height="20.5"/>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="EJR-4a-CZ8" userLabel="No Documents Label">
+                                    <rect key="frame" x="30" y="187" width="260" height="20.5"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="fNk-yO-pLp"/>
                                     </constraints>
@@ -665,8 +665,8 @@
                                     <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="tom_mappe_breven" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
-                                    <rect key="frame" x="110" y="8" width="101" height="117"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tom_mappe_breven" translatesAutoresizingMaskIntoConstraints="NO" id="sf8-FE-eTx" userLabel="No Documents Image View">
+                                    <rect key="frame" x="94.5" y="8" width="132" height="160"/>
                                     <constraints>
                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="101" id="GtI-Pm-p8H"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="117" id="c9U-I3-rvf"/>
