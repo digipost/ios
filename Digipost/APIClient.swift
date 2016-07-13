@@ -439,7 +439,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             }
         }()
 
-        let maxFileSize = pow(Float(2),Float(20)) * 10
+        let maxFileSize = pow(Float(2),Float(20)) * 100
         let fileSize = fileAttributes![NSFileSize] as! Float
 
         if (fileSize > maxFileSize) {
