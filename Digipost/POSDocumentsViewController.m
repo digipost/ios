@@ -749,9 +749,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     if (!self.tableViewBackgroundView.superview && showTableViewBackgroundView) {
         self.tableView.backgroundView = self.tableViewBackgroundView;
 
-        self.noDocumentsLabel.text = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no documents in this folder.");
+        if([self.folderName  isEqual: @"Inbox"]){
+            self.noDocumentsLabel.text = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE", @"Mail you receive in Digipost will appear here. You can also upload your own files i folders.");
+        }else{
+            self.noDocumentsLabel.text = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE", @"You have no documents in this folder.");
+        }
     }
-
+    
     self.tableViewBackgroundView.hidden = !showTableViewBackgroundView;
 }
 

@@ -211,7 +211,10 @@
 "DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "brev";
 
 /* You have no documents in this folder. */
-"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "Du har ingen filer i denne mappen";
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "Last opp filer for sikker lagring.\nDu kan enkelt flytte innhold mellom mapper.";
+
+/* You have no documents in this folder. */
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "Brev du mottar i Digipost vil bli lagt her.\nDu kan også laste opp egne filer i mapper";
 
 /* Receipts */
 "RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "E-kvitteringer";
