@@ -210,7 +210,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSInteger number = [super tableView:tableView
                   numberOfRowsInSection:section];
 
-    if ([APIClient sharedClient].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile && [APIClient sharedClient].uploadFolderName == self.folderName) {
         number++;
     }
 
@@ -219,7 +219,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([APIClient sharedClient].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile && [APIClient sharedClient].uploadFolderName == self.folderName) {
         if (indexPath.row == 0) {
             POSUploadTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kUploadTableViewCellIdentifier
                                                                            forIndexPath:indexPath];
@@ -286,7 +286,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([APIClient sharedClient].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile && [APIClient sharedClient].uploadFolderName == self.folderName) {
         if (indexPath.row == 0) {
             return nil;
         }
@@ -303,7 +303,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     NSIndexPath *actualIndexPathSelected = nil;
     //     adjust for index when uploading file
-    if ([APIClient sharedClient].isUploadingFile) {
+    if ([APIClient sharedClient].isUploadingFile && [APIClient sharedClient].uploadFolderName == self.folderName) {
         actualIndexPathSelected = [NSIndexPath indexPathForRow:indexPath.row - 1 inSection:0];
     } else {
         actualIndexPathSelected = indexPath;

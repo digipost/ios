@@ -55,6 +55,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     var uploadProgress : NSProgress?
     var taskCounter = 0
     var isUploadingFile = false
+    var uploadFolderName : NSString = "Inbox"
     var taskWasUnAuthorized : Bool  = false
     var lastPerformedTask : NSURLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
@@ -519,6 +520,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             })
             task.resume()
         }
+        self.uploadFolderName = folder.name
         self.isUploadingFile = true
     }
 
