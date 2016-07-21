@@ -48,7 +48,7 @@ NSString *kShowFoldersSegueIdentifier = @"showFoldersSegue";
     self.dataSource = [[POSUploadTableViewDataSource alloc] initAsDataSourceForTableView:self.tableView];
     if (self.isShowingFolders) {
         self.dataSource.entityDescription = kFolderEntityName;
-        self.navigationItem.title = NSLocalizedString(@"navbar title upload folder", @"");
+        self.navigationItem.title = NSLocalizedString(@"navbar title upload folder", @"Choose folder");
         self.tableView.backgroundColor = RGB(64, 66, 69);
         self.dataSource.selectedMailboxDigipostAddress = self.chosenMailBoxDigipostAddress;
     } else {

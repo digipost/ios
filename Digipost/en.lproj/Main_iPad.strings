@@ -117,10 +117,10 @@
 "xpW-AE-0Mj.text" = "Label";
 
 /* Class = "IBUIButton"; normalTitle = "Logg ut"; ObjectID = "yin-f1-P08"; */
-"yin-f1-P08.normalTitle" = "Logg ut";
+"yin-f1-P08.normalTitle" = "Logut";
 
 /* Class = "IBUITextField"; placeholder = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
-"zkJ-cS-2Jj.placeholder" = "Navn på mappe";
+"zkJ-cS-2Jj.placeholder" = "Name";
 
 /* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
-"zkJ-cS-2Jj.text" = "Navn på mappe";
+"zkJ-cS-2Jj.text" = "Name";

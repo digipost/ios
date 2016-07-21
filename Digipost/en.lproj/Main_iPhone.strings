@@ -1,6 +1,6 @@
 
 /* Class = "IBUIButton"; normalTitle = "Lagre"; ObjectID = "3sC-5d-anC"; */
-"3sC-5d-anC.normalTitle" = "Lagre";
+"3sC-5d-anC.normalTitle" = "Save";
 
 /* Class = "IBUILabel"; text = "DATE"; ObjectID = "4W8-5K-T1U"; */
 "4W8-5K-T1U.text" = "DATE";
@@ -12,13 +12,13 @@
 "8XQ-uL-n1w.normalTitle" = "Logg ut";
 
 /* Class = "IBUITextField"; placeholder = "Navn på mappe"; ObjectID = "9VM-il-yR1"; */
-"9VM-il-yR1.placeholder" = "Navn på mappe";
+"9VM-il-yR1.placeholder" = "Name";
 
 /* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "9VM-il-yR1"; */
-"9VM-il-yR1.text" = "Navn på mappe";
+"9VM-il-yR1.text" = "Name";
 
 /* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "BcG-PX-hsw"; */
-"BcG-PX-hsw.title" = "Last opp";
+"BcG-PX-hsw.title" = "Upload";
 
 /* Class = "IBUIBarButtonItem"; title = "SELECTION"; ObjectID = "CkA-Mv-XSE"; */
 "CkA-Mv-XSE.title" = "SELECTION";
@@ -57,7 +57,7 @@
 "N5Z-Ac-fZW.text" = "Label";
 
 /* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "Nyr-oj-bUw"; */
-"Nyr-oj-bUw.title" = "Last opp";
+"Nyr-oj-bUw.title" = "Upload";
 
 /* Class = "IBUILabel"; text = "Title"; ObjectID = "Rj0-NJ-If9"; */
 "Rj0-NJ-If9.text" = "Title";
@@ -105,7 +105,7 @@
 "o8S-n8-YQk.text" = "FOLDER_NAME";
 
 /* Class = "IBUINavigationItem"; title = "Lag ny mappe"; ObjectID = "ocr-TF-s5R"; */
-"ocr-TF-s5R.title" = "Lag ny mappe";
+"ocr-TF-s5R.title" = "Create new folder";
 
 /* Class = "IBUIBarButtonItem"; title = "DELETE"; ObjectID = "pMp-66-eox"; */
 "pMp-66-eox.title" = "DELETE";

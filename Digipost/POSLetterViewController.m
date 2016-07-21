@@ -573,7 +573,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showBlurredActionSheetWithFolders
 {
-    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"navbar title upload folder", @"Choose folder")];
     [actionSheet setupStyle];
     POSDocumentsViewController *documentsViewController;
     POSFoldersViewController *foldersViewController;
@@ -1068,7 +1068,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     UIAlertView *alertView = [UIAlertView showWithTitle:NSLocalizedString(@"edit document name alert title", @"")
                                                 message:NSLocalizedString(@"", @"")
                                                   style:UIAlertViewStylePlainTextInput
-                                      cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"")
+                                      cancelButtonTitle:NSLocalizedString(@"edit document name alert cancel button title", @"Cancel")
                                       otherButtonTitles:@[ NSLocalizedString(@"edit document alert ok button title", @"") ]
                                                tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                                                  if (buttonIndex == 1) {
@@ -1160,7 +1160,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     [UIAlertView showWithTitle:title
                        message:NSLocalizedString(@"letter view delete document message", @"")
-             cancelButtonTitle:NSLocalizedString(@"letter view delete document cancel", @"")
+             cancelButtonTitle:NSLocalizedString(@"letter view delete document cancel", @"Cancel")
              otherButtonTitles:@[ NSLocalizedString(@"letter view delete document ok", @"") ]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         if (buttonIndex == 1) {

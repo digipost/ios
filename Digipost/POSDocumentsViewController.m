@@ -364,7 +364,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
 - (void)showBlurredActionSheetWithFolders
 {
-    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:@"Velg mappe"];
+    AHKActionSheet *actionSheet = [[AHKActionSheet alloc] initWithTitle:NSLocalizedString(@"navbar title upload folder", @"Choose folder")];
 
     NSArray *folders = [POSFolder foldersForUserWithMailboxDigipostAddress:self.mailboxDigipostAddress
                                                     inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -382,6 +382,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 
     [actionSheet setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [actionSheet setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [actionSheet setCancelButtonTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")];
     [actionSheet setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 
     for (POSFolder *folder in folders) {

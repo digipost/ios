@@ -17,11 +17,23 @@
 /* Class = "IBUILabel"; text = "FILE NAME"; ObjectID = "GCA-tU-ofW"; */
 "GCA-tU-ofW.text" = "FILE NAME";
 
+/* Class = "IBUIButton"; normalTitle = "Lagre"; ObjectID = "3sC-5d-anC"; */
+"3sC-5d-anC.normalTitle" = "Lagre";
+
+/* Class = "IBUITextField"; placeholder = "Navn på mappe"; ObjectID = "9VM-il-yR1"; */
+"9VM-il-yR1.placeholder" = "Navn på mappe";
+
+/* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "9VM-il-yR1"; */
+"9VM-il-yR1.text" = "Navn på mappe";
+
 /* Class = "IBUIButton"; normalTitle = "LOGIN_BUTTON"; ObjectID = "GTu-hy-iNW"; */
 "GTu-hy-iNW.normalTitle" = "LOGIN_BUTTON";
 
 /* Class = "IBUILabel"; text = "FROM"; ObjectID = "GWi-rd-gUS"; */
 "GWi-rd-gUS.text" = "FROM";
+
+/* Class = "IBUINavigationItem"; title = "Last opp"; ObjectID = "Nyr-oj-bUw"; */
+"Nyr-oj-bUw.title" = "Last opp";
 
 /* Class = "IBUIBarButtonItem"; title = "CANCEL"; ObjectID = "Hnu-zz-RH5"; */
 "Hnu-zz-RH5.title" = "CANCEL";
@@ -73,6 +85,9 @@
 
 /* Class = "IBUIButton"; normalTitle = "PRIVACY_BUTTON"; ObjectID = "qBu-VV-6Ae"; */
 "qBu-VV-6Ae.normalTitle" = "PRIVACY_BUTTON";
+
+/* Class = "IBUINavigationItem"; title = "Lag ny mappe"; ObjectID = "ocr-TF-s5R"; */
+"ocr-TF-s5R.title" = "Lag ny mappe";
 
 /* Class = "IBUILabel"; text = "DATE"; ObjectID = "qS7-vf-oBm"; */
 "qS7-vf-oBm.text" = "DATE";

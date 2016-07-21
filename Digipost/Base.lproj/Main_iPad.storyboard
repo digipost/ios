@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -881,11 +881,11 @@
                         <viewControllerLayoutGuide type="bottom" id="8hw-QI-XlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uiw-aJ-zIH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="960"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="zkJ-cS-2Jj">
-                                <rect key="frame" x="20" y="16" width="279" height="30"/>
+                                <rect key="frame" x="244" y="36" width="279" height="30"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Ava-7r-o2s"/>
@@ -896,7 +896,7 @@
                                 <textInputTraits key="textInputTraits" keyboardAppearance="light" returnKeyType="done"/>
                             </textField>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bbI-bg-V1J">
-                                <rect key="frame" x="20" y="57" width="280" height="615"/>
+                                <rect key="frame" x="244" y="77" width="280" height="659"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="Pk4-sJ-hKl"/>
@@ -1609,8 +1609,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="gXC-zd-OIB"/>
-        <segue reference="AVp-X0-I0h"/>
         <segue reference="zbK-2F-FJp"/>
+        <segue reference="gXC-zd-OIB"/>
+        <segue reference="eke-e6-LJU"/>
     </inferredMetricsTieBreakers>
 </document>

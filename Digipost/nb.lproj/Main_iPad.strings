@@ -88,3 +88,12 @@
 
 /* Class = "IBUINavigationItem"; title = "LOGIN"; ObjectID = "qVG-Fc-fo8"; */
 "qVG-Fc-fo8.title" = "LOGIN";
+
+/* Class = "IBUIButton"; normalTitle = "Logg ut"; ObjectID = "yin-f1-P08"; */
+"yin-f1-P08.normalTitle" = "Logg ut";
+
+/* Class = "IBUITextField"; placeholder = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
+"zkJ-cS-2Jj.placeholder" = "Navn på mappe";
+
+/* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
+"zkJ-cS-2Jj.text" = "Navn på mappe";

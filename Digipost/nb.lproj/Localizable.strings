@@ -109,7 +109,7 @@
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE" = "Betalingstips";
 
 /* Payment tips message */
-"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "Hvis banken din støtter fakturabetaling via Digipost, kan du sende fakturaer rett til forfallsregisteret i nettbanken.\n\nLogg inn på digipost.no for å velge bankkonto. Når du har valgt konto kan du betale faktuerer med ett klikk.";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE" = "Hvis banken din støtter fakturabetaling via Digipost, kan du sende fakturaer rett til forfallsregisteret i nettbanken.\n\nLogg inn på digipost.no for å velge bankkonto. Når du har valgt konto kan du Betale fakturaer med ett klikk.";
 
 /* Go to bank */
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE" = "Gå til bank";

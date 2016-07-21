@@ -37,6 +37,7 @@
     [self setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self setButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [self setCancelButtonTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [self setCancelButtonTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")];
 }
 
 + (AHKActionSheet *)setupActionButtonsForLetterController:(POSLetterViewController *)letterViewController

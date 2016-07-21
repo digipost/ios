@@ -31,7 +31,7 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         tableView.reloadData()
         tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 1))
-        navigationItem.title = NSLocalizedString("upload image Controller title", comment: "")
+        navigationItem.title = NSLocalizedString("upload image Controller title", comment: "Upload")
         // Do any additional setup after loading the view.
     }
 
