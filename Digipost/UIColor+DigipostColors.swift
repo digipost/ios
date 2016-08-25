@@ -34,6 +34,13 @@ extension UIColor {
         return UIColor(r: 239, g: 66, b: 69)
     }
     
+    class func digipostDocumentListBackground() -> UIColor{
+        return UIColor(r: 248,g: 248, b: 248)
+    }
+    class func digipostDocumentListDivider() -> UIColor{
+        return UIColor(r: 222,g: 222, b: 222)
+    }
+    
     class func digipostProfileViewBackground () -> UIColor {
         return UIColor(r: 232, g: 232, b: 232)
     }

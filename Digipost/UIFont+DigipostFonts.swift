@@ -24,14 +24,15 @@ extension UIFont {
     }
     
     class func digipostRegularFont() -> UIFont {
-        let regularFont = UIFont.systemFontOfSize(17)
-        return regularFont
+        let regularFont = UIFont(name: "HelveticaNeue", size: 15)
+        return regularFont!
     }
     
     class func digipostBoldFont() -> UIFont? {
-        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 15)
         return boldFont!
     }
+    
     // debug method used when you are looking for custom font names
     class func debugToFindNameOfCustomFonts(){
         let familyNamesArray : NSArray = UIFont.familyNames()
