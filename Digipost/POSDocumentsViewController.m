@@ -292,7 +292,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         cell.backgroundColor = [UIColor whiteColor];
     }
     
-    [cell.senderLabel setFont: [cell.senderLabel.font fontWithSize: 11]];
+    [cell.senderLabel setFont: [cell.senderLabel.font fontWithSize: 14]];
     
     if (attachment.originIsPublicEntity) {
         NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");

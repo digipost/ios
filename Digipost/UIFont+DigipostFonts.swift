@@ -24,12 +24,12 @@ extension UIFont {
     }
     
     class func digipostRegularFont() -> UIFont {
-        let regularFont = UIFont(name: "HelveticaNeue", size: 15)
+        let regularFont = UIFont(name: "HelveticaNeue", size: 17)
         return regularFont!
     }
     
     class func digipostBoldFont() -> UIFont? {
-        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 15)
+        let boldFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
         return boldFont!
     }
     
