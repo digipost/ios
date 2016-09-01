@@ -96,6 +96,20 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [self.navigationController setToolbarHidden:YES
                                        animated:NO];
     [self updateContentsFromServerUserInitiatedRequest:@NO];
+    [self setupTableViewStyling];
+}
+
+-(void)setupTableViewStyling{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
+    [self.tableView setBackgroundView:nil];
+    [self.tableView setSeparatorColor:[UIColor digipostDocumentListDivider]];
+    [self.tableView setBackgroundColor:[UIColor digipostDocumentListBackground]];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 92;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -110,6 +124,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     [super viewWillDisappear:animated];
 }
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:kPushReceiptIdentifier]) {
@@ -119,6 +134,25 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
         NSString *storeName = [self.receiptFolderTableViewDataSource storeNameAtIndexPath:selectedRowIndexPath];
         POSReceiptsViewController *receiptsViewController = (id)segue.destinationViewController;
         receiptsViewController.storeName = storeName;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell     forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    } 
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 
