@@ -286,6 +286,39 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self presentViewController:registrationAlertController animated:YES completion:nil];
 }
 
+- (IBAction)didTapPrivacyButton:(UIButton *)sender
+{
+    NSURL *url;
+    if (sender == self.privacyButton) {
+        url = [NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"];
+    }
+    
+    UIAlertController * alertController = [UIAlertController
+                                                       alertControllerWithTitle:[url host]
+                                                       message:nil
+                                                       preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* open = [UIAlertAction
+                           actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
+                           style:UIAlertActionStyleDefault
+                           handler:^(UIAlertAction * action)
+                           {
+                               [[UIApplication sharedApplication] openURL:url];
+                           }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:^(UIAlertAction * action)
+                             {
+                                 
+                             }];
+    [alertController addAction:open];
+    [alertController addAction:cancel];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
+
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
 }

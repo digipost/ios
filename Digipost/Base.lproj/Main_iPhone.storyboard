@@ -1397,9 +1397,10 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
-                                <rect key="frame" x="0.0" y="-20" width="320" height="524"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background-light" translatesAutoresizingMaskIntoConstraints="NO" id="ff1-dA-bBI">
+                                <rect key="frame" x="-14" y="-36" width="334" height="540"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cSK-Bb-kQC" userLabel="Login View">
                                 <rect key="frame" x="0.0" y="60" width="320" height="261"/>
@@ -1456,29 +1457,34 @@
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="leading" secondItem="fv5-4n-dtY" secondAttribute="leading" id="yGd-Hy-LNJ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="igh-iJ-6nB">
-                                <rect key="frame" x="0.0" y="430" width="34" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjv-xm-cBW">
+                                <rect key="frame" x="-61" y="410" width="429" height="50"/>
+                                <color key="backgroundColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oMI-WZ-2Yt"/>
-                                    <constraint firstAttribute="width" constant="34" id="sGL-MF-cAN"/>
+                                    <constraint firstAttribute="height" constant="50" id="5va-6V-zOg"/>
                                 </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Personvern">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapPrivacyButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="U0p-wF-4r4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="igh-iJ-6nB" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leadingMargin" constant="-16" id="0tk-DR-4ai"/>
-                            <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" id="LhG-lc-g0s"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="leading" secondItem="HMF-53-tLU" secondAttribute="leading" constant="-14" id="LhG-lc-g0s"/>
                             <constraint firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="LpZ-C6-aeO"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="PMQ-ix-z3L"/>
                             <constraint firstAttribute="bottom" secondItem="cSK-Bb-kQC" secondAttribute="bottom" constant="183" id="Vrj-pW-d0U"/>
+                            <constraint firstItem="bjv-xm-cBW" firstAttribute="centerX" secondItem="HMF-53-tLU" secondAttribute="centerX" constant="-6.5" id="Wgi-JC-i89"/>
                             <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="dp6-xd-ZsZ"/>
-                            <constraint firstItem="wTy-nL-Oqt" firstAttribute="top" secondItem="igh-iJ-6nB" secondAttribute="bottom" id="sKn-FZ-ZGm"/>
+                            <constraint firstItem="bjv-xm-cBW" firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" constant="48" id="tXV-mh-mTc"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="60" id="uRx-PE-hih"/>
-                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-20" id="xHq-0Z-sUz"/>
+                            <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-36" id="xHq-0Z-sUz"/>
+                            <constraint firstItem="bjv-xm-cBW" firstAttribute="bottom" secondItem="wTy-nL-Oqt" secondAttribute="top" id="xLP-i5-x1l"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bC4-nA-QU9"/>
@@ -1487,8 +1493,8 @@
                         <outlet property="loginBackgroundImageView" destination="ff1-dA-bBI" id="qqy-cg-qUN"/>
                         <outlet property="loginButton" destination="GTu-hy-iNW" id="Nai-w8-tgq"/>
                         <outlet property="loginView" destination="cSK-Bb-kQC" id="c6a-Re-bcM"/>
+                        <outlet property="privacyButton" destination="bjv-xm-cBW" id="D1d-uL-b5k"/>
                         <outlet property="registerButton" destination="fv5-4n-dtY" id="51W-sj-lph"/>
-                        <outlet property="replayOnboardingButton" destination="igh-iJ-6nB" id="Q6Y-hP-3gI"/>
                         <segue destination="8hc-kI-yQH" kind="push" identifier="accountSegue" id="8sB-AL-W3R"/>
                         <segue destination="J0H-vT-0Kh" kind="push" identifier="goToInboxFolderAtStartupSegue" id="eDA-DZ-Lcc"/>
                         <segue destination="mgI-2c-YJ5" kind="push" identifier="goToDocumentsFromLoginSegue" id="6ll-nd-HYD"/>
@@ -1590,13 +1596,13 @@
         <image name="list-icon-attachment" width="16" height="16"/>
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
-        <image name="login-background" width="367" height="653"/>
+        <image name="login-background-light" width="800" height="1036"/>
         <image name="popover-bg" width="310" height="24"/>
         <image name="tom_mappe_breven" width="132" height="160"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="6ll-nd-HYD"/>
-        <segue reference="vJp-VT-rtF"/>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="WBk-6x-J5R"/>
         <segue reference="geX-1f-yyf"/>
         <segue reference="eq9-PM-agO"/>
