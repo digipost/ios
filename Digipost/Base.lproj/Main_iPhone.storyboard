@@ -564,7 +564,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tge-o3-yQZ" userLabel="Amount Label">
-                                                    <rect key="frame" x="34" y="46" width="182" height="21"/>
+                                                    <rect key="frame" x="34" y="47" width="182" height="21"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -592,11 +592,11 @@
                                                 <constraint firstItem="LB7-qi-OH6" firstAttribute="top" secondItem="Jen-yF-hBV" secondAttribute="topMargin" constant="16" id="6Hz-xO-qru"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="tge-o3-yQZ" secondAttribute="trailing" constant="96" id="DYE-nL-k7v"/>
                                                 <constraint firstItem="tge-o3-yQZ" firstAttribute="leading" secondItem="LB7-qi-OH6" secondAttribute="leading" id="arl-Wn-m73"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="tge-o3-yQZ" secondAttribute="bottom" constant="17" id="b8W-Ig-f47"/>
-                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="top" secondItem="tge-o3-yQZ" secondAttribute="top" constant="-22" id="b9b-ft-zcD"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="tge-o3-yQZ" secondAttribute="bottom" constant="15.5" id="b8W-Ig-f47"/>
+                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="top" secondItem="tge-o3-yQZ" secondAttribute="top" constant="-23" id="b9b-ft-zcD"/>
                                                 <constraint firstItem="N5Z-Ac-fZW" firstAttribute="trailing" secondItem="Jen-yF-hBV" secondAttribute="trailingMargin" constant="-10" id="dnu-zX-ZgB"/>
-                                                <constraint firstItem="tge-o3-yQZ" firstAttribute="top" secondItem="LB7-qi-OH6" secondAttribute="bottom" constant="1" id="k79-LQ-Vxc"/>
-                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="bottom" secondItem="tge-o3-yQZ" secondAttribute="bottom" constant="-22" id="nqG-Ul-asp"/>
+                                                <constraint firstItem="tge-o3-yQZ" firstAttribute="top" secondItem="LB7-qi-OH6" secondAttribute="bottom" constant="2" id="k79-LQ-Vxc"/>
+                                                <constraint firstItem="N5Z-Ac-fZW" firstAttribute="bottom" secondItem="tge-o3-yQZ" secondAttribute="bottom" constant="-23" id="nqG-Ul-asp"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -758,14 +758,14 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wx-TZ-rSD" userLabel="Amount Label">
-                                            <rect key="frame" x="35" y="46" width="227" height="16.5"/>
+                                            <rect key="frame" x="35" y="47" width="227" height="16.5"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="5Wx-TZ-rSD" firstAttribute="top" secondItem="Ll3-0C-0YT" secondAttribute="bottom" constant="1" id="Cny-pf-D8j"/>
+                                        <constraint firstItem="5Wx-TZ-rSD" firstAttribute="top" secondItem="Ll3-0C-0YT" secondAttribute="bottom" constant="2" id="Cny-pf-D8j"/>
                                         <constraint firstAttribute="trailing" secondItem="Ll3-0C-0YT" secondAttribute="trailing" constant="25" id="Lwp-kQ-Dkc"/>
                                         <constraint firstItem="Ll3-0C-0YT" firstAttribute="leading" secondItem="ToY-Eb-ZvP" secondAttribute="leading" constant="35" id="Wn0-Ok-0ko"/>
                                         <constraint firstItem="Ll3-0C-0YT" firstAttribute="top" secondItem="ToY-Eb-ZvP" secondAttribute="top" constant="25" id="aEm-bd-60m"/>

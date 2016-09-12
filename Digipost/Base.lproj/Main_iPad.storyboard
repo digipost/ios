@@ -993,7 +993,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z9U-wh-b9o" userLabel="Amount Label">
-                                            <rect key="frame" x="33" y="47" width="239" height="17"/>
+                                            <rect key="frame" x="33" y="49" width="239" height="17"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1010,7 +1010,7 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="KVI-uR-oVN" secondAttribute="trailing" constant="7" id="CTc-BL-eSb"/>
                                         <constraint firstItem="KVI-uR-oVN" firstAttribute="leading" secondItem="RuW-CF-Q3X" secondAttribute="leadingMargin" constant="25" id="O3F-r4-mKU"/>
                                         <constraint firstItem="KVI-uR-oVN" firstAttribute="leading" secondItem="Z9U-wh-b9o" secondAttribute="leading" id="Ryj-Fu-39G"/>
-                                        <constraint firstItem="Z9U-wh-b9o" firstAttribute="top" secondItem="KVI-uR-oVN" secondAttribute="bottom" id="coB-H0-BTL"/>
+                                        <constraint firstItem="Z9U-wh-b9o" firstAttribute="top" secondItem="KVI-uR-oVN" secondAttribute="bottom" constant="2" id="coB-H0-BTL"/>
                                         <constraint firstItem="KVI-uR-oVN" firstAttribute="top" secondItem="RuW-CF-Q3X" secondAttribute="topMargin" constant="19" id="eRT-kb-raC"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1150,11 +1150,11 @@
                                         <rect key="frame" x="0.0" y="22" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJM-rA-FPp" id="Efy-kS-eeW">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fG-Fi-dQa" userLabel="Amount Label">
-                                                    <rect key="frame" x="36" y="45" width="180" height="17"/>
+                                                    <rect key="frame" x="36" y="47" width="180" height="17"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -1184,7 +1184,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="Ybb-9C-FNc" secondAttribute="trailing" constant="117" id="far-i7-JeE"/>
                                                 <constraint firstItem="Ybb-9C-FNc" firstAttribute="leading" secondItem="Efy-kS-eeW" secondAttribute="leading" constant="36" id="lrq-X7-GhO"/>
                                                 <constraint firstItem="J7Y-3L-1zO" firstAttribute="bottom" secondItem="Ybb-9C-FNc" secondAttribute="bottom" id="rLq-Px-lnS"/>
-                                                <constraint firstItem="8fG-Fi-dQa" firstAttribute="top" secondItem="Ybb-9C-FNc" secondAttribute="bottom" id="vp8-6m-69G"/>
+                                                <constraint firstItem="8fG-Fi-dQa" firstAttribute="top" secondItem="Ybb-9C-FNc" secondAttribute="bottom" constant="2" id="vp8-6m-69G"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
