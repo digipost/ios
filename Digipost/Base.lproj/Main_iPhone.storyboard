@@ -1458,7 +1458,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjv-xm-cBW">
-                                <rect key="frame" x="-61" y="410" width="429" height="50"/>
+                                <rect key="frame" x="-54" y="410" width="429" height="50"/>
                                 <color key="backgroundColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="5va-6V-zOg"/>
@@ -1479,9 +1479,9 @@
                             <constraint firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="LpZ-C6-aeO"/>
                             <constraint firstAttribute="bottom" secondItem="ff1-dA-bBI" secondAttribute="bottom" id="PMQ-ix-z3L"/>
                             <constraint firstAttribute="bottom" secondItem="cSK-Bb-kQC" secondAttribute="bottom" constant="183" id="Vrj-pW-d0U"/>
-                            <constraint firstItem="bjv-xm-cBW" firstAttribute="centerX" secondItem="HMF-53-tLU" secondAttribute="centerX" constant="-6.5" id="Wgi-JC-i89"/>
+                            <constraint firstItem="bjv-xm-cBW" firstAttribute="centerX" secondItem="HMF-53-tLU" secondAttribute="centerX" constant="0.5" id="Wgi-JC-i89"/>
                             <constraint firstAttribute="trailing" secondItem="ff1-dA-bBI" secondAttribute="trailing" id="dp6-xd-ZsZ"/>
-                            <constraint firstItem="bjv-xm-cBW" firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" constant="48" id="tXV-mh-mTc"/>
+                            <constraint firstItem="bjv-xm-cBW" firstAttribute="trailing" secondItem="cSK-Bb-kQC" secondAttribute="trailing" constant="55" id="tXV-mh-mTc"/>
                             <constraint firstItem="cSK-Bb-kQC" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="60" id="uRx-PE-hih"/>
                             <constraint firstItem="ff1-dA-bBI" firstAttribute="top" secondItem="Cli-5S-9MX" secondAttribute="bottom" constant="-36" id="xHq-0Z-sUz"/>
                             <constraint firstItem="bjv-xm-cBW" firstAttribute="bottom" secondItem="wTy-nL-Oqt" secondAttribute="top" id="xLP-i5-x1l"/>
