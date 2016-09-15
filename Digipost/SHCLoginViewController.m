@@ -95,7 +95,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                       forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user")
                          forState:UIControlStateNormal];
-    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
+    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
     if ([OAuthToken isUserLoggedIn]) {

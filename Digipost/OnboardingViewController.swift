@@ -158,7 +158,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
             let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.2 : 1.36
             let scrollRateMultiplierIPAD:CGFloat = 0.515
             let translatedLoginContainerConstant = loginContainerViewInitialTopConstant - (startPointX * scrollRateMultiplier)
-            let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD)
+            let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD) - 300
             // Move button off screen bottom
             getStartedButtonBottomConstraint.constant =  translatedButtonConstant
             getStartedButtonBottomConstraintIPAD.constant = translatedButtonConstant
