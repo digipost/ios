@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" initialViewController="H1p-Uh-vWS">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -323,10 +323,20 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vit-lp-H7g">
+                                <rect key="frame" x="0.0" y="930" width="768" height="30"/>
+                                <color key="backgroundColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="Personvern"/>
+                                <connections>
+                                    <action selector="didTapPrivacyButton:" destination="VI6-0N-wVd" eventType="touchUpInside" id="bYx-9c-elP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Vit-lp-H7g" firstAttribute="leading" secondItem="S6J-F3-PpA" secondAttribute="leading" id="0iT-BH-Gu0"/>
                             <constraint firstItem="DMK-4H-fWK" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leadingMargin" constant="-16" id="25K-N1-CW7"/>
                             <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="DMK-4H-fWK" secondAttribute="bottom" id="8UI-lw-Gj4"/>
                             <constraint firstAttribute="centerY" secondItem="S6J-F3-PpA" secondAttribute="centerY" constant="134.5" id="ALE-0V-eCJ"/>
@@ -334,7 +344,9 @@
                             <constraint firstAttribute="trailing" secondItem="S6J-F3-PpA" secondAttribute="trailing" id="Joc-sr-c9c"/>
                             <constraint firstItem="TTB-LP-a65" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="Ufd-2g-3nm"/>
                             <constraint firstAttribute="trailing" secondItem="TTB-LP-a65" secondAttribute="trailing" id="ZqD-lR-J2R"/>
+                            <constraint firstItem="Vit-lp-H7g" firstAttribute="bottom" secondItem="2Jt-eM-ekr" secondAttribute="top" id="dor-n1-JIo"/>
                             <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="TTB-LP-a65" secondAttribute="bottom" id="fug-Ub-sf7"/>
+                            <constraint firstItem="Vit-lp-H7g" firstAttribute="trailing" secondItem="S6J-F3-PpA" secondAttribute="trailing" id="gWx-0D-0jf"/>
                             <constraint firstItem="TTB-LP-a65" firstAttribute="top" secondItem="B5a-Fo-gZN" secondAttribute="bottom" constant="-20" id="oXz-rA-iTB"/>
                         </constraints>
                     </view>
@@ -343,6 +355,7 @@
                         <outlet property="loginBackgroundImageView" destination="TTB-LP-a65" id="1uG-lv-80z"/>
                         <outlet property="loginButton" destination="daO-Ah-4uu" id="Cgq-ek-Dwu"/>
                         <outlet property="loginView" destination="S6J-F3-PpA" id="Ed6-LN-csP"/>
+                        <outlet property="privacyButton" destination="Vit-lp-H7g" id="5H7-7v-qwc"/>
                         <outlet property="registerButton" destination="qUg-Iy-BH3" id="IpP-y3-cyn"/>
                         <outlet property="replayOnboardingButton" destination="DMK-4H-fWK" id="4HB-Ti-SE6"/>
                     </connections>

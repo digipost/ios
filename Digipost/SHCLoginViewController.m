@@ -257,67 +257,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapSecondaryButton:(UIButton *)sender
 {
-    NSURL *url;
-    if (sender == self.registerButton) {
-        url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]];
-    }
-    
-    UIAlertController * registrationAlertController = [UIAlertController
-                                  alertControllerWithTitle:[url host]
-                                  message:nil
-                                  preferredStyle:UIAlertControllerStyleActionSheet];
-
-    UIAlertAction* open = [UIAlertAction
-                         actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [[UIApplication sharedApplication] openURL:url];
-                         }];
-    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                             style:UIAlertActionStyleCancel
-                             handler:^(UIAlertAction * action)
-                             {
-                                 
-                             }];
-    [registrationAlertController addAction:open];
-    [registrationAlertController addAction:cancel];
-    
-    [self presentViewController:registrationAlertController animated:YES completion:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]]];
 }
 
 - (IBAction)didTapPrivacyButton:(UIButton *)sender
 {
-    NSURL *url;
-    if (sender == self.privacyButton) {
-        url = [NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"];
-    }
-    
-    UIAlertController * alertController = [UIAlertController
-                                                       alertControllerWithTitle:[url host]
-                                                       message:nil
-                                                       preferredStyle:UIAlertControllerStyleActionSheet];
-    
-    UIAlertAction* open = [UIAlertAction
-                           actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
-                           style:UIAlertActionStyleDefault
-                           handler:^(UIAlertAction * action)
-                           {
-                               [[UIApplication sharedApplication] openURL:url];
-                           }];
-    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                                                     style:UIAlertActionStyleCancel
-                                                   handler:^(UIAlertAction * action)
-                             {
-                                 
-                             }];
-    [alertController addAction:open];
-    [alertController addAction:cancel];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"]];
 }
-
-
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
