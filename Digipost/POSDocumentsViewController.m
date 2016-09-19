@@ -104,6 +104,34 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self updateToolbarButtonItems];
     self.shouldAnimateInsertAndDeletesToFetchedResultsController = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillEnterForeground:) name:UIApplicationWillEnterForegroundNotification object:nil];
+    [self setupTableViewStyling];
+}
+
+-(void)setupTableViewStyling{
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
+    [self.tableView setBackgroundView:nil];
+    [self.tableView setSeparatorColor:[UIColor digipostDocumentListDivider]];
+    [self.tableView setBackgroundColor:[UIColor digipostDocumentListBackground]];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell     forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)])
+    {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    } 
+    
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)])
+    {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (void)appWillEnterForeground:(NSNotification *)notification {
@@ -246,7 +274,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)configureCell:(POSDocumentTableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
-
     POSAttachment *attachment = [document mainDocumentAttachment];
 
     if ([attachment.authenticationLevel isEqualToString:kAttachmentOpeningValidAuthenticationLevel]) {
@@ -256,10 +283,17 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         cell.lockedImageView.hidden = NO;
     }
     if ([attachment.read boolValue]) {
+        cell.senderLabel.font = [UIFont digipostRegularFont];
         cell.subjectLabel.font = [UIFont digipostRegularFont];
+        cell.backgroundColor = [UIColor digipostDocumentListBackground];
     } else {
+        cell.senderLabel.font = [UIFont digipostBoldFont];
         cell.subjectLabel.font = [UIFont digipostBoldFont];
+        cell.backgroundColor = [UIColor whiteColor];
     }
+    
+    [cell.senderLabel setFont: [cell.senderLabel.font fontWithSize: 14]];
+    
     if (attachment.originIsPublicEntity) {
         NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");
         cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@", publicEntity, attachment.document.creatorName];

@@ -16,7 +16,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
   - Alamofire (3.1.5)
-  - Cartography (0.6.0)
+  - Cartography (0.7.0)
   - GGLInstanceID (1.2.1)
   - Google/CloudMessaging (2.0.4):
     - GGLInstanceID (~> 1.0)
@@ -82,7 +82,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 3.1.4)
-  - Cartography (~> 0.6.0)
+  - Cartography (~> 0.7.0)
   - Google/CloudMessaging
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
@@ -119,7 +119,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  Cartography: 70af183a248547694a8cfaa6b989cb7e04589985
+  Cartography: dd6044b6fe352252f68b648df5bff47841e591cc
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d0932824c5b97c96be489aa6f4e8cd6c294d637d
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26

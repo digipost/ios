@@ -25,6 +25,7 @@ class OnboardingLoginViewController: UIViewController {
 
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var registerButton: UIButton!
+    @IBOutlet var privacyButton: UIButton!
     
     weak var delegate : OnboardingLoginViewControllerDelegate?
     
@@ -34,6 +35,9 @@ class OnboardingLoginViewController: UIViewController {
         // Localize button titels
         loginButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", comment: "Sign In"), forState: .Normal)
         registerButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", comment: "New user"), forState: .Normal)
+        privacyButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", comment: "Privacy"), forState: .Normal)
+        
+        
         
     }
 
@@ -64,14 +68,19 @@ class OnboardingLoginViewController: UIViewController {
     
     @IBAction func registerButtonAction(sender: UIButton) {
         if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
-           presentAlertFromSenderWithUrl(sender, url: newUserURL)
+            UIApplication.sharedApplication().openURL(newUserURL);    
+        }
+    }
+
+    @IBAction func privacyButtonAction(sender: UIButton) {
+        if let newUserURL = NSURL(string: "https://www.digipost.no/juridisk/#personvern") {
+            UIApplication.sharedApplication().openURL(newUserURL);    
         }
     }
     
-    @IBAction func privacyButtonAction(sender: UIButton) {
-        if let privacyURL = NSURL(string: "https://www.digipost.no/juridisk/#personvern") {
-            presentAlertFromSenderWithUrl(sender, url: privacyURL)
-        }
+    func openURL(url: NSURL){
+        let url = NSURL(string: "https://google.com")!
+        UIApplication.sharedApplication().openURL(url)
     }
     
     func presentAlertFromSenderWithUrl(sender: UIButton, url: NSURL){

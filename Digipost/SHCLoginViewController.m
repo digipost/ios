@@ -95,7 +95,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                       forState:UIControlStateNormal];
     [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user")
                          forState:UIControlStateNormal];
-    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE", @"Privacy")
+    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
 
     if ([OAuthToken isUserLoggedIn]) {
@@ -257,33 +257,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapSecondaryButton:(UIButton *)sender
 {
-    NSURL *url;
-    if (sender == self.registerButton) {
-        url = [NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]];
-    }
-    
-    UIAlertController * registrationAlertController = [UIAlertController
-                                  alertControllerWithTitle:[url host]
-                                  message:nil
-                                  preferredStyle:UIAlertControllerStyleActionSheet];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]]];
+}
 
-    UIAlertAction* open = [UIAlertAction
-                         actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
-                         style:UIAlertActionStyleDefault
-                         handler:^(UIAlertAction * action)
-                         {
-                             [[UIApplication sharedApplication] openURL:url];
-                         }];
-    UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                             style:UIAlertActionStyleCancel
-                             handler:^(UIAlertAction * action)
-                             {
-                                 
-                             }];
-    [registrationAlertController addAction:open];
-    [registrationAlertController addAction:cancel];
-    
-    [self presentViewController:registrationAlertController animated:YES completion:nil];
+- (IBAction)didTapPrivacyButton:(UIButton *)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"]];
 }
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue

@@ -12,7 +12,7 @@ pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :
 pod 'Alamofire', '~> 3.1.4'
 pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :branch => 'master'
 pod 'SingleLineShakeAnimation', :git => 'https://github.com/haaakon/SingleLineShakeAnimation', :branch => 'master'
-pod 'Cartography', '~> 0.6.0'
+pod 'Cartography', '~> 0.7.0'
 
 
 use_frameworks!

@@ -253,7 +253,7 @@
 "LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "Ny bruker";
 
 /* Privacy */
-"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTOTN_TITLE" = "Personvern";
+"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Personvern";
 
 /* Show information / Watch onboarding again */
 "LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Vis informasjon";
