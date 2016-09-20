@@ -340,4 +340,16 @@ NSString *const kPushReceiptIdentifier = @"PushReceipt";
     return [[self.tableView indexPathsForSelectedRows] count] > 0;
 }
 
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView
+{
+    float scrollViewHeight = scrollView.frame.size.height;
+    float scrollContentSizeHeight = scrollView.contentSize.height;
+    float scrollOffset = scrollView.contentOffset.y;
+
+    if (scrollOffset + scrollViewHeight == scrollContentSizeHeight)
+    {
+        // load more receipts..
+    }
+}
+
 @end
