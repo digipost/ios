@@ -178,6 +178,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     // mock data function
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        
+        
         // mock receipt
         var sampleReceipt = Dictionary<String,AnyObject>()
         sampleReceipt["amount"] = 1333337
@@ -186,7 +188,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
 
         var mockReceiptArray = []
-        for _ in 1...300 {
+        for _ in 1...200 {
             mockReceiptArray = mockReceiptArray.arrayByAddingObject(sampleReceipt)
         }
 
