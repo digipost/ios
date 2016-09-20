@@ -169,11 +169,28 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateReceiptsInMailboxWithDigipostAddress1(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
             task.resume()
         }
+    }
+    
+    // mock data function
+    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        // mock receipt
+        var sampleReceipt = Dictionary<String,AnyObject>()
+        sampleReceipt["amount"] = 1333337
+        sampleReceipt["franchiceName"] = "Topppris"
+        sampleReceipt["storeName"] = "Askeladdens Hemmelige Butikk"
+        sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
+
+        var mockReceiptArray = []
+        for _ in 1...300 {
+            mockReceiptArray = mockReceiptArray.arrayByAddingObject(sampleReceipt)
+        }
+
+        success(["receipt" : mockReceiptArray])
     }
 
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
