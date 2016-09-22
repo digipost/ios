@@ -45,6 +45,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
+NSString *const kPushUncategorisedReceiptsIdentifier = @"PushUncategorisedReceipts";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -190,6 +191,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         POSReceiptFoldersTableViewController *receiptsViewController = (POSReceiptFoldersTableViewController *)segue.destinationViewController;
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
         receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
+    } else if ([segue.identifier isEqualToString:kPushUncategorisedReceiptsIdentifier]) {
+        UncategorisedReceiptsViewController *uncategorisedReceiptsViewController = (UncategorisedReceiptsViewController *)segue.destinationViewController;
+        uncategorisedReceiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
+        uncategorisedReceiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         POSDocumentsViewController *documentsViewController = (POSDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
@@ -497,7 +502,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                         break;
                     }
                     case 1: {
-                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
+//                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
+//                                                  sender:nil];
+                        [self performSegueWithIdentifier:kPushUncategorisedReceiptsIdentifier
                                                   sender:nil];
                         break;
                     }
