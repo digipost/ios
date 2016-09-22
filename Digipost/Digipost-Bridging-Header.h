@@ -55,3 +55,5 @@
 
 //#import "CJWWebView+HackishAccessoryHiding.h"
 #import "CustomInputView.h"
+
+#import "POSReceiptTableViewCell.h"
