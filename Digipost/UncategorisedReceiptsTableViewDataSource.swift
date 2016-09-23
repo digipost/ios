@@ -12,21 +12,19 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
     let tableView: UITableView
     var receipts: [POSReceipt] = []
     
-    lazy var fetchedResultsController: NSFetchedResultsController = {
-        let fetchRequest = NSFetchRequest(entityName: "Receipt")
-        let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
-        // Order the events by creation date, most recent first.
-        let timeOfPurchaseDescriptor = NSSortDescriptor(key: "timeOfPurchase", ascending: false)
-        fetchRequest.sortDescriptors = [timeOfPurchaseDescriptor]
+    lazy var numberFormatter: NSNumberFormatter = {
+        var numberFormatter = NSNumberFormatter()
         
-        var controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext:managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        do {
-            try controller.performFetch()
-        } catch let error {
-            print(error)
-        }
+        numberFormatter.currencyCode = "NOK"
+        numberFormatter.alwaysShowsDecimalSeparator = false
+        numberFormatter.perMillSymbol = " "
+        numberFormatter.decimalSeparator = " "
+        numberFormatter.groupingSize = 10
+        numberFormatter.currencySymbol = "kroner"
+        numberFormatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        numberFormatter.locale = NSLocale.init(localeIdentifier: "nb_NO")
         
-        return controller
+        return numberFormatter
     }()
     
     var numberOfReceipts: Int = 0
@@ -36,9 +34,8 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
         super.init()
         
         tableView.dataSource = self
-        fetchedResultsController.delegate = self
         
-//        self.tableView.registerClass(POSReceiptTableViewCell.self, forCellReuseIdentifier: "ReceiptCellIdentifier")
+        self.tableView.registerClass(UncategorisedReceiptsTableViewCell.self, forCellReuseIdentifier: "ReceiptTableViewCellIdentifier")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -50,15 +47,30 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: POSReceiptTableViewCell = POSReceiptTableViewCell.init()
         
-        // dostuff
+        var cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("ReceiptTableViewCellIdentifier")
+        
+        if(cell == nil){
+            cell = UncategorisedReceiptsTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "ReceiptTableViewCellIdentifier")
+        }
+        
+        self.configureCell(cell  as! UncategorisedReceiptsTableViewCell, indexPath: indexPath)
+        
+        return cell!
+    }
+    
+    func configureCell(receiptTableViewCell: UncategorisedReceiptsTableViewCell, indexPath: NSIndexPath) {
         let receipt: POSReceipt = self.receipts[indexPath.row]
-        cell.amountLabel.text = receipt.amount.stringValue
-        cell.storeNameLabel.text = receipt.storeName
-        cell.dateLabel.text = POSDocument.stringForDocumentDate(receipt.timeOfPurchase)
         
-        return cell
+//        print(receiptTableViewCell)
+//        print(receiptTableViewCell.storeNameLabel)
+//        print(receiptTableViewCell.storeNameLabel.text)
+//        receiptTableViewCell.storeNameLabel.text = receipt.storeName;
+//        receiptTableViewCell.amountLabel.text = POSReceipt.stringForReceiptAmount(receipt.amount)
+//        receiptTableViewCell.amountLabel.accessibilityLabel = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
+//        receiptTableViewCell.amountLabel.accessibilityHint = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
+//        receiptTableViewCell.dateLabel.text = POSDocument.stringForDocumentDate(receipt.timeOfPurchase)
+//        receiptTableViewCell.multipleSelectionBackgroundView = UIView()
     }
     
     func receiptAtIndexPath(indexPath: NSIndexPath) -> POSReceipt {
