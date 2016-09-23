@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0B5F505B1D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */; };
 		0B5F505C1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */; };
+		0B5F505E1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505D1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift */; };
 		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
@@ -723,6 +724,7 @@
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsTableViewDataSource.swift; sourceTree = "<group>"; };
 		0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsViewController.swift; sourceTree = "<group>"; };
+		0B5F505D1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsTableViewCell.swift; sourceTree = "<group>"; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		311779551AAEFCA800229D02 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
@@ -1485,6 +1487,7 @@
 			children = (
 				0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */,
 				0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */,
+				0B5F505D1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift */,
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
@@ -2381,6 +2384,7 @@
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
+				0B5F505E1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift in Sources */,
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				ECF06D51192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				ECB2BE991B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
