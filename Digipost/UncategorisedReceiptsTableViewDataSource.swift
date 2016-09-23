@@ -16,9 +16,8 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
         let fetchRequest = NSFetchRequest(entityName: "Receipt")
         let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
         // Order the events by creation date, most recent first.
-        let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: false)
-        let nameDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [ownerDescriptor, nameDescriptor]
+        let timeOfPurchaseDescriptor = NSSortDescriptor(key: "timeOfPurchase", ascending: false)
+        fetchRequest.sortDescriptors = [timeOfPurchaseDescriptor]
         
         var controller = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext:managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         do {
@@ -54,6 +53,8 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
         for receipt in (self.fetchedResultsController.fetchedObjects as! [POSReceipt]){
             receipts.append(receipt)
         }
+        print("Woohoo! New receipts:")
+        print(receipts)
         self.receipts = receipts
     }
     
