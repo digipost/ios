@@ -29,13 +29,20 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.selectionBarButtonItem.title = LocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", tableName: "", comment: "Select all")
-        
         self.navigationItem.title = "Receipts"
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 160
+        tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        
+        let tblView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = tblView
+        tableView.tableFooterView?.hidden = true
+        tableView.backgroundColor = UIColor.digipostAccountViewBackground()
+        
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self;
-        
-        // ignore table view styling for now(?)
         
         self.refreshControl = UIRefreshControl.init()
         self.refreshControl!.initializeRefreshControlText()
@@ -45,7 +52,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-//        self.navigationController?.setToolbarHidden(true, animated: false)
         
         self.fetchReceiptsFromAPI()
         self.setupTableViewStyling()
@@ -60,18 +66,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.navigationController!.toolbar.barTintColor = UIColor.digipostSpaceGrey()
     }
     
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        return !self.isEditing;
-    }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == kPushReceiptIdentifier){
-            let receipt: POSReceipt = self.receiptsTableViewDataSource.receiptAtIndexPath(self.tableView.indexPathForSelectedRow!)
-            let letterViewController: POSLetterViewController = segue.destinationViewController as! POSLetterViewController;
-//            letterViewController.receiptsViewController = self as UncategorisedReceiptsViewController; // for now, unset, implementing rendering of table in GUI first
-            letterViewController.receipt = receipt;
-        }
-    }
-    
     func fetchReceiptsFromAPI() {
         print("Attempting to fetch data...")
         
@@ -79,6 +73,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
             self.receiptsTableViewDataSource.receipts = parseReceiptsFrom(APICallResult["receipt"]!) // set in success method as it's called asynchronously
+            print("Successfully fetched receipts.")
+            self.tableView.reloadData()
         }
         func f(e: APIError){ print(e.altertMessage) }
         
@@ -102,34 +98,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         return receiptList
     }
-    
-//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//    }
-//    
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//    }
-    
-//    func didTapSelectionBarButtonItem(barButtonItem: UIBarButtonItem) {
-//        // select, deselect, update toolbar
-//    }
-//    
-//    func didTapDeleteBarButtonItem(barButtonItem: UIBarButtonItem) {
-//        // delete receipt(s), etc.
-//    }
-//    
-//    func deleteReceipt(receipt: POSReceipt) {
-//        
-//    }
-//    
-//    func selectAllRows(){
-//        
-//    }
-//    
-//    func deselectAllRows(){
-//        
-//    }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let scrollViewHeight: CGFloat = scrollView.frame.size.height;
@@ -170,9 +138,5 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true;
-    }
-    
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.None;
     }
 }
