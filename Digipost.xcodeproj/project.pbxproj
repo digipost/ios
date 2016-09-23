@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B5F505B1D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */; };
+		0B5F505C1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */; };
 		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
@@ -719,6 +721,8 @@
 
 /* Begin PBXFileReference section */
 		03E13B40CF574D28E1F2C73A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsTableViewDataSource.swift; sourceTree = "<group>"; };
+		0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsViewController.swift; sourceTree = "<group>"; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		311779551AAEFCA800229D02 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
@@ -1479,6 +1483,8 @@
 		EC1A6C2E18BBA30900269428 /* Document lists */ = {
 			isa = PBXGroup;
 			children = (
+				0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */,
+				0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */,
 				8364D712185F1EB4008DE6CB /* POSDocumentsViewController.h */,
 				8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */,
 				8364D71C185F2981008DE6CB /* POSDocumentTableViewCell.h */,
@@ -2258,6 +2264,7 @@
 				EC24840B1B206EE300FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
+				0B5F505B1D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift in Sources */,
 				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
@@ -2352,6 +2359,7 @@
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
+				0B5F505C1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift in Sources */,
 				ECB2C0081B469628008E32E8 /* HTMLTagBlock.swift in Sources */,
 				ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
@@ -2972,7 +2980,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -3013,7 +3021,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
