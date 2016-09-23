@@ -89,6 +89,11 @@ struct Constants {
         static let uri = "uri"
         static let digipostAddress = "digipost-address"
     }
+    
+    struct Receipt {
+        static let receiptTableViewCellIdentifier = "ReceiptTableViewCellIdentifier"
+        static let receiptTableViewCellNibName = "ReceiptTableViewCellNib"
+    }
 
 
 }
