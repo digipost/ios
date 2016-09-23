@@ -15,7 +15,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var selectionBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
     
-    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var searchField: UITextField!
     
     var refreshControl: UIRefreshControl!;
@@ -73,33 +72,33 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         }
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//    }
+//    
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        
+//    }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    func didTapSelectionBarButtonItem(barButtonItem: UIBarButtonItem) {
-        // select, deselect, update toolbar
-    }
-    
-    func didTapDeleteBarButtonItem(barButtonItem: UIBarButtonItem) {
-        // delete receipt(s), etc.
-    }
-    
-    func deleteReceipt(receipt: POSReceipt) {
-        
-    }
-    
-    func selectAllRows(){
-        
-    }
-    
-    func deselectAllRows(){
-        
-    }
+//    func didTapSelectionBarButtonItem(barButtonItem: UIBarButtonItem) {
+//        // select, deselect, update toolbar
+//    }
+//    
+//    func didTapDeleteBarButtonItem(barButtonItem: UIBarButtonItem) {
+//        // delete receipt(s), etc.
+//    }
+//    
+//    func deleteReceipt(receipt: POSReceipt) {
+//        
+//    }
+//    
+//    func selectAllRows(){
+//        
+//    }
+//    
+//    func deselectAllRows(){
+//        
+//    }
     
     
     
