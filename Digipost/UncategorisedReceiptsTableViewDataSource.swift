@@ -39,36 +39,6 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
         fetchedResultsController.delegate = self
         
 //        self.tableView.registerClass(POSReceiptTableViewCell.self, forCellReuseIdentifier: "ReceiptCellIdentifier")
-        self.refreshContentFromScratch()
-    }
-    
-    func refreshContentFromScratch(){
-        do {
-            try self.fetchedResultsController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        var receipts: [POSReceipt] = []
-        for receipt in (self.fetchedResultsController.fetchedObjects as! [POSReceipt]){
-            receipts.append(receipt)
-        }
-        print("Woohoo! New receipts:")
-        print(receipts)
-        self.receipts = receipts
-    }
-    
-    func fetchNextReceipts() {
-        // for now, perform old request, but duplicate list:
-        do {
-            try self.fetchedResultsController.performFetch()
-        } catch let error {
-            print(error)
-        }
-        
-        for receipt in (self.fetchedResultsController.fetchedObjects as! [POSReceipt]){
-            self.receipts.append(receipt)
-        }
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {

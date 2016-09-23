@@ -33,7 +33,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.navigationItem.title = "Receipts"
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
-//        self.receiptsTableViewDataSource!.storeName = ""
         self.tableView.delegate = self;
         
         // ignore table view styling for now(?)
@@ -48,6 +47,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         super.viewWillAppear(animated)
 //        self.navigationController?.setToolbarHidden(true, animated: false)
         
+        self.fetchReceiptsFromAPI()
         self.setupTableViewStyling()
     }
     
@@ -70,6 +70,37 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
 //            letterViewController.receiptsViewController = self as UncategorisedReceiptsViewController; // for now, unset, implementing rendering of table in GUI first
             letterViewController.receipt = receipt;
         }
+    }
+    
+    func fetchReceiptsFromAPI() {
+        print("Attempting to fetch data...")
+        
+        var fetchedReceipts: [POSReceipt] = []
+        
+        func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
+            self.receiptsTableViewDataSource.receipts = parseReceiptsFrom(APICallResult["receipt"]!) // set in success method as it's called asynchronously
+        }
+        func f(e: APIError){ print(e.altertMessage) }
+        
+        APIClient.sharedClient.updateReceiptsInMailboxWithDigipostAddress(self.mailboxDigipostAddress, uri: self.receiptsUri, success: setFetchedObjects, failure: f)
+    }
+    
+    func parseReceiptsFrom(APICallReceiptResult: AnyObject) -> Array<POSReceipt>{
+        var receiptList:Array<POSReceipt> = []
+        
+        let managedObjectContext = POSModelManager.sharedManager().managedObjectContext
+
+        for index in 0...(APICallReceiptResult.count-1 /* 0-indexed */) {
+            var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
+            
+            for receiptFieldKey in APICallReceiptResult[index].allKeys {
+                receiptAttributes[receiptFieldKey as! String] = APICallReceiptResult[index][receiptFieldKey as! String]
+            }
+            
+            receiptList.append(POSReceipt.init(attributes: receiptAttributes, inManagedObjectContext: managedObjectContext))
+        }
+        
+        return receiptList
     }
     
 //    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -99,8 +130,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
 //    func deselectAllRows(){
 //        
 //    }
-    
-    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         let scrollViewHeight: CGFloat = scrollView.frame.size.height;
