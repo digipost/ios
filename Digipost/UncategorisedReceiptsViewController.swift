@@ -17,6 +17,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     @IBOutlet weak var searchField: UITextField!
     
+    static let pushReceiptIdentifier = "PushReceipt"
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.tintColor = UIColor.init(white: 0.4, alpha: 1.0)
@@ -34,10 +36,20 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all")
+        self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
         self.navigationItem.title = "Receipts"
-        
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self;
+        
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        self.refreshControl.initializeRefreshControlText()
+        self.refreshControl.updateRefreshControlTextRefreshing(true)
+        
+        self.refreshControl.beginRefreshing()
+        self.refreshControl.endRefreshing()
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,6 +57,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.fetchReceiptsFromAPI()
         self.setupTableViewStyling()
+        self.navigationController?.setToolbarHidden(true, animated: false)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -127,9 +140,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.tableView.separatorColor = UIColor.digipostDocumentListDivider()
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
         
-        let tableFooterView = UIView(frame: CGRectZero)
-        self.tableView.tableFooterView = tableFooterView
-        self.tableView.tableFooterView?.hidden = true
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -142,5 +152,127 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     func tableView(tableView: UITableView, shouldIndentWhileEditingRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true;
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
+            tableView.separatorInset = UIEdgeInsetsZero
+        }
+        
+        if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
+            tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        
+        if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
+    
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if(self.editing) {
+            return false;
+        }
+        return true;
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == UncategorisedReceiptsViewController.pushReceiptIdentifier){
+            let receipt: POSReceipt = self.receiptsTableViewDataSource.receiptAtIndexPath(self.tableView.indexPathForSelectedRow!)
+            let letterViewController: POSLetterViewController = segue.destinationViewController as! POSLetterViewController
+            letterViewController.receiptsViewController = self
+            letterViewController.receipt = receipt
+        }
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.navigationController?.setToolbarHidden(!editing, animated: animated)
+        self.updateToolbarButtonItems()
+        
+        self.tableView.setEditing(editing, animated: animated)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.enabled = !editing
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(kDocumentsViewEditingStatusChangedNotificationName, object: self, userInfo: [kEditingStatusKey : NSNumber(bool: editing)])
+    }
+    
+    @IBAction func didTapSelectionBarButtonItem(barButtonItem: UIBarButtonItem) {
+        if(thereAreSelectedRows() ) {
+            self.deselectAllRows()
+        } else {
+            self.selectAllRows()
+        }
+    }
+    
+    @IBAction func didTapDeleteBarButtonItem(barButtonItem: UIBarButtonItem) {
+        let numberOfReceipts = self.tableView.indexPathsForSelectedRows!.count
+        let receiptWord = numberOfReceipts == 1 ?
+            NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", comment: "receipt") :
+            NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", comment: "receipt");
+        
+        let deleteString = String.init(format: "%@ %lu %@", NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", comment: "Delete"), self.tableView.indexPathsForSelectedRows!.count, receiptWord)
+        
+        let registrationAlertController: UIAlertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        
+        func handler(action: UIAlertAction){ self.deleteReceipts() }
+        let open: UIAlertAction = UIAlertAction(title: deleteString, style: UIAlertActionStyle.Destructive, handler: handler)
+        
+        func cancelHandler(action: UIAlertAction){}
+        let cancel: UIAlertAction = UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: cancelHandler)
+        
+        registrationAlertController.addAction(open)
+        registrationAlertController.addAction(cancel)
+        
+        self.presentViewController(registrationAlertController, animated: true, completion: nil)
+    }
+    
+    func selectAllRows(){
+        for rowIndex in self.tableView.indexPathsForVisibleRows! {
+            self.tableView.selectRowAtIndexPath(rowIndex, animated: false, scrollPosition: UITableViewScrollPosition.None)
+        }
+    }
+    
+    func deselectAllRows(){
+        for rowIndex in self.tableView.indexPathsForVisibleRows! {
+            self.tableView.cellForRowAtIndexPath(rowIndex)!.selectionStyle = UITableViewCellSelectionStyle.Default
+            self.tableView.deselectRowAtIndexPath(rowIndex, animated: false)
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if(self.editing){
+            self.updateToolbarButtonItems()
+        }
+    }
+    
+    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        if(self.editing){
+            self.updateToolbarButtonItems()
+        }
+    }
+    
+    func updateToolbarButtonItems(){
+        if(thereAreSelectedRows() ) {
+            self.deleteBarButtonItem.enabled = true
+            self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_NONE_TITLE", comment: "Select none");
+        } else {
+            self.deleteBarButtonItem.enabled = false
+            self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all");
+        }
+    }
+    
+    func thereAreSelectedRows() -> Bool {
+        return self.tableView.indexPathsForSelectedRows != nil &&
+            self.tableView.indexPathsForSelectedRows!.count > 0
+    }
+    
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.None
+    }
+    
+    func deleteReceipts(){
+        print("In deleteReceipts()...")
+        
     }
 }
