@@ -29,27 +29,15 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     var mailboxDigipostAddress: String = "";
     var receiptsUri: String = "";
     var numberOfReceiptsChangedUponLastUpdate: Bool! = true;
-    var isEditing: Bool! = false;
-    var needsReload: Bool! = false;
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = "Receipts"
         
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 160
-        self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-        self.tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-        
-        let tableFooterView = UIView(frame: CGRectZero)
-        self.tableView.tableFooterView = tableFooterView
-        self.tableView.tableFooterView?.hidden = true
-        self.tableView.backgroundColor = UIColor.digipostAccountViewBackground()
-        
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self;
-        self.tableView.addSubview(self.refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -117,6 +105,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         if(self.numberOfReceiptsChangedUponLastUpdate &&
                 !self.refreshControl.refreshing &&
                 scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
+            print("Debug: scrollViewDidScroll update") // <- DEBUG
             loadAdditionalReceipts()
         }
     }
@@ -129,13 +118,18 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.numberOfReceiptsChangedUponLastUpdate = (previousNumberOfReceipts == updatedNumberOfReceipts) ? false : true;
     }
     
-    // styling-related methods for the table-view
     func setupTableViewStyling() {
+        self.tableView.addSubview(self.refreshControl)
+        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160;
         self.tableView.backgroundView = nil
         self.tableView.separatorColor = UIColor.digipostDocumentListDivider()
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
+        
+        let tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = tableFooterView
+        self.tableView.tableFooterView?.hidden = true
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
