@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate {
+class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -17,7 +17,13 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     @IBOutlet weak var searchField: UITextField!
     
-    var refreshControl: UIRefreshControl!;
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.tintColor = UIColor.init(white: 0.4, alpha: 1.0)
+        refreshControl.addTarget(self, action: #selector(UncategorisedReceiptsViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+    }()
     var receiptsTableViewDataSource: UncategorisedReceiptsTableViewDataSource!;
     
     var mailboxDigipostAddress: String = "";
@@ -31,23 +37,19 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.navigationItem.title = "Receipts"
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 160
-        tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
-        tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 160
+        self.tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
+        self.tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         
-        let tblView = UIView(frame: CGRectZero)
-        tableView.tableFooterView = tblView
-        tableView.tableFooterView?.hidden = true
-        tableView.backgroundColor = UIColor.digipostAccountViewBackground()
+        let tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = tableFooterView
+        self.tableView.tableFooterView?.hidden = true
+        self.tableView.backgroundColor = UIColor.digipostAccountViewBackground()
         
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self;
-        
-        self.refreshControl = UIRefreshControl.init()
-        self.refreshControl!.initializeRefreshControlText()
-        self.refreshControl!.updateRefreshControlTextRefreshing(true)
-        self.refreshControl!.tintColor = UIColor.init(white: 0.4, alpha: 1.0)
+        self.tableView.addSubview(self.refreshControl)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -66,15 +68,23 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.navigationController!.toolbar.barTintColor = UIColor.digipostSpaceGrey()
     }
     
+    func pullToRefresh() {
+        print("Pull to refresh")
+        fetchReceiptsFromAPI()
+        self.numberOfReceiptsChangedUponLastUpdate = true
+    }
+    
     func fetchReceiptsFromAPI() {
         print("Attempting to fetch data...")
         
         var fetchedReceipts: [POSReceipt] = []
         
+        // completion methods
         func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
             self.receiptsTableViewDataSource.receipts = parseReceiptsFrom(APICallResult["receipt"]!) // set in success method as it's called asynchronously
             print("Successfully fetched receipts.")
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
         func f(e: APIError){ print(e.altertMessage) }
         
@@ -100,21 +110,21 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        let scrollViewHeight: CGFloat = scrollView.frame.size.height;
-        let scrollViewContentSizeHeight: CGFloat = scrollView.contentSize.height;
-        let scrollOffset: CGFloat = scrollView.contentOffset.y;
+        let scrollViewHeight = scrollView.frame.size.height;
+        let scrollViewContentSizeHeight = scrollView.contentSize.height;
+        let scrollOffset = scrollView.contentOffset.y;
         
         if(self.numberOfReceiptsChangedUponLastUpdate &&
-            scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
-            // load more
+                !self.refreshControl.refreshing &&
+                scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
             loadAdditionalReceipts()
         }
     }
     
     func loadAdditionalReceipts() {
-        let previousNumberOfReceipts = 0 // get from data source
-        // update
-        let updatedNumberOfReceipts = 0 // get from data source
+        let previousNumberOfReceipts = self.receiptsTableViewDataSource.receipts.count
+        self.fetchReceiptsFromAPI()  // this needs to be refactored to get(skip: receipts.count, take: default)
+        let updatedNumberOfReceipts = self.receiptsTableViewDataSource.receipts.count
         
         self.numberOfReceiptsChangedUponLastUpdate = (previousNumberOfReceipts == updatedNumberOfReceipts) ? false : true;
     }
