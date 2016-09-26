@@ -34,8 +34,6 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
         super.init()
         
         tableView.dataSource = self
-        
-        self.tableView.registerClass(UncategorisedReceiptsTableViewCell.self, forCellReuseIdentifier: "ReceiptTableViewCellIdentifier")
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -48,29 +46,25 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell: UITableViewCell? = tableView.dequeueReusableCellWithIdentifier("ReceiptTableViewCellIdentifier")
+        var cell = tableView.dequeueReusableCellWithIdentifier(UncategorisedReceiptsTableViewCell.identifier)
         
         if(cell == nil){
-            cell = UncategorisedReceiptsTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "ReceiptTableViewCellIdentifier")
+            cell = UncategorisedReceiptsTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: UncategorisedReceiptsTableViewCell.identifier)
         }
         
         self.configureCell(cell  as! UncategorisedReceiptsTableViewCell, indexPath: indexPath)
-        
         return cell!
     }
     
     func configureCell(receiptTableViewCell: UncategorisedReceiptsTableViewCell, indexPath: NSIndexPath) {
         let receipt: POSReceipt = self.receipts[indexPath.row]
         
-//        print(receiptTableViewCell)
-//        print(receiptTableViewCell.storeNameLabel)
-//        print(receiptTableViewCell.storeNameLabel.text)
-//        receiptTableViewCell.storeNameLabel.text = receipt.storeName;
-//        receiptTableViewCell.amountLabel.text = POSReceipt.stringForReceiptAmount(receipt.amount)
-//        receiptTableViewCell.amountLabel.accessibilityLabel = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
-//        receiptTableViewCell.amountLabel.accessibilityHint = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
-//        receiptTableViewCell.dateLabel.text = POSDocument.stringForDocumentDate(receipt.timeOfPurchase)
-//        receiptTableViewCell.multipleSelectionBackgroundView = UIView()
+        receiptTableViewCell.storeNameLabel.text = receipt.storeName;
+        receiptTableViewCell.amountLabel.text = POSReceipt.stringForReceiptAmount(receipt.amount)
+        receiptTableViewCell.amountLabel.accessibilityLabel = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
+        receiptTableViewCell.amountLabel.accessibilityHint = self.numberFormatter.stringFromNumber(receipt.amount.doubleValue / 100);
+        receiptTableViewCell.dateLabel.text = POSDocument.stringForDocumentDate(receipt.timeOfPurchase)
+        receiptTableViewCell.multipleSelectionBackgroundView = UIView()
     }
     
     func receiptAtIndexPath(indexPath: NSIndexPath) -> POSReceipt {
