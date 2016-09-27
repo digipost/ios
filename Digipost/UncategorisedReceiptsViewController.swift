@@ -40,6 +40,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     var mailboxDigipostAddress: String = "";
     var receiptsUri: String = "";
     var numberOfReceiptsChangedUponLastUpdate: Bool! = true;
+    var currentlyFetchingReceiptsData: Bool! = false // mutex-like variable for avoiding duplicate calls upon continuous scrollViewDidScroll-method-invocation
     
     
     override func viewDidLoad() {
@@ -79,39 +80,54 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     func pullToRefresh() {
         print("Pull to refresh")
+        self.deselectAllRows()
+        self.receiptsTableViewDataSource.receipts.removeAll()
+        self.tableView.reloadData()
         fetchReceiptsFromAPI()
         self.numberOfReceiptsChangedUponLastUpdate = true
     }
     
     func fetchReceiptsFromAPI() {
-        print("Attempting to fetch data...")
-        
-        var fetchedReceipts: [POSReceipt] = []
-        
-        // completion methods
-        func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
-            self.receiptsTableViewDataSource.receipts = parseReceiptsFrom(APICallResult["receipt"]!) // set in success method as it's called asynchronously
-            print("Successfully fetched receipts.")
-            self.tableView.reloadData()
-            self.updateNavbar()
-            self.updateToolbarButtonItems()
-            self.refreshControl.endRefreshing()
-        }
-        func f(e: APIError){ print(e.altertMessage) }
+        if(!self.currentlyFetchingReceiptsData) {
+            print("Attempting to fetch data...")
+            self.currentlyFetchingReceiptsData = true
+            
+            // Completion method run upon GET-success
+            // Note that this functions as a callback after receipts have been retrieved through the API.
+            func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
+                let previouslySelectedIndexPaths: [NSIndexPath] = self.getIndexPathsForSelectedCells()
                 
-        let parameters : Dictionary<String,String> = {
-            ["skip": "2", "take": "2"];
-        }()
-        
-        APIClient.sharedClient.updateReceiptsInMailboxWithDigipostAddress(self.mailboxDigipostAddress, uri: self.receiptsUri, parameters: parameters, success: setFetchedObjects, failure: f)
+                let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
+                self.receiptsTableViewDataSource.receipts += fetchedReceipts
+                
+                self.numberOfReceiptsChangedUponLastUpdate = (fetchedReceipts.count > 0)
+                
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+                
+                self.selectCellsFor(previouslySelectedIndexPaths)
+                self.updateNavbar()
+                self.updateToolbarButtonItems()
+                self.currentlyFetchingReceiptsData = false
+            }
+            func f(e: APIError){ print(e.altertMessage) }
+            
+            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(skip: self.receiptsTableViewDataSource.receipts.count, take: 1,
+                                                                              digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
+                                                                              success: setFetchedObjects, failure: f)
+        }
     }
     
     func parseReceiptsFrom(APICallReceiptResult: AnyObject) -> Array<POSReceipt>{
+        if(APICallReceiptResult.count == 0) {
+            return []
+        }
+        
         var receiptList:Array<POSReceipt> = []
         
         let managedObjectContext = POSModelManager.sharedManager().managedObjectContext
 
-        for index in 0...(APICallReceiptResult.count-1 /* 0-indexed */) {
+        for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
             var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
             
             for receiptFieldKey in APICallReceiptResult[index].allKeys {
@@ -130,19 +146,11 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         let scrollOffset = scrollView.contentOffset.y;
         
         if(self.numberOfReceiptsChangedUponLastUpdate &&
-                !self.refreshControl.refreshing &&
+                !self.currentlyFetchingReceiptsData &&
                 scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
             print("Debug: scrollViewDidScroll update") // <- DEBUG
-            loadAdditionalReceipts()
+            self.fetchReceiptsFromAPI()
         }
-    }
-    
-    func loadAdditionalReceipts() {
-        let previousNumberOfReceipts = self.receiptsTableViewDataSource.receipts.count
-        self.fetchReceiptsFromAPI()  // this needs to be refactored to get(skip: receipts.count, take: default)
-        let updatedNumberOfReceipts = self.receiptsTableViewDataSource.receipts.count
-        
-        self.numberOfReceiptsChangedUponLastUpdate = (previousNumberOfReceipts == updatedNumberOfReceipts) ? false : true;
     }
     
     func setupTableViewStyling() {
@@ -252,9 +260,30 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     func deselectAllRows(){
-        for selectedIndexPath in self.tableView.indexPathsForSelectedRows! {  // as we only operate with one section
+        if(self.tableView.indexPathsForSelectedRows == nil){
+            return
+        }
+        
+        for selectedIndexPath in self.tableView.indexPathsForSelectedRows! {
             self.tableView.cellForRowAtIndexPath(selectedIndexPath)?.selectionStyle = UITableViewCellSelectionStyle.Default
             self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+        }
+    }
+    
+    func getIndexPathsForSelectedCells() -> [NSIndexPath] {
+        if(self.tableView.indexPathsForSelectedRows == nil){
+            return []
+        }
+        
+        // for some peculiar reason, simply using the index paths retrieved by "(..).indexPathsForSelectedRows" returns an additional index path
+        var indexPaths = self.tableView.indexPathsForSelectedRows!
+        indexPaths.removeLast()
+        return indexPaths
+    }
+    
+    func selectCellsFor(indexPaths: [NSIndexPath]) {
+        for indexPathForSelectedRow in indexPaths {
+            self.tableView.selectRowAtIndexPath(indexPathForSelectedRow, animated: false, scrollPosition: UITableViewScrollPosition.None)
         }
     }
     
