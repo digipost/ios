@@ -98,8 +98,12 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             self.refreshControl.endRefreshing()
         }
         func f(e: APIError){ print(e.altertMessage) }
+                
+        let parameters : Dictionary<String,String> = {
+            ["skip": "2", "take": "2"];
+        }()
         
-        APIClient.sharedClient.updateReceiptsInMailboxWithDigipostAddress(self.mailboxDigipostAddress, uri: self.receiptsUri, success: setFetchedObjects, failure: f)
+        APIClient.sharedClient.updateReceiptsInMailboxWithDigipostAddress(self.mailboxDigipostAddress, uri: self.receiptsUri, parameters: parameters, success: setFetchedObjects, failure: f)
     }
     
     func parseReceiptsFrom(APICallReceiptResult: AnyObject) -> Array<POSReceipt>{
