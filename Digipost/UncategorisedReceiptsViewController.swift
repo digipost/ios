@@ -246,15 +246,15 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     func selectAllRows(){
-        for rowIndex in self.tableView.indexPathsForVisibleRows! {
-            self.tableView.selectRowAtIndexPath(rowIndex, animated: false, scrollPosition: UITableViewScrollPosition.None)
+        for rowIndex in 0...self.tableView.numberOfRowsInSection(0) {  // as we only operate with one section
+            self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: rowIndex, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.None)
         }
     }
     
     func deselectAllRows(){
-        for rowIndex in self.tableView.indexPathsForVisibleRows! {
-            self.tableView.cellForRowAtIndexPath(rowIndex)!.selectionStyle = UITableViewCellSelectionStyle.Default
-            self.tableView.deselectRowAtIndexPath(rowIndex, animated: false)
+        for selectedIndexPath in self.tableView.indexPathsForSelectedRows! {  // as we only operate with one section
+            self.tableView.cellForRowAtIndexPath(selectedIndexPath)?.selectionStyle = UITableViewCellSelectionStyle.Default
+            self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
         }
     }
     
@@ -303,18 +303,33 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     func deleteReceipts(){
         print("In deleteReceipts()...")
+        self.deleteBarButtonItem.enabled = false
         
-        func failureToDeleteReceipt(apiError: APIError) { print("APIError: ", apiError.alertTitle) }
+        func failureToDeleteReceipt(apiError: APIError) {
+            print("APIError, (title, message): ", apiError.alertTitleAndMessage())
+            let alert = UIAlertView()
+            alert.title = "Could not delete receipt"
+            alert.message = "Unfortunately, an error occurred when attempting to delete the receipt(s)."
+            alert.addButtonWithTitle("OK")
+            alert.show()
+        }
         
-        // verify indices
+        // update GUI, then perform deletes
+        var receiptsStagedForDeletion: [POSReceipt] = []
         for indexPathOfSelectedRow: NSIndexPath in self.tableView.indexPathsForSelectedRows! {
             let receiptToBeDeleted: POSReceipt = self.receiptsTableViewDataSource.receipts[indexPathOfSelectedRow.row]
-            
+            self.receiptsTableViewDataSource.receipts.removeAtIndex(indexPathOfSelectedRow.row)
+            receiptsStagedForDeletion.append(receiptToBeDeleted)
+        }
+        self.tableView.reloadData()
+        
+        for receiptToBeDeleted: POSReceipt in receiptsStagedForDeletion {
             APIClient.sharedClient.deleteReceipt(receiptToBeDeleted, success: {}, failure: failureToDeleteReceipt)
         }
         
         print("Deleted all selected receipts. Re-fetching from API.")
         self.deselectAllRows()
-        self.fetchReceiptsFromAPI()
+        self.tableView.reloadData()
+        self.updateToolbarButtonItems()
     }
 }
