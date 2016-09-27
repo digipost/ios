@@ -26,6 +26,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var searchField: UITextField!
     
     static let pushReceiptIdentifier = "PushReceipt"
+    static let viewTitle = "Receipts"
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -46,7 +47,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all")
         self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
-        self.navigationItem.title = "Receipts"
+        self.navigationItem.title = UncategorisedReceiptsViewController.viewTitle
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self;
         
@@ -57,7 +58,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.refreshControl.beginRefreshing()
         self.refreshControl.endRefreshing()
-        self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -93,6 +93,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             self.receiptsTableViewDataSource.receipts = parseReceiptsFrom(APICallResult["receipt"]!) // set in success method as it's called asynchronously
             print("Successfully fetched receipts.")
             self.tableView.reloadData()
+            self.updateNavbar()
+            self.updateToolbarButtonItems()
             self.refreshControl.endRefreshing()
         }
         func f(e: APIError){ print(e.altertMessage) }
@@ -151,6 +153,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.tableView.backgroundView = nil
         self.tableView.separatorColor = UIColor.digipostDocumentListDivider()
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
+        self.tableView.allowsMultipleSelectionDuringEditing = true
         
     }
     
@@ -200,13 +203,14 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         super.setEditing(editing, animated: animated)
         
         self.navigationController?.setToolbarHidden(!editing, animated: animated)
-        self.updateToolbarButtonItems()
         
         self.tableView.setEditing(editing, animated: animated)
         
         self.navigationController?.interactivePopGestureRecognizer?.enabled = !editing
         
         NSNotificationCenter.defaultCenter().postNotificationName(kDocumentsViewEditingStatusChangedNotificationName, object: self, userInfo: [kEditingStatusKey : NSNumber(bool: editing)])
+        self.updateNavbar()
+        self.updateToolbarButtonItems()
     }
     
     @IBAction func didTapSelectionBarButtonItem(barButtonItem: UIBarButtonItem) {
@@ -215,6 +219,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         } else {
             self.selectAllRows()
         }
+        self.updateToolbarButtonItems()
     }
     
     @IBAction func didTapDeleteBarButtonItem(barButtonItem: UIBarButtonItem) {
@@ -237,6 +242,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         registrationAlertController.addAction(cancel)
         
         self.presentViewController(registrationAlertController, animated: true, completion: nil)
+        self.updateToolbarButtonItems()
     }
     
     func selectAllRows(){
@@ -255,13 +261,25 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if(self.editing){
             self.updateToolbarButtonItems()
+            return
         }
+        
+        // Verify that indexPath.row points to the correct item
+        let receipt: POSReceipt = self.receiptsTableViewDataSource.receipts[indexPath.row]
+        self.performSegueWithIdentifier(kPushReceiptIdentifier, sender: receipt)
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         if(self.editing){
             self.updateToolbarButtonItems()
         }
+    }
+    
+    func updateNavbar() {
+        if(self.tableView.numberOfRowsInSection(0) > 0 ){
+            self.navigationController?.navigationBar.topItem?.rightBarButtonItem = self.editButtonItem()
+        }
+        self.navigationController?.navigationBar.topItem!.title = UncategorisedReceiptsViewController.viewTitle
     }
     
     func updateToolbarButtonItems(){
@@ -286,5 +304,17 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     func deleteReceipts(){
         print("In deleteReceipts()...")
         
+        func failureToDeleteReceipt(apiError: APIError) { print("APIError: ", apiError.alertTitle) }
+        
+        // verify indices
+        for indexPathOfSelectedRow: NSIndexPath in self.tableView.indexPathsForSelectedRows! {
+            let receiptToBeDeleted: POSReceipt = self.receiptsTableViewDataSource.receipts[indexPathOfSelectedRow.row]
+            
+            APIClient.sharedClient.deleteReceipt(receiptToBeDeleted, success: {}, failure: failureToDeleteReceipt)
+        }
+        
+        print("Deleted all selected receipts. Re-fetching from API.")
+        self.deselectAllRows()
+        self.fetchReceiptsFromAPI()
     }
 }
