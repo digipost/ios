@@ -221,7 +221,7 @@ NSString *const kReceiptsViewControllerScreenName = @"Receipts";
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     POSLetterViewController *letterViewConctroller = appDelegate.letterViewController;
     NSString *openedReceiptURI = letterViewConctroller.receipt.uri;
-    [[APIClient sharedClient] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri success:^(NSDictionary *responseDictionary) {
+    [[APIClient sharedClient] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress uri:self.receiptsUri parameters:nil success:^(NSDictionary *responseDictionary) {
             [[POSModelManager sharedManager] updateCardAttributes:responseDictionary];
             [[POSModelManager sharedManager] updateReceiptsInMailboxWithDigipostAddress:self.mailboxDigipostAddress
                                                                              attributes:responseDictionary];

@@ -169,9 +169,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
-            let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
+            
+            let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
             task.resume()
         }
     }
