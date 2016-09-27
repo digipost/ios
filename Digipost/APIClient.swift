@@ -169,7 +169,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateReceiptsInMailboxWithDigipostAddress1(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             
             let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
@@ -178,8 +178,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     // mock data function
-    func updateReceiptsInMailboxWithDigipostAddress2(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        
+    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         
         // mock receipt
         var sampleReceipt = Dictionary<String,AnyObject>()
