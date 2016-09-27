@@ -183,9 +183,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         // mock receipt
         var sampleReceipt = Dictionary<String,AnyObject>()
         sampleReceipt["amount"] = 1333337
-        sampleReceipt["franchiceName"] = "Topppris"
+        sampleReceipt["franchiseName"] = "Topppris"
         sampleReceipt["storeName"] = "Askeladdens Hemmelige Butikk"
         sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
+        sampleReceipt["deleteUri"] = "deleteUri"
+        sampleReceipt["uri"] = "uri"
 
         var mockReceiptArray = []
         for _ in 1...200 {
