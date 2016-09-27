@@ -169,20 +169,24 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateReceiptsInMailboxWithDigipostAddress1(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    // Function expossed to Objective-C (used in the old VC)
+    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        self.updateReceiptsInMailboxWithParameters(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
+    }
+    func updateReceiptsInMailboxWithParameters(skip skip: Int = 0, take: Int = 100, digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        let uriWithParametersEmbedded: String = uri + "/beta?skip="+String(skip)+"&take="+String(take)
+        
         validateFullScope {
-            
-            let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionJSONTask(url: uriWithParametersEmbedded, parameters: nil, success: success, failure: failure)
             task.resume()
         }
     }
     
     // mock data function
-    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, parameters: [String : AnyObject]? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        
+    func updateReceiptsInMailboxWithParameters2(skip skip: Int = 0, take: Int = 100, digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         // mock receipt
         var sampleReceipt = Dictionary<String,AnyObject>()
-        sampleReceipt["amount"] = 1333337
+        sampleReceipt["amount"] = skip
         sampleReceipt["franchiseName"] = "Topppris"
         sampleReceipt["storeName"] = "Askeladdens Hemmelige Butikk"
         sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
@@ -190,10 +194,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         sampleReceipt["uri"] = "uri"
 
         var mockReceiptArray = []
-        for _ in 1...200 {
-            mockReceiptArray = mockReceiptArray.arrayByAddingObject(sampleReceipt)
+        let numberOfMockReceipts = 45
+        if(skip+take <= numberOfMockReceipts) {
+            for amount in skip..<(skip+take) {
+                sampleReceipt["amount"] = amount
+                mockReceiptArray = mockReceiptArray.arrayByAddingObject(sampleReceipt)
+            }
         }
 
+        print("Generated ", mockReceiptArray.count, " mock receipts")
         success(["receipt" : mockReceiptArray])
     }
 
