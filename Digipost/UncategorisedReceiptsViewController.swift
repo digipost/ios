@@ -90,12 +90,10 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     func fetchReceiptsFromAPI(search searchInput: String? = nil) {
         if(!self.currentlyFetchingReceiptsData || searchInput != nil) {
             self.currentlyFetchingReceiptsData = true
-            print("In fetchReceiptsFromAPI and was not fetching...")
             
             // Completion method run upon GET-success
             // Note that this functions as a callback after receipts have been retrieved through the API.
             func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
-                print("Setting fetched objects")
                 let previouslySelectedIndexPaths: [NSIndexPath] = self.getIndexPathsForSelectedCells()
                 
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
