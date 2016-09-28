@@ -112,7 +112,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             }
             func f(e: APIError){ print(e.altertMessage) }
             
-            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(skip: self.receiptsTableViewDataSource.receipts.count,
+            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
                                                                               digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                               success: setFetchedObjects, failure: f)
         }

@@ -173,11 +173,10 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         self.updateReceiptsInMailboxWithParameters(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
     }
-    func updateReceiptsInMailboxWithParameters(skip skip: Int = 0, take: Int = 100, digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let uriWithParametersEmbedded: String = uri + "/beta?skip="+String(skip)+"&take="+String(take)
-        
+    func updateReceiptsInMailboxWithParameters(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        // beta will be removed from the URI before release, i.e. it is employed solely during testing
         validateFullScope {
-            let task = self.urlSessionJSONTask(url: uriWithParametersEmbedded, parameters: nil, success: success, failure: failure)
+            let task = self.urlSessionJSONTask(url: uri + "/beta", parameters: parameters, success: success, failure: failure)
             task.resume()
         }
     }
