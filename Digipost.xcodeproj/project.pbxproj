@@ -10,6 +10,7 @@
 		0B5F505B1D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */; };
 		0B5F505C1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */; };
 		0B5F505E1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505D1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift */; };
+		0B5F50601D9BE2F900A8EC05 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */; };
 		15E104E7CA100C1854ACD3AE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03E13B40CF574D28E1F2C73A /* Pods.framework */; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
@@ -725,6 +726,7 @@
 		0B5F50591D95118300A8EC05 /* UncategorisedReceiptsTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsTableViewDataSource.swift; sourceTree = "<group>"; };
 		0B5F505A1D95118300A8EC05 /* UncategorisedReceiptsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsViewController.swift; sourceTree = "<group>"; };
 		0B5F505D1D956BF000A8EC05 /* UncategorisedReceiptsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UncategorisedReceiptsTableViewCell.swift; sourceTree = "<group>"; };
+		0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
 		311779551AAEFCA800229D02 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
@@ -1584,6 +1586,7 @@
 				ECBF75AC1AA85E6900540BCA /* Localization.swift */,
 				ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */,
 				EC2B64621A66928D00AB6085 /* Dispatch.swift */,
+				0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */,
 				ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */,
 				3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */,
 				EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */,
@@ -2297,6 +2300,7 @@
 				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
 				31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */,
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
+				0B5F50601D9BE2F900A8EC05 /* Dictionary.swift in Sources */,
 				ECB2BF501B452F0C008E32E8 /* ImageComposerModule.swift in Sources */,
 				ECB2BE611B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */,
 				ECB2BF261B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */,
