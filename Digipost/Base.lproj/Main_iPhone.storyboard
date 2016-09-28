@@ -661,20 +661,20 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NEv-zM-1fh">
-                                <rect key="frame" x="20" y="20" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A8t-i5-QoZ">
-                                <rect key="frame" x="0.0" y="58" width="320" height="510"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="cSa-dC-6iW">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptTableViewCellIdentifier" rowHeight="92" id="bSI-FS-2e3" customClass="UncategorisedReceiptsTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
+                                        <rect key="frame" x="0.0" y="72" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSI-FS-2e3" id="Rlf-b1-C1a">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkF-r4-1aw" userLabel="Amount Label">
@@ -724,13 +724,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="centerX" secondItem="NEv-zM-1fh" secondAttribute="centerX" id="KQQ-al-Q5l"/>
-                            <constraint firstItem="NEv-zM-1fh" firstAttribute="leading" secondItem="B6b-J6-yAm" secondAttribute="leadingMargin" constant="4" id="RvK-kF-Ecw"/>
-                            <constraint firstItem="NEv-zM-1fh" firstAttribute="top" secondItem="B6b-J6-yAm" secondAttribute="top" constant="20" symbolic="YES" id="VrO-Fz-abn"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="A8t-i5-QoZ" secondAttribute="bottom" constant="-64" id="X8D-ge-iUX"/>
-                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="top" secondItem="NEv-zM-1fh" secondAttribute="bottom" constant="8" symbolic="YES" id="hbg-EL-ySx"/>
-                            <constraint firstAttribute="trailing" secondItem="A8t-i5-QoZ" secondAttribute="trailing" id="rn8-lv-c3k"/>
-                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="leading" secondItem="B6b-J6-yAm" secondAttribute="leading" id="sgq-kI-haz"/>
+                            <constraint firstAttribute="trailing" secondItem="A8t-i5-QoZ" secondAttribute="trailing" id="8ah-4S-AiJ"/>
+                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="leading" secondItem="B6b-J6-yAm" secondAttribute="leading" id="9UV-hm-8vs"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="A8t-i5-QoZ" secondAttribute="bottom" constant="-6" id="QmK-xC-U8g"/>
+                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="top" secondItem="Cfw-rP-boi" secondAttribute="bottom" id="YT0-W4-8RT"/>
                         </constraints>
                     </view>
                     <toolbarItems>
@@ -752,7 +749,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="deleteBarButtonItem" destination="Csc-2D-HKz" id="DlC-ZE-k2C"/>
-                        <outlet property="searchField" destination="NEv-zM-1fh" id="61G-Au-uwk"/>
+                        <outlet property="searchBar" destination="cSa-dC-6iW" id="a7u-Df-dOv"/>
                         <outlet property="selectionBarButtonItem" destination="Tfh-Gd-bMf" id="fqW-MR-Sed"/>
                         <outlet property="tableView" destination="A8t-i5-QoZ" id="enk-JI-bYO"/>
                         <outlet property="view" destination="B6b-J6-yAm" id="W6i-ha-E0Y"/>

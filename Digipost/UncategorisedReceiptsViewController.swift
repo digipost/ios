@@ -16,14 +16,14 @@
 
 import UIKit
 
-class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var selectionBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
     
-    @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     static let pushReceiptIdentifier = "PushReceipt"
     static let viewTitle = "Receipts"
@@ -50,7 +50,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
         self.navigationItem.title = UncategorisedReceiptsViewController.viewTitle
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
-        self.tableView.delegate = self;
+        self.tableView.delegate = self
+        self.searchBar.delegate = self
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
@@ -86,8 +87,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.numberOfReceiptsChangedUponLastUpdate = true
     }
     
-    func fetchReceiptsFromAPI() {
-        if(!self.currentlyFetchingReceiptsData) {
+    func fetchReceiptsFromAPI(search searchInput: String? = nil) {
+        if(!self.currentlyFetchingReceiptsData || searchInput != nil) {
             self.currentlyFetchingReceiptsData = true
             print("In fetchReceiptsFromAPI and was not fetching...")
             
@@ -112,9 +113,17 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             }
             func f(e: APIError){ print(e.altertMessage) }
             
-            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
-                                                                              digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
-                                                                              success: setFetchedObjects, failure: f)
+            if let searchParameter = searchInput {
+                self.receiptsTableViewDataSource.receipts.removeAll()
+                self.tableView.reloadData()
+                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["search" : searchParameter, "skip": String(self.receiptsTableViewDataSource.receipts.count)],
+                                                                             digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
+                                                                             success: setFetchedObjects, failure: f)
+            } else {
+                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
+                                                                             digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
+                                                                             success: setFetchedObjects, failure: f)
+            }
         }
     }
     
@@ -359,5 +368,12 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.deselectAllRows()
         self.tableView.reloadData()
         self.updateToolbarButtonItems()
+    }
+    
+    // ---------- SEARCH ----------
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        if(searchBar.text?.length > 0){
+            self.fetchReceiptsFromAPI(search: searchBar.text)
+        }
     }
 }
