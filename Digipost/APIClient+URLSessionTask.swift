@@ -157,23 +157,27 @@ extension APIClient {
     /**
     GET a request to server that fetches json structures, like list of documents, list of folders.
 
-    :param: url       url to fetch data from
-    :param: success   block with json data that has to be inserted to database
-    :param: failure   failure block with error that should be sent to present a UIAlertcontroller with API error
+    :param: url         url to fetch data from
+    :param: parameters  dictionary with query parameters of the HTTP-GET-request, such as skip, take, and/or search
+    :param: success     block with json data that has to be inserted to database
+    :param: failure     failure block with error that should be sent to present a UIAlertcontroller with API error
 
     :returns: a task to resume when the request should be started
     */
-    func urlSessionJSONTask(url url: String, parameters: Dictionary<String,AnyObject>? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+    func urlSessionJSONTask(url url: String, parameters: Dictionary<String,String>? = nil, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+
+        var fullURL: NSURL
+        if let existingParameters = parameters {
+            fullURL = NSURL(string: url.getURLStringWithQueryParametersFrom(existingParameters), relativeToURL: NSURL(string: k__SERVER_URI__))!
+        } else {
+            fullURL = NSURL(string: url, relativeToURL: NSURL(string: k__SERVER_URI__))!
+        }
+        print("fullURL: ", fullURL)
         
-        let fullURL = NSURL(string: url, relativeToURL: NSURL(string: k__SERVER_URI__))
-        let urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        let urlRequest = NSMutableURLRequest(URL: fullURL, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
-        }
-
-        if let actualParameters = parameters {
-             // urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted) //adds skip take parameters 
         }
 
         let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
