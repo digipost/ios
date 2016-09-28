@@ -21,4 +21,13 @@ extension String {
         return NSURL(fileURLWithPath: self)
     }
 
+    func stringByAddingPercentEncodingForURLQueryValue() -> String? {
+        let allowedCharacters = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+        
+        return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
+    }
+    
+    func getURLStringWithQueryParametersFrom(parameters: [String: String]) -> String {
+        return self + "?" + parameters.stringFromHttpParameters()
+    }
 }
