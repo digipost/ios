@@ -26,7 +26,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     @IBOutlet weak var searchBar: UISearchBar!
     
     static let pushReceiptIdentifier = "PushReceipt"
-    static let viewTitle = "Receipts"
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -48,7 +47,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all")
         self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
-        self.navigationItem.title = UncategorisedReceiptsViewController.viewTitle
+        self.navigationItem.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
         self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self
         self.searchBar.delegate = self
@@ -314,7 +313,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         if(self.tableView.numberOfRowsInSection(0) > 0 ){
             self.navigationController?.navigationBar.topItem?.rightBarButtonItem = self.editButtonItem()
         }
-        self.navigationController?.navigationBar.topItem!.title = UncategorisedReceiptsViewController.viewTitle
+        self.navigationController?.navigationBar.topItem!.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
     }
     
     func updateToolbarButtonItems(){
