@@ -79,7 +79,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     func pullToRefresh() {
-        print("Pull to refresh")
         self.deselectAllRows()
         self.receiptsTableViewDataSource.receipts.removeAll()
         self.tableView.reloadData()
@@ -89,12 +88,13 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     func fetchReceiptsFromAPI() {
         if(!self.currentlyFetchingReceiptsData) {
-            print("Attempting to fetch data...")
             self.currentlyFetchingReceiptsData = true
+            print("In fetchReceiptsFromAPI and was not fetching...")
             
             // Completion method run upon GET-success
             // Note that this functions as a callback after receipts have been retrieved through the API.
             func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
+                print("Setting fetched objects")
                 let previouslySelectedIndexPaths: [NSIndexPath] = self.getIndexPathsForSelectedCells()
                 
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
@@ -112,7 +112,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             }
             func f(e: APIError){ print(e.altertMessage) }
             
-            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(skip: self.receiptsTableViewDataSource.receipts.count, take: 1,
+            APIClient.sharedClient.updateReceiptsInMailboxWithParameters(skip: self.receiptsTableViewDataSource.receipts.count,
                                                                               digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                               success: setFetchedObjects, failure: f)
         }
@@ -148,7 +148,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         if(self.numberOfReceiptsChangedUponLastUpdate &&
                 !self.currentlyFetchingReceiptsData &&
                 scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
-            print("Debug: scrollViewDidScroll update") // <- DEBUG
             self.fetchReceiptsFromAPI()
         }
     }
