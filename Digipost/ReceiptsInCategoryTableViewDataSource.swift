@@ -16,7 +16,7 @@
 
 import Foundation
 
-class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
+class ReceiptsInCategoryTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResultsControllerDelegate {
     let tableView: UITableView
     var receipts: [POSReceipt] = []
     
@@ -54,17 +54,17 @@ class UncategorisedReceiptsTableViewDataSource: NSObject, UITableViewDataSource,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(UncategorisedReceiptsTableViewCell.identifier)
+        var cell = tableView.dequeueReusableCellWithIdentifier(ReceiptTableViewCell.identifier)
         
         if(cell == nil){
-            cell = UncategorisedReceiptsTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: UncategorisedReceiptsTableViewCell.identifier)
+            cell = ReceiptTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ReceiptTableViewCell.identifier)
         }
         
-        self.configureCell(cell  as! UncategorisedReceiptsTableViewCell, indexPath: indexPath)
+        self.configureCell(cell  as! ReceiptTableViewCell, indexPath: indexPath)
         return cell!
     }
     
-    func configureCell(receiptTableViewCell: UncategorisedReceiptsTableViewCell, indexPath: NSIndexPath) {
+    func configureCell(receiptTableViewCell: ReceiptTableViewCell, indexPath: NSIndexPath) {
         let receipt: POSReceipt = self.receipts[indexPath.row]
         
         receiptTableViewCell.storeNameLabel.text = receipt.storeName;

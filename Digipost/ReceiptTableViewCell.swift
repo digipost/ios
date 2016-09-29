@@ -16,7 +16,7 @@
 
 import Foundation
 
-class UncategorisedReceiptsTableViewCell : UITableViewCell {
+class ReceiptTableViewCell : UITableViewCell {
     
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var storeNameLabel: UILabel!

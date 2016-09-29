@@ -192,9 +192,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
         receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     } else if ([segue.identifier isEqualToString:kPushUncategorisedReceiptsIdentifier]) {
-        UncategorisedReceiptsViewController *uncategorisedReceiptsViewController = (UncategorisedReceiptsViewController *)segue.destinationViewController;
-        uncategorisedReceiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
-        uncategorisedReceiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
+        ReceiptsInCategoryViewController *receiptsInCategoryViewController = (ReceiptsInCategoryViewController *)segue.destinationViewController;
+        receiptsInCategoryViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
+        receiptsInCategoryViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         POSDocumentsViewController *documentsViewController = (POSDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;

@@ -38,7 +38,7 @@ public func synchronized<L: NSLocking>(lockable: L, criticalSection: () -> ()) {
     lockable.unlock()
 }
 
-class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
+class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,10 +51,10 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(UncategorisedReceiptsViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(ReceiptsInCategoryViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-    var receiptsTableViewDataSource: UncategorisedReceiptsTableViewDataSource!;
+    var receiptsTableViewDataSource: ReceiptsInCategoryTableViewDataSource!;
     
     var mailboxDigipostAddress: String = "";
     var receiptsUri: String = "";
@@ -70,7 +70,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all")
         self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
         self.navigationItem.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
-        self.receiptsTableViewDataSource = UncategorisedReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
+        self.receiptsTableViewDataSource = ReceiptsInCategoryTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self
         self.searchBar.delegate = self
         
@@ -252,7 +252,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == UncategorisedReceiptsViewController.pushReceiptIdentifier){
+        if(segue.identifier == ReceiptsInCategoryViewController.pushReceiptIdentifier){
             let receipt: POSReceipt = self.receiptsTableViewDataSource.receiptAtIndexPath(self.tableView.indexPathForSelectedRow!)
             let letterViewController: POSLetterViewController = segue.destinationViewController as! POSLetterViewController
             letterViewController.receiptsViewController = self
