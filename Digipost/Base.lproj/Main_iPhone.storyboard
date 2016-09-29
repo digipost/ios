@@ -662,19 +662,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="A8t-i5-QoZ">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="510"/>
+                                <rect key="frame" x="0.0" y="44" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" id="cSa-dC-6iW">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptTableViewCellIdentifier" rowHeight="92" id="bSI-FS-2e3" customClass="UncategorisedReceiptsTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="72" width="320" height="92"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSI-FS-2e3" id="Rlf-b1-C1a">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkF-r4-1aw" userLabel="Amount Label">
@@ -721,13 +716,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="cSa-dC-6iW">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="A8t-i5-QoZ" secondAttribute="trailing" id="8ah-4S-AiJ"/>
                             <constraint firstItem="A8t-i5-QoZ" firstAttribute="leading" secondItem="B6b-J6-yAm" secondAttribute="leading" id="9UV-hm-8vs"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="A8t-i5-QoZ" secondAttribute="bottom" constant="-6" id="QmK-xC-U8g"/>
-                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="top" secondItem="Cfw-rP-boi" secondAttribute="bottom" id="YT0-W4-8RT"/>
+                            <constraint firstItem="cSa-dC-6iW" firstAttribute="leading" secondItem="A8t-i5-QoZ" secondAttribute="leading" id="AFt-cZ-TLb"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="A8t-i5-QoZ" secondAttribute="bottom" id="QmK-xC-U8g"/>
+                            <constraint firstItem="cSa-dC-6iW" firstAttribute="trailing" secondItem="A8t-i5-QoZ" secondAttribute="trailing" id="XRJ-0a-VRR"/>
+                            <constraint firstItem="A8t-i5-QoZ" firstAttribute="top" secondItem="Cfw-rP-boi" secondAttribute="bottom" constant="44" id="YT0-W4-8RT"/>
+                            <constraint firstItem="cSa-dC-6iW" firstAttribute="top" secondItem="Cfw-rP-boi" secondAttribute="bottom" id="yDX-Qz-oYI"/>
                         </constraints>
                     </view>
                     <toolbarItems>

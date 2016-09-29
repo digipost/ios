@@ -15,6 +15,28 @@
 //
 
 import UIKit
+import Foundation
+
+public protocol TryLockable: NSLocking {
+    func tryLock() -> Bool
+}
+
+extension NSLock: TryLockable {}
+
+public func trySynchronized<L: TryLockable>(lockable: L, criticalSection: () -> ()) -> Bool {
+    if !lockable.tryLock() {
+        return false
+    }
+    criticalSection()
+    lockable.unlock()
+    return true
+}
+
+public func synchronized<L: NSLocking>(lockable: L, criticalSection: () -> ()) {
+    lockable.lock()
+    criticalSection()
+    lockable.unlock()
+}
 
 class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
@@ -38,9 +60,11 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     var mailboxDigipostAddress: String = "";
     var receiptsUri: String = "";
-    var numberOfReceiptsChangedUponLastUpdate: Bool! = true;
-    var currentlyFetchingReceiptsData: Bool! = false // mutex-like variable for avoiding duplicate calls upon continuous scrollViewDidScroll-method-invocation
+    var numberOfReceiptsChangedUponLastUpdate: Bool! = false
     
+    var lockForFetchingReceipts: NSLock = NSLock() // mutex for avoiding duplicate calls of receipt-fetching
+    var hasReturnedFromAsyncFetch: Bool = true
+    var pullToRefreshIsRunning: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,18 +102,40 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.navigationController!.toolbar.barTintColor = UIColor.digipostSpaceGrey()
     }
     
-    func pullToRefresh() {
-        self.deselectAllRows()
-        self.receiptsTableViewDataSource.receipts.removeAll()
-        self.tableView.reloadData()
-        fetchReceiptsFromAPI()
+    func pullToRefresh(calledRecursively calledRecursivelyOnce: Bool = false) {
+        self.pullToRefreshIsRunning = true
+        self.searchBar.text = ""
+        
+        print("self.hasReturnedFromAsyncFetch: ", self.hasReturnedFromAsyncFetch)
+        if(self.hasReturnedFromAsyncFetch){
+            // Waits for lock and executes the reset:
+            synchronized(self.lockForFetchingReceipts, criticalSection: self.resetDataStructuresAndPerformFetchFromAPIWithNoSkip)
+        }
+    }
+    
+    func resetDataStructuresAndPerformFetchFromAPIWithNoSkip(){
+        
+        func setReceipts(APICallResult: Dictionary<String,AnyObject>){
+            self.receiptsTableViewDataSource.receipts = self.parseReceiptsFrom(APICallResult["receipt"]!)
+            self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
+            self.updateNavbar()
+            self.updateToolbarButtonItems()
+            self.hasReturnedFromAsyncFetch = true
+            self.pullToRefreshIsRunning = false
+        }
+        func f(e: APIError){}
+        APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(0)],
+                                                                     digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
+                                                                     success: setReceipts, failure: f)
+        
         self.numberOfReceiptsChangedUponLastUpdate = true
     }
     
-    func fetchReceiptsFromAPI(search searchInput: String? = nil) {
-        if(!self.currentlyFetchingReceiptsData || searchInput != nil) {
-            self.currentlyFetchingReceiptsData = true
-            
+    func fetchReceiptsFromAPI() {
+        
+        if(self.hasReturnedFromAsyncFetch && !pullToRefreshIsRunning) {
+            self.hasReturnedFromAsyncFetch = false
             // Completion method run upon GET-success
             // Note that this functions as a callback after receipts have been retrieved through the API.
             func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
@@ -97,23 +143,29 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
                 
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
                 self.receiptsTableViewDataSource.receipts += fetchedReceipts
+                print("#fetchedReceipts: ", fetchedReceipts.count)
                 
                 self.numberOfReceiptsChangedUponLastUpdate = (fetchedReceipts.count > 0)
+                if(self.numberOfReceiptsChangedUponLastUpdate!) {
+                    self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
+                    
+                    self.selectCellsFor(previouslySelectedIndexPaths)
+                }
                 
-                self.tableView.reloadData()
-                self.refreshControl.endRefreshing()
-                
-                self.selectCellsFor(previouslySelectedIndexPaths)
                 self.updateNavbar()
                 self.updateToolbarButtonItems()
-                self.currentlyFetchingReceiptsData = false
+                self.hasReturnedFromAsyncFetch = true
             }
-            func f(e: APIError){ print(e.altertMessage) }
+            func f(e: APIError){
+                self.numberOfReceiptsChangedUponLastUpdate = false
+                self.hasReturnedFromAsyncFetch = true
+                print(e.altertMessage)
+            }
             
-            if let searchParameter = searchInput {
-                self.receiptsTableViewDataSource.receipts.removeAll()
-                self.tableView.reloadData()
-                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["search" : searchParameter, "skip": String(self.receiptsTableViewDataSource.receipts.count)],
+            if(self.searchBar.text != nil && self.searchBar.text!.length > 0) {
+                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["search" : self.searchBar.text!,
+                    "skip": String(self.receiptsTableViewDataSource.receipts.count)],
                                                                              digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                              success: setFetchedObjects, failure: f)
             } else {
@@ -123,7 +175,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             }
         }
     }
-    
+
     func parseReceiptsFrom(APICallReceiptResult: AnyObject) -> Array<POSReceipt>{
         if(APICallReceiptResult.count == 0) {
             return []
@@ -151,10 +203,9 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         let scrollViewContentSizeHeight = scrollView.contentSize.height;
         let scrollOffset = scrollView.contentOffset.y;
         
-        if(self.numberOfReceiptsChangedUponLastUpdate &&
-                !self.currentlyFetchingReceiptsData &&
-                scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
-            self.fetchReceiptsFromAPI()
+        if(self.numberOfReceiptsChangedUponLastUpdate && hasReturnedFromAsyncFetch &&
+            scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
+            trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         }
     }
     
@@ -336,11 +387,9 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     }
     
     func deleteReceipts(){
-        print("In deleteReceipts()...")
         self.deleteBarButtonItem.enabled = false
         
         func failureToDeleteReceipt(apiError: APIError) {
-            print("APIError, (title, message): ", apiError.alertTitleAndMessage())
             let alert = UIAlertView()
             alert.title = "Could not delete receipt"
             alert.message = "Unfortunately, an error occurred when attempting to delete the receipt(s)."
@@ -361,7 +410,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             APIClient.sharedClient.deleteReceipt(receiptToBeDeleted, success: {}, failure: failureToDeleteReceipt)
         }
         
-        print("Deleted all selected receipts. Re-fetching from API.")
         self.deselectAllRows()
         self.tableView.reloadData()
         self.updateToolbarButtonItems()
@@ -370,7 +418,9 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     // ---------- SEARCH ----------
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         if(searchBar.text?.length > 0){
-            self.fetchReceiptsFromAPI(search: searchBar.text)
+            self.receiptsTableViewDataSource.receipts.removeAll()
+            self.tableView.reloadData()
+            trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         }
     }
 }

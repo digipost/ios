@@ -176,7 +176,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateReceiptsInMailboxWithParameters(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         // beta will be removed from the URI before release, i.e. it is employed solely during testing
         validateFullScope {
-            let task = self.urlSessionJSONTask(url: uri + "/beta", parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
             task.resume()
         }
     }
