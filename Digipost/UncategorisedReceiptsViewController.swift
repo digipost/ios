@@ -51,7 +51,11 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor.init(white: 0, alpha: 1.0)
+        let preferredColor = UIColor.init(white: 0, alpha: 1.0)
+        refreshControl.tintColor = preferredColor
+//        if(refreshControl.attributedTitle != nil && refreshControl.attributedTitle!.accessibilityLabel != nil) {
+            refreshControl.attributedTitle = NSAttributedString(string: "HELLO", attributes: [NSForegroundColorAttributeName : preferredColor])
+//        }
         
         refreshControl.addTarget(self, action: #selector(UncategorisedReceiptsViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
         
@@ -89,7 +93,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.fetchReceiptsFromAPI()
+        trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         self.setupTableViewStyling()
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
