@@ -78,7 +78,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         
         self.refreshControl.initializeRefreshControlText()
         self.refreshControl.attributedTitle = NSAttributedString(string: "placeholder", attributes: [NSForegroundColorAttributeName : UIColor(white: 0.4, alpha: 1.0)])
-        self.refreshControl.updateRefreshControlTextRefreshing(false)
+        self.refreshControl.updateRefreshControlTextRefreshing(false)  // false to get the last updated label
         self.refreshControl.tintColor = UIColor(white: 0.4, alpha: 1.0)
         
         self.refreshControl.beginRefreshing()
