@@ -51,7 +51,8 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.tintColor = UIColor.init(white: 0.4, alpha: 1.0)
+        refreshControl.tintColor = UIColor.init(white: 0, alpha: 1.0)
+        
         refreshControl.addTarget(self, action: #selector(UncategorisedReceiptsViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
         
         return refreshControl
@@ -106,7 +107,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.pullToRefreshIsRunning = true
         self.searchBar.text = ""
         
-        print("self.hasReturnedFromAsyncFetch: ", self.hasReturnedFromAsyncFetch)
         if(self.hasReturnedFromAsyncFetch){
             // Waits for lock and executes the reset:
             synchronized(self.lockForFetchingReceipts, criticalSection: self.resetDataStructuresAndPerformFetchFromAPIWithNoSkip)
@@ -123,13 +123,12 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
             self.updateToolbarButtonItems()
             self.hasReturnedFromAsyncFetch = true
             self.pullToRefreshIsRunning = false
+            self.numberOfReceiptsChangedUponLastUpdate = true
         }
         func f(e: APIError){}
         APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(0)],
                                                                      digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                      success: setReceipts, failure: f)
-        
-        self.numberOfReceiptsChangedUponLastUpdate = true
     }
     
     func fetchReceiptsFromAPI() {
@@ -143,7 +142,6 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
                 
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
                 self.receiptsTableViewDataSource.receipts += fetchedReceipts
-                print("#fetchedReceipts: ", fetchedReceipts.count)
                 
                 self.numberOfReceiptsChangedUponLastUpdate = (fetchedReceipts.count > 0)
                 if(self.numberOfReceiptsChangedUponLastUpdate!) {
@@ -203,7 +201,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         let scrollViewContentSizeHeight = scrollView.contentSize.height;
         let scrollOffset = scrollView.contentOffset.y;
         
-        if(self.numberOfReceiptsChangedUponLastUpdate && hasReturnedFromAsyncFetch &&
+        if(self.numberOfReceiptsChangedUponLastUpdate && hasReturnedFromAsyncFetch && !self.pullToRefreshIsRunning &&
             scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
             trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         }
