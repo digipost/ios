@@ -51,14 +51,7 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        let preferredColor = UIColor.init(white: 0, alpha: 1.0)
-        refreshControl.tintColor = preferredColor
-//        if(refreshControl.attributedTitle != nil && refreshControl.attributedTitle!.accessibilityLabel != nil) {
-            refreshControl.attributedTitle = NSAttributedString(string: "HELLO", attributes: [NSForegroundColorAttributeName : preferredColor])
-//        }
-        
         refreshControl.addTarget(self, action: #selector(UncategorisedReceiptsViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
-        
         return refreshControl
     }()
     var receiptsTableViewDataSource: UncategorisedReceiptsTableViewDataSource!;
@@ -84,7 +77,9 @@ class UncategorisedReceiptsViewController: UIViewController, UITableViewDelegate
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
         self.refreshControl.initializeRefreshControlText()
-        self.refreshControl.updateRefreshControlTextRefreshing(true)
+        self.refreshControl.attributedTitle = NSAttributedString(string: "placeholder", attributes: [NSForegroundColorAttributeName : UIColor(white: 0.4, alpha: 1.0)])
+        self.refreshControl.updateRefreshControlTextRefreshing(false)
+        self.refreshControl.tintColor = UIColor(white: 0.4, alpha: 1.0)
         
         self.refreshControl.beginRefreshing()
         self.refreshControl.endRefreshing()
