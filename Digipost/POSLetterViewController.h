@@ -26,13 +26,13 @@ extern NSString *const kPushReceiptIdentifier;
 @class POSReceiptFoldersTableViewController;
 @class POSAttachment;
 @class POSReceipt;
-@class ReceiptsInCategoryViewController;
+@class ReceiptsViewController;
 
 @interface POSLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
 //@property (weak, nonatomic) POSReceiptFoldersTableViewController *receiptsViewController;
-@property ReceiptsInCategoryViewController *receiptsViewController;
+@property ReceiptsViewController *receiptsViewController;
 @property (strong, nonatomic) POSAttachment *attachment;
 @property (strong, nonatomic) POSReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
