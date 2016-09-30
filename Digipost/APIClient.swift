@@ -39,6 +39,31 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         case put = "PUT"
         case get = "GET"
     }
+    
+    // This could be derived from the data-structure below
+    lazy var mockChainsData: Dictionary<String, AnyObject> = {
+        var chainArray = [["id" : "1", "count" : "X", "name": "Bunnpris"], ["id" : "2", "count" : "X", "name": "Kjede123"], ["id" : "3", "count" : "X", "name" : "Kjede4"], ["id" : "4", "count" : "X", "name" : "Store42"]]
+        return ["chains" : chainArray]
+    }()
+    lazy var mockReceiptsForChainId: Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>> = {
+        var sampleReceipt = Dictionary<String,String>()
+        sampleReceipt["amount"] = "9001"
+        sampleReceipt["franchiseName"] = "Topp pris"
+        sampleReceipt["storeName"] = "Butikk"
+        sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
+        sampleReceipt["deleteUri"] = "deleteUri"
+        sampleReceipt["uri"] = "uri"
+        
+        var mockDict = Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>>()
+        for i in 0...4 {
+            var receiptsArray: Array<Dictionary<String,String>> = []
+            for j in 0...i*5 {
+                receiptsArray.append(sampleReceipt)
+            }
+            mockDict[String(i)] = ["receipt" : receiptsArray]
+        }
+        return mockDict
+    }()
 
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
         let manager = AFHTTPSessionManager(baseURL: nil)
@@ -171,38 +196,47 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
     // Function expossed to Objective-C (used in the old VC)
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        self.updateReceiptsInMailboxWithParameters(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
+        self.fetchReceiptsInMailboxWith(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
     }
-    func updateReceiptsInMailboxWithParameters(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        // beta will be removed from the URI before release, i.e. it is employed solely during testing
+    func fetchReceiptsInMailboxWith1(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
             task.resume()
         }
     }
     
+    func fetchReceiptCategoriesInMailbox(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        // not supported yet, return mock
+//        validateFullScope {
+//            let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
+//            task.resume()
+//        }
+        
+        success(mockChainsData)
+    }
+    
     // mock data function
-    func updateReceiptsInMailboxWithParameters2(skip skip: Int = 0, take: Int = 100, digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        // mock receipt
-        var sampleReceipt = Dictionary<String,AnyObject>()
-        sampleReceipt["amount"] = skip
-        sampleReceipt["franchiseName"] = "Topppris"
-        sampleReceipt["storeName"] = "Askeladdens Hemmelige Butikk"
-        sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
-        sampleReceipt["deleteUri"] = "deleteUri"
-        sampleReceipt["uri"] = "uri"
-
-        var mockReceiptArray = []
-        let numberOfMockReceipts = 45
-        if(skip+take <= numberOfMockReceipts) {
-            for amount in skip..<(skip+take) {
-                sampleReceipt["amount"] = amount
-                mockReceiptArray = mockReceiptArray.arrayByAddingObject(sampleReceipt)
+    func fetchReceiptsInMailboxWith(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        
+        if(parameters["id"] != nil){
+            if(mockReceiptsForChainId[parameters["id"]!] != nil){
+                
+                var results = mockReceiptsForChainId[parameters["id"]!]!["receipt"]!
+                
+                if(parameters["skip"] != nil){
+                    let skip: Int = Int(parameters["skip"]!)!
+                    var resultsArray = []
+                    for result: Dictionary<String,String> in results.dropFirst(skip) {
+                        resultsArray = resultsArray.arrayByAddingObject(result)
+                    }
+                    results = resultsArray as! Array<Dictionary<String, String>>
+                }
+                success(["receipt" : results])
+                return
             }
         }
-
-        print("Generated ", mockReceiptArray.count, " mock receipts")
-        success(["receipt" : mockReceiptArray])
+        // id not found or empty:
+        success([:])
     }
 
     func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
