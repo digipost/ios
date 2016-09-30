@@ -15,32 +15,11 @@
 //
 
 import UIKit
-import Foundation
-
-public protocol TryLockable: NSLocking {
-    func tryLock() -> Bool
-}
-
-extension NSLock: TryLockable {}
-
-public func trySynchronized<L: TryLockable>(lockable: L, criticalSection: () -> ()) -> Bool {
-    if !lockable.tryLock() {
-        return false
-    }
-    criticalSection()
-    lockable.unlock()
-    return true
-}
-
-public func synchronized<L: NSLocking>(lockable: L, criticalSection: () -> ()) {
-    lockable.lock()
-    criticalSection()
-    lockable.unlock()
-}
 
 class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    var receiptsTableViewDataSource: ReceiptsInCategoryTableViewDataSource!
     
     @IBOutlet weak var selectionBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
@@ -51,10 +30,9 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(ReceiptsInCategoryViewController.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(self.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
         return refreshControl
     }()
-    var receiptsTableViewDataSource: ReceiptsInCategoryTableViewDataSource!;
     
     var mailboxDigipostAddress: String = "";
     var receiptsUri: String = "";
@@ -124,8 +102,12 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
             self.pullToRefreshIsRunning = false
             self.numberOfReceiptsChangedUponLastUpdate = true
         }
-        func f(e: APIError){}
-        APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(0)],
+        func f(e: APIError){
+            self.numberOfReceiptsChangedUponLastUpdate = false
+            self.hasReturnedFromAsyncFetch = true
+            print(e.altertMessage)
+        }
+        APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["skip": String(0)],
                                                                      digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                      success: setReceipts, failure: f)
     }
@@ -161,12 +143,12 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
             }
             
             if(self.searchBar.text != nil && self.searchBar.text!.length > 0) {
-                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["search" : self.searchBar.text!,
+                APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["search" : self.searchBar.text!,
                     "skip": String(self.receiptsTableViewDataSource.receipts.count)],
                                                                              digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                              success: setFetchedObjects, failure: f)
             } else {
-                APIClient.sharedClient.updateReceiptsInMailboxWithParameters(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
+                APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
                                                                              digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                              success: setFetchedObjects, failure: f)
             }
