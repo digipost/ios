@@ -32,7 +32,6 @@
 #import "Digipost-Swift.h"
 
 // Segue identifiers (to enable programmatic triggering of segues)
-NSString *const kPushReceiptsIdentifier = @"PushReceipts";
 NSString *const kFolderSelectedSegueIdentifier = @"folderSelectedSegue";
 
 // Google Analytics screen name
