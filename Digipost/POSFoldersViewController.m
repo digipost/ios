@@ -45,7 +45,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
-NSString *const kPushUncategorisedReceiptsIdentifier = @"PushUncategorisedReceipts";
+NSString *const kPushReceiptCategoriesIdentifier = @"PushReceiptCategories";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -187,14 +187,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         documentsViewController.folderUri = folder.uri;
         documentsViewController.selectedFolder = folder;
         documentsViewController.mailboxDigipostAddress = self.selectedMailBoxDigipostAdress;
-    } else if ([segue.identifier isEqualToString:kPushReceiptsIdentifier]) {
-        POSReceiptFoldersTableViewController *receiptsViewController = (POSReceiptFoldersTableViewController *)segue.destinationViewController;
-        receiptsViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
-        receiptsViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
-    } else if ([segue.identifier isEqualToString:kPushUncategorisedReceiptsIdentifier]) {
-        ReceiptsInCategoryViewController *receiptsInCategoryViewController = (ReceiptsInCategoryViewController *)segue.destinationViewController;
-        receiptsInCategoryViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
-        receiptsInCategoryViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
+    } else if ([segue.identifier isEqualToString:kPushReceiptCategoriesIdentifier]) {
+        ReceiptCategoryViewController *receiptCategoriesViewController = (ReceiptCategoryViewController *)segue.destinationViewController;
+        receiptCategoriesViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
+        receiptCategoriesViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
     } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         POSDocumentsViewController *documentsViewController = (POSDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
@@ -504,7 +500,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     case 1: {
 //                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
 //                                                  sender:nil];
-                        [self performSegueWithIdentifier:kPushUncategorisedReceiptsIdentifier
+                        [self performSegueWithIdentifier:kPushReceiptCategoriesIdentifier
                                                   sender:nil];
                         break;
                     }

@@ -23,7 +23,7 @@ extern NSString *const kFoldersViewControllerIdentifier;
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushFoldersIdentifier;
-extern NSString *const kPushUncategorisedReceiptsIdentifier;
+extern NSString *const kPushReceiptCategoriesIdentifier;
 
 // Segue to be performed when app starts and user has previously logged in
 extern NSString *const kGoToInboxFolderAtStartupSegue;
