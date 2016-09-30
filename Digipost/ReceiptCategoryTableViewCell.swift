@@ -16,7 +16,7 @@
 
 import UIKit
 
-class ReceiptCategoriesTableViewCell: UITableViewCell {
+class ReceiptCategoryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var storeNameLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!

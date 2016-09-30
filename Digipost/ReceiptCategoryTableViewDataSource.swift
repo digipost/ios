@@ -16,7 +16,7 @@
 
 import UIKit
 
-class ReceiptCategoriesTableViewDataSource: NSObject, UITableViewDataSource {
+class ReceiptCategoryTableViewDataSource: NSObject, UITableViewDataSource {
 
     let tableView: UITableView
     var categories: [ReceiptCategory] = []
@@ -36,24 +36,23 @@ class ReceiptCategoriesTableViewDataSource: NSObject, UITableViewDataSource {
         return categories.count
     }
     
-    // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-    // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(ReceiptCategoriesTableViewCell.identifier)
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(ReceiptCategoryTableViewCell.identifier)
         
         if(cell == nil){
-            cell = ReceiptCategoriesTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ReceiptCategoriesTableViewCell.identifier)
+            cell = ReceiptCategoryTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ReceiptCategoryTableViewCell.identifier)
         }
         
-        self.configureCell(cell as! ReceiptCategoriesTableViewCell, indexPath: indexPath)
+        self.configureCell(cell as! ReceiptCategoryTableViewCell, indexPath: indexPath)
         return cell!
     }
     
-    func configureCell(receiptCategoryCell: ReceiptCategoriesTableViewCell, indexPath: NSIndexPath){
+    func configureCell(receiptCategoryCell: ReceiptCategoryTableViewCell, indexPath: NSIndexPath){
+        let category: ReceiptCategory = self.categories[indexPath.row]
         
-        
+        receiptCategoryCell.storeNameLabel.text = category.category
+        receiptCategoryCell.amountLabel.text = category.count
     }
     
     func categoryAtIndexPath(indexPath: NSIndexPath) -> ReceiptCategory {

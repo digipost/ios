@@ -16,11 +16,11 @@
 
 import UIKit
 
-class ReceiptCategoriesViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
     
     @IBOutlet weak var tableView: UITableView!
-    var receiptsTableViewDataSource: ReceiptCategoriesTableViewDataSource!;
+    var receiptsTableViewDataSource: ReceiptCategoryTableViewDataSource!;
     
     var mailboxDigipostAddress: String = ""
     var receiptsUri: String = ""
@@ -34,11 +34,13 @@ class ReceiptCategoriesViewController: UIViewController, UITableViewDelegate, UI
     var lockForFetchingCategories: NSLock = NSLock()
     var isFetchingCategories: Bool = false
     
+    static let pushReceiptsInCategoryIdentifier = "PushReceiptCategory"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
-        self.receiptsTableViewDataSource = ReceiptCategoriesTableViewDataSource.init(asDataSourceForTableView: self.tableView)
+        self.receiptsTableViewDataSource = ReceiptCategoryTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self
         
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -76,8 +78,10 @@ class ReceiptCategoriesViewController: UIViewController, UITableViewDelegate, UI
     func fetchAndSetCategories(){
         if(!self.isFetchingCategories){
             self.isFetchingCategories = true
+            
             func updateCategoriesAndViewUponSuccess(APICallResult: Dictionary<String,AnyObject>){
-                self.receiptsTableViewDataSource.categories = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
+                let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
+                self.receiptsTableViewDataSource.categories = fetchedResults
                 self.tableView.reloadData()
                 
                 self.isFetchingCategories = false
@@ -99,12 +103,30 @@ class ReceiptCategoriesViewController: UIViewController, UITableViewDelegate, UI
         var categoryList:Array<ReceiptCategory> = []
         
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
-            let count = APICallReceiptResult[index]["count"] as! Int
+            let count = APICallReceiptResult[index]["count"] as! String
             let category = APICallReceiptResult[index]["name"] as! String
-            categoryList.append(ReceiptCategory(count: count, category: category))
+            let id = APICallReceiptResult[index]["id"] as! String
+            print(count, category, id)
+            categoryList.append(ReceiptCategory(count: count, category: category, id: id))
         }
         
         return categoryList
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let receiptCategory: ReceiptCategory = self.receiptsTableViewDataSource.categories[indexPath.row]
+        self.performSegueWithIdentifier(ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier, sender: receiptCategory)
+    }
 
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        return true;
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier){
+            let category: ReceiptCategory = self.receiptsTableViewDataSource.categoryAtIndexPath(self.tableView.indexPathForSelectedRow!)
+            let receiptsViewController: ReceiptsViewController = segue.destinationViewController as! ReceiptsViewController
+            receiptsViewController.receiptCategoryId = category.id
+        }
+    }
 }

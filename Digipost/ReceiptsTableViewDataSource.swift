@@ -16,7 +16,7 @@
 
 import Foundation
 
-class ReceiptsInCategoryTableViewDataSource: NSObject, UITableViewDataSource {
+class ReceiptsTableViewDataSource: NSObject, UITableViewDataSource {
     let tableView: UITableView
     var receipts: [POSReceipt] = []
     

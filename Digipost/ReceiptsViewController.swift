@@ -16,10 +16,10 @@
 
 import UIKit
 
-class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
+class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    var receiptsTableViewDataSource: ReceiptsInCategoryTableViewDataSource!
+    var receiptsTableViewDataSource: ReceiptsTableViewDataSource!
     
     @IBOutlet weak var selectionBarButtonItem: UIBarButtonItem!
     @IBOutlet weak var deleteBarButtonItem: UIBarButtonItem!
@@ -34,8 +34,9 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
         return refreshControl
     }()
     
-    var mailboxDigipostAddress: String = "";
-    var receiptsUri: String = "";
+    var mailboxDigipostAddress: String = ""
+    var receiptsUri: String = ""
+    var receiptCategoryId: String = ""
     var numberOfReceiptsChangedUponLastUpdate: Bool! = false
     
     var lockForFetchingReceipts: NSLock = NSLock() // mutex for avoiding duplicate calls of receipt-fetching
@@ -48,7 +49,7 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
         self.selectionBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", comment: "Select all")
         self.deleteBarButtonItem.title = NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_DELETE_TITLE", comment: "Delete")
         self.navigationItem.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
-        self.receiptsTableViewDataSource = ReceiptsInCategoryTableViewDataSource.init(asDataSourceForTableView: self.tableView)
+        self.receiptsTableViewDataSource = ReceiptsTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self
         self.searchBar.delegate = self
         
@@ -107,7 +108,7 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
             self.hasReturnedFromAsyncFetch = true
             print(e.altertMessage)
         }
-        APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["skip": String(0)],
+        APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["id": self.receiptCategoryId, "skip": String(0)],
                                                                      digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                      success: setReceipts, failure: f)
     }
@@ -121,6 +122,7 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
             func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
                 let previouslySelectedIndexPaths: [NSIndexPath] = self.getIndexPathsForSelectedCells()
                 
+                print(APICallResult["receipt"])
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
                 self.receiptsTableViewDataSource.receipts += fetchedReceipts
                 
@@ -142,16 +144,13 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
                 print(e.altertMessage)
             }
             
+            var parameters = ["id": self.receiptCategoryId, "skip": String(self.receiptsTableViewDataSource.receipts.count)]
             if(self.searchBar.text != nil && self.searchBar.text!.length > 0) {
-                APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["search" : self.searchBar.text!,
-                    "skip": String(self.receiptsTableViewDataSource.receipts.count)],
-                                                                             digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
-                                                                             success: setFetchedObjects, failure: f)
-            } else {
-                APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["skip": String(self.receiptsTableViewDataSource.receipts.count)],
-                                                                             digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
-                                                                             success: setFetchedObjects, failure: f)
+               parameters["search"] = self.searchBar.text!
             }
+            
+            APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: parameters, digipostAddress: self.mailboxDigipostAddress,
+                                                              uri: self.receiptsUri, success: setFetchedObjects, failure: f)
         }
     }
 
@@ -164,9 +163,11 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
         
         let managedObjectContext = POSModelManager.sharedManager().managedObjectContext
 
+        print("APICallReceiptResult.count: ", APICallReceiptResult.count)
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
             var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
             
+            print("APICallReceiptResult[index].allKeys: ", APICallReceiptResult[index].allKeys)
             for receiptFieldKey in APICallReceiptResult[index].allKeys {
                 receiptAttributes[receiptFieldKey as! String] = APICallReceiptResult[index][receiptFieldKey as! String]
             }
@@ -234,7 +235,7 @@ class ReceiptsInCategoryViewController: UIViewController, UITableViewDelegate, U
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if(segue.identifier == ReceiptsInCategoryViewController.pushReceiptIdentifier){
+        if(segue.identifier == ReceiptsViewController.pushReceiptIdentifier){
             let receipt: POSReceipt = self.receiptsTableViewDataSource.receiptAtIndexPath(self.tableView.indexPathForSelectedRow!)
             let letterViewController: POSLetterViewController = segue.destinationViewController as! POSLetterViewController
             letterViewController.receiptsViewController = self
