@@ -195,7 +195,7 @@
                         <segue destination="4z4-Au-vJv" kind="push" identifier="uploadFileSegue" id="WBk-6x-J5R"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="QTl-hU-aIM"/>
                         <segue destination="3KT-o1-saz" kind="push" identifier="uploadMenuSegue" id="kqf-bk-sMH"/>
-                        <segue destination="0sF-eX-wyy" kind="push" identifier="PushUncategorisedReceipts" id="zI9-ur-Waa"/>
+                        <segue destination="0Jg-qS-9Mq" kind="push" identifier="PushReceiptCategories" id="jji-Hi-4Vd"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,7 +543,7 @@
         <!--Receipts In Category View Controller-->
         <scene sceneID="D4e-L4-VPx">
             <objects>
-                <viewController title="Receipts In Category View Controller" id="0sF-eX-wyy" customClass="ReceiptsInCategoryViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Receipts In Category View Controller" id="0sF-eX-wyy" customClass="ReceiptsViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Cfw-rP-boi"/>
                         <viewControllerLayoutGuide type="bottom" id="UB6-Bb-erC"/>
@@ -651,7 +651,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Y1-Gx-2M0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="998" y="1619"/>
+            <point key="canvasLocation" x="1140" y="1621"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="zOL-Ok-rOn">
@@ -1476,6 +1476,84 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y4j-e3-7mh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="680" y="-24"/>
+        </scene>
+        <!--Receipt Category View Controller-->
+        <scene sceneID="iLX-VA-l4b">
+            <objects>
+                <viewController title="Receipt Category View Controller" id="0Jg-qS-9Mq" customClass="ReceiptCategoryViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7qG-qd-m6G"/>
+                        <viewControllerLayoutGuide type="bottom" id="Op8-dR-4h6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ciy-tl-aYY">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rIg-Eb-Bga">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCategoryTableViewCellIdentifier" rowHeight="92" id="Jkq-Wq-S7m" customClass="ReceiptCategoryTableViewCell" customModule="Digipost" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkq-Wq-S7m" id="8v5-cM-tTQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgx-XM-Ahz" userLabel="Amount Label">
+                                                    <rect key="frame" x="34" y="47" width="182" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="lAR-iR-tDn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                                    <color key="textColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STORE_NAME" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBy-KR-sdJ" userLabel="Store Name Label">
+                                                    <rect key="frame" x="34" y="24" width="182" height="21"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Fgx-XM-Ahz" firstAttribute="top" secondItem="HBy-KR-sdJ" secondAttribute="bottom" constant="2" id="AkI-kh-tip"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Fgx-XM-Ahz" secondAttribute="bottom" constant="15.5" id="LDO-h4-Xfh"/>
+                                                <constraint firstItem="HBy-KR-sdJ" firstAttribute="top" secondItem="8v5-cM-tTQ" secondAttribute="topMargin" constant="16" id="VQM-AB-1Cz"/>
+                                                <constraint firstItem="Fgx-XM-Ahz" firstAttribute="trailing" secondItem="HBy-KR-sdJ" secondAttribute="trailing" id="c05-aG-Ebm"/>
+                                                <constraint firstItem="HBy-KR-sdJ" firstAttribute="leading" secondItem="8v5-cM-tTQ" secondAttribute="leadingMargin" constant="26" id="hhc-4U-Ivz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Fgx-XM-Ahz" secondAttribute="trailing" constant="96" id="ieV-RS-fgo"/>
+                                                <constraint firstItem="Fgx-XM-Ahz" firstAttribute="leading" secondItem="HBy-KR-sdJ" secondAttribute="leading" id="tGE-0U-bc8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="amountLabel" destination="Fgx-XM-Ahz" id="DDm-EZ-BOz"/>
+                                            <outlet property="storeNameLabel" destination="HBy-KR-sdJ" id="g3Q-dZ-MSy"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="rIg-Eb-Bga" secondAttribute="trailing" id="DDg-5F-XWK"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="rIg-Eb-Bga" secondAttribute="bottom" constant="44" id="OhI-3U-ewn"/>
+                            <constraint firstItem="rIg-Eb-Bga" firstAttribute="leading" secondItem="ciy-tl-aYY" secondAttribute="leading" id="Tdz-QL-i8o"/>
+                            <constraint firstItem="rIg-Eb-Bga" firstAttribute="top" secondItem="7qG-qd-m6G" secondAttribute="bottom" id="UWz-Dk-7Xm"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Y8M-Ni-Pm0"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="tableView" destination="rIg-Eb-Bga" id="ud9-Oq-pUI"/>
+                        <outlet property="view" destination="ciy-tl-aYY" id="hbl-mP-Wz4"/>
+                        <segue destination="0sF-eX-wyy" kind="push" identifier="PushReceiptCategory" id="eUE-vW-9Ye"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="boL-Ht-ueJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="680" y="1621"/>
         </scene>
     </scenes>
     <resources>
