@@ -62,7 +62,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
     }
     
     func setupTableViewStyling(){
-        self.tableView.addSubview(self.refreshControl)
+        self.tableView.insertSubview(self.refreshControl, atIndex: 0)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160;
@@ -72,7 +72,9 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
     }
     
     func pullToRefresh(){
-        trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
+        if(!self.isFetchingCategories) {
+            trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
+        }
     }
     
     func fetchAndSetCategories(){
@@ -83,11 +85,13 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
                 let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
                 self.receiptsTableViewDataSource.categories = fetchedResults
                 self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
                 
                 self.isFetchingCategories = false
             }
             func f(e: APIError){
                 print("APIError: ", e)
+                self.refreshControl.endRefreshing()
                 self.isFetchingCategories = false
             }
             

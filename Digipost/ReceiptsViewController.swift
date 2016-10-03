@@ -104,6 +104,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             self.numberOfReceiptsChangedUponLastUpdate = true
         }
         func f(e: APIError){
+            self.refreshControl.endRefreshing()
             self.numberOfReceiptsChangedUponLastUpdate = false
             self.hasReturnedFromAsyncFetch = true
             print(e.altertMessage)
@@ -190,7 +191,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     }
     
     func setupTableViewStyling() {
-        self.tableView.addSubview(self.refreshControl)
+        self.tableView.insertSubview(self.refreshControl, atIndex: 0)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160;
