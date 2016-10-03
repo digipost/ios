@@ -55,7 +55,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         sampleReceipt["uri"] = "uri"
         
         var mockDict = Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>>()
-        for i in 0..<4 {
+        for i in 0...4 {
             var receiptsArray: Array<Dictionary<String,String>> = []
             for j in 0..<i*5 {
                 receiptsArray.append(sampleReceipt)
