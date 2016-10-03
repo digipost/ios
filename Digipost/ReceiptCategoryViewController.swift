@@ -61,6 +61,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         
         trySynchronized(self.lockForFetchingCategories, criticalSection: self.fetchAndSetCategories)
         self.setupTableViewStyling()
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
     }
     
     func setupTableViewStyling(){
