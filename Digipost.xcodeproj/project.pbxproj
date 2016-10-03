@@ -1201,6 +1201,7 @@
 		8342EFBD1858CDA40080A833 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */,
 				83D75F6B1858E9C20013F8C9 /* POSModelManager.h */,
 				83D75F6C1858E9C20013F8C9 /* POSModelManager.m */,
 				83D2F7E61875578A00344644 /* POSFileManager.h */,
@@ -1501,7 +1502,6 @@
 				0B5F505A1D95118300A8EC05 /* ReceiptsViewController.swift */,
 				0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */,
 				0B5F50611D9D51E200A8EC05 /* ReceiptCategoryViewController.swift */,
-				0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */,
 				0B5F50631D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift */,
 				0B5F50651D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift */,
 				0B5F505D1D956BF000A8EC05 /* ReceiptTableViewCell.swift */,
