@@ -71,6 +71,20 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
     }
     
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
+            tableView.separatorInset = UIEdgeInsetsZero
+        }
+        
+        if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
+            tableView.layoutMargins = UIEdgeInsetsZero
+        }
+        
+        if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+    }
+    
     func pullToRefresh(){
         if(!self.isFetchingCategories) {
             trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
