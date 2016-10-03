@@ -123,7 +123,6 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             func setFetchedObjects(APICallResult: Dictionary<String,AnyObject>){
                 let previouslySelectedIndexPaths: [NSIndexPath] = self.getIndexPathsForSelectedCells()
                 
-                print(APICallResult["receipt"])
                 let fetchedReceipts: [POSReceipt] = parseReceiptsFrom(APICallResult["receipt"]!)
                 self.receiptsTableViewDataSource.receipts += fetchedReceipts
                 
@@ -164,11 +163,9 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         let managedObjectContext = POSModelManager.sharedManager().managedObjectContext
 
-        print("APICallReceiptResult.count: ", APICallReceiptResult.count)
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
             var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
             
-            print("APICallReceiptResult[index].allKeys: ", APICallReceiptResult[index].allKeys)
             for receiptFieldKey in APICallReceiptResult[index].allKeys {
                 receiptAttributes[receiptFieldKey as! String] = APICallReceiptResult[index][receiptFieldKey as! String]
             }

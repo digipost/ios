@@ -33,6 +33,13 @@ class ReceiptCategoryTableViewDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if categories.count == 0 {
+            print("Attempting to show the background view")
+            tableView.backgroundView?.hidden = false
+        } else {
+            tableView.backgroundView?.hidden = true
+        }
+        
         return categories.count
     }
     

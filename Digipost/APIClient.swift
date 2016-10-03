@@ -42,7 +42,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     
     // This could be derived from the data-structure below
     lazy var mockChainsData: Dictionary<String, AnyObject> = {
-        var chainArray = [["id" : "1", "count" : "X", "name": "Bunnpris"], ["id" : "2", "count" : "X", "name": "Kjede123"], ["id" : "3", "count" : "X", "name" : "Kjede4"], ["id" : "4", "count" : "X", "name" : "Store42"]]
+        var chainArray = [["id" : "0", "count" : "0", "name": "Tom pris"], ["id" : "1", "count" : "X", "name": "Bunnpris"], ["id" : "2", "count" : "X", "name": "Kjede123"], ["id" : "3", "count" : "X", "name" : "Kjede4"], ["id" : "4", "count" : "X", "name" : "Store42"]]
         return ["chains" : chainArray]
     }()
     lazy var mockReceiptsForChainId: Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>> = {
@@ -55,9 +55,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         sampleReceipt["uri"] = "uri"
         
         var mockDict = Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>>()
-        for i in 0...4 {
+        for i in 0..<4 {
             var receiptsArray: Array<Dictionary<String,String>> = []
-            for j in 0...i*5 {
+            for j in 0..<i*5 {
                 receiptsArray.append(sampleReceipt)
             }
             mockDict[String(i)] = ["receipt" : receiptsArray]

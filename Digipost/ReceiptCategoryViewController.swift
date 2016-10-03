@@ -16,9 +16,11 @@
 
 import UIKit
 
-class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate {
+class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate {
     
+    @IBOutlet var tableViewBackgroundView: UIView!
     
+    @IBOutlet weak var noReceiptsLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     var receiptsTableViewDataSource: ReceiptCategoryTableViewDataSource!;
     
@@ -65,10 +67,30 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
         self.tableView.insertSubview(self.refreshControl, atIndex: 0)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 160;
-        self.tableView.backgroundView = nil
+        self.tableView.estimatedRowHeight = 160
         self.tableView.separatorColor = UIColor.digipostDocumentListDivider()
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
+    }
+    
+    func showTableViewBackgroundView(showTableViewBackgroundView: Bool = false){
+        if(showTableViewBackgroundView) {
+            self.tableView.backgroundView = self.tableViewBackgroundView
+        }
+        
+        let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        
+        if(rootResource.numberOfCards.integerValue == 0) {
+            self.noReceiptsLabel.text = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", comment: "No cards")
+        } else if(rootResource.numberOfCardsReadyForVerification.integerValue == 0) {
+            self.noReceiptsLabel.text = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE", comment: "Cards ready")
+        } else {
+            let format: NSString = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE", comment: "Receipts hidden")
+            let numberOfReceiptsHidden: NSInteger = rootResource.numberOfReceiptsHiddenUntilVerification.integerValue
+            let receiptWord: NSString = numberOfReceiptsHidden == 1 ? NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", comment: "receipt is") : NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", comment: "receipts are")
+            self.noReceiptsLabel.text = NSString.init(format: format, numberOfReceiptsHidden, receiptWord) as String
+        }
+        
+        self.tableViewBackgroundView.hidden = !showTableViewBackgroundView
     }
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -98,6 +120,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
             func updateCategoriesAndViewUponSuccess(APICallResult: Dictionary<String,AnyObject>){
                 let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
                 self.receiptsTableViewDataSource.categories = fetchedResults
+                self.showTableViewBackgroundView(fetchedResults.count == 0)
                 self.tableView.reloadData()
                 self.refreshControl.endRefreshing()
                 
@@ -106,6 +129,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
             func f(e: APIError){
                 print("APIError: ", e)
                 self.refreshControl.endRefreshing()
+                self.showTableViewBackgroundView(true)
                 self.isFetchingCategories = false
             }
             
@@ -124,7 +148,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UISc
             let count = APICallReceiptResult[index]["count"] as! String
             let category = APICallReceiptResult[index]["name"] as! String
             let id = APICallReceiptResult[index]["id"] as! String
-            print(count, category, id)
+            
             categoryList.append(ReceiptCategory(count: count, category: category, id: id))
         }
         

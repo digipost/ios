@@ -1546,12 +1546,56 @@
                     <navigationItem key="navigationItem" id="Y8M-Ni-Pm0"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="noReceiptsLabel" destination="3Hc-en-0oT" id="50V-rX-iy9"/>
                         <outlet property="tableView" destination="rIg-Eb-Bga" id="ud9-Oq-pUI"/>
+                        <outlet property="tableViewBackgroundView" destination="Bpp-rA-uR2" id="rzW-aU-Yfe"/>
                         <outlet property="view" destination="ciy-tl-aYY" id="hbl-mP-Wz4"/>
                         <segue destination="0sF-eX-wyy" kind="push" identifier="PushReceiptCategory" id="eUE-vW-9Ye"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="boL-Ht-ueJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view hidden="YES" contentMode="scaleToFill" id="Bpp-rA-uR2" userLabel="Table View Background View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXr-uX-IIz" userLabel="No Receipts View">
+                            <rect key="frame" x="0.0" y="138" width="320" height="184"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO_DOCUMENTS" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="3Hc-en-0oT" userLabel="No Receipts Label">
+                                    <rect key="frame" x="30" y="143" width="260" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="249" constant="21" id="5kB-io-bNb"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tom_mappe_breven" translatesAutoresizingMaskIntoConstraints="NO" id="Lik-eX-lvF" userLabel="No Documents Image View">
+                                    <rect key="frame" x="93" y="-41" width="135" height="155"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="155" id="dNs-8N-hZr"/>
+                                        <constraint firstAttribute="width" constant="135" id="wIL-R5-WD6"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="3Hc-en-0oT" firstAttribute="leading" secondItem="aXr-uX-IIz" secondAttribute="leading" constant="30" id="2LQ-64-0jK"/>
+                                <constraint firstItem="Lik-eX-lvF" firstAttribute="top" secondItem="aXr-uX-IIz" secondAttribute="top" constant="-41" id="FC4-BL-BxJ"/>
+                                <constraint firstAttribute="centerX" secondItem="Lik-eX-lvF" secondAttribute="centerX" id="QSe-NM-al6"/>
+                                <constraint firstAttribute="bottom" secondItem="3Hc-en-0oT" secondAttribute="bottom" constant="20" id="R1U-eP-3RP"/>
+                                <constraint firstItem="3Hc-en-0oT" firstAttribute="top" secondItem="Lik-eX-lvF" secondAttribute="bottom" constant="29" id="beS-Xe-chE"/>
+                                <constraint firstAttribute="trailing" secondItem="3Hc-en-0oT" secondAttribute="trailing" constant="30" id="rrg-cv-0kn"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="centerY" secondItem="aXr-uX-IIz" secondAttribute="centerY" id="5eB-El-d6E"/>
+                        <constraint firstAttribute="trailing" secondItem="aXr-uX-IIz" secondAttribute="trailing" id="D5B-sL-jjI"/>
+                        <constraint firstItem="aXr-uX-IIz" firstAttribute="leading" secondItem="Bpp-rA-uR2" secondAttribute="leading" id="NUh-7A-uYi"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="680" y="1621"/>
         </scene>
@@ -1577,9 +1621,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="eDA-DZ-Lcc"/>
-        <segue reference="nJS-Zx-WgQ"/>
         <segue reference="2IH-85-kgn"/>
         <segue reference="WBk-6x-J5R"/>
-        <segue reference="xIu-aX-Ge9"/>
+        <segue reference="nJS-Zx-WgQ"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>
