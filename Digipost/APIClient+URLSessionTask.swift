@@ -172,7 +172,6 @@ extension APIClient {
         } else {
             fullURL = NSURL(string: url, relativeToURL: NSURL(string: k__SERVER_URI__))!
         }
-        print("fullURL: ", fullURL)
         
         let urlRequest = NSMutableURLRequest(URL: fullURL, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.HTTPMethod = httpMethod.get.rawValue
