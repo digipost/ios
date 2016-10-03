@@ -78,6 +78,10 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
         
     }
     
+    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+        print("rotate view")
+    }
+    
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
@@ -158,7 +162,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
             let scrollRateMultiplier:CGFloat = self.view.frame.height <= 480 ? 1.2 : 1.36
             let scrollRateMultiplierIPAD:CGFloat = 0.515
             let translatedLoginContainerConstant = loginContainerViewInitialTopConstant - (startPointX * scrollRateMultiplier)
-            let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD) - 300
+            let translatedLoginContainerConstantIPAD = loginContainerViewInitialTopConstantIPAD - (startPointX * scrollRateMultiplierIPAD)
             // Move button off screen bottom
             getStartedButtonBottomConstraint.constant =  translatedButtonConstant
             getStartedButtonBottomConstraintIPAD.constant = translatedButtonConstant
