@@ -1490,7 +1490,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rIg-Eb-Bga">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCategoryTableViewCellIdentifier" rowHeight="92" id="Jkq-Wq-S7m" customClass="ReceiptCategoryTableViewCell" customModule="Digipost" customModuleProvider="target">
@@ -1537,7 +1537,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="rIg-Eb-Bga" secondAttribute="trailing" id="DDg-5F-XWK"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="rIg-Eb-Bga" secondAttribute="bottom" constant="44" id="OhI-3U-ewn"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="rIg-Eb-Bga" secondAttribute="bottom" id="OhI-3U-ewn"/>
                             <constraint firstItem="rIg-Eb-Bga" firstAttribute="leading" secondItem="ciy-tl-aYY" secondAttribute="leading" id="Tdz-QL-i8o"/>
                             <constraint firstItem="rIg-Eb-Bga" firstAttribute="top" secondItem="7qG-qd-m6G" secondAttribute="bottom" id="UWz-Dk-7Xm"/>
                         </constraints>
