@@ -79,6 +79,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             self.tableView.deselectRowAtIndexPath(self.tableView.indexPathForSelectedRow!, animated: true)
         }
         self.navigationController!.toolbar.barTintColor = UIColor.digipostSpaceGrey()
+        self.updateNavbar()
     }
     
     func pullToRefresh(calledRecursively calledRecursivelyOnce: Bool = false) {
@@ -97,17 +98,19 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             self.receiptsTableViewDataSource.receipts = self.parseReceiptsFrom(APICallResult["receipt"]!)
             self.tableView.reloadData()
             self.refreshControl.endRefreshing()
-            self.updateNavbar()
-            self.updateToolbarButtonItems()
             self.hasReturnedFromAsyncFetch = true
             self.pullToRefreshIsRunning = false
             self.numberOfReceiptsChangedUponLastUpdate = true
+            self.updateNavbar()
+            self.updateToolbarButtonItems()
         }
         func f(e: APIError){
             self.refreshControl.endRefreshing()
             self.numberOfReceiptsChangedUponLastUpdate = false
             self.hasReturnedFromAsyncFetch = true
             print(e.altertMessage)
+            self.updateNavbar()
+            self.updateToolbarButtonItems()
         }
         APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["id": self.receiptCategoryId, "skip": String(0)],
                                                                      digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
@@ -142,6 +145,8 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 self.numberOfReceiptsChangedUponLastUpdate = false
                 self.hasReturnedFromAsyncFetch = true
                 print(e.altertMessage)
+                self.updateNavbar()
+                self.updateToolbarButtonItems()
             }
             
             var parameters = ["id": self.receiptCategoryId, "skip": String(self.receiptsTableViewDataSource.receipts.count)]
@@ -268,7 +273,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         let numberOfReceipts = self.tableView.indexPathsForSelectedRows!.count
         let receiptWord = numberOfReceipts == 1 ?
             NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", comment: "receipt") :
-            NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", comment: "receipt");
+            NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", comment: "receipt")
         
         let deleteString = String.init(format: "%@ %lu %@", NSLocalizedString("DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", comment: "Delete"), self.tableView.indexPathsForSelectedRows!.count, receiptWord)
         
