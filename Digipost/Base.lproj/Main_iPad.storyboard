@@ -127,10 +127,10 @@
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="cp7-kF-f0e" customClass="POSLetterPopoverTableViewCell">
-                                                        <rect key="frame" x="0.0" y="50" width="310" height="44"/>
+                                                        <rect key="frame" x="0.0" y="49.5" width="310" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cp7-kF-f0e" id="Xw4-zv-caO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="44"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <userGuides>
                                                                 <userLayoutGuide location="21" affinity="minY"/>
@@ -488,7 +488,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="76K-oo-2Qq" id="rLJ-CH-eiQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-padlock" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-A4-NGA" userLabel="Locked Image View">
@@ -562,7 +562,7 @@
                                 <rect key="frame" x="0.0" y="114" width="320" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fBN-5V-OPN" id="xJt-8C-5BU">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="108.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6ha-dP-bVC">
@@ -695,7 +695,7 @@
                     </constraints>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1752" y="-710"/>
+            <point key="canvasLocation" x="1820" y="-892"/>
         </scene>
         <!--Attachments View Controller-->
         <scene sceneID="33h-ng-vdi">
@@ -710,7 +710,7 @@
                                 <rect key="frame" x="0.0" y="22" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KcH-Yw-Efu" id="LYc-nE-baY">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjD-vv-io8" userLabel="Subject Label">
@@ -1086,7 +1086,7 @@
                                 <color key="backgroundColor" red="0.30196078430000001" green="0.30980392159999998" blue="0.32549019610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="uploadMenuCell" id="20O-kW-YUg" customClass="UploadMenuTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="336" height="44"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="336" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20O-kW-YUg" id="rH6-Hr-asA">
                                             <rect key="frame" x="0.0" y="0.0" width="336" height="44"/>
@@ -1394,7 +1394,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzg-qd-9bP" id="ZHE-G8-zpU">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ukV-w4-W83" userLabel="Amount Label">
@@ -1518,7 +1518,7 @@
                                         <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KOD-At-ED9" id="V57-HZ-faG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN1-j9-UTc" userLabel="Amount Label">
