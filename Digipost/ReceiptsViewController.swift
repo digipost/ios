@@ -34,6 +34,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         return refreshControl
     }()
     
+    var idParameterName: String = "chain_id"
     var mailboxDigipostAddress: String = ""
     var receiptsUri: String = ""
     var receiptCategoryId: String = ""
@@ -112,7 +113,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             self.updateNavbar()
             self.updateToolbarButtonItems()
         }
-        APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: ["id": self.receiptCategoryId, "skip": String(0)],
+        APIClient.sharedClient.fetchReceiptsInMailboxWith(parameters: [self.idParameterName : self.receiptCategoryId, "skip": String(0)],
                                                                      digipostAddress: self.mailboxDigipostAddress, uri: self.receiptsUri,
                                                                      success: setReceipts, failure: f)
     }
@@ -149,7 +150,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
                 self.updateToolbarButtonItems()
             }
             
-            var parameters = ["id": self.receiptCategoryId, "skip": String(self.receiptsTableViewDataSource.receipts.count)]
+            var parameters = [self.idParameterName: self.receiptCategoryId, "skip": String(self.receiptsTableViewDataSource.receipts.count)]
             if(self.searchBar.text != nil && self.searchBar.text!.length > 0) {
                parameters["search"] = self.searchBar.text!
             }
@@ -228,13 +229,6 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
             cell.layoutMargins = UIEdgeInsetsZero
         }
-    }
-    
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
-        if(self.editing) {
-            return false;
-        }
-        return true;
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

@@ -120,7 +120,9 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
             self.isFetchingCategories = true
             
             func updateCategoriesAndViewUponSuccess(APICallResult: Dictionary<String,AnyObject>){
+                print("APICallResult: ", APICallResult)
                 let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
+                print("fetchedResults: ", fetchedResults)
                 self.receiptsTableViewDataSource.categories = fetchedResults
                 self.showTableViewBackgroundView(fetchedResults.count == 0)
                 self.tableView.reloadData()
@@ -147,11 +149,11 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         var categoryList:Array<ReceiptCategory> = []
         
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
-            let count = APICallReceiptResult[index]["count"] as! String
+            let count = APICallReceiptResult[index]["count"] as! Int
             let category = APICallReceiptResult[index]["name"] as! String
-            let id = APICallReceiptResult[index]["id"] as! String
+            let chain_id = APICallReceiptResult[index]["id"] as! String
             
-            categoryList.append(ReceiptCategory(count: count, category: category, id: id))
+            categoryList.append(ReceiptCategory(count: count, category: category, chain_id: chain_id))
         }
         
         return categoryList
@@ -172,7 +174,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
             let receiptsViewController: ReceiptsViewController = segue.destinationViewController as! ReceiptsViewController
             receiptsViewController.mailboxDigipostAddress = self.mailboxDigipostAddress
             receiptsViewController.receiptsUri = self.receiptsUri
-            receiptsViewController.receiptCategoryId = category.id
+            receiptsViewController.receiptCategoryId = category.chain_id
         }
     }
 }

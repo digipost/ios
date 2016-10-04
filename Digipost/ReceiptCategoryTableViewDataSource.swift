@@ -58,7 +58,7 @@ class ReceiptCategoryTableViewDataSource: NSObject, UITableViewDataSource {
         let category: ReceiptCategory = self.categories[indexPath.row]
         
         receiptCategoryCell.storeNameLabel.text = category.category
-        receiptCategoryCell.amountLabel.text = category.count
+        receiptCategoryCell.amountLabel.text = String(category.count)
     }
     
     func categoryAtIndexPath(indexPath: NSIndexPath) -> ReceiptCategory {

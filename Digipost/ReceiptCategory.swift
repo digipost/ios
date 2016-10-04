@@ -17,13 +17,13 @@
 import Foundation
 
 class ReceiptCategory {
-    var count: String = String(0)
+    var count: Int = 0
     var category: String = ""
-    var id: String = ""
+    var chain_id: String = ""
     
-    init(count: String, category: String, id: String){
+    init(count: Int, category: String, chain_id: String){
         self.count = count
         self.category = category
-        self.id = id
+        self.chain_id = chain_id
     }
 }
