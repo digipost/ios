@@ -9,6 +9,24 @@
 /* Begin PBXBuildFile section */
 		0B1520CF1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */; };
 		0B1520D11D9E6D65000027C1 /* ReceiptCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */; };
+		0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */; };
+		0B1520D31DA38E8B000027C1 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */; };
+		0B1520D41DA38EA9000027C1 /* ReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* ReceiptsTableViewDataSource.swift */; };
+		0B1520D51DA38EAA000027C1 /* ReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* ReceiptsTableViewDataSource.swift */; };
+		0B1520D61DA38EAC000027C1 /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* ReceiptsViewController.swift */; };
+		0B1520D71DA38EAD000027C1 /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* ReceiptsViewController.swift */; };
+		0B1520D81DA38EB2000027C1 /* SynchronizationCodeForVCs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */; };
+		0B1520D91DA38EB2000027C1 /* ReceiptCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50611D9D51E200A8EC05 /* ReceiptCategoryViewController.swift */; };
+		0B1520DA1DA38EB2000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50631D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift */; };
+		0B1520DB1DA38EB2000027C1 /* ReceiptCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50651D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift */; };
+		0B1520DC1DA38EB2000027C1 /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505D1D956BF000A8EC05 /* ReceiptTableViewCell.swift */; };
+		0B1520DD1DA38EB3000027C1 /* SynchronizationCodeForVCs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */; };
+		0B1520DE1DA38EB3000027C1 /* ReceiptCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50611D9D51E200A8EC05 /* ReceiptCategoryViewController.swift */; };
+		0B1520DF1DA38EB3000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50631D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift */; };
+		0B1520E01DA38EB3000027C1 /* ReceiptCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50651D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift */; };
+		0B1520E11DA38EB3000027C1 /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505D1D956BF000A8EC05 /* ReceiptTableViewCell.swift */; };
+		0B1520E21DA38F4C000027C1 /* ReceiptCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */; };
+		0B1520E31DA38F4D000027C1 /* ReceiptCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */; };
 		0B5F505B1D95118300A8EC05 /* ReceiptsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50591D95118300A8EC05 /* ReceiptsTableViewDataSource.swift */; };
 		0B5F505C1D95118300A8EC05 /* ReceiptsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505A1D95118300A8EC05 /* ReceiptsViewController.swift */; };
 		0B5F505E1D956BF000A8EC05 /* ReceiptTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505D1D956BF000A8EC05 /* ReceiptTableViewCell.swift */; };
@@ -2461,11 +2479,13 @@
 				EC2751BB1B061D6C0007125D /* SHCLoginViewController.m in Sources */,
 				EC2751C51B061D760007125D /* POSReceiptFoldersTableViewController.m in Sources */,
 				EC2751941B061D550007125D /* POSInvoice.m in Sources */,
+				0B1520E21DA38F4C000027C1 /* ReceiptCategory.swift in Sources */,
 				EC27519E1B061D550007125D /* POSBaseEncryptedModel.m in Sources */,
 				ECEA671D1B53AD92007C5861 /* StylePickerViewController.swift in Sources */,
 				EC2751DC1B061DBC0007125D /* OAuthToken.swift in Sources */,
 				EC2751F81B061DD00007125D /* ExtendedTouchView.swift in Sources */,
 				EC2751B31B061D5A0007125D /* UIViewController+ValidateOpening.m in Sources */,
+				0B1520D91DA38EB2000027C1 /* ReceiptCategoryViewController.swift in Sources */,
 				EC2751DE1B061DBF0007125D /* POSInvoice+Methods.swift in Sources */,
 				EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */,
 				EC2752001B061DDD0007125D /* AccountViewController.swift in Sources */,
@@ -2479,6 +2499,7 @@
 				EC2751D81B061DBC0007125D /* APIClient+Document.swift in Sources */,
 				EC42F25F1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2751E81B061DC80007125D /* SHCAppDelegate+Appearance.swift in Sources */,
+				0B1520DC1DA38EB2000027C1 /* ReceiptTableViewCell.swift in Sources */,
 				F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				EC2751AE1B061D5A0007125D /* NSString+RandomNumber.m in Sources */,
 				EC2751EB1B061DC80007125D /* UIImage+Localization.swift in Sources */,
@@ -2490,6 +2511,7 @@
 				EC2751D11B061D820007125D /* POSUploadViewController.m in Sources */,
 				EC2751B81B061D680007125D /* SHCAttachmentTableViewCell.m in Sources */,
 				EC42F24A1B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
+				0B1520DA1DA38EB2000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */,
 				EC2484271B206F7200FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				ECB2BEDF1B452EED008E32E8 /* TextAttributeButton.swift in Sources */,
 				EC2751F01B061DC80007125D /* UIWindow+Navigation.swift in Sources */,
@@ -2520,6 +2542,7 @@
 				ECB2BEF41B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
 				EC2751E21B061DC80007125D /* Debug.swift in Sources */,
 				EC2752071B061DE80007125D /* UploadMenuViewController.swift in Sources */,
+				0B1520D51DA38EAA000027C1 /* ReceiptsTableViewDataSource.swift in Sources */,
 				EC2751C71B061D760007125D /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC2751B21B061D5A0007125D /* UIViewController+NeedsReload.m in Sources */,
 				EC2751BA1B061D6C0007125D /* SHCOAuthViewController.m in Sources */,
@@ -2536,6 +2559,7 @@
 				EC2751F71B061DD00007125D /* ForceOrientationNavigationController.swift in Sources */,
 				EC2751B71B061D680007125D /* SHCAttachmentsViewController.m in Sources */,
 				ECA39C9F1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
+				0B1520D31DA38E8B000027C1 /* Dictionary.swift in Sources */,
 				EC2751EC1B061DC80007125D /* UIImage+Size.swift in Sources */,
 				ECB2BE911B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
 				EC8F4A251B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
@@ -2544,8 +2568,10 @@
 				EC2751981B061D550007125D /* POSAttachment.m in Sources */,
 				ECB2BF2C1B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */,
 				EC2751DB1B061DBC0007125D /* APIResponse.swift in Sources */,
+				0B1520D61DA38EAC000027C1 /* ReceiptsViewController.swift in Sources */,
 				ECB2BF1E1B452F0C008E32E8 /* DimView.swift in Sources */,
 				ECCC94A61B56A7000054AFA6 /* HTMLSection.swift in Sources */,
+				0B1520DB1DA38EB2000027C1 /* ReceiptCategoryTableViewCell.swift in Sources */,
 				ECEA67261B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				ECB2BFC41B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */,
 				EC2751E51B061DC80007125D /* Dispatch.swift in Sources */,
@@ -2634,6 +2660,7 @@
 				ECB2BEAD1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
 				EC2751921B061D550007125D /* POSFileManager.m in Sources */,
 				EC2751DD1B061DBC0007125D /* NSManagedObject+Attributes.swift in Sources */,
+				0B1520D81DA38EB2000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
 				EC2751EF1B061DC80007125D /* UIWebView+Accessability.swift in Sources */,
 				EC2751AD1B061D5A0007125D /* UILabel+Digipost.m in Sources */,
 				ECEA671F1B53ADAC007C5861 /* SegmentedControlTableViewCell.swift in Sources */,
@@ -2661,11 +2688,13 @@
 				F8AE1BF11CD374B40009B2F9 /* ImageModuleTableViewCell.swift in Sources */,
 				F8AE1BF21CD374B40009B2F9 /* Localization.swift in Sources */,
 				F8AE1BF31CD374B40009B2F9 /* UploadImageController.swift in Sources */,
+				0B1520E31DA38F4D000027C1 /* ReceiptCategory.swift in Sources */,
 				F8AE1BF41CD374B40009B2F9 /* UITableView+Reorder.m in Sources */,
 				F8AE1BF51CD374B40009B2F9 /* UIFont+StandardComposerFonts.swift in Sources */,
 				F8AE1BF61CD374B40009B2F9 /* POSDocumentTableViewCell.m in Sources */,
 				F8AE1BF71CD374B40009B2F9 /* POSReceiptTableViewCell.m in Sources */,
 				F8AE1BF81CD374B40009B2F9 /* POSLetterViewController.m in Sources */,
+				0B1520DE1DA38EB3000027C1 /* ReceiptCategoryViewController.swift in Sources */,
 				F8AE1BF91CD374B40009B2F9 /* NSString+RandomNumber.m in Sources */,
 				F8AE1BFA1CD374B40009B2F9 /* HTMLRepresentable.swift in Sources */,
 				F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */,
@@ -2679,6 +2708,7 @@
 				F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */,
 				F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */,
 				F8AE1C051CD374B40009B2F9 /* CustomInputView.m in Sources */,
+				0B1520E11DA38EB3000027C1 /* ReceiptTableViewCell.swift in Sources */,
 				F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */,
 				F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */,
 				F8AE1C081CD374B40009B2F9 /* ReceiptView.swift in Sources */,
@@ -2690,6 +2720,7 @@
 				F8AE1C0E1CD374B40009B2F9 /* POSReceiptFoldersTableViewController.m in Sources */,
 				F8AE1C0F1CD374B40009B2F9 /* UINavigationController+Extensions.swift in Sources */,
 				F8AE1C101CD374B40009B2F9 /* HTMLEditorViewController.swift in Sources */,
+				0B1520DF1DA38EB3000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */,
 				F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */,
 				F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */,
 				F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */,
@@ -2720,6 +2751,7 @@
 				F8AE1C2C1CD374B40009B2F9 /* UploadMenuDataSource.swift in Sources */,
 				F8AE1C2D1CD374B40009B2F9 /* SHCSplitViewController.m in Sources */,
 				F8AE1C2E1CD374B40009B2F9 /* TextComposerModule.swift in Sources */,
+				0B1520D41DA38EA9000027C1 /* ReceiptsTableViewDataSource.swift in Sources */,
 				F8AE1C2F1CD374B40009B2F9 /* UploadMenuViewController.swift in Sources */,
 				F8AE1C301CD374B40009B2F9 /* AccountViewController.swift in Sources */,
 				F8AE1C311CD374B40009B2F9 /* POSUploadViewController.m in Sources */,
@@ -2736,6 +2768,7 @@
 				F8AE1C3C1CD374B40009B2F9 /* UIDevice+Extension.swift in Sources */,
 				F8AE1C3D1CD374B40009B2F9 /* Array+NSRange.swift in Sources */,
 				F8AE1C3E1CD374B40009B2F9 /* ComposerModuleParser.swift in Sources */,
+				0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */,
 				F8AE1C3F1CD374B40009B2F9 /* POSReceipt.m in Sources */,
 				F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2744,8 +2777,10 @@
 				F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
+				0B1520D71DA38EAD000027C1 /* ReceiptsViewController.swift in Sources */,
 				F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */,
 				F8AE1C481CD374B40009B2F9 /* HTMLSection.swift in Sources */,
+				0B1520E01DA38EB3000027C1 /* ReceiptCategoryTableViewCell.swift in Sources */,
 				F8AE1C491CD374B40009B2F9 /* NSAttributedString+Attributes.swift in Sources */,
 				F8AE1C4A1CD374B40009B2F9 /* UIToolbar+Actions.swift in Sources */,
 				F8AE1C4B1CD374B40009B2F9 /* POSReceiptsViewController.m in Sources */,
@@ -2834,6 +2869,7 @@
 				F8AE1C9E1CD374B40009B2F9 /* GCMToken.swift in Sources */,
 				F8AE1C9F1CD374B40009B2F9 /* ComposerTypeButton.swift in Sources */,
 				F8AE1CA01CD374B40009B2F9 /* OAuthToken+IDToken.swift in Sources */,
+				0B1520DD1DA38EB3000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
 				F8AE1CA11CD374B40009B2F9 /* POSModelManager.m in Sources */,
 				F8AE1CA21CD374B40009B2F9 /* PreviewViewController.swift in Sources */,
 				F8AE1CA31CD374B40009B2F9 /* SHCAppDelegate+Appearance.swift in Sources */,
