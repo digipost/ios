@@ -25,6 +25,7 @@ NSString *const kMailboxLinkDocumentInboxAPIKeySuffix = @"document_inbox";
 NSString *const kMailboxLinkDocumentWorkAreaAPIKeySuffix = @"document_workarea";
 NSString *const kMailboxLinkDocumentArchiveAPIKeySuffix = @"document_archive";
 NSString *const kMailboxLinkReceiptsAPIKeySuffix = @"receipts";
+NSString *const kMailboxLinkReceiptsMetadataAPIKeySuffix = @"receipts_metadata";
 NSString *const kMailboxLinkCreateFolderAPIKeySuffix = @"create_folder";
 NSString *const kMailboxLinkUpdateFoldersAPIKeySuffix = @"update_folders";
 NSString *const kMailboxLinkUploadToInboxFolderAPIKeySuffix = @"upload_document_to_inbox";
@@ -78,11 +79,11 @@ NSString *const kMailboxEntityName = @"Mailbox";
                     } else if ([rel hasSuffix:kMailboxLinkDocumentArchiveAPIKeySuffix]) {
                     } else if ([rel hasSuffix:kMailboxLinkReceiptsAPIKeySuffix]) {
                         mailbox.receiptsUri = uri;
-                    }
-                    if ([rel hasSuffix:kMailboxLinkUploadToInboxFolderAPIKeySuffix]) {
+                    } else if([rel hasSuffix:kMailboxLinkReceiptsMetadataAPIKeySuffix]){
+                        mailbox.receiptsMetadataUri = uri;
+                    } else if ([rel hasSuffix:kMailboxLinkUploadToInboxFolderAPIKeySuffix]) {
                         uploadDocumentURI = uri;
-                    }
-                    if ([rel hasSuffix:kMailboxLinkCreateMessageAPIKeySuffix]) {
+                    } else if ([rel hasSuffix:kMailboxLinkCreateMessageAPIKeySuffix]) {
                         mailbox.sendUri = uri;
                     }
                     if (folderAttributes) {

@@ -26,6 +26,7 @@
 @dynamic name;
 @dynamic owner;
 @dynamic receiptsUri;
+@dynamic receiptsMetadataUri;
 @dynamic updateFoldersUri;
 @dynamic unreadItemsInInbox;
 @dynamic folders;

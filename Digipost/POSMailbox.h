@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSNumber *owner;
 @property (nonatomic, retain) NSString *receiptsUri;
+@property (nonatomic, retain) NSString *receiptsMetadataUri;
 @property (nonatomic, retain) NSString *updateFoldersUri;
 @property (nonatomic, retain) NSNumber *unreadItemsInInbox;
 @property (nonatomic, retain) NSSet *folders;

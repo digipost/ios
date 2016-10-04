@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15E65" minimumToolsVersion="Xcode 4.3">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 4.3">
     <entity name="Attachment" representedClassName="POSAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
         <attribute name="endToEndEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
@@ -58,6 +58,7 @@
         <attribute name="digipostAddress" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="receiptsMetadataUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiptsUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sendUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="unreadItemsInInbox" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -102,10 +103,10 @@
         <element name="Attachment" positionX="36" positionY="-9" width="128" height="225"/>
         <element name="Document" positionX="27" positionY="-207" width="128" height="165"/>
         <element name="Folder" positionX="304" positionY="57" width="128" height="195"/>
+        <element name="GCMToken" positionX="-162" positionY="-72" width="128" height="75"/>
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
-        <element name="Mailbox" positionX="79" positionY="207" width="128" height="210"/>
+        <element name="Mailbox" positionX="79" positionY="207" width="128" height="225"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
         <element name="RootResource" positionX="-360" positionY="27" width="128" height="300"/>
-        <element name="GCMToken" positionX="-162" positionY="-72" width="128" height="75"/>
     </elements>
 </model>

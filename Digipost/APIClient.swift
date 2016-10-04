@@ -198,7 +198,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         self.fetchReceiptsInMailboxWith(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
     }
-    func fetchReceiptsInMailboxWith1(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func fetchReceiptsInMailboxWith(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
             task.resume()
@@ -206,17 +206,15 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     func fetchReceiptCategoriesInMailbox(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        // not supported yet, return mock
-//        validateFullScope {
-//            let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
-//            task.resume()
-//        }
-        
-        success(mockChainsData)
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
+            task.resume()
+        }
+//        success(mockChainsData)
     }
     
     // mock data function
-    func fetchReceiptsInMailboxWith(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func fetchReceiptsInMailboxWith2(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
         
         if(parameters["id"] != nil){
             if(mockReceiptsForChainId[parameters["id"]!] != nil){

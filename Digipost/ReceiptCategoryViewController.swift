@@ -26,6 +26,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     
     var mailboxDigipostAddress: String = ""
     var receiptsUri: String = ""
+    var receiptsMetadataUri: String = ""
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -134,7 +135,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
                 self.isFetchingCategories = false
             }
             
-            APIClient.sharedClient.fetchReceiptCategoriesInMailbox(self.mailboxDigipostAddress, uri: self.receiptsUri + "/chains", success: updateCategoriesAndViewUponSuccess, failure: f)
+            APIClient.sharedClient.fetchReceiptCategoriesInMailbox(self.mailboxDigipostAddress, uri: self.receiptsMetadataUri, success: updateCategoriesAndViewUponSuccess, failure: f)
         }
     }
     
@@ -169,6 +170,8 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         if(segue.identifier == ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier){
             let category: ReceiptCategory = self.receiptsTableViewDataSource.categoryAtIndexPath(self.tableView.indexPathForSelectedRow!)
             let receiptsViewController: ReceiptsViewController = segue.destinationViewController as! ReceiptsViewController
+            receiptsViewController.mailboxDigipostAddress = self.mailboxDigipostAddress
+            receiptsViewController.receiptsUri = self.receiptsUri
             receiptsViewController.receiptCategoryId = category.id
         }
     }
