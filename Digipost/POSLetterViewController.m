@@ -1487,6 +1487,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 return;
             } else {
                 [self showEmptyView:NO];
+                [self changeNavbarStateToHidden:NO];
             }
         }
 
