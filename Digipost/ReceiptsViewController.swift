@@ -326,9 +326,14 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             return
         }
         
-        // Verify that indexPath.row points to the correct item
         let receipt: POSReceipt = self.receiptsTableViewDataSource.receipts[indexPath.row]
-        self.performSegueWithIdentifier(kPushReceiptIdentifier, sender: receipt)
+        
+        if(UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad){
+            let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+            appDelegate.letterViewController.receipt = receipt
+        } else {
+            self.performSegueWithIdentifier(kPushReceiptIdentifier, sender: receipt)
+        }
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
