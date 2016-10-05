@@ -210,7 +210,6 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
             task.resume()
         }
-//        success(mockChainsData)
     }
     
     // mock data function

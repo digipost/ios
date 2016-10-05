@@ -120,9 +120,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
             self.isFetchingCategories = true
             
             func updateCategoriesAndViewUponSuccess(APICallResult: Dictionary<String,AnyObject>){
-                print("APICallResult: ", APICallResult)
                 let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
-                print("fetchedResults: ", fetchedResults)
                 self.receiptsTableViewDataSource.categories = fetchedResults
                 self.showTableViewBackgroundView(fetchedResults.count == 0)
                 self.tableView.reloadData()
