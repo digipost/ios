@@ -88,7 +88,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     }
     
     func setupComposerInputAccessoryView() {
-        composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)[0] as! ComposerInputAccessoryView
+        composerInputAccessoryView = NSBundle.mainBundle().loadNibNamed("ComposerInputAccesoryView", owner: self, options: nil)![0] as! ComposerInputAccessoryView
         composerInputAccessoryView.setupWithStandardLayout(self, selector: #selector(ComposerViewController.didTapTextAttributeButton(_:)))
     }
     

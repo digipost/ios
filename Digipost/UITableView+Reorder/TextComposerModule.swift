@@ -115,7 +115,7 @@ class TextComposerModule: ComposerModule {
             }
             }()
         let newFontDescriptor = fontDescriptor.fontDescriptorWithSymbolicTraits(newTraits)
-        let newFont  = UIFont(descriptor: newFontDescriptor, size: existingFont.pointSize)
+        let newFont  = UIFont(descriptor: newFontDescriptor!, size: existingFont.pointSize)
         return newFont
     }
 

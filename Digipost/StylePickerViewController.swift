@@ -112,7 +112,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
         var selectedModels = [TextStyleModel]()
 
-        if let styleArray = styling["style"] as? [String], classesDictionary = styling["classes"] as? [NSObject : AnyObject]  {
+        if let styleArray = styling["style"] as? [String]  {
+            let classesDictionary = styling["classes"] as? [NSObject : AnyObject]
 
             let allTextStyleModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
                 return array
@@ -120,7 +121,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
             var classesArray = [String]()
 
-            for (key, value) in classesDictionary {
+            for (key, value) in classesDictionary! {
                 if key == "length" {
                     continue
                 }
@@ -150,11 +151,11 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             self.stylePickerDetailListViewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? StylePickerDetailListViewController
             stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
             stylePickerDetailListViewController?.delegate = self
-            animateDetailListViewController(shouldShowView: true)
+            animateDetailListViewController(true)
         }
     }
 
-    private func animateDetailListViewController(shouldShowView shouldShowView: Bool) {
+    private func animateDetailListViewController(shouldShowView: Bool) {
         if shouldShowView {
 
             if let newView = self.stylePickerDetailListViewController?.view {
@@ -204,12 +205,12 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
     }
 
     func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel) {
-        animateDetailListViewController(shouldShowView: false)
+        animateDetailListViewController(false)
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: textStyleModel, enabled: true)
     }
 
     func stylePickerDetailLIstViewControllerDidTapBackButton(stylePickerDetailListViewController: StylePickerDetailListViewController) {
-        animateDetailListViewController(shouldShowView: false)
+        animateDetailListViewController(false)
     }
 
     @IBAction func segmentedControlValueChanged(sender : UISegmentedControl) {

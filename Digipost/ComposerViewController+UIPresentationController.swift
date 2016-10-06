@@ -17,7 +17,7 @@
 import UIKit
 
 extension ComposerViewController : UIViewControllerTransitioningDelegate {
-    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController, sourceViewController source: UIViewController) -> UIPresentationController? {
+    func presentationControllerForPresentedViewController(presented: UIViewController, presentingViewController presenting: UIViewController?, sourceViewController source: UIViewController) -> UIPresentationController? {
         return ComposerPresentationController(presentedViewController: presented, presentingViewController: presenting)
     }
  

@@ -25,8 +25,8 @@
 
 + (int32_t)secureRandom {
     int32_t randomNumber = 0;
-    SecRandomCopyBytes(kSecRandomDefault, 4, (uint8_t*) &randomNumber);
-    return randomNumber;
+    return SecRandomCopyBytes(kSecRandomDefault, 4, (uint8_t*) &randomNumber);
+    //return randomNumber;
 }
 
 + (NSString *)secureRandomString {

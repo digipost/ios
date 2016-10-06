@@ -523,7 +523,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let uploadURL = uploadsFolderPath.urlRepresentation().URLByAppendingPathComponent(fileName!)
 
         do{
-            try fileManager.moveItemAtURL(url, toURL: uploadURL)
+            try fileManager.moveItemAtURL(url, toURL: uploadURL!)
         }catch let error as NSError{
             failure(error: APIError(error: error))
         }
@@ -534,7 +534,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         let progress = NSProgress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
-        let lastPathComponent : NSString = uploadURL.lastPathComponent as NSString!
+        let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
@@ -548,7 +548,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
             formData.appendPartWithFormData(data!, name:"subject")
 
-            let fileData = NSData(contentsOfURL: uploadURL)
+            let fileData = NSData(contentsOfURL: uploadURL!)
             formData.appendPartWithFileData(fileData!, name:"file", fileName: fileName!, mimeType:"application/pdf")
         }, error: nil)
         

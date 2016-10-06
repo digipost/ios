@@ -86,8 +86,8 @@ class SendableDocument {
 
     func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
         let fileUrl = NSURL(fileURLWithPath: POSFileManager.sharedFileManager().uploadsFolderPath()).URLByAppendingPathComponent(SendableDocumentConstants.tempFileName)
-        if NSFileManager.defaultManager().createFileAtPath(fileUrl.absoluteString, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
-            return NSURL(fileURLWithPath: fileUrl.absoluteString)
+        if NSFileManager.defaultManager().createFileAtPath(fileUrl!.absoluteString!, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
+            return NSURL(fileURLWithPath: fileUrl!.absoluteString!)
         } else {
             return nil
         }

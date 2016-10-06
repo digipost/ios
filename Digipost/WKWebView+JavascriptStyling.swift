@@ -111,10 +111,10 @@ extension WKWebView {
         try! NSFileManager.defaultManager().createDirectoryAtURL(temporaryWebContentDirectoryPath!, withIntermediateDirectories: true, attributes: nil)
         let pathUrl = NSURL(fileURLWithPath: path)
         let finalPath = temporaryWebContentDirectoryPath!.URLByAppendingPathComponent(pathUrl.lastPathComponent!)
-        if NSFileManager.defaultManager().fileExistsAtPath(finalPath.absoluteString) == false {
-            try! NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath.absoluteString)
+        if NSFileManager.defaultManager().fileExistsAtPath(finalPath!.absoluteString!) == false {
+            try! NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath!.absoluteString!)
         }
         
-        return finalPath.absoluteString
+        return finalPath!.absoluteString
     }
 }
