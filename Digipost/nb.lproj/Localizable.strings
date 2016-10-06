@@ -394,7 +394,7 @@
 "navbar title upload mailbox" = "Velg konto";
 
 /* unread letters in account view */
-"account view unread letter" = ". ulest brev";
+"account view unread letter" = " ulest brev";
 
 "account view unread letters" = "uleste brev";
 
