@@ -1131,6 +1131,7 @@
 		F8AE1CDF1CD374B40009B2F9 /* Digipost-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AE7AD31CCE1158009D139F /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1283,6 +1284,7 @@
 		83BAB9211855C0AC004A7BFB /* Digipost */ = {
 			isa = PBXGroup;
 			children = (
+				F8F44E981DA65F4C003B3306 /* Digipost.entitlements */,
 				EC24840C1B206F0100FC372C /* Constants.swift */,
 				EC1A6C2F18BBA32100269428 /* Client */,
 				8342EFBD1858CDA40080A833 /* Model */,
@@ -2988,6 +2990,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
@@ -3030,6 +3033,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
