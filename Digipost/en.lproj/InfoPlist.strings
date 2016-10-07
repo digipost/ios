@@ -1,2 +1,2 @@
 /* Localized versions of Info.plist keys */
-
+"NSPhotoLibraryUsageDescription" = "Digipost needs access for you to upload pictures to your archive";
