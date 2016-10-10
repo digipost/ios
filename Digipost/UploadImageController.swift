@@ -120,9 +120,10 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     }
     
     func navigationControllerPreferredInterfaceOrientationForPresentation(navigationController: UINavigationController) -> UIInterfaceOrientation {
-        //        let orientation = UIApplication.sharedApplication().statusBarOrientation
-        return UIInterfaceOrientation.LandscapeLeft
+        let orientation = UIApplication.sharedApplication().statusBarOrientation
+        return orientation
     }
+    
     func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.LandscapeLeft
     }
