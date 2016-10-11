@@ -54,6 +54,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     [super viewDidLoad];
     
+    [self clearCacheAndCookies];
     self.screenName = kOAuthViewControllerScreenName;
     
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
@@ -92,6 +93,13 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                                                                                                         alpha:0.8] }
      
                                                          forState:UIControlStateNormal];
+}
+
+-(void)clearCacheAndCookies{
+    [[NSURLCache sharedURLCache] removeAllCachedResponses];
+    for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+    }
 }
 
 #pragma mark - UIWebViewDelegate
