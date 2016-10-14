@@ -50,9 +50,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
