@@ -173,6 +173,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
             receiptsViewController.mailboxDigipostAddress = self.mailboxDigipostAddress
             receiptsViewController.receiptsUri = self.receiptsUri
             receiptsViewController.receiptCategoryId = category.chain_id
+            receiptsViewController.receiptCategoryName = category.category
         }
     }
 }

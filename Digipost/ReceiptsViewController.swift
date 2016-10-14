@@ -38,6 +38,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     var mailboxDigipostAddress: String = ""
     var receiptsUri: String = ""
     var receiptCategoryId: String = ""
+    var receiptCategoryName: String = ""
     var numberOfReceiptsChangedUponLastUpdate: Bool! = false
     
     var lockForFetchingReceipts: NSLock = NSLock() // mutex for avoiding duplicate calls of receipt-fetching
@@ -346,7 +347,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         if(self.tableView.numberOfRowsInSection(0) > 0 ){
             self.navigationController?.navigationBar.topItem?.rightBarButtonItem = self.editButtonItem()
         }
-        self.navigationController?.navigationBar.topItem!.title = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE", comment: "Receipts")
+        self.navigationController?.navigationBar.topItem!.title = receiptCategoryName;
     }
     
     func updateToolbarButtonItems(){
