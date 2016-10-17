@@ -87,6 +87,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     func pullToRefresh(calledRecursively calledRecursivelyOnce: Bool = false) {
         self.pullToRefreshIsRunning = true
         self.searchBar.text = ""
+        hideKeyboardIfVisible()
         
         if(self.hasReturnedFromAsyncFetch){
             // Waits for lock and executes the reset:
@@ -233,6 +234,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        hideKeyboardIfVisible()
         if(segue.identifier == ReceiptsViewController.pushReceiptIdentifier){
             let receipt: POSReceipt = self.receiptsTableViewDataSource.receiptAtIndexPath(self.tableView.indexPathForSelectedRow!)
             let letterViewController: POSLetterViewController = segue.destinationViewController as! POSLetterViewController
@@ -291,6 +293,10 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         for rowIndex in 0...self.tableView.numberOfRowsInSection(0) {  // as we only operate with one section
             self.tableView.selectRowAtIndexPath(NSIndexPath(forRow: rowIndex, inSection: 0), animated: false, scrollPosition: UITableViewScrollPosition.None)
         }
+    }
+    
+    func hideKeyboardIfVisible(){
+        searchBar.endEditing(true)
     }
     
     func deselectAllRows(){
@@ -400,6 +406,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     
     // ---------- SEARCH ----------
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        hideKeyboardIfVisible()
         if(searchBar.text?.length > 0){
             self.receiptsTableViewDataSource.receipts.removeAll()
             self.tableView.reloadData()
