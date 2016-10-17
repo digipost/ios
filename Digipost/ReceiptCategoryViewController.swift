@@ -167,6 +167,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        refreshControl.endRefreshing()
         if(segue.identifier == ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier){
             let category: ReceiptCategory = self.receiptsTableViewDataSource.categoryAtIndexPath(self.tableView.indexPathForSelectedRow!)
             let receiptsViewController: ReceiptsViewController = segue.destinationViewController as! ReceiptsViewController
