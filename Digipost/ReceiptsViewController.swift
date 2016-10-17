@@ -404,6 +404,16 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         self.updateToolbarButtonItems()
     }
     
+    func removeReceiptAtCurrentIndex(){
+        if let indexPath = self.tableView.indexPathForSelectedRow{
+            let currentReceiptIndex = indexPath.row
+            if(currentReceiptIndex != -1){
+                self.receiptsTableViewDataSource.receipts.removeAtIndex(currentReceiptIndex)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // ---------- SEARCH ----------
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         hideKeyboardIfVisible()

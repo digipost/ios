@@ -1042,6 +1042,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
               // Becuase we might have been pushed from the attachments vc, make sure that we pop
               // all the way back to the documents vc.
+              
+              [self.receiptsViewController removeReceiptAtCurrentIndex];
               [self.navigationController popToViewController:self.receiptsViewController animated:YES];
           }
         }
