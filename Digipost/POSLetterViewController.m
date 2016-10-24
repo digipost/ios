@@ -161,6 +161,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
+    //TODO Open if Invoice only
+    [self showInvoiceSetupAlert];
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -1180,6 +1182,17 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self showBlurredActionSheetWithFolders];
 }
 
+- (void)showInvoiceSetupAlert{
+    [UIAlertView showWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
+            message:NSLocalizedString(@"invoice setup alert message", @"")
+             cancelButtonTitle:NSLocalizedString(@"invoice setup alert cancel button", @"")
+             otherButtonTitles:@[NSLocalizedString(@"invoice setup alert action button", @"")]
+                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
+                      
+                      }
+     ];
+}
+
 - (void)didTapInvoice:(UIBarButtonItem *)barButtonItem
 {
     NSString *title = nil;
@@ -1234,6 +1247,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                       }];
 }
 
+
 - (void)setInfoViewVisible:(BOOL)visible
 {
     if (visible && self.shadowView.alpha == 0.0) {
@@ -1262,7 +1276,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort")
                                                                                         description:[NSString stringWithFormat:@"%@", self.receipt.card]]];
         }
-
+        
         if (self.attachment.invoice) {
 
             NSString *invoiceAmount = [POSInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
@@ -1502,6 +1516,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self loadContent];
     }
 }
+
 
 - (void)didTapInformationBarButtonItem:(id)sender
 {

@@ -730,6 +730,9 @@
 		F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 		F8AE7AD71CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
+		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
+		F8C672411DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
+		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1131,6 +1134,7 @@
 		F8AE1CDF1CD374B40009B2F9 /* Digipost-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AE7AD31CCE1158009D139F /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1338,6 +1342,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8C6723E1DB9F6CC0092182E /* Invoice */,
 				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
 				AF477E001A77B48A00CBD150 /* Onboarding */,
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
@@ -1876,6 +1881,14 @@
 			name = Prod;
 			sourceTree = "<group>";
 		};
+		F8C6723E1DB9F6CC0092182E /* Invoice */ = {
+			isa = PBXGroup;
+			children = (
+				F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */,
+			);
+			name = Invoice;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -2396,6 +2409,7 @@
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				EC2484171B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
+				F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
 				311779661AAEFCA800229D02 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2605,6 +2619,7 @@
 				EC2751FE1B061DD50007125D /* OnboardingLoginViewController.swift in Sources */,
 				EC2751B01B061D5A0007125D /* NSError+ExtraInfo.m in Sources */,
 				EC2751FF1B061DD80007125D /* IncreaseSecurityLevelViewController.swift in Sources */,
+				F8C672411DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
 				EC2751BD1B061D720007125D /* POSFoldersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2814,6 +2829,7 @@
 				F8AE1CA91CD374B40009B2F9 /* POSFolder+Methods.m in Sources */,
 				F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */,
 				F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */,
+				F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
 				F8AE1CAC1CD374B40009B2F9 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
