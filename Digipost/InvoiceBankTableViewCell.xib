@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="InvoiceBankTableViewCell" rowHeight="84" id="V4U-iJ-dks" customClass="InvoiceBankTableViewCell" customModule="Digipost" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="319" height="84"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V4U-iJ-dks" id="crP-tM-1Qi">
+                <frame key="frameInset" width="319" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gu6-0H-NAJ">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="7" id="Gcs-OA-2Az"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoiceBankLogo" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-IJ-KVC">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="105" id="jgw-Zj-FNG"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="oNp-IJ-KVC" firstAttribute="leading" secondItem="crP-tM-1Qi" secondAttribute="leadingMargin" constant="16" id="79V-kD-pk4"/>
+                    <constraint firstItem="oNp-IJ-KVC" firstAttribute="top" secondItem="crP-tM-1Qi" secondAttribute="topMargin" constant="15" id="GoR-tM-hPt"/>
+                    <constraint firstItem="Gu6-0H-NAJ" firstAttribute="top" secondItem="crP-tM-1Qi" secondAttribute="topMargin" constant="27" id="d5n-Ku-EDB"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Gu6-0H-NAJ" secondAttribute="trailing" constant="6" id="tJa-Sg-hM3"/>
+                    <constraint firstItem="oNp-IJ-KVC" firstAttribute="centerY" secondItem="crP-tM-1Qi" secondAttribute="centerY" id="v0j-LM-a54"/>
+                </constraints>
+            </tableViewCellContentView>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="invoiceBankLogo" destination="oNp-IJ-KVC" id="OSi-Gc-ZQh"/>
+            </connections>
+            <point key="canvasLocation" x="396.5" y="296"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="list-icon-arrow-gray" width="8" height="13"/>
+    </resources>
+</document>

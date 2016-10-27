@@ -52,8 +52,9 @@ static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOCo
 
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushLetterIdentifier = @"PushLetter";
-
 NSString *const kaskForhigherAuthenticationLevelSegue = @"askForhigherAuthenticationLevelSegue";
+NSString *const kinvoiceOptionsSegue = @"invoiceOptionsSegue";
+
 // Google Analytics screen name
 NSString *const kLetterViewControllerScreenName = @"Letter";
 
@@ -211,6 +212,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         SHCOAuthViewController *oAuthViewController = (SHCOAuthViewController *)navigationController.topViewController;
         oAuthViewController.delegate = self;
         oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
+    }else if ([segue.identifier isEqualToString:kinvoiceOptionsSegue]) {
+        NSLog(@"invoiceOptionsSegue");
     }
 }
 
@@ -1183,14 +1186,36 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 - (void)showInvoiceSetupAlert{
-    [UIAlertView showWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
-            message:NSLocalizedString(@"invoice setup alert message", @"")
-             cancelButtonTitle:NSLocalizedString(@"invoice setup alert cancel button", @"")
-             otherButtonTitles:@[NSLocalizedString(@"invoice setup alert action button", @"")]
-                      tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex){
-                      
-                      }
-     ];
+
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
+                                 message:NSLocalizedString(@"invoice setup alert message", @"")
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* chooseBank = [UIAlertAction
+                                actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                     [self didTapChooseBankButton];
+                                }];
+    
+    UIAlertAction* later = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"invoice setup alert cancel button", @"")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                            }];
+    
+    UIAlertAction* forget = [UIAlertAction
+                            actionWithTitle:@"ikke vis meg igjen"
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                            }];
+    
+    [alert addAction:chooseBank];
+    [alert addAction:later];
+    [alert addAction:forget];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void)didTapInvoice:(UIBarButtonItem *)barButtonItem
@@ -1633,6 +1658,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     POSDocument *document = [POSDocument existingDocumentWithUpdateUri:updateUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     self.attachment = [document mainDocumentAttachment];
+}
+
+- (void)didTapChooseBankButton
+{
+    [self performSegueWithIdentifier:kinvoiceOptionsSegue sender:self.attachment];
 }
 
 - (void)didTapUnlockButton:(id)sender

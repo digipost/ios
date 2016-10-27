@@ -730,6 +730,18 @@
 		F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 		F8AE7AD71CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
+		F8AFAE8A1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */; };
+		F8AFAE8B1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */; };
+		F8AFAE8C1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */; };
+		F8AFAE921DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */; };
+		F8AFAE931DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */; };
+		F8AFAE941DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */; };
+		F8AFAE961DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */; };
+		F8AFAE971DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */; };
+		F8AFAE981DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */; };
+		F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
+		F8AFAE9B1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
+		F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672411DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
@@ -1133,6 +1145,10 @@
 		F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8AE1CDF1CD374B40009B2F9 /* Digipost-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Digipost-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AE7AD31CCE1158009D139F /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
+		F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankViewController.swift; sourceTree = "<group>"; };
+		F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBank.swift; sourceTree = "<group>"; };
+		F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankTableViewCell.swift; sourceTree = "<group>"; };
+		F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceBankTableViewCell.xib; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
@@ -1884,7 +1900,11 @@
 		F8C6723E1DB9F6CC0092182E /* Invoice */ = {
 			isa = PBXGroup;
 			children = (
+				F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */,
 				F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */,
+				F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */,
+				F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */,
+				F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */,
 			);
 			name = Invoice;
 			sourceTree = "<group>";
@@ -2035,6 +2055,7 @@
 				F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */,
 				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
+				F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				ECFD14A61A2862CA00F99A8B /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
@@ -2062,6 +2083,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB2BFCB1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
+				F8AFAE9B1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				ECB2BF641B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				ECB2BEC91B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
 				EC669D611B1498BF004F97B6 /* ValidTokenExpiresSoon.json in Resources */,
@@ -2116,6 +2138,7 @@
 				F8AE1CD21CD374B40009B2F9 /* CustomInputViewController.xib in Resources */,
 				F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */,
 				F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */,
+				F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				F8AE1CD51CD374B40009B2F9 /* TextModuleTableViewCell.xib in Resources */,
 				F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */,
 				F8AE1CD61CD374B40009B2F9 /* stylesheet.css in Resources */,
@@ -2263,9 +2286,11 @@
 				ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				ECB2BEAE1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
+				F8AFAE921DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				ECB2BF9B1B452F2A008E32E8 /* Recipient.swift in Sources */,
 				ECF06D5619238E68003BD200 /* POSReceiptFolderTableViewCell.m in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
+				F8AFAE961DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
 				ECB2BEBC1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
 				0B5F50661D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift in Sources */,
@@ -2375,6 +2400,7 @@
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
 				ECF06D51192382EF003BD200 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				ECB2BE991B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
+				F8AFAE8A1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				ECB2BFB01B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
@@ -2473,9 +2499,11 @@
 				EC2751B11B061D5A0007125D /* NSString+SHA1String.m in Sources */,
 				EC2752011B061DDD0007125D /* AccountTableViewDataSource.swift in Sources */,
 				EC8B94721B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */,
+				F8AFAE931DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				ECB2BE9F1B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
 				EC2751E41B061DC80007125D /* UIAlertController+APIError.swift in Sources */,
 				EC2751C61B061D760007125D /* POSReceiptFolderTableViewDataSource.m in Sources */,
+				F8AFAE971DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				ECB2BE6E1B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				EC2751B61B061D680007125D /* SHCSplitViewController.m in Sources */,
 				ECB2BFA81B452F2A008E32E8 /* RecipientsViewController.swift in Sources */,
@@ -2585,6 +2613,7 @@
 				EC2751A81B061D5A0007125D /* UIViewController+Additions.m in Sources */,
 				EC2751E11B061DC80007125D /* UIDevice+Extension.swift in Sources */,
 				EC2751A71B061D5A0007125D /* NSPredicate+CommonPredicates.m in Sources */,
+				F8AFAE8B1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				EC2751A31B061D5A0007125D /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECB2BF561B452F0C008E32E8 /* ImageComposerModule.swift in Sources */,
 				ECB2BEB41B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
@@ -2683,9 +2712,11 @@
 				F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				F8AE1C1D1CD374B40009B2F9 /* HTMLTag.swift in Sources */,
 				F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */,
+				F8AFAE941DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				F8AE1C1F1CD374B40009B2F9 /* Logger.swift in Sources */,
 				F8AE1C201CD374B40009B2F9 /* WhatsNewGuideItem.swift in Sources */,
 				F8AE1C211CD374B40009B2F9 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
+				F8AFAE981DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				F8AE1C221CD374B40009B2F9 /* Recipient.swift in Sources */,
 				F8AE1C231CD374B40009B2F9 /* POSReceiptFolderTableViewCell.m in Sources */,
 				F8AE1C241CD374B40009B2F9 /* NSManagedObject+Attributes.swift in Sources */,
@@ -2795,6 +2826,7 @@
 				F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */,
 				F8AE1C891CD374B40009B2F9 /* POSReceiptFolderTableViewDataSource.m in Sources */,
 				F8AE1C8A1CD374B40009B2F9 /* ComposerViewController.swift in Sources */,
+				F8AFAE8C1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */,
 				F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				F8AE1C8D1CD374B40009B2F9 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,

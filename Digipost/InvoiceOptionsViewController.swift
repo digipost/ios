@@ -16,10 +16,54 @@
 
 import Foundation
 
-class InvoiceOptionsViewController: UIViewController, UITableViewDelegate{
+class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    @IBOutlet weak var bankTableView: UITableView!
+    
+    let kInvoiceBankSegue = "invoiceBankSegue"
+    var banks: [InvoiceBank] = [];
+    
+    @IBAction func readMoreButton(sender: AnyObject) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("yolo")
+        bankTableView.delegate = self
+        bankTableView.dataSource = self
+        bankTableView.registerNib(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
+        
+        addInvoiceBanks();
+    }
+    
+    func addInvoiceBanks(){
+        banks.append(InvoiceBank(name:"DNB", url:"https://m.dnb.no/appo/logon/startmobile", logo:"invoice-bank-dnb"))
+        banks.append(InvoiceBank(name:"KLP", url:"https://dnb.no", logo:"invoice-bank-klp"))
+        banks.append(InvoiceBank(name:"Skandiabanken", url:"https://dnb.no", logo:"invoice-bank-skandia"))
+        bankTableView.reloadData()
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return banks.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Invoice.InvoiceBankTableViewCellNibName, forIndexPath: indexPath) as! InvoiceBankTableViewCell
+        
+        let invoiceBank = banks[indexPath.row]
+        cell.invoiceBankLogo.image = UIImage(named: invoiceBank.logo)
+        return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        if segue.identifier == kInvoiceBankSegue{
+            if let viewController = segue.destinationViewController as? InvoiceBankViewController {
+                viewController.invoiceBank = banks[(sender as! NSIndexPath).row]
+            }
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier(kInvoiceBankSegue, sender: indexPath)
     }
 }
