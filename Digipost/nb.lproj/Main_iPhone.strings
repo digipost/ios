@@ -106,3 +106,12 @@
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "xQW-NC-XrA"; */
 "xQW-NC-XrA.text" = "Label";
+
+"Ge7-th-eIf.text" = "Få fakturaen rett inn i nettbanken";
+
+/*
+"Ge7-th-eIf.text" = "Få fakturaen rett inn i nettbanken";
+"invoice options which bank"="Hvilken bank vil du bruke?"
+"invoice options more banks are comming"="Velg blandt flere banker snart!"
+"invoice options read more"="Les mer om Dgiipost Faktura"
+*/

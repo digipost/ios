@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -12,7 +12,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -536,7 +536,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptTableViewCellIdentifier" rowHeight="92" id="bSI-FS-2e3" customClass="ReceiptTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="92"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSI-FS-2e3" id="Rlf-b1-C1a">
                                             <frame key="frameInset" width="375" height="91"/>
@@ -628,7 +628,7 @@
             </objects>
             <point key="canvasLocation" x="1140" y="1621"/>
         </scene>
-        <!--Invoice Options View Controller-->
+        <!--Faktura-->
         <scene sceneID="iaG-Zp-DBK">
             <objects>
                 <viewController id="nWN-tl-VuW" customClass="InvoiceOptionsViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -637,15 +637,179 @@
                         <viewControllerLayoutGuide type="bottom" id="Bhb-2A-SyY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j7B-nU-ytv">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-R9-hqb">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_title" text="INVOICE_OPTIONS_TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-th-eIf" customClass="IBUILabel">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerY" secondItem="SlR-R9-hqb" secondAttribute="centerY" constant="5" id="BJK-gh-Uyp"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerX" secondItem="SlR-R9-hqb" secondAttribute="centerX" id="R0o-EF-o9Y"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="top" secondItem="SlR-R9-hqb" secondAttribute="top" constant="41" id="ZAG-W0-a2W"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="leading" secondItem="SlR-R9-hqb" secondAttribute="leading" constant="61" id="xFM-FE-BTg"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bankTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-8F-sFk">
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm" userLabel="invoice_options_more_banks_comming">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="23" id="aN0-uF-cmT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ira-EA-j23">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="z36-1F-wOv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                <state key="normal" title="INVOICE_OPTIONS_READ_MORE_LINK"/>
+                                <connections>
+                                    <action selector="readMoreButton:" destination="nWN-tl-VuW" eventType="touchUpInside" id="q12-ym-8Pr"/>
+                                    <action selector="readMoreButtonWithSender:" destination="nWN-tl-VuW" eventType="touchUpInside" id="1ut-nS-VQZ"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_which_bank" text="INVOICE_OPTIONS_QUESTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTa-RK-fJ3">
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="tTa-RK-fJ3" firstAttribute="leading" secondItem="j7B-nU-ytv" secondAttribute="leadingMargin" id="01h-6u-EU7"/>
+                            <constraint firstItem="Ira-EA-j23" firstAttribute="top" secondItem="e43-gW-QEm" secondAttribute="bottom" constant="8" symbolic="YES" id="4Zq-K5-xmW"/>
+                            <constraint firstItem="Bhb-2A-SyY" firstAttribute="top" secondItem="Ira-EA-j23" secondAttribute="bottom" constant="26" id="5qq-uj-XOI"/>
+                            <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="25" id="8Eh-wu-ZPl"/>
+                            <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="tTa-RK-fJ3" secondAttribute="bottom" constant="8" id="9Xr-E0-Xms"/>
+                            <constraint firstAttribute="bottom" secondItem="SlR-R9-hqb" secondAttribute="bottom" constant="473" id="Jl1-jT-ftK"/>
+                            <constraint firstAttribute="trailing" secondItem="SlR-R9-hqb" secondAttribute="trailing" id="Zgf-X9-WIl"/>
+                            <constraint firstItem="SlR-R9-hqb" firstAttribute="leading" secondItem="j7B-nU-ytv" secondAttribute="leading" id="hul-CQ-uDC"/>
+                            <constraint firstItem="CsO-8F-sFk" firstAttribute="leading" secondItem="SlR-R9-hqb" secondAttribute="leading" id="kgh-fy-m6k"/>
+                            <constraint firstItem="tTa-RK-fJ3" firstAttribute="top" secondItem="SlR-R9-hqb" secondAttribute="bottom" constant="27" id="pBj-IT-QTT"/>
+                            <constraint firstItem="CsO-8F-sFk" firstAttribute="centerX" secondItem="e43-gW-QEm" secondAttribute="centerX" id="qA0-t2-7Pc"/>
+                            <constraint firstItem="SlR-R9-hqb" firstAttribute="top" secondItem="bJd-Dr-iLo" secondAttribute="bottom" id="vWP-ud-0tb"/>
+                            <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="tTa-RK-fJ3" secondAttribute="leading" id="wLQ-71-PQE"/>
+                            <constraint firstItem="e43-gW-QEm" firstAttribute="trailing" secondItem="Ira-EA-j23" secondAttribute="trailing" id="wew-hd-xen"/>
+                            <constraint firstItem="CsO-8F-sFk" firstAttribute="trailing" secondItem="SlR-R9-hqb" secondAttribute="trailing" id="y1b-mg-aWs"/>
+                            <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="Ira-EA-j23" secondAttribute="leading" id="yyf-r9-mEr"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="reP-Vg-MBG"/>
+                    <navigationItem key="navigationItem" title="Faktura" id="reP-Vg-MBG"/>
+                    <connections>
+                        <outlet property="bankTableView" destination="CsO-8F-sFk" id="n72-Ry-a2H"/>
+                        <segue destination="84D-5z-zyP" kind="push" identifier="invoiceBankSegue" id="Wqj-xD-Y8c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="1916"/>
+            <point key="canvasLocation" x="1745.5" y="2085.5"/>
+        </scene>
+        <!--Invoice Bank View Controller-->
+        <scene sceneID="Uto-tM-aYH">
+            <objects>
+                <viewController id="84D-5z-zyP" customClass="InvoiceBankViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D40-Ia-coa"/>
+                        <viewControllerLayoutGuide type="bottom" id="tHW-2F-iDt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mmg-zg-J2m">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="x4b-Zi-szu"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="top" constant="38" id="2TG-P9-6HS"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="cdt-D6-q1g" secondAttribute="centerX" id="Mb1-U5-77K"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="cdt-D6-q1g" secondAttribute="centerY" constant="0.5" id="qWa-Wx-7ri"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faktura i Bank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GzQ-cR-daI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fakturaene du mottar i Digipost, kan automatisk overføres til nettbanken din. Enkelt og greit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="XDd-oE-YF3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For å komme i gang, logg deg inn i nettbaknen for å inngå avtale." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exx-1G-Auz">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="wai-rw-goo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
+                                <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="8AP-NB-Yh2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Logg inn i Bank sin nettbank">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
+                                    <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="3yf-D1-Zec"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="XeW-NW-woZ" firstAttribute="top" secondItem="exx-1G-Auz" secondAttribute="bottom" constant="26" id="1cd-1r-mC8"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="exx-1G-Auz" secondAttribute="trailing" id="2eJ-NF-xP8"/>
+                            <constraint firstItem="cdt-D6-q1g" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="2qJ-32-2wk"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="3Tw-9r-wm2"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="leading" secondItem="exx-1G-Auz" secondAttribute="leading" id="47D-Rc-DZd"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="leading" secondItem="XeW-NW-woZ" secondAttribute="leading" id="4qh-63-MT4"/>
+                            <constraint firstAttribute="trailing" secondItem="cdt-D6-q1g" secondAttribute="trailing" id="AjL-FI-zwA"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="4" id="Lsb-U3-U8o"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="37" id="Xvl-Nl-bfG"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="28" id="aF6-6i-gRF"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="13" id="fKH-Fu-8M5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="rXg-qN-PD5" secondAttribute="trailing" constant="5" id="i0c-0v-UgY"/>
+                            <constraint firstItem="cdt-D6-q1g" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" id="nYq-dd-cy5"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="trailing" secondItem="XeW-NW-woZ" secondAttribute="trailing" id="oSS-Qq-pp8"/>
+                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="156" id="poe-lb-dqQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7zI-ht-BHO"/>
+                    <connections>
+                        <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
+                        <outlet property="openBankUrlButton" destination="XeW-NW-woZ" id="zZ1-SJ-eXF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2280.5" y="2085.5"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="zOL-Ok-rOn">
@@ -663,7 +827,7 @@
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="uploadMenuCell" id="RhB-2f-lAB" customClass="UploadMenuTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.5" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="56" width="355" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RhB-2f-lAB" id="MJx-QG-yFc">
                                             <frame key="frameInset" width="355" height="44"/>
@@ -733,7 +897,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -743,7 +907,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wm3-FM-FqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2281" y="1134"/>
+            <point key="canvasLocation" x="2716" y="1281"/>
         </scene>
         <!--øk sikkerhet-->
         <scene sceneID="HHc-Kw-qYK">
@@ -779,7 +943,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHF-QQ-cDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2782" y="1134"/>
+            <point key="canvasLocation" x="3226" y="1281"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="Zjh-CO-XSp">
@@ -832,7 +996,7 @@
                     <navigationItem key="navigationItem" id="FW3-kC-k62">
                         <barButtonItem key="rightBarButtonItem" id="8A7-WS-7db">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="umw-mv-Rjf">
-                                <rect key="frame" x="233" y="5" width="71" height="33"/>
+                                <rect key="frame" x="288" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -850,7 +1014,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1240,7 +1404,7 @@
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                         <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
                         <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
-                        <segue destination="nWN-tl-VuW" kind="modal" id="pXM-Ra-XU4"/>
+                        <segue destination="nWN-tl-VuW" kind="push" identifier="invoiceOptionsSegue" id="osB-jZ-rzm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAR-h4-ijQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1251,7 +1415,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1746" y="1134"/>
+            <point key="canvasLocation" x="1746" y="1281"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="i79-ks-pOi">
@@ -1383,7 +1547,7 @@
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mailboxCell" textLabel="Rj0-NJ-If9" style="IBUITableViewCellStyleDefault" id="YCm-Ek-Iju">
-                                        <rect key="frame" x="0.0" y="22" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YCm-Ek-Iju" id="5B8-ov-vt4">
                                             <frame key="frameInset" width="342" height="43"/>
@@ -1456,7 +1620,7 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCategoryTableViewCellIdentifier" rowHeight="92" id="Jkq-Wq-S7m" customClass="ReceiptCategoryTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="92"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkq-Wq-S7m" id="8v5-cM-tTQ">
                                             <frame key="frameInset" width="375" height="91"/>
@@ -1570,6 +1734,7 @@
         <image name="Open_in" width="22" height="22"/>
         <image name="PostenLogo_hvitskygge_iPhone" width="168" height="73"/>
         <image name="Searchbackground" width="6" height="31"/>
+        <image name="invoice-bank-dnb" width="40" height="34"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
         <image name="list-icon-attachment" width="16" height="16"/>
@@ -1585,10 +1750,10 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="6ll-nd-HYD"/>
-        <segue reference="eDA-DZ-Lcc"/>
-        <segue reference="2IH-85-kgn"/>
-        <segue reference="WBk-6x-J5R"/>
         <segue reference="xIu-aX-Ge9"/>
+        <segue reference="eDA-DZ-Lcc"/>
+        <segue reference="6ll-nd-HYD"/>
+        <segue reference="2IH-85-kgn"/>
+        <segue reference="3jD-Vn-Y8D"/>
     </inferredMetricsTieBreakers>
 </document>
