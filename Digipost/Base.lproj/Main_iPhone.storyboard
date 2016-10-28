@@ -729,7 +729,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="GzQ-cR-daI"/>
+                                    <constraint firstAttribute="height" constant="21" id="4gE-UH-FLj"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -737,7 +737,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="XDd-oE-YF3"/>
+                                    <constraint firstAttribute="height" constant="54" id="Q9S-06-EYa"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
@@ -745,16 +745,31 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBSUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exx-1G-Auz">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="wai-rw-goo"/>
+                                    <constraint firstAttribute="height" constant="48" id="1ZH-Rc-ob0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="n2M-vz-QwL"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="cdt-D6-q1g" secondAttribute="centerX" id="9SN-lI-q7c"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="cdt-D6-q1g" secondAttribute="centerY" id="fsX-Fo-DPR"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="top" constant="38" id="qyA-P8-29j"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
                                 <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="8AP-NB-Yh2"/>
+                                    <constraint firstAttribute="height" constant="38" id="zKD-m5-2R9"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -766,45 +781,30 @@
                                     <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="3yf-D1-Zec"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
-                                <frame key="frameInset" width="375" height="130"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="x4b-Zi-szu"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="top" constant="38" id="2TG-P9-6HS"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="cdt-D6-q1g" secondAttribute="centerX" id="Mb1-U5-77K"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="cdt-D6-q1g" secondAttribute="centerY" constant="0.5" id="qWa-Wx-7ri"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="XeW-NW-woZ" firstAttribute="top" secondItem="exx-1G-Auz" secondAttribute="bottom" constant="26" id="1cd-1r-mC8"/>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="exx-1G-Auz" secondAttribute="trailing" id="2eJ-NF-xP8"/>
-                            <constraint firstItem="cdt-D6-q1g" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="2qJ-32-2wk"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="3Tw-9r-wm2"/>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="leading" secondItem="exx-1G-Auz" secondAttribute="leading" id="47D-Rc-DZd"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="leading" secondItem="XeW-NW-woZ" secondAttribute="leading" id="4qh-63-MT4"/>
-                            <constraint firstAttribute="trailing" secondItem="cdt-D6-q1g" secondAttribute="trailing" id="AjL-FI-zwA"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="4" id="Lsb-U3-U8o"/>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="37" id="Xvl-Nl-bfG"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="27" id="aF6-6i-gRF"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="13" id="fKH-Fu-8M5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="rXg-qN-PD5" secondAttribute="trailing" constant="5" id="i0c-0v-UgY"/>
-                            <constraint firstItem="cdt-D6-q1g" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" id="nYq-dd-cy5"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="trailing" secondItem="XeW-NW-woZ" secondAttribute="trailing" id="oSS-Qq-pp8"/>
-                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="156" id="poe-lb-dqQ"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="37" id="0GS-yh-OPi"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="26" id="4a6-O5-yYK"/>
+                            <constraint firstAttribute="trailing" secondItem="cdt-D6-q1g" secondAttribute="trailing" id="AAA-a2-Ccy"/>
+                            <constraint firstItem="cdt-D6-q1g" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="CsC-g6-YDE"/>
+                            <constraint firstItem="XeW-NW-woZ" firstAttribute="top" secondItem="exx-1G-Auz" secondAttribute="bottom" constant="25" id="DEU-lG-LL6"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="19" id="G4y-P6-H5Y"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="exx-1G-Auz" secondAttribute="trailing" id="Xou-he-NbP"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="ZDJ-BC-UR1"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="trailing" secondItem="XeW-NW-woZ" secondAttribute="trailing" id="eJ8-je-le0"/>
+                            <constraint firstItem="exx-1G-Auz" firstAttribute="leading" secondItem="XeW-NW-woZ" secondAttribute="leading" id="gKA-Hc-r6k"/>
+                            <constraint firstItem="cdt-D6-q1g" firstAttribute="centerX" secondItem="rXg-qN-PD5" secondAttribute="centerX" id="hQO-S9-xmo"/>
+                            <constraint firstItem="cdt-D6-q1g" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" id="hpk-Eb-ZB8"/>
+                            <constraint firstItem="rXg-qN-PD5" firstAttribute="leading" secondItem="exx-1G-Auz" secondAttribute="leading" id="oGN-AD-HiG"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="4" id="sRd-lY-6wz"/>
+                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="211" id="zBi-HN-f9z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="7zI-ht-BHO"/>
                     <connections>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
+                        <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
                         <outlet property="openBankUrlButton" destination="XeW-NW-woZ" id="zZ1-SJ-eXF"/>
                     </connections>
                 </viewController>

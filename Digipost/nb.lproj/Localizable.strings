@@ -601,3 +601,7 @@
 "invoice setup alert message" = "Få denne fakturaen rett inn i nettbanken";
 "invoice setup alert action button" = "Velg bank";
 "invoice setup alert cancel button" = "Senere";
+
+/* invoice bank */
+"invoice bank title prefix" = "Faktura i ";
+"invoice bank button link prefix" = "Logg inn i ";
