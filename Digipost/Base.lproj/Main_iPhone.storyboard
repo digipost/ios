@@ -642,7 +642,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-R9-hqb">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_title" text="INVOICE_OPTIONS_TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-th-eIf" customClass="IBUILabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-th-eIf">
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -660,7 +660,7 @@
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm" userLabel="invoice_options_more_banks_comming">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="aN0-uF-cmT"/>
                                 </constraints>
@@ -679,7 +679,7 @@
                                     <action selector="readMoreButtonWithSender:" destination="nWN-tl-VuW" eventType="touchUpInside" id="1ut-nS-VQZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_which_bank" text="INVOICE_OPTIONS_QUESTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTa-RK-fJ3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_which_bank" text="INVOICE_OPTIONS_CHOOSE_BANK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTa-RK-fJ3">
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -727,7 +727,47 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="GzQ-cR-daI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="XDd-oE-YF3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBSUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exx-1G-Auz">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="wai-rw-goo"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
+                                <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="8AP-NB-Yh2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="INVOICE_BANK_READ_MORE_LINK">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
+                                    <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="3yf-D1-Zec"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
+                                <frame key="frameInset" width="375" height="130"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
                                         <constraints>
@@ -742,45 +782,6 @@
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="cdt-D6-q1g" secondAttribute="centerY" constant="0.5" id="qWa-Wx-7ri"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faktura i Bank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="GzQ-cR-daI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fakturaene du mottar i Digipost, kan automatisk overføres til nettbanken din. Enkelt og greit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="XDd-oE-YF3"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="For å komme i gang, logg deg inn i nettbaknen for å inngå avtale." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exx-1G-Auz">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="wai-rw-goo"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
-                                <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="8AP-NB-Yh2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Logg inn i Bank sin nettbank">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
-                                    <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="3yf-D1-Zec"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -793,7 +794,7 @@
                             <constraint firstAttribute="trailing" secondItem="cdt-D6-q1g" secondAttribute="trailing" id="AjL-FI-zwA"/>
                             <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="4" id="Lsb-U3-U8o"/>
                             <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="37" id="Xvl-Nl-bfG"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="28" id="aF6-6i-gRF"/>
+                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="27" id="aF6-6i-gRF"/>
                             <constraint firstItem="exx-1G-Auz" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="13" id="fKH-Fu-8M5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rXg-qN-PD5" secondAttribute="trailing" constant="5" id="i0c-0v-UgY"/>
                             <constraint firstItem="cdt-D6-q1g" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" id="nYq-dd-cy5"/>

@@ -133,3 +133,31 @@
 
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "xdL-zR-hvc"; */
 "xdL-zR-hvc.text" = "Label";
+
+/* INVOICE OPTIONS VIEW */
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "Ge7-th-elf"; */
+"Ge7-th-eIf.text" = "Få fakturaen rett inn i nettbanken";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "tTa-RK-fJ3"; */
+"tTa-RK-fJ3.text" = "Hvilken bank vil du bruke?";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "e43-gW-QEm"; */
+"e43-gW-QEm.text" = "Velg blandt flere banker snart!";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "Ira-EA-j23"; */
+"Ira-EA-j23.normalTitle" = "Les mer om Digipost Faktura";
+
+/* INVOICE BANK VIEW */
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "FGz-0P-lp2"; */
+"FGz-0P-lp2.text" = "Faktura i Bank";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "rXg-qN-PD5"; */
+"rXg-qN-PD5.text" = "Fakturaene du mottar i Digipost, kan automatisk overføres til nettbanken din. Enkelt og greit.";
+
+/* Class = "IBUILabel"; text = "Label"; ObjectID = "exx-1G-Auz"; */
+"exx-1G-Auz.text" = "For å komme i gang, logg deg inn i nettbanken for å inngå avtale.";
+
+/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "XeW-NW-woZ"; */
+"XeW-NW-woZ.normalTitle" = "Logg inn i nettbanken";
