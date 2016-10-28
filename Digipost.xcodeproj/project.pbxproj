@@ -483,7 +483,6 @@
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8053D6C1C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
-		F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */; };
 		F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -491,7 +490,6 @@
 		F875D56D1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F885F8A21CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
-		F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
 		F8A3D2771D2A9533003F0C1D /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
 		F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
@@ -2057,7 +2055,6 @@
 				EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
-				F80B63541CD37C3800AE9DE5 /* Digipost-Test.plist in Resources */,
 				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
@@ -2107,7 +2104,6 @@
 				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
 				EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */,
 				EC2752321B09D2920007125D /* oAuthTokenNoAccessToken.json in Resources */,
-				F88B7FEF1CD8E137009CC671 /* GoogleService-Info.plist in Resources */,
 				EC2752341B09D2920007125D /* ValidOAuthToken.json in Resources */,
 				EC42F2431B81C760005785DE /* Editor.html in Resources */,
 				ECB2BE751B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
@@ -3077,6 +3073,7 @@
 				PROVISIONING_PROFILE = "0cc4c6de-1788-42cb-b552-f1dc20e98743";
 				PROVISIONING_PROFILE_SPECIFIER = "Digipost iOS Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
 				WRAPPER_EXTENSION = app;
@@ -3122,6 +3119,7 @@
 				PROVISIONING_PROFILE = "8d2d7cbc-ed76-45df-9b3d-edd2cee7467d";
 				PROVISIONING_PROFILE_SPECIFIER = "Digipost AppStore";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_VERSION = 2.3;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3135,6 +3133,7 @@
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3173,6 +3172,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3213,7 +3213,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
@@ -3258,7 +3258,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
