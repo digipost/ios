@@ -22,8 +22,9 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var openBankUrlButton: UIButton!
     @IBOutlet weak var invoiceBankLogo: UIImageView!
-    @IBAction func openBankUrl(sender: AnyObject) {
     
+    @IBAction func openBankUrl(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
     }
     override func viewDidLoad() {
         invoiceBankLogo.image = UIImage(named:invoiceBank.logo)

@@ -24,6 +24,8 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
     var banks: [InvoiceBank] = [];
     
     @IBAction func readMoreButton(sender: AnyObject) {
+        let readMoreUrl = NSURL(string: "https://www.digipost.no")!
+        UIApplication.sharedApplication().openURL(readMoreUrl)
     }
     
     override func viewDidLoad() {
