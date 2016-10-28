@@ -17,7 +17,7 @@
 #import <AFNetworking/AFHTTPSessionManager.h>
 #import "POSOAuthManager.h"
 #import "NSString+RandomNumber.h"
-#import "LUKeychainAccess.h"
+#import <LUKeychainAccess/LUKeychainAccess.h>
 #import "POSFileManager.h"
 #import "Digipost-Swift.h"
 #import "oauth.h"
