@@ -20,6 +20,8 @@ class InvoiceBankViewController: UIViewController{
     
     var invoiceBank : InvoiceBank = InvoiceBank()
     
+    @IBOutlet weak var invoiceBankHeader: UIView!
+    @IBOutlet weak var invoiceBankTitle: UILabel!
     @IBOutlet weak var openBankUrlButton: UIButton!
     @IBOutlet weak var invoiceBankLogo: UIImageView!
     
@@ -27,7 +29,17 @@ class InvoiceBankViewController: UIViewController{
         UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
     }
     override func viewDidLoad() {
-        invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
+        self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
+        
+        let bankUrlButtonTitle = NSLocalizedString("invoice bank button link prefix", comment: "Invoice bank button link") 
+            + invoiceBank.name
+            + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
+        self.openBankUrlButton.setTitle(bankUrlButtonTitle, forState: UIControlState.Normal)
+        
+        let invoiceBankTitleString = NSLocalizedString("invoice bank title prefix", comment:"invoice bank title") 
+            + invoiceBank.name
+        self.invoiceBankTitle.text = invoiceBankTitleString
+        
     }
     
     override func viewWillAppear(animated: Bool) {

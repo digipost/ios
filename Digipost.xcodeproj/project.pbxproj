@@ -742,6 +742,9 @@
 		F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
 		F8AFAE9B1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
 		F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
+		F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
+		F8C292011DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
+		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672411DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
@@ -1150,6 +1153,7 @@
 		F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankTableViewCell.swift; sourceTree = "<group>"; };
 		F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceBankTableViewCell.xib; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
+		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1905,6 +1909,7 @@
 				F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */,
 				F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */,
 				F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */,
+				F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */,
 			);
 			name = Invoice;
 			sourceTree = "<group>";
@@ -2353,6 +2358,7 @@
 				AF23423B1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
+				F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				EC8B94641B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
@@ -2566,6 +2572,7 @@
 				ECD688911B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				EC2751CD1B061D7E0007125D /* POSLetterPopoverView.m in Sources */,
 				EC2752021B061DDD0007125D /* AccountTableViewCell.swift in Sources */,
+				F8C292011DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				EC27519D1B061D550007125D /* POSReceipt.m in Sources */,
 				EC2751EA1B061DC80007125D /* UIFont+DigipostFonts.swift in Sources */,
 				ECB2BF091B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
@@ -2779,6 +2786,7 @@
 				F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */,
 				F8AE1C5A1CD374B40009B2F9 /* POSAccountViewTableViewDataSource.m in Sources */,
 				F8AE1C5B1CD374B40009B2F9 /* UIWebView+Accessability.swift in Sources */,
+				F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				F8AE1C5C1CD374B40009B2F9 /* OAuthToken.swift in Sources */,
 				F8AE1C5D1CD374B40009B2F9 /* AccountTableViewCell.swift in Sources */,
 				F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */,
