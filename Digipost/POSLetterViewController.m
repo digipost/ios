@@ -46,7 +46,6 @@
 #import "SHCOAuthViewController.h"
 #import "POSLetterPopoverTableViewDataSourceAndDelegate.h"
 #import "POSLetterPopoverTableViewMobelObject.h"
-#import "Digipost-Swift.h"
 #import "UIBarButtonItem+DigipostBarButtonItems.h"
 static void *kSHCLetterViewControllerKVOContext = &kSHCLetterViewControllerKVOContext;
 
@@ -162,8 +161,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
+    
     //TODO Open if Invoice only
-    [self showInvoiceSetupAlert];
+    if([InvoiceAlertUserDefaults shouldShowInvoiceNotification]){ 
+        [self showInvoiceSetupAlert];
+    }
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -1209,6 +1211,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                             actionWithTitle:@"ikke vis meg igjen"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
+                                [InvoiceAlertUserDefaults dontShowInvoiceNotificationsMore];
                             }];
     
     [alert addAction:chooseBank];

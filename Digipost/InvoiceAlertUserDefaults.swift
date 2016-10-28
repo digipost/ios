@@ -16,22 +16,22 @@
 
 import Foundation
 
-class InvoiceAlertUserDefaults{
+@objc class InvoiceAlertUserDefaults: NSObject{
     
-    static let showInvoiceAlert = "showInvoiceAlert";
+    static let hideInvoiceAlert = "hideInvoiceAlert";
     
     static func resetInvoiceAlertModalChoice(){
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(false, forKey: showInvoiceAlert)
+        defaults.setObject(false, forKey: hideInvoiceAlert)
     }
     
     static func dontShowInvoiceNotificationsMore(){
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(false, forKey: showInvoiceAlert)
+        defaults.setObject(false, forKey: hideInvoiceAlert)
     }
     static func shouldShowInvoiceNotification() -> Bool{
         NSUserDefaults.standardUserDefaults()
         let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.boolForKey(showInvoiceAlert)
+        return !defaults.boolForKey(hideInvoiceAlert)
     }
 }
