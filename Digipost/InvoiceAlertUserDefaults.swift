@@ -25,9 +25,9 @@ import Foundation
         defaults.setObject(false, forKey: hideInvoiceAlert)
     }
     
-    static func dontShowInvoiceNotificationsMore(){
+    static func dontShowInvoiceNotifications(){
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(false, forKey: hideInvoiceAlert)
+        defaults.setObject(true, forKey: hideInvoiceAlert)
     }
     static func shouldShowInvoiceNotification() -> Bool{
         NSUserDefaults.standardUserDefaults()

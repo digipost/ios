@@ -1211,7 +1211,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                             actionWithTitle:@"ikke vis meg igjen"
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
-                                [InvoiceAlertUserDefaults dontShowInvoiceNotificationsMore];
+                                [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
                             }];
     
     [alert addAction:chooseBank];
