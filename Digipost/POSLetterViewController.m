@@ -1202,13 +1202,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                 }];
     
     UIAlertAction* later = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"invoice setup alert cancel button", @"")
+                            actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
                             }];
     
     UIAlertAction* forget = [UIAlertAction
-                            actionWithTitle:@"ikke vis meg igjen"
+                            actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
                                 [InvoiceAlertUserDefaults dontShowInvoiceNotifications];

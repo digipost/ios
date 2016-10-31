@@ -596,11 +596,12 @@
 /* the end of recipients string when it overflows its size */
 "recipients add more button overflow text" = " og %d fler";
 
-/* invoice setup */
+/* invoice setup alert title */
 "invoice setup alert title" = "Enklere fakturabetaling";
 "invoice setup alert message" = "Få denne fakturaen rett inn i nettbanken";
 "invoice setup alert action button" = "Velg bank";
-"invoice setup alert cancel button" = "Senere";
+"invoice setup alert later button" = "Senere";
+"invoice setup alert forget button" = "ikke vis meg igjen"
 
 /* invoice bank */
 "invoice bank title prefix" = "Faktura i ";
