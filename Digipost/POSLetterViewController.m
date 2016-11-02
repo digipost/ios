@@ -215,7 +215,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         oAuthViewController.delegate = self;
         oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }else if ([segue.identifier isEqualToString:kinvoiceOptionsSegue]) {
-        NSLog(@"invoiceOptionsSegue");
+      
     }
 }
 
@@ -1665,6 +1665,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)didTapChooseBankButton
 {
+    [self.navigationController setToolbarHidden:YES animated:NO];
     [self performSegueWithIdentifier:kinvoiceOptionsSegue sender:self.attachment];
 }
 
