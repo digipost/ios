@@ -13,7 +13,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" definesPresentationContext="YES" id="yzu-Np-c5M" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Scb-lQ-TPi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Scb-lQ-TPi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -121,10 +121,10 @@
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="cp7-kF-f0e" customClass="POSLetterPopoverTableViewCell">
-                                                        <rect key="frame" x="0.0" y="55.5" width="1000" height="44"/>
+                                                        <rect key="frame" x="0.0" y="55.5" width="310" height="44"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cp7-kF-f0e" id="Xw4-zv-caO">
-                                                            <frame key="frameInset" width="1000" height="43.5"/>
+                                                            <frame key="frameInset" width="310" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <userGuides>
                                                                 <userLayoutGuide location="21" affinity="minY"/>
@@ -774,14 +774,14 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="mailboxCell" textLabel="Jbv-gj-6sh" style="IBUITableViewCellStyleDefault" id="HZk-xn-NaO">
-                                        <rect key="frame" x="0.0" y="22" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HZk-xn-NaO" id="VgP-E2-n79">
-                                            <frame key="frameInset" width="818" height="43.5"/>
+                                            <frame key="frameInset" width="287" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Jbv-gj-6sh">
-                                                    <frame key="frameInset" minX="164" width="654" height="43.5"/>
+                                                    <frame key="frameInset" minX="15" width="270" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1010,7 +1010,7 @@
                     <value key="contentSizeForViewInPopover" type="size" width="308" height="960"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <splitViewMasterSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="nlC-Jb-OB7">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="nlC-Jb-OB7">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1038,7 +1038,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="OAm-Ub-6TP">
                                 <color key="backgroundColor" red="0.23591706156730652" green="0.24234354496002197" blue="0.25665932893753052" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="uploadMenuCell" id="20O-kW-YUg" customClass="UploadMenuTableViewCell" customModule="Digipost" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="uploadMenuCell" id="20O-kW-YUg" customClass="UploadMenuTableViewCell" customModule="Digipost" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="336" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20O-kW-YUg" id="rH6-Hr-asA">
@@ -1123,7 +1123,7 @@
                                     <constraint firstAttribute="width" constant="309" id="M3H-DW-Oxw"/>
                                 </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="Ext-77-Xiu">
-                                    <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="309" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ny mappe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ljq-46-0Q1">
@@ -1141,10 +1141,10 @@
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" rowHeight="51" id="muR-oV-nt5" customClass="POSFolderTableViewCell">
-                                        <rect key="frame" x="0.0" y="66" width="1000" height="51"/>
+                                        <rect key="frame" x="0.0" y="66" width="309" height="51"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="muR-oV-nt5" id="m6B-c0-xye">
-                                            <frame key="frameInset" width="1000" height="51"/>
+                                            <frame key="frameInset" width="309" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbG-lS-hnd" userLabel="Separator View">
@@ -1217,10 +1217,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Evn-iS-97I">
-                                        <rect key="frame" x="0.0" y="117" width="1000" height="44"/>
+                                        <rect key="frame" x="0.0" y="117" width="309" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Evn-iS-97I" id="emd-95-kTR">
-                                            <frame key="frameInset" width="1000" height="44"/>
+                                            <frame key="frameInset" width="309" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1267,7 +1267,7 @@
             <objects>
                 <navigationController id="OdY-44-cdI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Upo-UA-iRO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s3L-N0-7eL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="s3L-N0-7eL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1332,8 +1332,8 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D6j-Xv-usF">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCategoryTableViewCellIdentifier" rowHeight="92" id="dzg-qd-9bP" customClass="ReceiptCategoryTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="92"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptCategoryTableViewCellIdentifier" rowHeight="92" id="dzg-qd-9bP" customClass="ReceiptCategoryTableViewCell" customModule="Digipost" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dzg-qd-9bP" id="ZHE-G8-zpU">
                                             <frame key="frameInset" width="320" height="91.5"/>
@@ -1454,10 +1454,10 @@
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="10" reuseIdentifier="ReceiptTableViewCellIdentifier" rowHeight="92" id="KOD-At-ED9" customClass="ReceiptTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="92"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KOD-At-ED9" id="V57-HZ-faG">
-                                            <frame key="frameInset" width="1000" height="91.5"/>
+                                            <frame key="frameInset" width="320" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN1-j9-UTc" userLabel="Amount Label">

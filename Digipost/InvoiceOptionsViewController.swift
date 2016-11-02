@@ -18,6 +18,7 @@ import Foundation
 
 class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
+    @IBOutlet weak var invoiceOptionsHeader: UINavigationItem!
     @IBOutlet weak var bankTableView: UITableView!
     
     let kInvoiceBankSegue = "invoiceBankSegue"

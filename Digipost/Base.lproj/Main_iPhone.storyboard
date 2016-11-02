@@ -12,7 +12,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -34,7 +34,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z05-FO-2e6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -628,7 +628,7 @@
             </objects>
             <point key="canvasLocation" x="1140" y="1621"/>
         </scene>
-        <!--Faktura-->
+        <!--HEADER-->
         <scene sceneID="iaG-Zp-DBK">
             <objects>
                 <viewController id="nWN-tl-VuW" customClass="InvoiceOptionsViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -636,86 +636,98 @@
                         <viewControllerLayoutGuide type="top" id="bJd-Dr-iLo"/>
                         <viewControllerLayoutGuide type="bottom" id="Bhb-2A-SyY"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="j7B-nU-ytv">
+                    <view key="view" contentMode="scaleAspectFill" id="j7B-nU-ytv">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SlR-R9-hqb">
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9A-Bh-mEm" userLabel="Header">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-th-eIf">
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_TITLE" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ge7-th-eIf">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_SUBTITLE" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="318" translatesAutoresizingMaskIntoConstraints="NO" id="Zmq-JL-aQV">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerY" secondItem="SlR-R9-hqb" secondAttribute="centerY" constant="5" id="BJK-gh-Uyp"/>
-                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerX" secondItem="SlR-R9-hqb" secondAttribute="centerX" id="R0o-EF-o9Y"/>
-                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="top" secondItem="SlR-R9-hqb" secondAttribute="top" constant="41" id="ZAG-W0-a2W"/>
-                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="leading" secondItem="SlR-R9-hqb" secondAttribute="leading" constant="61" id="xFM-FE-BTg"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerX" secondItem="Q9A-Bh-mEm" secondAttribute="centerX" id="2ne-4C-LXk"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zmq-JL-aQV" secondAttribute="bottom" constant="31" id="4GW-Dk-DNs"/>
+                                    <constraint firstItem="Zmq-JL-aQV" firstAttribute="leading" secondItem="Q9A-Bh-mEm" secondAttribute="leading" constant="29" id="9et-01-ZTE"/>
+                                    <constraint firstItem="Zmq-JL-aQV" firstAttribute="centerX" secondItem="Q9A-Bh-mEm" secondAttribute="centerX" id="Ruc-r6-m6h"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="top" secondItem="Q9A-Bh-mEm" secondAttribute="top" constant="50" id="hMO-u4-yvP"/>
+                                    <constraint firstItem="Zmq-JL-aQV" firstAttribute="top" secondItem="Ge7-th-eIf" secondAttribute="bottom" constant="10" id="j5h-8A-t8Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zmq-JL-aQV" secondAttribute="trailing" constant="29" id="s1w-gW-2d1"/>
+                                    <constraint firstItem="Ge7-th-eIf" firstAttribute="centerY" secondItem="Q9A-Bh-mEm" secondAttribute="centerY" constant="-26.5" id="tT9-xY-kc8"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bankTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="82" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-8F-sFk">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-9e-UU6" userLabel="Content">
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bankTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-8F-sFk">
+                                        <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="262" id="WhT-3G-LUs"/>
+                                        </constraints>
+                                        <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qha-SR-eGA">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qha-SR-eGA" id="huJ-uI-T4D">
+                                                    <frame key="frameInset" width="375" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </tableViewCellContentView>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Q79-fU-ybI"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
-                            </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="23" id="aN0-uF-cmT"/>
+                                    <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="18" id="1cx-JV-El9"/>
+                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" id="8vI-if-CFu"/>
+                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="jDo-9e-UU6" secondAttribute="top" id="PMJ-Oo-Rh4"/>
+                                    <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" constant="50" id="hi6-nc-8yO"/>
+                                    <constraint firstItem="e43-gW-QEm" firstAttribute="centerX" secondItem="jDo-9e-UU6" secondAttribute="centerX" constant="-0.5" id="izN-9S-Ci7"/>
+                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="width" secondItem="jDo-9e-UU6" secondAttribute="width" id="m1Q-aY-OKP"/>
+                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="centerX" secondItem="e43-gW-QEm" secondAttribute="centerX" id="ojH-Kv-l0f"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ira-EA-j23">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="z36-1F-wOv"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <state key="normal" title="INVOICE_OPTIONS_READ_MORE_LINK"/>
-                                <connections>
-                                    <action selector="readMoreButton:" destination="nWN-tl-VuW" eventType="touchUpInside" id="q12-ym-8Pr"/>
-                                    <action selector="readMoreButtonWithSender:" destination="nWN-tl-VuW" eventType="touchUpInside" id="1ut-nS-VQZ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoice_options_which_bank" text="INVOICE_OPTIONS_CHOOSE_BANK" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tTa-RK-fJ3">
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="tTa-RK-fJ3" firstAttribute="leading" secondItem="j7B-nU-ytv" secondAttribute="leadingMargin" id="01h-6u-EU7"/>
-                            <constraint firstItem="Ira-EA-j23" firstAttribute="top" secondItem="e43-gW-QEm" secondAttribute="bottom" constant="8" symbolic="YES" id="4Zq-K5-xmW"/>
-                            <constraint firstItem="Bhb-2A-SyY" firstAttribute="top" secondItem="Ira-EA-j23" secondAttribute="bottom" constant="26" id="5qq-uj-XOI"/>
-                            <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="25" id="8Eh-wu-ZPl"/>
-                            <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="tTa-RK-fJ3" secondAttribute="bottom" constant="8" id="9Xr-E0-Xms"/>
-                            <constraint firstAttribute="bottom" secondItem="SlR-R9-hqb" secondAttribute="bottom" constant="473" id="Jl1-jT-ftK"/>
-                            <constraint firstAttribute="trailing" secondItem="SlR-R9-hqb" secondAttribute="trailing" id="Zgf-X9-WIl"/>
-                            <constraint firstItem="SlR-R9-hqb" firstAttribute="leading" secondItem="j7B-nU-ytv" secondAttribute="leading" id="hul-CQ-uDC"/>
-                            <constraint firstItem="CsO-8F-sFk" firstAttribute="leading" secondItem="SlR-R9-hqb" secondAttribute="leading" id="kgh-fy-m6k"/>
-                            <constraint firstItem="tTa-RK-fJ3" firstAttribute="top" secondItem="SlR-R9-hqb" secondAttribute="bottom" constant="27" id="pBj-IT-QTT"/>
-                            <constraint firstItem="CsO-8F-sFk" firstAttribute="centerX" secondItem="e43-gW-QEm" secondAttribute="centerX" id="qA0-t2-7Pc"/>
-                            <constraint firstItem="SlR-R9-hqb" firstAttribute="top" secondItem="bJd-Dr-iLo" secondAttribute="bottom" id="vWP-ud-0tb"/>
-                            <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="tTa-RK-fJ3" secondAttribute="leading" id="wLQ-71-PQE"/>
-                            <constraint firstItem="e43-gW-QEm" firstAttribute="trailing" secondItem="Ira-EA-j23" secondAttribute="trailing" id="wew-hd-xen"/>
-                            <constraint firstItem="CsO-8F-sFk" firstAttribute="trailing" secondItem="SlR-R9-hqb" secondAttribute="trailing" id="y1b-mg-aWs"/>
-                            <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="Ira-EA-j23" secondAttribute="leading" id="yyf-r9-mEr"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jDo-9e-UU6" secondAttribute="bottom" constant="-1" id="0lu-XG-oOS"/>
+                            <constraint firstItem="Q9A-Bh-mEm" firstAttribute="leading" secondItem="j7B-nU-ytv" secondAttribute="leading" id="0lu-ZR-lS6"/>
+                            <constraint firstItem="Q9A-Bh-mEm" firstAttribute="top" secondItem="bJd-Dr-iLo" secondAttribute="bottom" id="Nat-kC-6yB"/>
+                            <constraint firstItem="jDo-9e-UU6" firstAttribute="leading" secondItem="Q9A-Bh-mEm" secondAttribute="leading" id="aMR-No-lN2"/>
+                            <constraint firstItem="jDo-9e-UU6" firstAttribute="width" secondItem="j7B-nU-ytv" secondAttribute="width" id="dVV-Ug-aGh"/>
+                            <constraint firstItem="jDo-9e-UU6" firstAttribute="top" secondItem="bJd-Dr-iLo" secondAttribute="bottom" constant="182" id="t2h-gE-DgN"/>
+                            <constraint firstAttribute="trailing" secondItem="Q9A-Bh-mEm" secondAttribute="trailing" id="wej-mR-szx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Faktura" id="reP-Vg-MBG"/>
+                    <navigationItem key="navigationItem" title="HEADER" id="reP-Vg-MBG"/>
                     <connections>
                         <outlet property="bankTableView" destination="CsO-8F-sFk" id="n72-Ry-a2H"/>
+                        <outlet property="invoiceOptionsHeader" destination="reP-Vg-MBG" id="bGQ-b4-kMx"/>
                         <segue destination="84D-5z-zyP" kind="push" identifier="invoiceBankSegue" id="Wqj-xD-Y8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1745.5" y="2085.5"/>
+            <point key="canvasLocation" x="1740.5" y="2303.5"/>
         </scene>
-        <!--Invoice Bank View Controller-->
+        <!--INVOICE_BANK_HEADER-->
         <scene sceneID="Uto-tM-aYH">
             <objects>
                 <viewController id="84D-5z-zyP" customClass="InvoiceBankViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -727,82 +739,78 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="4gE-UH-FLj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="54" id="Q9S-06-EYa"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_SUBSUBTITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exx-1G-Auz">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="1ZH-Rc-ob0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view autoresizesSubviews="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdt-D6-q1g">
+                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-gn-J9x">
+                                <frame key="frameInset" minX="-4" width="379" height="152"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="70" id="n2M-vz-QwL"/>
-                                        </constraints>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
+                                        <frame key="frameInset" minX="146" minY="40" width="86" height="73"/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="cdt-D6-q1g" secondAttribute="centerX" id="9SN-lI-q7c"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="cdt-D6-q1g" secondAttribute="centerY" id="fsX-Fo-DPR"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="top" constant="38" id="qyA-P8-29j"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="ISI-iX-2gA"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" id="SHW-ux-Kms"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
-                                <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXr-kw-ttG">
+                                <frame key="frameInset" minX="16" minY="162" width="343" height="379"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
+                                        <frame key="frameInset" width="351" height="42"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="42" id="BMH-R6-rdN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="INVOICE_BANK_SUBTITLE" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
+                                        <frame key="frameInset" minY="64" width="343" height="19"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
+                                        <frame key="frameInset" minY="198" width="343" height="44"/>
+                                        <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="3M2-zP-4pq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="INVOICE_BANK_READ_MORE_LINK">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="38" id="zKD-m5-2R9"/>
+                                    <constraint firstItem="XeW-NW-woZ" firstAttribute="centerX" secondItem="OXr-kw-ttG" secondAttribute="centerX" id="4M0-WR-oAt"/>
+                                    <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="top" id="7cn-RG-0Jo"/>
+                                    <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="OXr-kw-ttG" secondAttribute="leading" id="B2y-yZ-uQl"/>
+                                    <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="OXr-kw-ttG" secondAttribute="trailingMargin" constant="8" id="VEr-78-FBK"/>
+                                    <constraint firstAttribute="trailing" secondItem="FGz-0P-lp2" secondAttribute="trailing" constant="-8" id="bwS-nV-pSc"/>
+                                    <constraint firstItem="XeW-NW-woZ" firstAttribute="leading" secondItem="OXr-kw-ttG" secondAttribute="leadingMargin" constant="-8" id="dQU-0D-Xrq"/>
+                                    <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="lQa-PN-L7p"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="INVOICE_BANK_READ_MORE_LINK">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
-                                    <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="3yf-D1-Zec"/>
-                                </connections>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="37" id="0GS-yh-OPi"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="cdt-D6-q1g" secondAttribute="bottom" constant="26" id="4a6-O5-yYK"/>
-                            <constraint firstAttribute="trailing" secondItem="cdt-D6-q1g" secondAttribute="trailing" id="AAA-a2-Ccy"/>
-                            <constraint firstItem="cdt-D6-q1g" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="CsC-g6-YDE"/>
-                            <constraint firstItem="XeW-NW-woZ" firstAttribute="top" secondItem="exx-1G-Auz" secondAttribute="bottom" constant="25" id="DEU-lG-LL6"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="19" id="G4y-P6-H5Y"/>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="exx-1G-Auz" secondAttribute="trailing" id="Xou-he-NbP"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="ZDJ-BC-UR1"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="trailing" secondItem="XeW-NW-woZ" secondAttribute="trailing" id="eJ8-je-le0"/>
-                            <constraint firstItem="exx-1G-Auz" firstAttribute="leading" secondItem="XeW-NW-woZ" secondAttribute="leading" id="gKA-Hc-r6k"/>
-                            <constraint firstItem="cdt-D6-q1g" firstAttribute="centerX" secondItem="rXg-qN-PD5" secondAttribute="centerX" id="hQO-S9-xmo"/>
-                            <constraint firstItem="cdt-D6-q1g" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" id="hpk-Eb-ZB8"/>
-                            <constraint firstItem="rXg-qN-PD5" firstAttribute="leading" secondItem="exx-1G-Auz" secondAttribute="leading" id="oGN-AD-HiG"/>
-                            <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="4" id="sRd-lY-6wz"/>
-                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="211" id="zBi-HN-f9z"/>
+                            <constraint firstItem="I4M-gn-J9x" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="-20" id="0wQ-CV-K3G"/>
+                            <constraint firstAttribute="trailing" secondItem="OXr-kw-ttG" secondAttribute="trailing" constant="16" id="7kY-Nu-mGG"/>
+                            <constraint firstItem="OXr-kw-ttG" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" constant="2" id="AsA-1S-5nI"/>
+                            <constraint firstItem="OXr-kw-ttG" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" constant="16" id="MR6-49-rYy"/>
+                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="bottom" constant="18" id="Unn-Nj-a9x"/>
+                            <constraint firstItem="I4M-gn-J9x" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="ds0-z9-3uB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="7zI-ht-BHO"/>
+                    <navigationItem key="navigationItem" title="INVOICE_BANK_HEADER" id="7zI-ht-BHO"/>
                     <connections>
+                        <outlet property="invoiceBankHeader" destination="7zI-ht-BHO" id="arb-ic-e2y"/>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
                         <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
                         <outlet property="openBankUrlButton" destination="XeW-NW-woZ" id="zZ1-SJ-eXF"/>
@@ -810,7 +818,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2280.5" y="2085.5"/>
+            <point key="canvasLocation" x="2313.5" y="2308.5"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="zOL-Ok-rOn">
@@ -898,7 +906,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1015,7 +1023,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
