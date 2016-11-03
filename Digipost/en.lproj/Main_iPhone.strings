@@ -160,13 +160,8 @@
 /* Class = "IBUINavigationItem"; title = "Digipost Faktura - Bank"; ObjectID = "7zI-ht-BHO"; */
 "7zI-ht-BHO.title" = "Bank";
 
-
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "FGz-0P-lp2"; */
 "FGz-0P-lp2.text" = "Faktura i Bank";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "rXg-qN-PD5"; */
-"rXg-qN-PD5.text" = "Fakturaene du mottar i Digipost, kan automatisk overføres til nettbanken din. Enkelt og greit.\n\nFor å komme i gang, logg deg inn i nettbanken for å inngå avtale.";
-
 
 /* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "XeW-NW-woZ"; */
 "XeW-NW-woZ.normalTitle" = "Logg inn i nettbanken";

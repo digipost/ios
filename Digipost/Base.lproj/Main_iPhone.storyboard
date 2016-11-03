@@ -12,7 +12,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -34,7 +34,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z05-FO-2e6">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -695,7 +695,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="18" id="1cx-JV-El9"/>
+                                    <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="15" id="1cx-JV-El9"/>
                                     <constraint firstItem="CsO-8F-sFk" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" id="8vI-if-CFu"/>
                                     <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="jDo-9e-UU6" secondAttribute="top" id="PMJ-Oo-Rh4"/>
                                     <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" constant="50" id="hi6-nc-8yO"/>
@@ -725,7 +725,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740.5" y="2303.5"/>
+            <point key="canvasLocation" x="1746" y="2302"/>
         </scene>
         <!--INVOICE_BANK_HEADER-->
         <scene sceneID="Uto-tM-aYH">
@@ -739,86 +739,111 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleAspectFit" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-gn-J9x">
-                                <frame key="frameInset" minX="-4" width="379" height="152"/>
+                            <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-gn-J9x">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
-                                        <frame key="frameInset" minX="146" minY="40" width="86" height="73"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="86" id="pHP-Qw-uAl"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="ISI-iX-2gA"/>
+                                    <constraint firstAttribute="width" secondItem="I4M-gn-J9x" secondAttribute="height" multiplier="379:152" id="7bz-B7-6Fg"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" constant="-1" id="8BN-yq-gIY"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" constant="-1" id="ISI-iX-2gA"/>
+                                    <constraint firstAttribute="width" constant="379" id="LS2-zt-Mwc"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" id="Pcr-nL-gYQ"/>
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" id="SHW-ux-Kms"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="top" secondItem="I4M-gn-J9x" secondAttribute="top" constant="40" id="uyb-F1-wyc"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXr-kw-ttG">
-                                <frame key="frameInset" minX="16" minY="162" width="343" height="379"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXr-kw-ttG">
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
-                                        <frame key="frameInset" width="351" height="42"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_BANK_TITLE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-0P-lp2">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="BMH-R6-rdN"/>
+                                            <constraint firstAttribute="height" constant="33" id="BMH-R6-rdN"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="INVOICE_BANK_SUBTITLE" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
-                                        <frame key="frameInset" minY="64" width="343" height="19"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
-                                        <frame key="frameInset" minY="198" width="343" height="44"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWZ-DM-g13">
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <state key="normal" title="INVOICE_BANK_READ_MORE"/>
+                                        <connections>
+                                            <action selector="invoiceBankReadMore:" destination="84D-5z-zyP" eventType="touchUpInside" id="xjj-zh-IyA"/>
+                                            <action selector="invoiceBankReadMoreWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="292-sL-1kf"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XeW-NW-woZ">
                                         <color key="backgroundColor" red="1" green="0.0093617555427757404" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="3M2-zP-4pq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="INVOICE_BANK_READ_MORE_LINK">
+                                        <state key="normal" title="INVOICE_BANK_OPEN_BANK_URL">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
+                                            <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="rv0-wH-UUR"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXg-qN-PD5">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="164" id="sLM-L6-YIU"/>
+                                        </constraints>
+                                        <string key="text">Fremover slipper du å skrive inn KID- og kontonummer når du skal behandle en faktura i nettbanken. I stedet kan du overføre fakturaen til betaling med ett enkelt klikk, uten å måtte logge inn i nettbanken.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="XeW-NW-woZ" firstAttribute="centerX" secondItem="OXr-kw-ttG" secondAttribute="centerX" id="4M0-WR-oAt"/>
+                                    <constraint firstItem="SWZ-DM-g13" firstAttribute="leading" secondItem="XeW-NW-woZ" secondAttribute="leading" id="6Ra-nO-pd3"/>
                                     <constraint firstItem="FGz-0P-lp2" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="top" id="7cn-RG-0Jo"/>
                                     <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="OXr-kw-ttG" secondAttribute="leading" id="B2y-yZ-uQl"/>
+                                    <constraint firstItem="rXg-qN-PD5" firstAttribute="width" secondItem="OXr-kw-ttG" secondAttribute="width" id="ENl-er-EB0"/>
+                                    <constraint firstItem="rXg-qN-PD5" firstAttribute="top" secondItem="FGz-0P-lp2" secondAttribute="bottom" constant="-1" id="KAw-nP-6HQ"/>
+                                    <constraint firstItem="XeW-NW-woZ" firstAttribute="top" secondItem="rXg-qN-PD5" secondAttribute="bottom" constant="3" id="Mqq-Rf-GfO"/>
                                     <constraint firstItem="rXg-qN-PD5" firstAttribute="trailing" secondItem="OXr-kw-ttG" secondAttribute="trailingMargin" constant="8" id="VEr-78-FBK"/>
-                                    <constraint firstAttribute="trailing" secondItem="FGz-0P-lp2" secondAttribute="trailing" constant="-8" id="bwS-nV-pSc"/>
+                                    <constraint firstAttribute="trailing" secondItem="FGz-0P-lp2" secondAttribute="trailing" constant="-37" id="bwS-nV-pSc"/>
                                     <constraint firstItem="XeW-NW-woZ" firstAttribute="leading" secondItem="OXr-kw-ttG" secondAttribute="leadingMargin" constant="-8" id="dQU-0D-Xrq"/>
-                                    <constraint firstItem="FGz-0P-lp2" firstAttribute="leading" secondItem="rXg-qN-PD5" secondAttribute="leading" id="lQa-PN-L7p"/>
+                                    <constraint firstAttribute="bottom" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="173" id="iTX-IX-k8x"/>
+                                    <constraint firstItem="SWZ-DM-g13" firstAttribute="top" secondItem="XeW-NW-woZ" secondAttribute="bottom" constant="8" id="kSO-lF-FPp"/>
+                                    <constraint firstAttribute="bottom" secondItem="SWZ-DM-g13" secondAttribute="bottom" constant="126" id="xyv-WB-iWO"/>
+                                    <constraint firstItem="SWZ-DM-g13" firstAttribute="trailing" secondItem="XeW-NW-woZ" secondAttribute="trailing" constant="29" id="zp2-lo-4So"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="I4M-gn-J9x" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leadingMargin" constant="-20" id="0wQ-CV-K3G"/>
-                            <constraint firstAttribute="trailing" secondItem="OXr-kw-ttG" secondAttribute="trailing" constant="16" id="7kY-Nu-mGG"/>
-                            <constraint firstItem="OXr-kw-ttG" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" constant="2" id="AsA-1S-5nI"/>
-                            <constraint firstItem="OXr-kw-ttG" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" constant="16" id="MR6-49-rYy"/>
-                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="bottom" constant="18" id="Unn-Nj-a9x"/>
+                            <constraint firstAttribute="trailing" secondItem="OXr-kw-ttG" secondAttribute="trailing" constant="30" id="7kY-Nu-mGG"/>
+                            <constraint firstItem="OXr-kw-ttG" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" constant="2.5" id="AsA-1S-5nI"/>
+                            <constraint firstItem="OXr-kw-ttG" firstAttribute="leading" secondItem="mmg-zg-J2m" secondAttribute="leading" constant="31" id="MR6-49-rYy"/>
+                            <constraint firstItem="OXr-kw-ttG" firstAttribute="top" secondItem="I4M-gn-J9x" secondAttribute="bottom" constant="15" id="Q4f-x7-mTt"/>
+                            <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="bottom" constant="-24" id="Unn-Nj-a9x"/>
                             <constraint firstItem="I4M-gn-J9x" firstAttribute="top" secondItem="D40-Ia-coa" secondAttribute="bottom" id="ds0-z9-3uB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="INVOICE_BANK_HEADER" id="7zI-ht-BHO"/>
                     <connections>
+                        <outlet property="invoiceBankContent" destination="rXg-qN-PD5" id="CGf-dX-e7A"/>
                         <outlet property="invoiceBankHeader" destination="7zI-ht-BHO" id="arb-ic-e2y"/>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
+                        <outlet property="invoiceBankReadMoreText" destination="SWZ-DM-g13" id="NHL-nb-WWA"/>
                         <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
                         <outlet property="openBankUrlButton" destination="XeW-NW-woZ" id="zZ1-SJ-eXF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313.5" y="2308.5"/>
+            <point key="canvasLocation" x="2312.5" y="2301.5"/>
         </scene>
         <!--Last opp-->
         <scene sceneID="zOL-Ok-rOn">
@@ -906,7 +931,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1023,7 +1048,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

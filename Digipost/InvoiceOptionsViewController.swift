@@ -39,9 +39,9 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     func addInvoiceBanks(){
-        banks.append(InvoiceBank(name:"DNB", url:"https://m.dnb.no/appo/logon/startmobile", logo:"invoice-bank-dnb"))
-        banks.append(InvoiceBank(name:"KLP", url:"https://dnb.no", logo:"invoice-bank-klp"))
-        banks.append(InvoiceBank(name:"Skandiabanken", url:"https://dnb.no", logo:"invoice-bank-skandia"))
+        banks.append(InvoiceBank(name:"DNB", url:"https://m.dnb.no/appo/logon/startmobile", logo:"invoice-bank-dnb", setupIsAvailable:true))
+        banks.append(InvoiceBank(name:"KLP", url:"https://dnb.no", logo:"invoice-bank-klp", setupIsAvailable:false))
+        banks.append(InvoiceBank(name:"Skandiabanken", url:"https://dnb.no", logo:"invoice-bank-skandia", setupIsAvailable:false))
         bankTableView.reloadData()
     }
     

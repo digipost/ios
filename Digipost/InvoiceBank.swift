@@ -21,13 +21,14 @@ class InvoiceBank{
     var name: String = ""
     var url: String = ""
     var logo: String = ""
+    var setupIsAvailable = false
     
-    init(){
-    }
+    init(){}
     
-    init (name: String, url: String,logo: String) {
+    init (name: String, url: String, logo: String, setupIsAvailable: Bool) {
         self.name = name
         self.url = url
         self.logo = logo
+        self.setupIsAvailable = setupIsAvailable
     }
 }

@@ -602,8 +602,22 @@
 "invoice setup alert action button" = "Velg bank";
 "invoice setup alert later button" = "Senere";
 "invoice setup alert forget button" = "ikke vis meg igjen";
-
 /* invoice bank */
 "invoice bank title prefix" = "Faktura i ";
+
+/* title */
+"invoice bank enabled title" = "Få fakturaene i nettbanken også";
+"invoice bank disabled title" = "Overfør fakturaer til nettbanken";
+
+/* content */
+"invoice bank enabled content" = "Fremover slipper du å skrive inn KID- og kontonummer når du skal behandle en faktura i nettbanken.\n\nInngå avtalen hos DNB, så blir alle fakturaer du mottar i Digipost tilgjengelige i nettbanken din også.";
+
+"invoice bank disabled content" = "Fremover slipper du å skrive inn KID- og kontonummer når du skal behandle en faktura i nettbanken.\n\nI stedet kan du overføre fakturaen til betaling med ett enkelt klikk, uten å måtte logge inn i nettbanken.";
+
+/* bank button */
 "invoice bank button link prefix" = "Logg inn i ";
 "invoice bank button link postfix" = " sin nettbank";
+
+/* read more button */
+"invoice bank enabled read more link" = "Les mer om Digipost Faktura";
+"invoice bank disabled read more link" = "Logg inn på Digipost.no for å komme i gang";

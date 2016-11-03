@@ -20,33 +20,61 @@ class InvoiceBankViewController: UIViewController{
     
     var invoiceBank : InvoiceBank = InvoiceBank()
     
-    @IBOutlet weak var invoiceBankHeader: UIView!
-    @IBOutlet weak var invoiceBankTitle: UILabel!
-    @IBOutlet weak var openBankUrlButton: UIButton!
-    @IBOutlet weak var invoiceBankLogo: UIImageView!
+    @IBOutlet weak var invoiceBankHeader: UINavigationItem!{
+        didSet{
+            self.invoiceBankHeader.title = invoiceBank.name   
+        }
+    }
+    
+    @IBOutlet weak var invoiceBankLogo: UIImageView!{
+        didSet{
+            self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
+        }
+    }
+    
+    @IBOutlet weak var invoiceBankContent: UILabel!{
+        didSet{
+            let invoiceBankContentString = invoiceBank.setupIsAvailable ? "invoice bank enabled content" : "invoice bank disabled content"
+            self.invoiceBankContent.text = NSLocalizedString(invoiceBankContentString, comment:"invoice bank content")
+        }
+    }
+    
+    @IBOutlet weak var invoiceBankTitle: UILabel!{
+        didSet{
+            let invoiceBankTitleString = invoiceBank.setupIsAvailable ? "invoice bank enabled title" : "invoice bank disabled title"
+            print("title: "+NSLocalizedString("invoice bank enabled title", comment:"invoice bank title"))
+            self.invoiceBankTitle.text = NSLocalizedString(invoiceBankTitleString, comment:"invoice bank title")
+        }
+    }
+    
+    
+    @IBOutlet weak var openBankUrlButton: UIButton!{
+        didSet{
+            if(invoiceBank.setupIsAvailable){
+                let openBankUrlButtonString = NSLocalizedString("invoice bank button link prefix", comment: "invoice bank button link") + invoiceBank.name + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
+                self.openBankUrlButton.setTitle(openBankUrlButtonString, forState: UIControlState.Normal)
+            }else{
+                self.openBankUrlButton.hidden = true
+            }
+        }
+    }
+
+    @IBOutlet weak var invoiceBankReadMoreText: UIButton!{
+        didSet{
+            let invoiceBankReadMoreLinkString = invoiceBank.setupIsAvailable ? "invoice bank enabled read more link" : "invoice bank disabled read more link"
+            self.invoiceBankReadMoreText.setTitle(NSLocalizedString(invoiceBankReadMoreLinkString, comment:"invoice bank read more link"), forState:UIControlState.Normal)
+        }
+    }
     
     @IBAction func openBankUrl(sender: AnyObject) {
         UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
     }
+    
+    @IBAction func invoiceBankReadMore(sender: AnyObject) {
+        UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
+    }
+    
     override func viewDidLoad() {
-        self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
-        
-        let bankUrlButtonTitle = NSLocalizedString("invoice bank button link prefix", comment: "Invoice bank button link") 
-            + invoiceBank.name
-            + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
-        self.openBankUrlButton.setTitle(bankUrlButtonTitle, forState: UIControlState.Normal)
-        
-        let invoiceBankTitleString = NSLocalizedString("invoice bank title prefix", comment:"invoice bank title") 
-            + invoiceBank.name
-        self.invoiceBankTitle.text = invoiceBankTitleString
-        
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.viewDidLoad()
     }
 }
