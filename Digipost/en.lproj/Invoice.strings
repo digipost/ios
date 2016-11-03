@@ -1,0 +1,23 @@
+/* Class = "UINavigationItem"; title = "INVOICE_OPTIONS"; ObjectID = "reP-Vg-MBG"; */
+"reP-Vg-MBG.title" = "Oppsett";
+
+/* Class = "UILabel"; text = "INVOICE_OPTIONS_TITLE"; ObjectID = "Ge7-th-eIf"; */
+"Ge7-th-eIf.text" = "Fakturaer i Digipost og nettbanken";
+
+/* Class = "UILabel"; text = "INVOICE_OPTIONS_SUBTITLE"; ObjectID = "Zmq-JL-aQV"; */
+"Zmq-JL-aQV.text" = "Alle fakturaer du mottar i Digipost, kan enkelt overføres til nettbanken din.";
+
+/* Class = "UILabel"; text = "INVOICE_OPTIONS_MORE_BANKS_SOON"; ObjectID = "e43-gW-QEm"; */
+"e43-gW-QEm.text" = "Flere banker kommer snart.";
+
+/* Class = "UINavigationItem"; title = "INVOICE_BANK"; ObjectID = "7zI-ht-BHO"; */
+"7zI-ht-BHO.title" = "Bank";
+
+/* Class = "UILabel"; text = "INVOICE_BANK_TITLE"; ObjectID = "FGz-0P-lp2"; */
+"FGz-0P-lp2.text" = "INVOICE_BANK_TITLE";
+
+/* Class = "UIButton"; normalTitle = "INVOICE_BANK_READ_MORE"; ObjectID = "SWZ-DM-g13"; */
+"SWZ-DM-g13.normalTitle" = "INVOICE_BANK_READ_MORE";
+
+/* Class = "UIButton"; normalTitle = "INVOICE_BANK_OPEN_BANK_URL"; ObjectID = "XeW-NW-woZ"; */
+"XeW-NW-woZ.normalTitle" = "INVOICE_BANK_OPEN_BANK_URL";

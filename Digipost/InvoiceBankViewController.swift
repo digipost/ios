@@ -36,13 +36,14 @@ class InvoiceBankViewController: UIViewController{
         didSet{
             let invoiceBankContentString = invoiceBank.setupIsAvailable ? "invoice bank enabled content" : "invoice bank disabled content"
             self.invoiceBankContent.text = NSLocalizedString(invoiceBankContentString, comment:"invoice bank content")
+            self.invoiceBankContent.sizeToFit()
+            self.invoiceBankContent.lineBreakMode = NSLineBreakMode.ByWordWrapping
         }
     }
     
     @IBOutlet weak var invoiceBankTitle: UILabel!{
         didSet{
             let invoiceBankTitleString = invoiceBank.setupIsAvailable ? "invoice bank enabled title" : "invoice bank disabled title"
-            print("title: "+NSLocalizedString("invoice bank enabled title", comment:"invoice bank title"))
             self.invoiceBankTitle.text = NSLocalizedString(invoiceBankTitleString, comment:"invoice bank title")
         }
     }

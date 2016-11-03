@@ -134,34 +134,4 @@
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "xdL-zR-hvc"; */
 "xdL-zR-hvc.text" = "Label";
 
-/* INVOICE OPTIONS VIEW */
 
-
-/* Class = "IBUINavigationItem"; title = "Digipost Faktura"; ObjectID = "reP-Vg-MBG"; */
-"reP-Vg-MBG.title" = "Oppsett";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "Ge7-th-elf"; */
-"Ge7-th-eIf.text" = "Få fakturaen rett inn i nettbanken";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "Zmq-JL-aQV"; */
-"Zmq-JL-aQV.text" = "Alle fakturaer du mottar i Digipost, kan enkelt overføres til nettbanken din.";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "tTa-RK-fJ3"; */
-"tTa-RK-fJ3.text" = "Hvilken bank vil du bruke?";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "e43-gW-QEm"; */
-"e43-gW-QEm.text" = "Flere banker kommer snart.";
-
-/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "Ira-EA-j23"; */
-"Ira-EA-j23.normalTitle" = "Les mer om Digipost Faktura";
-
-/* INVOICE BANK VIEW */
-
-/* Class = "IBUINavigationItem"; title = "Digipost Faktura - Bank"; ObjectID = "7zI-ht-BHO"; */
-"7zI-ht-BHO.title" = "Bank";
-
-/* Class = "IBUILabel"; text = "Label"; ObjectID = "FGz-0P-lp2"; */
-"FGz-0P-lp2.text" = "Faktura i Bank";
-
-/* Class = "IBUIButton"; normalTitle = "Button"; ObjectID = "XeW-NW-woZ"; */
-"XeW-NW-woZ.normalTitle" = "Logg inn i nettbanken";
