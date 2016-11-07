@@ -22,7 +22,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
     @IBOutlet weak var bankTableView: UITableView!
     
     let kInvoiceBankSegue = "invoiceBankSegue"
-    var banks: [InvoiceBank] = [];
+    var banks: [InvoiceBank] = []
     
     @IBAction func readMoreButton(sender: AnyObject) {
         let readMoreUrl = NSURL(string: "https://www.digipost.no")!
