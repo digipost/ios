@@ -161,11 +161,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
-    
-    //TODO Open if Invoice only
-    if([InvoiceAlertUserDefaults shouldShowInvoiceNotification]){ 
-        [self showInvoiceSetupAlert];
-    }
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -670,7 +665,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
-
+    [self showInvoiceSetupAlert];
     [self removeUnlockViewIfPresent];
 }
 
@@ -1187,38 +1182,51 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self showBlurredActionSheetWithFolders];
 }
 
-- (void)showInvoiceSetupAlert{
+- (void)showInvoiceSetupAlert{    
+    if (self.attachment.invoice != nil){
+        if([InvoiceAlertUserDefaults shouldShowInvoiceNotification]){
+            
+            UIAlertController * alert = [UIAlertController
+                                         alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
+                                         message:NSLocalizedString(@"invoice setup alert message", @"")
+                                         preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* chooseBank = [UIAlertAction
+                                         actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
+                                         style:UIAlertActionStyleDefault
+                                         handler:^(UIAlertAction * action) {
+                                             [self didTapChooseBankButton];
+                                         }];
+            
+            UIAlertAction* later = [UIAlertAction
+                                    actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
+                                    style:UIAlertActionStyleDefault
+                                    handler:^(UIAlertAction * action) {
+                                    }];
+            
+            UIAlertAction* forget = [UIAlertAction
+                                     actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
+                                     style:UIAlertActionStyleDefault
+                                     handler:^(UIAlertAction * action) {
+                                         [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
+                                     }];
+            
+            [alert addAction:chooseBank];
+            [alert addAction:later];
+            [alert addAction:forget];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+    }
+}
 
-    UIAlertController * alert = [UIAlertController
-                                 alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
-                                 message:NSLocalizedString(@"invoice setup alert message", @"")
-                                 preferredStyle:UIAlertControllerStyleAlert];
+- (UIViewController*) topMostController {
+    UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
     
-    UIAlertAction* chooseBank = [UIAlertAction
-                                actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
-                                style:UIAlertActionStyleDefault
-                                handler:^(UIAlertAction * action) {
-                                     [self didTapChooseBankButton];
-                                }];
+    while (topController.presentedViewController) {
+        topController = topController.presentedViewController;
+    }
     
-    UIAlertAction* later = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                            }];
-    
-    UIAlertAction* forget = [UIAlertAction
-                            actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
-                            style:UIAlertActionStyleDefault
-                            handler:^(UIAlertAction * action) {
-                                [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
-                            }];
-    
-    [alert addAction:chooseBank];
-    [alert addAction:later];
-    [alert addAction:forget];
-    
-    [self presentViewController:alert animated:YES completion:nil];
+    return topController;
 }
 
 - (void)didTapInvoice:(UIBarButtonItem *)barButtonItem
