@@ -329,8 +329,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if (self.attachment) {
             if ([self.attachment.fileType isEqualToString:@"html"]) {
                 self.webView.backgroundColor = [UIColor whiteColor];
-            } else {
-                v.backgroundColor = RGB(236, 238, 241);
             }
         } else {
             v.backgroundColor = RGB(236, 238, 241);
