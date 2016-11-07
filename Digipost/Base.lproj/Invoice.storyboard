@@ -145,7 +145,6 @@
                                         </state>
                                         <connections>
                                             <action selector="openBankUrl:" destination="84D-5z-zyP" eventType="touchUpInside" id="NYV-DF-Cjk"/>
-                                            <action selector="openBankUrlWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="rv0-wH-UUR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="TopLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SWZ-DM-g13">
