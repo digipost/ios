@@ -665,7 +665,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
-    [self showInvoiceSetupAlert];
+    //[self showInvoiceSetupAlert];
     [self removeUnlockViewIfPresent];
 }
 
