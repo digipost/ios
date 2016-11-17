@@ -28,7 +28,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var invoiceBankLogo: UIImageView!{
         didSet{
-            self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
+            self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo+"_large")
         }
     }
     

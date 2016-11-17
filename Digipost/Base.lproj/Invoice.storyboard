@@ -177,7 +177,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="pHP-Qw-uAl"/>
+                                            <constraint firstAttribute="width" constant="176" id="pHP-Qw-uAl"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -185,7 +185,7 @@
                                 <constraints>
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="8BN-yq-gIY"/>
                                     <constraint firstAttribute="height" constant="150" id="RO0-4u-RUx"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" constant="8.5" id="SHW-ux-Kms"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" constant="0.5" id="SHW-ux-Kms"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -212,10 +212,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3691.875" y="2065.1408450704225"/>
+            <point key="canvasLocation" x="3690.4000000000001" y="2064.9175412293853"/>
         </scene>
     </scenes>
     <resources>
-        <image name="invoice-bank-dnb" width="40" height="34"/>
+        <image name="invoice-bank-dnb" width="52" height="27"/>
     </resources>
 </document>
