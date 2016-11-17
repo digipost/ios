@@ -62,6 +62,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == kInvoiceBankSegue{
             if let viewController = segue.destinationViewController as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! NSIndexPath).row]
+                viewController.title = self.title
             }
         }
     }
