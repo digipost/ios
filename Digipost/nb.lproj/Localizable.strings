@@ -625,7 +625,7 @@
 
 /* delete invoice dialog */
 "invoice delete dialog title" = "Slett faktura";
-"invoice delete dialog paid message" = "Er du sikker på at du vil slette fakturaen? Om du vil stoppe betalingen må du logge inn i nettbanken også";
+"invoice delete dialog paid message" = "Er du sikker på at du vil slette fakturaen?\nOm du vil stoppe betalingen må du logge inn i nettbanken også";
 "invoice delete_dialog paid delete button" = "Slett fakturaen";"
 "invoice delete_dialog paid cancel button" = "Avbryt";"
 
