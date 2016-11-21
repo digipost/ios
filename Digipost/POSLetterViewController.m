@@ -1158,14 +1158,29 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showDeleteDocumentActionSheet
 {
-    NSString *title = NSLocalizedString(@"letter view delete document title", @"");
-    if ([self.attachment.document.attachments count] > 1) {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE", @"Delete warning");
+    
+    NSString *title = NSLocalizedString(@"letter view delete document title", @"Delete warning");
+    NSString *message = NSLocalizedString(@"letter view delete document message", @"");
+    NSString *deleteButtonText = NSLocalizedString(@"letter view delete document ok", @"");
+    NSString *cancelButtonText = NSLocalizedString(@"letter view delete document cancel", @"Cancel");
+    
+    if(self.attachment.invoice != nil){
+        title = NSLocalizedString(@"invoice delete dialog title", @"Delete invoice");
+        if(self.attachment.invoice.timePaid != nil){
+            message = NSLocalizedString(@"invoice delete dialog unpaid message", @"Delete invoice message");
+            deleteButtonText = NSLocalizedString(@"invoice delete dialog unpaid delete button", @"Confirme delete invoice");
+            cancelButtonText = NSLocalizedString(@"invoice delete dialog unpaid cancel button", @"Cancel delete invoice");
+        }else{
+            message = NSLocalizedString(@"invoice delete dialog paid message", @"Delete invoice message");
+            deleteButtonText = NSLocalizedString(@"invoice delete dialog paid delete button", @"Confirme delete invoice");
+            cancelButtonText = NSLocalizedString(@"invoice delete dialog paid cancel button", @"Cancel delete invoice");
+        }
     }
+ 
     [UIAlertView showWithTitle:title
-                       message:NSLocalizedString(@"letter view delete document message", @"")
-             cancelButtonTitle:NSLocalizedString(@"letter view delete document cancel", @"Cancel")
-             otherButtonTitles:@[ NSLocalizedString(@"letter view delete document ok", @"") ]
+                       message:message
+             cancelButtonTitle:cancelButtonText
+             otherButtonTitles:@[deleteButtonText]
                       tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
                         if (buttonIndex == 1) {
                             if (self.attachment) {
