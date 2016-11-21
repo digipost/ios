@@ -52,10 +52,10 @@
                                         </constraints>
                                         <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qha-SR-eGA">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="3AS-w8-ZN7">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qha-SR-eGA" id="huJ-uI-T4D">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3AS-w8-ZN7" id="sRP-hi-83e">
                                                     <frame key="frameInset" width="374" height="69"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2791.1999999999998" y="2070.3148425787108"/>
+            <point key="canvasLocation" x="527" y="940"/>
         </scene>
         <!--INVOICE_BANK-->
         <scene sceneID="Uto-tM-aYH">
@@ -212,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3690.4000000000001" y="2064.9175412293853"/>
+            <point key="canvasLocation" x="1145" y="940"/>
         </scene>
     </scenes>
     <resources>
