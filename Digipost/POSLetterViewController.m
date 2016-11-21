@@ -665,7 +665,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
-    //[self showInvoiceSetupAlert];
+    [self showInvoiceSetupAlert];
     [self removeUnlockViewIfPresent];
 }
 
@@ -1182,7 +1182,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self showBlurredActionSheetWithFolders];
 }
 
-- (void)showInvoiceSetupAlert{    
+- (void)showInvoiceSetupAlert{
     if (self.attachment.invoice != nil){
         if([InvoiceAlertUserDefaults shouldShowInvoiceNotification]){
             
@@ -1216,7 +1216,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [alert addAction:forget];
             [self presentViewController:alert animated:YES completion:nil];
         }
-    }
+}
 }
 
 - (UIViewController*) topMostController {
