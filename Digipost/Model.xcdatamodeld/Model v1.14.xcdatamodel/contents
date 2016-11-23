@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Xcode 4.3">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="15G1108" minimumToolsVersion="Xcode 4.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Attachment" representedClassName="POSAttachment" syncable="YES">
         <attribute name="authenticationLevel" attributeType="String" syncable="YES"/>
-        <attribute name="endToEndEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="endToEndEncrypted" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fileSize" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="fileType" attributeType="String" syncable="YES"/>
-        <attribute name="mainDocument" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mainDocument" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="openingReceiptUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="origin" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="read" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="read" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="subject" attributeType="String" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
         <attribute name="uri" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userKeyEncrypted" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="userKeyEncrypted" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="document" maxCount="1" deletionRule="Nullify" destinationEntity="Document" inverseName="attachments" inverseEntity="Document" syncable="YES"/>
         <relationship name="invoice" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Invoice" inverseName="attachment" inverseEntity="Invoice" syncable="YES"/>
     </entity>
     <entity name="Document" representedClassName="POSDocument" syncable="YES">
-        <attribute name="createdAt" attributeType="Date" indexed="YES" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" indexed="YES" syncable="YES"/>
         <attribute name="creatorName" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="deleteUri" attributeType="String" syncable="YES"/>
         <attribute name="folderUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,9 +29,9 @@
     <entity name="Folder" representedClassName="POSFolder" syncable="YES">
         <attribute name="changeFolderUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deletefolderUri" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="folderId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="folderId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="iconName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="uploadDocumentUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
@@ -39,36 +39,36 @@
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="folders" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <entity name="GCMToken" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Invoice" representedClassName="POSInvoice" syncable="YES">
         <attribute name="accountNumber" attributeType="String" syncable="YES"/>
-        <attribute name="amount" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="amount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="bankHomepage" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="canBePaidByUser" attributeType="Boolean" syncable="YES"/>
-        <attribute name="dueDate" attributeType="Date" syncable="YES"/>
+        <attribute name="canBePaidByUser" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="dueDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="kid" attributeType="String" syncable="YES"/>
         <attribute name="sendToBankUri" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timePaid" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="timePaid" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="attachment" maxCount="1" deletionRule="Nullify" destinationEntity="Attachment" inverseName="invoice" inverseEntity="Attachment" syncable="YES"/>
     </entity>
     <entity name="Mailbox" representedClassName="POSMailbox" syncable="YES">
         <attribute name="createFolderUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="digipostAddress" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="owner" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="owner" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="receiptsMetadataUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiptsUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sendUri" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="unreadItemsInInbox" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="unreadItemsInInbox" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="updateFoldersUri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="folders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Folder" inverseName="mailbox" inverseEntity="Folder" syncable="YES"/>
         <relationship name="receipts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Receipt" inverseName="mailbox" inverseEntity="Receipt" syncable="YES"/>
         <relationship name="rootResource" maxCount="1" deletionRule="Nullify" destinationEntity="RootResource" inverseName="mailboxes" inverseEntity="RootResource" syncable="YES"/>
     </entity>
     <entity name="Receipt" representedClassName="POSReceipt" syncable="YES">
-        <attribute name="amount" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="amount" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="card" attributeType="String" syncable="YES"/>
         <attribute name="currency" attributeType="String" syncable="YES"/>
         <attribute name="deleteUri" attributeType="String" syncable="YES"/>
@@ -76,13 +76,14 @@
         <attribute name="mailboxDigipostAddress" attributeType="String" syncable="YES"/>
         <attribute name="receiptId" attributeType="String" syncable="YES"/>
         <attribute name="storeName" attributeType="String" syncable="YES"/>
-        <attribute name="timeOfPurchase" attributeType="Date" syncable="YES"/>
+        <attribute name="timeOfPurchase" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="uri" attributeType="String" syncable="YES"/>
         <relationship name="mailbox" maxCount="1" deletionRule="Nullify" destinationEntity="Mailbox" inverseName="receipts" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
     <entity name="RootResource" representedClassName="POSRootResource" syncable="YES">
-        <attribute name="authenticationLevel" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="createdAt" attributeType="Date" syncable="YES"/>
+        <attribute name="authenticationLevel" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="banksUri" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentBankAccount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentBankAccountUri" attributeType="String" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
@@ -90,12 +91,12 @@
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logoutUri" attributeType="String" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="numberOfCards" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="numberOfCardsReadyForVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="numberOfReceiptsHiddenUntilVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="numberOfCards" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="numberOfCardsReadyForVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="numberOfReceiptsHiddenUntilVerification" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="searchUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="selfUri" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="unreadItemsInInbox" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="unreadItemsInInbox" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="uploadDocumentUri" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="mailboxes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Mailbox" inverseName="rootResource" inverseEntity="Mailbox" syncable="YES"/>
     </entity>
@@ -107,6 +108,6 @@
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="180"/>
         <element name="Mailbox" positionX="79" positionY="207" width="128" height="225"/>
         <element name="Receipt" positionX="-162" positionY="-108" width="128" height="210"/>
-        <element name="RootResource" positionX="-360" positionY="27" width="128" height="300"/>
+        <element name="RootResource" positionX="-360" positionY="27" width="128" height="315"/>
     </elements>
 </model>
