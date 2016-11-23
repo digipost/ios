@@ -632,3 +632,8 @@
 "invoice delete dialog unpaid message" = "Er du sikker på at du vil slette fakturaen fra både Digipost og nettbanken?";
 "invoice delete dialog unpaid delete button" = "Slett fakturaen";
 "invoice delete dialog unpaid cancel button" = "Avbryt";
+
+/* delete multiple invoices dialog */
+"invoice delete dialog multiple message" = "Er du sikker på at du vil slette %1$@, inkludert %2$@? Om du vil stoppe betalinger lagt til forfall, må du logge inn i nettbanken.";
+"invoice delete dialog multiple delete button" = "Slett";
+"invoice delete dialog multiple cancel button" = "Avbryt";
