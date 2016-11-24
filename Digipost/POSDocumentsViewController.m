@@ -468,13 +468,24 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (IBAction)didTapDeleteBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     NSUInteger numberOfLetters = [[self.tableView indexPathsForSelectedRows] count];
-    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") : NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+    NSUInteger numberOfInvoices = [self numberOfInvoices];
 
-    NSString *deleteString = [NSString stringWithFormat:@"%@ %lu %@",
-                                                        NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),
-                                                        (unsigned long)[[self.tableView indexPathsForSelectedRows] count],
-                                                        letterWord];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:deleteString message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
+    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") : NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+    
+    NSString *deleteTitle = NSLocalizedString(@"dialog delete multiple title", @"Delete");
+    NSString *deleteMessage = @"";
+    
+    if(numberOfInvoices > 0){
+        NSString *invoiceWord = numberOfInvoices == 1 ? NSLocalizedString(@"invoice delete dialog invoice singular", @"invoice") : NSLocalizedString(@"invoice delete dialog invoice plural", @"invoices");
+        deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
+    }else{
+        NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") : NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+        
+        deleteMessage = [NSString stringWithFormat:@"%@ %lu %@", NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),numberOfLetters,letterWord];
+    }
+    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:deleteTitle message:deleteMessage preferredStyle:UIAlertControllerStyleActionSheet];
+    
     UIAlertAction *deleteAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete") style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
         [self deleteDocuments];
         [self setEditing:NO animated:YES];
@@ -483,13 +494,29 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         [self setEditing:NO animated:YES];
     }];
+    
     [alertController addAction:deleteAction];
     [alertController addAction:cancelAction];
-    UIPopoverPresentationController *popPresenter = [alertController
-            popoverPresentationController];
+    
+    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
     popPresenter.sourceView = self.view;
     popPresenter.barButtonItem = barButtonItem;
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (NSInteger) numberOfInvoices
+{
+    NSInteger numberOfInvoices = 0;
+    for (NSIndexPath *indexPath in [self.tableView indexPathsForSelectedRows]) {
+        POSDocument *document = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        for (POSAttachment *attachment in document.attachments) {
+            if ([attachment.type  isEqual: @"INVOICE"]){
+                numberOfInvoices++;
+            }
+        }
+    }
+    
+    return numberOfInvoices;
 }
 
 - (void)refreshContent
