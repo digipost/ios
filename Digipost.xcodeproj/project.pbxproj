@@ -85,6 +85,9 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
+		9C8B656D1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
+		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
@@ -869,6 +872,7 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
+		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
@@ -1561,6 +1565,7 @@
 				83F7038018573641003DABE1 /* POSOAuthManager.m */,
 				EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */,
 				F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */,
+				9C8B656B1DE6437100634166 /* APIClient+Banks.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -2261,6 +2266,7 @@
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				ECB2BE7D1B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				ECB2BE8B1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
+				9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */,
 				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
@@ -2475,6 +2481,7 @@
 				EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */,
 				EC2752001B061DDD0007125D /* AccountViewController.swift in Sources */,
 				EC2751A41B061D5A0007125D /* AHKActionSheet+Convenience.m in Sources */,
+				9C8B656D1DE6437100634166 /* APIClient+Banks.swift in Sources */,
 				ECB2BFBD1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				EC2751E71B061DC80007125D /* String+Extensions.swift in Sources */,
 				EC2751F21B061DC80007125D /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
@@ -2689,6 +2696,7 @@
 				F8AE1BFA1CD374B40009B2F9 /* HTMLRepresentable.swift in Sources */,
 				F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */,
 				F8AE1BFC1CD374B40009B2F9 /* MainAccountTableViewCell.swift in Sources */,
+				9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */,
 				F8AE1BFD1CD374B40009B2F9 /* ComposerModule.swift in Sources */,
 				F8AE1BFE1CD374B40009B2F9 /* ComposerPresentationController.swift in Sources */,
 				F8AE1BFF1CD374B40009B2F9 /* NewFeaturesViewController.swift in Sources */,
