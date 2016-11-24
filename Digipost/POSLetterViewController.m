@@ -1163,11 +1163,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *message = NSLocalizedString(@"letter view delete document message", @"");
     NSString *deleteButtonText = NSLocalizedString(@"letter view delete document ok", @"");
     NSString *cancelButtonText = NSLocalizedString(@"letter view delete document cancel", @"Cancel");
-    
-    if(self.attachment.hasValidToPayInvoice()){
+
+    if(self.attachment.hasValidToPayInvoice){
         if(self.attachment.invoice != nil){
             title = NSLocalizedString(@"invoice delete dialog title", @"Delete invoice");
-            if(self.attachment.invoice.timePaid != nil){
+            if(self.attachment.invoice.timePaid){
                 message = NSLocalizedString(@"invoice delete dialog unpaid message", @"Delete invoice message");
                 deleteButtonText = NSLocalizedString(@"invoice delete dialog unpaid delete button", @"Confirme delete invoice");
                 cancelButtonText = NSLocalizedString(@"invoice delete dialog unpaid cancel button", @"Cancel delete invoice");
