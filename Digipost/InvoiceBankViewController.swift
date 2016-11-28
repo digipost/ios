@@ -72,7 +72,11 @@ class InvoiceBankViewController: UIViewController{
     }
     
     @IBAction func invoiceBankReadMore(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
+        if(invoiceBank.setupIsAvailable){
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/faktura")!)
+        }else{
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/app/post#/faktura")!)
+        }
     }
     
     override func viewDidLoad() {
