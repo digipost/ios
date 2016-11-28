@@ -640,3 +640,5 @@
 "invoice delete dialog multiple cancel button" = "Avbryt";
 "invoice delete dialog invoice singular" = "faktura";
 "invoice delete dialog invoice plural" = "fakturaer";
+"invoice delete dialog files singular" = "fil";
+"invoice delete dialog files plural" = "filer";

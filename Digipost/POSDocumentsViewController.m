@@ -470,7 +470,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSUInteger numberOfLetters = [[self.tableView indexPathsForSelectedRows] count];
     NSUInteger numberOfInvoices = [self numberOfInvoices];
 
-    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") : NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"file") : NSLocalizedString(@"invoice delete dialog files plural", @"letters");
     
     NSString *deleteTitle = NSLocalizedString(@"dialog delete multiple title", @"Delete");
     NSString *deleteMessage = @"";
@@ -479,7 +479,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         NSString *invoiceWord = numberOfInvoices == 1 ? NSLocalizedString(@"invoice delete dialog invoice singular", @"invoice") : NSLocalizedString(@"invoice delete dialog invoice plural", @"invoices");
         deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
     }else{
-        NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR", @"letter") : NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL", @"letters");
+        NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"fil") : NSLocalizedString(@"invoice delete dialog files plural", @"files");
         
         deleteMessage = [NSString stringWithFormat:@"%@ %lu %@", NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),numberOfLetters,letterWord];
     }
