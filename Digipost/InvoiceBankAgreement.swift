@@ -34,7 +34,9 @@
         if let banksUri = rootResource.banksUri{
         
         APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
-            print(jsonData)
+            for bank in jsonData["banks"] as! [[String: AnyObject]] {
+                
+            }
            
             }, failure: ({_ in }))
         }
