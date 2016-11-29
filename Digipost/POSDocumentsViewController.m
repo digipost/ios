@@ -470,7 +470,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     NSUInteger numberOfLetters = [[self.tableView indexPathsForSelectedRows] count];
     NSUInteger numberOfInvoices = [self numberOfInvoices];
 
-    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"file") : NSLocalizedString(@"invoice delete dialog files plural", @"letters");
+    NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"file") : NSLocalizedString(@"invoice delete dialog files plural", @"files");
     
     NSString *deleteTitle = NSLocalizedString(@"dialog delete multiple title", @"Delete");
     NSString *deleteMessage = @"";

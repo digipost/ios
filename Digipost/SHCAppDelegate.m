@@ -63,6 +63,7 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     
+    [self updateActiveBankAgreementStatusIfLoggedIn];
     return YES;
 }
 
@@ -224,6 +225,11 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
                                                           action:action
                                                            label:label
                                                            value:nil] build]];
+}
+
+- (void)updateActiveBankAgreementStatusIfLoggedIn
+{
+    [InvoiceBankAgreement updateActiveBankAgreementStatus];    
 }
 
 - (void)startUploading:(NSNotification *)notification

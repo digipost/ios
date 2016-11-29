@@ -88,6 +88,9 @@
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656D1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
+		9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
+		9CFE61621DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
+		9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
@@ -873,6 +876,7 @@
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
+		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
@@ -1920,6 +1924,7 @@
 				F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */,
 				F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */,
 				F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */,
+				9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */,
 			);
 			name = Invoice;
 			sourceTree = "<group>";
@@ -2395,6 +2400,7 @@
 				ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
+				9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
 				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
@@ -2610,6 +2616,7 @@
 				ECB2BFEB1B452F8C008E32E8 /* TextComposerModule.swift in Sources */,
 				EC3533541B0C74B900523419 /* OAuthToken+IDToken.swift in Sources */,
 				ECB2C00E1B469628008E32E8 /* HTMLTagBlock.swift in Sources */,
+				9CFE61621DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				EC2751951B061D550007125D /* POSRootResource.m in Sources */,
 				EC2751971B061D550007125D /* POSMailbox.m in Sources */,
 				EC2751C31B061D760007125D /* POSDocumentsViewController.m in Sources */,
@@ -2825,6 +2832,7 @@
 				F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */,
 				F8AE1C721CD374B40009B2F9 /* OnboardingViewController.swift in Sources */,
 				F8AE1C731CD374B40009B2F9 /* HTMLTagBlock.swift in Sources */,
+				9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				F8AE1C741CD374B40009B2F9 /* DimView.swift in Sources */,
 				F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */,
 				F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */,
