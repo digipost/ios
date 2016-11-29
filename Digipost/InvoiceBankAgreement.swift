@@ -34,8 +34,18 @@
         if let banksUri = rootResource.banksUri{
         
         APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
+            
+            var hasFakturaAgreementType1: Bool
+            var hasFakturaAgreementType2: Bool
+            
+            
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
-                
+                if(bank["offersFakturaAgreementType1"] as! Bool && bank["personHasFakturaAgreementWithBank"] as! Bool){
+                    hasFakturaAgreementType1 = true
+                }
+                if(bank["offersFakturaAgreementType1"] as! Bool && bank["personHasFakturaAgreementWithBank"] as! Bool){
+                    hasFakturaAgreementType2 = true
+                }
             }
            
             }, failure: ({_ in }))
