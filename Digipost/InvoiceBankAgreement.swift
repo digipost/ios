@@ -16,11 +16,11 @@
 
 @objc class InvoiceBankAgreement: NSObject{
         
-    static func hasActive10Agreement() -> Bool{
+    static func hasActiveAgreementType1() -> Bool{
         return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType1")
     }
     
-    static func hasActive20Agreement() -> Bool{
+    static func hasActiveAgreementType2() -> Bool{
         return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType2")
     }
     
