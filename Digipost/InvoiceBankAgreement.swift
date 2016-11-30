@@ -15,13 +15,17 @@
 //
 
 @objc class InvoiceBankAgreement: NSObject{
+    
+    static let personHarFakturaAvtaleMedBank = "personHarFakturaAvtaleMedBank"
+    static let tilbyrFakturaAvtaleType1 = "tilbyrFakturaAvtaleType1"
+    static let tilbyrFakturaAvtaleType2 = "tilbyrFakturaAvtaleType2"
         
     static func hasActiveAgreementType1() -> Bool{
-        return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType1")
+        return hasActiveFakturaAgreement(tilbyrFakturaAvtaleType1)
     }
     
     static func hasActiveAgreementType2() -> Bool{
-        return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType2")
+        return hasActiveFakturaAgreement(tilbyrFakturaAvtaleType2)
     }
     
     static func hasActiveFakturaAgreement(agreementType: String) -> Bool{
@@ -46,20 +50,20 @@
             var hasFakturaAgreementType2 = false
             
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
-                if bank["personHarFakturaAvtaleMedBank"] as! Bool{
-                    if(bank["tilbyrFakturaAvtaleType1"] as! Bool){
+                if bank[InvoiceBankAgreement.personHarFakturaAvtaleMedBank] as! Bool{
+                    if(bank[InvoiceBankAgreement.tilbyrFakturaAvtaleType1] as! Bool){
                         hasFakturaAgreementType1 = true
                     }
                     
-                    if(bank["tilbyrFakturaAvtaleType2"] as! Bool){
+                    if(bank[InvoiceBankAgreement.tilbyrFakturaAvtaleType2] as! Bool){
                         hasFakturaAgreementType2 = true
                     }
                     
                 }
             }
             
-            InvoiceBankAgreement.storeFakturaAgreement("tilbyrFakturaAvtaleType1",agreementActive:hasFakturaAgreementType1)
-            InvoiceBankAgreement.storeFakturaAgreement("tilbyrFakturaAvtaleType2",agreementActive:hasFakturaAgreementType2)
+            InvoiceBankAgreement.storeFakturaAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType1,agreementActive:hasFakturaAgreementType1)
+            InvoiceBankAgreement.storeFakturaAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType2,agreementActive:hasFakturaAgreementType2)
             
             }, failure: ({_ in }))
         }
