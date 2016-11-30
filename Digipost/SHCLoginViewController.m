@@ -226,6 +226,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [self presentAppropriateViewControllerForIPhone];
         }
     }
+    
+    [InvoiceBankAgreement updateActiveBankAgreementStatus];
 }
 
 - (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
