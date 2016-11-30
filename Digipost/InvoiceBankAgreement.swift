@@ -15,17 +15,24 @@
 //
 
 @objc class InvoiceBankAgreement: NSObject{
-    
-    func hasActiveAgreement(){
         
+    static func hasActive10Agreement() -> Bool{
+        return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType1")
     }
     
-    func hasActive10Agreement(){
-        
+    static func hasActive20Agreement() -> Bool{
+        return hasActiveFakturaAgreement("tilbyrFakturaAvtaleType2")
     }
     
-    func hasActive20Agreement(){
-        
+    static func hasActiveFakturaAgreement(agreementType: String) -> Bool{
+        NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
+        return defaults.boolForKey(agreementType)
+    }
+    
+    static func storeFakturaAgreement(agreementType: String, agreementActive: Bool){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(agreementActive, forKey: agreementType)
     }
     
     static func updateActiveBankAgreementStatus(){
@@ -35,19 +42,25 @@
         
         APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
             
-            var hasFakturaAgreementType1: Bool
-            var hasFakturaAgreementType2: Bool
-            
+            var hasFakturaAgreementType1 = false
+            var hasFakturaAgreementType2 = false
             
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
-                if(bank["offersFakturaAgreementType1"] as! Bool && bank["personHasFakturaAgreementWithBank"] as! Bool){
-                    hasFakturaAgreementType1 = true
-                }
-                if(bank["offersFakturaAgreementType1"] as! Bool && bank["personHasFakturaAgreementWithBank"] as! Bool){
-                    hasFakturaAgreementType2 = true
+                if bank["personHarFakturaAvtaleMedBank"] as! Bool{
+                    if(bank["tilbyrFakturaAvtaleType1"] as! Bool){
+                        hasFakturaAgreementType1 = true
+                    }
+                    
+                    if(bank["tilbyrFakturaAvtaleType2"] as! Bool){
+                        hasFakturaAgreementType2 = true
+                    }
+                    
                 }
             }
-           
+            
+            InvoiceBankAgreement.storeFakturaAgreement("tilbyrFakturaAvtaleType1",agreementActive:hasFakturaAgreementType1)
+            InvoiceBankAgreement.storeFakturaAgreement("tilbyrFakturaAvtaleType2",agreementActive:hasFakturaAgreementType2)
+            
             }, failure: ({_ in }))
         }
     }
