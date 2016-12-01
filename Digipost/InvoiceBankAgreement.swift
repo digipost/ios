@@ -21,20 +21,24 @@
     static let tilbyrFakturaAvtaleType2 = "tilbyrFakturaAvtaleType2"
         
     static func hasActiveAgreementType1() -> Bool{
-        return hasActiveFakturaAgreement(tilbyrFakturaAvtaleType1)
+        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType1)
     }
     
     static func hasActiveAgreementType2() -> Bool{
-        return hasActiveFakturaAgreement(tilbyrFakturaAvtaleType2)
+        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType2)
     }
     
-    static func hasActiveFakturaAgreement(agreementType: String) -> Bool{
+    static func hasActiveFakturaAgreement() -> Bool{
+        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType1) || hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType2)
+    }
+    
+    static func hasActiveInvoiceAgreement(agreementType: String) -> Bool{
         NSUserDefaults.standardUserDefaults()
         let defaults = NSUserDefaults.standardUserDefaults()
         return defaults.boolForKey(agreementType)
     }
     
-    static func storeFakturaAgreement(agreementType: String, agreementActive: Bool){
+    static func storeInvoiceAgreement(agreementType: String, agreementActive: Bool){
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(agreementActive, forKey: agreementType)
     }
@@ -62,8 +66,8 @@
                 }
             }
             
-            InvoiceBankAgreement.storeFakturaAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType1,agreementActive:hasFakturaAgreementType1)
-            InvoiceBankAgreement.storeFakturaAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType2,agreementActive:hasFakturaAgreementType2)
+            InvoiceBankAgreement.storeInvoiceAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType1,agreementActive:hasFakturaAgreementType1)
+            InvoiceBankAgreement.storeInvoiceAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType2,agreementActive:hasFakturaAgreementType2)
             
             }, failure: ({_ in }))
         }

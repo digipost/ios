@@ -1200,8 +1200,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 - (void)showInvoiceSetupAlert{
-    if (self.attachment.invoice != nil){
-        if([InvoiceAlertUserDefaults shouldShowInvoiceNotification]){
+    
+    BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
+    BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
+
+    if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
             
             UIAlertController * alert = [UIAlertController
                                          alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
@@ -1232,8 +1235,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [alert addAction:later];
             [alert addAction:forget];
             [self presentViewController:alert animated:YES completion:nil];
-        }
-}
+    }
 }
 
 - (UIViewController*) topMostController {
