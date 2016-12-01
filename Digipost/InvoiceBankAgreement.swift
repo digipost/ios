@@ -16,20 +16,21 @@
 
 @objc class InvoiceBankAgreement: NSObject{
     
-    static let personHarFakturaAvtaleMedBank = "personHarFakturaAvtaleMedBank"
-    static let tilbyrFakturaAvtaleType1 = "tilbyrFakturaAvtaleType1"
-    static let tilbyrFakturaAvtaleType2 = "tilbyrFakturaAvtaleType2"
+    static let offersType1 = "tilbyrFakturaAvtaleType1"
+    static let offersType2 = "tilbyrFakturaAvtaleType2"
+    static let activeType1 = "aktivFakturaAvtaleType1"
+    static let activeType2 = "aktivFakturaAvtaleType2"
         
     static func hasActiveAgreementType1() -> Bool{
-        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType1)
+        return hasActiveInvoiceAgreement(activeType1)
     }
     
     static func hasActiveAgreementType2() -> Bool{
-        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType2)
+        return hasActiveInvoiceAgreement(activeType2)
     }
     
     static func hasActiveFakturaAgreement() -> Bool{
-        return hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType1) || hasActiveInvoiceAgreement(tilbyrFakturaAvtaleType2)
+        return hasActiveInvoiceAgreement(activeType1) || hasActiveInvoiceAgreement(activeType2)
     }
     
     static func hasActiveInvoiceAgreement(agreementType: String) -> Bool{
@@ -54,20 +55,22 @@
             var hasFakturaAgreementType2 = false
             
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
-                if bank[InvoiceBankAgreement.personHarFakturaAvtaleMedBank] as! Bool{
-                    if(bank[InvoiceBankAgreement.tilbyrFakturaAvtaleType1] as! Bool){
+                
+                if let bankOffersType1 = bank[offersType1], bankActiveType1 = bank[activeType1]{
+                    if(bankOffersType1 as! Bool && bankActiveType1 as! Bool){
                         hasFakturaAgreementType1 = true
                     }
-                    
-                    if(bank[InvoiceBankAgreement.tilbyrFakturaAvtaleType2] as! Bool){
+                }
+                
+                if let bankOffersType2 = bank[offersType2], bankActiveType2 = bank[activeType2]{
+                    if(bankOffersType2 as! Bool && bankActiveType2 as! Bool){
                         hasFakturaAgreementType2 = true
                     }
-                    
                 }
             }
             
-            InvoiceBankAgreement.storeInvoiceAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType1,agreementActive:hasFakturaAgreementType1)
-            InvoiceBankAgreement.storeInvoiceAgreement(InvoiceBankAgreement.tilbyrFakturaAvtaleType2,agreementActive:hasFakturaAgreementType2)
+            InvoiceBankAgreement.storeInvoiceAgreement(activeType1,agreementActive:hasFakturaAgreementType1)
+            InvoiceBankAgreement.storeInvoiceAgreement(activeType2,agreementActive:hasFakturaAgreementType2)
             
             }, failure: ({_ in }))
         }
