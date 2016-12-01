@@ -17,31 +17,31 @@
 
 @objc class InvoiceAnalytics : NSObject{
 
-    let fakturaOppsettKontekstBasert = "faktura-avtale-oppsett-kontekst-basert"
+    static let fakturaOppsettKontekstBasert = "faktura-avtale-oppsett-kontekst-basert"
     
-    func submitEvent(category: String,action: String,label: String){
+    static func submitEvent(category: String,action: String,label: String){
         let tracker = GAI.sharedInstance().defaultTracker
         let parameters = GAIDictionaryBuilder.createEventWithCategory(category, action:action, label: label, value:nil).build()
         tracker.send(parameters as [NSObject: AnyObject])
     }
     
-    func sendInvoiceCLickedChooseBankDialog(buttonText: String ){
+    static func sendInvoiceCLickedChooseBankDialog(buttonText: String ){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-start-oppsett", label: buttonText);
     }
     
-    func sendInvoiceOpenBankViewFromListEvent(bankName: String){
+    static func sendInvoiceOpenBankViewFromListEvent(bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-bank-i-liste", label: bankName);
     }
     
-    func sendInvoiceClickedDigipostOpenPagesLink(bankName: String){
+    static func sendInvoiceClickedDigipostOpenPagesLink(bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-digipost-faktura-åpne-sider", label: bankName);
     }
     
-    func sendInvoiceClickedSetup10Link(bankName: String){
+    static func sendInvoiceClickedSetup10Link(bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-oppsett-avtale-type-1-link", label: bankName);
     }
     
-    func sendInvoiceClickedSetup20Link(bankName: String){
+    static func sendInvoiceClickedSetup20Link(bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-oppsett-avtale-type-2-link", label: bankName);
     }
 }

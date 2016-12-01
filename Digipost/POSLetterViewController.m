@@ -1215,6 +1215,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                          actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
                                          style:UIAlertActionStyleDefault
                                          handler:^(UIAlertAction * action) {
+                                             [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
                                              [self didTapChooseBankButton];
                                          }];
             
@@ -1222,12 +1223,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                     actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
                                     style:UIAlertActionStyleDefault
                                     handler:^(UIAlertAction * action) {
+                                        [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
                                     }];
             
             UIAlertAction* forget = [UIAlertAction
                                      actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * action) {
+                                         [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
                                          [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
                                      }];
             
