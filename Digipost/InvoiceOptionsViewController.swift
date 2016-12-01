@@ -63,6 +63,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
             if let viewController = segue.destinationViewController as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! NSIndexPath).row]
                 viewController.title = self.title
+                InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! NSIndexPath).row].name)
             }
         }
     }

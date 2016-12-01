@@ -68,13 +68,16 @@ class InvoiceBankViewController: UIViewController{
     }
     
     @IBAction func openBankUrl(sender: AnyObject) {
+        InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
         UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
     }
     
     @IBAction func invoiceBankReadMore(sender: AnyObject) {
         if(invoiceBank.setupIsAvailable){
+            InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
             UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/faktura")!)
         }else{
+            InvoiceAnalytics.sendInvoiceClickedSetup10Link(invoiceBank.name)
             UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/app/post#/faktura")!)
         }
     }
