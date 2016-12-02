@@ -481,7 +481,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }else{
         NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"fil") : NSLocalizedString(@"invoice delete dialog files plural", @"files");
         
-        deleteMessage = [NSString stringWithFormat:@"%@ %lu %@", NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),numberOfLetters,letterWord];
+        deleteMessage = [NSString stringWithFormat:@"%@ %lu %@", NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),(unsigned long)numberOfLetters,letterWord];
     }
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:deleteTitle message:deleteMessage preferredStyle:UIAlertControllerStyleActionSheet];
