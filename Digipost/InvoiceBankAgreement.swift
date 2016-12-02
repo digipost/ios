@@ -46,7 +46,7 @@
     
     static func updateActiveBankAgreementStatus(){
         
-        let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
         if let banksUri = rootResource.banksUri{
         
         APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
@@ -74,5 +74,6 @@
             
             }, failure: ({_ in }))
         }
+    }
     }
 }
