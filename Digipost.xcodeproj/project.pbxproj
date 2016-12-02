@@ -3293,7 +3293,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/test.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
@@ -3339,7 +3339,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/test.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
 				WRAPPER_EXTENSION = app;

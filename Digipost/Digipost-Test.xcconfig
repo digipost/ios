@@ -20,7 +20,7 @@
 
 ACCEPT_SELF_SIGNED_CERTIFICATES = 1
 
-SERVER_URI = \@\"https:\/\/test.digipost.no\"
+SERVER_URI = \@\"https:\/\/www.test.digipost.no\"
 API_VERSION = \@\"v2\"
 
 LUMBERJACK_LOG_LEVEL = LOG_LEVEL_INFO

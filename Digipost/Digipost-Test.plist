@@ -47,7 +47,7 @@
 				<key>NSTemporaryExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
-			<key>qa.digipost.no</key>
+			<key>www.test.digipost.no</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
 				<true/>
