@@ -18,7 +18,7 @@
 
 #include "Shared.xcconfig"
 
-ACCEPT_SELF_SIGNED_CERTIFICATES = 1
+ACCEPT_SELF_SIGNED_CERTIFICATES = 0
 
 SERVER_URI = \@\"https:\/\/www.test.digipost.no\"
 API_VERSION = \@\"v2\"
