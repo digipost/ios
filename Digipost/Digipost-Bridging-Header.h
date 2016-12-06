@@ -31,7 +31,7 @@
 #import "POSReceipt.h"
 #import "POSOAuthManager.h"
 #import "SHCLoginViewController.h"
-#import "LUKeychainAccess/LUKeychainAccess.h"
+#import <LUKeychainAccess/LUKeychainAccess.h>
 #import "POSAccountViewTableViewDataSource.h"
 #import <AFNetworking/AFNetworking.h>
 #import "UIRefreshControl+Additions.h"
