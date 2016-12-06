@@ -14,7 +14,7 @@
 // limitations under the License.
 //
 
-#include "Pods/Target Support Files/Pods/Pods.release.xcconfig"
+#include "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.release.xcconfig"
 
 #include "Shared.xcconfig"
 

@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
-
+target :Digipost do
 pod 'AFNetworking', '~> 3.1.0'
 pod 'UIAlertView+Blocks', '~> 0.8'
 pod 'LUKeychainAccess', '~> 1.2.0'
@@ -13,6 +13,6 @@ pod 'Alamofire', '~> 3.5.0'
 pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :branch => 'master'
 pod 'SingleLineShakeAnimation', :git => 'https://github.com/haaakon/SingleLineShakeAnimation', :branch => 'master'
 pod 'Cartography', '~> 0.7.0’
-
+end
 
 use_frameworks!
