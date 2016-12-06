@@ -15,6 +15,7 @@
 //
 
 #include "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.release.xcconfig"
+#include "Pods/Target Support Files/Pods-Digipost-Test/Pods-Digipost-Test.release.xcconfig"
 
 #include "Shared.xcconfig"
 

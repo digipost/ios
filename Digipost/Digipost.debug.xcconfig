@@ -15,7 +15,7 @@
 //
 
 #include "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.debug.xcconfig"
-
+#include "Pods/Target Support Files/Pods-Digipost-Test/Pods-Digipost-Test.debug.xcconfig"
 #include "Shared.xcconfig"
 
 SERVER_URI = \@\"https:\/\/www.digipost.no\"
