@@ -44,6 +44,7 @@
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		62590D6EC9DD7E072EAF34F3 /* Pods_DigipostModelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */; };
 		7C2657008ED15AD6CFBF4763 /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
@@ -86,6 +87,7 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		9C3C11011DF835B90028DF3B /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11001DF835B90028DF3B /* Pods_Digipost_Test.framework */; };
 		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450681DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
@@ -797,6 +799,7 @@
 		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		835C74E318867603006C6F4F /* POSInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSInvoice.h; sourceTree = "<group>"; };
@@ -882,6 +885,9 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
+		9081065641E63319C0876AD3 /* Pods-DigipostModelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostModelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostModelTests/Pods-DigipostModelTests.release.xcconfig"; sourceTree = "<group>"; };
+		9C3C11001DF835B90028DF3B /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
+		9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C3EFF711DF6C06700C6A162 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAnalytics.swift; sourceTree = "<group>"; };
 		9C44506A1DF1748D00638385 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
@@ -1204,6 +1210,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C3C11011DF835B90028DF3B /* Pods_Digipost_Test.framework in Frameworks */,
 				EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */,
 				EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */,
 				EC2752131B061E2F0007125D /* CoreData.framework in Frameworks */,
@@ -1214,6 +1221,7 @@
 				F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */,
 				EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */,
 				EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */,
+				62590D6EC9DD7E072EAF34F3 /* Pods_DigipostModelTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1250,7 @@
 		6F161DF8048A11B81D902300 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				9081065641E63319C0876AD3 /* Pods-DigipostModelTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1311,6 +1320,8 @@
 		83BAB91A1855C0AC004A7BFB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */,
+				9C3C11001DF835B90028DF3B /* Pods_Digipost_Test.framework */,
 				9C3EFF711DF6C06700C6A162 /* Pods_Digipost.framework */,
 				9C44506A1DF1748D00638385 /* AFNetworking.framework */,
 				F85148371C89B21E0040A734 /* AFNetworking.framework */,
@@ -1337,6 +1348,7 @@
 				03E13B40CF574D28E1F2C73A /* Pods.framework */,
 				2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */,
 				1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */,
+				37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1975,11 +1987,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC2751901B061D020007125D /* Build configuration list for PBXNativeTarget "DigipostModelTests" */;
 			buildPhases = (
+				71C6169E51AC61D4F8AB5AA6 /* [CP] Check Pods Manifest.lock */,
 				EC2751821B061D000007125D /* Sources */,
 				EC2751831B061D000007125D /* Frameworks */,
 				EC2751841B061D000007125D /* Resources */,
 				EC2752191B061ED60007125D /* Copy pods resources */,
 				EC27521A1B061EFA0007125D /* Embed pods frameworks */,
+				CA0D62B9E7C33200906558CF /* [CP] Embed Pods Frameworks */,
+				35964ED3D25D55D38BE811A2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2042,6 +2057,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = 6266AQAQ72;
 						LastSwiftMigration = 0800;
+						TestTargetID = 83BAB9171855C0AC004A7BFB;
 					};
 					F8AE1BE91CD374B40009B2F9 = {
 						DevelopmentTeam = KMS8B8MK42;
@@ -2195,7 +2211,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		35964ED3D25D55D38BE811A2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6481F375FF98F8ECE7DD9A4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		71C6169E51AC61D4F8AB5AA6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2270,6 +2316,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CA0D62B9E7C33200906558CF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		CC86362D81FB641BD829693C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2297,7 +2358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"";
 		};
 		EC27521A1B061EFA0007125D /* Embed pods frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3259,7 +3320,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6266AQAQ72;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3292,11 +3353,13 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 2.3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
 			};
 			name = Debug;
 		};
 		EC27518F1B061D020007125D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9081065641E63319C0876AD3 /* Pods-DigipostModelTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
@@ -3306,7 +3369,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 6266AQAQ72;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3325,6 +3388,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_VERSION = 2.3;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
 			};
 			name = Release;
 		};
