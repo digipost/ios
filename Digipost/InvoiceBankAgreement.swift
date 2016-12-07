@@ -14,64 +14,69 @@
 // limitations under the License.
 //
 
-@objc class InvoiceBankAgreement: NSObject{
-    
+@objc class InvoiceBankAgreement: NSObject {
+
     static let offersType1 = "tilbyrFakturaAvtaleType1"
     static let offersType2 = "tilbyrFakturaAvtaleType2"
     static let activeType1 = "aktivFakturaAvtaleType1"
     static let activeType2 = "aktivFakturaAvtaleType2"
-        
-    static func hasActiveAgreementType1() -> Bool{
+
+    static func hasActiveAgreementType1() -> Bool {
         return hasActiveInvoiceAgreement(activeType1)
     }
-    
-    static func hasActiveAgreementType2() -> Bool{
+
+    static func hasActiveAgreementType2() -> Bool {
         return hasActiveInvoiceAgreement(activeType2)
     }
-    
-    static func hasActiveFakturaAgreement() -> Bool{
+
+    static func hasActiveFakturaAgreement() -> Bool {
         return hasActiveInvoiceAgreement(activeType1) || hasActiveInvoiceAgreement(activeType2)
     }
-    
-    static func hasActiveInvoiceAgreement(agreementType: String) -> Bool{
+
+    static func hasActiveInvoiceAgreement(agreementType: String) -> Bool {
         NSUserDefaults.standardUserDefaults()
         let defaults = NSUserDefaults.standardUserDefaults()
         return defaults.boolForKey(agreementType)
     }
-    
-    static func storeInvoiceAgreement(agreementType: String, agreementActive: Bool){
+
+    static func storeInvoiceAgreement(agreementType: String, agreementActive: Bool) {
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject(agreementActive, forKey: agreementType)
     }
-    
-    static func updateActiveBankAgreementStatus(){
-        
-        if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
-        if let banksUri = rootResource.banksUri{
-        
+
+    static func updateActiveBankAgreementStatus() {
+
+        if let rootResource: POSRootResource =
+        POSRootResource.existingRootResourceInManagedObjectContext(
+            POSModelManager.sharedManager().managedObjectContext) {
+
+        if let banksUri = rootResource.banksUri {
+
         APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
-            
+
             var hasFakturaAgreementType1 = false
             var hasFakturaAgreementType2 = false
-            
+
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
-                
-                if let bankOffersType1 = bank[offersType1], bankActiveType1 = bank[activeType1]{
-                    if(bankOffersType1 as! Bool && bankActiveType1 as! Bool){
+
+                if let bankOffersType1 = bank[offersType1], bankActiveType1 = bank[activeType1] {
+                    if bankOffersType1 as! Bool && bankActiveType1 as! Bool {
                         hasFakturaAgreementType1 = true
                     }
                 }
-                
-                if let bankOffersType2 = bank[offersType2], bankActiveType2 = bank[activeType2]{
-                    if(bankOffersType2 as! Bool && bankActiveType2 as! Bool){
+
+                if let bankOffersType2 = bank[offersType2], bankActiveType2 = bank[activeType2] {
+                    if bankOffersType2 as! Bool && bankActiveType2 as! Bool {
                         hasFakturaAgreementType2 = true
                     }
                 }
             }
-            
-            InvoiceBankAgreement.storeInvoiceAgreement(activeType1,agreementActive:hasFakturaAgreementType1)
-            InvoiceBankAgreement.storeInvoiceAgreement(activeType2,agreementActive:hasFakturaAgreementType2)
-            
+
+            InvoiceBankAgreement.storeInvoiceAgreement(activeType1,
+                agreementActive:hasFakturaAgreementType1)
+            InvoiceBankAgreement.storeInvoiceAgreement(activeType2,
+                agreementActive:hasFakturaAgreementType2)
+
             }, failure: ({_ in }))
         }
     }
