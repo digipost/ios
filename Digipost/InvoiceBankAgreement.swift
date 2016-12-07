@@ -18,8 +18,7 @@
 
     static let type1 = "ATTACHMENT_TYPE_1"
     static let type2 = "ATTACHMENT_TYPE_1"
-    static let active = "active"
-
+    
     static func hasActiveAgreementType1() -> Bool {
         return hasActiveInvoiceAgreement(activeType1)
     }
@@ -58,16 +57,18 @@
 
             for bank in jsonData["banks"] as! [[String: AnyObject]] {
 
-                if let attachments = bank["attachments"] as! [[String: AnyObject]] {
-                    for attachment in attachments {
-                        if let agreementTypeActive = attachement[active] as! Bool {
-
-                            if let agreementType1Available = attachement[type1] as! Bool {
-                                hasFakturaAgreementType1 = true
-                            }
-
-                            if let agreementType1Available = attachement[type2] as! Bool {
-                                hasFakturaAgreementType2 = true
+                if let agreements = bank["agreements"] as! [[String: AnyObject]] {
+                    for agreement in agreements {
+                        if let agreementTypeActive = agreement["active"] as! Bool {
+                            if let agreementType = agreement["agreementType"] as! String {
+                                
+                                if agreementTypeActive && agreementType.equals(type1) {
+                                    hasFakturaAgreementType1 = true
+                                }
+                                
+                                if agreementTypeActive && agreementType.equals(type1) {
+                                    hasFakturaAgreementType2 = true
+                                }
                             }
                         }
                     }
