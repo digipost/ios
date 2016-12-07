@@ -1,3 +1,5 @@
+# cocoapods version 1.1.1
+
 source 'https://github.com/CocoaPods/Specs.git'
 
 platform :ios, '8.0'
