@@ -16,19 +16,19 @@
 
 @objc class InvoiceBankAgreement: NSObject {
 
-    static let type1 = "ATTACHMENT_TYPE_1"
-    static let type2 = "ATTACHMENT_TYPE_1"
+    static let type1 = "AGREEMENT_TYPE_1"
+    static let type2 = "AGREEMENT_TYPE_2"
     
     static func hasActiveAgreementType1() -> Bool {
-        return hasActiveInvoiceAgreement(activeType1)
+        return hasActiveInvoiceAgreement(type1)
     }
 
     static func hasActiveAgreementType2() -> Bool {
-        return hasActiveInvoiceAgreement(activeType2)
+        return hasActiveInvoiceAgreement(type2)
     }
 
     static func hasActiveFakturaAgreement() -> Bool {
-        return hasActiveInvoiceAgreement(activeType1) || hasActiveInvoiceAgreement(activeType2)
+        return hasActiveInvoiceAgreement(type1) || hasActiveInvoiceAgreement(type2)
     }
 
     static func hasActiveInvoiceAgreement(agreementType: String) -> Bool {
@@ -43,57 +43,51 @@
     }
 
     static func updateActiveBankAgreementStatus() {
-
+        print("updateActiveBankAgreementStatus")
+        
         if let rootResource: POSRootResource =
-        POSRootResource.existingRootResourceInManagedObjectContext(
-            POSModelManager.sharedManager().managedObjectContext) {
-
-        if let banksUri = rootResource.banksUri {
-
-        APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
-
-            var hasFakturaAgreementType1 = false
-            var hasFakturaAgreementType2 = false
-
-            for bank in jsonData["banks"] as! [[String: AnyObject]] {
-
-                if let agreements = bank["agreements"] as! [[String: AnyObject]] {
-                    for agreement in agreements {
-                        if let agreementTypeActive = agreement["active"] as! Bool {
-                            if let agreementType = agreement["agreementType"] as! String {
+            POSRootResource.existingRootResourceInManagedObjectContext(
+                POSModelManager.sharedManager().managedObjectContext) {
+            
+            if let banksUri = rootResource.banksUri {
+                
+                APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
+                    
+                    var hasFakturaAgreementType1 = false
+                    var hasFakturaAgreementType2 = false
+                    
+                    for bank in jsonData["banks"] as! [[String: AnyObject]] {
+                        
+                        if let agreements = bank["agreements"] {
+                            
+                            for agreement in agreements as! [[String: AnyObject]] {
                                 
-                                if agreementTypeActive && agreementType.equals(type1) {
-                                    hasFakturaAgreementType1 = true
-                                }
-                                
-                                if agreementTypeActive && agreementType.equals(type1) {
-                                    hasFakturaAgreementType2 = true
+                                if let agreementTypeActive = agreement["active"], let agreementType = agreement["agreementType"] {
+                                    
+                                    if agreementTypeActive as! Bool && type1 == agreementType as! String {
+                                        hasFakturaAgreementType1 = true
+                                    }
+                                    
+                                    if agreementTypeActive as! Bool && type2 == agreementType as! String {
+                                        hasFakturaAgreementType2 = true
+                                    }
+                                    
                                 }
                             }
                         }
                     }
-                }
-
-                if let bankOffersType1 = bank[offersType1], bankActiveType1 = bank[activeType1] {
-                    if bankOffersType1 as! Bool && bankActiveType1 as! Bool {
-                        hasFakturaAgreementType1 = true
-                    }
-                }
-
-                if let bankOffersType2 = bank[offersType2], bankActiveType2 = bank[activeType2] {
-                    if bankOffersType2 as! Bool && bankActiveType2 as! Bool {
-                        hasFakturaAgreementType2 = true
-                    }
-                }
+                    
+                    
+                    print("updateActiveBankAgreementStatus type1: \(hasFakturaAgreementType1)")
+                    print("updateActiveBankAgreementStatus type2: \(hasFakturaAgreementType1)")
+                    
+                    InvoiceBankAgreement.storeInvoiceAgreement(type1,
+                        agreementActive:hasFakturaAgreementType1)
+                    InvoiceBankAgreement.storeInvoiceAgreement(type2,
+                        agreementActive:hasFakturaAgreementType2)
+                    
+                    }, failure: ({_ in }))
             }
-
-            InvoiceBankAgreement.storeInvoiceAgreement(activeType1,
-                agreementActive:hasFakturaAgreementType1)
-            InvoiceBankAgreement.storeInvoiceAgreement(activeType2,
-                agreementActive:hasFakturaAgreementType2)
-
-            }, failure: ({_ in }))
         }
-    }
     }
 }
