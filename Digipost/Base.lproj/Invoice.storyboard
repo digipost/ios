@@ -104,7 +104,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="527" y="940"/>
+            <point key="canvasLocation" x="-2036" y="108"/>
         </scene>
         <!--INVOICE_BANK-->
         <scene sceneID="Uto-tM-aYH">
@@ -152,7 +152,6 @@
                                         <state key="normal" title="INVOICE_BANK_READ_MORE"/>
                                         <connections>
                                             <action selector="invoiceBankReadMore:" destination="84D-5z-zyP" eventType="touchUpInside" id="xjj-zh-IyA"/>
-                                            <action selector="invoiceBankReadMoreWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="292-sL-1kf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -212,7 +211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1145" y="940"/>
+            <point key="canvasLocation" x="-1417" y="108"/>
         </scene>
     </scenes>
     <resources>
