@@ -42,9 +42,7 @@
         defaults.setObject(agreementActive, forKey: agreementType)
     }
 
-    static func updateActiveBankAgreementStatus() {
-        print("updateActiveBankAgreementStatus")
-        
+    static func updateActiveBankAgreementStatus() {        
         if let rootResource: POSRootResource =
             POSRootResource.existingRootResourceInManagedObjectContext(
                 POSModelManager.sharedManager().managedObjectContext) {
@@ -76,10 +74,6 @@
                             }
                         }
                     }
-                    
-                    
-                    print("updateActiveBankAgreementStatus type1: \(hasFakturaAgreementType1)")
-                    print("updateActiveBankAgreementStatus type2: \(hasFakturaAgreementType1)")
                     
                     InvoiceBankAgreement.storeInvoiceAgreement(type1,
                         agreementActive:hasFakturaAgreementType1)
