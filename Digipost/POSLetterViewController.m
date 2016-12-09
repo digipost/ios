@@ -718,6 +718,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                      success:^(NSDictionary *responseDict) {
                                          POSDocument *refetchedDocument = [POSDocument existingDocumentWithUpdateUri:self.attachment.document.updateUri inManagedObjectContext:[[POSModelManager sharedManager] managedObjectContext]];
                                          [[POSModelManager sharedManager] updateDocument:refetchedDocument withAttributes:responseDict];
+                                         
+                                         NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
+                                         [self setToolbarItems:toolbarItems animated:YES];
+                                         
                                          [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];
                                      }failure:^(APIError *error) {
                                          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
