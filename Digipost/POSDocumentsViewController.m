@@ -196,6 +196,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:kRefreshDocumentsContentNotificationName
                                                   object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationWillEnterForegroundNotification
+                                                  object:nil];
 
     [self programmaticallyEndRefresh];
 
