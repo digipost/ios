@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--INVOICE_OPTIONS-->
+        <!--Invoice Options Title-->
         <scene sceneID="iaG-Zp-DBK">
             <objects>
                 <viewController id="nWN-tl-VuW" customClass="InvoiceOptionsViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -93,12 +93,11 @@
                             <constraint firstAttribute="trailing" secondItem="Q9A-Bh-mEm" secondAttribute="trailing" id="wej-mR-szx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="INVOICE_OPTIONS" id="reP-Vg-MBG"/>
+                    <navigationItem key="navigationItem" title="Invoice Options Title" id="reP-Vg-MBG"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bankTableView" destination="CsO-8F-sFk" id="n72-Ry-a2H"/>
-                        <outlet property="invoiceOptionsHeader" destination="reP-Vg-MBG" id="yBD-iS-4jV"/>
                         <segue destination="84D-5z-zyP" kind="show" identifier="invoiceBankSegue" id="Wqj-xD-Y8c"/>
                     </connections>
                 </viewController>
@@ -106,7 +105,7 @@
             </objects>
             <point key="canvasLocation" x="-2036" y="108"/>
         </scene>
-        <!--INVOICE_BANK-->
+        <!--Invoice Bank Title-->
         <scene sceneID="Uto-tM-aYH">
             <objects>
                 <viewController id="84D-5z-zyP" customClass="InvoiceBankViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -199,10 +198,9 @@
                             <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="bottom" id="noq-WG-FHO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="INVOICE_BANK" id="7zI-ht-BHO"/>
+                    <navigationItem key="navigationItem" title="Invoice Bank Title" id="7zI-ht-BHO"/>
                     <connections>
                         <outlet property="invoiceBankContent" destination="rXg-qN-PD5" id="Y0t-hz-hcX"/>
-                        <outlet property="invoiceBankHeader" destination="7zI-ht-BHO" id="arb-ic-e2y"/>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
                         <outlet property="invoiceBankReadMoreText" destination="SWZ-DM-g13" id="NHL-nb-WWA"/>
                         <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
