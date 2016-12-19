@@ -642,3 +642,10 @@
 "invoice delete dialog invoice plural" = "fakturaer";
 "invoice delete dialog files singular" = "fil";
 "invoice delete dialog files plural" = "filer";
+
+/* forgot password */
+"forgot password title" = "Glemt passord";
+"forgot password message" = "Du kan endre passord på digipost.no.\nBruk det nye passordet for å logge inn i appen.";
+"forgot password change button" = "Til digipost.no";
+"forgot password cancel button" = "Lukk";
+"LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON" = "Glemt passord";
