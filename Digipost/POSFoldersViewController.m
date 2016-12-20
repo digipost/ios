@@ -288,10 +288,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
     }
 
-    cell.backgroundColor = [UIColor colorWithRed:64.0 / 255.0
-                                           green:66.0 / 255.0
-                                            blue:69.0 / 255.0
-                                           alpha:1.0];
+    cell.backgroundColor = [UIColor colorWithRed:0.24 green:0.24 blue:0.25 alpha:1.0];
     cell.folderNameLabel.text = folderName;
     cell.iconImageView.image = iconImage;
     cell.arrowImageView.hidden = arrowHidden;
@@ -476,9 +473,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                                                             CGRectGetWidth(tableView.frame),
                                                             headerHeight)];
     [view addSubview:headerLabel];
-    [view setBackgroundColor:[UIColor pos_colorWithR:64
-                                                   G:66
-                                                   B:69]];
+    [view setBackgroundColor:[UIColor colorWithRed:0.24 green:0.24 blue:0.25 alpha:1.0]];
 
     return view;
 }
