@@ -251,6 +251,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                                                       preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *openBrowserAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"forgot password change button", @"Goto") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self sendAnalyticsEvent:@"glemt-passord"];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/app/#/person/glemt"]];
     }];
     
@@ -281,16 +282,26 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapSecondaryButton:(UIButton *)sender
 {
+    [self sendAnalyticsEvent:@"registrering"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]]];
 }
 
 - (IBAction)didTapPrivacyButton:(UIButton *)sender
 {
+    [self sendAnalyticsEvent:@"personvern"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"]];
 }
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
+}
+
+-(void) sendAnalyticsEvent: (NSString*) event {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"innlogging"
+                                                          action:@"klikk-link"
+                                                           label:event
+                                                           value:nil] build]];
 }
 
 #pragma mark - Private methods
