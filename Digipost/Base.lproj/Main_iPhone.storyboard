@@ -1291,7 +1291,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="FORGOT_PASSWORD">
-                                                    <color key="titleColor" red="0.20784313725490197" green="0.20784313725490197" blue="0.20784313725490197" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" red="0.39552514789999998" green="0.39361439840000001" blue="0.39743589740000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
@@ -1325,10 +1325,9 @@
                                     <constraint firstItem="Qv1-h9-ci4" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" constant="-0.5" id="X47-pC-sug"/>
                                     <constraint firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="30" id="a8s-Kr-Qur"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="cVj-4D-L2d"/>
-                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="3" id="n2D-ko-mh7"/>
+                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="12" id="n2D-ko-mh7"/>
                                     <constraint firstItem="Qv1-h9-ci4" firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="-13" id="uYX-3P-C4s"/>
                                     <constraint firstAttribute="width" constant="320" id="vip-Xp-DMk"/>
-                                    <constraint firstAttribute="bottom" secondItem="Qv1-h9-ci4" secondAttribute="bottom" constant="154" id="xxu-4f-5dX"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjv-xm-cBW">
