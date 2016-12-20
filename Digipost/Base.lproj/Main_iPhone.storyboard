@@ -1279,7 +1279,6 @@
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="REGISTER_BUTTON">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="didTapSecondaryButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="CCB-a5-3Zp"/>
@@ -1287,12 +1286,11 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-XJ-KCt">
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="115" id="CUn-Y3-D3G"/>
+                                                    <constraint firstAttribute="width" constant="106" id="CUn-Y3-D3G"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                                 <state key="normal" title="FORGOT_PASSWORD">
-                                                    <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <color key="titleShadowColor" red="0.39552514789999998" green="0.39361439840000001" blue="0.39743589740000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="didTapForgotPasswordButton:" destination="2Dt-Hy-BfT" eventType="touchUpInside" id="TGx-zT-5Ux"/>
@@ -1303,13 +1301,13 @@
                                         <constraints>
                                             <constraint firstItem="fv5-4n-dtY" firstAttribute="leading" secondItem="Qv1-h9-ci4" secondAttribute="leading" constant="2" id="9ub-TF-ADw"/>
                                             <constraint firstAttribute="bottom" secondItem="GK6-XJ-KCt" secondAttribute="bottom" constant="3" id="FWU-0g-Czo"/>
-                                            <constraint firstAttribute="trailing" secondItem="GK6-XJ-KCt" secondAttribute="trailing" id="Phd-6I-9W1"/>
+                                            <constraint firstAttribute="trailing" secondItem="GK6-XJ-KCt" secondAttribute="trailing" constant="-4" id="Phd-6I-9W1"/>
                                             <constraint firstItem="fv5-4n-dtY" firstAttribute="top" secondItem="Qv1-h9-ci4" secondAttribute="top" constant="2" id="RX3-23-wmj"/>
                                             <constraint firstItem="GK6-XJ-KCt" firstAttribute="centerY" secondItem="Qv1-h9-ci4" secondAttribute="centerY" id="YOy-se-a5a"/>
                                             <constraint firstItem="GK6-XJ-KCt" firstAttribute="leading" secondItem="fv5-4n-dtY" secondAttribute="trailing" constant="1" id="YaX-Rg-Eos"/>
                                             <constraint firstAttribute="bottom" secondItem="fv5-4n-dtY" secondAttribute="bottom" constant="3" id="iVW-TA-3NB"/>
                                             <constraint firstItem="GK6-XJ-KCt" firstAttribute="leading" secondItem="fv5-4n-dtY" secondAttribute="trailing" constant="1" id="ipk-9M-ulr"/>
-                                            <constraint firstAttribute="trailing" secondItem="GK6-XJ-KCt" secondAttribute="trailing" id="jmK-to-l7s"/>
+                                            <constraint firstAttribute="trailing" secondItem="GK6-XJ-KCt" secondAttribute="trailing" constant="-4" id="jmK-to-l7s"/>
                                             <constraint firstItem="GK6-XJ-KCt" firstAttribute="top" secondItem="Qv1-h9-ci4" secondAttribute="top" constant="2" id="omt-at-x56"/>
                                             <constraint firstItem="fv5-4n-dtY" firstAttribute="centerY" secondItem="Qv1-h9-ci4" secondAttribute="centerY" id="tdt-oY-o73"/>
                                             <constraint firstItem="fv5-4n-dtY" firstAttribute="leading" secondItem="Qv1-h9-ci4" secondAttribute="leading" constant="2" id="uKu-Dd-3kV"/>
@@ -1322,11 +1320,11 @@
                                     <constraint firstItem="IKd-6i-3Uz" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="-11" id="Tv2-OX-28a"/>
                                     <constraint firstAttribute="centerX" secondItem="IKd-6i-3Uz" secondAttribute="centerX" constant="0.5" id="VCH-4I-O3t"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="top" secondItem="cSK-Bb-kQC" secondAttribute="top" constant="102" id="WZh-46-0bU"/>
-                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" constant="-0.5" id="X47-pC-sug"/>
+                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" constant="-1.5" id="X47-pC-sug"/>
                                     <constraint firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="30" id="a8s-Kr-Qur"/>
                                     <constraint firstItem="GTu-hy-iNW" firstAttribute="centerX" secondItem="cSK-Bb-kQC" secondAttribute="centerX" id="cVj-4D-L2d"/>
-                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="12" id="n2D-ko-mh7"/>
-                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="-13" id="uYX-3P-C4s"/>
+                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="top" secondItem="GTu-hy-iNW" secondAttribute="bottom" constant="31" id="n2D-ko-mh7"/>
+                                    <constraint firstItem="Qv1-h9-ci4" firstAttribute="trailing" secondItem="GTu-hy-iNW" secondAttribute="trailing" constant="-24" id="uYX-3P-C4s"/>
                                     <constraint firstAttribute="width" constant="320" id="vip-Xp-DMk"/>
                                 </constraints>
                             </view>
