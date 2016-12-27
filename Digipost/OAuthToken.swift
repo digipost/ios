@@ -206,11 +206,7 @@ class OAuthToken: NSObject, NSCoding {
     }
 
     class func isUserLoggedIn() -> Bool {
-        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        if token == nil {
-            return false
-        }
-        return true
+        return OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull) != nil
     }
 
     func removeFromKeychainIfNoAccessToken() {
@@ -228,11 +224,7 @@ class OAuthToken: NSObject, NSCoding {
     }
 
     func password() -> String? {
-        if scope == kOauth2ScopeFull{
-            return refreshToken
-        }else {
-            return accessToken
-        }
+        return scope == kOauth2ScopeFull ? refreshToken : accessToken
     }
 
     func storeInKeyChain() {
@@ -255,16 +247,11 @@ class OAuthToken: NSObject, NSCoding {
     }
 
     func canBeRefreshedByRefreshToken() -> Bool {
-        if scope == kOauth2ScopeFull {
-            return true
-        }
-        return false
+        return scope == kOauth2ScopeFull
     }
 
     class func moveOldOAuthTokensIfPresent() {
         if ((LUKeychainAccess.standardKeychainAccess().stringForKey(kKeychainAccessRefreshTokenKey) as String?) != nil) {
-        //if let actualOldRefreshToken = LUKeychainAccess.standardKeychainAccess().stringForKey(kKeychainAccessRefreshTokenKey) as String? {
-        //let newOAuthToken = OAuthToken(refreshToken: actualOldRefreshToken, scope: kOauth2ScopeFull)
             LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
         }
     }
