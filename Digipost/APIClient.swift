@@ -380,7 +380,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    failure(error: error)
+                    failure(error)
             })
             task.resume()
         }
@@ -489,7 +489,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         let fileManager = FileManager.default
         if fileManager.fileExists(atPath: url.path) == false {
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
-            failure(error: error)
+            failure(error)
         }
         let fileAttributes : [String:AnyObject]? = {
             do {

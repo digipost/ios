@@ -36,15 +36,15 @@ extension APIClient {
                 DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
-                    failure(error: error)
+                    failure(error)
                 })
             } else if HTTPURLResponse.isUnathorized(response as? HTTPURLResponse) {
                 let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
-                failure(error:error)
+                failure(error)
             }  else if (response as! HTTPURLResponse).didFail()  {
                 let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse)
                 DispatchQueue.main.async(execute: {
-                    failure(error:err)
+                    failure(err)
                 })
             }else {
                 DispatchQueue.main.async(execute: {
@@ -67,7 +67,7 @@ extension APIClient {
                     let error = APIError(error: actualError)
                     let string = NSString(data: actualData, encoding: String.Encoding.ascii)
                     error.responseText = string as? String
-                    failure(error: error)
+                    failure(error)
                 } else {
                     let code : Int = {
                         if httpResponse == nil {
@@ -78,7 +78,7 @@ extension APIClient {
                         }()
                     if HTTPURLResponse.isUnathorized(httpResponse) {
                         let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.oAuthUnathorized.rawValue, userInfo: nil)
-                        failure(error:error)
+                        failure(error)
                     } else {
                         if let actualData = data as Data? {
                             if actualData.count == 0 {
