@@ -30,7 +30,7 @@ extension String
             var currentIndex = self.startIndex
             var stringInRange = ""
             while counter < r.upperBound && currentIndex < self.endIndex {
-                currentIndex = <#T##Collection corresponding to `currentIndex`##Collection#>.index(after: currentIndex)
+                currentIndex = self.index(after: currentIndex)
                 stringInRange.append(self[currentIndex])
                 counter += 1
             }
