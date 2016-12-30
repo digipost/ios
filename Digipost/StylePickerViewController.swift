@@ -122,7 +122,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             var classesArray = [String]()
 
             for (key, value) in classesDictionary! {
-                if key == "length" {
+                
+                if key as? String  == "length" {
                     continue
                 }
 
