@@ -20,7 +20,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     let tableView:UITableView
     
-    lazy var fetchedResultsController : NSFetchedResultsController = { () -> <<error type>> in 
+    lazy var fetchedResultsController : NSFetchedResultsController<NSFetchRequestResult> = {
         
         // Create and configure a fetch request with the Mailbox entity.
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Mailbox")
