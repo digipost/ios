@@ -121,9 +121,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     }
     
     func animateShowingUserHasToAddRecipientsBeforeSending() {
-        addRecipientsButton.shake(.Horizontal, numberOfTimes: 9, totalDuration: 0.6) {
-            
-        }
+       // addRecipientsButton.shake(.Horizontal, numberOfTimes: 9, totalDuration: 0.6) {}
     }
     
     @IBAction func didTapSendButton(_ sender: AnyObject) {
@@ -133,7 +131,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         }
         
         let mailbox = POSMailbox.existingMailbox(withDigipostAddress: mailboxDigipostAddress, in: POSModelManager.shared().managedObjectContext)
-        APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: mailbox.sendUri, success: { () -> Void in
+        APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: (mailbox?.sendUri)!, success: { () -> Void in
             self.dismiss(animated: true, completion: { () -> Void in
                 
             })
