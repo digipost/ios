@@ -36,13 +36,13 @@ extension UIFont {
     // debug method used when you are looking for custom font names
     class func debugToFindNameOfCustomFonts(){
         let familyNamesArray : NSArray = UIFont.familyNames as NSArray
-        familyNamesArray.enumerateObjects { (object , index, stop) -> Void in
+        familyNamesArray.enumerateObjects(using: { (object , index, stop) -> Void in
             let familyName = object as! NSString
             let names : NSArray = UIFont.fontNames(forFamilyName: familyName as String)
             print(object)
             names.enumerateObjects({ (obj , i, stop) -> Void in
                 print(obj)
             })
-        }
+        })
     }
 }
