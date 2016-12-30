@@ -3445,7 +3445,7 @@
 				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3498,7 +3498,7 @@
 				PROVISIONING_PROFILE = "";
 				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
 				WRAPPER_EXTENSION = app;
 			};
