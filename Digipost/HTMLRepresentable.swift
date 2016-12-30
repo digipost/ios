@@ -17,5 +17,5 @@
 import Foundation
 
 protocol HTMLRepresentable {
-    func htmlRepresentation (inString: NSString) -> NSString
+    func htmlRepresentation (_ inString: NSString) -> NSString
 }

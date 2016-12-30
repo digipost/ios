@@ -17,30 +17,30 @@
 import UIKit
 
 class ForceOrientationNavigationController: UINavigationController {
-    let device = UIDevice.currentDevice().userInterfaceIdiom
+    let device = UIDevice.current.userInterfaceIdiom
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
     
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        let device = UIDevice.currentDevice().userInterfaceIdiom
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        let device = UIDevice.current.userInterfaceIdiom
         
         switch device {
-        case .Phone:
-            return UIInterfaceOrientationMask.Portrait
-        case .Pad:
-            return UIInterfaceOrientationMask.Landscape
+        case .phone:
+            return UIInterfaceOrientationMask.portrait
+        case .pad:
+            return UIInterfaceOrientationMask.landscape
         default:
-            return UIInterfaceOrientationMask.Portrait
+            return UIInterfaceOrientationMask.portrait
         }
     }
     

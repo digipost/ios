@@ -22,7 +22,7 @@ extension String {
     
     func initials() -> String {
         
-        var arr = self.componentsSeparatedByString(" ")
+        var arr = self.components(separatedBy: " ")
 
         if arr.count == 0 { return "" }
         
@@ -42,14 +42,14 @@ extension String {
 extension NSString {
     
     func initials() -> NSString {
-        var arr = self.componentsSeparatedByString(" ")
+        var arr = self.components(separatedBy: " ")
         if arr.count == 0 { return "" }
         
         return  (arr[0].firstLetter() as String) + (arr[arr.count - 1].firstLetter() as String)
     }
     
     func firstLetter() -> NSString {
-        return self.substringToIndex(1)
+        return self.substring(to: 1) as NSString
     }
     
 }

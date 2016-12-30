@@ -20,11 +20,11 @@ extension PlaceholderTextView{
     var placeholder: String {
 
         switch self.font! {
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline):
+        case UIFont.preferredFont(forTextStyle: UIFontTextStyle.headline):
             return NSLocalizedString("text composer module headline placeholder", comment: "placeholder for headline")
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleBody):
+        case UIFont.preferredFont(forTextStyle: UIFontTextStyle.body):
             return NSLocalizedString("text composer module body placeholder", comment: "placeholder for body")
-        case UIFont.preferredFontForTextStyle(UIFontTextStyleSubheadline):
+        case UIFont.preferredFont(forTextStyle: UIFontTextStyle.subheadline):
             return NSLocalizedString("text composer module subheadline placeholder", comment: "placeholder for subheadline")
         default:
             return NSLocalizedString("text composer module body placeholder", comment: "placeholder for headline")
@@ -34,20 +34,20 @@ extension PlaceholderTextView{
 
 class PlaceholderTextView: UITextView {
     
-    private var placeholderLabel: UILabel!
+    fileprivate var placeholderLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: UITextViewTextDidChangeNotification, object: self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: UITextViewTextDidEndEditingNotification, object: self)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: UITextViewTextDidBeginEditingNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidChange(_:)), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidEndEditing(_:)), name: NSNotification.Name.UITextViewTextDidEndEditing, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(UITextViewDelegate.textViewDidBeginEditing(_:)), name: NSNotification.Name.UITextViewTextDidBeginEditing, object: self)
     }
     
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func textViewDidChange(notification: NSNotification?) {
+    func textViewDidChange(_ notification: Notification?) {
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
@@ -63,7 +63,7 @@ class PlaceholderTextView: UITextView {
 
     }
     
-    func textViewDidEndEditing(notification: NSNotification?){
+    func textViewDidEndEditing(_ notification: Notification?){
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
@@ -72,7 +72,7 @@ class PlaceholderTextView: UITextView {
         }
     }
     
-    func textViewDidBeginEditing(notification: NSNotification?){
+    func textViewDidBeginEditing(_ notification: Notification?){
         if let object = notification?.object as? PlaceholderTextView{
             if object == self {
                 
@@ -92,10 +92,10 @@ class PlaceholderTextView: UITextView {
         if placeholderLabel == nil{
             
             placeholderLabel = {
-                let cursorPosition = self.caretRectForPosition(self.selectedTextRange!.start)
-                let label = UILabel(frame: CGRectMake(cursorPosition.origin.x, cursorPosition.origin.y, self.frame.width, cursorPosition.height))
+                let cursorPosition = self.caretRect(for: self.selectedTextRange!.start)
+                let label = UILabel(frame: CGRect(x: cursorPosition.origin.x, y: cursorPosition.origin.y, width: self.frame.width, height: cursorPosition.height))
                 label.text = self.placeholder
-                label.textColor = UIColor.lightGrayColor()
+                label.textColor = UIColor.lightGray
                 label.font = self.font
                 return label
             }()

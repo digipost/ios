@@ -28,7 +28,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
         bankTableView.delegate = self
         bankTableView.dataSource = self
-        bankTableView.registerNib(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
+        bankTableView.register(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
         addInvoiceBanks()
 
         self.title = viewTitle
@@ -42,30 +42,30 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         bankTableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return banks.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Invoice.InvoiceBankTableViewCellNibName, forIndexPath: indexPath) as! InvoiceBankTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName, for: indexPath) as! InvoiceBankTableViewCell
         
         let invoiceBank = banks[indexPath.row]
         cell.invoiceBankLogo.image = UIImage(named: invoiceBank.logo)
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if segue.identifier == kInvoiceBankSegue{
-            if let viewController = segue.destinationViewController as? InvoiceBankViewController {
-                viewController.invoiceBank = banks[(sender as! NSIndexPath).row]
+            if let viewController = segue.destination as? InvoiceBankViewController {
+                viewController.invoiceBank = banks[(sender as! IndexPath).row]
                 viewController.title = self.viewTitle
-                InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! NSIndexPath).row].name)
+                InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! IndexPath).row].name)
             }
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier(kInvoiceBankSegue, sender: indexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: kInvoiceBankSegue, sender: indexPath)
     }
 }

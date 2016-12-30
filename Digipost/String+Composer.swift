@@ -24,7 +24,7 @@ extension String {
     :param: string String to insert
     :returns: String formed from self inserting string at index
     */
-    func insert (index: Int, string: String) -> String {
+    func insert (_ index: Int, string: String) -> String {
         //  Edge cases, prepend and append
 
         if index > length {
@@ -35,12 +35,12 @@ extension String {
         return self[0..<index] + string + self[index..<length]
     }
 
-    func splitWithString(string: String, listString: String) -> [String] {
-        let list = listString.componentsSeparatedByString(string)
+    func splitWithString(_ string: String, listString: String) -> [String] {
+        let list = listString.components(separatedBy: string)
         var trimmed = [String]()
         for value in list {
-            let whitespace = NSCharacterSet.whitespaceCharacterSet()
-            trimmed.append(value.stringByTrimmingCharactersInSet(whitespace))
+            let whitespace = CharacterSet.whitespaces
+            trimmed.append(value.trimmingCharacters(in: whitespace))
         }
         return trimmed
     }

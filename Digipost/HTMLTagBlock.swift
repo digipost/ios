@@ -17,11 +17,11 @@
 import Foundation
 
 enum HTMLTagBlockType {
-    case Paragraph
-    case H1
-    case H2
-    case H3
-    case Unknown
+    case paragraph
+    case h1
+    case h2
+    case h3
+    case unknown
 }
 
 struct HTMLTagBlock : HTMLRepresentable {
@@ -39,20 +39,20 @@ struct HTMLTagBlock : HTMLRepresentable {
         self.range = range
     }
     
-    func htmlRepresentation(inString: NSString) -> NSString {
+    func htmlRepresentation(_ inString: NSString) -> NSString {
     //    var representation = (inString as NSString).mutableCopy() as! NSMutableString
     //    var newContent = ""
     //    let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions())
         
         if range.location + range.length < inString.length {
-            let subString = inString.substringWithRange(range)
-            return "\(tag.startTag)\(subString)\(tag.endTag)"
+            let subString = inString.substring(with: range)
+            return "\(tag.startTag)\(subString)\(tag.endTag)" as NSString
         }
-        return "\(tag.startTag)\(tag.endTag)"
+        return "\(tag.startTag)\(tag.endTag)" as NSString
     }
     
     
-    static func tagBlocks(key: NSObject, value: AnyObject, range: NSRange) -> [HTMLTagBlock] {
+    static func tagBlocks(_ key: NSObject, value: AnyObject, range: NSRange) -> [HTMLTagBlock] {
         var tagBlocks = [HTMLTagBlock]()
         
         let tags = HTMLTag.tags(key, value: value)
@@ -64,7 +64,7 @@ struct HTMLTagBlock : HTMLRepresentable {
         return tagBlocks
     }
     
-    static func isHTMLTagBlockFont(font: UIFont) -> Bool {
+    static func isHTMLTagBlockFont(_ font: UIFont) -> Bool {
         if font.isEqual(UIFont.headlineH1()) {
             return true
         } else if font.isEqual(UIFont.paragraph()) {

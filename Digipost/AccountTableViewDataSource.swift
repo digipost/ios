@@ -20,11 +20,11 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     
     let tableView:UITableView
     
-    lazy var fetchedResultsController : NSFetchedResultsController = {
+    lazy var fetchedResultsController : NSFetchedResultsController = { () -> <<error type>> in 
         
         // Create and configure a fetch request with the Mailbox entity.
-        let fetchRequest = NSFetchRequest(entityName: "Mailbox")
-        let managedObjectContext: NSManagedObjectContext = POSModelManager.sharedManager().managedObjectContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Mailbox")
+        let managedObjectContext: NSManagedObjectContext = POSModelManager.shared().managedObjectContext
         
         // Order the events by creation date, most recent first.
         let ownerDescriptor = NSSortDescriptor(key: "owner", ascending: false)
@@ -61,7 +61,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     // MARK: - UITableViewDataSource
     
     // Set number of sections in tableView
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         if let numOfSections = self.fetchedResultsController.sections?.count{
             return numOfSections
         } else {
@@ -70,22 +70,22 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     }
     
     // Set number of rows in section
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell?
         
         let mailBox = fetchMailBox(atIndexPath: indexPath)
         
         if mailBox.owner == 0 {
-            cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.accountCellIdentifier, forIndexPath: indexPath) as! AccountTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: Constants.Account.accountCellIdentifier, for: indexPath) as! AccountTableViewCell
             
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier(Constants.Account.mainAccountCellIdentifier, forIndexPath: indexPath) as! MainAccountTableViewCell
+            cell = tableView.dequeueReusableCell(withIdentifier: Constants.Account.mainAccountCellIdentifier, for: indexPath) as! MainAccountTableViewCell
         }
         
         self.configureCell(cell!, atIndexPath: indexPath, mailBox: mailBox)
@@ -95,7 +95,7 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     }
     
     // Customize the appearance of table view cells.
-    func configureCell(cell: UITableViewCell, atIndexPath indexPath: NSIndexPath, mailBox: POSMailbox){
+    func configureCell(_ cell: UITableViewCell, atIndexPath indexPath: IndexPath, mailBox: POSMailbox){
                 
         var unreadItemsString = ""
         if let unreadItems = mailBox.unreadItemsInInbox {
@@ -123,53 +123,53 @@ class AccountTableViewDataSource: NSObject, UITableViewDataSource, NSFetchedResu
     }
     
     // Convenience method for getteing the mailbox at an Indexpath in tableview
-    func fetchMailBox(atIndexPath indexPath: NSIndexPath) -> POSMailbox{
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as! POSMailbox
+    func fetchMailBox(atIndexPath indexPath: IndexPath) -> POSMailbox{
+        return self.fetchedResultsController.object(at: indexPath) as! POSMailbox
     }
     
     // convenience method for fetching objects at index path from the database
-    func managedObjectAtIndexPath(indexPath: NSIndexPath) -> NSManagedObject{
-        return self.fetchedResultsController.objectAtIndexPath(indexPath) as! NSManagedObject
+    func managedObjectAtIndexPath(_ indexPath: IndexPath) -> NSManagedObject{
+        return self.fetchedResultsController.object(at: indexPath) as! NSManagedObject
     }
     
     // MARK: - NSFetchedResultsControllerDelegate
     
-    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.beginUpdates()
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
         switch type {
             
-        case NSFetchedResultsChangeType.Insert:
-            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-        case NSFetchedResultsChangeType.Delete:
-            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-        case NSFetchedResultsChangeType.Update:
-            let updateCell = self.tableView.cellForRowAtIndexPath(indexPath!)
+        case NSFetchedResultsChangeType.insert:
+            self.tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.fade)
+        case NSFetchedResultsChangeType.delete:
+            self.tableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.fade)
+        case NSFetchedResultsChangeType.update:
+            let updateCell = self.tableView.cellForRow(at: indexPath!)
             self.configureCell(updateCell!, atIndexPath: indexPath!, mailBox: self.fetchMailBox(atIndexPath: indexPath!))
-        case NSFetchedResultsChangeType.Move:
-            self.tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
-            self.tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: UITableViewRowAnimation.Fade)
+        case NSFetchedResultsChangeType.move:
+            self.tableView.deleteRows(at: [indexPath!], with: UITableViewRowAnimation.fade)
+            self.tableView.insertRows(at: [newIndexPath!], with: UITableViewRowAnimation.fade)
         }
         
         Badge.setCombinedUnreadLettersBadge(fetchedResultsController.fetchedObjects as! [POSMailbox])
     }
     
-    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         
         switch type{
-        case NSFetchedResultsChangeType.Insert:
-            self.tableView.insertSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Automatic)
-        case NSFetchedResultsChangeType.Delete:
-            self.tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: UITableViewRowAnimation.Automatic)
+        case NSFetchedResultsChangeType.insert:
+            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: UITableViewRowAnimation.automatic)
+        case NSFetchedResultsChangeType.delete:
+            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: UITableViewRowAnimation.automatic)
         default:
             break
         }
     }
     
-    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.endUpdates()
     }
 }

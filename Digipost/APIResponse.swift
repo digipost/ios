@@ -18,9 +18,9 @@ import Foundation
 
 class APIResponse: NSObject {
     var json: AnyObject?
-    var date: NSDate?
+    var date: Date?
     
-    init(json: AnyObject?, date: NSDate?) {
+    init(json: AnyObject?, date: Date?) {
         self.json = json
         self.date = date
     }

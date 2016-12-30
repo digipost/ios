@@ -38,17 +38,17 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     var mailboxDigipostAddress : String?
 
 
-    private var isShowingCustomStylePicker : Bool = false
+    fileprivate var isShowingCustomStylePicker : Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let userContentController = WKUserContentController()
         let webViewConfiguration = WKWebViewConfiguration()
-        userContentController.addScriptMessageHandler(self, name: "observe")
+        userContentController.add(self, name: "observe")
         webViewConfiguration.userContentController = userContentController
 
-        webView = WKWebView(frame: CGRectMake(0, 0, 0, 0), configuration: webViewConfiguration)
+        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), configuration: webViewConfiguration)
 
         view.addSubview(webView)
         
@@ -62,12 +62,12 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
             secondView.top == firstView.bottom + 5
         }
 
-        webView.userInteractionEnabled = true
+        webView.isUserInteractionEnabled = true
 
-        let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
+        let storyboard = UIStoryboard(name: "StylePicker", bundle: Bundle.main)
         let stylePickerViewController : StylePickerViewController = {
             if self.stylePickerViewController == nil {
-                self.stylePickerViewController = storyboard.instantiateViewControllerWithIdentifier(StylePickerViewController.storyboardIdentifier) as? StylePickerViewController
+                self.stylePickerViewController = storyboard.instantiateViewController(withIdentifier: StylePickerViewController.storyboardIdentifier) as? StylePickerViewController
             }
             return self.stylePickerViewController!
             }()
@@ -76,53 +76,53 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
 
         customInputView = CustomInputView()
         APIClient.sharedClient.stylepickerViewController = stylePickerViewController
-        webView.startLoadingWebViewContent(NSBundle(forClass: self.dynamicType))
+        webView.startLoadingWebViewContent(Bundle(for: type(of: self)))
         setupNavBarButtonItems()
     }
 
     
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.webView.startFocus()
     }
 
     func setupNavBarButtonItems() {
         let currentRightBarButtonItem = self.navigationItem.rightBarButtonItem
-        let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .Done, target: self, action: #selector(HTMLEditorViewController.toggleEditingStyle))
-        let addNewModuleBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add")!, style: .Done, target: self, action: #selector(HTMLEditorViewController.didTapAddNewModuleBarButtonItem(_:)))
+        let toggleEditingStyleModeBarButtonItem = UIBarButtonItem(image: UIImage(named: "Styling")!, style: .done, target: self, action: #selector(HTMLEditorViewController.toggleEditingStyle))
+        let addNewModuleBarButtonItem = UIBarButtonItem(image: UIImage(named: "Add")!, style: .done, target: self, action: #selector(HTMLEditorViewController.didTapAddNewModuleBarButtonItem(_:)))
         let barButtonItems = [ currentRightBarButtonItem!, toggleEditingStyleModeBarButtonItem, addNewModuleBarButtonItem ]
         self.navigationItem.rightBarButtonItems = barButtonItems
     }
 
-    func didTapAddNewModuleBarButtonItem(sender: UIButton) {
-        performSegueWithIdentifier("presentModuleSelectorSegue", sender: self)
+    func didTapAddNewModuleBarButtonItem(_ sender: UIButton) {
+        performSegue(withIdentifier: "presentModuleSelectorSegue", sender: self)
     }
 
     func toggleEditingStyle() {
-        customInputView.setShowCustomInputViewEnabled(isShowingCustomStylePicker == false, containedInScrollView: webView.scrollView)
+        customInputView.setShowEnabled(isShowingCustomStylePicker == false, containedIn: webView.scrollView)
         isShowingCustomStylePicker = isShowingCustomStylePicker == false
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
-        navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.Default
+        navigationController?.navigationBar.tintColor = UIColor.black
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.default
     }
 
-    func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool) {
+    func stylePickerViewControllerDidSelectStyle(_ stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool) {
         webView.toggleKeyword(textStyleModel.keyword)
     }
 
-    func userContentController(userContentController: WKUserContentController, didReceiveScriptMessage message: WKScriptMessage) {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         if let stringMessage = message.body as? String {
-            let jsonData = stringMessage.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+            let jsonData = stringMessage.data(using: String.Encoding.utf8, allowLossyConversion: true)
             
-            if let responseDictionary = try! NSJSONSerialization.JSONObjectWithData(jsonData!, options: NSJSONReadingOptions.AllowFragments) as? [NSObject : AnyObject] {
+            if let responseDictionary = try! JSONSerialization.jsonObject(with: jsonData!, options: JSONSerialization.ReadingOptions.allowFragments) as? [AnyHashable: Any] {
                 if let actualBodyInnerHTML = responseDictionary["bodyInnerHTML"] as? String {
                     self.currentShowingBodyInnnerHTML = actualBodyInnerHTML
-                    self.performSegueWithIdentifier("showPreviewSegue", sender: self)
+                    self.performSegue(withIdentifier: "showPreviewSegue", sender: self)
                 } else {
                     stylePickerViewController.setCurrentStyling(responseDictionary)
                 }
@@ -130,40 +130,40 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         }
     }
 
-    @IBAction func didTapPreviewButton(sender: UIBarButtonItem) {
+    @IBAction func didTapPreviewButton(_ sender: UIBarButtonItem) {
         // Todo: show spinner while loading
         self.webView.startGettingBodyInnerHTML()
     }
 
-    @IBAction func didTapCancelButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func didTapCancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let previewViewController = segue.destinationViewController as? PreviewViewController{
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let previewViewController = segue.destination as? PreviewViewController{
             previewViewController.recipients = recipients
             previewViewController.mailboxDigipostAddress = mailboxDigipostAddress
             previewViewController.currentShowingHTMLContent = currentShowingBodyInnnerHTML
 
-        } else if let moduleSelectViewController = segue.destinationViewController  as? ModuleSelectorViewController{
+        } else if let moduleSelectViewController = segue.destination  as? ModuleSelectorViewController{
             moduleSelectViewController.delegate = self
         }
     }
 
-    func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController) {
+    func moduleSelectorViewControllerWasDismissed(_ moduleSelectorViewController: ModuleSelectorViewController) {
 
     }
 
-    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
+    func moduleSelectorViewController(_ moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
 
         if let imageModule = module as? ImageComposerModule {
             webView.insertImageWithBase64Data(imageModule.image.base64Representation)
         }
 
-        moduleSelectorViewController.dismissViewControllerAnimated(true, completion: nil)
+        moduleSelectorViewController.dismiss(animated: true, completion: nil)
     }
 
-    private func currentBundle() -> NSBundle {
-        return NSBundle(forClass: self.dynamicType)
+    fileprivate func currentBundle() -> Bundle {
+        return Bundle(for: type(of: self))
     }
 }

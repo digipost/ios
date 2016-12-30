@@ -27,13 +27,13 @@ class HTMLSection: HTMLRepresentable {
         self.tagBlocks = tagBlocks
         let firstTagBlock = tagBlocks.first
         if firstTagBlock?.tag.type == .Bold || firstTagBlock?.tag.type == .Italic || firstTagBlock?.tag.type == .Paragraph {
-            self.tag = HTMLTag(attribute: NSFontAttributeName, value: UIFont.paragraph())
+            self.tag = HTMLTag(attribute: NSFontAttributeName as NSObject, value: UIFont.paragraph())
         } else {
             self.tag = firstTagBlock!.tag
         }
     }
 
-    func htmlRepresentation(inString: NSString) -> NSString {
+    func htmlRepresentation(_ inString: NSString) -> NSString {
         let representation = (inString as NSString).mutableCopy() as! NSMutableString
         var index = 0
 
@@ -55,8 +55,8 @@ class HTMLSection: HTMLRepresentable {
                 }
             }()
             if tagBlock.tag.type != .Paragraph {
-                representation.insertString(tagBlock.tag.endTag, atIndex: endTagIndex)
-                representation.insertString(tagBlock.tag.startTag, atIndex: startTagIndex)
+                representation.insert(tagBlock.tag.endTag, at: endTagIndex)
+                representation.insert(tagBlock.tag.startTag, at: startTagIndex)
 
                 if addedRanges.contains(tagBlock.range) {
                     index = index + tagBlock.tag.startTag.length + tagBlock.tag.endTag.length
@@ -71,14 +71,14 @@ class HTMLSection: HTMLRepresentable {
         }
 
         if tag.type == .Paragraph {
-            return "\(tag.startTag)\(representation)\(tag.endTag)"
+            return "\(tag.startTag)\(representation)\(tag.endTag)" as NSString
         } else {
             return representation
         }
     }
 
-    func lengthOfAllTagsBeforeIndex(index: Int, inString string: NSString) -> Int {
-        let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpressionOptions.AllowCommentsAndWhitespace)
+    func lengthOfAllTagsBeforeIndex(_ index: Int, inString string: NSString) -> Int {
+        let regex = try! NSRegularExpression(pattern: "</?[a-å][a-å0-9]*[^<>]*>", options: NSRegularExpression.Options.allowCommentsAndWhitespace)
         let range : NSRange = {
             if index > string.length {
                 return NSMakeRange(0, string.length)
@@ -87,7 +87,7 @@ class HTMLSection: HTMLRepresentable {
             }
         }()
 
-        let allMatches = regex.matchesInString(string as String, options: NSMatchingOptions(), range: range )
+        let allMatches = regex.matches(in: string as String, options: NSRegularExpression.MatchingOptions(), range: range )
         var totalLength = 0
         for match in allMatches {
             totalLength += match.range.length

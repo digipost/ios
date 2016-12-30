@@ -18,16 +18,16 @@ import UIKit
 
 class UploadMenuDataSource: NSObject, UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("uploadMenuCell", forIndexPath: indexPath) 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "uploadMenuCell", for: indexPath) 
         if let uploadMenuCell = cell as? UploadMenuTableViewCell {
             configureCell(uploadMenuCell, indexPath: indexPath)
         }
@@ -35,7 +35,7 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    func configureCell(cell: UploadMenuTableViewCell, indexPath: NSIndexPath){
+    func configureCell(_ cell: UploadMenuTableViewCell, indexPath: IndexPath){
         switch indexPath.row {
         case 0:
             cell.titleLabel.text = NSLocalizedString("upload action sheet camera", comment:"start camera")
@@ -46,7 +46,7 @@ class UploadMenuDataSource: NSObject, UITableViewDataSource {
         case 2:
             cell.titleLabel.text = NSLocalizedString( "upload action sheet other file", comment:"From other app")
             cell.iconImage.image = UIImage.templateImage("Upload_apps")
-            cell.iconImage.tintColor = UIColor.whiteColor()
+            cell.iconImage.tintColor = UIColor.white
         default:
             assert(false)
         }

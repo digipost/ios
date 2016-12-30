@@ -16,38 +16,38 @@
 
 import UIKit
 
-extension NSDate {
+extension Date {
     
     func prettyStringWithJPGExtension()-> String {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM YY HH:mm:ss"
         var dateString = "IMG "
-        dateString = dateString.stringByAppendingString(dateFormatter.stringFromDate(self))
-        dateString = dateString.stringByAppendingString(".jpg")
+        dateString = dateString + dateFormatter.string(from: self)
+        dateString = dateString + ".jpg"
         return dateString
     }
     
     func prettyStringWithMOVExtension()-> String {
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd MMM YY HH:mm:ss"
         var dateString = "MOV "
-        dateString = dateString.stringByAppendingString(dateFormatter.stringFromDate(self))
-        dateString = dateString.stringByAppendingString(".mov")
+        dateString = dateString + dateFormatter.string(from: self)
+        dateString = dateString + ".mov"
         return dateString
     }
 
-    func dateByAdding(seconds seconds: Int?) -> NSDate? {
+    func dateByAdding(seconds: Int?) -> Date? {
         if seconds == nil {
             return nil
         }
-        let calendar = NSCalendar.currentCalendar()
-        let components = NSDateComponents()
+        let calendar = Calendar.current
+        var components = DateComponents()
         components.second = seconds!
-        return calendar.dateByAddingComponents(components, toDate: self, options: NSCalendarOptions())
+        return (calendar as NSCalendar).date(byAdding: components, to: self, options: NSCalendar.Options())
     }
 
-    func isLaterThan(aDate: NSDate) -> Bool {
-        let isLater = self.compare(aDate) == NSComparisonResult.OrderedDescending
+    func isLaterThan(_ aDate: Date) -> Bool {
+        let isLater = self.compare(aDate) == ComparisonResult.orderedDescending
         return isLater
     }
 }

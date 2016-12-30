@@ -55,10 +55,10 @@ class SendableDocument {
         self.recipients = recipients
     }
 
-    func setupWithJSONContent(jsonDictionary: [String : AnyObject]) {
+    func setupWithJSONContent(_ jsonDictionary: [String : AnyObject]) {
         if let linkArray = jsonDictionary[SendableDocumentConstants.link] as? [[String : String]] {
             for link in linkArray {
-                if let relLink = link[SendableDocumentConstants.rel], let relURL = NSURL(string: relLink), let actualLastPathComponent = relURL.lastPathComponent {
+                if let relLink = link[SendableDocumentConstants.rel], let relURL = URL(string: relLink), let actualLastPathComponent = relURL.lastPathComponent {
                     switch actualLastPathComponent {
                     case SendableDocumentConstants.deleteMessageRelPostfix:
                         deleteMessageUri = link[SendableDocumentConstants.uri] as String?
@@ -84,10 +84,10 @@ class SendableDocument {
         }
     }
 
-    func urlForHTMLContentOnDisk(htmlContent: String) -> NSURL? {
-        let fileUrl = NSURL(fileURLWithPath: POSFileManager.sharedFileManager().uploadsFolderPath()).URLByAppendingPathComponent(SendableDocumentConstants.tempFileName)
-        if NSFileManager.defaultManager().createFileAtPath(fileUrl!.absoluteString!, contents: htmlContent.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), attributes: nil) {
-            return NSURL(fileURLWithPath: fileUrl!.absoluteString!)
+    func urlForHTMLContentOnDisk(_ htmlContent: String) -> URL? {
+        let fileUrl = URL(fileURLWithPath: POSFileManager.shared().uploadsFolderPath()).appendingPathComponent(SendableDocumentConstants.tempFileName)
+        if FileManager.default.createFile(atPath: fileUrl.absoluteString, contents: htmlContent.data(using: String.Encoding.utf8, allowLossyConversion: false), attributes: nil) {
+            return URL(fileURLWithPath: fileUrl.absoluteString)
         } else {
             return nil
         }
@@ -97,6 +97,6 @@ class SendableDocument {
     let digipostAddresses = self.recipients.map { (recipient) -> [String : String] in
         return [ Constants.Recipient.digipostAddress : recipient.digipostAddress!]
     }
-    return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password, Constants.Recipient.recipient: digipostAddresses]
+    return [SendableDocumentConstants.subject : SendableDocumentConstants.kladd as AnyObject, SendableDocumentConstants.deliveryMethod : SendableDocumentConstants.DIGIPOST as AnyObject, SendableDocumentConstants.authenticationLevel : AuthenticationLevel.password as AnyObject, Constants.Recipient.recipient: digipostAddresses as AnyObject]
     }
 }

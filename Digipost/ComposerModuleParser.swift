@@ -18,14 +18,14 @@ import Foundation
 
 class ComposerModuleParser {
     
-    class func parseComposerModuleContentToHTML(modules: [ComposerModule], response: (htmlString: String?)->()){
+    class func parseComposerModuleContentToHTML(_ modules: [ComposerModule], response: @escaping (_ htmlString: String?)->()){
         
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0), { () -> Void in
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async(execute: { () -> Void in
             
             var internalStylesheet:NSString = ""
-            if let stylesheetPath = NSBundle.mainBundle().pathForResource("stylesheet", ofType: "css"){
+            if let stylesheetPath = Bundle.main.path(forResource: "stylesheet", ofType: "css"){
                 do{
-                    let stylesheetContent = try NSString(contentsOfFile: stylesheetPath, encoding: NSASCIIStringEncoding)
+                    let stylesheetContent = try NSString(contentsOfFile: stylesheetPath, encoding: String.Encoding.ascii.rawValue)
                     internalStylesheet = stylesheetContent
                 }catch _{
                     
@@ -40,8 +40,8 @@ class ComposerModuleParser {
             
             html += "</div></body></html>"
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                response(htmlString: html)
+            DispatchQueue.main.async(execute: { () -> Void in
+                response(html)
             })
             
         })

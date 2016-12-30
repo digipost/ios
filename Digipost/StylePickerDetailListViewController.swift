@@ -18,8 +18,8 @@ import UIKit
 
 protocol StylePickerDetailListViewControllerDelegate {
 
-    func stylePickerDetailLIstViewControllerDidTapBackButton(stylePickerDetailListViewController: StylePickerDetailListViewController)
-    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel)
+    func stylePickerDetailLIstViewControllerDidTapBackButton(_ stylePickerDetailListViewController: StylePickerDetailListViewController)
+    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(_ stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel)
 
 }
 
@@ -39,7 +39,7 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         tableView.delegate = self
     }
 
-    @IBAction func didTapBackBarButtonItem(sender: UIBarButtonItem) {
+    @IBAction func didTapBackBarButtonItem(_ sender: UIBarButtonItem) {
         delegate?.stylePickerDetailLIstViewControllerDidTapBackButton(self)
     }
 
@@ -48,23 +48,23 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         // Dispose of any resources that can be recreated.
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
-        navigationBar.tintColor = UIColor.blackColor()
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.blackColor() ]
+        navigationBar.tintColor = UIColor.black
+        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.black ]
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.textStyleModels.count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) 
         let textStyleModel = textStyleModels[indexPath.row]
         if let actualName = textStyleModel.name {
             cell.textLabel?.text = actualName
@@ -75,7 +75,7 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let textStyleModel = textStyleModels[indexPath.row]
         textStyleModels.setTextStyleModelEnabledAndAllOthersDisabled(textStyleModel)
         delegate?.stylePickerDetailLIstViewControllerDidSelectTextStyleModel(self, textStyleModel: textStyleModel)

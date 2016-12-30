@@ -18,12 +18,12 @@ import UIKit
 
 extension POSInvoice {
     
-    func titleForInvoiceButtonLabel(isSending: Bool) -> String {
+    func titleForInvoiceButtonLabel(_ isSending: Bool) -> String {
         var title : String? = nil
 
         if isSending {
             title = NSLocalizedString("LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", comment:"Sending...");
-        } else if (timePaid as NSDate? != nil) {
+        } else if (timePaid as Date? != nil) {
             title = NSLocalizedString("LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAID_TITLE", comment:"Sent to bank");
         } else if (canBePaidByUser.boolValue)  {
             if (sendToBankUri as NSString? != nil) {

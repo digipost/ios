@@ -20,69 +20,69 @@ import Cartography
 protocol MultiselectSegmentedControlDelegate {
     
     // see selectedIndexes to find out what indexes are selected
-    func multiselectSegmentedControlValueChanged(multiselectSegmentedControl: MultiselectSegmentedControl)
+    func multiselectSegmentedControlValueChanged(_ multiselectSegmentedControl: MultiselectSegmentedControl)
     
 }
 
-@IBDesignable public class MultiselectSegmentedControl : UIView {
+@IBDesignable open class MultiselectSegmentedControl : UIView {
     
     var selectedIndexes = [Bool]()
     var delegate : MultiselectSegmentedControlDelegate?
     
-    var valueChangedClosure: ((value: Bool, atIndex: Int) -> Void)?
+    var valueChangedClosure: ((_ value: Bool, _ atIndex: Int) -> Void)?
     
-    @IBInspectable public var segmentSelectedBackgroundColor : UIColor = UIColor.grayColor()
-    @IBInspectable public var segmentBackgroundColor : UIColor = UIColor.whiteColor()
-    @IBInspectable public var foregroundColor : UIColor = UIColor.blackColor()
-    @IBInspectable public var numberOfSegments : Int = 2
+    @IBInspectable open var segmentSelectedBackgroundColor : UIColor = UIColor.gray
+    @IBInspectable open var segmentBackgroundColor : UIColor = UIColor.white
+    @IBInspectable open var foregroundColor : UIColor = UIColor.black
+    @IBInspectable open var numberOfSegments : Int = 2
     
-    private var iconFileNames = [String]()
+    fileprivate var iconFileNames = [String]()
     
-    private var buttons = [UIButton]()
+    fileprivate var buttons = [UIButton]()
     
-    @IBInspectable public var iconFileNamesList : String {
+    @IBInspectable open var iconFileNamesList : String {
         set(newList) {
             iconFileNames = iconFileNamesList.splitWithString(",", listString: newList)
         }
         get {
-            return iconFileNames.joinWithSeparator(",")
+            return iconFileNames.joined(separator: ",")
         }
     }
     
-    public override func awakeFromNib() {
+    open override func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
     
-    override public func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         self.setup()
     }
     
-    public func setImage(image : UIImage, atIndex index: Int) {
+    open func setImage(_ image : UIImage, atIndex index: Int) {
         let button = buttons[index]
-        button.setImage(image, forState: UIControlState.Normal)
+        button.setImage(image, for: UIControlState())
     }
     
-    public func setButtonSelectedState(selected: Bool, atIndex index: Int) {
+    open func setButtonSelectedState(_ selected: Bool, atIndex index: Int) {
         let tag = index
         selectedIndexes[tag] = selected
         for view in subviews {
-            if let button = view as? UIButton where view.tag == tag  {
+            if let button = view as? UIButton, view.tag == tag  {
                 button.backgroundColor = selected ? segmentSelectedBackgroundColor : segmentBackgroundColor
             }
         }
     }
     
-    func didTapButton(button: UIButton) {
+    func didTapButton(_ button: UIButton) {
         if selectedIndexes[button.tag] {
             selectedIndexes[button.tag] = false
             button.backgroundColor = segmentBackgroundColor
-            valueChangedClosure?(value: false, atIndex: button.tag)
+            valueChangedClosure?(false, button.tag)
         } else {
             button.backgroundColor = segmentSelectedBackgroundColor
             selectedIndexes[button.tag] = true
-            valueChangedClosure?(value: true, atIndex: button.tag)
+            valueChangedClosure?(true, button.tag)
         }
         delegate?.multiselectSegmentedControlValueChanged(self)
     }
@@ -90,22 +90,22 @@ protocol MultiselectSegmentedControlDelegate {
     /**
      Internal setup, must only be called once
      */
-    private func setup() {
+    fileprivate func setup() {
         var leftSideButton : UIButton?
         for i in 0..<self.numberOfSegments {
             selectedIndexes.append(false)
-            let button = UIButton(frame: CGRectZero)
+            let button = UIButton(frame: CGRect.zero)
             buttons.append(button)
             button.backgroundColor = segmentBackgroundColor
-            button.addTarget(self, action: #selector(MultiselectSegmentedControl.didTapButton(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            button.addTarget(self, action: #selector(MultiselectSegmentedControl.didTapButton(_:)), for: UIControlEvents.touchUpInside)
             button.tag = (i)
             self.addSubview(button)
-            let bundle = NSBundle(forClass: self.dynamicType)
-            button.setTitleColor(self.foregroundColor, forState: UIControlState.Normal)
+            let bundle = Bundle(for: type(of: self))
+            button.setTitleColor(self.foregroundColor, for: UIControlState())
             if iconFileNames.count > i {
                 let iconName = iconFileNames[i]
-                let image = UIImage(named: iconName, inBundle: bundle, compatibleWithTraitCollection: nil)
-                button.setImage(image, forState: .Normal)
+                let image = UIImage(named: iconName, in: bundle, compatibleWith: nil)
+                button.setImage(image, for: UIControlState())
             }
             
             constrain(self, button) { mainView, button in

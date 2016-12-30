@@ -16,7 +16,7 @@
 
 extension APIClient {
     
-    func getActiveBanks(banksUri: String, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func getActiveBanks(_ banksUri: String, success: (Dictionary<String, AnyObject>) -> Void , failure: (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: banksUri,  success: success, failure: failure)
             task.resume()

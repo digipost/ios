@@ -20,45 +20,45 @@ extension ComposerViewController{
     
     // MARK: - TableView Delegate Reorder functions
     
-    func tableView(tableView: UITableView!, beganMovingRowAtPoint point: CGPoint, withSnapShotViewOfDraggingRow snapShotView: UIView!) {
+    func tableView(_ tableView: UITableView!, beganMovingRowAt point: CGPoint, withSnapShotViewOfDraggingRow snapShotView: UIView!) {
 
         // todo dismiss keyboard
 
-        deleteComposerModuleView = NSBundle.mainBundle().loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)![0] as! DeleteComposerModuleView
+        deleteComposerModuleView = Bundle.main.loadNibNamed("DeleteComposerModuleView", owner: self, options: nil)![0] as! DeleteComposerModuleView
         deleteComposerModuleView.addToView(self.view)
         deleteComposerModuleView.show()
         
         if let snapshotImageView = snapShotView as? UIImageView {
             let offset = tableView.frame.origin.x + 4
-            snapshotImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            snapshotImageView.frame.size = CGSizeMake(tableView.frame.size.width - offset , 66)
+            snapshotImageView.contentMode = UIViewContentMode.scaleAspectFill
+            snapshotImageView.frame.size = CGSize(width: tableView.frame.size.width - offset , height: 66)
             snapshotImageView.frame.origin.x = offset
             view.addSubview(snapshotImageView)
-            UIView.animateWithDuration(0.4, delay: 0.03, usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: UIViewAnimationOptions.BeginFromCurrentState, animations: { () -> Void in
+            UIView.animate(withDuration: 0.4, delay: 0.03, usingSpringWithDamping: 0.5, initialSpringVelocity: 2, options: UIViewAnimationOptions.beginFromCurrentState, animations: { () -> Void in
                 let randomValue = Int.random(-4...4)
-                snapShotView.transform = CGAffineTransformMakeRotation(-(CGFloat(randomValue) * 0.01))
+                snapShotView.transform = CGAffineTransform(rotationAngle: -(CGFloat(randomValue) * 0.01))
             }, completion: { (complete) -> Void in
 
             })
 
         }
         tableView.contentInset = UIEdgeInsetsMake(0, 0, deleteComposerModuleView.frame.height, 0)
-        tableView.editing = true
+        tableView.isEditing = true
     }
     
     
-    func tableView(tableView: UITableView!, endedMovingRowAtPoint point: CGPoint) {
-        let translatedPoint = tableView.convertPoint(point, toView: deleteComposerModuleView)
-        if deleteComposerModuleView.pointInside(translatedPoint, withEvent: nil){
+    func tableView(_ tableView: UITableView!, endedMovingRowAt point: CGPoint) {
+        let translatedPoint = tableView.convert(point, to: deleteComposerModuleView)
+        if deleteComposerModuleView.point(inside: translatedPoint, with: nil){
             deleteComposerModule()
         } else {
             deleteComposerModuleView.hide()
         }
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        tableView.editing = false
+        tableView.isEditing = false
 
-        if let indexPath = tableView.indexPathForRowAtPoint(point) {
-            let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell
+        if let indexPath = tableView.indexPathForRow(at: point) {
+            let cell = tableView.cellForRow(at: indexPath) as? TextModuleTableViewCell
             cell?.moduleTextView.delegate = self
         }
     }

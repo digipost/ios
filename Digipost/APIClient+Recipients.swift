@@ -18,10 +18,10 @@ import Foundation
 
 extension APIClient {
 
-    func getRecipients(searchString: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        let encodedSearchString:String =  searchString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: NSStringCompareOptions.LiteralSearch, range: nil)
-        let safeString = encodedSearchString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-        let searchUri = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext).searchUri
+    func getRecipients(_ searchString: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
+        let encodedSearchString:String =  searchString.replacingOccurrences(of: " ", with: "+", options: NSString.CompareOptions.literal, range: nil)
+        let safeString = encodedSearchString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        let searchUri = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext).searchUri
         let urlString = "\(searchUri)?recipientId=\(safeString!)"
         urlSessionJSONTask(url: urlString, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized {

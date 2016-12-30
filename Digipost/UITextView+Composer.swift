@@ -18,7 +18,7 @@ import UIKit
 
 extension UITextView {
 
-    func style(textAttribute textAttribute: TextAttribute) {
+    func style(textAttribute: TextAttribute) {
         if let font = textAttribute.font {
             self.font = font
         }

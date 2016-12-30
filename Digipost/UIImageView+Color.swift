@@ -18,8 +18,8 @@ import UIKit
 
 extension UIImageView {
     
-    func imageViewWithTintColor(imageNamed: String, color: UIColor) -> UIImageView {
-        let image = UIImage(named: imageNamed)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    func imageViewWithTintColor(_ imageNamed: String, color: UIColor) -> UIImageView {
+        let image = UIImage(named: imageNamed)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         let imageView = UIImageView(image: image)
         imageView.tintColor = color
         return imageView

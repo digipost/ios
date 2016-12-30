@@ -20,32 +20,32 @@ extension StylePickerViewController : UITableViewDataSource {
 
 
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.currentShowingTextStyleModels().count
     }
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let arrayOfModels = currentShowingTextStyleModels()[indexPath.row]
         let cell : UITableViewCell = {
             if arrayOfModels.count == 1 {
                 // single choice type cell
-                return tableView.dequeueReusableCellWithIdentifier("", forIndexPath: indexPath) 
+                return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath) 
             } else {
                 // multi select type cell
                 if arrayOfModels.first!.preferredIconName != nil {
-                    let cell =  tableView.dequeueReusableCellWithIdentifier("segmentedControlCell", forIndexPath: indexPath) as! SegmentedControlTableViewCell
+                    let cell =  tableView.dequeueReusableCell(withIdentifier: "segmentedControlCell", for: indexPath) as! SegmentedControlTableViewCell
                     cell.delegate = self
-                    for (index, model) in arrayOfModels.enumerate() {
+                    for (index, model) in arrayOfModels.enumerated() {
                         cell.multiselectSegmentedControl.setButtonSelectedState(model.enabled, atIndex: index)
                     }
                     cell.setupWithModels(arrayOfModels)
                     return cell
                 } else {
-                    let cell =  tableView.dequeueReusableCellWithIdentifier("pickerCell", forIndexPath: indexPath) 
+                    let cell =  tableView.dequeueReusableCell(withIdentifier: "pickerCell", for: indexPath) 
                     let models = arrayOfModels.selectedTextStyleModel()
                     cell.detailTextLabel?.text = models?.name
                     cell.textLabel?.text = "Stil"

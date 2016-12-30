@@ -17,25 +17,25 @@
 import Foundation
 
 struct GuideConstants {
-    private static let shortVersionString : NSObject = "CFBundleShortVersionString"
-    private static let hasShownOnboardingKey = "hasShownOnboardingKey"
+    fileprivate static let shortVersionString : NSObject = "CFBundleShortVersionString" as NSObject
+    fileprivate static let hasShownOnboardingKey = "hasShownOnboardingKey"
     static let whatsNewTableName = "WhatsNewGuideTexts"
     static let onboardingTableName = "OnboardingGuideTexts"
 }
 
 class Guide : NSObject {
     
-    private class var hasShownWhatsNewGuideForCurrentVersion : Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey(versionStringWithDashesInsteadOfPeriods)
+    fileprivate class var hasShownWhatsNewGuideForCurrentVersion : Bool {
+        return UserDefaults.standard.bool(forKey: versionStringWithDashesInsteadOfPeriods)
     }
     
-    private class var hasShownOnboarding : Bool {
-        return NSUserDefaults.standardUserDefaults().boolForKey(GuideConstants.hasShownOnboardingKey)
+    fileprivate class var hasShownOnboarding : Bool {
+        return UserDefaults.standard.bool(forKey: GuideConstants.hasShownOnboardingKey)
     }
     
     class var versionStringWithDashesInsteadOfPeriods : String  {
-        let versionString : AnyObject = NSBundle.mainBundle().infoDictionary![GuideConstants.shortVersionString as! String]!
-        let versionStringWithDashesInsteadOfPeriods = versionString.stringByReplacingOccurrencesOfString(".", withString: "-")
+        let versionString : AnyObject = Bundle.main.infoDictionary![GuideConstants.shortVersionString as! String]! as AnyObject
+        let versionStringWithDashesInsteadOfPeriods = versionString.replacingOccurrences(of: ".", with: "-")
         return versionStringWithDashesInsteadOfPeriods
     }
     
@@ -88,19 +88,19 @@ class Guide : NSObject {
     
     :returns: the text as index, else nil
     */
-    class func onboardingText(forIndex forIndex: Int) -> String? {
+    class func onboardingText(forIndex: Int) -> String? {
         let string = LocalizedString("onboarding_\(forIndex)", tableName: GuideConstants.onboardingTableName, comment: "")
         debugIfNil(string, message: " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
         return string
     }
 
     class func setWhatsNewFeaturesHasBeenWatchedForThisVersion() {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: versionStringWithDashesInsteadOfPeriods)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(true, forKey: versionStringWithDashesInsteadOfPeriods)
+        UserDefaults.standard.synchronize()
     }
     
     class func setOnboaringHasBeenWatched() {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: GuideConstants.hasShownOnboardingKey)
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.set(true, forKey: GuideConstants.hasShownOnboardingKey)
+        UserDefaults.standard.synchronize()
     }
 }

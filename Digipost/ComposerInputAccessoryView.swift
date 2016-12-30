@@ -26,50 +26,50 @@ struct ComposerInputAccessoryViewConstants {
 class ComposerInputAccessoryView: UIView {
     var containedViews = [UIView]()
 
-    func setupWithStandardLayout(withControlEventInTarget: UIViewController, selector: Selector) {
-        let composerTypeButton = ComposerTypeButton(frame: CGRectMake(0, 0, 44, 44))
-        composerTypeButton.setTitle("Headline", forState: .Normal)
+    func setupWithStandardLayout(_ withControlEventInTarget: UIViewController, selector: Selector) {
+        let composerTypeButton = ComposerTypeButton(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        composerTypeButton.setTitle("Headline", for: UIControlState())
         self.addViewToAccessoryBar(composerTypeButton)
-        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Left), target: withControlEventInTarget, selector: selector))
-        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Center), target: withControlEventInTarget, selector: selector))
-        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .Right), target: withControlEventInTarget, selector: selector))
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .left), target: withControlEventInTarget, selector: selector))
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .center), target: withControlEventInTarget, selector: selector))
+        addViewToAccessoryBar(TextAttributeButton(textAttribute: TextAttribute(textAlignment: .right), target: withControlEventInTarget, selector: selector))
     }
 
 
-    func refreshUIWithTextAttribute(textAttribute: TextAttribute) {
+    func refreshUIWithTextAttribute(_ textAttribute: TextAttribute) {
         for view in containedViews {
             if let textAttributeButton = view as? TextAttributeButton   {
                 if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textAttribute) {
-                    textAttributeButton.backgroundColor = UIColor.redColor()
+                    textAttributeButton.backgroundColor = UIColor.red
                 } else {
-                    textAttributeButton.backgroundColor = UIColor.blackColor()
+                    textAttributeButton.backgroundColor = UIColor.black
                 }
             }
         }
     }
 
-    func refreshUIWithTextComposerModule(textComposerModule : TextComposerModule) {
+    func refreshUIWithTextComposerModule(_ textComposerModule : TextComposerModule) {
         for view in containedViews {
             if let composerTypeButton = view as? ComposerTypeButton {
                 // do the actual
-                composerTypeButton.setTitle("Headline", forState: .Normal)
+                composerTypeButton.setTitle("Headline", for: UIControlState())
             } else if let textAttributeButton = view as? TextAttributeButton   {
                 if textAttributeButton.textAttribute.hasOneOrMoreMatchesWith(textAttribute: textComposerModule.textAttribute) {
-                    textAttributeButton.backgroundColor = UIColor.redColor()
+                    textAttributeButton.backgroundColor = UIColor.red
                 } else {
-                    textAttributeButton.backgroundColor = UIColor.whiteColor()
+                    textAttributeButton.backgroundColor = UIColor.white
                 }
             }
         }
     }
 
-    func addViewsToAccessoryBar(views: [UIView]) {
+    func addViewsToAccessoryBar(_ views: [UIView]) {
         for view in views {
             addViewToAccessoryBar(view)
         }
     }
 
-    func addViewToAccessoryBar(view: UIView) {
+    func addViewToAccessoryBar(_ view: UIView) {
         self.addSubview(view)
         if containedViews.count == 0 {
             constrain(self, view) { firstView, secondView in

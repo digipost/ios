@@ -19,29 +19,29 @@
 
     static let fakturaOppsettKontekstBasert = "faktura-avtale-oppsett-kontekst-basert"
     
-    static func submitEvent(category: String,action: String,label: String){
+    static func submitEvent(_ category: String,action: String,label: String){
         let tracker = GAI.sharedInstance().defaultTracker
-        let parameters = GAIDictionaryBuilder.createEventWithCategory(category, action:action, label: label, value:nil).build()
-        tracker.send(parameters as [NSObject: AnyObject])
+        let parameters = GAIDictionaryBuilder.createEvent(withCategory: category, action:action, label: label, value:nil).build()
+        tracker?.send(parameters as [AnyHashable: Any])
     }
     
-    static func sendInvoiceCLickedChooseBankDialog(buttonText: String ){
+    static func sendInvoiceCLickedChooseBankDialog(_ buttonText: String ){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-start-oppsett", label: buttonText);
     }
     
-    static func sendInvoiceOpenBankViewFromListEvent(bankName: String){
+    static func sendInvoiceOpenBankViewFromListEvent(_ bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-bank-i-liste", label: bankName);
     }
     
-    static func sendInvoiceClickedDigipostOpenPagesLink(bankName: String){
+    static func sendInvoiceClickedDigipostOpenPagesLink(_ bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-digipost-faktura-åpne-sider", label: bankName);
     }
     
-    static func sendInvoiceClickedSetup10Link(bankName: String){
+    static func sendInvoiceClickedSetup10Link(_ bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-oppsett-avtale-type-1-link", label: bankName);
     }
     
-    static func sendInvoiceClickedSetup20Link(bankName: String){
+    static func sendInvoiceClickedSetup20Link(_ bankName: String){
         submitEvent(self.fakturaOppsettKontekstBasert, action: "klikk-oppsett-avtale-type-2-link", label: bankName);
     }
 }

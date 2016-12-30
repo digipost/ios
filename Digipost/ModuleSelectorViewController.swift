@@ -17,8 +17,8 @@
 import UIKit
 
 protocol ModuleSelectorViewControllerDelegate{
-    func moduleSelectorViewController(moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule)
-    func moduleSelectorViewControllerWasDismissed(moduleSelectorViewController: ModuleSelectorViewController)
+    func moduleSelectorViewController(_ moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule)
+    func moduleSelectorViewControllerWasDismissed(_ moduleSelectorViewController: ModuleSelectorViewController)
 }
 
 class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
@@ -30,8 +30,8 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         super.init(coder: aDecoder)!
     }
 
-    class func setup(textAttributes textAttributes: [TextAttribute]) -> ModuleSelectorViewController {
-        let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: NSBundle.mainBundle()).instantiateViewControllerWithIdentifier("moduleSelectorViewController") as! ModuleSelectorViewController
+    class func setup(textAttributes: [TextAttribute]) -> ModuleSelectorViewController {
+        let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: Bundle.main).instantiateViewController(withIdentifier: "moduleSelectorViewController") as! ModuleSelectorViewController
         moduleSelectorViewController.textAttributes = textAttributes
         return moduleSelectorViewController
     }
@@ -48,49 +48,49 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tblView = UIView(frame: CGRectZero)
+        let tblView = UIView(frame: CGRect.zero)
         tableView.tableFooterView = tblView
-        tableView.tableFooterView?.hidden = true
-        tableView.scrollEnabled = false
+        tableView.tableFooterView?.isHidden = true
+        tableView.isScrollEnabled = false
         tableView.rowHeight = 50
     }
     
-    @IBAction func closeButtonAction(sender: UIButton) {
+    @IBAction func closeButtonAction(_ sender: UIButton) {
         self.delegate?.moduleSelectorViewControllerWasDismissed(self)
     }
     
-    func addTextModule(textStyle: String){
-        let selectedModule = TextComposerModule(moduleWithFont: UIFont.preferredFontForTextStyle(textStyle))
+    func addTextModule(_ textStyle: String){
+        let selectedModule = TextComposerModule(moduleWithFont: UIFont.preferredFont(forTextStyle: UIFontTextStyle(rawValue: textStyle)))
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
     }
     
     func addImage() {
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+            imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
             imagePicker.allowsEditing = true
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
         let selectedModule = ImageComposerModule(image: image)
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         delegate?.moduleSelectorViewController(self, didSelectModule: selectedModule)
         
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let module : ComposerModule? = {
             switch indexPath.row {
             case 0:
                 return TextComposerModule.paragraphModule()
             case 1:
-                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.SavedPhotosAlbum){
+                if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.savedPhotosAlbum){
                     self.imagePicker.delegate = self
-                    self.imagePicker.sourceType = UIImagePickerControllerSourceType.SavedPhotosAlbum
+                    self.imagePicker.sourceType = UIImagePickerControllerSourceType.savedPhotosAlbum
                     self.imagePicker.allowsEditing = true
-                    self.presentViewController(self.imagePicker, animated: true, completion: nil)
+                    self.present(self.imagePicker, animated: true, completion: nil)
                 }
                 break
             case 2:
@@ -107,12 +107,12 @@ class ModuleSelectorViewController: UIViewController, UIImagePickerControllerDel
         }
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moduleTypeStrings.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("moduleCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "moduleCell", for: indexPath)
         cell.textLabel?.text = moduleTypeStrings[indexPath.row]
         return cell
     }

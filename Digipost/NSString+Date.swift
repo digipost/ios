@@ -18,9 +18,9 @@ import Foundation
 
 public extension NSString {
     func validDateFormat() -> NSString? {
-        if let r: NSRange = self.rangeOfString(".", options: NSStringCompareOptions.BackwardsSearch){
+        if let r: NSRange = self.range(of: ".", options: NSString.CompareOptions.backwards){
             if r.length > 0 {
-                return self.substringToIndex(r.location)
+                return self.substring(to: r.location) as NSString?
             }
         }
         return self;

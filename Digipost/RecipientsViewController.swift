@@ -36,42 +36,42 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
         saveBarButtonItem.title = NSLocalizedString("recipients view navigation bar right button save", comment: "Title for bar button item")
                 
         tableView.backgroundColor = UIColor(r: 222, g: 224, b: 225)
-        tableView.registerNib(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
+        tableView.register(UINib(nibName: "RecipientTableViewCell", bundle: nil), forCellReuseIdentifier: "recipientCell")
         tableView.rowHeight = 65.0
         
         searchBar.delegate = self
         searchBar.placeholder = NSLocalizedString("recipients view search bar placeholder", comment: "placeholder text")
-        searchBar.returnKeyType = UIReturnKeyType.Done
+        searchBar.returnKeyType = UIReturnKeyType.done
         searchBar.setShowsCancelButton(false, animated: true)
         
         setupKeyboardNotifcationListenerForScrollView(self.tableView)
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         undoButtonBottomConstraint.constant = -400
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         removeKeyboardNotificationListeners()
     }
     
-    @IBAction func undoButtonTapped(sender: AnyObject) {
+    @IBAction func undoButtonTapped(_ sender: AnyObject) {
         if deletedRecipient != nil {
             addedRecipients.append(deletedRecipient!)
             tableView.reloadData()
             deletedRecipient = nil
             
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.undoButtonBottomConstraint.constant = -100
                 self.undoButton.layoutIfNeeded()
             })
         }
     }
 
-    @IBAction func handleSingleTapOnEmptyTableView(tap: UIGestureRecognizer) {
-        let point = tap.locationInView(tableView)
-        let indexPath = self.tableView.indexPathForRowAtPoint(point)
+    @IBAction func handleSingleTapOnEmptyTableView(_ tap: UIGestureRecognizer) {
+        let point = tap.location(in: tableView)
+        let indexPath = self.tableView.indexPathForRow(at: point)
         
         if indexPath == nil {
             searchBar.resignFirstResponder()
@@ -79,6 +79,6 @@ class RecipientViewController: UIViewController, UINavigationControllerDelegate 
     }
 
     @IBAction func didTapSaveBarButtonItem() {
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
 }

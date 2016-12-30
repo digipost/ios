@@ -31,7 +31,7 @@ class InvoiceBankViewController: UIViewController{
             let invoiceBankContentString = invoiceBank.setupIsAvailable ? "invoice bank enabled content" : "invoice bank disabled content"
             self.invoiceBankContent.text = NSLocalizedString(invoiceBankContentString, comment:"invoice bank content")
             self.invoiceBankContent.sizeToFit()
-            self.invoiceBankContent.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            self.invoiceBankContent.lineBreakMode = NSLineBreakMode.byWordWrapping
         }
     }
     
@@ -47,9 +47,9 @@ class InvoiceBankViewController: UIViewController{
         didSet{
             if(invoiceBank.setupIsAvailable){
                 let openBankUrlButtonString = NSLocalizedString("invoice bank button link prefix", comment: "invoice bank button link") + invoiceBank.name + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
-                self.openBankUrlButton.setTitle(openBankUrlButtonString, forState: UIControlState.Normal)
+                self.openBankUrlButton.setTitle(openBankUrlButtonString, for: UIControlState())
             }else{
-                self.openBankUrlButton.hidden = true
+                self.openBankUrlButton.isHidden = true
             }
         }
     }
@@ -57,22 +57,22 @@ class InvoiceBankViewController: UIViewController{
     @IBOutlet weak var invoiceBankReadMoreText: UIButton!{
         didSet{
             let invoiceBankReadMoreLinkString = invoiceBank.setupIsAvailable ? "invoice bank enabled read more link" : "invoice bank disabled read more link"
-            self.invoiceBankReadMoreText.setTitle(NSLocalizedString(invoiceBankReadMoreLinkString, comment:"invoice bank read more link"), forState:UIControlState.Normal)
+            self.invoiceBankReadMoreText.setTitle(NSLocalizedString(invoiceBankReadMoreLinkString, comment:"invoice bank read more link"), for:UIControlState())
         }
     }
     
-    @IBAction func openBankUrl(sender: AnyObject) {
+    @IBAction func openBankUrl(_ sender: AnyObject) {
         InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
-        UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
+        UIApplication.shared.openURL(URL(string:invoiceBank.url)!)
     }
     
-    @IBAction func invoiceBankReadMore(sender: AnyObject) {
+    @IBAction func invoiceBankReadMore(_ sender: AnyObject) {
         if(invoiceBank.setupIsAvailable){
             InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/faktura")!)
+            UIApplication.shared.openURL(URL(string: "https://digipost.no/faktura")!)
         }else{
             InvoiceAnalytics.sendInvoiceClickedSetup10Link(invoiceBank.name)
-            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/app/post#/faktura")!)
+            UIApplication.shared.openURL(URL(string: "https://digipost.no/app/post#/faktura")!)
         }
     }
 }
