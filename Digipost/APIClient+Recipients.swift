@@ -27,7 +27,7 @@ extension APIClient {
             if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.getRecipients(urlString, success: success, failure: failure)
             } else {
-                failure(error: error)
+                failure(error)
             }
         }
     }

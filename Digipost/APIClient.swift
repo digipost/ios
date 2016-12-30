@@ -505,14 +505,14 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
 
         if (fileSize > maxFileSize) {
             let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
-            failure(error: tooBigError)
+            failure(tooBigError)
             return
         }
 
         let rootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
         if (rootResource?.uploadDocumentUri.characters.count)! <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
-            failure(error: noUploadLinkError)
+            failure(noUploadLinkError)
             return
         }
 
@@ -609,7 +609,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
             POSOAuthManager.shared().refreshAccessToken(withRefreshToken: oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
                 let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
-                validationSuccess(chosenToken: newToken!)
+                validationSuccess(newToken!)
                 }, failure: { (error) -> Void in
                     if error.code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()

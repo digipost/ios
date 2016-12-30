@@ -82,10 +82,10 @@ extension APIClient {
                     } else {
                         if let actualData = data as Data? {
                             if actualData.count == 0 {
-                                failure(error:APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)))
+                                failure(APIError(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)))
                             } else if (response as! HTTPURLResponse).didFail()  {
                                 let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: httpResponse!.statusCode, userInfo: nil)
-                                failure(error:err)
+                                failure(err)
                             } else {
                                 let serializer = try! JSONSerialization.jsonObject(with: actualData, options: JSONSerialization.ReadingOptions.allowFragments) as! Dictionary<String, AnyObject>
                                 success(serializer)
