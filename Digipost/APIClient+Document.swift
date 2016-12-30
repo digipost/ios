@@ -29,7 +29,7 @@ extension APIClient {
             }()
 
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters, success: success,failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success,failure: failure)
             task.resume()
         }
     }
@@ -51,7 +51,7 @@ extension APIClient {
             }
             }()
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: document.updateUri, parameters:parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
             task.resume()
         }
     }

@@ -38,7 +38,7 @@ extension UIFont {
         let familyNamesArray : NSArray = UIFont.familyNames as NSArray
         familyNamesArray.enumerateObjects(using: { (object , index, stop) -> Void in
             let familyName = object as! NSString
-            let names : NSArray = UIFont.fontNames(forFamilyName: familyName as String)
+            let names : NSArray = UIFont.fontNames(forFamilyName: familyName as String) as NSArray
             print(object)
             names.enumerateObjects({ (obj , i, stop) -> Void in
                 print(obj)

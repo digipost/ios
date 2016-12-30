@@ -277,7 +277,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
         POSModelManager.shared().deleteAllObjects()
         validateFullScope(success: {
-            let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure)
             task.resume()
             
             self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)

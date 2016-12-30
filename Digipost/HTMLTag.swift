@@ -33,7 +33,7 @@ struct HTMLTag {
         self.type = type
     }
 
-    init(attribute: NSObject, value: AnyObject) {
+    init(attribute: String, value: AnyObject) {
 
         self.type = {
 
