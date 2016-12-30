@@ -88,7 +88,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         } else {
             let format: NSString = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE", comment: "Receipts hidden") as NSString
             let numberOfReceiptsHidden: NSInteger = rootResource.numberOfReceiptsHiddenUntilVerification.intValue
-            let receiptWord: NSString = numberOfReceiptsHidden == 1 ? NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", comment: "receipt is") : NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", comment: "receipts are") as NSString
+            let receiptWord: NSString = numberOfReceiptsHidden == 1 ? NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", comment: "receipt is") : NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", comment: "receipts are") as? NSString
             self.noReceiptsLabel.text = NSString.init(format: format, numberOfReceiptsHidden, receiptWord) as String
         }
         

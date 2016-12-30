@@ -24,7 +24,7 @@ extension APIClient {
         }()
         
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: GCMUri, parameters: parameters, success: success,failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: GCMUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success,failure: failure)
             task.resume()
         }
     }

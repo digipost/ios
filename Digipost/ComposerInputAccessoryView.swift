@@ -80,7 +80,7 @@ class ComposerInputAccessoryView: UIView {
             }
         } else {
             let leftMostView = containedViews.last as UIView!
-            constrain(leftMostView, view) { firstView, secondView in
+            constrain(leftMostView!, view) { firstView, secondView in
                 secondView.width == 44
                 secondView.height == 44
                 secondView.left == firstView.right + 5

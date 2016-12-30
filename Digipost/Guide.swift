@@ -90,7 +90,7 @@ class Guide : NSObject {
     */
     class func onboardingText(forIndex: Int) -> String? {
         let string = LocalizedString("onboarding_\(forIndex)", tableName: GuideConstants.onboardingTableName, comment: "")
-        debugIfNil(string, message: " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
+        debugIfNil(string as AnyObject?, message: " could not get a localized string for index: \(forIndex) in table: \(GuideConstants.onboardingTableName)")
         return string
     }
 

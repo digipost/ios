@@ -171,7 +171,7 @@ class TextComposerModule: ComposerModule {
                     //let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
                     let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
-                    let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey , value: attributeValue, range: rangeInHTMLTagBlock)
+                    let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey as NSObject , value: attributeValue, range: rangeInHTMLTagBlock)
                     tagBlocksInString.append(contentsOf: tagBlocks)
                 }
             }
@@ -183,7 +183,7 @@ class TextComposerModule: ComposerModule {
         }
 
         for htmlSection in htmlSections {
-            htmlContent += htmlSection.htmlRepresentation(htmlSection.content) as String
+            htmlContent += htmlSection.htmlRepresentation(htmlSection.content as NSString) as String
         }
 
         return htmlContent as NSString

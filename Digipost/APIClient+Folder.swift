@@ -21,7 +21,7 @@ extension APIClient {
     func changeName(_ folder: POSFolder, newName name: String, newIconName iconName: String, success: () -> Void , failure: (_ error: APIError) -> ()) {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName] as [String : Any]
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters as Dictionary<String, AnyObject>? , success: success, failure: failure)
             task.resume()
         }
     }
@@ -29,7 +29,7 @@ extension APIClient {
     func createFolder(_ name: String, iconName: String, mailBox: POSMailbox, success: () -> Void , failure: (_ error: APIError) -> ()) {
         let parameters = [Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName]
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
             task.resume()
         }
     }
@@ -40,7 +40,7 @@ extension APIClient {
         })
         let parameters = [Constants.APIClient.AttributeKey.folder : folders]
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.put, url: mailbox.updateFoldersUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
             task.resume()
         }
     }
@@ -48,7 +48,7 @@ extension APIClient {
     func delete(folder: POSFolder, success: () -> Void , failure: (_ error: APIError) -> ()) {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon : folder.iconName] as [String : Any]
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
             task.resume()
         }
     }
