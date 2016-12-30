@@ -14,7 +14,6 @@ def all_pods
     pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
     pod 'Alamofire', '~> 4.2.0'
     pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :branch => 'master'
-    pod 'SingleLineShakeAnimation', :git => 'https://github.com/haaakon/SingleLineShakeAnimation', :branch => 'master'
     pod 'Cartography', '~> 1.0.1'
 end
 

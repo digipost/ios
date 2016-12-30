@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import SingleLineShakeAnimation
 
 class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationControllerDelegate {
     
