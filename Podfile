@@ -15,7 +15,7 @@ def all_pods
     pod 'Alamofire', '~> 3.5.0'
     pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :branch => 'master'
     pod 'SingleLineShakeAnimation', :git => 'https://github.com/haaakon/SingleLineShakeAnimation', :branch => 'master'
-    pod 'Cartography', '~> 0.7.0'
+    pod 'Cartography', '~> 1.0.1'
 end
 
 target 'Digipost' do
