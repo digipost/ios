@@ -22,7 +22,7 @@
     static func submitEvent(_ category: String,action: String,label: String){
         let tracker = GAI.sharedInstance().defaultTracker
         let parameters = GAIDictionaryBuilder.createEvent(withCategory: category, action:action, label: label, value:nil).build()
-        tracker?.send(parameters as [AnyHashable: Any])
+        tracker?.send(parameters as [NSObject : AnyObject]!)
     }
     
     static func sendInvoiceCLickedChooseBankDialog(_ buttonText: String ){
