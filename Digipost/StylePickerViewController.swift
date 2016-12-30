@@ -185,7 +185,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             }
         } else {
 
-            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: 0.35, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: { () -> Void in
                 _ = constrain(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
