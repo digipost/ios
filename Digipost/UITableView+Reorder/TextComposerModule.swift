@@ -171,7 +171,7 @@ class TextComposerModule: ComposerModule {
                     //let stringAtSubstring = (self.attributedText.string as NSString).substringWithRange(range)
                     let rangeInHTMLTagBlock = NSMakeRange(range.location - stringIndex, range.length)
 
-                    let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey as NSObject , value: attributeValue, range: rangeInHTMLTagBlock)
+                    let tagBlocks = HTMLTagBlock.tagBlocks(attributeKey as NSObject , value: attributeValue as AnyObject, range: rangeInHTMLTagBlock)
                     tagBlocksInString.append(contentsOf: tagBlocks)
                 }
             }
