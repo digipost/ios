@@ -214,7 +214,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
     
     // mock data function
     func fetchReceiptsInMailboxWith2(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (_ error: APIError) -> ()) {
-        
+        /*
         if(parameters["id"] != nil){
             if(mockReceiptsForChainId[parameters["id"]!] != nil){
                 
@@ -232,6 +232,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
                 return
             }
         }
+         */
         // id not found or empty:
         success([:])
     }
