@@ -43,10 +43,8 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }
         
         if UIDevice.current.userInterfaceIdiom == .pad {
-            if let rootResource: POSRootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
-                if rootResource == true {
-                    performSegue(withIdentifier: "gotoDocumentsFromAccountsSegue", sender: self)
-                }
+            if POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) != nil{
+                performSegue(withIdentifier: "gotoDocumentsFromAccountsSegue", sender: self)
             }
         }
         
