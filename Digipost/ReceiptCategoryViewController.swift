@@ -60,7 +60,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        trySynchronized(self.lockForFetchingCategories, criticalSection: self.fetchAndSetCategories)
+        _ = trySynchronized(self.lockForFetchingCategories, criticalSection: self.fetchAndSetCategories)
         self.setupTableViewStyling()
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
     }
@@ -111,7 +111,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     
     func pullToRefresh(){
         if(!self.isFetchingCategories) {
-            trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
+            _ = trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
         }
     }
     

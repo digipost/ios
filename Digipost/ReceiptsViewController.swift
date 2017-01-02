@@ -93,7 +93,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
+        _ = trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         self.setupTableViewStyling()
         self.navigationController?.setToolbarHidden(true, animated: false)
     }
@@ -216,7 +216,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         
         if(self.numberOfReceiptsChangedUponLastUpdate && hasReturnedFromAsyncFetch && !self.pullToRefreshIsRunning &&
             scrollOffset + scrollViewHeight >= 0.8 * scrollViewContentSizeHeight) {
-            trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
+            _ = trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         }
     }
     
@@ -445,7 +445,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         if(searchBar.text?.length > 0){
             self.receiptsTableViewDataSource.receipts.removeAll()
             self.tableView.reloadData()
-            trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
+            _ = trySynchronized(self.lockForFetchingReceipts, criticalSection: self.fetchReceiptsFromAPI)
         }
     }
 }
