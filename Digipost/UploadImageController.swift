@@ -57,7 +57,7 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 if let actualMediaURL = refURL as URL! {
                     var fileName = "temp.jpg"
                     let assetLibrary = ALAssetsLibrary()
-                    assetLibrary.asset(for: actualMediaURL , resultBlock: { (asset: ALAsset!) -> Void in
+                    assetLibrary.asset(for: actualMediaURL , resultBlock: { asset in
                         if let actualAsset = asset as ALAsset? {
                             let assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
                             fileName = assetRep.filename()
