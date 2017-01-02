@@ -18,8 +18,8 @@ import UIKit
 
 extension UIImage {
     
-    class func templateImage(named: String) -> UIImage {
-        let image = UIImage(named: named)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    class func templateImage(_ named: String) -> UIImage {
+        let image = UIImage(named: named)?.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         return image!
     }
 }

@@ -59,9 +59,9 @@ struct Constants {
             case uploadFileTooBig = 4003
             case uploadLinkNotFoundInRootResource = 4004
             case uploadFailed = 4005
-            case NeedHigherAuthenticationLevel = 4006
-            case UnknownError = 4007
-            case NoOAuthTokenPresent = 4008
+            case needHigherAuthenticationLevel = 4006
+            case unknownError = 4007
+            case noOAuthTokenPresent = 4008
         }
         static let apiClientErrorScopeKey = "scope"
     }

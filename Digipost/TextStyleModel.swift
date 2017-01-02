@@ -61,51 +61,51 @@ class TextStyleModel {
         self.value = UIFont()
     }
 
-    private static func boldTextStyleModel() -> TextStyleModel {
+    fileprivate static func boldTextStyleModel() -> TextStyleModel {
         return TextStyleModel(preferredIconName: "Bold", type: .Bold)
     }
 
-    private static func italicTextStyleModel() -> TextStyleModel {
+    fileprivate static func italicTextStyleModel() -> TextStyleModel {
         return TextStyleModel(preferredIconName: "Italic", type: .Italic)
     }
 
-    private static func underlineTextStyleModel() -> TextStyleModel {
+    fileprivate static func underlineTextStyleModel() -> TextStyleModel {
         return TextStyleModel(preferredIconName: "Underline", type: .Underline)
     }
 
-    private static func h1StyleModel() -> TextStyleModel {
+    fileprivate static func h1StyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.headlineH1(), keyword: "h1", name: "Stor overskrift")
     }
 
-    private static func h2StyleModel() -> TextStyleModel {
+    fileprivate static func h2StyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.headlineH2(), keyword: "h2", name: "Medium overskrift")
     }
 
-    private static func h3StyleModel() -> TextStyleModel {
+    fileprivate static func h3StyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.headlineH3(), keyword: "h3")
     }
 
-    private static func paragraphStyleModel() -> TextStyleModel {
+    fileprivate static func paragraphStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), keyword: "p", name: "Brødtekst")
     }
 
-    private static func leftAlignStyleModel() -> TextStyleModel {
+    fileprivate static func leftAlignStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "left", keyword: "align-left")
     }
 
-    private static func rightAlignStyleModel() -> TextStyleModel {
+    fileprivate static func rightAlignStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "right", keyword: "align-right")
     }
 
-    private static func centerAlignStyleModel() -> TextStyleModel {
+    fileprivate static func centerAlignStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "center", keyword: "align-center")
     }
 
-    private static func orderedListStyleModel() -> TextStyleModel {
+    fileprivate static func orderedListStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "orderedList", keyword: "orderedList", type: .OrderedList)
     }
 
-    private static func unorderedListStyleModel() -> TextStyleModel {
+    fileprivate static func unorderedListStyleModel() -> TextStyleModel {
         return TextStyleModel(value: UIFont.paragraph(), preferredIconName: "unorderedList", keyword: "unorderedList", type: .UnorderedList)
     }
 

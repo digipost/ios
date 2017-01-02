@@ -19,7 +19,7 @@ import UIKit
 extension String
 {
     subscript(i: Int) -> Character {
-        let result = self.startIndex.advancedBy(i)
+        let result = self.characters.index(self.startIndex, offsetBy: i)
         return self[result]
     }
 
@@ -29,8 +29,8 @@ extension String
             var counter = 0
             var currentIndex = self.startIndex
             var stringInRange = ""
-            while counter < r.endIndex && currentIndex < self.endIndex {
-                currentIndex = currentIndex.successor()
+            while counter < r.upperBound && currentIndex < self.endIndex {
+                currentIndex = self.index(after: currentIndex)
                 stringInRange.append(self[currentIndex])
                 counter += 1
             }

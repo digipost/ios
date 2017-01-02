@@ -22,9 +22,9 @@ class TextAttributeButton: UIButton {
 
     init(textAttribute: TextAttribute, target: UIViewController, selector: Selector) {
         self.textAttribute = textAttribute
-        super.init(frame: CGRectMake(0, 0, 55, 44))
-        self.setTitle("Test", forState: .Normal)
-        self.addTarget(target, action: selector, forControlEvents: .TouchUpInside)
+        super.init(frame: CGRect(x: 0, y: 0, width: 55, height: 44))
+        self.setTitle("Test", for: UIControlState())
+        self.addTarget(target, action: selector, for: .touchUpInside)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,11 +32,11 @@ class TextAttributeButton: UIButton {
         super.init(coder: aDecoder)
     }
 
-    func indicateSelectedIfMatchingStyle(anotherTextAttribute : TextAttribute) {
+    func indicateSelectedIfMatchingStyle(_ anotherTextAttribute : TextAttribute) {
         if self.textAttribute.hasOneOrMoreMatchesWith(textAttribute: anotherTextAttribute) {
-            self.backgroundColor = UIColor.redColor()
+            self.backgroundColor = UIColor.red
         } else {
-            self.backgroundColor = UIColor.whiteColor()
+            self.backgroundColor = UIColor.white
         }
     }
 

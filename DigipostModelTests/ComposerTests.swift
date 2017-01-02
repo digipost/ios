@@ -39,12 +39,12 @@ class ComposerTests: XCTestCase {
     }
 
     // Convience for setting font traits at range
-    private func setFontTraits(fontTraits: UIFontDescriptorSymbolicTraits, string: String, enabled: Bool, textComposerModule: TextComposerModule) {
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(string)
+    fileprivate func setFontTraits(_ fontTraits: UIFontDescriptorSymbolicTraits, string: String, enabled: Bool, textComposerModule: TextComposerModule) {
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: string)
         textComposerModule.setFontTrait(fontTraits, enabled: enabled , atRange:rangeOfString)
     }
 
-    private func assertEqual() {
+    fileprivate func assertEqual() {
 
     }
 
@@ -52,7 +52,7 @@ class ComposerTests: XCTestCase {
         let wantedOutput = "<p>\(Strings.one)</p>"
         let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testBoldInParagraph() {
@@ -60,18 +60,18 @@ class ComposerTests: XCTestCase {
         let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true , atRange:rangeOfString)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true , atRange:rangeOfString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testWholeBoldParagraph() {
         let wantedOutput = "<p><b>\(Strings.one)</b></p>"
         let textComposerModule = TextComposerModule.paragraphModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.one)
-        textComposerModule.setFontTrait(.TraitBold, enabled: true , atRange:rangeOfString)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: Strings.one)
+        textComposerModule.setFontTrait(.traitBold, enabled: true , atRange:rangeOfString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testTwoBoldRangesInParagraph() {
@@ -81,19 +81,19 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
 
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfString)
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true, atRange:rangeOfString)
 
         textComposerModule.appendCharactersToEndOfString(Strings.three)
         textComposerModule.appendCharactersToEndOfString(Strings.four)
 
-        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: false, atRange:rangeOfStringThree)
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).range(of: Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: false, atRange:rangeOfStringThree)
 
-        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringFour)
+        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).range(of: Strings.four)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true, atRange:rangeOfStringFour)
 
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testBoldAndItalicInParagraph() {
@@ -105,13 +105,13 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.three)
         textComposerModule.appendCharactersToEndOfString(Strings.four)
 
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfString)
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true, atRange:rangeOfString)
 
-        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.four)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitItalic, enabled: true, atRange:rangeOfStringFour)
+        let rangeOfStringFour = (textComposerModule.attributedText.string as NSString).range(of: Strings.four)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitItalic, enabled: true, atRange:rangeOfStringFour)
 
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testLotsOfBoldRangesInMultipleParagraphs() {
@@ -127,11 +127,11 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.six)
 
-        setFontTraits(.TraitBold, string: Strings.two, enabled: true, textComposerModule: textComposerModule)
-        setFontTraits(.TraitBold, string: Strings.four, enabled: true, textComposerModule: textComposerModule)
-        setFontTraits(.TraitBold, string: Strings.six, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.traitBold, string: Strings.two, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.traitBold, string: Strings.four, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.traitBold, string: Strings.six, enabled: true, textComposerModule: textComposerModule)
 
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testTwoParagraphs() {
@@ -140,7 +140,7 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.two)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testThreeParagraphs() {
@@ -151,7 +151,7 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.three)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testMixedBoldAndItalicInSingleParagraph() {
@@ -161,9 +161,9 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.two)
         textComposerModule.appendCharactersToEndOfString(Strings.three)
 
-        setFontTraits(.TraitBold, string: Strings.one + Strings.two, enabled: true, textComposerModule: textComposerModule)
-        setFontTraits(.TraitItalic, string: Strings.two + Strings.three, enabled: true, textComposerModule: textComposerModule)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        setFontTraits(.traitBold, string: Strings.one + Strings.two, enabled: true, textComposerModule: textComposerModule)
+        setFontTraits(.traitItalic, string: Strings.two + Strings.three, enabled: true, textComposerModule: textComposerModule)
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testThreeParagraphsWithCompleteStylingOnOne() {
@@ -175,9 +175,9 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendNewParagraph()
         textComposerModule.appendCharactersToEndOfString(Strings.three)
 
-        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).range(of: Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true, atRange:rangeOfStringThree)
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testThreeParagraphsWithPartialStylingOnOne() {
@@ -190,11 +190,11 @@ class ComposerTests: XCTestCase {
         textComposerModule.appendCharactersToEndOfString(Strings.three)
         textComposerModule.appendCharactersToEndOfString(Strings.four)
 
-        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.three)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true, atRange:rangeOfStringThree)
+        let rangeOfStringThree = (textComposerModule.attributedText.string as NSString).range(of: Strings.three)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true, atRange:rangeOfStringThree)
 
         print(textComposerModule.attributedText)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
     func testHeadline1() {
@@ -202,9 +202,9 @@ class ComposerTests: XCTestCase {
         let textComposerModule = TextComposerModule.headlineModule()
         textComposerModule.appendCharactersToEndOfString(Strings.one)
         textComposerModule.appendCharactersToEndOfString(Strings.two)
-        let rangeOfString = (textComposerModule.attributedText.string as NSString).rangeOfString(Strings.two)
-        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.TraitBold, enabled: true , atRange:rangeOfString)
-        XCTAssertEqual(textComposerModule.htmlRepresentation(), wantedOutput, "")
+        let rangeOfString = (textComposerModule.attributedText.string as NSString).range(of: Strings.two)
+        textComposerModule.setFontTrait(UIFontDescriptorSymbolicTraits.traitBold, enabled: true , atRange:rangeOfString)
+        XCTAssertEqual(textComposerModule.htmlRepresentation() as String, wantedOutput, "")
     }
 
 }

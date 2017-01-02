@@ -15,7 +15,6 @@
 //
 
 import UIKit
-import SingleLineShakeAnimation
 
 class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationControllerDelegate {
     
@@ -39,41 +38,41 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     override func viewDidLoad() {
         super.viewDidLoad()
         webView.delegate = self
-        webView.scrollView.scrollEnabled = false
+        webView.scrollView.isScrollEnabled = false
         
         if let actualCurrentShowingHTMLContent = currentShowingHTMLContent{
             self.webView.loadHTMLString(actualCurrentShowingHTMLContent, baseURL: nil)
         }
         title = NSLocalizedString("preview view navigation bar title", comment: "Navigation bar title in preview view")
         sendButton.title = NSLocalizedString("preview view recipients send button title", comment: "Send button")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PreviewViewController.recipientReceivedFromRecipientViewController(_:)), name: "addRecipientNotification", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PreviewViewController.recipientDeletedFromRecipientViewController(_:)), name: "deleteRecipientNotification", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PreviewViewController.recipientReceivedFromRecipientViewController(_:)), name: NSNotification.Name(rawValue: "addRecipientNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PreviewViewController.recipientDeletedFromRecipientViewController(_:)), name: NSNotification.Name(rawValue: "deleteRecipientNotification"), object: nil)
         navigationController?.delegate = self
     }
     
-    func recipientReceivedFromRecipientViewController(notification: NSNotification) {
+    func recipientReceivedFromRecipientViewController(_ notification: Notification) {
         recipients.append(notification.object as! Recipient)
     }
     
-    func recipientDeletedFromRecipientViewController(notification: NSNotification) {
+    func recipientDeletedFromRecipientViewController(_ notification: Notification) {
         let receivedRecipient = notification.object as! Recipient
         
         if recipients.count > 0 {
-            for (index, recipient) in recipients.enumerate() {
+            for (index, recipient) in recipients.enumerated() {
                 if recipient.digipostAddress == receivedRecipient.digipostAddress {
-                    recipients.removeAtIndex(index)
+                    recipients.remove(at: index)
                     break
                 }
             }
         }
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         scrollView.contentSize = CGSize(width: self.scrollView.frame.width, height: self.webView.scrollView.contentSize.height)
         webViewHeightConstraint.constant = self.webView.scrollView.contentSize.height
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         previewHeaderLabel.text = NSLocalizedString("preview view header title", comment: "Preview view header")
         
@@ -81,7 +80,7 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), forState: .Normal)
+        addRecipientsButton.setTitle(NSLocalizedString("preview view recipients add recipients button title", comment: "Add reciepients button"), for: UIControlState())
         let recipientNames = self.recipients.map { (recipient) -> String in
             return recipient.firstName()
         }
@@ -98,44 +97,42 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         
     }
     
-    @IBAction func didTapFooterView(sender: AnyObject) {
-        performSegueWithIdentifier("addRecipientsSegue", sender: self)
+    @IBAction func didTapFooterView(_ sender: AnyObject) {
+        performSegue(withIdentifier: "addRecipientsSegue", sender: self)
     }
     
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {        
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {        
         if let composerViewController = viewController as? ComposerViewController {
             composerViewController.recipients = recipients
-            NSNotificationCenter.defaultCenter().removeObserver(self)
+            NotificationCenter.default.removeObserver(self)
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let recipientsViewController = segue.destinationViewController as? RecipientViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let recipientsViewController = segue.destination as? RecipientViewController {
             if recipients.count > 0 {
                 recipientsViewController.addedRecipients = recipients
             }
         }
         
-        if let composerViewController = segue.destinationViewController as? ComposerViewController {
+        if let composerViewController = segue.destination as? ComposerViewController {
             composerViewController.recipients = recipients
         }
     }
     
     func animateShowingUserHasToAddRecipientsBeforeSending() {
-        addRecipientsButton.shake(.Horizontal, numberOfTimes: 9, totalDuration: 0.6) {
-            
-        }
+       // addRecipientsButton.shake(.Horizontal, numberOfTimes: 9, totalDuration: 0.6) {}
     }
     
-    @IBAction func didTapSendButton(sender: AnyObject) {
+    @IBAction func didTapSendButton(_ sender: AnyObject) {
         if recipients.count == 0 {
             animateShowingUserHasToAddRecipientsBeforeSending()
             return
         }
         
-        let mailbox = POSMailbox.existingMailboxWithDigipostAddress(mailboxDigipostAddress, inManagedObjectContext: POSModelManager.sharedManager().managedObjectContext)
-        APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: mailbox.sendUri, success: { () -> Void in
-            self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        let mailbox = POSMailbox.existingMailbox(withDigipostAddress: mailboxDigipostAddress, in: POSModelManager.shared().managedObjectContext)
+        APIClient.sharedClient.send(currentShowingHTMLContent!, recipients: recipients, uri: (mailbox?.sendUri)!, success: { () -> Void in
+            self.dismiss(animated: true, completion: { () -> Void in
                 
             })
             

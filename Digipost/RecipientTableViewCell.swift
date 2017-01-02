@@ -35,31 +35,31 @@ class RecipientTableViewCell: UITableViewCell {
         addedButton.layer.cornerRadius = addedButton.frame.size.width / 2
         addedButton.clipsToBounds = true
         
-        addedButton.hidden = true
-        initialsViewImageView.hidden = true
+        addedButton.isHidden = true
+        initialsViewImageView.isHidden = true
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
-    func loadCell(recipient recipient: Recipient) {
+    func loadCell(recipient: Recipient) {
         nameLabel.text = recipient.name
-        addedButton.hidden = true
+        addedButton.isHidden = true
         
         initialsLabel.text = recipient.name.initials()
-        initialsViewImageView.hidden = true
+        initialsViewImageView.isHidden = true
         addressLabel.text = generateAddressString(recipient)
         
         if recipient.organizationNumber != nil {
             initialsLabel.text = ""
-            initialsViewImageView.hidden = false
+            initialsViewImageView.isHidden = false
             addressLabel.text = "Org.nr \(recipient.organizationNumber!)"
         }
     }
     
     
-    func generateAddressString(recipient: Recipient) -> String {
+    func generateAddressString(_ recipient: Recipient) -> String {
         if let address : [AnyObject] = recipient.address {
             if address.count != 0 {
                 if let street = address[0]["street"] as? String,

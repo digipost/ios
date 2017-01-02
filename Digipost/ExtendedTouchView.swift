@@ -21,11 +21,11 @@ import UIKit
 
 class ExtendedTouchView: UIView {
 
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         
-        if pointInside(point, withEvent: event) {
+        if self.point(inside: point, with: event) {
             for subview in subviews {
-                if subview .isKindOfClass(UIScrollView) {
+                if subview .isKind(of: UIScrollView.self) {
                     return subview
                 }
             }

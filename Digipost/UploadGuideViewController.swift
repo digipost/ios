@@ -25,42 +25,42 @@ class UploadGuideViewController: UIViewController {
         self.navigationItem.title = NSLocalizedString("upload guide navgationtiem title", comment: "title for navigation item on upload")
         self.uploadImage.accessibilityLabel = NSLocalizedString("upload guide image accessability hint", comment: "when user taps on image, this text should be read")
         self.uploadImage.isAccessibilityElement = true
-        NSNotificationCenter.defaultCenter().addObserverForName("kFolderViewControllerNavigatedInList", object: nil, queue: nil) { note in
-            self.dismissViewControllerAnimated(false, completion: nil)
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "kFolderViewControllerNavigatedInList"), object: nil, queue: nil) { note in
+            self.dismiss(animated: false, completion: nil)
         }
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
-            uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.Portrait)
+        if (UIDevice.current.userInterfaceIdiom == .pad ){
+            uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.portrait)
         } else {
-            uploadImage.image = UIImage.localizedImage(UIApplication.sharedApplication().statusBarOrientation)
-            self.setImageForOrientation(UIApplication.sharedApplication().statusBarOrientation)
+            uploadImage.image = UIImage.localizedImage(UIApplication.shared.statusBarOrientation)
+            self.setImageForOrientation(UIApplication.shared.statusBarOrientation)
         }
         view.updateConstraints()
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "kFolderViewControllerNavigatedInList", object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "kFolderViewControllerNavigatedInList"), object: nil)
     }
 
-    func setImageForOrientation(forOrientation: UIInterfaceOrientation){
+    func setImageForOrientation(_ forOrientation: UIInterfaceOrientation){
         if let horizontalImage = horizontalUploadImage {
             if (UIInterfaceOrientationIsLandscape(forOrientation)){
-                horizontalImage.hidden = false
+                horizontalImage.isHidden = false
             } else {
-                horizontalImage.hidden = true
+                horizontalImage.isHidden = true
             }
         }
         if let verticalImage = uploadImage {
             if (UIInterfaceOrientationIsLandscape(forOrientation)){
-                verticalImage.hidden = true
+                verticalImage.isHidden = true
             } else {
-                verticalImage.hidden = false
+                verticalImage.isHidden = false
             }
         }
     }
     
-    override func willRotateToInterfaceOrientation(toInterfaceOrientation: UIInterfaceOrientation, duration: NSTimeInterval) {
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
-            uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.Portrait)
+    override func willRotate(to toInterfaceOrientation: UIInterfaceOrientation, duration: TimeInterval) {
+        if (UIDevice.current.userInterfaceIdiom == .pad ){
+            uploadImage.image = UIImage.localizedImage(UIInterfaceOrientation.portrait)
         }else {
             uploadImage.image = UIImage.localizedImage(toInterfaceOrientation)
             horizontalUploadImage.image = UIImage.localizedImage(toInterfaceOrientation)

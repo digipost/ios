@@ -18,7 +18,7 @@ import UIKit
 
 @objc
 protocol OnboardingLoginViewControllerDelegate {
-    func onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(onboardingLoginViewController: OnboardingLoginViewController, backgroundImage: UIImage)
+    func onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(_ onboardingLoginViewController: OnboardingLoginViewController, backgroundImage: UIImage)
 }
 
 class OnboardingLoginViewController: UIViewController {
@@ -33,64 +33,64 @@ class OnboardingLoginViewController: UIViewController {
         super.viewDidLoad()
         
         // Localize button titels
-        loginButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", comment: "Sign In"), forState: .Normal)
-        registerButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", comment: "New user"), forState: .Normal)
-        privacyButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", comment: "Privacy"), forState: .Normal)
+        loginButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", comment: "Sign In"), for: UIControlState())
+        registerButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", comment: "New user"), for: UIControlState())
+        privacyButton.setTitle(NSLocalizedString("LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", comment: "Privacy"), for: UIControlState())
         
         
         
     }
 
-    @IBAction func loginButtonAction(sender: UIButton) {
+    @IBAction func loginButtonAction(_ sender: UIButton) {
         // Store that user has viewed the onboarding
 
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.view.frame.origin.x -= self.view.frame.width
-        }) { (Bool) -> Void in
+        }, completion: { (Bool) -> Void in
             Guide.setOnboaringHasBeenWatched()
             if let del = self.delegate {
               del.onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage(self, backgroundImage: self.onboardingBackgroundSnapShot())
             }
-        }
+        }) 
     }
     
     func onboardingBackgroundSnapShot() -> UIImage!{
         var backgroundSnapShot:UIImage!
-        if let onboardingViewController = self.parentViewController{
+        if let onboardingViewController = self.parent{
             let backgroundSize = onboardingViewController.view.layer.bounds.size
             UIGraphicsBeginImageContextWithOptions(backgroundSize, true, 0)
-            onboardingViewController.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+            onboardingViewController.view.layer.render(in: UIGraphicsGetCurrentContext()!)
             backgroundSnapShot = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
         }
         return backgroundSnapShot
     }
     
-    @IBAction func registerButtonAction(sender: UIButton) {
-        if let newUserURL = NSURL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
-            UIApplication.sharedApplication().openURL(newUserURL);    
+    @IBAction func registerButtonAction(_ sender: UIButton) {
+        if let newUserURL = URL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
+            UIApplication.shared.openURL(newUserURL);    
         }
     }
 
-    @IBAction func privacyButtonAction(sender: UIButton) {
-        if let newUserURL = NSURL(string: "https://www.digipost.no/juridisk/#personvern") {
-            UIApplication.sharedApplication().openURL(newUserURL);    
+    @IBAction func privacyButtonAction(_ sender: UIButton) {
+        if let newUserURL = URL(string: "https://www.digipost.no/juridisk/#personvern") {
+            UIApplication.shared.openURL(newUserURL);    
         }
     }
     
-    func openURL(url: NSURL){
-        let url = NSURL(string: "https://google.com")!
-        UIApplication.sharedApplication().openURL(url)
+    func openURL(_ url: URL){
+        let url = URL(string: "https://google.com")!
+        UIApplication.shared.openURL(url)
     }
     
-    func presentAlertFromSenderWithUrl(sender: UIButton, url: NSURL){
-        let alert = UIAlertController(title: url.host, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari"), style: .Default,handler: {(alert: UIAlertAction!) in
-            UIApplication.sharedApplication().openURL(url)
+    func presentAlertFromSenderWithUrl(_ sender: UIButton, url: URL){
+        let alert = UIAlertController(title: url.host, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari"), style: .default,handler: {(alert: UIAlertAction!) in
+            UIApplication.shared.openURL(url)
         }))
         
-        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: {(alert: UIAlertAction!) in }))
+        alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))
         
-        presentViewController(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion: nil)
     }
 }

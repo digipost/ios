@@ -19,7 +19,7 @@ import Cartography
 
 protocol StylePickerViewControllerDelegate {
 
-    func stylePickerViewControllerDidSelectStyle(stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool)
+    func stylePickerViewControllerDidSelectStyle(_ stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool)
 
 }
 
@@ -53,7 +53,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         tableView.delegate = self
         segmentedControl.setupWithDigipostFont()
         textStyleModels = TextStyleModel.allTextStyleModels()
-        tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, tableView.bounds.size.width, 0.01))
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 0.01))
     }
 
     func viewForInputView() -> UIView {
@@ -65,13 +65,13 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         return textStyleModels[selectedIndex]
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         segmentedControl.removeBorders()
     }
 
-    func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
-        if let indexPath = tableView.indexPathForCell(segmentedControlTableViewCell) {
+    func segmentedControlTableViewCellValueChanged(_ segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int) {
+        if let indexPath = tableView.indexPath(for: segmentedControlTableViewCell) {
             var models = currentShowingTextStyleModels()[indexPath.row]
 
             let model = models[atIndex]
@@ -82,7 +82,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         }
     }
 
-    func setupForAttributedString(attributedString: NSAttributedString )  {
+    func setupForAttributedString(_ attributedString: NSAttributedString )  {
         let allModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
             return array
         })
@@ -90,9 +90,9 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         for model in allModels {
             switch model.value {
             case let value as UIFontDescriptorSymbolicTraits:
-                if value == UIFontDescriptorSymbolicTraits.TraitBold {
+                if value == UIFontDescriptorSymbolicTraits.traitBold {
                     model.enabled = attributedString.isBold()
-                } else if value == UIFontDescriptorSymbolicTraits.TraitItalic {
+                } else if value == UIFontDescriptorSymbolicTraits.traitItalic {
                     model.enabled = attributedString.isItalic()
                 }
                 break
@@ -104,7 +104,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         self.tableView.reloadData()
     }
 
-    func setCurrentStyling(styling : [NSObject : AnyObject]) {
+    func setCurrentStyling(_ styling : [AnyHashable: Any]) {
         // if the stylepicker isnt shown, don't update it
         if self.view.superview == nil {
             return
@@ -113,7 +113,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         var selectedModels = [TextStyleModel]()
 
         if let styleArray = styling["style"] as? [String]  {
-            let classesDictionary = styling["classes"] as? [NSObject : AnyObject]
+            let classesDictionary = styling["classes"] as? [AnyHashable: Any]
 
             let allTextStyleModels = currentShowingTextStyleModels().flatMap({ (array) -> Array<TextStyleModel> in
                 return array
@@ -122,7 +122,8 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             var classesArray = [String]()
 
             for (key, value) in classesDictionary! {
-                if key == "length" {
+                
+                if key as? String  == "length" {
                     continue
                 }
 
@@ -143,19 +144,19 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
         }
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedTextStyleModels = currentShowingTextStyleModels()[indexPath.row]
 
         if selectedTextStyleModels.count > 1 {
-            let storyboard = UIStoryboard(name: "StylePicker", bundle: NSBundle.mainBundle())
-            self.stylePickerDetailListViewController = storyboard.instantiateViewControllerWithIdentifier("stylePickerDetailListViewController") as? StylePickerDetailListViewController
+            let storyboard = UIStoryboard(name: "StylePicker", bundle: Bundle.main)
+            self.stylePickerDetailListViewController = storyboard.instantiateViewController(withIdentifier: "stylePickerDetailListViewController") as? StylePickerDetailListViewController
             stylePickerDetailListViewController?.textStyleModels = selectedTextStyleModels
             stylePickerDetailListViewController?.delegate = self
             animateDetailListViewController(true)
         }
     }
 
-    private func animateDetailListViewController(shouldShowView: Bool) {
+    fileprivate func animateDetailListViewController(_ shouldShowView: Bool) {
         if shouldShowView {
 
             if let newView = self.stylePickerDetailListViewController?.view {
@@ -169,7 +170,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
 
                 self.view.layoutIfNeeded()
 
-                UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+                UIView.animate(withDuration: 0.35, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
                     self.stylePickerDetailListViewControllerConstraintGroup = constrain(self.view, newView, replace: group) { firstView, secondView in
                         secondView.left == firstView.left
                         secondView.top == firstView.top
@@ -185,7 +186,7 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             }
         } else {
 
-            UIView.animateWithDuration(0.35, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
+            UIView.animate(withDuration: 0.35, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: { () -> Void in
                 _ = constrain(self.view, self.stylePickerDetailListViewController!.view!, replace: self.stylePickerDetailListViewControllerConstraintGroup! ) { firstView, secondView in
                     secondView.left == firstView.right
                     secondView.width == firstView.width
@@ -199,21 +200,21 @@ class StylePickerViewController: UIViewController, UITableViewDelegate, Segmente
             })
 
             if let selectedIndexPath = self.tableView.indexPathForSelectedRow {
-                self.tableView.deselectRowAtIndexPath(selectedIndexPath, animated: true)
+                self.tableView.deselectRow(at: selectedIndexPath, animated: true)
             }
         }
     }
 
-    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel) {
+    func stylePickerDetailLIstViewControllerDidSelectTextStyleModel(_ stylePickerDetailListViewController: StylePickerDetailListViewController, textStyleModel: TextStyleModel) {
         animateDetailListViewController(false)
         delegate?.stylePickerViewControllerDidSelectStyle(self, textStyleModel: textStyleModel, enabled: true)
     }
 
-    func stylePickerDetailLIstViewControllerDidTapBackButton(stylePickerDetailListViewController: StylePickerDetailListViewController) {
+    func stylePickerDetailLIstViewControllerDidTapBackButton(_ stylePickerDetailListViewController: StylePickerDetailListViewController) {
         animateDetailListViewController(false)
     }
 
-    @IBAction func segmentedControlValueChanged(sender : UISegmentedControl) {
+    @IBAction func segmentedControlValueChanged(_ sender : UISegmentedControl) {
         self.tableView.reloadData()
     }
 }

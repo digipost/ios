@@ -16,10 +16,10 @@
 
 import UIKit
 
-extension NSHTTPURLResponse {
+extension HTTPURLResponse {
     
 
-    class func isUnathorized(response: NSHTTPURLResponse?) -> Bool {
+    class func isUnathorized(_ response: HTTPURLResponse?) -> Bool {
         if response == nil {
             return false
         }

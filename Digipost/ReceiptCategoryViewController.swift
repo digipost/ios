@@ -30,7 +30,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(self.pullToRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: UIControlEvents.valueChanged)
         return refreshControl
     }()
     
@@ -46,27 +46,27 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         self.receiptsTableViewDataSource = ReceiptCategoryTableViewDataSource.init(asDataSourceForTableView: self.tableView)
         self.tableView.delegate = self
         
-        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.refreshControl.initializeRefreshControlText()
         self.refreshControl.attributedTitle = NSAttributedString(string: "placeholder", attributes: [NSForegroundColorAttributeName : UIColor(white: 0.4, alpha: 1.0)])
-        self.refreshControl.updateRefreshControlTextRefreshing(false)  // false to get the last updated label
+        self.refreshControl.updateTextRefreshing(false)  // false to get the last updated label
         self.refreshControl.tintColor = UIColor(white: 0.4, alpha: 1.0)
         
         self.refreshControl.beginRefreshing()
         self.refreshControl.endRefreshing()
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        trySynchronized(self.lockForFetchingCategories, criticalSection: self.fetchAndSetCategories)
+        _ = trySynchronized(self.lockForFetchingCategories, criticalSection: self.fetchAndSetCategories)
         self.setupTableViewStyling()
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = nil
     }
     
     func setupTableViewStyling(){
-        self.tableView.insertSubview(self.refreshControl, atIndex: 0)
+        self.tableView.insertSubview(self.refreshControl, at: 0)
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160
@@ -74,44 +74,44 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         self.tableView.backgroundColor = UIColor.digipostDocumentListBackground()
     }
     
-    func showTableViewBackgroundView(showTableViewBackgroundView: Bool = false){
+    func showTableViewBackgroundView(_ showTableViewBackgroundView: Bool = false){
         if(showTableViewBackgroundView) {
             self.tableView.backgroundView = self.tableViewBackgroundView
         }
         
-        let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+        let rootResource: POSRootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
         
-        if(rootResource.numberOfCards.integerValue == 0) {
+        if(rootResource.numberOfCards.intValue == 0) {
             self.noReceiptsLabel.text = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE", comment: "No cards")
-        } else if(rootResource.numberOfCardsReadyForVerification.integerValue == 0) {
+        } else if(rootResource.numberOfCardsReadyForVerification.intValue == 0) {
             self.noReceiptsLabel.text = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE", comment: "Cards ready")
         } else {
-            let format: NSString = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE", comment: "Receipts hidden")
-            let numberOfReceiptsHidden: NSInteger = rootResource.numberOfReceiptsHiddenUntilVerification.integerValue
-            let receiptWord: NSString = numberOfReceiptsHidden == 1 ? NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", comment: "receipt is") : NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", comment: "receipts are")
+            let format: NSString = NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE", comment: "Receipts hidden") as NSString
+            let numberOfReceiptsHidden: NSInteger = rootResource.numberOfReceiptsHiddenUntilVerification.intValue
+            let receiptWord = numberOfReceiptsHidden == 1 ? NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_SINGULAR", comment: "receipt is") : NSLocalizedString("RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_RECEIPT_WORD_IS_PLURAL", comment: "receipts are")
             self.noReceiptsLabel.text = NSString.init(format: format, numberOfReceiptsHidden, receiptWord) as String
         }
         
-        self.tableViewBackgroundView.hidden = !showTableViewBackgroundView
+        self.tableViewBackgroundView.isHidden = !showTableViewBackgroundView
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
-        if(tableView.respondsToSelector(Selector("setSeparatorInset:"))){
-            tableView.separatorInset = UIEdgeInsetsZero
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if(tableView.responds(to: #selector(setter: UITableViewCell.separatorInset))){
+            tableView.separatorInset = UIEdgeInsets.zero
         }
         
-        if(tableView.respondsToSelector(Selector("setLayoutMargins:"))){
-            tableView.layoutMargins = UIEdgeInsetsZero
+        if(tableView.responds(to: #selector(setter: UIView.layoutMargins))){
+            tableView.layoutMargins = UIEdgeInsets.zero
         }
         
-        if(cell.respondsToSelector(Selector("setLayoutMargins:"))){
-            cell.layoutMargins = UIEdgeInsetsZero
+        if(cell.responds(to: #selector(setter: UIView.layoutMargins))){
+            cell.layoutMargins = UIEdgeInsets.zero
         }
     }
     
     func pullToRefresh(){
         if(!self.isFetchingCategories) {
-            trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
+            _ = trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
         }
     }
     
@@ -119,7 +119,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         if(!self.isFetchingCategories){
             self.isFetchingCategories = true
             
-            func updateCategoriesAndViewUponSuccess(APICallResult: Dictionary<String,AnyObject>){
+            func updateCategoriesAndViewUponSuccess(_ APICallResult: Dictionary<String,AnyObject>){
                 let fetchedResults = parseAndBuildCategoryTableViewCellArrayFrom(APICallResult["chains"]!)
                 self.receiptsTableViewDataSource.categories = fetchedResults
                 self.showTableViewBackgroundView(fetchedResults.count == 0)
@@ -128,7 +128,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
                 
                 self.isFetchingCategories = false
             }
-            func f(e: APIError){
+            func f(_ e: APIError){
                 print("APIError: ", e)
                 self.refreshControl.endRefreshing()
                 self.showTableViewBackgroundView(true)
@@ -139,38 +139,37 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         }
     }
     
-    func parseAndBuildCategoryTableViewCellArrayFrom(APICallReceiptResult: AnyObject) -> Array<ReceiptCategory>{
+    func parseAndBuildCategoryTableViewCellArrayFrom(_ APICallReceiptResult: AnyObject) -> Array<ReceiptCategory>{
         if(APICallReceiptResult.count == 0) {
             return []
         }
-        
         var categoryList:Array<ReceiptCategory> = []
         
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
-            let count = APICallReceiptResult[index]["count"] as! Int
-            let category = APICallReceiptResult[index]["name"] as! String
-            let chain_id = APICallReceiptResult[index]["id"] as! String
-            
+            let subResult = APICallReceiptResult[index] as! [String: AnyObject]
+            let count: Int = subResult["count"] as! Int
+            let category: String = subResult["name"] as! String
+            let chain_id: String = subResult["id"] as! String
             categoryList.append(ReceiptCategory(count: count, category: category, chain_id: chain_id))
         }
         
         return categoryList
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let receiptCategory: ReceiptCategory = self.receiptsTableViewDataSource.categories[indexPath.row]
-        self.performSegueWithIdentifier(ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier, sender: receiptCategory)
+        self.performSegue(withIdentifier: ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier, sender: receiptCategory)
     }
 
-    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         return true;
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         refreshControl.endRefreshing()
         if(segue.identifier == ReceiptCategoryViewController.pushReceiptsInCategoryIdentifier){
             let category: ReceiptCategory = self.receiptsTableViewDataSource.categoryAtIndexPath(self.tableView.indexPathForSelectedRow!)
-            let receiptsViewController: ReceiptsViewController = segue.destinationViewController as! ReceiptsViewController
+            let receiptsViewController: ReceiptsViewController = segue.destination as! ReceiptsViewController
             receiptsViewController.mailboxDigipostAddress = self.mailboxDigipostAddress
             receiptsViewController.receiptsUri = self.receiptsUri
             receiptsViewController.receiptCategoryId = category.chain_id

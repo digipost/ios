@@ -16,13 +16,13 @@
 
 import Foundation
 
-func debugPrintln(message: String, function: String = #function) {
+func debugPrintln(_ message: String, function: String = #function) {
     #if DEBUGLOG
       println("DEBUG: \(function): \(message)")
     #endif
 }
 
-func debugIfNil(object: AnyObject?, message: String, function : String = #function ) {
+func debugIfNil(_ object: AnyObject?, message: String, function : String = #function ) {
     #if DEBUGLOG
         if object == nil {
         println("DEBUG: Excpected non-nil! \(function): \(message)")

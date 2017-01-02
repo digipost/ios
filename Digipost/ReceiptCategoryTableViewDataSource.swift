@@ -28,40 +28,40 @@ class ReceiptCategoryTableViewDataSource: NSObject, UITableViewDataSource {
         tableView.dataSource = self
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if categories.count == 0 {
-            tableView.backgroundView?.hidden = false
+            tableView.backgroundView?.isHidden = false
         } else {
-            tableView.backgroundView?.hidden = true
+            tableView.backgroundView?.isHidden = true
         }
         
         return categories.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(ReceiptCategoryTableViewCell.identifier)
+        var cell = self.tableView.dequeueReusableCell(withIdentifier: ReceiptCategoryTableViewCell.identifier)
         
         if(cell == nil){
-            cell = ReceiptCategoryTableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: ReceiptCategoryTableViewCell.identifier)
+            cell = ReceiptCategoryTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: ReceiptCategoryTableViewCell.identifier)
         }
         
         self.configureCell(cell as! ReceiptCategoryTableViewCell, indexPath: indexPath)
         return cell!
     }
     
-    func configureCell(receiptCategoryCell: ReceiptCategoryTableViewCell, indexPath: NSIndexPath){
+    func configureCell(_ receiptCategoryCell: ReceiptCategoryTableViewCell, indexPath: IndexPath){
         let category: ReceiptCategory = self.categories[indexPath.row]
         
         receiptCategoryCell.storeNameLabel.text = category.category
         receiptCategoryCell.amountLabel.text = String(category.count)
     }
     
-    func categoryAtIndexPath(indexPath: NSIndexPath) -> ReceiptCategory {
+    func categoryAtIndexPath(_ indexPath: IndexPath) -> ReceiptCategory {
         return self.categories[indexPath.row]
     }
 }

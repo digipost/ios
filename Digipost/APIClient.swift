@@ -19,7 +19,7 @@ import MobileCoreServices
 import Darwin
 import AFNetworking
 
-class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSURLSessionDataDelegate {
+class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
 
 
     var stylepickerViewController : StylePickerViewController!
@@ -43,7 +43,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     // This could be derived from the data-structure below
     lazy var mockChainsData: Dictionary<String, AnyObject> = {
         var chainArray = [["id" : "0", "count" : "0", "name": "Tom pris"], ["id" : "1", "count" : "X", "name": "Bunnpris"], ["id" : "2", "count" : "X", "name": "Kjede123"], ["id" : "3", "count" : "X", "name" : "Kjede4"], ["id" : "4", "count" : "X", "name" : "Store42"]]
-        return ["chains" : chainArray]
+        return ["chains" : chainArray as AnyObject]
     }()
     lazy var mockReceiptsForChainId: Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>> = {
         var sampleReceipt = Dictionary<String,String>()
@@ -75,24 +75,24 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         return manager
         }()
 
-    lazy var queue = NSOperationQueue()
-    var session : NSURLSession!
-    var uploadProgress : NSProgress?
+    lazy var queue = OperationQueue()
+    var session : URLSession!
+    var uploadProgress : Progress?
     var taskCounter = 0
     var isUploadingFile = false
     var uploadFolderName : NSString = "Inbox"
     var taskWasUnAuthorized : Bool  = false
-    var lastPerformedTask : NSURLSessionTask?
+    var lastPerformedTask : URLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
     var lastSetOauthTokenForAuthorizationHeader : OAuthToken?
 
     override init() {
         super.init()
-        let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        sessionConfiguration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         let contentType = "application/vnd.digipost-\(k__API_VERSION__)+json"
         additionalHeaders = [Constants.HTTPHeaderKeys.accept: contentType, "Content-type" : contentType]
-        let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
 
         self.session = theSession
     }
@@ -101,11 +101,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         lastSetOauthTokenForAuthorizationHeader?.accessToken = nil
     }
 
-    func checkForOAuthUnauthroizedOauthStatus(failure: (error: APIError) -> ()) -> (error: APIError) -> () {
+    func checkForOAuthUnauthroizedOauthStatus(_ failure: @escaping (_ error: APIError) -> ()) -> (_ error: APIError) -> () {
         return failure
     }
 
-    func updateAuthorizationHeader(scope: String) {
+    func updateAuthorizationHeader(_ scope: String) {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if (oAuthToken?.accessToken != nil) {
             self.additionalHeaders["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
@@ -117,7 +117,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateAuthorizationHeader(oAuthToken oAuthToken: OAuthToken) {
+    func updateAuthorizationHeader(oAuthToken: OAuthToken) {
         if let accessToken = oAuthToken.accessToken {
             self.additionalHeaders["Authorization"] = "Bearer \(accessToken)"
             fileTransferSessionManager.requestSerializer.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
@@ -127,18 +127,18 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    class func stringFromArguments(arguments: Dictionary<String,AnyObject>?) -> String? {
+    class func stringFromArguments(_ arguments: Dictionary<String,AnyObject>?) -> String? {
         var urlString: String = ""
         if let actualArguments  = arguments {
             for (key,value) in actualArguments {
-                let escapedKey = key.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-                urlString = "\(urlString)&\(escapedKey)=\(value.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!)"
+                let escapedKey = key.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+                urlString = "\(urlString)&\(escapedKey)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
             }
         }
         return urlString
     }
 
-    private func validateFullScope(success success: () -> Void, failure: ((error: NSError) -> Void)?) {
+    fileprivate func validateFullScope(success: @escaping () -> Void, failure: ((_ error: NSError) -> Void)?) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -146,7 +146,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }, failure:failure )
     }
 
-    func validateFullScope(then then: () -> Void) {
+    func validateFullScope(then: @escaping () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
@@ -154,14 +154,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         },failure: nil)
     }
 
-    func validate(token token: OAuthToken?, then: () -> Void) {
+    func validate(token: OAuthToken?, then: @escaping () -> Void) {
         validate(oAuthToken: token, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(oAuthToken: chosenToken)
             then()
         }, failure: nil)
     }
 
-    func updateRootResource(success success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = k__ROOT_RESOURCE_URI__
@@ -171,7 +171,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateRootResource(scope scope: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateRootResource(scope: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let rootResource = k__ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
         validateFullScope {
@@ -180,14 +180,14 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func updateBankAccount(uri uri : String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateBankAccount(uri : String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
             task.resume()
         }
     }
 
-    func sendInvoideToBank(invoice: POSInvoice , success: () -> Void , failure: (error: APIError) -> ()) {
+    func sendInvoideToBank(_ invoice: POSInvoice , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure)
             task.resume()
@@ -195,17 +195,17 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     // Function expossed to Objective-C (used in the old VC)
-    func updateReceiptsInMailboxWithDigipostAddress(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func updateReceiptsInMailboxWithDigipostAddress(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         self.fetchReceiptsInMailboxWith(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
     }
-    func fetchReceiptsInMailboxWith(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func fetchReceiptsInMailboxWith(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
             task.resume()
         }
     }
     
-    func fetchReceiptCategoriesInMailbox(digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+    func fetchReceiptCategoriesInMailbox(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
             task.resume()
@@ -213,8 +213,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
     
     // mock data function
-    func fetchReceiptsInMailboxWith2(parameters parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) {
-        
+    func fetchReceiptsInMailboxWith2(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (_ error: APIError) -> ()) {
+        /*
         if(parameters["id"] != nil){
             if(mockReceiptsForChainId[parameters["id"]!] != nil){
                 
@@ -224,26 +224,27 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                     let skip: Int = Int(parameters["skip"]!)!
                     var resultsArray = []
                     for result: Dictionary<String,String> in results.dropFirst(skip) {
-                        resultsArray = resultsArray.arrayByAddingObject(result)
+                        resultsArray = resultsArray.adding(result)
                     }
                     results = resultsArray as! Array<Dictionary<String, String>>
                 }
-                success(["receipt" : results])
+                success(["receipt" : results as AnyObject])
                 return
             }
         }
+         */
         // id not found or empty:
         success([:])
     }
 
-    func deleteReceipt(receipt: POSReceipt , success: () -> Void , failure: (error: APIError) -> ()) {
+    func deleteReceipt(_ receipt: POSReceipt , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
             task.resume()
         }
     }
 
-    func validateOpeningReceipt(attachment: POSAttachment, success: () -> Void , failure: (error: APIError) -> ()) {
+    func validateOpeningReceipt(_ attachment: POSAttachment, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
         let highestToken = OAuthToken.oAuthTokenWithScope(scope)
         validate(token: highestToken) { () -> Void in
@@ -267,36 +268,36 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     logs out OAuth tokens for all scopes in storage
 
     */
-    private func logout(success success: () -> Void, failure: (error: APIError) -> ()) {
-        let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+    fileprivate func logout(success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
+        let rootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
         if rootResource == nil {
             success()
             return
         }
-        let logoutURI = rootResource.logoutUri
+        let logoutURI = rootResource?.logoutUri
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
-        POSModelManager.sharedManager().deleteAllObjects()
+        POSModelManager.shared().deleteAllObjects()
         validateFullScope(success: {
-            let task = self.urlSessionTask(httpMethod.post, url: logoutURI, success: success, failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure)
             task.resume()
             
-            self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+            self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
             
             OAuthToken.removeAllTokens()
-            POSModelManager.sharedManager().deleteAllObjects()
-            POSFileManager.sharedFileManager().removeAllFiles()
+            POSModelManager.shared().deleteAllObjects()
+            POSFileManager.shared().removeAllFiles()
             
             }) { (error) -> Void in
                 
-                self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+                self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
                 
                 OAuthToken.removeAllTokens()
-                POSModelManager.sharedManager().deleteAllObjects()
-                POSFileManager.sharedFileManager().removeAllFiles()
+                POSModelManager.shared().deleteAllObjects()
+                POSFileManager.shared().removeAllFiles()
         }
     }
 
-    private func logoutHigherLevelTokens(logoutUri: String, success: () -> Void, failure: (error: APIError) -> ()) {
+    fileprivate func logoutHigherLevelTokens(_ logoutUri: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
         if let fullHighAuthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth) {
             self.validate(token: fullHighAuthToken, then: {
                 let task = self.urlSessionTask(httpMethod.post, url: logoutUri, success: success, failure: failure)
@@ -317,7 +318,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func cancelAllRunningTasks(then: () -> Void) {
+    func cancelAllRunningTasks(_ then: @escaping () -> Void) {
         self.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
             self.cancelTasks(dataTasks)
             self.cancelTasks(uploadTasks)
@@ -326,9 +327,9 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    private func cancelTasks(tasks: [AnyObject]) {
+    fileprivate func cancelTasks(_ tasks: [AnyObject]) {
         for object in tasks {
-            if let task = object as? NSURLSessionTask {
+            if let task = object as? URLSessionTask {
                 task.cancel()
             }
         }
@@ -340,7 +341,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func downloadBaseEncryptionModel(baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: NSProgress, success: () -> Void , failure: (error: APIError) -> ()) {
+    func downloadBaseEncryptionModel(_ baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: Progress, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
         if let attachment = baseEncryptionModel as? POSAttachment {
@@ -370,23 +371,22 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         if oAuthToken == nil {
             let attachment = baseEncryptionModel as! POSAttachment
             attachmentScope  = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
-            failure(error: APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
+            failure(APIError.HasNoOAuthTokenForScopeError(attachmentScope!))
             return
         }
         let mimeType = APIClient.mimeType(fileType: baseEncryptionModel.fileType)
-        OAuthToken.oAuthTokenWithScope(highestScope!)
 
         validate(token: oAuthToken) { () -> Void in
             let task = self.urlSessionDownloadTask(httpMethod.get, encryptionModel: baseEncryptionModel, acceptHeader: mimeType, progress: progress, success: { (url) -> Void in
                 success()
                 }, failure: { (error) -> () in
-                    failure(error: error)
+                    failure(error)
             })
             task.resume()
         }
     }
 
-    func send(htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (error: APIError) -> ()) {
+    func send(_ htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (_ error: APIError) -> ()) {
 //        let url = NSURL(string: uri)
 //        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
 //        let sendableDocument = SendableDocument(recipients: recipients)
@@ -420,7 +420,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 //        }
     }
 
-    func getDrafts(uri: String, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+    func getDrafts(_ uri: String, success: (_ responseDictionary: [String : AnyObject]) -> Void, failure: (_ error: APIError) -> ()) {
 //        let offset = 0
 //        let length = 50000
 
@@ -433,7 +433,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 //        })
     }
 
-    func getUpdatedSendableDocument(sendableDocument: SendableDocument, success: (responseDictionary: [String : AnyObject]) -> Void, failure: (error: APIError) -> ()) {
+    func getUpdatedSendableDocument(_ sendableDocument: SendableDocument, success: (_ responseDictionary: [String : AnyObject]) -> Void, failure: (_ error: APIError) -> ()) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         validate(token: oauthToken) { () -> Void in
 //            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
@@ -445,27 +445,27 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func uploadFile(uploadUri: String, fileURL: NSURL, success: (() -> Void)? , failure: (error: APIError) -> ()) {
-        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: uploadUri, parameters: nil,  constructingBodyWithBlock: { (formData) -> Void in
+    func uploadFile(_ uploadUri: String, fileURL: URL, success: (() -> Void)? , failure: (_ error: APIError) -> ()) {
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: uploadUri, parameters: nil,  constructingBodyWith: { (formData) -> Void in
 
-            let data = "test".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            formData.appendPartWithFormData(data!, name:"subject")
+            let data = "test".data(using: String.Encoding.utf8, allowLossyConversion: false)
+            formData.appendPart(withForm: data!, name:"subject")
 
-            let fileData = NSData(contentsOfURL: fileURL)
-            formData.appendPartWithFileData(fileData!, name: "file", fileName: "test.html", mimeType:"text/html")
+            let fileData = try? Data(contentsOf: fileURL)
+            formData.appendPart(withFileData: fileData!, name: "file", fileName: "test.html", mimeType:"text/html")
             },error: nil)
         
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
 
-        fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+        fileTransferSessionManager.setTaskDidComplete { (session, task, error) -> Void in
 
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
         }
 
-        let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+        let task = self.fileTransferSessionManager.dataTask(with: urlRequest as URLRequest, completionHandler: { (response, anyObject, error) -> Void in
+            DispatchQueue.main.async(execute: {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
                 //let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
@@ -485,79 +485,83 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         task.resume()
     }
 
-    func uploadFile(url url: NSURL, folder: POSFolder, success: (() -> Void)? , failure: (error: APIError) -> ()) {
-        let fileManager = NSFileManager.defaultManager()
-        if fileManager.fileExistsAtPath(url.path!) == false {
+    func uploadFile(url: URL, folder: POSFolder, success: (() -> Void)? , failure: @escaping (_ error: APIError) -> ()) {
+        let fileManager = FileManager.default
+        
+        if fileManager.fileExists(atPath: url.path) == false {
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
-            failure(error: error)
+            failure(error)
         }
-        let fileAttributes : [String:AnyObject]? = {
-            do {
-                return try fileManager.attributesOfItemAtPath(url.path!)
+
+        let maxFileSize = Double(pow(Float(2),Float(20)) * 100)
+        let fileSize: Double = {
+            do{
+                let attr:NSDictionary? = try fileManager.attributesOfItem(atPath: url.path) as NSDictionary?
+                
+                if let _attr = attr {
+                    return Double(_attr.fileSize())
+                }
             }catch let error as NSError{
-                failure(error: APIError(error: error))
-                return nil
+                failure(APIError(error: error))
+                return 0
             }
         }()
 
-        let maxFileSize = pow(Float(2),Float(20)) * 100
-        let fileSize = fileAttributes![NSFileSize] as! Float
-
         if (fileSize > maxFileSize) {
             let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
-            failure(error: tooBigError)
+            failure(tooBigError)
             return
         }
 
-        let rootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
-        if rootResource.uploadDocumentUri.characters.count <= 0 {
+        let rootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
+        if (rootResource?.uploadDocumentUri.characters.count)! <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
-            failure(error: noUploadLinkError)
+            failure(noUploadLinkError)
             return
         }
 
         removeTemporaryUploadFiles()
 
-        let uploadsFolderPath = POSFileManager.sharedFileManager().uploadsFolderPath()
+        let uploadsFolderPath = POSFileManager.shared().uploadsFolderPath()
         let fileName = url.lastPathComponent
-        let uploadURL = uploadsFolderPath.urlRepresentation().URLByAppendingPathComponent(fileName!)
+        let uploadURL = uploadsFolderPath?.urlRepresentation().appendingPathComponent(fileName)
 
         do{
-            try fileManager.moveItemAtURL(url, toURL: uploadURL!)
+            try fileManager.moveItem(at: url, to: uploadURL!)
         }catch let error as NSError{
-            failure(error: APIError(error: error))
+            failure(APIError(error: error))
         }
 
-        let serverUploadURL = NSURL(string: folder.uploadDocumentUri)
-        var userInfo = Dictionary <NSObject,AnyObject>()
+        let serverUploadURL = URL(string: folder.uploadDocumentUri)
+        var userInfo = Dictionary <String,String>()
         userInfo["fileName"] = fileName
-        let progress = NSProgress(parent: nil, userInfo:userInfo)
+        let progress = Progress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
         let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString!
         let pathExtension = lastPathComponent.pathExtension
         
-        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequestWithMethod(httpMethod.post.rawValue, URLString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWithBlock: { (formData) -> Void in
+        let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWith: { (formData) -> Void in
             var subject : String?
-            if let rangeOfExtension = fileName!.rangeOfString(".\(pathExtension)")  {
-                subject = fileName?.substringToIndex(rangeOfExtension.startIndex)
+            if let rangeOfExtension = fileName.range(of: ".\(pathExtension)")  {
+                subject = fileName.substring(to: rangeOfExtension.lowerBound)
             } else {
                 subject = fileName
             }
 
-            let data = subject?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-            formData.appendPartWithFormData(data!, name:"subject")
+            let data = subject?.data(using: String.Encoding.utf8, allowLossyConversion: false)
+            formData.appendPart(withForm: data!, name:"subject")
 
-            let fileData = NSData(contentsOfURL: uploadURL!)
-            formData.appendPartWithFileData(fileData!, name:"file", fileName: fileName!, mimeType:"application/pdf")
+            let fileData = try? Data(contentsOf: uploadURL!)
+            formData.appendPart(withFileData: fileData!, name:"file", fileName: fileName, mimeType:"application/pdf")
         }, error: nil)
         
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
-        fileTransferSessionManager.setTaskDidCompleteBlock { (session, task, error) -> Void in
+        fileTransferSessionManager.setTaskDidComplete { (session, task, error) -> Void in
         }
 
         fileTransferSessionManager.setTaskDidSendBodyDataBlock { (session, task, bytesSent, totalBytesSent, totalBytesExcpectedToSend) -> Void in
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 let totalSent = totalBytesSent as Int64
                 if let actualProgress = self.uploadProgress {
                     actualProgress.completedUnitCount = totalSent
@@ -565,12 +569,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             })
         }
         validateFullScope { () -> Void in
-            let task = self.fileTransferSessionManager.dataTaskWithRequest(urlRequest, completionHandler: { (response, anyObject, error) -> Void in
-                dispatch_async(dispatch_get_main_queue(), {
+            let task = self.fileTransferSessionManager.dataTask(with: urlRequest as URLRequest, completionHandler: { (response, anyObject, error) -> Void in
+                DispatchQueue.main.async(execute: {
                     self.removeTemporaryUploadFiles()
                     self.isUploadingFile = false
                     if (error != nil ){
-                        failure(error: APIError(error: error!))
+                        failure(APIError(error: error! as NSError))
                     }
 
                     if success != nil {
@@ -580,11 +584,11 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
             })
             task.resume()
         }
-        self.uploadFolderName = folder.name
+        self.uploadFolderName = folder.name as NSString
         self.isUploadingFile = true
     }
 
-    func postLog(uri uri: String, parameters: [String : AnyObject]) {
+    func postLog(uri: String, parameters: [String : AnyObject]) {
         let baseUri = k__SERVER_URI__
         let completeUri = "\(baseUri)\(uri)"
         let task = self.urlSessionTaskWithNoAuthorizationHeader(httpMethod.post, url: completeUri, parameters: parameters, success: { () -> Void in
@@ -596,25 +600,25 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     }
 
     func removeTemporaryUploadFiles () {
-        let uploadsPath = POSFileManager.sharedFileManager().uploadsFolderPath()
-        POSFileManager.sharedFileManager().removeAllFilesInFolder(uploadsPath)
+        let uploadsPath = POSFileManager.shared().uploadsFolderPath()
+        POSFileManager.shared().removeAllFiles(inFolder: uploadsPath)
     }
 
-    private func validate(oAuthToken oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
+    fileprivate func validate(oAuthToken: OAuthToken?, validationSuccess: @escaping (_ chosenToken: OAuthToken) -> Void, failure: ((_ error: NSError) -> Void)?) {
         if oAuthToken?.hasExpired() == false {
-            validationSuccess(chosenToken: oAuthToken!)
+            validationSuccess(oAuthToken!)
             return
         }
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
-            POSOAuthManager.sharedManager().refreshAccessTokenWithRefreshToken(oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
+            POSOAuthManager.shared().refreshAccessToken(withRefreshToken: oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
                 let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
-                validationSuccess(chosenToken: newToken!)
+                validationSuccess(newToken!)
                 }, failure: { (error) -> Void in
-                    if error.code == Int(SHCOAuthErrorCode.InvalidRefreshTokenResponse.rawValue) {
+                    if error?._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
                     } else {
-                        failure?(error: error)
+                        failure?(error as! NSError)
                     }
             })
         } else {
@@ -633,7 +637,7 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
                 Logger.dpostLogError("User revoked OAuth token and had no lower level token to fall back on", location: "Unknown, anywhere where there is a request to digipost API", UI: "User gets logged out", cause: "Lower level token was revoked, because of a http 401 from server")
-                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.NoOAuthTokenPresent.rawValue, userInfo: nil))
+                failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.noOAuthTokenPresent.rawValue, userInfo: nil))
             }
         }
     }
@@ -641,8 +645,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
     /**
     Called when refresh tokens are invalidated server side
     */
-    private func deleteRefreshTokensAndLogoutUser() {
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+    fileprivate func deleteRefreshTokensAndLogoutUser() {
+        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
             letterViewController.receipt = nil
@@ -654,12 +658,12 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
 
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         let alertController = UIAlertController.forcedLogoutAlertController()
-        let userInfo  : [NSObject : AnyObject] = [ "alert" as NSObject : alertController as AnyObject]
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil, userInfo: userInfo)
+        let userInfo  : [AnyHashable: Any] = [ "alert" as NSObject : alertController as AnyObject]
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil, userInfo: userInfo)
     }
 
-    func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(response: NSURLResponse) -> Bool {
-        let HTTPResponse = response as! NSHTTPURLResponse
+    func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(_ response: URLResponse) -> Bool {
+        let HTTPResponse = response as! HTTPURLResponse
         switch HTTPResponse.statusCode {
         case 400:
             return true
@@ -672,8 +676,8 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    func responseCodeForOAuthIsUnauthorized(response: NSURLResponse) -> Bool {
-        let HTTPResponse = response as! NSHTTPURLResponse
+    func responseCodeForOAuthIsUnauthorized(_ response: URLResponse) -> Bool {
+        let HTTPResponse = response as! HTTPURLResponse
         switch HTTPResponse.statusCode {
         case 401:
             return true
@@ -684,20 +688,20 @@ class APIClient : NSObject, NSURLSessionTaskDelegate, NSURLSessionDelegate, NSUR
         }
     }
 
-    private class func incrementTaskCounter() {
-        APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
+    fileprivate class func incrementTaskCounter() {
+        APIClient.sharedClient.willChangeValue(forKey: Constants.APIClient.taskCounter)
         APIClient.sharedClient.taskCounter += 1
-        APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
+        APIClient.sharedClient.didChangeValue(forKey: Constants.APIClient.taskCounter)
     }
 
-    private class func decrementTaskCounter() {
-        APIClient.sharedClient.willChangeValueForKey(Constants.APIClient.taskCounter)
+    fileprivate class func decrementTaskCounter() {
+        APIClient.sharedClient.willChangeValue(forKey: Constants.APIClient.taskCounter)
         APIClient.sharedClient.taskCounter -= 1
-        APIClient.sharedClient.didChangeValueForKey(Constants.APIClient.taskCounter)
+        APIClient.sharedClient.didChangeValue(forKey: Constants.APIClient.taskCounter)
     }
     
-    private class func mimeType(fileType fileType:String) -> String {
-        let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType, nil)!.takeUnretainedValue()
+    fileprivate class func mimeType(fileType:String) -> String {
+        let type  = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, fileType as CFString, nil)!.takeUnretainedValue()
         let findTag  = UTTypeCopyPreferredTagWithClass(type, kUTTagClassMIMEType)
         if findTag != nil {
             let mimeType = findTag!.takeRetainedValue()

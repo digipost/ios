@@ -18,13 +18,13 @@ import UIKit
 
 extension UIWebView {
     
-    func setAccessabilityLabelForFileType(filetype: String?){
+    func setAccessabilityLabelForFileType(_ filetype: String?){
         if let actualFileType = filetype as String? {
             
             if actualFileType == "jpg" || actualFileType == "png" {
                 accessibilityLabel = NSLocalizedString("accessability label webview is image", comment: "when webview is image read this text")
                 accessibilityHint = NSLocalizedString("accessability label webview is image", comment: "when webview is image read this text")
-                accessibilityFrame = CGRectMake(0, 0, 100, 100);
+                accessibilityFrame = CGRect(x: 0, y: 0, width: 100, height: 100);
             }
         }
     }

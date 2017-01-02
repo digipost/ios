@@ -15,26 +15,26 @@
 //
 
 extension RecipientViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if searchBar.isFirstResponder() {
+        if searchBar.isFirstResponder {
             return self.recipients.count
         } else {
             return self.addedRecipients.count
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("recipientCell") as! RecipientTableViewCell
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "recipientCell") as! RecipientTableViewCell
         
-        if searchBar.isFirstResponder() {
+        if searchBar.isFirstResponder {
             if recipients.count > 0 {
                 if let recipient = recipients[indexPath.row] as Recipient? {
                     cell.loadCell(recipient: recipient)
                     for r in addedRecipients {
                         if r.name == recipient.name && r.digipostAddress! == recipients[indexPath.row].digipostAddress! {
-                            cell.addedButton.hidden = false
+                            cell.addedButton.isHidden = false
                         }
                     }
                 }
@@ -42,7 +42,7 @@ extension RecipientViewController: UITableViewDataSource {
         } else {
             if let recipient = addedRecipients[indexPath.row] as Recipient? {
                 cell.loadCell(recipient: recipient)
-                cell.addedButton.hidden = false
+                cell.addedButton.isHidden = false
             }
         }
         

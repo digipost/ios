@@ -30,19 +30,19 @@ class UploadMenuViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = menuDataSource
         tableView.delegate = self
         tableView.reloadData()
-        tableView.tableHeaderView = UIView(frame: CGRectMake(0, 0, 0, 1))
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 1))
         navigationItem.title = NSLocalizedString("upload image Controller title", comment: "Upload")
         // Do any additional setup after loading the view.
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             uploadImageController.showCameraCaptureInViewController(self)
         case 1:
             uploadImageController.showPhotoLibraryPickerInViewController(self)
         case 2:
-            performSegueWithIdentifier("uploadGuideSegue", sender: self)
+            performSegue(withIdentifier: "uploadGuideSegue", sender: self)
         default:
             assert(false)
         }

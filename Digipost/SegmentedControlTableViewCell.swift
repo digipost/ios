@@ -17,7 +17,7 @@
 import Foundation
 
 protocol SegmentedControlTableViewCellDelegate {
-    func segmentedControlTableViewCellValueChanged(segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int)
+    func segmentedControlTableViewCellValueChanged(_ segmentedControlTableViewCell: SegmentedControlTableViewCell, newValue: Bool, atIndex: Int)
 }
 
 class SegmentedControlTableViewCell: UITableViewCell {
@@ -36,9 +36,9 @@ class SegmentedControlTableViewCell: UITableViewCell {
         
     }
     
-    func setupWithModels(textStyleModels : [TextStyleModel] ) {
+    func setupWithModels(_ textStyleModels : [TextStyleModel] ) {
         
-        for (index, model) in textStyleModels.enumerate() {
+        for (index, model) in textStyleModels.enumerated() {
             if let actualImage = UIImage(named:  model.preferredIconName!) {
                 multiselectSegmentedControl.setImage(actualImage, atIndex: index)
             } else {
@@ -47,7 +47,7 @@ class SegmentedControlTableViewCell: UITableViewCell {
         }
     }
     
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     

@@ -22,30 +22,30 @@ private struct RecipientButtonExtensionConstants {
 
 extension UIButton {
 
-    func fitAsManyStringsAsPossible(strings: [String]) {
+    func fitAsManyStringsAsPossible(_ strings: [String]) {
         if strings.count == 0 {
             return
         }
-        self.setTitle("", forState: UIControlState.Normal)
-        let currentSize = CGSizeMake(self.frame.size.width - RecipientButtonExtensionConstants.widthMargin, self.frame.size.height)
+        self.setTitle("", for: UIControlState())
+        let currentSize = CGSize(width: self.frame.size.width - RecipientButtonExtensionConstants.widthMargin, height: self.frame.size.height)
         var string = strings[0]
         var lastFittedString = ""
         for i in 0..<strings.count {
             let remainingStrings = (strings.count - i) - 1
             if i != 0 {
-                string = string.stringByAppendingString(", \(strings[i])")
+                string = string + ", \(strings[i])"
             }
             let localizedEnding = String.localizedStringWithFormat(NSLocalizedString("recipients add more button overflow text", comment: "the end of recipients string when it overflows its size"), remainingStrings)
             let localizedMorePersons = remainingStrings == 0 ? "" : localizedEnding
             let allPersonsWithMorePersonsString = "\(string)\(localizedMorePersons)"
-            self.setTitle(allPersonsWithMorePersonsString, forState: .Normal)
+            self.setTitle(allPersonsWithMorePersonsString, for: UIControlState())
             let sizeFits = self.sizeThatFits(currentSize)
             if sizeFits.width > currentSize.width {
                 if lastFittedString == "" {
-                    self.setTitle(allPersonsWithMorePersonsString, forState: .Normal)
+                    self.setTitle(allPersonsWithMorePersonsString, for: UIControlState())
                     break
                 } else {
-                    self.setTitle(lastFittedString, forState: .Normal)
+                    self.setTitle(lastFittedString, for: UIControlState())
                 }
             } else {
                 lastFittedString = allPersonsWithMorePersonsString

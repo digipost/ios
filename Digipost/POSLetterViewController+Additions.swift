@@ -21,19 +21,19 @@ import UIKit
 
 extension POSLetterViewController {
     
-    func interactionControllerCanShareContent(baseEncryptModel: POSBaseEncryptedModel) -> Bool{
+    func interactionControllerCanShareContent(_ baseEncryptModel: POSBaseEncryptedModel) -> Bool{
         
         let encryptedFilePath = baseEncryptModel.encryptedFilePath()
         let decryptedFilePath = baseEncryptModel.decryptedFilePath()
-        var fileURL : NSURL?
+        var fileURL : URL?
         
         if let decryptedFilePathNotNil = decryptedFilePath {
-            if (NSFileManager.defaultManager().fileExistsAtPath(decryptedFilePathNotNil)){
-                fileURL = NSURL.fileURLWithPath(decryptedFilePathNotNil)
-            } else if (NSFileManager.defaultManager().fileExistsAtPath(encryptedFilePath)){
+            if (FileManager.default.fileExists(atPath: decryptedFilePathNotNil)){
+                fileURL = URL(fileURLWithPath: decryptedFilePathNotNil)
+            } else if (FileManager.default.fileExists(atPath: encryptedFilePath!)){
                 do {
-                    try POSFileManager.sharedFileManager().decryptDataForBaseEncryptionModel(baseEncryptModel)
-                    fileURL = NSURL.fileURLWithPath(decryptedFilePathNotNil)
+                    try POSFileManager.shared().decryptData(forBaseEncryptionModel: baseEncryptModel)
+                    fileURL = URL(fileURLWithPath: decryptedFilePathNotNil)
                 } catch {
                     return false
                 }
@@ -49,7 +49,7 @@ extension POSLetterViewController {
             return false
         }
     }
-    func addTapGestureRecognizersToWebView(webView: UIWebView) {
+    func addTapGestureRecognizersToWebView(_ webView: UIWebView) {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(POSLetterViewController.didSingleTapWebView))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.numberOfTouchesRequired = 1
@@ -62,10 +62,10 @@ extension POSLetterViewController {
         doubleTapGestureRecognizer.delegate = self
         webView.addGestureRecognizer(doubleTapGestureRecognizer)
         
-        singleTapGestureRecognizer.requireGestureRecognizerToFail(doubleTapGestureRecognizer)
+        singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
     }
     
-    func shouldHideToolBar(attachment: POSAttachment?) -> Bool {
+    func shouldHideToolBar(_ attachment: POSAttachment?) -> Bool {
         if let actualAttachment = attachment as POSAttachment! {
             if actualAttachment.invoice != nil{
                 return false

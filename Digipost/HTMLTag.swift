@@ -33,7 +33,7 @@ struct HTMLTag {
         self.type = type
     }
 
-    init(attribute: NSObject, value: AnyObject) {
+    init(attribute: String, value: AnyObject) {
 
         self.type = {
 
@@ -44,10 +44,10 @@ struct HTMLTag {
                         return HTMLTagType.H1
                     }
 
-                    let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
-                    if symbolicTraits.contains(.TraitItalic) {
+                    let symbolicTraits = actualFont.fontDescriptor.symbolicTraits
+                    if symbolicTraits.contains(.traitItalic) {
                         return HTMLTagType.Italic
-                    } else if symbolicTraits.contains(.TraitBold) {
+                    } else if symbolicTraits.contains(.traitBold) {
                         return HTMLTagType.Bold
                     }
                     return HTMLTagType.Paragraph
@@ -58,7 +58,7 @@ struct HTMLTag {
             }}()
     }
 
-    static func tags(attribute: NSObject, value: AnyObject) -> [HTMLTag] {
+    static func tags(_ attribute: NSObject, value: AnyObject) -> [HTMLTag] {
         var tags = [HTMLTag]()
 
         if let actualFont = value as? UIFont {
@@ -66,11 +66,11 @@ struct HTMLTag {
                 tags.append(HTMLTag(type: HTMLTagType.H1))
                 return tags
             }
-            let symbolicTraits = actualFont.fontDescriptor().symbolicTraits
-            if symbolicTraits.contains(.TraitItalic) {
+            let symbolicTraits = actualFont.fontDescriptor.symbolicTraits
+            if symbolicTraits.contains(.traitItalic) {
                 tags.append(HTMLTag(type: HTMLTagType.Italic))
             }
-            if symbolicTraits.contains(.TraitBold) {
+            if symbolicTraits.contains(.traitBold) {
                 tags.append(HTMLTag(type: HTMLTagType.Bold))
             }
         }
@@ -87,7 +87,7 @@ struct HTMLTag {
     
     var endTag : String {
         var tag = type.rawValue
-        tag.insert("/", atIndex: type.rawValue.startIndex.successor())
+        tag.insert("/", at: type.rawValue.characters.index(after: type.rawValue.startIndex))
         return tag
     }
 

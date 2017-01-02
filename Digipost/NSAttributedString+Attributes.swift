@@ -23,10 +23,10 @@ extension NSAttributedString {
     func symbolicTraits() -> UIFontDescriptorSymbolicTraits {
         var symbolicTraits = UIFontDescriptorSymbolicTraits()
 
-        self.enumerateAttribute(NSFontAttributeName, inRange: NSMakeRange(0, self.length), options: NSAttributedStringEnumerationOptions.LongestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
+        self.enumerateAttribute(NSFontAttributeName, in: NSMakeRange(0, self.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
             if let font = attribute as? UIFont {
-                symbolicTraits = font.fontDescriptor().symbolicTraits
-                stop.memory = true
+                symbolicTraits = font.fontDescriptor.symbolicTraits
+                stop.pointee = true
             }
         }
         return symbolicTraits
@@ -35,7 +35,7 @@ extension NSAttributedString {
     func isBold() -> Bool {
         let symbolicTraits = self.symbolicTraits()
         
-        if symbolicTraits.intersect(.TraitBold) == .TraitBold {
+        if symbolicTraits.intersection(.traitBold) == .traitBold {
             return true
         }
         return false
@@ -43,7 +43,7 @@ extension NSAttributedString {
 
     func isItalic() -> Bool {
         let symbolicTraits = self.symbolicTraits()
-        if symbolicTraits.intersect(.TraitItalic) == .TraitItalic {
+        if symbolicTraits.intersection(.traitItalic) == .traitItalic {
             return true
         }
         return false

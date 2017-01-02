@@ -19,11 +19,11 @@ import WebKit
 
 extension WKWebView {
 
-    func toggleKeyword(keyword: String) {
+    func toggleKeyword(_ keyword: String) {
         executeCommand(keyword)
     }
 
-    private func executeCommand(type: TextStyleModelType) {
+    fileprivate func executeCommand(_ type: TextStyleModelType) {
 
         switch type {
         case .Paragraph, .H1:
@@ -42,7 +42,7 @@ extension WKWebView {
         }
     }
 
-    private func executeCommand(keyword : String) {
+    fileprivate func executeCommand(_ keyword : String) {
         if keyword == "h1" || keyword == "h2" || keyword == "p" {
             evaluateJavaScript("document.execCommand('formatBlock', false, '\(keyword)');", completionHandler: { (response, error) -> Void in
 
@@ -66,7 +66,7 @@ extension WKWebView {
         })
     }
 
-    func insertImageWithBase64Data( base64: String) {
+    func insertImageWithBase64Data( _ base64: String) {
         evaluateJavaScript("DigipostEditor.appendImageFromBase64Data('\(base64)');", completionHandler: { (response, error) -> Void in
 
         })
@@ -84,37 +84,37 @@ extension WKWebView {
         })
     }
 
-    func insertListElement(ordered: Bool) {
+    func insertListElement(_ ordered: Bool) {
         evaluateJavaScript("DigipostEditor.insertListElement(\(ordered));", completionHandler: { (response, error) -> Void in
 
         })
     }
 
-    func startLoadingWebViewContent(bundle: NSBundle) {
-        let editorFilepath = bundle.pathForResource("Editor", ofType: "html")
-        let editorJavascriptFilepath = bundle.pathForResource("Editor", ofType: "js")
-        if UIDevice.currentDevice().model == "iPhone Simulator" {
-            let url = NSURL(fileURLWithPath: editorFilepath!)
-            let request = NSURLRequest(URL: url)
-            self.loadRequest(request)
+    func startLoadingWebViewContent(_ bundle: Bundle) {
+        let editorFilepath = bundle.path(forResource: "Editor", ofType: "html")
+        let editorJavascriptFilepath = bundle.path(forResource: "Editor", ofType: "js")
+        if UIDevice.current.model == "iPhone Simulator" {
+            let url = URL(fileURLWithPath: editorFilepath!)
+            let request = URLRequest(url: url)
+            self.load(request)
         } else {
             let editorFinalPath = loadFileIntoTempWebDirectoryForWKWebViewReading(editorFilepath!)
-            loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
-            loadRequest(NSURLRequest(URL: NSURL(fileURLWithPath: editorFinalPath)))
+            _ = loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
+            load(URLRequest(url: URL(fileURLWithPath: editorFinalPath!)))
         }
     }
 
-    private func loadFileIntoTempWebDirectoryForWKWebViewReading(path : String) -> String! {
-        let url = NSURL(string: NSTemporaryDirectory())
-        let temporaryWebContentDirectoryPath = url?.URLByAppendingPathComponent("www")
+    fileprivate func loadFileIntoTempWebDirectoryForWKWebViewReading(_ path : String) -> String! {
+        let url = URL(string: NSTemporaryDirectory())
+        let temporaryWebContentDirectoryPath = url?.appendingPathComponent("www")
         
-        try! NSFileManager.defaultManager().createDirectoryAtURL(temporaryWebContentDirectoryPath!, withIntermediateDirectories: true, attributes: nil)
-        let pathUrl = NSURL(fileURLWithPath: path)
-        let finalPath = temporaryWebContentDirectoryPath!.URLByAppendingPathComponent(pathUrl.lastPathComponent!)
-        if NSFileManager.defaultManager().fileExistsAtPath(finalPath!.absoluteString!) == false {
-            try! NSFileManager.defaultManager().copyItemAtPath(path, toPath: finalPath!.absoluteString!)
+        try! FileManager.default.createDirectory(at: temporaryWebContentDirectoryPath!, withIntermediateDirectories: true, attributes: nil)
+        let pathUrl = URL(fileURLWithPath: path)
+        let finalPath = temporaryWebContentDirectoryPath!.appendingPathComponent(pathUrl.lastPathComponent)
+        if FileManager.default.fileExists(atPath: finalPath.absoluteString) == false {
+            try! FileManager.default.copyItem(atPath: path, toPath: finalPath.absoluteString)
         }
         
-        return finalPath!.absoluteString
+        return finalPath.absoluteString
     }
 }

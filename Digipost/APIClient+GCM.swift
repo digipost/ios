@@ -16,7 +16,7 @@
 
 extension APIClient {
     
-    func registerGCMToken(token: String, success: () -> Void , failure: (error: APIError) -> ()) {
+    func registerGCMToken(_ token: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let GCMUri = Constants.APIClient.baseURL + "/post/api/private/gcm_token";
         
         let parameters : Dictionary<String,String> = {
@@ -24,7 +24,7 @@ extension APIClient {
         }()
         
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.post, url: GCMUri, parameters: parameters, success: success,failure: failure)
+            let task = self.urlSessionTask(httpMethod.post, url: GCMUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success,failure: failure)
             task.resume()
         }
     }

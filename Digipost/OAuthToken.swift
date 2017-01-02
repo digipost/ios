@@ -45,28 +45,28 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    var expires : NSDate
+    var expires : Date
 
     var scope: String?
 
-    init(expiryDate: NSDate) {
+    init(expiryDate: Date) {
         self.expires = expiryDate
         super.init()
     }
 
     required convenience init(coder decoder: NSCoder) {
         // If token is archived without expirydate, for example if upgrading from an older client, set expirydate to now(), to force reauthentication
-        let expires : NSDate = {
-            if let expiryDate =  decoder.decodeObjectForKey(Keys.expiresKey) as? NSDate {
+        let expires : Date = {
+            if let expiryDate =  decoder.decodeObject(forKey: Keys.expiresKey) as? Date {
                 return expiryDate
             } else {
-                return NSDate()
+                return Date()
             }
             }()
         self.init(expiryDate: expires)
-        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
-        self.refreshToken = decoder.decodeObjectForKey(Keys.refreshTokenKey) as? String
-        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as? String
+        self.scope = decoder.decodeObject(forKey: Keys.scopeKey) as! String!
+        self.refreshToken = decoder.decodeObject(forKey: Keys.refreshTokenKey) as? String
+        self.accessToken = decoder.decodeObject(forKey: Keys.accessTokenKey) as? String
     }
 
     // Initializer used when migrating from single scope to multiple scopes - version 2.3
@@ -79,11 +79,11 @@ class OAuthToken: NSObject, NSCoding {
         storeInKeyChain()
     }
 
-    private init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
-        if let expirationDate = NSDate().dateByAdding(seconds: expiresInSeconds.integerValue) {
+    fileprivate init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
+        if let expirationDate = Date().dateByAdding(seconds: expiresInSeconds.intValue) {
             self.expires = expirationDate
         } else {
-            self.expires = NSDate()
+            self.expires = Date()
             super.init()
             self.setAllInstanceVariablesToNil()
             return nil
@@ -107,7 +107,7 @@ class OAuthToken: NSObject, NSCoding {
         anAccessToken = attributes["access_token"] as? String
         let idToken = attributes[kOAuth2IDToken] as? String
         if OAuthToken.isIdTokenValid(idToken, nonce: nonce) == false {
-            self.init(expiryDate: NSDate())
+            self.init(expiryDate: Date())
             self.setAllInstanceVariablesToNil()
             return nil
         }
@@ -115,7 +115,7 @@ class OAuthToken: NSObject, NSCoding {
         if let expiresInSeconds = attributes["expires_in"] as? NSNumber {
             self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
         } else {
-            self.init(expiryDate: NSDate())
+            self.init(expiryDate: Date())
             self.setAllInstanceVariablesToNil()
             return nil
         }
@@ -123,13 +123,13 @@ class OAuthToken: NSObject, NSCoding {
     }
 
     // bug in swift compiler requires to set all instance variables before returning nil from an initializer
-    private func setAllInstanceVariablesToNil() {
+    fileprivate func setAllInstanceVariablesToNil() {
         self.refreshToken = nil
         self.accessToken = nil
         self.scope = nil
     }
 
-    class func levelForScope(aScope: String)-> Int {
+    class func levelForScope(_ aScope: String)-> Int {
         switch aScope {
         case kOauth2ScopeFull:
             return 1
@@ -144,7 +144,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func highestScopeInStorageForScope(scope:String) -> String {
+    class func highestScopeInStorageForScope(_ scope:String) -> String {
         switch scope {
         case kOauth2ScopeFull_Idporten4:
             return scope
@@ -189,16 +189,16 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    func encodeWithCoder(coder: NSCoder) {
-        coder.encodeObject(self.refreshToken, forKey: Keys.refreshTokenKey)
-        coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
-        coder.encodeObject(self.scope, forKey: Keys.scopeKey)
-        coder.encodeObject(self.expires, forKey: Keys.expiresKey)
+    func encode(with coder: NSCoder) {
+        coder.encode(self.refreshToken, forKey: Keys.refreshTokenKey)
+        coder.encode(self.accessToken, forKey: Keys.accessTokenKey)
+        coder.encode(self.scope, forKey: Keys.scopeKey)
+        coder.encode(self.expires, forKey: Keys.expiresKey)
     }
 
-    func setExpireDate(expiresInSeconds: NSNumber?) {
+    func setExpireDate(_ expiresInSeconds: NSNumber?) {
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
-            if let expirationDate = NSDate().dateByAdding(seconds: actualExpirationDate.integerValue) {
+            if let expirationDate = Date().dateByAdding(seconds: actualExpirationDate.intValue) {
                 self.expires = expirationDate
                 storeInKeyChain()
             }
@@ -213,7 +213,7 @@ class OAuthToken: NSObject, NSCoding {
         if accessToken == nil {
             var existingTokens = OAuthToken.oAuthTokens()
             existingTokens[scope!] = nil
-            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+            LUKeychainAccess.standard().setObject(existingTokens, forKey: kOAuth2TokensKey)
         }
     }
 
@@ -231,7 +231,7 @@ class OAuthToken: NSObject, NSCoding {
         var existingTokens = OAuthToken.oAuthTokens()
         if let actualScope = scope {
             existingTokens[actualScope] = self
-            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: kOAuth2TokensKey)
+            LUKeychainAccess.standard().setObject(existingTokens, forKey: kOAuth2TokensKey)
         }
     }
 
@@ -239,7 +239,7 @@ class OAuthToken: NSObject, NSCoding {
         if accessToken == nil {
             return true
         }
-        let todayDate = NSDate()
+        let todayDate = Date()
         if expires.isLaterThan(todayDate) {
             return false
         }
@@ -251,8 +251,8 @@ class OAuthToken: NSObject, NSCoding {
     }
 
     class func moveOldOAuthTokensIfPresent() {
-        if ((LUKeychainAccess.standardKeychainAccess().stringForKey(kKeychainAccessRefreshTokenKey) as String?) != nil) {
-            LUKeychainAccess.standardKeychainAccess().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
+        if ((LUKeychainAccess.standard().string(forKey: kKeychainAccessRefreshTokenKey) as String?) != nil) {
+            LUKeychainAccess.standard().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
         }
     }
 
@@ -268,7 +268,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func highestOAuthTokenWithScope(scope: String) -> OAuthToken? {
+    class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
         let level = levelForScope(scope)
         switch level {
         case 2:
@@ -288,8 +288,8 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
-        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as! NSDictionary?
+    class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {
+        let dictionary = LUKeychainAccess.standard().object(forKey: kOAuth2TokensKey) as! NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
             if let token = actualDictionary[scope] as?  OAuthToken? {
                 return token
@@ -300,11 +300,11 @@ class OAuthToken: NSObject, NSCoding {
 
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
         var tokenArray = Dictionary<String,AnyObject>()
-        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(kOAuth2TokensKey) as! NSDictionary?
+        let dictionary = LUKeychainAccess.standard().object(forKey: kOAuth2TokensKey) as! NSDictionary?
         if let actualDictionary = dictionary {
             for key in actualDictionary.allKeys {
                 if let actualKey = key as? String {
-                    let object: AnyObject = actualDictionary[actualKey]!
+                    let object: AnyObject = actualDictionary[actualKey]! as AnyObject
                     tokenArray[actualKey] = object
                 }
             }
@@ -312,7 +312,7 @@ class OAuthToken: NSObject, NSCoding {
         return tokenArray
     }
     
-    class func oAuthScope(scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
+    class func oAuthScope(_ scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
         switch otherScope {
         case kOauth2ScopeFull:
             if scope != kOauth2ScopeFull {
@@ -343,7 +343,7 @@ class OAuthToken: NSObject, NSCoding {
         return false
     }
 
-    class func oAuthScopeForAuthenticationLevel(authenticationLevel: String?) -> String {
+    class func oAuthScopeForAuthenticationLevel(_ authenticationLevel: String?) -> String {
         if let actualAuthenticationLevel = authenticationLevel {
             switch actualAuthenticationLevel {
             case AuthenticationLevel.password:
@@ -363,10 +363,10 @@ class OAuthToken: NSObject, NSCoding {
 
     class func removeAllTokens() {
         let emptyDictionary = Dictionary<String,AnyObject>()
-        LUKeychainAccess.standardKeychainAccess().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
+        LUKeychainAccess.standard().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
 
-    class func removeAccessTokenForOAuthTokenWithScope(scope: String) {
+    class func removeAccessTokenForOAuthTokenWithScope(_ scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
     }

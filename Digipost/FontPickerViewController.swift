@@ -17,7 +17,7 @@
 import UIKit
 
 protocol FontPickerViewControllerDelegate {
-    func fontPickerViewController(fontPickerViewController : FontPickerViewController, didSelectFont font: UIFont)
+    func fontPickerViewController(_ fontPickerViewController : FontPickerViewController, didSelectFont font: UIFont)
 }
 
 class FontPickerViewController: UITableViewController {
@@ -27,11 +27,11 @@ class FontPickerViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "FontPickerTableViewCell", bundle: NSBundle.mainBundle())
-        tableView.registerNib(nib, forCellReuseIdentifier: "cell")
+        let nib = UINib(nibName: "FontPickerTableViewCell", bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
     }
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let font = fonts[indexPath.row]
         delegate?.fontPickerViewController(self, didSelectFont: font)
     }

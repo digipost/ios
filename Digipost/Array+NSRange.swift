@@ -18,7 +18,7 @@ import UIKit
 
 extension Array {
     // worst case O(n)
-    func contains(range: NSRange) -> Bool {
+    func contains(_ range: NSRange) -> Bool {
         for object in self {
             if let aRange = object as? NSRange {
                 if aRange.location == range.location && aRange.length == range.length {

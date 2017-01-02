@@ -30,14 +30,14 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         OAuthToken.removeAllTokens()
     }
     
-    func jsonDictionaryFromFile(filename: String) -> Dictionary<String, AnyObject> {
-        let testBundle = NSBundle(forClass: OAuthTests.self)
-        let path = testBundle.pathForResource(filename, ofType: nil)
+    func jsonDictionaryFromFile(_ filename: String) -> Dictionary<String, AnyObject> {
+        let testBundle = Bundle(for: OAuthTests.self)
+        let path = testBundle.path(forResource: filename, ofType: nil)
         XCTAssertNotNil(path, "wrong filename")
-        let data = NSData(contentsOfFile: path!)
+        let data = try? Data(contentsOf: URL(fileURLWithPath: path!))
         XCTAssertNotNil(data, "wrong filename")
         do{
-            let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! Dictionary<String,AnyObject>
+            let jsonDictionary = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments) as! Dictionary<String,AnyObject>
             return jsonDictionary
         }catch let error{
             XCTAssertNil(error, "could not read json")
@@ -48,7 +48,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
 
     var mockNonce = "-880201503"
 
-    func mockTokenWithScope(scope: String) -> OAuthToken {
+    func mockTokenWithScope(_ scope: String) -> OAuthToken {
 
         var oAuthDictionary: Dictionary<String,AnyObject>!
         if scope == kOauth2ScopeFull {
@@ -68,7 +68,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     // just in case there is a general error with keychain
-    func keychainAccess(keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
+    func keychainAccess(_ keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
         XCTAssertTrue(false, "got an error message \(error) from keychain")
     }
 
@@ -120,25 +120,25 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     }
 
     func testIfTokenExpiresAfterTimeOut() {
-        let expectation = expectationWithDescription("Waiting for timeout on oauthToken")
-        let timeout : NSTimeInterval = 8
+        let expectation = self.expectation(description: "Waiting for timeout on oauthToken")
+        let timeout : TimeInterval = 8
         let oAuthDictionary = jsonDictionaryFromFile("ValidTokenExpiresSoon.json")
         let fullToken = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
-        XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(NSDate()) and it expired \(fullToken?.expires)")
+        XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(Date()) and it expired \(fullToken?.expires)")
 
 
         dispatch(after: timeout - 3) {
             let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-            XCTAssertFalse(fetchedToken!.hasExpired(), "token should not have expired yet, Time: \(NSDate()), it expires: \(fetchedToken?.expires)")
+            XCTAssertFalse(fetchedToken!.hasExpired(), "token should not have expired yet, Time: \(Date()), it expires: \(fetchedToken?.expires)")
         }
 
         dispatch(after: timeout + 3) {
             let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(NSDate()) and it expired \(fetchedToken?.expires)")
+            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(Date()) and it expired \(fetchedToken?.expires)")
             expectation.fulfill()
         }
 
-        waitForExpectationsWithTimeout(timeout + 5, handler: { (error) -> Void in
+        waitForExpectations(timeout: timeout + 5, handler: { (error) -> Void in
             XCTAssertNil(error, "\(error)")
         })
     }
