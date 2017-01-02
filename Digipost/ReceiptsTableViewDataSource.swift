@@ -66,11 +66,12 @@ class ReceiptsTableViewDataSource: NSObject, UITableViewDataSource {
     
     func configureCell(_ receiptTableViewCell: ReceiptTableViewCell, indexPath: IndexPath) {
         let receipt: POSReceipt = self.receipts[indexPath.row]
+        let amount = NSNumber(value: receipt.amount.doubleValue / 100)
         
         receiptTableViewCell.storeNameLabel.text = receipt.storeName;
         receiptTableViewCell.amountLabel.text = POSReceipt.string(forReceiptAmount: receipt.amount)
-        receiptTableViewCell.amountLabel.accessibilityLabel = self.numberFormatter.string(from: receipt.amount.doubleValue / 100);
-        receiptTableViewCell.amountLabel.accessibilityHint = self.numberFormatter.string(from: receipt.amount.doubleValue / 100);
+        receiptTableViewCell.amountLabel.accessibilityLabel = self.numberFormatter.string(from: amount)
+        receiptTableViewCell.amountLabel.accessibilityHint = self.numberFormatter.string(from: amount)
         receiptTableViewCell.dateLabel.text = POSDocument.string(forDocumentDate: receipt.timeOfPurchase)
         receiptTableViewCell.multipleSelectionBackgroundView = UIView()
     }
