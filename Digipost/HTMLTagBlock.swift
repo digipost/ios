@@ -35,7 +35,7 @@ struct HTMLTagBlock : HTMLRepresentable {
     }
     
     init(key: NSObject, value: AnyObject, range: NSRange) {
-        self.tag = HTMLTag(attribute: key, value: value)
+        self.tag = HTMLTag(attribute: key as! String as! String, value: value)
         self.range = range
     }
     
