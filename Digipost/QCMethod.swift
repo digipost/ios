@@ -217,7 +217,7 @@ class QCMethod
                     setBeginTime(sub, idx)
                     //Reverse animation if needed
                     if reverseAnimation {
-                        self.reverseAnimation(sub, totalDuration: totalDuration)
+                        _ = self.reverseAnimation(sub, totalDuration: totalDuration)
                     }
                     
                 }

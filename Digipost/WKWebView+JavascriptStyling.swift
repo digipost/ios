@@ -99,7 +99,7 @@ extension WKWebView {
             self.load(request)
         } else {
             let editorFinalPath = loadFileIntoTempWebDirectoryForWKWebViewReading(editorFilepath!)
-            loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
+            _ = loadFileIntoTempWebDirectoryForWKWebViewReading(editorJavascriptFilepath!)
             load(URLRequest(url: URL(fileURLWithPath: editorFinalPath!)))
         }
     }
