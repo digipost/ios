@@ -488,21 +488,25 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
 
     func uploadFile(url: URL, folder: POSFolder, success: (() -> Void)? , failure: @escaping (_ error: APIError) -> ()) {
         let fileManager = FileManager.default
+        
         if fileManager.fileExists(atPath: url.path) == false {
             let error = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileDoesNotExist.rawValue, userInfo: nil)
             failure(error)
         }
-        let fileAttributes : [String:AnyObject]? = {
-            do {
-                return try fileManager.attributesOfItem(atPath: url.path)
+
+        let maxFileSize = Double(pow(Float(2),Float(20)) * 100)
+        let fileSize: Double = {
+            do{
+                let attr:NSDictionary? = try fileManager.attributesOfItem(atPath: url.path) as NSDictionary?
+                
+                if let _attr = attr {
+                    return Double(_attr.fileSize())
+                }
             }catch let error as NSError{
                 failure(APIError(error: error))
-                return nil
+                return 0
             }
         }()
-
-        let maxFileSize = pow(Float(2),Float(20)) * 100
-        let fileSize = fileAttributes![FileAttributeKey.size] as! Float
 
         if (fileSize > maxFileSize) {
             let tooBigError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadFileTooBig.rawValue, userInfo: nil)
@@ -530,7 +534,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }
 
         let serverUploadURL = URL(string: folder.uploadDocumentUri)
-        var userInfo = Dictionary <NSObject,AnyObject>()
+        var userInfo = Dictionary <String,String>()
         userInfo["fileName"] = fileName
         let progress = Progress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
@@ -612,7 +616,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
                 let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
                 validationSuccess(newToken!)
                 }, failure: { (error) -> Void in
-                    if error.code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
+                    if error?._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
                     } else {
                         failure?(error as! NSError)
