@@ -180,6 +180,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - ModuleSelectorViewController Delegate
     
     func moduleSelectorViewController(_ moduleSelectorViewController: ModuleSelectorViewController, didSelectModule module: ComposerModule) {
+        /*
         composerModules.append(module)
         tableView.reloadData()
 
@@ -207,6 +208,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             }
         }
         moduleSelectorViewController.dismiss(animated: true, completion: nil)
+         */
     }
     
     func moduleSelectorViewControllerWasDismissed(_ moduleSelectorViewController: ModuleSelectorViewController) {
@@ -216,7 +218,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
     // MARK: - Button Actions
     
     @IBAction func cancelButtonAction(_ sender: UIBarButtonItem) {
-        
+        /*
         let alertController = UIAlertController(title: NSLocalizedString("composer view close alert title", comment: "alert title"),
             message: NSLocalizedString("composer view close alert message", comment: "close alert message"),
             preferredStyle: UIAlertControllerStyle.alert)
@@ -225,7 +227,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             style: UIAlertActionStyle.default)
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 self.navigationController?.dismiss(animated: true, completion: { () -> Void in
-                alertController.title
+                // alertController.title
                 })
         }
         
@@ -234,7 +236,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             { [unowned self, alertController] (action: UIAlertAction!) -> Void in
                 
                 self.navigationController?.dismiss(animated: true, completion: { () -> Void in
-                alertController.title
+                // alertController.title
                 })
         }
         
@@ -247,7 +249,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         } else {
             present(alertController, animated: true, completion: nil)
         }
-        
+        */
     }
     
     override func didReceiveMemoryWarning() {	
