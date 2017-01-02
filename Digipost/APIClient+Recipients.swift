@@ -23,7 +23,7 @@ extension APIClient {
         let safeString = encodedSearchString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let searchUri = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext).searchUri
         let urlString = "\(searchUri)?recipientId=\(safeString!)"
-        urlSessionJSONTask(url: urlString, success: success) { (error) -> () in
+        let _ = urlSessionJSONTask(url: urlString, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.getRecipients(urlString, success: success, failure: failure)
             } else {
