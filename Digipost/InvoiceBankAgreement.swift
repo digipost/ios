@@ -32,7 +32,6 @@
     }
 
     static func hasActiveInvoiceAgreement(_ agreementType: String) -> Bool {
-        UserDefaults.standard
         let defaults = UserDefaults.standard
         return defaults.bool(forKey: agreementType)
     }
