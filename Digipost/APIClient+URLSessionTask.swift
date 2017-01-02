@@ -121,12 +121,12 @@ extension APIClient {
             if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {
                 return URL(fileURLWithPath: filePath)
             } else {
-                return URL()
+                return URL(string: "")!
             }
 
             }, completionHandler: { (response, fileURL, error) -> Void in
                 if let actualError = error {
-                    if (error!.code != NSURLErrorCancelled) {
+                    if (error!._code != NSURLErrorCancelled) {
                         if HTTPURLResponse.isUnathorized(response as? HTTPURLResponse) {
                             OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
                             Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "downloading a file", UI: "User waiting for file to complete download", cause: "might be a problem with clock on users device, or token was revoked")
