@@ -199,7 +199,8 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
             var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
             
             for receiptFieldKey in (APICallReceiptResult[index] as AnyObject).allKeys {
-                receiptAttributes[receiptFieldKey as! String] = APICallReceiptResult[index][receiptFieldKey as! String]
+                let result = APICallReceiptResult[index] as! [String:AnyObject]
+                receiptAttributes[receiptFieldKey as! String] = result[receiptFieldKey as! String]
             }
             
             receiptList.append(POSReceipt.init(attributes: receiptAttributes, in: managedObjectContext))
