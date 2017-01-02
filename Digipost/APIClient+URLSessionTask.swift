@@ -65,7 +65,7 @@ extension APIClient {
                 // if error happens in client, for example no internet, timeout ect.
                 if let actualError = error as NSError!, let actualData = data {
                     let error = APIError(error: actualError)
-                    let string = NSString(data: actualData, encoding: String.Encoding.ascii)
+                    let string = NSString(data: actualData, encoding: String.Encoding.ascii.rawValue)
                     error.responseText = string as? String
                     failure(error)
                 } else {
