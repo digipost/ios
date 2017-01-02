@@ -30,7 +30,6 @@ import Foundation
         defaults.set(true, forKey: hideInvoiceAlert)
     }
     static func shouldShowInvoiceNotification() -> Bool{
-        UserDefaults.standard
         let defaults = UserDefaults.standard
         return !defaults.bool(forKey: hideInvoiceAlert)
     }
