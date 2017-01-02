@@ -16,7 +16,7 @@
 
 extension APIClient {
     
-    func registerGCMToken(_ token: String, success: () -> Void , failure: (_ error: APIError) -> ()) {
+    func registerGCMToken(_ token: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let GCMUri = Constants.APIClient.baseURL + "/post/api/private/gcm_token";
         
         let parameters : Dictionary<String,String> = {

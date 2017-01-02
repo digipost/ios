@@ -18,7 +18,7 @@ import UIKit
 
 extension APIClient {
     
-    func changeName(_ document: POSDocument, newName name: String, success: () -> Void , failure: (_ error: APIError) -> ()) {
+    func changeName(_ document: POSDocument, newName name: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let documentFolder = document.folder
         let parameters : Dictionary<String,String> = {
             if documentFolder?.name.lowercased() == Constants.FolderName.inbox.lowercased() {
@@ -34,14 +34,14 @@ extension APIClient {
         }
     }
     
-    func deleteDocument(_ uri: String, success: () -> Void , failure: (_ error: APIError) -> ()) {
+    func deleteDocument(_ uri: String, success: @escaping () -> Void , failure:@escaping  (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: uri, success: success, failure: failure)
             task.resume()
         }
     }
 
-    func moveDocument(_ document: POSDocument, toFolder folder: POSFolder, success: () -> Void , failure: (_ error: APIError) -> ()) {
+    func moveDocument(_ document: POSDocument, toFolder folder: POSFolder, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let firstAttachment = document.attachments.firstObject as! POSAttachment
         let parameters : Dictionary<String,String> = {
             if folder.name.lowercased() == Constants.FolderName.inbox.lowercased() {
@@ -56,14 +56,14 @@ extension APIClient {
         }
     }
 
-    func updateDocumentsInFolder(name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: (Dictionary<String,AnyObject>) -> Void, failure: (_ error: APIError) -> ()) {
+    func updateDocumentsInFolder(name: String, mailboxDigipostAdress: String, folderUri: String, token: OAuthToken, success: @escaping (Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> ()) {
         validate(token: token) { () -> Void in
             let task = self.urlSessionJSONTask(url: folderUri,  success: success, failure: failure)
             task.resume()
         }
     }
 
-    func updateDocument(_ document: POSDocument, success: (Dictionary<String,AnyObject>) -> Void , failure: (_ error: APIError) -> ()) {
+    func updateDocument(_ document: POSDocument, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: document.updateUri, success: success, failure: failure)
             task.resume()
