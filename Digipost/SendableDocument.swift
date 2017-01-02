@@ -58,8 +58,8 @@ class SendableDocument {
     func setupWithJSONContent(_ jsonDictionary: [String : AnyObject]) {
         if let linkArray = jsonDictionary[SendableDocumentConstants.link] as? [[String : String]] {
             for link in linkArray {
-                if let relLink = link[SendableDocumentConstants.rel], let relURL = URL(string: relLink), let actualLastPathComponent = relURL.lastPathComponent {
-                    switch actualLastPathComponent {
+                if let relLink = link[SendableDocumentConstants.rel], let relURL = URL(string: relLink) {
+                    switch relURL.lastPathComponent{
                     case SendableDocumentConstants.deleteMessageRelPostfix:
                         deleteMessageUri = link[SendableDocumentConstants.uri] as String?
                         break
