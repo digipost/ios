@@ -47,8 +47,7 @@
                 in: POSModelManager.shared().managedObjectContext) {
             
             if let banksUri = rootResource.banksUri {
-                
-                APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
+                APIClient.sharedClient.getActiveBanks(banksUri: banksUri, success: {(jsonData) -> Void in
                     
                     var hasFakturaAgreementType1 = false
                     var hasFakturaAgreementType2 = false
@@ -78,8 +77,8 @@
                         agreementActive:hasFakturaAgreementType1)
                     InvoiceBankAgreement.storeInvoiceAgreement(type2,
                         agreementActive:hasFakturaAgreementType2)
-                    
-                    }, failure: ({_ in }))
+
+                }, failure: ({_ in }))
             }
         }
     }
