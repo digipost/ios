@@ -17,7 +17,7 @@
 import UIKit
 
 extension Int {
-    static func random(_ range: Range<Int> ) -> Int {
+    static func random(_ range: CountableClosedRange<Int> ) -> Int {
         let count = UInt32(range.upperBound - range.lowerBound)
         return Int(arc4random_uniform(count)) + range.lowerBound
     }
