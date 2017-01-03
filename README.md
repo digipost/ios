@@ -34,7 +34,7 @@ bundle install
 
 ## Systemkrav
 
-Digipost for iOS er bygget for iOS versjon 7.
+Digipost for iOS er bygget for iOS versjon 8.
 
 
 ## Lisens
