@@ -198,9 +198,11 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
             var receiptAttributes: Dictionary<String, AnyObject> = Dictionary<String,AnyObject>()
             
-            for receiptFieldKey in (APICallReceiptResult[index] as AnyObject).allKeys {
-                let result = APICallReceiptResult[index] as! [String:AnyObject]
-                receiptAttributes[receiptFieldKey as! String] = result[receiptFieldKey as! String]
+            if let receiptsFromAPI = APICallReceiptResult as? NSArray{
+                for receiptFieldKey in (receiptsFromAPI[index] as AnyObject).allKeys {
+                    let result = receiptsFromAPI[index] as! [String:AnyObject]
+                    receiptAttributes[receiptFieldKey as! String] = result[receiptFieldKey as! String]
+                }
             }
             
             receiptList.append(POSReceipt.init(attributes: receiptAttributes, in: managedObjectContext))

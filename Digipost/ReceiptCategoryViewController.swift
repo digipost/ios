@@ -145,12 +145,14 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         }
         var categoryList:Array<ReceiptCategory> = []
         
-        for index in 0..<APICallReceiptResult.count /* 0-indexed */ {
-            let subResult = APICallReceiptResult[index] as! [String: AnyObject]
-            let count: Int = subResult["count"] as! Int
-            let category: String = subResult["name"] as! String
-            let chain_id: String = subResult["id"] as! String
-            categoryList.append(ReceiptCategory(count: count, category: category, chain_id: chain_id))
+        if let categoriesFromAPI = APICallReceiptResult as? NSArray{
+            for index in 0..<categoriesFromAPI.count {
+                let category = categoriesFromAPI[index] as! [String: AnyObject]
+                let count: Int = category["count"] as! Int
+                let name: String = category["name"] as! String
+                let chain_id: String = category["id"] as! String
+                categoryList.append(ReceiptCategory(count: count, category: name, chain_id: chain_id))
+            }
         }
         
         return categoryList
