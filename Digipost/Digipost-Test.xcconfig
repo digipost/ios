@@ -14,16 +14,6 @@
 // limitations under the License.
 //
 
-#include "Pods/Target Support Files/Pods/Pods.debug.xcconfig"
-
 #include "Shared.xcconfig"
 
-ACCEPT_SELF_SIGNED_CERTIFICATES = 1
-
-SERVER_URI = \@\"https:\/\/qa.digipost.no\"
-API_VERSION = \@\"v2\"
-
-LUMBERJACK_LOG_LEVEL = LOG_LEVEL_INFO
-GOOGLE_ANALYTICS_LOG_LEVEL = kGAILogLevelWarning
-
-GCC_PREPROCESSOR_DEFINITIONS = $(SHARED_GCC_PREPROCESSOR_DEFINITIONS) $(inherited) __ACCEPT_SELF_SIGNED_CERTIFICATES__=$(ACCEPT_SELF_SIGNED_CERTIFICATES) __SERVER_URI__=$(SERVER_URI) __API_VERSION__=$(API_VERSION) __LUMBERJACK_LOG_LEVEL__=$(LUMBERJACK_LOG_LEVEL) __GOOGLE_ANALYTICS_LOG_LEVEL__=$(GOOGLE_ANALYTICS_LOG_LEVEL)
+SERVER_URI = \@\"https:\/\/www.test.digipost.no\"

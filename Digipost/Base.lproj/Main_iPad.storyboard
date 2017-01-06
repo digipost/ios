@@ -264,20 +264,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login-background-ipad" translatesAutoresizingMaskIntoConstraints="NO" id="TTB-LP-a65"/>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S6J-F3-PpA" userLabel="Login View">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUg-Iy-BH3" userLabel="Register Button">
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="260" id="2iE-JH-yUt"/>
-                                            <constraint firstAttribute="height" constant="44" id="QWp-Wn-qg2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="REGISTER_BUTTON">
-                                            <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="didTapSecondaryButton:" destination="VI6-0N-wVd" eventType="touchUpInside" id="PVz-ee-D5m"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="daO-Ah-4uu" userLabel="Login Button">
                                         <color key="backgroundColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -298,16 +284,57 @@
                                             <constraint firstAttribute="width" constant="169" id="nTb-sh-L7d"/>
                                         </constraints>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5I-xC-GO3">
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUg-Iy-BH3" userLabel="Register Button">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="126" id="2iE-JH-yUt"/>
+                                                    <constraint firstAttribute="height" constant="34" id="QWp-Wn-qg2"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="REGISTER_BUTTON">
+                                                    <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapSecondaryButton:" destination="VI6-0N-wVd" eventType="touchUpInside" id="PVz-ee-D5m"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BH7-Sc-8ep">
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <state key="normal" title="FORGOT_PASSWORD">
+                                                    <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="didTapForgotPasswordButton:" destination="VI6-0N-wVd" eventType="touchUpInside" id="sIn-Qh-N4E"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="qUg-Iy-BH3" secondAttribute="bottom" constant="7" id="FDk-EW-ii3"/>
+                                            <constraint firstAttribute="centerX" secondItem="qUg-Iy-BH3" secondAttribute="centerX" constant="66" id="I5A-nr-3Qz"/>
+                                            <constraint firstItem="qUg-Iy-BH3" firstAttribute="leading" secondItem="a5I-xC-GO3" secondAttribute="leading" constant="1" id="d8y-Lh-ZhQ"/>
+                                            <constraint firstItem="BH7-Sc-8ep" firstAttribute="top" secondItem="a5I-xC-GO3" secondAttribute="top" constant="8" id="eyN-R3-5oY"/>
+                                            <constraint firstAttribute="trailing" secondItem="BH7-Sc-8ep" secondAttribute="trailing" constant="3" id="fGE-c1-Big"/>
+                                            <constraint firstItem="BH7-Sc-8ep" firstAttribute="leading" secondItem="qUg-Iy-BH3" secondAttribute="trailing" constant="1" id="g80-ZL-Mao"/>
+                                            <constraint firstAttribute="bottom" secondItem="BH7-Sc-8ep" secondAttribute="bottom" constant="7" id="nyl-2e-Elc"/>
+                                            <constraint firstItem="qUg-Iy-BH3" firstAttribute="leading" secondItem="a5I-xC-GO3" secondAttribute="leading" constant="1" id="pBQ-cH-XP7"/>
+                                            <constraint firstItem="qUg-Iy-BH3" firstAttribute="top" secondItem="a5I-xC-GO3" secondAttribute="top" constant="8" id="pRS-Xo-5Xl"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="daO-Ah-4uu" secondAttribute="centerX" id="4ua-3z-ITW"/>
+                                    <constraint firstItem="a5I-xC-GO3" firstAttribute="trailing" secondItem="daO-Ah-4uu" secondAttribute="trailing" id="FfH-aE-lf4"/>
                                     <constraint firstAttribute="centerX" secondItem="7rk-E6-AO0" secondAttribute="centerX" constant="0.5" id="Ns0-d5-IDT"/>
-                                    <constraint firstAttribute="height" priority="249" constant="261" id="e82-Gc-A3X"/>
+                                    <constraint firstItem="a5I-xC-GO3" firstAttribute="top" secondItem="daO-Ah-4uu" secondAttribute="bottom" constant="8" id="OZh-vb-1OA"/>
+                                    <constraint firstItem="a5I-xC-GO3" firstAttribute="leading" secondItem="daO-Ah-4uu" secondAttribute="leading" id="SHp-v4-z2D"/>
+                                    <constraint firstAttribute="height" priority="249" constant="285" id="e82-Gc-A3X"/>
                                     <constraint firstItem="daO-Ah-4uu" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" constant="162" id="keX-Bs-JRw"/>
-                                    <constraint firstAttribute="centerX" secondItem="qUg-Iy-BH3" secondAttribute="centerX" id="pqC-mv-60Q"/>
+                                    <constraint firstAttribute="bottom" secondItem="a5I-xC-GO3" secondAttribute="bottom" constant="14" id="mJR-7x-AQE"/>
                                     <constraint firstItem="7rk-E6-AO0" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" constant="48" id="vBy-9D-y96"/>
-                                    <constraint firstItem="qUg-Iy-BH3" firstAttribute="top" secondItem="daO-Ah-4uu" secondAttribute="bottom" constant="5" id="yVu-Et-y5e"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMK-4H-fWK">
@@ -334,7 +361,7 @@
                             <constraint firstItem="Vit-lp-H7g" firstAttribute="leading" secondItem="S6J-F3-PpA" secondAttribute="leading" id="0iT-BH-Gu0"/>
                             <constraint firstItem="DMK-4H-fWK" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leadingMargin" constant="-16" id="25K-N1-CW7"/>
                             <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="DMK-4H-fWK" secondAttribute="bottom" id="8UI-lw-Gj4"/>
-                            <constraint firstAttribute="centerY" secondItem="S6J-F3-PpA" secondAttribute="centerY" constant="134.5" id="ALE-0V-eCJ"/>
+                            <constraint firstAttribute="centerY" secondItem="S6J-F3-PpA" secondAttribute="centerY" constant="122.5" id="ALE-0V-eCJ"/>
                             <constraint firstItem="S6J-F3-PpA" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="EZR-RZ-aUR"/>
                             <constraint firstAttribute="trailing" secondItem="S6J-F3-PpA" secondAttribute="trailing" id="Joc-sr-c9c"/>
                             <constraint firstItem="TTB-LP-a65" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="Ufd-2g-3nm"/>
@@ -347,6 +374,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="6xE-xN-hiA"/>
                     <connections>
+                        <outlet property="forgotPasswordButton" destination="BH7-Sc-8ep" id="WqN-3b-bEG"/>
                         <outlet property="loginBackgroundImageView" destination="TTB-LP-a65" id="1uG-lv-80z"/>
                         <outlet property="loginButton" destination="daO-Ah-4uu" id="Cgq-ek-Dwu"/>
                         <outlet property="loginView" destination="S6J-F3-PpA" id="Ed6-LN-csP"/>
@@ -366,7 +394,7 @@
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="50" sectionHeaderHeight="40" sectionFooterHeight="22" id="ldK-Ht-GGo">
                         <rect key="frame" x="0.0" y="64" width="320" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.23529411764705882" green="0.24313725490196078" blue="0.25490196078431371" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FolderCellIdentifier" rowHeight="51" id="eMz-2Q-RGM" customClass="POSFolderTableViewCell">
                                 <rect key="frame" x="0.0" y="40" width="320" height="51"/>
@@ -855,7 +883,7 @@
                         <viewControllerLayoutGuide type="bottom" id="8hw-QI-XlF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uiw-aJ-zIH">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Navn på mappe" placeholder="Navn på mappe" minimumFontSize="17" background="Searchbackground" translatesAutoresizingMaskIntoConstraints="NO" id="zkJ-cS-2Jj">
@@ -881,7 +909,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="Rb3-cM-8mD" customClass="POSNewFolderCollectionViewCell">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <rect key="frame" x="0.0" y="-44" width="60" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
@@ -1578,7 +1606,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="gXC-zd-OIB"/>
-        <segue reference="I3M-Ic-pgV"/>
-        <segue reference="eke-e6-LJU"/>
+        <segue reference="zbK-2F-FJp"/>
+        <segue reference="AVp-X0-I0h"/>
     </inferredMetricsTieBreakers>
 </document>

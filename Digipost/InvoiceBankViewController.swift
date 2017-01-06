@@ -19,16 +19,10 @@ import Foundation
 class InvoiceBankViewController: UIViewController{
     
     var invoiceBank : InvoiceBank = InvoiceBank()
-    
-    @IBOutlet weak var invoiceBankHeader: UINavigationItem!{
-        didSet{
-            self.invoiceBankHeader.title = invoiceBank.name   
-        }
-    }
-    
+        
     @IBOutlet weak var invoiceBankLogo: UIImageView!{
         didSet{
-            self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo)
+            self.invoiceBankLogo.image = UIImage(named:invoiceBank.logo+"_large")
         }
     }
     
@@ -68,14 +62,17 @@ class InvoiceBankViewController: UIViewController{
     }
     
     @IBAction func openBankUrl(sender: AnyObject) {
+        InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
         UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
     }
     
     @IBAction func invoiceBankReadMore(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string:invoiceBank.url)!)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        if(invoiceBank.setupIsAvailable){
+            InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/faktura")!)
+        }else{
+            InvoiceAnalytics.sendInvoiceClickedSetup10Link(invoiceBank.name)
+            UIApplication.sharedApplication().openURL(NSURL(string: "https://digipost.no/app/post#/faktura")!)
+        }
     }
 }

@@ -79,7 +79,7 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
     }
 
     NSString *kid = attributes[NSStringFromSelector(@selector(kid))];
-    invoice.kid = [kid isKindOfClass:[NSString class]] ? kid : nil;
+    invoice.kid = [kid isKindOfClass:[NSString class]] ? kid : @"";
 
     NSArray *links = attributes[kInvoiceLinkAPIKey];
     if ([links isKindOfClass:[NSArray class]]) {

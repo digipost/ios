@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "invoice-bank-skandia.png",
+      "filename" : "invoice-bank-skandia_large.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "invoice-bank-skandia@2x.png",
+      "filename" : "Skandia-stor@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "invoice-bank-skandia@3x.png",
+      "filename" : "Skandia-stor@3x.png",
       "scale" : "3x"
     }
   ],

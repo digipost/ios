@@ -33,6 +33,7 @@ NSString *const kRootResourceLinkSelfAPIKeySuffix = @"self";
 NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
 NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = @"current_bank_account";
 NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"upload_document";
+NSString *const kRootResourcePrimaryAccountLinkBanksAPIKeySuffix = @"banks";
 NSString *const kRootResourceNoticeAPIKey = @"notice";
 
 @implementation POSRootResource
@@ -42,6 +43,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 @dynamic createdAt;
 @dynamic currentBankAccount;
 @dynamic currentBankAccountUri;
+@dynamic banksUri;
 @dynamic firstName;
 @dynamic fullName;
 @dynamic lastName;
@@ -137,6 +139,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
                             rootResource.currentBankAccountUri = uri;
                         } else if ([rel hasSuffix:kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix]) {
                             rootResource.uploadDocumentUri = uri;
+                        }else if([rel hasSuffix:kRootResourcePrimaryAccountLinkBanksAPIKeySuffix]){
+                            rootResource.banksUri = uri;
                         }
                     }
                 }

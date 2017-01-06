@@ -87,10 +87,8 @@ DEPENDENCIES:
   - LUKeychainAccess (~> 1.2.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
-  - SingleLineKeyboardResize (from `https://github.com/haaakon/SingleLineKeyboardResize`,
-    branch `master`)
-  - SingleLineShakeAnimation (from `https://github.com/haaakon/SingleLineShakeAnimation`,
-    branch `master`)
+  - SingleLineKeyboardResize (from `https://github.com/haaakon/SingleLineKeyboardResize`, branch `master`)
+  - SingleLineShakeAnimation (from `https://github.com/haaakon/SingleLineShakeAnimation`, branch `master`)
   - UIAlertView+Blocks (~> 0.8)
 
 EXTERNAL SOURCES:
@@ -135,4 +133,6 @@ SPEC CHECKSUMS:
   SingleLineShakeAnimation: b5b4303cbff8a786c6fef2c16799ff7c8b511278
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-COCOAPODS: 0.39.0
+PODFILE CHECKSUM: 920ee665c62b43d6f061d6ba51e0bb47dcec2c43
+
+COCOAPODS: 1.1.1

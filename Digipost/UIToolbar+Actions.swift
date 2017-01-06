@@ -94,7 +94,9 @@ extension UIToolbar {
         let items = NSMutableArray()
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let moreOptionsBarButtonItem = UIBarButtonItem(image: UIImage(named: "More"), style: UIBarButtonItemStyle.Done, target: letterViewController, action: #selector(letterViewController.didTapMoreOptionsBarButtonItem))
-        items.addObject(invoiceButtonInLetterController(letterViewController))
+        if(!InvoiceBankAgreement.hasActiveAgreementType2()){
+            items.addObject(invoiceButtonInLetterController(letterViewController))
+        }
         items.addObject(flexibleSpaceBarButtonItem)
         items.addObject(moreOptionsBarButtonItem)
         return items

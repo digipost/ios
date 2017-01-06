@@ -49,6 +49,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (strong, nonatomic) UIImageView *titleImageView;
 @property (strong, nonatomic) IBOutlet UIButton *replayOnboardingButton;
+@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 
 @end
 
@@ -97,7 +98,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                          forState:UIControlStateNormal];
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
-
+    
+    [self.forgotPasswordButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON", @"Forgot password")
+                               forState:UIControlStateNormal];
+    
     if ([OAuthToken isUserLoggedIn]) {
 
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
@@ -226,6 +230,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             [self presentAppropriateViewControllerForIPhone];
         }
     }
+    
+    [InvoiceBankAgreement updateActiveBankAgreementStatus];
 }
 
 - (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
@@ -235,12 +241,31 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 
     [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO
-                                                                               completion:^{
-
-                                                                                 [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
-
-                                                                               }];
+                        completion:^{
+                                [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
+                        }];
 }
+- (IBAction)didTapForgotPasswordButton:(id)sender {    
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"forgot password title", @"Forgot password")
+                                                                             message:NSLocalizedString(@"forgot password message",@"")
+                                                                      preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *openBrowserAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"forgot password change button", @"Goto") style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self sendAnalyticsEvent:@"glemt-passord"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/app/#/person/glemt"]];
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"forgot password cancel button", @"Cancel") style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+    }];
+    
+    [alertController addAction:openBrowserAction];
+    [alertController addAction:cancelAction];
+    
+    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+    popPresenter.sourceView = self.forgotPasswordButton;
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
 
 #pragma mark - NewFeatures dismiss controller delegate
 
@@ -257,16 +282,26 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (IBAction)didTapSecondaryButton:(UIButton *)sender
 {
+    [self sendAnalyticsEvent:@"registrering"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [__SERVER_URI__ stringByAppendingString: @"/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/"]]];
 }
 
 - (IBAction)didTapPrivacyButton:(UIButton *)sender
 {
+    [self sendAnalyticsEvent:@"personvern"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString: @"https://www.digipost.no/juridisk/#personvern"]];
 }
 
 - (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
 {
+}
+
+-(void) sendAnalyticsEvent: (NSString*) event {
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"innlogging"
+                                                          action:@"klikk-link"
+                                                           label:event
+                                                           value:nil] build]];
 }
 
 #pragma mark - Private methods

@@ -2,13 +2,13 @@
 "reP-Vg-MBG.title" = "Oppsett";
 
 /* Class = "UILabel"; text = "INVOICE_OPTIONS_TITLE"; ObjectID = "Ge7-th-eIf"; */
-"Ge7-th-eIf.text" = "Fakturaer i Digipost og nettbanken";
+"Ge7-th-eIf.text" = "Select a bank";
 
 /* Class = "UILabel"; text = "INVOICE_OPTIONS_SUBTITLE"; ObjectID = "Zmq-JL-aQV"; */
-"Zmq-JL-aQV.text" = "Alle fakturaer du mottar i Digipost, kan enkelt overføres til nettbanken din.";
+"Zmq-JL-aQV.text" = "Any invoices you receive in your Digipost mailbox can be easily transferred to your online banking.";
 
 /* Class = "UILabel"; text = "INVOICE_OPTIONS_MORE_BANKS_SOON"; ObjectID = "e43-gW-QEm"; */
-"e43-gW-QEm.text" = "Flere banker kommer snart.";
+"e43-gW-QEm.text" = "More banks coming soon!";
 
 /* Class = "UINavigationItem"; title = "INVOICE_BANK"; ObjectID = "7zI-ht-BHO"; */
 "7zI-ht-BHO.title" = "Bank";

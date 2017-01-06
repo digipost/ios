@@ -1,12 +1,12 @@
-// 
+//
 // Copyright (C) Posten Norge AS
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //         http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,9 +14,12 @@
 // limitations under the License.
 //
 
-#include "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.debug.xcconfig"
-#include "Pods/Target Support Files/Pods-Digipost-Test/Pods-Digipost-Test.debug.xcconfig"
-#include "Pods/Target Support Files/Pods-DigipostModelTests/Pods-DigipostModelTests.debug.xcconfig"
-#include "Shared.xcconfig"
-
-SERVER_URI = \@\"https:\/\/www.digipost.no\"
+extension APIClient {
+    
+    func getActiveBanks(banksUri: String, success: (Dictionary<String, AnyObject>) -> Void , failure: (error: APIError) -> ()) {
+        validateFullScope {
+            let task = self.urlSessionJSONTask(url: banksUri,  success: success, failure: failure)
+            task.resume()
+        }
+    }
+}

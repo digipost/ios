@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--INVOICE_OPTIONS-->
+        <!--Invoice Options Title-->
         <scene sceneID="iaG-Zp-DBK">
             <objects>
                 <viewController id="nWN-tl-VuW" customClass="InvoiceOptionsViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,10 +52,10 @@
                                         </constraints>
                                         <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qha-SR-eGA">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="3AS-w8-ZN7">
                                                 <rect key="frame" x="0.0" y="28" width="374" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qha-SR-eGA" id="huJ-uI-T4D">
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3AS-w8-ZN7" id="sRP-hi-83e">
                                                     <frame key="frameInset" width="374" height="69"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
@@ -93,20 +93,19 @@
                             <constraint firstAttribute="trailing" secondItem="Q9A-Bh-mEm" secondAttribute="trailing" id="wej-mR-szx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="INVOICE_OPTIONS" id="reP-Vg-MBG"/>
+                    <navigationItem key="navigationItem" title="Invoice Options Title" id="reP-Vg-MBG"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bankTableView" destination="CsO-8F-sFk" id="n72-Ry-a2H"/>
-                        <outlet property="invoiceOptionsHeader" destination="reP-Vg-MBG" id="yBD-iS-4jV"/>
                         <segue destination="84D-5z-zyP" kind="show" identifier="invoiceBankSegue" id="Wqj-xD-Y8c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2791.1999999999998" y="2070.3148425787108"/>
+            <point key="canvasLocation" x="-2036" y="108"/>
         </scene>
-        <!--INVOICE_BANK-->
+        <!--Invoice Bank Title-->
         <scene sceneID="Uto-tM-aYH">
             <objects>
                 <viewController id="84D-5z-zyP" customClass="InvoiceBankViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
@@ -152,7 +151,6 @@
                                         <state key="normal" title="INVOICE_BANK_READ_MORE"/>
                                         <connections>
                                             <action selector="invoiceBankReadMore:" destination="84D-5z-zyP" eventType="touchUpInside" id="xjj-zh-IyA"/>
-                                            <action selector="invoiceBankReadMoreWithSender:" destination="84D-5z-zyP" eventType="touchUpInside" id="292-sL-1kf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -177,7 +175,7 @@
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="86" id="pHP-Qw-uAl"/>
+                                            <constraint firstAttribute="width" constant="176" id="pHP-Qw-uAl"/>
                                         </constraints>
                                     </imageView>
                                 </subviews>
@@ -185,7 +183,7 @@
                                 <constraints>
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="8BN-yq-gIY"/>
                                     <constraint firstAttribute="height" constant="150" id="RO0-4u-RUx"/>
-                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" constant="8.5" id="SHW-ux-Kms"/>
+                                    <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" constant="0.5" id="SHW-ux-Kms"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -200,10 +198,9 @@
                             <constraint firstItem="tHW-2F-iDt" firstAttribute="top" secondItem="OXr-kw-ttG" secondAttribute="bottom" id="noq-WG-FHO"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="INVOICE_BANK" id="7zI-ht-BHO"/>
+                    <navigationItem key="navigationItem" title="Invoice Bank Title" id="7zI-ht-BHO"/>
                     <connections>
                         <outlet property="invoiceBankContent" destination="rXg-qN-PD5" id="Y0t-hz-hcX"/>
-                        <outlet property="invoiceBankHeader" destination="7zI-ht-BHO" id="arb-ic-e2y"/>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
                         <outlet property="invoiceBankReadMoreText" destination="SWZ-DM-g13" id="NHL-nb-WWA"/>
                         <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
@@ -212,10 +209,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3R0-bZ-gQd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3691.875" y="2065.1408450704225"/>
+            <point key="canvasLocation" x="-1417" y="108"/>
         </scene>
     </scenes>
     <resources>
-        <image name="invoice-bank-dnb" width="40" height="34"/>
+        <image name="invoice-bank-dnb" width="52" height="27"/>
     </resources>
 </document>

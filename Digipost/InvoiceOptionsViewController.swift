@@ -18,30 +18,27 @@ import Foundation
 
 class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    @IBOutlet weak var invoiceOptionsHeader: UINavigationItem!
     @IBOutlet weak var bankTableView: UITableView!
     
     let kInvoiceBankSegue = "invoiceBankSegue"
     var banks: [InvoiceBank] = []
-    
-    @IBAction func readMoreButton(sender: AnyObject) {
-        let readMoreUrl = NSURL(string: "https://www.digipost.no")!
-        UIApplication.sharedApplication().openURL(readMoreUrl)
-    }
+    var viewTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bankTableView.delegate = self
         bankTableView.dataSource = self
         bankTableView.registerNib(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
-        
-        addInvoiceBanks();
+        addInvoiceBanks()
+
+        self.title = viewTitle
     }
     
+
     func addInvoiceBanks(){
-        banks.append(InvoiceBank(name:"DNB", url:"https://m.dnb.no/appo/logon/startmobile", logo:"invoice-bank-dnb", setupIsAvailable:true))
-        banks.append(InvoiceBank(name:"KLP", url:"https://dnb.no", logo:"invoice-bank-klp", setupIsAvailable:false))
-        banks.append(InvoiceBank(name:"Skandiabanken", url:"https://dnb.no", logo:"invoice-bank-skandia", setupIsAvailable:false))
+        banks.append(InvoiceBank(name:"DNB", url:"https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html", logo:"invoice-bank-dnb", setupIsAvailable:true))
+        banks.append(InvoiceBank(name:"KLP", url:"", logo:"invoice-bank-klp", setupIsAvailable:false))
+        banks.append(InvoiceBank(name:"Skandiabanken", url:"", logo:"invoice-bank-skandia", setupIsAvailable:false))
         bankTableView.reloadData()
     }
     
@@ -62,6 +59,8 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == kInvoiceBankSegue{
             if let viewController = segue.destinationViewController as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! NSIndexPath).row]
+                viewController.title = self.viewTitle
+                InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! NSIndexPath).row].name)
             }
         }
     }
