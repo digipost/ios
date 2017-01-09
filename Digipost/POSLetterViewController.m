@@ -1170,7 +1170,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if(self.attachment.hasValidToPayInvoice){
         if(self.attachment.invoice != nil){
             title = NSLocalizedString(@"invoice delete dialog title", @"Delete invoice");
-            if(self.attachment.invoice.timePaid){
+            
+            if(self.attachment.invoice.timePaid == nil) {
                 message = NSLocalizedString(@"invoice delete dialog unpaid message", @"Delete invoice message");
                 deleteButtonText = NSLocalizedString(@"invoice delete dialog unpaid delete button", @"Confirme delete invoice");
                 cancelButtonText = NSLocalizedString(@"invoice delete dialog unpaid cancel button", @"Cancel delete invoice");
