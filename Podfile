@@ -7,7 +7,7 @@ platform :ios, '8.0'
 def all_pods
     pod 'AFNetworking', '~> 3.1.0'
     pod 'UIAlertView+Blocks', '~> 0.8'
-    pod 'LUKeychainAccess', '~> 1.2.0'
+    pod 'LUKeychainAccess', '~> 2.0.0'
     pod 'RNCryptor', '~> 2.2'
     pod 'Google/CloudMessaging'
     pod 'MRProgress', '~> 0.4.3'

@@ -34,6 +34,7 @@
 		0B5F50621D9D51E200A8EC05 /* ReceiptCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50611D9D51E200A8EC05 /* ReceiptCategoryViewController.swift */; };
 		0B5F50641D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50631D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift */; };
 		0B5F50661D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F50651D9D521D00A8EC05 /* ReceiptCategoryTableViewCell.swift */; };
+		105BF2C9BF09D6C68F527A5E /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */; };
 		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
@@ -1242,6 +1243,7 @@
 				F8AE1CB51CD374B40009B2F9 /* SystemConfiguration.framework in Frameworks */,
 				F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */,
 				F8AE1CB81CD374B40009B2F9 /* libGoogleAnalyticsServices.a in Frameworks */,
+				105BF2C9BF09D6C68F527A5E /* Pods_Digipost_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2225,7 +2227,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostModelTests/Pods-DigipostModelTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6481F375FF98F8ECE7DD9A4E /* [CP] Check Pods Manifest.lock */ = {
@@ -2330,7 +2332,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostModelTests/Pods-DigipostModelTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CC86362D81FB641BD829693C /* [CP] Check Pods Manifest.lock */ = {
@@ -3208,7 +3210,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3262,7 +3263,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83F703571855DD3A003DABE1 /* Digipost.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3315,7 +3315,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3363,7 +3362,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9081065641E63319C0876AD3 /* Pods-DigipostModelTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
@@ -3398,7 +3396,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3455,7 +3452,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 83F703571855DD3A003DABE1 /* Digipost.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Beta";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
