@@ -1203,46 +1203,49 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self showBlurredActionSheetWithFolders];
 }
 
-- (void)showInvoiceSetupAlert{
+- (void)showInvoiceSetupAlertIfNoActiveAgreements{
     
     BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
     BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
 
     if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
-            
-            UIAlertController * alert = [UIAlertController
-                                         alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
-                                         message:NSLocalizedString(@"invoice setup alert message", @"")
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* chooseBank = [UIAlertAction
-                                         actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action) {
-                                             [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
-                                             [self didTapChooseBankButton];
-                                         }];
-            
-            UIAlertAction* later = [UIAlertAction
-                                    actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action) {
-                                        [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
-                                    }];
-            
-            UIAlertAction* forget = [UIAlertAction
-                                     actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * action) {
-                                         [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
-                                         [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
-                                     }];
-            
-            [alert addAction:chooseBank];
-            [alert addAction:later];
-            [alert addAction:forget];
-            [self presentViewController:alert animated:YES completion:nil];
+        [self showInvoiceSetupAlert];
     }
+}
+
+-(void)showInvoiceSetupAlert {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
+                                 message:NSLocalizedString(@"invoice setup alert message", @"")
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* chooseBank = [UIAlertAction
+                                 actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
+                                     [self didTapChooseBankButton];
+                                 }];
+    
+    UIAlertAction* later = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
+                            }];
+    
+    UIAlertAction* forget = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
+                                 [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
+                             }];
+    
+    [alert addAction:chooseBank];
+    [alert addAction:later];
+    [alert addAction:forget];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (UIViewController*) topMostController {
@@ -1287,10 +1290,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
     } else {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE", @"Send to bank");
-        message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE", @"Payment tips message");
-
-        actionButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+        [self showInvoiceSetupAlert];
+        return;
     }
 
     [UIAlertView showWithTitle:title

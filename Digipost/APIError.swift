@@ -230,5 +230,5 @@ class APIError: NSError {
             }
         }
     }
-    var shouldBeShownToUser : Bool = true
+    var shouldBeShownToUser : Bool = false
 }
