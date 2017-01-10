@@ -649,3 +649,9 @@
 "forgot password change button" = "Til digipost.no";
 "forgot password cancel button" = "Lukk";
 "LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON" = "Glemt passord";
+
+/* Invoice Popup Modal */
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCCESSED" = "Lagt til betaling hos ";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED" = "Legg til betaling hos ";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCCESSED" = "Lagt til betaling hos ";
+"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCCESSED" = "Fakturaen er klar til betaling hos ";

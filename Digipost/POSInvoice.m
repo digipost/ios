@@ -18,6 +18,7 @@
 #import "POSAttachment.h"
 #import "NSString+Convenience.h"
 #import "POSModelManager.h"
+#import "Digipost-Swift.h"
 
 // Core Data model entity names
 NSString *const kInvoiceEntityName = @"Invoice";
@@ -28,6 +29,7 @@ NSString *const kInvoiceLinkSendToBankAPIKeySuffix = @"send_to_bank";
 NSString *const kInvoicePaymentAPIKey = @"payment";
 NSString *const kInvoicePaymentLinkAPIKey = @"link";
 NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
+NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
 
 @implementation POSInvoice
 
@@ -40,6 +42,7 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 @dynamic sendToBankUri;
 @dynamic timePaid;
 @dynamic bankHomepage;
+@dynamic bankName;
 
 // Relationships
 @dynamic attachment;
@@ -121,17 +124,36 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
             }
         }
     }
-
+    NSString *bankName = attributes[kInvoicePaymentBankNameAPIKeySuffix];
+    invoice.bankName = [kid isKindOfClass:[NSString class]] ? bankName : @"";
+    bankName = bankName;
     return invoice;
 }
 
 - (NSString *)statusDescriptionText
 {
-    if (self.timePaid) {
-        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbanken");
-    } else {
-        return nil;
+    NSString *description = nil;
+    
+    if([InvoiceBankAgreement hasActiveAgreementType1]){
+        if (self.timePaid) {
+            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCCESSED", @"");
+        }else{
+            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED", @"");
+            
+        }
+    }else if([InvoiceBankAgreement hasActiveAgreementType2]){
+        if (self.timePaid) {
+            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCCESSED", @"");
+        }else{
+            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED",@"");
+        }
     }
+    
+    if(description != nil){
+        return [NSString stringWithFormat:@"%@%@", description, [self bankName]];
+    }
+
+    return nil;
 }
 
 + (NSString *)stringForInvoiceAmount:(NSNumber *)amount
