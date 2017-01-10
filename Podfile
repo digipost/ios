@@ -14,7 +14,7 @@ def all_pods
     pod 'MRProgress', '~> 0.4.3'
     pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
     pod 'Alamofire', '~> 4.2.0'
-    pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :comit => '0f4e598d44922b2f291797edd4beff0f8a1ce99e'
+    pod 'SingleLineKeyboardResize', :git => 'https://github.com/haaakon/SingleLineKeyboardResize', :commit => '0f4e598d44922b2f291797edd4beff0f8a1ce99e'
     pod 'Cartography', '~> 1.0.1'
 end
 

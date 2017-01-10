@@ -86,7 +86,7 @@ DEPENDENCIES:
   - LUKeychainAccess (~> 2.0.0)
   - MRProgress (~> 0.4.3)
   - RNCryptor (~> 2.2)
-  - SingleLineKeyboardResize (from `https://github.com/haaakon/SingleLineKeyboardResize`, branch `master`)
+  - SingleLineKeyboardResize (from `https://github.com/haaakon/SingleLineKeyboardResize`, commit `0f4e598d44922b2f291797edd4beff0f8a1ce99e`)
   - UIAlertView+Blocks (~> 0.8)
 
 EXTERNAL SOURCES:
@@ -94,7 +94,7 @@ EXTERNAL SOURCES:
     :commit: 84f116697e8187fb7f654d771df64690dd8860eb
     :git: https://github.com/haaakon/AHKActionSheet.git
   SingleLineKeyboardResize:
-    :branch: master
+    :commit: 0f4e598d44922b2f291797edd4beff0f8a1ce99e
     :git: https://github.com/haaakon/SingleLineKeyboardResize
 
 CHECKOUT OPTIONS:
@@ -124,6 +124,6 @@ SPEC CHECKSUMS:
   SingleLineKeyboardResize: 9823c7bd4f7542e9829bab0a4714285d3394df85
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: b60fdbb55240e0b0e1a068dd6bc98a20a73012e2
+PODFILE CHECKSUM: 48600e0149dc79a15f9a1d30493bab6785241573
 
 COCOAPODS: 1.1.1
