@@ -664,7 +664,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
-    [self showInvoiceSetupAlert];
+    [self showInvoiceSetupAlertIfNoActiveAgreements];
     [self removeUnlockViewIfPresent];
 }
 
@@ -1290,7 +1290,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
     } else {
-        [self showInvoiceSetupAlert];
+        [self showInvoiceSetupAlertIfNoActiveAgreements];
         return;
     }
 
