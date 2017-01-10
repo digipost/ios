@@ -581,10 +581,10 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-        if (!rootResource.currentBankAccount) {
-            if ([self documentsNeedCurrentBankAccount]) {
-                [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
-            }
+        
+        if([self folderContainsInvoice]){
+            [InvoiceBankAgreement updateActiveBankAgreementStatus];
+            [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
         }
         
         //Update badge with unread letters
@@ -738,7 +738,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }];
 }
 
-- (BOOL)documentsNeedCurrentBankAccount
+- (BOOL)folderContainsInvoice
 {
     NSManagedObjectContext *managedObjectContext = [POSModelManager sharedManager].managedObjectContext;
 
@@ -747,7 +747,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
                                                inManagedObjectContext:managedObjectContext];
     for (POSDocument *document in alldocuments) {
         for (POSAttachment *attachment in document.attachments) {
-            if (attachment.invoice && [attachment.invoice.canBePaidByUser boolValue] && [attachment.invoice.sendToBankUri length] > 0) {
+            if ([attachment.type  isEqual: @"INVOICE"]){
                 return YES;
             }
         }
@@ -759,11 +759,11 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
 - (void)updateCurrentBankAccountWithUri:(NSString *)uri
 {
     [[APIClient sharedClient] updateBankAccountWithUri:uri success:^(NSDictionary *response) {
-
+        [[POSModelManager sharedManager] updateBankAccountWithAttributes:response];
     }
-        failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-        }];
+    failure:^(APIError *error) {
+        [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
+    }];
 }
 
 - (void)uploadProgressDidChange:(NSNotification *)notification

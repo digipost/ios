@@ -33,6 +33,7 @@ extern NSString *const kInvoiceEntityName;
 @property (strong, nonatomic) NSString *sendToBankUri;
 @property (strong, nonatomic) NSDate *timePaid;
 @property (strong, nonatomic) NSString *bankHomepage;
+@property (strong, nonatomic) NSString *bankName;
 
 // Relationships
 @property (strong, nonatomic) POSAttachment *attachment;
