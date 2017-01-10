@@ -99,16 +99,25 @@ NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
             }
         }
     }
+    
+    
+    
+    NSString *bankName = attributes[kInvoicePaymentBankNameAPIKeySuffix];
+    invoice.bankName = [kid isKindOfClass:[NSString class]] ? bankName : @"";
 
     NSDictionary *paymentDict = attributes[kInvoicePaymentAPIKey];
     if ([paymentDict isKindOfClass:[NSDictionary class]]) {
         NSString *timePaidString = paymentDict[NSStringFromSelector(@selector(timePaid))];
+        
         if ([timePaidString isKindOfClass:[NSString class]]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
             invoice.timePaid = [dateFormatter dateFromString:timePaidString];
         }
-
+        
+        NSString *paymentBankName = paymentDict[kInvoicePaymentBankNameAPIKeySuffix];
+        invoice.bankName = [kid isKindOfClass:[NSString class]] ? paymentBankName : @"";
+        
         NSArray *links = paymentDict[kInvoicePaymentLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {
             for (NSDictionary *link in links) {
@@ -124,35 +133,26 @@ NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
             }
         }
     }
-    NSString *bankName = attributes[kInvoicePaymentBankNameAPIKeySuffix];
-    invoice.bankName = [kid isKindOfClass:[NSString class]] ? bankName : @"";
-    bankName = bankName;
+    
     return invoice;
 }
 
 - (NSString *)statusDescriptionText
-{
-    NSString *description = nil;
-    
+{    
     if([InvoiceBankAgreement hasActiveAgreementType1]){
         if (self.timePaid) {
-            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCCESSED", @"");
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCCESSED", @""),[self bankName]];
         }else{
-            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED", @"");
-            
+            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED", @"");
         }
     }else if([InvoiceBankAgreement hasActiveAgreementType2]){
         if (self.timePaid) {
-            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCCESSED", @"");
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCCESSED", @""),[self bankName]];
         }else{
-            description = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED",@"");
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCCESSED", @""),[self bankName]];
         }
     }
     
-    if(description != nil){
-        return [NSString stringWithFormat:@"%@%@", description, [self bankName]];
-    }
-
     return nil;
 }
 

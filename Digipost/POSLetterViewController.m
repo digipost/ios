@@ -1285,7 +1285,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSString *bankAccountNumber = self.attachment.document.folder.mailbox.rootResource.currentBankAccount ?: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER", @"unknown bank account number");
 
         NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message");
-        message = [NSString stringWithFormat:format, bankAccountNumber];
+        
+        NSString *bankLine = [NSString stringWithFormat:@"\%@ \n%@", self.attachment.invoice.bankName, bankAccountNumber];
+        message = [NSString stringWithFormat:format, bankLine];
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
