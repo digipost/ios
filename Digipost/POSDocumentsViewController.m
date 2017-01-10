@@ -582,7 +582,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         
         POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
         
-        if([self documentsNeedCurrentBankAccount]){
+        if([self folderContainsInvoice]){
+            [InvoiceBankAgreement updateActiveBankAgreementStatus];
             [self updateCurrentBankAccountWithUri:rootResource.currentBankAccountUri];
         }
         
@@ -737,7 +738,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }];
 }
 
-- (BOOL)documentsNeedCurrentBankAccount
+- (BOOL)folderContainsInvoice
 {
     NSManagedObjectContext *managedObjectContext = [POSModelManager sharedManager].managedObjectContext;
 
