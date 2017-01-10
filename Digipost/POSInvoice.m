@@ -116,7 +116,7 @@ NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
         }
         
         NSString *paymentBankName = paymentDict[kInvoicePaymentBankNameAPIKeySuffix];
-        invoice.bankName = [kid isKindOfClass:[NSString class]] ? paymentBankName : @"";
+        invoice.bankName = [kid isKindOfClass:[NSString class]] ? paymentBankName : invoice.bankName;
         
         NSArray *links = paymentDict[kInvoicePaymentLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {
@@ -141,15 +141,15 @@ NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
 {    
     if([InvoiceBankAgreement hasActiveAgreementType1]){
         if (self.timePaid) {
-            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCCESSED", @""),[self bankName]];
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCESSED", @""),[self bankName]];
         }else{
-            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCCESSED", @"");
+            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCESSED", @"");
         }
     }else if([InvoiceBankAgreement hasActiveAgreementType2]){
         if (self.timePaid) {
-            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCCESSED", @""),[self bankName]];
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCESSED", @""),[self bankName]];
         }else{
-            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCCESSED", @""),[self bankName]];
+            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED", @"");
         }
     }
     

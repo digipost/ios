@@ -1207,7 +1207,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     
     BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
     BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
-
     if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
         [self showInvoiceSetupAlert];
     }
@@ -1271,12 +1270,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         dateFormatter.timeStyle = NSDateFormatterNoStyle;
-
-        NSString *timePaid = [dateFormatter stringFromDate:self.attachment.invoice.timePaid];
-
-        NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
-        message = [NSString stringWithFormat:format, timePaid];
-
+        
+        NSString *paidMessage = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
+        message = [NSString stringWithFormat:paidMessage, self.attachment.invoice.bankName];
+        
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE", @"Go to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
     } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
@@ -1291,8 +1288,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-    } else {
-        [self showInvoiceSetupAlertIfNoActiveAgreements];
+    
+    } else if([InvoiceBankAgreement hasActiveAgreementType2]){
+        [self showReadyToPaymentAgreementType2Popup];
+        return;
+    }else {
+        [self showInvoiceSetupAlert];
         return;
     }
 
@@ -1312,6 +1313,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                       }];
 }
 
+-(void)showReadyToPaymentAgreementType2Popup {
+    NSString *title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_TITLE", @"Klar til betaling");
+    NSString *message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_MESSAGE", @"Klar til betaling hos bank");
+    NSString *cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+    
+    [UIAlertView showWithTitle: title message: message cancelButtonTitle: cancelButtonTitle otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {}];
+    
+}
 
 - (void)setInfoViewVisible:(BOOL)visible
 {
