@@ -187,22 +187,15 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func logoutUser() {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            UIAlertView.show(withTitle: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), otherButtonTitles:[NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out")], tap: { (alert: UIAlertView!, buttonIndex: Int) -> Void in
-                if buttonIndex == 1 {
-                    self.userDidConfirmLogout()
-                }
-            })
-        } else {
-            let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
-            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .destructive,handler: {(alert: UIAlertAction!) in
-                self.userDidConfirmLogout()
-            }))
-            
-            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))
-            
-            present(logoutAlertController, animated: true, completion: nil)
-        }
+        let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .destructive,handler: {(alert: UIAlertAction!) in
+            self.userDidConfirmLogout()
+        }))
+        
+        logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))
+        
+        present(logoutAlertController, animated: true, completion: nil)
     }
     
     func userDidConfirmLogout() {
