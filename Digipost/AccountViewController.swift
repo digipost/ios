@@ -187,7 +187,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func logoutUser() {
-        let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .destructive,handler: {(alert: UIAlertAction!) in
             self.userDidConfirmLogout()
