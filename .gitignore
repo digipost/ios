@@ -25,3 +25,6 @@ Podfile.lock
 
 #Infer
 infer-out/
+
+#Fastlane
+fastlane/
