@@ -22,3 +22,9 @@ oauth.h
 uiauto/results
 UI-Test.trace/instrument_data
 Podfile.lock
+
+#Infer
+infer-out/
+
+#Fastlane
+fastlane/
