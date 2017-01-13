@@ -140,9 +140,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
-
     [self reloadFromMetadata];
-
+    [InvoiceBankAgreement updateActiveBankAgreementStatus];
+    
     [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
