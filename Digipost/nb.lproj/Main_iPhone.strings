@@ -107,3 +107,6 @@
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "xQW-NC-XrA"; */
 "xQW-NC-XrA.text" = "Label";
 
+/* Class = "IBUINavigationItem"; title = "Close"; ObjectID = "Oan-9k-fhE"; */
+"Oan-9k-fhE.title" = "Tilbake";
+

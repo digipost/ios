@@ -94,6 +94,9 @@
 		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4831A01DFAB4460004A1ED /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9C4831A21DFAB48C0004A1ED /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */; };
+		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
+		9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
+		9C7A35851E291A1800C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656D1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
@@ -894,6 +897,7 @@
 		9C44506A1DF1748D00638385 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		9C44506D1DF1780700638385 /* Digipost-Test.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Digipost-Test.entitlements"; sourceTree = SOURCE_ROOT; };
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
+		9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUseWebViewController.swift; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -1654,6 +1658,7 @@
 				83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */,
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
+				9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2524,6 +2529,7 @@
 				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
 				ECB2BFB71B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
+				9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */,
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC8B94741B4ABE07005C4CC4 /* String+Composer.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
@@ -2609,6 +2615,7 @@
 				ECB2BE8A1B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
 				EC2751BB1B061D6C0007125D /* SHCLoginViewController.m in Sources */,
 				EC2751C51B061D760007125D /* POSReceiptFoldersTableViewController.m in Sources */,
+				9C7A35851E291A1800C8A4F5 /* SingleUseWebViewController.swift in Sources */,
 				EC2751941B061D550007125D /* POSInvoice.m in Sources */,
 				0B1520E21DA38F4C000027C1 /* ReceiptCategory.swift in Sources */,
 				EC27519E1B061D550007125D /* POSBaseEncryptedModel.m in Sources */,
@@ -2958,6 +2965,7 @@
 				F8AE1C671CD374B40009B2F9 /* NSError+ExtraInfo.m in Sources */,
 				F8AE1C681CD374B40009B2F9 /* Constants.swift in Sources */,
 				F8AE1C691CD374B40009B2F9 /* UIScrollViewExtensions.swift in Sources */,
+				9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */,
 				F8AE1C6A1CD374B40009B2F9 /* StylePickerDetailListViewController.swift in Sources */,
 				F8AE1C6B1CD374B40009B2F9 /* String+Extensions.swift in Sources */,
 				F8AE1C6C1CD374B40009B2F9 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
