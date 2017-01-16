@@ -66,27 +66,25 @@ class OnboardingLoginViewController: UIViewController {
         return backgroundSnapShot
     }
     
-    @IBAction func registerButtonAction(_ sender: UIButton) {
-        if let newUserURL = URL(string: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/") {
-            UIApplication.shared.openURL(newUserURL);    
-        }
+    @IBAction func registerButtonAction(_ sender: UIButton) {   
+            openExternalUrl(url: "https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/")
     }
 
     @IBAction func privacyButtonAction(_ sender: UIButton) {
-        if let newUserURL = URL(string: "https://www.digipost.no/juridisk/#personvern") {
-            UIApplication.shared.openURL(newUserURL);    
-        }
+        openExternalUrl(url: "https://www.digipost.no/juridisk/#personvern")
     }
     
-    func openURL(_ url: URL){
-        let url = URL(string: "https://google.com")!
-        UIApplication.shared.openURL(url)
+    func openExternalUrl(url: String){
+        if #available(iOS 9.0, *) {
+            let svc = SFSafariViewController(url: NSURL(string: url) as! URL)
+            self.present(svc, animated: true, completion: nil)
+        }
     }
     
     func presentAlertFromSenderWithUrl(_ sender: UIButton, url: URL){
         let alert = UIAlertController(title: url.host, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari"), style: .default,handler: {(alert: UIAlertAction!) in
-            UIApplication.shared.openURL(url)
+            self.openExternalUrl(url: url.absoluteString)
         }))
         
         alert.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))

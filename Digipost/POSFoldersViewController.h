@@ -17,6 +17,7 @@
 #import <UIKit/UIKit.h>
 #import "POSMailbox.h"
 #import "SHCBaseTableViewController.h"
+@import SafariServices;
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 extern NSString *const kFoldersViewControllerIdentifier;

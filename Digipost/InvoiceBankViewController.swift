@@ -63,16 +63,23 @@ class InvoiceBankViewController: UIViewController{
     
     @IBAction func openBankUrl(_ sender: AnyObject) {
         InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
-        UIApplication.shared.openURL(URL(string:invoiceBank.url)!)
+        UIApplication.shared.openURL(URL(string:invoiceBank.url)!) //Opens external bank website, should be opened in external browser
     }
     
     @IBAction func invoiceBankReadMore(_ sender: AnyObject) {
         if(invoiceBank.setupIsAvailable){
             InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
-            UIApplication.shared.openURL(URL(string: "https://digipost.no/faktura")!)
+            openExternalUrl(url: "https://digipost.no/faktura")
         }else{
             InvoiceAnalytics.sendInvoiceClickedSetup10Link(invoiceBank.name)
-            UIApplication.shared.openURL(URL(string: "https://digipost.no/app/post#/faktura")!)
+            openExternalUrl(url: "https://digipost.no/app/post#/faktura")
+        }
+    }
+    
+    func openExternalUrl(url: String){
+        if #available(iOS 9.0, *) {
+            let svc = SFSafariViewController(url: NSURL(string: url) as! URL)
+            self.present(svc, animated: true, completion: nil)
         }
     }
 }

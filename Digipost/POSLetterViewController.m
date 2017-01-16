@@ -1305,7 +1305,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                         if (buttonIndex > 0) {
                             if (self.attachment.invoice.timePaid) {
                                 NSURL *url = [NSURL URLWithString:self.attachment.invoice.bankHomepage];
-                                [[UIApplication sharedApplication] openURL:url];
+                                [[UIApplication sharedApplication] openURL:url]; //Opens external bank website, should be opened in external browser
                             } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
                                 [self sendInvoiceToBank];
                             }
