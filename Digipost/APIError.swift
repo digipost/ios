@@ -35,12 +35,12 @@ class APIError: NSError {
         super.init(domain: error.domain, code: error.code, userInfo: error.userInfo)
     }
     
-    override init(domain: String, code: Int, userInfo dict: [NSObject : AnyObject]?) {
+    override init(domain: String, code: Int, userInfo dict: [AnyHashable: Any]?) {
         
         super.init(domain: domain, code: code, userInfo: dict)
     }
     
-    init(urlResponse: NSHTTPURLResponse, jsonResponse: Dictionary<String,AnyObject>?) {
+    init(urlResponse: HTTPURLResponse, jsonResponse: Dictionary<String,AnyObject>?) {
         
         if let response = jsonResponse {
                 digipostErrorCode = response[APIErrorConstants.errorCode] as? String
@@ -56,8 +56,8 @@ class APIError: NSError {
         return apierror
     }
     
-    class func HasNoOAuthTokenForScopeError(scope: String) -> APIError {
-        let apierror = APIError(domain: Constants.Error.apiErrorDomainOAuthUnauthorized, code: Constants.Error.Code.NeedHigherAuthenticationLevel.rawValue, userInfo:[ Constants.Error.apiClientErrorScopeKey : scope])
+    class func HasNoOAuthTokenForScopeError(_ scope: String) -> APIError {
+        let apierror = APIError(domain: Constants.Error.apiErrorDomainOAuthUnauthorized, code: Constants.Error.Code.needHigherAuthenticationLevel.rawValue, userInfo:[ Constants.Error.apiClientErrorScopeKey : scope])
         return apierror
     }
     
@@ -66,7 +66,7 @@ class APIError: NSError {
     }
     
     func userNeedsHigherAuthenticationLevel() -> Bool {
-        if code == Constants.Error.Code.NeedHigherAuthenticationLevel {
+        if code == Constants.Error.Code.needHigherAuthenticationLevel {
             return true
         }
         return false
@@ -203,7 +203,7 @@ class APIError: NSError {
                 
                 //            case CFNetworkErrors.CFErrorHTTPConnectionLost.rawValue:
                 //                return ("Connection lost","")
-            case CFNetworkErrors.CFURLErrorTimedOut.rawValue:
+            case CFNetworkErrors.cfurlErrorTimedOut.rawValue:
                 return (NSLocalizedString("timeout alert title", comment: ""), NSLocalizedString("timeout alert message", comment: ""))
                 //            case CFNetworkErrors.CFURLErrorCannotConnectToHost.rawValue:
                 //                fallthrough
@@ -211,9 +211,9 @@ class APIError: NSError {
                 //                return ("Cannot connect to host","")
                 //            case CFNetworkErrors.CFURLErrorResourceUnavailable.rawValue:
                 //                return ("Server nede","")
-            case CFNetworkErrors.CFURLErrorNotConnectedToInternet.rawValue:
+            case CFNetworkErrors.cfurlErrorNotConnectedToInternet.rawValue:
                 return (NSLocalizedString("not connected to internet alert title", comment: ""), NSLocalizedString("not connected to internet alert message", comment: ""))
-            case CFNetworkErrors.CFURLErrorNetworkConnectionLost.rawValue :
+            case CFNetworkErrors.cfurlErrorNetworkConnectionLost.rawValue :
                 return (NSLocalizedString("lost network connection alert title", comment: ""), NSLocalizedString("lost network connection alert message", comment: ""))
                 //            case CFNetworkErrors.CFURLErrorDataNotAllowed.rawValue:
                 //                return ("Du har skrudd av datatrafikk","")
@@ -230,5 +230,5 @@ class APIError: NSError {
             }
         }
     }
-    var shouldBeShownToUser : Bool = true
+    var shouldBeShownToUser : Bool = false
 }

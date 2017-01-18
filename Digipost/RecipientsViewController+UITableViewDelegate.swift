@@ -15,29 +15,29 @@
 //
 
 extension RecipientViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var found = false
         
-        if searchBar.isFirstResponder() {
-            for (index, r) in addedRecipients.enumerate() {
+        if searchBar.isFirstResponder {
+            for (index, r) in addedRecipients.enumerated() {
                 if r.digipostAddress == recipients[indexPath.row].digipostAddress {
-                    let cell = tableView.cellForRowAtIndexPath(indexPath) as! RecipientTableViewCell
-                    cell.addedButton.hidden = true
-                    NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: r, userInfo: nil)
-                    addedRecipients.removeAtIndex(index)
+                    let cell = tableView.cellForRow(at: indexPath) as! RecipientTableViewCell
+                    cell.addedButton.isHidden = true
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "deleteRecipientNotification"), object: r, userInfo: nil)
+                    addedRecipients.remove(at: index)
                     tableView.reloadData()
                     found = true
                 }
             }
             if found == false {
                 addedRecipients.append(recipients[indexPath.row])
-                NSNotificationCenter.defaultCenter().postNotificationName("addRecipientNotification", object: recipients[indexPath.row], userInfo: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "addRecipientNotification"), object: recipients[indexPath.row], userInfo: nil)
             }
         } else {
-            NSNotificationCenter.defaultCenter().postNotificationName("deleteRecipientNotification", object: addedRecipients[indexPath.row], userInfo: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "deleteRecipientNotification"), object: addedRecipients[indexPath.row], userInfo: nil)
             deletedRecipient = addedRecipients[indexPath.row]
-            addedRecipients.removeAtIndex(indexPath.row)
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            addedRecipients.remove(at: indexPath.row)
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.undoButtonBottomConstraint.constant = 20
                 self.undoButton.layoutIfNeeded()
             })
@@ -46,8 +46,8 @@ extension RecipientViewController: UITableViewDelegate {
         tableView.reloadData()
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRectZero)
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect.zero)
         
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(RecipientViewController.handleSingleTapOnEmptyTableView))
         

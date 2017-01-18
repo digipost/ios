@@ -22,6 +22,6 @@ extension UIImage{
     
     var base64Representation: String{
         let imageData = UIImagePNGRepresentation(self)
-        return imageData!.base64EncodedStringWithOptions(NSDataBase64EncodingOptions())
+        return imageData!.base64EncodedString(options: NSData.Base64EncodingOptions())
     }
 }

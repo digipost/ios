@@ -124,3 +124,6 @@
 
 /* Class = "IBUITextField"; text = "Navn på mappe"; ObjectID = "zkJ-cS-2Jj"; */
 "zkJ-cS-2Jj.text" = "Name";
+
+/* Class = "IBUINavigationItem"; title = "Back"; ObjectID = "Qut-YI-Mcm"; */
+"Qut-YI-Mcm.title" = "Back";

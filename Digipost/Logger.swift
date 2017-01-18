@@ -25,7 +25,7 @@ enum DpostLogSeverity : String {
 
 class Logger {
 
-    private struct Constants {
+    fileprivate struct Constants {
         static let severity = "severity"
         static let message = "message"
 
@@ -43,7 +43,7 @@ class Logger {
     :param: UI             How will it look to the user
     :param: cause          What most likely caused the error
     */
-    class func dpostLogError(description: String, location: String, UI: String, cause: String ) {
+    class func dpostLogError(_ description: String, location: String, UI: String, cause: String ) {
         let message = standardizedMessage(description, location: location, UI: UI, cause: cause)
         dpostLog(.Error, message: message)
     }
@@ -58,23 +58,23 @@ class Logger {
     :param: UI             How will it look to the user
     :param: cause          What most likely caused the warning
     */
-    class func dpostLogWarning(description: String, location: String, UI: String, cause: String ) {
+    class func dpostLogWarning(_ description: String, location: String, UI: String, cause: String ) {
         let message = standardizedMessage(description, location: location, UI: UI, cause: cause)
         dpostLog(.Warn, message: message)
     }
 
-    private class func standardizedMessage(description: String , location: String, UI: String, cause: String) -> String {
+    fileprivate class func standardizedMessage(_ description: String , location: String, UI: String, cause: String) -> String {
         return "Description: \(description) | Location: \(location) | UI: \(UI) | Cause: \(cause)"
     }
 
-    private class func dpostLog(severity: DpostLogSeverity, message: String) {
+    fileprivate class func dpostLog(_ severity: DpostLogSeverity, message: String) {
         let parameters = [ Logger.Constants.severity : severity.rawValue, Logger.Constants.message : message ]
-        APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters)
+        APIClient.sharedClient.postLog(uri: Logger.Constants.uri, parameters: parameters as [String : AnyObject])
     }
 
 }
 
-func DLog(message: String, function: String = #function) {
+func DLog(_ message: String, function: String = #function) {
     #if DEBUG
         print("\(function): \(message)")
     #endif

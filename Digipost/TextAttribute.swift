@@ -21,7 +21,7 @@ struct TextAttribute : CustomDebugStringConvertible {
     var textAlignment : NSTextAlignment?
     var font : UIFont?
 
-    func hasOneOrMoreMatchesWith(textAttribute textAttribute : TextAttribute) -> Bool {
+    func hasOneOrMoreMatchesWith(textAttribute : TextAttribute) -> Bool {
         if self.textAlignment == textAttribute.textAlignment && self.textAlignment != nil  {
             return true
         }
@@ -33,7 +33,7 @@ struct TextAttribute : CustomDebugStringConvertible {
         return false
     }
 
-    func textAttributeByAddingTextAttribute(otherTextAttribute: TextAttribute) -> TextAttribute {
+    func textAttributeByAddingTextAttribute(_ otherTextAttribute: TextAttribute) -> TextAttribute {
         let newFont : UIFont? = {
             if let actualFont = otherTextAttribute.font {
                 return actualFont

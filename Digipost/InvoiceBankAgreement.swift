@@ -31,25 +31,23 @@
         return hasActiveInvoiceAgreement(type1) || hasActiveInvoiceAgreement(type2)
     }
 
-    static func hasActiveInvoiceAgreement(agreementType: String) -> Bool {
-        NSUserDefaults.standardUserDefaults()
-        let defaults = NSUserDefaults.standardUserDefaults()
-        return defaults.boolForKey(agreementType)
+    static func hasActiveInvoiceAgreement(_ agreementType: String) -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.bool(forKey: agreementType)
     }
 
-    static func storeInvoiceAgreement(agreementType: String, agreementActive: Bool) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(agreementActive, forKey: agreementType)
+    static func storeInvoiceAgreement(_ agreementType: String, agreementActive: Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(agreementActive, forKey: agreementType)
     }
 
     static func updateActiveBankAgreementStatus() {        
         if let rootResource: POSRootResource =
-            POSRootResource.existingRootResourceInManagedObjectContext(
-                POSModelManager.sharedManager().managedObjectContext) {
+            POSRootResource.existingRootResource(
+                in: POSModelManager.shared().managedObjectContext) {
             
             if let banksUri = rootResource.banksUri {
-                
-                APIClient.sharedClient.getActiveBanks(banksUri, success: {(jsonData) -> Void in jsonData
+                APIClient.sharedClient.getActiveBanks(banksUri: banksUri, success: {(jsonData) -> Void in
                     
                     var hasFakturaAgreementType1 = false
                     var hasFakturaAgreementType2 = false
@@ -79,8 +77,8 @@
                         agreementActive:hasFakturaAgreementType1)
                     InvoiceBankAgreement.storeInvoiceAgreement(type2,
                         agreementActive:hasFakturaAgreementType2)
-                    
-                    }, failure: ({_ in }))
+
+                }, failure: ({_ in }))
             }
         }
     }

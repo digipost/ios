@@ -29,7 +29,7 @@ extension Array {
         return nil
     }
 
-    func setTextStyleModelEnabledAndAllOthersDisabled(textstyleModel : TextStyleModel) {
+    func setTextStyleModelEnabledAndAllOthersDisabled(_ textstyleModel : TextStyleModel) {
         for object in self {
             if let aTextStyleModel = object as? TextStyleModel {
                 if aTextStyleModel.keyword == textstyleModel.keyword {

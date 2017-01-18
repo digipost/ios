@@ -16,6 +16,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GAI.h"
+@import SafariServices;
 
 // Storyboard identifiers (to enable programmatic storyboard instantiation)
 extern NSString *const kLoginNavigationControllerIdentifier;
@@ -23,6 +24,8 @@ extern NSString *const kLoginViewControllerIdentifier;
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPresentLoginModallyIdentifier;
+extern NSString *const kRegistrationWebViewIdentifier;
+extern NSString *const kForgotPasswordWebViewIdentifier;
 
 // Notification names
 extern NSString *const kShowLoginViewControllerNotificationName;

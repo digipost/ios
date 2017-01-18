@@ -18,7 +18,7 @@ import UIKit
 
 class DimView: UIView {
     
-    private var dimView: UIView!
+    fileprivate var dimView: UIView!
     @IBInspectable var dimColor: UIColor!
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,17 +29,17 @@ class DimView: UIView {
         
         if dimView == nil {
             
-            dimView = UIView(frame: UIScreen.mainScreen().bounds)
+            dimView = UIView(frame: UIScreen.main.bounds)
             dimView.backgroundColor = dimColor
             dimView.alpha = 0
             addSubview(dimView)
             
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.dimView.alpha = 0.5
             })
         } else {
             
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
                 self.dimView.alpha = 0
                 }, completion: { (Bool) -> Void in
                     self.dimView.removeFromSuperview()

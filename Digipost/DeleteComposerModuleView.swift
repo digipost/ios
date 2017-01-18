@@ -26,26 +26,26 @@ class DeleteComposerModuleView: UIView {
     }
     */
     
-    func addToView(view: UIView) {
-        self.frame = CGRectMake(0, view.frame.height, view.frame.width, 71)
+    func addToView(_ view: UIView) {
+        self.frame = CGRect(x: 0, y: view.frame.height, width: view.frame.width, height: 71)
         view.addSubview(self)
     }
 
     func show() {
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.frame.origin.y -= self.frame.height
-            }) { (Bool) -> Void in
+            }, completion: { (Bool) -> Void in
                 
-        }
+        }) 
     }
     
     func hide() {
         
-        UIView.animateWithDuration(0.2, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.frame.origin.y += self.frame.height
-            }) { (Bool) -> Void in
+            }, completion: { (Bool) -> Void in
                 self.removeFromSuperview()
-        }
+        }) 
     }
 }

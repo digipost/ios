@@ -37,7 +37,7 @@ class AccountTableViewCell: UITableViewCell {
         initialLabel.textColor = UIColor.digipostProfileViewInitials()
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
+    override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 

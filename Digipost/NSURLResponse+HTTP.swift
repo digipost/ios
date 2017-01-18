@@ -16,7 +16,7 @@
 
 import UIKit
 
-extension NSHTTPURLResponse {
+extension HTTPURLResponse {
     
     func didSuceed() -> Bool {
         if 200...299 ~= statusCode {

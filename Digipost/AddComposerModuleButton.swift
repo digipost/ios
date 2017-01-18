@@ -27,12 +27,12 @@ private struct AddComposerModuleButtonConstants {
 
 class AddComposerModuleButton: UIButton {
 
-    private var constraintGroup = ConstraintGroup()
+    fileprivate var constraintGroup = ConstraintGroup()
 
-    class func layoutInView(view: UIView) -> AddComposerModuleButton {
-        let addComposerModuleButton = AddComposerModuleButton(frame: CGRectZero)
-        addComposerModuleButton.setTitle("+", forState: .Normal)
-        addComposerModuleButton.backgroundColor = UIColor.blackColor()
+    class func layoutInView(_ view: UIView) -> AddComposerModuleButton {
+        let addComposerModuleButton = AddComposerModuleButton(frame: CGRect.zero)
+        addComposerModuleButton.setTitle("+", for: UIControlState())
+        addComposerModuleButton.backgroundColor = UIColor.black
         view.addSubview(addComposerModuleButton)
         addComposerModuleButton.constraintGroup = constrain(addComposerModuleButton, replace: addComposerModuleButton.constraintGroup) { view in
             view.bottom == view.superview!.bottom - AddComposerModuleButtonConstants.bottomMargin
@@ -45,26 +45,26 @@ class AddComposerModuleButton: UIButton {
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    private func setupKeyboardAnimation(withSuperView: UIView) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    fileprivate func setupKeyboardAnimation(_ withSuperView: UIView) {
+        NotificationCenter.default.addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
-        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
-        let keyboardFrameConvertedToViewFrame = self.superview!.convertRect(keyboardFrame!, fromView: nil)
-        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve))
-        let options = UIViewAnimationOptions.BeginFromCurrentState.union(curveAnimationOption)
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue
+        let keyboardFrameConvertedToViewFrame = self.superview!.convert(keyboardFrame!, from: nil)
+        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve!))
+        let options = UIViewAnimationOptions.beginFromCurrentState.union(curveAnimationOption)
         self.layoutIfNeeded()
         
-        UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.constraintGroup = constrain(self, replace: self.constraintGroup) { view in
                 view.bottom == view.superview!.bottom - keyboardFrameConvertedToViewFrame.size.height - AddComposerModuleButtonConstants.bottomMargin
                 view.right == view.superview!.right - AddComposerModuleButtonConstants.rightMargin
@@ -76,16 +76,16 @@ class AddComposerModuleButton: UIButton {
         }
     }
 
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
-        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSTimeInterval
-        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.intValue
-        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.CGRectValue
-        self.superview!.convertRect(keyboardFrame!, fromView: nil)
-        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve))
-        let options = UIViewAnimationOptions.BeginFromCurrentState.union(curveAnimationOption)
+        let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
+        let keyboardFrame = userInfo[UIKeyboardFrameEndUserInfoKey]?.cgRectValue
+        self.superview!.convert(keyboardFrame!, from: nil)
+        let curveAnimationOption = UIViewAnimationOptions(rawValue: UInt(animationCurve!))
+        let options = UIViewAnimationOptions.beginFromCurrentState.union(curveAnimationOption)
         self.layoutIfNeeded()
-        UIView.animateWithDuration(animationDuration, delay: 0, options:options, animations: { () -> Void in
+        UIView.animate(withDuration: animationDuration, delay: 0, options:options, animations: { () -> Void in
             self.constraintGroup = constrain(self, replace: self.constraintGroup) { view in
                 view.bottom == view.superview!.bottom - AddComposerModuleButtonConstants.bottomMargin
                 view.right == view.superview!.right - AddComposerModuleButtonConstants.rightMargin

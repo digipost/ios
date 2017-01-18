@@ -22,6 +22,12 @@ private struct onboardingViewControllerConstants {
 
 class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
     
+    private lazy var __once: () = {
+            self.setupAnimationViews()
+            // Stor initial consstraint constants for button and login conatiner view
+            self.storeInitialConstraints()
+        }()
+    
     // Backgrounds
     @IBOutlet var bgImageView: UIImageView!
     @IBOutlet var bgMaskImageView: UIImageView!
@@ -36,7 +42,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
     var secondAnimationView: UploadView!
     var thirdAnimationView: ReceiptView!
     @IBOutlet var animationMockView: UIView!
-    var animationViewSetup_dispatch_token: dispatch_once_t = 0
+    var animationViewSetup_dispatch_token: Int = 0
     
     // Login view
     @IBOutlet var loginContainerView: UIView!
@@ -68,33 +74,29 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.screenName = "Onboarding"
-        modalTransitionStyle = UIModalTransitionStyle.CrossDissolve
+        modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         scrollView.delegate = self
         
         welcomeLabel.text = NSLocalizedString("onboarding welcome", comment: "welcome label")
         
-        getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), forState: .Normal)
+        getStartedButton.setTitle(NSLocalizedString("onboarding button", comment: "get started button"), for: UIControlState())
         getStartedButton.accessibilityLabel = "Get started"
         
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         print("rotate view")
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Setup animation views
-        dispatch_once(&animationViewSetup_dispatch_token){
-            self.setupAnimationViews()
-            // Stor initial consstraint constants for button and login conatiner view
-            self.storeInitialConstraints()
-        }
+        _ = self.__once
     }
     
     override func viewDidLayoutSubviews() {
@@ -108,7 +110,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
         
         let pageSize = view.frame.size
         let numOfPages:CGFloat = 5
-        scrollView.contentSize = CGSizeMake(pageSize.width * numOfPages, pageSize.height)
+        scrollView.contentSize = CGSize(width: pageSize.width * numOfPages, height: pageSize.height)
         
         let viewOffset = scrollView.frame.width
         let animationFrame = animationMockView.frame
@@ -129,7 +131,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
         scrollView.addSubview(thirdAnimationView!)
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         panBackground()
         updateAnimationViewProgress()
         pageControl.currentPage = scrollView.currentPage
@@ -144,8 +146,8 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
             logoImageView.center.y = logoInitialPositionY + scrollView.contentOffset.x
             welcomeLabel.center.y = welcomeLabelInitialPositionY + scrollView.contentOffset.x
             logoImageView.alpha = 1 - progress
-            logoImageView.hidden = false
-            welcomeLabel.hidden = false
+            logoImageView.isHidden = false
+            welcomeLabel.isHidden = false
         case 1.0...2.0:
             secondAnimationView.progress =  progress - 1
             firstAnimationView.progress = 2 - progress
@@ -174,21 +176,21 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
             // Fade out on leaving screen bottom
             pageControl.alpha = (4 - progress)
             getStartedButton.alpha = (4 - progress)
-            logoImageView.hidden = true
-            welcomeLabel.hidden = true
+            logoImageView.isHidden = true
+            welcomeLabel.isHidden = true
             
         default: break
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == onboardingViewControllerConstants.showOnboardingLoginViewControllerSegue {
-            onboardingLoginViewController = segue.destinationViewController as? OnboardingLoginViewController
+            onboardingLoginViewController = segue.destination as? OnboardingLoginViewController
         }
     }
     
-    @IBAction func getStartedButtonAction(sender: AnyObject) {
-        let lastPageRect = CGRectMake(0, 0, scrollView.pageSize.width*5, scrollView.pageSize.height)
+    @IBAction func getStartedButtonAction(_ sender: AnyObject) {
+        let lastPageRect = CGRect(x: 0, y: 0, width: scrollView.pageSize.width*5, height: scrollView.pageSize.height)
         scrollView.scrollRectToVisible(lastPageRect, animated: true)
     }
 
@@ -215,12 +217,12 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
         var backgroundParallaxSpeed:CGFloat!
         var mountainParallaxSpeed: CGFloat!
         
-        let device = UIDevice.currentDevice().userInterfaceIdiom
+        let device = UIDevice.current.userInterfaceIdiom
         switch device {
-        case .Phone:
+        case .phone:
             backgroundParallaxSpeed = 0.5
             mountainParallaxSpeed = 0.57
-        case .Pad:
+        case .pad:
             backgroundParallaxSpeed = 0.1
             mountainParallaxSpeed = 0.13
         default: break
@@ -229,20 +231,20 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
         return (backgroundParallaxSpeed, mountainParallaxSpeed)
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        let device = UIDevice.currentDevice().userInterfaceIdiom
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask {
+        let device = UIDevice.current.userInterfaceIdiom
         
         switch device {
-        case .Phone:
-            return UIInterfaceOrientationMask.Portrait
-        case .Pad:
-            return UIInterfaceOrientationMask.Landscape
+        case .phone:
+            return UIInterfaceOrientationMask.portrait
+        case .pad:
+            return UIInterfaceOrientationMask.landscape
         default:
-            return UIInterfaceOrientationMask.Portrait
+            return UIInterfaceOrientationMask.portrait
         }
     }
     
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return true
     }
     

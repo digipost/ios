@@ -18,29 +18,29 @@ import UIKit
 
 extension ComposerViewController : UITableViewDataSource {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var rowCount = composerModules.count
-        rowCount = tableView.adjustedValueForReorderingOfRowCount(rowCount, forSection: section)
+        rowCount = tableView.adjustedValueForReordering(ofRowCount: rowCount, forSection: section)
         return rowCount
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let indexPathFromVisibleIndexPath = tableView.dataSourceIndexPathFromVisibleIndexPath(indexPath)
+        let indexPathFromVisibleIndexPath = tableView.dataSourceIndexPath(fromVisibleIndexPath: indexPath)
         
         let module = composerModules[indexPath.row]
         
         let cell : UITableViewCell = {
             if let imageModule = module as? ImageComposerModule {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.imageModuleCellIdentifier, forIndexPath: indexPath) as! ImageModuleTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Composer.imageModuleCellIdentifier, for: indexPath) as! ImageModuleTableViewCell
                 self.configureImageModuleCell(cell, withModule: imageModule)
                 return cell
             } else if let textModule = module as? TextComposerModule {
-                let cell = tableView.dequeueReusableCellWithIdentifier(Constants.Composer.textModuleCellIdentifier, forIndexPath: indexPath) as! TextModuleTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Composer.textModuleCellIdentifier, for: indexPath) as! TextModuleTableViewCell
                 self.configureTextModuleCell(cell, withModule: textModule)
                 cell.moduleTextView.tag = indexPath.row
                 return cell
@@ -50,39 +50,39 @@ extension ComposerViewController : UITableViewDataSource {
             }
         }()
         
-        if tableView.shouldSubstitutePlaceHolderForCellBeingMovedAtIndexPath(indexPathFromVisibleIndexPath){
-            cell.hidden = true
+        if tableView.shouldSubstitutePlaceHolderForCellBeingMoved(at: indexPathFromVisibleIndexPath){
+            cell.isHidden = true
         }
         return cell
     }
     
-    func configureImageModuleCell(cell: ImageModuleTableViewCell, withModule module: ImageComposerModule){
+    func configureImageModuleCell(_ cell: ImageModuleTableViewCell, withModule module: ImageComposerModule){
         cell.moduleImageView.image = module.image
     }
     
-    func configureTextModuleCell(cell: TextModuleTableViewCell, withModule module: TextComposerModule){
+    func configureTextModuleCell(_ cell: TextModuleTableViewCell, withModule module: TextComposerModule){
         cell.moduleTextView.attributedText = module.attributedText
         cell.moduleTextView.delegate = self
     }
     
-    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        let rowToMove = composerModules.removeAtIndex(sourceIndexPath.row)
-        composerModules.insert(rowToMove, atIndex: destinationIndexPath.row)
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let rowToMove = composerModules.remove(at: sourceIndexPath.row)
+        composerModules.insert(rowToMove, at: destinationIndexPath.row)
         tableView.reloadData()
-        let cell = tableView.cellForRowAtIndexPath(destinationIndexPath) as? TextModuleTableViewCell
+        let cell = tableView.cellForRow(at: destinationIndexPath) as? TextModuleTableViewCell
         cell?.moduleTextView.becomeFirstResponder()
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            composerModules.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
-        } else if editingStyle == UITableViewCellEditingStyle.Insert{
-            if let cell = tableView.cellForRowAtIndexPath(indexPath) as? TextModuleTableViewCell{
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            composerModules.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableViewRowAnimation.fade)
+        } else if editingStyle == UITableViewCellEditingStyle.insert{
+            if let cell = tableView.cellForRow(at: indexPath) as? TextModuleTableViewCell{
                 configureTextModuleCell(cell, withModule: composerModule(atIndexPath: indexPath) as! TextComposerModule)
             }
             
@@ -90,25 +90,25 @@ extension ComposerViewController : UITableViewDataSource {
     }
     
     // MARK: - Helper Functions
-    func composerModule(atIndexPath atIndexPath: NSIndexPath) -> ComposerModule? {
+    func composerModule(atIndexPath: IndexPath) -> ComposerModule? {
         return composerModules[atIndexPath.row]
     }
     
-    func indexPath(module module: ComposerModule) -> NSIndexPath? {
+    func indexPath(module: ComposerModule) -> IndexPath? {
         return {
-            for (index, tableViewModule) in self.composerModules.enumerate() {
+            for (index, tableViewModule) in self.composerModules.enumerated() {
                 if tableViewModule.isEqual(module) {
-                    return NSIndexPath(forRow: index, inSection: 0)
+                    return IndexPath(row: index, section: 0)
                 }
             }
             return nil
             }()
     }
     
-    func resizeHeight(height: CGFloat, forCellAtRow row: Int) {
-        let indexPath = NSIndexPath(forRow: row, inSection: 0)
+    func resizeHeight(_ height: CGFloat, forCellAtRow row: Int) {
+        let indexPath = IndexPath(row: row, section: 0)
         tableView.beginUpdates()
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! TextModuleTableViewCell
+        let cell = tableView.cellForRow(at: indexPath) as! TextModuleTableViewCell
         cell.frame.size.height = height
         tableView.endUpdates()
     }

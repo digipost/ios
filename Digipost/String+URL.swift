@@ -17,17 +17,17 @@
 import Foundation
 extension String {
     
-    func urlRepresentation() -> NSURL{
-        return NSURL(fileURLWithPath: self)
+    func urlRepresentation() -> URL{
+        return URL(fileURLWithPath: self)
     }
 
     func stringByAddingPercentEncodingForURLQueryValue() -> String? {
-        let allowedCharacters = NSCharacterSet(charactersInString: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
+        let allowedCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
         
-        return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)
+        return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)
     }
     
-    func getURLStringWithQueryParametersFrom(parameters: [String: String]) -> String {
+    func getURLStringWithQueryParametersFrom(_ parameters: [String: String]) -> String {
         return self + "?" + parameters.stringFromHttpParameters()
     }
 }

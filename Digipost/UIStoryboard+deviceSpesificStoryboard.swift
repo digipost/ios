@@ -18,13 +18,13 @@ import Foundation
 
 extension UIStoryboard {
     class func storyboardForCurrentUserInterfaceIdiom() -> UIStoryboard {
-        let device = UIDevice.currentDevice().userInterfaceIdiom
+        let device = UIDevice.current.userInterfaceIdiom
         switch device {
-        case .Phone:
+        case .phone:
             return UIStoryboard(name: "Main_iPhone", bundle: nil) 
-        case .Pad:
+        case .pad:
             return UIStoryboard(name: "Main_iPad", bundle: nil)
-        case .Unspecified:
+        case .unspecified:
             return UIStoryboard(name: "Main_iPhone", bundle: nil)
         default:
             return UIStoryboard(name: "Main_iPhone", bundle: nil)

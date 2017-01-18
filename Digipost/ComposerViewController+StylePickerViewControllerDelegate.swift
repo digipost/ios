@@ -18,13 +18,13 @@ import UIKit
 
 extension ComposerViewController : StylePickerViewControllerDelegate {
 
-    func stylePickerViewControllerDidSelectStyle(stylePickerViewController: StylePickerViewController, textStyleModel: TextStyleModel, enabled: Bool) {
+    func stylePickerViewControllerDidSelectStyle(_ stylePickerViewController: StylePickerViewController, textStyleModel: TextStyleModel, enabled: Bool) {
         if let (composerModule, textView) = self.currentEditingComposerModuleAndTextView() {
             self.setStyle(textStyleModel, forComposerModule: composerModule, textView: textView)
         }
     }
 
-    func setStyle(textStyleModel: TextStyleModel, forComposerModule composerModule: TextComposerModule, textView: UITextView, range : NSRange? = nil) {
+    func setStyle(_ textStyleModel: TextStyleModel, forComposerModule composerModule: TextComposerModule, textView: UITextView, range : NSRange? = nil) {
         let selectionRange = range != nil ? range : textView.selectedRange
         
         var setAttributes : [String : AnyObject]? = nil

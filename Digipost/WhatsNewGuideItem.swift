@@ -39,13 +39,13 @@ class WhatsNewGuideItem {
         }
     }
     
-    class func nameForIndex(index: Int) -> String {
+    class func nameForIndex(_ index: Int) -> String {
         var languageString = ""
-        switch UIDevice.currentDevice().userInterfaceIdiom {
-        case .Pad:
+        switch UIDevice.current.userInterfaceIdiom {
+        case .pad:
             languageString = NSLocalizedString("language", tableName: GuideConstants.whatsNewTableName, comment: "language for image")
             return "\(languageString)-\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-ipad"
-        case .Phone:
+        case .phone:
             languageString = NSLocalizedString("language", tableName: GuideConstants.whatsNewTableName, comment: "language for image")
             return "\(languageString)-\(guideItemNameForIndexWithoutUserInterfaceIdiom(index))-iphone"
         default:
@@ -54,7 +54,7 @@ class WhatsNewGuideItem {
         }
     }
     
-    class func guideItemNameForIndexWithoutUserInterfaceIdiom(index: Int) -> String {
+    class func guideItemNameForIndexWithoutUserInterfaceIdiom(_ index: Int) -> String {
         return "\(Guide.versionStringWithDashesInsteadOfPeriods)_\(index)"
     }
 }

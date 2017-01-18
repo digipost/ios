@@ -134,4 +134,8 @@
 /* Class = "IBUILabel"; text = "Label"; ObjectID = "xdL-zR-hvc"; */
 "xdL-zR-hvc.text" = "Label";
 
+/* Class = "IBUINavigationItem"; title = "Close"; ObjectID = "Oan-9k-fhE"; */
+"Oan-9k-fhE.title" = "Back";
+
+
 

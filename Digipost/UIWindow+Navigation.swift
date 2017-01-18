@@ -43,7 +43,7 @@ extension UIWindow {
     
     func hasCorrectNavigationHierarchyForShowingDocuments() -> Bool {
         let returnValue = false
-        if (UIDevice.currentDevice().userInterfaceIdiom == .Pad ){
+        if (UIDevice.current.userInterfaceIdiom == .pad ){
             let navigationController = topMasterNavigationController()
             if let viewControllers = navigationController?.viewControllers as NSArray? {
                 if (viewControllers.count == 3){

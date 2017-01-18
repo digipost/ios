@@ -34,7 +34,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         if let firstVC: UIViewController = navigationController?.viewControllers[0] {
             if firstVC.navigationItem.rightBarButtonItem == nil {
-                firstVC.navigationItem.setRightBarButtonItem(logoutBarButtonItem, animated: false)
+                firstVC.navigationItem.setRightBarButton(logoutBarButtonItem, animated: false)
             }
             firstVC.navigationItem.leftBarButtonItem = nil
             firstVC.navigationItem.rightBarButtonItem = nil
@@ -42,38 +42,36 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
             
         }
         
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            if let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext) {
-                if rootResource == true {
-                    performSegueWithIdentifier("gotoDocumentsFromAccountsSegue", sender: self)
-                }
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            if POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) != nil{
+                performSegue(withIdentifier: "gotoDocumentsFromAccountsSegue", sender: self)
             }
         }
         
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = UIColor.digipostGreyOne()
-        refreshControl?.addTarget(self, action: #selector(AccountViewController.refreshContentFromServer), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl?.addTarget(self, action: #selector(AccountViewController.refreshContentFromServer), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl!)
         
         // Configure Tableview
         
-        tableView.registerNib(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
-        tableView.registerNib(UINib(nibName: Constants.Account.accountCellNibName, bundle: NSBundle.mainBundle()), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
+        tableView.register(UINib(nibName: Constants.Account.mainAccountCellNibName, bundle: Bundle.main), forCellReuseIdentifier: Constants.Account.mainAccountCellIdentifier)
+        tableView.register(UINib(nibName: Constants.Account.accountCellNibName, bundle: Bundle.main), forCellReuseIdentifier: Constants.Account.accountCellIdentifier)
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 160
         tableView.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         tableView.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         
-        let tblView = UIView(frame: CGRectZero)
+        let tblView = UIView(frame: CGRect.zero)
         tableView.tableFooterView = tblView
-        tableView.tableFooterView?.hidden = true
+        tableView.tableFooterView?.isHidden = true
         tableView.backgroundColor = UIColor.digipostAccountViewBackground()
         
         dataSource = AccountTableViewDataSource(asDataSourceForTableView: tableView)
         tableView.delegate = self
         
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
         appDelegate.initGCM();
     }
     
@@ -81,39 +79,39 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         updateContentsFromServerUseInitiateRequest(0)
     }
     
-    func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return false
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .Plain, target: nil, action: nil)
-        self.navigationController?.navigationBarHidden = false
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+        self.navigationController?.isNavigationBarHidden = false
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
         
-        logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), forState: .Normal)
-        logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), forState: .Normal)
+        logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), for: UIControlState())
+        logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), for: UIControlState())
         
         if let showingItem: UINavigationItem = navigationController?.navigationBar.backItem {
-            if showingItem.respondsToSelector(Selector("setRightBarButtonItem:")) {
-                showingItem.setRightBarButtonItem(logoutBarButtonVariable, animated: false)
+            if showingItem.responds(to: #selector(setter: UINavigationItem.rightBarButtonItem)) {
+                showingItem.setRightBarButton(logoutBarButtonVariable, animated: false)
             }
             
             showingItem.title = title
         }
         
         navigationItem.setHidesBackButton(true, animated: false)
-        navigationController?.navigationBar.topItem?.setRightBarButtonItem(logoutBarButtonItem, animated: false)
+        navigationController?.navigationBar.topItem?.setRightBarButton(logoutBarButtonItem, animated: false)
         navigationController?.navigationBar.topItem?.title = title
         
         if OAuthToken.isUserLoggedIn() == false {
-            NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
         } else {
             if (OAuthToken.isUserLoggedIn()) {
                 updateContentsFromServerUseInitiateRequest(0)
@@ -121,10 +119,10 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }
     }
     
-    func updateContentsFromServerUseInitiateRequest(userDidInitiateRequest: Int) {
+    func updateContentsFromServerUseInitiateRequest(_ userDidInitiateRequest: Int) {
         
         APIClient.sharedClient.updateRootResource(success: { (responseDictionary) -> Void in
-            POSModelManager.sharedManager().updateRootResourceWithAttributes(responseDictionary)
+            POSModelManager.shared().updateRootResource(attributes: responseDictionary)
             if let actualRefreshControl = self.refreshControl {
                 actualRefreshControl.endRefreshing()
             }
@@ -141,40 +139,40 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     // MARK: - TableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell: UITableViewCell = tableView.cellForRow(at: indexPath)!
         cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
-        performSegueWithIdentifier("PushFolders", sender: self)
+        performSegue(withIdentifier: "PushFolders", sender: self)
     }
     
-    func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell: UITableViewCell = tableView.cellForRowAtIndexPath(indexPath)!
+    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        let cell: UITableViewCell = tableView.cellForRow(at: indexPath)!
         cell.contentView.backgroundColor = UIColor.digipostAccountCellSelectBackground()
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.layoutMargins = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
         cell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PushFolders" {
             let mailbox: POSMailbox = dataSource?.managedObjectAtIndexPath(tableView.indexPathForSelectedRow!) as! POSMailbox
-            let folderViewController: POSFoldersViewController = segue.destinationViewController as! POSFoldersViewController
+            let folderViewController: POSFoldersViewController = segue.destination as! POSFoldersViewController
             folderViewController.selectedMailBoxDigipostAdress = mailbox.digipostAddress
-            POSModelManager.sharedManager().selectedMailboxDigipostAddress = mailbox.digipostAddress
-            tableView.deselectRowAtIndexPath(tableView.indexPathForSelectedRow!, animated: true)
+            POSModelManager.shared().selectedMailboxDigipostAddress = mailbox.digipostAddress
+            tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
             
         } else if segue.identifier == "gotoDocumentsFromAccountsSegue" {
-            let documentsView: POSDocumentsViewController = segue.destinationViewController as! POSDocumentsViewController
-            let rootResource: POSRootResource = POSRootResource.existingRootResourceInManagedObjectContext(POSModelManager.sharedManager().managedObjectContext)
+            let documentsView: POSDocumentsViewController = segue.destination as! POSDocumentsViewController
+            let rootResource: POSRootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
             let nameDescriptor: NSSortDescriptor = NSSortDescriptor(key: "owner", ascending: true)
             
             let set = rootResource.mailboxes as NSSet
             let mailboxes = set.allObjects as NSArray
-            mailboxes.sortedArrayUsingDescriptors([nameDescriptor])
+            mailboxes.sortedArray(using: [nameDescriptor])
             
             let userMailbox: POSMailbox = mailboxes[0] as! POSMailbox
             documentsView.mailboxDigipostAddress = userMailbox.digipostAddress
@@ -184,31 +182,24 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     
     // MARK: - Logout
     
-    @IBAction func logoutButtonTapped(sender: UIButton) {
+    @IBAction func logoutButtonTapped(_ sender: UIButton) {
         logoutUser()
     }
     
     func logoutUser() {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            UIAlertView.showWithTitle(NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", cancelButtonTitle: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), otherButtonTitles:[NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out")], tapBlock: { (alert: UIAlertView!, buttonIndex: Int) -> Void in
-                if buttonIndex == 1 {
-                    self.userDidConfirmLogout()
-                }
-            })
-        } else {
-            let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You you sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
-            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .Destructive,handler: {(alert: UIAlertAction!) in
-                self.userDidConfirmLogout()
-            }))
-            
-            logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.Cancel, handler: {(alert: UIAlertAction!) in }))
-            
-            presentViewController(logoutAlertController, animated: true, completion: nil)
-        }
+        let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .destructive,handler: {(alert: UIAlertAction!) in
+            self.userDidConfirmLogout()
+        }))
+        
+        logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))
+        
+        present(logoutAlertController, animated: true, completion: nil)
     }
     
     func userDidConfirmLogout() {
-        let appDelegate: SHCAppDelegate = UIApplication.sharedApplication().delegate as! SHCAppDelegate
+        let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
         appDelegate.revokeGCMToken();
         
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
@@ -218,7 +209,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         dataSource?.stopListeningToCoreDataChanges()
-        NSNotificationCenter.defaultCenter().postNotificationName(kShowLoginViewControllerNotificationName, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
     }
     
     

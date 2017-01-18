@@ -18,12 +18,12 @@ import Foundation
 
 class Badge{
     
-    class func setCombinedUnreadLettersBadge(mailboxes : [POSMailbox]){
+    class func setCombinedUnreadLettersBadge(_ mailboxes : [POSMailbox]){
         var combinedUnreadLetters = 0
         for mailbox in mailboxes{
             combinedUnreadLetters += mailbox.unreadItemsInInbox as Int
         }
-        UIApplication.sharedApplication().applicationIconBadgeNumber = combinedUnreadLetters;
+        UIApplication.shared.applicationIconBadgeNumber = combinedUnreadLetters;
     }
     
 }

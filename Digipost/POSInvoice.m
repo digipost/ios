@@ -18,6 +18,7 @@
 #import "POSAttachment.h"
 #import "NSString+Convenience.h"
 #import "POSModelManager.h"
+#import "Digipost-Swift.h"
 
 // Core Data model entity names
 NSString *const kInvoiceEntityName = @"Invoice";
@@ -28,6 +29,7 @@ NSString *const kInvoiceLinkSendToBankAPIKeySuffix = @"send_to_bank";
 NSString *const kInvoicePaymentAPIKey = @"payment";
 NSString *const kInvoicePaymentLinkAPIKey = @"link";
 NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
+NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
 
 @implementation POSInvoice
 
@@ -40,6 +42,7 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
 @dynamic sendToBankUri;
 @dynamic timePaid;
 @dynamic bankHomepage;
+@dynamic bankName;
 
 // Relationships
 @dynamic attachment;
@@ -96,16 +99,25 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
             }
         }
     }
+    
+    
+    
+    NSString *bankName = attributes[kInvoicePaymentBankNameAPIKeySuffix];
+    invoice.bankName = [kid isKindOfClass:[NSString class]] ? bankName : @"";
 
     NSDictionary *paymentDict = attributes[kInvoicePaymentAPIKey];
     if ([paymentDict isKindOfClass:[NSDictionary class]]) {
         NSString *timePaidString = paymentDict[NSStringFromSelector(@selector(timePaid))];
+        
         if ([timePaidString isKindOfClass:[NSString class]]) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             dateFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ";
             invoice.timePaid = [dateFormatter dateFromString:timePaidString];
         }
-
+        
+        NSString *paymentBankName = paymentDict[kInvoicePaymentBankNameAPIKeySuffix];
+        invoice.bankName = [kid isKindOfClass:[NSString class]] ? paymentBankName : invoice.bankName;
+        
         NSArray *links = paymentDict[kInvoicePaymentLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {
             for (NSDictionary *link in links) {
@@ -121,17 +133,27 @@ NSString *const kInvoicePaymentBankHomepageAPIKeySuffix = @"bank_homepage";
             }
         }
     }
-
+    
     return invoice;
 }
 
 - (NSString *)statusDescriptionText
-{
-    if (self.timePaid) {
-        return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_DESCRIPTION", @"Sendt til nettbanken");
-    } else {
-        return nil;
+{    
+    if([InvoiceBankAgreement hasActiveAgreementType1]){
+        if (self.timePaid) {
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCESSED", @""),[self bankName]];
+        }else{
+            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCESSED", @"");
+        }
+    }else if([InvoiceBankAgreement hasActiveAgreementType2]){
+        if (self.timePaid) {
+            return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCESSED", @""),[self bankName]];
+        }else{
+            return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED", @"");
+        }
     }
+    
+    return nil;
 }
 
 + (NSString *)stringForInvoiceAmount:(NSNumber *)amount

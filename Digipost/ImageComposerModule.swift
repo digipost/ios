@@ -28,7 +28,7 @@ class ImageComposerModule: ComposerModule {
     
     override func htmlRepresentation() -> NSString {
         let cssClass = "image"
-        return "<img class=\"\(cssClass)\" src=\"data:image/png;base64,\(image.base64Representation)\" alt=\"html_inline_image.png\" title=\"html_inline_image.png\">"
+        return "<img class=\"\(cssClass)\" src=\"data:image/png;base64,\(image.base64Representation)\" alt=\"html_inline_image.png\" title=\"html_inline_image.png\">" as NSString
     }
     
 }

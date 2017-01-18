@@ -140,9 +140,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
-
     [self reloadFromMetadata];
-
+    [InvoiceBankAgreement updateActiveBankAgreementStatus];
+    
     [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
@@ -664,7 +664,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSURLRequest *request = [NSURLRequest requestWithURL:fileURL];
         [self.webView loadRequest:request];
     }
-    [self showInvoiceSetupAlert];
+    [self showInvoiceSetupAlertIfNoActiveAgreements];
     [self removeUnlockViewIfPresent];
 }
 
@@ -1170,7 +1170,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if(self.attachment.hasValidToPayInvoice){
         if(self.attachment.invoice != nil){
             title = NSLocalizedString(@"invoice delete dialog title", @"Delete invoice");
-            if(self.attachment.invoice.timePaid){
+            
+            if(self.attachment.invoice.timePaid == nil) {
                 message = NSLocalizedString(@"invoice delete dialog unpaid message", @"Delete invoice message");
                 deleteButtonText = NSLocalizedString(@"invoice delete dialog unpaid delete button", @"Confirme delete invoice");
                 cancelButtonText = NSLocalizedString(@"invoice delete dialog unpaid cancel button", @"Cancel delete invoice");
@@ -1202,46 +1203,48 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     [self showBlurredActionSheetWithFolders];
 }
 
-- (void)showInvoiceSetupAlert{
+- (void)showInvoiceSetupAlertIfNoActiveAgreements{
     
     BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
     BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
-
     if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
-            
-            UIAlertController * alert = [UIAlertController
-                                         alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
-                                         message:NSLocalizedString(@"invoice setup alert message", @"")
-                                         preferredStyle:UIAlertControllerStyleAlert];
-            
-            UIAlertAction* chooseBank = [UIAlertAction
-                                         actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
-                                         style:UIAlertActionStyleDefault
-                                         handler:^(UIAlertAction * action) {
-                                             [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
-                                             [self didTapChooseBankButton];
-                                         }];
-            
-            UIAlertAction* later = [UIAlertAction
-                                    actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
-                                    style:UIAlertActionStyleDefault
-                                    handler:^(UIAlertAction * action) {
-                                        [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
-                                    }];
-            
-            UIAlertAction* forget = [UIAlertAction
-                                     actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
-                                     style:UIAlertActionStyleDefault
-                                     handler:^(UIAlertAction * action) {
-                                         [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
-                                         [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
-                                     }];
-            
-            [alert addAction:chooseBank];
-            [alert addAction:later];
-            [alert addAction:forget];
-            [self presentViewController:alert animated:YES completion:nil];
+        [self showInvoiceSetupAlert];
     }
+}
+
+-(void)showInvoiceSetupAlert {
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
+                                 message:NSLocalizedString(@"invoice setup alert message", @"")
+                                 preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* chooseBank = [UIAlertAction
+                                 actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * action) {
+                                     [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
+                                     [self didTapChooseBankButton];
+                                 }];
+    
+    UIAlertAction* later = [UIAlertAction
+                            actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
+                            style:UIAlertActionStyleDefault
+                            handler:^(UIAlertAction * action) {
+                                [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
+                            }];
+    
+    UIAlertAction* forget = [UIAlertAction
+                             actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action) {
+                                 [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
+                                 [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
+                             }];
+    
+    [alert addAction:chooseBank];
+    [alert addAction:later];
+    [alert addAction:forget];
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (UIViewController*) topMostController {
@@ -1267,12 +1270,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         dateFormatter.timeStyle = NSDateFormatterNoStyle;
-
-        NSString *timePaid = [dateFormatter stringFromDate:self.attachment.invoice.timePaid];
-
-        NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
-        message = [NSString stringWithFormat:format, timePaid];
-
+        
+        NSString *paidMessage = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
+        message = [NSString stringWithFormat:paidMessage, self.attachment.invoice.bankName];
+        
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE", @"Go to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
     } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
@@ -1281,15 +1282,19 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSString *bankAccountNumber = self.attachment.document.folder.mailbox.rootResource.currentBankAccount ?: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER", @"unknown bank account number");
 
         NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message");
-        message = [NSString stringWithFormat:format, bankAccountNumber];
+        
+        NSString *bankLine = [NSString stringWithFormat:@"\%@ \n%@", self.attachment.invoice.bankName, bankAccountNumber];
+        message = [NSString stringWithFormat:format, bankLine];
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-    } else {
-        title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_TITLE", @"Send to bank");
-        message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAYMENT_TIPS_MESSAGE", @"Payment tips message");
-
-        actionButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+    
+    } else if([InvoiceBankAgreement hasActiveAgreementType2]){
+        [self showReadyToPaymentAgreementType2Popup];
+        return;
+    }else {
+        [self showInvoiceSetupAlert];
+        return;
     }
 
     [UIAlertView showWithTitle:title
@@ -1300,7 +1305,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                         if (buttonIndex > 0) {
                             if (self.attachment.invoice.timePaid) {
                                 NSURL *url = [NSURL URLWithString:self.attachment.invoice.bankHomepage];
-                                [[UIApplication sharedApplication] openURL:url];
+                                [[UIApplication sharedApplication] openURL:url]; //Opens external bank website, should be opened in external browser
                             } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
                                 [self sendInvoiceToBank];
                             }
@@ -1308,6 +1313,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                       }];
 }
 
+-(void)showReadyToPaymentAgreementType2Popup {
+    NSString *title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_TITLE", @"Klar til betaling");
+    NSString *message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_MESSAGE", @"Klar til betaling hos bank");
+    NSString *cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
+    
+    [UIAlertView showWithTitle: title message: message cancelButtonTitle: cancelButtonTitle otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {}];
+    
+}
 
 - (void)setInfoViewVisible:(BOOL)visible
 {

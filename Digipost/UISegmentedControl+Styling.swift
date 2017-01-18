@@ -19,24 +19,24 @@ import UIKit
 extension UISegmentedControl {
 
     func removeBorders() {
-        setBackgroundImage(imageWithColor(UIColor.whiteColor()), forState: .Normal, barMetrics: .Default)
-        setBackgroundImage(imageWithColor(tintColor!), forState: .Selected, barMetrics: .Default)
-        setDividerImage(imageWithColor(UIColor.clearColor()), forLeftSegmentState: .Normal, rightSegmentState: .Normal, barMetrics: .Default)
+        setBackgroundImage(imageWithColor(UIColor.white), for: UIControlState(), barMetrics: .default)
+        setBackgroundImage(imageWithColor(tintColor!), for: .selected, barMetrics: .default)
+        setDividerImage(imageWithColor(UIColor.clear), forLeftSegmentState: UIControlState(), rightSegmentState: UIControlState(), barMetrics: .default)
     }
 
     func setupWithDigipostFont() {
-        let font = UIFont.boldSystemFontOfSize(19)
+        let font = UIFont.boldSystemFont(ofSize: 19)
         let attributes = [NSFontAttributeName : font]
-        self.setTitleTextAttributes(attributes, forState: .Normal)
+        self.setTitleTextAttributes(attributes, for: UIControlState())
     }
 
     // create a 1x1 image with this color
-    private func imageWithColor(color: UIColor) -> UIImage {
-        let rect = CGRectMake(0.0, 0.0, 1.0, 1.0)
+    fileprivate func imageWithColor(_ color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 1.0)
         UIGraphicsBeginImageContext(rect.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetFillColorWithColor(context!, color.CGColor);
-        CGContextFillRect(context!, rect);
+        context!.setFillColor(color.cgColor);
+        context!.fill(rect);
         let image = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         return image!

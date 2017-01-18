@@ -21,13 +21,13 @@ class ComposerPresentationController: UIPresentationController {
     var preferredHeight : CGFloat?
     var preferredYOrigin : CGFloat?
 
-    override func shouldPresentInFullscreen() -> Bool {
+    override var shouldPresentInFullscreen : Bool {
         return false
     }
 
-    override func frameOfPresentedViewInContainerView() -> CGRect {
-        let bounds = UIScreen.mainScreen().bounds
-        return CGRectMake(0, 400, bounds.size.width, 300)
+    override var frameOfPresentedViewInContainerView : CGRect {
+        let bounds = UIScreen.main.bounds
+        return CGRect(x: 0, y: 400, width: bounds.size.width, height: 300)
     }
 
     override func presentationTransitionWillBegin() {

@@ -16,6 +16,6 @@
 
 @objc(GCMToken)
 class GCMToken :  NSManagedObject {
-    @NSManaged var date:  NSDate
+    @NSManaged var date:  Date
     @NSManaged var token: String
 }

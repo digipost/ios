@@ -62,6 +62,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 @end
 
+@interface SHCLoginViewController () <SFSafariViewControllerDelegate>
+@end
+
 @implementation POSFoldersViewController
 
 #pragma mark - UIViewController
@@ -503,11 +506,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                     case 2: {
                         [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
 
-                        break;
-                    } break;
-                    case 3: {
-                        NSURL *url = [[NSURL alloc] initWithString:@"http://labs.digipost.no"];
-                        [[UIApplication sharedApplication] openURL:url];
                         break;
                     }
                     default:

@@ -23,17 +23,17 @@ private struct OAuthTokenIdTokenConstants {
 
 extension OAuthToken {
     
-    class func isIdTokenValid(idToken : String?, nonce : String) -> Bool {
+    class func isIdTokenValid(_ idToken : String?, nonce : String) -> Bool {
         if (idToken != nil) {
-            let idTokenContentArray  = idToken?.componentsSeparatedByString(".")
+            let idTokenContentArray  = idToken?.components(separatedBy: ".")
             if idTokenContentArray?.count == 2 {
                 if let base64EncodedJson = idTokenContentArray?[1] {
                     var numberOfCharactersAdded = 0
                     var alteredBase64EncodedJson = base64EncodedJson
-                    var base64Data : NSData?
+                    var base64Data : Data?
                     while base64Data == nil {
-                        base64Data = NSData(base64EncodedString: alteredBase64EncodedJson, options: NSDataBase64DecodingOptions.IgnoreUnknownCharacters)
-                        alteredBase64EncodedJson = alteredBase64EncodedJson.stringByAppendingString("=")
+                        base64Data = Data(base64Encoded: alteredBase64EncodedJson, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
+                        alteredBase64EncodedJson = alteredBase64EncodedJson + "="
                         numberOfCharactersAdded += 1
                         if numberOfCharactersAdded > 2 {
                             return false
@@ -41,7 +41,7 @@ extension OAuthToken {
                     }
                     
                     do{
-                        if let jsonDictionary = try NSJSONSerialization.JSONObjectWithData(base64Data!, options: NSJSONReadingOptions.AllowFragments) as? [String : AnyObject] {
+                        if let jsonDictionary = try JSONSerialization.jsonObject(with: base64Data!, options: JSONSerialization.ReadingOptions.allowFragments) as? [String : AnyObject] {
                             if let aud = jsonDictionary[OAuthTokenIdTokenConstants.aud] as? String, let nonceInJson = jsonDictionary[OAuthTokenIdTokenConstants.nonce] as? String {
                                 if aud != OAUTH_CLIENT_ID {
                                     return false

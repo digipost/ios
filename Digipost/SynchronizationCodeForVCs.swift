@@ -22,7 +22,7 @@ public protocol TryLockable: NSLocking {
 
 extension NSLock: TryLockable {}
 
-public func trySynchronized<L: TryLockable>(lockable: L, criticalSection: () -> ()) -> Bool {
+public func trySynchronized<L: TryLockable>(_ lockable: L, criticalSection: () -> ()) -> Bool {
     if !lockable.tryLock() {
         return false
     }
@@ -31,7 +31,7 @@ public func trySynchronized<L: TryLockable>(lockable: L, criticalSection: () -> 
     return true
 }
 
-public func synchronized<L: NSLocking>(lockable: L, criticalSection: () -> ()) {
+public func synchronized<L: NSLocking>(_ lockable: L, criticalSection: () -> ()) {
     lockable.lock()
     criticalSection()
     lockable.unlock()

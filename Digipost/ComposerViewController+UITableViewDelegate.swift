@@ -28,8 +28,8 @@ struct ComposerViewControllerDelegateConstants {
 extension ComposerViewController {
 
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableView.editing == true {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView.isEditing == true {
             return 88
         } else {
             let module = composerModule(atIndexPath: indexPath)
@@ -45,15 +45,15 @@ extension ComposerViewController {
         return 44
     }
     
-    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.None
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.none
     }
 
-    func height(textComposerModule textComposerModule: TextComposerModule) -> CGFloat {
+    func height(textComposerModule: TextComposerModule) -> CGFloat {
         let textView = UITextView()
         textView.attributedText = textComposerModule.attributedText
         textView.frame.size.width = self.tableView.frame.size.width - 40 // TODO: use the actual margin!
-        let size = textView.sizeThatFits(CGSizeMake(textView.frame.size.width, 1000))
+        let size = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: 1000))
         let calculatedHeight = size.height + ComposerViewControllerDelegateConstants.textViewMarginBottom
         return max(calculatedHeight, ComposerViewControllerDelegateConstants.minimumCellSize)
     }
