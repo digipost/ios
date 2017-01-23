@@ -634,8 +634,9 @@
 "invoice delete dialog unpaid cancel button" = "Avbryt";
 
 /* delete multiple invoices dialog */
-"dialog delete multiple title" = "Slett";
-"invoice delete dialog multiple message" = "Er du sikker på at du vil slette %1$lu %2$@, inkludert %3$lu %4$@? Om du vil stoppe betalinger lagt til forfall, må du logge inn i nettbanken.";
+"dialog delete multiple title" = "Slett"; 
+"invoice delete dialog multiple message 20 agreement" = "Er du sikker på at du vil slette %1$lu %2$@, inkludert %3$lu %4$@ fra både Digipost og nettbanken?\n\nOm du vil stoppe betalinger lagt til forfall, må du logge inn i nettbanken.";
+"invoice delete dialog multiple message" = "Er du sikker på at du vil slette %1$lu %2$@, inkludert %3$lu %4$@?\nOm du vil stoppe betalinger lagt til forfall, må du logge inn i nettbanken.";
 "invoice delete dialog multiple delete button" = "Slett";
 "invoice delete dialog multiple cancel button" = "Avbryt";
 "invoice delete dialog invoice singular" = "faktura";
