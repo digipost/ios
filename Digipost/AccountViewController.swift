@@ -187,6 +187,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
     }
     
     func logoutUser() {
+        
         let logoutAlertController = UIAlertController(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?"), message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
         
         logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: "Sign out"), style: .destructive,handler: {(alert: UIAlertAction!) in
@@ -194,6 +195,12 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         }))
         
         logoutAlertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: UIAlertActionStyle.cancel, handler: {(alert: UIAlertAction!) in }))
+        
+        logoutAlertController.popoverPresentationController?.barButtonItem = self.navigationItem.rightBarButtonItem
+        
+        let popPresenter = logoutAlertController.popoverPresentationController
+        popPresenter?.sourceView = self.view
+        popPresenter?.barButtonItem = logoutBarButtonItem
         
         present(logoutAlertController, animated: true, completion: nil)
     }
