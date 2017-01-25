@@ -481,10 +481,15 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     
     if(numberOfInvoices > 0){
         NSString *invoiceWord = numberOfInvoices == 1 ? NSLocalizedString(@"invoice delete dialog invoice singular", @"invoice") : NSLocalizedString(@"invoice delete dialog invoice plural", @"invoices");
-        deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
-    }else{
-        NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"fil") : NSLocalizedString(@"invoice delete dialog files plural", @"files");
+
+        if([InvoiceBankAgreement hasActiveAgreementType2]){
+            deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message 20 agreement", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
+        }else{
+            deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
+        }
         
+    }else{
+        NSString *letterWord = numberOfLetters == 1 ? NSLocalizedString(@"invoice delete dialog files singular", @"fil") : NSLocalizedString(@"invoice delete dialog files plural", @"files");        
         deleteMessage = [NSString stringWithFormat:@"%@ %lu %@", NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE", @"Delete"),(unsigned long)numberOfLetters,letterWord];
     }
     
