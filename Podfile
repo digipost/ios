@@ -26,6 +26,3 @@ target 'Digipost-Test' do
     all_pods
 end
 
-target 'DigipostModelTests' do
-    all_pods
-end
