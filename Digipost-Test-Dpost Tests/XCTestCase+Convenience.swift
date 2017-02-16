@@ -34,7 +34,7 @@ extension XCTestCase {
     class func mockTokenWithScope(scope: String) -> OAuthToken {
         var oAuthDictionary: Dictionary <String,AnyObject>!
         if scope == kOauth2ScopeFull {
-            oAuthDictionary =  XCTestCase.jsonDictionaryFromFile("ValidOAuthToken.json")
+            oAuthDictionary = XCTestCase.jsonDictionaryFromFile("ValidOAuthToken.json")
         } else {
             oAuthDictionary = XCTestCase.jsonDictionaryFromFile("ValidOAuthTokenHigherSecurity.json")
         }
