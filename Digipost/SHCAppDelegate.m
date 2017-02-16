@@ -324,6 +324,7 @@
 
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
         [OAuthToken removeAllTokens];
+        [OAuthToken removeRefreshToken];
         [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
