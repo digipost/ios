@@ -245,17 +245,11 @@ class OAuthToken: NSObject, NSCoding {
         }
         return true
     }
-
+    
     func canBeRefreshedByRefreshToken() -> Bool {
         return scope == kOauth2ScopeFull
     }
-
-    class func moveOldOAuthTokensIfPresent() {
-        if ((LUKeychainAccess.standard().string(forKey: kKeychainAccessRefreshTokenKey) as String?) != nil) {
-            LUKeychainAccess.standard().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
-        }
-    }
-
+    
     class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
         if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return oAuth4Token
@@ -360,12 +354,16 @@ class OAuthToken: NSObject, NSCoding {
         }
         return kOauth2ScopeFull
     }
-
+    
     class func removeAllTokens() {
         let emptyDictionary = Dictionary<String,AnyObject>()
         LUKeychainAccess.standard().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
-
+    
+    class func removeRefreshToken(){
+        LUKeychainAccess.standard().setObject("", forKey: kKeychainAccessRefreshTokenKey)
+    }
+    
     class func removeAccessTokenForOAuthTokenWithScope(_ scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
