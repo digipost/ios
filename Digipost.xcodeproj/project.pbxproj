@@ -44,7 +44,7 @@
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
-		7C2657008ED15AD6CFBF4763 /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
+		5A67B16FE3D53A0C169CE9D0 /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
@@ -89,7 +89,6 @@
 		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450681DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
-		9C4831A01DFAB4460004A1ED /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9C4831A21DFAB48C0004A1ED /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */; };
 		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
@@ -97,10 +96,11 @@
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656D1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
-		9C9216491E53451600EF9858 /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C9216481E53451600EF9858 /* Pods_Digipost.framework */; };
+		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		9CFE61621DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
+		A5A220164DA7322809FFA645 /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
@@ -112,7 +112,6 @@
 		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
-		BF7BAA2211842ED630767713 /* Pods_Digipost_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */; };
 		EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0359721B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
@@ -256,15 +255,6 @@
 		EC2752091B061DE80007125D /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC27520A1B061DE80007125D /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		EC27520B1B061DE80007125D /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
-		EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
-		EC27520F1B061E120007125D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91B1855C0AC004A7BFB /* Foundation.framework */; };
-		EC2752101B061E160007125D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
-		EC2752111B061E1B0007125D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
-		EC2752121B061E250007125D /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
-		EC2752131B061E2F0007125D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021761AB70C2300812502 /* CoreData.framework */; };
-		EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218A1AB70DA800812502 /* libsqlite3.dylib */; };
-		EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91D1855C0AC004A7BFB /* CoreGraphics.framework */; };
-		EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
 		EC27521D1B0623C60007125D /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
 		EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522A1B09D2920007125D /* InvalidOAuthToken.json */; };
 		EC2752311B09D2920007125D /* documents.json in Resources */ = {isa = PBXBuildFile; fileRef = EC27522B1B09D2920007125D /* documents.json */; };
@@ -451,7 +441,6 @@
 		ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFC1B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		ECB2BFFE1B4679B2008E32E8 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
-		ECB2C0061B467A4C008E32E8 /* ComposerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */; };
 		ECB2C0081B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB2C00E1B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
@@ -511,7 +500,6 @@
 		F885F8A21CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
 		F8A3D2771D2A9533003F0C1D /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
-		F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
@@ -768,7 +756,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		F8A3D2751D2A8DA1003F0C1D /* PBXContainerItemProxy */ = {
+		9CBBD7B01E54B6EF007D21FF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83BAB9101855C0AC004A7BFB /* Project object */;
 			proxyType = 1;
@@ -1199,7 +1187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C2657008ED15AD6CFBF4763 /* Pods_Digipost.framework in Frameworks */,
+				9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */,
 				EC3021901AB70DD400812502 /* libz.dylib in Frameworks */,
 				EC30218B1AB70DA800812502 /* libsqlite3.dylib in Frameworks */,
 				EC3021921AB70E0A00812502 /* AdSupport.framework in Frameworks */,
@@ -1210,6 +1198,7 @@
 				EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */,
 				83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */,
 				F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */,
+				5A67B16FE3D53A0C169CE9D0 /* Pods_Digipost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,17 +1206,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C9216491E53451600EF9858 /* Pods_Digipost.framework in Frameworks */,
-				EC27520E1B061E0C0007125D /* libz.dylib in Frameworks */,
-				EC2752141B061E340007125D /* libsqlite3.dylib in Frameworks */,
-				EC2752161B061E6A0007125D /* SystemConfiguration.framework in Frameworks */,
-				EC2752151B061E510007125D /* CoreGraphics.framework in Frameworks */,
-				EC2752131B061E2F0007125D /* CoreData.framework in Frameworks */,
-				EC2752121B061E250007125D /* AdSupport.framework in Frameworks */,
-				EC2752111B061E1B0007125D /* MobileCoreServices.framework in Frameworks */,
-				EC2752101B061E160007125D /* UIKit.framework in Frameworks */,
-				EC27520F1B061E120007125D /* Foundation.framework in Frameworks */,
-				F8A3D2781D2A996A003F0C1D /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1236,7 +1214,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4831A21DFAB48C0004A1ED /* Pods_Digipost_Test.framework in Frameworks */,
-				9C4831A01DFAB4460004A1ED /* Pods_Digipost.framework in Frameworks */,
 				F8AE1CAE1CD374B40009B2F9 /* libz.dylib in Frameworks */,
 				F8AE1CAF1CD374B40009B2F9 /* libsqlite3.dylib in Frameworks */,
 				F8AE1CB01CD374B40009B2F9 /* AdSupport.framework in Frameworks */,
@@ -1247,7 +1224,7 @@
 				F8AE1CB51CD374B40009B2F9 /* SystemConfiguration.framework in Frameworks */,
 				F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */,
 				F8AE1CB81CD374B40009B2F9 /* libGoogleAnalyticsServices.a in Frameworks */,
-				BF7BAA2211842ED630767713 /* Pods_Digipost_Test.framework in Frameworks */,
+				A5A220164DA7322809FFA645 /* Pods_Digipost_Test.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2005,7 +1982,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F8A3D2761D2A8DA1003F0C1D /* PBXTargetDependency */,
+				9CBBD7B11E54B6EF007D21FF /* PBXTargetDependency */,
 			);
 			name = DigipostModelTests;
 			productName = DigipostModelTests;
@@ -2072,6 +2049,9 @@
 								enabled = 1;
 							};
 							com.apple.DataProtection = {
+								enabled = 1;
+							};
+							com.apple.Keychain = {
 								enabled = 0;
 							};
 							com.apple.Push = {
@@ -2717,7 +2697,6 @@
 				ECB2BEE61B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
 				EC2751FD1B061DD50007125D /* OnboardingViewController.swift in Sources */,
 				F885F8A21CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */,
-				ECB2C0061B467A4C008E32E8 /* ComposerTests.swift in Sources */,
 				ECB2BFA11B452F2A008E32E8 /* Recipient.swift in Sources */,
 				ECB2BE831B452EC5008E32E8 /* ComposerModule.swift in Sources */,
 				EC2751ED1B061DC80007125D /* UIToolbar+Actions.swift in Sources */,
@@ -2967,10 +2946,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		F8A3D2761D2A8DA1003F0C1D /* PBXTargetDependency */ = {
+		9CBBD7B11E54B6EF007D21FF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 83BAB9171855C0AC004A7BFB /* Digipost */;
-			targetProxy = F8A3D2751D2A8DA1003F0C1D /* PBXContainerItemProxy */;
+			targetProxy = 9CBBD7B01E54B6EF007D21FF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -3249,6 +3228,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3264,19 +3244,7 @@
 					STAGING,
 				);
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = DigipostModelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -3288,18 +3256,19 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.digipost.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" \"recursive\"";
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/ recursive";
 			};
 			name = Debug;
 		};
 		EC27518F1B061D020007125D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				COPY_PHASE_STRIP = NO;
@@ -3313,19 +3282,8 @@
 				GCC_PREFIX_HEADER = "Digipost/Digipost-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/Google/Headers",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/GGLInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/Google\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleCloudMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleIPhoneUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleInterchangeUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleNetworkingUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
+				"HEADER_SEARCH_PATHS[sdk=iphonesimulator*]" = "$(inherited)";
 				INFOPLIST_FILE = DigipostModelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
@@ -3337,11 +3295,11 @@
 				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "no.digipost.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Digipost.app/Digipost";
-				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/ recursive";
 			};
 			name = Release;
 		};
@@ -3392,7 +3350,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -3445,7 +3403,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.test.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
