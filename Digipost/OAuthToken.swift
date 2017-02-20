@@ -54,7 +54,7 @@ class OAuthToken: NSObject, NSCoding {
         super.init()
     }
 
-    required convenience init(coder decoder: NSCoder) {
+    required convenience public init(coder decoder: NSCoder) {
         // If token is archived without expirydate, for example if upgrading from an older client, set expirydate to now(), to force reauthentication
         let expires : Date = {
             if let expiryDate =  decoder.decodeObject(forKey: Keys.expiresKey) as? Date {
@@ -189,7 +189,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    func encode(with coder: NSCoder) {
+    public func encode(with coder: NSCoder) {
         coder.encode(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encode(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encode(self.scope, forKey: Keys.scopeKey)
