@@ -102,6 +102,7 @@
 		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
+		B7B8F7C661739D1E2F7D11C6 /* Pods_DigipostQA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */; };
 		D3B8A4D2DA8B22125BE1B72E /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
 		EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
@@ -684,6 +685,7 @@
 		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
+		CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostQA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StylePickerDetailListView.xib; sourceTree = "<group>"; };
 		EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerDetailListViewController.swift; sourceTree = "<group>"; };
 		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
@@ -1003,6 +1005,7 @@
 				F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */,
 				F8AE1CB81CD374B40009B2F9 /* libGoogleAnalyticsServices.a in Frameworks */,
 				A5A220164DA7322809FFA645 /* Pods_Digipost_Test.framework in Frameworks */,
+				B7B8F7C661739D1E2F7D11C6 /* Pods_DigipostQA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1114,6 +1117,7 @@
 				2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */,
 				1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */,
 				37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */,
+				CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1970,7 +1974,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost-Test/Pods-Digipost-Test-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A59691E59B1358228A99D9C5 /* [CP] Embed Pods Frameworks */ = {
@@ -2000,7 +2004,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost-Test/Pods-Digipost-Test-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BDB97252C6E687FABF72EEF3 /* [CP] Copy Pods Resources */ = {

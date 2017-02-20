@@ -22,7 +22,7 @@ target 'Digipost' do
     all_pods
 end
 
-target 'Digipost-Test' do
+target 'DigipostQA' do
     all_pods
 end
 
