@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>Digipost Test</string>
+	<string>Digipost QA</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
