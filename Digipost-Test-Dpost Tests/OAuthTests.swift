@@ -17,6 +17,7 @@
 import UIKit
 import XCTest
 import LUKeychainAccess
+@testable import Digipost
 
 class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     
@@ -43,74 +44,59 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
             XCTAssertNil(error, "could not read json")
             return Dictionary<String, AnyObject>()
         }
-        
     }
-
+    
     var mockNonce = "-880201503"
-
+    
     func mockTokenWithScope(_ scope: String) -> OAuthToken {
-
+        
         var oAuthDictionary: Dictionary<String,AnyObject>!
         if scope == kOauth2ScopeFull {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         } else {
             oAuthDictionary = jsonDictionaryFromFile("ValidOAuthTokenHigherSecurity.json")
         }
+        
         let token = OAuthToken(attributes: oAuthDictionary, scope: scope, nonce: mockNonce)
+        
         return token!
-
     }
-
+    
     func testCreateTokenFromJsonDictionary() {
         let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         let token = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
         XCTAssertNotNil(token, "no valid token was created")
     }
-
+    
     // just in case there is a general error with keychain
-    func keychainAccess(_ keychainAccess: LUKeychainAccess!, receivedError error: NSError!) {
+    func keychainAccess(_ keychainAccess: LUKeychainAccess!, receivedError error: Error!) {
         XCTAssertTrue(false, "got an error message \(error) from keychain")
     }
-
+    
     func testKeepTokensWithDifferentScopesInKeychain() {
-        mockTokenWithScope(kOauth2ScopeFull)
+        _ = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         _ = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 2, "token did not correctly store in database")
     }
-
-    // creates a token, fetches it from keychain, adds a new access token, then refetches to see if it did get updated
-    func testUpdateSameTokenMultipleTimes() {
-        let newAccessToken = "newAccessToken"
-        mockTokenWithScope(kOauth2ScopeFull)
-        
-        let refetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        XCTAssertNotNil(refetchedToken, "no valid token was created")
-        
-        refetchedToken!.accessToken = newAccessToken
-        
-        let alteredToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        //let acc = alteredToken?.accessToken!
-        XCTAssertTrue(alteredToken!.accessToken! == refetchedToken!.accessToken!, "\(alteredToken!.accessToken!) not similar to \(refetchedToken!.accessToken!)")
-    }
-
+    
     func testCreateTokensWithAllScopesAndStoreInKeychain() {
-        mockTokenWithScope(kOauth2ScopeFull)
-        mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        _ = mockTokenWithScope(kOauth2ScopeFull)
+        _ = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        _ = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertNil(idPorten3.refreshToken, "idporten3 token should not have refresh token")
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
     }
-
+    
     func testdeleteAllTokensInKeychain() {
-        mockTokenWithScope(kOauth2ScopeFull)
-        mockTokenWithScope(kOauth2ScopeFullHighAuth)
-        mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        _ = mockTokenWithScope(kOauth2ScopeFull)
+        _ = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        _ = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        _ = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
         let allTokens = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
         
@@ -118,59 +104,107 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let allTokensAfterDeletion = OAuthToken.oAuthTokens()
         XCTAssertTrue(allTokensAfterDeletion.count == 0, "could not delete token database, should be 0, was \(allTokensAfterDeletion.count)")
     }
-
-    func testIfTokenExpiresAfterTimeOut() {
-        let expectation = self.expectation(description: "Waiting for timeout on oauthToken")
-        let timeout : TimeInterval = 8
-        let oAuthDictionary = jsonDictionaryFromFile("ValidTokenExpiresSoon.json")
-        let fullToken = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
-        XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(Date()) and it expired \(fullToken?.expires)")
-
-
-        dispatch(after: timeout - 3) {
-            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-            XCTAssertFalse(fetchedToken!.hasExpired(), "token should not have expired yet, Time: \(Date()), it expires: \(fetchedToken?.expires)")
-        }
-
-        dispatch(after: timeout + 3) {
-            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(Date()) and it expired \(fetchedToken?.expires)")
-            expectation.fulfill()
-        }
-
-        waitForExpectations(timeout: timeout + 5, handler: { (error) -> Void in
-            XCTAssertNil(error, "\(error)")
-        })
-    }
-
+    
     func testTokenDifferingNonceThanClient() {
         let invalidNonce = "invalidNonce"
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: invalidNonce)
         XCTAssertNil(token, "should not be able to create token with differing nonce than provided")
     }
-
+    
     func testTokenWithIDTokenWithDifferingAudThanClient() {
         let invalidAuthDictionary = jsonDictionaryFromFile("InvalidTokenDifferingAud.json")
         let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
         XCTAssertNil(token, "should not be able to create token with differing aud than client")
     }
-
+    
     func testTokenWithIDTokenWithDifferingSignatureThanClient() {
         let invalidAuthDictionary = jsonDictionaryFromFile("InvalidTokenDifferingSignature.json")
         let token = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
         XCTAssertNil(token, "should not be able to create token with differing id_token signature than client")
     }
-
+    
+    func testFetchTokensFromList(){
+        let _ = mockTokenWithScope(kOauth2ScopeFull)        
+        let tokens = OAuthToken.oAuthTokens()
+        XCTAssert(tokens.count == 1, "count should be 1")
+        let token = tokens[kOauth2ScopeFull]
+        XCTAssertNotNil(token, "should not be nil")
+    }
+    
+    func testStringInKeychainAccess(){
+        let testKey = "TEST"
+        LUKeychainAccess.standard().setObject(testKey, forKey: testKey)
+        let key = LUKeychainAccess.standard().object(forKey: testKey) as! String        
+        XCTAssertEqual(testKey, key, "should be equal ")
+    }
+    
+    func testObjectInKeychainAccess(){
+        let testKey = "TEST"
+        let mockToken = mockTokenWithScope(kOauth2ScopeFull)  
+        
+        LUKeychainAccess.standard().setObject(mockToken, forKey: testKey)
+        let fetched = LUKeychainAccess.standard().object(forKey: testKey)
+        
+        if let fetchedToken = fetched as? OAuthToken {
+            XCTAssertEqual(mockToken.accessToken, fetchedToken.accessToken, "should be equal ")
+        } else {
+            XCTAssertTrue(false, "cast failed")
+        }
+    }
+    
+    func testFetchTokenWithScope(){
+        let _ = mockTokenWithScope(kOauth2ScopeFull)        
+        let fetched = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)! as OAuthToken
+        XCTAssertNotNil(fetched, "should not be nil")
+    }
+    
+    func testFetchedTokenIsValid(){
+        let _ = mockTokenWithScope(kOauth2ScopeFull)        
+        
+        if let fetched = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull) {
+            XCTAssertNotNil(fetched.accessToken, "should not be nil")
+        } else {
+            XCTAssert(false, "fetched should exist")
+        }
+    }
+    
+    // creates a token, fetches it from keychain, adds a new access token, then refetches to see if it did get updated
+    func testUpdateSameTokenMultipleTimes() {
+        let newAccessToken = "newAccessToken"
+        let _ = mockTokenWithScope(kOauth2ScopeFull)
+        
+        let refetchedToken = OAuthToken.oAuthTokens()[kOauth2ScopeFull] as! OAuthToken
+        
+        XCTAssertNotNil(refetchedToken, "should not be nil")
+        refetchedToken.accessToken = newAccessToken
+        
+        let alteredToken = OAuthToken.oAuthTokens()[kOauth2ScopeFull] as! OAuthToken
+        
+        XCTAssertTrue(alteredToken.accessToken! == refetchedToken.accessToken!, "\(alteredToken.accessToken!) not similar to \(refetchedToken.accessToken!)")
+    }
+    
+    func testRenewAccessTokenToken(){
+        let newAccessTokenFull = "new Accesstoken for Full"        
+        let oAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
+        
+        _ = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
+        
+        let fetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        fetchedFull?.accessToken = newAccessTokenFull
+        let refetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)        
+        XCTAssertEqual(refetchedFull!.accessToken!, newAccessTokenFull, "did not save new access token correctly")
+    }
+    
     func testRenewAccessTokensForMultipleDifferentTokens() {
-        let newAccessTokenFull = "new Acesstoken for Full"
+        let newAccessTokenFull = "new Accesstoken for Full"
         let newAccessTokenHighAuth = "new Acesstoken for HighAuth"
         let newAccessTokenIdPorten4 = "new Acesstoken for idporten4"
-        mockTokenWithScope(kOauth2ScopeFull)
-        mockTokenWithScope(kOauth2ScopeFullHighAuth)
-        mockTokenWithScope(kOauth2ScopeFull_Idporten3)
-        mockTokenWithScope(kOauth2ScopeFull_Idporten4)
-
+        _ = mockTokenWithScope(kOauth2ScopeFull)
+        _ = mockTokenWithScope(kOauth2ScopeFullHighAuth)
+        _ = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
+        _ = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
+        
         let fetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         let fetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
         let fetchedIdPorten4 = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
@@ -181,10 +215,35 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         
         let refetchedFull = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         XCTAssertEqual(refetchedFull!.accessToken!, newAccessTokenFull, "did not save new access token correctly")
+        
         let refetchedHighAuth = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
         XCTAssertEqual(refetchedHighAuth!.accessToken!, newAccessTokenHighAuth, "did not save new access token correctly")
         
         let refetchedIdporten4 = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
         XCTAssertEqual(refetchedIdporten4!.accessToken!, newAccessTokenIdPorten4, "did not save new access token correctly")
+    }
+    
+    func testIfTokenExpiresAfterTimeOut() {
+        let expectation = self.expectation(description: "Waiting for timeout on oauthToken")
+        let timeout : TimeInterval = 8
+        let oAuthDictionary = jsonDictionaryFromFile("ValidTokenExpiresSoon.json")
+        _ = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFull, nonce: mockNonce)
+        let fullToken = OAuthToken(attributes: oAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
+        XCTAssertFalse(fullToken!.hasExpired(), "token expired before its time! time is \(Date()) and it expired \(fullToken?.expires)")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(5)) {
+            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+            XCTAssertFalse(fetchedToken!.hasExpired(), "token should not have expired yet, Time: \(Date()), it expires: \(fetchedToken?.expires)")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(11)) {
+            let fetchedToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+            XCTAssertTrue(fetchedToken!.hasExpired(), "token should have expired! Time is \(Date()) and it expired \(fetchedToken?.expires)")
+            expectation.fulfill()
+        }
+        
+        waitForExpectations(timeout: timeout + 5) { (error) in
+            XCTAssertNil(error, "not successfull ")
+        }
     }
 }
