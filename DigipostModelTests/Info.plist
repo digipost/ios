@@ -20,9 +20,5 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 </dict>
 </plist>
