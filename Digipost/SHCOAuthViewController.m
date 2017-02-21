@@ -16,6 +16,7 @@
 
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLRequestSerialization.h>
+#import "1PasswordExtension/OnePasswordExtension.h"
 #import "SHCOAuthViewController.h"
 #import "NSString+RandomNumber.h"
 #import "NSURLRequest+QueryParameters.h"
@@ -33,6 +34,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
+Boolean *tryToFillUsing1Password = false;
 
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
@@ -83,7 +85,12 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.stateParameter = nil;
+    
+    if (tryToFillUsing1Password) {
+        tryToFillUsing1Password = false;
+    }else{
+        self.stateParameter = nil;
+    }
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
@@ -169,6 +176,15 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 #endif
 
     return YES;
+}
+
+- (IBAction)fillUsing1Password:(id)sender {
+    tryToFillUsing1Password = true;
+    [[OnePasswordExtension sharedExtension] fillItemIntoWebView:self.webView forViewController:self sender:sender showOnlyLogins:YES completion:^(BOOL success, NSError *error) {
+        if (!success) {
+            NSLog(@"Failed to fill into webview: <%@>", error);
+        }
+    }];
 }
 
 - (void)informUserThatOauthFailedThenDismissViewController
