@@ -928,8 +928,8 @@
 		ECFD577918BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+DigipostBarButtonItems.h"; sourceTree = "<group>"; };
 		ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+DigipostBarButtonItems.m"; sourceTree = "<group>"; };
 		F8053D661C43DB6800DB0CA9 /* String+URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+URL.swift"; sourceTree = "<group>"; };
-		F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Digipost-Test.plist"; sourceTree = "<group>"; };
-		F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "Digipost-Test.xcconfig"; sourceTree = "<group>"; };
+		F80B63531CD37C3800AE9DE5 /* DigipostQA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DigipostQA.plist; sourceTree = "<group>"; };
+		F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostQA.xcconfig; sourceTree = "<group>"; };
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F27451C93064A0069378C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
 		F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
@@ -1145,8 +1145,8 @@
 			children = (
 				EC24840C1B206F0100FC372C /* Constants.swift */,
 				F88B7FEC1CD8DC00009CC671 /* GCM */,
-				F80B63561CD37CB900AE9DE5 /* Digipost-Test.xcconfig */,
-				F80B63531CD37C3800AE9DE5 /* Digipost-Test.plist */,
+				F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */,
+				F80B63531CD37C3800AE9DE5 /* DigipostQA.plist */,
 				EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */,
 				EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */,
 				ECAB707918C0997A009731FF /* oauth.h */,
@@ -2887,7 +2887,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
-				INFOPLIST_FILE = "Digipost/Digipost-Test.plist";
+				INFOPLIST_FILE = Digipost/DigipostQA.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GAI",
@@ -2941,7 +2941,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleSymbolUtilities\"",
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
-				INFOPLIST_FILE = "Digipost/Digipost-Test.plist";
+				INFOPLIST_FILE = Digipost/DigipostQA.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GAI",
