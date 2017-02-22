@@ -54,7 +54,7 @@ class OAuthToken: NSObject, NSCoding {
         super.init()
     }
 
-    required convenience init(coder decoder: NSCoder) {
+    required convenience public init(coder decoder: NSCoder) {
         // If token is archived without expirydate, for example if upgrading from an older client, set expirydate to now(), to force reauthentication
         let expires : Date = {
             if let expiryDate =  decoder.decodeObject(forKey: Keys.expiresKey) as? Date {
@@ -189,7 +189,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    func encode(with coder: NSCoder) {
+    public func encode(with coder: NSCoder) {
         coder.encode(self.refreshToken, forKey: Keys.refreshTokenKey)
         coder.encode(self.accessToken, forKey: Keys.accessTokenKey)
         coder.encode(self.scope, forKey: Keys.scopeKey)
@@ -245,17 +245,11 @@ class OAuthToken: NSObject, NSCoding {
         }
         return true
     }
-
+    
     func canBeRefreshedByRefreshToken() -> Bool {
         return scope == kOauth2ScopeFull
     }
-
-    class func moveOldOAuthTokensIfPresent() {
-        if ((LUKeychainAccess.standard().string(forKey: kKeychainAccessRefreshTokenKey) as String?) != nil) {
-            LUKeychainAccess.standard().setObject(nil, forKey: kKeychainAccessRefreshTokenKey)
-        }
-    }
-
+    
     class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
         if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return oAuth4Token
@@ -287,13 +281,11 @@ class OAuthToken: NSObject, NSCoding {
             return oAuthTokenWithScope(scope)
         }
     }
-
-    class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {
-        let dictionary = LUKeychainAccess.standard().object(forKey: kOAuth2TokensKey) as! NSDictionary?
-        if let actualDictionary = dictionary as NSDictionary? {
-            if let token = actualDictionary[scope] as?  OAuthToken? {
-                return token
-            }
+   
+    class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {   
+        let tokens = OAuthToken.oAuthTokens()
+        if let token: OAuthToken = tokens[scope] as? OAuthToken {
+            return token
         }
         return nil
     }
@@ -360,12 +352,16 @@ class OAuthToken: NSObject, NSCoding {
         }
         return kOauth2ScopeFull
     }
-
+    
     class func removeAllTokens() {
         let emptyDictionary = Dictionary<String,AnyObject>()
         LUKeychainAccess.standard().setObject(emptyDictionary, forKey: kOAuth2TokensKey)
     }
-
+    
+    class func removeRefreshToken(){
+        LUKeychainAccess.standard().setObject("", forKey: kKeychainAccessRefreshTokenKey)
+    }
+    
     class func removeAccessTokenForOAuthTokenWithScope(_ scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil

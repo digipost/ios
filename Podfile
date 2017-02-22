@@ -8,7 +8,7 @@ use_frameworks!
 def all_pods
     pod 'AFNetworking', '~> 3.1.0'
     pod 'UIAlertView+Blocks', '~> 0.8'
-    pod 'LUKeychainAccess', '~> 2.0.0'
+    pod 'LUKeychainAccess', '~> 2.0.2'
     pod 'RNCryptor', '~> 2.2'
     pod 'Google/CloudMessaging'
     pod 'MRProgress', '~> 0.4.3'
@@ -22,10 +22,7 @@ target 'Digipost' do
     all_pods
 end
 
-target 'Digipost-Test' do
+target 'DigipostQA' do
     all_pods
 end
 
-target 'DigipostModelTests' do
-    all_pods
-end

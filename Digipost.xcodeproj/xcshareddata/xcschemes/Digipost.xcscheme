@@ -20,12 +20,26 @@
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "EC2751851B061D000007125D"
+               BuildableName = "DigipostUnitTests.xctest"
+               BlueprintName = "DigipostUnitTests"
+               ReferencedContainer = "container:Digipost.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -33,10 +47,30 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EC2751851B061D000007125D"
-               BuildableName = "DigipostModelTests.xctest"
-               BlueprintName = "DigipostModelTests"
+               BuildableName = "DigipostUnitTests.xctest"
+               BlueprintName = "DigipostUnitTests"
                ReferencedContainer = "container:Digipost.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "OAuthTests/testFetchTokenWithScope()">
+               </Test>
+               <Test
+                  Identifier = "OAuthTests/testFetchedTokenIsValid()">
+               </Test>
+               <Test
+                  Identifier = "OAuthTests/testIfTokenExpiresAfterTimeOut()">
+               </Test>
+               <Test
+                  Identifier = "OAuthTests/testRenewAccessTokenToken()">
+               </Test>
+               <Test
+                  Identifier = "OAuthTests/testRenewAccessTokensForMultipleDifferentTokens()">
+               </Test>
+               <Test
+                  Identifier = "OAuthTests/testUpdateSameTokenMultipleTimes()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

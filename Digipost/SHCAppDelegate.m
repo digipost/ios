@@ -32,8 +32,6 @@
 #import <Google/CloudMessaging.h>
 #import "Digipost-Swift.h"
 
-NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
-
 @interface SHCAppDelegate ()
 
 //@property (strong, nonatomic) DDFileLogger *fileLogger;
@@ -56,14 +54,14 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
 {
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
-    [self checkForOldOAuthTokens];
+    [self deletePossibleOldTokensIfFirstRun];
     [self setupGoogleAnalytics];
         
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
-    
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
+    
     return YES;
 }
 
@@ -322,12 +320,13 @@ NSString *kHasMovedOldOauthTokensKey = @"hasMovedOldOauthTokens";
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
-- (void)checkForOldOAuthTokens
-{
-    BOOL hasMovedOAuthtokens = [[NSUserDefaults standardUserDefaults] boolForKey:kHasMovedOldOauthTokensKey];
-    if (hasMovedOAuthtokens == NO) {
-        [OAuthToken moveOldOAuthTokensIfPresent];
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kHasMovedOldOauthTokensKey];
+-(void) deletePossibleOldTokensIfFirstRun {
+
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+        [OAuthToken removeAllTokens];
+        [OAuthToken removeRefreshToken];
+        [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
     }
 }
 
