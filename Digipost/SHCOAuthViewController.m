@@ -85,7 +85,6 @@ Boolean *tryToFillUsing1Password = false;
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     if (tryToFillUsing1Password) {
         tryToFillUsing1Password = false;
