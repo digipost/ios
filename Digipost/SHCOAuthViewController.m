@@ -188,7 +188,7 @@ Boolean *tryToFillUsing1Password = false;
 - (IBAction)fillUsing1Password:(id)sender {
     tryToFillUsing1Password = true;
     [[OnePasswordExtension sharedExtension] fillItemIntoWebView:self.webView forViewController:self sender:sender showOnlyLogins:YES completion:^(BOOL success, NSError *error) {
-        if (!success) {
+        if (!success && error.code != 0) {
             NSLog(@"Failed to fill into webview: <%@>", error);
         }
     }];
