@@ -55,16 +55,16 @@ Boolean *tryToFillUsing1Password = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self clearCacheAndCookies];
     self.screenName = kOAuthViewControllerScreenName;
-    
+
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
-    
+
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
+
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-    
+
     [self remove1PasswordButtonIfNotNormalLoginScope];
     if (self.scope == kOauth2ScopeFull) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
@@ -76,16 +76,17 @@ Boolean *tryToFillUsing1Password = false;
     } else {
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
-    
+
     [self presentAuthenticationWebView];
-    
+
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+
+    // The existing OAuth implementation will normally nil the oauth-state variabel when this view is not longer visible (normally because a successfull login). But because this method will also be invoked when the app tries to open 1Password, we need to _not_ nil the the state when returning from 1Password. tryToFillUsing1Password is set to true in the fillUsing1Password-method.
     if (tryToFillUsing1Password) {
         tryToFillUsing1Password = false;
     }else{
@@ -98,7 +99,7 @@ Boolean *tryToFillUsing1Password = false;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
                                                                                                                         alpha:0.8] }
-     
+
                                                          forState:UIControlStateNormal];
 }
 
@@ -201,7 +202,7 @@ Boolean *tryToFillUsing1Password = false;
                                                       handler:^(UIAlertAction *action) {
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                       }]];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -224,7 +225,7 @@ Boolean *tryToFillUsing1Password = false;
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        
+
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
@@ -233,16 +234,16 @@ Boolean *tryToFillUsing1Password = false;
             //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
-    
+
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.authenticated = YES;
-    
+
     [connection cancel];
-    
+
     [self.webView loadRequest:self.failedURLRequest];
 }
 
@@ -254,7 +255,7 @@ Boolean *tryToFillUsing1Password = false;
 {
     [self dismissViewControllerAnimated:YES
                              completion:^{
-                                 
+
                              }];
 }
 
@@ -262,13 +263,13 @@ Boolean *tryToFillUsing1Password = false;
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString secureRandomString];
-    
+
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
                                  kOAuth2State : self.stateParameter,
                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
-    
+
     [self authenticateWithParameters:parameters];
 }
 
