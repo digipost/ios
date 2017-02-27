@@ -65,6 +65,7 @@ Boolean *tryToFillUsing1Password = false;
     
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
     
+    [self remove1PasswordButtonIfNotNormalLoginScope];
     if (self.scope == kOauth2ScopeFull) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
@@ -176,6 +177,12 @@ Boolean *tryToFillUsing1Password = false;
 #endif
 
     return YES;
+}
+
+- (void) remove1PasswordButtonIfNotNormalLoginScope {
+    if (self.scope != kOauth2ScopeFull) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (IBAction)fillUsing1Password:(id)sender {
