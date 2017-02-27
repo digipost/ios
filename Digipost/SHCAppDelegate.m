@@ -65,7 +65,7 @@
     return YES;
 }
 
-- (BOOL) GCMTokenExist{
+- (BOOL)GCMTokenExist {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
     fetchRequest.resultType = NSDictionaryResultType;
     NSError *error = nil;
@@ -78,16 +78,16 @@
     return FALSE;
 }
 
--(void)storeGCMToken: (NSString*) token {
+- (void)storeGCMToken: (NSString*) token {
     [[POSModelManager sharedManager] deleteAllGCMTokens];
     GCMToken *gcmtoken = [NSEntityDescription insertNewObjectForEntityForName:@"GCMToken" inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     gcmtoken.token = token;
     NSError *error;
-    
+
     [[POSModelManager sharedManager].managedObjectContext save:&error];
 }
 
-- (void) initGCM{    
+- (void)initGCM {
     if([self GCMTokenExist] == NO){
     _registrationKey = @"onRegistrationCompleted";
     
@@ -112,8 +112,8 @@
     _registrationHandler = ^(NSString *registrationToken, NSError *error){
         if (registrationToken != nil) {
             weakSelf.registrationToken = registrationToken;
-            
-            [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken 
+
+            [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken
                                                success:^{
                                                    [weakSelf storeGCMToken: registrationToken];
                                                } failure:^(APIError *error){
@@ -156,7 +156,7 @@
                                                       handler:_registrationHandler];
 }
 
--(void) GAEventLaunchType{
+- (void)GAEventLaunchType {
 
     NSTimeInterval elapsedTimeSinceLastNotification = [[NSDate date] timeIntervalSinceDate:_notificationReceived];
     
@@ -191,8 +191,8 @@
     [self initGCM];
 }
 
--(void)revokeGCMToken{
-        
+- (void)revokeGCMToken {
+
     GGLInstanceIDDeleteTokenHandler handler = ^void(NSError *error) {
         if (error) {
             NSLog(@"Failed to delete GCM token");
@@ -210,12 +210,12 @@
 }
 
 
--(void) application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler{
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     _notificationReceived = [NSDate date];
     completionHandler(UIBackgroundFetchResultNewData);
 }
 
--(void) submitAppLaunchGAEvent: (NSString *)action{
+- (void)submitAppLaunchGAEvent: (NSString *)action {
     NSString *category = @"app-launch-origin";
     NSString *label = [NSString stringWithFormat:@"%@-%@", category, action];
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
@@ -226,8 +226,7 @@
 }
 
 
-- (void)startUploading:(NSNotification *)notification
-{
+- (void)startUploading:(NSNotification *)notification {
     NSDictionary *dict = notification.userInfo;
     if ([self.window hasCorrectNavigationHierarchyForShowingDocuments]) {
         UINavigationController *navController = [self.window topMasterNavigationController];
@@ -305,22 +304,19 @@
     }
 }
 
-- (void)applicationWillResignActive:(UIApplication *)application
-{
+- (void)applicationWillResignActive:(UIApplication *)application {
 }
 
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
-{
+- (void)applicationWillEnterForeground:(UIApplication *)application {
 }
 
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
+- (void)applicationWillTerminate:(UIApplication *)application {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
 }
 
--(void) deletePossibleOldTokensIfFirstRun {
+- (void) deletePossibleOldTokensIfFirstRun {
 
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
         [OAuthToken removeAllTokens];
@@ -330,14 +326,12 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     [self uploadImageWithURL:url];
     return YES;
 }
 
-- (void)uploadImageWithURL:(NSURL *)url
-{
+- (void)uploadImageWithURL:(NSURL *)url {
     UIStoryboard *storyboard;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
@@ -368,11 +362,10 @@
 }
 #pragma mark - Private methods
 
-- (void)setupGoogleAnalytics
-{
+- (void)setupGoogleAnalytics {
     [[[GAI sharedInstance] logger] setLogLevel:__GOOGLE_ANALYTICS_LOG_LEVEL__];
     self.googleAnalyticsTracker = [[GAI sharedInstance] trackerWithTrackingId:GOOGLE_ANALYTICS_ID];
-    [self.googleAnalyticsTracker set:kGAIAnonymizeIp value:[@YES stringValue]];    
+    [self.googleAnalyticsTracker set:kGAIAnonymizeIp value:[@YES stringValue]];
     [GAI sharedInstance].dispatchInterval = 40.0;
 }
 
