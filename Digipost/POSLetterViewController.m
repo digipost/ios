@@ -142,7 +142,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                 forViewController:self];
     [self reloadFromMetadata];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
-    
+
     [self addTapGestureRecognizersToWebView:self.webView];
 
     UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
@@ -211,8 +211,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }else if ([segue.identifier isEqualToString:kinvoiceOptionsSegue]) {
         NSString *invoiceTitle = self.attachment.subject;
-        
-        InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;        
+
+        InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;
         invoiceOptionsViewController.viewTitle = invoiceTitle;
     }
 }
@@ -358,12 +358,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     } else if ([request.URL isFileURL]) {
         return YES;
     } else {
-        
+
         UIAlertController * alert = [UIAlertController
                                     alertControllerWithTitle:[request.URL host]
                                     message:nil
                                     preferredStyle:UIAlertControllerStyleActionSheet];
-        
+
         UIAlertAction* open = [UIAlertAction
                                actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
                                style:UIAlertActionStyleDefault
@@ -375,11 +375,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                          style:UIAlertActionStyleCancel
                                                        handler:^(UIAlertAction * action)
                                  {
-                                     
+
                                  }];
         [alert addAction:open];
         [alert addAction:cancel];
-        
+
         [self presentViewController:alert animated:YES completion:nil];
         return NO;
     }
@@ -688,16 +688,16 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self showLockedViewCanBeUnlocked:NO];
         return;
     }
-    
+
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
-        
+
         if (![[POSFileManager sharedFileManager] decryptDataForBaseEncryptionModel:baseEncryptionModel
                                                                              error:&error]) {
             [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
             return;
         }
-                
+
 
         NSURL *fileURL = [NSURL fileURLWithPath:decryptedFilePath];
         [self loadFileURL:fileURL];
@@ -712,15 +712,15 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 -(void)updateCurrentDocument
-{    
+{
     [[APIClient sharedClient] updateDocument:self.attachment.document
                                      success:^(NSDictionary *responseDict) {
                                          POSDocument *refetchedDocument = [POSDocument existingDocumentWithUpdateUri:self.attachment.document.updateUri inManagedObjectContext:[[POSModelManager sharedManager] managedObjectContext]];
                                          [[POSModelManager sharedManager] updateDocument:refetchedDocument withAttributes:responseDict];
-                                         
+
                                          NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
                                          [self setToolbarItems:toolbarItems animated:YES];
-                                         
+
                                          [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];
                                      }failure:^(APIError *error) {
                                          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
@@ -955,7 +955,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         return YES;
     }
     // A list of file types that are tried and tested with UIWebView
-    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
+    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
 
@@ -1047,7 +1047,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
               // Becuase we might have been pushed from the attachments vc, make sure that we pop
               // all the way back to the documents vc.
-              
+
               [self.receiptsViewController removeReceiptAtCurrentIndex];
               [self.navigationController popToViewController:self.receiptsViewController animated:YES];
           }
@@ -1161,7 +1161,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showDeleteDocumentActionSheet
 {
-    
+
     NSString *title = NSLocalizedString(@"letter view delete document title", @"Delete warning");
     NSString *message = NSLocalizedString(@"letter view delete document message", @"");
     NSString *deleteButtonText = NSLocalizedString(@"letter view delete document ok", @"");
@@ -1170,7 +1170,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if(self.attachment.hasValidToPayInvoice){
         if(self.attachment.invoice != nil){
             title = NSLocalizedString(@"invoice delete dialog title", @"Delete invoice");
-            
+
             if(self.attachment.invoice.timePaid == nil) {
                 message = NSLocalizedString(@"invoice delete dialog unpaid message", @"Delete invoice message");
                 deleteButtonText = NSLocalizedString(@"invoice delete dialog unpaid delete button", @"Confirme delete invoice");
@@ -1182,7 +1182,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }
         }
     }
- 
+
     [UIAlertView showWithTitle:title
                        message:message
              cancelButtonTitle:cancelButtonText
@@ -1204,7 +1204,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 - (void)showInvoiceSetupAlertIfNoActiveAgreements{
-    
+
     BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
     BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
     if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
@@ -1217,7 +1217,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                  alertControllerWithTitle:NSLocalizedString(@"invoice setup alert title", @"")
                                  message:NSLocalizedString(@"invoice setup alert message", @"")
                                  preferredStyle:UIAlertControllerStyleAlert];
-    
+
     UIAlertAction* chooseBank = [UIAlertAction
                                  actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
                                  style:UIAlertActionStyleDefault
@@ -1225,14 +1225,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                      [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
                                      [self didTapChooseBankButton];
                                  }];
-    
+
     UIAlertAction* later = [UIAlertAction
                             actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
                                 [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
                             }];
-    
+
     UIAlertAction* forget = [UIAlertAction
                              actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
                              style:UIAlertActionStyleDefault
@@ -1240,7 +1240,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                  [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
                                  [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
                              }];
-    
+
     [alert addAction:chooseBank];
     [alert addAction:later];
     [alert addAction:forget];
@@ -1249,11 +1249,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (UIViewController*) topMostController {
     UIViewController *topController = [UIApplication sharedApplication].keyWindow.rootViewController;
-    
+
     while (topController.presentedViewController) {
         topController = topController.presentedViewController;
     }
-    
+
     return topController;
 }
 
@@ -1270,10 +1270,10 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         dateFormatter.dateStyle = NSDateFormatterMediumStyle;
         dateFormatter.timeStyle = NSDateFormatterNoStyle;
-        
+
         NSString *paidMessage = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_PAID_MESSAGE", @"Paid message");
         message = [NSString stringWithFormat:paidMessage, self.attachment.invoice.bankName];
-        
+
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_GO_TO_BANK_BUTTON_TITLE", @"Go to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
     } else if ([self.attachment.invoice.canBePaidByUser boolValue] && [self.attachment.invoice.sendToBankUri length] > 0) {
@@ -1282,13 +1282,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSString *bankAccountNumber = self.attachment.document.folder.mailbox.rootResource.currentBankAccount ?: NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_UNKNOWN_BANK_ACCOUNT_NUMBER", @"unknown bank account number");
 
         NSString *format = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_SEND_MESSAGE", @"Send message");
-        
+
         NSString *bankLine = [NSString stringWithFormat:@"\%@ \n%@", self.attachment.invoice.bankName, bankAccountNumber];
         message = [NSString stringWithFormat:format, bankLine];
 
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-    
+
     } else if([InvoiceBankAgreement hasActiveAgreementType2]){
         [self showReadyToPaymentAgreementType2Popup];
         return;
@@ -1317,9 +1317,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     NSString *title = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_TITLE", @"Klar til betaling");
     NSString *message = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_MESSAGE", @"Klar til betaling hos bank");
     NSString *cancelButtonTitle = NSLocalizedString(@"GENERIC_CLOSE_BUTTON_TITLE", @"Close");
-    
+
     [UIAlertView showWithTitle: title message: message cancelButtonTitle: cancelButtonTitle otherButtonTitles: nil tapBlock: ^(UIAlertView *alertView, NSInteger buttonIndex) {}];
-    
+
 }
 
 - (void)setInfoViewVisible:(BOOL)visible
@@ -1350,7 +1350,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort")
                                                                                         description:[NSString stringWithFormat:@"%@", self.receipt.card]]];
         }
-        
+
         if (self.attachment.invoice) {
 
             NSString *invoiceAmount = [POSInvoice stringForInvoiceAmount:self.attachment.invoice.amount];
@@ -1361,12 +1361,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                                                         description:[dateFormatter stringFromDate:self.attachment.invoice.dueDate]]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TO_ACCOUNT", @"Til konto")
                                                                                         description:self.attachment.invoice.accountNumber]];
-            
+
             if([self.attachment.invoice.kid length] > 0){
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_KID", @"KID")
                                                                                         description:[NSString stringWithFormat:@"%@", self.attachment.invoice.kid]]];
             }
-            
+
             NSString *statusDescriptionText = [self.attachment.invoice statusDescriptionText];
             if (statusDescriptionText) {
                 [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_STATUS", @"Status")

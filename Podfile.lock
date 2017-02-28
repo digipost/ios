@@ -1,4 +1,5 @@
 PODS:
+  - 1PasswordExtension (1.8.4)
   - AFNetworking (3.1.0):
     - AFNetworking/NSURLSession (= 3.1.0)
     - AFNetworking/Reachability (= 3.1.0)
@@ -78,6 +79,7 @@ PODS:
   - UIAlertView+Blocks (0.9)
 
 DEPENDENCIES:
+  - 1PasswordExtension (~> 1.8.4)
   - AFNetworking (~> 3.1.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
   - Alamofire (~> 4.2.0)
@@ -106,6 +108,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/haaakon/SingleLineKeyboardResize
 
 SPEC CHECKSUMS:
+  1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
@@ -124,6 +127,6 @@ SPEC CHECKSUMS:
   SingleLineKeyboardResize: 9823c7bd4f7542e9829bab0a4714285d3394df85
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: a81082aa83ebb2e9067cf977f76f1a343ca8d93c
+PODFILE CHECKSUM: 53451900beb2e591794ea96f50721f3a6030cbd2
 
 COCOAPODS: 1.1.1

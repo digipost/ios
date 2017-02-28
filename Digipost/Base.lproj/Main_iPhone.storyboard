@@ -113,6 +113,11 @@
                                 <segue destination="jRh-L6-T4p" kind="unwind" identifier="exitOAuthSegue" unwindAction="unwindToLoginViewController:" id="Afd-7M-whm"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="1Password" id="5El-Tp-d87">
+                            <connections>
+                                <action selector="fillUsing1Password:" destination="9fB-qu-XvY" id="Gfv-8Y-xi2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="webView" destination="Php-Un-cUt" id="aq9-Dy-1D1"/>
@@ -1681,7 +1686,6 @@
         <!--Navigation Controller-->
         <scene sceneID="dKp-aa-7yV">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cDz-3g-mj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" definesPresentationContext="YES" id="qvO-H4-ooN" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mDE-BQ-flo"/>
@@ -1695,11 +1699,13 @@
                         <segue destination="KMX-pD-GS8" kind="relationship" relationship="rootViewController" id="gER-fJ-l7j"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cDz-3g-mj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="-1205"/>
         </scene>
     </scenes>
     <resources>
+        <image name="1Password" width="23" height="23"/>
         <image name="Delete" width="22" height="22"/>
         <image name="Info" width="22" height="22"/>
         <image name="Lastopp_norsk_vertikal" width="320" height="327"/>

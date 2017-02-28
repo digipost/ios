@@ -16,6 +16,7 @@
 
 #import <UIAlertView_Blocks/UIAlertView+Blocks.h>
 #import <AFNetworking/AFURLRequestSerialization.h>
+#import "1PasswordExtension/OnePasswordExtension.h"
 #import "SHCOAuthViewController.h"
 #import "NSString+RandomNumber.h"
 #import "NSURLRequest+QueryParameters.h"
@@ -33,6 +34,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
+Boolean *tryToFillUsing1Password = false;
 
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
@@ -53,16 +55,17 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self clearCacheAndCookies];
     self.screenName = kOAuthViewControllerScreenName;
-    
+
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
-    
+
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-    
+
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-    
+
+    [self remove1PasswordButtonIfNotNormalLoginScope];
     if (self.scope == kOauth2ScopeFull) {
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
@@ -73,17 +76,22 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     } else {
         [self setupUIForIncreasedAuthenticationLevelVC];
     }
-    
+
     [self presentAuthenticationWebView];
-    
+
     [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.stateParameter = nil;
+
+    // The existing OAuth implementation will normally nil the oauth-state variabel when this view is not longer visible (normally because a successfull login). But because this method will also be invoked when the app tries to open 1Password, we need to _not_ nil the the state when returning from 1Password. tryToFillUsing1Password is set to true in the fillUsing1Password-method.
+    if (tryToFillUsing1Password) {
+        tryToFillUsing1Password = false;
+    }else{
+        self.stateParameter = nil;
+    }
 }
 
 - (void)setupUIForIncreasedAuthenticationLevelVC
@@ -91,7 +99,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
                                                                                                                         alpha:0.8] }
-     
+
                                                          forState:UIControlStateNormal];
 }
 
@@ -171,6 +179,21 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
     return YES;
 }
 
+- (void) remove1PasswordButtonIfNotNormalLoginScope {
+    if (self.scope != kOauth2ScopeFull) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+- (IBAction)fillUsing1Password:(id)sender {
+    tryToFillUsing1Password = true;
+    [[OnePasswordExtension sharedExtension] fillItemIntoWebView:self.webView forViewController:self sender:sender showOnlyLogins:YES completion:^(BOOL success, NSError *error) {
+        if (!success && error.code != 0) {
+            NSLog(@"Failed to fill into webview: <%@>", error);
+        }
+    }];
+}
+
 - (void)informUserThatOauthFailedThenDismissViewController
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Oauth login error title", @"title for informing user that something critical is wrong") message:NSLocalizedString(@"Oauth login error message", @"message for informing user that Oauth state is wrong") preferredStyle:UIAlertControllerStyleAlert];
@@ -179,7 +202,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
                                                       handler:^(UIAlertAction *action) {
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                       }]];
-    
+
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -202,7 +225,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-        
+
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
@@ -211,16 +234,16 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
             //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
-    
+
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.authenticated = YES;
-    
+
     [connection cancel];
-    
+
     [self.webView loadRequest:self.failedURLRequest];
 }
 
@@ -232,7 +255,7 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     [self dismissViewControllerAnimated:YES
                              completion:^{
-                                 
+
                              }];
 }
 
@@ -240,13 +263,13 @@ NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString secureRandomString];
-    
+
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
                                  kOAuth2State : self.stateParameter,
                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
-    
+
     [self authenticateWithParameters:parameters];
 }
 
