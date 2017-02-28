@@ -34,7 +34,7 @@ NSString *const kOAuthViewControllerScreenName = @"OAuth";
 
 NSString *const kGoogleAnalyticsErrorEventCategory = @"Error";
 NSString *const kGoogleAnalyticsErrorEventAction = @"OAuth";
-Boolean *tryToFillUsing1Password = false;
+Boolean tryToFillUsing1Password = false;
 
 @interface SHCOAuthViewController () <UIWebViewDelegate, NSURLConnectionDelegate>
 
