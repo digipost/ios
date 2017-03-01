@@ -68,7 +68,6 @@ import LUKeychainAccess
     
     class func updateAppVersionsInKeychain() {        
         let appVersions = getCurrentAppVersions(oldAppVersions: getAppVersionsFromKeychain())
-        
         let keychainAccess = LUKeychainAccess()
         keychainAccess.setObject(appVersions, forKey: APP_VERSIONS_IN_KEYCHAIN)
     }
