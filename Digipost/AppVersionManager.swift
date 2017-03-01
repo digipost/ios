@@ -51,7 +51,7 @@ import LUKeychainAccess
     }
     
     class func updateAppVersionsInUserDefaults() {        
-        let appVersions = appendCurrentAppVersion(oldAppVersions: getAppVersionsFromUserDefaults())
+        let appVersions = getCurrentAppVersions(oldAppVersions: getAppVersionsFromUserDefaults())
         UserDefaults.standard.set(appVersions, forKey: APP_VERSIONS_FROM_IN_DEFAULTS)
     }
     
@@ -67,7 +67,7 @@ import LUKeychainAccess
     }
     
     class func updateAppVersionsInKeychain() {        
-        let appVersions = appendCurrentAppVersion(oldAppVersions: getAppVersionsFromKeychain())
+        let appVersions = getCurrentAppVersions(oldAppVersions: getAppVersionsFromKeychain())
         
         let keychainAccess = LUKeychainAccess()
         keychainAccess.setObject(appVersions, forKey: APP_VERSIONS_IN_KEYCHAIN)
@@ -80,7 +80,7 @@ import LUKeychainAccess
         return dictionary["CFBundleVersion"] as? String
     }
     
-    class func appendCurrentAppVersion( oldAppVersions: [String]?) -> [String] {
+    class func getCurrentAppVersions( oldAppVersions: [String]?) -> [String] {
         
         var appVersions : [String] = []
         
