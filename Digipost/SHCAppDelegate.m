@@ -54,7 +54,7 @@
 {
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
-    [self deletePossibleOldTokensIfFirstRun];
+    [AppVersionManager deleteOldTokensIfReinstall];
     [self setupGoogleAnalytics];
         
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -314,16 +314,6 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
-}
-
-- (void) deletePossibleOldTokensIfFirstRun {
-
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
-        [OAuthToken removeAllTokens];
-        [OAuthToken removeRefreshToken];
-        [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {

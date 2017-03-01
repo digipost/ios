@@ -87,6 +87,8 @@
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
+		9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */; };
+		9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */; };
 		9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
@@ -671,6 +673,7 @@
 		9C9216461E53408200EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C9216481E53451600EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
+		9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
 		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
@@ -1372,6 +1375,7 @@
 				EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */,
 				F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */,
 				9C8B656B1DE6437100634166 /* APIClient+Banks.swift */,
+				9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -2040,6 +2044,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
@@ -2269,6 +2274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */,
 				F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */,
