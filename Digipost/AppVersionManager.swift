@@ -40,11 +40,6 @@ import LUKeychainAccess
         OAuthToken.removeRefreshToken()
     }
     
-    class func getAppVersion() -> String? {
-        let dictionary = Bundle.main.infoDictionary!
-        return dictionary["CFBundleVersion"] as? String
-    }
-    
     //UserDefault - App Versions
     
     class func oldVersionsFoundInUserDefaults() -> Bool {
@@ -79,6 +74,11 @@ import LUKeychainAccess
     }
     
     //Common
+    
+    class func getAppVersion() -> String? {
+        let dictionary = Bundle.main.infoDictionary!
+        return dictionary["CFBundleVersion"] as? String
+    }
     
     class func appendCurrentAppVersion( oldAppVersions: [String]?) -> [String] {
         
