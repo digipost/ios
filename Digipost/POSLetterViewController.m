@@ -379,7 +379,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                  }];
         [alert addAction:open];
         [alert addAction:cancel];
-
+        UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+        popPresenter.sourceView = self.view;
         [self presentViewController:alert animated:YES completion:nil];
         return NO;
     }
