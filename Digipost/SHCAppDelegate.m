@@ -54,7 +54,7 @@
 {
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-500, -500) forBarMetrics:UIBarMetricsDefault];
     
-    [AppVersionManager deleteOldTokensIfNeeded];
+    [AppVersionManager deleteOldTokensIfReinstall];
     [self setupGoogleAnalytics];
         
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

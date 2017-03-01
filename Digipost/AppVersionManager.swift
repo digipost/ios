@@ -56,19 +56,8 @@ import LUKeychainAccess
     }
     
     class func updateAppVersionsInUserDefaults() {        
-        if let currentAppVersion = getAppVersion() {
-            
-            var appVersions : [String] = [] 
-            
-            if let existingAppVersions = getAppVersionsFromUserDefaults() {
-                appVersions = existingAppVersions
-            }
-            
-            guard currentAppVersion != appVersions.last else {return}
-            appVersions.append(currentAppVersion)
-            
-            UserDefaults.standard.set(appVersions, forKey: APP_VERSIONS_FROM_IN_DEFAULTS)
-        }
+        let appVersions = appendCurrentAppVersion(oldAppVersions: getAppVersionsFromUserDefaults())
+        UserDefaults.standard.set(appVersions, forKey: APP_VERSIONS_FROM_IN_DEFAULTS)
     }
     
     //Keychain - App Versions
@@ -83,19 +72,28 @@ import LUKeychainAccess
     }
     
     class func updateAppVersionsInKeychain() {        
-        if let currentAppVersion = getAppVersion() {
-            
-            var appVersions : [String] = [] 
-            
-            if let existingAppVersions = getAppVersionsFromKeychain() {
-                appVersions = existingAppVersions
-            }
-            
-            guard currentAppVersion != appVersions.last else {return}
-            appVersions.append(currentAppVersion)
-            
-            let keychainAccess = LUKeychainAccess()
-            keychainAccess.setObject(appVersions, forKey: APP_VERSIONS_IN_KEYCHAIN)
+        let appVersions = appendCurrentAppVersion(oldAppVersions: getAppVersionsFromKeychain())
+        
+        let keychainAccess = LUKeychainAccess()
+        keychainAccess.setObject(appVersions, forKey: APP_VERSIONS_IN_KEYCHAIN)
+    }
+    
+    //Common
+    
+    class func appendCurrentAppVersion( oldAppVersions: [String]?) -> [String] {
+        
+        var appVersions : [String] = []
+        
+        if let existing = oldAppVersions {
+            appVersions = existing
         }
+        
+        if let currentAppVersion = getAppVersion() {
+            guard currentAppVersion != appVersions.last else {return appVersions}
+            
+            appVersions.append(currentAppVersion)
+        }
+        
+        return appVersions
     }
 }
