@@ -19,7 +19,7 @@ import LUKeychainAccess
 @objc class AppVersionManager: NSObject{
     
     static let APP_VERSIONS_IN_KEYCHAIN = "AppVersionsInKeychain"
-    static let APP_VERSIONS_FROM_IN_DEFAULTS = "AppVersionsInUserDefaults"
+    static let APP_VERSIONS_IN_USER_DEFAULTS = "AppVersionsInUserDefaults"
     
     static func deleteOldTokensIfReinstall() {
         
@@ -47,12 +47,12 @@ import LUKeychainAccess
     }
     
     class func getAppVersionsFromUserDefaults() -> [String]? {
-        return UserDefaults.standard.object(forKey: APP_VERSIONS_FROM_IN_DEFAULTS) as? [String]
+        return UserDefaults.standard.object(forKey: APP_VERSIONS_IN_USER_DEFAULTS) as? [String]
     }
     
     class func updateAppVersionsInUserDefaults() {        
         let appVersions = getCurrentAppVersions(oldAppVersions: getAppVersionsFromUserDefaults())
-        UserDefaults.standard.set(appVersions, forKey: APP_VERSIONS_FROM_IN_DEFAULTS)
+        UserDefaults.standard.set(appVersions, forKey: APP_VERSIONS_IN_USER_DEFAULTS)
     }
     
     //Keychain - App Versions
