@@ -39,6 +39,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         banks.append(InvoiceBank(name:"DNB", url:"https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html", logo:"invoice-bank-dnb", setupIsAvailable:true))
         banks.append(InvoiceBank(name:"KLP", url:"", logo:"invoice-bank-klp", setupIsAvailable:false))
         banks.append(InvoiceBank(name:"Skandiabanken", url:"", logo:"invoice-bank-skandia", setupIsAvailable:false))
+        banks.append(InvoiceBank(name:"Gjensidige", url:"", logo:"invoice-bank-gjensidige", setupIsAvailable:false))
         bankTableView.reloadData()
     }
     
