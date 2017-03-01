@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,10 +54,10 @@
                                 <rect key="frame" x="0.0" y="190" width="375" height="357"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bankTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-8F-sFk">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="230"/>
+                                        <rect key="frame" x="0.0" y="26" width="374" height="368"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="230" id="WhT-3G-LUs"/>
+                                            <constraint firstAttribute="height" constant="368" id="WhT-3G-LUs"/>
                                         </constraints>
                                         <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
@@ -64,30 +65,18 @@
                                                 <rect key="frame" x="0.0" y="28" width="374" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3AS-w8-ZN7" id="sRP-hi-83e">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="69"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="69.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="INVOICE_OPTIONS_MORE_BANKS_SOON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e43-gW-QEm">
-                                        <rect key="frame" x="26" y="251" width="336" height="35"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="Q79-fU-ybI"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="jDo-9e-UU6" secondAttribute="topMargin" constant="-8" id="1xl-jb-xZM"/>
-                                    <constraint firstItem="e43-gW-QEm" firstAttribute="top" secondItem="CsO-8F-sFk" secondAttribute="bottom" constant="21" id="LkT-cI-ci9"/>
+                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="top" secondItem="jDo-9e-UU6" secondAttribute="top" constant="26" id="9uj-ZA-GzV"/>
                                     <constraint firstItem="CsO-8F-sFk" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" id="Svj-J5-5rR"/>
-                                    <constraint firstItem="CsO-8F-sFk" firstAttribute="centerX" secondItem="e43-gW-QEm" secondAttribute="centerX" constant="-7" id="UFo-OU-ipS"/>
-                                    <constraint firstItem="e43-gW-QEm" firstAttribute="leading" secondItem="jDo-9e-UU6" secondAttribute="leading" constant="26" id="hi6-nc-8yO"/>
-                                    <constraint firstItem="e43-gW-QEm" firstAttribute="centerX" secondItem="jDo-9e-UU6" secondAttribute="centerX" constant="6.5" id="izN-9S-Ci7"/>
+                                    <constraint firstAttribute="trailing" secondItem="CsO-8F-sFk" secondAttribute="trailing" constant="1" id="Y0y-s3-Qhz"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -112,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jyd-ru-dya" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2036" y="108"/>
+            <point key="canvasLocation" x="-2036" y="107.49625187406298"/>
         </scene>
         <!--Invoice Bank Title-->
         <scene sceneID="Uto-tM-aYH">
