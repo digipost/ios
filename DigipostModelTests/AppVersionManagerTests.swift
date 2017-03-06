@@ -16,7 +16,6 @@
 
 import UIKit
 import XCTest
-import LUKeychainAccess
 @testable import Digipost
 
 class AppVersionManagerTests: XCTestCase {
