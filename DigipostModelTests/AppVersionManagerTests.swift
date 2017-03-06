@@ -41,24 +41,28 @@ class AppVersionManagerTests: XCTestCase {
     
     func testSaveVersionInKeychain() {
         clearAppVersions()
-        AppVersionManager.updateAppVersionsInKeychain()
         
+        AppVersionManager.updateAppVersionsInKeychain()
         let keychain = AppVersionManager.oldVersionsFoundInKeychain()
+        
         XCTAssert(keychain, "Version not found in keychain")
     }
     
     func testSaveVersionInUserDefaults() {
         clearAppVersions()
-        AppVersionManager.updateAppVersionsInUserDefaults()
         
+        AppVersionManager.updateAppVersionsInUserDefaults()
         let userdefaults = AppVersionManager.oldVersionsFoundInUserDefaults()
+        
         XCTAssert(userdefaults, "Version not found in userdefaults")
     }
     
     func testClearVersions(){
         clearAppVersions()
+        
         let keychain = AppVersionManager.oldVersionsFoundInKeychain()
         let userdefaults = AppVersionManager.oldVersionsFoundInKeychain()
+        
         XCTAssertFalse(keychain || userdefaults, "Clear failed ")
     }
     
@@ -73,17 +77,18 @@ class AppVersionManagerTests: XCTestCase {
     
     func testUpdateInstall() {
         clearAppVersions()
-        simulateRun()
         
+        simulateRun()
         let keychain = AppVersionManager.oldVersionsFoundInKeychain()
         let userdefaults = AppVersionManager.oldVersionsFoundInKeychain()
+        
         XCTAssert(keychain && userdefaults, "No old versions found!")
     }
     
     func testReinstall() {
         clearAppVersions()
-        AppVersionManager.updateAppVersionsInKeychain()
         
+        AppVersionManager.updateAppVersionsInKeychain()
         let keychain = AppVersionManager.oldVersionsFoundInKeychain()
         let userdefaults = AppVersionManager.oldVersionsFoundInUserDefaults()
         
