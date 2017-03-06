@@ -87,6 +87,7 @@
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
+		9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDF873F1E68180F003E73FB /* AppVersionManagerTests.swift */; };
 		9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */; };
 		9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */; };
 		9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
@@ -673,6 +674,7 @@
 		9C9216461E53408200EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C9216481E53451600EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
+		9CDF873F1E68180F003E73FB /* AppVersionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManagerTests.swift; sourceTree = "<group>"; };
 		9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -1479,6 +1481,7 @@
 				EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */,
 				ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */,
 				EC2751881B061D010007125D /* Supporting Files */,
+				9CDF873F1E68180F003E73FB /* AppVersionManagerTests.swift */,
 			);
 			path = DigipostModelTests;
 			sourceTree = "<group>";
@@ -2266,6 +2269,7 @@
 				9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
+				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
 				9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
