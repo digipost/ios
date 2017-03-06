@@ -95,4 +95,14 @@ import LUKeychainAccess
         
         return appVersions
     }
+    
+    class func clearUserDefaultVersions() {
+        UserDefaults.standard.set(nil, forKey: APP_VERSIONS_IN_USER_DEFAULTS)
+        UserDefaults.standard.synchronize()
+    }
+    
+    class func clearKeyChainVersions() {
+        let keychainAccess = LUKeychainAccess()
+        keychainAccess.setObject(nil, forKey: APP_VERSIONS_IN_KEYCHAIN)
+    }
 }
