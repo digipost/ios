@@ -57,7 +57,7 @@ class AppVersionManagerTests: XCTestCase {
         XCTAssert(userdefaults, "Version not found in userdefaults")
     }
     
-    func testClearVersions(){
+    func testClearVersions() {
         clearAppVersions()
         
         let keychain = AppVersionManager.oldVersionsFoundInKeychain()
