@@ -218,13 +218,7 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
                                         withSettings:kRNCryptorAES256Settings
                                             password:password
                                                error:&localError];
-    
-    /*
-    NSData *encryptedFileData = [RNCryptor encryptData:decryptedFileData
-                                        withSettings:kRNCryptorAES256Settings
-                                            password:password
-                                               error:&localError];
-    */
+
     if (localError) {
         //        DDLogError(@"Error encrypting file: %@", [localError localizedDescription]);
 
