@@ -16,8 +16,8 @@
 
 #import "POSFileManager.h"
 #import "NSString+SHA1String.h"
-#import <RNCryptor/RNEncryptor.h>
-#import <RNCryptor/RNDecryptor.h>
+#import <RNCryptor_objc/RNEncryptor.h>
+#import <RNCryptor_objc/RNDecryptor.h>
 #import "POSOAuthManager.h"
 #import "NSError+ExtraInfo.h"
 #import "POSBaseEncryptedModel.h"
@@ -101,11 +101,10 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
         return NO;
     }
-
+    
     NSData *decryptedFileData = [RNDecryptor decryptData:encryptedFileData
-                                            withSettings:kRNCryptorAES256Settings
-                                                password:password
-                                                   error:&localError];
+                                        withPassword:password
+                                               error:&localError];
     if (localError) {
         //        DDLogError(@"Error decrypting file: %@", [localError localizedDescription]);
 
@@ -214,11 +213,18 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
 
         return NO;
     }
-
+    
     NSData *encryptedFileData = [RNEncryptor encryptData:decryptedFileData
-                                            withSettings:kRNCryptorAES256Settings
-                                                password:password
-                                                   error:&localError];
+                                        withSettings:kRNCryptorAES256Settings
+                                            password:password
+                                               error:&localError];
+    
+    /*
+    NSData *encryptedFileData = [RNCryptor encryptData:decryptedFileData
+                                        withSettings:kRNCryptorAES256Settings
+                                            password:password
+                                               error:&localError];
+    */
     if (localError) {
         //        DDLogError(@"Error encrypting file: %@", [localError localizedDescription]);
 

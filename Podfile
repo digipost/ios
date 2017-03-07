@@ -9,7 +9,7 @@ def all_pods
     pod 'AFNetworking', '~> 3.1.0'
     pod 'UIAlertView+Blocks', '~> 0.8'
     pod 'LUKeychainAccess', '~> 2.0.2'
-    pod 'RNCryptor', '~> 2.2'
+    pod 'RNCryptor-objc', '~> 3.0.2'
     pod 'Google/CloudMessaging'
     pod 'MRProgress', '~> 0.4.3'
     pod 'AHKActionSheet', :git => 'https://github.com/haaakon/AHKActionSheet.git', :commit => '84f116697e8187fb7f654d771df64690dd8860eb'
