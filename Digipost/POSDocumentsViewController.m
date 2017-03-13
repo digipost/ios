@@ -482,7 +482,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     if(numberOfInvoices > 0){
         NSString *invoiceWord = numberOfInvoices == 1 ? NSLocalizedString(@"invoice delete dialog invoice singular", @"invoice") : NSLocalizedString(@"invoice delete dialog invoice plural", @"invoices");
 
-        if([InvoiceBankAgreement hasActiveAgreementType2]){
+        if([InvoiceBankAgreement hasActiveType1Agreement]){
             deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message 20 agreement", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];
         }else{
             deleteMessage = [NSString stringWithFormat:NSLocalizedString(@"invoice delete dialog multiple message", @"delete files, including invoices"),(unsigned long) numberOfLetters, letterWord, (unsigned long) numberOfInvoices, invoiceWord];

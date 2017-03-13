@@ -28,7 +28,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var invoiceBankContent: UILabel!{
         didSet{
-            let invoiceBankContentString = invoiceBank.setupIsAvailable ? "invoice bank enabled content" : "invoice bank disabled content"
+            let invoiceBankContentString = invoiceBank.activeType2Agreement ? "invoice bank enabled content" : "invoice bank disabled content"
             self.invoiceBankContent.text = NSLocalizedString(invoiceBankContentString, comment:"invoice bank content")
             self.invoiceBankContent.sizeToFit()
             self.invoiceBankContent.lineBreakMode = NSLineBreakMode.byWordWrapping
@@ -37,7 +37,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var invoiceBankTitle: UILabel!{
         didSet{
-            let invoiceBankTitleString = invoiceBank.setupIsAvailable ? "invoice bank enabled title" : "invoice bank disabled title"
+            let invoiceBankTitleString = invoiceBank.activeType2Agreement ? "invoice bank enabled title" : "invoice bank disabled title"
             self.invoiceBankTitle.text = NSLocalizedString(invoiceBankTitleString, comment:"invoice bank title")
         }
     }
@@ -45,7 +45,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var openBankUrlButton: UIButton!{
         didSet{
-            if(invoiceBank.setupIsAvailable){
+            if(invoiceBank.activeType2Agreement){
                 let openBankUrlButtonString = NSLocalizedString("invoice bank button link prefix", comment: "invoice bank button link") + invoiceBank.name + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
                 self.openBankUrlButton.setTitle(openBankUrlButtonString, for: UIControlState())
             }else{
@@ -56,7 +56,7 @@ class InvoiceBankViewController: UIViewController{
 
     @IBOutlet weak var invoiceBankReadMoreText: UIButton!{
         didSet{
-            let invoiceBankReadMoreLinkString = invoiceBank.setupIsAvailable ? "invoice bank enabled read more link" : "invoice bank disabled read more link"
+            let invoiceBankReadMoreLinkString = invoiceBank.activeType2Agreement ? "invoice bank enabled read more link" : "invoice bank disabled read more link"
             self.invoiceBankReadMoreText.setTitle(NSLocalizedString(invoiceBankReadMoreLinkString, comment:"invoice bank read more link"), for:UIControlState())
         }
     }
@@ -67,7 +67,7 @@ class InvoiceBankViewController: UIViewController{
     }
     
     @IBAction func invoiceBankReadMore(_ sender: AnyObject) {
-        if(invoiceBank.setupIsAvailable){
+        if(invoiceBank.activeType2Agreement){
             InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
             openExternalUrl(url: "https://digipost.no/faktura")
         }else{

@@ -139,13 +139,13 @@ NSString *const kInvoicePaymentBankNameAPIKeySuffix = @"bank";
 
 - (NSString *)statusDescriptionText
 {    
-    if([InvoiceBankAgreement hasActiveAgreementType1]){
+    if([InvoiceBankAgreement hasActiveType1Agreement]){
         if (self.timePaid) {
             return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_PROCESSED", @""),[self bankName]];
         }else{
             return NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_1_UNPROCESSED", @"");
         }
-    }else if([InvoiceBankAgreement hasActiveAgreementType2]){
+    }else if([InvoiceBankAgreement hasActiveType2Agreement]){
         if (self.timePaid) {
             return [NSString stringWithFormat:@"%@%@",NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_PROCESSED", @""),[self bankName]];
         }else{

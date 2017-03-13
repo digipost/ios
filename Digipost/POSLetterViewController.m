@@ -1206,7 +1206,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)showInvoiceSetupAlertIfNoActiveAgreements{
 
-    BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasActiveFakturaAgreement];
+    BOOL userHaveNoActiveAgreements = ![InvoiceBankAgreement hasAnyActiveAgreements];
     BOOL shouldShowInvoiceNotifications = [InvoiceAlertUserDefaults shouldShowInvoiceNotification];
     if (self.attachment.invoice != nil && shouldShowInvoiceNotifications && userHaveNoActiveAgreements){
         [self showInvoiceSetupAlert];
@@ -1290,7 +1290,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         actionButtonTitle = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_POPUP_ACTION_BUTTON_SEND_TITLE", @"Send to bank");
         cancelButtonTitle = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
 
-    } else if([InvoiceBankAgreement hasActiveAgreementType2]){
+    } else if([InvoiceBankAgreement hasActiveType2Agreement]){
         [self showReadyToPaymentAgreementType2Popup];
         return;
     }else {
