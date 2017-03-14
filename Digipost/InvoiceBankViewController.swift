@@ -45,7 +45,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBOutlet weak var openBankUrlButton: UIButton!{
         didSet{
-            if(invoiceBank.activeType2Agreement){
+            if(invoiceBank.haveRegistrationUrl()){
                 let openBankUrlButtonString = NSLocalizedString("invoice bank button link prefix", comment: "invoice bank button link") + invoiceBank.name + NSLocalizedString("invoice bank button link postfix", comment: "Invoice bank button link")
                 self.openBankUrlButton.setTitle(openBankUrlButtonString, for: UIControlState())
             }else{
@@ -63,7 +63,7 @@ class InvoiceBankViewController: UIViewController{
     
     @IBAction func openBankUrl(_ sender: AnyObject) {
         InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
-        UIApplication.shared.openURL(URL(string:invoiceBank.url)!) //Opens external bank website, should be opened in external browser
+        UIApplication.shared.openURL(URL(string:invoiceBank.registrationUrl)!) //Opens external bank website, should be opened in external browser
     }
     
     @IBAction func invoiceBankReadMore(_ sender: AnyObject) {
