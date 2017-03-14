@@ -66,9 +66,13 @@
                     }
                 }
             }
-                       
-            let name = bank["name"] as! String
-            banks.append(InvoiceBank(name: name, url: "", activeType1Agreement: activeType1Agreement, activeType2Agreement: activeType2Agreement))
+
+           
+            //Add additional registration links from API if direct link becomes available.
+             let name = bank["name"] as! String
+            let registrationUrl = name == "DNB" ? "https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html" : "" 
+            let newBank = InvoiceBank(name: name, registrationUrl: registrationUrl, activeType1Agreement: activeType1Agreement, activeType2Agreement: activeType2Agreement)
+            banks.append(newBank)
         }
         return banks
     }
