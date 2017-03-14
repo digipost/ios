@@ -81,6 +81,11 @@
         UserDefaults.standard.set(banksStatus, forKey: BANKS_STATUS_KEY)
     }
     
+    static func clearBanks() {
+        UserDefaults.standard.removeObject(forKey: BANKS_STATUS_KEY)
+        UserDefaults.standard.synchronize()
+    }
+    
     static func updateActiveBankAgreementStatus() {
         if let rootResource: POSRootResource =
             POSRootResource.existingRootResource(
