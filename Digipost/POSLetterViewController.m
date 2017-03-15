@@ -211,9 +211,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         oAuthViewController.scope = [OAuthToken oAuthScopeForAuthenticationLevel:self.attachment.authenticationLevel];
     }else if ([segue.identifier isEqualToString:kinvoiceOptionsSegue]) {
         NSString *invoiceTitle = self.attachment.subject;
-
         InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;
-        invoiceOptionsViewController.viewTitle = invoiceTitle;
+        invoiceOptionsViewController.title = invoiceTitle;
+        
     }
 }
 

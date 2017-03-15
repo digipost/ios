@@ -30,8 +30,6 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         bankTableView.dataSource = self
         bankTableView.register(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
         addInvoiceBanks()
-
-        self.title = viewTitle
     }
     
 
@@ -59,7 +57,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == kInvoiceBankSegue{
             if let viewController = segue.destination as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! IndexPath).row]
-                viewController.title = self.viewTitle
+                viewController.title = self.title
                 InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! IndexPath).row].name)
             }
         }
