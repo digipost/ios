@@ -114,4 +114,29 @@ class InvoiceBankAgreementTests: XCTestCase {
         XCTAssert(activeType2Agreement, "Should exist active type 2 agreement")
     }
     
+    func testActiveType1AndType2Agreements() {
+        let inactiveAgreements = jsonDictionaryFromFile("ActiveType1AndType2Agreements.json")
+        InvoiceBankAgreement.storeBanks(banksStatus: inactiveAgreements)
+        
+        guard let banks = InvoiceBankAgreement.getBanks() else {
+            XCTFail("Banks don't exist!")
+            return
+        }
+        
+        var activeType1Agreement = false
+        var activeType2Agreement = false
+
+        for bank in banks {
+            if bank.activeType1Agreement {
+                activeType1Agreement = true
+            }
+            if bank.activeType2Agreement {
+                activeType2Agreement = true
+            }
+        }
+        
+        XCTAssert(activeType1Agreement, "Should exist active type 1 agreement")
+        XCTAssert(activeType2Agreement, "Should exist active type 2 agreement")
+        
+    }
 }

@@ -80,6 +80,7 @@
 		9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
+		9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */; };
 		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
@@ -665,6 +666,7 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		83F7038518573C3A003DABE1 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 1; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
+		9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType1AndType2Agreements.json; sourceTree = "<group>"; };
 		9C3C11001DF835B90028DF3B /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
 		9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C3EEC661E533C0D0052E7B1 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostModelTests.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_DigipostModelTests.framework"; sourceTree = "<group>"; };
@@ -1264,6 +1266,7 @@
 				9CDE3AAC1E7834D800B9C27B /* InactiveBankAgreements.json */,
 				9CDE3AAF1E7837C200B9C27B /* ActiveType1BankAgreements.json */,
 				9CDE3AB11E7837CD00B9C27B /* ActiveType2BankAgreements.json */,
+				9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */,
 			);
 			name = invoice;
 			sourceTree = "<group>";
@@ -1920,6 +1923,7 @@
 				9CDE3AB01E7837C200B9C27B /* ActiveType1BankAgreements.json in Resources */,
 				EC2752311B09D2920007125D /* documents.json in Resources */,
 				9CDE3AAD1E7834D800B9C27B /* InactiveBankAgreements.json in Resources */,
+				9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */,
 				EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
