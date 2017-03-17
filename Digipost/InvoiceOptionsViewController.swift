@@ -30,16 +30,13 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         bankTableView.dataSource = self
         bankTableView.register(UINib(nibName: Constants.Invoice.InvoiceBankTableViewCellNibName, bundle: nil), forCellReuseIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName)
         addInvoiceBanks()
-
-        self.title = viewTitle
     }
     
 
     func addInvoiceBanks(){
-        banks.append(InvoiceBank(name:"DNB", url:"https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html", logo:"invoice-bank-dnb", setupIsAvailable:true))
-        banks.append(InvoiceBank(name:"KLP", url:"", logo:"invoice-bank-klp", setupIsAvailable:false))
-        banks.append(InvoiceBank(name:"Skandiabanken", url:"", logo:"invoice-bank-skandia", setupIsAvailable:false))
-        banks.append(InvoiceBank(name:"Gjensidige", url:"", logo:"invoice-bank-gjensidige", setupIsAvailable:false))
+        if let updatedBanks = InvoiceBankAgreement.getBanks() {
+            banks = updatedBanks
+        }
         bankTableView.reloadData()
     }
     
@@ -60,7 +57,7 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         if segue.identifier == kInvoiceBankSegue{
             if let viewController = segue.destination as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! IndexPath).row]
-                viewController.title = self.viewTitle
+                viewController.title = self.title
                 InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! IndexPath).row].name)
             }
         }

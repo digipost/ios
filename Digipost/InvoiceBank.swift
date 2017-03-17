@@ -19,16 +19,26 @@ import Foundation
 class InvoiceBank{
     
     var name: String = ""
-    var url: String = ""
-    var logo: String = ""
-    var setupIsAvailable = false
+    var registrationUrl: String = ""
+    var activeType1Agreement = false
+    var activeType2Agreement = false
+    
+    var logo: String {
+        get {
+            return "invoice-bank-\((self.name).lowercased().removeWhitespaces())"
+        }
+    }
     
     init(){}
     
-    init (name: String, url: String, logo: String, setupIsAvailable: Bool) {
+    init (name: String, registrationUrl: String, activeType1Agreement: Bool, activeType2Agreement: Bool) {
         self.name = name
-        self.url = url
-        self.logo = logo
-        self.setupIsAvailable = setupIsAvailable
+        self.registrationUrl = registrationUrl
+        self.activeType1Agreement = activeType1Agreement
+        self.activeType2Agreement = activeType2Agreement
+    }
+    
+    func haveRegistrationUrl() -> Bool {
+        return registrationUrl != ""
     }
 }

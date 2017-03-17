@@ -1296,7 +1296,9 @@
                             <color key="tintColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="39e-bL-3nq"/>
+                    <navigationItem key="navigationItem" id="39e-bL-3nq">
+                        <barButtonItem key="backBarButtonItem" title="  " id="jmF-xl-3kN"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="errorLabel" destination="xQW-NC-XrA" id="wd5-2F-s8Q"/>
@@ -1520,6 +1522,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Kontoer" id="vHD-b2-5cA">
+                        <barButtonItem key="backBarButtonItem" title="  " id="m9v-Gf-0JF"/>
                         <barButtonItem key="rightBarButtonItem" id="835-WA-l70">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="clip" id="8XQ-uL-n1w">
                                 <rect key="frame" x="285" y="5" width="74" height="33"/>
@@ -1731,10 +1734,10 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="p4n-lw-a8U"/>
-        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="6ll-nd-HYD"/>
-        <segue reference="WBk-6x-J5R"/>
-        <segue reference="2IH-85-kgn"/>
         <segue reference="Kl9-xn-mhN"/>
+        <segue reference="vJp-VT-rtF"/>
+        <segue reference="2IH-85-kgn"/>
+        <segue reference="WBk-6x-J5R"/>
     </inferredMetricsTieBreakers>
 </document>

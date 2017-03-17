@@ -94,6 +94,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         self.navigationController?.isNavigationBarHidden = false
         
         let title = NSLocalizedString("Accounts title", comment: "Title for navbar at accounts view")
+        navigationController?.navigationBar.topItem?.title = title
         
         logoutButtonVariable?.setTitle(NSLocalizedString("log out button title", comment: "Title for log out button"), for: UIControlState())
         logoutButtonVariable?.setTitleColor(UIColor.digipostLogoutButtonTextColor(), for: UIControlState())
@@ -108,7 +109,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         navigationItem.setHidesBackButton(true, animated: false)
         navigationController?.navigationBar.topItem?.setRightBarButton(logoutBarButtonItem, animated: false)
-        navigationController?.navigationBar.topItem?.title = title
+        
         
         if OAuthToken.isUserLoggedIn() == false {
             NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)

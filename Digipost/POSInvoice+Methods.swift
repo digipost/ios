@@ -29,7 +29,7 @@ extension POSInvoice {
             if (sendToBankUri as NSString? != nil) {
                 title = NSLocalizedString("LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SEND_TITLE", comment:"Send to bank");
             } else {
-                if InvoiceBankAgreement.hasActiveAgreementType2() {
+                if InvoiceBankAgreement.hasAnyActiveAgreements() {
                     title = NSLocalizedString("LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_TITLE", comment:"Klar til betaling");
                 }else{
                     title = NSLocalizedString("LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_PAYMENT_TIPS_TITLE", comment:"Payment tips");
