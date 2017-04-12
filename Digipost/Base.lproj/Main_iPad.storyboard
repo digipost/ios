@@ -552,7 +552,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJI-uk-1YP" userLabel="Sender Label">
-                                            <rect key="frame" x="25" y="48" width="217" height="25"/>
+                                            <rect key="frame" x="25" y="48" width="209" height="25"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -574,9 +574,9 @@
                                             <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAKTURA" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-vQ-dze">
-                                            <rect key="frame" x="245" y="54" width="67" height="16"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-vQ-dze">
+                                            <rect key="frame" x="234" y="54" width="78" height="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -584,7 +584,7 @@
                                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="centerY" secondItem="Qcx-VB-dgT" secondAttribute="centerY" constant="-22.5" id="1Dq-iw-cwm"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="70" id="4cd-9h-veI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="78" id="4cd-9h-veI"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="fJI-uk-1YP" secondAttribute="bottom" constant="10.5" id="5CJ-JE-Zdf"/>
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="3" id="6PN-y9-7Kp"/>
                                         <constraint firstAttribute="bottom" secondItem="Dh8-Vl-Dpn" secondAttribute="bottom" constant="41.5" id="Fs9-9C-rQR"/>
@@ -603,7 +603,7 @@
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="25" id="nRQ-iJ-TFl"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Pmt-A4-NGA" secondAttribute="trailing" constant="5" id="owg-D9-mVw"/>
                                         <constraint firstItem="Pmt-A4-NGA" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="7" id="pRn-Zj-P9E"/>
-                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="3" id="rxx-WV-sTZ"/>
+                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" id="rxx-WV-sTZ"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="x72-Vo-fUY"/>
                                     </constraints>
                                 </tableViewCellContentView>
