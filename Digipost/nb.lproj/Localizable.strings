@@ -660,3 +660,7 @@
 /* Invoice Agreement type 2 Popup Modal */ 
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_TITLE" = "Klar til betaling";
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_MESSAGE" = "Fakturaen er klar til betaling i nettbanken";
+
+/* FAKTURA INKASSO */
+"debt" = "INKASSO";
+"invoice" = "FAKTURA";
