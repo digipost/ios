@@ -30,6 +30,9 @@ extern NSString *const kDocumentTableViewCellIdentifier;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
 @property (weak, nonatomic) IBOutlet UIButton *editingButton;
+@property (weak, nonatomic) IBOutlet UILabel *typeLabel;
+
+
 
 @property (nonatomic, assign) id<SHCDocumentTableViewCellDelegate> delegate;
 
