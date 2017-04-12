@@ -313,6 +313,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
+    
+    if ([attachment.type isEqual: @"INVOICE"]){
+        if ([document.collectionNotice intValue] == YES) {
+            cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"settlement","")];
+        }else{
+            cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice","")];
+        }
+    }
 }
 
 #pragma mark - UITableViewDelegate
