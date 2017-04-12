@@ -314,6 +314,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
     
+    cell.typeLabel.text = @"";
     if ([attachment.type isEqual: @"INVOICE"]){
         if ([document.collectionNotice intValue] == YES) {
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"settlement","")];
