@@ -87,6 +87,7 @@
 		9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
+		9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -383,7 +384,6 @@
 		F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
-		F8AE1C431CD374B40009B2F9 /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
 		F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
@@ -2406,7 +2406,6 @@
 				F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */,
-				F8AE1C431CD374B40009B2F9 /* POSInvoice.m in Sources */,
 				F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
@@ -2487,6 +2486,7 @@
 				F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */,
 				F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				F8AE1C8D1CD374B40009B2F9 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
+				9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */,
 				F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */,
 				F8AE1C8F1CD374B40009B2F9 /* Model.xcdatamodeld in Sources */,
 				F8AE1C901CD374B40009B2F9 /* RecipientsViewController.swift in Sources */,
