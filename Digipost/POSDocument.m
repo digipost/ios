@@ -31,7 +31,6 @@ NSString *const kDocumentLinkAPIKey = @"link";
 NSString *const kDocumentDeleteDocumentAPIKeySuffix = @"delete_document";
 NSString *const kDocumentUpdateDocumentAPIKeySuffix = @"update_document";
 NSString *const kDocumentAttachmentAPIKey = @"attachment";
-NSString *const kDocumentInvoice = @"invoice";
 NSString *const kDocumentPaid = @"paid";
 NSString *const kDocumentCollectionNotice = @"collectionNotice";
 
@@ -270,6 +269,12 @@ NSString *const kDocumentCollectionNotice = @"collectionNotice";
         
     NSNumber *settlement = attributes[kDocumentCollectionNotice];
     self.collectionNotice = [settlement isKindOfClass:[NSNumber class]] ? settlement : false;
+    
+    NSString *type = attributes[@"type"];
+    
+    self.invoice = [NSNumber numberWithBool:[type isEqualToString:@"INVOICE"]];
+    NSNumber *isPaid = attributes[kDocumentPaid];
+    self.paid = [settlement isKindOfClass:[NSNumber class]] ? isPaid : false;
 
     self.deleteUri = nil;
     self.updateUri = nil;
