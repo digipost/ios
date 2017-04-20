@@ -16,7 +16,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" definesPresentationContext="YES" id="yzu-Np-c5M" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Scb-lQ-TPi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Scb-lQ-TPi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -546,14 +546,14 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dh8-Vl-Dpn" userLabel="Subject Label">
-                                            <rect key="frame" x="25" y="26" width="247" height="24"/>
+                                            <rect key="frame" x="25" y="26" width="217" height="24"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fJI-uk-1YP" userLabel="Sender Label">
-                                            <rect key="frame" x="25" y="48" width="247" height="25"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <rect key="frame" x="25" y="48" width="209" height="25"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -565,33 +565,46 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="DATE" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbF-uJ-8np" userLabel="Date Label">
-                                            <rect key="frame" x="280" y="28" width="32" height="21"/>
+                                            <rect key="frame" x="245" y="28" width="67" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="hEz-Uk-NM6"/>
-                                                <constraint firstAttribute="width" priority="249" constant="49" id="nsR-Tv-rlr"/>
+                                                <constraint firstAttribute="width" priority="249" constant="67" id="nsR-Tv-rlr"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                             <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gg-vQ-dze">
+                                            <rect key="frame" x="234" y="54" width="78" height="14"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                            <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="centerY" secondItem="Qcx-VB-dgT" secondAttribute="centerY" constant="-22.5" id="1Dq-iw-cwm"/>
-                                        <constraint firstAttribute="trailing" secondItem="KbF-uJ-8np" secondAttribute="trailing" constant="8" id="3Cw-QV-CkW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="78" id="4cd-9h-veI"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="fJI-uk-1YP" secondAttribute="bottom" constant="10.5" id="5CJ-JE-Zdf"/>
-                                        <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="8" id="6H2-wj-jrj"/>
+                                        <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="3" id="6PN-y9-7Kp"/>
                                         <constraint firstAttribute="bottom" secondItem="Dh8-Vl-Dpn" secondAttribute="bottom" constant="41.5" id="Fs9-9C-rQR"/>
                                         <constraint firstItem="KbF-uJ-8np" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="28" id="GfC-Kl-zj4"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Qcx-VB-dgT" secondAttribute="trailing" constant="5" id="J3A-jf-3dd"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Dh8-Vl-Dpn" secondAttribute="trailing" constant="70" id="K75-sV-jav"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="48" id="QFT-eH-pLA"/>
                                         <constraint firstItem="Qcx-VB-dgT" firstAttribute="top" secondItem="Pmt-A4-NGA" secondAttribute="bottom" constant="9" id="S7T-Xf-C8t"/>
-                                        <constraint firstItem="KbF-uJ-8np" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" constant="8" id="cZS-pA-ACW"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="U6R-jZ-4HS"/>
+                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="top" secondItem="KbF-uJ-8np" secondAttribute="bottom" constant="5" id="YPo-oK-cZK"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="4gg-vQ-dze" secondAttribute="trailing" id="dGq-t1-lNS"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="eIv-0R-2Xk"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="25" id="gMJ-47-xuX"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="topMargin" constant="18" id="lWV-we-mLB"/>
                                         <constraint firstItem="Qcx-VB-dgT" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="7" id="mP6-Qa-bJc"/>
                                         <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="25" id="nRQ-iJ-TFl"/>
+                                        <constraint firstItem="Dh8-Vl-Dpn" firstAttribute="leading" secondItem="Pmt-A4-NGA" secondAttribute="trailing" constant="5" id="owg-D9-mVw"/>
                                         <constraint firstItem="Pmt-A4-NGA" firstAttribute="leading" secondItem="rLJ-CH-eiQ" secondAttribute="leading" constant="7" id="pRn-Zj-P9E"/>
+                                        <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="fJI-uk-1YP" secondAttribute="trailing" id="rxx-WV-sTZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="x72-Vo-fUY"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -600,6 +613,7 @@
                                     <outlet property="lockedImageView" destination="Pmt-A4-NGA" id="eVv-JT-IEO"/>
                                     <outlet property="senderLabel" destination="fJI-uk-1YP" id="dLm-Xd-aU6"/>
                                     <outlet property="subjectLabel" destination="Dh8-Vl-Dpn" id="eTC-HM-3TB"/>
+                                    <outlet property="typeLabel" destination="4gg-vQ-dze" id="sSu-tL-pVq"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UploadCellIdentifier" rowHeight="109" id="fBN-5V-OPN" userLabel="Upload Table View Cell" customClass="POSUploadTableViewCell">
@@ -1400,7 +1414,7 @@
             <objects>
                 <navigationController id="OdY-44-cdI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Upo-UA-iRO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s3L-N0-7eL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="s3L-N0-7eL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1697,7 +1711,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlF-6U-ivY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dz8-9m-wOS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dz8-9m-wOS">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

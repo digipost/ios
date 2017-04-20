@@ -33,6 +33,7 @@ NSString *const kDocumentUpdateDocumentAPIKeySuffix = @"update_document";
 NSString *const kDocumentAttachmentAPIKey = @"attachment";
 NSString *const kDocumentInvoice = @"invoice";
 NSString *const kDocumentPaid = @"paid";
+NSString *const kDocumentCollectionNotice = @"collectionNotice";
 
 // Because of a bug in Core Data, we need to manually implement these methods
 // See: http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors
@@ -69,6 +70,8 @@ NSString *const kDocumentPaid = @"paid";
 @dynamic location;
 @dynamic updateUri;
 @dynamic folderUri;
+@dynamic collectionNotice;
+
 
 // Relationships
 @dynamic attachments;
@@ -264,6 +267,9 @@ NSString *const kDocumentPaid = @"paid";
     if ([[origin lowercaseString] isEqualToString:@"uploaded"]) {
         self.creatorName = NSLocalizedString(@"GENERIC_DOCUMENT_IS_UPLOADED_TITLE", @"Opplastet");
     }
+        
+    NSNumber *settlement = attributes[kDocumentCollectionNotice];
+    self.collectionNotice = [settlement isKindOfClass:[NSNumber class]] ? settlement : false;
 
     self.deleteUri = nil;
     self.updateUri = nil;
