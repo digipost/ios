@@ -31,6 +31,8 @@ NSString *const kDocumentLinkAPIKey = @"link";
 NSString *const kDocumentDeleteDocumentAPIKeySuffix = @"delete_document";
 NSString *const kDocumentUpdateDocumentAPIKeySuffix = @"update_document";
 NSString *const kDocumentAttachmentAPIKey = @"attachment";
+NSString *const kDocumentInvoice = @"invoice";
+NSString *const kDocumentPaid = @"paid";
 
 // Because of a bug in Core Data, we need to manually implement these methods
 // See: http://stackoverflow.com/questions/7385439/exception-thrown-in-nsorderedset-generated-accessors

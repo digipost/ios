@@ -37,6 +37,8 @@ extern NSString *const kDocumentDocumentsAPIKey;
 @property (strong, nonatomic) NSString *location;
 @property (strong, nonatomic) NSString *updateUri;
 @property (nonatomic, retain) NSString *folderUri;
+@property (strong, nonatomic) NSNumber *paid;
+@property (strong, nonatomic) NSNumber *invoice;
 
 // Relationships
 @property (strong, nonatomic) NSOrderedSet *attachments;
