@@ -297,13 +297,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
     
     [cell.senderLabel setFont: [cell.senderLabel.font fontWithSize: 14]];
-    
-    if (attachment.originIsPublicEntity) {
-        NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");
-        cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@", publicEntity, attachment.document.creatorName];
-    } else {
-        cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
-    }
+    cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
 
     cell.delegate = self;
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
