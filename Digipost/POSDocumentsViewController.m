@@ -309,16 +309,14 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.multipleSelectionBackgroundView = [UIView new];
     
     if([document.invoice intValue] == YES) {
+        cell.typeImage.hidden = NO;
         if ([document.collectionNotice intValue] == YES) {
-            cell.typeImage.hidden = NO;
             cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"settlement","")];
         }else if([document.paid intValue] == YES) {
-            cell.typeImage.hidden = NO;
             cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-added-to-payments"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice_paid","")];
         }else {
-            cell.typeImage.hidden = NO;
             cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice_unpaid","")];
         }
