@@ -320,6 +320,9 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice_unpaid","")];
         }
+    }else {
+        cell.typeImage.hidden = YES;
+        cell.typeLabel.text = @"";
     }
 }
 
