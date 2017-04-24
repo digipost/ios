@@ -16,7 +16,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" definesPresentationContext="YES" id="yzu-Np-c5M" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Scb-lQ-TPi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Scb-lQ-TPi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -66,7 +66,7 @@
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DjV-YW-jjY">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translucent="NO" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1421,7 +1421,7 @@
             <objects>
                 <navigationController id="OdY-44-cdI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Upo-UA-iRO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="s3L-N0-7eL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s3L-N0-7eL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1718,7 +1718,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlF-6U-ivY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dz8-9m-wOS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dz8-9m-wOS">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
