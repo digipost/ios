@@ -310,6 +310,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     
     if([document.invoice intValue] == YES) {
         if ([document.collectionNotice intValue] == YES) {
+            cell.typeImage.hidden = NO;
+            cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"settlement","")];
         }else if([document.paid intValue] == YES) {
             cell.typeImage.hidden = NO;

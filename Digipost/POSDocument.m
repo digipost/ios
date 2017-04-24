@@ -70,6 +70,8 @@ NSString *const kDocumentCollectionNotice = @"collectionNotice";
 @dynamic updateUri;
 @dynamic folderUri;
 @dynamic collectionNotice;
+@dynamic invoice;
+@dynamic paid;
 
 
 // Relationships
