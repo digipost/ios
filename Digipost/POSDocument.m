@@ -31,6 +31,7 @@ NSString *const kDocumentLinkAPIKey = @"link";
 NSString *const kDocumentDeleteDocumentAPIKeySuffix = @"delete_document";
 NSString *const kDocumentUpdateDocumentAPIKeySuffix = @"update_document";
 NSString *const kDocumentAttachmentAPIKey = @"attachment";
+NSString *const kDocumentPaid = @"paid";
 NSString *const kDocumentCollectionNotice = @"collectionNotice";
 
 // Because of a bug in Core Data, we need to manually implement these methods
@@ -69,6 +70,8 @@ NSString *const kDocumentCollectionNotice = @"collectionNotice";
 @dynamic updateUri;
 @dynamic folderUri;
 @dynamic collectionNotice;
+@dynamic invoice;
+@dynamic paid;
 
 
 // Relationships
@@ -268,6 +271,12 @@ NSString *const kDocumentCollectionNotice = @"collectionNotice";
         
     NSNumber *settlement = attributes[kDocumentCollectionNotice];
     self.collectionNotice = [settlement isKindOfClass:[NSNumber class]] ? settlement : false;
+    
+    NSString *type = attributes[@"type"];
+    
+    self.invoice = [NSNumber numberWithBool:[type isEqualToString:@"INVOICE"]];
+    NSNumber *isPaid = attributes[kDocumentPaid];
+    self.paid = [settlement isKindOfClass:[NSNumber class]] ? isPaid : false;
 
     self.deleteUri = nil;
     self.updateUri = nil;

@@ -297,13 +297,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     }
     
     [cell.senderLabel setFont: [cell.senderLabel.font fontWithSize: 14]];
-    
-    if (attachment.originIsPublicEntity) {
-        NSString *publicEntity = NSLocalizedString(@"PUBLIC_ENTITY", @"the name of public entity");
-        cell.senderLabel.text = [NSString stringWithFormat:@"%@: %@", publicEntity, attachment.document.creatorName];
-    } else {
-        cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
-    }
+    cell.senderLabel.text = [NSString stringWithFormat:@"%@", attachment.document.creatorName];
 
     cell.delegate = self;
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
@@ -314,13 +308,21 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
     
-    cell.typeLabel.text = @"";
-    if ([attachment.type isEqual: @"INVOICE"]){
+    if([document.invoice intValue] == YES) {
+        cell.typeImage.hidden = NO;
         if ([document.collectionNotice intValue] == YES) {
+            cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
             cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"settlement","")];
-        }else{
-            cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice","")];
+        }else if([document.paid intValue] == YES) {
+            cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-added-to-payments"];
+            cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice_paid","")];
+        }else {
+            cell.typeImage.image = [UIImage imageNamed:@"invoice-list-icon-unpaid"];
+            cell.typeLabel.text = [NSString stringWithFormat:NSLocalizedString(@"invoice_unpaid","")];
         }
+    }else {
+        cell.typeImage.hidden = YES;
+        cell.typeLabel.text = @"";
     }
 }
 

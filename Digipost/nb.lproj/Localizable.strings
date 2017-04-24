@@ -662,5 +662,6 @@
 "LETTER_VIEW_CONTROLLER_INVOICE_POPUP_STATUS_AGREEMENT_TYPE_2_UNPROCESSED_POPUP_MESSAGE" = "Fakturaen er klar til betaling i nettbanken";
 
 /* FAKTURA INKASSO */
-"settlement" = "INKASSO";
-"invoice" = "FAKTURA";
+"settlement" = "Inkasso";
+"invoice_paid" = "Faktura: Lagt til betaling";
+"invoice_unpaid" = "Faktura: Ubehandlet";
