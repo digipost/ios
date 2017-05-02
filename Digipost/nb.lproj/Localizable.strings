@@ -548,7 +548,7 @@
 
 /* message for informing user that Oauth state is wrong */
 "preview view recipients header title no recipients" = "INGEN MOTTAKERE";
-"Oauth login error message" = "Det oppstod en feil. Prøv å logge inn på nytt, eller kontakt kundeservice";
+"Oauth login error message" = "Innloggingen din har utløpt. Logg inn på nytt.";
 
 /* title for informing user that something critical is wrong */
 "preview view recipients header title one recipient" = "1 MOTTAKER";
