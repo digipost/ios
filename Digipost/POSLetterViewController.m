@@ -1381,6 +1381,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         self.popoverTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
         self.popoverTableViewDataSourceAndDelegate.lineObjects = mutableObjectsInMetadata;
         self.popoverViewHeightConstraint.constant = mutableObjectsInMetadata.count * 48 + 44;
+        self.popoverView.layer.cornerRadius = 5.0;
 
         [UIView animateWithDuration:0.2
                          animations:^{
@@ -1393,8 +1394,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
         [self.view bringSubviewToFront:self.shadowView];
         [self.view bringSubviewToFront:self.popoverView];
-        
-        self.popoverView.layer.cornerRadius = 5.0;
 
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2
