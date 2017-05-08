@@ -1394,8 +1394,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [self.view bringSubviewToFront:self.shadowView];
         [self.view bringSubviewToFront:self.popoverView];
         
-        CGFloat radius = 5.0;
-        self.popoverView.layer.cornerRadius = radius;
+        self.popoverView.layer.cornerRadius = 5.0;
 
     } else if (!visible && self.shadowView.alpha == 1.0) {
         [UIView animateWithDuration:0.2
