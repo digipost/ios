@@ -1394,11 +1394,11 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-h9-ci4">
-                                        <rect key="frame" x="41" y="185" width="238" height="35"/>
+                                        <rect key="frame" x="41" y="185" width="238" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fv5-4n-dtY" userLabel="Register Button">
-                                                <rect key="frame" x="2" y="2" width="113" height="30"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <rect key="frame" x="2" y="2" width="113" height="29"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <state key="normal" title="REGISTER_BUTTON">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1407,11 +1407,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-XJ-KCt">
-                                                <rect key="frame" x="116" y="2" width="120" height="30"/>
+                                                <rect key="frame" x="116" y="2" width="120" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="CUn-Y3-D3G"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                                 <state key="normal" title="FORGOT_PASSWORD">
                                                     <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1759,11 +1759,11 @@
         <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WBk-6x-J5R"/>
-        <segue reference="vJp-VT-rtF"/>
         <segue reference="6ll-nd-HYD"/>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="p4n-lw-a8U"/>
-        <segue reference="Kl9-xn-mhN"/>
         <segue reference="2IH-85-kgn"/>
+        <segue reference="WBk-6x-J5R"/>
+        <segue reference="Kl9-xn-mhN"/>
     </inferredMetricsTieBreakers>
 </document>

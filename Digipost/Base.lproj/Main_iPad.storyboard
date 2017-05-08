@@ -130,30 +130,33 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHm-UB-Jqi" userLabel="Shadow View">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="960"/>
+                                <rect key="frame" x="0.0" y="-20" width="768" height="960"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMZ-MG-WPZ" userLabel="Popover View" customClass="POSLetterPopoverView">
-                                        <rect key="frame" x="229" y="310" width="310" height="340"/>
+                                        <rect key="frame" x="201" y="208" width="367" height="465"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="popover-bg" translatesAutoresizingMaskIntoConstraints="NO" id="HIH-eA-txK">
-                                                <rect key="frame" x="0.0" y="3" width="310" height="330"/>
-                                            </imageView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-hZ-90F">
-                                                <rect key="frame" x="0.0" y="20" width="310" height="297"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="H3J-Oj-C9d">
+                                                <rect key="frame" x="16" y="10.5" width="338" height="23.5"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="41" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="5xY-hZ-90F">
+                                                <rect key="frame" x="16" y="41" width="338" height="416"/>
                                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <prototypes>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="44" id="cp7-kF-f0e" customClass="POSLetterPopoverTableViewCell">
-                                                        <rect key="frame" x="0.0" y="55.5" width="310" height="44"/>
+                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="41" id="cp7-kF-f0e" customClass="POSLetterPopoverTableViewCell">
+                                                        <rect key="frame" x="0.0" y="55.5" width="338" height="41"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cp7-kF-f0e" id="Xw4-zv-caO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="310" height="43.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="338" height="40.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <userGuides>
-                                                                <userLayoutGuide location="21" affinity="minY"/>
+                                                                <userLayoutGuide location="18" affinity="minY"/>
                                                             </userGuides>
                                                             <subviews>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpW-AE-0Mj">
-                                                                    <rect key="frame" x="18" y="11" width="98" height="21.5"/>
+                                                                    <rect key="frame" x="18" y="10" width="98" height="19.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="98" id="gLb-GB-kTy"/>
                                                                     </constraints>
@@ -162,7 +165,7 @@
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="865" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="189" translatesAutoresizingMaskIntoConstraints="NO" id="0fe-I7-xzl">
-                                                                    <rect key="frame" x="93" y="11.5" width="205" height="20.5"/>
+                                                                    <rect key="frame" x="126" y="9.5" width="205" height="20.5"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="205" id="iBs-Fm-1Je"/>
                                                                     </constraints>
@@ -177,8 +180,8 @@
                                                                 <constraint firstAttribute="bottomMargin" secondItem="xpW-AE-0Mj" secondAttribute="bottom" constant="3" id="Vf9-d7-PHp"/>
                                                                 <constraint firstAttribute="centerY" secondItem="0fe-I7-xzl" secondAttribute="centerY" id="WsZ-Ev-VYC"/>
                                                                 <constraint firstItem="xpW-AE-0Mj" firstAttribute="leading" secondItem="Xw4-zv-caO" secondAttribute="leadingMargin" constant="10" id="vo5-bR-Gov"/>
-                                                                <constraint firstAttribute="trailingMargin" secondItem="0fe-I7-xzl" secondAttribute="trailing" constant="4" id="wxD-Z3-j9v"/>
-                                                                <constraint firstItem="xpW-AE-0Mj" firstAttribute="top" secondItem="Xw4-zv-caO" secondAttribute="topMargin" priority="100" constant="4" id="xyu-fj-FcZ"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="0fe-I7-xzl" secondAttribute="trailing" constant="-1" id="wxD-Z3-j9v"/>
+                                                                <constraint firstItem="xpW-AE-0Mj" firstAttribute="top" secondItem="Xw4-zv-caO" secondAttribute="topMargin" priority="100" constant="2" id="xyu-fj-FcZ"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <connections>
@@ -189,29 +192,27 @@
                                                 </prototypes>
                                             </tableView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="HIH-eA-txK" secondAttribute="bottom" constant="7" id="14X-Ak-M2C"/>
-                                            <constraint firstItem="HIH-eA-txK" firstAttribute="leading" secondItem="gMZ-MG-WPZ" secondAttribute="leading" id="6pQ-Dy-XFi"/>
-                                            <constraint firstItem="5xY-hZ-90F" firstAttribute="trailing" secondItem="HIH-eA-txK" secondAttribute="trailing" id="9Uq-9z-9W2"/>
-                                            <constraint firstAttribute="width" constant="310" id="Hzi-Ih-gNZ"/>
-                                            <constraint firstItem="5xY-hZ-90F" firstAttribute="top" secondItem="gMZ-MG-WPZ" secondAttribute="top" constant="20" id="XOR-IP-UMa"/>
-                                            <constraint firstAttribute="height" constant="340" id="djA-eC-1WF"/>
-                                            <constraint firstItem="HIH-eA-txK" firstAttribute="top" secondItem="gMZ-MG-WPZ" secondAttribute="top" constant="3" id="ijw-mt-3bB"/>
-                                            <constraint firstAttribute="trailing" secondItem="HIH-eA-txK" secondAttribute="trailing" id="kXK-tP-naW"/>
-                                            <constraint firstItem="5xY-hZ-90F" firstAttribute="leading" secondItem="HIH-eA-txK" secondAttribute="leading" id="taP-8b-1SP"/>
-                                            <constraint firstAttribute="bottom" secondItem="5xY-hZ-90F" secondAttribute="bottom" constant="23" id="yZa-Xv-GVq"/>
+                                            <constraint firstItem="H3J-Oj-C9d" firstAttribute="top" secondItem="gMZ-MG-WPZ" secondAttribute="top" constant="10.5" id="Jyb-sO-oKc"/>
+                                            <constraint firstItem="5xY-hZ-90F" firstAttribute="leading" secondItem="H3J-Oj-C9d" secondAttribute="trailing" constant="-338" id="bS5-cp-X4B"/>
+                                            <constraint firstItem="5xY-hZ-90F" firstAttribute="top" secondItem="H3J-Oj-C9d" secondAttribute="bottom" constant="7" id="fIW-uu-tGq"/>
+                                            <constraint firstItem="H3J-Oj-C9d" firstAttribute="centerX" secondItem="5xY-hZ-90F" secondAttribute="centerX" id="i7F-5P-x1n"/>
+                                            <constraint firstAttribute="bottom" secondItem="5xY-hZ-90F" secondAttribute="bottom" constant="8" id="yZa-Xv-GVq"/>
                                         </constraints>
-                                        <connections>
-                                            <outlet property="popoverViewHeightConstraint" destination="djA-eC-1WF" id="5l7-ET-aLZ"/>
-                                        </connections>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.45000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="gMZ-MG-WPZ" secondAttribute="centerX" id="ACw-ck-2w4"/>
-                                    <constraint firstAttribute="centerY" secondItem="gMZ-MG-WPZ" secondAttribute="centerY" id="NPz-GB-eYs"/>
+                                    <constraint firstAttribute="trailing" secondItem="5xY-hZ-90F" secondAttribute="trailing" constant="213" id="EK8-cK-UZR"/>
+                                    <constraint firstAttribute="centerY" secondItem="gMZ-MG-WPZ" secondAttribute="centerY" constant="39.5" id="NPz-GB-eYs"/>
+                                    <constraint firstItem="5xY-hZ-90F" firstAttribute="centerX" secondItem="xHm-UB-Jqi" secondAttribute="centerX" constant="2" id="Noy-gB-7tr"/>
+                                    <constraint firstAttribute="bottom" secondItem="5xY-hZ-90F" secondAttribute="bottom" constant="295" id="PRY-aj-8sz"/>
+                                    <constraint firstAttribute="bottom" secondItem="gMZ-MG-WPZ" secondAttribute="bottom" constant="287" id="Sz8-zP-udq"/>
+                                    <constraint firstItem="5xY-hZ-90F" firstAttribute="leading" secondItem="xHm-UB-Jqi" secondAttribute="leading" constant="217" id="qsD-Hk-pLu"/>
+                                    <constraint firstItem="gMZ-MG-WPZ" firstAttribute="leading" secondItem="xHm-UB-Jqi" secondAttribute="leading" constant="201" id="tdm-JH-H4p"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="BFK-Pj-gUU" appends="YES" id="ltx-Lh-Ust"/>
@@ -227,11 +228,11 @@
                             <constraint firstAttribute="centerY" secondItem="nNg-2N-bBs" secondAttribute="centerY" id="Ot7-qO-Bon"/>
                             <constraint firstAttribute="centerX" secondItem="WCB-cn-t5M" secondAttribute="centerX" id="QRg-eO-Z5w"/>
                             <constraint firstItem="nNg-2N-bBs" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" constant="20" id="RWN-35-pOY"/>
-                            <constraint firstAttribute="bottom" secondItem="xHm-UB-Jqi" secondAttribute="bottom" id="SGZ-u6-eub"/>
+                            <constraint firstAttribute="bottom" secondItem="xHm-UB-Jqi" secondAttribute="bottom" constant="20" id="SGZ-u6-eub"/>
                             <constraint firstAttribute="centerY" secondItem="Ucd-IK-YkZ" secondAttribute="centerY" id="Wgo-06-dGE"/>
                             <constraint firstAttribute="trailing" secondItem="xHm-UB-Jqi" secondAttribute="trailing" id="dyN-Ei-Phh"/>
                             <constraint firstItem="yW3-Fy-eNQ" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" id="jXd-52-LDL"/>
-                            <constraint firstItem="xHm-UB-Jqi" firstAttribute="top" secondItem="U99-DD-r9a" secondAttribute="bottom" id="lcB-Go-3lQ"/>
+                            <constraint firstItem="xHm-UB-Jqi" firstAttribute="top" secondItem="U99-DD-r9a" secondAttribute="bottom" constant="-20" id="lcB-Go-3lQ"/>
                             <constraint firstAttribute="centerY" secondItem="WCB-cn-t5M" secondAttribute="centerY" id="lfT-om-LpH"/>
                             <constraint firstAttribute="trailing" secondItem="yW3-Fy-eNQ" secondAttribute="trailing" id="rLc-hY-gT2"/>
                             <constraint firstItem="Ucd-IK-YkZ" firstAttribute="leading" secondItem="bqt-lk-H6C" secondAttribute="leading" constant="100" id="wfh-gf-9SF"/>
@@ -245,8 +246,8 @@
                         <outlet property="emptyLetterViewImageView" destination="WCB-cn-t5M" id="tsE-4m-aOl"/>
                         <outlet property="errorLabel" destination="nNg-2N-bBs" id="oIL-eS-O7t"/>
                         <outlet property="popoverTableView" destination="5xY-hZ-90F" id="cce-RC-NdK"/>
+                        <outlet property="popoverTitleLabel" destination="H3J-Oj-C9d" id="wlM-j7-QBx"/>
                         <outlet property="popoverView" destination="gMZ-MG-WPZ" id="Q45-hl-sv7"/>
-                        <outlet property="popoverViewHeightConstraint" destination="djA-eC-1WF" id="jd4-VM-faz"/>
                         <outlet property="progressView" destination="Ucd-IK-YkZ" id="jRL-VP-BST"/>
                         <outlet property="shadowView" destination="xHm-UB-Jqi" id="lSw-3z-9AE"/>
                         <outlet property="webView" destination="yW3-Fy-eNQ" id="S0L-0e-pT3"/>
@@ -539,7 +540,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-padlock" translatesAutoresizingMaskIntoConstraints="NO" id="Pmt-A4-NGA" userLabel="Locked Image View">
-                                            <rect key="frame" x="7" y="28" width="13" height="13"/>
+                                            <rect key="frame" x="7" y="27" width="13" height="13"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="13" id="5Em-UA-vOV"/>
                                                 <constraint firstAttribute="width" constant="13" id="5VR-gQ-Ic4"/>
@@ -597,7 +598,7 @@
                                         <constraint firstItem="4gg-vQ-dze" firstAttribute="leading" secondItem="ZIe-sk-VbV" secondAttribute="trailing" constant="5" id="K7r-yk-mqt"/>
                                         <constraint firstItem="fJI-uk-1YP" firstAttribute="top" secondItem="rLJ-CH-eiQ" secondAttribute="top" constant="47" id="QFT-eH-pLA"/>
                                         <constraint firstItem="ZIe-sk-VbV" firstAttribute="top" secondItem="Qcx-VB-dgT" secondAttribute="bottom" constant="3" id="Rlr-zQ-avW"/>
-                                        <constraint firstItem="Qcx-VB-dgT" firstAttribute="top" secondItem="Pmt-A4-NGA" secondAttribute="bottom" constant="8" id="S7T-Xf-C8t"/>
+                                        <constraint firstItem="Qcx-VB-dgT" firstAttribute="top" secondItem="Pmt-A4-NGA" secondAttribute="bottom" constant="9" id="S7T-Xf-C8t"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="KbF-uJ-8np" secondAttribute="trailing" id="U6R-jZ-4HS"/>
                                         <constraint firstItem="4gg-vQ-dze" firstAttribute="top" secondItem="KbF-uJ-8np" secondAttribute="bottom" constant="21" id="YPo-oK-cZK"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="4gg-vQ-dze" secondAttribute="trailing" constant="70" id="dGq-t1-lNS"/>
@@ -1745,7 +1746,6 @@
         <image name="list-icon-padlock" width="16" height="16"/>
         <image name="list-icon-unread-counter" width="23" height="23"/>
         <image name="login-background-ipad" width="1024" height="768"/>
-        <image name="popover-bg" width="310" height="24"/>
         <image name="tom_mappe_breven" width="132" height="160"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
