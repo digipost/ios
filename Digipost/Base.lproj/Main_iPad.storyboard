@@ -133,7 +133,7 @@
                                 <rect key="frame" x="0.0" y="-20" width="768" height="960"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gMZ-MG-WPZ" userLabel="Popover View" customClass="POSLetterPopoverView">
-                                        <rect key="frame" x="201" y="208" width="367" height="465"/>
+                                        <rect key="frame" x="201" y="248" width="367" height="465"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="H3J-Oj-C9d">
                                                 <rect key="frame" x="16" y="10.5" width="338" height="23.5"/>
@@ -207,10 +207,10 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="gMZ-MG-WPZ" secondAttribute="centerX" id="ACw-ck-2w4"/>
                                     <constraint firstAttribute="trailing" secondItem="5xY-hZ-90F" secondAttribute="trailing" constant="213" id="EK8-cK-UZR"/>
-                                    <constraint firstAttribute="centerY" secondItem="gMZ-MG-WPZ" secondAttribute="centerY" constant="39.5" id="NPz-GB-eYs"/>
+                                    <constraint firstAttribute="centerY" secondItem="gMZ-MG-WPZ" secondAttribute="centerY" constant="-0.5" id="NPz-GB-eYs"/>
                                     <constraint firstItem="5xY-hZ-90F" firstAttribute="centerX" secondItem="xHm-UB-Jqi" secondAttribute="centerX" constant="2" id="Noy-gB-7tr"/>
-                                    <constraint firstAttribute="bottom" secondItem="5xY-hZ-90F" secondAttribute="bottom" constant="295" id="PRY-aj-8sz"/>
-                                    <constraint firstAttribute="bottom" secondItem="gMZ-MG-WPZ" secondAttribute="bottom" constant="287" id="Sz8-zP-udq"/>
+                                    <constraint firstAttribute="bottom" secondItem="5xY-hZ-90F" secondAttribute="bottom" constant="255" id="PRY-aj-8sz"/>
+                                    <constraint firstAttribute="bottom" secondItem="gMZ-MG-WPZ" secondAttribute="bottom" constant="247" id="Sz8-zP-udq"/>
                                     <constraint firstItem="5xY-hZ-90F" firstAttribute="leading" secondItem="xHm-UB-Jqi" secondAttribute="leading" constant="217" id="qsD-Hk-pLu"/>
                                     <constraint firstItem="gMZ-MG-WPZ" firstAttribute="leading" secondItem="xHm-UB-Jqi" secondAttribute="leading" constant="201" id="tdm-JH-H4p"/>
                                 </constraints>
