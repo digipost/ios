@@ -1336,6 +1336,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         [dateFormatter setDateFormat:@"dd.MM.YYYY 'kl.' hh.mm"];
 
         self.popoverTitleLabel.text = self.attachment.subject;
+        self.popoverTitleLabel.adjustsFontSizeToFitWidth = YES;
         if (self.attachment) {
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE", @"From")
                                                                                         description:self.attachment.document.creatorName]];
@@ -1380,6 +1381,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         self.popoverTableView.tableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 1)];
         self.popoverTableViewDataSourceAndDelegate.lineObjects = mutableObjectsInMetadata;
         self.popoverViewHeightConstraint.constant = mutableObjectsInMetadata.count * 48 + 44;
+        self.popoverView.layer.cornerRadius = 5.0;
 
         [UIView animateWithDuration:0.2
                          animations:^{
