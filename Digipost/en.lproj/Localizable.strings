@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (C) Posten Norge AS
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -369,7 +369,8 @@
 "preview view recipients header title no recipients" = "NO RECIPIENTS";
 "lost network connection alert message" = "Try again";
 /* No comment provided by engineer. */
-"preview view recipients header title one recipient" = "1 RECIPIENT";t"lost network connection alert title" = "Lost connection to the internet";
+"preview view recipients header title one recipient" = "1 RECIPIENT";
+"lost network connection alert title" = "Lost connection to the internet";
 "preview view recipients header title recipients" = "RECIPIENTS";
 "preview view recipients add recipients button title" = "Add recipients";
 "preview view recipients send button title" = "Send";
