@@ -22,7 +22,7 @@ extension APIClient {
         let encodedSearchString:String =  searchString.replacingOccurrences(of: " ", with: "+", options: NSString.CompareOptions.literal, range: nil)
         let safeString = encodedSearchString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
         let searchUri = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext).searchUri
-        let urlString = "\(searchUri)?recipientId=\(safeString!)"
+        let urlString = "\(String(describing: searchUri))?recipientId=\(safeString!)"
         let _ = urlSessionJSONTask(url: urlString, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized {
                 self.getRecipients(urlString, success: success, failure: failure)

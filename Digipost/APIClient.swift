@@ -132,7 +132,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         if let actualArguments  = arguments {
             for (key,value) in actualArguments {
                 let escapedKey = key.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-                urlString = "\(urlString)&\(escapedKey)=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
+                urlString = "\(urlString)&\(String(describing: escapedKey))=\(value.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)"
             }
         }
         return urlString
