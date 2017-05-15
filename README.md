@@ -1,7 +1,6 @@
 # Digipost for iOS
 
 [![Digipost for iOS](https://i.imgur.com/vce3NJf.png)](http://itunes.apple.com/no/app/digipost/id441997544?mt=8&uo=4)
-[![Build Status](https://travis-ci.org/digipost/ios.svg?branch=develop)](https://travis-ci.org/digipost/ios)
 
 Digipost for iOS er en app for iOS på iPhone, iPad og iPod Touch som gir tilgang til brukerens sikre digitale postkasse i Digipost. For å logge inn i appen trenger du en konto i Digipost, dette kan du opprette på [digipost.no](https://www.digipost.no/).
 
