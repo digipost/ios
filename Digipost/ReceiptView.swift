@@ -96,7 +96,7 @@ class ReceiptView: UIView {
 		
 		kort = CALayer()
 		self.layer.addSublayer(kort)
-		kort.setValue(-4 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+		kort.setValue(-4 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 		
 		
 		cardbody = CAShapeLayer()
@@ -122,14 +122,14 @@ class ReceiptView: UIView {
 		
 		hologramline = CAShapeLayer()
 		kort.addSublayer(hologramline)
-		hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+		hologramline.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 		hologramline.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).cgColor
 		hologramline.strokeColor = UIColor.digipostProfileTextColor().cgColor
 		hologramline.lineWidth   = 3
 		
 		hologramline2 = CAShapeLayer()
 		kort.addSublayer(hologramline2)
-		hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+		hologramline2.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 		hologramline2.fillColor   = UIColor(red:0.922, green: 0.922, blue:0.922, alpha:1).cgColor
 		hologramline2.strokeColor = UIColor.digipostProfileTextColor().cgColor
 		hologramline2.lineWidth   = 3
@@ -176,7 +176,7 @@ class ReceiptView: UIView {
 		if kort != nil{
 			kort.setValue(0, forKeyPath:"transform.rotation")
 			kort.frame = CGRect(x: 0.29749 * kort.superlayer!.bounds.width, y: 0.35561 * kort.superlayer!.bounds.height, width: 0.19086 * kort.superlayer!.bounds.width, height: 0.12454 * kort.superlayer!.bounds.height)
-			kort.setValue(-4 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+			kort.setValue(-4 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 		}
 		if cardbody != nil{
 			cardbody.frame = CGRect(x: 0.02118 * cardbody.superlayer!.bounds.width, y: 0, width: 0.97882 * cardbody.superlayer!.bounds.width,  height: cardbody.superlayer!.bounds.height)
@@ -199,13 +199,13 @@ class ReceiptView: UIView {
 		if hologramline != nil{
 			hologramline.setValue(0, forKeyPath:"transform.rotation")
 			hologramline.frame = CGRect(x: 0.27767 * hologramline.superlayer!.bounds.width, y: 0.46101 * hologramline.superlayer!.bounds.height, width: 0.50564 * hologramline.superlayer!.bounds.width, height: 0 * hologramline.superlayer!.bounds.height)
-			hologramline.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+			hologramline.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 			hologramline.path  = hologramlinePathWithBounds(hologramline.bounds).cgPath;
 		}
 		if hologramline2 != nil{
 			hologramline2.setValue(0, forKeyPath:"transform.rotation")
 			hologramline2.frame = CGRect(x: 0.28461 * hologramline2.superlayer!.bounds.width, y: 0.61608 * hologramline2.superlayer!.bounds.height, width: 0.19681 * hologramline2.superlayer!.bounds.width, height: 0 * hologramline2.superlayer!.bounds.height)
-			hologramline2.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+			hologramline2.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
 			hologramline2.path  = hologramline2PathWithBounds(hologramline2.bounds).cgPath;
 		}
 		if animationText != nil{
