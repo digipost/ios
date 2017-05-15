@@ -33,7 +33,7 @@ extension UIAlertController {
 
             if presentingViewController.navigationController?.topViewController == presentingViewController && presentingViewController.presentedViewController == nil {
                 presentingViewController.present(alertController, animated: true, completion:nil)
-                Logger.dpostLogWarning("A web request failed and returned a an API error with code: \(apiError.code) , internal Digipost error-code: \(apiError.digipostErrorCode)", location: "Unknown", UI: "User got an error popup with title \(apiError.alertTitle)", cause: "Cause can be translated from the error code")
+                Logger.dpostLogWarning("A web request failed and returned a an API error with code: \(apiError.code) , internal Digipost error-code: \(String(describing: apiError.digipostErrorCode))", location: "Unknown", UI: "User got an error popup with title \(apiError.alertTitle)", cause: "Cause can be translated from the error code")
             }
         }
     }

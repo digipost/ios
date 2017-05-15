@@ -46,7 +46,7 @@
     }
     
     static func getBanks() -> [InvoiceBank]? {
-        let banksJSON = UserDefaults.standard.dictionary(forKey: BANKS_STATUS_KEY) as! [String : AnyObject]
+        let banksJSON = UserDefaults.standard.dictionary(forKey: BANKS_STATUS_KEY)! as [String : AnyObject]
         
         var banks : [InvoiceBank] = []
         for bank in banksJSON["banks"] as! [[String: AnyObject]] {

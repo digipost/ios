@@ -72,6 +72,6 @@ struct TextAttribute : CustomDebugStringConvertible {
     }
 
     var debugDescription : String {
-        return "font : \(font) textAlignment: \(textAlignment?.rawValue)"
+        return "font : \(String(describing: font)) textAlignment: \(String(describing: textAlignment?.rawValue))"
     }
 }

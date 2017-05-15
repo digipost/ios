@@ -43,7 +43,7 @@
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
 #import "UITableView+Reorder.h"
-#import "POSMailBox+Methods.h"
+#import "POSMailbox+Methods.h"
 #import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"
 #import "UIView+AutoLayout.h"

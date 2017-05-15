@@ -62,7 +62,7 @@ class UploadView: UIView {
     func setupLayers(){
         Camera = CALayer()
         self.layer.addSublayer(Camera)
-        Camera.setValue(-18 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+        Camera.setValue(-18 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
         
         
         flash = CAShapeLayer()
@@ -112,7 +112,7 @@ class UploadView: UIView {
         
         line3 = CAShapeLayer()
         Basket.addSublayer(line3)
-        line3.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+        line3.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
         line3.fillColor   = nil
         line3.strokeColor = UIColor.digipostProfileTextColor().cgColor
         line3.lineWidth   = 3
@@ -158,7 +158,7 @@ class UploadView: UIView {
         if Camera != nil{
             Camera.setValue(0, forKeyPath:"transform.rotation")
             Camera.frame = CGRect(x: 0.32726 * Camera.superlayer!.bounds.width, y: 0.27902 * Camera.superlayer!.bounds.height, width: 0.15972 * Camera.superlayer!.bounds.width, height: 0.12968 * Camera.superlayer!.bounds.height)
-            Camera.setValue(-18 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+            Camera.setValue(-18 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
         }
         if flash != nil{
             flash.frame = CGRect(x: 0.88486 * flash.superlayer!.bounds.width, y: 0.28447 * flash.superlayer!.bounds.height, width: 0.02624 * flash.superlayer!.bounds.width, height: 0.04003 * flash.superlayer!.bounds.height)
@@ -193,7 +193,7 @@ class UploadView: UIView {
         if line3 != nil{
             line3.setValue(0, forKeyPath:"transform.rotation")
             line3.frame = CGRect(x: 0.9983 * line3.superlayer!.bounds.width, y: 0, width: 0 * line3.superlayer!.bounds.width, height: 1 * line3.superlayer!.bounds.height)
-            line3.setValue(-180 * CGFloat(M_PI)/180, forKeyPath:"transform.rotation")
+            line3.setValue(-180 * CGFloat(Double.pi)/180, forKeyPath:"transform.rotation")
             line3.path  = line3PathWithBounds(line3.bounds).cgPath;
         }
         if Arrow != nil{
