@@ -618,7 +618,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
                     if error?._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
                         self.deleteRefreshTokensAndLogoutUser()
                     } else {
-                        failure?(error as! NSError)
+                        failure?(error! as NSError)
                     }
             })
         } else {

@@ -76,7 +76,7 @@ class OnboardingLoginViewController: UIViewController {
     
     func openExternalUrl(url: String){
         if #available(iOS 9.0, *) {
-            let svc = SFSafariViewController(url: NSURL(string: url) as! URL)
+            let svc = SFSafariViewController(url: NSURL(string: url)! as URL)
             self.present(svc, animated: true, completion: nil)
         }
     }

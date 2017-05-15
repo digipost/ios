@@ -21,7 +21,7 @@ class Badge{
     class func setCombinedUnreadLettersBadge(_ mailboxes : [POSMailbox]){
         var combinedUnreadLetters = 0
         for mailbox in mailboxes{
-            combinedUnreadLetters += mailbox.unreadItemsInInbox as Int
+            combinedUnreadLetters += mailbox.unreadItemsInInbox as! Int
         }
         UIApplication.shared.applicationIconBadgeNumber = combinedUnreadLetters;
     }
