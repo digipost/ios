@@ -46,6 +46,8 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         manager.responseSerializer = AFHTTPResponseSerializer()
         #if __ACCEPT_SELF_SIGNED_CERTIFICATES__
             manager.securityPolicy.allowInvalidCertificates = true
+            manager.securityPolicy.setValidatesDomainName = false
+            manager.securityPolicy.validatesCertificateChain = false
         #endif
         return manager
         }()

@@ -41,7 +41,7 @@ Boolean tryToFillUsing1Password = false;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 @property (copy, nonatomic) NSString *stateParameter;
 
-#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+#if (ACCEPT_SELF_SIGNED_CERTIFICATES)
 @property (assign, nonatomic, getter=isAuthenticated) BOOL authenticated;
 @property (strong, nonatomic) NSURLRequest *failedURLRequest;
 #endif
@@ -164,7 +164,7 @@ Boolean tryToFillUsing1Password = false;
         return NO;
     }
 
-#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+#if (ACCEPT_SELF_SIGNED_CERTIFICATES)
 
     if (!self.isAuthenticated) {
         self.failedURLRequest = request;
@@ -218,7 +218,7 @@ Boolean tryToFillUsing1Password = false;
     }
 }
 
-#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
+#if (ACCEPT_SELF_SIGNED_CERTIFICATES)
 
 #pragma mark - NSURLConnectionDelegate
 

@@ -2914,6 +2914,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					STAGING,
+					ACCEPT_SELF_SIGNED_CERTIFICATES,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2941,7 +2942,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -2995,7 +2996,7 @@
 				PRODUCT_MODULE_NAME = Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
+				SERVER_URI = "\\@\\\"https:\\/\\/localhost:9090\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";

@@ -16,4 +16,5 @@
 
 #include "Shared.xcconfig"
 
-SERVER_URI = \@\"https:\/\/www.qa.digipost.no\"
+//SERVER_URI = \@\"https:\/\/www.qa.digipost.no\"
+SERVER_URI = \@\"https:\/\/localhost:9090\"
