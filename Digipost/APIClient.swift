@@ -40,31 +40,6 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         case get = "GET"
     }
     
-    // This could be derived from the data-structure below
-    lazy var mockChainsData: Dictionary<String, AnyObject> = {
-        var chainArray = [["id" : "0", "count" : "0", "name": "Tom pris"], ["id" : "1", "count" : "X", "name": "Bunnpris"], ["id" : "2", "count" : "X", "name": "Kjede123"], ["id" : "3", "count" : "X", "name" : "Kjede4"], ["id" : "4", "count" : "X", "name" : "Store42"]]
-        return ["chains" : chainArray as AnyObject]
-    }()
-    lazy var mockReceiptsForChainId: Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>> = {
-        var sampleReceipt = Dictionary<String,String>()
-        sampleReceipt["amount"] = "9001"
-        sampleReceipt["franchiseName"] = "Topp pris"
-        sampleReceipt["storeName"] = "Butikk"
-        sampleReceipt["timeOfPurchase"] = "2016-02-29T13:33:37"
-        sampleReceipt["deleteUri"] = "deleteUri"
-        sampleReceipt["uri"] = "uri"
-        
-        var mockDict = Dictionary<String, Dictionary<String,Array<Dictionary<String,String>>>>()
-        for i in 0...4 {
-            var receiptsArray: Array<Dictionary<String,String>> = []
-            for j in 0..<i*5 {
-                receiptsArray.append(sampleReceipt)
-            }
-            mockDict[String(i)] = ["receipt" : receiptsArray]
-        }
-        return mockDict
-    }()
-
     lazy var fileTransferSessionManager : AFHTTPSessionManager = {
         let manager = AFHTTPSessionManager(baseURL: nil)
         manager.requestSerializer = AFHTTPRequestSerializer()
