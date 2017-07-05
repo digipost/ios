@@ -78,4 +78,18 @@ extension POSAttachment {
             }
         }
     }
+    
+    func getAppointments() -> [POSAppointment] {
+        var metaDataWithType: [POSAppointment] = []
+        if let metadataDict = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
+            for m in metadataDict{
+                if let metaDataObject = m as? POSMetadata{
+                    if let metadataObject = POSMetadataMapper.get(metadata: metaDataObject, type:POSMetadata.TYPE.APPOINTMENT) {
+                        metaDataWithType.append(metadataObject as! POSAppointment)
+                    }
+                }
+            }
+        }
+        return metaDataWithType
+    }    
 }
