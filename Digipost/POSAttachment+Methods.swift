@@ -84,7 +84,7 @@ extension POSAttachment {
         if let metadataDict = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
             for m in metadataDict{
                 if let metaDataObject = m as? POSMetadata{
-                    if let metadataObject = POSMetadataMapper.get(metadata: metaDataObject, type:POSMetadata.TYPE.APPOINTMENT) {
+                    if let metadataObject = POSMetadataMapper.appointment(metadata: metaDataObject) {
                         metaDataWithType.append(metadataObject as! POSAppointment)
                     }
                 }

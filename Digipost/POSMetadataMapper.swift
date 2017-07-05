@@ -20,12 +20,19 @@ import Foundation
     
     static func get(metadata : POSMetadata) -> Any? {
         if metadata.type == POSMetadata.TYPE.APPOINTMENT {
-            return appointment(metadata: metadata)
+            return parseAppointment(metadata: metadata)
         }
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
-    static func appointment(metadata :POSMetadata) -> POSAppointment {
+    static func appointment(metadata: POSMetadata) -> Any? {
+        if metadata.type == POSMetadata.TYPE.APPOINTMENT {
+            return parseAppointment(metadata: metadata)
+        }
+        return POSMetadataObject(type: POSMetadata.TYPE.NIL)
+    }
+    
+    private static func parseAppointment(metadata :POSMetadata) -> POSAppointment {
         if metadata.json.count > 0 {
             let title = metadata.json["title"] as! String
             let important = metadata.json["important"] as! String
