@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1165,14 +1164,57 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zX6-Zm-f5i">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zit-7G-gfu">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="IOM-jr-kzB" id="eYK-Ph-4pS"/>
-                                </connections>
-                            </webView>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZB-hn-vot" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iva-3R-jK2" userLabel="MetaContent">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="12"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="s9u-vG-bGb">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="12"/>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="s9u-vG-bGb" firstAttribute="leading" secondItem="iva-3R-jK2" secondAttribute="leading" id="4Ep-pF-2iq"/>
+                                                    <constraint firstAttribute="height" constant="12" id="KP2-8c-Yh7"/>
+                                                    <constraint firstAttribute="trailing" secondItem="s9u-vG-bGb" secondAttribute="trailing" id="jrt-y3-ik8"/>
+                                                    <constraint firstItem="s9u-vG-bGb" firstAttribute="top" secondItem="iva-3R-jK2" secondAttribute="top" id="u5v-UF-xyP"/>
+                                                    <constraint firstAttribute="bottom" secondItem="s9u-vG-bGb" secondAttribute="bottom" id="w4O-uG-Y7m"/>
+                                                </constraints>
+                                            </view>
+                                            <webView opaque="NO" contentMode="scaleToFill" scalesPageToFit="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zX6-Zm-f5i">
+                                                <rect key="frame" x="0.0" y="16" width="375" height="587"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="IOM-jr-kzB" id="eYK-Ph-4pS"/>
+                                                </connections>
+                                            </webView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="zX6-Zm-f5i" firstAttribute="leading" secondItem="YZB-hn-vot" secondAttribute="leading" id="5u3-cO-e97"/>
+                                            <constraint firstItem="iva-3R-jK2" firstAttribute="leading" secondItem="YZB-hn-vot" secondAttribute="leading" id="HVf-yR-34O"/>
+                                            <constraint firstAttribute="bottom" secondItem="zX6-Zm-f5i" secondAttribute="bottom" id="TCM-zT-CRu"/>
+                                            <constraint firstAttribute="trailing" secondItem="zX6-Zm-f5i" secondAttribute="trailing" id="d3A-Fu-IzD"/>
+                                            <constraint firstItem="iva-3R-jK2" firstAttribute="top" secondItem="YZB-hn-vot" secondAttribute="top" id="j8X-w0-4MY"/>
+                                            <constraint firstItem="zX6-Zm-f5i" firstAttribute="top" secondItem="iva-3R-jK2" secondAttribute="bottom" constant="4" id="mGM-wV-OaP"/>
+                                            <constraint firstAttribute="trailing" secondItem="iva-3R-jK2" secondAttribute="trailing" id="vCD-Z5-IzP"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="YZB-hn-vot" firstAttribute="leading" secondItem="Zit-7G-gfu" secondAttribute="leading" id="0B4-KI-edd"/>
+                                    <constraint firstAttribute="trailing" secondItem="YZB-hn-vot" secondAttribute="trailing" id="4Oz-E5-n81"/>
+                                    <constraint firstItem="YZB-hn-vot" firstAttribute="top" secondItem="Zit-7G-gfu" secondAttribute="top" id="ZcL-nZ-xWh"/>
+                                    <constraint firstAttribute="bottom" secondItem="YZB-hn-vot" secondAttribute="bottom" id="jha-mq-Tjo"/>
+                                    <constraint firstAttribute="height" constant="603" id="tXU-1o-gz6"/>
+                                </constraints>
+                            </scrollView>
                             <progressView opaque="NO" alpha="0.0" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqz-1p-hA0">
                                 <rect key="frame" x="40" y="300" width="295" height="2"/>
                                 <color key="progressTintColor" red="0.89019607840000003" green="0.1764705882" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1282,17 +1324,19 @@
                         <color key="backgroundColor" red="0.92549019610000005" green="0.93333333330000001" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerY" secondItem="hqz-1p-hA0" secondAttribute="centerY" constant="1" id="15E-cL-TdL"/>
-                            <constraint firstItem="zX6-Zm-f5i" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="G9M-PY-Wdb"/>
                             <constraint firstItem="UZq-Nf-q1o" firstAttribute="top" secondItem="urQ-nU-4lz" secondAttribute="bottom" id="Ieu-d1-Wzl"/>
                             <constraint firstAttribute="trailing" secondItem="xQW-NC-XrA" secondAttribute="trailing" constant="20" id="JhG-Vt-koh"/>
                             <constraint firstAttribute="centerY" secondItem="xQW-NC-XrA" secondAttribute="centerY" id="MNo-Cf-EwX"/>
+                            <constraint firstItem="YZB-hn-vot" firstAttribute="height" secondItem="OaE-pH-e8d" secondAttribute="height" id="NMI-6Y-KO0"/>
                             <constraint firstItem="hqz-1p-hA0" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" constant="40" id="OYS-Jz-dQb"/>
+                            <constraint firstItem="Zit-7G-gfu" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="Q5D-hs-fdx"/>
                             <constraint firstAttribute="bottom" secondItem="UZq-Nf-q1o" secondAttribute="bottom" id="R25-fo-Ffb"/>
-                            <constraint firstItem="zX6-Zm-f5i" firstAttribute="top" secondItem="urQ-nU-4lz" secondAttribute="bottom" id="UCb-0S-HpX"/>
+                            <constraint firstAttribute="bottom" secondItem="Zit-7G-gfu" secondAttribute="bottom" id="Upy-IS-saL"/>
                             <constraint firstAttribute="trailing" secondItem="hqz-1p-hA0" secondAttribute="trailing" constant="40" id="VHk-Ny-sqJ"/>
-                            <constraint firstAttribute="bottom" secondItem="zX6-Zm-f5i" secondAttribute="bottom" id="hl1-Nd-xKh"/>
+                            <constraint firstItem="YZB-hn-vot" firstAttribute="width" secondItem="OaE-pH-e8d" secondAttribute="width" id="eFz-8u-ZKi"/>
+                            <constraint firstAttribute="trailing" secondItem="Zit-7G-gfu" secondAttribute="trailing" id="g8Z-Ka-oOM"/>
+                            <constraint firstItem="Zit-7G-gfu" firstAttribute="top" secondItem="urQ-nU-4lz" secondAttribute="bottom" id="gWd-eP-tib"/>
                             <constraint firstItem="UZq-Nf-q1o" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" id="ka2-I2-7AK"/>
-                            <constraint firstAttribute="trailing" secondItem="zX6-Zm-f5i" secondAttribute="trailing" id="pHO-i5-5n1"/>
                             <constraint firstAttribute="trailing" secondItem="UZq-Nf-q1o" secondAttribute="trailing" id="xtQ-9C-Kex"/>
                             <constraint firstItem="xQW-NC-XrA" firstAttribute="leading" secondItem="OaE-pH-e8d" secondAttribute="leading" constant="20" id="zee-P1-LyI"/>
                         </constraints>
@@ -1329,11 +1373,16 @@
                     <connections>
                         <outlet property="errorLabel" destination="xQW-NC-XrA" id="wd5-2F-s8Q"/>
                         <outlet property="informationBarButtonItem" destination="Ibj-82-v8n" id="6tF-Rr-B4j"/>
+                        <outlet property="metaContent" destination="iva-3R-jK2" id="etj-vB-iCX"/>
+                        <outlet property="metaContentHeight" destination="KP2-8c-Yh7" id="SXq-cR-Ckh"/>
                         <outlet property="popoverTableView" destination="akV-fc-y5R" id="nZd-sW-NPQ"/>
                         <outlet property="popoverTitleLabel" destination="y3i-J3-BhO" id="2gY-Du-rSC"/>
                         <outlet property="popoverView" destination="GRH-Ar-m5o" id="tJk-Ze-FwK"/>
                         <outlet property="progressView" destination="hqz-1p-hA0" id="qaE-ag-UKL"/>
+                        <outlet property="scrollView" destination="Zit-7G-gfu" id="Auz-NR-3fg"/>
+                        <outlet property="scrollViewHeight" destination="tXU-1o-gz6" id="DQ6-EC-QAp"/>
                         <outlet property="shadowView" destination="UZq-Nf-q1o" id="ehi-lv-bNn"/>
+                        <outlet property="stackView" destination="s9u-vG-bGb" id="whp-xk-9wu"/>
                         <outlet property="webView" destination="zX6-Zm-f5i" id="BhC-Bg-D6j"/>
                         <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
                         <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
@@ -1710,7 +1759,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-pY-f8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="2302"/>
+            <point key="canvasLocation" x="2344" y="1774"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dKp-aa-7yV">

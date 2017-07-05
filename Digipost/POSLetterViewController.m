@@ -81,6 +81,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
+// Metadata
+@property (weak, nonatomic) IBOutlet UIStackView *stackView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *metaContentHeight;
+@property (weak, nonatomic) IBOutlet UIView *metaContent;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeight;
+
+
 // just a helper function that lets us fetch current attachment if its been nilled out by Core data
 @property (nonatomic, strong) NSString *currentAttachmentURI;
 
@@ -161,6 +169,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.navigationItem setLeftBarButtonItem:nil];
         }
     }
+    [self loadMetadataContent];
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -710,6 +719,26 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
     [self setToolbarItems:toolbarItems animated:YES];
+}
+
+- (void)loadMetadataContent
+{
+    if(self.attachment.metadata != nil) {
+        NSArray *appointments = self.attachment.getAppointments;
+        CGFloat extraHeight = 0;
+        for (POSAppointment *appointment in appointments) {
+            UIView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
+            [_stackView addArrangedSubview:appointmentView];
+            extraHeight += 200;
+        }
+        [self updateViewHeights:extraHeight];
+    }
+}
+
+-(void)updateViewHeights: (CGFloat ) height
+{
+    self.scrollViewHeight.constant = self.scrollViewHeight.constant + height;
+    self.metaContentHeight.constant =  self.metaContentHeight.constant + height;
 }
 
 -(void)updateCurrentDocument
