@@ -21,23 +21,16 @@ import Foundation
     func getMockAppointmentArray() -> [POSMetadata] {
         var mockdataArray = [POSMetadata]()
         
-        var ap1 = mockAppointment(title: "Innkalling til røntgen")
-        var ap2 = mockAppointment(title: "Tannlegetime")
-        var ap3 = mockAppointment(title: "Kinoavtale")
-        
-        mockdataArray.append(POSMetadata(type: ap1["type"] as! String, json: ap1))
-        mockdataArray.append(POSMetadata(type: ap2["type"] as! String, json: ap2))
-        mockdataArray.append(POSMetadata(type: ap3["type"] as! String, json: ap3))
-        
+        mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment(title: "Du har fått en innkalling fra Unilabs Røntgen Majorstua", important: "Ikke spis 6 timer før")))
+        mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment(title: "Du skal i militæret!", important: "Ikke gjør noe dumt!")))
         return mockdataArray
     }
     
-    func mockAppointment(title: String) -> Dictionary<String, Any> {
+    func getMockAppointment(title: String, important: String) -> Dictionary<String, AnyObject> {
         var appointment = Dictionary<String, AnyObject>()
-        
         appointment["type"] = "appointment" as AnyObject
         appointment["title"] = title as AnyObject
-        appointment["important"] = "Alt er viktig, se beskrivelse" as AnyObject
+        appointment["important"] = important as AnyObject
         appointment["description"] = "Ikke spis 3 timer før timen. Ta med MR-bilder hvis du har dette tilgjengelig. Etter timen må du vente 30 minutter for eventuelle bivirkninger" as AnyObject
         appointment["start_time"] = "2017-06-16T09:41:01.846+02:00" as AnyObject
         appointment["end_time"] = "2017-06-17T09:41:01.846+02:00" as AnyObject
