@@ -70,10 +70,11 @@ extension POSAttachment {
 
     func getAppointments() -> [POSAppointment] {
         var metaDataWithType: [POSAppointment] = []
+        let creatorName = self.document.creatorName
         if let metadataDict = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
             for m in metadataDict{
                 if let metaDataObject = m as? POSMetadata{
-                    if let metadataObject = POSMetadataMapper.appointment(metadata: metaDataObject) {
+                    if let metadataObject = POSMetadataMapper.appointment(metadata: metaDataObject, creatorName: creatorName!) {
                         metaDataWithType.append(metadataObject as! POSAppointment)
                     }
                 }
