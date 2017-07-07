@@ -67,18 +67,7 @@ extension POSAttachment {
         }
         return false
     }
-    
-    func getAllMetadataTypes() {
-        if let metadataDict = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
-            for m in metadataDict{
-                if let metaDataObject = m as? POSMetadata{
-                    let appointment = POSMetadataMapper.get(metadata: metaDataObject)
-                    print((appointment as! POSAppointment).title)
-                }
-            }
-        }
-    }
-    
+
     func getAppointments() -> [POSAppointment] {
         var metaDataWithType: [POSAppointment] = []
         if let metadataDict = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
