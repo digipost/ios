@@ -19,12 +19,18 @@ import UIKit
 
 @objc class AppointmentView: UIView {
     
-    @IBOutlet weak var subjectLabel: UILabel!
+    var appointment: POSAppointment = POSAppointment()
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBAction func addToCalendar(_ sender: Any) {
+        print(appointment.title)
+    }
     
     func instanceWithData(appointment: POSAppointment) -> UIView{
-        let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView 
-        print(appointment.title)
-        view.subjectLabel.text = appointment.title
+        let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
+        
+        view.appointment = appointment
         return view
     }
     

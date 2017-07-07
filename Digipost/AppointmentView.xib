@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,25 +11,192 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AppointmentView" customModule="Digipost" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+            <rect key="frame" x="0.0" y="0.0" width="406" height="544"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElE-hz-PKP">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                    <rect key="frame" x="0.0" y="0.0" width="406" height="544"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-r1-8sS">
-                            <rect key="frame" x="8" y="8" width="343" height="22"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Du har fått en innkalling fra Unilabs Røntgen Majorstua" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlF-r1-8sS">
+                            <rect key="frame" x="52" y="25" width="302" height="36"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggR-9N-eo1" userLabel="TopDivider">
+                            <rect key="frame" x="0.0" y="80" width="406" height="1"/>
+                            <color key="backgroundColor" red="0.96557741116751272" green="0.96557741116751272" blue="0.96557741116751272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="AeZ-Ul-xvc"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MR-undersøkelse av høyre kne" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2k-oV-TyX">
+                            <rect key="frame" x="52" y="97" width="302" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Smr-he-9DG" userLabel="DateLocationContainer">
+                            <rect key="frame" x="52" y="130" width="302" height="171"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25.07.2017" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifj-gP-GYb">
+                                    <rect key="frame" x="8" y="29" width="65.333333333333329" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Oppmøte:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taw-GV-GE4">
+                                    <rect key="frame" x="156" y="7" width="61.666666666666686" height="15"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kl 09:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COs-0u-ODu">
+                                    <rect key="frame" x="8" y="50" width="46" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CpL-Fw-2UI">
+                                    <rect key="frame" x="8" y="8" width="34.333333333333329" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min før, hendvend deg i resepsjon" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="101-GM-0pv">
+                                    <rect key="frame" x="156" y="26" width="138" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sted:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kX-9e-0ZB">
+                                    <rect key="frame" x="8" y="75" width="32.333333333333329" height="15.666666666666657"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unilabs Røntgen Majorstua" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cO7-rP-gB0">
+                                    <rect key="frame" x="8" y="94.666666666666657" width="286" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kk-2c-s71">
+                                    <rect key="frame" x="8" y="142" width="286" height="28"/>
+                                    <color key="backgroundColor" red="0.86840051412582397" green="0.17482030391693115" blue="0.12793275713920593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="Legg i kalender"/>
+                                    <connections>
+                                        <action selector="addToCalendar:" destination="iN0-l3-epB" eventType="touchUpInside" id="U83-9d-wDa"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kirkeveien 29B, 0555 Oslo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4nb-iL-8l5">
+                                    <rect key="frame" x="8" y="115" width="286" height="15.333333333333314"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="2Kk-2c-s71" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="6Mf-a5-wPK"/>
+                                <constraint firstItem="2Kk-2c-s71" firstAttribute="centerX" secondItem="Smr-he-9DG" secondAttribute="centerX" id="6ke-KX-Uxw"/>
+                                <constraint firstItem="cO7-rP-gB0" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="77T-Rf-ETM"/>
+                                <constraint firstItem="CpL-Fw-2UI" firstAttribute="top" secondItem="Smr-he-9DG" secondAttribute="top" constant="8" id="DAo-y9-zWW"/>
+                                <constraint firstAttribute="bottom" secondItem="2Kk-2c-s71" secondAttribute="bottom" constant="1" id="Dyo-Tc-Rsd"/>
+                                <constraint firstItem="4nb-iL-8l5" firstAttribute="top" secondItem="cO7-rP-gB0" secondAttribute="bottom" constant="5" id="FML-NZ-sZI"/>
+                                <constraint firstItem="ifj-gP-GYb" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="HjN-jZ-kHX"/>
+                                <constraint firstAttribute="trailing" secondItem="101-GM-0pv" secondAttribute="trailing" constant="8" id="IcM-IG-Ekd"/>
+                                <constraint firstItem="CpL-Fw-2UI" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="JAb-Fm-7zy"/>
+                                <constraint firstAttribute="trailing" secondItem="cO7-rP-gB0" secondAttribute="trailing" constant="8" id="KGg-kN-Eii"/>
+                                <constraint firstItem="taw-GV-GE4" firstAttribute="top" secondItem="Smr-he-9DG" secondAttribute="top" constant="7" id="NDG-RC-wSA"/>
+                                <constraint firstItem="4nb-iL-8l5" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="NZF-Ko-ZeS"/>
+                                <constraint firstAttribute="trailing" secondItem="4nb-iL-8l5" secondAttribute="trailing" constant="8" id="Ngz-mB-jxN"/>
+                                <constraint firstItem="1kX-9e-0ZB" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="Upz-eh-xNV"/>
+                                <constraint firstItem="cO7-rP-gB0" firstAttribute="top" secondItem="1kX-9e-0ZB" secondAttribute="bottom" constant="4" id="Vjt-zn-nbm"/>
+                                <constraint firstItem="1kX-9e-0ZB" firstAttribute="top" secondItem="COs-0u-ODu" secondAttribute="bottom" constant="9" id="bU2-PY-NwX"/>
+                                <constraint firstItem="COs-0u-ODu" firstAttribute="top" secondItem="ifj-gP-GYb" secondAttribute="bottom" constant="5" id="cYx-Il-W3E"/>
+                                <constraint firstItem="taw-GV-GE4" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="156" id="eU7-Ww-ieU"/>
+                                <constraint firstItem="ifj-gP-GYb" firstAttribute="top" secondItem="CpL-Fw-2UI" secondAttribute="bottom" constant="5" id="oO1-qU-E5e"/>
+                                <constraint firstItem="101-GM-0pv" firstAttribute="top" secondItem="Smr-he-9DG" secondAttribute="top" constant="26" id="qEX-Ua-Hyh"/>
+                                <constraint firstItem="101-GM-0pv" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="156" id="szh-eT-kdW"/>
+                                <constraint firstItem="COs-0u-ODu" firstAttribute="leading" secondItem="Smr-he-9DG" secondAttribute="leading" constant="8" id="vgr-C1-A3f"/>
+                                <constraint firstItem="2Kk-2c-s71" firstAttribute="top" secondItem="4nb-iL-8l5" secondAttribute="bottom" constant="11.666666666666686" id="wPy-sl-sIr"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYI-lq-Nuk" userLabel="BottomDivider">
+                            <rect key="frame" x="0.0" y="322" width="406" height="1"/>
+                            <color key="backgroundColor" red="0.96557741119999996" green="0.96557741119999996" blue="0.96557741119999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="1OZ-kz-zfa"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzY-ic-cRP" userLabel="Preparation">
+                            <rect key="frame" x="52" y="345" width="302" height="191"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forberedelse:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xNa-Mw-459">
+                                    <rect key="frame" x="8" y="8" width="85.333333333333343" height="16.333333333333314"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ta med MR-bilder hvis du har dette tilgjengelig" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zK1-rO-Qy4">
+                                    <rect key="frame" x="8" y="28" width="286" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Informasjon:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8JM-tH-OiH">
+                                    <rect key="frame" x="8" y="56" width="286" height="16"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1j-5Z-umx">
+                                    <rect key="frame" x="8" y="76" width="286" height="15"/>
+                                    <string key="text">Egenandel for undersøkelen er kr. 245,-, fritak for barn under 16 år. CD av undersøkelsen koster kr 70,-. Betaling via bankterminal eller kontant ved fremmøte. Ønsker du å reservere deg mot SMS varsling benytt vår nettside www.unilabs.no</string>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="zK1-rO-Qy4" secondAttribute="trailing" constant="8" id="0Yg-iB-RoP"/>
+                                <constraint firstItem="xNa-Mw-459" firstAttribute="leading" secondItem="LzY-ic-cRP" secondAttribute="leading" constant="8" id="2rO-Dk-rtW"/>
+                                <constraint firstItem="j1j-5Z-umx" firstAttribute="leading" secondItem="LzY-ic-cRP" secondAttribute="leading" constant="8" id="9XS-GI-1Pe"/>
+                                <constraint firstItem="8JM-tH-OiH" firstAttribute="top" secondItem="zK1-rO-Qy4" secondAttribute="bottom" constant="12" id="Bi5-yw-B1W"/>
+                                <constraint firstItem="zK1-rO-Qy4" firstAttribute="top" secondItem="xNa-Mw-459" secondAttribute="bottom" constant="3.6666666666666856" id="P0M-Tv-zxG"/>
+                                <constraint firstItem="xNa-Mw-459" firstAttribute="top" secondItem="LzY-ic-cRP" secondAttribute="top" constant="8" id="STR-or-pJc"/>
+                                <constraint firstItem="zK1-rO-Qy4" firstAttribute="leading" secondItem="LzY-ic-cRP" secondAttribute="leading" constant="8" id="eHj-mN-aDE"/>
+                                <constraint firstItem="j1j-5Z-umx" firstAttribute="top" secondItem="8JM-tH-OiH" secondAttribute="bottom" constant="4" id="hgy-bQ-s88"/>
+                                <constraint firstAttribute="trailing" secondItem="8JM-tH-OiH" secondAttribute="trailing" constant="8" id="qu4-dW-ipN"/>
+                                <constraint firstAttribute="trailing" secondItem="j1j-5Z-umx" secondAttribute="trailing" constant="8" id="ujd-Vt-qny"/>
+                                <constraint firstItem="8JM-tH-OiH" firstAttribute="leading" secondItem="LzY-ic-cRP" secondAttribute="leading" constant="8" id="v8G-at-uTY"/>
+                                <constraint firstItem="xNa-Mw-459" firstAttribute="top" secondItem="LzY-ic-cRP" secondAttribute="top" constant="8" id="yuJ-Ar-yXT"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="jlF-r1-8sS" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="8" id="SJW-Bi-4Sr"/>
-                        <constraint firstAttribute="bottom" secondItem="jlF-r1-8sS" secondAttribute="bottom" constant="146" id="aCk-Fz-eUr"/>
-                        <constraint firstAttribute="trailing" secondItem="jlF-r1-8sS" secondAttribute="trailing" constant="24" id="ib6-d2-KUh"/>
-                        <constraint firstItem="jlF-r1-8sS" firstAttribute="top" secondItem="ElE-hz-PKP" secondAttribute="top" constant="8" id="zkQ-Yu-xju"/>
+                        <constraint firstItem="jlF-r1-8sS" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="DKc-l2-fZ2"/>
+                        <constraint firstItem="LzY-ic-cRP" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="Efa-rz-ywH"/>
+                        <constraint firstItem="jlF-r1-8sS" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="52" id="FZp-Z1-ckv"/>
+                        <constraint firstAttribute="trailing" secondItem="CYI-lq-Nuk" secondAttribute="trailing" id="K2x-iD-1go"/>
+                        <constraint firstItem="Smr-he-9DG" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="Lla-XS-mXw"/>
+                        <constraint firstItem="Smr-he-9DG" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="52" id="MJq-Ra-5cq"/>
+                        <constraint firstItem="CYI-lq-Nuk" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" id="Ns4-MF-nUT"/>
+                        <constraint firstItem="LzY-ic-cRP" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="52" id="PVw-Dw-ciG"/>
+                        <constraint firstItem="Smr-he-9DG" firstAttribute="top" secondItem="ggR-9N-eo1" secondAttribute="bottom" constant="49" id="PcX-cg-NFK"/>
+                        <constraint firstItem="CYI-lq-Nuk" firstAttribute="top" secondItem="Smr-he-9DG" secondAttribute="bottom" constant="21" id="VOD-O4-xr3"/>
+                        <constraint firstItem="jlF-r1-8sS" firstAttribute="top" secondItem="ElE-hz-PKP" secondAttribute="top" constant="25" id="Wud-Xc-jF2"/>
+                        <constraint firstAttribute="trailing" secondItem="ggR-9N-eo1" secondAttribute="trailing" id="eCW-eD-hB2"/>
+                        <constraint firstItem="ggR-9N-eo1" firstAttribute="top" secondItem="jlF-r1-8sS" secondAttribute="bottom" constant="19" id="fFB-sQ-wlo"/>
+                        <constraint firstItem="ggR-9N-eo1" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" id="gbn-H4-if7"/>
+                        <constraint firstAttribute="bottom" secondItem="LzY-ic-cRP" secondAttribute="bottom" constant="8" id="iCq-wp-KUp"/>
+                        <constraint firstItem="LzY-ic-cRP" firstAttribute="top" secondItem="CYI-lq-Nuk" secondAttribute="bottom" constant="22" id="yjB-YA-Jxq"/>
                     </constraints>
                 </view>
             </subviews>
@@ -42,9 +209,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="subjectLabel" destination="jlF-r1-8sS" id="MV6-e4-71Z"/>
+                <outlet property="titleLabel" destination="jlF-r1-8sS" id="dvM-pg-H2h"/>
             </connections>
-            <point key="canvasLocation" x="-620.5" y="-1099"/>
+            <point key="canvasLocation" x="-607" y="-983"/>
         </view>
     </objects>
 </document>
