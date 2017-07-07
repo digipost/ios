@@ -18,39 +18,49 @@ import Foundation
 
 @objc class POSMetadataMapper : NSObject{
     
-    static func get(metadata : POSMetadata) -> Any? {
+    static func get(metadata : POSMetadata, creatorName: String) -> Any? {
         if metadata.type == POSMetadata.TYPE.APPOINTMENT {
-            return parseAppointment(metadata: metadata)
+            return parseAppointment(metadata: metadata, creatorName: creatorName)
         }
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
-    static func appointment(metadata: POSMetadata) -> Any? {
+    static func appointment(metadata: POSMetadata, creatorName: String) -> Any? {
         if metadata.type == POSMetadata.TYPE.APPOINTMENT {
-            return parseAppointment(metadata: metadata)
+            return parseAppointment(metadata: metadata, creatorName: creatorName)
         }
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
-    private static func parseAppointment(metadata :POSMetadata) -> POSAppointment {
+    private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {
         if metadata.json.count > 0 {
-            let title = metadata.json["title"] as! String
-            let important = metadata.json["important"] as! String
-            let textDescription = metadata.json["description"] as! String
-            let startTime = stringToDate(timeString: metadata.json["start_time"] as! String)
-            let endTime = stringToDate(timeString: metadata.json["end_time"] as! String)
-
-            var city = ""
-            var postalCode = ""
-            var streetAddress = ""
             
-            if let location = metadata.json["place"] as? Dictionary<String, String> {
-                city = location["city"]!
-                postalCode = location["postalCode"]!
-                streetAddress = location["streetAddress"]!
+            let appointment = POSAppointment()
+            appointment.title = "Innkalling: \(creatorName)"
+            appointment.subTitle = metadata.json["subTitle"] as! String
+            appointment.startTime = stringToDate(timeString: metadata.json["startTime"] as! String)
+            appointment.endTime = stringToDate(timeString: metadata.json["endTime"] as! String)
+            appointment.arrivalTime = metadata.json["arrivalTime"] as! String
+            appointment.place = metadata.json["place"] as! String
+            
+            if let location = metadata.json["address"] as? Dictionary<String, String> {
+                appointment.city = location["city"]!
+                appointment.postalCode = location["postalCode"]!
+                appointment.streetAddress = location["streetAddress"]!
             }
-                        
-            return POSAppointment(title: title, important: important, textDescription: textDescription, startTime: startTime, endTime: endTime, city:city, postalCode:postalCode, streetAddress:streetAddress)
+
+            if let infoList = metadata.json["info"] as? [[Dictionary<String, String>]] {
+                if infoList.count > 0 {
+                  //  appointment.infoTitle1 = infoList[0]["title"] as! String
+                  //  appointment.infoText1 = infoList[0]["text"] as! String
+                }
+                if infoList.count > 1 {
+                  //  appointment.infoTitle1 = infoList[0]["title"] as! String
+                  //  appointment.infoText1 = infoList[0]["text"] as! String
+                }
+            }
+            
+            return appointment
         }
         return POSMetadataObject(type: POSMetadata.TYPE.NIL) as! POSAppointment
     }
