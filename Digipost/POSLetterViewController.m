@@ -83,10 +83,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 // Metadata
 @property (weak, nonatomic) IBOutlet UIStackView *stackView;
+@property (weak, nonatomic) IBOutlet UIScrollView *innerScrollView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *metaContentHeight;
-@property (weak, nonatomic) IBOutlet UIView *metaContent;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *scrollViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 
 
 // just a helper function that lets us fetch current attachment if its been nilled out by Core data
@@ -145,7 +144,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
-    self.webView.scrollView.delegate = self;
+    //self.webView.scrollView.delegate = self;
+    //self.innerScrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
     [self reloadFromMetadata];
@@ -170,6 +170,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         }
     }
     [self loadMetadataContent];
+    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -729,7 +730,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         for (POSAppointment *appointment in appointments) {
             UIView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
             [_stackView addArrangedSubview:appointmentView];
-            extraHeight += 200;
+            extraHeight += appointmentView.frame.size.height;
         }
         [self updateViewHeights:extraHeight];
     }
@@ -737,8 +738,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 -(void)updateViewHeights: (CGFloat ) height
 {
-    self.scrollViewHeight.constant = self.scrollViewHeight.constant + height;
-    self.metaContentHeight.constant =  self.metaContentHeight.constant + height;
+    self.contentViewHeight.constant += height;
+    self.metaContentHeight.constant += height;
+    NSLog(@"self.contentViewHeight.constant %f", self.contentViewHeight.constant);
 }
 
 -(void)updateCurrentDocument
