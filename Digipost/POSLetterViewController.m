@@ -740,7 +740,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 {
     self.contentViewHeight.constant += height;
     self.metaContentHeight.constant += height;
-    NSLog(@"self.contentViewHeight.constant %f", self.contentViewHeight.constant);
 }
 
 -(void)updateCurrentDocument
