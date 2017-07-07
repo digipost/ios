@@ -19,20 +19,20 @@ import Foundation
 class POSAppointment : POSMetadataObject {
     
     var title = ""
-    var important = ""
-    var textDescription = ""
     var startTime = Date()
     var endTime = Date()
-    var city = ""
-    var postalCode = ""
+    var arrivalTime = ""
+    var place = ""
     var streetAddress = ""
-
+    var postalCode = ""
+    var city = ""
+    var subTitle = ""
+    var infoTitle1 = ""
+    var infoText1 = ""
+    var infoTitle2 = ""
+    var infoText2 = ""
     
-    init(title: String, important: String, textDescription: String, startTime: Date, endTime: Date, city: String, postalCode:String, streetAddress: String) {
+    init() {
         super.init(type: POSMetadata.TYPE.APPOINTMENT)
-        self.title = title
-        self.important = important
-        self.textDescription = textDescription
-        self.startTime = startTime
     }
 }
