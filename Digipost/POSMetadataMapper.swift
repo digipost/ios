@@ -49,14 +49,15 @@ import Foundation
                 appointment.streetAddress = location["streetAddress"]!
             }
 
-            if let infoList = metadata.json["info"] as? [[Dictionary<String, String>]] {
+            if let infoList = metadata.json["info"] as? [[String: String]] {
                 if infoList.count > 0 {
-                  //  appointment.infoTitle1 = infoList[0]["title"] as! String
-                  //  appointment.infoText1 = infoList[0]["text"] as! String
+                    appointment.infoTitle1 = infoList[0]["title"]!
+                    appointment.infoText1 = infoList[0]["text"]!
                 }
                 if infoList.count > 1 {
-                  //  appointment.infoTitle1 = infoList[0]["title"] as! String
-                  //  appointment.infoText1 = infoList[0]["text"] as! String
+                    appointment.infoTitle1 = infoList[1]["title"]!
+                    appointment.infoText1 = infoList[1]["text"]!
+                    
                 }
             }
             
