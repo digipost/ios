@@ -42,8 +42,8 @@ import Foundation
         appointment["adress"] = place as AnyObject
         
         var infoList = [[String: String]]()
-        infoList.append(["title": "Forberedelse","text": "Husk å ta med gamle røntgen-bilder hvis du har dette tilgjengelig" ])
-        infoList.append(["title": "Informasjon","text": "Egenandel for undersøkelsen er kr.245,-, fritak for barn under 16 år og alle med frikort. CD med bilder av undersøkelsen koster kr.70,- pr stk. Betaling via bankterminal eller kontant ved frammøte. Ønsker du å reservere deg mot SMS varsling benytt vår nettside www.unilabs.no. For undersøkelser som ikke avbestilles innen 24 timer før oppsatt time, avkreves et gebyr etter gjeldende"])
+        infoList.append(["title": "Forberedelse","text": "Husk å ta med gamle røntgen-bilder hvis du har dette lett tilgjengelig.Husk å ta med gamle røntgen-bilder hvis du har dette tilgjengelig.Husk å ta med gamle røntgen-bilder hvis du har dette tilgjengelig.Husk å ta med gamle røntgen-bilder hvis du har dette tilgjengelig.Husk å ta med gamle røntgen-bil" ])
+        infoList.append(["title": "Informasjon","text": "Egenandel for undersøkelsen er kr.245,-, fritak for barn under 16 år og alle med frikort. CD med bilder av undersøkelsen koster kr.70,- pr stk. Betaling via bankterminal eller kontant ved frammøte. Ønsker du å reservere deg mot SMS varsling benytt vår nettside www.unilabs.no. For undersøkelser som !"])
         
         appointment["info"] = infoList as AnyObject
         
