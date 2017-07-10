@@ -219,6 +219,16 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="address" destination="4nb-iL-8l5" id="xMv-Vp-ISf"/>
+                <outlet property="arrivalTime" destination="101-GM-0pv" id="wFu-fr-gZ5"/>
+                <outlet property="infoText1" destination="zK1-rO-Qy4" id="dLb-iu-CLr"/>
+                <outlet property="infoText2" destination="j1j-5Z-umx" id="rfh-Dd-DFh"/>
+                <outlet property="infoTitle1" destination="xNa-Mw-459" id="wKn-T2-EPU"/>
+                <outlet property="infoTitle2" destination="8JM-tH-OiH" id="WTb-rR-iaa"/>
+                <outlet property="place" destination="cO7-rP-gB0" id="DSi-Kj-N4h"/>
+                <outlet property="startDate" destination="ifj-gP-GYb" id="CmL-Ko-872"/>
+                <outlet property="startTime" destination="COs-0u-ODu" id="L7n-1h-NRr"/>
+                <outlet property="subTitle" destination="D2k-oV-TyX" id="hpX-0o-uCn"/>
                 <outlet property="titleLabel" destination="jlF-r1-8sS" id="dvM-pg-H2h"/>
             </connections>
             <point key="canvasLocation" x="-607" y="-973"/>

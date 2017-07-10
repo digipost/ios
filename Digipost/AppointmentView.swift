@@ -21,7 +21,17 @@ import UIKit
     
     var appointment: POSAppointment = POSAppointment()
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var startDate: UILabel!
+    @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var arrivalTime: UILabel!
+    @IBOutlet weak var place: UILabel!
+    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var infoTitle1: UILabel!
+    @IBOutlet weak var infoText1: UILabel!
+    @IBOutlet weak var infoTitle2: UILabel!
+    @IBOutlet weak var infoText2: UILabel!
     
     @IBAction func addToCalendar(_ sender: Any) {
         print(appointment.title)
