@@ -39,8 +39,18 @@ import UIKit
     
     func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
-        
         view.appointment = appointment
+        view.title.text = appointment.title
+        view.subTitle.text = appointment.subTitle
+        view.arrivalTime.text = appointment.arrivalTime
+        view.place.text = appointment.place
+        view.address.text = appointment.address
+        view.infoTitle1.text = appointment.infoTitle1
+        view.infoText1.text = appointment.infoText1
+        view.infoTitle2.text = appointment.infoTitle2
+        view.infoText2.text = appointment.infoText2
+        view.title.text = appointment.title
+        
         return view
     }
     

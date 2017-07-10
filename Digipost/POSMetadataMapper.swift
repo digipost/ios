@@ -44,9 +44,10 @@ import Foundation
             appointment.place = metadata.json["place"] as! String
             
             if let location = metadata.json["address"] as? Dictionary<String, String> {
-                appointment.city = location["city"]!
-                appointment.postalCode = location["postalCode"]!
                 appointment.streetAddress = location["streetAddress"]!
+                appointment.postalCode = location["postalCode"]!
+                appointment.city = location["city"]!
+                appointment.address = "\(appointment.streetAddress), \(appointment.postalCode) \(appointment.city)"
             }
 
             if let infoList = metadata.json["info"] as? [[String: String]] {
@@ -54,9 +55,10 @@ import Foundation
                     appointment.infoTitle1 = infoList[0]["title"]!
                     appointment.infoText1 = infoList[0]["text"]!
                 }
+                
                 if infoList.count > 1 {
-                    appointment.infoTitle1 = infoList[1]["title"]!
-                    appointment.infoText1 = infoList[1]["text"]!
+                    appointment.infoTitle2 = infoList[1]["title"]!
+                    appointment.infoText2 = infoList[1]["text"]!
                     
                 }
             }

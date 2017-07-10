@@ -26,6 +26,7 @@ class POSAppointment : POSMetadataObject {
     var streetAddress = ""
     var postalCode = ""
     var city = ""
+    var address = ""
     var subTitle = ""
     var infoTitle1 = ""
     var infoText1 = ""
