@@ -36,6 +36,10 @@ import EventKit
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
     @IBOutlet weak var infoText2: UILabel!
+    @IBOutlet weak var infoContainerBottomConstraint:
+    NSLayoutConstraint!
+    
+    var extraHeight = CGFloat(0)
     
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
@@ -60,13 +64,26 @@ import EventKit
         view.place.text = appointment.place
         view.address.text = appointment.address
     
-        view.infoTitle1.text = appointment.infoTitle1
-        view.infoText1.text = appointment.infoText1
-        view.infoTitle2.text = appointment.infoTitle2
-        view.infoText2.text = appointment.infoText2
+        var infoTextHeight = CGFloat(0)
+        if appointment.infoText1.length > 1 {
+            view.infoTitle1.text = appointment.infoTitle1
+            view.infoText1.text = appointment.infoText1
+            infoTextHeight += 20
+        }else{
+            infoTextHeight -= 120
+        }
+        
+        if appointment.infoText2.length > 1 {
+            view.infoTitle2.text = appointment.infoTitle2
+            view.infoText2.text = appointment.infoText2
+            infoTextHeight += 80
+        }
+        view.extraHeight += infoTextHeight
+        view.infoContainerBottomConstraint.constant += infoTextHeight
         
         return view
     }
+    
     
     func initWithPermissions() {
         

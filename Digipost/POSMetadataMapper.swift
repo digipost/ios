@@ -52,14 +52,17 @@ import Foundation
 
             if let infoList = metadata.json["info"] as? [[String: String]] {
                 if infoList.count > 0 {
-                    appointment.infoTitle1 = infoList[0]["title"]!
-                    appointment.infoText1 = infoList[0]["text"]!
+                    if let infoTitle = infoList[0]["title"], let infoText = infoList[0]["text"] {
+                        appointment.infoTitle1 = infoTitle
+                        appointment.infoText1 = infoText
+                    }
                 }
                 
                 if infoList.count > 1 {
-                    appointment.infoTitle2 = infoList[1]["title"]!
-                    appointment.infoText2 = infoList[1]["text"]!
-                    
+                    if let infoTitle = infoList[1]["title"], let infoText = infoList[1]["text"] {
+                        appointment.infoTitle2 = infoTitle
+                        appointment.infoText2 = infoText
+                    }
                 }
             }
             

@@ -728,9 +728,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         NSArray *appointments = self.attachment.getAppointments;
         CGFloat extraHeight = 0;
         for (POSAppointment *appointment in appointments) {
-            UIView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
+            AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
             [_stackView addArrangedSubview:appointmentView];
-            extraHeight += appointmentView.frame.size.height;
+            extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
         }
         [self updateViewHeights:extraHeight];
     }
