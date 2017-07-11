@@ -24,9 +24,12 @@ import EventKit
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var startTimeTitle: UILabel!
     @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var arrivalTimeTitle: UILabel!
     @IBOutlet weak var arrivalTime: UILabel!
+    @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var place: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var infoTitle1: UILabel!
@@ -41,17 +44,27 @@ import EventKit
 
     func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
+        
         view.appointment = appointment
         view.title.text = appointment.title
         view.subTitle.text = appointment.subTitle
+        
+        view.startTimeTitle.text = NSLocalizedString("metadata start time title", comment:"Time:")
+        view.startDate.text = "01.04.2015"
+        view.startTime.text = "kl 21:00"
+        
+        view.arrivalTimeTitle.text = NSLocalizedString("metadata arrival time title", comment:"Oppmøte:")
         view.arrivalTime.text = appointment.arrivalTime
+        
+        view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
         view.place.text = appointment.place
         view.address.text = appointment.address
+    
         view.infoTitle1.text = appointment.infoTitle1
         view.infoText1.text = appointment.infoText1
         view.infoTitle2.text = appointment.infoTitle2
         view.infoText2.text = appointment.infoText2
-        view.title.text = appointment.title
+        
         return view
     }
     
