@@ -21,6 +21,7 @@ class POSAppointment : POSMetadataObject {
     var title = ""
     var startTime = Date()
     var endTime = Date()
+    var arrivalTimeDate = Date()
     var arrivalTime = ""
     var place = ""
     var streetAddress = ""

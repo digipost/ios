@@ -38,11 +38,22 @@ import Foundation
             let appointment = POSAppointment()
             appointment.title = "Du har fått en innkalling fra \(creatorName)"
             appointment.subTitle = metadata.json["subTitle"] as! String
-            appointment.startTime = stringToDate(timeString: metadata.json["startTime"] as! String)
-            appointment.endTime = stringToDate(timeString: metadata.json["endTime"] as! String)
-            appointment.arrivalTime = metadata.json["arrivalTime"] as! String
-            appointment.place = metadata.json["place"] as! String
             
+            if let startTime = stringToDate(timeString: metadata.json["startTime"] as! String){
+                appointment.startTime = startTime
+            }
+            
+            if let endTime = stringToDate(timeString: metadata.json["endTime"] as! String){
+                appointment.endTime = endTime
+            }
+            
+            if let arrivalTimeDate = stringToDate(timeString: metadata.json["arrivalTime"] as! String) {
+                appointment.arrivalTimeDate = arrivalTimeDate
+            } else {
+                appointment.arrivalTime = metadata.json["arrivalTime"] as! String
+            }            
+            appointment.place = metadata.json["place"] as! String
+
             if let location = metadata.json["address"] as? Dictionary<String, String> {
                 appointment.streetAddress = location["streetAddress"]!
                 appointment.postalCode = location["postalCode"]!
@@ -71,7 +82,33 @@ import Foundation
         return POSMetadataObject(type: POSMetadata.TYPE.NIL) as! POSAppointment
     }
     
-    static func stringToDate(timeString: String) -> Date{
-        return Date()
+    static func stringToDate(timeString: String) -> Date?{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
+        if let date = formatter.date(from: timeString) {
+            return date
+        }
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+        if let date = formatter.date(from: timeString) {
+            return date
+        }
+        return nil
+        
+        if #available(iOS 10.0, *) {
+            let formatter = ISO8601DateFormatter()
+            return formatter.date(from: timeString)!
+        } else {
+            do{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
+                let date = try formatter.date(from: timeString)!
+                return date
+            }catch {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+                return formatter.date(from: timeString)!
+            }
+            
+        }
     }
 }

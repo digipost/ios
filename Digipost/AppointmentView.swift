@@ -51,15 +51,22 @@ import EventKit
         
         view.appointment = appointment
         view.title.text = appointment.title
-        view.subTitle.text = appointment.subTitle
         
+        if appointment.subTitle.characters.count > 1 {
+            view.subTitle.text = appointment.subTitle
+        }
+
         view.startTimeTitle.text = NSLocalizedString("metadata start time title", comment:"Time:")
-        view.startDate.text = "01.04.2015"
-        view.startTime.text = "kl 21:00"
+        view.startDate.text = appointment.startTime.dateOnly()
+        view.startTime.text = "kl \(appointment.startTime.timeOnly())"
         
         view.arrivalTimeTitle.text = NSLocalizedString("metadata arrival time title", comment:"Oppmøte:")
-        view.arrivalTime.text = appointment.arrivalTime
-        
+        if appointment.arrivalTime.characters.count > 0 {
+            view.arrivalTime.text = appointment.arrivalTime
+        }else{
+            view.arrivalTime.text = "kl \(appointment.arrivalTimeDate.timeOnly())"
+        }
+                
         view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
         view.place.text = appointment.place
         view.address.text = appointment.address

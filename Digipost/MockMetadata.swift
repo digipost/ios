@@ -31,8 +31,8 @@ import Foundation
         var appointment = Dictionary<String, AnyObject>()
         appointment["type"] = "appointment" as AnyObject
         appointment["subTitle"] = "MR-Undersøkelse av høyre kne" as AnyObject
-        appointment["startTime"] = "2017-06-16T09:41:01.846+02:00" as AnyObject
-        appointment["endTime"] = "2017-06-17T09:41:01.846+02:00" as AnyObject
+        appointment["startTime"] = "2017-06-23T04:08:05+02:00" as AnyObject
+        appointment["endTime"] = "2017-06-23T05:08:05+02:00" as AnyObject
         appointment["arrivalTime"] = "Kom 10 minutter før" as AnyObject
         appointment["place"] = "Hovedinngangen" as AnyObject
         
