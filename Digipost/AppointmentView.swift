@@ -36,9 +36,7 @@ import EventKit
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
     @IBOutlet weak var infoText2: UILabel!
-    @IBOutlet weak var infoContainerBottomConstraint:
-    NSLayoutConstraint!
-    
+    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     var extraHeight = CGFloat(0)
     
     let eventStore = EKEventStore()
@@ -48,7 +46,7 @@ import EventKit
 
     func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
-        
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.appointment = appointment
         view.title.text = appointment.title
         
@@ -75,26 +73,57 @@ import EventKit
         if appointment.infoText1.length > 1 {
             view.infoTitle1.text = appointment.infoTitle1
             view.infoText1.text = appointment.infoText1
-            infoTextHeight += 20
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText1, width: view.infoText1.frame.width)
         }else{
-            infoTextHeight -= 120
+            infoTextHeight += negativeHeightAdjustment()
         }
         
         if appointment.infoText2.length > 1 {
             view.infoTitle2.text = appointment.infoTitle2
             view.infoText2.text = appointment.infoText2
-            infoTextHeight += 80
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width)
         }
-        view.extraHeight += infoTextHeight
-        view.infoContainerBottomConstraint.constant += infoTextHeight
+        
+        view.containerViewHeight.constant += infoTextHeight + positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
+        extraHeight += infoTextHeight
+        view.layoutIfNeeded()
         
         return view
     }
     
-    
-    func initWithPermissions() {
-        
+    func negativeHeightAdjustment() -> CGFloat{
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        if screenHeight < 600.0 {
+            return CGFloat(-200)
+        }else if screenHeight < 700 {
+            return CGFloat(-100)
+        }else if screenHeight > 700 {
+           return CGFloat(-30)
+        }else{
+            return CGFloat(0)
+        }
     }
+    
+    func positiveHeightAdjustment(text:String, width:CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = UIFont(name: "Helvetica", size: 13.0)
+        label.text = text
+        label.sizeToFit()
+        
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        if screenHeight < 600.0 {
+            return label.frame.height*0.4
+        }else if screenHeight < 700 {
+            return label.frame.height*0.8
+        }else if screenHeight > 700 {
+            return label.frame.height*1.3
+        }
+        
+        return label.frame.height
+    }
+
     
     @IBAction func addToCalendar(_ sender: Any) {
         calendarPermissionsGranted()
