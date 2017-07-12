@@ -42,7 +42,7 @@ import EventKit
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
     var pickedCalenderIdentifier: String = ""
-    let permissionsErrorMessage = "For å kunne legge til en hendelse i kalender må du gi Digipost tilgang til Kalendere, under Personvern i Innstillinger"
+    let permissionsErrorMessage = "For å legge til hendelser i kalenderen din, må du gi Digipost tilgang til Kalendere. Dette kan du endre under Personvern i Innstillinger."
 
     func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
