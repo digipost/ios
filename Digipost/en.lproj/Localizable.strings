@@ -469,5 +469,5 @@
 
 /* Metadata */
 "metadata start time title" = "Date:";
-"metadata arrival time title" = " Arrival time:";
+"metadata arrival time title" = "Arrival time:";
 "metadata location title" = "Location:";
