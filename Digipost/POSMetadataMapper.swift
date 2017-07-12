@@ -36,6 +36,7 @@ import Foundation
         if metadata.json.count > 0 {
             
             let appointment = POSAppointment()
+            appointment.creatorName = creatorName
             appointment.title = "Du har fått en innkalling fra \(creatorName)"
             appointment.subTitle = metadata.json["subTitle"] as! String
             

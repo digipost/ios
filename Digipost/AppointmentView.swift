@@ -129,7 +129,7 @@ import EventKit
         calendarPermissionsGranted()
         
         let eventTitle = "Innkalling til røntgentime"
-        let sender = "Unilabs Røntgen Majorstua"
+        let sender = appointment.creatorName
         let time = "kl 09:00 - 25.07.2017"
         let address = "Kirkeveien 29B, 0555 Oslo"
         let info = "Ikke spis 3 timer før timen. Ta med MR-bilder hvis du har dette tilgjengelig. Etter timen må du vente 30 minutter for eventuelle bivirkninger"

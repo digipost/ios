@@ -19,6 +19,7 @@ import Foundation
 class POSAppointment : POSMetadataObject {
     
     var title = ""
+    var creatorName = ""
     var startTime = Date()
     var endTime = Date()
     var arrivalTimeDate = Date()
