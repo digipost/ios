@@ -319,12 +319,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
+    /*
     BOOL barsHidden = self.navigationController.isNavigationBarHidden;
     [self changeNavbarStateToHidden:!barsHidden];
 
     UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
                                                 animated:YES];
+     */
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
