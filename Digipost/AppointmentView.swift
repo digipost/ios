@@ -37,8 +37,9 @@ import EventKit
     @IBOutlet weak var infoTitle2: UILabel!
     @IBOutlet weak var infoText2: UILabel!
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
-    var extraHeight = CGFloat(0)
+    @IBOutlet weak var calendarButton: UIButton!
     
+    var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
     var pickedCalenderIdentifier: String = ""

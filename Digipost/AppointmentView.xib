@@ -196,6 +196,7 @@
                 <outlet property="address" destination="4nb-iL-8l5" id="xMv-Vp-ISf"/>
                 <outlet property="arrivalTime" destination="101-GM-0pv" id="wFu-fr-gZ5"/>
                 <outlet property="arrivalTimeTitle" destination="taw-GV-GE4" id="hCc-iK-qSt"/>
+                <outlet property="calendarButton" destination="2Kk-2c-s71" id="d4r-QA-Txx"/>
                 <outlet property="containerViewHeight" destination="Vsg-qz-RF5" id="Oio-sR-dfM"/>
                 <outlet property="infoText1" destination="vwG-Wg-Joe" id="TEg-1k-h96"/>
                 <outlet property="infoText2" destination="Peg-ZL-MkR" id="QM6-0Z-S5h"/>
