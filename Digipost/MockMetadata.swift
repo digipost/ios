@@ -22,7 +22,7 @@ import Foundation
         var mockdataArray = [POSMetadata]()
         
         mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment()))
-        mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment()))
+        //mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment()))
         
         return mockdataArray
     }
@@ -30,7 +30,7 @@ import Foundation
     func getMockAppointment() -> Dictionary<String, AnyObject> {
         var appointment = Dictionary<String, AnyObject>()
         appointment["type"] = "appointment" as AnyObject
-        appointment["subTitle"] = "MR-Undersøkelse av høyre kne" as AnyObject
+        appointment["subTitle"] = "MR-Undersøkelse av høyre kne Husk å ta med gamle røntgen-bilder hvis du har dette lett " as AnyObject
         appointment["startTime"] = "2017-06-23T04:08:05+02:00" as AnyObject
         appointment["endTime"] = "2017-06-23T05:08:05+02:00" as AnyObject
         appointment["arrivalTime"] = "Kom 10 minutter før" as AnyObject
@@ -40,7 +40,7 @@ import Foundation
         place["city"] = "Oslo"
         place["postalCode"] = "0101"
         place["streetAddress"] = "Storgata 2"
-        appointment["adress"] = place as AnyObject
+        appointment["address"] = place as AnyObject
         
         var infoList = [[String: String]]()
         
