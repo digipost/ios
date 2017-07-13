@@ -255,6 +255,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)changeNavbarStateToHidden:(BOOL)hidden
 {
+    /*
+     Gjør at toolbars i topp og bunn skjules når man klikker på webview, men dette skaper utfordringer med metadata-visning, så deaktiverer inntil videre.
     if (hidden) {
         if (self.navigationController.navigationBar.isHidden == NO) {
             [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -268,9 +270,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }
         }
     }
+     
     UIStatusBarStyle statusBarStyle = !hidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
                                                 animated:YES];
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
