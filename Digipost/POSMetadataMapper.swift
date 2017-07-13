@@ -84,13 +84,7 @@ import Foundation
     }
     
     static func stringToDate(timeString: String) -> Date?{
-        if #available(iOS 10.0, *) {
-            let formatter = ISO8601DateFormatter()
-            if let date =  formatter.date(from: timeString) {
-                return date
-            }
-        }
-        
+
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
         if let date = formatter.date(from: timeString) {
