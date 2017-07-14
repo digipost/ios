@@ -132,36 +132,30 @@ import EventKit
     @IBAction func addToCalendar(_ sender: Any) {
         calendarPermissionsGranted()
         
-        let eventTitle = "Innkalling til røntgentime"
-        let sender = appointment.creatorName
-        let time = "kl 09:00 - 25.07.2017"
-        let address = "Kirkeveien 29B, 0555 Oslo"
-        let info = "Ikke spis 3 timer før timen. Ta med MR-bilder hvis du har dette tilgjengelig. Etter timen må du vente 30 minutter for eventuelle bivirkninger"
-        
-        let message = calendarPermissionsGranted() ? getEventMessage(sender:sender, time: time, address: address, info: info) : permissionsErrorMessage
-        
-        let alertController = UIAlertController(title: "Legg til i kalender", message: message, preferredStyle: .alert)
+        let eventTitle = title.text!
+        let message = calendarPermissionsGranted() ? getEventMessage() : permissionsErrorMessage
+        let modalAction = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
+        let alertController = UIAlertController(title: modalAction, message: message, preferredStyle: .alert)
         
         if calendarPermissionsGranted() {
             let calendar = self.eventStore.defaultCalendarForNewEvents
-            alertController.addAction(UIAlertAction(title: "Legg i kalender", style: .default) { (action) in
-                self.createEventInCalendar(calendar: calendar, start: self.day(diff: -1), end: self.day(diff: 0), title: eventTitle, address: address, info: info)
+            alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
+                self.createEventInCalendar(calendar: calendar, title: eventTitle)
                 
             })
         }
         
-        alertController.addAction(UIAlertAction(title: "Avbryt", style: .cancel) { (action) in
+        let modalCancel = NSLocalizedString("metadata calendar cancel", comment:"Avbryt")
+        alertController.addAction(UIAlertAction(title: modalCancel, style: .cancel) { (action) in
             alertController.dismiss(animated: true, completion: {})
         })
         
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
-    func getEventMessage(sender: String, time: String, address:String, info: String) -> String {
-        var message = "Fra: \n \(sender)\n\n"
-        message.append(time.isEmpty ? "" : "Tid: \n \(time) \n\n")
-        message.append(address.isEmpty ? "" : "Hvor: \n \(address) \n\n")
-        message.append(info.isEmpty ? "" : "Informasjon: \n \(info)\n\n")
+    func getEventMessage() -> String {
+        var message = ""
+        message.append("\(startTime.text!) \(startDate.text!)")
         message.append("\n\n\n")
         return message
     }
@@ -183,15 +177,15 @@ import EventKit
         return permissionsGranted;
     }
     
-    func createEventInCalendar(calendar: EKCalendar, start: Date, end: Date, title: String, address: String, info:String){
+    func createEventInCalendar(calendar: EKCalendar, title: String){
         let event = EKEvent(eventStore: eventStore)
         
         event.calendar = calendar
         event.title = title
-        event.startDate = start
-        event.endDate = end
-        event.location = address
-        event.notes = info
+        event.startDate = appointment.startTime
+        event.endDate = appointment.endTime
+        event.location = appointment.address
+        event.notes = "\(arrivalTime.text!) \n\n \(infoTitle1.text!) \n \(infoText1.text!) \n\n \(infoTitle2.text!) \n \(infoText2.text!) "
         
         do {
             try eventStore.save(event, span: .thisEvent, commit: true)
