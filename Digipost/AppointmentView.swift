@@ -89,6 +89,9 @@ import EventKit
         extraHeight += infoTextHeight
         view.layoutIfNeeded()
         
+        let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
+        view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
+        
         return view
     }
     
