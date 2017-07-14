@@ -18,9 +18,7 @@
 import UIKit
 import EventKit
 
-@objc class AppointmentView: UIView{
-
-    var appointment: POSAppointment = POSAppointment()
+@objc class AppointmentView: UIView, UIPickerViewDataSource, UIPickerViewDelegate{
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
@@ -39,14 +37,17 @@ import EventKit
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var calendarButton: UIButton!
     
+    var appointment: POSAppointment = POSAppointment()
+    
     var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
-    var pickedCalenderIdentifier: String = ""
+    static var pickedCalenderIdentifier: String = ""
     let permissionsErrorMessage = "For å legge til hendelser i kalenderen din, må du gi Digipost tilgang til Kalendere. Dette kan du endre under Personvern i Innstillinger."
 
     func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
+
         view.translatesAutoresizingMaskIntoConstraints = false
         view.appointment = appointment
         view.title.text = appointment.title
@@ -69,6 +70,9 @@ import EventKit
         view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
         view.place.text = appointment.place
         view.address.text = appointment.address
+        
+        let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
+        view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
     
         var infoTextHeight = CGFloat(0)
         if appointment.infoText1.length > 1 {
@@ -84,28 +88,18 @@ import EventKit
             view.infoText2.text = appointment.infoText2
             infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width)
         }
-        
-        view.containerViewHeight.constant += infoTextHeight + positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
+        infoTextHeight += positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
+        view.containerViewHeight.constant += infoTextHeight
         extraHeight += infoTextHeight
+    
+        calendarPermissionsGranted()
+        calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
         view.layoutIfNeeded()
-        
-        let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
-        view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
-        
         return view
     }
-    
+        
     func negativeHeightAdjustment() -> CGFloat{
-        let screenHeight: CGFloat = UIScreen.main.bounds.height
-        if screenHeight < 600.0 {
-            return CGFloat(-200)
-        }else if screenHeight < 700 {
-            return CGFloat(-100)
-        }else if screenHeight > 700 {
-           return CGFloat(-30)
-        }else{
-            return CGFloat(0)
-        }
+        return CGFloat(-150)
     }
     
     func positiveHeightAdjustment(text:String, width:CGFloat) -> CGFloat{
@@ -115,31 +109,29 @@ import EventKit
         label.font = UIFont(name: "Helvetica", size: 13.0)
         label.text = text
         label.sizeToFit()
-        
-        let screenHeight: CGFloat = UIScreen.main.bounds.height
-        if screenHeight < 600.0 {
-            return label.frame.height*0.4
-        }else if screenHeight < 700 {
-            return label.frame.height*0.8
-        }else if screenHeight > 700 {
-            return label.frame.height*1.3
-        }
-        
         return label.frame.height
     }
-
     
     @IBAction func addToCalendar(_ sender: Any) {
-        calendarPermissionsGranted()
-        
         let eventTitle = title.text!
+        
         let message = calendarPermissionsGranted() ? getEventMessage() : permissionsErrorMessage
         let modalAction = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
         let alertController = UIAlertController(title: modalAction, message: message, preferredStyle: .alert)
         
         if calendarPermissionsGranted() {
-            let calendar = self.eventStore.defaultCalendarForNewEvents
+            self.calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
+            if self.calendars.count > 1 {
+                let frame = CGRect(x: 0, y: alertController.view.frame.height-self.pickerHeightAdjustmentFromBottom(), width: 270, height: 80)
+                let calendarPicker = UIPickerView(frame: frame)
+                alertController.message?.append("\n\n\n\n\n\n\n")
+                calendarPicker.delegate = self
+                calendarPicker.showsSelectionIndicator = true
+                alertController.view.addSubview(calendarPicker)
+            }
+            
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
+                let calendar = AppointmentView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents
                 self.createEventInCalendar(calendar: calendar, title: eventTitle)
                 
             })
@@ -153,55 +145,77 @@ import EventKit
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
+    func pickerHeightAdjustmentFromBottom() -> CGFloat {
+        let screenHeight: CGFloat = UIScreen.main.bounds.height
+        
+        if screenHeight < 600.0 {
+            return CGFloat(450)
+        }else if screenHeight < 700 {
+            return CGFloat(550)
+        }else if screenHeight > 700 {
+            return CGFloat(600)
+        }else{
+            return CGFloat(450)
+        }
+    }
+    
+    func getSelectedCalendar() -> EKCalendar {
+        return calendars.filter { $0.calendarIdentifier == AppointmentView.pickedCalenderIdentifier}.first!
+    }
+    
     func getEventMessage() -> String {
         var message = ""
-        message.append("\(startTime.text!) \(startDate.text!)")
-        message.append("\n\n\n")
+        message.append("\(title.text!)\n\(subTitle.text!)\n\n")
+        message.append("\(startDate.text!) - \(startTime.text!)")
         return message
     }
     
     @discardableResult func calendarPermissionsGranted() -> Bool {
         switch EKEventStore.authorizationStatus(for: .event) {
         case .authorized: return true
-        default: return requestPermissions()
+        default: return AppointmentView.requestPermissions()
         }
     }
     
-    func requestPermissions() -> Bool{
+    static func requestPermissions() -> Bool{
         var permissionsGranted = false 
-        eventStore.requestAccess(to: .event, completion: 
+        EKEventStore().requestAccess(to: .event, completion: 
             {(granted: Bool, error: Error?) -> Void in
                 permissionsGranted = granted
-                print("granted: \(granted)")
         })
         return permissionsGranted;
     }
     
     func createEventInCalendar(calendar: EKCalendar, title: String){
-        let event = EKEvent(eventStore: eventStore)
-        
+        let event = EKEvent(eventStore: self.eventStore)
+    
         event.calendar = calendar
         event.title = title
         event.startDate = appointment.startTime
         event.endDate = appointment.endTime
         event.location = appointment.address
-        event.notes = "\(arrivalTime.text!) \n\n \(infoTitle1.text!) \n \(infoText1.text!) \n\n \(infoTitle2.text!) \n \(infoText2.text!) "
-        
-        do {
-            try eventStore.save(event, span: .thisEvent, commit: true)
-            print("✅ - Event created!")
-        } catch {
-            print("⛔️ - ERROR! Event failed!")
-        }
+        event.notes = "\(arrivalTime.text!) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
+                
+        do {try self.eventStore.save(event, span: .thisEvent, commit: true)} catch {}
     }
     
-    func day(diff: Int) -> Date {
-        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
-        let day = calendar.date(byAdding: .day, value: diff, to: NSDate() as Date, options: [])!
-        return day
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
     
-    private  func instanceFromNib() -> UIView {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return self.calendars.count
+    }
+    
+    internal func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return self.calendars[row].title
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        AppointmentView.pickedCalenderIdentifier = self.calendars[row].calendarIdentifier
+    }
+    
+    private func instanceFromNib() -> UIView {
         return UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
     

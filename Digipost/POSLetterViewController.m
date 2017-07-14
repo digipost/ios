@@ -738,6 +738,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [_stackView addArrangedSubview:appointmentView];
             extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
         }
+        
+        if(extraHeight > 0) {
+            [AppointmentView requestPermissions];
+        }
+        
         [self updateViewHeights:extraHeight];
     }
 }
