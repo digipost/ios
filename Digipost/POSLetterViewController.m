@@ -87,7 +87,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *metaContentHeight;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
 
-
 // just a helper function that lets us fetch current attachment if its been nilled out by Core data
 @property (nonatomic, strong) NSString *currentAttachmentURI;
 
@@ -97,6 +96,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 @synthesize receipt = _receipt;
 @synthesize attachment = _attachment;
+
+//helpers to adjust showing/hiding metadata views
+CGFloat extraMetadataConstraintHeight = 0;
 
 #pragma mark - NSObject
 
@@ -145,8 +147,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
-    //self.webView.scrollView.delegate = self;
-    //self.innerScrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
     [self reloadFromMetadata];
@@ -169,9 +169,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } else {
             [self.navigationItem setLeftBarButtonItem:nil];
         }
-    }
-    [self loadMetadataContent];
-    
+    }    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -687,7 +685,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 - (void)loadContent
-{
+{    
     POSBaseEncryptedModel *baseEncryptionModel = nil;
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
@@ -727,10 +725,13 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
     [self setToolbarItems:toolbarItems animated:YES];
+    [self loadMetadataContent];
 }
 
 - (void)loadMetadataContent
 {
+    [self removeOldMetadataViews];
+
     if(self.attachment.metadata != nil) {
         NSArray *appointments = self.attachment.getAppointments;
         CGFloat extraHeight = 0;
@@ -743,8 +744,20 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         if(extraHeight > 0) {
             [AppointmentView requestPermissions];
         }
-        
+        extraMetadataConstraintHeight += extraHeight;
         [self updateViewHeights:extraHeight];
+    }
+}
+
+- (void) removeOldMetadataViews
+{
+    if(extraMetadataConstraintHeight > 0) {
+        [self updateViewHeights:-extraMetadataConstraintHeight];
+        extraMetadataConstraintHeight = 0;
+    }
+    for( UIView *view in [_stackView subviews]){
+        [_stackView removeArrangedSubview:view];
+        [view removeFromSuperview];
     }
 }
 
@@ -989,6 +1002,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.attachment deleteEncryptedFileIfExisting];
         }
     }
+    
 }
 
 - (BOOL)attachmentHasValidFileType
