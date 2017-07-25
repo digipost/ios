@@ -126,18 +126,8 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
                                         inManagedObjectContext:managedObjectContext];
     }
 
-    NSArray *metadataArray = [[MockMetadata alloc]init].getMockAppointmentArray;    
-    attachment.metadata = [NSKeyedArchiver archivedDataWithRootObject:metadataArray];
-
-    /*
-     //TODO implement when backend is ready
-    NSArray *metaArray = attributes[kAttachmentMetadataKEY];
-    if ([metaArray isKindOfClass:[NSArray class]] && metaArray.count > 0) {
-        attachment.metadata = metaArray;
-    }
-
-     */
-    
+    NSArray *jsonArray = attributes[kAttachmentMetadataKEY];
+    attachment.metadata = [NSKeyedArchiver archivedDataWithRootObject:jsonArray];
     return attachment;
 }
 
