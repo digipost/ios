@@ -109,7 +109,13 @@ import EventKit
         label.font = UIFont(name: "Helvetica", size: 13.0)
         label.text = text
         label.sizeToFit()
-        return label.frame.height
+        
+        var heightAdjustment = label.frame.height
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
+            heightAdjustment -= 20  
+        }
+        
+        return heightAdjustment
     }
     
     @IBAction func addToCalendar(_ sender: Any) {
@@ -122,7 +128,7 @@ import EventKit
         if calendarPermissionsGranted() {
             self.calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
             if self.calendars.count > 1 {
-                let frame = CGRect(x: 0, y: alertController.view.frame.height-self.pickerHeightAdjustmentFromBottom(), width: 270, height: 80)
+                let frame = CGRect(x: 0, y: 120, width: 270, height: 80)
                 let calendarPicker = UIPickerView(frame: frame)
                 alertController.message?.append("\n\n\n\n\n\n\n")
                 calendarPicker.delegate = self
@@ -143,20 +149,6 @@ import EventKit
         })
         
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
-    }
-    
-    func pickerHeightAdjustmentFromBottom() -> CGFloat {
-        let screenHeight: CGFloat = UIScreen.main.bounds.height
-        
-        if screenHeight < 600.0 {
-            return CGFloat(450)
-        }else if screenHeight < 700 {
-            return CGFloat(550)
-        }else if screenHeight > 700 {
-            return CGFloat(600)
-        }else{
-            return CGFloat(450)
-        }
     }
     
     func getSelectedCalendar() -> EKCalendar {
