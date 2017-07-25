@@ -66,6 +66,10 @@
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Trengs for å legge avtaler til i kalender</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Trengs for å legge avtaler til i kalender</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
