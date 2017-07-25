@@ -20,7 +20,8 @@ import Foundation
     
     struct TYPE {
         static let NIL = "nil"
-        static let APPOINTMENT = "appointment"
+        static let RESIDENCE = "Residence"
+        static let APPOINTMENT = "Appointment"
     }
     
     var type:  String = ""

@@ -21,15 +21,14 @@ import Foundation
     func getMockAppointmentArray() -> [POSMetadata] {
         var mockdataArray = [POSMetadata]()
         
-        mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment()))
-        mockdataArray.append(POSMetadata(type: "appointment", json: getMockAppointment()))
-        
+        mockdataArray.append(POSMetadata(type: "Appointment", json: getMockAppointment()))
+    
         return mockdataArray
     }
     
     func getMockAppointment() -> Dictionary<String, AnyObject> {
         var appointment = Dictionary<String, AnyObject>()
-        appointment["type"] = "appointment" as AnyObject
+        appointment["type"] = "Appointment" as AnyObject
         appointment["subTitle"] = "MR-Undersøkelse av høyre kne" as AnyObject
         appointment["startTime"] = "2017-07-14T13:08:05+02:00" as AnyObject
         appointment["endTime"] = "2017-07-14T15:08:05+02:00" as AnyObject
