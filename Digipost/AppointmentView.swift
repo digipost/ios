@@ -88,7 +88,10 @@ import EventKit
             view.infoText2.text = appointment.infoText2
             infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width)
         }
-        infoTextHeight += positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
+        let subtitleHeight = positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
+        if subtitleHeight > 18 {
+            infoTextHeight += subtitleHeight
+        }
         view.containerViewHeight.constant += infoTextHeight
         extraHeight += infoTextHeight
     
@@ -106,7 +109,7 @@ import EventKit
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = UIFont(name: "Helvetica", size: 13.0)
+        label.font = UIFont(name: "Helvetica", size: 15.0)
         label.text = text
         label.sizeToFit()
         
