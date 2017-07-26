@@ -81,6 +81,12 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (IBAction)didTapClosePopoverButton:(id)sender;
 - (IBAction)didTapInformationBarButtonItem:(id)sender;
 
+// Metadata
+@property (weak, nonatomic) IBOutlet UIStackView *stackView;
+@property (weak, nonatomic) IBOutlet UIScrollView *innerScrollView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *metaContentHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *contentViewHeight;
+
 // just a helper function that lets us fetch current attachment if its been nilled out by Core data
 @property (nonatomic, strong) NSString *currentAttachmentURI;
 
@@ -90,6 +96,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 @synthesize receipt = _receipt;
 @synthesize attachment = _attachment;
+
+//helpers to adjust showing/hiding metadata views
+CGFloat extraMetadataConstraintHeight = 0;
 
 #pragma mark - NSObject
 
@@ -120,7 +129,9 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    self.webView.scrollView.bounces = FALSE;
+    self.webView.backgroundColor = [UIColor digipostLightGrey];
+    
     if ([self.attachment.fileType isEqualToString:@"html"]) {
         self.webView.backgroundColor = [UIColor whiteColor];
     }
@@ -137,7 +148,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
                                                      name:kDocumentsViewEditingStatusChangedNotificationName
                                                    object:nil];
     }
-    self.webView.scrollView.delegate = self;
     [self updateLeftBarButtonItem:self.navigationItem.leftBarButtonItem
                 forViewController:self];
     [self reloadFromMetadata];
@@ -160,7 +170,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
         } else {
             [self.navigationItem setLeftBarButtonItem:nil];
         }
-    }
+    }    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -245,6 +255,8 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 - (void)changeNavbarStateToHidden:(BOOL)hidden
 {
+    /*
+     Gjør at toolbars i topp og bunn skjules når man klikker på webview, men dette skaper utfordringer med metadata-visning, så deaktiverer inntil videre.
     if (hidden) {
         if (self.navigationController.navigationBar.isHidden == NO) {
             [[self navigationController] setNavigationBarHidden:YES animated:YES];
@@ -258,9 +270,11 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             }
         }
     }
+     
     UIStatusBarStyle statusBarStyle = !hidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
                                                 animated:YES];
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -305,12 +319,14 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     if (UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
+    /*
     BOOL barsHidden = self.navigationController.isNavigationBarHidden;
     [self changeNavbarStateToHidden:!barsHidden];
 
     UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
     [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
                                                 animated:YES];
+     */
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -670,7 +686,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 }
 
 - (void)loadContent
-{
+{    
     POSBaseEncryptedModel *baseEncryptionModel = nil;
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
@@ -710,6 +726,48 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
     }
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
     [self setToolbarItems:toolbarItems animated:YES];
+    [self loadMetadataContent];
+}
+
+- (void)loadMetadataContent
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self removeOldMetadataViews];
+    }
+
+    if(self.attachment.metadata != nil) {
+        NSArray *appointments = self.attachment.getAppointments;
+        CGFloat extraHeight = 0;
+        for (POSAppointment *appointment in appointments) {
+            AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
+            [_stackView addArrangedSubview:appointmentView];
+            extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
+        }
+        
+        if(extraHeight > 0) {
+            [AppointmentView requestPermissions];
+        }
+        extraMetadataConstraintHeight += extraHeight;
+        [self updateViewHeights:extraHeight];
+    }
+}
+
+- (void) removeOldMetadataViews
+{
+    if(extraMetadataConstraintHeight > 0) {
+        [self updateViewHeights:-extraMetadataConstraintHeight];
+        extraMetadataConstraintHeight = 0;
+    }
+    for( UIView *view in [_stackView subviews]){
+        [_stackView removeArrangedSubview:view];
+        [view removeFromSuperview];
+    }
+}
+
+-(void)updateViewHeights: (CGFloat ) height
+{
+    self.contentViewHeight.constant += height;
+    self.metaContentHeight.constant += height;
 }
 
 -(void)updateCurrentDocument
@@ -947,6 +1005,7 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
             [self.attachment deleteEncryptedFileIfExisting];
         }
     }
+    
 }
 
 - (BOOL)attachmentHasValidFileType

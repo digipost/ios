@@ -90,10 +90,9 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
 
         _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-#if (__ACCEPT_SELF_SIGNED_CERTIFICATES__)
-
+#if (ACCEPT_SELF_SIGNED_CERTIFICATES)
         _sessionManager.securityPolicy.allowInvalidCertificates = YES;
-
+        _sessionManager.securityPolicy.validatesDomainName = NO;
 #endif
     }
 

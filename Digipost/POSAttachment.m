@@ -18,6 +18,7 @@
 #import "POSDocument.h"
 #import "POSModelManager.h"
 #import "POSInvoice.h"
+#import "Digipost-Swift.h"
 
 // Defines what the app considers a valid attachment authentication level
 NSString *const kAttachmentOpeningValidAuthenticationLevel = @"PASSWORD";
@@ -38,6 +39,7 @@ NSString *const kAttachmentLinkAPIKey = @"link";
 NSString *const kAttachmentDocumentContentAPIKeySuffix = @"get_document_content";
 NSString *const kAttachmentSendOpeningReceiptAPIKeySuffix = @"send_opening_receipt";
 NSString *const kAttachmentInvoiceAPIKey = @"invoice";
+NSString *const kAttachmentMetadataKEY = @"metadata";
 
 NSString *const kAuthenticationLevelIDPorten4 = @"IDPORTEN_4";
 NSString *const kAuthenticationLevelIDPorten3 = @"IDPORTEN_3";
@@ -60,6 +62,7 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 @dynamic origin;
 @dynamic endToEndEncrypted;
 @dynamic userKeyEncrypted;
+@dynamic metadata;
 
 #pragma mark - Public methods
 
@@ -123,6 +126,8 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
                                         inManagedObjectContext:managedObjectContext];
     }
 
+    NSArray *jsonArray = attributes[kAttachmentMetadataKEY];
+    attachment.metadata = [NSKeyedArchiver archivedDataWithRootObject:jsonArray];
     return attachment;
 }
 

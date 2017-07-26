@@ -76,7 +76,13 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
+		9C08944C1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
+		9C08944E1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
 		9C1F0F8D1E9E51E2008C674C /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
+		9C25CBE31F0D1E48005F3645 /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */; };
+		9C25CBE41F0D1E48005F3645 /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */; };
+		9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */; };
+		9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */; };
 		9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AF01A25D3C400BE62DC /* OAuthTests.swift */; };
 		9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
@@ -84,10 +90,18 @@
 		9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */; };
 		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
+		9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
+		9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
+		9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
+		9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
 		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
 		9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
+		9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */; };
+		9C962A111EE69F1000436DB3 /* POSMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */; };
+		9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A121EE69F2700436DB3 /* POSAppointment.swift */; };
+		9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A121EE69F2700436DB3 /* POSAppointment.swift */; };
 		9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
@@ -666,6 +680,9 @@
 		83F7037F18573641003DABE1 /* POSOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
+		9C08944B1EEAC933006973D4 /* MockMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMetadata.swift; sourceTree = "<group>"; };
+		9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentView.swift; sourceTree = "<group>"; };
+		9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentView.xib; sourceTree = "<group>"; };
 		9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType1AndType2Agreements.json; sourceTree = "<group>"; };
 		9C3C11001DF835B90028DF3B /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
 		9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost.framework"; sourceTree = "<group>"; };
@@ -675,11 +692,15 @@
 		9C44506A1DF1748D00638385 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		9C44506D1DF1780700638385 /* DigipostQA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigipostQA.entitlements; sourceTree = SOURCE_ROOT; };
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
+		9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataMapper.swift; sourceTree = "<group>"; };
+		9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataObject.swift; sourceTree = "<group>"; };
 		9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUseWebViewController.swift; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
 		9C909A9E1EC5D65D00A59417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9C9216461E53408200EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C9216481E53451600EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
+		9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadata.swift; sourceTree = "<group>"; };
+		9C962A121EE69F2700436DB3 /* POSAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSAppointment.swift; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -1035,6 +1056,7 @@
 		8342EFBD1858CDA40080A833 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9C962A161EE6D8B100436DB3 /* Metadata */,
 				0B1520D01D9E6D65000027C1 /* ReceiptCategory.swift */,
 				83D75F6B1858E9C20013F8C9 /* POSModelManager.h */,
 				83D75F6C1858E9C20013F8C9 /* POSModelManager.m */,
@@ -1193,6 +1215,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
 				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
 				AF477E001A77B48A00CBD150 /* Onboarding */,
@@ -1259,6 +1282,27 @@
 				ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		9C25CBDB1F0D1E20005F3645 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */,
+				9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */,
+			);
+			name = Metadata;
+			sourceTree = "<group>";
+		};
+		9C962A161EE6D8B100436DB3 /* Metadata */ = {
+			isa = PBXGroup;
+			children = (
+				9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */,
+				9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */,
+				9C962A121EE69F2700436DB3 /* POSAppointment.swift */,
+				9C08944B1EEAC933006973D4 /* MockMetadata.swift */,
+				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
+			);
+			name = Metadata;
 			sourceTree = "<group>";
 		};
 		9CDE3AAE1E78352800B9C27B /* invoice */ = {
@@ -1879,6 +1923,7 @@
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				ECB2BF5E1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
+				9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				ECB2BF1F1B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
 				ECB2BF2D1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
 				ECB2BEC31B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
@@ -1942,6 +1987,7 @@
 			files = (
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
 				F8AE1CBC1CD374B40009B2F9 /* ImageModuleTableViewCell.xib in Resources */,
+				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				F8AE1CBD1CD374B40009B2F9 /* DocumentComposer.storyboard in Resources */,
 				F8AE1CBE1CD374B40009B2F9 /* FontPickerTableViewCell.xib in Resources */,
 				F8AE1CBF1CD374B40009B2F9 /* DeleteComposerModuleView.xib in Resources */,
@@ -2121,6 +2167,7 @@
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				0B5F505B1D95118300A8EC05 /* ReceiptsTableViewDataSource.swift in Sources */,
 				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
+				9C08944C1EEAC933006973D4 /* MockMetadata.swift in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				ECB2BEE01B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
@@ -2173,6 +2220,7 @@
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
+				9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
 				ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
@@ -2220,7 +2268,9 @@
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC8B94741B4ABE07005C4CC4 /* String+Composer.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
+				9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
+				9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */,
 				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				0B5F505C1D95118300A8EC05 /* ReceiptsViewController.swift in Sources */,
 				ECB2C0081B469628008E32E8 /* HTMLTagBlock.swift in Sources */,
@@ -2239,6 +2289,7 @@
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
+				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				0B1520CF1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
@@ -2254,6 +2305,7 @@
 				9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */,
 				F8AFAE8A1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
+				9C25CBE31F0D1E48005F3645 /* AppointmentView.swift in Sources */,
 				ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				ECB2BFB01B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				EC5EBC991B564EBD00FCAB7D /* UISegmentedControl+Styling.swift in Sources */,
@@ -2354,6 +2406,7 @@
 				0B1520DF1DA38EB3000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */,
 				F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */,
 				F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */,
+				9C08944E1EEAC933006973D4 /* MockMetadata.swift in Sources */,
 				F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */,
 				F8AE1C141CD374B40009B2F9 /* POSMailbox+Methods.m in Sources */,
 				F8AE1C151CD374B40009B2F9 /* IncreaseSecurityLevelViewController.swift in Sources */,
@@ -2406,6 +2459,7 @@
 				F8AE1C3F1CD374B40009B2F9 /* POSReceipt.m in Sources */,
 				F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
+				9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
 				F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */,
 				F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
@@ -2453,7 +2507,9 @@
 				F8AE1C6B1CD374B40009B2F9 /* String+Extensions.swift in Sources */,
 				F8AE1C6C1CD374B40009B2F9 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				F8AE1C6D1CD374B40009B2F9 /* NSURLRequest+QueryParameters.m in Sources */,
+				9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				F8AE1C6E1CD374B40009B2F9 /* APIClient+URLSessionTask.swift in Sources */,
+				9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */,
 				F8AE1C6F1CD374B40009B2F9 /* String+Composer.swift in Sources */,
 				F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */,
 				F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */,
@@ -2472,6 +2528,7 @@
 				F8AE1C7D1CD374B40009B2F9 /* UploadMenuTableViewCell.swift in Sources */,
 				F8AE1C7E1CD374B40009B2F9 /* POSOAuthManager.m in Sources */,
 				F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */,
+				9C962A111EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */,
 				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
@@ -2487,6 +2544,7 @@
 				9C1F0F8D1E9E51E2008C674C /* String+Formatting.swift in Sources */,
 				F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */,
 				F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */,
+				9C25CBE41F0D1E48005F3645 /* AppointmentView.swift in Sources */,
 				F8AE1C8D1CD374B40009B2F9 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */,
 				F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */,
@@ -2713,7 +2771,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2737,7 +2795,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2769,7 +2827,7 @@
 				CODE_SIGN_ENTITLEMENTS = Digipost/Digipost.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2793,7 +2851,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
 				INFOPLIST_FILE = Digipost/Digipost.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2905,7 +2963,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2914,6 +2972,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					STAGING,
+					ACCEPT_SELF_SIGNED_CERTIFICATES,
+					_AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES_,
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2929,7 +2989,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
 				INFOPLIST_FILE = Digipost/DigipostQA.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GAI",
 					"$(inherited)",
@@ -2943,6 +3003,7 @@
 				PROVISIONING_PROFILE = "";
 				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Digipost-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
@@ -2962,7 +3023,7 @@
 				CODE_SIGN_ENTITLEMENTS = DigipostQA.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEFINES_MODULE = NO;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = KMS8B8MK42;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -2983,7 +3044,7 @@
 					"\"${PODS_ROOT}/Headers/Public/GoogleUtilities\"",
 				);
 				INFOPLIST_FILE = Digipost/DigipostQA.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/GAI",
 					"$(inherited)",
@@ -2997,6 +3058,7 @@
 				PROVISIONING_PROFILE = "";
 				SERVER_URI = "\\@\\\"https:\\/\\/www.qa.digipost.no\\\"";
 				SWIFT_OBJC_BRIDGING_HEADER = "Digipost/Digipost-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "Digipost-Swift.h";
 				SWIFT_VERSION = 3.0;
 				USER_HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/\" recursive";
 				WRAPPER_EXTENSION = app;

@@ -1,3 +1,5 @@
 /* Localized versions of Info.plist keys */
 "NSPhotoLibraryUsageDescription" = "Digipost needs access in order to upload pictures to your archive.";
 "NSCameraUsageDescription" = "Digipost needs access in order to upload pictures to your archive.";
+"NSCalendarsUsageDescription" = "Digipost needs access in order to add events to your calendar";
+"NSRemindersUsageDescription" = "Digipost needs access in order to add events to your calendar";

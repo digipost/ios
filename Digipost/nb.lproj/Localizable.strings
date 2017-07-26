@@ -665,3 +665,10 @@
 "settlement" = "Inkasso";
 "invoice_paid" = "Faktura: Lagt til betaling";
 "invoice_unpaid" = "Faktura: Ubehandlet";
+
+/* Metadata */
+"metadata add to calendar" = "Legg til i kalender";
+"metadata calendar cancel" = "Avbryt";
+"metadata start time title" = "Time:";
+"metadata arrival time title" = "Oppmøte:";
+"metadata location title" = "Sted:";

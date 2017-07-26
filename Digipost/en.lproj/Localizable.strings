@@ -466,3 +466,10 @@
 "settlement" = "Debt settlement";
 "invoice_paid" = "Invoice: Added to payments";
 "invoice_unpaid" = "Invoice: Unpaid";
+
+/* Metadata */
+"metadata add to calendar" = "Add to calendar";
+"metadata calendar cancel" = "Cancel";
+"metadata start time title" = "Date:";
+"metadata arrival time title" = "Arrival time:";
+"metadata location title" = "Location:";

@@ -35,6 +35,18 @@ extension Date {
         dateString = dateString + ".mov"
         return dateString
     }
+    
+    func dateOnly() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.YYYY"
+        return "\(dateFormatter.string(from: self))"   
+    }
+    
+    func timeOnly() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        return "\(dateFormatter.string(from: self))"   
+    }
 
     func dateByAdding(seconds: Int?) -> Date? {
         if seconds == nil {
