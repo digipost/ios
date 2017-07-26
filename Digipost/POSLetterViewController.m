@@ -129,6 +129,7 @@ CGFloat extraMetadataConstraintHeight = 0;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.webView.scrollView.bounces = FALSE;
     self.webView.backgroundColor = [UIColor digipostLightGrey];
     
     if ([self.attachment.fileType isEqualToString:@"html"]) {
