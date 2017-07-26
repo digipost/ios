@@ -730,7 +730,9 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (void)loadMetadataContent
 {
-    [self removeOldMetadataViews];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self removeOldMetadataViews];
+    }
 
     if(self.attachment.metadata != nil) {
         NSArray *appointments = self.attachment.getAppointments;
