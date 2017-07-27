@@ -36,6 +36,7 @@ import EventKit
     @IBOutlet weak var infoText2: UILabel!
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var infoImage: UIImageView!
     
     var appointment: POSAppointment = POSAppointment()
     
@@ -79,8 +80,10 @@ import EventKit
             view.infoTitle1.text = appointment.infoTitle1
             view.infoText1.text = appointment.infoText1
             infoTextHeight += positiveHeightAdjustment(text: appointment.infoText1, width: view.infoText1.frame.width)
+            view.infoImage.isHidden = false
         }else{
             infoTextHeight += negativeHeightAdjustment()
+            view.infoImage.isHidden = true
         }
         
         if appointment.infoText2.length > 1 {
