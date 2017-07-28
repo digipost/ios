@@ -36,6 +36,8 @@ import EventKit
     @IBOutlet weak var infoText2: UILabel!
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var calendarButton: UIButton!
+    @IBOutlet weak var infoImage: UIImageView!
+    @IBOutlet weak var buttomDivider: UIView!
     
     var appointment: POSAppointment = POSAppointment()
     
@@ -73,20 +75,26 @@ import EventKit
         
         let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
         view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
-    
-        var infoTextHeight = CGFloat(0)
+        var infoTextHeight = CGFloat(0)        
         if appointment.infoText1.length > 1 {
             view.infoTitle1.text = appointment.infoTitle1
             view.infoText1.text = appointment.infoText1
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle1, width: view.infoTitle1.frame.width)
             infoTextHeight += positiveHeightAdjustment(text: appointment.infoText1, width: view.infoText1.frame.width)
+            infoTextHeight += 100 //spaceBetweenDividerAndfirstInfoTitle
+            view.infoImage.isHidden = false
+            view.buttomDivider.isHidden = false
         }else{
-            infoTextHeight += negativeHeightAdjustment()
+            view.infoImage.isHidden = true
+            view.buttomDivider.isHidden = true
         }
         
         if appointment.infoText2.length > 1 {
             view.infoTitle2.text = appointment.infoTitle2
             view.infoText2.text = appointment.infoText2
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle2, width: view.infoTitle2.frame.width)
             infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width)
+            infoTextHeight += 80 //spaceBetweenDividerAndfirstInfoTitle
         }
         let subtitleHeight = positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
         if subtitleHeight > 18 {
@@ -100,11 +108,7 @@ import EventKit
         view.layoutIfNeeded()
         return view
     }
-        
-    func negativeHeightAdjustment() -> CGFloat{
-        return CGFloat(-150)
-    }
-    
+
     func positiveHeightAdjustment(text:String, width:CGFloat) -> CGFloat{
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
@@ -115,9 +119,8 @@ import EventKit
         
         var heightAdjustment = label.frame.height
         if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            heightAdjustment -= 20  
+            heightAdjustment -= 50  
         }
-        
         return heightAdjustment
     }
     
