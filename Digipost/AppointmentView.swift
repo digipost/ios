@@ -117,11 +117,7 @@ import EventKit
         label.text = text
         label.sizeToFit()
         
-        var heightAdjustment = label.frame.height
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            heightAdjustment -= 50  
-        }
-        return heightAdjustment
+        return label.frame.height
     }
     
     @IBAction func addToCalendar(_ sender: Any) {
