@@ -672,3 +672,4 @@
 "metadata start time title" = "Tid:";
 "metadata arrival time title" = "Oppmøte:";
 "metadata location title" = "Sted:";
+"metadata calendar disclaimer" = "Obs! Innkallingen kan inneholde sensitiv informasjon som kan bli synlig for de som eventuelt har tilgang til din kalender.";

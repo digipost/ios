@@ -473,3 +473,4 @@
 "metadata start time title" = "Time:";
 "metadata arrival time title" = "Arrival time:";
 "metadata location title" = "Location:";
+"metadata calendar disclaimer" = "NB! The appointment may contain sensitive information that may be visible to users who have access to your calendar.";

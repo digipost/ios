@@ -117,11 +117,7 @@ import EventKit
         label.text = text
         label.sizeToFit()
         
-        var heightAdjustment = label.frame.height
-        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad {
-            heightAdjustment -= 50  
-        }
-        return heightAdjustment
+        return label.frame.height
     }
     
     @IBAction func addToCalendar(_ sender: Any) {
@@ -136,7 +132,7 @@ import EventKit
             if self.calendars.count > 1 {
                 let frame = CGRect(x: 0, y: 120, width: 270, height: 80)
                 let calendarPicker = UIPickerView(frame: frame)
-                alertController.message?.append("\n\n\n\n\n\n\n")
+                alertController.message?.append("\n\n\n\n\n")
                 calendarPicker.delegate = self
                 calendarPicker.showsSelectionIndicator = true
                 alertController.view.addSubview(calendarPicker)
@@ -162,9 +158,7 @@ import EventKit
     }
     
     func getEventMessage() -> String {
-        var message = ""
-        message.append("\(title.text!)\n\(subTitle.text!)\n\n")
-        message.append("\(startDate.text!) - \(startTime.text!)")
+        let message = "\n" + NSLocalizedString("metadata calendar disclaimer", comment:"Obs! Innkallingen kan inneholde sensitiv informasjon som kan bli synlig for de som eventuelt har tilgang til din kalender.")
         return message
     }
     
