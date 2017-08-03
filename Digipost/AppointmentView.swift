@@ -134,9 +134,9 @@ import EventKit
         if calendarPermissionsGranted() {
             self.calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
             if self.calendars.count > 1 {
-                let frame = CGRect(x: 0, y: 120, width: 270, height: 80)
+                let frame = CGRect(x: 0, y: 110, width: 270, height: 80)
                 let calendarPicker = UIPickerView(frame: frame)
-                alertController.message?.append("\n\n\n\n\n\n\n")
+                alertController.message?.append("\n\n\n\n\n")
                 calendarPicker.delegate = self
                 calendarPicker.showsSelectionIndicator = true
                 alertController.view.addSubview(calendarPicker)
@@ -162,9 +162,7 @@ import EventKit
     }
     
     func getEventMessage() -> String {
-        var message = ""
-        message.append("\(title.text!)\n\(subTitle.text!)\n\n")
-        message.append("\(startDate.text!) - \(startTime.text!)")
+        let message = NSLocalizedString("metadata calendar disclaimer", comment:"Obs! Innkallingen kan inneholde sensitiv informasjon som kan bli synlig for de som eventuelt har tilgang til din kalender.")
         return message
     }
     
