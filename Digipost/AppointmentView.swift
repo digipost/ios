@@ -29,7 +29,7 @@ import EventKit
     @IBOutlet weak var arrivalTime: UILabel!
     @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var place: UILabel!
-    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var address: UIButton!
     @IBOutlet weak var infoTitle1: UILabel!
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
@@ -68,11 +68,9 @@ import EventKit
         }else{
             view.arrivalTime.text = "kl \(appointment.arrivalTimeDate.timeOnly())"
         }
-                
         view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
         view.place.text = appointment.place
-        view.address.text = appointment.address
-        
+        view.address.setTitle(appointment.address, for: UIControlState.normal)
         let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
         view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
         var infoTextHeight = CGFloat(0)        
@@ -176,6 +174,13 @@ import EventKit
                 permissionsGranted = granted
         })
         return permissionsGranted;
+    }
+    
+    @IBAction func openAddressInMaps(_ sender: UIButton) {
+        let addr = sender.currentTitle!.replacingOccurrences(of: " ", with: ",")
+        let mapsUrl = URL(string: "http://maps.apple.com/?q=\(addr))")
+    
+       UIApplication.shared.openURL(mapsUrl!)
     }
     
     func createEventInCalendar(calendar: EKCalendar, title: String){
