@@ -190,7 +190,7 @@ import EventKit
     }
     
     @IBAction func openAddressInMaps(_ sender: UIButton) {
-        let addr = appointment.address.replacingOccurrences(of: " ", with: ",")
+        let addr = appointment.address.replacingOccurrences(of: " ", with: ",").replacingOccurrences(of: "\n", with: ",")
         let mapsUrl = URL(string: "http://maps.apple.com/?q=\(addr))")
     
        UIApplication.shared.openURL(mapsUrl!)
