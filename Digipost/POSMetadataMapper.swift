@@ -59,7 +59,7 @@ import Foundation
                 appointment.streetAddress = location["streetAddress"]!
                 appointment.postalCode = location["postalCode"]!
                 appointment.city = location["city"]!
-                appointment.address = "\(appointment.streetAddress), \(appointment.postalCode) \(appointment.city)"
+                appointment.address = "\(appointment.streetAddress) \n\(appointment.postalCode) \(appointment.city)"
             }
 
             if let infoList = metadata.json["info"] as? [[String: String]] {
