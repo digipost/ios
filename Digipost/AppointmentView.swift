@@ -36,6 +36,7 @@ import EventKit
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var infoImage: UIImageView!
     @IBOutlet weak var buttomDivider: UIView!
+    @IBOutlet weak var openMapsButton: UIButton!
     
     var appointment: POSAppointment = POSAppointment()
     let customTitleLineSpacing:CGFloat = 4
@@ -69,6 +70,8 @@ import EventKit
         }else{
             view.arrivalTime.text = "kl \(appointment.arrivalTimeDate.timeOnly())"
         }
+        
+        view.openMapsButton.setTitle(NSLocalizedString("metadata show maps", comment:"Åpne i Kart"), for: UIControlState.normal)
         
         view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
         let placeAndAddress = appointment.place + "\n" + appointment.address

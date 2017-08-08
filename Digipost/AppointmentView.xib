@@ -130,7 +130,7 @@
                                 <constraint firstAttribute="height" constant="21" id="sjR-3J-Ss8"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                            <state key="normal" title="Åpne Kart"/>
+                            <state key="normal" title="Åpne i Kart"/>
                             <connections>
                                 <action selector="openAddressInMaps:" destination="iN0-l3-epB" eventType="touchUpInside" id="I0W-VE-vOD"/>
                             </connections>
@@ -223,6 +223,7 @@
                 <outlet property="infoText2" destination="Peg-ZL-MkR" id="QM6-0Z-S5h"/>
                 <outlet property="infoTitle1" destination="x9x-a6-asB" id="q2H-W7-F5f"/>
                 <outlet property="infoTitle2" destination="xax-CV-jM4" id="Vvd-rS-EP5"/>
+                <outlet property="openMapsButton" destination="yHV-eT-7BZ" id="yaN-Qv-nyx"/>
                 <outlet property="place" destination="cO7-rP-gB0" id="DSi-Kj-N4h"/>
                 <outlet property="placeTitle" destination="1kX-9e-0ZB" id="GaH-VV-5WI"/>
                 <outlet property="startTime" destination="COs-0u-ODu" id="L7n-1h-NRr"/>
