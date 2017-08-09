@@ -114,6 +114,11 @@ import EventKit
         return view
     }
     
+    func addedToCalender() {
+        calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
+        calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
+    }
+    
     func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
@@ -209,7 +214,10 @@ import EventKit
         event.location = appointment.address
         event.notes = "\(arrivalTime.text!) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
                 
-        do {try self.eventStore.save(event, span: .thisEvent, commit: true)} catch {}
+        do {
+            try self.eventStore.save(event, span: .thisEvent, commit: true)
+            self.addedToCalender()
+        } catch {}
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
