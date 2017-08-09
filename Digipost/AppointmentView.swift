@@ -14,7 +14,6 @@
 // limitations under the License.
 //
 
-
 import UIKit
 import EventKit
 
@@ -23,13 +22,12 @@ import EventKit
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     @IBOutlet weak var startTimeTitle: UILabel!
-    @IBOutlet weak var startDate: UILabel!
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var arrivalTimeTitle: UILabel!
     @IBOutlet weak var arrivalTime: UILabel!
     @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var place: UILabel!
-    @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var addressButton: UIButton!
     @IBOutlet weak var infoTitle1: UILabel!
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
@@ -38,9 +36,13 @@ import EventKit
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var infoImage: UIImageView!
     @IBOutlet weak var buttomDivider: UIView!
+    @IBOutlet weak var openMapsButton: UIButton!
     
     var appointment: POSAppointment = POSAppointment()
-    
+    let customTitleLineSpacing:CGFloat = 4
+    let customTextLineSpacing:CGFloat = 3
+    let minimumTitleLineHeight:CGFloat = 20
+    let minimumTextLineHeight:CGFloat = 15
     var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
@@ -52,36 +54,39 @@ import EventKit
 
         view.translatesAutoresizingMaskIntoConstraints = false
         view.appointment = appointment
-        view.title.text = appointment.title
+        view.title.attributedText = attributedString(text: appointment.title, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
         
         if appointment.subTitle.characters.count > 1 {
-            view.subTitle.text = appointment.subTitle
+            view.subTitle.attributedText = attributedString(text: appointment.subTitle, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
         }
 
         view.startTimeTitle.text = NSLocalizedString("metadata start time title", comment:"Time:")
-        view.startDate.text = appointment.startTime.dateOnly()
-        view.startTime.text = "kl \(appointment.startTime.timeOnly())"
+        let timeAndDateString = "kl \(appointment.startTime.timeOnly())"+"\n"+appointment.startTime.dateOnly()
+        view.startTime.attributedText = attributedString(text: timeAndDateString, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
         view.arrivalTimeTitle.text = NSLocalizedString("metadata arrival time title", comment:"Oppmøte:")
         if appointment.arrivalTime.characters.count > 0 {
-            view.arrivalTime.text = appointment.arrivalTime
+            view.arrivalTime.attributedText = attributedString(text: appointment.arrivalTime,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         }else{
             view.arrivalTime.text = "kl \(appointment.arrivalTimeDate.timeOnly())"
         }
-                
-        view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
-        view.place.text = appointment.place
-        view.address.text = appointment.address
         
+        view.openMapsButton.setTitle(NSLocalizedString("metadata show maps", comment:"Åpne i Kart"), for: UIControlState.normal)
+        
+        view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
+        let placeAndAddress = appointment.place + "\n" + appointment.address
+        view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
         view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
-        var infoTextHeight = CGFloat(0)        
+                
+        var infoTextHeight = CGFloat(0)
+        
         if appointment.infoText1.length > 1 {
             view.infoTitle1.text = appointment.infoTitle1
-            view.infoText1.text = appointment.infoText1
-            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle1, width: view.infoTitle1.frame.width)
-            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText1, width: view.infoText1.frame.width)
-            infoTextHeight += 100 //spaceBetweenDividerAndfirstInfoTitle
+            view.infoText1.attributedText = attributedString(text: appointment.infoText1,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle1, width: view.infoTitle1.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText1, width: view.infoText1.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += 50 //spaceBetweenDividerAndfirstInfoTitle
             view.infoImage.isHidden = false
             view.buttomDivider.isHidden = false
         }else{
@@ -91,15 +96,15 @@ import EventKit
         
         if appointment.infoText2.length > 1 {
             view.infoTitle2.text = appointment.infoTitle2
-            view.infoText2.text = appointment.infoText2
-            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle2, width: view.infoTitle2.frame.width)
-            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width)
-            infoTextHeight += 80 //spaceBetweenDividerAndfirstInfoTitle
+            view.infoText2.attributedText = attributedString(text: appointment.infoText2,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoTitle2, width: view.infoTitle2.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += positiveHeightAdjustment(text: appointment.infoText2, width: view.infoText2.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+            infoTextHeight += 60 //spaceBetweenInfoText1AndInfoText2
         }
-        let subtitleHeight = positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width)
-        if subtitleHeight > 18 {
-            infoTextHeight += subtitleHeight
-        }
+        
+        infoTextHeight += positiveHeightAdjustment(text: appointment.title, width: view.title.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
+        infoTextHeight += positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
+        
         view.containerViewHeight.constant += infoTextHeight
         extraHeight += infoTextHeight
     
@@ -108,13 +113,27 @@ import EventKit
         view.layoutIfNeeded()
         return view
     }
+    
+    func addedToCalender() {
+        calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
+        calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
+    }
+    
+    func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
+        let attrString = NSMutableAttributedString(string: text)
+        let style = NSMutableParagraphStyle()
+        style.lineSpacing = lineSpacing
+        style.minimumLineHeight = minimumLineHeight
+        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
+        return attrString
+    }
 
-    func positiveHeightAdjustment(text:String, width:CGFloat) -> CGFloat{
+    func positiveHeightAdjustment(text:String, width:CGFloat, lineSpacing: CGFloat, minimumLineHeight: CGFloat) -> CGFloat{
         let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = UIFont(name: "Helvetica", size: 15.0)
-        label.text = text
+        label.font = UIFont(name: "Helvetica", size: minimumLineHeight)
+        label.attributedText = attributedString(text: text, lineSpacing: lineSpacing, minimumLineHeight: minimumLineHeight)
         label.sizeToFit()
         
         return label.frame.height
@@ -178,6 +197,13 @@ import EventKit
         return permissionsGranted;
     }
     
+    @IBAction func openAddressInMaps(_ sender: UIButton) {
+        let addr = appointment.address.replacingOccurrences(of: " ", with: ",").replacingOccurrences(of: "\n", with: ",")
+        let mapsUrl = URL(string: "http://maps.apple.com/?q=\(addr))")
+    
+       UIApplication.shared.openURL(mapsUrl!)
+    }
+    
     func createEventInCalendar(calendar: EKCalendar, title: String){
         let event = EKEvent(eventStore: self.eventStore)
     
@@ -188,7 +214,10 @@ import EventKit
         event.location = appointment.address
         event.notes = "\(arrivalTime.text!) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
                 
-        do {try self.eventStore.save(event, span: .thisEvent, commit: true)} catch {}
+        do {
+            try self.eventStore.save(event, span: .thisEvent, commit: true)
+            self.addedToCalender()
+        } catch {}
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

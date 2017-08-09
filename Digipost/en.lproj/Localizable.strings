@@ -469,8 +469,10 @@
 
 /* Metadata */
 "metadata add to calendar" = "Add to calendar";
+"metadata addedto calendar" = "Added to calendar";
 "metadata calendar cancel" = "Cancel";
 "metadata start time title" = "Time:";
 "metadata arrival time title" = "Arrival time:";
 "metadata location title" = "Location:";
+"metadata show maps" = "Open in Maps";
 "metadata calendar disclaimer" = "NB! The appointment may contain sensitive information that may be visible to users who have access to your calendar.";
