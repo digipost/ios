@@ -668,6 +668,7 @@
 
 /* Metadata */
 "metadata add to calendar" = "Legg til i kalender";
+"metadata addedto calendar" = "Lagt til i kalender";
 "metadata calendar cancel" = "Avbryt";
 "metadata start time title" = "Tid:";
 "metadata arrival time title" = "Oppmøte:";

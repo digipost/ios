@@ -469,6 +469,7 @@
 
 /* Metadata */
 "metadata add to calendar" = "Add to calendar";
+"metadata addedto calendar" = "Added to calendar";
 "metadata calendar cancel" = "Cancel";
 "metadata start time title" = "Time:";
 "metadata arrival time title" = "Arrival time:";
