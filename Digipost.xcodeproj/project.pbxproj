@@ -103,6 +103,10 @@
 		9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A121EE69F2700436DB3 /* POSAppointment.swift */; };
 		9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C962A121EE69F2700436DB3 /* POSAppointment.swift */; };
 		9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
+		9CA38AF71F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */; };
+		9CA38AF81F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */; };
+		9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */; };
+		9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -701,6 +705,8 @@
 		9C9216481E53451600EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadata.swift; sourceTree = "<group>"; };
 		9C962A121EE69F2700436DB3 /* POSAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSAppointment.swift; sourceTree = "<group>"; };
+		9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLinkView.swift; sourceTree = "<group>"; };
+		9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalLinkView.xib; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -1287,6 +1293,7 @@
 		9C25CBDB1F0D1E20005F3645 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				9CA38AF51F3B39E600AABD91 /* ExternalLink */,
 				9CA38AF01F3B37CD00AABD91 /* Appointment */,
 			);
 			name = Metadata;
@@ -1311,6 +1318,15 @@
 				9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */,
 			);
 			name = Appointment;
+			sourceTree = "<group>";
+		};
+		9CA38AF51F3B39E600AABD91 /* ExternalLink */ = {
+			isa = PBXGroup;
+			children = (
+				9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */,
+				9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */,
+			);
+			name = ExternalLink;
 			sourceTree = "<group>";
 		};
 		9CDE3AAE1E78352800B9C27B /* invoice */ = {
@@ -1955,6 +1971,7 @@
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				EC42F2371B81C755005785DE /* Editor.js in Resources */,
 				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
+				9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
@@ -2019,6 +2036,7 @@
 				F8AE1CD21CD374B40009B2F9 /* CustomInputViewController.xib in Resources */,
 				F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */,
 				F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */,
+				9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
 				F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				F8AE1CD51CD374B40009B2F9 /* TextModuleTableViewCell.xib in Resources */,
 				F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */,
@@ -2157,6 +2175,7 @@
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
+				9CA38AF71F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
 				EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2484101B206F1A00FC372C /* POSDocument+Methods.m in Sources */,
 				F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */,
@@ -2396,6 +2415,7 @@
 				F8AE1C001CD374B40009B2F9 /* UIImage+Size.swift in Sources */,
 				F8AE1C011CD374B40009B2F9 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				F8AE1C021CD374B40009B2F9 /* NSFetchedResultsController+Additions.m in Sources */,
+				9CA38AF81F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
 				F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */,
 				F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */,
 				F8AE1C051CD374B40009B2F9 /* CustomInputView.m in Sources */,
