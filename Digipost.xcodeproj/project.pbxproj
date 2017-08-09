@@ -1287,8 +1287,7 @@
 		9C25CBDB1F0D1E20005F3645 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */,
-				9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */,
+				9CA38AF01F3B37CD00AABD91 /* Appointment */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -1303,6 +1302,15 @@
 				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
 			);
 			name = Metadata;
+			sourceTree = "<group>";
+		};
+		9CA38AF01F3B37CD00AABD91 /* Appointment */ = {
+			isa = PBXGroup;
+			children = (
+				9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */,
+				9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */,
+			);
+			name = Appointment;
 			sourceTree = "<group>";
 		};
 		9CDE3AAE1E78352800B9C27B /* invoice */ = {
