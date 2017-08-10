@@ -22,6 +22,7 @@ class POSExternalLink : POSMetadataObject {
     var text = ""
     var buttonText = ""
     var deadlineText = ""
+    var url = ""
     
     init() {
         super.init(type: POSMetadata.TYPE.EXTERNAL_LINK)

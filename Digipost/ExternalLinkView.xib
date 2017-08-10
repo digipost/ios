@@ -11,11 +11,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ExternalLinkView" customModule="Digipost" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ug6-AX-qwM">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="184"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ug6-AX-qwM" userLabel="ContainerView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="227"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Svar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOF-yN-hcg">
                             <rect key="frame" x="31" y="25" width="313" height="21"/>
@@ -24,14 +24,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avsender ber deg akseptere eller avslå tilbudet om barnehageplass." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JEM-HJ-mqs">
-                            <rect key="frame" x="31" y="55" width="313" height="35"/>
+                            <rect key="frame" x="31" y="59" width="313" height="35"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-UA-aDK">
-                            <rect key="frame" x="31" y="98" width="313" height="46"/>
-                            <color key="backgroundColor" red="1" green="0.16678678416892001" blue="0.18178158872401939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <rect key="frame" x="31" y="107" width="313" height="46"/>
+                            <color key="backgroundColor" red="0.86840051409999997" green="0.1748203039" blue="0.12793275709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
                             <inset key="titleEdgeInsets" minX="-10" minY="10" maxX="0.0" maxY="10"/>
@@ -42,7 +42,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frist: 25.08.2018" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50I-76-S86">
-                            <rect key="frame" x="31" y="152" width="313" height="18"/>
+                            <rect key="frame" x="31" y="165" width="313" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -52,15 +52,16 @@
                     <constraints>
                         <constraint firstItem="JEM-HJ-mqs" firstAttribute="leading" secondItem="Ug6-AX-qwM" secondAttribute="leading" constant="31" id="1PH-U2-4GI"/>
                         <constraint firstItem="mzs-UA-aDK" firstAttribute="leading" secondItem="Ug6-AX-qwM" secondAttribute="leading" constant="31" id="3Yx-3r-hSU"/>
+                        <constraint firstAttribute="height" constant="227" id="5L1-0d-9he"/>
                         <constraint firstItem="aOF-yN-hcg" firstAttribute="centerX" secondItem="Ug6-AX-qwM" secondAttribute="centerX" id="89x-T9-EDy"/>
                         <constraint firstItem="aOF-yN-hcg" firstAttribute="leading" secondItem="Ug6-AX-qwM" secondAttribute="leading" constant="31" id="Q4p-WW-lPv"/>
-                        <constraint firstItem="50I-76-S86" firstAttribute="top" secondItem="mzs-UA-aDK" secondAttribute="bottom" constant="8" id="RlQ-xP-bTC"/>
-                        <constraint firstItem="mzs-UA-aDK" firstAttribute="top" secondItem="JEM-HJ-mqs" secondAttribute="bottom" constant="8" id="TLj-JV-zUX"/>
+                        <constraint firstItem="50I-76-S86" firstAttribute="top" secondItem="mzs-UA-aDK" secondAttribute="bottom" constant="12" id="RlQ-xP-bTC"/>
+                        <constraint firstItem="mzs-UA-aDK" firstAttribute="top" secondItem="JEM-HJ-mqs" secondAttribute="bottom" constant="13" id="TLj-JV-zUX"/>
                         <constraint firstItem="mzs-UA-aDK" firstAttribute="centerX" secondItem="Ug6-AX-qwM" secondAttribute="centerX" id="eCX-Dg-uoE"/>
                         <constraint firstItem="JEM-HJ-mqs" firstAttribute="centerX" secondItem="Ug6-AX-qwM" secondAttribute="centerX" id="fKq-vF-CeM"/>
                         <constraint firstItem="50I-76-S86" firstAttribute="centerX" secondItem="Ug6-AX-qwM" secondAttribute="centerX" id="nfw-Vr-OBe"/>
                         <constraint firstItem="50I-76-S86" firstAttribute="leading" secondItem="Ug6-AX-qwM" secondAttribute="leading" constant="31" id="nrz-Wm-F0E"/>
-                        <constraint firstItem="JEM-HJ-mqs" firstAttribute="top" secondItem="aOF-yN-hcg" secondAttribute="bottom" constant="9" id="oxf-c9-fDj"/>
+                        <constraint firstItem="JEM-HJ-mqs" firstAttribute="top" secondItem="aOF-yN-hcg" secondAttribute="bottom" constant="13" id="oxf-c9-fDj"/>
                         <constraint firstItem="aOF-yN-hcg" firstAttribute="top" secondItem="Ug6-AX-qwM" secondAttribute="top" constant="25" id="ySX-2u-bMo"/>
                     </constraints>
                 </view>
@@ -78,7 +79,7 @@
                 <outlet property="text" destination="JEM-HJ-mqs" id="edv-bm-9YY"/>
                 <outlet property="title" destination="aOF-yN-hcg" id="C18-JE-Zxi"/>
             </connections>
-            <point key="canvasLocation" x="25.5" y="-189"/>
+            <point key="canvasLocation" x="25.5" y="-167.5"/>
         </view>
     </objects>
     <resources>

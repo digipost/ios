@@ -31,6 +31,7 @@ import Foundation
         super.init(coder: aDecoder)
     }
     
+    
     func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
@@ -38,5 +39,18 @@ import Foundation
         style.minimumLineHeight = minimumLineHeight
         attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
         return attrString
+    }
+    
+    func getCurrentViewController() -> UIViewController? {
+        
+        if let rootController = UIApplication.shared.keyWindow?.rootViewController {
+            var currentController: UIViewController! = rootController
+            while( currentController.presentedViewController != nil ) {
+                currentController = currentController.presentedViewController
+            }
+            return currentController
+        }
+        return nil
+        
     }
 }
