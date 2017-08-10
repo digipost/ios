@@ -16,8 +16,22 @@
 
 import Foundation
 
-@objc class ExternalLinkView: UIView {
-     func instanceWithData(appointment: POSExternalLink) -> UIView{
+@objc class ExternalLinkView: MetadataView {
+    
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var text: UILabel!
+    @IBOutlet weak var deadline: UILabel!
+    @IBAction func externalLinkButton(_ sender: UIButton) {
+    }
+    
+     func instanceWithData(externalLink: POSExternalLink) -> UIView{
+        let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
+        
+        title.attributedText = attributedString(text: title.text!, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
+        text.attributedText = attributedString(text: text.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        deadline.attributedText = attributedString(text: deadline.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        
+        return view
     }
     
     private func instanceFromNib() -> UIView {
