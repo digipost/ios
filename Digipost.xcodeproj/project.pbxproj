@@ -109,6 +109,8 @@
 		9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */; };
 		9CA38B001F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
 		9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
+		9CA38B031F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
+		9CA38B041F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -710,6 +712,7 @@
 		9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLinkView.swift; sourceTree = "<group>"; };
 		9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalLinkView.xib; sourceTree = "<group>"; };
 		9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSExternalLink.swift; sourceTree = "<group>"; };
+		9CA38B021F3C532D00AABD91 /* MetadataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataView.swift; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -1298,6 +1301,7 @@
 			children = (
 				9CA38AF51F3B39E600AABD91 /* ExternalLink */,
 				9CA38AF01F3B37CD00AABD91 /* Appointment */,
+				9CA38B021F3C532D00AABD91 /* MetadataView.swift */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -2363,6 +2367,7 @@
 				ECB2BF941B452F2A008E32E8 /* PreviewViewController.swift in Sources */,
 				EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
+				9CA38B031F3C532D00AABD91 /* MetadataView.swift in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
 				ECB2BED21B452EED008E32E8 /* TextAttribute.swift in Sources */,
@@ -2604,6 +2609,7 @@
 				F8AE1CA11CD374B40009B2F9 /* POSModelManager.m in Sources */,
 				F8AE1CA21CD374B40009B2F9 /* PreviewViewController.swift in Sources */,
 				F8AE1CA31CD374B40009B2F9 /* SHCAppDelegate+Appearance.swift in Sources */,
+				9CA38B041F3C532D00AABD91 /* MetadataView.swift in Sources */,
 				F8AE1CA41CD374B40009B2F9 /* POSUploadTableViewDataSource.m in Sources */,
 				F8AE1CA51CD374B40009B2F9 /* UIViewController+BackButton.m in Sources */,
 				F8AE1CA61CD374B40009B2F9 /* POSFolderIcon.m in Sources */,

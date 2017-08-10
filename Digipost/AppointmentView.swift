@@ -17,7 +17,7 @@
 import UIKit
 import EventKit
 
-@objc class AppointmentView: UIView, UIPickerViewDataSource, UIPickerViewDelegate{
+@objc class AppointmentView: MetadataView, UIPickerViewDataSource, UIPickerViewDelegate{
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
@@ -117,15 +117,6 @@ import EventKit
     func addedToCalender() {
         calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
         calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
-    }
-    
-    func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
-        let attrString = NSMutableAttributedString(string: text)
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = lineSpacing
-        style.minimumLineHeight = minimumLineHeight
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
-        return attrString
     }
 
     func positiveHeightAdjustment(text:String, width:CGFloat, lineSpacing: CGFloat, minimumLineHeight: CGFloat) -> CGFloat{
@@ -238,13 +229,5 @@ import EventKit
     
     private func instanceFromNib() -> UIView {
         return UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }
