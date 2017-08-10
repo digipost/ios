@@ -107,6 +107,8 @@
 		9CA38AF81F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */; };
 		9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */; };
 		9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */; };
+		9CA38B001F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
+		9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -707,6 +709,7 @@
 		9C962A121EE69F2700436DB3 /* POSAppointment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSAppointment.swift; sourceTree = "<group>"; };
 		9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLinkView.swift; sourceTree = "<group>"; };
 		9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalLinkView.xib; sourceTree = "<group>"; };
+		9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSExternalLink.swift; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -1307,6 +1310,7 @@
 				9C962A121EE69F2700436DB3 /* POSAppointment.swift */,
 				9C08944B1EEAC933006973D4 /* MockMetadata.swift */,
 				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
+				9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -2252,6 +2256,7 @@
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */,
+				9CA38B001F3C404100AABD91 /* POSExternalLink.swift in Sources */,
 				ECCC94A11B56A7000054AFA6 /* HTMLSection.swift in Sources */,
 				ECEA67211B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
@@ -2492,6 +2497,7 @@
 				F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
+				9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */,
 				0B1520D71DA38EAD000027C1 /* ReceiptsViewController.swift in Sources */,
 				F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */,
 				F8AE1C481CD374B40009B2F9 /* HTMLSection.swift in Sources */,
