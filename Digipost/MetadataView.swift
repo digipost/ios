@@ -17,6 +17,11 @@
 import Foundation
 
 @objc class MetadataView: UIView {
+    
+    let customTitleLineSpacing:CGFloat = 4
+    let customTextLineSpacing:CGFloat = 3
+    let minimumTitleLineHeight:CGFloat = 20
+    let minimumTextLineHeight:CGFloat = 15
 
     override init(frame: CGRect) {
         super.init(frame: frame)

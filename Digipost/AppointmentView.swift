@@ -39,10 +39,7 @@ import EventKit
     @IBOutlet weak var openMapsButton: UIButton!
     
     var appointment: POSAppointment = POSAppointment()
-    let customTitleLineSpacing:CGFloat = 4
-    let customTextLineSpacing:CGFloat = 3
-    let minimumTitleLineHeight:CGFloat = 20
-    let minimumTextLineHeight:CGFloat = 15
+
     var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
