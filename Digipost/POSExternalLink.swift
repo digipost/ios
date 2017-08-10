@@ -16,19 +16,14 @@
 
 import Foundation
 
-@objc class ExternalLinkView: UIView {
-     func instanceWithData(appointment: POSExternalLink) -> UIView{
-    }
+class POSExternalLink : POSMetadataObject {
     
-    private func instanceFromNib() -> UIView {
-        return UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    }
+    var title = ""
+    var text = ""
+    var buttonText = ""
+    var deadlineText = ""
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    init() {
+        super.init(type: POSMetadata.TYPE.EXTERNAL_LINK)
     }
 }

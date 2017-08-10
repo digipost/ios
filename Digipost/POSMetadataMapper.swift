@@ -21,7 +21,10 @@ import Foundation
     static func get(metadata : POSMetadata, creatorName: String) -> Any? {
         if metadata.type == POSMetadata.TYPE.APPOINTMENT {
             return parseAppointment(metadata: metadata, creatorName: creatorName)
+        }else if metadata.type == POSMetadata.TYPE.EXTERNAL_LINK {
+            return parseExternalLink(metadata: metadata)
         }
+        
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
@@ -30,6 +33,17 @@ import Foundation
             return parseAppointment(metadata: metadata, creatorName: creatorName)
         }
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
+    }
+    
+    static func parseExternalLink(metadata: POSMetadata) -> POSExternalLink {
+        let externalLink = POSExternalLink()
+        
+        externalLink.title = metadata.json["title"] as! String
+        externalLink.text = metadata.json["text"] as! String
+        externalLink.buttonText = metadata.json["buttonText"] as! String
+        externalLink.deadlineText = metadata.json["deadlineText"] as! String
+        
+        return POSMetadataObject(type: POSMetadata.TYPE.NIL) as! POSExternalLink
     }
     
     private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {
