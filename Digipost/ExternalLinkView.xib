@@ -29,20 +29,21 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-UA-aDK">
-                            <rect key="frame" x="31" y="107" width="313" height="46"/>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mzs-UA-aDK">
+                            <rect key="frame" x="31" y="107" width="313" height="44"/>
                             <color key="backgroundColor" red="0.86840051409999997" green="0.1748203039" blue="0.12793275709999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
-                            <inset key="titleEdgeInsets" minX="-10" minY="10" maxX="0.0" maxY="10"/>
-                            <inset key="imageEdgeInsets" minX="250" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                            <inset key="imageEdgeInsets" minX="20" minY="2" maxX="0.0" maxY="0.0"/>
                             <state key="normal" title="Gi tilbakemelding" image="EksternLink"/>
                             <connections>
                                 <action selector="externalLinkButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="p8j-QA-FnL"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frist: 25.08.2018" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50I-76-S86">
-                            <rect key="frame" x="31" y="165" width="313" height="18"/>
+                            <rect key="frame" x="31" y="163" width="313" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
