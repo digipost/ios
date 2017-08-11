@@ -67,20 +67,17 @@ extension POSAttachment {
         }
         return false
     }
-
-    func getAppointments() -> [POSAppointment] {
-        var metaDataWithType: [POSAppointment] = []
-        
-        if let metadataJsonArray = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
-            for metadataDict in metadataJsonArray as! [[String: Any]] {
-                if metadataDict["type"] as! String  == POSMetadata.TYPE.APPOINTMENT {
-                    let metadataObject = POSMetadata(type: metadataDict["type"] as! String, json: metadataDict)
-                    if let appointmentObject = POSMetadataMapper.appointment(metadata: metadataObject, creatorName: self.document.creatorName!) {
-                        metaDataWithType.append(appointmentObject as! POSAppointment)
-                    }
+    
+    func getMetadataArray() -> [POSMetadataObject] {
+        var metadataArray: [POSMetadataObject] = []
+        if let json = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
+            for dict in json as! [[String: Any]] {
+                let metadataObject = POSMetadata(type: dict["type"] as! String, json: dict)
+                if let obj = POSMetadataMapper.get(metadata: metadataObject, creatorName: self.document.creatorName!) {
+                    metadataArray.append(obj as! POSMetadataObject)
                 }
             }
         }
-        return metaDataWithType
+        return metadataArray;
     }
 }

@@ -736,14 +736,21 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 
     if(self.attachment.metadata != nil) {
-        NSArray *appointments = self.attachment.getAppointments;
+        NSArray *appointments = self.attachment.getMetadataArray;
         CGFloat extraHeight = 0;
+        
+        //MOCK
+        POSExternalLink *pex = [[POSExternalLink alloc] init];
+        ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: pex];
+        [_stackView addArrangedSubview:externalLinkView];
+        extraHeight += externalLinkView.frame.size.height;
+        
         for (POSAppointment *appointment in appointments) {
             AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
-            [_stackView addArrangedSubview:appointmentView];
-            extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
+           [_stackView addArrangedSubview:appointmentView];
+           extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
         }
-        
+
         if(extraHeight > 0) {
             [AppointmentView requestPermissions];
         }
