@@ -35,6 +35,8 @@
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
+		35D5A7031F42319A002626A8 /* SHCLoginViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */; };
+		35D5A7041F42319D002626A8 /* SHCLoginViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
@@ -595,6 +597,7 @@
 		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SHCLoginViewController+Extension.swift"; sourceTree = "<group>"; };
 		37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
@@ -1489,6 +1492,7 @@
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */,
+				35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2122,6 +2126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D5A7031F42319A002626A8 /* SHCLoginViewController+Extension.swift in Sources */,
 				9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
@@ -2361,6 +2366,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35D5A7041F42319D002626A8 /* SHCLoginViewController+Extension.swift in Sources */,
 				9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */,

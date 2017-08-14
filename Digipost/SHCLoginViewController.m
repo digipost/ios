@@ -108,18 +108,23 @@ NSString *const kLoginViewControllerScreenName = @"Login";
                                forState:UIControlStateNormal];
     
     if ([OAuthToken isUserLoggedIn]) {
-        
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            [self presentAppropriateViewControllerForIPhone];
-        }
-        
-        [Guide setOnboaringHasBeenWatched];
-        
+        [self setupAuthenticationPolicy];
     } else {
         
         if ([Guide shouldShowOnboardingGuide]) {
             [self presentOnboarding];
         }
+    }
+}
+
+-(void) touchIDResult:(BOOL) success {
+    if(success) {
+        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+            [self presentAppropriateViewControllerForIPhone];
+            
+        }
+    
+    [Guide setOnboaringHasBeenWatched];
     }
 }
 

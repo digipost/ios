@@ -32,4 +32,6 @@ extern NSString *const kShowLoginViewControllerNotificationName;
 
 @interface SHCLoginViewController : GAITrackedViewController
 
+- (void)touchIDResult:(BOOL) success;
+
 @end
