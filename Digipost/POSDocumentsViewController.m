@@ -308,11 +308,6 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
     
-    NSArray *appointments = [attachment getAppointments];
-    if ([appointments count] > 0) {
-        cell.attachmentImageView.hidden = NO;
-        cell.attachmentImageView.image = [UIImage imageNamed:@"Kalender-listeikon"];
-    }
     
     if([document.invoice intValue] == YES) {
         cell.typeImage.hidden = NO;
