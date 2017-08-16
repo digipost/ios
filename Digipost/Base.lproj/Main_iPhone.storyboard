@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="rS3-R9-Ivy">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -14,7 +14,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -63,7 +63,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z05-FO-2e6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -799,7 +799,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -901,7 +901,7 @@
                     <navigationItem key="navigationItem" id="FW3-kC-k62">
                         <barButtonItem key="rightBarButtonItem" id="8A7-WS-7db">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="umw-mv-Rjf">
-                                <rect key="frame" x="288" y="5" width="71" height="33"/>
+                                <rect key="frame" x="323" y="5" width="71" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
@@ -919,7 +919,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1385,6 +1385,7 @@
                         <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
                         <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
                         <segue destination="EwX-bB-WQQ" kind="push" identifier="invoiceOptionsSegue" id="osB-jZ-rzm"/>
+                        <segue destination="ouu-TZ-Z3O" kind="push" identifier="showExternalLinkWebview" id="Q7T-7T-dax"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAR-h4-ijQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1395,7 +1396,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1744.5" y="1279.5"/>
+            <point key="canvasLocation" x="1746" y="1281"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="i79-ks-pOi">
@@ -1757,7 +1758,28 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="euU-pY-f8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2344" y="1774"/>
+            <point key="canvasLocation" x="2349" y="1805"/>
+        </scene>
+        <!--ExternalWebview-->
+        <scene sceneID="ssn-w5-JZL">
+            <objects>
+                <viewController id="D1c-ii-iU5" userLabel="ExternalWebview" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kl5-6m-Shv"/>
+                        <viewControllerLayoutGuide type="bottom" id="JNZ-mE-fmo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EvH-ac-2xd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="j06-PI-wKC">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="6MB-g8-Kk2"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YuY-V1-OME" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2348" y="2393"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dKp-aa-7yV">
@@ -1766,7 +1788,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mDE-BQ-flo"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3ZL-ZQ-Z4P">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3ZL-ZQ-Z4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1779,11 +1801,30 @@
             </objects>
             <point key="canvasLocation" x="234" y="-1205"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fw9-Wz-Yyq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ouu-TZ-Z3O" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="FFB-n3-4zf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="llQ-9h-Z1L">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="D1c-ii-iU5" kind="relationship" relationship="rootViewController" id="GIC-hd-def"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NSa-Mg-MgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1746" y="2393"/>
+        </scene>
     </scenes>
     <resources>
         <image name="1Password" width="23" height="23"/>
         <image name="Delete" width="22" height="22"/>
-        <image name="Info" width="22" height="22"/>
+        <image name="Info" width="15" height="16"/>
         <image name="Lastopp_norsk_vertikal" width="320" height="327"/>
         <image name="Lastopp_veileder_english_horisontal" width="602" height="203"/>
         <image name="Move" width="22" height="22"/>
@@ -1806,11 +1847,11 @@
         <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="eDA-DZ-Lcc"/>
-        <segue reference="p4n-lw-a8U"/>
+        <segue reference="svS-B5-imh"/>
         <segue reference="6ll-nd-HYD"/>
+        <segue reference="p4n-lw-a8U"/>
+        <segue reference="eDA-DZ-Lcc"/>
         <segue reference="WBk-6x-J5R"/>
         <segue reference="2IH-85-kgn"/>
-        <segue reference="xIu-aX-Ge9"/>
     </inferredMetricsTieBreakers>
 </document>
