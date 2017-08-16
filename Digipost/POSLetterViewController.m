@@ -223,7 +223,10 @@ CGFloat extraMetadataConstraintHeight = 0;
         NSString *invoiceTitle = self.attachment.subject;
         InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;
         invoiceOptionsViewController.title = invoiceTitle;
-        
+    }else if ([segue.identifier isEqualToString:@"showExternalLinkWebview"]) {
+        SingleUseWebViewController *singleUseWebView = (SingleUseWebViewController *) segue.destinationViewController;
+        singleUseWebView.initUrl = (NSString *)sender;
+        singleUseWebView.title = (NSString *)sender;
     }
 }
 
