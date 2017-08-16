@@ -40,11 +40,9 @@ import SafariServices
     }
     
     @IBAction func externalLinkButton(_ sender: UIButton) {
-        let safariVC = SFSafariViewController(url: URL(string: url)!)
-        getCurrentViewController()?.present(safariVC, animated: true, completion: nil)        
-        safariVC.delegate = self
+        (getCurrentViewController() as! POSLetterViewController).performSegue(withIdentifier: "showExternalLinkWebview", sender: url)
     }
-    
+
     private func instanceFromNib() -> UIView {
         return UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
     }
