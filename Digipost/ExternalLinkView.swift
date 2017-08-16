@@ -24,6 +24,7 @@ import SafariServices
     @IBOutlet weak var deadline: UILabel!
     
     var url = "https://www.digipost.no"
+    @IBOutlet weak var feedbackButton: UIButton! 
 
      func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
@@ -33,6 +34,8 @@ import SafariServices
         view.deadline.attributedText = attributedString(text: view.deadline.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;
         
+        view.feedbackButton.setTitle("Bekreft eller avslå barnehageplass", for: UIControlState.normal)
+        view.feedbackButton.titleLabel?.numberOfLines = 2
         return view
     }
     
