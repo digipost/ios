@@ -22,16 +22,24 @@ import WebKit
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var viewSubtitle: UILabel!
+    @IBOutlet weak var backButton: UIButton!
+    
+    var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var initUrl: String = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self,
+                                                                action: "backButtonPressed")
+        //backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10)
         let myURL = URL(string: initUrl)
-        let request = NSMutableURLRequest(url: myURL!)
-        viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
         
+        viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
+    
+        let request = NSMutableURLRequest(url: myURL!)
         webView.delegate = self
         webView.scrollView.contentInset = UIEdgeInsets.zero;
         webView.loadRequest(request as URLRequest)
