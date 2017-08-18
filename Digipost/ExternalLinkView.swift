@@ -26,7 +26,7 @@ import SafariServices
     var url = "https://www.digipost.no"
     @IBOutlet weak var feedbackButton: UIButton! 
 
-     func instanceWithData(externalLink: POSExternalLink) -> UIView{
+    func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
         
         view.title.attributedText = attributedString(text: view.title.text!, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
@@ -39,8 +39,12 @@ import SafariServices
         return view
     }
     
+    func setParentViewController(parentViewController: POSLetterViewController) {
+        self.parentViewController = parentViewController
+    }
+    
     @IBAction func externalLinkButton(_ sender: UIButton) {
-        (getCurrentViewController() as! POSLetterViewController).performSegue(withIdentifier: "showExternalLinkWebview", sender: url)
+        parentViewController!.performSegue(withIdentifier: "showExternalLinkWebview", sender: url)
     }
 
     private func instanceFromNib() -> UIView {

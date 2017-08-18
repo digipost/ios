@@ -224,9 +224,8 @@ CGFloat extraMetadataConstraintHeight = 0;
         InvoiceOptionsViewController *invoiceOptionsViewController = (InvoiceOptionsViewController*) segue.destinationViewController;
         invoiceOptionsViewController.title = invoiceTitle;
     }else if ([segue.identifier isEqualToString:@"showExternalLinkWebview"]) {
-        SingleUseWebViewController *singleUseWebView = (SingleUseWebViewController *) segue.destinationViewController;
-        singleUseWebView.initUrl = (NSString *)sender;
-        singleUseWebView.title = (NSString *)sender;
+        ExternalLinkWebview *externalLinkWebview = (ExternalLinkWebview*) segue.destinationViewController;
+        externalLinkWebview.initUrl = @"https://www.digipost.no";//(NSString *)sender;
     }
 }
 
@@ -293,6 +292,8 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [[self navigationController] setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setToolbarHidden: NO animated:YES];
     [super viewWillAppear:animated];
 }
 
@@ -742,11 +743,13 @@ CGFloat extraMetadataConstraintHeight = 0;
         NSArray *appointments = self.attachment.getMetadataArray;
         CGFloat extraHeight = 0;
         
-        //MOCK
+        //MOCK *****
         POSExternalLink *pex = [[POSExternalLink alloc] init];
         ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: pex];
+        [externalLinkView setParentViewController: self];
         [_stackView addArrangedSubview:externalLinkView];
         extraHeight += externalLinkView.frame.size.height;
+        //MOCK *****
         
         for (POSAppointment *appointment in appointments) {
             AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];

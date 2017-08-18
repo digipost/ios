@@ -78,6 +78,8 @@
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		9C08944C1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
 		9C08944E1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
+		9C08C1881F46D39200475782 /* ExternalLinkWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */; };
+		9C08C1891F46D39200475782 /* ExternalLinkWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */; };
 		9C1F0F8D1E9E51E2008C674C /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9C25CBE31F0D1E48005F3645 /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */; };
 		9C25CBE41F0D1E48005F3645 /* AppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */; };
@@ -689,6 +691,7 @@
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
 		9C08944B1EEAC933006973D4 /* MockMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMetadata.swift; sourceTree = "<group>"; };
+		9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLinkWebview.swift; sourceTree = "<group>"; };
 		9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentView.swift; sourceTree = "<group>"; };
 		9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentView.xib; sourceTree = "<group>"; };
 		9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType1AndType2Agreements.json; sourceTree = "<group>"; };
@@ -1333,6 +1336,7 @@
 			children = (
 				9CA38AF61F3B39FE00AABD91 /* ExternalLinkView.swift */,
 				9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */,
+				9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */,
 			);
 			name = ExternalLink;
 			sourceTree = "<group>";
@@ -2325,6 +2329,7 @@
 				ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */,
 				316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */,
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
+				9C08C1881F46D39200475782 /* ExternalLinkWebview.swift in Sources */,
 				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
@@ -2567,6 +2572,7 @@
 				F8AE1C7D1CD374B40009B2F9 /* UploadMenuTableViewCell.swift in Sources */,
 				F8AE1C7E1CD374B40009B2F9 /* POSOAuthManager.m in Sources */,
 				F8AE1C7F1CD374B40009B2F9 /* APIResponse.swift in Sources */,
+				9C08C1891F46D39200475782 /* ExternalLinkWebview.swift in Sources */,
 				9C962A111EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */,
 				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,

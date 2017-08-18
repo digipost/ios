@@ -14,7 +14,7 @@
         <scene sceneID="cUi-kZ-frf">
             <objects>
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -63,7 +63,7 @@
             <objects>
                 <navigationController definesPresentationContext="YES" id="Mk0-2Z-lkG" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z05-FO-2e6">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -799,7 +799,7 @@
             <objects>
                 <navigationController id="95z-FI-Of9" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -919,7 +919,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1385,7 +1385,7 @@
                         <segue destination="iIu-uD-AEh" kind="unwind" identifier="toFolders" unwindAction="unwindToFoldersViewController:" id="Xu6-WM-Bts"/>
                         <segue destination="95z-FI-Of9" kind="modal" identifier="askForhigherAuthenticationLevelSegue" id="FEz-mA-3eK"/>
                         <segue destination="EwX-bB-WQQ" kind="push" identifier="invoiceOptionsSegue" id="osB-jZ-rzm"/>
-                        <segue destination="ouu-TZ-Z3O" kind="push" identifier="showExternalLinkWebview" id="Q7T-7T-dax"/>
+                        <segue destination="D1c-ii-iU5" kind="push" identifier="showExternalLinkWebview" id="buk-5Z-hPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAR-h4-ijQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1763,7 +1763,7 @@
         <!--ExternalWebview-->
         <scene sceneID="ssn-w5-JZL">
             <objects>
-                <viewController id="D1c-ii-iU5" userLabel="ExternalWebview" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="pageSheet" id="D1c-ii-iU5" userLabel="ExternalWebview" customClass="ExternalLinkWebview" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kl5-6m-Shv"/>
                         <viewControllerLayoutGuide type="bottom" id="JNZ-mE-fmo"/>
@@ -1771,15 +1771,69 @@
                     <view key="view" contentMode="scaleToFill" id="EvH-ac-2xd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kt-no-qJp" userLabel="Header">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8t-rm-fOu">
+                                        <rect key="frame" x="8" y="27" width="13" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="back"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="D1c-ii-iU5" eventType="touchUpInside" id="6e0-D8-rG0"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEm-t0-lFg" userLabel="title">
+                                        <rect key="frame" x="46" y="22" width="322" height="15.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT1-I6-3DL" userLabel="subtitle">
+                                        <rect key="frame" x="46" y="38" width="322" height="11.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="10"/>
+                                        <color key="textColor" red="0.2426404492634617" green="0.24504282994923854" blue="0.24504282994923854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.92726230878218663" green="0.9364431237206241" blue="0.9364431237206241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="leading" secondItem="9Kt-no-qJp" secondAttribute="leading" constant="46" id="1pn-DH-g35"/>
+                                    <constraint firstItem="PT1-I6-3DL" firstAttribute="centerX" secondItem="9Kt-no-qJp" secondAttribute="centerX" id="FN1-d8-utr"/>
+                                    <constraint firstItem="PT1-I6-3DL" firstAttribute="top" secondItem="rEm-t0-lFg" secondAttribute="bottom" constant="0.6666666666666643" id="MTI-3i-A0s"/>
+                                    <constraint firstAttribute="trailing" secondItem="PT1-I6-3DL" secondAttribute="trailing" constant="46" id="ROm-Y0-L7Y"/>
+                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="top" secondItem="9Kt-no-qJp" secondAttribute="top" constant="22" id="aG1-vE-mnT"/>
+                                    <constraint firstAttribute="height" constant="61" id="aga-Va-ARm"/>
+                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="centerX" secondItem="9Kt-no-qJp" secondAttribute="centerX" id="hMM-Go-hHD"/>
+                                </constraints>
+                            </view>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8a-u2-JL2">
+                                <rect key="frame" x="0.0" y="60" width="414" height="676"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="U8a-u2-JL2" secondAttribute="trailing" id="5Vk-Je-mxE"/>
+                            <constraint firstItem="U8a-u2-JL2" firstAttribute="leading" secondItem="EvH-ac-2xd" secondAttribute="leading" id="5mz-sB-PVJ"/>
+                            <constraint firstItem="JNZ-mE-fmo" firstAttribute="top" secondItem="U8a-u2-JL2" secondAttribute="bottom" id="6Z0-p8-u4L"/>
+                            <constraint firstAttribute="trailing" secondItem="9Kt-no-qJp" secondAttribute="trailing" id="AAL-YP-2RM"/>
+                            <constraint firstItem="9Kt-no-qJp" firstAttribute="top" secondItem="EvH-ac-2xd" secondAttribute="top" id="Vtb-PF-du6"/>
+                            <constraint firstItem="9Kt-no-qJp" firstAttribute="leading" secondItem="EvH-ac-2xd" secondAttribute="leading" id="apJ-Lc-fzS"/>
+                            <constraint firstItem="U8a-u2-JL2" firstAttribute="top" secondItem="Kl5-6m-Shv" secondAttribute="bottom" constant="40" id="ohc-4S-zBM"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="j06-PI-wKC">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="6MB-g8-Kk2"/>
-                    </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="viewSubtitle" destination="PT1-I6-3DL" id="P7a-7n-Tr1"/>
+                        <outlet property="viewTitle" destination="rEm-t0-lFg" id="qQf-hK-46R"/>
+                        <outlet property="webView" destination="U8a-u2-JL2" id="ozq-j2-fG5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YuY-V1-OME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2348" y="2393"/>
+            <point key="canvasLocation" x="1746" y="2177"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dKp-aa-7yV">
@@ -1788,7 +1842,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="mDE-BQ-flo"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3ZL-ZQ-Z4P">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3ZL-ZQ-Z4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1800,25 +1854,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDz-3g-mj7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="234" y="-1205"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="fw9-Wz-Yyq">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ouu-TZ-Z3O" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="FFB-n3-4zf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="llQ-9h-Z1L">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="D1c-ii-iU5" kind="relationship" relationship="rootViewController" id="GIC-hd-def"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NSa-Mg-MgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1746" y="2393"/>
         </scene>
     </scenes>
     <resources>
@@ -1832,6 +1867,7 @@
         <image name="Open_in" width="22" height="22"/>
         <image name="PostenLogo_hvitskygge_iPhone" width="168" height="73"/>
         <image name="Searchbackground" width="6" height="31"/>
+        <image name="back" width="13" height="21"/>
         <image name="invoice-list-icon-unpaid" width="14" height="15"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
@@ -1847,11 +1883,11 @@
         <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="svS-B5-imh"/>
-        <segue reference="6ll-nd-HYD"/>
         <segue reference="p4n-lw-a8U"/>
         <segue reference="eDA-DZ-Lcc"/>
-        <segue reference="WBk-6x-J5R"/>
+        <segue reference="6ll-nd-HYD"/>
         <segue reference="2IH-85-kgn"/>
+        <segue reference="WBk-6x-J5R"/>
+        <segue reference="svS-B5-imh"/>
     </inferredMetricsTieBreakers>
 </document>
