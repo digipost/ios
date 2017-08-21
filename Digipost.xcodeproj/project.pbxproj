@@ -76,8 +76,6 @@
 		83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		83F7038118573641003DABE1 /* POSOAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7038018573641003DABE1 /* POSOAuthManager.m */; };
 		83F7038618573C3A003DABE1 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
-		9C08944C1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
-		9C08944E1EEAC933006973D4 /* MockMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08944B1EEAC933006973D4 /* MockMetadata.swift */; };
 		9C08C1881F46D39200475782 /* ExternalLinkWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */; };
 		9C08C1891F46D39200475782 /* ExternalLinkWebview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */; };
 		9C1F0F8D1E9E51E2008C674C /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
@@ -690,7 +688,6 @@
 		83F7037F18573641003DABE1 /* POSOAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSOAuthManager.h; sourceTree = "<group>"; };
 		83F7038018573641003DABE1 /* POSOAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSOAuthManager.m; sourceTree = "<group>"; };
 		87C9E75A1B0606670019AA07 /* Digipost.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Digipost.plist; sourceTree = "<group>"; };
-		9C08944B1EEAC933006973D4 /* MockMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockMetadata.swift; sourceTree = "<group>"; };
 		9C08C1871F46D39200475782 /* ExternalLinkWebview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalLinkWebview.swift; sourceTree = "<group>"; };
 		9C25CBE21F0D1E48005F3645 /* AppointmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppointmentView.swift; sourceTree = "<group>"; };
 		9C25CBE81F0D26F0005F3645 /* AppointmentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentView.xib; sourceTree = "<group>"; };
@@ -1315,7 +1312,6 @@
 				9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */,
 				9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */,
 				9C962A121EE69F2700436DB3 /* POSAppointment.swift */,
-				9C08944B1EEAC933006973D4 /* MockMetadata.swift */,
 				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
 				9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */,
 			);
@@ -2206,7 +2202,6 @@
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
 				0B5F505B1D95118300A8EC05 /* ReceiptsTableViewDataSource.swift in Sources */,
 				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
-				9C08944C1EEAC933006973D4 /* MockMetadata.swift in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				ECB2BEE01B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
@@ -2449,7 +2444,6 @@
 				0B1520DF1DA38EB3000027C1 /* ReceiptCategoryTableViewDataSource.swift in Sources */,
 				F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */,
 				F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */,
-				9C08944E1EEAC933006973D4 /* MockMetadata.swift in Sources */,
 				F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */,
 				F8AE1C141CD374B40009B2F9 /* POSMailbox+Methods.m in Sources */,
 				F8AE1C151CD374B40009B2F9 /* IncreaseSecurityLevelViewController.swift in Sources */,
