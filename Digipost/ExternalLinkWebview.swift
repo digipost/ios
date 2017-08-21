@@ -22,19 +22,15 @@ import WebKit
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var viewTitle: UILabel!
     @IBOutlet weak var viewSubtitle: UILabel!
-    @IBOutlet weak var backButton: UIButton!
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var initUrl: String = ""
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
-        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self,
-                                                                action: "backButtonPressed")
-        //backButton.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10)
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "backButtonPressed")
         let myURL = URL(string: initUrl)
         
         viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
