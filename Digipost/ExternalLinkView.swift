@@ -24,6 +24,7 @@ import SafariServices
     
     var url = "https://www.digipost.no"
     @IBOutlet weak var feedbackButton: UIButton! 
+    var parentViewController: POSLetterViewController? = nil
 
     func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
