@@ -19,7 +19,6 @@ import SafariServices
 
 @objc class ExternalLinkView: MetadataView, SFSafariViewControllerDelegate{
     
-    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var deadline: UILabel!
     
@@ -29,7 +28,6 @@ import SafariServices
     func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
         
-        view.title.attributedText = attributedString(text: view.title.text!, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
         view.text.attributedText = attributedString(text: view.text.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.deadline.attributedText = attributedString(text: view.deadline.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;

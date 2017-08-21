@@ -675,3 +675,4 @@
 "metadata location title" = "Sted:";
 "metadata show maps" = "Åpne i Kart";
 "metadata calendar disclaimer" = "Obs! Innkallingen kan inneholde sensitiv informasjon som kan bli synlig for de som eventuelt har tilgang til din kalender.";
+"metadata externalink deadline" = "Frist: %s";

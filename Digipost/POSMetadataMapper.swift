@@ -36,12 +36,17 @@ import Foundation
     }
     
     static func parseExternalLink(metadata: POSMetadata) -> POSExternalLink {
-        let externalLink = POSExternalLink()
-        
-        externalLink.title = metadata.json["title"] as! String
-        externalLink.text = metadata.json["text"] as! String
+        let externalLink = POSExternalLink()        
+        externalLink.text = metadata.json["description"] as! String
         externalLink.buttonText = metadata.json["buttonText"] as! String
         externalLink.deadlineText = metadata.json["deadlineText"] as! String
+        externalLink.url = metadata.json["url"] as! String
+        externalLink.urlIsActive = metadata.json["urlIsActive"] as! Bool
+        
+        if let deadline = stringToDate(timeString: metadata.json["deadline"] as! String){
+            externalLink.deadline = deadline
+            externalLink.deadlineText = String.localizedStringWithFormat(NSLocalizedString("metadata externalink deadline", comment:"Frist: "), deadline.dateOnly())
+        }
         
         return POSMetadataObject(type: POSMetadata.TYPE.NIL) as! POSExternalLink
     }

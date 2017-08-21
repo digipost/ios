@@ -18,10 +18,11 @@ import Foundation
 
 class POSExternalLink : POSMetadataObject {
     
-    var title = ""
     var text = ""
     var buttonText = ""
     var deadlineText = ""
+    var deadline: Date = Date()
+    var urlIsActive: Bool = true 
     var url = ""
     
     init() {
