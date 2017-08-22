@@ -34,11 +34,10 @@ import WebKit
         let myURL = URL(string: initUrl)
         
         viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
-    
-        let request = NSMutableURLRequest(url: myURL!)
+
         webView.delegate = self
         webView.scrollView.contentInset = UIEdgeInsets.zero;
-        webView.loadRequest(request as URLRequest)
+        webView.loadRequest(URLRequest(url: myURL!))
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
