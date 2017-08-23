@@ -56,7 +56,6 @@ import Foundation
         
         if let deadline = stringToDate(timeString: metadata.json["deadline"] as! String){
             externalLink.deadline = deadline
-            print(deadline.dateOnly())
             externalLink.deadlineText = String.localizedStringWithFormat(NSLocalizedString("metadata externalink deadline", comment:"Frist: "), deadline.dateOnly())
         }
         
