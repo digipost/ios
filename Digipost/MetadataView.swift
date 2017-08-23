@@ -31,6 +31,16 @@ import Foundation
         super.init(coder: aDecoder)
     }
     
+    func positiveHeightAdjustment(text:String, width:CGFloat, lineSpacing: CGFloat, minimumLineHeight: CGFloat) -> CGFloat{
+        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = UIFont(name: "Helvetica", size: minimumLineHeight)
+        label.attributedText = attributedString(text: text, lineSpacing: lineSpacing, minimumLineHeight: minimumLineHeight)
+        label.sizeToFit()
+        
+        return label.frame.height
+    }
     
     func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
         let attrString = NSMutableAttributedString(string: text)

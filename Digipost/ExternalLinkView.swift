@@ -19,9 +19,11 @@ import SafariServices
 
 @objc class ExternalLinkView: MetadataView, SFSafariViewControllerDelegate{
     
+    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var deadline: UILabel!
     @IBOutlet weak var feedbackButton: UIButton! 
+    var extraHeight = CGFloat(0)
     
     var parentViewController: POSLetterViewController? = nil
     var url = "https://www.digipost.no"
@@ -31,9 +33,10 @@ import SafariServices
         view.text.attributedText = attributedString(text: externalLink.text, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.deadline.attributedText = attributedString(text: externalLink.deadlineText, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;
-        
         view.feedbackButton.setTitle(externalLink.buttonText, for: UIControlState.normal)
         view.feedbackButton.titleLabel?.numberOfLines = 2
+        view.extraHeight += positiveHeightAdjustment(text: externalLink.text, width: view.text.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        view.containerViewHeight.constant += extraHeight
         return view
     }
     

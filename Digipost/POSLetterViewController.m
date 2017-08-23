@@ -752,7 +752,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                 ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: (POSExternalLink *) metadataObject];
                 [externalLinkView setParentViewController: self];
                 [_stackView addArrangedSubview:externalLinkView];
-                extraHeight += externalLinkView.frame.size.height;
+                extraHeight += externalLinkView.frame.size.height + externalLinkView.extraHeight;
             }
          }
 
