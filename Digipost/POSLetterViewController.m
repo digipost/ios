@@ -740,22 +740,21 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 
     if(self.attachment.metadata != nil) {
-        NSArray *appointments = self.attachment.getMetadataArray;
         CGFloat extraHeight = 0;
-        
-        //MOCK *****
-        POSExternalLink *pex = [[POSExternalLink alloc] init];
-        ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: pex];
-        [externalLinkView setParentViewController: self];
-        [_stackView addArrangedSubview:externalLinkView];
-        extraHeight += externalLinkView.frame.size.height;
-        //MOCK *****
-        
-        for (POSAppointment *appointment in appointments) {
-            AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: appointment];
-           [_stackView addArrangedSubview:appointmentView];
-           extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
-        }
+        NSArray *metadataArray = self.attachment.getMetadataArray;
+         for(POSMetadataObject *metadataObject in metadataArray) {
+            if([metadataObject isKindOfClass:[POSAppointment class]]) {
+                AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: (POSAppointment *) metadataObject];
+                [_stackView addArrangedSubview:appointmentView];
+                extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
+                
+            }else if([metadataObject isKindOfClass:[POSExternalLink class]]) {
+                ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: (POSExternalLink *) metadataObject];
+                [externalLinkView setParentViewController: self];
+                [_stackView addArrangedSubview:externalLinkView];
+                extraHeight += externalLinkView.frame.size.height;
+            }
+         }
 
         if(extraHeight > 0) {
             [AppointmentView requestPermissions];

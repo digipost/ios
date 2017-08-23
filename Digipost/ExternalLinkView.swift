@@ -21,19 +21,18 @@ import SafariServices
     
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var deadline: UILabel!
-    
-    var url = "https://www.digipost.no"
     @IBOutlet weak var feedbackButton: UIButton! 
+    
     var parentViewController: POSLetterViewController? = nil
+    var url = "https://www.digipost.no"
 
     func instanceWithData(externalLink: POSExternalLink) -> UIView{
-        let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView
-        
-        view.text.attributedText = attributedString(text: view.text.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        view.deadline.attributedText = attributedString(text: view.deadline.text!, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView        
+        view.text.attributedText = attributedString(text: externalLink.text, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        view.deadline.attributedText = attributedString(text: externalLink.deadlineText, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;
         
-        view.feedbackButton.setTitle("Bekreft eller avslå barnehageplass", for: UIControlState.normal)
+        view.feedbackButton.setTitle(externalLink.buttonText, for: UIControlState.normal)
         view.feedbackButton.titleLabel?.numberOfLines = 2
         return view
     }
