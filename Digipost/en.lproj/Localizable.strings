@@ -476,5 +476,5 @@
 "metadata location title" = "Location:";
 "metadata show maps" = "Open in Maps";
 "metadata calendar disclaimer" = "NB! The appointment may contain sensitive information that may be visible to users who have access to your calendar.";
-"metadata externalink deadline" = "Deadline: %s";
-"metadata externalink expired" = "Deadline expired: %s";
+"metadata externalink deadline" = "Deadline: %@";
+"metadata externalink expired" = "Deadline expired: %@";
