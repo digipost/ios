@@ -302,16 +302,19 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     cell.delegate = self;
     cell.editingAccessoryType = UITableViewCellAccessoryNone;
     cell.attachmentImageView.hidden = [document.attachments count] > 1 ? NO : YES;
+    cell.attachmentImageView.image = [UIImage imageNamed:@"list-icon-attachment"];
     cell.dateLabel.text = [POSDocument stringForDocumentDate:attachment.document.createdAt];
     cell.dateLabel.accessibilityLabel = [NSDateFormatter localizedStringFromDate:attachment.document.createdAt dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterNoStyle];
     cell.subjectLabel.text = attachment.subject;
     cell.accessibilityLabel = [NSString stringWithFormat:NSLocalizedString(@"%@  Received %@ From %@", @"Accessibilitylabel on document cell"), cell.subjectLabel.accessibilityLabel, cell.dateLabel.accessibilityLabel, cell.senderLabel.accessibilityLabel];
     cell.multipleSelectionBackgroundView = [UIView new];
     
-    NSArray *appointments = [attachment getMetadataArray];
-    if ([appointments count] > 0) {
-        cell.attachmentImageView.hidden = NO;
-        cell.attachmentImageView.image = [UIImage imageNamed:@"Kalender-listeikon"];
+    NSArray *metadataArray = [attachment getMetadataArray];
+    for(POSMetadataObject *metadataObject in metadataArray) {
+        if([metadataObject isKindOfClass:[POSAppointment class]]) {
+            cell.attachmentImageView.hidden = NO;
+            cell.attachmentImageView.image = [UIImage imageNamed:@"Kalender-listeikon"];
+        }
     }
     
     if([document.invoice intValue] == YES) {
