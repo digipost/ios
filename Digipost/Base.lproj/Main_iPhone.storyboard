@@ -399,7 +399,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXp-qX-oLd">
-                                            <rect key="frame" x="31" y="64.333333333333329" width="40" height="14"/>
+                                            <rect key="frame" x="31" y="64" width="275" height="14"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -422,7 +422,7 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.97254901960784312" green="0.97254901960784312" blue="0.97254901960784312" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="gXp-qX-oLd" secondAttribute="trailing" constant="335" id="1f1-Th-qv5"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="gXp-qX-oLd" secondAttribute="trailing" constant="100" id="1f1-Th-qv5"/>
                                         <constraint firstItem="oLa-MH-icP" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" constant="1" id="3vx-h6-Ztx"/>
                                         <constraint firstItem="gXp-qX-oLd" firstAttribute="top" secondItem="4W8-5K-T1U" secondAttribute="bottom" constant="24.333333333333329" id="4PQ-Va-JUd"/>
                                         <constraint firstItem="tKe-Yp-E2z" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="topMargin" constant="12" id="5TA-bT-HjC"/>
