@@ -31,12 +31,21 @@ import SafariServices
     func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView        
         view.text.attributedText = attributedString(text: externalLink.text, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        view.deadline.attributedText = attributedString(text: externalLink.deadlineText, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;
         view.feedbackButton.setTitle(externalLink.buttonText, for: UIControlState.normal)
         view.feedbackButton.titleLabel?.numberOfLines = 2
         view.extraHeight += positiveHeightAdjustment(text: externalLink.text, width: view.text.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.containerViewHeight.constant += extraHeight
+        
+        if externalLink.deadlineText.length > 0 {
+            var deadlineText = String.localizedStringWithFormat(NSLocalizedString("metadata externalink deadline", comment:"Frist: "), externalLink.deadlineText)
+            if externalLink.deadline < Date() {
+                deadlineText = String.localizedStringWithFormat(NSLocalizedString("metadata externalink expired", comment:"Frist utløpt: "), externalLink.deadlineText)
+                view.deadline.textColor = UIColor.init(r: 190, g: 49, b: 38)
+            }
+            view.deadline.attributedText = attributedString(text: deadlineText, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        }
+        
         return view
     }
     
