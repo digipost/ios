@@ -677,3 +677,4 @@
 "metadata calendar disclaimer" = "Obs! Innkallingen kan inneholde sensitiv informasjon som kan bli synlig for de som eventuelt har tilgang til din kalender.";
 "metadata externalink deadline" = "Frist: %@ ";
 "metadata externalink expired" = "Frist utløpt: %@ ";
+"metadata externalink default button" = "Gå videre";

@@ -44,6 +44,8 @@ import Foundation
         
         if let buttonText = metadata.json["buttonText"] as? String {
             externalLink.buttonText = buttonText
+        }else{
+            externalLink.buttonText = NSLocalizedString("metadata externalink default button", comment: "Gå videre")
         }
         
         if let url = metadata.json["url"] as? String {

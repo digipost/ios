@@ -478,3 +478,4 @@
 "metadata calendar disclaimer" = "NB! The appointment may contain sensitive information that may be visible to users who have access to your calendar.";
 "metadata externalink deadline" = "Deadline: %@";
 "metadata externalink expired" = "Deadline expired: %@";
+"metadata externalink default button" = "Open link";
