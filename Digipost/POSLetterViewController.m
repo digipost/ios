@@ -735,9 +735,7 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (void)loadMetadataContent
 {
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        [self removeOldMetadataViews];
-    }
+    [self removeOldMetadataViews];
 
     if(self.attachment.metadata != nil) {
         CGFloat extraHeight = 0;
