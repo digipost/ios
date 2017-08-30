@@ -229,9 +229,7 @@ NSString *const kAttachmentsViewControllerScreenName = @"Attachments";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.attachments.count == 0 ) {
-        self.attachments = [self attachmentsForCurrentDocument];
-    }
+    self.attachments = [self attachmentsForCurrentDocument];
     POSAttachment *attachment = self.attachments[indexPath.row];
 
     [self validateOpeningAttachment:attachment
