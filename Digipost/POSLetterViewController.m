@@ -225,7 +225,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         invoiceOptionsViewController.title = invoiceTitle;
     }else if ([segue.identifier isEqualToString:@"showExternalLinkWebview"]) {
         ExternalLinkWebview *externalLinkWebview = (ExternalLinkWebview*) segue.destinationViewController;
-        externalLinkWebview.initUrl = @"https://www.digipost.no";//(NSString *)sender;
+        externalLinkWebview.initUrl = (NSString *)sender;
     }
 }
 
