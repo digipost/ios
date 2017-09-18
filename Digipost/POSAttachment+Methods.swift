@@ -70,11 +70,13 @@ extension POSAttachment {
     
     func getMetadataArray() -> [POSMetadataObject] {
         var metadataArray: [POSMetadataObject] = []
-        if let json = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
-            for dict in json as! [[String: Any]] {
-                let metadataObject = POSMetadata(type: dict["type"] as! String, json: dict)
-                if let obj = POSMetadataMapper.get(metadata: metadataObject, creatorName: self.document.creatorName!) {
-                    metadataArray.append(obj as! POSMetadataObject)
+        if self.metadata != nil {
+            if let json = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {
+                for dict in json as! [[String: Any]] {
+                    let metadataObject = POSMetadata(type: dict["type"] as! String, json: dict)
+                    if let obj = POSMetadataMapper.get(metadata: metadataObject, creatorName: self.document.creatorName!) {
+                        metadataArray.append(obj as! POSMetadataObject)
+                    }
                 }
             }
         }
