@@ -736,10 +736,12 @@ CGFloat extraMetadataConstraintHeight = 0;
 - (void)loadMetadataContent
 {
     [self removeOldMetadataViews];
-
     if(self.attachment.metadata != nil) {
         CGFloat extraHeight = 0;
+        extraMetadataConstraintHeight = 0;
+        
         NSArray *metadataArray = self.attachment.getMetadataArray;
+
          for(POSMetadataObject *metadataObject in metadataArray) {
             if([metadataObject isKindOfClass:[POSAppointment class]]) {
                 AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: (POSAppointment *) metadataObject];
@@ -753,10 +755,11 @@ CGFloat extraMetadataConstraintHeight = 0;
                 extraHeight += externalLinkView.frame.size.height + externalLinkView.extraHeight;
             }
          }
-
+        
         if(extraHeight > 0) {
             [AppointmentView requestPermissions];
         }
+
         extraMetadataConstraintHeight += extraHeight;
         [self updateViewHeights:extraHeight];
     }
@@ -764,13 +767,16 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (void) removeOldMetadataViews
 {
-    if(extraMetadataConstraintHeight > 0) {
-        [self updateViewHeights:-extraMetadataConstraintHeight];
-        extraMetadataConstraintHeight = 0;
-    }
-    for( UIView *view in [_stackView subviews]){
-        [_stackView removeArrangedSubview:view];
-        [view removeFromSuperview];
+    if ([[_stackView subviews] count] > 0) {
+        if(extraMetadataConstraintHeight > 0) {
+            [self updateViewHeights:-extraMetadataConstraintHeight];
+            extraMetadataConstraintHeight = 0;
+        }
+    
+        for(UIView *view in [_stackView subviews]){
+            [_stackView removeArrangedSubview:view];
+            [view removeFromSuperview];
+        }
     }
 }
 
