@@ -191,7 +191,7 @@ import EventKit
         event.startDate = appointment.startTime
         event.endDate = appointment.endTime
         event.location = appointment.address
-        event.notes = "\(arrivalTime.text!) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
+        event.notes = "\(arrivalTime.text!) \n\(appointment.subTitle) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
                 
         do {
             try self.eventStore.save(event, span: .thisEvent, commit: true)
