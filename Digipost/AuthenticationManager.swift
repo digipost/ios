@@ -16,7 +16,9 @@
 
 import Foundation
 
-class AuthenticationManager {
+@objc class AuthenticationManager: NSObject {
+    
     static let sharedInstance = AuthenticationManager()
     var needsAuthentication = false
+
 }

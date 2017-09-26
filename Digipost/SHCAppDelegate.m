@@ -309,6 +309,8 @@
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    AuthenticationManager *am = AuthenticationManager.sharedInstance;
+    am.needsAuthentication = true;
 }
 
 
