@@ -109,6 +109,7 @@ NSString *const kDocumentCollectionNotice = @"collectionNotice";
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     fetchRequest.entity = [[POSModelManager sharedManager] documentEntity];
     fetchRequest.fetchLimit = 1;
+    fetchRequest.returnsObjectsAsFaults = NO;
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(updateUri)), updateUri];
 
     NSError *error = nil;

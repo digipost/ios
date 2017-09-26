@@ -17,28 +17,26 @@
 import UIKit
 import WebKit
 
-@objc class SingleUseWebViewController: UIViewController, WKUIDelegate {
+@objc class SingleUseWebViewController: UIViewController, UIWebViewDelegate {
     
-    var webView: WKWebView!
-    var initUrl: String = "https://www.digipost.no"
+    var webView: UIWebView!
+    var initUrl: String = ""
     var viewTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = self.title
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-        
-        let myURL = URL(string: initUrl)
-        let myRequest = URLRequest(url: myURL!)
         self.title = viewTitle
         
-        webView.load(myRequest)
+        let myURL = URL(string: initUrl)
+        let request = NSMutableURLRequest(url: myURL!)
+        webView.loadRequest(request as URLRequest)
     }
     
     override func loadView() {
-        let webConfiguration = WKWebViewConfiguration()
-        webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.uiDelegate = self
+        webView = UIWebView(frame: .zero)
+        webView.delegate = self
         view = webView
     }
 }

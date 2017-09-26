@@ -22,6 +22,7 @@ import Foundation
         static let NIL = "nil"
         static let RESIDENCE = "Residence"
         static let APPOINTMENT = "Appointment"
+        static let EXTERNAL_LINK = "ExternalLink"
     }
     
     var type:  String = ""

@@ -17,7 +17,7 @@
 import UIKit
 import EventKit
 
-@objc class AppointmentView: UIView, UIPickerViewDataSource, UIPickerViewDelegate{
+@objc class AppointmentView: MetadataView, UIPickerViewDataSource, UIPickerViewDelegate{
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
@@ -39,10 +39,7 @@ import EventKit
     @IBOutlet weak var openMapsButton: UIButton!
     
     var appointment: POSAppointment = POSAppointment()
-    let customTitleLineSpacing:CGFloat = 4
-    let customTextLineSpacing:CGFloat = 3
-    let minimumTitleLineHeight:CGFloat = 20
-    let minimumTextLineHeight:CGFloat = 15
+
     var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
@@ -118,26 +115,8 @@ import EventKit
         calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
         calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
     }
-    
-    func attributedString(text: String, lineSpacing: CGFloat, minimumLineHeight: CGFloat)  -> NSMutableAttributedString {
-        let attrString = NSMutableAttributedString(string: text)
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = lineSpacing
-        style.minimumLineHeight = minimumLineHeight
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
-        return attrString
-    }
 
-    func positiveHeightAdjustment(text:String, width:CGFloat, lineSpacing: CGFloat, minimumLineHeight: CGFloat) -> CGFloat{
-        let label:UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
-        label.numberOfLines = 0
-        label.lineBreakMode = NSLineBreakMode.byWordWrapping
-        label.font = UIFont(name: "Helvetica", size: minimumLineHeight)
-        label.attributedText = attributedString(text: text, lineSpacing: lineSpacing, minimumLineHeight: minimumLineHeight)
-        label.sizeToFit()
-        
-        return label.frame.height
-    }
+
     
     @IBAction func addToCalendar(_ sender: Any) {
         let eventTitle = title.text!
@@ -212,7 +191,7 @@ import EventKit
         event.startDate = appointment.startTime
         event.endDate = appointment.endTime
         event.location = appointment.address
-        event.notes = "\(arrivalTime.text!) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
+        event.notes = "\(arrivalTime.text!) \n\(appointment.subTitle) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
                 
         do {
             try self.eventStore.save(event, span: .thisEvent, commit: true)
@@ -238,13 +217,5 @@ import EventKit
     
     private func instanceFromNib() -> UIView {
         return UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
 }
