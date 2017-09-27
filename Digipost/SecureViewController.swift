@@ -20,7 +20,9 @@ class SecureViewController : UIViewController {
     override func viewDidLoad() {
        super.viewDidLoad()
         if (AuthenticationManager.sharedInstance.needsAuthentication) {
-            // call authentication methods
+            if AuthenticationManager.sharedInstance.canUseAuthentication() {
+                AuthenticationManager.sharedInstance.evaluateAuthentication()
+            }
         }
     }
 }
