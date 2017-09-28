@@ -35,8 +35,6 @@
 		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
-		35D5A7031F42319A002626A8 /* SHCLoginViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */; };
-		35D5A7041F42319D002626A8 /* SHCLoginViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
 		835C74E518867603006C6F4F /* POSInvoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 835C74E418867603006C6F4F /* POSInvoice.m */; };
 		8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
@@ -96,8 +94,6 @@
 		9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
 		9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
-		9C709C0F1F7A810300B87DC0 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */; };
-		9C709C101F7A810300B87DC0 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */; };
 		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
 		9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C8B656B1DE6437100634166 /* APIClient+Banks.swift */; };
@@ -607,7 +603,6 @@
 		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SHCLoginViewController+Extension.swift"; sourceTree = "<group>"; };
 		37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
@@ -707,7 +702,6 @@
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
 		9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataMapper.swift; sourceTree = "<group>"; };
 		9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataObject.swift; sourceTree = "<group>"; };
-		9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureViewController.swift; sourceTree = "<group>"; };
 		9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUseWebViewController.swift; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
 		9C909A9E1EC5D65D00A59417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1233,7 +1227,6 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9C709C0D1F7A80F000B87DC0 /* Secure */,
 				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
 				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
@@ -1311,14 +1304,6 @@
 				9CA38B021F3C532D00AABD91 /* MetadataView.swift */,
 			);
 			name = Metadata;
-			sourceTree = "<group>";
-		};
-		9C709C0D1F7A80F000B87DC0 /* Secure */ = {
-			isa = PBXGroup;
-			children = (
-				9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */,
-			);
-			name = Secure;
 			sourceTree = "<group>";
 		};
 		9C962A161EE6D8B100436DB3 /* Metadata */ = {
@@ -1536,7 +1521,6 @@
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */,
-				35D5A7021F42319A002626A8 /* SHCLoginViewController+Extension.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -2172,7 +2156,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D5A7031F42319A002626A8 /* SHCLoginViewController+Extension.swift in Sources */,
 				9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
@@ -2258,7 +2241,6 @@
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				0B5F50621D9D51E200A8EC05 /* ReceiptCategoryViewController.swift in Sources */,
 				9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
-				9C709C0F1F7A810300B87DC0 /* SecureViewController.swift in Sources */,
 				ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
@@ -2416,7 +2398,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35D5A7041F42319D002626A8 /* SHCLoginViewController+Extension.swift in Sources */,
 				9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */,
@@ -2502,7 +2483,6 @@
 				F8AE1C341CD374B40009B2F9 /* FontPickerTableViewCell.swift in Sources */,
 				F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */,
 				9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
-				9C709C101F7A810300B87DC0 /* SecureViewController.swift in Sources */,
 				F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */,
 				F8AE1C371CD374B40009B2F9 /* APIClient+Recipients.swift in Sources */,
 				F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */,
