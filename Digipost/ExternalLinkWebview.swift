@@ -30,7 +30,7 @@ import WebKit
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
-        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "backButtonPressed")
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(ExternalLinkWebview.backButtonPressed))
         let myURL = URL(string: initUrl)
         
         viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
