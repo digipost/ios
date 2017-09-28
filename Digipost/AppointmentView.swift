@@ -167,7 +167,7 @@ import EventKit
         }
     }
     
-    static func requestPermissions() -> Bool{
+    @discardableResult static func requestPermissions() -> Bool{
         var permissionsGranted = false 
         EKEventStore().requestAccess(to: .event, completion: 
             {(granted: Bool, error: Error?) -> Void in
