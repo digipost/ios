@@ -96,8 +96,6 @@
 		9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
 		9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
-		9C709C0B1F7A808A00B87DC0 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0A1F7A808A00B87DC0 /* AuthenticationManager.swift */; };
-		9C709C0C1F7A808A00B87DC0 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0A1F7A808A00B87DC0 /* AuthenticationManager.swift */; };
 		9C709C0F1F7A810300B87DC0 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */; };
 		9C709C101F7A810300B87DC0 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */; };
 		9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */; };
@@ -709,7 +707,6 @@
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
 		9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataMapper.swift; sourceTree = "<group>"; };
 		9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataObject.swift; sourceTree = "<group>"; };
-		9C709C0A1F7A808A00B87DC0 /* AuthenticationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		9C709C0E1F7A810300B87DC0 /* SecureViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecureViewController.swift; sourceTree = "<group>"; };
 		9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUseWebViewController.swift; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
@@ -1495,7 +1492,6 @@
 				F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */,
 				9C8B656B1DE6437100634166 /* APIClient+Banks.swift */,
 				9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */,
-				9C709C0A1F7A808A00B87DC0 /* AuthenticationManager.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -2354,7 +2350,6 @@
 				EC8F4A371B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				0B5F50641D9D520400A8EC05 /* ReceiptCategoryTableViewDataSource.swift in Sources */,
-				9C709C0B1F7A808A00B87DC0 /* AuthenticationManager.swift in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				0B5F505E1D956BF000A8EC05 /* ReceiptTableViewCell.swift in Sources */,
@@ -2599,7 +2594,6 @@
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
 				F8AE1C841CD374B40009B2F9 /* MultiselectSegmentedControl.swift in Sources */,
 				F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */,
-				9C709C0C1F7A808A00B87DC0 /* AuthenticationManager.swift in Sources */,
 				F8AE1C861CD374B40009B2F9 /* AHKActionSheet+Convenience.m in Sources */,
 				F8AE1C871CD374B40009B2F9 /* UIView+AutoLayout.m in Sources */,
 				F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */,
