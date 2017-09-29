@@ -16,7 +16,7 @@
 
 import Foundation
 import CoreFoundation
-import AssetsLibrary
+import Photos
 import MobileCoreServices
 import UIKit
 
@@ -48,38 +48,26 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let mediaType = info[UIImagePickerControllerMediaType] as? NSString{
             if (CFStringCompare(mediaType , kUTTypeImage, .compareCaseInsensitive) == CFComparisonResult.compareEqualTo ){
-                _ = info[UIImagePickerControllerMediaMetadata] as! NSDictionary?
-                
                 var refURL = info[UIImagePickerControllerReferenceURL] as! URL?;
                 if refURL == nil {
                     refURL = info[UIImagePickerControllerMediaURL] as! URL?;
                 }
                 if let actualMediaURL = refURL as URL! {
-                    var fileName = "temp.jpg"
-                    let assetLibrary = ALAssetsLibrary()
-                    assetLibrary.asset(for: actualMediaURL , resultBlock: { asset in
-                        if let actualAsset = asset as ALAsset? {
-                            let assetRep: ALAssetRepresentation = actualAsset.defaultRepresentation()
-                            fileName = assetRep.filename()
-                            let iref = assetRep.fullResolutionImage().takeUnretainedValue()
-                            let image = UIImage(cgImage: iref)
-                            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
-                            let documentsDir = paths.firstObject as! NSString?
-                            if let documentsDirectory = documentsDir {
-                                let localFilePath = documentsDirectory.appendingPathComponent(fileName)
-                                let data = UIImageJPEGRepresentation(image, 1.0)
-                                _ = (try? data!.write(to: URL(fileURLWithPath: localFilePath), options: [.atomic])) != nil
-                                let localFileURL = URL(fileURLWithPath: localFilePath)
+                    if let asset = PHAsset.fetchAssets(withALAssetURLs: [actualMediaURL], options: nil).firstObject{
+                        let imageManager = PHImageManager.default()
+                        let imageSize = CGSize(width: asset.pixelWidth,height: asset.pixelHeight)
+                        
+                        imageManager.requestImage(for: asset, targetSize: imageSize, contentMode: .default, options: nil, resultHandler: {(image, imageInfo)->Void in
+                            var mutableInfo = imageInfo
+                            if let fileUrl = mutableInfo?.removeValue(forKey: "PHImageFileURLKey") as? URL {
                                 let appDelegate = UIApplication.shared.delegate as! SHCAppDelegate
                                 picker.presentingViewController?.dismiss(animated: true, completion: { () -> Void in
-                                    appDelegate.uploadImage(with: localFileURL)
+                                    appDelegate.uploadImage(with: fileUrl)
                                     UIApplication.shared.statusBarStyle = .lightContent
                                 })
                             }
-                        }
-                        }, failureBlock: { (error) -> Void in
-                            
-                    })
+                        })
+                    }
                 } else {
                     let image = info[UIImagePickerControllerOriginalImage] as! UIImage
                     let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
@@ -105,10 +93,12 @@ class UploadImageController: NSObject, UINavigationControllerDelegate, UIImagePi
                 var name = movieURL.path.components(separatedBy: "/").last as String!
                 name = name?.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
                 if let documentsDirectory = documentsDir {
+                    
                     let localFilePath = documentsDirectory.appendingPathComponent(Date().prettyStringWithMOVExtension())
                     let data = try! Data(contentsOf: movieURL)
                     _ = (try? data.write(to: URL(fileURLWithPath: localFilePath), options: [.atomic])) != nil
                     let localFileURL = URL(fileURLWithPath: localFilePath)
+                    
                     let appDelegate = UIApplication.shared.delegate as! SHCAppDelegate
                     picker.presentingViewController?.dismiss(animated: true, completion: { () -> Void in
                         appDelegate.uploadImage(with: localFileURL)
