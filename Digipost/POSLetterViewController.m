@@ -1054,7 +1054,7 @@ CGFloat extraMetadataConstraintHeight = 0;
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
-    self.webView.alpha = 0;
+    self.webView.hidden = true;
     [UIView animateWithDuration:0.3
                      animations:^{
                        self.errorLabel.alpha = 1.0;
