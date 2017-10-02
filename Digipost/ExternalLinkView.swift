@@ -45,7 +45,6 @@ import SafariServices
             }
             view.deadline.attributedText = attributedString(text: deadlineText, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         }
-        
         return view
     }
     
@@ -54,7 +53,7 @@ import SafariServices
     }
     
     @IBAction func externalLinkButton(_ sender: UIButton) {
-        parentViewController!.performSegue(withIdentifier: "showExternalLinkWebview", sender: url)
+        parentViewController?.openExternalLink(url)
     }
 
     private func instanceFromNib() -> UIView {
