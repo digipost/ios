@@ -1031,7 +1031,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         return YES;
     }
     // A list of file types that are tried and tested with UIWebView
-    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
+    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"docm", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
 
