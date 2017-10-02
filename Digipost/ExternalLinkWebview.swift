@@ -33,7 +33,7 @@ import WebKit
         screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(ExternalLinkWebview.backButtonPressed))
         let myURL = URL(string: initUrl)
         let urlTitle = myURL!.deletingPathExtension().scheme! + "://" + myURL!.deletingPathExtension().host!
-        viewTitle.text = urlTitle
+        viewSubtitle.text = urlTitle
         webView.delegate = self
         webView.scrollView.contentInset = UIEdgeInsets.zero;
         webView.loadRequest(URLRequest(url: myURL!))
@@ -43,8 +43,7 @@ import WebKit
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if let completeUrl = self.webView.stringByEvaluatingJavaScript(from: "document.title") {
             if !completeUrl.isEmpty { 
-                let baseUrl = URL(fileURLWithPath: completeUrl).baseURL?.absoluteString
-                viewTitle.text = baseUrl
+                viewTitle.text = completeUrl
             }
         }
     }
