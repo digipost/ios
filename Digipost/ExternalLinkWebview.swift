@@ -41,9 +41,7 @@ import WebKit
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        
         if let completeUrl = self.webView.stringByEvaluatingJavaScript(from: "document.title") {
-            print(completeUrl)
             if !completeUrl.isEmpty { 
                 let baseUrl = URL(fileURLWithPath: completeUrl).baseURL?.absoluteString
                 viewTitle.text = baseUrl
