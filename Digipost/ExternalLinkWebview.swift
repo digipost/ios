@@ -31,13 +31,24 @@ import WebKit
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
         screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(ExternalLinkWebview.backButtonPressed))
-        let myURL = URL(string: initUrl)
-        let urlTitle = myURL!.deletingPathExtension().scheme! + "://" + myURL!.deletingPathExtension().host!
-        viewSubtitle.text = urlTitle
-        webView.delegate = self
-        webView.scrollView.contentInset = UIEdgeInsets.zero;
-        webView.loadRequest(URLRequest(url: myURL!))
         
+        if urlIsValid() {
+            let myURL = URL(string: initUrl)
+            let urlTitle = myURL!.deletingPathExtension().scheme! + "://" + myURL!.deletingPathExtension().host!
+            viewSubtitle.text = urlTitle
+            webView.delegate = self
+            webView.scrollView.contentInset = UIEdgeInsets.zero;
+            webView.loadRequest(URLRequest(url: myURL!))
+        }else{
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    func urlIsValid() -> Bool{
+        if let url  = NSURL(string: initUrl) {
+            return UIApplication.shared.canOpenURL(url as URL)
+        }
+        return false;
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
