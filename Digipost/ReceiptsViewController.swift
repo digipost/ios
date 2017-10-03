@@ -406,11 +406,10 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         self.deleteBarButtonItem.isEnabled = false
         
         func failureToDeleteReceipt(_ apiError: APIError) {
-            let alert = UIAlertView()
-            alert.title = "Could not delete receipt"
-            alert.message = "Unfortunately, an error occurred when attempting to delete the receipt(s)."
-            alert.addButton(withTitle: "OK")
-            alert.show()
+            
+            let alert: UIAlertController = UIAlertController(title: "Could not delete receipt", message: "Unfortunately, an error occurred when attempting to delete the receipt(s).", preferredStyle: UIAlertControllerStyle.actionSheet)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         
         // update GUI, then perform deletes

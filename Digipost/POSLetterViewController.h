@@ -58,6 +58,7 @@ extern NSString *const kPushReceiptIdentifier;
 - (void)didTapDeleteDocumentBarButtonItem:(id) sender;
 - (void)didTapRenameDocumentBarButtonItem:(id) sender;
 - (void)didTapOpenDocumentInExternalAppBarButtonItem:(id) sender;
+- (void)openExternalLink:(NSString*) url;
 
 // reloads current open document without dimsissing popover on ipad portrait
 - (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment;

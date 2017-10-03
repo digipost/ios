@@ -107,19 +107,13 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.forgotPasswordButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON", @"Forgot password")
                                forState:UIControlStateNormal];
     
-    if ([OAuthToken isUserLoggedIn]) {
-        
+    if ([Guide shouldShowOnboardingGuide]) {
+        [self presentOnboarding];
+    }else{
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
             [self presentAppropriateViewControllerForIPhone];
         }
-        
         [Guide setOnboaringHasBeenWatched];
-        
-    } else {
-        
-        if ([Guide shouldShowOnboardingGuide]) {
-            [self presentOnboarding];
-        }
     }
 }
 

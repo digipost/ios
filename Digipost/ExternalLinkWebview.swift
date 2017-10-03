@@ -30,18 +30,22 @@ import WebKit
         super.viewDidLoad()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.setToolbarHidden(true, animated: true)
-        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: "backButtonPressed")
+        screenEdgeRecognizer = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(ExternalLinkWebview.backButtonPressed))
         let myURL = URL(string: initUrl)
-        
-        viewSubtitle.text = myURL!.deletingPathExtension().absoluteString
-
+        let urlTitle = myURL!.deletingPathExtension().scheme! + "://" + myURL!.deletingPathExtension().host!
+        viewSubtitle.text = urlTitle
         webView.delegate = self
         webView.scrollView.contentInset = UIEdgeInsets.zero;
         webView.loadRequest(URLRequest(url: myURL!))
+        
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        viewTitle.text = self.webView.stringByEvaluatingJavaScript(from: "document.title")
+        if let completeUrl = self.webView.stringByEvaluatingJavaScript(from: "document.title") {
+            if !completeUrl.isEmpty { 
+                viewTitle.text = completeUrl
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
