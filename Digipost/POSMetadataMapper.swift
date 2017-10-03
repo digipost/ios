@@ -21,7 +21,10 @@ import Foundation
     static func get(metadata : POSMetadata, creatorName: String) -> Any? {
         if metadata.type == POSMetadata.TYPE.APPOINTMENT {
             return parseAppointment(metadata: metadata, creatorName: creatorName)
+        }else if metadata.type == POSMetadata.TYPE.EXTERNAL_LINK {
+            return parseExternalLink(metadata: metadata)
         }
+        
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
@@ -32,59 +35,84 @@ import Foundation
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
     }
     
-    private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {
-        if metadata.json.count > 0 {
-            
-            let appointment = POSAppointment()
-            appointment.creatorName = creatorName
-            appointment.title = "Du har fått en innkalling fra \(creatorName)"
-            appointment.subTitle = metadata.json["subTitle"] as! String
-            
-            if let startTime = stringToDate(timeString: metadata.json["startTime"] as! String){
-                appointment.startTime = startTime
-            }
-            
-            if let endTime = stringToDate(timeString: metadata.json["endTime"] as! String){
-                appointment.endTime = endTime
-            }
-            
-            if let arrivalTimeDate = stringToDate(timeString: metadata.json["arrivalTime"] as! String) {
-                appointment.arrivalTimeDate = arrivalTimeDate
-            } else {
-                appointment.arrivalTime = metadata.json["arrivalTime"] as! String
-            }            
-            appointment.place = metadata.json["place"] as! String
-
-            if let location = metadata.json["address"] as? Dictionary<String, String> {
-                appointment.streetAddress = location["streetAddress"]!
-                appointment.postalCode = location["postalCode"]!
-                appointment.city = location["city"]!
-                appointment.address = "\(appointment.streetAddress) \n\(appointment.postalCode) \(appointment.city)"
-            }
-
-            if let infoList = metadata.json["info"] as? [[String: String]] {
-                if infoList.count > 0 {
-                    if let infoTitle = infoList[0]["title"], let infoText = infoList[0]["text"] {
-                        appointment.infoTitle1 = infoTitle
-                        appointment.infoText1 = infoText
-                    }
-                }
-                
-                if infoList.count > 1 {
-                    if let infoTitle = infoList[1]["title"], let infoText = infoList[1]["text"] {
-                        appointment.infoTitle2 = infoTitle
-                        appointment.infoText2 = infoText
-                    }
-                }
-            }
-            
-            return appointment
+    static func parseExternalLink(metadata: POSMetadata) -> POSExternalLink {
+        let externalLink = POSExternalLink() 
+        
+        if let desc = metadata.json["description"] as? String {
+            externalLink.text = desc
         }
-        return POSMetadataObject(type: POSMetadata.TYPE.NIL) as! POSAppointment
+        
+        if let buttonText = metadata.json["buttonText"] as? String {
+            externalLink.buttonText = buttonText
+        }else{
+            externalLink.buttonText = NSLocalizedString("metadata externalink default button", comment: "Gå videre")
+        }
+        
+        if let url = metadata.json["url"] as? String {
+            externalLink.url = url
+        }
+
+        if let urlIsActive = metadata.json["urlIsActive"] as? Bool {
+            externalLink.urlIsActive = urlIsActive
+        }
+        
+        if let deadline = stringToDate(timeString: metadata.json["deadline"] as! String){
+            externalLink.deadline = deadline
+            externalLink.deadlineText = deadline.dateOnly()
+        }
+        
+        return externalLink        
+    }
+    
+    private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {            
+        let appointment = POSAppointment()
+        appointment.creatorName = creatorName
+        appointment.title = "Du har fått en innkalling fra \(creatorName)"
+        appointment.subTitle = metadata.json["subTitle"] as! String
+        
+        if let startTime = stringToDate(timeString: metadata.json["startTime"] as! String){
+            appointment.startTime = startTime
+        }
+        
+        if let endTime = stringToDate(timeString: metadata.json["endTime"] as! String){
+            appointment.endTime = endTime
+        }
+        
+        if let arrivalTimeDate = stringToDate(timeString: metadata.json["arrivalTime"] as! String) {
+            appointment.arrivalTimeDate = arrivalTimeDate
+        } else {
+            appointment.arrivalTime = metadata.json["arrivalTime"] as! String
+        }            
+        appointment.place = metadata.json["place"] as! String
+        
+        if let location = metadata.json["address"] as? Dictionary<String, String> {
+            appointment.streetAddress = location["streetAddress"]!
+            appointment.postalCode = location["postalCode"]!
+            appointment.city = location["city"]!
+            appointment.address = "\(appointment.streetAddress) \n\(appointment.postalCode) \(appointment.city)"
+        }
+        
+        if let infoList = metadata.json["info"] as? [[String: String]] {
+            if infoList.count > 0 {
+                if let infoTitle = infoList[0]["title"], let infoText = infoList[0]["text"] {
+                    appointment.infoTitle1 = infoTitle
+                    appointment.infoText1 = infoText
+                }
+            }
+            
+            if infoList.count > 1 {
+                if let infoTitle = infoList[1]["title"], let infoText = infoList[1]["text"] {
+                    appointment.infoTitle2 = infoTitle
+                    appointment.infoText2 = infoText
+                }
+            }
+        }
+        
+        return appointment
     }
     
     static func stringToDate(timeString: String) -> Date?{
-
+        
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
         if let date = formatter.date(from: timeString) {
