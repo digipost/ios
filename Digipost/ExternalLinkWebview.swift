@@ -17,11 +17,12 @@
 import UIKit
 import WebKit
 
-@objc class ExternalLinkWebview: UIViewController, UIWebViewDelegate {
+@objc class ExternalLinkWebview: UIViewController, UIWebViewDelegate, UIToolbarDelegate{
     
     @IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var viewTitle: UILabel!
-    @IBOutlet weak var viewSubtitle: UILabel!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!    
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var initUrl: String = ""
@@ -34,13 +35,45 @@ import WebKit
         
         if urlIsValid() {
             let myURL = URL(string: initUrl)
-            let urlTitle = myURL!.deletingPathExtension().scheme! + "://" + myURL!.deletingPathExtension().host!
-            viewSubtitle.text = urlTitle
+            self.navBar.topItem?.title = formatTitle(url: myURL!)
             webView.delegate = self
             webView.scrollView.contentInset = UIEdgeInsets.zero;
             webView.loadRequest(URLRequest(url: myURL!))
         }else{
             navigationController?.popViewController(animated: true)
+        }
+        setupToolbar()
+    }
+    
+    func setupToolbar() {
+        self.navBar.barTintColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
+        self.navBar.tintColor = UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
+        self.navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)]
+        
+        var toolbarItems = [UIBarButtonItem]()
+        toolbarItems.append(
+            UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(ExternalLinkWebview.webviewBack)))
+        
+        let fixedSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 20.0
+        toolbarItems.append(fixedSpace)
+
+        toolbarItems.append(
+            UIBarButtonItem(image: UIImage(named: "forwardarrow"), style: .plain, target: self, action: #selector(ExternalLinkWebview.webviewForward)))
+        
+        self.toolbar.setItems(toolbarItems, animated: true)
+        toggleToolbarVisibility()
+    }
+    
+    func webviewBack(){
+        if self.webView.canGoBack {
+            self.webView.goBack()
+        }
+    }
+    
+    func webviewForward(){
+        if self.webView.canGoForward {
+            self.webView.goForward()
         }
     }
     
@@ -51,11 +84,28 @@ import WebKit
         return false;
     }
     
+    func formatTitle(url: URL) -> String {
+        return url.deletingPathExtension().scheme! + "://" + url.deletingPathExtension().host!
+    }
+    
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        if let completeUrl = self.webView.stringByEvaluatingJavaScript(from: "document.title") {
-            if !completeUrl.isEmpty { 
-                viewTitle.text = completeUrl
+        if let currentUrl = self.webView.request?.url?.absoluteString {
+            if !currentUrl.isEmpty {
+                self.navBar.topItem?.title = formatTitle(url: URL(string: currentUrl)!)
             }
+        }
+        toggleToolbarVisibility()
+    }
+    
+    func toggleToolbarVisibility() {
+        self.toolbar.isHidden = !(self.webView.canGoForward || self.webView.canGoBack)
+        self.toolbar.items?[0].isEnabled = self.webView.canGoBack
+        self.toolbar.items?[2].isEnabled = self.webView.canGoForward
+    }
+    
+    @IBAction func share(_ sender: Any) {
+        if let currentUrl = self.webView.request?.url?.absoluteString {
+            //TODO Share content/url with other apps 
         }
     }
     

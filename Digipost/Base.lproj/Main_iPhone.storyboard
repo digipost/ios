@@ -16,7 +16,7 @@
                 <navigationController toolbarHidden="NO" id="rS3-R9-Ivy" customClass="POSNoRotationNavigationController" sceneMemberID="viewController">
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="yXu-0R-QUA">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="yXu-0R-QUA">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -67,7 +67,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Z05-FO-2e6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Z05-FO-2e6">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -385,7 +385,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-1t-g98" userLabel="Sender Label">
-                                            <rect key="frame" x="31" y="45.333333333333336" width="275" height="18"/>
+                                            <rect key="frame" x="31" y="45.666666666666664" width="275" height="18"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -807,7 +807,7 @@
                     <navigationItem key="navigationItem" id="WWN-S0-ytr"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Uaa-Ss-oAC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Uaa-Ss-oAC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -929,7 +929,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="JBU-ne-Lr5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="JBU-ne-Lr5">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1782,67 +1782,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Kt-no-qJp" userLabel="Header">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="61"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rEm-t0-lFg" userLabel="title">
-                                        <rect key="frame" x="46" y="22" width="322" height="15.333333333333336"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PT1-I6-3DL" userLabel="subtitle">
-                                        <rect key="frame" x="205.66666666666666" y="38" width="3" height="14"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" red="0.2426404492634617" green="0.24504282994923854" blue="0.24504282994923854" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R6P-Ff-WCR">
-                                        <rect key="frame" x="0.0" y="27" width="37" height="22"/>
-                                        <state key="normal" image="back"/>
-                                        <connections>
-                                            <action selector="backButtonPressed:" destination="D1c-ii-iU5" eventType="touchUpInside" id="hBO-Jc-u52"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.92726230878218663" green="0.9364431237206241" blue="0.9364431237206241" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="leading" secondItem="9Kt-no-qJp" secondAttribute="leading" constant="46" id="1pn-DH-g35"/>
-                                    <constraint firstItem="R6P-Ff-WCR" firstAttribute="leading" secondItem="9Kt-no-qJp" secondAttribute="leading" id="7CR-iw-PlW"/>
-                                    <constraint firstItem="PT1-I6-3DL" firstAttribute="centerX" secondItem="9Kt-no-qJp" secondAttribute="centerX" id="FN1-d8-utr"/>
-                                    <constraint firstItem="PT1-I6-3DL" firstAttribute="top" secondItem="rEm-t0-lFg" secondAttribute="bottom" constant="0.6666666666666643" id="MTI-3i-A0s"/>
-                                    <constraint firstItem="R6P-Ff-WCR" firstAttribute="top" secondItem="9Kt-no-qJp" secondAttribute="top" constant="27" id="So8-iQ-Tpv"/>
-                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="top" secondItem="9Kt-no-qJp" secondAttribute="top" constant="22" id="aG1-vE-mnT"/>
-                                    <constraint firstAttribute="height" constant="61" id="aga-Va-ARm"/>
-                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="centerX" secondItem="9Kt-no-qJp" secondAttribute="centerX" id="hMM-Go-hHD"/>
-                                    <constraint firstItem="rEm-t0-lFg" firstAttribute="leading" secondItem="R6P-Ff-WCR" secondAttribute="trailing" constant="9" id="nxR-5r-ezc"/>
-                                </constraints>
-                            </view>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U8a-u2-JL2">
-                                <rect key="frame" x="0.0" y="60" width="414" height="676"/>
+                                <rect key="frame" x="0.0" y="65" width="414" height="671"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="iYx-np-xPk" appends="YES" id="n3I-jO-Iit"/>
                                 </connections>
                             </webView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Ec-vz-R3r">
+                                <rect key="frame" x="0.0" y="21" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.29867940989847719" green="0.29867940989847719" blue="0.29867940989847719" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" red="0.066108819796954266" green="0.066108819796954266" blue="0.066108819796954266" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title=" " id="7Ym-Ll-hgx">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="ADK-5W-r86">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="D1c-ii-iU5" id="Q4P-a1-Rzu"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="action" id="xtM-EG-cWX">
+                                            <connections>
+                                                <action selector="share:" destination="D1c-ii-iU5" id="ANQ-9X-Xv3"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar autoresizesSubviews="NO" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zjs-AX-cCy">
+                                <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="U8a-u2-JL2" secondAttribute="trailing" id="5Vk-Je-mxE"/>
-                            <constraint firstItem="U8a-u2-JL2" firstAttribute="leading" secondItem="EvH-ac-2xd" secondAttribute="leading" id="5mz-sB-PVJ"/>
-                            <constraint firstItem="JNZ-mE-fmo" firstAttribute="top" secondItem="U8a-u2-JL2" secondAttribute="bottom" id="6Z0-p8-u4L"/>
-                            <constraint firstAttribute="trailing" secondItem="9Kt-no-qJp" secondAttribute="trailing" id="AAL-YP-2RM"/>
-                            <constraint firstItem="9Kt-no-qJp" firstAttribute="top" secondItem="EvH-ac-2xd" secondAttribute="top" id="Vtb-PF-du6"/>
-                            <constraint firstItem="9Kt-no-qJp" firstAttribute="leading" secondItem="EvH-ac-2xd" secondAttribute="leading" id="apJ-Lc-fzS"/>
-                            <constraint firstItem="U8a-u2-JL2" firstAttribute="top" secondItem="Kl5-6m-Shv" secondAttribute="bottom" constant="40" id="ohc-4S-zBM"/>
+                            <constraint firstItem="JNZ-mE-fmo" firstAttribute="top" secondItem="U8a-u2-JL2" secondAttribute="bottom" id="2Ml-JN-buD"/>
+                            <constraint firstItem="U8a-u2-JL2" firstAttribute="leading" secondItem="EvH-ac-2xd" secondAttribute="leading" id="4qZ-dg-qFn"/>
+                            <constraint firstItem="U8a-u2-JL2" firstAttribute="top" secondItem="Kl5-6m-Shv" secondAttribute="bottom" constant="45" id="4se-SD-HfD"/>
+                            <constraint firstAttribute="trailing" secondItem="U8a-u2-JL2" secondAttribute="trailing" id="YrD-ii-iFK"/>
                         </constraints>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="viewSubtitle" destination="PT1-I6-3DL" id="P7a-7n-Tr1"/>
-                        <outlet property="viewTitle" destination="rEm-t0-lFg" id="qQf-hK-46R"/>
+                        <outlet property="navBar" destination="5Ec-vz-R3r" id="YLF-gd-fQ4"/>
+                        <outlet property="shareButton" destination="xtM-EG-cWX" id="tGG-e4-T25"/>
+                        <outlet property="toolbar" destination="zjs-AX-cCy" id="S7v-pg-6Px"/>
                         <outlet property="webView" destination="U8a-u2-JL2" id="ozq-j2-fG5"/>
                     </connections>
                 </viewController>
@@ -1860,7 +1849,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="3ZL-ZQ-Z4P">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="3ZL-ZQ-Z4P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1885,7 +1874,6 @@
         <image name="PostenLogo_hvitskygge_iPhone" width="168" height="73"/>
         <image name="Searchbackground" width="6" height="31"/>
         <image name="Toolbar_Info" width="22" height="22"/>
-        <image name="back" width="13" height="21"/>
         <image name="invoice-list-icon-unpaid" width="14" height="15"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>
         <image name="list-icon-arrow-white" width="8" height="13"/>
