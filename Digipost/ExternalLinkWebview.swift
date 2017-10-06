@@ -104,9 +104,7 @@ import WebKit
     }
     
     @IBAction func share(_ sender: Any) {
-        if let currentUrl = self.webView.request?.url?.absoluteString {
-            //TODO Share content/url with other apps 
-        }
+        UIApplication.shared.openURL(URL(string:initUrl)!) // open initurl in external browser
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
