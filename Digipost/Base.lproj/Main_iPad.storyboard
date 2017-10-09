@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="H1p-Uh-vWS">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,7 +15,7 @@
             <objects>
                 <navigationController storyboardIdentifier="LoginNavigationController" definesPresentationContext="YES" id="yzu-Np-c5M" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Scb-lQ-TPi">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Scb-lQ-TPi">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -65,7 +65,7 @@
             <objects>
                 <navigationController id="vC3-pB-5Vb" sceneMemberID="viewController">
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translucent="NO" id="DjV-YW-jjY">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="DjV-YW-jjY">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -99,59 +99,51 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bne-Fp-GjZ">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="73"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIm-JQ-2t3">
-                                        <rect key="frame" x="365.5" y="26" width="37" height="17.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAO-ou-Jub">
-                                        <rect key="frame" x="368" y="45.5" width="32" height="15.5"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                        <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jvd-Xo-G9G">
-                                        <rect key="frame" x="0.0" y="27" width="54" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" image="back"/>
-                                        <connections>
-                                            <action selector="backButtonPressed:" destination="Rql-hZ-HXF" eventType="touchUpInside" id="mht-7n-vaq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.92726230880000005" green="0.93644312370000005" blue="0.93644312370000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="XAO-ou-Jub" firstAttribute="centerX" secondItem="bne-Fp-GjZ" secondAttribute="centerX" id="4O5-Be-j0Z"/>
-                                    <constraint firstItem="XAO-ou-Jub" firstAttribute="top" secondItem="HIm-JQ-2t3" secondAttribute="bottom" constant="2" id="E9t-2d-Vdy"/>
-                                    <constraint firstItem="HIm-JQ-2t3" firstAttribute="top" secondItem="bne-Fp-GjZ" secondAttribute="top" constant="26" id="ahg-9G-Nca"/>
-                                    <constraint firstAttribute="height" constant="73" id="bpq-oO-gUJ"/>
-                                    <constraint firstItem="HIm-JQ-2t3" firstAttribute="centerX" secondItem="bne-Fp-GjZ" secondAttribute="centerX" id="r0t-4C-YFE"/>
-                                </constraints>
-                            </view>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHd-hY-6Lw" userLabel="NavBar">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                                <color key="backgroundColor" red="0.95594067258883253" green="0.95594067258883253" blue="0.95594067258883253" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem title="Title" id="05U-dx-JVn">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="pb6-sa-UoK">
+                                            <connections>
+                                                <action selector="backButtonPressed:" destination="Rql-hZ-HXF" id="v5v-eQ-d2m"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="UQO-JK-kBV">
+                                            <connections>
+                                                <action selector="share:" destination="Rql-hZ-HXF" id="p1X-r7-Faf"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MIA-xx-Bx4">
-                                <rect key="frame" x="0.0" y="68" width="768" height="892"/>
+                                <rect key="frame" x="0.0" y="44" width="768" height="916"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GKZ-KZ-ztF">
+                                <rect key="frame" x="0.0" y="916" width="768" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items/>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bne-Fp-GjZ" firstAttribute="top" secondItem="e7W-g1-jX1" secondAttribute="top" id="CYc-Ui-yHr"/>
+                            <constraint firstItem="vHd-hY-6Lw" firstAttribute="top" secondItem="ow7-M9-mLZ" secondAttribute="bottom" id="3Hl-IG-Ccw"/>
+                            <constraint firstItem="vHd-hY-6Lw" firstAttribute="leading" secondItem="e7W-g1-jX1" secondAttribute="leadingMargin" constant="-20" id="BU5-xl-GpX"/>
                             <constraint firstAttribute="trailing" secondItem="MIA-xx-Bx4" secondAttribute="trailing" id="KM1-NA-NHr"/>
-                            <constraint firstItem="bne-Fp-GjZ" firstAttribute="leading" secondItem="e7W-g1-jX1" secondAttribute="leading" id="RTo-KQ-951"/>
+                            <constraint firstAttribute="trailing" secondItem="vHd-hY-6Lw" secondAttribute="trailing" id="O7H-Sz-EmZ"/>
                             <constraint firstAttribute="bottom" secondItem="MIA-xx-Bx4" secondAttribute="bottom" id="VR7-re-Eqx"/>
-                            <constraint firstAttribute="trailing" secondItem="bne-Fp-GjZ" secondAttribute="trailing" id="Wxv-9Z-Van"/>
-                            <constraint firstItem="MIA-xx-Bx4" firstAttribute="top" secondItem="bne-Fp-GjZ" secondAttribute="bottom" constant="-5" id="lx8-el-cxZ"/>
+                            <constraint firstItem="MIA-xx-Bx4" firstAttribute="top" secondItem="ow7-M9-mLZ" secondAttribute="bottom" constant="44" id="rj9-PF-TLo"/>
                             <constraint firstItem="MIA-xx-Bx4" firstAttribute="leading" secondItem="e7W-g1-jX1" secondAttribute="leading" id="rli-v5-ZaT"/>
+                            <constraint firstItem="vHd-hY-6Lw" firstAttribute="leading" secondItem="e7W-g1-jX1" secondAttribute="leading" id="vgH-0b-IkU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EGo-be-s2l"/>
                     <connections>
-                        <outlet property="viewSubtitle" destination="XAO-ou-Jub" id="eNV-Em-hdX"/>
-                        <outlet property="viewTitle" destination="HIm-JQ-2t3" id="jZO-zi-Suq"/>
+                        <outlet property="navBar" destination="vHd-hY-6Lw" id="jJ2-8E-kek"/>
+                        <outlet property="shareButton" destination="UQO-JK-kBV" id="xjW-UY-n2a"/>
+                        <outlet property="toolbar" destination="GKZ-KZ-ztF" id="TVf-yL-XPT"/>
                         <outlet property="webView" destination="MIA-xx-Bx4" id="m5U-iN-vvw"/>
                     </connections>
                 </viewController>
@@ -1542,7 +1534,7 @@
             <objects>
                 <navigationController id="OdY-44-cdI" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Upo-UA-iRO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="s3L-N0-7eL">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="s3L-N0-7eL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1839,7 +1831,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dlF-6U-ivY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dz8-9m-wOS">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Dz8-9m-wOS">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1858,7 +1850,6 @@
         <image name="Lastopp_norsk_vertikal" width="320" height="327"/>
         <image name="PostenLogo_hvitskygge_iPhone" width="168" height="73"/>
         <image name="Searchbackground" width="6" height="31"/>
-        <image name="back" width="13" height="21"/>
         <image name="empty-letterview" width="154" height="188"/>
         <image name="invoice-list-icon-unpaid" width="14" height="15"/>
         <image name="list-icon-arrow-gray" width="8" height="13"/>

@@ -229,6 +229,35 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 }
 
+-(void)openExternalLink:(NSString*) url {
+    NSURL *urlObject = [NSURL URLWithString:url];
+    
+    if([urlObject.scheme isEqual: @"https"]) {
+        [self performSegueWithIdentifier:@"showExternalLinkWebview" sender:url];
+    } else{
+        UIAlertController * alert = [UIAlertController
+                                     alertControllerWithTitle:[urlObject host]
+                                     message:nil
+                                     preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        UIAlertAction* open = [UIAlertAction
+                               actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action)
+                               {
+                                   [[UIApplication sharedApplication] openURL:urlObject];
+                               }];
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:^(UIAlertAction * action){}];
+        [alert addAction:open];
+        [alert addAction:cancel];
+        UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
+        popPresenter.sourceView = self.view;
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -378,32 +407,10 @@ CGFloat extraMetadataConstraintHeight = 0;
     } else if ([request.URL isFileURL]) {
         return YES;
     } else {
-
-        UIAlertController * alert = [UIAlertController
-                                    alertControllerWithTitle:[request.URL host]
-                                    message:nil
-                                    preferredStyle:UIAlertControllerStyleActionSheet];
-
-        UIAlertAction* open = [UIAlertAction
-                               actionWithTitle:NSLocalizedString(@"GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", @"Open in Safari")
-                               style:UIAlertActionStyleDefault
-                               handler:^(UIAlertAction * action)
-                               {
-                                   [[UIApplication sharedApplication] openURL:request.URL];
-                               }];
-        UIAlertAction* cancel = [UIAlertAction actionWithTitle: NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel")
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:^(UIAlertAction * action)
-                                 {
-
-                                 }];
-        [alert addAction:open];
-        [alert addAction:cancel];
-        UIPopoverPresentationController *popPresenter = [alert popoverPresentationController];
-        popPresenter.sourceView = self.view;
-        [self presentViewController:alert animated:YES completion:nil];
+        [self openExternalLink: request.URL.absoluteString];
         return NO;
     }
+    return NO;
 }
 
 #pragma mark - UIGestureRecognizerDelegate
@@ -1031,7 +1038,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         return YES;
     }
     // A list of file types that are tried and tested with UIWebView
-    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
+    NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"docm", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
 }
 
@@ -1054,7 +1061,7 @@ CGFloat extraMetadataConstraintHeight = 0;
 - (void)showInvalidFileTypeView
 {
     self.errorLabel.text = NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVALID_FILE_TYPE_MESSAGE", @"Invalid file type message");
-    self.webView.alpha = 0;
+    self.webView.hidden = true;
     [UIView animateWithDuration:0.3
                      animations:^{
                        self.errorLabel.alpha = 1.0;
