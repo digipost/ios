@@ -375,7 +375,7 @@
                                 <rect key="frame" x="0.0" y="22" width="414" height="92"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CMb-9s-72X" id="vgs-qF-9a9">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="91.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tKe-Yp-E2z" userLabel="Subject Label">
@@ -465,7 +465,7 @@
                                 <rect key="frame" x="0.0" y="114" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YDW-wv-gbR" id="06X-84-dVL">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.666666666666671"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="79.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l9d-qQ-wuW">
@@ -622,7 +622,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bSI-FS-2e3" id="Rlf-b1-C1a">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CkF-r4-1aw" userLabel="Amount Label">
@@ -732,7 +732,7 @@
                                 <color key="backgroundColor" red="0.25098039220000001" green="0.25882352939999997" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="uploadMenuCell" id="RhB-2f-lAB" customClass="UploadMenuTableViewCell" customModule="Digipost" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="55.333333333333336" width="386" height="44"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="386" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RhB-2f-lAB" id="MJx-QG-yFc">
                                             <rect key="frame" x="0.0" y="0.0" width="386" height="44"/>
@@ -1115,7 +1115,7 @@
                                 <rect key="frame" x="0.0" y="22" width="414" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wLg-5u-N4W" id="y2z-Ob-1Ei">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.666666666666664"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="49.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUBJECT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVS-VF-bHU" userLabel="Subject Label">
@@ -1252,7 +1252,7 @@
                                                         <rect key="frame" x="0.0" y="55.333333333333336" width="334" height="48"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qq6-Sc-2De" id="6Nu-gv-TLE">
-                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="47.666666666666664"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="334" height="47.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <userGuides>
                                                                 <userLayoutGuide location="22" affinity="minY"/>
@@ -1653,7 +1653,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jkq-Wq-S7m" id="8v5-cM-tTQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="91.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="AMOUNT" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fgx-XM-Ahz" userLabel="Amount Label">
