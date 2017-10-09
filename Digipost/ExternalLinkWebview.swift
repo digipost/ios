@@ -115,8 +115,18 @@ import WebKit
         openUrlInExternalBrowser(url: initUrl)
     }
     
-    func openUrlInExternalBrowser(url: String) {
-        UIApplication.shared.openURL(URL(string:url)!) // open initurl in external browser
+    func openUrlInExternalBrowser(url: String) {        
+        let alertController = UIAlertController(title: url, message: nil, preferredStyle: .alert)
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_OPEN_IN_SAFARI_BUTTON_TITLE", comment: "Open in Safari"), style: .default) { (action) in
+            UIApplication.shared.openURL(URL(string:url)!)
+        })
+        
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE", comment: "Cancel"), style: .cancel) { (action) in
+            alertController.dismiss(animated: true, completion: {})
+        })
+
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
