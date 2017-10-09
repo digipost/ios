@@ -97,6 +97,14 @@ import WebKit
         toggleToolbarVisibility()
     }
     
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if request.url?.scheme == "http" {
+            openUrlInExternalBrowser(url: (request.url?.absoluteString)!)
+            return false
+        }
+        return true
+    }
+    
     func toggleToolbarVisibility() {
         self.toolbar.isHidden = !(self.webView.canGoForward || self.webView.canGoBack)
         self.toolbar.items?[0].isEnabled = self.webView.canGoBack
@@ -104,7 +112,11 @@ import WebKit
     }
     
     @IBAction func share(_ sender: Any) {
-        UIApplication.shared.openURL(URL(string:initUrl)!) // open initurl in external browser
+        openUrlInExternalBrowser(url: initUrl)
+    }
+    
+    func openUrlInExternalBrowser(url: String) {
+        UIApplication.shared.openURL(URL(string:url)!) // open initurl in external browser
     }
     
     @IBAction func backButtonPressed(_ sender: Any) {
