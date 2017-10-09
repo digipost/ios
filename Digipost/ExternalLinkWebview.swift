@@ -55,7 +55,7 @@ import WebKit
             UIBarButtonItem(image: UIImage(named: "back"), style: .plain, target: self, action: #selector(ExternalLinkWebview.webviewBack)))
         
         let fixedSpace: UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        fixedSpace.width = 20.0
+        fixedSpace.width = 30.0
         toolbarItems.append(fixedSpace)
 
         toolbarItems.append(
