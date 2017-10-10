@@ -720,6 +720,7 @@
 		9CDE3AAF1E7837C200B9C27B /* ActiveType1BankAgreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType1BankAgreements.json; sourceTree = "<group>"; };
 		9CDE3AB11E7837CD00B9C27B /* ActiveType2BankAgreements.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ActiveType2BankAgreements.json; sourceTree = "<group>"; };
 		9CDF873F1E68180F003E73FB /* AppVersionManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManagerTests.swift; sourceTree = "<group>"; };
+		9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.15.xcdatamodel"; sourceTree = "<group>"; };
 		9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -3150,6 +3151,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */,
 				EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */,
 				316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */,
 				ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */,
@@ -3165,7 +3167,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */;
+			currentVersion = 9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
