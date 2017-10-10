@@ -111,7 +111,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         [self presentOnboarding];
     }else{
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            [self presentAppropriateViewControllerForIPhone];
+            if([OAuthToken isUserLoggedIn] == YES ){
+                [self presentAppropriateViewControllerForIPhone];
+            }
         }
         [Guide setOnboaringHasBeenWatched];
     }
