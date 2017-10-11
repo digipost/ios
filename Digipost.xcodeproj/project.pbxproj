@@ -111,6 +111,8 @@
 		9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
 		9CA38B031F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
 		9CA38B041F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
+		9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */; };
+		9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -713,6 +715,7 @@
 		9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalLinkView.xib; sourceTree = "<group>"; };
 		9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSExternalLink.swift; sourceTree = "<group>"; };
 		9CA38B021F3C532D00AABD91 /* MetadataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataView.swift; sourceTree = "<group>"; };
+		9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAEvents.swift; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -1463,6 +1466,7 @@
 		EC1A6C2F18BBA32100269428 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */,
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
 				ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */,
@@ -2288,6 +2292,7 @@
 				F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
+				9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */,
 				EC8B94641B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
@@ -2530,6 +2535,7 @@
 				F8AE1C5C1CD374B40009B2F9 /* OAuthToken.swift in Sources */,
 				F8AE1C5D1CD374B40009B2F9 /* AccountTableViewCell.swift in Sources */,
 				F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */,
+				9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */,
 				F8AE1C5F1CD374B40009B2F9 /* POSInvoice+Methods.swift in Sources */,
 				F8AE1C601CD374B40009B2F9 /* UITextView+Composer.swift in Sources */,
 				F8AE1C611CD374B40009B2F9 /* POSFolderTableViewCell.m in Sources */,
