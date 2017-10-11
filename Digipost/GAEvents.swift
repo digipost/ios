@@ -17,7 +17,7 @@
 import Foundation
 import Google.Analytics
 
-class GoogleAnalytics {
+@objc class GAEvents: NSObject{
     
     class func tracker() -> GAITracker {
         return GAI.sharedInstance().defaultTracker
