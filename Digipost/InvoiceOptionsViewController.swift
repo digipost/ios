@@ -58,7 +58,8 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
             if let viewController = segue.destination as? InvoiceBankViewController {
                 viewController.invoiceBank = banks[(sender as! IndexPath).row]
                 viewController.title = self.title
-                InvoiceAnalytics.sendInvoiceOpenBankViewFromListEvent(banks[(sender as! IndexPath).row].name)
+                let bankName = banks[(sender as! IndexPath).row].name
+                GAEvents.event(category: "faktura-avtale-oppsett-kontekst-basert", action: "klikk-bank-i-liste", label: bankName, value: nil)
             }
         }
     }

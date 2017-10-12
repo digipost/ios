@@ -88,8 +88,6 @@
 		9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
 		9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */; };
-		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
-		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
@@ -698,7 +696,6 @@
 		9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C3EEC661E533C0D0052E7B1 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostModelTests.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_DigipostModelTests.framework"; sourceTree = "<group>"; };
 		9C3EFF711DF6C06700C6A162 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
-		9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAnalytics.swift; sourceTree = "<group>"; };
 		9C44506A1DF1748D00638385 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		9C44506D1DF1780700638385 /* DigipostQA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigipostQA.entitlements; sourceTree = SOURCE_ROOT; };
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
@@ -1814,7 +1811,6 @@
 				F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */,
 				F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */,
 				9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */,
-				9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */,
 			);
 			name = Invoice;
 			sourceTree = "<group>";
@@ -2245,7 +2241,6 @@
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				0B5F50621D9D51E200A8EC05 /* ReceiptCategoryViewController.swift in Sources */,
-				9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
 				ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
@@ -2488,7 +2483,6 @@
 				F8AE1C331CD374B40009B2F9 /* AddComposerModuleButton.swift in Sources */,
 				F8AE1C341CD374B40009B2F9 /* FontPickerTableViewCell.swift in Sources */,
 				F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */,
-				9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
 				F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */,
 				F8AE1C371CD374B40009B2F9 /* APIClient+Recipients.swift in Sources */,
 				F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */,
