@@ -28,6 +28,7 @@ PODS:
     - GoogleNetworkingUtilities (~> 1.0)
     - GoogleSymbolUtilities (~> 1.0)
     - GoogleUtilities (~> 1.1)
+  - GoogleAnalytics (3.17.0)
   - GoogleCloudMessaging (1.2.0):
     - GoogleInterchangeUtilities (~> 1.0)
     - GoogleIPhoneUtilities (~> 1.0)
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Cartography (~> 1.0.1)
   - Google/CloudMessaging
+  - GoogleAnalytics (~> 3.17)
   - LUKeychainAccess (~> 2.0.2)
   - MRProgress (~> 0.7.0)
   - RNCryptor-objc (~> 3.0.4)
@@ -112,6 +114,7 @@ SPEC CHECKSUMS:
   Cartography: c1460e99395b824d9d75360b0382faeb0b33dcd7
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d536877ec602555b755cc28ce6fed104825c693c
+  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleCloudMessaging: f37ea14dd0f41d4d889c10b5559dd35bbfd9ac26
   GoogleInterchangeUtilities: d5bc4d88d5b661ab72f9d70c58d02ca8c27ad1f7
   GoogleIPhoneUtilities: 63f25e93a3ddcb66884d182aab3a660d98f1479b
@@ -124,6 +127,6 @@ SPEC CHECKSUMS:
   SingleLineKeyboardResize: 9823c7bd4f7542e9829bab0a4714285d3394df85
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: a09acb88a04bfb1685923c21367f1441f7bae844
+PODFILE CHECKSUM: fe31b4aec8eff0147049a82c23bbc574033aeb36
 
 COCOAPODS: 1.2.0
