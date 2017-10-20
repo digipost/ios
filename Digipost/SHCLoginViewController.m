@@ -295,11 +295,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 }
 
 -(void) sendAnalyticsEvent: (NSString*) event {
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:@"innlogging"
-                                                          action:@"klikk-link"
-                                                           label:event
-                                                           value:nil] build]];
+    [GAEvents eventWithCategory:@"innlogging" action:@"klikk-link" label:event value:nil];
 }
 
 #pragma mark - Private methods

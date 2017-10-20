@@ -218,11 +218,7 @@
 - (void)submitAppLaunchGAEvent: (NSString *)action {
     NSString *category = @"app-launch-origin";
     NSString *label = [NSString stringWithFormat:@"%@-%@", category, action];
-    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker send:[[GAIDictionaryBuilder createEventWithCategory:category
-                                                          action:action
-                                                           label:label
-                                                           value:nil] build]];
+    [GAEvents eventWithCategory:category action:action label:label value:nil];
 }
 
 
