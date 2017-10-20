@@ -157,15 +157,19 @@
 }
 
 - (void)GAEventLaunchType {
-
-    NSTimeInterval elapsedTimeSinceLastNotification = [[NSDate date] timeIntervalSinceDate:_notificationReceived];
+    NSString *action = @"";
     
+    NSTimeInterval elapsedTimeSinceLastNotification = [[NSDate date] timeIntervalSinceDate:_notificationReceived];
     if(elapsedTimeSinceLastNotification > 0 && elapsedTimeSinceLastNotification < 900.0f){
         _notificationReceived = NULL;
-        [self submitAppLaunchGAEvent: @"push"];
+        action = @"push";
     }else{
-        [self submitAppLaunchGAEvent: @"normal"];
+        action = @"normal";
     }
+    
+    NSString *category = @"app-launch-origin";
+    NSString *label = [NSString stringWithFormat:@"%@-%@", category, action];
+    [GAEvents eventWithCategory:category action:action label:label value:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -214,13 +218,6 @@
     _notificationReceived = [NSDate date];
     completionHandler(UIBackgroundFetchResultNewData);
 }
-
-- (void)submitAppLaunchGAEvent: (NSString *)action {
-    NSString *category = @"app-launch-origin";
-    NSString *label = [NSString stringWithFormat:@"%@-%@", category, action];
-    [GAEvents eventWithCategory:category action:action label:label value:nil];
-}
-
 
 - (void)startUploading:(NSNotification *)notification {
     NSDictionary *dict = notification.userInfo;
