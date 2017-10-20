@@ -14,13 +14,26 @@
 // limitations under the License.
 //
 
-import Foundation
+import UserNotifications
 
 @objc class PushEvents: NSObject {
     
     class func reportStatusOfActivationState() {
-        //GAEvents.event(category: "push activation", action: "status", label: "activated", value: nil)
-        //GAEvents.event(category: "push activation", action: "status", label: "deactivated", value: nil)
-        //GAEvents.event(category: "push activation", action: "status", label: "reactivated", value: nil)
+        var label = "unknown"
+        
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+                if settings.authorizationStatus.rawValue == UNAuthorizationStatus.authorized.rawValue {
+                    label = "authorized"
+                }else if settings.authorizationStatus.rawValue == UNAuthorizationStatus.denied.rawValue {
+                    label = "denied"
+                }else if settings.authorizationStatus.rawValue == UNAuthorizationStatus.notDetermined.rawValue {
+                    label = "notDetermined"
+                }
+            }
+        } else {
+            // Fallback on earlier versions
+        }
+        GAEvents.event(category: "push activation", action: "status", label: label, value: nil)
     }
 }
