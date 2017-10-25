@@ -1305,7 +1305,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                                  actionWithTitle:NSLocalizedString(@"invoice setup alert action button", @"")
                                  style:UIAlertActionStyleDefault
                                  handler:^(UIAlertAction * action) {
-                                     [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Velg bank"];
+                                     [GAEvents eventWithCategory:@"faktura-avtale-oppsett-kontekst-basert" action:@"klikk-start-oppsett" label:@"Velg bank" value:nil];
                                      [self didTapChooseBankButton];
                                  }];
 
@@ -1313,14 +1313,14 @@ CGFloat extraMetadataConstraintHeight = 0;
                             actionWithTitle:NSLocalizedString(@"invoice setup alert later button", @"")
                             style:UIAlertActionStyleDefault
                             handler:^(UIAlertAction * action) {
-                                [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Senere"];
+                                [GAEvents eventWithCategory:@"faktura-avtale-oppsett-kontekst-basert" action:@"klikk-start-oppsett" label:@"Senere" value:nil];
                             }];
 
     UIAlertAction* forget = [UIAlertAction
                              actionWithTitle:NSLocalizedString(@"invoice setup alert forget button", @"")
                              style:UIAlertActionStyleDefault
                              handler:^(UIAlertAction * action) {
-                                 [InvoiceAnalytics sendInvoiceCLickedChooseBankDialog: @"Ikke vis meg igjen"];
+                                 [GAEvents eventWithCategory:@"faktura-avtale-oppsett-kontekst-basert" action:@"klikk-start-oppsett" label:@"Ikke vis meg igjen" value:nil];
                                  [InvoiceAlertUserDefaults dontShowInvoiceNotifications];
                              }];
 

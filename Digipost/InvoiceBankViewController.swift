@@ -62,16 +62,16 @@ class InvoiceBankViewController: UIViewController{
     }
     
     @IBAction func openBankUrl(_ sender: AnyObject) {
-        InvoiceAnalytics.sendInvoiceClickedSetup20Link(invoiceBank.name)
+        GAEvents.event(category: "faktura-avtale-oppsett-kontekst-basert", action: "klikk-oppsett-avtale-type-2-link", label: invoiceBank.name, value: nil)
         UIApplication.shared.openURL(URL(string:invoiceBank.registrationUrl)!) //Opens external bank website, should be opened in external browser
     }
     
     @IBAction func invoiceBankReadMore(_ sender: AnyObject) {
         if(invoiceBank.activeType2Agreement){
-            InvoiceAnalytics.sendInvoiceClickedDigipostOpenPagesLink(invoiceBank.name)
+            GAEvents.event(category: "faktura-avtale-oppsett-kontekst-basert", action: "klikk-digipost-faktura-åpne-sider", label: invoiceBank.name, value: nil)
             openExternalUrl(url: "https://digipost.no/faktura")
         }else{
-            InvoiceAnalytics.sendInvoiceClickedSetup10Link(invoiceBank.name)
+            GAEvents.event(category: "faktura-avtale-oppsett-kontekst-basert", action: "klikk-oppsett-avtale-type-1-link", label: invoiceBank.name, value: nil)
             openExternalUrl(url: "https://digipost.no/app/post#/faktura")
         }
     }
