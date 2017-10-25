@@ -24,8 +24,10 @@ import Google.Analytics
     }
     
     class func event(category: String, action: String, label:String, value: NSNumber?) {
-        if let event = GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: value).build() as? [AnyHashable : Any] {
+        #if !DEBUG
+            if let event = GAIDictionaryBuilder.createEvent(withCategory: category, action: action, label: label, value: value).build() as? [AnyHashable : Any] {
             tracker().send(event)
         }
+        #endif
     }
 }
