@@ -18,8 +18,12 @@ import UserNotifications
 
 @objc class PushEvents: NSObject {
     
-    class func reportStatusOfActivationState() {
-        var label = "unknown"
+    class func sendActivationStateEvent(label: String) {
+        GAEvents.event(category: "push", action: "status", label: label, value: nil)
+    }
+    
+    class func reportActivationState() {
+        var label = "undetermined"
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getNotificationSettings { (settings) in
@@ -27,13 +31,20 @@ import UserNotifications
                     label = "authorized"
                 }else if settings.authorizationStatus.rawValue == UNAuthorizationStatus.denied.rawValue {
                     label = "denied"
-                }else if settings.authorizationStatus.rawValue == UNAuthorizationStatus.notDetermined.rawValue {
-                    label = "notDetermined"
                 }
+                sendActivationStateEvent(label: label)
             }
         } else {
-            // Fallback on earlier versions
+            if let settings = UIApplication.shared.currentUserNotificationSettings {
+                if UIApplication.shared.isRegisteredForRemoteNotifications {
+                    if settings.types.rawValue != 0{
+                        label = "authorized"
+                    }else {
+                        label = "denied"
+                    }
+                }
+            }
+            sendActivationStateEvent(label: label)
         }
-        GAEvents.event(category: "push activation", action: "status", label: label, value: nil)
     }
 }
