@@ -16,7 +16,7 @@
 
 import UserNotifications
 
-@objc class PushEvents: NSObject {
+@objc class UserNotificationsUsage: NSObject {
     
     class func reportActivationState() {
         let activationState = getActivationState()
