@@ -18,11 +18,13 @@ import UserNotifications
 
 @objc class PushEvents: NSObject {
     
-    class func sendActivationStateEvent(label: String) {
-        GAEvents.event(category: "push", action: "status", label: label, value: nil)
+    class func reportActivationState() {
+        let activationState = getActivationState()
+        GAEvents.event(category: "push", action: "status", label: activationState, value: nil)
     }
     
-    class func reportActivationState() {
+    class func getActivationState() -> String {
+        let semaphore = DispatchSemaphore(value: 0)
         var label = "undetermined"
         
         if #available(iOS 10.0, *) {
@@ -32,7 +34,7 @@ import UserNotifications
                 }else if settings.authorizationStatus.rawValue == UNAuthorizationStatus.denied.rawValue {
                     label = "denied"
                 }
-                sendActivationStateEvent(label: label)
+                semaphore.signal()
             }
         } else {
             if let settings = UIApplication.shared.currentUserNotificationSettings {
@@ -43,8 +45,11 @@ import UserNotifications
                         label = "denied"
                     }
                 }
+                semaphore.signal()
             }
-            sendActivationStateEvent(label: label)
         }
+        
+        semaphore.wait()
+        return label
     }
 }
