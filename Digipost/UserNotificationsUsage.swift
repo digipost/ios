@@ -24,8 +24,8 @@ import UserNotifications
     }
     
     class func getActivationState() -> String {
-        let semaphore = DispatchSemaphore(value: 0)
         var label = "undetermined"
+        let semaphore = DispatchSemaphore(value: 0)
         
         if #available(iOS 10.0, *) {
             UNUserNotificationCenter.current().getNotificationSettings { (settings) in
