@@ -56,9 +56,11 @@ import Foundation
             externalLink.urlIsActive = urlIsActive
         }
         
-        if let deadline = stringToDate(timeString: metadata.json["deadline"] as! String){
-            externalLink.deadline = deadline
-            externalLink.deadlineText = deadline.dateOnly()
+        if let deadline =  metadata.json["deadline"] as? String {
+            if let deadlineDate = stringToDate(timeString: deadline) {
+                externalLink.deadline = deadlineDate
+                externalLink.deadlineText = deadlineDate.dateOnly()
+            }
         }
         
         return externalLink        
@@ -68,27 +70,48 @@ import Foundation
         let appointment = POSAppointment()
         appointment.creatorName = creatorName
         appointment.title = "Du har fått en innkalling fra \(creatorName)"
-        appointment.subTitle = metadata.json["subTitle"] as! String
         
-        if let startTime = stringToDate(timeString: metadata.json["startTime"] as! String){
-            appointment.startTime = startTime
+        if let subTitle = metadata.json["subTitle"] as? String {
+            appointment.subTitle = subTitle
         }
         
-        if let endTime = stringToDate(timeString: metadata.json["endTime"] as! String){
-            appointment.endTime = endTime
+        if let startTime = metadata.json["startTime"] as? String {
+            if let startTimeDate = stringToDate(timeString: startTime) {
+                appointment.startTime = startTimeDate
+            }
         }
         
-        if let arrivalTimeDate = stringToDate(timeString: metadata.json["arrivalTime"] as! String) {
-            appointment.arrivalTimeDate = arrivalTimeDate
-        } else {
-            appointment.arrivalTime = metadata.json["arrivalTime"] as! String
-        }            
-        appointment.place = metadata.json["place"] as! String
+        if let endTime = metadata.json["endTime"] as? String {
+            if let endTimeDate = stringToDate(timeString: endTime) {
+                appointment.endTime = endTimeDate
+            }
+        }
+        
+        if let arrivalTime = metadata.json["arrivalTime"] as? String {
+            if let arrivalTimeDate = stringToDate(timeString: arrivalTime) {
+                appointment.arrivalTimeDate = arrivalTimeDate
+            }else{
+                appointment.arrivalTime = arrivalTime
+            }
+        }
+        
+        if let place = metadata.json["place"] as? String {
+            appointment.place = place
+        }
         
         if let location = metadata.json["address"] as? Dictionary<String, String> {
-            appointment.streetAddress = location["streetAddress"]!
-            appointment.postalCode = location["postalCode"]!
-            appointment.city = location["city"]!
+            if let streetAdress = location["streetAddress"] {
+                appointment.streetAddress = streetAdress
+            }
+            
+            if let postalCode = location["postalCode"] {
+                appointment.postalCode = postalCode
+            }
+            
+            if let city = location["city"] {
+                appointment.city = city
+            }
+            
             appointment.address = "\(appointment.streetAddress) \n\(appointment.postalCode) \(appointment.city)"
         }
         
