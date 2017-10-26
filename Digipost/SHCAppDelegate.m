@@ -62,7 +62,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
     [[GAI sharedInstance] setTrackUncaughtExceptions:YES];
-    [PushNotifications reportActivationState];
+    [UserNotificationsUsage reportActivationState];
     return YES;
 }
 
