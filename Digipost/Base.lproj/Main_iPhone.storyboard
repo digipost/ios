@@ -259,7 +259,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-Aa-hoH">
-                                <rect key="frame" x="24" y="145" width="366" height="455"/>
+                                <rect key="frame" x="24" y="145" width="366" height="499"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="4" id="tCM-ra-uyg">
                                     <size key="itemSize" width="60" height="60"/>
@@ -1452,11 +1452,11 @@
                                         </constraints>
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qv1-h9-ci4">
-                                        <rect key="frame" x="41" y="185" width="238" height="33"/>
+                                        <rect key="frame" x="41" y="185" width="238" height="31"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fv5-4n-dtY" userLabel="Register Button">
-                                                <rect key="frame" x="2" y="2" width="113" height="28"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                <rect key="frame" x="2" y="2" width="113" height="26"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                 <state key="normal" title="REGISTER_BUTTON">
                                                     <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
@@ -1465,11 +1465,11 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GK6-XJ-KCt">
-                                                <rect key="frame" x="116" y="2" width="120" height="28"/>
+                                                <rect key="frame" x="116" y="2" width="120" height="26"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="120" id="CUn-Y3-D3G"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                 <state key="normal" title="FORGOT_PASSWORD">
                                                     <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
