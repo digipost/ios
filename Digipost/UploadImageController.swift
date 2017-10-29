@@ -16,7 +16,6 @@
 
 import Foundation
 import CoreFoundation
-import Photos
 import MobileCoreServices
 import UIKit
 
