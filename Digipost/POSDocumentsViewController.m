@@ -260,6 +260,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
             fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
             cell.fileNameLabel.text = fileName;
+            cell.dateLabel.text = @"";
             return cell;
         }
 
