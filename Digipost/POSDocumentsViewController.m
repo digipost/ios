@@ -258,7 +258,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
             cell.progressView.progress = [APIClient sharedClient].uploadProgress.fractionCompleted;
             cell.dateLabel.text = [POSDocument stringForDocumentDate:[NSDate date]];
             NSString *fileName = [[APIClient sharedClient].uploadProgress userInfo][@"fileName"];
-            fileName = [fileName stringByReplacingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+            fileName = [fileName stringByRemovingPercentEncoding];
             cell.fileNameLabel.text = fileName;
             cell.dateLabel.text = @"";
             return cell;
