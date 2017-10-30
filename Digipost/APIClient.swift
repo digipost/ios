@@ -528,9 +528,10 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
 
             let data = subject?.data(using: String.Encoding.utf8, allowLossyConversion: false)
             formData.appendPart(withForm: data!, name:"subject")
-
-            let fileData = try? Data(contentsOf: uploadURL!)
-            formData.appendPart(withFileData: fileData!, name:"file", fileName: fileName, mimeType:"application/pdf")
+            if let fileData = try? Data.init(contentsOf: uploadURL!) {
+                formData.appendPart(withFileData: fileData, name:"file", fileName: fileName, mimeType:"application/pdf")
+            }
+            
         }, error: nil)
         
         urlRequest.setValue("*/*", forHTTPHeaderField: "Accept")
