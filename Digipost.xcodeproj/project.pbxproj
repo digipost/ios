@@ -88,8 +88,6 @@
 		9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C1AEB1A25CFFB00BE62DC /* OAuthToken.swift */; };
 		9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
 		9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */ = {isa = PBXBuildFile; fileRef = 9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */; };
-		9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
-		9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */; };
 		9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */; };
 		9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */; };
@@ -111,6 +109,10 @@
 		9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */; };
 		9CA38B031F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
 		9CA38B041F3C532D00AABD91 /* MetadataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA38B021F3C532D00AABD91 /* MetadataView.swift */; };
+		9CAAFA971F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAFA961F9A1F5B00D29177 /* UserNotificationsUsage.swift */; };
+		9CAAFA981F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAAFA961F9A1F5B00D29177 /* UserNotificationsUsage.swift */; };
+		9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */; };
+		9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */; };
 		9CDA58A31E536D5D00FB312B /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */; };
 		9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */; };
 		9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */; };
@@ -313,7 +315,6 @@
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
-		F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -521,7 +522,6 @@
 		F8AE1CB41CD374B40009B2F9 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218D1AB70DC100812502 /* MobileCoreServices.framework */; };
 		F8AE1CB51CD374B40009B2F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
 		F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
-		F8AE1CB81CD374B40009B2F9 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */; };
 		F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		F8AE1CBC1CD374B40009B2F9 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
 		F8AE1CBD1CD374B40009B2F9 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
@@ -696,7 +696,6 @@
 		9C3C11021DF835C40028DF3B /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C3EEC661E533C0D0052E7B1 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_DigipostModelTests.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_DigipostModelTests.framework"; sourceTree = "<group>"; };
 		9C3EFF711DF6C06700C6A162 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
-		9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAnalytics.swift; sourceTree = "<group>"; };
 		9C44506A1DF1748D00638385 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		9C44506D1DF1780700638385 /* DigipostQA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DigipostQA.entitlements; sourceTree = SOURCE_ROOT; };
 		9C4831A11DFAB48C0004A1ED /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost_Test.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/Pods_Digipost_Test.framework"; sourceTree = "<group>"; };
@@ -713,6 +712,8 @@
 		9CA38AFC1F3B3C2300AABD91 /* ExternalLinkView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExternalLinkView.xib; sourceTree = "<group>"; };
 		9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSExternalLink.swift; sourceTree = "<group>"; };
 		9CA38B021F3C532D00AABD91 /* MetadataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetadataView.swift; sourceTree = "<group>"; };
+		9CAAFA961F9A1F5B00D29177 /* UserNotificationsUsage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationsUsage.swift; sourceTree = "<group>"; };
+		9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GAEvents.swift; sourceTree = "<group>"; };
 		9CCC5A0A1E5B0205001F0FCC /* LUKeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LUKeychainAccess.framework; path = "../../../Library/Developer/Xcode/DerivedData/Digipost-emgyuvwaqglndhamwjquhpwcfkoo/Build/Products/Debug-iphonesimulator/LUKeychainAccess/LUKeychainAccess.framework"; sourceTree = "<group>"; };
 		9CDE3AA81E78235E00B9C27B /* String+Formatting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Formatting.swift"; sourceTree = "<group>"; };
 		9CDE3AAA1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreementTests.swift; sourceTree = "<group>"; };
@@ -980,17 +981,6 @@
 		F80B63531CD37C3800AE9DE5 /* DigipostQA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DigipostQA.plist; sourceTree = "<group>"; };
 		F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostQA.xcconfig; sourceTree = "<group>"; };
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		F80F27451C93064A0069378C /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GAI/GAI.h; sourceTree = "<group>"; };
-		F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GAI/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
-		F80F27471C93064A0069378C /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GAI/GAIEcommerceFields.h; sourceTree = "<group>"; };
-		F80F27481C93064A0069378C /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GAI/GAIEcommerceProduct.h; sourceTree = "<group>"; };
-		F80F27491C93064A0069378C /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GAI/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
-		F80F274A1C93064A0069378C /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = GAI/GAIEcommercePromotion.h; sourceTree = "<group>"; };
-		F80F274B1C93064A0069378C /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GAI/GAIFields.h; sourceTree = "<group>"; };
-		F80F274C1C93064A0069378C /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GAI/GAILogger.h; sourceTree = "<group>"; };
-		F80F274D1C93064A0069378C /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GAI/GAITrackedViewController.h; sourceTree = "<group>"; };
-		F80F274E1C93064A0069378C /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GAI/GAITracker.h; sourceTree = "<group>"; };
-		F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GAI/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -1026,7 +1016,6 @@
 				EC30218E1AB70DC100812502 /* MobileCoreServices.framework in Frameworks */,
 				EC3021791AB70C2A00812502 /* SystemConfiguration.framework in Frameworks */,
 				83BAB9201855C0AC004A7BFB /* UIKit.framework in Frameworks */,
-				F80F27531C93064A0069378C /* libGoogleAnalyticsServices.a in Frameworks */,
 				D3B8A4D2DA8B22125BE1B72E /* Pods_Digipost.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,7 +1040,6 @@
 				F8AE1CB41CD374B40009B2F9 /* MobileCoreServices.framework in Frameworks */,
 				F8AE1CB51CD374B40009B2F9 /* SystemConfiguration.framework in Frameworks */,
 				F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */,
-				F8AE1CB81CD374B40009B2F9 /* libGoogleAnalyticsServices.a in Frameworks */,
 				B7B8F7C661739D1E2F7D11C6 /* Pods_DigipostQA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1113,7 +1101,6 @@
 				EC2751871B061D010007125D /* DigipostModelTests */,
 				83BAB91A1855C0AC004A7BFB /* Frameworks */,
 				83BAB9191855C0AC004A7BFB /* Products */,
-				EC30215F1AB70B9F00812502 /* GAI */,
 				6F161DF8048A11B81D902300 /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -1338,6 +1325,15 @@
 			name = ExternalLink;
 			sourceTree = "<group>";
 		};
+		9CAAFA951F9A1F4600D29177 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				9CBF9F2D1F8E2D6700303C17 /* GAEvents.swift */,
+				9CAAFA961F9A1F5B00D29177 /* UserNotificationsUsage.swift */,
+			);
+			name = Analytics;
+			sourceTree = "<group>";
+		};
 		9CDE3AAE1E78352800B9C27B /* invoice */ = {
 			isa = PBXGroup;
 			children = (
@@ -1463,6 +1459,7 @@
 		EC1A6C2F18BBA32100269428 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				9CAAFA951F9A1F4600D29177 /* Analytics */,
 				EC63A8341A6E701D00708A75 /* APIError.swift */,
 				ECC08DF81A5BE798004C829D /* APIClient.swift */,
 				ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */,
@@ -1626,24 +1623,6 @@
 				3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */,
 			);
 			name = Accounts;
-			sourceTree = "<group>";
-		};
-		EC30215F1AB70B9F00812502 /* GAI */ = {
-			isa = PBXGroup;
-			children = (
-				F80F27451C93064A0069378C /* GAI.h */,
-				F80F27461C93064A0069378C /* GAIDictionaryBuilder.h */,
-				F80F27471C93064A0069378C /* GAIEcommerceFields.h */,
-				F80F27481C93064A0069378C /* GAIEcommerceProduct.h */,
-				F80F27491C93064A0069378C /* GAIEcommerceProductAction.h */,
-				F80F274A1C93064A0069378C /* GAIEcommercePromotion.h */,
-				F80F274B1C93064A0069378C /* GAIFields.h */,
-				F80F274C1C93064A0069378C /* GAILogger.h */,
-				F80F274D1C93064A0069378C /* GAITrackedViewController.h */,
-				F80F274E1C93064A0069378C /* GAITracker.h */,
-				F80F27501C93064A0069378C /* libGoogleAnalyticsServices.a */,
-			);
-			name = GAI;
 			sourceTree = "<group>";
 		};
 		EC4146BE1AA736A8003DBF47 /* Old images */ = {
@@ -1810,7 +1789,6 @@
 				F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */,
 				F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */,
 				9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */,
-				9C4450661DF03E6F00638385 /* InvoiceAnalytics.swift */,
 			);
 			name = Invoice;
 			sourceTree = "<group>";
@@ -2159,6 +2137,7 @@
 			files = (
 				9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				9CAAFA971F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
 				EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
 				ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
@@ -2241,7 +2220,6 @@
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				0B5F50621D9D51E200A8EC05 /* ReceiptCategoryViewController.swift in Sources */,
-				9C4450671DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
 				ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
@@ -2288,6 +2266,7 @@
 				F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
+				9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */,
 				EC8B94641B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
@@ -2401,6 +2380,7 @@
 			files = (
 				9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
 				F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */,
+				9CAAFA981F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */,
 				F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */,
 				F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */,
 				F8AE1BEF1CD374B40009B2F9 /* ModuleSelectorViewController.swift in Sources */,
@@ -2483,7 +2463,6 @@
 				F8AE1C331CD374B40009B2F9 /* AddComposerModuleButton.swift in Sources */,
 				F8AE1C341CD374B40009B2F9 /* FontPickerTableViewCell.swift in Sources */,
 				F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */,
-				9C4450691DF03E6F00638385 /* InvoiceAnalytics.swift in Sources */,
 				F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */,
 				F8AE1C371CD374B40009B2F9 /* APIClient+Recipients.swift in Sources */,
 				F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */,
@@ -2530,6 +2509,7 @@
 				F8AE1C5C1CD374B40009B2F9 /* OAuthToken.swift in Sources */,
 				F8AE1C5D1CD374B40009B2F9 /* AccountTableViewCell.swift in Sources */,
 				F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */,
+				9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */,
 				F8AE1C5F1CD374B40009B2F9 /* POSInvoice+Methods.swift in Sources */,
 				F8AE1C601CD374B40009B2F9 /* UITextView+Composer.swift in Sources */,
 				F8AE1C611CD374B40009B2F9 /* POSFolderTableViewCell.m in Sources */,
@@ -2842,7 +2822,7 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/GAI",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited)";
+				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
