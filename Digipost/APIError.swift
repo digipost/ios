@@ -31,17 +31,18 @@ class APIError: NSError {
     var responseText : String?
     
     init(error: NSError) {
-        
         super.init(domain: error.domain, code: error.code, userInfo: error.userInfo)
     }
     
-    override init(domain: String, code: Int, userInfo dict: [AnyHashable: Any]?) {
-        
-        super.init(domain: domain, code: code, userInfo: dict)
+    init(domain: String, code: Int) {
+        super.init(domain: domain, code: code, userInfo: nil)
     }
     
+    override init(domain: String, code: Int, userInfo dict: [String : Any]? = nil) {
+        super.init(domain: domain, code: code, userInfo: dict)
+    }
+
     init(urlResponse: HTTPURLResponse, jsonResponse: Dictionary<String,AnyObject>?) {
-        
         if let response = jsonResponse {
                 digipostErrorCode = response[APIErrorConstants.errorCode] as? String
         }
