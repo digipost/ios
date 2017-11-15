@@ -490,7 +490,7 @@ import AFNetworking
         }
 
         let rootResource = POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext)
-        if (rootResource?.uploadDocumentUri.characters.count)! <= 0 {
+        if (rootResource?.uploadDocumentUri.count)! <= 0 {
             let noUploadLinkError = APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.uploadLinkNotFoundInRootResource.rawValue, userInfo: nil)
             failure(noUploadLinkError)
             return
