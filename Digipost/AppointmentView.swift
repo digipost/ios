@@ -135,9 +135,9 @@ import EventKit
             }
             
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
-                let calendar = AppointmentView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents
-                self.createEventInCalendar(calendar: calendar, title: eventTitle)
-                
+                if let calendar = AppointmentView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
+                    self.createEventInCalendar(calendar: calendar, title: eventTitle)
+                }
             })
         }
         
