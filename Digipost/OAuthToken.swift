@@ -31,15 +31,15 @@ struct AuthenticationLevel {
     static let idPorten3 = "IDPORTEN_3"
 }
 
-class OAuthToken: NSObject, NSCoding {
+@objc class OAuthToken: NSObject, NSCoding {
 
-    var refreshToken: String? {
+    @objc var refreshToken: String? {
         didSet {
             storeInKeyChain()
         }
     }
 
-    var accessToken: String? {
+    @objc var accessToken: String? {
         didSet {
             storeInKeyChain()
         }
@@ -47,7 +47,7 @@ class OAuthToken: NSObject, NSCoding {
 
     var expires : Date
 
-    var scope: String?
+    @objc var scope: String?
 
     init(expiryDate: Date) {
         self.expires = expiryDate
@@ -100,7 +100,7 @@ class OAuthToken: NSObject, NSCoding {
         storeInKeyChain()
     }
 
-    convenience init?(attributes: Dictionary <String,AnyObject>, scope: String, nonce: String) {
+    @objc convenience init?(attributes: Dictionary <String,AnyObject>, scope: String, nonce: String) {
         var aRefreshToken: String?
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
@@ -144,7 +144,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func highestScopeInStorageForScope(_ scope:String) -> String {
+    @objc class func highestScopeInStorageForScope(_ scope:String) -> String {
         switch scope {
         case kOauth2ScopeFull_Idporten4:
             return scope
@@ -177,7 +177,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
+    @objc class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
         if let token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return token
         }else if let token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
@@ -196,7 +196,7 @@ class OAuthToken: NSObject, NSCoding {
         coder.encode(self.expires, forKey: Keys.expiresKey)
     }
 
-    func setExpireDate(_ expiresInSeconds: NSNumber?) {
+    @objc func setExpireDate(_ expiresInSeconds: NSNumber?) {
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
             if let expirationDate = Date().dateByAdding(seconds: actualExpirationDate.intValue) {
                 self.expires = expirationDate
@@ -205,11 +205,11 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func isUserLoggedIn() -> Bool {
+    @objc class func isUserLoggedIn() -> Bool {
         return OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull) != nil
     }
 
-    func removeFromKeychainIfNoAccessToken() {
+    @objc func removeFromKeychainIfNoAccessToken() {
         if accessToken == nil {
             var existingTokens = OAuthToken.oAuthTokens()
             existingTokens[scope!] = nil
@@ -223,7 +223,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    func password() -> String? {
+    @objc func password() -> String? {
         return scope == kOauth2ScopeFull ? refreshToken : accessToken
     }
 
@@ -250,7 +250,7 @@ class OAuthToken: NSObject, NSCoding {
         return scope == kOauth2ScopeFull
     }
     
-    class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
+    @objc class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
         if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return oAuth4Token
         }else if let oAuth3Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten3) {
@@ -262,7 +262,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
 
-    class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
+    @objc class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
         let level = levelForScope(scope)
         switch level {
         case 2:
@@ -282,7 +282,7 @@ class OAuthToken: NSObject, NSCoding {
         }
     }
    
-    class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {   
+    @objc class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {   
         let tokens = OAuthToken.oAuthTokens()
         if let token: OAuthToken = tokens[scope] as? OAuthToken {
             return token
@@ -304,7 +304,7 @@ class OAuthToken: NSObject, NSCoding {
         return tokenArray
     }
     
-    class func oAuthScope(_ scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
+    @objc class func oAuthScope(_ scope: String, isHigherThanOrEqualToScope otherScope: String) -> Bool {
         switch otherScope {
         case kOauth2ScopeFull:
             if scope != kOauth2ScopeFull {
@@ -335,7 +335,7 @@ class OAuthToken: NSObject, NSCoding {
         return false
     }
 
-    class func oAuthScopeForAuthenticationLevel(_ authenticationLevel: String?) -> String {
+    @objc class func oAuthScopeForAuthenticationLevel(_ authenticationLevel: String?) -> String {
         if let actualAuthenticationLevel = authenticationLevel {
             switch actualAuthenticationLevel {
             case AuthenticationLevel.password:

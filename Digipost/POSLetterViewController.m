@@ -1496,7 +1496,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                                                                           animated:YES];
     [overlayView setTitleLabelText:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_INVOICE_BUTTON_SENDING_TITLE", @"")];
 
-    [[APIClient sharedClient] sendInvoideToBank:self.attachment.invoice
+    [[APIClient sharedClient] sendInvoiceToBank:self.attachment.invoice
         success:^{
 
           // Now, we've successfully sent the invoice to the bank, but we still need updated document metadata

@@ -18,12 +18,10 @@ import UIKit
 import Cartography
 
 protocol StylePickerViewControllerDelegate {
-
     func stylePickerViewControllerDidSelectStyle(_ stylePickerViewController : StylePickerViewController, textStyleModel : TextStyleModel, enabled: Bool)
-
 }
 
-class StylePickerViewController: UIViewController, UITableViewDelegate, SegmentedControlTableViewCellDelegate, StylePickerDetailListViewControllerDelegate {
+@objc class StylePickerViewController: UIViewController, UITableViewDelegate, SegmentedControlTableViewCellDelegate, StylePickerDetailListViewControllerDelegate {
 
     static let storyboardIdentifier = "stylePickerViewController"
 

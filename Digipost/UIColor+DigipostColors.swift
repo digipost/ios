@@ -26,11 +26,11 @@ extension UIColor {
         self.init(red: r/255, green: g/255, blue: b/255, alpha: alpha)
     }
     
-    class func digipostSpaceGrey () -> UIColor {
+    @objc class func digipostSpaceGrey () -> UIColor {
         return UIColor(r: 64, g: 66, b: 69)
     }
     
-    class func digipostLightGrey() -> UIColor {
+    @objc class func digipostLightGrey() -> UIColor {
         return UIColor(r: 238, g: 238, b: 244)
     }
     
@@ -38,10 +38,11 @@ extension UIColor {
         return UIColor(r: 239, g: 66, b: 69)
     }
     
-    class func digipostDocumentListBackground() -> UIColor{
+    @objc class func digipostDocumentListBackground() -> UIColor{
         return UIColor(r: 248,g: 248, b: 248)
     }
-    class func digipostDocumentListDivider() -> UIColor{
+    
+    @objc class func digipostDocumentListDivider() -> UIColor{
         return UIColor(r: 222,g: 222, b: 222)
     }
     

@@ -20,19 +20,19 @@
     static let TYPE2 = "AGREEMENT_TYPE_2"
     static let BANKS_STATUS_KEY = "invoice_banks_status_as_json"
     
-    static func hasActiveType1Agreement() -> Bool {
+    @objc static func hasActiveType1Agreement() -> Bool {
         return hasActiveAgreement(agreementType: TYPE1)
     }
     
-    static func hasActiveType2Agreement() -> Bool {
+    @objc static func hasActiveType2Agreement() -> Bool {
         return hasActiveAgreement(agreementType: TYPE2)
     }
     
-    static func hasAnyActiveAgreements() -> Bool {
+    @objc static func hasAnyActiveAgreements() -> Bool {
         return hasActiveAgreement(agreementType: TYPE1) || hasActiveAgreement(agreementType: TYPE2)
     }
     
-    static func hasActiveAgreement(agreementType: String) -> Bool {
+    @objc static func hasActiveAgreement(agreementType: String) -> Bool {
         if let banks = getBanks() {
             for bank in banks {
                 if agreementType == TYPE1 && bank.activeType1Agreement {
@@ -86,7 +86,7 @@
         UserDefaults.standard.synchronize()
     }
     
-    static func updateActiveBankAgreementStatus() {
+    @objc static func updateActiveBankAgreementStatus() {
         if let rootResource: POSRootResource =
             POSRootResource.existingRootResource(
                 in: POSModelManager.shared().managedObjectContext) {

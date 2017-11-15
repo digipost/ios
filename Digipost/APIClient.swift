@@ -19,12 +19,10 @@ import MobileCoreServices
 import Darwin
 import AFNetworking
 
-class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
+@objc class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
+    @objc var stylepickerViewController : StylePickerViewController!
 
-
-    var stylepickerViewController : StylePickerViewController!
-
-    class var sharedClient: APIClient {
+    @objc class var sharedClient: APIClient {
         struct Singleton {
             static let sharedClient = APIClient()
         }
@@ -54,10 +52,10 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
 
     lazy var queue = OperationQueue()
     var session : URLSession!
-    var uploadProgress : Progress?
+    @objc var uploadProgress : Progress?
     var taskCounter = 0
-    var isUploadingFile = false
-    var uploadFolderName : NSString = "Inbox"
+    @objc var isUploadingFile = false
+    @objc var uploadFolderName : NSString = "Inbox"
     var taskWasUnAuthorized : Bool  = false
     var lastPerformedTask : URLSessionTask?
     var additionalHeaders = Dictionary<String, String>()
@@ -82,7 +80,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         return failure
     }
 
-    func updateAuthorizationHeader(_ scope: String) {
+    @objc func updateAuthorizationHeader(_ scope: String) {
         let oAuthToken = OAuthToken.oAuthTokenWithScope(scope)
         if (oAuthToken?.accessToken != nil) {
             self.additionalHeaders["Authorization"] = "Bearer \(oAuthToken!.accessToken!)"
@@ -138,7 +136,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }, failure: nil)
     }
 
-    func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
         self.updateAuthorizationHeader(oAuthToken: highestToken!)
         let rootResource = k__ROOT_RESOURCE_URI__
@@ -148,7 +146,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }
     }
 
-    func updateRootResource(scope: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func updateRootResource(scope: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let rootResource = k__ROOT_RESOURCE_URI__
         self.updateAuthorizationHeader(scope)
         validateFullScope {
@@ -157,14 +155,14 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }
     }
 
-    func updateBankAccount(uri : String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func updateBankAccount(uri : String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, success: success, failure: failure)
             task.resume()
         }
     }
 
-    func sendInvoideToBank(_ invoice: POSInvoice , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func sendInvoiceToBank(_ invoice: POSInvoice , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: invoice.sendToBankUri, success: success, failure: failure)
             task.resume()
@@ -172,9 +170,10 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
     }
 
     // Function expossed to Objective-C (used in the old VC)
-    func updateReceiptsInMailboxWithDigipostAddress(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func updateReceiptsInMailboxWithDigipostAddress(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         self.fetchReceiptsInMailboxWith(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
     }
+    
     func fetchReceiptsInMailboxWith(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
@@ -214,14 +213,14 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         success([:])
     }
 
-    func deleteReceipt(_ receipt: POSReceipt , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func deleteReceipt(_ receipt: POSReceipt , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
             task.resume()
         }
     }
 
-    func validateOpeningReceipt(_ attachment: POSAttachment, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func validateOpeningReceipt(_ attachment: POSAttachment, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
         let highestToken = OAuthToken.oAuthTokenWithScope(scope)
         validate(token: highestToken) { () -> Void in
@@ -312,13 +311,13 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }
     }
 
-    func cancelLastDownloadingBaseEncryptionModel() {
+    @objc func cancelLastDownloadingBaseEncryptionModel() {
         self.fileTransferSessionManager.session.getTasksWithCompletionHandler { (dataTasks, uploadTasks, downloadTasks) -> Void in
             self.cancelTasks(downloadTasks)
         }
     }
 
-    func downloadBaseEncryptionModel(_ baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: Progress, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func downloadBaseEncryptionModel(_ baseEncryptionModel: POSBaseEncryptedModel, withProgress progress: Progress, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         var didChooseHigherScope = false
         var highestScope : String?
         if let attachment = baseEncryptionModel as? POSAttachment {
@@ -462,7 +461,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         task.resume()
     }
 
-    func uploadFile(url: URL, folder: POSFolder, success: (() -> Void)? , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func uploadFile(url: URL, folder: POSFolder, success: (() -> Void)? , failure: @escaping (_ error: APIError) -> ()) {
         let fileManager = FileManager.default
         
         if fileManager.fileExists(atPath: url.path) == false {
@@ -640,7 +639,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil, userInfo: userInfo)
     }
 
-    func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(_ response: URLResponse) -> Bool {
+    @objc func responseCodeForOAuthRefreshTokenRenewaIsUnauthorized(_ response: URLResponse) -> Bool {
         let HTTPResponse = response as! HTTPURLResponse
         switch HTTPResponse.statusCode {
         case 400:
@@ -654,7 +653,7 @@ class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessi
         }
     }
 
-    func responseCodeForOAuthIsUnauthorized(_ response: URLResponse) -> Bool {
+    @objc func responseCodeForOAuthIsUnauthorized(_ response: URLResponse) -> Bool {
         let HTTPResponse = response as! HTTPURLResponse
         switch HTTPResponse.statusCode {
         case 401:

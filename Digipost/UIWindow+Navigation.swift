@@ -17,7 +17,7 @@ import Foundation
 import UIKit
 
 extension UIWindow {
-    func topMasterViewController() -> UIViewController {
+    @objc func topMasterViewController() -> UIViewController {
         if let navController = rootViewController as? UINavigationController  {
             return navController.topViewController!
         }
@@ -29,7 +29,7 @@ extension UIWindow {
         return rootViewController!
     }
     
-    func topMasterNavigationController() -> UINavigationController? {
+    @objc func topMasterNavigationController() -> UINavigationController? {
         if let navController = rootViewController as? UINavigationController  {
             return navController
         }
@@ -41,7 +41,7 @@ extension UIWindow {
         return nil
     }
     
-    func hasCorrectNavigationHierarchyForShowingDocuments() -> Bool {
+    @objc func hasCorrectNavigationHierarchyForShowingDocuments() -> Bool {
         let returnValue = false
         if (UIDevice.current.userInterfaceIdiom == .pad ){
             let navigationController = topMasterNavigationController()

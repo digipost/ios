@@ -17,7 +17,7 @@
 import UIKit
 
 extension UIAlertController {
-    class func presentAlertControllerWithAPIError(_ apiError: APIError, presentingViewController: UIViewController) {
+    @objc class func presentAlertControllerWithAPIError(_ apiError: APIError, presentingViewController: UIViewController) {
         presentAlertControllerWithAPIError(apiError, presentingViewController: presentingViewController, didTapOkClosure: nil)
     }
     

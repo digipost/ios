@@ -24,9 +24,9 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
     @IBOutlet weak var tableView: UITableView!
     var receiptsTableViewDataSource: ReceiptCategoryTableViewDataSource!;
     
-    var mailboxDigipostAddress: String = ""
-    var receiptsUri: String = ""
-    var receiptsMetadataUri: String = ""
+    @objc var mailboxDigipostAddress: String = ""
+    @objc var receiptsUri: String = ""
+    @objc var receiptsMetadataUri: String = ""
     
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -109,7 +109,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         }
     }
     
-    func pullToRefresh(){
+    @objc func pullToRefresh(){
         if(!self.isFetchingCategories) {
             _ = trySynchronized(self.lockForFetchingCategories, criticalSection: fetchAndSetCategories)
         }

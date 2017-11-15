@@ -20,8 +20,8 @@ import WebKit
 @objc class SingleUseWebViewController: UIViewController, UIWebViewDelegate {
     
     var webView: UIWebView!
-    var initUrl: String = ""
-    var viewTitle : String?
+    @objc var initUrl: String = ""
+    @objc var viewTitle : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()

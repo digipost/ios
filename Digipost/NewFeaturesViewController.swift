@@ -53,7 +53,7 @@ class NewFeaturesViewController: GAITrackedViewController, UIScrollViewDelegate 
     var labelTexts = [String]()
     var whatsNewGuideItems = [WhatsNewGuideItem]()
     var setupFeatures_dispatch_token: Int = 0
-    weak var delegate : NewFeaturesViewControllerDelegate?
+    @objc weak var delegate : NewFeaturesViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()

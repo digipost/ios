@@ -45,7 +45,7 @@ class Guide : NSObject {
     
     :returns: whether to show the whats new guide to user
     */
-    class func shouldShowWhatsNewGuide() -> Bool {
+    @objc class func shouldShowWhatsNewGuide() -> Bool {
         
         // String format for images, for example iPhone: "2-5-0_1-iphone"
         if (UIImage(named: WhatsNewGuideItem.nameForIndex(1)) != nil) {
@@ -63,7 +63,7 @@ class Guide : NSObject {
     
     :returns: whether to show onboarding guide or not
     */
-    class func shouldShowOnboardingGuide() -> Bool {
+    @objc class func shouldShowOnboardingGuide() -> Bool {
         if OAuthToken.isUserLoggedIn(){
             return false
         }
@@ -99,7 +99,7 @@ class Guide : NSObject {
         UserDefaults.standard.synchronize()
     }
     
-    class func setOnboaringHasBeenWatched() {
+    @objc class func setOnboaringHasBeenWatched() {
         UserDefaults.standard.set(true, forKey: GuideConstants.hasShownOnboardingKey)
         UserDefaults.standard.synchronize()
     }

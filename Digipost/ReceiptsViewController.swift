@@ -108,7 +108,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         self.updateNavbar()
     }
     
-    func pullToRefresh(calledRecursively calledRecursivelyOnce: Bool = false) {
+    @objc func pullToRefresh(calledRecursively calledRecursivelyOnce: Bool = false) {
         self.pullToRefreshIsRunning = true
         self.searchBar.text = ""
         hideKeyboardIfVisible()
@@ -430,7 +430,7 @@ class ReceiptsViewController: UIViewController, UITableViewDelegate, UIScrollVie
         self.updateToolbarButtonItems()
     }
     
-    func removeReceiptAtCurrentIndex(){
+    @objc func removeReceiptAtCurrentIndex(){
         if let indexPath = self.tableView.indexPathForSelectedRow{
             let currentReceiptIndex = indexPath.row
             if(currentReceiptIndex != -1){

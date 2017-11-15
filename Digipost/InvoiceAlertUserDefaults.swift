@@ -20,16 +20,17 @@ import Foundation
     
     static let hideInvoiceAlert = "hideInvoiceAlert";
     
-    static func resetInvoiceAlertModalChoice(){
+    @objc static func resetInvoiceAlertModalChoice(){
         let defaults = UserDefaults.standard
         defaults.set(false, forKey: hideInvoiceAlert)
     }
     
-    static func dontShowInvoiceNotifications(){
+    @objc static func dontShowInvoiceNotifications(){
         let defaults = UserDefaults.standard
         defaults.set(true, forKey: hideInvoiceAlert)
     }
-    static func shouldShowInvoiceNotification() -> Bool{
+    
+    @objc static func shouldShowInvoiceNotification() -> Bool{
         let defaults = UserDefaults.standard
         return !defaults.bool(forKey: hideInvoiceAlert)
     }

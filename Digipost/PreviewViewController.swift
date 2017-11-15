@@ -50,11 +50,11 @@ class PreviewViewController: UIViewController, UIWebViewDelegate, UINavigationCo
         navigationController?.delegate = self
     }
     
-    func recipientReceivedFromRecipientViewController(_ notification: Notification) {
+    @objc func recipientReceivedFromRecipientViewController(_ notification: Notification) {
         recipients.append(notification.object as! Recipient)
     }
     
-    func recipientDeletedFromRecipientViewController(_ notification: Notification) {
+    @objc func recipientDeletedFromRecipientViewController(_ notification: Notification) {
         let receivedRecipient = notification.object as! Recipient
         
         if recipients.count > 0 {

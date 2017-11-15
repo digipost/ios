@@ -35,7 +35,7 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
     var recipients = [Recipient]()
 
     // the selected digipost address for the mailbox that should show as sender when sending current compsing letter
-    var mailboxDigipostAddress : String?
+    @objc var mailboxDigipostAddress : String?
 
 
     fileprivate var isShowingCustomStylePicker : Bool = false
@@ -95,11 +95,11 @@ class HTMLEditorViewController: UIViewController, WKScriptMessageHandler, StyleP
         self.navigationItem.rightBarButtonItems = barButtonItems
     }
 
-    func didTapAddNewModuleBarButtonItem(_ sender: UIButton) {
+    @objc func didTapAddNewModuleBarButtonItem(_ sender: UIButton) {
         performSegue(withIdentifier: "presentModuleSelectorSegue", sender: self)
     }
 
-    func toggleEditingStyle() {
+    @objc func toggleEditingStyle() {
         customInputView.setShowEnabled(isShowingCustomStylePicker == false, containedIn: webView.scrollView)
         isShowingCustomStylePicker = isShowingCustomStylePicker == false
     }

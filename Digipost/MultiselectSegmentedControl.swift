@@ -74,7 +74,7 @@ protocol MultiselectSegmentedControlDelegate {
         }
     }
     
-    func didTapButton(_ button: UIButton) {
+    @objc func didTapButton(_ button: UIButton) {
         if selectedIndexes[button.tag] {
             selectedIndexes[button.tag] = false
             button.backgroundColor = segmentBackgroundColor

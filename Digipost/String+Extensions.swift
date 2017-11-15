@@ -41,14 +41,14 @@ extension String {
 
 extension NSString {
     
-    func initials() -> NSString {
+    @objc func initials() -> NSString {
         var arr = self.components(separatedBy: " ")
         if arr.count == 0 { return "" }
         
         return  (arr[0].firstLetter() + arr[arr.count - 1]) as NSString
     }
     
-    func firstLetter() -> NSString {
+    @objc func firstLetter() -> NSString {
         return self.substring(to: 1) as NSString
     }
     

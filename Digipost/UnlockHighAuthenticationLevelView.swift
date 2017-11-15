@@ -21,7 +21,7 @@ class UnlockHighAuthenticationLevelView: UIView {
     @IBOutlet weak var unlockButton: UIButton!
     @IBOutlet weak var unlockLabel: UILabel!
 
-    func setup(_ canBeUnlocked: Bool) {
+    @objc func setup(_ canBeUnlocked: Bool) {
         if canBeUnlocked {
             unlockLabel.text = NSLocalizedString("unlock view label can unlock letter",  comment: "")
             unlockButton.isHidden = false

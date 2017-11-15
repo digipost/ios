@@ -21,7 +21,7 @@ import LUKeychainAccess
     static let APP_VERSIONS_IN_KEYCHAIN = "AppVersionsInKeychain"
     static let APP_VERSIONS_IN_USER_DEFAULTS = "AppVersionsInUserDefaults"
     
-    static func deleteOldTokensIfReinstall() {
+    @objc static func deleteOldTokensIfReinstall() {
         
         if reInstall() {
             clearTokens()
