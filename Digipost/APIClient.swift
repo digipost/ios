@@ -509,8 +509,8 @@ import AFNetworking
         }
 
         let serverUploadURL = URL(string: folder.uploadDocumentUri)
-        var userInfo = Dictionary <String,String>()
-        userInfo["fileName"] = fileName
+        var userInfo = Dictionary <ProgressUserInfoKey, String>()
+        userInfo[ProgressUserInfoKey("fileName")] = fileName
         let progress = Progress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
