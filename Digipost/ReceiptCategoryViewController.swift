@@ -49,7 +49,7 @@ class ReceiptCategoryViewController: UIViewController, UITableViewDelegate, UIGe
         self.tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         self.refreshControl.initializeRefreshControlText()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "placeholder", attributes: [NSForegroundColorAttributeName : UIColor(white: 0.4, alpha: 1.0)])
+        self.refreshControl.attributedTitle = NSAttributedString(string: "placeholder", attributes: [NSAttributedStringKey.foregroundColor : UIColor(white: 0.4, alpha: 1.0)])
         self.refreshControl.updateTextRefreshing(false)  // false to get the last updated label
         self.refreshControl.tintColor = UIColor(white: 0.4, alpha: 1.0)
         

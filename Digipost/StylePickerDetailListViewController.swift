@@ -52,7 +52,7 @@ class StylePickerDetailListViewController: UIViewController, UITableViewDataSour
         super.viewWillAppear(animated)
         navigationBar.barTintColor = UIColor(r: 230, g: 231, b: 233, alpha: 1)
         navigationBar.tintColor = UIColor.black
-        navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.black ]
+        navigationBar.titleTextAttributes = [ NSAttributedStringKey.foregroundColor : UIColor.black ]
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
