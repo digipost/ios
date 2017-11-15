@@ -26,7 +26,7 @@ extension UISegmentedControl {
 
     func setupWithDigipostFont() {
         let font = UIFont.boldSystemFont(ofSize: 19)
-        let attributes = [NSFontAttributeName : font]
+        let attributes = [NSAttributedStringKey.font : font]
         self.setTitleTextAttributes(attributes, for: UIControlState())
     }
 

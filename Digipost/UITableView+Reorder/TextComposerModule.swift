@@ -28,14 +28,14 @@ class TextComposerModule: ComposerModule {
     class func headlineModule() -> TextComposerModule {
         let textComposerModule = TextComposerModule()
         textComposerModule.type = .h1
-        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.headlineH1()])
+        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSAttributedStringKey.font : UIFont.headlineH1()])
         return textComposerModule
     }
 
     class func paragraphModule() -> TextComposerModule {
         let textComposerModule = TextComposerModule()
         textComposerModule.type = .paragraph
-        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.paragraph()])
+        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSAttributedStringKey.font : UIFont.paragraph()])
         return textComposerModule
     }
 
@@ -73,7 +73,7 @@ class TextComposerModule: ComposerModule {
 
     func appendNewParagraph() {
         let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
-        let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSFontAttributeName : UIFont.paragraph()])
+        let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSAttributedStringKey.font : UIFont.paragraph()])
         // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
         mutableAttributedString.append(appendingAttributedString)
         attributedText = mutableAttributedString

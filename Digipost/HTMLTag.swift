@@ -38,7 +38,7 @@ struct HTMLTag {
         self.type = {
 
             switch attribute {
-            case NSFontAttributeName:
+            case NSAttributedStringKey.font.rawValue:
                 if let actualFont = value as? UIFont {
                     if actualFont == UIFont.headlineH1() {
                         return HTMLTagType.H1

@@ -23,7 +23,7 @@ extension NSAttributedString {
     func symbolicTraits() -> UIFontDescriptorSymbolicTraits {
         var symbolicTraits = UIFontDescriptorSymbolicTraits()
 
-        self.enumerateAttribute(NSFontAttributeName, in: NSMakeRange(0, self.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
+        self.enumerateAttribute(NSAttributedStringKey.font, in: NSMakeRange(0, self.length), options: NSAttributedString.EnumerationOptions.longestEffectiveRangeNotRequired) { (attribute, range, stop) -> Void in
             if let font = attribute as? UIFont {
                 symbolicTraits = font.fontDescriptor.symbolicTraits
                 stop.pointee = true
