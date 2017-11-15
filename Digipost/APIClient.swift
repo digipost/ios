@@ -520,7 +520,7 @@ import AFNetworking
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWith: { (formData) -> Void in
             var subject : String?
             if let rangeOfExtension = fileName.range(of: ".\(pathExtension)")  {
-                subject = fileName.substring(to: rangeOfExtension.lowerBound)
+                subject = String(fileName[..<rangeOfExtension.lowerBound])
             } else {
                 subject = fileName
             }
