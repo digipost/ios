@@ -16,14 +16,8 @@
 
 import Foundation
 
-public protocol TryLockable: NSLocking {
-    func tryLock() -> Bool
-}
-
-extension NSLock: TryLockable {}
-
-public func trySynchronized<L: TryLockable>(_ lockable: L, criticalSection: () -> ()) -> Bool {
-    if !lockable.tryLock() {
+public func trySynchronized<L: NSLock>(_ lockable: L, criticalSection: () -> ()) -> Bool {
+    if !lockable.try() {
         return false
     }
     criticalSection()
