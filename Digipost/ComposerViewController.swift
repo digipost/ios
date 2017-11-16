@@ -125,7 +125,12 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             let attributedString = textView.attributedText.attributedSubstring(from: range)
             stylePickerViewController?.setupForAttributedString(attributedString)
         } else {
-            stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: textView.typingAttributes))
+            let typingAttributes = textView.typingAttributes
+            var attributes = [NSAttributedStringKey: Any]()
+            for attribute in typingAttributes {
+                attributes[NSAttributedStringKey(attribute.key)] = attribute.value
+            }
+            stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: attributes))            
         }
     }
     
