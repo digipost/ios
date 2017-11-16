@@ -16,7 +16,7 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - AHKActionSheet (0.2.0)
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.1)
   - Cartography (3.0.0)
   - GGLInstanceID (1.2.1)
   - Google/CloudMessaging (2.0.4):
@@ -80,7 +80,7 @@ DEPENDENCIES:
   - 1PasswordExtension (~> 1.8.4)
   - AFNetworking (~> 3.1.0)
   - AHKActionSheet (from `https://github.com/haaakon/AHKActionSheet.git`, commit `84f116697e8187fb7f654d771df64690dd8860eb`)
-  - Alamofire (~> 4.4)
+  - Alamofire (~> 4.5.1)
   - Cartography (~> 3.0.0)
   - Google/CloudMessaging
   - GoogleAnalytics (~> 3.17)
@@ -110,7 +110,7 @@ SPEC CHECKSUMS:
   1PasswordExtension: e775a29310c65851e5a6cec1afc349ab4e334e47
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   AHKActionSheet: 0007752e10683a3752e6f1abbd50af5d1b075f0d
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Cartography: 105643267226a7ab58895b94b44727eb013e31ce
   GGLInstanceID: 4a317044f744281b82cd03015f379899f277cad3
   Google: d536877ec602555b755cc28ce6fed104825c693c
@@ -127,6 +127,6 @@ SPEC CHECKSUMS:
   SingleLineKeyboardResize: 9823c7bd4f7542e9829bab0a4714285d3394df85
   UIAlertView+Blocks: a46c99c5144f6c5dbc7d62fd2a0678daceec89a3
 
-PODFILE CHECKSUM: b0355d3967d7c20ab7f03b337b8ab8d510e3c571
+PODFILE CHECKSUM: 3affb5babf1523ebf1da2b2b69c6b410083aa493
 
 COCOAPODS: 1.4.0.beta.2
