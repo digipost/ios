@@ -2880,7 +2880,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
@@ -2937,7 +2936,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/GAI",
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = no.posten.Digipost;
@@ -3076,7 +3074,6 @@
 				INFOPLIST_FILE = Digipost/DigipostQA.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/GAI",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
@@ -3131,7 +3128,6 @@
 				INFOPLIST_FILE = Digipost/DigipostQA.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = (
-					"$(PROJECT_DIR)/GAI",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
