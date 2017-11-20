@@ -1672,6 +1672,8 @@ CGFloat extraMetadataConstraintHeight = 0;
 
         if ([self attachmentHasValidFileType] == NO) {
             [self showInvalidFileTypeView];
+        }else{
+            self.webView.hidden = false;
         }
 
         [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:NO];
