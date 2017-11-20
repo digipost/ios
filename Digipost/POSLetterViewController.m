@@ -1625,6 +1625,8 @@ CGFloat extraMetadataConstraintHeight = 0;
         [self removeUnlockViewIfPresent];
     }
     self.emptyLetterViewImageView.hidden = !showEmptyView;
+    self.navigationItem.title = @"";
+    [self.navigationController setToolbarHidden:YES animated:NO];
 }
 
 - (POSBaseEncryptedModel *)currentBaseEncryptModel
