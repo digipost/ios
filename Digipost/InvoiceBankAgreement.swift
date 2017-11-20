@@ -46,33 +46,33 @@
     }
     
     static func getBanks() -> [InvoiceBank]? {
-        let banksJSON = UserDefaults.standard.dictionary(forKey: BANKS_STATUS_KEY)! as [String : AnyObject]
-        
         var banks : [InvoiceBank] = []
-        for bank in banksJSON["banks"] as! [[String: AnyObject]] {
-            
-            var activeType1Agreement = false
-            var activeType2Agreement = false
-    
-            for agreement in bank["agreements"] as! [[String: AnyObject]] {
+        if let banksJSON = UserDefaults.standard.dictionary(forKey: BANKS_STATUS_KEY) as [String : AnyObject]? {
+            for bank in banksJSON["banks"] as! [[String: AnyObject]] {
                 
-                if let agreementTypeActive = agreement["active"], let agreementType = agreement["agreementType"] {
-                    if agreementTypeActive as! Bool && TYPE1 == agreementType as! String {
-                        activeType1Agreement = true
-                    }
+                var activeType1Agreement = false
+                var activeType2Agreement = false
+                
+                for agreement in bank["agreements"] as! [[String: AnyObject]] {
                     
-                    if agreementTypeActive as! Bool && TYPE2 == agreementType as! String {
-                        activeType2Agreement = true
+                    if let agreementTypeActive = agreement["active"], let agreementType = agreement["agreementType"] {
+                        if agreementTypeActive as! Bool && TYPE1 == agreementType as! String {
+                            activeType1Agreement = true
+                        }
+                        
+                        if agreementTypeActive as! Bool && TYPE2 == agreementType as! String {
+                            activeType2Agreement = true
+                        }
                     }
                 }
+                
+                
+                //Add additional registration links from API if direct link becomes available.
+                let name = bank["name"] as! String
+                let registrationUrl = name == "DNB" ? "https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html" : "" 
+                let newBank = InvoiceBank(name: name, registrationUrl: registrationUrl, activeType1Agreement: activeType1Agreement, activeType2Agreement: activeType2Agreement)
+                banks.append(newBank)
             }
-
-           
-            //Add additional registration links from API if direct link becomes available.
-            let name = bank["name"] as! String
-            let registrationUrl = name == "DNB" ? "https://www.dnb.no/privat/nettbank-mobil-og-kort/betaling/elektronisk-faktura.html" : "" 
-            let newBank = InvoiceBank(name: name, registrationUrl: registrationUrl, activeType1Agreement: activeType1Agreement, activeType2Agreement: activeType2Agreement)
-            banks.append(newBank)
         }
         return banks
     }
