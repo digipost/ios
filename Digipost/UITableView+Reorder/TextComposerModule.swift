@@ -28,14 +28,14 @@ class TextComposerModule: ComposerModule {
     class func headlineModule() -> TextComposerModule {
         let textComposerModule = TextComposerModule()
         textComposerModule.type = .h1
-        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.headlineH1()])
+        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSAttributedStringKey.font : UIFont.headlineH1()])
         return textComposerModule
     }
 
     class func paragraphModule() -> TextComposerModule {
         let textComposerModule = TextComposerModule()
         textComposerModule.type = .paragraph
-        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSFontAttributeName : UIFont.paragraph()])
+        textComposerModule.attributedText = NSAttributedString(string: " ", attributes: [NSAttributedStringKey.font : UIFont.paragraph()])
         return textComposerModule
     }
 
@@ -73,7 +73,7 @@ class TextComposerModule: ComposerModule {
 
     func appendNewParagraph() {
         let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
-        let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSFontAttributeName : UIFont.paragraph()])
+        let appendingAttributedString = NSAttributedString(string: "\n", attributes:[NSAttributedStringKey.font : UIFont.paragraph()])
         // to keep style if whole string is deleted, string needs to be initialized with a space in start, remove it when adding actual text
         mutableAttributedString.append(appendingAttributedString)
         attributedText = mutableAttributedString
@@ -83,18 +83,18 @@ class TextComposerModule: ComposerModule {
         let mutableAttributedString = attributedText.mutableCopy() as! NSMutableAttributedString
         var returnDictionary = [String : AnyObject]()
         attributedText.enumerateAttributes(in: range, options: NSAttributedString.EnumerationOptions()) { (attributes, inRange, stop) -> Void in
-            if let font = attributes[NSFontAttributeName] as? UIFont {
+            if let font = attributes[NSAttributedStringKey.font] as? UIFont {
                 let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
-                mutableAttributedString.addAttribute(NSFontAttributeName, value: newFont, range: inRange)
-                returnDictionary[NSFontAttributeName] = newFont
+                mutableAttributedString.addAttribute(NSAttributedStringKey.font, value: newFont, range: inRange)
+                returnDictionary[NSAttributedStringKey.font.rawValue] = newFont
             }
         }
 
         if range.length == 0 {
             let existingAttributes = attributedText.attributes(at: range.location - 1, effectiveRange: nil)
-            if let font = existingAttributes[NSFontAttributeName] as? UIFont {
+            if let font = existingAttributes[NSAttributedStringKey.font] as? UIFont {
                 let newFont = self.newFont(font, newFontTrait: fontTrait, enabled: enabled)
-                returnDictionary[NSFontAttributeName] = newFont
+                returnDictionary[NSAttributedStringKey.font.rawValue] = newFont
             }
         }
 
@@ -124,7 +124,7 @@ class TextComposerModule: ComposerModule {
         _ = attributedText.attributes(at: attributedText.length - 1 , effectiveRange: nil)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = alignment
-        mutableAttributedString.addAttribute(NSParagraphStyleAttributeName , value: paragraphStyle, range:  NSMakeRange(0, attributedText.length))
+        mutableAttributedString.addAttribute(NSAttributedStringKey.paragraphStyle , value: paragraphStyle, range:  NSMakeRange(0, attributedText.length))
         attributedText = mutableAttributedString
     }
 
@@ -164,7 +164,7 @@ class TextComposerModule: ComposerModule {
             var tagBlocksInString = [HTMLTagBlock]()
             attributedText.enumerateAttributes(in: NSMakeRange(stringIndex, string.length), options: NSAttributedString.EnumerationOptions()) { (attributeDict, range, stop) -> Void in
                 for (attributeKey, attributeValue) in attributeDict {
-                    if attributeKey == "NSParagraphStyle" {
+                    if attributeKey.rawValue == "NSParagraphStyle" {
                         continue
                     }
 

@@ -27,7 +27,7 @@ class OnboardingLoginViewController: UIViewController {
     @IBOutlet var registerButton: UIButton!
     @IBOutlet var privacyButton: UIButton!
     
-    weak var delegate : OnboardingLoginViewControllerDelegate?
+    @objc weak var delegate : OnboardingLoginViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

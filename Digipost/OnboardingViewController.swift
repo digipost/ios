@@ -69,7 +69,7 @@ class OnboardingViewController: GAITrackedViewController, UIScrollViewDelegate {
     var logoInitialPositionY:CGFloat = 0
     var welcomeLabelInitialPositionY:CGFloat = 0
     
-    var onboardingLoginViewController : OnboardingLoginViewController?
+    @objc var onboardingLoginViewController : OnboardingLoginViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()

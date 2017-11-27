@@ -18,7 +18,7 @@ import UIKit
 
 extension UIWebView {
     
-    func setAccessabilityLabelForFileType(_ filetype: String?){
+    @objc func setAccessabilityLabelForFileType(_ filetype: String?){
         if let actualFileType = filetype as String? {
             
             if actualFileType == "jpg" || actualFileType == "png" {

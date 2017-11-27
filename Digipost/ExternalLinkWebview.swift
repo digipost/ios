@@ -25,7 +25,7 @@ import WebKit
     @IBOutlet weak var navBar: UINavigationBar!
     
     var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
-    var initUrl: String = ""
+    @objc var initUrl: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +48,7 @@ import WebKit
     func setupToolbar() {
         self.navBar.barTintColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
         self.navBar.tintColor = UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)
-        self.navBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)]
+        self.navBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(red:0.14, green:0.14, blue:0.14, alpha:1.0)]
         
         var toolbarItems = [UIBarButtonItem]()
         toolbarItems.append(
@@ -65,13 +65,13 @@ import WebKit
         toggleToolbarVisibility()
     }
     
-    func webviewBack(){
+    @objc func webviewBack(){
         if self.webView.canGoBack {
             self.webView.goBack()
         }
     }
     
-    func webviewForward(){
+    @objc func webviewForward(){
         if self.webView.canGoForward {
             self.webView.goForward()
         }

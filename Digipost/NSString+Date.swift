@@ -17,7 +17,7 @@
 import Foundation
 
 public extension NSString {
-    func validDateFormat() -> NSString? {
+    @objc func validDateFormat() -> NSString? {
         let r = self.range(of: ".", options: NSString.CompareOptions.backwards)
         
         if r.length > 0 {

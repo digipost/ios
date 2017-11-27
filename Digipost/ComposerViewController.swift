@@ -62,7 +62,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         addComposerModuleButton.addTarget(self, action: #selector(ComposerViewController.didTapAddComposerModuleButton(_:)), for: .touchUpInside)
     }
     
-    func didTapAddComposerModuleButton(_ button: UIButton) {
+    @objc func didTapAddComposerModuleButton(_ button: UIButton) {
         let moduleSelectorViewController = UIStoryboard(name: "DocumentComposer", bundle: Bundle.main).instantiateViewController(withIdentifier: "moduleSelectorViewController") as! ModuleSelectorViewController
         moduleSelectorViewController.modalPresentationStyle = .custom
         moduleSelectorViewController.transitioningDelegate = self
@@ -107,7 +107,7 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
         return nil
     }
     
-    func didTapTextAttributeButton(_ sender: UIButton) {
+    @objc func didTapTextAttributeButton(_ sender: UIButton) {
         // do something with the current view!
         if let textAttributeButton = sender as? TextAttributeButton {
             if let editingComposerModuleAndTextView = currentEditingComposerModuleAndTextView() as (TextComposerModule, UITextView)! {
@@ -125,7 +125,12 @@ class ComposerViewController: UIViewController, ModuleSelectorViewControllerDele
             let attributedString = textView.attributedText.attributedSubstring(from: range)
             stylePickerViewController?.setupForAttributedString(attributedString)
         } else {
-            stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: textView.typingAttributes))
+            let typingAttributes = textView.typingAttributes
+            var attributes = [NSAttributedStringKey: Any]()
+            for attribute in typingAttributes {
+                attributes[NSAttributedStringKey(attribute.key)] = attribute.value
+            }
+            stylePickerViewController?.setupForAttributedString(NSAttributedString(string: " ", attributes: attributes))            
         }
     }
     

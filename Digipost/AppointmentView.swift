@@ -40,13 +40,13 @@ import EventKit
     
     var appointment: POSAppointment = POSAppointment()
 
-    var extraHeight = CGFloat(0)
+    @objc var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
     static var pickedCalenderIdentifier: String = ""
     let permissionsErrorMessage = "For å legge til hendelser i kalenderen din, må du gi Digipost tilgang til Kalendere. Dette kan du endre under Personvern i Innstillinger."
 
-    func instanceWithData(appointment: POSAppointment) -> UIView{
+    @objc func instanceWithData(appointment: POSAppointment) -> UIView{
         let view = UINib(nibName: "AppointmentView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! AppointmentView
 
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -115,8 +115,6 @@ import EventKit
         calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
         calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
     }
-
-
     
     @IBAction func addToCalendar(_ sender: Any) {
         let eventTitle = title.text!
@@ -137,9 +135,9 @@ import EventKit
             }
             
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
-                let calendar = AppointmentView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents
-                self.createEventInCalendar(calendar: calendar, title: eventTitle)
-                
+                if let calendar = AppointmentView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
+                    self.createEventInCalendar(calendar: calendar, title: eventTitle)
+                }
             })
         }
         
@@ -167,7 +165,7 @@ import EventKit
         }
     }
     
-    @discardableResult static func requestPermissions() -> Bool{
+    @discardableResult @objc static func requestPermissions() -> Bool{
         var permissionsGranted = false 
         EKEventStore().requestAccess(to: .event, completion: 
             {(granted: Bool, error: Error?) -> Void in

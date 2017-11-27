@@ -16,7 +16,7 @@
 import Foundation
 
 extension UINavigationController {
-    func documentsViewControllerInHierarchy() -> POSDocumentsViewController? {
+    @objc func documentsViewControllerInHierarchy() -> POSDocumentsViewController? {
         for (_, obj) in viewControllers.enumerated() {
             if let documentsViewController = obj as? POSDocumentsViewController {
                 return documentsViewController
@@ -24,7 +24,8 @@ extension UINavigationController {
         }
         return nil
     }
-    func foldersViewControllerInHierarchy() -> POSFoldersViewController? {
+    
+    @objc func foldersViewControllerInHierarchy() -> POSFoldersViewController? {
         for (_, obj)  in viewControllers.enumerated() {
             if let foldersViewController = obj as? POSFoldersViewController {
                 return foldersViewController

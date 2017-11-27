@@ -18,7 +18,7 @@ import UIKit
 
 extension APIClient {
     
-    func changeName(_ folder: POSFolder, newName name: String, newIconName iconName: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func changeName(_ folder: POSFolder, newName name: String, newIconName iconName: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName] as [String : Any]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters as Dictionary<String, AnyObject>? , success: success, failure: failure)
@@ -26,7 +26,7 @@ extension APIClient {
         }
     }
     
-    func createFolder(_ name: String, iconName: String, mailBox: POSMailbox, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func createFolder(_ name: String, iconName: String, mailBox: POSMailbox, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let parameters = [Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: mailBox.createFolderUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
@@ -34,7 +34,7 @@ extension APIClient {
         }
     }
     
-    func moveFolder(_ folderArray: Array<POSFolder>, mailbox: POSMailbox, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func moveFolder(_ folderArray: Array<POSFolder>, mailbox: POSMailbox, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let folders = folderArray.map({ (folder: POSFolder) -> Dictionary<String,String> in
             return [ Constants.APIClient.AttributeKey.identifier : folder.folderId.stringValue, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon: folder.iconName ]
         })
@@ -45,7 +45,7 @@ extension APIClient {
         }
     }
     
-    func delete(folder: POSFolder, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
+    @objc func delete(folder: POSFolder, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : folder.name, Constants.APIClient.AttributeKey.icon : folder.iconName] as [String : Any]
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.delete, url: folder.deletefolderUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)

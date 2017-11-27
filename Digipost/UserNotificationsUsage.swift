@@ -18,12 +18,12 @@ import UserNotifications
 
 @objc class UserNotificationsUsage: NSObject {
     
-    class func reportActivationState() {
+    @objc class func reportActivationState() {
         let activationState = getActivationState()
         GAEvents.event(category: "push", action: "status", label: activationState, value: nil)
     }
     
-    class func getActivationState() -> String {
+    @objc class func getActivationState() -> String {
         var label = "undetermined"
         let semaphore = DispatchSemaphore(value: 0)
         

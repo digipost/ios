@@ -49,7 +49,8 @@ extension POSLetterViewController {
             return false
         }
     }
-    func addTapGestureRecognizersToWebView(_ webView: UIWebView) {
+    
+    @objc func addTapGestureRecognizersToWebView(_ webView: UIWebView) {
         let singleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(POSLetterViewController.didSingleTapWebView))
         singleTapGestureRecognizer.numberOfTapsRequired = 1
         singleTapGestureRecognizer.numberOfTouchesRequired = 1
@@ -65,7 +66,7 @@ extension POSLetterViewController {
         singleTapGestureRecognizer.require(toFail: doubleTapGestureRecognizer)
     }
     
-    func shouldHideToolBar(_ attachment: POSAttachment?) -> Bool {
+    @objc func shouldHideToolBar(_ attachment: POSAttachment?) -> Bool {
         if let actualAttachment = attachment as POSAttachment! {
             if actualAttachment.invoice != nil{
                 return false

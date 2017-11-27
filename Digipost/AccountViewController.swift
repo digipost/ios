@@ -75,7 +75,7 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         appDelegate.initGCM();
     }
     
-    func refreshContentFromServer() {
+    @objc func refreshContentFromServer() {
         updateContentsFromServerUseInitiateRequest(0)
     }
     

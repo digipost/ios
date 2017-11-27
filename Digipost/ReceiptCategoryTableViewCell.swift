@@ -26,17 +26,11 @@ class ReceiptCategoryTableViewCell: UITableViewCell {
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
-        
-        self.tintColor = self.isEditing ? UIColor(colorLiteralRed: 64.0 / 255.0,
-                                                green: 66.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
-            : UIColor.white
+        self.tintColor = self.isEditing ? UIColor(red: 64.0 / 255.0, green: 66.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0) : UIColor.white
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        self.tintColor = self.isEditing ? UIColor(colorLiteralRed: 64.0 / 255.0,
-                                                green: 66.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0)
-            : UIColor.white
+        self.tintColor = self.isEditing ? UIColor(red: 64.0 / 255.0,green: 66.0 / 255.0, blue: 69.0 / 255.0, alpha: 1.0) : UIColor.white
     }
 }

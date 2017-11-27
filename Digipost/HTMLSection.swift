@@ -27,7 +27,7 @@ class HTMLSection: HTMLRepresentable {
         self.tagBlocks = tagBlocks
         let firstTagBlock = tagBlocks.first
         if firstTagBlock?.tag.type == .Bold || firstTagBlock?.tag.type == .Italic || firstTagBlock?.tag.type == .Paragraph {
-            self.tag = HTMLTag(attribute: NSFontAttributeName, value: UIFont.paragraph())
+            self.tag = HTMLTag(attribute: NSAttributedStringKey.font.rawValue, value: UIFont.paragraph())
         } else {
             self.tag = firstTagBlock!.tag
         }

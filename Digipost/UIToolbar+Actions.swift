@@ -63,7 +63,7 @@ extension UIToolbar {
         return openDocumentBarButtonItem
     }
     
-    func setupIconsForLetterViewController(_ letterViewController: POSLetterViewController) -> NSArray{
+    @objc func setupIconsForLetterViewController(_ letterViewController: POSLetterViewController) -> NSArray{
         barTintColor = UIColor.white
         
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)

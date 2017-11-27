@@ -47,7 +47,7 @@ import Foundation
         let style = NSMutableParagraphStyle()
         style.lineSpacing = lineSpacing
         style.minimumLineHeight = minimumLineHeight
-        attrString.addAttribute(NSParagraphStyleAttributeName, value: style, range: NSRange(location: 0, length: text.characters.count))
+        attrString.addAttribute(NSAttributedStringKey.paragraphStyle, value: style, range: NSRange(location: 0, length: text.characters.count))
         return attrString
     }
 }

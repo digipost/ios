@@ -22,13 +22,12 @@ import SafariServices
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var text: UILabel!
     @IBOutlet weak var deadline: UILabel!
-    @IBOutlet weak var feedbackButton: UIButton! 
-    var extraHeight = CGFloat(0)
-    
-    var parentViewController: POSLetterViewController? = nil
+    @IBOutlet weak var feedbackButton: UIButton!
+    @objc var extraHeight = CGFloat(0)
+    @objc var parentViewController: POSLetterViewController? = nil
     var url = "https://www.digipost.no"
 
-    func instanceWithData(externalLink: POSExternalLink) -> UIView{
+    @objc func instanceWithData(externalLink: POSExternalLink) -> UIView{
         let view = UINib(nibName: "ExternalLinkView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ExternalLinkView        
         view.text.attributedText = attributedString(text: externalLink.text, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.url = externalLink.url;
@@ -47,8 +46,9 @@ import SafariServices
         }
         return view
     }
+
     
-    func setParentViewController(parentViewController: POSLetterViewController) {
+    @objc func setParentViewController(parentViewController: POSLetterViewController) {
         self.parentViewController = parentViewController
     }
     

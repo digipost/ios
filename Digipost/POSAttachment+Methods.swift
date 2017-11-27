@@ -18,7 +18,7 @@ import UIKit
 
 extension POSAttachment {
     
-    func hasValidToPayInvoice() -> Bool {
+    @objc func hasValidToPayInvoice() -> Bool {
         if let actualInvoice = invoice as POSInvoice? {
             if actualInvoice.canBePaidByUser.boolValue {
                 return true
@@ -27,7 +27,7 @@ extension POSAttachment {
         return false
     }
     
-    func needsAuthenticationToOpen() -> Bool {
+    @objc func needsAuthenticationToOpen() -> Bool {
         if self.authenticationLevel == nil {
             return false
         }
@@ -68,7 +68,7 @@ extension POSAttachment {
         return false
     }
     
-    func getMetadataArray() -> [POSMetadataObject] {
+    @objc func getMetadataArray() -> [POSMetadataObject] {
         var metadataArray: [POSMetadataObject] = []
         if self.metadata != nil {
             if let json = NSKeyedUnarchiver.unarchiveObject(with: self.metadata) as? NSArray {

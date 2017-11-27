@@ -54,7 +54,7 @@ class AddComposerModuleButton: UIButton {
         NotificationCenter.default.addObserver(self, selector: #selector(AddComposerModuleButton.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
 
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
@@ -76,7 +76,7 @@ class AddComposerModuleButton: UIButton {
         }
     }
 
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         let userInfo = notification.userInfo as! Dictionary<String, AnyObject>
         let animationDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as! TimeInterval
         let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey]!.int32Value
