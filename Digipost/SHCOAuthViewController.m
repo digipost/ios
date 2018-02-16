@@ -67,6 +67,7 @@ Boolean tryToFillUsing1Password = false;
 
     [self remove1PasswordButtonIfNotNormalLoginScope];
     if (self.scope == kOauth2ScopeFull) {
+        [self.webView setKeyboardDisplayRequiresUserAction:NO]; // Må ikke brukes for høyere innlogging fordi den skaper en fokus-bug med innlogging i buypass-webview
         if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
             self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
             [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
@@ -78,8 +79,6 @@ Boolean tryToFillUsing1Password = false;
     }
 
     [self presentAuthenticationWebView];
-
-    [self.webView setKeyboardDisplayRequiresUserAction:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
