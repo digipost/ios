@@ -737,7 +737,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
     [self setToolbarItems:toolbarItems animated:YES];
-    [self loadMetadataContent];
 }
 
 - (void)loadMetadataContent
@@ -804,6 +803,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                                          [self setToolbarItems:toolbarItems animated:YES];
 
                                          [self.navigationController setToolbarHidden:[self shouldHideToolBar:self.attachment] animated:YES];
+                                         [self loadMetadataContent];
                                      }failure:^(APIError *error) {
                                          [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
                                      }
