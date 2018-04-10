@@ -52,7 +52,7 @@
 /* ACTIONS */
 "FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "MY FOLDERS";
 /* Receipts */
-"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "E-receipts";
+"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "Receipts";
 /* From */
 "LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE" = "From";
 /* Date */
@@ -148,7 +148,7 @@
 /* All letters sent to you in Digipost will arrive here.You can also upload your own files in folders. */
 "DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "All letters sent to you in Digipost will arrive here. You can also upload your own files in folders.";
 /* Receipts */
-"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "E-receipts";
+"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Receipts";
 /* receipt */
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "receipt";
 /* receipts */
@@ -156,7 +156,7 @@
 /* No cards */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_NO_CARDS_TITLE" = "Get electronic receipts in Digipost when you use your debit and credit cards.\n\nRegister your cards at digipost.no to get started.";
 /* Cards ready */
-"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Your payment cards are set up.\n\nYou will receive e-receipts the next time you use your card in a store that supports electronic receipts, the receipts will appear here.";
+"RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_CARDS_READY_TITLE" = "Your payment cards are set up.\n\nYou will receive receipts the next time you use your card in a store that supports electronic receipts, the receipts will appear here.";
 /* Receipts hidden */
 "RECEIPTS_VIEW_CONTROLLER_NO_RECEIPTS_HIDDEN_TITLE" = "%i %@ hidden.\nTo show these, please verify your payment cards at digipost.no.";
 /* receipt is */

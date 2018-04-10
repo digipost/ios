@@ -73,7 +73,7 @@
 "FOLDERS_VIEW_CONTROLLER_SETTINGS_SECTION_HEADER_TITLE" = "MINE MAPPER";
 
 /* Receipts */
-"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "E-kvitteringer";
+"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE" = "Kvitteringer";
 
 /* From */
 "LETTER_VIEW_CONTROLLER_POPOVER_SENDER_TITLE" = "Fra";
@@ -217,7 +217,7 @@
 "DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "Brev du mottar i Digipost vil bli lagt her.\nDu kan også laste opp egne filer i mapper";
 
 /* Receipts */
-"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "E-kvitteringer";
+"RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Kvitteringer";
 
 /* receipt */
 "RECEIPTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "kvittering";
