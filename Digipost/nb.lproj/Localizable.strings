@@ -133,7 +133,7 @@
 "LETTER_VIEW_CONTROLLER_LEFT_BAR_BUTTON_ITEM_ATTACHMENTS_TITLE" = "Vedlegg";
 
 /* Move warning */
-"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE" = "Denne filen ligger som et vedlegg i et brev, derfor blir hele brevet flyttet.";
+"LETTER_VIEW_CONTROLLER_MOVE_WARNING_TITLE" = "Denne filen ligger som et vedlegg i en melding, derfor blir hele meldingen flyttet.";
 
 /* Delete warning */
 "LETTER_VIEW_CONTROLLER_DELETE_WARNING_TITLE" = "Slett";
@@ -148,7 +148,7 @@
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE" = "Denne filtypen kan ikke åpnes i appen.";
 
 /* Wrong authentication level validation error message */
-"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "Logg inn på digipost.no og bruk løsningen avsender ber om (BankID, Buypass eller ID-porten) for å lese brevet";
+"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "Logg inn på digipost.no og bruk løsningen avsender ber om (BankID, Buypass eller ID-porten) for å lese meldingen";
 
 /* Generic validation error message */
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "Logg inn på digipost.no for å åpne filen.";
@@ -205,16 +205,16 @@
 "DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE" = "Slett";
 
 /* letter */
-"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "brev";
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "melding";
 
 /* letters */
-"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "brev";
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "meldinger";
 
 /* You have no documents in this folder. */
 "DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "Last opp filer for sikker lagring.\nDu kan enkelt flytte innhold mellom mapper.";
 
 /* You have no documents in this folder. */
-"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "Brev du mottar i Digipost vil bli lagt her.\nDu kan også laste opp egne filer i mapper";
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "Meldinger du mottar i Digipost vil bli lagt her.\nDu kan også laste opp egne filer i mapper";
 
 /* Receipts */
 "RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Kvitteringer";
@@ -349,7 +349,7 @@
 "Folder allready exists text" = "Velg et annet navn";
 
 /* Åpne brevet og send kvittering */
-"Åpne brevet og send kvittering" = "Åpne brevet";
+"Åpne brevet og send kvittering" = "Åpne meldingen";
 
 /* Avbryt */
 "Avbryt" = "Avbryt";
@@ -361,10 +361,10 @@
 "Edit folder title item" = "Rediger mappe";
 
 /* Hvis du åpner dette brevet */
-"Hvis du åpner dette brevet" = "Hvis du åpner brevet, vil det bli sendt en åpningskvittering til avsenderen.";
+"Hvis du åpner dette brevet" = "Hvis du åpner meldingen, vil det bli sendt en åpningskvittering til avsenderen.";
 
 /* title of alert telling user validation failed */
-"Failed validating opening receipt title" = "Kunne ikke sende åpningskvitteringen. Forsøk å åpne brevet på nytt senere.";
+"Failed validating opening receipt title" = "Kunne ikke sende åpningskvitteringen. Forsøk å åpne meldingen på nytt senere.";
 
 /* Noe feil skjedde. */
 "Noe feil skjedde. " = "Det skjedde en feil. ";
@@ -394,9 +394,9 @@
 "navbar title upload mailbox" = "Velg konto";
 
 /* unread letters in account view */
-"account view unread letter" = " ulest brev";
+"account view unread letter" = " ulest melding";
 
-"account view unread letters" = "uleste brev";
+"account view unread letters" = "uleste meldinger";
 
 /* logout button title */
 "log out button title" = "Logg ut";
@@ -497,7 +497,7 @@
 /* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
 
-"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til brev fra offentlige virksomheter eller brev som krever høyere sikkerhetsnivå.";
+"cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til meldinger fra offentlige virksomheter eller meldinger som krever høyere sikkerhetsnivå.";
 
 /* New features onboarding. */
 "new feature navbar title" = "Visste du at..?";
@@ -533,11 +533,11 @@
 
 /* No comment provided by engineer. */
 "recipients view search bar placeholder" = "Søk på personer eller bedrifter";
-"unlock view label can not unlock letter" = "Brevet kan ikke åpnes i appen, fordi det er ende-til-ende kryptert. Logg inn på digipost.no for å lese brevet.";
+"unlock view label can not unlock letter" = "Meldingen kan ikke åpnes i appen, fordi det er ende-til-ende kryptert. Logg inn på digipost.no for å lese meldingen.";
 
 /* No comment provided by engineer. */
 "preview view navigation bar title" = "Forhåndsvisning";
-"unlock view label can unlock letter" = "Avsenderen krever at du logger inn på et annet sikkerhetsnivå for å åpne brevet";
+"unlock view label can unlock letter" = "Avsenderen krever at du logger inn på et annet sikkerhetsnivå for å åpne meldingen";
 
 /* No comment provided by engineer. */
 "preview view add button title" = "Legg til mottakere";
@@ -562,7 +562,7 @@
 
 "preview view recipients send button title" = "Send";
 
-"composer view navigation bar title" = "Send brev";
+"composer view navigation bar title" = "Send melding";
 
 "composer view preview button title" = "Forhåndsvisning";
 
@@ -570,7 +570,7 @@
 
 "composer view title placeholder" = "Trykk for å legge til en tittel";
 
-"composer view close alert title" = "Brev lukkes";
+"composer view close alert title" = "Meldingen lukkes";
 
 "composer view close alert message" = "Vil du lagre utkastet før du avslutter";
 
