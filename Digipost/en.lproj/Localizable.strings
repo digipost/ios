@@ -355,7 +355,7 @@
 "unlock view label can not unlock letter" = "The message can't be opened in the app because it's end-to-end encrypted. Log on to digipost.no to read it.";
 /* No comment provided by engineer. */
 "preview view header title" = "PREVIEW";
-"unlock view label can unlock letter" = "The sender requires that you log in to a another security level to open the message";
+"unlock view label can unlock letter" = "The sender requires you to log in with another security level to open the message";
 /* Lets user tap it to dismiss alert */
 "preview view navigation bar title" = "Preview";
 "Oauth login error button title" = "Ok";
