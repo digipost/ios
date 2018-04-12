@@ -614,10 +614,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         //Update badge with unread letters
-        if ([self.folderName isEqualToString:@"Inbox"]) {
-            NSNumber *unread = [[POSModelManager sharedManager] numberOfUnreadDocumentsInfolder:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress];
-            [UIApplication sharedApplication].applicationIconBadgeNumber = [unread integerValue];
-        }
+        NSNumber *unread = [[POSModelManager sharedManager] numberOfUnreadDocumentsInfolder:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [unread integerValue];
         
     } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];
