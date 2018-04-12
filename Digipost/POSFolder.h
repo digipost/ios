@@ -31,6 +31,7 @@
 @property (nonatomic, retain) NSNumber * index;
 @property (nonatomic, retain) NSSet *documents;
 @property (nonatomic, retain) POSMailbox *mailbox;
+@property (nonatomic, retain) NSString * type;
 @end
 
 @interface POSFolder (CoreDataGeneratedAccessors)

@@ -31,6 +31,7 @@ NSString *const kFolderArchiveName = @"Archive";
 
 NSString *const kFolderIconKey = @"icon";
 NSString *const kFolderIdKey = @"id";
+NSString *const kFolderTypeKey = @"type";
 
 NSString *const kMailboxLinkChangeFolderAPIKeySuffix = @"change_folder";
 NSString *const kMailboxLinkUploadDocumentToFolderAPIKeySuffix = @"upload_document";
@@ -67,7 +68,10 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
 
     NSString *icon = attributes[kFolderIconKey];
     folder.iconName = [NSString nilOrValueForValue:icon];
-
+    
+    NSString *type = attributes[kFolderTypeKey];
+    folder.type = [NSString nilOrValueForValue:icon];
+        
     NSNumber *folderId = attributes[kFolderIdKey];
     folder.folderId = [NSNumber nilOrValueForValue:folderId];
 
@@ -89,6 +93,10 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     NSAssert(folder.uri != nil, @"no uri set");
     NSAssert(folder.name != nil, @"no name set");
     return folder;
+}
+
+-(BOOL) canEditFolder {
+    return [self.type isEqualToString: @"VANLIG"];
 }
 
 + (instancetype)folderWithAttributes:(NSDictionary *)attributes inManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
