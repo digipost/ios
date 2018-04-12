@@ -70,7 +70,7 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
     folder.iconName = [NSString nilOrValueForValue:icon];
     
     NSString *type = attributes[kFolderTypeKey];
-    folder.type = [NSString nilOrValueForValue:icon];
+    folder.type = [NSString nilOrValueForValue:type];
         
     NSNumber *folderId = attributes[kFolderIdKey];
     folder.folderId = [NSNumber nilOrValueForValue:folderId];
