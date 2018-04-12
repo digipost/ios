@@ -219,6 +219,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
+        [self updateUnreadBadgeTemporary: attachment];
+    }
+}
+
+- (void) updateUnreadBadgeTemporary:(POSAttachment*) attachment {
+    if([attachment.read boolValue] == NO && [attachment.authenticationLevel isEqualToString:@"PASSWORD"] && [UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber - 1;
     }
 }
 
