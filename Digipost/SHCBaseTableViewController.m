@@ -48,6 +48,7 @@
     [self.navigationController.interactivePopGestureRecognizer setCancelsTouchesInView:NO];
 
     self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.layer.zPosition = -1;
     [self.refreshControl addTarget:self
                             action:@selector(refreshControlDidChangeValue:)
                   forControlEvents:UIControlEventValueChanged];
