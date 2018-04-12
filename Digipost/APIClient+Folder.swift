@@ -21,8 +21,12 @@ extension APIClient {
     @objc func changeName(_ folder: POSFolder, newName name: String, newIconName iconName: String, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let parameters = [ Constants.APIClient.AttributeKey.identifier : folder.folderId, Constants.APIClient.AttributeKey.name : name, Constants.APIClient.AttributeKey.icon : iconName] as [String : Any]
         validateFullScope {
-            let task = self.urlSessionTask(httpMethod.put, url: folder.changeFolderUri, parameters: parameters as Dictionary<String, AnyObject>? , success: success, failure: failure)
-            task.resume()
+            if let changeFolderUri = folder.changeFolderUri {
+                let task = self.urlSessionTask(httpMethod.put, url: changeFolderUri, parameters: parameters as Dictionary<String, AnyObject>?, success: success, failure: failure)
+                task.resume()
+            }else{
+                success();
+            }
         }
     }
     
