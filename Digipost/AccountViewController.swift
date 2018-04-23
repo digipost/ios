@@ -212,7 +212,6 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
-            letterViewController.receipt = nil
         }
         
         APIClient.sharedClient.logoutThenDeleteAllStoredData()

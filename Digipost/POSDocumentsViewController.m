@@ -26,7 +26,6 @@
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSFolder+Methods.h"
-#import "POSReceipt.h"
 #import "NSError+ExtraInfo.h"
 #import "SHCAttachmentsViewController.h"
 #import "POSLetterViewController.h"

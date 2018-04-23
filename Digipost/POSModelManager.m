@@ -21,7 +21,6 @@
 #import "POSFolder+Methods.h"
 #import "POSAttachment.h"
 #import "POSInvoice.h"
-#import "POSReceipt.h"
 #import "POSMailbox+Methods.h"
 #import "Digipost-Swift.h"
 
@@ -71,9 +70,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     //    // before updateDocumentsWithAttribtues: has been called and finished
     [POSDocument reconnectDanglingDocumentsInManagedObjectContext:self.managedObjectContext];
     //
-    //    // The same goes for the receipts
-    [POSReceipt reconnectDanglingReceiptsInManagedObjectContext:self.managedObjectContext];
-    //
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
         [self logSavingManagedObjectContextWithError:error];
@@ -102,9 +98,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
     NSNumber *numberOfCardsReadyForVerification = attributes[NSStringFromSelector(@selector(numberOfCardsReadyForVerification))];
     rootResource.numberOfCardsReadyForVerification = [numberOfCardsReadyForVerification isKindOfClass:[NSNumber class]] ? numberOfCardsReadyForVerification : @0;
-
-    NSNumber *numberOfReceiptsHiddenUntilVerification = attributes[NSStringFromSelector(@selector(numberOfReceiptsHiddenUntilVerification))];
-    rootResource.numberOfReceiptsHiddenUntilVerification = [numberOfReceiptsHiddenUntilVerification isKindOfClass:[NSNumber class]] ? numberOfReceiptsHiddenUntilVerification : @0;
 }
 
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
@@ -197,53 +190,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
-{
-    // First, get the mailbox object
-    POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:digipostAddress
-                                                  inManagedObjectContext:self.managedObjectContext];
-
-    // Get a list of all old receipts
-    //NSArray *oldReceipts = [POSReceipt allReceiptsWithMailboxWithDigipostAddress:digipostAddress
-     //                                                     inManagedObjectContext:self.managedObjectContext];
-    
-    //Delete old receipts
-    [POSReceipt deleteAllReceiptsInManagedObjectContext: self.managedObjectContext];
-    
-    NSArray *receipts = attributes[kReceiptReceiptAPIKey];
-    if ([receipts isKindOfClass:[NSArray class]]) {
-        for (NSDictionary *receiptDict in receipts) {
-            if ([receiptDict isKindOfClass:[NSDictionary class]]) {
-                POSReceipt *receipt = [POSReceipt receiptWithAttributes:receiptDict
-                                                 inManagedObjectContext:self.managedObjectContext];
-                receipt.mailbox = mailbox;
-                receipt.mailboxDigipostAddress = mailbox.digipostAddress;
-            }
-        }
-    }
-
-    // Delete the old ones
-    //for (POSReceipt *oldReceipt in oldReceipts) {
-    //    [self.managedObjectContext deleteObject:oldReceipt];
-    //}
-
-    // And finally, save changes
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self logSavingManagedObjectContextWithError:error];
-    }
-}
-
-- (void)deleteReceipt:(POSReceipt *)receipt
-{
-    [self.managedObjectContext deleteObject:receipt];
-
-    // Save changes
-    NSError *error = nil;
-    if (![self.managedObjectContext save:&error]) {
-        [self logSavingManagedObjectContextWithError:error];
-    }
-}
 
 - (void)deleteAllGCMTokens
 {
@@ -256,7 +202,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (void)deleteAllObjects
 {
     [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
-    [POSReceipt deleteAllReceiptsInManagedObjectContext:self.managedObjectContext];
     [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
     [POSMailbox deleteAllMailboxesInManagedObjectContext:self.managedObjectContext];
     [self deleteAllGCMTokens];
@@ -301,12 +246,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 - (NSEntityDescription *)invoiceEntity
 {
     return [NSEntityDescription entityForName:kInvoiceEntityName
-                       inManagedObjectContext:self.managedObjectContext];
-}
-
-- (NSEntityDescription *)receiptEntity
-{
-    return [NSEntityDescription entityForName:kReceiptEntityName
                        inManagedObjectContext:self.managedObjectContext];
 }
 

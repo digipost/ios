@@ -16,7 +16,6 @@
 
 #import "POSMailbox.h"
 #import "POSFolder.h"
-#import "POSReceipt.h"
 #import "POSRootResource.h"
 
 @implementation POSMailbox
@@ -25,12 +24,9 @@
 @dynamic digipostAddress;
 @dynamic name;
 @dynamic owner;
-@dynamic receiptsUri;
-@dynamic receiptsMetadataUri;
 @dynamic updateFoldersUri;
 @dynamic unreadItemsInInbox;
 @dynamic folders;
-@dynamic receipts;
 @dynamic rootResource;
 @dynamic sendUri;
 

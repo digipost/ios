@@ -17,7 +17,6 @@
 #import "UIRefreshControl+Additions.h"
 #import "POSModelManager.h"
 #import "POSDocumentsViewController.h"
-#import "POSReceiptFoldersTableViewController.h"
 
 @implementation UIRefreshControl (Additions)
 - (void)updateRefreshControlTextRefreshing:(BOOL)refreshing
@@ -47,8 +46,7 @@
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
-    if ([self isKindOfClass:[POSDocumentsViewController class]] ||
-        [self isKindOfClass:[POSReceiptFoldersTableViewController class]]) {
+    if ([self isKindOfClass:[POSDocumentsViewController class]]) {
         attributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:0.4
                                                                           alpha:1.0]};
     } else {

@@ -82,8 +82,6 @@ extension UIToolbar {
             } else {
                 items.addObjects(from: itemsForStandardLetter(letterViewController) as [AnyObject])
             }
-        }else {
-                items.addObjects(from: itemsForReceipt(letterViewController) as [AnyObject])
         }
         
         self.tintColor = UIColor.digipostSpaceGrey()

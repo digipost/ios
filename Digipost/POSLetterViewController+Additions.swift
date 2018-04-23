@@ -41,9 +41,6 @@ extension POSLetterViewController {
         }
         
         if let _ = fileURL {
-            //            let interactionController = UIDocumentInteractionController(URL: updatedFileURL)
-            //            let canOpen = interactionController.presentOptionsMenuFromRect(CGRectZero, inView: UIView(frame: CGRectZero), animated: false)
-            //            interactionController.dismissMenuAnimated(false)
             return true
         } else {
             return false
@@ -79,23 +76,5 @@ extension POSLetterViewController {
             }
         }
         return false
-        //        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        //            if (!self.attachment && !self.receipt) {
-        //                [self showEmptyView:YES];
-        //                [self.navigationController setToolbarHidden:YES animated:YES];
-        //                return;
-        //            } else {
-        //                
-        //                [self showEmptyView:NO];
-        //            }
-        //        }
-        //        if (self.receipt || self.attachment.mainDocument.boolValue == NO) {
-        //            [self.navigationController setToolbarHidden:YES animated:YES];
-        //        } else {
-        //            [self.navigationController setToolbarHidden:NO animated:YES];
-        //        }
-        //        if ([self attachmentHasValidFileType] == NO) {
-        //            [self showInvalidFileTypeView];
-        //        }
     }
 }

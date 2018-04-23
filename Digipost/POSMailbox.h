@@ -17,7 +17,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class POSFolder, POSReceipt, POSRootResource;
+@class POSFolder, POSRootResource;
 
 @interface POSMailbox : NSManagedObject
 
@@ -25,12 +25,9 @@
 @property (nonatomic, retain) NSString *digipostAddress;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSNumber *owner;
-@property (nonatomic, retain) NSString *receiptsUri;
-@property (nonatomic, retain) NSString *receiptsMetadataUri;
 @property (nonatomic, retain) NSString *updateFoldersUri;
 @property (nonatomic, retain) NSNumber *unreadItemsInInbox;
 @property (nonatomic, retain) NSSet *folders;
-@property (nonatomic, retain) NSSet *receipts;
 @property (nonatomic, retain) NSString *sendUri;
 @property (nonatomic, retain) POSRootResource *rootResource;
 @end
@@ -41,10 +38,5 @@
 - (void)removeFoldersObject:(POSFolder *)value;
 - (void)addFolders:(NSSet *)values;
 - (void)removeFolders:(NSSet *)values;
-
-- (void)addReceiptsObject:(POSReceipt *)value;
-- (void)removeReceiptsObject:(POSReceipt *)value;
-- (void)addReceipts:(NSSet *)values;
-- (void)removeReceipts:(NSSet *)values;
 
 @end
