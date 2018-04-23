@@ -173,19 +173,6 @@ NSString *const kAuthenticationLevelPassword = @"PASSWORD";
 {
     NSArray *links = attributesDictionary[kAttachmentLinkAPIKey];
     NSString *uri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentDocumentContentAPIKeySuffix];
-
-    //    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    //    fetchRequest.entity = [[POSModelManager sharedManager] attachmentEntity];
-    //    fetchRequest.fetchLimit = 1;
-    //    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"%K == %@", NSStringFromSelector(@selector(uri)), uri];
-
-    //    NSError *error = nil;
-    //    NSArray *results = [managedObjectcontext executeFetchRequest:fetchRequest
-    //                                                           error:&error];
-    //    if (error) {
-    //        [[POSModelManager sharedManager] logExecuteFetchRequestWithError:error];
-    //    }
-    //    POSAttachment *attachment = [results firstObject];
     NSString *openingReceiptUri = [POSAttachment uriFromLinksArray:links withSuffix:kAttachmentSendOpeningReceiptAPIKeySuffix];
     existingAttachment.openingReceiptUri = openingReceiptUri;
     existingAttachment.uri = uri;

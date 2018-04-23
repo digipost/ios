@@ -111,15 +111,6 @@ extension UIToolbar {
         return items
     }
     
-    fileprivate func itemsForReceipt(_ letterViewController: POSLetterViewController) -> NSArray {
-        let items = NSMutableArray()
-        let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        items.add(deleteDocumentBarButtonItemInLetterViewController(letterViewController))
-        items.add(flexibleSpaceBarButtonItem)
-        items.add(openDocumentBarButtonItemInLetterViewController(letterViewController))
-        return items
-    }
-    
     fileprivate func itemsForAttachmentThatIsInvoice(_ letterViewController: POSLetterViewController) -> NSArray {
         let items = NSMutableArray()
         let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)

@@ -89,17 +89,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     }
 }
 
-- (void)updateCardAttributes:(NSDictionary *)attributes
-{
-    POSRootResource *rootResource = [POSRootResource existingRootResourceInManagedObjectContext:self.managedObjectContext];
-
-    NSNumber *numberOfCards = attributes[NSStringFromSelector(@selector(numberOfCards))];
-    rootResource.numberOfCards = [numberOfCards isKindOfClass:[NSNumber class]] ? numberOfCards : @0;
-
-    NSNumber *numberOfCardsReadyForVerification = attributes[NSStringFromSelector(@selector(numberOfCardsReadyForVerification))];
-    rootResource.numberOfCardsReadyForVerification = [numberOfCardsReadyForVerification isKindOfClass:[NSNumber class]] ? numberOfCardsReadyForVerification : @0;
-}
-
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes
 {
     NSParameterAssert(digipostAddress);

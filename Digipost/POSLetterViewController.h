@@ -20,21 +20,14 @@
 
 // Segue identifiers (to enable programmatic triggering of segues)
 extern NSString *const kPushLetterIdentifier;
-extern NSString *const kPushReceiptIdentifier;
 
 @class POSDocumentsViewController;
-@class POSReceiptFoldersTableViewController;
 @class POSAttachment;
-@class POSReceipt;
-@class ReceiptsViewController;
 
 @interface POSLetterViewController : GAITrackedViewController <UISplitViewControllerDelegate, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) POSDocumentsViewController *documentsViewController;
-//@property (weak, nonatomic) POSReceiptFoldersTableViewController *receiptsViewController;
-@property ReceiptsViewController *receiptsViewController;
 @property (strong, nonatomic) POSAttachment *attachment;
-@property (strong, nonatomic) POSReceipt *receipt;
 @property (strong, nonatomic) UIPopoverController *masterViewControllerPopoverController;
 @property (assign, nonatomic, getter=isSendingInvoice) BOOL sendingInvoice;
 
@@ -63,5 +56,4 @@ extern NSString *const kPushReceiptIdentifier;
 
 // reloads current open document without dimsissing popover on ipad portrait
 - (void)setAttachmentDoNotDismissPopover:(POSAttachment *)attachment;
-- (void)setReceiptDoNotDismissPopover:(POSReceipt *)receipt;
 @end
