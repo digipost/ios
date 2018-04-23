@@ -33,7 +33,6 @@
 #import "POSRootResource.h"
 #import "UIColor+Convenience.h"
 #import "NSError+ExtraInfo.h"
-#import "POSReceiptFoldersTableViewController.h"
 #import "POSLetterViewController.h"
 #import "SHCAppDelegate.h"
 #import "UIViewController+BackButton.h"
@@ -45,7 +44,6 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
-NSString *const kPushReceiptCategoriesIdentifier = @"PushReceiptCategories";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -190,12 +188,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         documentsViewController.folderUri = folder.uri;
         documentsViewController.selectedFolder = folder;
         documentsViewController.mailboxDigipostAddress = self.selectedMailBoxDigipostAdress;
-    } else if ([segue.identifier isEqualToString:kPushReceiptCategoriesIdentifier]) {
-        ReceiptCategoryViewController *receiptCategoriesViewController = (ReceiptCategoryViewController *)segue.destinationViewController;
-        receiptCategoriesViewController.mailboxDigipostAddress = self.inboxFolder.mailbox.digipostAddress;
-        receiptCategoriesViewController.receiptsUri = self.inboxFolder.mailbox.receiptsUri;
-        receiptCategoriesViewController.receiptsMetadataUri = self.inboxFolder.mailbox.receiptsMetadataUri;
-    } else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
+    }else if ([segue.identifier isEqualToString:kGoToInboxFolderAtStartupSegue]) {
         POSDocumentsViewController *documentsViewController = (POSDocumentsViewController *)segue.destinationViewController;
         documentsViewController.folderName = kFolderInboxName;
     } else if ([segue.identifier isEqualToString:kEditFolderSegue]) {
@@ -234,7 +227,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
-        return 3; // Inbox, Receipts and upload
+        return 2; // Inbox and upload
     } else {
         // add new cell-cell is added
         return [self.folders count] + 1;
@@ -265,14 +258,10 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 }
             } break;
             case 1: {
-                folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_RECEIPTS_TITLE", @"Receipts");
-                iconImage = [UIImage imageNamed:@"list-icon-receipt"];
-            } break;
-            case 2: {
                 folderName = NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_UPLOAD_TITLE", @"Upload");
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
-            case 3: {
+            case 2: {
                 folderName = NSLocalizedString(@"folder view controller beta title", @"tells user that they can send feedback with this button");
                 iconImage = [UIImage imageNamed:@"Feedback"];
             } break;
@@ -495,15 +484,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                         [self performSegueWithIdentifier:kPushDocumentsIdentifier
                                                   sender:self.inboxFolder];
                         break;
-                    }
-                    case 1: {
-//                        [self performSegueWithIdentifier:kPushReceiptsIdentifier
-//                                                  sender:nil];
-                        [self performSegueWithIdentifier:kPushReceiptCategoriesIdentifier
-                                                  sender:nil];
-                        break;
-                    }
-                    case 2: {
+                    }case 1: {
                         [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
 
                         break;
