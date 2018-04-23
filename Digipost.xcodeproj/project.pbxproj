@@ -930,6 +930,7 @@
 		F80B63531CD37C3800AE9DE5 /* DigipostQA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DigipostQA.plist; sourceTree = "<group>"; };
 		F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostQA.xcconfig; sourceTree = "<group>"; };
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -2375,7 +2376,6 @@
 				F8AE1C051CD374B40009B2F9 /* CustomInputView.m in Sources */,
 				F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */,
 				F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */,
-				F8AE1C081CD374B40009B2F9 /* ReceiptView.swift in Sources */,
 				F8AE1C091CD374B40009B2F9 /* Int+Random.swift in Sources */,
 				F8AE1C0A1CD374B40009B2F9 /* POSAttachment.m in Sources */,
 				F8AE1C0B1CD374B40009B2F9 /* UIViewController+NeedsReload.m in Sources */,
@@ -3111,6 +3111,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */,
 				F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */,
 				9CE6A7601F8D0E8B00334F64 /* Model v1.15.xcdatamodel */,
 				EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */,
@@ -3128,7 +3129,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */;
+			currentVersion = F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
