@@ -136,9 +136,10 @@ CGFloat extraMetadataConstraintHeight = 0;
         self.webView.backgroundColor = [UIColor whiteColor];
     }
     if (self.attachment) {
-        self.navigationItem.title = self.attachment.subject;
+        [self setTitle:self.attachment.subject];
+
     } else {
-        self.navigationItem.title = self.receipt.storeName;
+        [self setTitle:self.receipt.storeName];
     }
     self.screenName = kLetterViewControllerScreenName;
 
@@ -696,6 +697,11 @@ CGFloat extraMetadataConstraintHeight = 0;
     [self removeUnlockViewIfPresent];
 }
 
+- (void)setTitle:(NSString *)title {
+    self.navigationItem.leftItemsSupplementBackButton = true;
+    self.navigationItem.title = title;
+}
+
 - (void)loadContent
 {    
     POSBaseEncryptedModel *baseEncryptionModel = nil;
@@ -705,9 +711,9 @@ CGFloat extraMetadataConstraintHeight = 0;
         baseEncryptionModel = self.receipt;
     }
     if (self.attachment) {
-        self.navigationItem.title = self.attachment.subject;
+        [self setTitle:self.attachment.subject];
     } else {
-        self.navigationItem.title = self.receipt.storeName;
+        [self setTitle:self.receipt.storeName];
     }
     NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
     NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
@@ -1588,14 +1594,8 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (void)updateLeftBarButtonItem:(UIBarButtonItem *)leftBarButtonItem forViewController:(UIViewController *)viewController
 {
-    if (!leftBarButtonItem) {
-        leftBarButtonItem = self.navigationItem.leftBarButtonItem;
-    }
-    [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-
-    leftBarButtonItem.title = @" ";
-    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-                                     animated:YES];
+    leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
 
     if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
@@ -1625,7 +1625,7 @@ CGFloat extraMetadataConstraintHeight = 0;
         [self removeUnlockViewIfPresent];
     }
     self.emptyLetterViewImageView.hidden = !showEmptyView;
-    self.navigationItem.title = @"";
+    [self setTitle:@""];
     [self.navigationController setToolbarHidden:YES animated:NO];
 }
 

@@ -219,6 +219,13 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         POSLetterViewController *letterViewController = (POSLetterViewController *)segue.destinationViewController;
         letterViewController.documentsViewController = self;
         letterViewController.attachment = attachment;
+        [self updateUnreadBadgeTemporary: attachment];
+    }
+}
+
+- (void) updateUnreadBadgeTemporary:(POSAttachment*) attachment {
+    if([attachment.read boolValue] == NO && [attachment.authenticationLevel isEqualToString:@"PASSWORD"] && [UIApplication sharedApplication].applicationIconBadgeNumber > 0) {
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [UIApplication sharedApplication].applicationIconBadgeNumber - 1;
     }
 }
 
@@ -614,10 +621,8 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
         }
         
         //Update badge with unread letters
-        if ([self.folderName isEqualToString:@"Inbox"]) {
-            NSNumber *unread = [[POSModelManager sharedManager] numberOfUnreadDocumentsInfolder:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress];
-            [UIApplication sharedApplication].applicationIconBadgeNumber = [unread integerValue];
-        }
+        NSNumber *unread = [[POSModelManager sharedManager] numberOfUnreadDocumentsInfolder:self.folderName mailboxDigipostAddress:self.mailboxDigipostAddress];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [unread integerValue];
         
     } failure:^(APIError *error) {
         [self programmaticallyEndRefresh];

@@ -54,6 +54,7 @@
     [items addObject:[POSFolderIcon folderIconWithName:@"Suitcase"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Money"]];
     [items addObject:[POSFolderIcon folderIconWithName:@"Camera"]];
+    [items addObject:[POSFolderIcon folderIconWithName:@"Receipt"]];
     self.items = items;
 }
 

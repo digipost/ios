@@ -31,5 +31,6 @@
 @dynamic index;
 @dynamic documents;
 @dynamic mailbox;
+@dynamic type;
 
 @end

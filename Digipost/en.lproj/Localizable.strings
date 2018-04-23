@@ -102,7 +102,7 @@
 /* Unable to open letter */
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_TITLE" = "This document can not be opened on this device.";
 /* Wrong authentication level validation error message */
-"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "Sign in at digipost.no and use the service the sender asks for (BankID, Buypass or ID-porten) to read the letter";
+"ATTACHMENT_VALIDATION_ERROR_WRONG_AUTHENTICATION_LEVEL_MESSAGE" = "Sign in at digipost.no and use the service the sender asks for (BankID, Buypass or ID-porten) to read the message";
 /* Generic validation error message */
 "ATTACHMENT_VALIDATION_ERROR_GENERIC_MESSAGE" = "Sign in at digipost.no to read this document.";
 /* No password */
@@ -140,13 +140,13 @@
 /* Delete */
 "DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_ONE" = "Delete";
 /* letter */
-"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "letter";
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_SINGULAR" = "message";
 /* letters */
-"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "letters";
+"DOCUMENTS_VIEW_CONTROLLER_DELETE_CONFIRMATION_TWO_PLURAL" = "messages";
 /* Upload files for secure storage.You can easily move content between folders.*/
 "DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS_TITLE" = "Upload files for secure storage.\nYou can easily move content between folders.";
 /* All letters sent to you in Digipost will arrive here.You can also upload your own files in folders. */
-"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "All letters sent to you in Digipost will arrive here. You can also upload your own files in folders.";
+"DOCUMENTS_VIEW_CONTROLLER_NO_DOCUMENTS__MAILBOX_TITLE" = "All messages sent to you in Digipost will arrive here. You can also upload your own files in folders.";
 /* Receipts */
 "RECEIPTS_VIEW_CONTROLLER_NAVBAR_TITLE" = "Receipts";
 /* receipt */
@@ -236,17 +236,17 @@
 /* Text for error telling about folder with name exits */
 "Folder allready exists text" = "Choose another name";
 /* Åpne brevet og send kvittering */
-"Åpne brevet og send kvittering" = "Open letter";
+"Åpne brevet og send kvittering" = "Open message";
 /* Avbryt */
 "Avbryt" = "Cancel";
 /* Avsender krever lesekvittering */
-"Avsender krever lesekvittering" = "Sender requests a letter-received confirmation";
+"Avsender krever lesekvittering" = "Sender requests a message-received confirmation";
 /* The title in navbar when editing folders */
 "Edit folder title item" = "Edit folder";
 /* Hvis du åpner dette brevet */
-"Hvis du åpner dette brevet" = "If you open this letter, a confirmation will be sent to the sender.";
+"Hvis du åpner dette brevet" = "If you open this message, a confirmation will be sent to the sender.";
 /* title of alert telling user validation failed */
-"Failed validating opening receipt title" = "Could not send confirmation. Try to open the letter at a later time.";
+"Failed validating opening receipt title" = "Could not send confirmation. Try to open the message at a later time.";
 /* Noe feil skjedde. */
 "Noe feil skjedde. " = "Oops, something happened. Try again.";
 /* name of back button */
@@ -266,8 +266,8 @@
 /* navbar title upload mailbox */
 "navbar title upload mailbox" = "Choose account";
 /* unread letters in account view */
-"account view unread letter" = " unread letter";
-"account view unread letters" = "unread letters";
+"account view unread letter" = " unread message";
+"account view unread letters" = "unread messages";
 /* logout button title */
 "log out button title" = "Log out";
 /* Account description */
@@ -352,10 +352,10 @@
 "recipients view add recipients button title" = "Add recipients";
 /* No comment provided by engineer. */
 "recipients view search bar placeholder" = "Search for persons and companies";
-"unlock view label can not unlock letter" = "The letter can't be opened in the app because it's end-to-end encrypted. Log on to digipost.no to read it.";
+"unlock view label can not unlock letter" = "The message can't be opened in the app because it's end-to-end encrypted. Log on to digipost.no to read it.";
 /* No comment provided by engineer. */
 "preview view header title" = "PREVIEW";
-"unlock view label can unlock letter" = "The sender requires you to log on to a higher security level to unlock this letter";
+"unlock view label can unlock letter" = "The sender requires you to log in with another security level to open the message";
 /* Lets user tap it to dismiss alert */
 "preview view navigation bar title" = "Preview";
 "Oauth login error button title" = "Ok";
@@ -374,7 +374,7 @@
 "preview view recipients header title recipients" = "RECIPIENTS";
 "preview view recipients add recipients button title" = "Add recipients";
 "preview view recipients send button title" = "Send";
-"composer view navigation bar title" = "Compose letter";
+"composer view navigation bar title" = "Compose message";
 "composer view preview button title" = "Preview";
 "composer view document title label" = "Title:";
 "composer view title placeholder" = "Tap to enter title";
