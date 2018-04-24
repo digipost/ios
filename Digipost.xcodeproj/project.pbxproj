@@ -1738,7 +1738,6 @@
 				83BAB9151855C0AC004A7BFB /* Frameworks */,
 				83BAB9161855C0AC004A7BFB /* Resources */,
 				A59691E59B1358228A99D9C5 /* [CP] Embed Pods Frameworks */,
-				BDB97252C6E687FABF72EEF3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1776,7 +1775,6 @@
 				F8AE1CAD1CD374B40009B2F9 /* Frameworks */,
 				F8AE1CB91CD374B40009B2F9 /* Resources */,
 				47739788526C9C9C2C7D1341 /* [CP] Embed Pods Frameworks */,
-				3C169A3789A9ECD70CEEB18C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1971,21 +1969,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3C169A3789A9ECD70CEEB18C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3E6E53956CA916AFDAECFE73 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2092,21 +2075,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BDB97252C6E687FABF72EEF3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
