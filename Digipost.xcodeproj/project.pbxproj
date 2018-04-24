@@ -536,6 +536,7 @@
 		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
+		F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
 		FBC8B9E6C73B77C7C8C7E6CD /* Pods_DigipostQA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */; };
 /* End PBXBuildFile section */
 
@@ -2361,6 +2362,7 @@
 				F8AE1C181CD374B40009B2F9 /* TextModuleTableViewCell.swift in Sources */,
 				F8AE1C191CD374B40009B2F9 /* FontPickerViewController.swift in Sources */,
 				F8AE1C1A1CD374B40009B2F9 /* POSNewFolderCollectionViewDataSource.m in Sources */,
+				F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */,
 				F8AE1C1B1CD374B40009B2F9 /* TextAttributeButton.swift in Sources */,
 				F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				F8AE1C1D1CD374B40009B2F9 /* HTMLTag.swift in Sources */,
