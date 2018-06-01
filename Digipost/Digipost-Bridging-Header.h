@@ -28,7 +28,6 @@
 #import "POSAttachment.h"
 #import "POSDocument.h"
 #import "UIViewController+BackButton.h"
-#import "POSReceipt.h"
 #import "POSOAuthManager.h"
 #import "SHCLoginViewController.h"
 #import <LUKeychainAccess/LUKeychainAccess.h>
@@ -53,4 +52,4 @@
 #import "NSString+Hmac.h"
 #import "Macros.h"
 #import "CustomInputView.h"
-#import "POSReceiptTableViewCell.h"
+

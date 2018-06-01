@@ -82,8 +82,6 @@ extension UIToolbar {
             } else {
                 items.addObjects(from: itemsForStandardLetter(letterViewController) as [AnyObject])
             }
-        }else {
-                items.addObjects(from: itemsForReceipt(letterViewController) as [AnyObject])
         }
         
         self.tintColor = UIColor.digipostSpaceGrey()
@@ -108,15 +106,6 @@ extension UIToolbar {
         items.add(deleteDocumentBarButtonItemInLetterViewController(letterViewController))
         items.add(flexibleSpaceBarButtonItem)
         items.add(renameDocumentBarButtonItemInLetterViewController(letterViewController))
-        items.add(flexibleSpaceBarButtonItem)
-        items.add(openDocumentBarButtonItemInLetterViewController(letterViewController))
-        return items
-    }
-    
-    fileprivate func itemsForReceipt(_ letterViewController: POSLetterViewController) -> NSArray {
-        let items = NSMutableArray()
-        let flexibleSpaceBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        items.add(deleteDocumentBarButtonItemInLetterViewController(letterViewController))
         items.add(flexibleSpaceBarButtonItem)
         items.add(openDocumentBarButtonItemInLetterViewController(letterViewController))
         return items

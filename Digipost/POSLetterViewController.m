@@ -31,13 +31,11 @@
 #import "UIViewController+NeedsReload.h"
 #import "Digipost-Swift.h"
 #import "POSDocumentsViewController.h"
-#import "POSReceiptFoldersTableViewController.h"
 #import "POSInvoice.h"
 #import <MRProgress/MRProgress.h>
 #import "POSMailbox.h"
 #import "POSRootResource.h"
 #import "POSModelManager.h"
-#import "POSReceipt.h"
 #import "POSFoldersViewController.h"
 #import "SHCAttachmentsViewController.h"
 #import "POSDocumentsViewController.h"
@@ -94,7 +92,6 @@ NSString *const kLetterViewControllerScreenName = @"Letter";
 
 @implementation POSLetterViewController
 
-@synthesize receipt = _receipt;
 @synthesize attachment = _attachment;
 
 //helpers to adjust showing/hiding metadata views
@@ -137,9 +134,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
     if (self.attachment) {
         [self setTitle:self.attachment.subject];
-
-    } else {
-        [self setTitle:self.receipt.storeName];
     }
     self.screenName = kLetterViewControllerScreenName;
 
@@ -431,9 +425,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
         [baseEncryptionModel deletefileAtHumanReadablePath];
-    } else if (self.receipt) {
-        baseEncryptionModel = self.receipt;
-        [baseEncryptionModel deletefileAtHumanReadablePath];
     }
 }
 
@@ -527,7 +518,6 @@ CGFloat extraMetadataConstraintHeight = 0;
         }
     }
     _attachment = attachment;
-    _receipt = nil;
 
     // used to fetch attachment if something has deleted it from store and reinserted it
     self.currentAttachmentURI = attachment.uri;
@@ -551,48 +541,9 @@ CGFloat extraMetadataConstraintHeight = 0;
     BOOL new = attachment != _attachment;
 
     _attachment = attachment;
-    _receipt = nil;
 
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 
-        [self showEmptyView:new];
-        [self reloadFromMetadata];
-        // update the read status for ipad view
-    }
-}
-
-- (POSReceipt *)receipt
-{
-    return _receipt;
-}
-
-- (void)setReceipt:(POSReceipt *)receipt
-{
-    [self unloadContent];
-    BOOL new = receipt != _receipt;
-
-    _receipt = receipt;
-    _attachment = nil;
-    _currentAttachmentURI = nil;
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (self.masterViewControllerPopoverController) {
-            [self.masterViewControllerPopoverController dismissPopoverAnimated:YES];
-        }
-
-        [self showEmptyView:new];
-        [self reloadFromMetadata];
-    }
-}
-
-- (void)setReceiptDoNotDismissPopover:(POSReceipt *)receipt
-{
-    BOOL new = receipt != _receipt;
-
-    _receipt = receipt;
-    _attachment = nil;
-
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         [self showEmptyView:new];
         [self reloadFromMetadata];
         // update the read status for ipad view
@@ -707,13 +658,9 @@ CGFloat extraMetadataConstraintHeight = 0;
     POSBaseEncryptedModel *baseEncryptionModel = nil;
     if (self.attachment) {
         baseEncryptionModel = self.attachment;
-    } else if (self.receipt) {
-        baseEncryptionModel = self.receipt;
     }
     if (self.attachment) {
         [self setTitle:self.attachment.subject];
-    } else {
-        [self setTitle:self.receipt.storeName];
     }
     NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
     NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
@@ -957,8 +904,6 @@ CGFloat extraMetadataConstraintHeight = 0;
               POSBaseEncryptedModel *changedBaseEncryptionModel = nil;
               if (self.attachment) {
                   changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-              } else {
-                  changedBaseEncryptionModel = [POSReceipt existingReceiptWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
               }
 
               NSError *error = nil;
@@ -1039,10 +984,6 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (BOOL)attachmentHasValidFileType
 {
-    // Receipts are always pdf's.
-    if (self.receipt) {
-        return YES;
-    }
     // A list of file types that are tried and tested with UIWebView
     NSArray *validFilesTypes = @[ @"pdf", @"png", @"jpg", @"jpeg", @"gif", @"php", @"doc", @"ppt", @"docx", @"docm", @"xml", @"xlsx", @"pptx", @"txt", @"html", @"numbers", @"key", @"pages" ];
     return [validFilesTypes containsObject:self.attachment.fileType];
@@ -1125,27 +1066,6 @@ CGFloat extraMetadataConstraintHeight = 0;
         }];
 }
 
-- (void)deleteReceipt
-{
-    [[APIClient sharedClient] deleteReceipt:self.receipt
-        success:^{
-          [[POSModelManager sharedManager] deleteReceipt:self.receipt];
-          _receipt = nil;
-          if (self.receiptsViewController) {
-              self.receiptsViewController.needsReload = YES;
-
-              // Becuase we might have been pushed from the attachments vc, make sure that we pop
-              // all the way back to the documents vc.
-
-              [self.receiptsViewController removeReceiptAtCurrentIndex];
-              [self.navigationController popToViewController:self.receiptsViewController animated:YES];
-          }
-        }
-        failure:^(APIError *error) {
-            [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-        }];
-}
-
 - (void)didTapInfo:(UIBarButtonItem *)barButtonItem
 {
     BOOL shouldBeVisible = (self.shadowView.alpha == 0.0) ? YES : NO;
@@ -1196,9 +1116,6 @@ CGFloat extraMetadataConstraintHeight = 0;
         if (self.attachment) {
             baseEncryptionModel = self.attachment;
             subject = self.attachment.subject;
-        } else if (self.receipt) {
-            baseEncryptionModel = self.receipt;
-            subject = self.receipt.storeName;
         }
         NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
         NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
@@ -1280,8 +1197,6 @@ CGFloat extraMetadataConstraintHeight = 0;
                         if (buttonIndex == 1) {
                             if (self.attachment) {
                                 [self deleteDocument];
-                            } else if (self.receipt) {
-                                [self deleteReceipt];
                             }
                         }
                       }];
@@ -1430,15 +1345,6 @@ CGFloat extraMetadataConstraintHeight = 0;
                                                                                         description:self.attachment.document.creatorName]];
             [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
                                                                                         description:[dateFormatter stringFromDate:self.attachment.document.createdAt]]];
-        } else if (self.receipt) {
-            self.popoverTitleLabel.text = self.receipt.storeName;
-            [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_DATE_TITLE", @"Date")
-                                                                                        description:[dateFormatter stringFromDate:self.receipt.timeOfPurchase]]];
-            [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_AMOUNT", @"Beløp")
-                                                                                        description:[NSString stringWithFormat:@"%@", [POSReceipt stringForReceiptAmount:self.receipt.amount]]]];
-
-            [mutableObjectsInMetadata addObject:[POSLetterPopoverTableViewMobelObject initWithTitle:NSLocalizedString(@"LETTER_VIEW_CONTROLLER_POPOVER_SENDER_RECEIPT", @"Kort")
-                                                                                        description:[NSString stringWithFormat:@"%@", self.receipt.card]]];
         }
 
         if (self.attachment.invoice) {
@@ -1631,9 +1537,6 @@ CGFloat extraMetadataConstraintHeight = 0;
 
 - (POSBaseEncryptedModel *)currentBaseEncryptModel
 {
-    if (self.receipt) {
-        return self.receipt;
-    }
     if (self.attachment) {
         return self.attachment;
     }
@@ -1663,7 +1566,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     } else {
 
         if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            if (!self.attachment && !self.receipt) {
+            if (!self.attachment) {
                 [self showEmptyView:YES];
                 return;
             } else {

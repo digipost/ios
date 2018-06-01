@@ -113,9 +113,8 @@ extension APIClient {
             let changedBaseEncryptionModel : POSBaseEncryptedModel? = {
                 if isAttachment {
                     return POSAttachment.existingAttachment(withUri: encryptedModelUri, in: POSModelManager.shared().managedObjectContext)
-                } else {
-                    return POSReceipt.existingReceipt(withUri: encryptedModelUri, in: POSModelManager.shared().managedObjectContext)
                 }
+                return nil;
             }()
 
             if let filePath = changedBaseEncryptionModel?.decryptedFilePath() {

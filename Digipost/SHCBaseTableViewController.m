@@ -23,7 +23,6 @@
 #import "UIViewController+NeedsReload.h"
 #import "POSFoldersViewController.h"
 #import "POSDocumentsViewController.h"
-#import "POSReceiptFoldersTableViewController.h"
 #import "UIViewController+BackButton.h"
 #import "POSLetterViewController.h"
 
@@ -57,8 +56,7 @@
     [self initializeRefreshControlText];
     [self updateRefreshControlTextRefreshing:YES];
 
-    if ([self isKindOfClass:[POSDocumentsViewController class]] ||
-        [self isKindOfClass:[POSReceiptFoldersTableViewController class]]) {
+    if ([self isKindOfClass:[POSDocumentsViewController class]]) {
         self.refreshControl.tintColor = [UIColor colorWithWhite:0.4
                                                           alpha:1.0];
     } else {
@@ -218,8 +216,7 @@
 - (void)initializeRefreshControlText
 {
     NSDictionary *attributes = nil;
-    if ([self isKindOfClass:[POSDocumentsViewController class]] ||
-        [self isKindOfClass:[POSReceiptFoldersTableViewController class]]) {
+    if ([self isKindOfClass:[POSDocumentsViewController class]]) {
         attributes = @{NSForegroundColorAttributeName : [UIColor colorWithWhite:0.4
                                                                           alpha:1.0]};
     } else {

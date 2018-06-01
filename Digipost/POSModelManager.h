@@ -20,7 +20,6 @@
 
 @class POSMailbox;
 @class POSDocument;
-@class POSReceipt;
 
 @interface POSModelManager : NSObject
 
@@ -35,13 +34,10 @@
 
 - (void)updateRootResourceWithAttributes:(NSDictionary *)attributes;
 - (void)updateBankAccountWithAttributes:(NSDictionary *)attributes;
-- (void)updateCardAttributes:(NSDictionary *)attributes;
 - (void)updateDocumentsInFolderWithName:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
 - (NSNumber*) numberOfUnreadDocumentsInfolder:(NSString *)folderName mailboxDigipostAddress:(NSString *)digipostAddress;
 - (void)updateDocument:(POSDocument *)document withAttributes:(NSDictionary *)attributes;
 - (void)deleteDocument:(POSDocument *)document;
-- (void)updateReceiptsInMailboxWithDigipostAddress:(NSString *)digipostAddress attributes:(NSDictionary *)attributes;
-- (void)deleteReceipt:(POSReceipt *)receipt;
 - (void)deleteAllObjects;
 - (void)deleteAllGCMTokens;
 - (NSEntityDescription *)rootResourceEntity;
@@ -50,7 +46,6 @@
 - (NSEntityDescription *)documentEntity;
 - (NSEntityDescription *)attachmentEntity;
 - (NSEntityDescription *)invoiceEntity;
-- (NSEntityDescription *)receiptEntity;
 - (NSDate *)rootResourceCreatedAt;
 - (void)logExecuteFetchRequestWithError:(NSError *)error;
 - (void)logSavingManagedObjectContextWithError:(NSError *)error;

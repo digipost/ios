@@ -168,58 +168,7 @@ import AFNetworking
             task.resume()
         }
     }
-
-    // Function expossed to Objective-C (used in the old VC)
-    @objc func updateReceiptsInMailboxWithDigipostAddress(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        self.fetchReceiptsInMailboxWith(digipostAddress: digipostAddress, uri: uri, success: success, failure: failure)
-    }
     
-    func fetchReceiptsInMailboxWith(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        validateFullScope {
-            let task = self.urlSessionJSONTask(url: uri, parameters: parameters, success: success, failure: failure)
-            task.resume()
-        }
-    }
-    
-    func fetchReceiptCategoriesInMailbox(_ digipostAddress: String, uri: String, success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        validateFullScope {
-            let task = self.urlSessionJSONTask(url: uri, parameters: nil, success: success, failure: failure)
-            task.resume()
-        }
-    }
-    
-    // mock data function
-    func fetchReceiptsInMailboxWith2(parameters: [String: String] = [:], digipostAddress: String, uri: String, success: (Dictionary<String,AnyObject>) -> Void , failure: (_ error: APIError) -> ()) {
-        /*
-        if(parameters["id"] != nil){
-            if(mockReceiptsForChainId[parameters["id"]!] != nil){
-                
-                var results = mockReceiptsForChainId[parameters["id"]!]!["receipt"]!
-                
-                if(parameters["skip"] != nil){
-                    let skip: Int = Int(parameters["skip"]!)!
-                    var resultsArray = []
-                    for result: Dictionary<String,String> in results.dropFirst(skip) {
-                        resultsArray = resultsArray.adding(result)
-                    }
-                    results = resultsArray as! Array<Dictionary<String, String>>
-                }
-                success(["receipt" : results as AnyObject])
-                return
-            }
-        }
-         */
-        // id not found or empty:
-        success([:])
-    }
-
-    @objc func deleteReceipt(_ receipt: POSReceipt , success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        validateFullScope {
-            let task = self.urlSessionTask(httpMethod.delete, url: receipt.deleteUri, success: success, failure: failure)
-            task.resume()
-        }
-    }
-
     @objc func validateOpeningReceipt(_ attachment: POSAttachment, success: @escaping () -> Void , failure: @escaping (_ error: APIError) -> ()) {
         let scope = OAuthToken.oAuthScopeForAuthenticationLevel(attachment.authenticationLevel)
         let highestToken = OAuthToken.oAuthTokenWithScope(scope)
@@ -626,7 +575,6 @@ import AFNetworking
         let appDelegate: SHCAppDelegate = UIApplication.shared.delegate as! SHCAppDelegate
         if let letterViewController: POSLetterViewController = appDelegate.letterViewController {
             letterViewController.attachment = nil
-            letterViewController.receipt = nil
         }
 
         let fullToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
