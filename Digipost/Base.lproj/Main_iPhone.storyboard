@@ -140,6 +140,16 @@
             </objects>
             <point key="canvasLocation" x="528" y="-383"/>
         </scene>
+        <!--ContactView-->
+        <scene sceneID="MyU-oS-nPV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ContactView" id="bBw-D7-hG0" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="N02-Dr-lQm"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hga-hV-zT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1184" y="1496"/>
+        </scene>
         <!--Folders View Controller-->
         <scene sceneID="Ige-oa-FSO">
             <objects>
@@ -245,6 +255,7 @@
                         <segue destination="4z4-Au-vJv" kind="push" identifier="uploadFileSegue" id="WBk-6x-J5R"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="QTl-hU-aIM"/>
                         <segue destination="3KT-o1-saz" kind="push" identifier="uploadMenuSegue" id="kqf-bk-sMH"/>
+                        <segue destination="bBw-D7-hG0" kind="push" identifier="ContactView" id="Zh2-oD-bPB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -265,7 +276,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V9e-Aa-hoH">
-                                <rect key="frame" x="24" y="145" width="366" height="499"/>
+                                <rect key="frame" x="24" y="145" width="366" height="455"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="6" minimumInteritemSpacing="4" id="tCM-ra-uyg">
                                     <size key="itemSize" width="60" height="60"/>
@@ -1652,9 +1663,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="p4n-lw-a8U"/>
         <segue reference="Kl9-xn-mhN"/>
-        <segue reference="3jD-Vn-Y8D"/>
-        <segue reference="6ll-nd-HYD"/>
-        <segue reference="eq9-PM-agO"/>
+        <segue reference="WBk-6x-J5R"/>
+        <segue reference="nJS-Zx-WgQ"/>
+        <segue reference="2IH-85-kgn"/>
         <segue reference="eDA-DZ-Lcc"/>
     </inferredMetricsTieBreakers>
 </document>
