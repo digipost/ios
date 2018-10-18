@@ -22,9 +22,20 @@ class InvoiceBankViewController: UIViewController{
         
     @IBOutlet weak var invoiceBankLogo: UIImageView!{
         didSet{
-            self.invoiceBankLogo.image = UIImage(named:"\(invoiceBank.logo)-large")
+            if let logo = UIImage(named:"\(invoiceBank.logo)-large"){
+                self.invoiceBankLogo.image = logo
+            }
         }
     }
+    
+    @IBOutlet weak var invoiceBankName: UILabel! {
+        didSet {
+            if(UIImage(named:"\(invoiceBank.logo)-large") == nil) {
+                self.invoiceBankName.text = invoiceBank.name
+            }
+        }
+    }
+    
     
     @IBOutlet weak var invoiceBankContent: UILabel!{
         didSet{

@@ -19,6 +19,7 @@ import Foundation
 class InvoiceBankTableViewCell: UITableViewCell{
 
     @IBOutlet weak var invoiceBankLogo: UIImageView!
+    @IBOutlet weak var invoiceBankName: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

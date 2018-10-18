@@ -48,7 +48,15 @@ class InvoiceOptionsViewController: UIViewController, UITableViewDelegate, UITab
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.Invoice.InvoiceBankTableViewCellNibName, for: indexPath) as! InvoiceBankTableViewCell
         
         let invoiceBank = banks[indexPath.row]
-        cell.invoiceBankLogo.image = UIImage(named: invoiceBank.logo)
+        if let logo = UIImage(named: invoiceBank.logo) {
+            cell.invoiceBankLogo.image = logo
+            cell.invoiceBankName.text = ""
+        } else {
+            cell.invoiceBankName.text = invoiceBank.name
+            cell.invoiceBankLogo.image = nil
+        }
+    
+        
         return cell
     }
     

@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,25 +15,36 @@
             <rect key="frame" x="0.0" y="0.0" width="319" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V4U-iJ-dks" id="crP-tM-1Qi">
-                <frame key="frameInset" width="319" height="69"/>
+                <rect key="frame" x="0.0" y="0.0" width="319" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list-icon-arrow-gray" translatesAutoresizingMaskIntoConstraints="NO" id="Gu6-0H-NAJ">
+                        <rect key="frame" x="291" y="31" width="7" height="13"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="7" id="Gcs-OA-2Az"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="invoiceBankLogo" translatesAutoresizingMaskIntoConstraints="NO" id="oNp-IJ-KVC">
+                        <rect key="frame" x="30" y="10" width="105" height="49.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="105" id="jgw-Zj-FNG"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYb-h6-Vla" userLabel="InvoiceBankName">
+                        <rect key="frame" x="30" y="34.5" width="259" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="RYb-h6-Vla" firstAttribute="leading" secondItem="crP-tM-1Qi" secondAttribute="leading" constant="30" id="2Zr-1l-6xW"/>
                     <constraint firstItem="oNp-IJ-KVC" firstAttribute="leading" secondItem="crP-tM-1Qi" secondAttribute="leadingMargin" constant="14" id="79V-kD-pk4"/>
+                    <constraint firstItem="RYb-h6-Vla" firstAttribute="centerY" secondItem="crP-tM-1Qi" secondAttribute="centerY" id="AZd-A2-X4x"/>
                     <constraint firstItem="oNp-IJ-KVC" firstAttribute="top" secondItem="crP-tM-1Qi" secondAttribute="topMargin" constant="-1" id="GoR-tM-hPt"/>
                     <constraint firstItem="Gu6-0H-NAJ" firstAttribute="top" secondItem="crP-tM-1Qi" secondAttribute="topMargin" constant="20" id="d5n-Ku-EDB"/>
+                    <constraint firstItem="RYb-h6-Vla" firstAttribute="centerX" secondItem="crP-tM-1Qi" secondAttribute="centerX" id="sy3-p8-sd7"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Gu6-0H-NAJ" secondAttribute="trailing" constant="5" id="tJa-Sg-hM3"/>
                     <constraint firstItem="oNp-IJ-KVC" firstAttribute="centerY" secondItem="crP-tM-1Qi" secondAttribute="centerY" id="v0j-LM-a54"/>
                 </constraints>
@@ -38,6 +52,7 @@
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="invoiceBankLogo" destination="oNp-IJ-KVC" id="OSi-Gc-ZQh"/>
+                <outlet property="invoiceBankName" destination="RYb-h6-Vla" id="R1K-MC-Gkp"/>
             </connections>
             <point key="canvasLocation" x="396.5" y="289"/>
         </tableViewCell>
