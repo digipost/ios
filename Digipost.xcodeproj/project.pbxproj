@@ -292,6 +292,9 @@
 		ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */; };
+		F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
+		F80F7131217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
+		F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -536,6 +539,9 @@
 		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
+		F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
+		F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
+		F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
 		FBC8B9E6C73B77C7C8C7E6CD /* Pods_DigipostQA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */; };
 /* End PBXBuildFile section */
@@ -931,6 +937,7 @@
 		F80B63531CD37C3800AE9DE5 /* DigipostQA.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DigipostQA.plist; sourceTree = "<group>"; };
 		F80B63561CD37CB900AE9DE5 /* DigipostQA.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = DigipostQA.xcconfig; sourceTree = "<group>"; };
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F80F712F217729EC000D4685 /* ContactView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactView.storyboard; sourceTree = "<group>"; };
 		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -954,6 +961,7 @@
 		F8BCF939207F874C00D212A9 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
 		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
+		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1168,6 +1176,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F80F712621772268000D4685 /* Contact */,
 				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
 				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
@@ -1688,6 +1697,15 @@
 			name = Recipient;
 			sourceTree = "<group>";
 		};
+		F80F712621772268000D4685 /* Contact */ = {
+			isa = PBXGroup;
+			children = (
+				F80F712F217729EC000D4685 /* ContactView.storyboard */,
+				F8DEAF9A2178707200B267C0 /* ContactViewController.swift */,
+			);
+			name = Contact;
+			sourceTree = "<group>";
+		};
 		F88B7FEC1CD8DC00009CC671 /* GCM */ = {
 			isa = PBXGroup;
 			children = (
@@ -1889,6 +1907,7 @@
 				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
+				F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */,
 				EC42F2371B81C755005785DE /* Editor.js in Resources */,
 				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
@@ -1917,6 +1936,7 @@
 				9C39F71A1E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json in Resources */,
 				EC2752351B09D2920007125D /* ValidOAuthTokenHigherSecurity.json in Resources */,
 				EC2752331B09D2920007125D /* rootresource.json in Resources */,
+				F80F7131217729EC000D4685 /* ContactView.storyboard in Resources */,
 				EC2752301B09D2920007125D /* InvalidOAuthToken.json in Resources */,
 				EC68A07E1B14AC0200D15CA3 /* InvalidTokenDifferingSignature.json in Resources */,
 				EC68A07C1B14A86600D15CA3 /* InvalidTokenDifferingAud.json in Resources */,
@@ -1954,6 +1974,7 @@
 				F8AE1CD01CD374B40009B2F9 /* WhatsNewGuideTexts.strings in Resources */,
 				F8AE1CD11CD374B40009B2F9 /* Editor.js in Resources */,
 				F8AE1CD21CD374B40009B2F9 /* CustomInputViewController.xib in Resources */,
+				F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */,
 				F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */,
 				F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */,
 				9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
@@ -2279,6 +2300,7 @@
 				ECB2BF421B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
 				F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */,
+				F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */,
 				ECB2BE921B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
 				ECFAE2661B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
@@ -2306,6 +2328,7 @@
 				9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
+				F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */,
 				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
 				9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */,
 			);
@@ -2508,6 +2531,7 @@
 				F8AE1C9D1CD374B40009B2F9 /* POSAttachment+Methods.swift in Sources */,
 				F8AE1C9E1CD374B40009B2F9 /* GCMToken.swift in Sources */,
 				F8AE1C9F1CD374B40009B2F9 /* ComposerTypeButton.swift in Sources */,
+				F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */,
 				F8AE1CA01CD374B40009B2F9 /* OAuthToken+IDToken.swift in Sources */,
 				0B1520DD1DA38EB3000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
 				F8AE1CA11CD374B40009B2F9 /* POSModelManager.m in Sources */,

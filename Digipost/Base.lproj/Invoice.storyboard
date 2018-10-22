@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nWN-tl-VuW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="nWN-tl-VuW">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Title-->
         <scene sceneID="iaG-Zp-DBK">
@@ -51,10 +56,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jDo-9e-UU6" userLabel="Content">
-                                <rect key="frame" x="0.0" y="254" width="375" height="414"/>
+                                <rect key="frame" x="0.0" y="254" width="375" height="370"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="bankTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CsO-8F-sFk">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="414"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="370"/>
                                         <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="separatorColor" red="0.55641025641025643" green="0.55641025641025643" blue="0.55641025641025643" alpha="1" colorSpace="calibratedRGB"/>
                                         <prototypes>
@@ -62,7 +67,7 @@
                                                 <rect key="frame" x="0.0" y="28" width="374" height="70"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3AS-w8-ZN7" id="sRP-hi-83e" userLabel="CellContent">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="69"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="69.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </tableViewCellContentView>
                                             </tableViewCell>
@@ -177,17 +182,25 @@
                             <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="I4M-gn-J9x" userLabel="Header">
                                 <rect key="frame" x="0.0" y="64" width="375" height="150"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invoice-bank-dnb" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0Y-iX-VHr">
                                         <rect key="frame" x="99.5" y="61.5" width="176" height="27"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="176" id="pHP-Qw-uAl"/>
                                         </constraints>
                                     </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aIa-LS-nHA" userLabel="InvoiceBankName">
+                                        <rect key="frame" x="187.5" y="75" width="0.0" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="8BN-yq-gIY"/>
+                                    <constraint firstItem="aIa-LS-nHA" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" id="GtI-8s-mVl"/>
                                     <constraint firstAttribute="height" constant="150" id="RO0-4u-RUx"/>
+                                    <constraint firstItem="aIa-LS-nHA" firstAttribute="centerX" secondItem="I4M-gn-J9x" secondAttribute="centerX" id="SCp-1M-tku"/>
                                     <constraint firstItem="M0Y-iX-VHr" firstAttribute="centerY" secondItem="I4M-gn-J9x" secondAttribute="centerY" constant="0.5" id="SHW-ux-Kms"/>
                                 </constraints>
                             </view>
@@ -206,6 +219,7 @@
                     <connections>
                         <outlet property="invoiceBankContent" destination="rXg-qN-PD5" id="Y0t-hz-hcX"/>
                         <outlet property="invoiceBankLogo" destination="M0Y-iX-VHr" id="UjK-dR-DCb"/>
+                        <outlet property="invoiceBankName" destination="aIa-LS-nHA" id="KYI-qq-58Q"/>
                         <outlet property="invoiceBankReadMoreText" destination="SWZ-DM-g13" id="NHL-nb-WWA"/>
                         <outlet property="invoiceBankTitle" destination="FGz-0P-lp2" id="Ohh-rR-70F"/>
                         <outlet property="openBankUrlButton" destination="XeW-NW-woZ" id="zZ1-SJ-eXF"/>
@@ -216,7 +230,4 @@
             <point key="canvasLocation" x="-1417" y="108"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="invoice-bank-dnb" width="52" height="27"/>
-    </resources>
 </document>

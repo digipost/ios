@@ -16,12 +16,18 @@
 
 import Foundation
 
-class InvoiceBankTableViewCell: UITableViewCell{
-
-    @IBOutlet weak var invoiceBankLogo: UIImageView!
-    @IBOutlet weak var invoiceBankName: UILabel!
+class ContactViewController: UIViewController {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    @IBOutlet weak var email1: UITextField!
+    @IBOutlet weak var email2: UITextField!
+    @IBOutlet weak var email3: UITextField!
+    @IBOutlet weak var areacode: UITextField!
+    @IBOutlet weak var phonenumber: UITextField!
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    @IBAction func changedValue(_ sender: UITextField) {
     }
 }

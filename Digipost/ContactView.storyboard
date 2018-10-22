@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="udA-5H-1fd">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Contact View Controller-->
+        <scene sceneID="cP2-KB-20s">
+            <objects>
+                <viewController id="zg4-HE-Ac3" customClass="ContactViewController" customModule="Digipost" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fu9-14-3c6" customClass="ContactView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kontaktinformasjon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boM-Ys-pn4">
+                                <rect key="frame" x="113" y="84" width="149" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-post:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKf-ho-fpN" userLabel="epost1label">
+                                <rect key="frame" x="38" y="122" width="56" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOR-AW-dsE" userLabel="epost1input">
+                                <rect key="frame" x="38" y="151" width="293" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="MEr-Yx-zc2"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bez-2c-1cn" userLabel="epost2input">
+                                <rect key="frame" x="38" y="189" width="293" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="Z3U-Mb-tzi"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhX-Lu-BV7" userLabel="epost3input">
+                                <rect key="frame" x="38" y="227" width="293" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="1k3-Dy-fJE"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ditt mobilnummer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-bl-bdd" userLabel="telefonnummerLabel">
+                                <rect key="frame" x="38" y="278" width="142" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KB2-XJ-HdP" userLabel="landkode">
+                                <rect key="frame" x="38" y="307" width="40" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="KWt-y6-7Rj"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-Ul-kpE" userLabel="telefonnummer">
+                                <rect key="frame" x="86" y="307" width="245" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="29U-QU-gMe"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="boM-Ys-pn4" firstAttribute="top" secondItem="Pdg-cN-k43" secondAttribute="top" constant="20" id="95L-NR-KXp"/>
+                            <constraint firstItem="XOR-AW-dsE" firstAttribute="top" secondItem="iKf-ho-fpN" secondAttribute="bottom" constant="8" id="A8s-vL-Xdt"/>
+                            <constraint firstItem="iKf-ho-fpN" firstAttribute="top" secondItem="boM-Ys-pn4" secondAttribute="bottom" constant="17" id="aMJ-Ql-C3m"/>
+                            <constraint firstItem="iKf-ho-fpN" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="h9W-0D-Waw"/>
+                            <constraint firstItem="XOR-AW-dsE" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="hsG-n9-c0E"/>
+                            <constraint firstItem="boM-Ys-pn4" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="mNZ-qg-mG0"/>
+                            <constraint firstItem="XOR-AW-dsE" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" constant="-3" id="pi1-m4-cLV"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Pdg-cN-k43"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="v0N-HH-ZFE">
+                        <barButtonItem key="rightBarButtonItem" title="Lagre" id="ZXm-TQ-zKX"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="areacode" destination="KB2-XJ-HdP" id="JtT-xo-e4O"/>
+                        <outlet property="email1" destination="XOR-AW-dsE" id="Ktl-Vu-tke"/>
+                        <outlet property="email2" destination="Bez-2c-1cn" id="2NC-vC-PKb"/>
+                        <outlet property="email3" destination="FhX-Lu-BV7" id="MEu-0i-4W7"/>
+                        <outlet property="phonenumber" destination="JzX-Ul-kpE" id="ir0-vL-zoA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8nh-7y-lAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="332" y="-140.77961019490255"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b5H-O8-top">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="udA-5H-1fd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nqw-Rx-nt3">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zg4-HE-Ac3" kind="relationship" relationship="rootViewController" id="bqR-iv-na0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QLq-1e-22L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-465" y="-141"/>
+        </scene>
+    </scenes>
+</document>
