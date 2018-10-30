@@ -53,6 +53,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 @dynamic uploadDocumentUri;
 @dynamic selfUri;
 @dynamic searchUri;
+@dynamic contactInfo;
 
 // Relationships
 @dynamic mailboxes;
@@ -124,6 +125,10 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 
         NSNumber *unreadItemsInInbox = primaryAccount[NSStringFromSelector(@selector(unreadItemsInInbox))];
         rootResource.unreadItemsInInbox = [unreadItemsInInbox isKindOfClass:[NSNumber class]] ? unreadItemsInInbox : nil;
+        
+        NSArray *emailData = primaryAccount[@"extendedEmail"];
+        NSArray *phoneData = primaryAccount[@"extendedPhone"];
+        rootResource.contactInfo = [NSKeyedArchiver archivedDataWithRootObject:@[emailData, phoneData]];
 
         NSArray *links = primaryAccount[kRootResourcePrimaryAccountLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {

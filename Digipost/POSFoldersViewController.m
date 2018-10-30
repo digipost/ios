@@ -44,6 +44,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
+NSString *const kContactViewSegue = @"contactView";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -201,6 +202,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
             }
         }
+    } else if([segue.identifier isEqualToString:kContactViewSegue]) {
+        POSContactInfo *contactInfo = self.rootResource.getContactInfo;
+        ContactViewController *contactViewController = (ContactViewController *)segue.destinationViewController;
     }
 }
 
@@ -227,7 +231,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0 && self.inboxFolder) {
-        return 2; // Inbox and upload
+        return 3; // Inbox, Upload and Contact
     } else {
         // add new cell-cell is added
         return [self.folders count] + 1;
@@ -262,8 +266,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
             case 2: {
-                folderName = NSLocalizedString(@"folder view controller beta title", @"tells user that they can send feedback with this button");
-                iconImage = [UIImage imageNamed:@"Feedback"];
+                folderName = @"Innstillinger";
+                iconImage = [UIImage imageNamed:@"Upload"];
             } break;
 
             default:
@@ -486,7 +490,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                         break;
                     }case 1: {
                         [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
-
+                        break;
+                    }case 2: {
+                        [self performSegueWithIdentifier:kContactViewSegue sender:self];
                         break;
                     }
                     default:

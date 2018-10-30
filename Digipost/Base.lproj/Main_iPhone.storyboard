@@ -255,7 +255,7 @@
                         <segue destination="4z4-Au-vJv" kind="push" identifier="uploadFileSegue" id="WBk-6x-J5R"/>
                         <segue destination="wIu-7T-vk9" kind="unwind" identifier="unwindToFoldersSegue" unwindAction="unwindToFoldersViewController:" id="QTl-hU-aIM"/>
                         <segue destination="3KT-o1-saz" kind="push" identifier="uploadMenuSegue" id="kqf-bk-sMH"/>
-                        <segue destination="bBw-D7-hG0" kind="push" identifier="ContactView" id="Zh2-oD-bPB"/>
+                        <segue destination="bBw-D7-hG0" kind="push" identifier="contactViewSegue" id="Zh2-oD-bPB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cNo-A7-xKz" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -24,10 +24,15 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var areacode: UITextField!
     @IBOutlet weak var phonenumber: UITextField!
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var extendedEmails = [POSEmail]()
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        print("2")
+        print(extendedEmails)
+    }
+  
     @IBAction func changedValue(_ sender: UITextField) {
     }
+    
 }
