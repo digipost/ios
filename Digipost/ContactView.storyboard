@@ -102,7 +102,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Lagre" id="ZXm-TQ-zKX"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="areacode" destination="KB2-XJ-HdP" id="JtT-xo-e4O"/>
+                        <outlet property="countryCode" destination="KB2-XJ-HdP" id="WuP-qu-neH"/>
                         <outlet property="email1" destination="XOR-AW-dsE" id="Ktl-Vu-tke"/>
                         <outlet property="email2" destination="Bez-2c-1cn" id="2NC-vC-PKb"/>
                         <outlet property="email3" destination="FhX-Lu-BV7" id="MEu-0i-4W7"/>

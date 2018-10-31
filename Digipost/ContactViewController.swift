@@ -21,17 +21,24 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var email1: UITextField!
     @IBOutlet weak var email2: UITextField!
     @IBOutlet weak var email3: UITextField!
-    @IBOutlet weak var areacode: UITextField!
+    @IBOutlet weak var countryCode: UITextField!
     @IBOutlet weak var phonenumber: UITextField!
     
-    var extendedEmails = [POSEmail]()
+    @objc var contactInfo: POSContactInfo = POSContactInfo(extendedEmail: [], extendedPhone: POSPhone(phoneNumber: "",countryCode: ""))
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        print("2")
-        print(extendedEmails)
+        
+        print("************************************************")
+        
+        if let number = contactInfo.extendedPhone?.phoneNumber {
+            self.phonenumber?.text = number
+        }
+        if let code = contactInfo.extendedPhone?.countryCode {
+            self.countryCode?.text = code
+        }
     }
-  
+    
     @IBAction func changedValue(_ sender: UITextField) {
     }
     

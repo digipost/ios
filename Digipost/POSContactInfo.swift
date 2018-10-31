@@ -19,8 +19,8 @@ import Foundation
 
 @objc class POSContactInfo : NSObject, NSCoding{
     
-    var extendedEmail: [POSEmail]? = nil
-    var extendedPhone: POSPhone? = nil
+    var extendedEmail: [POSEmail]?
+    var extendedPhone: POSPhone?
     
     init(extendedEmail: [POSEmail], extendedPhone: POSPhone) {
         self.extendedEmail = extendedEmail

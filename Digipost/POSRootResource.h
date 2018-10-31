@@ -40,7 +40,8 @@ extern NSString *const kRootResourceEntityName;
 @property (strong, nonatomic) NSString *uploadDocumentUri;
 @property (nonatomic, retain) NSString *selfUri;
 @property (nonatomic, retain) NSString *searchUri;
-@property (nonatomic, retain) NSData *contactInfo;
+@property (nonatomic, retain) NSData *extendedEmail;
+@property (nonatomic, retain) NSData *extendedPhone;
 
 // Relationships
 @property (strong, nonatomic) NSSet *mailboxes;

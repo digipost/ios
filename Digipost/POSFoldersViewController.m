@@ -44,7 +44,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
-NSString *const kContactViewSegue = @"contactView";
+NSString *const kContactViewSegue = @"contactViewSegue";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -203,8 +203,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             }
         }
     } else if([segue.identifier isEqualToString:kContactViewSegue]) {
-        POSContactInfo *contactInfo = self.rootResource.getContactInfo;
         ContactViewController *contactViewController = (ContactViewController *)segue.destinationViewController;
+        POSContactInfo *contactInfo = self.rootResource.getContactInfo;
+        contactViewController.contactInfo = contactInfo;
     }
 }
 

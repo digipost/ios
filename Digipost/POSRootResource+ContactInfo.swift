@@ -17,28 +17,29 @@
 extension POSRootResource {
     
     @objc func getContactInfo() -> POSContactInfo? {
-        if let contactInfoData = NSKeyedUnarchiver.unarchiveObject(with: self.contactInfo) as! [Any]? {
-            let extendedEmail = getExtendedEmail(extendedEmailData: contactInfoData[0] as! [Any])
-            let extendedPhone = getPhoneNumber(extendedPhoneData: contactInfoData[1] as! [String: Any])
-            return POSContactInfo(extendedEmail: extendedEmail, extendedPhone: extendedPhone)
-        }
-
-        return nil
+        print("*************getContactInfo*************")
+        let extendedEmail = getExtendedEmail()
+        let extendedPhone = getPhoneNumber()
+        return POSContactInfo(extendedEmail: extendedEmail, extendedPhone: extendedPhone)
     }
     
-    func getExtendedEmail(extendedEmailData: [Any]) -> [POSEmail] {
+    @objc func getExtendedEmail() -> [POSEmail] {
         var extendedEmail = [POSEmail]()
-        for json in extendedEmailData as! [[String: Any]] {
-            if let email = json["email"] as? String, let verified = json["verified"] as? Bool {
-                extendedEmail.append(POSEmail(email: email, verified: verified))
+        if let extendedEmailData = NSKeyedUnarchiver.unarchiveObject(with: self.extendedEmail) as? NSArray {
+            for json in extendedEmailData as! [[String: Any]] {
+                if let email = json["email"] as? String, let verified = json["verified"] as? Bool {
+                    extendedEmail.append(POSEmail(email: email, verified: verified))
+                }
             }
         }
         return extendedEmail
     }
     
-    func getPhoneNumber(extendedPhoneData: [String: Any]) -> POSPhone {
-        if let phoneNumber = extendedPhoneData["phoneNumber"] as? String, let countryCode = extendedPhoneData["countryCode"] as? String {
-            return POSPhone(phoneNumber: phoneNumber, countryCode: countryCode)
+    @objc func getPhoneNumber() -> POSPhone {
+        if let extendedPhoneData = NSKeyedUnarchiver.unarchiveObject(with: self.extendedPhone) as? [String: Any] {
+            if let phoneNumber = extendedPhoneData["phoneNumber"] as? String, let countryCode = extendedPhoneData["countryCode"] as? String {
+                return POSPhone(phoneNumber: phoneNumber, countryCode: countryCode)
+            }
         }
         return POSPhone(phoneNumber: "", countryCode: "")
     }
