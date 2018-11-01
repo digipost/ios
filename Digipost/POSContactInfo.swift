@@ -14,14 +14,13 @@
 // limitations under the License.
 //
 
-
 import Foundation
 
 @objc class POSContactInfo : NSObject, NSCoding{
     
     var extendedEmail: [POSEmail]?
     var extendedPhone: POSPhone?
-    
+
     init(extendedEmail: [POSEmail], extendedPhone: POSPhone) {
         self.extendedEmail = extendedEmail
         self.extendedPhone = extendedPhone

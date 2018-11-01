@@ -24,18 +24,20 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var countryCode: UITextField!
     @IBOutlet weak var phonenumber: UITextField!
     
-    @objc var contactInfo: POSContactInfo = POSContactInfo(extendedEmail: [], extendedPhone: POSPhone(phoneNumber: "",countryCode: ""))
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
-        print("************************************************")
-        
-        if let number = contactInfo.extendedPhone?.phoneNumber {
-            self.phonenumber?.text = number
-        }
-        if let code = contactInfo.extendedPhone?.countryCode {
-            self.countryCode?.text = code
+    }
+    
+    @objc func updateContactInfo(contactInfo: POSContactInfo) {
+        DispatchQueue.main.async {
+            
+            if let number = contactInfo.extendedPhone?.phoneNumber {
+                self.phonenumber?.text = number
+            }
+            
+            if let code = contactInfo.extendedPhone?.countryCode {
+                self.countryCode?.text = code
+            }
         }
     }
     

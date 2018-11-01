@@ -17,7 +17,6 @@
 extension POSRootResource {
     
     @objc func getContactInfo() -> POSContactInfo? {
-        print("*************getContactInfo*************")
         let extendedEmail = getExtendedEmail()
         let extendedPhone = getPhoneNumber()
         return POSContactInfo(extendedEmail: extendedEmail, extendedPhone: extendedPhone)

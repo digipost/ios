@@ -204,8 +204,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
     } else if([segue.identifier isEqualToString:kContactViewSegue]) {
         ContactViewController *contactViewController = (ContactViewController *)segue.destinationViewController;
-        POSContactInfo *contactInfo = self.rootResource.getContactInfo;
-        contactViewController.contactInfo = contactInfo;
+        [contactViewController updateContactInfoWithContactInfo:self.rootResource.getContactInfo];
     }
 }
 
@@ -544,8 +543,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     for (NSInteger section = 0; section < [self.fetchedResultsController.sections count]; section++) {
         id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
         for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
-            POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
-                                                                                                    inSection:section]];
+            POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
             if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
                 self.inboxFolder = folder;
             } else {
@@ -586,9 +584,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
         failure:^(APIError *error) {
           [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-          //                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-          //
-          //                                           }];
         }];
 }
 

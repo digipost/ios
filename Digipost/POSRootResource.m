@@ -128,12 +128,10 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
         rootResource.unreadItemsInInbox = [unreadItemsInInbox isKindOfClass:[NSNumber class]] ? unreadItemsInInbox : nil;
     
         NSDictionary *extendedPhone = primaryAccount[NSStringFromSelector(@selector(extendedPhone))];
-        NSLog(@"%@", extendedPhone);
         rootResource.extendedPhone = [NSKeyedArchiver archivedDataWithRootObject:extendedPhone];
         
-        NSArray *extendedEmail = primaryAccount[NSStringFromSelector(@selector(extendedEmail))];
-        NSLog(@"%@", extendedEmail);
-        rootResource.extendedEmail = [NSKeyedArchiver archivedDataWithRootObject:extendedEmail];
+        NSArray *extendedEmailArray = primaryAccount[NSStringFromSelector(@selector(extendedEmail))];
+        rootResource.extendedEmail = [NSKeyedArchiver archivedDataWithRootObject:extendedEmailArray];
     
         NSArray *links = primaryAccount[kRootResourcePrimaryAccountLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {
