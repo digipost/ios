@@ -76,12 +76,11 @@
         <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="currentBankAccount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="currentBankAccountUri" attributeType="String" syncable="YES"/>
-        <attribute name="extendedEmail" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="extendedPhone" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fullName" attributeType="String" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logoutUri" attributeType="String" syncable="YES"/>
+        <attribute name="mailboxSettingsUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="middleName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="searchUri" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="selfUri" optional="YES" attributeType="String" syncable="YES"/>
@@ -96,6 +95,6 @@
         <element name="GCMToken" positionX="-162" positionY="-72" width="128" height="75"/>
         <element name="Invoice" positionX="250" positionY="-216" width="128" height="195"/>
         <element name="Mailbox" positionX="79" positionY="207" width="128" height="180"/>
-        <element name="RootResource" positionX="-360" positionY="27" width="128" height="300"/>
+        <element name="RootResource" positionX="-360" positionY="27" width="128" height="285"/>
     </elements>
 </model>

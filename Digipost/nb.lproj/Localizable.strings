@@ -315,6 +315,9 @@
 /* Legg til mappe */
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Opprett mappe";
 
+/* Innstillinger */
+"FOLDER_VIEW_SETTINGS" = "Innstillinger";
+
 /* Title for navbar at accounts view */
 "Accounts title" = "Velg konto";
 

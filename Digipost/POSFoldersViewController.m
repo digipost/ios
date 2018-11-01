@@ -204,7 +204,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
     } else if([segue.identifier isEqualToString:kContactViewSegue]) {
         ContactViewController *contactViewController = (ContactViewController *)segue.destinationViewController;
-        [contactViewController updateContactInfoWithContactInfo:self.rootResource.getContactInfo];
+        contactViewController.title = NSLocalizedString(@"FOLDER_VIEW_SETTINGS", @"Innstillinger");
     }
 }
 
@@ -266,7 +266,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
             case 2: {
-                folderName = @"Innstillinger";
+                folderName = NSLocalizedString(@"FOLDER_VIEW_SETTINGS", @"Innstillinger");
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
 

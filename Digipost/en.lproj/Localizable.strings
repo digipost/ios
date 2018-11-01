@@ -213,6 +213,8 @@
 "RECEIPTS_FOLDER_NUMBER_OF_RECEIPTS_LABEL" = "%i receipts";
 /* Legg til mappe */
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Add folder";
+/* Innstillinger */
+"FOLDER_VIEW_SETTINGS" = "Settings";
 /* Title for navbar at accounts view */
 "Accounts title" = "Select account";
 /* Text for error telling about folder with name exits */
