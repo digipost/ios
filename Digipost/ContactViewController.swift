@@ -66,11 +66,11 @@ class ContactViewController: UIViewController {
     
     @IBAction func changedValue(_ sender: UITextField) {
         if sender == email1 {
-            updateEmail(0, email1.text)
+            updateEmail(index: 0, emailAddress: email1.text!)
         }else if sender == email2 {
-            updateEmail(1, email2.text)
+            updateEmail(index: 1, emailAddress: email2.text!)
         } else if sender == email3 {
-            updateEmail(2, email3.text)
+            updateEmail(index: 2, emailAddress: email3.text!)
         }
     }
     
@@ -78,7 +78,7 @@ class ContactViewController: UIViewController {
         if let rootResource: POSRootResource =
             POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
             if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
-                APIClient.sharedClient.getMailboxSettings(mailboxSettingsUri: mailboxSettingsUri, success: {(mailboxSettings) -> Void in
+                APIClient.sharedClient.getMailboxSettings(uri: mailboxSettingsUri, success: {(mailboxSettings) -> Void in
                     self.updateView(mailboxSettings: mailboxSettings)
                 }, failure: ({_ in }))
             }
@@ -86,7 +86,17 @@ class ContactViewController: UIViewController {
     }
     
     func postMailboxSettings() {
+        var mailboxSettings = self.mailboxSettings
+        mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
         
+        if let rootResource: POSRootResource =
+            POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
+            if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
+                APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings as! Dictionary<String, AnyObject>,success: {() -> Void in
+                    self.getMailboxSettings()
+                }, failure: ({_ in }))
+            }
+        }
     }
     
 }

@@ -16,14 +16,14 @@
 
 extension APIClient {
     
-    @objc func getMailboxSettings(mailboxSettingsUri: String, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> ()) {
+    @objc func getMailboxSettings(uri: String, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
-            let task = self.urlSessionJSONTask(url: mailboxSettingsUri,  success: success, failure: failure)
+            let task = self.urlSessionJSONTask(url: uri,  success: success, failure: failure)
             task.resume()
         }
     }
 
-    @objc func postMailboxSettings(uri: String, mailboxSettings: Dictionary<String,String>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
+    @objc func updateMailboxSettings(uri: String, mailboxSettings: Dictionary<String, AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
         validateFullScope {
             let task = self.urlSessionTask(httpMethod.post, url: uri, parameters: mailboxSettings as Dictionary<String, AnyObject>?, success: success,failure: failure)
             task.resume()
