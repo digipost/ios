@@ -30,6 +30,20 @@ class ContactViewController: UIViewController {
     
     @objc func updateContactInfo(contactInfo: POSContactInfo) {
         DispatchQueue.main.async {
+            if let emails = contactInfo.extendedEmail {
+                for (index, email) in emails.enumerated() {
+                    switch(index) {
+                    case 0:
+                        self.email1?.text = email.email
+                    case 1:
+                        self.email2?.text = email.email
+                    case 2:
+                        self.email3?.text = email.email
+                    default:
+                        return
+                    }
+                }
+            }
             
             if let number = contactInfo.extendedPhone?.phoneNumber {
                 self.phonenumber?.text = number
