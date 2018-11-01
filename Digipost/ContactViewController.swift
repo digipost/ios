@@ -26,6 +26,7 @@ class ContactViewController: UIViewController {
     
     var mailboxSettings: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     var emails: [[String: Any]] = [[String: Any]]()
+    var mobilePhoneNumber: [String: Any] = [String: Any]()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,6 +36,7 @@ class ContactViewController: UIViewController {
     @objc func updateView(mailboxSettings: Dictionary<String, AnyObject>) {
         self.mailboxSettings = mailboxSettings
         self.emails = mailboxSettings["emailAddress"] as! [[String: Any]]
+        self.mobilePhoneNumber = mailboxSettings["mobilePhoneNumber"] as! [String : Any]
         
         DispatchQueue.main.async {
             for (index, email) in self.emails.enumerated() {
@@ -50,10 +52,8 @@ class ContactViewController: UIViewController {
                 }
             }
             
-            if let mobilePhoneNumber = mailboxSettings["mobilePhoneNumber"] {
-                self.phonenumber?.text = mobilePhoneNumber["phoneNumber"] as? String
-                self.countryCode?.text = mobilePhoneNumber["countryCode"] as? String
-            }
+            self.phonenumber?.text = self.mobilePhoneNumber["phoneNumber"] as? String
+            self.countryCode?.text = self.mobilePhoneNumber["countryCode"] as? String
         }
     }
     
@@ -61,7 +61,6 @@ class ContactViewController: UIViewController {
         var email = emails[index]
         email["email"] = emailAddress
         emails[index] = email
-        postMailboxSettings()
     }
     
     @IBAction func changedValue(_ sender: UITextField) {
@@ -71,7 +70,12 @@ class ContactViewController: UIViewController {
             updateEmail(index: 1, emailAddress: email2.text!)
         } else if sender == email3 {
             updateEmail(index: 2, emailAddress: email3.text!)
+        } else if sender == phonenumber {
+            self.mobilePhoneNumber.updateValue(phonenumber.text!, forKey: "phoneNumber")
+        } else if sender == countryCode {
+            self.mobilePhoneNumber.updateValue(countryCode.text!, forKey: "countryCode")
         }
+        postMailboxSettings()
     }
     
     func getMailboxSettings() {
@@ -88,11 +92,12 @@ class ContactViewController: UIViewController {
     func postMailboxSettings() {
         var mailboxSettings = self.mailboxSettings
         mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
+        mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
         
         if let rootResource: POSRootResource =
             POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
             if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
-                APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings as! Dictionary<String, AnyObject>,success: {() -> Void in
+                APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
                     self.getMailboxSettings()
                 }, failure: ({_ in }))
             }
