@@ -19,6 +19,8 @@
 "GENERIC_ERROR_TITLE" = "Error";
 /* OK */
 "GENERIC_OK_BUTTON_TITLE" = "OK";
+/* Lagre */
+"Save" = "Save";
 /* Cancel */
 "GENERIC_CANCEL_BUTTON_TITLE" = "Cancel";
 /* Delete */

@@ -24,6 +24,9 @@
 /* OK */
 "GENERIC_OK_BUTTON_TITLE" = "OK";
 
+/* Lagre */
+"Save" = "Lagre";
+
 /* Cancel */
 "GENERIC_CANCEL_BUTTON_TITLE" = "Avbryt";
 

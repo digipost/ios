@@ -30,7 +30,17 @@ class ContactViewController: UIViewController {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getMailboxSettings()
+        setupSaveButton()
+    }
+    
+    func setupSaveButton() {
+        let saveButton = UIBarButtonItem(title: NSLocalizedString("Save",comment:"Lagre"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.postMailboxSettings))
+        self.navigationItem.rightBarButtonItem = saveButton
     }
     
     @objc func updateView(mailboxSettings: Dictionary<String, AnyObject>) {
@@ -75,7 +85,6 @@ class ContactViewController: UIViewController {
         } else if sender == countryCode {
             self.mobilePhoneNumber.updateValue(countryCode.text!, forKey: "countryCode")
         }
-        postMailboxSettings()
     }
     
     func getMailboxSettings() {
@@ -89,7 +98,12 @@ class ContactViewController: UIViewController {
         }
     }
     
-    func postMailboxSettings() {
+    func finish() {
+        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func postMailboxSettings() {
         var mailboxSettings = self.mailboxSettings
         mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
         mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
@@ -98,7 +112,7 @@ class ContactViewController: UIViewController {
             POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
             if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
                 APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
-                    self.getMailboxSettings()
+                    self.finish()
                 }, failure: ({_ in }))
             }
         }

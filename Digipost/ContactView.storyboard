@@ -33,18 +33,18 @@
                                 <rect key="frame" x="38" y="107" width="293" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress" textContentType="email"/>
                                 <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="MEr-Yx-zc2"/>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="bb5-1O-CbP"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bez-2c-1cn" userLabel="epost2input">
                                 <rect key="frame" x="38" y="145" width="293" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                 <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="Z3U-Mb-tzi"/>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="akk-Bt-eXv"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt mobilnummer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-bl-bdd" userLabel="telefonnummerLabel">
@@ -57,27 +57,27 @@
                                 <rect key="frame" x="38" y="261" width="40" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                 <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="KWt-y6-7Rj"/>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="qJp-Ks-3Yy"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-Ul-kpE" userLabel="telefonnummer">
                                 <rect key="frame" x="86" y="261" width="245" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                 <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="29U-QU-gMe"/>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="cpw-yS-6HU"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhX-Lu-BV7" userLabel="epost3input">
                                 <rect key="frame" x="38" y="183" width="293" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                 <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingDidEnd" id="1k3-Dy-fJE"/>
+                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="F4H-SS-STo"/>
                                 </connections>
                             </textField>
                         </subviews>
