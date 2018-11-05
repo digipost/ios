@@ -27,6 +27,7 @@ class ContactViewController: UIViewController {
     var lastUpdated: String = ""
     
     @IBOutlet weak var tableView: UITableView!
+    
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(ContactViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
@@ -110,12 +111,11 @@ class ContactViewController: UIViewController {
     }
     
     func updateEmailView(emailView: UITextField, email: String) {
-        emailView.layer.borderColor = borderColor(valid: SettingsValidator.emailAppearsValid(email: email))
-        emailView.text = email
-    }
-    
-    func borderColor(valid: Bool) -> CGColor{
-        return valid ? UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.0).cgColor : UIColor(red:0.89, green:0.71, blue:0.02, alpha:1.0).cgColor
+        DispatchQueue.main.async {
+            let borderColor = SettingsValidator.emailAppearsValid(email: email) ? UIColor(red:0.27, green:0.27, blue:0.27, alpha:1.0).cgColor : UIColor(red:1.00, green:0.80, blue:0.00, alpha:1.0).cgColor
+            emailView.layer.borderColor = borderColor
+            emailView.text = email
+        }
     }
     
     @IBAction func changedValue(_ sender: UITextField) {
@@ -148,6 +148,12 @@ class ContactViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func showAlertMessage(title: String, text: String) {
+        let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Ok"), style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
+    
     @objc func postMailboxSettings() {
         var mailboxSettings = self.mailboxSettings
         mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
@@ -158,9 +164,10 @@ class ContactViewController: UIViewController {
             if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
                 APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
                     self.finish()
-                }, failure: ({_ in }))
+                }, failure: ({_ in
+                    self.showAlertMessage(title: "Det oppstod en feil", text: "Klarte ikke sende lagre kontaktinformasjon. Dobbeltsjekk at alt stemmer og prøv på nytt.")
+                }))
             }
         }
     }
-    
 }

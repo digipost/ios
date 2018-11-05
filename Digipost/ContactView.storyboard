@@ -42,7 +42,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress" textContentType="email"/>
                                             <connections>
-                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="h6e-Eb-prW"/>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="ack-pu-dYU"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rzd-ae-kNh" userLabel="epost2input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
@@ -51,7 +51,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
                                             <connections>
-                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="g4r-Tb-BPI"/>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="q6Y-lp-EDd"/>
                                             </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt mobilnummer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXt-Tf-wuB" userLabel="telefonnummerLabel">
@@ -66,7 +66,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                             <connections>
-                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="74K-Kz-Bsp"/>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="Fda-aC-4eZ"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-7Q-nRQ" userLabel="epost3input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
@@ -75,7 +75,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
                                             <connections>
-                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="FBe-Up-zzf"/>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="C5c-Li-500"/>
                                             </connections>
                                         </textField>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kd-Jn-jXk">
@@ -91,7 +91,7 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
                                             <connections>
-                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="ckR-MG-zL0"/>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="xrh-Pe-xth"/>
                                             </connections>
                                         </textField>
                                     </subviews>

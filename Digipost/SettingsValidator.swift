@@ -20,18 +20,21 @@ class SettingsValidator {
         
         let commonDomains = ["gmail.com", "hotmail.com","online.no","live.no", "yahoo.no", "hotmail.no", "outlook.com","yahoo.com", "lyse.net", "icloud.com", "getmail.no", "me.com"]
         
+        
+        return notBlacklistedDomain(email: email) && validEmailPattern(email: email)
+    }
+    
+    static func notBlacklistedDomain(email: String) -> Bool {
         let splittedEmail = email.split(separator: "@")
         if splittedEmail.count > 1 {
             let domainName = splittedEmail[1]
-            
             for blacklisted in ["digipost.no", "digipost.com", "example.com", "gmai.com", "gmail.co"] {
                 if domainName.lowercased().elementsEqual(blacklisted) {
                     return false
                 }
             }
         }
-        
-        return validEmailPattern(email: email)
+        return true
     }
     
     static func validEmailPattern(email: String) -> Bool {
