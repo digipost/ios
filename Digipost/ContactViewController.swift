@@ -148,6 +148,10 @@ class ContactViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    func validInput() -> Bool{
+        return SettingsValidator.emailAppearsValid(email: self.email1.text!) && SettingsValidator.emailAppearsValid(email: self.email2.text!) && SettingsValidator.emailAppearsValid(email: self.email3.text!)
+    }
+    
     func showAlertMessage(title: String, text: String) {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Ok"), style: .default, handler: nil))
@@ -155,6 +159,7 @@ class ContactViewController: UIViewController {
     }
     
     @objc func postMailboxSettings() {
+        if validInput() {
         var mailboxSettings = self.mailboxSettings
         mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
         mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
@@ -168,6 +173,9 @@ class ContactViewController: UIViewController {
                     self.showAlertMessage(title: "Det oppstod en feil", text: "Klarte ikke sende lagre kontaktinformasjon. Dobbeltsjekk at alt stemmer og prøv på nytt.")
                 }))
             }
+        }
+        } else{
+            self.showAlertMessage(title: "Dobbeltsjekk e-postfelter", text: "Ops, det virker som du har oppgitt en ugyldig e-postadressene. Dobbeltsjekk at alt stemmer og prøv på nytt.")
         }
     }
 }
