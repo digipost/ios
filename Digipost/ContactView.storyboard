@@ -17,105 +17,123 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Din kontaktinformasjon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boM-Ys-pn4">
-                                <rect key="frame" x="38" y="40" width="299" height="24"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-postadresser:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKf-ho-fpN" userLabel="epost1label">
-                                <rect key="frame" x="38" y="186" width="299" height="20.5"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOR-AW-dsE" userLabel="epost1input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
-                                <rect key="frame" x="38" y="214.5" width="299" height="24"/>
-                                <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress" textContentType="email"/>
-                                <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="bb5-1O-CbP"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bez-2c-1cn" userLabel="epost2input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
-                                <rect key="frame" x="38" y="249.5" width="299" height="24"/>
-                                <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
-                                <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="akk-Bt-eXv"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt mobilnummer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CQo-bl-bdd" userLabel="telefonnummerLabel">
-                                <rect key="frame" x="38" y="337.5" width="151" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JzX-Ul-kpE" userLabel="telefonnummer" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
-                                <rect key="frame" x="86" y="366.5" width="251" height="24"/>
-                                <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
-                                <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="cpw-yS-6HU"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FhX-Lu-BV7" userLabel="epost3input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
-                                <rect key="frame" x="38" y="283.5" width="299" height="24"/>
-                                <color key="textColor" red="0.16564119170984459" green="0.16564119170984459" blue="0.16564119170984459" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
-                                <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="F4H-SS-STo"/>
-                                </connections>
-                            </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V5c-R7-RhM">
-                                <rect key="frame" x="38" y="87" width="299" height="75"/>
-                                <string key="text">Vi bruker e-postadressen og mobilnummeret til å varsle deg om nye meldinger, så se over og rediger informasjonen slik at den er riktig.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
-                                <color key="textColor" red="0.094802461140000002" green="0.094802461140000002" blue="0.094802461140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KB2-XJ-HdP" userLabel="landkode" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
-                                <rect key="frame" x="38" y="366.5" width="40" height="24"/>
-                                <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
-                                <connections>
-                                    <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="qJp-Ks-3Yy"/>
-                                </connections>
-                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LPQ-Nc-Me3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="dlM-9g-CDT" customClass="ContactView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="719"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Din kontaktinformasjon" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thc-xW-KgJ">
+                                            <rect key="frame" x="38" y="61" width="299" height="24"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="E-postadresser:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQl-fZ-hbP" userLabel="epost1label">
+                                            <rect key="frame" x="38" y="207" width="299" height="20.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RCG-Fc-Yp6" userLabel="epost1input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
+                                            <rect key="frame" x="38" y="235.5" width="299" height="24"/>
+                                            <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress" textContentType="email"/>
+                                            <connections>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="h6e-Eb-prW"/>
+                                            </connections>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rzd-ae-kNh" userLabel="epost2input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
+                                            <rect key="frame" x="38" y="270.5" width="299" height="24"/>
+                                            <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
+                                            <connections>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="g4r-Tb-BPI"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt mobilnummer:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXt-Tf-wuB" userLabel="telefonnummerLabel">
+                                            <rect key="frame" x="38" y="358.5" width="151" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cRs-cU-Muy" userLabel="telefonnummer" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
+                                            <rect key="frame" x="86" y="387.5" width="251" height="24"/>
+                                            <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
+                                            <connections>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="74K-Kz-Bsp"/>
+                                            </connections>
+                                        </textField>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zQe-7Q-nRQ" userLabel="epost3input" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
+                                            <rect key="frame" x="38" y="304.5" width="299" height="24"/>
+                                            <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocorrectionType="yes" keyboardType="emailAddress"/>
+                                            <connections>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="FBe-Up-zzf"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kd-Jn-jXk">
+                                            <rect key="frame" x="38" y="108" width="299" height="75"/>
+                                            <string key="text">Vi bruker e-postadressen og mobilnummeret til å varsle deg om nye meldinger, så se over og rediger informasjonen slik at den er riktig.</string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" red="0.094802461140000002" green="0.094802461140000002" blue="0.094802461140000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XC3-Pj-S0M" userLabel="landkode" customClass="SettingsTextField" customModule="Digipost" customModuleProvider="target">
+                                            <rect key="frame" x="38" y="387.5" width="40" height="24"/>
+                                            <color key="textColor" red="0.1656411917" green="0.1656411917" blue="0.1656411917" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
+                                            <connections>
+                                                <action selector="changedValue:" destination="zg4-HE-Ac3" eventType="editingChanged" id="ckR-MG-zL0"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="7kd-Jn-jXk" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="3XZ-wP-ckq"/>
+                                        <constraint firstItem="BQl-fZ-hbP" firstAttribute="top" secondItem="7kd-Jn-jXk" secondAttribute="bottom" constant="24" id="4EW-VI-Jxt"/>
+                                        <constraint firstItem="thc-xW-KgJ" firstAttribute="top" secondItem="8R6-8O-Y6n" secondAttribute="top" constant="41" id="5rv-dX-Wie"/>
+                                        <constraint firstItem="RCG-Fc-Yp6" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="6Q4-V7-TWn"/>
+                                        <constraint firstItem="cRs-cU-Muy" firstAttribute="leading" secondItem="XC3-Pj-S0M" secondAttribute="trailing" constant="8" id="6dn-Du-TfR"/>
+                                        <constraint firstItem="Rzd-ae-kNh" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="8ub-ZE-JCV"/>
+                                        <constraint firstItem="rXt-Tf-wuB" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="Cqu-Lj-RXB"/>
+                                        <constraint firstItem="Rzd-ae-kNh" firstAttribute="top" secondItem="RCG-Fc-Yp6" secondAttribute="bottom" constant="11" id="FHS-fZ-H22"/>
+                                        <constraint firstItem="rXt-Tf-wuB" firstAttribute="leading" secondItem="XC3-Pj-S0M" secondAttribute="trailing" constant="-40" id="Glb-66-zD7"/>
+                                        <constraint firstItem="RCG-Fc-Yp6" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="HW2-uE-qeM"/>
+                                        <constraint firstItem="thc-xW-KgJ" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="JwP-n2-1vz"/>
+                                        <constraint firstItem="XC3-Pj-S0M" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="K1n-Oy-hqr"/>
+                                        <constraint firstItem="7kd-Jn-jXk" firstAttribute="top" secondItem="thc-xW-KgJ" secondAttribute="bottom" constant="23" id="OSX-ek-t6g"/>
+                                        <constraint firstItem="RCG-Fc-Yp6" firstAttribute="top" secondItem="BQl-fZ-hbP" secondAttribute="bottom" constant="8" id="UPL-Bq-TYR"/>
+                                        <constraint firstItem="7kd-Jn-jXk" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="UXd-hJ-FEa"/>
+                                        <constraint firstItem="Rzd-ae-kNh" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="Yd4-QL-knh"/>
+                                        <constraint firstItem="zQe-7Q-nRQ" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="b99-xX-jRd"/>
+                                        <constraint firstItem="cRs-cU-Muy" firstAttribute="top" secondItem="rXt-Tf-wuB" secondAttribute="bottom" constant="8" id="cVu-bb-Vkm"/>
+                                        <constraint firstItem="rXt-Tf-wuB" firstAttribute="top" secondItem="zQe-7Q-nRQ" secondAttribute="bottom" constant="30" id="fhE-nf-ESN"/>
+                                        <constraint firstItem="8R6-8O-Y6n" firstAttribute="trailing" secondItem="cRs-cU-Muy" secondAttribute="trailing" constant="38" id="gsl-1f-Rvj"/>
+                                        <constraint firstItem="BQl-fZ-hbP" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="gwJ-v6-Gau"/>
+                                        <constraint firstItem="zQe-7Q-nRQ" firstAttribute="top" secondItem="Rzd-ae-kNh" secondAttribute="bottom" constant="10" id="pMx-mF-SY2"/>
+                                        <constraint firstItem="thc-xW-KgJ" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="rWK-9K-XpO"/>
+                                        <constraint firstItem="BQl-fZ-hbP" firstAttribute="centerX" secondItem="8R6-8O-Y6n" secondAttribute="centerX" id="tey-zQ-Ku6"/>
+                                        <constraint firstItem="XC3-Pj-S0M" firstAttribute="top" secondItem="rXt-Tf-wuB" secondAttribute="bottom" constant="8" id="uLE-ft-IgA"/>
+                                        <constraint firstItem="zQe-7Q-nRQ" firstAttribute="leading" secondItem="8R6-8O-Y6n" secondAttribute="leading" constant="38" id="zte-9d-Ohi"/>
+                                    </constraints>
+                                    <viewLayoutGuide key="safeArea" id="8R6-8O-Y6n"/>
+                                </view>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="boM-Ys-pn4" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="7Pb-R1-4vj"/>
-                            <constraint firstItem="iKf-ho-fpN" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="8Vh-LN-2X5"/>
-                            <constraint firstItem="boM-Ys-pn4" firstAttribute="top" secondItem="Pdg-cN-k43" secondAttribute="top" constant="20" id="95L-NR-KXp"/>
-                            <constraint firstItem="XOR-AW-dsE" firstAttribute="top" secondItem="iKf-ho-fpN" secondAttribute="bottom" constant="8" id="A8s-vL-Xdt"/>
-                            <constraint firstItem="FhX-Lu-BV7" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="DBr-Ej-8hx"/>
-                            <constraint firstItem="boM-Ys-pn4" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="Jdh-QK-kgU"/>
-                            <constraint firstItem="Bez-2c-1cn" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="Jys-2g-R23"/>
-                            <constraint firstItem="Bez-2c-1cn" firstAttribute="top" secondItem="XOR-AW-dsE" secondAttribute="bottom" constant="11" id="Lr9-8f-kUu"/>
-                            <constraint firstItem="FhX-Lu-BV7" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="QCb-VX-3Tw"/>
-                            <constraint firstItem="Bez-2c-1cn" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="Qg4-Ix-J90"/>
-                            <constraint firstItem="V5c-R7-RhM" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="Tur-Ev-MJO"/>
-                            <constraint firstItem="FhX-Lu-BV7" firstAttribute="top" secondItem="Bez-2c-1cn" secondAttribute="bottom" constant="10" id="Vb5-zd-Ftb"/>
-                            <constraint firstItem="KB2-XJ-HdP" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="W33-Xh-CCg"/>
-                            <constraint firstItem="CQo-bl-bdd" firstAttribute="top" secondItem="FhX-Lu-BV7" secondAttribute="bottom" constant="30" id="b3C-ft-tZB"/>
-                            <constraint firstItem="Pdg-cN-k43" firstAttribute="trailing" secondItem="JzX-Ul-kpE" secondAttribute="trailing" constant="38" id="chp-NB-C3F"/>
-                            <constraint firstItem="V5c-R7-RhM" firstAttribute="top" secondItem="boM-Ys-pn4" secondAttribute="bottom" constant="23" id="g3k-pc-058"/>
-                            <constraint firstItem="iKf-ho-fpN" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="h9W-0D-Waw"/>
-                            <constraint firstItem="XOR-AW-dsE" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="hsG-n9-c0E"/>
-                            <constraint firstItem="V5c-R7-RhM" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="iFv-AJ-4Hv"/>
-                            <constraint firstItem="JzX-Ul-kpE" firstAttribute="top" secondItem="CQo-bl-bdd" secondAttribute="bottom" constant="8" id="je3-qD-ffb"/>
-                            <constraint firstItem="KB2-XJ-HdP" firstAttribute="top" secondItem="CQo-bl-bdd" secondAttribute="bottom" constant="8" id="n6C-vy-wIg"/>
-                            <constraint firstItem="XOR-AW-dsE" firstAttribute="centerX" secondItem="Pdg-cN-k43" secondAttribute="centerX" id="pi1-m4-cLV"/>
-                            <constraint firstItem="JzX-Ul-kpE" firstAttribute="leading" secondItem="KB2-XJ-HdP" secondAttribute="trailing" constant="8" id="sIk-C4-mOz"/>
-                            <constraint firstItem="CQo-bl-bdd" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" constant="38" id="uq4-Kn-RLB"/>
-                            <constraint firstItem="iKf-ho-fpN" firstAttribute="top" secondItem="V5c-R7-RhM" secondAttribute="bottom" constant="24" id="vwr-w3-HRP"/>
-                            <constraint firstItem="CQo-bl-bdd" firstAttribute="leading" secondItem="KB2-XJ-HdP" secondAttribute="trailing" constant="-40" id="zEx-Uf-zvQ"/>
+                            <constraint firstItem="Pdg-cN-k43" firstAttribute="top" secondItem="LPQ-Nc-Me3" secondAttribute="top" constant="20" id="gRX-Vr-EyU" userLabel="Safe Area.top = Table View.top"/>
+                            <constraint firstItem="LPQ-Nc-Me3" firstAttribute="leading" secondItem="Pdg-cN-k43" secondAttribute="leading" id="gc4-8I-ENl"/>
+                            <constraint firstItem="Pdg-cN-k43" firstAttribute="trailing" secondItem="LPQ-Nc-Me3" secondAttribute="trailing" id="hCw-zI-ccB"/>
+                            <constraint firstItem="Pdg-cN-k43" firstAttribute="bottom" secondItem="LPQ-Nc-Me3" secondAttribute="bottom" id="shr-e9-W7T"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pdg-cN-k43"/>
                     </view>
@@ -123,11 +141,12 @@
                         <barButtonItem key="rightBarButtonItem" title="Lagre" id="ZXm-TQ-zKX"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="countryCode" destination="KB2-XJ-HdP" id="WuP-qu-neH"/>
-                        <outlet property="email1" destination="XOR-AW-dsE" id="Ktl-Vu-tke"/>
-                        <outlet property="email2" destination="Bez-2c-1cn" id="2NC-vC-PKb"/>
-                        <outlet property="email3" destination="FhX-Lu-BV7" id="MEu-0i-4W7"/>
-                        <outlet property="phonenumber" destination="JzX-Ul-kpE" id="ir0-vL-zoA"/>
+                        <outlet property="countryCode" destination="XC3-Pj-S0M" id="Lve-UR-BZd"/>
+                        <outlet property="email1" destination="RCG-Fc-Yp6" id="Pnw-uo-wvf"/>
+                        <outlet property="email2" destination="Rzd-ae-kNh" id="Jez-4O-C96"/>
+                        <outlet property="email3" destination="zQe-7Q-nRQ" id="OJj-VK-wca"/>
+                        <outlet property="phonenumber" destination="cRs-cU-Muy" id="QUr-OY-Ugy"/>
+                        <outlet property="tableView" destination="LPQ-Nc-Me3" id="93n-5a-W0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8nh-7y-lAl" userLabel="First Responder" sceneMemberID="firstResponder"/>

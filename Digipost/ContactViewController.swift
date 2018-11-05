@@ -24,6 +24,18 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var countryCode: SettingsTextField!
     @IBOutlet weak var phonenumber: SettingsTextField!
     
+    var lastUpdated: String = ""
+    
+    @IBOutlet weak var tableView: UITableView!
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(ContactViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        refreshControl.tintColor = UIColor.red
+        refreshControl.layer.zPosition = -1
+        
+        return refreshControl
+    }()
+    
     var mailboxSettings: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     var emails: [[String: Any]] = [[String: Any]]()
     var mobilePhoneNumber: [String: Any] = [String: Any]()
@@ -36,6 +48,15 @@ class ContactViewController: UIViewController {
         super.viewWillAppear(animated)
         setupSaveButton()
         getMailboxSettings()
+        self.tableView.addSubview(self.refreshControl)
+    }
+    
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        getMailboxSettings()
+        refreshControl.attributedTitle = NSAttributedString(string: NSLocalizedString("GENERIC_UPDATING_TITLE", comment: "Oppdaterer"))
+        refreshControl.attributedTitle = NSAttributedString(string:NSLocalizedString("GENERIC_LAST_UPDATED_TITLE", comment: "Sist oppdatert") + " \(lastUpdated)")
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
     }
     
     func setupSaveButton() {
@@ -47,12 +68,13 @@ class ContactViewController: UIViewController {
         self.mailboxSettings = mailboxSettings
         self.emails = mailboxSettings["emailAddress"] as! [[String: Any]]
         self.mobilePhoneNumber = mailboxSettings["mobilePhoneNumber"] as! [String : Any]
+        self.lastUpdated = " \(Date().timeOnly())"
         
         DispatchQueue.main.async {
             
             for (index, email) in self.emails.enumerated() {
                 if let emailAddress = email["email"] as? String {
-                    if(EmailValidator.emailAppearsValid(email: emailAddress)){
+                    if(SettingsValidator.emailAppearsValid(email: emailAddress)){
                         switch(index) {
                         case 0:
                             self.email1?.text =  emailAddress
