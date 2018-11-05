@@ -17,10 +17,6 @@
 class SettingsValidator {
     
     static func emailAppearsValid(email: String) -> Bool {
-        
-        let commonDomains = ["gmail.com", "hotmail.com","online.no","live.no", "yahoo.no", "hotmail.no", "outlook.com","yahoo.com", "lyse.net", "icloud.com", "getmail.no", "me.com"]
-        
-        
         return notBlacklistedDomain(email: email) && validEmailPattern(email: email)
     }
     
