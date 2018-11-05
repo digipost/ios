@@ -175,7 +175,7 @@ class ContactViewController: UIViewController {
             }
         }
         } else{
-            self.showAlertMessage(title: "Dobbeltsjekk e-postfelter", text: "Ops, det virker som du har oppgitt en ugyldig e-postadressene. Dobbeltsjekk at alt stemmer og prøv på nytt.")
+            self.showAlertMessage(title: "Dobbeltsjekk e-postadresser", text: "Ops, det virker som du har oppgitt en ugyldig e-postadressene. Dobbeltsjekk at alt stemmer og prøv på nytt.")
         }
     }
 }
