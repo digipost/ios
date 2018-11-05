@@ -18,11 +18,11 @@ import Foundation
 
 class ContactViewController: UIViewController {
     
-    @IBOutlet weak var email1: UITextField!
-    @IBOutlet weak var email2: UITextField!
-    @IBOutlet weak var email3: UITextField!
-    @IBOutlet weak var countryCode: UITextField!
-    @IBOutlet weak var phonenumber: UITextField!
+    @IBOutlet weak var email1: SettingsTextField!
+    @IBOutlet weak var email2: SettingsTextField!
+    @IBOutlet weak var email3: SettingsTextField!
+    @IBOutlet weak var countryCode: SettingsTextField!
+    @IBOutlet weak var phonenumber: SettingsTextField!
     
     var mailboxSettings: Dictionary<String, AnyObject> = Dictionary<String, AnyObject>()
     var emails: [[String: Any]] = [[String: Any]]()
@@ -34,8 +34,8 @@ class ContactViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getMailboxSettings()
         setupSaveButton()
+        getMailboxSettings()
     }
     
     func setupSaveButton() {
@@ -49,16 +49,21 @@ class ContactViewController: UIViewController {
         self.mobilePhoneNumber = mailboxSettings["mobilePhoneNumber"] as! [String : Any]
         
         DispatchQueue.main.async {
+            
             for (index, email) in self.emails.enumerated() {
-                switch(index) {
-                case 0:
-                    self.email1?.text =  email["email"] as? String
-                case 1:
-                    self.email2?.text =  email["email"] as? String
-                case 2:
-                    self.email3?.text =  email["email"] as? String
-                default:
-                    return
+                if let emailAddress = email["email"] as? String {
+                    if(EmailValidator.emailAppearsValid(email: emailAddress)){
+                        switch(index) {
+                        case 0:
+                            self.email1?.text =  emailAddress
+                        case 1:
+                            self.email2?.text =  emailAddress
+                        case 2:
+                            self.email3?.text =  emailAddress
+                        default:
+                            return
+                        }
+                    }
                 }
             }
             
