@@ -47,6 +47,7 @@ class ContactViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupSaveButton()
+        setupTextFields()
         getMailboxSettings()
         self.tableView.addSubview(self.refreshControl)
     }
@@ -57,6 +58,14 @@ class ContactViewController: UIViewController {
         refreshControl.attributedTitle = NSAttributedString(string:NSLocalizedString("GENERIC_LAST_UPDATED_TITLE", comment: "Sist oppdatert") + " \(lastUpdated)")
         self.tableView.reloadData()
         refreshControl.endRefreshing()
+    }
+    
+    func setupTextFields() {
+        email1.layer.borderWidth = 2
+        email2.layer.borderWidth = 2
+        email3.layer.borderWidth = 2
+        countryCode.layer.borderWidth = 2
+        phonenumber.layer.borderWidth = 2
     }
     
     func setupSaveButton() {
@@ -71,42 +80,49 @@ class ContactViewController: UIViewController {
         self.lastUpdated = " \(Date().timeOnly())"
         
         DispatchQueue.main.async {
-            
             for (index, email) in self.emails.enumerated() {
                 if let emailAddress = email["email"] as? String {
-                    if(SettingsValidator.emailAppearsValid(email: emailAddress)){
-                        switch(index) {
-                        case 0:
-                            self.email1?.text =  emailAddress
-                        case 1:
-                            self.email2?.text =  emailAddress
-                        case 2:
-                            self.email3?.text =  emailAddress
-                        default:
-                            return
-                        }
+                    switch(index) {
+                    case 0:
+                        self.updateEmailView(emailView: self.email1, email: emailAddress)
+                    case 1:
+                        self.updateEmailView(emailView: self.email2, email: emailAddress)
+                    case 2:
+                        self.updateEmailView(emailView: self.email3, email: emailAddress)
+                    default:
+                        return
                     }
                 }
             }
-            
             self.phonenumber?.text = self.mobilePhoneNumber["phoneNumber"] as? String
             self.countryCode?.text = self.mobilePhoneNumber["countryCode"] as? String
         }
     }
     
-    func updateEmail(index: Int, emailAddress: String) {
+    func updateEmail(index: Int, sender: UITextField) {
+        let emailAddress = sender.text!
         var email = emails[index]
         email["email"] = emailAddress
         emails[index] = email
+        updateEmailView(emailView: sender, email: emailAddress)
+    }
+    
+    func updateEmailView(emailView: UITextField, email: String) {
+        emailView.layer.borderColor = borderColor(valid: SettingsValidator.emailAppearsValid(email: email))
+        emailView.text = email
+    }
+    
+    func borderColor(valid: Bool) -> CGColor{
+        return valid ? UIColor(red:0.30, green:0.30, blue:0.30, alpha:1.0).cgColor : UIColor(red:0.89, green:0.71, blue:0.02, alpha:1.0).cgColor
     }
     
     @IBAction func changedValue(_ sender: UITextField) {
         if sender == email1 {
-            updateEmail(index: 0, emailAddress: email1.text!)
+            updateEmail(index: 0, sender: sender)
         }else if sender == email2 {
-            updateEmail(index: 1, emailAddress: email2.text!)
+            updateEmail(index: 1, sender: sender)
         } else if sender == email3 {
-            updateEmail(index: 2, emailAddress: email3.text!)
+            updateEmail(index: 2, sender: sender)
         } else if sender == phonenumber {
             self.mobilePhoneNumber.updateValue(phonenumber.text!, forKey: "phoneNumber")
         } else if sender == countryCode {
