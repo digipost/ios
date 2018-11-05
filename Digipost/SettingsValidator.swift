@@ -19,13 +19,14 @@ class SettingsValidator {
     static func emailAppearsValid(email: String) -> Bool {
         
         let commonDomains = ["gmail.com", "hotmail.com","online.no","live.no", "yahoo.no", "hotmail.no", "outlook.com","yahoo.com", "lyse.net", "icloud.com", "getmail.no", "me.com"]
-        
         let splittedEmail = email.split(separator: "@")
-        let domainName = splittedEmail[1].lowercased()
-        
-        for blacklisted in ["digipost.no", "digipost.com", "example.com", "gmai.com", "gmail.co"] {
-            if domainName.elementsEqual(blacklisted) {
-                return false
+        if splittedEmail.count > 1 {
+            let domainName = splittedEmail[1]
+            
+            for blacklisted in ["digipost.no", "digipost.com", "example.com", "gmai.com", "gmail.co"] {
+                if domainName.lowercased().elementsEqual(blacklisted) {
+                    return false
+                }
             }
         }
         

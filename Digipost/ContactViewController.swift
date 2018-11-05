@@ -101,9 +101,11 @@ class ContactViewController: UIViewController {
     
     func updateEmail(index: Int, sender: UITextField) {
         let emailAddress = sender.text!
-        var email = emails[index]
-        email["email"] = emailAddress
-        emails[index] = email
+        if SettingsValidator.emailAppearsValid(email: emailAddress) {
+            var email = emails[index]
+            email["email"] = emailAddress
+            emails[index] = email
+        }
         updateEmailView(emailView: sender, email: emailAddress)
     }
     
