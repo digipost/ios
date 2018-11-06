@@ -175,7 +175,7 @@ class ContactViewController: UIViewController {
             }
         }
         } else{
-            self.showAlertMessage(title: NSLocalizedString("invalid email title", comment: ""), text: NSLocalizedString("invalid email message", comment: ""))
+            self.showAlertMessage(title: NSLocalizedString("invalid_email_title", comment: "invalid email"), text: NSLocalizedString("invalid_email_message", comment: "Please check"))
         }
     }
 }

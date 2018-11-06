@@ -484,8 +484,7 @@
 "metadata externalink expired" = "Deadline expired: %@";
 "metadata externalink default button" = "Open link";
 
-#Kontaktopplysninger
-"invalid email title" = "Please check your email addresses";
-"invalid email message" = "It may appear that you have an invalid email address. Make sure everything is correct and try again.";
+"invalid_email_title" = "Please check your email addresses";
+"invalid_email_message" = "It may appear that you have an invalid email address. Make sure everything is correct and try again.";
 "error contact info title" = "Something went wrong";
 "error contact info message" = "Make sure everything is correct and try again";
