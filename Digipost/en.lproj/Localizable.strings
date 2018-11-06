@@ -485,7 +485,7 @@
 "metadata externalink default button" = "Open link";
 
 #Kontaktopplysninger
-"invalid email title" = "Dobbeltsjekk dine e-postadresser";
-"invalid email message" = "Det kan se ut til at du har oppgitt en ugyldig e-postadresse. Se over at alt stemmer og prøv på nytt.";
-"error contact info title" = "Noe gikk galt";
-"error contact info message" = "Sjekk at alt stemmer og prøv igjen";
+"invalid email title" = "Please check your email addresses";
+"invalid email message" = "It may appear that you have an invalid email address. Make sure everything is correct and try again.";
+"error contact info title" = "Something went wrong";
+"error contact info message" = "Make sure everything is correct and try again";
