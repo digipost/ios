@@ -170,12 +170,12 @@ class ContactViewController: UIViewController {
                 APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
                     self.finish()
                 }, failure: ({_ in
-                    self.showAlertMessage(title: "Det oppstod en feil", text: "Klarte ikke sende lagre kontaktinformasjon. Dobbeltsjekk at alt stemmer og prøv på nytt.")
+                    self.showAlertMessage(title: NSLocalizedString("error contact info title", comment: ""), text: NSLocalizedString("error contact info message", comment: ""))
                 }))
             }
         }
         } else{
-            self.showAlertMessage(title: "Dobbeltsjekk e-postadresser", text: "Ops, det virker som du har oppgitt en ugyldig e-postadressene. Dobbeltsjekk at alt stemmer og prøv på nytt.")
+            self.showAlertMessage(title: NSLocalizedString("invalid email title", comment: ""), text: NSLocalizedString("invalid email message", comment: ""))
         }
     }
 }
