@@ -685,7 +685,7 @@
 "metadata externalink expired" = "Frist utløpt: %@ ";
 "metadata externalink default button" = "Gå videre";
 
-"invalid_email_title" = "Dobbeltsjekk dine e-postadresser";
+"invalid email_title" = "Dobbeltsjekk dine e-postadresser";
 "invalid_email_message" = "Det kan se ut til at du har oppgitt en ugyldig e-postadresse. Se over at alt stemmer og prøv på nytt.";
-"error contact info title" = "Noe gikk galt";
-"error contact info message" = "Sjekk at alt stemmer og prøv igjen";
+"error_contact_info_title" = "Noe gikk galt";
+"error_contact_info_message" = "Sjekk at alt stemmer og prøv igjen";

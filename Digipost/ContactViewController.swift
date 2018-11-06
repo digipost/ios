@@ -170,7 +170,7 @@ class ContactViewController: UIViewController {
                 APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
                     self.finish()
                 }, failure: ({_ in
-                    self.showAlertMessage(title: NSLocalizedString("error contact info title", comment: ""), text: NSLocalizedString("error contact info message", comment: ""))
+                    self.showAlertMessage(title: NSLocalizedString("error_contact_info_title", comment: ""), text: NSLocalizedString("error_contact_info_message", comment: ""))
                 }))
             }
         }
