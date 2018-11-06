@@ -267,7 +267,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
             } break;
             case 2: {
                 folderName = NSLocalizedString(@"FOLDER_VIEW_SETTINGS", @"Innstillinger");
-                iconImage = [UIImage imageNamed:@"Upload"];
+                iconImage = [UIImage imageNamed:@"Settings"];
             } break;
 
             default:
