@@ -103,14 +103,12 @@ class ContactViewController: UIViewController {
     func updateEmail(index: Int, sender: UITextField) {
         let emailAddress = sender.text!
         if SettingsValidator.emailAppearsValid(email: emailAddress) {
-            if emails.count > index-1 {
+            if index >= emails.count {
                 var newEmail = [String: Any]()
                 newEmail["email"] = emailAddress
                 emails.append(newEmail)
             }else{
-                var email = emails[index]
-                email["email"] = emailAddress
-                emails[index] = email
+                emails[index].updateValue(emailAddress, forKey: "email")
             }
         }
         updateEmailView(emailView: sender, email: emailAddress)
@@ -166,20 +164,19 @@ class ContactViewController: UIViewController {
     
     @objc func postMailboxSettings() {
         if validInput() {
-        var mailboxSettings = self.mailboxSettings
-        mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
-        mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
-        
-        if let rootResource: POSRootResource =
-            POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
-            if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
-                APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
-                    self.finish()
-                }, failure: ({_ in
-                    self.showAlertMessage(title: NSLocalizedString("error_contact_info_title", comment: ""), text: NSLocalizedString("error_contact_info_message", comment: ""))
-                }))
+            var mailboxSettings = self.mailboxSettings
+            mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
+            mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
+            if let rootResource: POSRootResource =
+                POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
+                if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
+                    APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
+                        self.finish()
+                    }, failure: ({_ in
+                        self.showAlertMessage(title: NSLocalizedString("error_contact_info_title", comment: ""), text: NSLocalizedString("error_contact_info_message", comment: ""))
+                    }))
+                }
             }
-        }
         } else{
             self.showAlertMessage(title: NSLocalizedString("invalid_email_title", comment: "invalid email"), text: NSLocalizedString("invalid_email_message", comment: "Please check"))
         }
