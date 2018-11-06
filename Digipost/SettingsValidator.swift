@@ -17,7 +17,7 @@
 class SettingsValidator {
     
     static func emailAppearsValid(email: String) -> Bool {
-        return email.isEmpty() || (email.notBlacklistedDomain(email: email) && validEmailPattern(email: email))
+        return email.isEmpty || (notBlacklistedDomain(email: email) && validEmailPattern(email: email))
     }
     
     static func notBlacklistedDomain(email: String) -> Bool {
