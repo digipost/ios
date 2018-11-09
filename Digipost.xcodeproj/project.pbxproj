@@ -544,6 +544,9 @@
 		F8BA4FFE218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */; };
 		F8BCF933207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BCF936207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib */; };
 		F8BCF934207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BCF936207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib */; };
+		F8BF1B172195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
+		F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
+		F8BF1B192195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
 		F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
@@ -972,6 +975,7 @@
 		F8BCF935207F872100D212A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		F8BCF937207F874A00D212A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
 		F8BCF939207F874C00D212A9 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
+		F8BF1B162195BA1300A87C61 /* SecureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureViewController.swift; sourceTree = "<group>"; };
 		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
 		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
@@ -1189,6 +1193,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8BF1B152195BA0300A87C61 /* Secure */,
 				F80F712621772268000D4685 /* Contact */,
 				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
@@ -1747,6 +1752,14 @@
 			name = Prod;
 			sourceTree = "<group>";
 		};
+		F8BF1B152195BA0300A87C61 /* Secure */ = {
+			isa = PBXGroup;
+			children = (
+				F8BF1B162195BA1300A87C61 /* SecureViewController.swift */,
+			);
+			name = Secure;
+			sourceTree = "<group>";
+		};
 		F8C6723E1DB9F6CC0092182E /* Invoice */ = {
 			isa = PBXGroup;
 			children = (
@@ -2238,6 +2251,7 @@
 				EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECB2BEF51B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
+				F8BF1B172195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AEC1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
@@ -2346,6 +2360,7 @@
 				F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */,
 				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
+				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
@@ -2475,6 +2490,7 @@
 				F8AE1C581CD374B40009B2F9 /* UIImage+base64Representation.swift in Sources */,
 				F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */,
 				F8AE1C5A1CD374B40009B2F9 /* POSAccountViewTableViewDataSource.m in Sources */,
+				F8BF1B192195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				F8AE1C5B1CD374B40009B2F9 /* UIWebView+Accessability.swift in Sources */,
 				F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				F8AE1C5C1CD374B40009B2F9 /* OAuthToken.swift in Sources */,

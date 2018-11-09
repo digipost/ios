@@ -488,3 +488,6 @@
 "invalid_email_message" = "It may appear that you have an invalid email address. Make sure everything is correct and try again.";
 "error_contact_info_title" = "Something went wrong";
 "error_contact_info_message" = "Make sure everything is correct and try again";
+
+/* Access request */
+"settings access request" = "Unlock settings";
