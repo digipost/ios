@@ -24,7 +24,10 @@ class ContactViewController: UIViewController {
     @IBOutlet weak var countryCode: SettingsTextField!
     @IBOutlet weak var phonenumber: SettingsTextField!
     
+    let ga_tag = "kontaktopplysninger"
     var lastUpdated: String = ""
+    var saveButtonPressed: Bool = false
+    var actuallySaved: Bool = true
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -51,6 +54,18 @@ class ContactViewController: UIViewController {
         setupTextFields()
         getMailboxSettings()
         self.tableView.addSubview(self.refreshControl)
+        GAEvents.event(category: ga_tag, action: "åpne-view", label: "mappevisning", value: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        var saveState = "Lagre ikke"
+        if saveButtonPressed && actuallySaved {
+            saveState = "Lagret og fullførte vellykket"
+        }else if saveButtonPressed {
+            saveState = "Lagret, men feilet"
+        }
+        GAEvents.event(category: ga_tag, action: "lukke-view", label: saveState, value: nil)
     }
     
     @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
@@ -107,11 +122,31 @@ class ContactViewController: UIViewController {
                 var newEmail = [String: Any]()
                 newEmail["email"] = emailAddress
                 emails.append(newEmail)
+                GAEvents.event(category: ga_tag, action: "e-post", label: "legger til ny", value: nil)
             }else{
+                if emailAddress.isEmpty {
+                    GAEvents.event(category: ga_tag, action: "e-post", label: "fjerner eksisterende", value: nil)
+                }else{
+                    GAEvents.event(category: ga_tag, action: "e-post", label: "oppdaterer eksisterende", value: nil)
+                }
                 emails[index].updateValue(emailAddress, forKey: "email")
             }
         }
         updateEmailView(emailView: sender, email: emailAddress)
+    }
+    
+    func updatePhonenumber(new: String) {
+        let old = (self.mobilePhoneNumber["phoneNumber"] as! String)
+        
+        if old.isEmpty && !new.isEmpty{
+            GAEvents.event(category: ga_tag, action: "telefonnummer", label: "legger til nytt", value: nil)
+        }else if !old.isEmpty && new.isEmpty {
+            GAEvents.event(category: ga_tag, action: "telefonnummer", label: "fjerner eksisterende", value: nil)
+        }else if !old.elementsEqual(new){
+            GAEvents.event(category: ga_tag, action: "telefonnummer", label: "oppdaterer eksisterende", value: nil)
+        }
+        
+        self.mobilePhoneNumber.updateValue(new, forKey: "phoneNumber")
     }
     
     func updateEmailView(emailView: UITextField, email: String) {
@@ -130,7 +165,7 @@ class ContactViewController: UIViewController {
         } else if sender == email3 {
             updateEmail(index: 2, sender: sender)
         } else if sender == phonenumber {
-            self.mobilePhoneNumber.updateValue(phonenumber.text!, forKey: "phoneNumber")
+            updatePhonenumber(new: phonenumber.text!)
         } else if sender == countryCode {
             self.mobilePhoneNumber.updateValue(countryCode.text!, forKey: "countryCode")
         }
@@ -163,7 +198,9 @@ class ContactViewController: UIViewController {
     }
     
     @objc func postMailboxSettings() {
+        self.saveButtonPressed = true
         if validInput() {
+            
             var mailboxSettings = self.mailboxSettings
             mailboxSettings.updateValue(self.emails as AnyObject, forKey: "emailAddress")
             mailboxSettings.updateValue(self.mobilePhoneNumber as AnyObject, forKey: "mobilePhoneNumber")
@@ -171,13 +208,17 @@ class ContactViewController: UIViewController {
                 POSRootResource.existingRootResource(in: POSModelManager.shared().managedObjectContext) {
                 if let mailboxSettingsUri = rootResource.mailboxSettingsUri {
                     APIClient.sharedClient.updateMailboxSettings(uri: mailboxSettingsUri,mailboxSettings: mailboxSettings ,success: {() -> Void in
+                        self.actuallySaved = true
+                        GAEvents.event(category: self.ga_tag, action: "lagring", label: "vellykket", value: nil)
                         self.finish()
                     }, failure: ({_ in
+                        GAEvents.event(category: self.ga_tag, action: "lagring", label: "feilet", value: nil)
                         self.showAlertMessage(title: NSLocalizedString("error_contact_info_title", comment: ""), text: NSLocalizedString("error_contact_info_message", comment: ""))
                     }))
                 }
             }
         } else{
+            GAEvents.event(category: self.ga_tag, action: "lagring", label: "feil i inputfelter", value: nil)
             self.showAlertMessage(title: NSLocalizedString("invalid_email_title", comment: "invalid email"), text: NSLocalizedString("invalid_email_message", comment: "Please check"))
         }
     }
