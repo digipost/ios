@@ -59,7 +59,7 @@ class ContactViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        var saveState = "Lagre ikke"
+        var saveState = "Lagret ikke"
         if saveButtonPressed && actuallySaved {
             saveState = "Lagret og fullførte vellykket"
         }else if saveButtonPressed {
