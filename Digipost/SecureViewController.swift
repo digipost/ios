@@ -42,6 +42,7 @@ class SecureViewConroller: UIViewController {
         }
     }
     
+    
     func removeBlur() {
         DispatchQueue.main.async {
             self.blurEffectView.removeFromSuperview()
@@ -59,8 +60,12 @@ class SecureViewConroller: UIViewController {
         accessRequest(policy: policy)
     }
     
-    func dismissView(){
-        print("dismissing")
+    func authenticated() {
+        self.removeBlur()
+        NotificationCenter.default.addObserver(self, selector: #selector(SecureViewConroller.dismissView), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+    }
+    
+    @objc func dismissView(){
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
@@ -71,8 +76,7 @@ class SecureViewConroller: UIViewController {
         context.evaluatePolicy(policy, localizedReason: NSLocalizedString("settings access request", comment: "settings access request"), reply: { (success, error) in
             
             if(success) {
-                self.removeBlur()
-                print("Successfully logged in! 👍")
+                self.authenticated()
             }else{
                 if let error = error {
                     switch(error) {
