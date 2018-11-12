@@ -32,5 +32,6 @@ extern NSString *const kGoToInboxFolderAtStartupSegue;
 
 - (void)updateFolders;
 @property (strong, nonatomic) NSString *selectedMailBoxDigipostAdress;
+@property (strong, nonatomic) NSNumber *owner;
 
 @end

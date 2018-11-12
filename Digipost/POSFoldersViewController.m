@@ -85,7 +85,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
-
+    self.owner = currentMailbox.owner;
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
@@ -230,9 +230,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 && self.inboxFolder) {
+    if (section == 0 && self.inboxFolder && [self.owner intValue] == 1) {
         return 3; // Inbox, Upload and Contact
-    } else {
+    } else if(section == 0) {
+        return 2; // Inbox and Upload
+    }else {
         // add new cell-cell is added
         return [self.folders count] + 1;
     }
@@ -385,7 +387,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     self.folders = newSorting;
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
     [[APIClient sharedClient] moveFolder:newSorting
         mailbox:mailbox
         success:^{
