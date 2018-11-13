@@ -16,7 +16,7 @@
 
 import Foundation
 
-class ContactViewController: UIViewController {
+class ContactViewController: SecureViewConroller {
     
     @IBOutlet weak var email1: SettingsTextField!
     @IBOutlet weak var email2: SettingsTextField!
