@@ -24,6 +24,9 @@
 /* OK */
 "GENERIC_OK_BUTTON_TITLE" = "OK";
 
+/* Lagre */
+"Save" = "Lagre";
+
 /* Cancel */
 "GENERIC_CANCEL_BUTTON_TITLE" = "Avbryt";
 
@@ -314,6 +317,9 @@
 
 /* Legg til mappe */
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Opprett mappe";
+
+/* Innstillinger */
+"FOLDER_VIEW_SETTINGS" = "Innstillinger";
 
 /* Title for navbar at accounts view */
 "Accounts title" = "Velg konto";
@@ -678,3 +684,11 @@
 "metadata externalink deadline" = "Frist: %@ ";
 "metadata externalink expired" = "Frist utløpt: %@ ";
 "metadata externalink default button" = "Gå videre";
+
+"invalid_email_title" = "Dobbeltsjekk dine e-postadresser";
+"invalid_email_message" = "Det kan se ut til at du har oppgitt en ugyldig e-postadresse. Se over at alt stemmer og prøv på nytt.";
+"error_contact_info_title" = "Noe gikk galt";
+"error_contact_info_message" = "Sjekk at alt stemmer og prøv igjen";
+
+/* Access request */
+"settings access request" = "Lås opp innstillinger";

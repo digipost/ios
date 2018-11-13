@@ -44,6 +44,7 @@ NSString *const kFoldersViewControllerIdentifier = @"FoldersViewController";
 // Segue identifiers (to enable programmatic triggering of segues)
 NSString *const kPushFoldersIdentifier = @"PushFolders";
 NSString *const kUploadFileSegueIdentifier = @"uploadFileSegue";
+NSString *const kContactViewSegue = @"contactViewSegue";
 
 // Google Analytics screen name
 NSString *const kFoldersViewControllerScreenName = @"Folders";
@@ -84,7 +85,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         currentMailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                  inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     }
-
+    self.owner = currentMailbox.owner;
     self.predicate = [NSPredicate predicateWithFoldersInMailbox:self.selectedMailBoxDigipostAdress];
     self.screenName = kFoldersViewControllerScreenName;
     self.folders = [NSMutableArray array];
@@ -201,6 +202,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 newFolderVC.selectedFolder = self.folders[selectedIndexPath.row];
             }
         }
+    } else if([segue.identifier isEqualToString:kContactViewSegue]) {
+        ContactViewController *contactViewController = (ContactViewController *)segue.destinationViewController;
+        contactViewController.title = NSLocalizedString(@"FOLDER_VIEW_SETTINGS", @"Innstillinger");
     }
 }
 
@@ -226,9 +230,11 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0 && self.inboxFolder) {
-        return 2; // Inbox and upload
-    } else {
+    if (section == 0 && self.inboxFolder && [self.owner intValue] == 1) {
+        return 3; // Inbox, Upload and Contact
+    } else if(section == 0) {
+        return 2; // Inbox and Upload
+    }else {
         // add new cell-cell is added
         return [self.folders count] + 1;
     }
@@ -262,8 +268,8 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                 iconImage = [UIImage imageNamed:@"Upload"];
             } break;
             case 2: {
-                folderName = NSLocalizedString(@"folder view controller beta title", @"tells user that they can send feedback with this button");
-                iconImage = [UIImage imageNamed:@"Feedback"];
+                folderName = NSLocalizedString(@"FOLDER_VIEW_SETTINGS", @"Innstillinger");
+                iconImage = [UIImage imageNamed:@"Settings"];
             } break;
 
             default:
@@ -381,7 +387,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     self.folders = newSorting;
     POSMailbox *mailbox = [POSMailbox existingMailboxWithDigipostAddress:self.selectedMailBoxDigipostAdress
                                                   inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
-
     [[APIClient sharedClient] moveFolder:newSorting
         mailbox:mailbox
         success:^{
@@ -486,7 +491,9 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
                         break;
                     }case 1: {
                         [self performSegueWithIdentifier:@"uploadMenuSegue" sender:self];
-
+                        break;
+                    }case 2: {
+                        [self performSegueWithIdentifier:kContactViewSegue sender:self];
                         break;
                     }
                     default:
@@ -537,8 +544,7 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     for (NSInteger section = 0; section < [self.fetchedResultsController.sections count]; section++) {
         id<NSFetchedResultsSectionInfo> sectionInfo = self.fetchedResultsController.sections[section];
         for (NSInteger row = 0; row < sectionInfo.numberOfObjects; row++) {
-            POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row
-                                                                                                    inSection:section]];
+            POSFolder *folder = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section]];
             if ([[folder.name lowercaseString] isEqualToString:[kFolderInboxName lowercaseString]]) {
                 self.inboxFolder = folder;
             } else {
@@ -579,9 +585,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
         }
         failure:^(APIError *error) {
           [UIAlertController presentAlertControllerWithAPIError:error presentingViewController:self];
-          //                                           [UIAlertView showWithTitle:NSLocalizedString(@"Not empty folder alert title", @"Title of alert informing user that folder is not empty") message:NSLocalizedString(@"Not empty folder alert descrption ", @"Description of user telling folder is not empty") cancelButtonTitle:NSLocalizedString(@"Ok", @"Ok") otherButtonTitles:nil tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-          //
-          //                                           }];
         }];
 }
 

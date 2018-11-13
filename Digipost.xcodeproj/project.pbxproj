@@ -301,6 +301,12 @@
 		F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
+		F8A5593B21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
+		F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
+		F8A5593D21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
+		F8A5593F21904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
+		F8A5594021904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
+		F8A5594121904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
 		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
 		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
@@ -533,8 +539,14 @@
 		F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
 		F8AFAE9B1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
 		F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */; };
+		F8BA4FFC218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */; };
+		F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */; };
+		F8BA4FFE218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */; };
 		F8BCF933207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BCF936207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib */; };
 		F8BCF934207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8BCF936207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib */; };
+		F8BF1B172195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
+		F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
+		F8BF1B192195BA1300A87C61 /* SecureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BF1B162195BA1300A87C61 /* SecureViewController.swift */; };
 		F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
@@ -668,7 +680,7 @@
 		9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadataObject.swift; sourceTree = "<group>"; };
 		9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleUseWebViewController.swift; sourceTree = "<group>"; };
 		9C8B656B1DE6437100634166 /* APIClient+Banks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Banks.swift"; sourceTree = "<group>"; };
-		9C909A9E1EC5D65D00A59417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		9C909A9E1EC5D65D00A59417 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		9C9216461E53408200EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C9216481E53451600EF9858 /* Pods_Digipost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Digipost.framework; path = "Pods/../build/Debug-iphoneos/Pods_Digipost.framework"; sourceTree = "<group>"; };
 		9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSMetadata.swift; sourceTree = "<group>"; };
@@ -946,22 +958,27 @@
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
+		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
 		F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.2.xcdatamodel"; sourceTree = "<group>"; };
+		F8A5593A21903DD300667F27 /* SettingsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValidator.swift; sourceTree = "<group>"; };
+		F8A5593E21904C2900667F27 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		F8AE1CDF1CD374B40009B2F9 /* DigipostQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigipostQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8AE7AD31CCE1158009D139F /* Badge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankViewController.swift; sourceTree = "<group>"; };
 		F8AFAE911DBE4E6700C91DB4 /* InvoiceBank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBank.swift; sourceTree = "<group>"; };
 		F8AFAE951DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankTableViewCell.swift; sourceTree = "<group>"; };
 		F8AFAE991DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InvoiceBankTableViewCell.xib; sourceTree = "<group>"; };
+		F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APIClient+MailboxSettings.swift"; sourceTree = "<group>"; };
 		F8BA967F1CC4D06B00DED1BE /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.0.xcdatamodel"; sourceTree = "<group>"; };
 		F8BCF935207F872100D212A9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UnlockHighAuthenticationLevelView.xib; sourceTree = "<group>"; };
 		F8BCF937207F874A00D212A9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
 		F8BCF939207F874C00D212A9 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/UnlockHighAuthenticationLevelView.strings; sourceTree = "<group>"; };
+		F8BF1B162195BA1300A87C61 /* SecureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureViewController.swift; sourceTree = "<group>"; };
 		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
-		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1176,6 +1193,7 @@
 		83F703561855DB2A003DABE1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8BF1B152195BA0300A87C61 /* Secure */,
 				F80F712621772268000D4685 /* Contact */,
 				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
@@ -1419,6 +1437,7 @@
 				F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */,
 				9C8B656B1DE6437100634166 /* APIClient+Banks.swift */,
 				9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */,
+				F8BA4FFB218B245E0045B8BE /* APIClient+MailboxSettings.swift */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -1702,6 +1721,8 @@
 			children = (
 				F80F712F217729EC000D4685 /* ContactView.storyboard */,
 				F8DEAF9A2178707200B267C0 /* ContactViewController.swift */,
+				F8A5593A21903DD300667F27 /* SettingsValidator.swift */,
+				F8A5593E21904C2900667F27 /* SettingsTextField.swift */,
 			);
 			name = Contact;
 			sourceTree = "<group>";
@@ -1729,6 +1750,14 @@
 				F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */,
 			);
 			name = Prod;
+			sourceTree = "<group>";
+		};
+		F8BF1B152195BA0300A87C61 /* Secure */ = {
+			isa = PBXGroup;
+			children = (
+				F8BF1B162195BA1300A87C61 /* SecureViewController.swift */,
+			);
+			name = Secure;
 			sourceTree = "<group>";
 		};
 		F8C6723E1DB9F6CC0092182E /* Invoice */ = {
@@ -1813,7 +1842,7 @@
 			attributes = {
 				CLASSPREFIX = POS;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Posten Norge AS";
 				TargetAttributes = {
 					83BAB9171855C0AC004A7BFB = {
@@ -2217,10 +2246,12 @@
 				83D75F591858E5790013F8C9 /* POSFolder.m in Sources */,
 				ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */,
 				ECB2BFCC1B452F2A008E32E8 /* SendableDocument.swift in Sources */,
+				F8BA4FFC218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				ECB2BEEE1B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
 				EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */,
 				ECB2BEF51B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
+				F8BF1B172195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
 				EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */,
 				EC7C1AEC1A25CFFB00BE62DC /* OAuthToken.swift in Sources */,
@@ -2255,6 +2286,7 @@
 				ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
+				F8A5593B21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
@@ -2291,6 +2323,7 @@
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
 				ECB2BFA91B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
+				F8A5593F21904C2900667F27 /* SettingsTextField.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
@@ -2324,10 +2357,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */,
+				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
+				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				9C30BB791E5B3B2100444468 /* OAuthToken.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
+				F8A5594021904C2900667F27 /* SettingsTextField.swift in Sources */,
 				F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */,
 				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
 				9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */,
@@ -2448,10 +2485,12 @@
 				F8AE1C541CD374B40009B2F9 /* NSString+Convenience.m in Sources */,
 				F8AE1C551CD374B40009B2F9 /* SendableDocument.swift in Sources */,
 				F8AE1C561CD374B40009B2F9 /* UIButton+Recipient.swift in Sources */,
+				F8BA4FFE218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				F8AE1C571CD374B40009B2F9 /* Dispatch.swift in Sources */,
 				F8AE1C581CD374B40009B2F9 /* UIImage+base64Representation.swift in Sources */,
 				F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */,
 				F8AE1C5A1CD374B40009B2F9 /* POSAccountViewTableViewDataSource.m in Sources */,
+				F8BF1B192195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				F8AE1C5B1CD374B40009B2F9 /* UIWebView+Accessability.swift in Sources */,
 				F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				F8AE1C5C1CD374B40009B2F9 /* OAuthToken.swift in Sources */,
@@ -2486,6 +2525,7 @@
 				F8AE1C741CD374B40009B2F9 /* DimView.swift in Sources */,
 				F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */,
 				F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */,
+				F8A5593D21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8AE1C771CD374B40009B2F9 /* NSNumber+JsonParsing.m in Sources */,
 				F8AE1C781CD374B40009B2F9 /* UIAlertController+APIError.swift in Sources */,
 				F8AE1C791CD374B40009B2F9 /* QCMethod.swift in Sources */,
@@ -2522,6 +2562,7 @@
 				F8AE1C941CD374B40009B2F9 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				F8AE1C951CD374B40009B2F9 /* UIFont+DigipostFonts.swift in Sources */,
 				F8AE1C961CD374B40009B2F9 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
+				F8A5594121904C2900667F27 /* SettingsTextField.swift in Sources */,
 				F8AE1C971CD374B40009B2F9 /* SHCLoginViewController.m in Sources */,
 				F8AE1C981CD374B40009B2F9 /* UIImage+Localization.swift in Sources */,
 				F8AE1C991CD374B40009B2F9 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
@@ -2654,12 +2695,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -2711,12 +2754,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -3106,6 +3151,7 @@
 		8342EFBE1858CE180080A833 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */,
 				F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */,
 				F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */,
 				F8BCF92E207F541600D212A9 /* Model v2.0.xcdatamodel */,
@@ -3125,7 +3171,7 @@
 				835C74E818868182006C6F4F /* Model v1.1.xcdatamodel */,
 				8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */,
 			);
-			currentVersion = F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */;
+			currentVersion = F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

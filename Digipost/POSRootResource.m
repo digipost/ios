@@ -34,6 +34,7 @@ NSString *const kRootResourcePrimaryAccountLinkAPIKey = @"link";
 NSString *const kRootResourcePrimaryAccountLinkCurrentBankAccountAPIKeySuffix = @"current_bank_account";
 NSString *const kRootResourcePrimaryAccountLinkUploadDocumentAPISuffix = @"upload_document";
 NSString *const kRootResourcePrimaryAccountLinkBanksAPIKeySuffix = @"banks";
+NSString *const kRootResourcePrimaryAccountLinkMailboxSettingsKeySuffix = @"mailbox_settings";
 NSString *const kRootResourceNoticeAPIKey = @"notice";
 
 @implementation POSRootResource
@@ -53,6 +54,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 @dynamic uploadDocumentUri;
 @dynamic selfUri;
 @dynamic searchUri;
+@dynamic mailboxSettingsUri;
 
 // Relationships
 @dynamic mailboxes;
@@ -124,7 +126,7 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
 
         NSNumber *unreadItemsInInbox = primaryAccount[NSStringFromSelector(@selector(unreadItemsInInbox))];
         rootResource.unreadItemsInInbox = [unreadItemsInInbox isKindOfClass:[NSNumber class]] ? unreadItemsInInbox : nil;
-
+    
         NSArray *links = primaryAccount[kRootResourcePrimaryAccountLinkAPIKey];
         if ([links isKindOfClass:[NSArray class]]) {
             for (NSDictionary *link in links) {
@@ -138,6 +140,8 @@ NSString *const kRootResourceNoticeAPIKey = @"notice";
                             rootResource.uploadDocumentUri = uri;
                         }else if([rel hasSuffix:kRootResourcePrimaryAccountLinkBanksAPIKeySuffix]){
                             rootResource.banksUri = uri;
+                        }else if([rel hasSuffix:kRootResourcePrimaryAccountLinkMailboxSettingsKeySuffix]) {
+                            rootResource.mailboxSettingsUri = uri;
                         }
                     }
                 }

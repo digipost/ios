@@ -19,6 +19,8 @@
 "GENERIC_ERROR_TITLE" = "Error";
 /* OK */
 "GENERIC_OK_BUTTON_TITLE" = "OK";
+/* Lagre */
+"Save" = "Save";
 /* Cancel */
 "GENERIC_CANCEL_BUTTON_TITLE" = "Cancel";
 /* Delete */
@@ -213,6 +215,8 @@
 "RECEIPTS_FOLDER_NUMBER_OF_RECEIPTS_LABEL" = "%i receipts";
 /* Legg til mappe */
 "FOLDER_VIEW_ADD_NEW_FOLDER_TEXT" = "Add folder";
+/* Innstillinger */
+"FOLDER_VIEW_SETTINGS" = "Settings";
 /* Title for navbar at accounts view */
 "Accounts title" = "Select account";
 /* Text for error telling about folder with name exits */
@@ -479,3 +483,11 @@
 "metadata externalink deadline" = "Deadline: %@";
 "metadata externalink expired" = "Deadline expired: %@";
 "metadata externalink default button" = "Open link";
+
+"invalid_email_title" = "Please check your email addresses";
+"invalid_email_message" = "It may appear that you have an invalid email address. Make sure everything is correct and try again.";
+"error_contact_info_title" = "Something went wrong";
+"error_contact_info_message" = "Make sure everything is correct and try again";
+
+/* Access request */
+"settings access request" = "Unlock settings";
