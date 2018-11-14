@@ -119,8 +119,6 @@
 		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		D3B8A4D2DA8B22125BE1B72E /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
-		EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
-		EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
 		EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
 		EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
@@ -157,18 +155,11 @@
 		EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
-		EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
 		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
 		EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
-		EC42F2371B81C755005785DE /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
-		EC42F23E1B81C760005785DE /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
-		EC42F2451B81C84A005785DE /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
-		EC42F24C1B81D10C005785DE /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
-		EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
-		EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
 		EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
@@ -190,75 +181,13 @@
 		EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
 		EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
 		EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */; };
-		EC8B94641B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
-		EC8B946C1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
-		EC8B94741B4ABE07005C4CC4 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
-		EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
-		EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
-		EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
-		EC8F4A271B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
-		EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
-		EC8F4A371B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
-		ECA39C9A1B78BC580083BEBB /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
 		ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
 		ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
 		ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
-		ECB2BE611B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
-		ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
-		ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
-		ECB2BE761B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
-		ECB2BE7D1B452EC5008E32E8 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
-		ECB2BE841B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
-		ECB2BE8B1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
-		ECB2BE921B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
-		ECB2BE991B452EC5008E32E8 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
-		ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
-		ECB2BEA71B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
-		ECB2BEAE1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
-		ECB2BEB51B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
-		ECB2BEBC1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
-		ECB2BEC31B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
-		ECB2BED21B452EED008E32E8 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
-		ECB2BED91B452EED008E32E8 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
-		ECB2BEE01B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
-		ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
-		ECB2BEEE1B452EED008E32E8 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
-		ECB2BEF51B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
-		ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
-		ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
-		ECB2BF1F1B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
-		ECB2BF261B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
-		ECB2BF2D1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
-		ECB2BF341B452F0C008E32E8 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
-		ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
-		ECB2BF421B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
-		ECB2BF491B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
-		ECB2BF501B452F0C008E32E8 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
-		ECB2BF571B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
-		ECB2BF5E1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
-		ECB2BF641B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
-		ECB2BF651B452F0C008E32E8 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
-		ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
-		ECB2BF731B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
-		ECB2BF831B452F1B008E32E8 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
-		ECB2BF941B452F2A008E32E8 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
-		ECB2BF9B1B452F2A008E32E8 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
-		ECB2BFA21B452F2A008E32E8 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
-		ECB2BFA91B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
-		ECB2BFB01B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
-		ECB2BFB71B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
-		ECB2BFBE1B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
-		ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
-		ECB2BFCB1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
-		ECB2BFCC1B452F2A008E32E8 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
 		ECB2BFD31B452F2A008E32E8 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
-		ECB2BFE51B452F8C008E32E8 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
-		ECB2BFEC1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
-		ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
-		ECB2C0081B469628008E32E8 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
 		ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
@@ -268,21 +197,17 @@
 		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		ECC08E051A5BE8DB004C829D /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08E041A5BE8DB004C829D /* APIResponse.swift */; };
-		ECC683321B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
 		ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
 		ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
 		ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
-		ECCC94A11B56A7000054AFA6 /* HTMLSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC94A01B56A7000054AFA6 /* HTMLSection.swift */; };
 		ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */; };
 		ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
 		ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
-		ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
 		ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
-		ECEA67211B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */; };
 		ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
 		ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
@@ -307,40 +232,27 @@
 		F8A5593F21904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
 		F8A5594021904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
 		F8A5594121904C2900667F27 /* SettingsTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593E21904C2900667F27 /* SettingsTextField.swift */; };
-		F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */; };
 		F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */; };
-		F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */; };
-		F8AE1BEF1CD374B40009B2F9 /* ModuleSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */; };
 		F8AE1BF01CD374B40009B2F9 /* UILabel+Digipost.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */; };
-		F8AE1BF11CD374B40009B2F9 /* ImageModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */; };
 		F8AE1BF21CD374B40009B2F9 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
 		F8AE1BF31CD374B40009B2F9 /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCAD43419E694CF00E602DC /* UploadImageController.swift */; };
-		F8AE1BF41CD374B40009B2F9 /* UITableView+Reorder.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */; };
-		F8AE1BF51CD374B40009B2F9 /* UIFont+StandardComposerFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */; };
 		F8AE1BF61CD374B40009B2F9 /* POSDocumentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D71D185F2981008DE6CB /* POSDocumentTableViewCell.m */; };
 		F8AE1BF81CD374B40009B2F9 /* POSLetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355151861C5EA009EABC6 /* POSLetterViewController.m */; };
 		F8AE1BF91CD374B40009B2F9 /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
-		F8AE1BFA1CD374B40009B2F9 /* HTMLRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */; };
 		F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
 		F8AE1BFC1CD374B40009B2F9 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
-		F8AE1BFD1CD374B40009B2F9 /* ComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */; };
-		F8AE1BFE1CD374B40009B2F9 /* ComposerPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */; };
 		F8AE1BFF1CD374B40009B2F9 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		F8AE1C001CD374B40009B2F9 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
 		F8AE1C011CD374B40009B2F9 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
 		F8AE1C021CD374B40009B2F9 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
 		F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
-		F8AE1C051CD374B40009B2F9 /* CustomInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2591B81E138005785DE /* CustomInputView.m */; };
 		F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24840F1B206F1A00FC372C /* POSDocument+Methods.m */; };
 		F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
-		F8AE1C091CD374B40009B2F9 /* Int+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF151B452F0C008E32E8 /* Int+Random.swift */; };
 		F8AE1C0A1CD374B40009B2F9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
 		F8AE1C0B1CD374B40009B2F9 /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
-		F8AE1C0C1CD374B40009B2F9 /* CustomInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */; };
 		F8AE1C0D1CD374B40009B2F9 /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
 		F8AE1C0F1CD374B40009B2F9 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
-		F8AE1C101CD374B40009B2F9 /* HTMLEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */; };
 		F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24840A1B206EE300FC372C /* NSURLResponse+HTTP.swift */; };
 		F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
@@ -348,53 +260,29 @@
 		F8AE1C151CD374B40009B2F9 /* IncreaseSecurityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC56AAB61A24973D00720109 /* IncreaseSecurityLevelViewController.swift */; };
 		F8AE1C161CD374B40009B2F9 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */ = {isa = PBXBuildFile; fileRef = ECFD577A18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m */; };
 		F8AE1C171CD374B40009B2F9 /* POSDocumentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D713185F1EB4008DE6CB /* POSDocumentsViewController.m */; };
-		F8AE1C181CD374B40009B2F9 /* TextModuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */; };
-		F8AE1C191CD374B40009B2F9 /* FontPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */; };
 		F8AE1C1A1CD374B40009B2F9 /* POSNewFolderCollectionViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1219347388007CB53E /* POSNewFolderCollectionViewDataSource.m */; };
-		F8AE1C1B1CD374B40009B2F9 /* TextAttributeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */; };
 		F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */; };
-		F8AE1C1D1CD374B40009B2F9 /* HTMLTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */; };
 		F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */; };
 		F8AE1C1F1CD374B40009B2F9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
 		F8AE1C201CD374B40009B2F9 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
-		F8AE1C211CD374B40009B2F9 /* ComposerViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */; };
-		F8AE1C221CD374B40009B2F9 /* Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */; };
 		F8AE1C241CD374B40009B2F9 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		F8AE1C251CD374B40009B2F9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
-		F8AE1C261CD374B40009B2F9 /* DeleteComposerModuleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */; };
-		F8AE1C271CD374B40009B2F9 /* StylePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */; };
 		F8AE1C281CD374B40009B2F9 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
-		F8AE1C291CD374B40009B2F9 /* String+Substring.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */; };
-		F8AE1C2A1CD374B40009B2F9 /* WKWebView+JavascriptStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */; };
-		F8AE1C2B1CD374B40009B2F9 /* ComposerInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */; };
 		F8AE1C2C1CD374B40009B2F9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		F8AE1C2D1CD374B40009B2F9 /* SHCSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B6BE9B1897A987006D9B20 /* SHCSplitViewController.m */; };
-		F8AE1C2E1CD374B40009B2F9 /* TextComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */; };
 		F8AE1C2F1CD374B40009B2F9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		F8AE1C301CD374B40009B2F9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		F8AE1C311CD374B40009B2F9 /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
-		F8AE1C321CD374B40009B2F9 /* ImageComposerModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */; };
-		F8AE1C331CD374B40009B2F9 /* AddComposerModuleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */; };
-		F8AE1C341CD374B40009B2F9 /* FontPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */; };
 		F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */; };
 		F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
-		F8AE1C371CD374B40009B2F9 /* APIClient+Recipients.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */; };
 		F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
-		F8AE1C391CD374B40009B2F9 /* TextStyleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */; };
-		F8AE1C3A1CD374B40009B2F9 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */; };
 		F8AE1C3B1CD374B40009B2F9 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		F8AE1C3C1CD374B40009B2F9 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
-		F8AE1C3D1CD374B40009B2F9 /* Array+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA39C991B78BC580083BEBB /* Array+NSRange.swift */; };
-		F8AE1C3E1CD374B40009B2F9 /* ComposerModuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */; };
-		F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */; };
 		F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
-		F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */; };
 		F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
 		F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
 		F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
-		F8AE1C481CD374B40009B2F9 /* HTMLSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC94A01B56A7000054AFA6 /* HTMLSection.swift */; };
-		F8AE1C491CD374B40009B2F9 /* NSAttributedString+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */; };
 		F8AE1C4A1CD374B40009B2F9 /* UIToolbar+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */; };
 		F8AE1C4C1CD374B40009B2F9 /* SHCAttachmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D355101861C5D3009EABC6 /* SHCAttachmentsViewController.m */; };
 		F8AE1C4D1CD374B40009B2F9 /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -402,13 +290,9 @@
 		F8AE1C4F1CD374B40009B2F9 /* NSString+Hmac.m in Sources */ = {isa = PBXBuildFile; fileRef = EC669D561B1479D8004F97B6 /* NSString+Hmac.m */; };
 		F8AE1C501CD374B40009B2F9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB9271855C0AC004A7BFB /* main.m */; };
 		F8AE1C511CD374B40009B2F9 /* SHCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83BAB92B1855C0AC004A7BFB /* SHCAppDelegate.m */; };
-		F8AE1C521CD374B40009B2F9 /* RecipientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */; };
 		F8AE1C531CD374B40009B2F9 /* POSFolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F581858E5790013F8C9 /* POSFolder.m */; };
 		F8AE1C541CD374B40009B2F9 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
-		F8AE1C551CD374B40009B2F9 /* SendableDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */; };
-		F8AE1C561CD374B40009B2F9 /* UIButton+Recipient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */; };
 		F8AE1C571CD374B40009B2F9 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2B64621A66928D00AB6085 /* Dispatch.swift */; };
-		F8AE1C581CD374B40009B2F9 /* UIImage+base64Representation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */; };
 		F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D64192395A5003BD200 /* UIRefreshControl+Additions.m */; };
 		F8AE1C5A1CD374B40009B2F9 /* POSAccountViewTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2C82D9192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m */; };
 		F8AE1C5B1CD374B40009B2F9 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
@@ -416,9 +300,7 @@
 		F8AE1C5D1CD374B40009B2F9 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
 		F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
 		F8AE1C5F1CD374B40009B2F9 /* POSInvoice+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */; };
-		F8AE1C601CD374B40009B2F9 /* UITextView+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */; };
 		F8AE1C611CD374B40009B2F9 /* POSFolderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F741859B7250013F8C9 /* POSFolderTableViewCell.m */; };
-		F8AE1C621CD374B40009B2F9 /* HTMLContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */; };
 		F8AE1C631CD374B40009B2F9 /* NSPredicate+CommonPredicates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DAA192C9D320054C0E8 /* NSPredicate+CommonPredicates.m */; };
 		F8AE1C641CD374B40009B2F9 /* APIClient+Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */; };
 		F8AE1C651CD374B40009B2F9 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
@@ -426,17 +308,12 @@
 		F8AE1C671CD374B40009B2F9 /* NSError+ExtraInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3550618619069009EABC6 /* NSError+ExtraInfo.m */; };
 		F8AE1C681CD374B40009B2F9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24840C1B206F0100FC372C /* Constants.swift */; };
 		F8AE1C691CD374B40009B2F9 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
-		F8AE1C6A1CD374B40009B2F9 /* StylePickerDetailListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */; };
 		F8AE1C6B1CD374B40009B2F9 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
-		F8AE1C6C1CD374B40009B2F9 /* RecipientsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */; };
 		F8AE1C6D1CD374B40009B2F9 /* NSURLRequest+QueryParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037118570234003DABE1 /* NSURLRequest+QueryParameters.m */; };
 		F8AE1C6E1CD374B40009B2F9 /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
-		F8AE1C6F1CD374B40009B2F9 /* String+Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */; };
 		F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
 		F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
 		F8AE1C721CD374B40009B2F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
-		F8AE1C731CD374B40009B2F9 /* HTMLTagBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */; };
-		F8AE1C741CD374B40009B2F9 /* DimView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF0A1B452F0C008E32E8 /* DimView.swift */; };
 		F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		F8AE1C771CD374B40009B2F9 /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
@@ -452,41 +329,29 @@
 		F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC5508521958563F00B7B8E8 /* POSNoRotationNavigationController.m */; };
 		F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29512818BF7FDB00A80C28 /* POSLetterPopoverView.m */; };
 		F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */; };
-		F8AE1C841CD374B40009B2F9 /* MultiselectSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */; };
 		F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8364D718185F2286008DE6CB /* SHCBaseTableViewController.m */; };
 		F8AE1C861CD374B40009B2F9 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
 		F8AE1C871CD374B40009B2F9 /* UIView+AutoLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = EC25AADC189A7F1100709AA2 /* UIView+AutoLayout.m */; };
 		F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 837574B91891041C00902218 /* POSUploadTableViewCell.m */; };
-		F8AE1C8A1CD374B40009B2F9 /* ComposerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */; };
 		F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703601855E7A9003DABE1 /* POSFoldersViewController.m */; };
 		F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */; };
-		F8AE1C8D1CD374B40009B2F9 /* RecipientsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */; };
 		F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5EBC981B564EBD00FCAB7D /* UISegmentedControl+Styling.swift */; };
 		F8AE1C8F1CD374B40009B2F9 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
-		F8AE1C901CD374B40009B2F9 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */; };
 		F8AE1C911CD374B40009B2F9 /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		F8AE1C921CD374B40009B2F9 /* POSNewFolderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A0D19338A82007CB53E /* POSNewFolderViewController.m */; };
-		F8AE1C941CD374B40009B2F9 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */; };
 		F8AE1C951CD374B40009B2F9 /* UIFont+DigipostFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5B19CAFB600005B300 /* UIFont+DigipostFonts.swift */; };
 		F8AE1C961CD374B40009B2F9 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C06F18AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m */; };
 		F8AE1C971CD374B40009B2F9 /* SHCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F703651855E9E0003DABE1 /* SHCLoginViewController.m */; };
 		F8AE1C981CD374B40009B2F9 /* UIImage+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC60D64519D4559F00E03AAB /* UIImage+Localization.swift */; };
-		F8AE1C991CD374B40009B2F9 /* ComposerViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */; };
-		F8AE1C9A1CD374B40009B2F9 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */; };
 		F8AE1C9B1CD374B40009B2F9 /* POSNotice.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A64E18B379F8002D8C22 /* POSNotice.m */; };
-		F8AE1C9C1CD374B40009B2F9 /* FontPickerViewController+TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */; };
 		F8AE1C9D1CD374B40009B2F9 /* POSAttachment+Methods.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */; };
 		F8AE1C9E1CD374B40009B2F9 /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
-		F8AE1C9F1CD374B40009B2F9 /* ComposerTypeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */; };
 		F8AE1CA01CD374B40009B2F9 /* OAuthToken+IDToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFAE2651B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift */; };
 		F8AE1CA11CD374B40009B2F9 /* POSModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F6C1858E9C20013F8C9 /* POSModelManager.m */; };
-		F8AE1CA21CD374B40009B2F9 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */; };
 		F8AE1CA31CD374B40009B2F9 /* SHCAppDelegate+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0F8D5F19CB01B90005B300 /* SHCAppDelegate+Appearance.swift */; };
 		F8AE1CA41CD374B40009B2F9 /* POSUploadTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC76A6BC19BF2D3500D80B01 /* POSUploadTableViewDataSource.m */; };
 		F8AE1CA51CD374B40009B2F9 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		F8AE1CA61CD374B40009B2F9 /* POSFolderIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = ECDC58911935FF5B003202CD /* POSFolderIcon.m */; };
-		F8AE1CA71CD374B40009B2F9 /* TextAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */; };
-		F8AE1CA81CD374B40009B2F9 /* SegmentedControlTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */; };
 		F8AE1CA91CD374B40009B2F9 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2484161B206F2B00FC372C /* UIImageView+Color.swift */; };
@@ -501,30 +366,17 @@
 		F8AE1CB51CD374B40009B2F9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021781AB70C2A00812502 /* SystemConfiguration.framework */; };
 		F8AE1CB61CD374B40009B2F9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83BAB91F1855C0AC004A7BFB /* UIKit.framework */; };
 		F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
-		F8AE1CBC1CD374B40009B2F9 /* ImageModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */; };
-		F8AE1CBD1CD374B40009B2F9 /* DocumentComposer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */; };
-		F8AE1CBE1CD374B40009B2F9 /* FontPickerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */; };
-		F8AE1CBF1CD374B40009B2F9 /* DeleteComposerModuleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */; };
-		F8AE1CC01CD374B40009B2F9 /* FontPickerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */; };
 		F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
-		F8AE1CC21CD374B40009B2F9 /* StylePickerDetailListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */; };
 		F8AE1CC31CD374B40009B2F9 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
-		F8AE1CC41CD374B40009B2F9 /* RecipientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */; };
 		F8AE1CC51CD374B40009B2F9 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
 		F8AE1CC61CD374B40009B2F9 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
 		F8AE1CC81CD374B40009B2F9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
-		F8AE1CC91CD374B40009B2F9 /* StylePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */; };
 		F8AE1CCA1CD374B40009B2F9 /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		F8AE1CCB1CD374B40009B2F9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
-		F8AE1CCC1CD374B40009B2F9 /* Editor.html in Resources */ = {isa = PBXBuildFile; fileRef = EC42F23D1B81C760005785DE /* Editor.html */; };
-		F8AE1CCD1CD374B40009B2F9 /* ComposerInputAccesoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */; };
 		F8AE1CCE1CD374B40009B2F9 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
 		F8AE1CD01CD374B40009B2F9 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
-		F8AE1CD11CD374B40009B2F9 /* Editor.js in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2361B81C755005785DE /* Editor.js */; };
-		F8AE1CD21CD374B40009B2F9 /* CustomInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */; };
 		F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
-		F8AE1CD51CD374B40009B2F9 /* TextModuleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */; };
 		F8AE1CD61CD374B40009B2F9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		F8AE1CD71CD374B40009B2F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
 		F8AE1CD81CD374B40009B2F9 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
@@ -713,8 +565,6 @@
 		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
 		CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostQA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StylePickerDetailListView.xib; sourceTree = "<group>"; };
-		EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerDetailListViewController.swift; sourceTree = "<group>"; };
 		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -776,7 +626,6 @@
 		EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuViewController.swift; sourceTree = "<group>"; };
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
-		EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+TextStyleModel.swift"; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
 		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
@@ -784,13 +633,6 @@
 		EC4146F01AA76130003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC4146F21AA76135003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
-		EC42F2361B81C755005785DE /* Editor.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Editor.js; sourceTree = "<group>"; };
-		EC42F23D1B81C760005785DE /* Editor.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Editor.html; sourceTree = "<group>"; };
-		EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLEditorViewController.swift; sourceTree = "<group>"; };
-		EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInputViewController.swift; sourceTree = "<group>"; };
-		EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomInputViewController.xib; sourceTree = "<group>"; };
-		EC42F2591B81E138005785DE /* CustomInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomInputView.m; sourceTree = "<group>"; };
-		EC42F2601B81E1A3005785DE /* CustomInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomInputView.h; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
 		EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonreg-webfont.ttf"; sourceTree = "<group>"; };
@@ -824,15 +666,6 @@
 		EC82ACBC19331A7000952027 /* POSMailbox+Methods.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "POSMailbox+Methods.h"; sourceTree = "<group>"; };
 		EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "POSMailbox+Methods.m"; sourceTree = "<group>"; };
 		EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+DigipostColors.swift"; sourceTree = "<group>"; };
-		EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLContent.swift; sourceTree = "<group>"; };
-		EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLTag.swift; sourceTree = "<group>"; };
-		EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Composer.swift"; sourceTree = "<group>"; };
-		EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StylePicker.storyboard; sourceTree = "<group>"; };
-		EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StylePickerViewController.swift; sourceTree = "<group>"; };
-		EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StylePickerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedControlTableViewCell.swift; sourceTree = "<group>"; };
-		EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextStyleModel.swift; sourceTree = "<group>"; };
-		EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiselectSegmentedControl.swift; sourceTree = "<group>"; };
 		EC93622719393515006E85FA /* NSNumber+JsonParsing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+JsonParsing.h"; sourceTree = "<group>"; };
 		EC93622819393515006E85FA /* NSNumber+JsonParsing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+JsonParsing.m"; sourceTree = "<group>"; };
 		EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "foundmonmed-webfont.ttf"; sourceTree = "<group>"; };
@@ -841,66 +674,14 @@
 		ECA1A9F71898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Main_iPad.strings; sourceTree = "<group>"; };
 		ECA1A9F81898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		ECA1A9F91898FFDF00408CD5 /* nb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; lineEnding = 0; name = nb; path = nb.lproj/Localizable.strings; sourceTree = "<group>"; };
-		ECA39C991B78BC580083BEBB /* Array+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+NSRange.swift"; sourceTree = "<group>"; };
 		ECA594C519FFAC160064D98D /* POSInvoice+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSInvoice+Methods.swift"; sourceTree = "<group>"; };
 		ECA594C919FFB0040064D98D /* POSAttachment+Methods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSAttachment+Methods.swift"; sourceTree = "<group>"; };
 		ECA5A5F81B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+Authorization.swift"; sourceTree = "<group>"; };
 		ECA5A6001B2A0227001F2DC6 /* Digipost.debug.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Digipost.debug.xcconfig; sourceTree = "<group>"; };
 		ECAB1CFC1AE4E87800D72D41 /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods.framework; path = "Pods/../build/Debug-iphoneos/Pods.framework"; sourceTree = "<group>"; };
 		ECAB707918C0997A009731FF /* oauth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = oauth.h; sourceTree = SOURCE_ROOT; };
-		ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddComposerModuleButton.swift; sourceTree = "<group>"; };
-		ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Recipients.swift"; sourceTree = "<group>"; };
-		ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposerInputAccesoryView.xib; sourceTree = "<group>"; };
-		ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerInputAccessoryView.swift; sourceTree = "<group>"; };
-		ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModule.swift; sourceTree = "<group>"; };
-		ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerModuleParser.swift; sourceTree = "<group>"; };
-		ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerPresentationController.swift; sourceTree = "<group>"; };
-		ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTypeButton.swift; sourceTree = "<group>"; };
-		ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerViewController.swift; sourceTree = "<group>"; };
-		ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+UIPresentationController.swift"; sourceTree = "<group>"; };
-		ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewControlller+TableViewReorderDelegate.swift"; sourceTree = "<group>"; };
-		ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteComposerModuleView.swift; sourceTree = "<group>"; };
-		ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteComposerModuleView.xib; sourceTree = "<group>"; };
-		ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttribute.swift; sourceTree = "<group>"; };
-		ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextAttributeButton.swift; sourceTree = "<group>"; };
-		ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextModuleTableViewCell.swift; sourceTree = "<group>"; };
-		ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextModuleTableViewCell.xib; sourceTree = "<group>"; };
-		ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Recipient.swift"; sourceTree = "<group>"; };
-		ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+base64Representation.swift"; sourceTree = "<group>"; };
-		ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Composer.swift"; sourceTree = "<group>"; };
-		ECB2BF0A1B452F0C008E32E8 /* DimView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimView.swift; sourceTree = "<group>"; };
-		ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DocumentComposer.storyboard; sourceTree = "<group>"; };
-		ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerTableViewCell.swift; sourceTree = "<group>"; };
-		ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FontPickerTableViewCell.xib; sourceTree = "<group>"; };
-		ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontPickerViewController.swift; sourceTree = "<group>"; };
-		ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FontPickerViewController.xib; sourceTree = "<group>"; };
-		ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FontPickerViewController+TableViewDataSource.swift"; sourceTree = "<group>"; };
-		ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLRepresentable.swift; sourceTree = "<group>"; };
-		ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageComposerModule.swift; sourceTree = "<group>"; };
-		ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageModuleTableViewCell.swift; sourceTree = "<group>"; };
-		ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageModuleTableViewCell.xib; sourceTree = "<group>"; };
-		ECB2BF151B452F0C008E32E8 /* Int+Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Random.swift"; sourceTree = "<group>"; };
-		ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModuleSelectorViewController.swift; sourceTree = "<group>"; };
-		ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
-		ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Substring.swift"; sourceTree = "<group>"; };
-		ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
-		ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipient.swift; sourceTree = "<group>"; };
-		ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
-		ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
-		ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "RecipientsViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
-		ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientTableViewCell.swift; sourceTree = "<group>"; };
-		ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecipientTableViewCell.xib; sourceTree = "<group>"; };
-		ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendableDocument.swift; sourceTree = "<group>"; };
 		ECB2BF931B452F2A008E32E8 /* stylesheet.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = stylesheet.css; sourceTree = "<group>"; };
-		ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextComposerModule.swift; path = "UITableView+Reorder/TextComposerModule.swift"; sourceTree = "<group>"; };
-		ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+Reorder.h"; path = "UITableView+Reorder/UITableView+Reorder.h"; sourceTree = "<group>"; };
-		ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+Reorder.m"; path = "UITableView+Reorder/UITableView+Reorder.m"; sourceTree = "<group>"; };
-		ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+StandardComposerFonts.swift"; sourceTree = "<group>"; };
 		ECB2BFFF1B467A4C008E32E8 /* ComposerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTests.swift; sourceTree = "<group>"; };
-		ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLTagBlock.swift; sourceTree = "<group>"; };
 		ECB3A64D18B379F8002D8C22 /* POSNotice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSNotice.h; sourceTree = "<group>"; };
 		ECB3A64E18B379F8002D8C22 /* POSNotice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSNotice.m; sourceTree = "<group>"; };
 		ECB3A65718B3B3E9002D8C22 /* UIViewController+BackButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButton.h"; sourceTree = "<group>"; };
@@ -915,24 +696,20 @@
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		ECC08E041A5BE8DB004C829D /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WKWebView+JavascriptStyling.swift"; sourceTree = "<group>"; };
 		ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		ECCAD43419E694CF00E602DC /* UploadImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		ECCC5CAA19C81C9200FACAA1 /* UIWindow+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Navigation.swift"; sourceTree = "<group>"; };
 		ECCC5CAE19C83DFA00FACAA1 /* UploadGuideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadGuideViewController.swift; sourceTree = "<group>"; };
-		ECCC94A01B56A7000054AFA6 /* HTMLSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLSection.swift; sourceTree = "<group>"; };
 		ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extensions.swift"; sourceTree = "<group>"; };
 		ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Folder.swift"; sourceTree = "<group>"; };
 		ECD0B8911A820F2600DF3296 /* APIClient+Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Document.swift"; sourceTree = "<group>"; };
 		ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+APIError.swift"; sourceTree = "<group>"; };
 		ECD1C20219F91B040022B5D7 /* UIToolbar+Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIToolbar+Actions.swift"; sourceTree = "<group>"; };
-		ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ComposerViewController+StylePickerViewControllerDelegate.swift"; sourceTree = "<group>"; };
 		ECDC58901935FF5B003202CD /* POSFolderIcon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSFolderIcon.h; sourceTree = "<group>"; };
 		ECDC58911935FF5B003202CD /* POSFolderIcon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSFolderIcon.m; sourceTree = "<group>"; };
 		ECDE05F71ABACBB0005B374D /* Model v1.13.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.13.xcdatamodel"; sourceTree = "<group>"; };
 		ECDEE069189A7BFE0026581D /* UILabel+Digipost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Digipost.h"; sourceTree = "<group>"; };
 		ECDEE06A189A7BFE0026581D /* UILabel+Digipost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Digipost.m"; sourceTree = "<group>"; };
-		ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Attributes.swift"; sourceTree = "<group>"; };
 		ECEF2564196171FB009A38F6 /* Model v1.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.8.xcdatamodel"; sourceTree = "<group>"; };
 		ECF06D59192393A5003BD200 /* NSFetchedResultsController+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFetchedResultsController+Additions.h"; sourceTree = "<group>"; };
 		ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFetchedResultsController+Additions.m"; sourceTree = "<group>"; };
@@ -1205,7 +982,6 @@
 				EC1A6C3118BBA37300269428 /* Folder view */,
 				EC1A6C2E18BBA30900269428 /* Document lists */,
 				EC1A6C3018BBA36100269428 /* Document detail */,
-				ECB2BE511B452E84008E32E8 /* SendEditor */,
 				EC0F2B7519B8930E0019212E /* Upload */,
 				EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */,
 			);
@@ -1359,15 +1135,6 @@
 				AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */,
 			);
 			name = NewFeatures;
-			sourceTree = "<group>";
-		};
-		EC03597A1B8368830025214C /* StylePickerDetailListView */ = {
-			isa = PBXGroup;
-			children = (
-				EC03596C1B8360E10025214C /* StylePickerDetailListView.xib */,
-				EC0359731B83672A0025214C /* StylePickerDetailListViewController.swift */,
-			);
-			name = StylePickerDetailListView;
 			sourceTree = "<group>";
 		};
 		EC0F2B7519B8930E0019212E /* Upload */ = {
@@ -1595,127 +1362,6 @@
 			name = "Old images";
 			sourceTree = "<group>";
 		};
-		EC8F4A151B4C0A5700D07922 /* StylePicker */ = {
-			isa = PBXGroup;
-			children = (
-				EC8F4A361B4D319400D07922 /* MultiselectSegmentedControl.swift */,
-				EC8F4A0D1B4C0A5100D07922 /* StylePicker.storyboard */,
-				EC8F4A161B4C0C4800D07922 /* StylePickerViewController.swift */,
-				EC03597A1B8368830025214C /* StylePickerDetailListView */,
-				EC8F4A1E1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift */,
-				EC3A4F151B8C7C2D00B8D60E /* Array+TextStyleModel.swift */,
-				EC8F4A261B4D04D600D07922 /* SegmentedControlTableViewCell.swift */,
-				ECB2BECB1B452EED008E32E8 /* TextAttributeButton.swift */,
-				ECEA67201B53B06C007C5861 /* NSAttributedString+Attributes.swift */,
-				ECB2BF0C1B452F0C008E32E8 /* FontPickerTableViewCell.swift */,
-				ECB2BF0D1B452F0C008E32E8 /* FontPickerTableViewCell.xib */,
-				ECB2BF0E1B452F0C008E32E8 /* FontPickerViewController.swift */,
-				ECB2BF0F1B452F0C008E32E8 /* FontPickerViewController.xib */,
-				ECB2BF101B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift */,
-			);
-			name = StylePicker;
-			sourceTree = "<group>";
-		};
-		ECB2BE511B452E84008E32E8 /* SendEditor */ = {
-			isa = PBXGroup;
-			children = (
-				ECB2BF0A1B452F0C008E32E8 /* DimView.swift */,
-				ECB2BF8A1B452F2A008E32E8 /* PreviewViewController.swift */,
-				ECE6F50F1B58F35C000FDCA0 /* Recipient */,
-				EC8F4A151B4C0A5700D07922 /* StylePicker */,
-				ECB2BECF1B452EED008E32E8 /* UIImage+base64Representation.swift */,
-				ECB2BED11B452EED008E32E8 /* UITextView+Composer.swift */,
-				ECB2BFF41B456E01008E32E8 /* Model */,
-				ECB2BFF31B456DAD008E32E8 /* Composer */,
-				ECB2BFFD1B457672008E32E8 /* New Group */,
-				ECB2BE531B452EC5008E32E8 /* APIClient+Recipients.swift */,
-			);
-			name = SendEditor;
-			sourceTree = "<group>";
-		};
-		ECB2BFF31B456DAD008E32E8 /* Composer */ = {
-			isa = PBXGroup;
-			children = (
-				ECB2BF0B1B452F0C008E32E8 /* DocumentComposer.storyboard */,
-				EC42F2361B81C755005785DE /* Editor.js */,
-				EC42F23D1B81C760005785DE /* Editor.html */,
-				EC42F2441B81C84A005785DE /* HTMLEditorViewController.swift */,
-				ECC683311B832540002313E7 /* WKWebView+JavascriptStyling.swift */,
-				EC42F2601B81E1A3005785DE /* CustomInputView.h */,
-				EC42F2591B81E138005785DE /* CustomInputView.m */,
-				EC42F2521B81D2CE005785DE /* CustomInputViewController.xib */,
-				EC42F24B1B81D10C005785DE /* CustomInputViewController.swift */,
-				ECB2BE5A1B452EC5008E32E8 /* ComposerViewController.swift */,
-				ECD6888B1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift */,
-				ECB2BE5B1B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift */,
-				ECB2BE5C1B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift */,
-				ECB2BE5D1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift */,
-				ECB2BE5E1B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift */,
-				ECB2BE5F1B452EC5008E32E8 /* DeleteComposerModuleView.swift */,
-				ECB2BE601B452EC5008E32E8 /* DeleteComposerModuleView.xib */,
-				ECB2BE541B452EC5008E32E8 /* ComposerInputAccesoryView.xib */,
-				ECB2BE551B452EC5008E32E8 /* ComposerInputAccessoryView.swift */,
-				ECB2BE581B452EC5008E32E8 /* ComposerPresentationController.swift */,
-				ECB2BE591B452EC5008E32E8 /* ComposerTypeButton.swift */,
-				ECB2BF171B452F0C008E32E8 /* PlaceholderTextView.swift */,
-				ECB2BECC1B452EED008E32E8 /* TextModuleTableViewCell.swift */,
-				ECB2BECD1B452EED008E32E8 /* TextModuleTableViewCell.xib */,
-				ECB2BF121B452F0C008E32E8 /* ImageComposerModule.swift */,
-				ECB2BF131B452F0C008E32E8 /* ImageModuleTableViewCell.swift */,
-				ECB2BF141B452F0C008E32E8 /* ImageModuleTableViewCell.xib */,
-				ECB2BF161B452F0C008E32E8 /* ModuleSelectorViewController.swift */,
-				ECB2BE521B452EC5008E32E8 /* AddComposerModuleButton.swift */,
-				ECB2BECE1B452EED008E32E8 /* UIButton+Recipient.swift */,
-				ECB2BFE31B452F8C008E32E8 /* UITableView+Reorder.h */,
-				ECB2BFE41B452F8C008E32E8 /* UITableView+Reorder.m */,
-			);
-			name = Composer;
-			sourceTree = "<group>";
-		};
-		ECB2BFF41B456E01008E32E8 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EC8F4A2E1B4D09AA00D07922 /* TextStyleModel.swift */,
-				ECB2BF111B452F0C008E32E8 /* HTMLRepresentable.swift */,
-				EC8B946B1B4AA7A6005C4CC4 /* HTMLTag.swift */,
-				ECB2C0071B469628008E32E8 /* HTMLTagBlock.swift */,
-				ECCC94A01B56A7000054AFA6 /* HTMLSection.swift */,
-				ECB2BFE21B452F8C008E32E8 /* TextComposerModule.swift */,
-				ECA39C991B78BC580083BEBB /* Array+NSRange.swift */,
-				EC8B94631B4A9FF8005C4CC4 /* HTMLContent.swift */,
-				ECB2BE571B452EC5008E32E8 /* ComposerModuleParser.swift */,
-				ECB2BECA1B452EED008E32E8 /* TextAttribute.swift */,
-				ECB2BE561B452EC5008E32E8 /* ComposerModule.swift */,
-				ECB2BF921B452F2A008E32E8 /* SendableDocument.swift */,
-				ECB2BFF51B45734A008E32E8 /* UIFont+StandardComposerFonts.swift */,
-				EC8B94731B4ABE07005C4CC4 /* String+Composer.swift */,
-				ECB2BF7B1B452F1B008E32E8 /* String+Substring.swift */,
-				ECB2BF151B452F0C008E32E8 /* Int+Random.swift */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		ECB2BFFD1B457672008E32E8 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		ECE6F50F1B58F35C000FDCA0 /* Recipient */ = {
-			isa = PBXGroup;
-			children = (
-				ECB2BF8B1B452F2A008E32E8 /* Recipient.swift */,
-				ECB2BF8C1B452F2A008E32E8 /* RecipientsViewController.swift */,
-				ECB2BF8D1B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift */,
-				ECB2BF8E1B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift */,
-				ECB2BF8F1B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift */,
-				ECB2BF901B452F2A008E32E8 /* RecipientTableViewCell.swift */,
-				ECB2BF911B452F2A008E32E8 /* RecipientTableViewCell.xib */,
-			);
-			name = Recipient;
-			sourceTree = "<group>";
-		};
 		F80F712621772268000D4685 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
@@ -1913,36 +1559,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
-				ECB2BF5E1B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */,
-				ECB2BF1F1B452F0C008E32E8 /* DocumentComposer.storyboard in Resources */,
-				ECB2BF2D1B452F0C008E32E8 /* FontPickerTableViewCell.xib in Resources */,
-				ECB2BEC31B452EC5008E32E8 /* DeleteComposerModuleView.xib in Resources */,
-				ECB2BF3B1B452F0C008E32E8 /* FontPickerViewController.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
-				EC03596D1B8360E10025214C /* StylePickerDetailListView.xib in Resources */,
 				F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
-				ECB2BFC51B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				F8BCF933207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
-				EC8F4A0E1B4C0A5100D07922 /* StylePicker.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
-				EC42F23E1B81C760005785DE /* Editor.html in Resources */,
-				ECB2BE6F1B452EC5008E32E8 /* ComposerInputAccesoryView.xib in Resources */,
 				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
 				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */,
-				EC42F2371B81C755005785DE /* Editor.js in Resources */,
-				EC42F2531B81D2CE005785DE /* CustomInputViewController.xib in Resources */,
 				9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
-				ECB2BEE71B452EED008E32E8 /* TextModuleTableViewCell.xib in Resources */,
 				ECB2BFD31B452F2A008E32E8 /* stylesheet.css in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
@@ -1955,9 +1588,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECB2BFCB1B452F2A008E32E8 /* RecipientTableViewCell.xib in Resources */,
 				F8AFAE9B1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
-				ECB2BF641B452F0C008E32E8 /* ImageModuleTableViewCell.xib in Resources */,
 				EC669D611B1498BF004F97B6 /* ValidTokenExpiresSoon.json in Resources */,
 				9CDE3AB01E7837C200B9C27B /* ActiveType1BankAgreements.json in Resources */,
 				EC2752311B09D2920007125D /* documents.json in Resources */,
@@ -1980,35 +1611,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
-				F8AE1CBC1CD374B40009B2F9 /* ImageModuleTableViewCell.xib in Resources */,
 				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
-				F8AE1CBD1CD374B40009B2F9 /* DocumentComposer.storyboard in Resources */,
-				F8AE1CBE1CD374B40009B2F9 /* FontPickerTableViewCell.xib in Resources */,
-				F8AE1CBF1CD374B40009B2F9 /* DeleteComposerModuleView.xib in Resources */,
-				F8AE1CC01CD374B40009B2F9 /* FontPickerViewController.xib in Resources */,
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
-				F8AE1CC21CD374B40009B2F9 /* StylePickerDetailListView.xib in Resources */,
 				F8AE1CC31CD374B40009B2F9 /* MainAccountTableViewCell.xib in Resources */,
-				F8AE1CC41CD374B40009B2F9 /* RecipientTableViewCell.xib in Resources */,
 				F8AE1CC51CD374B40009B2F9 /* Onboarding.storyboard in Resources */,
 				F8AE1CC61CD374B40009B2F9 /* Images-Shared.xcassets in Resources */,
 				F8BCF934207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				F8AE1CC81CD374B40009B2F9 /* Main_iPad.storyboard in Resources */,
-				F8AE1CC91CD374B40009B2F9 /* StylePicker.storyboard in Resources */,
 				F8AE1CCA1CD374B40009B2F9 /* Images-Prod.xcassets in Resources */,
 				F8AE1CCB1CD374B40009B2F9 /* Main_iPhone.storyboard in Resources */,
-				F8AE1CCC1CD374B40009B2F9 /* Editor.html in Resources */,
-				F8AE1CCD1CD374B40009B2F9 /* ComposerInputAccesoryView.xib in Resources */,
 				F8AE1CCE1CD374B40009B2F9 /* OnboardingGuideTexts.strings in Resources */,
 				F8AE1CD01CD374B40009B2F9 /* WhatsNewGuideTexts.strings in Resources */,
-				F8AE1CD11CD374B40009B2F9 /* Editor.js in Resources */,
-				F8AE1CD21CD374B40009B2F9 /* CustomInputViewController.xib in Resources */,
 				F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */,
 				F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */,
 				F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */,
 				9CA38AFE1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
 				F8AFAE9C1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
-				F8AE1CD51CD374B40009B2F9 /* TextModuleTableViewCell.xib in Resources */,
 				F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */,
 				F8AE1CD61CD374B40009B2F9 /* stylesheet.css in Resources */,
 				F8AE1CD71CD374B40009B2F9 /* InfoPlist.strings in Resources */,
@@ -2137,25 +1755,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF0DC5F1E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
-				ECB2BEA01B452EC5008E32E8 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				9CAAFA971F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */,
 				ECCC5CAF19C83DFA00FACAA1 /* UploadGuideViewController.swift in Sources */,
-				EC3A4F161B8C7C2D00B8D60E /* Array+TextStyleModel.swift in Sources */,
-				ECB2BF6C1B452F0C008E32E8 /* ModuleSelectorViewController.swift in Sources */,
 				ECDEE06B189A7BFE0026581D /* UILabel+Digipost.m in Sources */,
-				ECB2BF571B452F0C008E32E8 /* ImageModuleTableViewCell.swift in Sources */,
 				ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */,
 				ECCAD43519E694CF00E602DC /* UploadImageController.swift in Sources */,
-				ECB2BFEC1B452F8C008E32E8 /* UITableView+Reorder.m in Sources */,
-				ECB2BFF61B45734A008E32E8 /* UIFont+StandardComposerFonts.swift in Sources */,
 				8364D71E185F2981008DE6CB /* POSDocumentTableViewCell.m in Sources */,
 				83D355161861C5EA009EABC6 /* POSLetterViewController.m in Sources */,
 				83F7037718570542003DABE1 /* NSString+RandomNumber.m in Sources */,
-				ECB2BF491B452F0C008E32E8 /* HTMLRepresentable.swift in Sources */,
 				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
-				ECB2BE7D1B452EC5008E32E8 /* ComposerModule.swift in Sources */,
-				ECB2BE8B1B452EC5008E32E8 /* ComposerPresentationController.swift in Sources */,
 				9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */,
 				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
@@ -2164,17 +1773,13 @@
 				F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */,
 				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				9CA38AF71F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
-				EC42F25A1B81E138005785DE /* CustomInputView.m in Sources */,
 				EC2484101B206F1A00FC372C /* POSDocument+Methods.m in Sources */,
 				F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */,
 				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
-				ECB2BF651B452F0C008E32E8 /* Int+Random.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
-				EC42F24C1B81D10C005785DE /* CustomInputViewController.swift in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
-				EC42F2451B81C84A005785DE /* HTMLEditorViewController.swift in Sources */,
 				31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */,
 				EC24840B1B206EE300FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
@@ -2182,59 +1787,35 @@
 				EC56AAB71A24973D00720109 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				ECFD577B18BB48D800370002 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
-				ECB2BEE01B452EED008E32E8 /* TextModuleTableViewCell.swift in Sources */,
-				ECB2BF341B452F0C008E32E8 /* FontPickerViewController.swift in Sources */,
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
-				ECB2BED91B452EED008E32E8 /* TextAttributeButton.swift in Sources */,
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
-				EC8B946C1B4AA7A6005C4CC4 /* HTMLTag.swift in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */,
 				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
-				ECB2BEAE1B452EC5008E32E8 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				F8AFAE921DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
-				ECB2BF9B1B452F2A008E32E8 /* Recipient.swift in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				F8AFAE961DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
-				ECB2BEBC1B452EC5008E32E8 /* DeleteComposerModuleView.swift in Sources */,
-				EC8F4A171B4C0C4800D07922 /* StylePickerViewController.swift in Sources */,
 				AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
-				ECB2BF831B452F1B008E32E8 /* String+Substring.swift in Sources */,
-				ECC683321B832540002313E7 /* WKWebView+JavascriptStyling.swift in Sources */,
-				ECB2BE761B452EC5008E32E8 /* ComposerInputAccessoryView.swift in Sources */,
 				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
-				ECB2BFE51B452F8C008E32E8 /* TextComposerModule.swift in Sources */,
 				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
 				31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */,
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				0B5F50601D9BE2F900A8EC05 /* Dictionary.swift in Sources */,
-				ECB2BF501B452F0C008E32E8 /* ImageComposerModule.swift in Sources */,
-				ECB2BE611B452EC5008E32E8 /* AddComposerModuleButton.swift in Sources */,
-				ECB2BF261B452F0C008E32E8 /* FontPickerTableViewCell.swift in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
 				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
-				ECB2BE681B452EC5008E32E8 /* APIClient+Recipients.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
-				EC8F4A2F1B4D09AA00D07922 /* TextStyleModel.swift in Sources */,
-				ECB2BF731B452F0C008E32E8 /* PlaceholderTextView.swift in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
-				ECA39C9A1B78BC580083BEBB /* Array+NSRange.swift in Sources */,
-				ECB2BE841B452EC5008E32E8 /* ComposerModuleParser.swift in Sources */,
-				EC8F4A1F1B4C17DB00D07922 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
 				9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
-				ECD6888C1B4E8A5300746077 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
 				839FC5871883F61100666350 /* UIViewController+ValidateOpening.m in Sources */,
 				F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */,
 				9CA38B001F3C404100AABD91 /* POSExternalLink.swift in Sources */,
-				ECCC94A11B56A7000054AFA6 /* HTMLSection.swift in Sources */,
-				ECEA67211B53B06C007C5861 /* NSAttributedString+Attributes.swift in Sources */,
 				ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
@@ -2242,14 +1823,10 @@
 				EC669D581B1479D8004F97B6 /* NSString+Hmac.m in Sources */,
 				83BAB9281855C0AC004A7BFB /* main.m in Sources */,
 				83BAB92C1855C0AC004A7BFB /* SHCAppDelegate.m in Sources */,
-				ECB2BFBE1B452F2A008E32E8 /* RecipientTableViewCell.swift in Sources */,
 				83D75F591858E5790013F8C9 /* POSFolder.m in Sources */,
 				ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */,
-				ECB2BFCC1B452F2A008E32E8 /* SendableDocument.swift in Sources */,
 				F8BA4FFC218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
-				ECB2BEEE1B452EED008E32E8 /* UIButton+Recipient.swift in Sources */,
 				EC2B64631A66928D00AB6085 /* Dispatch.swift in Sources */,
-				ECB2BEF51B452EED008E32E8 /* UIImage+base64Representation.swift in Sources */,
 				ECF06D65192395A5003BD200 /* UIRefreshControl+Additions.m in Sources */,
 				F8BF1B172195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				EC2C82DA192A2E9B00A6D4B8 /* POSAccountViewTableViewDataSource.m in Sources */,
@@ -2259,10 +1836,8 @@
 				ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
 				F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
-				ECB2BF031B452EED008E32E8 /* UITextView+Composer.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */,
-				EC8B94641B4A9FF8005C4CC4 /* HTMLContent.swift in Sources */,
 				EC181DAB192C9D320054C0E8 /* NSPredicate+CommonPredicates.m in Sources */,
 				ECD0B8921A820F2700DF3296 /* APIClient+Document.swift in Sources */,
 				F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */,
@@ -2270,20 +1845,15 @@
 				83D3550718619069009EABC6 /* NSError+ExtraInfo.m in Sources */,
 				EC24840D1B206F0100FC372C /* Constants.swift in Sources */,
 				AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */,
-				EC0359741B83672A0025214C /* StylePickerDetailListViewController.swift in Sources */,
 				3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */,
-				ECB2BFB71B452F2A008E32E8 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				83F7037218570234003DABE1 /* NSURLRequest+QueryParameters.m in Sources */,
 				9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */,
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
-				EC8B94741B4ABE07005C4CC4 /* String+Composer.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
 				9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */,
 				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
-				ECB2C0081B469628008E32E8 /* HTMLTagBlock.swift in Sources */,
-				ECB2BF181B452F0C008E32E8 /* DimView.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				F8A5593B21903DD300667F27 /* SettingsValidator.swift in Sources */,
@@ -2304,47 +1874,35 @@
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				0B1520CF1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
-				EC8F4A371B4D319400D07922 /* MultiselectSegmentedControl.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
 				EC25AADD189A7F1100709AA2 /* UIView+AutoLayout.m in Sources */,
 				837574BA1891041C00902218 /* POSUploadTableViewCell.m in Sources */,
-				ECB2BE991B452EC5008E32E8 /* ComposerViewController.swift in Sources */,
 				9CDE3AA91E78235E00B9C27B /* String+Formatting.swift in Sources */,
 				F8AFAE8A1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				83F703611855E7A9003DABE1 /* POSFoldersViewController.m in Sources */,
 				9C25CBE31F0D1E48005F3645 /* AppointmentView.swift in Sources */,
 				ECA5A5F91B28602F001F2DC6 /* NSHTTPURLResponse+Authorization.swift in Sources */,
-				ECB2BFB01B452F2A008E32E8 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				EC5EBC991B564EBD00FCAB7D /* UISegmentedControl+Styling.swift in Sources */,
 				8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */,
-				ECB2BFA21B452F2A008E32E8 /* RecipientsViewController.swift in Sources */,
 				EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */,
 				EC0C1A0E19338A82007CB53E /* POSNewFolderViewController.m in Sources */,
-				ECB2BFA91B452F2A008E32E8 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				EC0F8D5C19CAFB600005B300 /* UIFont+DigipostFonts.swift in Sources */,
 				F8A5593F21904C2900667F27 /* SettingsTextField.swift in Sources */,
 				EC68C07018AA260400A94770 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				83F703661855E9E0003DABE1 /* SHCLoginViewController.m in Sources */,
 				EC60D64619D4559F00E03AAB /* UIImage+Localization.swift in Sources */,
-				ECB2BEA71B452EC5008E32E8 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
-				ECB2BEB51B452EC5008E32E8 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				ECB3A64F18B379F8002D8C22 /* POSNotice.m in Sources */,
-				ECB2BF421B452F0C008E32E8 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				ECA594CA19FFB0040064D98D /* POSAttachment+Methods.swift in Sources */,
 				F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */,
 				F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */,
-				ECB2BE921B452EC5008E32E8 /* ComposerTypeButton.swift in Sources */,
 				ECFAE2661B0B4CFC0029CAD0 /* OAuthToken+IDToken.swift in Sources */,
 				83D75F6D1858E9C20013F8C9 /* POSModelManager.m in Sources */,
-				ECB2BF941B452F2A008E32E8 /* PreviewViewController.swift in Sources */,
 				EC0F8D6019CB01B90005B300 /* SHCAppDelegate+Appearance.swift in Sources */,
 				EC76A6BD19BF2D3500D80B01 /* POSUploadTableViewDataSource.m in Sources */,
 				9CA38B031F3C532D00AABD91 /* MetadataView.swift in Sources */,
 				ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */,
 				ECDC58921935FF5B003202CD /* POSFolderIcon.m in Sources */,
-				ECB2BED21B452EED008E32E8 /* TextAttribute.swift in Sources */,
-				EC8F4A271B4D04D600D07922 /* SegmentedControlTableViewCell.swift in Sources */,
 				EC181DB5192CC47B0054C0E8 /* POSFolder+Methods.m in Sources */,
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				EC2484171B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
@@ -2376,26 +1934,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9CF0DC611E65CAAA00BBF529 /* AppVersionManager.swift in Sources */,
-				F8AE1BEC1CD374B40009B2F9 /* ComposerViewController+UIPresentationController.swift in Sources */,
 				9CAAFA981F9A1F5B00D29177 /* UserNotificationsUsage.swift in Sources */,
 				F8AE1BED1CD374B40009B2F9 /* UploadGuideViewController.swift in Sources */,
-				F8AE1BEE1CD374B40009B2F9 /* Array+TextStyleModel.swift in Sources */,
-				F8AE1BEF1CD374B40009B2F9 /* ModuleSelectorViewController.swift in Sources */,
 				F8AE1BF01CD374B40009B2F9 /* UILabel+Digipost.m in Sources */,
-				F8AE1BF11CD374B40009B2F9 /* ImageModuleTableViewCell.swift in Sources */,
 				F8AE1BF21CD374B40009B2F9 /* Localization.swift in Sources */,
 				F8AE1BF31CD374B40009B2F9 /* UploadImageController.swift in Sources */,
-				F8AE1BF41CD374B40009B2F9 /* UITableView+Reorder.m in Sources */,
-				F8AE1BF51CD374B40009B2F9 /* UIFont+StandardComposerFonts.swift in Sources */,
 				F8AE1BF61CD374B40009B2F9 /* POSDocumentTableViewCell.m in Sources */,
 				F8AE1BF81CD374B40009B2F9 /* POSLetterViewController.m in Sources */,
 				F8AE1BF91CD374B40009B2F9 /* NSString+RandomNumber.m in Sources */,
-				F8AE1BFA1CD374B40009B2F9 /* HTMLRepresentable.swift in Sources */,
 				F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */,
 				F8AE1BFC1CD374B40009B2F9 /* MainAccountTableViewCell.swift in Sources */,
 				9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */,
-				F8AE1BFD1CD374B40009B2F9 /* ComposerModule.swift in Sources */,
-				F8AE1BFE1CD374B40009B2F9 /* ComposerPresentationController.swift in Sources */,
 				F8AE1BFF1CD374B40009B2F9 /* NewFeaturesViewController.swift in Sources */,
 				F8AE1C001CD374B40009B2F9 /* UIImage+Size.swift in Sources */,
 				F8AE1C011CD374B40009B2F9 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
@@ -2403,16 +1952,12 @@
 				9CA38AF81F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
 				F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */,
 				F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */,
-				F8AE1C051CD374B40009B2F9 /* CustomInputView.m in Sources */,
 				F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */,
 				F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */,
-				F8AE1C091CD374B40009B2F9 /* Int+Random.swift in Sources */,
 				F8AE1C0A1CD374B40009B2F9 /* POSAttachment.m in Sources */,
 				F8AE1C0B1CD374B40009B2F9 /* UIViewController+NeedsReload.m in Sources */,
-				F8AE1C0C1CD374B40009B2F9 /* CustomInputViewController.swift in Sources */,
 				F8AE1C0D1CD374B40009B2F9 /* POSFileManager.m in Sources */,
 				F8AE1C0F1CD374B40009B2F9 /* UINavigationController+Extensions.swift in Sources */,
-				F8AE1C101CD374B40009B2F9 /* HTMLEditorViewController.swift in Sources */,
 				F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */,
 				F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */,
 				F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */,
@@ -2420,59 +1965,35 @@
 				F8AE1C151CD374B40009B2F9 /* IncreaseSecurityLevelViewController.swift in Sources */,
 				F8AE1C161CD374B40009B2F9 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				F8AE1C171CD374B40009B2F9 /* POSDocumentsViewController.m in Sources */,
-				F8AE1C181CD374B40009B2F9 /* TextModuleTableViewCell.swift in Sources */,
-				F8AE1C191CD374B40009B2F9 /* FontPickerViewController.swift in Sources */,
 				F8AE1C1A1CD374B40009B2F9 /* POSNewFolderCollectionViewDataSource.m in Sources */,
 				F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */,
-				F8AE1C1B1CD374B40009B2F9 /* TextAttributeButton.swift in Sources */,
 				F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
-				F8AE1C1D1CD374B40009B2F9 /* HTMLTag.swift in Sources */,
 				F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */,
 				F8AFAE941DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				F8AE1C1F1CD374B40009B2F9 /* Logger.swift in Sources */,
 				F8AE1C201CD374B40009B2F9 /* WhatsNewGuideItem.swift in Sources */,
-				F8AE1C211CD374B40009B2F9 /* ComposerViewController+UITableViewDelegate.swift in Sources */,
 				F8AFAE981DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
-				F8AE1C221CD374B40009B2F9 /* Recipient.swift in Sources */,
 				F8AE1C241CD374B40009B2F9 /* NSManagedObject+Attributes.swift in Sources */,
 				F8AE1C251CD374B40009B2F9 /* POSRootResource.m in Sources */,
-				F8AE1C261CD374B40009B2F9 /* DeleteComposerModuleView.swift in Sources */,
-				F8AE1C271CD374B40009B2F9 /* StylePickerViewController.swift in Sources */,
 				F8AE1C281CD374B40009B2F9 /* ExtendedTouchView.swift in Sources */,
-				F8AE1C291CD374B40009B2F9 /* String+Substring.swift in Sources */,
-				F8AE1C2A1CD374B40009B2F9 /* WKWebView+JavascriptStyling.swift in Sources */,
-				F8AE1C2B1CD374B40009B2F9 /* ComposerInputAccessoryView.swift in Sources */,
 				F8AE1C2C1CD374B40009B2F9 /* UploadMenuDataSource.swift in Sources */,
 				F8AE1C2D1CD374B40009B2F9 /* SHCSplitViewController.m in Sources */,
-				F8AE1C2E1CD374B40009B2F9 /* TextComposerModule.swift in Sources */,
 				F8AE1C2F1CD374B40009B2F9 /* UploadMenuViewController.swift in Sources */,
 				F8AE1C301CD374B40009B2F9 /* AccountViewController.swift in Sources */,
 				F8AE1C311CD374B40009B2F9 /* POSUploadViewController.m in Sources */,
-				F8AE1C321CD374B40009B2F9 /* ImageComposerModule.swift in Sources */,
-				F8AE1C331CD374B40009B2F9 /* AddComposerModuleButton.swift in Sources */,
-				F8AE1C341CD374B40009B2F9 /* FontPickerTableViewCell.swift in Sources */,
 				F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */,
 				F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */,
-				F8AE1C371CD374B40009B2F9 /* APIClient+Recipients.swift in Sources */,
 				F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */,
-				F8AE1C391CD374B40009B2F9 /* TextStyleModel.swift in Sources */,
-				F8AE1C3A1CD374B40009B2F9 /* PlaceholderTextView.swift in Sources */,
 				F8AE1C3B1CD374B40009B2F9 /* NSDate+Extensions.swift in Sources */,
 				F8AE1C3C1CD374B40009B2F9 /* UIDevice+Extension.swift in Sources */,
-				F8AE1C3D1CD374B40009B2F9 /* Array+NSRange.swift in Sources */,
-				F8AE1C3E1CD374B40009B2F9 /* ComposerModuleParser.swift in Sources */,
 				0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */,
-				F8AE1C401CD374B40009B2F9 /* StylePickerViewController+UITableViewDataSource.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
 				F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */,
-				F8AE1C441CD374B40009B2F9 /* ComposerViewController+StylePickerViewControllerDelegate.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
 				9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */,
 				F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */,
-				F8AE1C481CD374B40009B2F9 /* HTMLSection.swift in Sources */,
-				F8AE1C491CD374B40009B2F9 /* NSAttributedString+Attributes.swift in Sources */,
 				F8AE1C4A1CD374B40009B2F9 /* UIToolbar+Actions.swift in Sources */,
 				F8AE1C4C1CD374B40009B2F9 /* SHCAttachmentsViewController.m in Sources */,
 				F8AE1C4D1CD374B40009B2F9 /* NSString+CoreDataConvenience.m in Sources */,
@@ -2480,14 +2001,10 @@
 				F8AE1C4F1CD374B40009B2F9 /* NSString+Hmac.m in Sources */,
 				F8AE1C501CD374B40009B2F9 /* main.m in Sources */,
 				F8AE1C511CD374B40009B2F9 /* SHCAppDelegate.m in Sources */,
-				F8AE1C521CD374B40009B2F9 /* RecipientTableViewCell.swift in Sources */,
 				F8AE1C531CD374B40009B2F9 /* POSFolder.m in Sources */,
 				F8AE1C541CD374B40009B2F9 /* NSString+Convenience.m in Sources */,
-				F8AE1C551CD374B40009B2F9 /* SendableDocument.swift in Sources */,
-				F8AE1C561CD374B40009B2F9 /* UIButton+Recipient.swift in Sources */,
 				F8BA4FFE218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				F8AE1C571CD374B40009B2F9 /* Dispatch.swift in Sources */,
-				F8AE1C581CD374B40009B2F9 /* UIImage+base64Representation.swift in Sources */,
 				F8AE1C591CD374B40009B2F9 /* UIRefreshControl+Additions.m in Sources */,
 				F8AE1C5A1CD374B40009B2F9 /* POSAccountViewTableViewDataSource.m in Sources */,
 				F8BF1B192195BA1300A87C61 /* SecureViewController.swift in Sources */,
@@ -2498,9 +2015,7 @@
 				F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */,
 				9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */,
 				F8AE1C5F1CD374B40009B2F9 /* POSInvoice+Methods.swift in Sources */,
-				F8AE1C601CD374B40009B2F9 /* UITextView+Composer.swift in Sources */,
 				F8AE1C611CD374B40009B2F9 /* POSFolderTableViewCell.m in Sources */,
-				F8AE1C621CD374B40009B2F9 /* HTMLContent.swift in Sources */,
 				F8AE1C631CD374B40009B2F9 /* NSPredicate+CommonPredicates.m in Sources */,
 				F8AE1C641CD374B40009B2F9 /* APIClient+Document.swift in Sources */,
 				F8AE1C651CD374B40009B2F9 /* Badge.swift in Sources */,
@@ -2509,20 +2024,15 @@
 				F8AE1C681CD374B40009B2F9 /* Constants.swift in Sources */,
 				F8AE1C691CD374B40009B2F9 /* UIScrollViewExtensions.swift in Sources */,
 				9C7A35841E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */,
-				F8AE1C6A1CD374B40009B2F9 /* StylePickerDetailListViewController.swift in Sources */,
 				F8AE1C6B1CD374B40009B2F9 /* String+Extensions.swift in Sources */,
-				F8AE1C6C1CD374B40009B2F9 /* RecipientsViewController+UITableViewDelegate.swift in Sources */,
 				F8AE1C6D1CD374B40009B2F9 /* NSURLRequest+QueryParameters.m in Sources */,
 				9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				F8AE1C6E1CD374B40009B2F9 /* APIClient+URLSessionTask.swift in Sources */,
 				9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */,
-				F8AE1C6F1CD374B40009B2F9 /* String+Composer.swift in Sources */,
 				F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */,
 				F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */,
 				F8AE1C721CD374B40009B2F9 /* OnboardingViewController.swift in Sources */,
-				F8AE1C731CD374B40009B2F9 /* HTMLTagBlock.swift in Sources */,
 				9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
-				F8AE1C741CD374B40009B2F9 /* DimView.swift in Sources */,
 				F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */,
 				F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */,
 				F8A5593D21903DD300667F27 /* SettingsValidator.swift in Sources */,
@@ -2541,49 +2051,37 @@
 				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
-				F8AE1C841CD374B40009B2F9 /* MultiselectSegmentedControl.swift in Sources */,
 				F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */,
 				F8AE1C861CD374B40009B2F9 /* AHKActionSheet+Convenience.m in Sources */,
 				F8AE1C871CD374B40009B2F9 /* UIView+AutoLayout.m in Sources */,
 				F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */,
-				F8AE1C8A1CD374B40009B2F9 /* ComposerViewController.swift in Sources */,
 				F8AFAE8C1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */,
 				9C1F0F8D1E9E51E2008C674C /* String+Formatting.swift in Sources */,
 				F8AE1C8B1CD374B40009B2F9 /* POSFoldersViewController.m in Sources */,
 				F8AE1C8C1CD374B40009B2F9 /* NSHTTPURLResponse+Authorization.swift in Sources */,
 				9C25CBE41F0D1E48005F3645 /* AppointmentView.swift in Sources */,
-				F8AE1C8D1CD374B40009B2F9 /* RecipientsViewController+UITableViewDataSource.swift in Sources */,
 				9C9CB8F61E9CFDE100F2C0B9 /* POSInvoice.m in Sources */,
 				F8AE1C8E1CD374B40009B2F9 /* UISegmentedControl+Styling.swift in Sources */,
 				F8AE1C8F1CD374B40009B2F9 /* Model.xcdatamodeld in Sources */,
-				F8AE1C901CD374B40009B2F9 /* RecipientsViewController.swift in Sources */,
 				F8AE1C911CD374B40009B2F9 /* POSLetterViewController+Additions.swift in Sources */,
 				F8AE1C921CD374B40009B2F9 /* POSNewFolderViewController.m in Sources */,
-				F8AE1C941CD374B40009B2F9 /* RecipientsViewController+UISearchBarDelegate.swift in Sources */,
 				F8AE1C951CD374B40009B2F9 /* UIFont+DigipostFonts.swift in Sources */,
 				F8AE1C961CD374B40009B2F9 /* POSLetterPopoverTableViewDataSourceAndDelegate.m in Sources */,
 				F8A5594121904C2900667F27 /* SettingsTextField.swift in Sources */,
 				F8AE1C971CD374B40009B2F9 /* SHCLoginViewController.m in Sources */,
 				F8AE1C981CD374B40009B2F9 /* UIImage+Localization.swift in Sources */,
-				F8AE1C991CD374B40009B2F9 /* ComposerViewController+UITableViewDataSource.swift in Sources */,
-				F8AE1C9A1CD374B40009B2F9 /* ComposerViewControlller+TableViewReorderDelegate.swift in Sources */,
 				F8AE1C9B1CD374B40009B2F9 /* POSNotice.m in Sources */,
-				F8AE1C9C1CD374B40009B2F9 /* FontPickerViewController+TableViewDataSource.swift in Sources */,
 				F8AE1C9D1CD374B40009B2F9 /* POSAttachment+Methods.swift in Sources */,
 				F8AE1C9E1CD374B40009B2F9 /* GCMToken.swift in Sources */,
-				F8AE1C9F1CD374B40009B2F9 /* ComposerTypeButton.swift in Sources */,
 				F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */,
 				F8AE1CA01CD374B40009B2F9 /* OAuthToken+IDToken.swift in Sources */,
 				0B1520DD1DA38EB3000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
 				F8AE1CA11CD374B40009B2F9 /* POSModelManager.m in Sources */,
-				F8AE1CA21CD374B40009B2F9 /* PreviewViewController.swift in Sources */,
 				F8AE1CA31CD374B40009B2F9 /* SHCAppDelegate+Appearance.swift in Sources */,
 				9CA38B041F3C532D00AABD91 /* MetadataView.swift in Sources */,
 				F8AE1CA41CD374B40009B2F9 /* POSUploadTableViewDataSource.m in Sources */,
 				F8AE1CA51CD374B40009B2F9 /* UIViewController+BackButton.m in Sources */,
 				F8AE1CA61CD374B40009B2F9 /* POSFolderIcon.m in Sources */,
-				F8AE1CA71CD374B40009B2F9 /* TextAttribute.swift in Sources */,
-				F8AE1CA81CD374B40009B2F9 /* SegmentedControlTableViewCell.swift in Sources */,
 				F8AE1CA91CD374B40009B2F9 /* POSFolder+Methods.m in Sources */,
 				F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */,
 				F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */,
