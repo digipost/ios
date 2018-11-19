@@ -132,16 +132,6 @@ NSString *const kEditFolderSegue = @"newFolderSegue";
     [self updateContentsFromServerUserInitiatedRequest:@NO];
 }
 
-- (void)presentDocumentComposer
-{
-    UIStoryboard *documentComposerStoryboard = [UIStoryboard storyboardWithName:@"DocumentComposer" bundle:nil];
-    UINavigationController *navigationController = (id)[documentComposerStoryboard instantiateInitialViewController];
-
-    composerViewController.mailboxDigipostAddress = self.selectedMailBoxDigipostAdress;
-
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
 - (void)popViewController
 {
     NSAssert(self.navigationController != nil, @"no nav controller");

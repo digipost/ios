@@ -20,7 +20,6 @@ import Darwin
 import AFNetworking
 
 @objc class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
-    @objc var stylepickerViewController : StylePickerViewController!
 
     @objc class var sharedClient: APIClient {
         struct Singleton {
