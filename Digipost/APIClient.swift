@@ -20,7 +20,6 @@ import Darwin
 import AFNetworking
 
 @objc class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
-    @objc var stylepickerViewController : StylePickerViewController!
 
     @objc class var sharedClient: APIClient {
         struct Singleton {
@@ -311,65 +310,7 @@ import AFNetworking
         }
     }
 
-    func send(_ htmlContent: String, recipients: [Recipient], uri: String, success: (() -> Void) , failure: (_ error: APIError) -> ()) {
-//        let url = NSURL(string: uri)
-//        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-//        let sendableDocument = SendableDocument(recipients: recipients)
-//        let parameters = sendableDocument.draftParameters()
-//        validate(token: oauthToken) { () -> Void in
-//            let task = self.urlSessionJSONTask(httpMethod.post, url: uri, parameters: parameters , success: { (responseJSON) -> Void in
-//                sendableDocument.setupWithJSONContent(responseJSON)
-//                sendableDocument.recipients = recipients
-//                let fileURL = sendableDocument.urlForHTMLContentOnDisk(htmlContent)
-//                self.uploadFile(sendableDocument.addContentUri!, fileURL: fileURL!, success: { () -> Void in
-//                    self.getUpdatedSendableDocument(sendableDocument, success: { (responseDictionary) -> Void in
-//                        sendableDocument.setupWithJSONContent(responseDictionary)
-//                        println(responseDictionary)
-//                        let task = self.urlSessionTask(httpMethod.post, url: sendableDocument.sendUri!, success: { () -> Void in
-//                            success()
-//                            }, failure: { (error) -> () in
-//                                failure(error: error)
-//                        })
-//                        task!.resume()
-//
-//                        }, failure: { (error) -> () in
-//                            failure(error: error)
-//                    })
-//                    }, failure: { (error) -> () in
-//                        failure(error: error)
-//                })
-//                }, failure: { (error) -> () in
-//                    failure(error: error)
-//            })
-//            task!.resume()
-//        }
-    }
-
-    func getDrafts(_ uri: String, success: (_ responseDictionary: [String : AnyObject]) -> Void, failure: (_ error: APIError) -> ()) {
-//        let offset = 0
-//        let length = 50000
-
-//        validateOAuthToken(kOauth2ScopeFull, validationSuccess: {
-//            let task = self.urlSessionJSONTask(url: uri, success: { (responseDictionary) -> Void in
-//                success(responseDictionary: responseDictionary)
-//            }, failure: { (error) -> () in
-//                failure(error: error)
-//            })
-//        })
-    }
-
-    func getUpdatedSendableDocument(_ sendableDocument: SendableDocument, success: (_ responseDictionary: [String : AnyObject]) -> Void, failure: (_ error: APIError) -> ()) {
-        let oauthToken = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        validate(token: oauthToken) { () -> Void in
-//            let task = self.urlSessionJSONTask(url: sendableDocument.updateMessageUri!, success: { (responseDictionary) -> Void in
-//                success(responseDictionary: responseDictionary)
-//                }, failure: { (error) -> () in
-//                    failure(error: error)
-//            })
-//            task!.resume()
-        }
-    }
-
+    
     func uploadFile(_ uploadUri: String, fileURL: URL, success: (() -> Void)? , failure: (_ error: APIError) -> ()) {
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: uploadUri, parameters: nil,  constructingBodyWith: { (formData) -> Void in
 
@@ -393,14 +334,6 @@ import AFNetworking
             DispatchQueue.main.async(execute: {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
-                //let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
-                
-//                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-//                    self.removeAccessTokenUsedInLastRequest()
-                    //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-//                } else if (error != nil ){
-//                    failure(error: APIError(error: error!))
-//                }
 
                 if success != nil {
                     success!()
