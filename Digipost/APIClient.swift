@@ -20,7 +20,6 @@ import Darwin
 import AFNetworking
 
 @objc class APIClient : NSObject, URLSessionTaskDelegate, URLSessionDelegate, URLSessionDataDelegate {
-    @objc var stylepickerViewController : StylePickerViewController!
 
     @objc class var sharedClient: APIClient {
         struct Singleton {
@@ -140,7 +139,7 @@ import AFNetworking
         let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
         self.updateAuthorizationHeader(oAuthToken: token!)
         let rootResource = k__ROOT_RESOURCE_URI__
-        validate(token: highestToken) {
+        validate(token: token) {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
             task.resume()
         }
@@ -334,14 +333,6 @@ import AFNetworking
             DispatchQueue.main.async(execute: {
                 self.removeTemporaryUploadFiles()
                 self.isUploadingFile = false
-                //let s = NSString(data: anyObject as! NSData, encoding: NSASCIIStringEncoding)
-                
-//                if self.isUnauthorized(response as! NSHTTPURLResponse?) {
-//                    self.removeAccessTokenUsedInLastRequest()
-                    //                    self.uploadFile(url: url, folder: folder, success: success, failure: failure)
-//                } else if (error != nil ){
-//                    failure(error: APIError(error: error!))
-//                }
 
                 if success != nil {
                     success!()
@@ -404,7 +395,7 @@ import AFNetworking
         let progress = Progress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
-        let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString!
+        let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString
         let pathExtension = lastPathComponent.pathExtension
         
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWith: { (formData) -> Void in

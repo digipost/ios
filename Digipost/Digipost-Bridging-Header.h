@@ -41,7 +41,6 @@
 #import "POSRootResource.h"
 #import "POSModelManager.h"
 #import "NSError+ExtraInfo.h"
-#import "UITableView+Reorder.h"
 #import "POSMailbox+Methods.h"
 #import "GAIDictionaryBuilder.h"
 #import "POSOAuthManager.h"
@@ -51,5 +50,4 @@
 #import "NSString+RandomNumber.h"
 #import "NSString+Hmac.h"
 #import "Macros.h"
-#import "CustomInputView.h"
 
