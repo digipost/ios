@@ -137,8 +137,8 @@ import AFNetworking
     }
 
     @objc func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-        self.updateAuthorizationHeader(oAuthToken: highestToken!)
+        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        self.updateAuthorizationHeader(oAuthToken: token!)
         let rootResource = k__ROOT_RESOURCE_URI__
         validate(token: highestToken) {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
