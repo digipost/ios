@@ -136,10 +136,10 @@ import AFNetworking
     }
 
     @objc func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        let highestToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
-        self.updateAuthorizationHeader(oAuthToken: highestToken!)
+        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        self.updateAuthorizationHeader(oAuthToken: token!)
         let rootResource = k__ROOT_RESOURCE_URI__
-        validate(token: highestToken) {
+        validate(token: token) {
             let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
             task.resume()
         }
@@ -310,7 +310,6 @@ import AFNetworking
         }
     }
 
-    
     func uploadFile(_ uploadUri: String, fileURL: URL, success: (() -> Void)? , failure: (_ error: APIError) -> ()) {
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: uploadUri, parameters: nil,  constructingBodyWith: { (formData) -> Void in
 
@@ -396,7 +395,7 @@ import AFNetworking
         let progress = Progress(parent: nil, userInfo:userInfo)
         progress.totalUnitCount = Int64(fileSize)
         self.uploadProgress = progress
-        let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString!
+        let lastPathComponent : NSString = uploadURL!.lastPathComponent as NSString
         let pathExtension = lastPathComponent.pathExtension
         
         let urlRequest = fileTransferSessionManager.requestSerializer.multipartFormRequest(withMethod: httpMethod.post.rawValue, urlString: (serverUploadURL?.absoluteString)!, parameters: nil, constructingBodyWith: { (formData) -> Void in
