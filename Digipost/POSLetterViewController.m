@@ -149,23 +149,24 @@ CGFloat extraMetadataConstraintHeight = 0;
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
 
     [self addTapGestureRecognizersToWebView:self.webView];
-
-    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) == NO) {
-            if (!leftBarButtonItem) {
-                leftBarButtonItem = self.navigationItem.leftBarButtonItem;
-            }
-            [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-            leftBarButtonItem.title = @" ";
-            [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-                                             animated:YES];
-            [leftBarButtonItem setAction:@selector(showSideMenu:)];
-            [leftBarButtonItem setTarget:self];
-        } else {
-            [self.navigationItem setLeftBarButtonItem:nil];
+        [self updateLeftBarButtonForIpad];
+    }
+}
+
+- (void)updateLeftBarButtonForIpad
+{
+    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
+        if (!leftBarButtonItem) {
+            leftBarButtonItem = self.navigationItem.leftBarButtonItem;
         }
-    }    
+        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+        leftBarButtonItem.title = @" ";
+        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
+                                         animated:YES];
+        [leftBarButtonItem setAction:@selector(showSideMenu:)];
+        [leftBarButtonItem setTarget:self];
+    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -272,35 +273,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (targetContentOffset->y == self.lastDragStartY) {
         return;
     }
-    if (targetContentOffset->y > self.lastDragStartY) {
-        [self changeNavbarStateToHidden:YES];
-    } else {
-        [self changeNavbarStateToHidden:NO];
-    }
-}
-
-- (void)changeNavbarStateToHidden:(BOOL)hidden
-{
-    /*
-     Gjør at toolbars i topp og bunn skjules når man klikker på webview, men dette skaper utfordringer med metadata-visning, så deaktiverer inntil videre.
-    if (hidden) {
-        if (self.navigationController.navigationBar.isHidden == NO) {
-            [[self navigationController] setNavigationBarHidden:YES animated:YES];
-            [[self navigationController] setToolbarHidden:YES animated:YES];
-        }
-    } else {
-        if (self.navigationController.navigationBar.isHidden) {
-            [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            if ([self shouldHideToolBar:self.attachment] == NO) {
-                [[self navigationController] setToolbarHidden:NO animated:YES];
-            }
-        }
-    }
-     
-    UIStatusBarStyle statusBarStyle = !hidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
-                                                animated:YES];
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -347,14 +319,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
-    /*
-    BOOL barsHidden = self.navigationController.isNavigationBarHidden;
-    [self changeNavbarStateToHidden:!barsHidden];
 
-    UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
-                                                animated:YES];
-     */
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -458,9 +423,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     self.masterViewControllerPopoverController = nil;
 
     [self setInfoViewVisible:NO];
-
-    [self.navigationItem setLeftBarButtonItem:nil
-                                     animated:YES];
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 #pragma mark - NSKeyValueObserving
 
@@ -1502,6 +1465,10 @@ CGFloat extraMetadataConstraintHeight = 0;
 {
     leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self updateLeftBarButtonForIpad];
+    }
 
     if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
@@ -1571,7 +1538,6 @@ CGFloat extraMetadataConstraintHeight = 0;
                 return;
             } else {
                 [self showEmptyView:NO];
-                [self changeNavbarStateToHidden:NO];
             }
         }
 
