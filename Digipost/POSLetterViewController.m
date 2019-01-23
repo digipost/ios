@@ -149,23 +149,24 @@ CGFloat extraMetadataConstraintHeight = 0;
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
 
     [self addTapGestureRecognizersToWebView:self.webView];
-
-    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) == NO) {
-            if (!leftBarButtonItem) {
-                leftBarButtonItem = self.navigationItem.leftBarButtonItem;
-            }
-            [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
-            leftBarButtonItem.title = @" ";
-            [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
-                                             animated:YES];
-            [leftBarButtonItem setAction:@selector(showSideMenu:)];
-            [leftBarButtonItem setTarget:self];
-        } else {
-            [self.navigationItem setLeftBarButtonItem:nil];
+        [self updateLeftBarButtonForIpad];
+    }
+}
+
+- (void)updateLeftBarButtonForIpad
+{
+    UIBarButtonItem *leftBarButtonItem = self.leftBarButtonItem;
+        if (!leftBarButtonItem) {
+            leftBarButtonItem = self.navigationItem.leftBarButtonItem;
         }
-    }    
+        [leftBarButtonItem setImage:[UIImage imageNamed:@"icon-navbar-drawer"]];
+        leftBarButtonItem.title = @" ";
+        [self.navigationItem setLeftBarButtonItem:leftBarButtonItem
+                                         animated:YES];
+        [leftBarButtonItem setAction:@selector(showSideMenu:)];
+        [leftBarButtonItem setTarget:self];
+    
 }
 
 - (void)shouldValidateOpeningReceipt:(POSAttachment *)attachment
@@ -272,13 +273,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (targetContentOffset->y == self.lastDragStartY) {
         return;
     }
-    if (targetContentOffset->y > self.lastDragStartY) {
-        [self changeNavbarStateToHidden:YES];
-    } else {
-        [self changeNavbarStateToHidden:NO];
-    }
-}
-
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -325,14 +319,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (UIAccessibilityIsVoiceOverRunning()) {
         return;
     }
-    /*
-    BOOL barsHidden = self.navigationController.isNavigationBarHidden;
-    [self changeNavbarStateToHidden:!barsHidden];
 
-    UIStatusBarStyle statusBarStyle = barsHidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
-                                                animated:YES];
-     */
 }
 
 - (void)didDoubleTapWebView:(UITapGestureRecognizer *)tapGestureRecognizer
@@ -436,9 +423,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     self.masterViewControllerPopoverController = nil;
 
     [self setInfoViewVisible:NO];
-
-    [self.navigationItem setLeftBarButtonItem:nil
-                                     animated:YES];
+    [self.navigationItem setLeftBarButtonItem:nil animated:YES];
 }
 #pragma mark - NSKeyValueObserving
 
@@ -1480,6 +1465,10 @@ CGFloat extraMetadataConstraintHeight = 0;
 {
     leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
     [self.navigationItem setLeftBarButtonItem:leftBarButtonItem animated:YES];
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
+        [self updateLeftBarButtonForIpad];
+    }
 
     if (self.view.window && self.navigationItem.leftBarButtonItem && self.masterViewControllerPopoverController) {
         [self.masterViewControllerPopoverController presentPopoverFromBarButtonItem:self.navigationItem.leftBarButtonItem
