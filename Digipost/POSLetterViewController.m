@@ -279,28 +279,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 }
 
-- (void)changeNavbarStateToHidden:(BOOL)hidden
-{
-    /*
-     Gjør at toolbars i topp og bunn skjules når man klikker på webview, men dette skaper utfordringer med metadata-visning, så deaktiverer inntil videre.
-    if (hidden) {
-        if (self.navigationController.navigationBar.isHidden == NO) {
-            [[self navigationController] setNavigationBarHidden:YES animated:YES];
-            [[self navigationController] setToolbarHidden:YES animated:YES];
-        }
-    } else {
-        if (self.navigationController.navigationBar.isHidden) {
-            [[self navigationController] setNavigationBarHidden:NO animated:YES];
-            if ([self shouldHideToolBar:self.attachment] == NO) {
-                [[self navigationController] setToolbarHidden:NO animated:YES];
-            }
-        }
-    }
-     
-    UIStatusBarStyle statusBarStyle = !hidden ? UIStatusBarStyleLightContent : UIStatusBarStyleDefault;
-    [[UIApplication sharedApplication] setStatusBarStyle:statusBarStyle
-                                                animated:YES];
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -1571,7 +1549,6 @@ CGFloat extraMetadataConstraintHeight = 0;
                 return;
             } else {
                 [self showEmptyView:NO];
-                [self changeNavbarStateToHidden:NO];
             }
         }
 
