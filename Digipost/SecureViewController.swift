@@ -17,7 +17,7 @@
 import UIKit
 import LocalAuthentication
 
-class SecureViewConroller: UIViewController {
+class SecureViewController: UIViewController {
     
     var context = LAContext()
     var blurEffectView: UIVisualEffectView = UIVisualEffectView(effect:  UIBlurEffect(style: .light))
@@ -42,7 +42,6 @@ class SecureViewConroller: UIViewController {
         }
     }
     
-    
     func removeBlur() {
         DispatchQueue.main.async {
             self.blurEffectView.removeFromSuperview()
@@ -56,13 +55,14 @@ class SecureViewConroller: UIViewController {
             print("Error: canEvaluatePolicy \(String(describing: error))")
             return
         }
-        
-        accessRequest(policy: policy)
+        if(!LAStore.isAuthenticated()){
+            accessRequest(policy: policy)
+        }
     }
     
     func authenticated() {
         self.removeBlur()
-        NotificationCenter.default.addObserver(self, selector: #selector(SecureViewConroller.dismissView), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SecureViewController.dismissView), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     }
     
     @objc func dismissView(){
@@ -76,6 +76,7 @@ class SecureViewConroller: UIViewController {
         context.evaluatePolicy(policy, localizedReason: NSLocalizedString("settings access request", comment: "settings access request"), reply: { (success, error) in
             
             if(success) {
+                LAStore.saveAuthenticationState(authenticated: true)
                 self.authenticated()
             }else{
                 if let error = error {
@@ -92,7 +93,7 @@ class SecureViewConroller: UIViewController {
                 } else{
                     print("Error: evaluatePolicy failed without error")
                 }
-
+                LAStore.saveAuthenticationState(authenticated: false)
                 self.dismissView()
             }
         })
