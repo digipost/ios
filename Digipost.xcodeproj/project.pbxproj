@@ -211,6 +211,9 @@
 		F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
+		F895AAFA226F2EBE00045834 /* LAStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895AAF9226F2EBE00045834 /* LAStore.swift */; };
+		F895AAFB226F2EBE00045834 /* LAStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895AAF9226F2EBE00045834 /* LAStore.swift */; };
+		F895AAFC226F2EBE00045834 /* LAStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F895AAF9226F2EBE00045834 /* LAStore.swift */; };
 		F8A5593B21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
 		F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
 		F8A5593D21903DD300667F27 /* SettingsValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A5593A21903DD300667F27 /* SettingsValidator.swift */; };
@@ -695,6 +698,7 @@
 		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
 		F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8953806208F51680023F7FE /* Model v2.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.2.xcdatamodel"; sourceTree = "<group>"; };
+		F895AAF9226F2EBE00045834 /* LAStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LAStore.swift; sourceTree = "<group>"; };
 		F8A5593A21903DD300667F27 /* SettingsValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValidator.swift; sourceTree = "<group>"; };
 		F8A5593E21904C2900667F27 /* SettingsTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTextField.swift; sourceTree = "<group>"; };
 		F8AE1CDF1CD374B40009B2F9 /* DigipostQA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DigipostQA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1316,6 +1320,7 @@
 			isa = PBXGroup;
 			children = (
 				F8BF1B162195BA1300A87C61 /* SecureViewController.swift */,
+				F895AAF9226F2EBE00045834 /* LAStore.swift */,
 			);
 			name = Secure;
 			sourceTree = "<group>";
@@ -1806,6 +1811,7 @@
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				EC2484171B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
+				F895AAFA226F2EBE00045834 /* LAStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1824,6 +1830,7 @@
 				F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */,
 				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
 				9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */,
+				F895AAFB226F2EBE00045834 /* LAStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1974,6 +1981,7 @@
 				F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */,
 				F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */,
 				F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
+				F895AAFC226F2EBE00045834 /* LAStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
