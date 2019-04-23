@@ -26,7 +26,7 @@ import LUKeychainAccess
         if let authenticated = UserDefaults.standard.object(forKey: LA_STATE) as? Bool {
             if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? String {
                 let diff = Date().timeIntervalSince1970 - timestamp
-                let tenMinutes = 60*10
+                let tenMinutes = 600
                 return authenticated && diff < tenMinutes
             }
         }
