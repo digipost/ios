@@ -180,7 +180,7 @@
         if (error) {
             NSLog(@"Could not connect to GCM: %@", error.localizedDescription);
         } else {
-            _connectedToGCM = true;
+            self->_connectedToGCM = true;
         }
     }];
 }
@@ -263,21 +263,6 @@
         
         POSFoldersViewController *folderViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kFoldersViewControllerIdentifier];
         POSDocumentsViewController *documentsViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:kDocumentsViewControllerIdentifier];
-        
-        //        // add account vc as second view controller in navigation controller
-        //        UIViewController *loginViewController = topViewController;
-        //        // for iphone root controller will be login controller
-        //        if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
-        //            [newViewControllerArray addObject:loginViewController];
-        //            accountViewController = [topViewController.storyboard instantiateViewControllerWithIdentifier:@"accountViewController"];
-        //        } else if ([loginViewController isKindOfClass:[UploadMenuViewController class]]){
-        //
-        //            loginViewController = navController.viewControllers[0];
-        //            if ([loginViewController isKindOfClass:[SHCLoginViewController class]]) {
-        //                [newViewControllerArray addObject:loginViewController];
-        //            }
-        //
-        //        }
         [newViewControllerArray addObject:accountViewController];
         [newViewControllerArray addObject:folderViewController];
         [newViewControllerArray addObject:documentsViewController];
