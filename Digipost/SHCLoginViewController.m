@@ -42,7 +42,7 @@ NSString *const kShowLoginViewControllerNotificationName = @"ShowLoginViewContro
 // Google Analytics screen name
 NSString *const kLoginViewControllerScreenName = @"Login";
 
-@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate, OnboardingLoginViewControllerDelegate, NewFeaturesViewControllerDelegate>
+@interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
@@ -50,7 +50,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (strong, nonatomic) UIImageView *titleImageView;
-@property (strong, nonatomic) IBOutlet UIButton *replayOnboardingButton;
 @property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
 
 @end
@@ -83,7 +82,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     
     self.loginButton.accessibilityLabel = @"Login Digipost";
     
-    [self.replayOnboardingButton addTarget:self action:@selector(presentOnboarding) forControlEvents:UIControlEventTouchUpInside];
     
     self.screenName = kLoginViewControllerScreenName;
     
@@ -107,15 +105,11 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.forgotPasswordButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON", @"Forgot password")
                                forState:UIControlStateNormal];
     
-    if ([Guide shouldShowOnboardingGuide]) {
-        [self presentOnboarding];
-    }else{
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
-            if([OAuthToken isUserLoggedIn] == YES ){
-                [self presentAppropriateViewControllerForIPhone];
-            }
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        if([OAuthToken isUserLoggedIn] == YES ){
+            [self presentAppropriateViewControllerForIPhone];
+            
         }
-        [Guide setOnboaringHasBeenWatched];
     }
 }
 
@@ -128,18 +122,8 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
-    //    self.navigationItem.leftBarButtonItem = nil;
     self.navigationController.interactivePopGestureRecognizer.enabled = YES;
     self.navigationItem.rightBarButtonItem = nil;
-    
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        
-        //        UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@""
-        //                                                                              style:UIBarButtonItemStylePlain
-        //                                                                             target:nil
-        //                                                                             action:nil];
-        //        self.navigationItem.backBarButtonItem = backBarButtonItem;
-    }
 }
 
 - (BOOL)shouldAutorotate
@@ -154,20 +138,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     } else {
         return UIInterfaceOrientationMaskAll;
     }
-}
-
-- (void)presentOnboarding
-{
-    [self.loginView setHidden:YES];
-    
-    UIStoryboard *onboardingStoryboard = [UIStoryboard storyboardWithName:@"Onboarding" bundle:nil];
-    __block OnboardingViewController *onboardingViewController = (id)[onboardingStoryboard instantiateInitialViewController];
-    
-    [self presentViewController:onboardingViewController
-                       animated:NO
-                     completion:^{
-                         onboardingViewController.onboardingLoginViewController.delegate = self;
-                     }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -195,10 +165,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         webView.viewTitle = NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", "New user");
         webView.initUrl = @"https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/";
         
-    
+        
     }else if ([segue.identifier isEqualToString:kForgotPasswordWebViewIdentifier]) {
         
-        [self sendAnalyticsEvent:@"glemt-passord"];        
+        [self sendAnalyticsEvent:@"glemt-passord"];
         SingleUseWebViewController *webView = (SingleUseWebViewController*) segue.destinationViewController;
         UINavigationController *navigationController = segue.destinationViewController;
         webView = (id)navigationController.topViewController;
@@ -215,17 +185,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     }
 }
 
-- (void)presentNewFeatures
-{
-    if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-        UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
-        NewFeaturesViewController *newFeaturesController = (id)navigationController.viewControllers.firstObject;
-        newFeaturesController.delegate = self;
-        [self presentViewController:navigationController animated:NO completion:nil];
-    }
-}
-
 #pragma mark - SHCOAuthViewControllerDelegate
 
 - (void)OAuthViewControllerDidAuthenticate:(SHCOAuthViewController *)OAuthViewController scope:(NSString *)scope
@@ -236,46 +195,18 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     SHCAppDelegate *appDelegate = (id)[UIApplication sharedApplication].delegate;
     [appDelegate initGCM];
     
-    if ([Guide shouldShowWhatsNewGuide] && [UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-        [self presentNewFeatures];
-    } else {
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         
-        if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-            
-            [self.navigationController dismissViewControllerAnimated:YES
-                                                          completion:^{
-                                                          }];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
-                                                                object:@NO];
-        } else {
-            [self presentAppropriateViewControllerForIPhone];
-        }
+        [self.navigationController dismissViewControllerAnimated:YES
+                                                      completion:^{
+                                                      }];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
+                                                            object:@NO];
+    } else {
+        [self presentAppropriateViewControllerForIPhone];
     }
     
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
-}
-
-- (void)onboardingLoginViewControllerDidTapLoginButtonWithBackgroundImage:(OnboardingLoginViewController *)onboardingLoginViewController backgroundImage:(UIImage *)backgroundImage
-{
-    if (backgroundImage != nil) {
-        self.loginBackgroundImageView.image = backgroundImage;
-    }
-    
-    [onboardingLoginViewController.presentingViewController dismissViewControllerAnimated:NO
-                                                                               completion:^{
-                                                                                   [self performSegueWithIdentifier:kPresentOAuthModallyIdentifier sender:self];
-                                                                               }];
-}
-
-#pragma mark - NewFeatures dismiss controller delegate
-
-- (void)newFeaturesViewControllerDidDismiss:(NewFeaturesViewController *)newFeaturesViewController
-{
-    [newFeaturesViewController dismissViewControllerAnimated:NO
-                                                  completion:^{
-                                                      [self.loginView setHidden:NO];
-                                                      [self presentAppropriateViewControllerForIPhone];
-                                                  }];
 }
 
 #pragma mark - IBActions
@@ -321,9 +252,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 {
     POSRootResource *resource = [POSRootResource existingRootResourceInManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     
-    if ([Guide shouldShowWhatsNewGuide]) {
-        [self presentNewFeatures];
-    } else if ([resource.mailboxes.allObjects count] == 1) {
+    if ([resource.mailboxes.allObjects count] == 1) {
         [self presentDocumentsViewControllerWithViewControllerStack];
         [self.navigationController setNavigationBarHidden:NO animated:NO];
     } else {

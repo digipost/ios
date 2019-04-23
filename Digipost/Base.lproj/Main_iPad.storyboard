@@ -471,16 +471,6 @@
                                     <constraint firstItem="7rk-E6-AO0" firstAttribute="top" secondItem="S6J-F3-PpA" secondAttribute="top" constant="48" id="vBy-9D-y96"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DMK-4H-fWK">
-                                <rect key="frame" x="4" y="910" width="44" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="VKw-7f-1nm"/>
-                                    <constraint firstAttribute="width" constant="44" id="dMs-YX-yQ8"/>
-                                </constraints>
-                                <state key="normal">
-                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vit-lp-H7g">
                                 <rect key="frame" x="0.0" y="923" width="768" height="31"/>
                                 <color key="backgroundColor" red="0.2097956731" green="0.2097956731" blue="0.2097956731" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -495,8 +485,6 @@
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vit-lp-H7g" firstAttribute="leading" secondItem="S6J-F3-PpA" secondAttribute="leading" id="0iT-BH-Gu0"/>
-                            <constraint firstItem="DMK-4H-fWK" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leadingMargin" constant="-16" id="25K-N1-CW7"/>
-                            <constraint firstItem="2Jt-eM-ekr" firstAttribute="top" secondItem="DMK-4H-fWK" secondAttribute="bottom" id="8UI-lw-Gj4"/>
                             <constraint firstAttribute="centerY" secondItem="S6J-F3-PpA" secondAttribute="centerY" constant="122.5" id="ALE-0V-eCJ"/>
                             <constraint firstItem="S6J-F3-PpA" firstAttribute="leading" secondItem="fnc-te-0iA" secondAttribute="leading" id="EZR-RZ-aUR"/>
                             <constraint firstAttribute="trailing" secondItem="S6J-F3-PpA" secondAttribute="trailing" id="Joc-sr-c9c"/>
@@ -516,7 +504,6 @@
                         <outlet property="loginView" destination="S6J-F3-PpA" id="Ed6-LN-csP"/>
                         <outlet property="privacyButton" destination="Vit-lp-H7g" id="5H7-7v-qwc"/>
                         <outlet property="registerButton" destination="qUg-Iy-BH3" id="IpP-y3-cyn"/>
-                        <outlet property="replayOnboardingButton" destination="DMK-4H-fWK" id="4HB-Ti-SE6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ei-DN-ba6" userLabel="First Responder" sceneMemberID="firstResponder"/>

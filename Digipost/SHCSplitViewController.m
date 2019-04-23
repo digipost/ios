@@ -77,16 +77,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    if ([Guide shouldShowOnboardingGuide] == NO) {
-
-        if ([OAuthToken isUserLoggedIn]) {
-
-            if ([Guide shouldShowWhatsNewGuide]) {
-                [self presentNewFeatures];
-            }
-        }
-    }
 }
 
 #pragma mark - Properties
@@ -125,14 +115,6 @@
             }
         }
     });
-}
-
-- (void)presentNewFeatures
-{
-    [Guide setOnboaringHasBeenWatched];
-    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)presentLoginViewController

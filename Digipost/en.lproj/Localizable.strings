@@ -175,8 +175,6 @@
 "LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "New account";
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Privacy";
-/* Show information / Watch onboarding again */
-"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Show information";
 /* Archive */
 "FOLDER_NAME_ARCHIVE" = "Archive";
 /* Inbox */
@@ -336,16 +334,6 @@
 /* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
 "cannot rename document need authentication alert message" = "You cannot rename documents that require a higher security level";
-/* New features onboarding. */
-"new feature navbar title" = "Did you know..?";
-"new feature barbutton title" = "Done";
-"new feature share" = "Share your mailbox with the family";
-"new feature folders" = "Use folders to organize mail";
-"new feature archive" = "Your own archive to fill";
-/* Onboarding. */
-"onboarding button" = "GET STARTED";
-"onboarding welcome" = "Welcome to your\n secure digital mailbox";
-"PUBLIC_ENTITY" = "Public entity";
 /* Document Composer */
 "recipients view navigation bar title" = "Add recipients";
 "recipients view navigation bar right button save" = "Save";

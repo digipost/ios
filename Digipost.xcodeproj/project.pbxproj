@@ -11,14 +11,9 @@
 		0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */; };
 		0B1520DD1DA38EB3000027C1 /* SynchronizationCodeForVCs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */; };
 		0B5F50601D9BE2F900A8EC05 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */; };
-		311779571AAEFCA800229D02 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
-		3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
-		311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
-		311779661AAEFCA800229D02 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779561AAEFCA800229D02 /* UploadView.swift */; };
 		3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
 		311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
 		316D3BBE1A67F501004E3291 /* POSMailbox.m in Sources */ = {isa = PBXBuildFile; fileRef = 316D3BBD1A67F501004E3291 /* POSMailbox.m */; };
-		31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		3194C83D1A67E83A0085D0A1 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */; };
 		31B4BED11A6536D900CA7EAC /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		8342EFC01858CE180080A833 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8342EFBE1858CE180080A833 /* Model.xcdatamodeld */; };
@@ -108,15 +103,9 @@
 		9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */; };
 		AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
-		AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		AF210FCE1A8E00E6001EF123 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */; };
 		AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		AF23423B1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */; };
-		AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
-		AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
-		AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
-		AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
-		AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
 		D3B8A4D2DA8B22125BE1B72E /* Pods_Digipost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */; };
 		EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */; };
@@ -156,9 +145,6 @@
 		EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		EC31A63D1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */; };
 		EC3BC7681A02845500983186 /* UIWebView+Accessability.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */; };
-		EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
-		EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
-		EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
 		EC41C70819C9A17900E3EBCC /* POSLetterViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */; };
 		EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
@@ -192,7 +178,6 @@
 		ECB3A65918B3B3E9002D8C22 /* UIViewController+BackButton.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB3A65818B3B3E9002D8C22 /* UIViewController+BackButton.m */; };
 		ECB4C65919B725ED00C1C748 /* NSString+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65819B725ED00C1C748 /* NSString+Convenience.m */; };
 		ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */; };
-		ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
 		ECBF75AD1AA85E6900540BCA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75AC1AA85E6900540BCA /* Localization.swift */; };
 		ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC08DF81A5BE798004C829D /* APIClient.swift */; };
@@ -241,19 +226,16 @@
 		F8AE1BF91CD374B40009B2F9 /* NSString+RandomNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037618570542003DABE1 /* NSString+RandomNumber.m */; };
 		F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBF75A61AA85ACF00540BCA /* Debug.swift */; };
 		F8AE1BFC1CD374B40009B2F9 /* MainAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */; };
-		F8AE1BFF1CD374B40009B2F9 /* NewFeaturesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */; };
 		F8AE1C001CD374B40009B2F9 /* UIImage+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC51BA2819DEB42F00FC8CF1 /* UIImage+Size.swift */; };
 		F8AE1C011CD374B40009B2F9 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */ = {isa = PBXBuildFile; fileRef = EC6CFA4A19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m */; };
 		F8AE1C021CD374B40009B2F9 /* NSFetchedResultsController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5A192393A5003BD200 /* NSFetchedResultsController+Additions.m */; };
 		F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
-		F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBEDB9C1AA734A50052B11B /* Guide.swift */; };
 		F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC24840F1B206F1A00FC372C /* POSDocument+Methods.m */; };
 		F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8053D661C43DB6800DB0CA9 /* String+URL.swift */; };
 		F8AE1C0A1CD374B40009B2F9 /* POSAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F5D1858E5790013F8C9 /* POSAttachment.m */; };
 		F8AE1C0B1CD374B40009B2F9 /* UIViewController+NeedsReload.m in Sources */ = {isa = PBXBuildFile; fileRef = 83C22B74187C3B7500A6B6F4 /* UIViewController+NeedsReload.m */; };
 		F8AE1C0D1CD374B40009B2F9 /* POSFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7E71875578A00344644 /* POSFileManager.m */; };
 		F8AE1C0F1CD374B40009B2F9 /* UINavigationController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FC6A619DD795900886D41 /* UINavigationController+Extensions.swift */; };
-		F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */; };
 		F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC24840A1B206EE300FC372C /* NSURLResponse+HTTP.swift */; };
 		F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F7037B18571A7C003DABE1 /* SHCOAuthViewController.m */; };
 		F8AE1C141CD374B40009B2F9 /* POSMailbox+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC82ACBD19331A7000952027 /* POSMailbox+Methods.m */; };
@@ -264,22 +246,18 @@
 		F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = EC68C07718AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m */; };
 		F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B88B1A820EA200DF3296 /* APIClient+Folder.swift */; };
 		F8AE1C1F1CD374B40009B2F9 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF1C05C1B1460AF00DCB8A5 /* Logger.swift */; };
-		F8AE1C201CD374B40009B2F9 /* WhatsNewGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */; };
 		F8AE1C241CD374B40009B2F9 /* NSManagedObject+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */; };
 		F8AE1C251CD374B40009B2F9 /* POSRootResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F671858E5790013F8C9 /* POSRootResource.m */; };
-		F8AE1C281CD374B40009B2F9 /* ExtendedTouchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */; };
 		F8AE1C2C1CD374B40009B2F9 /* UploadMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */; };
 		F8AE1C2D1CD374B40009B2F9 /* SHCSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B6BE9B1897A987006D9B20 /* SHCSplitViewController.m */; };
 		F8AE1C2F1CD374B40009B2F9 /* UploadMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC31A6341A07AA780079EAC9 /* UploadMenuViewController.swift */; };
 		F8AE1C301CD374B40009B2F9 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31B4BED01A6536D900CA7EAC /* AccountViewController.swift */; };
 		F8AE1C311CD374B40009B2F9 /* POSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0F2B7719B893350019212E /* POSUploadViewController.m */; };
 		F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC84DD4F19FA4D1E003A0F49 /* UIColor+DigipostColors.swift */; };
-		F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779531AAEFCA800229D02 /* PeopleView.swift */; };
 		F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = ECF06D5F19239537003BD200 /* UIViewController+Additions.m */; };
 		F8AE1C3B1CD374B40009B2F9 /* NSDate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCF7EAE1A0CD088000DF7ED /* NSDate+Extensions.swift */; };
 		F8AE1C3C1CD374B40009B2F9 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9949C1AA898EC006CEE44 /* UIDevice+Extension.swift */; };
 		F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */; };
-		F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */; };
 		F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DB4AF4188D963400515022 /* POSBaseEncryptedModel.m */; };
 		F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */ = {isa = PBXBuildFile; fileRef = 839FC5861883F61100666350 /* UIViewController+ValidateOpening.m */; };
 		F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -313,12 +291,10 @@
 		F8AE1C6E1CD374B40009B2F9 /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC22CF8B1A6670D2004D66AB /* APIClient+URLSessionTask.swift */; };
 		F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A1C1934A5B3007CB53E /* UIColor+Convenience.m */; };
 		F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D75F531858E5790013F8C9 /* POSDocument.m */; };
-		F8AE1C721CD374B40009B2F9 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */; };
 		F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC23529D1A0BBD3C0071624C /* UIImage+TintColor.swift */; };
 		F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D3551A1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m */; };
 		F8AE1C771CD374B40009B2F9 /* NSNumber+JsonParsing.m in Sources */ = {isa = PBXBuildFile; fileRef = EC93622819393515006E85FA /* NSNumber+JsonParsing.m */; };
 		F8AE1C781CD374B40009B2F9 /* UIAlertController+APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD0B8971A821DFA00DF3296 /* UIAlertController+APIError.swift */; };
-		F8AE1C791CD374B40009B2F9 /* QCMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779541AAEFCA800229D02 /* QCMethod.swift */; };
 		F8AE1C7A1CD374B40009B2F9 /* AccountTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */; };
 		F8AE1C7B1CD374B40009B2F9 /* NSString+SHA1String.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D2F7EC18755AAA00344644 /* NSString+SHA1String.m */; };
 		F8AE1C7C1CD374B40009B2F9 /* POSNewFolderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EC0C1A17193476F5007CB53E /* POSNewFolderCollectionViewCell.m */; };
@@ -355,7 +331,6 @@
 		F8AE1CA91CD374B40009B2F9 /* POSFolder+Methods.m in Sources */ = {isa = PBXBuildFile; fileRef = EC181DB4192CC47B0054C0E8 /* POSFolder+Methods.m */; };
 		F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC63A8341A6E701D00708A75 /* APIError.swift */; };
 		F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC2484161B206F2B00FC372C /* UIImageView+Color.swift */; };
-		F8AE1CAC1CD374B40009B2F9 /* UploadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779561AAEFCA800229D02 /* UploadView.swift */; };
 		F8AE1CAE1CD374B40009B2F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218F1AB70DD400812502 /* libz.dylib */; };
 		F8AE1CAF1CD374B40009B2F9 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EC30218A1AB70DA800812502 /* libsqlite3.dylib */; };
 		F8AE1CB01CD374B40009B2F9 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3021911AB70E0A00812502 /* AdSupport.framework */; };
@@ -368,18 +343,14 @@
 		F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83F7038418573C3A003DABE1 /* Localizable.strings */; };
 		F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F546E19CACAE1008E24C1 /* foundmonreg-webfont.ttf */; };
 		F8AE1CC31CD374B40009B2F9 /* MainAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */; };
-		F8AE1CC51CD374B40009B2F9 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */; };
 		F8AE1CC61CD374B40009B2F9 /* Images-Shared.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83C5719818984111000C61E7 /* Images-Shared.xcassets */; };
 		F8AE1CC81CD374B40009B2F9 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */; };
 		F8AE1CCA1CD374B40009B2F9 /* Images-Prod.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9391855C0AD004A7BFB /* Images-Prod.xcassets */; };
 		F8AE1CCB1CD374B40009B2F9 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */; };
-		F8AE1CCE1CD374B40009B2F9 /* OnboardingGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */; };
-		F8AE1CD01CD374B40009B2F9 /* WhatsNewGuideTexts.strings in Resources */ = {isa = PBXBuildFile; fileRef = EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */; };
 		F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC97409B19CB0B9800FED06B /* foundmonmed-webfont.ttf */; };
 		F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC14B93419D1ADAB00570923 /* LaunchScreen.xib */; };
 		F8AE1CD61CD374B40009B2F9 /* stylesheet.css in Resources */ = {isa = PBXBuildFile; fileRef = ECB2BF931B452F2A008E32E8 /* stylesheet.css */; };
 		F8AE1CD71CD374B40009B2F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83BAB9241855C0AC004A7BFB /* InfoPlist.strings */; };
-		F8AE1CD81CD374B40009B2F9 /* NewFeatures.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */; };
 		F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */; };
 		F8AE7AD41CCE1158009D139F /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AE7AD31CCE1158009D139F /* Badge.swift */; };
 		F8AFAE8A1DBE49A000C91DB4 /* InvoiceBankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8AFAE891DBE49A000C91DB4 /* InvoiceBankViewController.swift */; };
@@ -406,7 +377,6 @@
 		F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
-		F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 311779551AAEFCA800229D02 /* ReceiptView.swift */; };
 		FBC8B9E6C73B77C7C8C7E6CD /* Pods_DigipostQA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */; };
 /* End PBXBuildFile section */
 
@@ -425,20 +395,17 @@
 		0B1520CE1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SynchronizationCodeForVCs.swift; sourceTree = "<group>"; };
 		0B5F505F1D9BE2F900A8EC05 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		1C9CF163ECBC21C99FB680E0 /* Pods_Digipost_Test.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost_Test.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		29C21679FD6B7E6C8425D5F7 /* Pods-Digipost.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digipost.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.debug.xcconfig"; sourceTree = "<group>"; };
 		2BD3945C585B3F78E8B4C664 /* Pods_Digipost.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Digipost.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		311779531AAEFCA800229D02 /* PeopleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
-		311779541AAEFCA800229D02 /* QCMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QCMethod.swift; sourceTree = "<group>"; };
-		311779551AAEFCA800229D02 /* ReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptView.swift; sourceTree = "<group>"; };
-		311779561AAEFCA800229D02 /* UploadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadView.swift; sourceTree = "<group>"; };
 		3118486A1A67D5ED006348B1 /* MainAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainAccountTableViewCell.swift; sourceTree = "<group>"; };
 		3118486B1A67D5ED006348B1 /* MainAccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainAccountTableViewCell.xib; sourceTree = "<group>"; };
 		316D3BB51A67F35A004E3291 /* Model v1.10.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.10.xcdatamodel"; sourceTree = "<group>"; };
 		316D3BBC1A67F501004E3291 /* POSMailbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSMailbox.h; sourceTree = "<group>"; };
 		316D3BBD1A67F501004E3291 /* POSMailbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = POSMailbox.m; sourceTree = "<group>"; };
-		31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForceOrientationNavigationController.swift; sourceTree = "<group>"; };
 		3194C83C1A67E83A0085D0A1 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		31B4BED01A6536D900CA7EAC /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		37711AED2EE6C14715F954C2 /* Pods_DigipostModelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostModelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AFBA9DF77D5F9F783CE3A2F /* Pods-DigipostQA.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostQA.release.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA.release.xcconfig"; sourceTree = "<group>"; };
 		833F63F7189657CD00FBF352 /* Model v1.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.5.xcdatamodel"; sourceTree = "<group>"; };
 		8342EFBF1858CE180080A833 /* Model v1.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.0.xcdatamodel"; sourceTree = "<group>"; };
 		835C74E318867603006C6F4F /* POSInvoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POSInvoice.h; sourceTree = "<group>"; };
@@ -554,17 +521,13 @@
 		9CF0DC5E1E65CAAA00BBF529 /* AppVersionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppVersionManager.swift; sourceTree = "<group>"; };
 		9CFE61601DEC58DD0097A53B /* InvoiceBankAgreement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceBankAgreement.swift; sourceTree = "<group>"; };
 		AF00BB5D1A664BD900261E0B /* AccountTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewDataSource.swift; sourceTree = "<group>"; };
-		AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingLoginViewController.swift; sourceTree = "<group>"; };
 		AF210FCD1A8E00E6001EF123 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		AF2342341A651F1800CD92E3 /* AccountTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		AF23423A1A651F4900CD92E3 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
-		AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewFeatures.storyboard; sourceTree = "<group>"; };
-		AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewFeaturesViewController.swift; sourceTree = "<group>"; };
-		AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtendedTouchView.swift; sourceTree = "<group>"; };
 		AFD508BA1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+deviceSpesificStoryboard.swift"; sourceTree = "<group>"; };
 		CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DigipostQA.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D52A99F2CAFE92F503F8B7FD /* Pods-Digipost.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Digipost.release.xcconfig"; path = "Pods/Target Support Files/Pods-Digipost/Pods-Digipost.release.xcconfig"; sourceTree = "<group>"; };
+		E77CF1CAB354276A02D57F34 /* Pods-DigipostQA.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DigipostQA.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA.debug.xcconfig"; sourceTree = "<group>"; };
 		EC0B21A51B0F4D6A0098F223 /* Model v1.14.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.14.xcdatamodel"; sourceTree = "<group>"; };
 		EC0C19F819336912007CB53E /* NSString+CoreDataConvenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CoreDataConvenience.h"; sourceTree = "<group>"; };
 		EC0C19F919336912007CB53E /* NSString+CoreDataConvenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CoreDataConvenience.m"; sourceTree = "<group>"; };
@@ -627,11 +590,6 @@
 		EC31A6381A07AA990079EAC9 /* UploadMenuDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuDataSource.swift; sourceTree = "<group>"; };
 		EC31A63C1A07AC6F0079EAC9 /* UploadMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadMenuTableViewCell.swift; sourceTree = "<group>"; };
 		EC3BC7671A02845500983186 /* UIWebView+Accessability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWebView+Accessability.swift"; sourceTree = "<group>"; };
-		EC4146CA1AA73CF3003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
-		EC4146CC1AA73CF8003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WhatsNewGuideTexts.strings; sourceTree = "<group>"; };
-		EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WhatsNewGuideItem.swift; sourceTree = "<group>"; };
-		EC4146F01AA76130003DBF47 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
-		EC4146F21AA76135003DBF47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/OnboardingGuideTexts.strings; sourceTree = "<group>"; };
 		EC41C70719C9A17900E3EBCC /* POSLetterViewController+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "POSLetterViewController+Additions.swift"; sourceTree = "<group>"; };
 		EC46E65C19F641010085CA82 /* NSManagedObject+Attributes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Attributes.swift"; sourceTree = "<group>"; };
 		EC4875BC19C1D6650024C95E /* Digipost-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Digipost-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -691,7 +649,6 @@
 		ECB4C65C19B75C9C00C1C748 /* AHKActionSheet+Convenience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AHKActionSheet+Convenience.h"; sourceTree = "<group>"; };
 		ECB4C65D19B75C9C00C1C748 /* AHKActionSheet+Convenience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AHKActionSheet+Convenience.m"; sourceTree = "<group>"; };
 		ECBC5A1B1A83B63D00147E1B /* Model v1.11.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v1.11.xcdatamodel"; sourceTree = "<group>"; };
-		ECBEDB9C1AA734A50052B11B /* Guide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		ECBF75A61AA85ACF00540BCA /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		ECBF75AC1AA85E6900540BCA /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		ECC08DF81A5BE798004C829D /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
@@ -808,6 +765,10 @@
 		6F161DF8048A11B81D902300 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				29C21679FD6B7E6C8425D5F7 /* Pods-Digipost.debug.xcconfig */,
+				D52A99F2CAFE92F503F8B7FD /* Pods-Digipost.release.xcconfig */,
+				E77CF1CAB354276A02D57F34 /* Pods-DigipostQA.debug.xcconfig */,
+				4AFBA9DF77D5F9F783CE3A2F /* Pods-DigipostQA.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -961,8 +922,6 @@
 				83BAB92D1855C0AC004A7BFB /* Main_iPhone.storyboard */,
 				83BAB9301855C0AC004A7BFB /* Main_iPad.storyboard */,
 				F8BCF936207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib */,
-				AF477DFA1A77B43400CBD150 /* Onboarding.storyboard */,
-				AFC1A9271A920B5700E62F48 /* NewFeatures.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -974,8 +933,6 @@
 				F80F712621772268000D4685 /* Contact */,
 				9C25CBDB1F0D1E20005F3645 /* Metadata */,
 				F8C6723E1DB9F6CC0092182E /* Invoice */,
-				AFC1A92C1A920B6A00E62F48 /* NewFeatures */,
-				AF477E001A77B48A00CBD150 /* Onboarding */,
 				EC1A6C2D18BBA2F200269428 /* Base classes */,
 				EC1A6C3218BBA39500269428 /* Login */,
 				EC2C82D7192A176400A6D4B8 /* Accounts */,
@@ -1099,42 +1056,6 @@
 				9C39F7191E7BC5860012A1C8 /* ActiveType1AndType2Agreements.json */,
 			);
 			name = invoice;
-			sourceTree = "<group>";
-		};
-		AF471CD61A8B426F00D07DD7 /* AnimationViews */ = {
-			isa = PBXGroup;
-			children = (
-				311779531AAEFCA800229D02 /* PeopleView.swift */,
-				311779541AAEFCA800229D02 /* QCMethod.swift */,
-				311779551AAEFCA800229D02 /* ReceiptView.swift */,
-				311779561AAEFCA800229D02 /* UploadView.swift */,
-			);
-			name = AnimationViews;
-			sourceTree = "<group>";
-		};
-		AF477E001A77B48A00CBD150 /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */,
-				AF471CD61A8B426F00D07DD7 /* AnimationViews */,
-				AF477E011A77B4A900CBD150 /* OnboardingViewController.swift */,
-				AF199D521AA72EE6001F252A /* OnboardingLoginViewController.swift */,
-			);
-			name = Onboarding;
-			sourceTree = "<group>";
-		};
-		AFC1A92C1A920B6A00E62F48 /* NewFeatures */ = {
-			isa = PBXGroup;
-			children = (
-				ECBEDB9C1AA734A50052B11B /* Guide.swift */,
-				EC4146D91AA75C24003DBF47 /* WhatsNewGuideItem.swift */,
-				EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */,
-				EC4146BE1AA736A8003DBF47 /* Old images */,
-				AFC1A92D1A920B9200E62F48 /* NewFeaturesViewController.swift */,
-				31757D691AB02EC1000F7144 /* ForceOrientationNavigationController.swift */,
-				AFC1A9321A920BCB00E62F48 /* ExtendedTouchView.swift */,
-			);
-			name = NewFeatures;
 			sourceTree = "<group>";
 		};
 		EC0F2B7519B8930E0019212E /* Upload */ = {
@@ -1355,13 +1276,6 @@
 			name = Accounts;
 			sourceTree = "<group>";
 		};
-		EC4146BE1AA736A8003DBF47 /* Old images */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Old images";
-			sourceTree = "<group>";
-		};
 		F80F712621772268000D4685 /* Contact */ = {
 			isa = PBXGroup;
 			children = (
@@ -1566,22 +1480,18 @@
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
 				F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */,
 				311848711A67D5ED006348B1 /* MainAccountTableViewCell.xib in Resources */,
-				AF477DFB1A77B43400CBD150 /* Onboarding.storyboard in Resources */,
 				F8AFAE9A1DBE58C800C91DB4 /* InvoiceBankTableViewCell.xib in Resources */,
 				83C5719918984111000C61E7 /* Images-Shared.xcassets in Resources */,
 				F8BCF933207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				83BAB9321855C0AC004A7BFB /* Main_iPad.storyboard in Resources */,
 				ECA594CF19FFE4540064D98D /* Images-Prod.xcassets in Resources */,
 				83BAB92F1855C0AC004A7BFB /* Main_iPhone.storyboard in Resources */,
-				EC4146EB1AA76130003DBF47 /* OnboardingGuideTexts.strings in Resources */,
-				EC4146C51AA73CF3003DBF47 /* WhatsNewGuideTexts.strings in Resources */,
 				F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */,
 				9CA38AFD1F3B3C2300AABD91 /* ExternalLinkView.xib in Resources */,
 				EC97409C19CB0B9800FED06B /* foundmonmed-webfont.ttf in Resources */,
 				EC14B93519D1ADAB00570923 /* LaunchScreen.xib in Resources */,
 				ECB2BFD31B452F2A008E32E8 /* stylesheet.css in Resources */,
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
-				AFC1A9281A920B5700E62F48 /* NewFeatures.storyboard in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 				F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */,
 			);
@@ -1617,14 +1527,11 @@
 				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
 				F8AE1CC31CD374B40009B2F9 /* MainAccountTableViewCell.xib in Resources */,
-				F8AE1CC51CD374B40009B2F9 /* Onboarding.storyboard in Resources */,
 				F8AE1CC61CD374B40009B2F9 /* Images-Shared.xcassets in Resources */,
 				F8BCF934207F872100D212A9 /* UnlockHighAuthenticationLevelView.xib in Resources */,
 				F8AE1CC81CD374B40009B2F9 /* Main_iPad.storyboard in Resources */,
 				F8AE1CCA1CD374B40009B2F9 /* Images-Prod.xcassets in Resources */,
 				F8AE1CCB1CD374B40009B2F9 /* Main_iPhone.storyboard in Resources */,
-				F8AE1CCE1CD374B40009B2F9 /* OnboardingGuideTexts.strings in Resources */,
-				F8AE1CD01CD374B40009B2F9 /* WhatsNewGuideTexts.strings in Resources */,
 				F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */,
 				F8AE1CD31CD374B40009B2F9 /* foundmonmed-webfont.ttf in Resources */,
 				F8AE1CD41CD374B40009B2F9 /* LaunchScreen.xib in Resources */,
@@ -1633,7 +1540,6 @@
 				F80B635B1CD380C000AE9DE5 /* GoogleService-Info.plist in Resources */,
 				F8AE1CD61CD374B40009B2F9 /* stylesheet.css in Resources */,
 				F8AE1CD71CD374B40009B2F9 /* InfoPlist.strings in Resources */,
-				F8AE1CD81CD374B40009B2F9 /* NewFeatures.storyboard in Resources */,
 				F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */,
 				F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */,
 			);
@@ -1666,7 +1572,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AHKActionSheet/AHKActionSheet.framework",
@@ -1693,7 +1599,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DigipostQA/Pods-DigipostQA-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6481F375FF98F8ECE7DD9A4E /* [CP] Check Pods Manifest.lock */ = {
@@ -1720,7 +1626,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/1PasswordExtension/OnePasswordExtension.framework",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/AHKActionSheet/AHKActionSheet.framework",
@@ -1747,7 +1653,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Digipost/Pods-Digipost-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1769,21 +1675,17 @@
 				ECBF75A71AA85ACF00540BCA /* Debug.swift in Sources */,
 				3118486C1A67D5ED006348B1 /* MainAccountTableViewCell.swift in Sources */,
 				9C8B656C1DE6437100634166 /* APIClient+Banks.swift in Sources */,
-				AFC1A92E1A920B9200E62F48 /* NewFeaturesViewController.swift in Sources */,
 				EC51BA2919DEB42F00FC8CF1 /* UIImage+Size.swift in Sources */,
 				EC6CFA4B19501F0C00166E28 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				ECF06D5B192393A5003BD200 /* NSFetchedResultsController+Additions.m in Sources */,
 				F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */,
-				ECBEDB9D1AA734A50052B11B /* Guide.swift in Sources */,
 				9CA38AF71F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
 				EC2484101B206F1A00FC372C /* POSDocument+Methods.m in Sources */,
 				F8053D671C43DB6800DB0CA9 /* String+URL.swift in Sources */,
-				311779611AAEFCA800229D02 /* ReceiptView.swift in Sources */,
 				83D75F5E1858E5790013F8C9 /* POSAttachment.m in Sources */,
 				83C22B75187C3B7500A6B6F4 /* UIViewController+NeedsReload.m in Sources */,
 				83D2F7E81875578A00344644 /* POSFileManager.m in Sources */,
 				EC7FC6A719DD795900886D41 /* UINavigationController+Extensions.swift in Sources */,
-				31757D6A1AB02EC1000F7144 /* ForceOrientationNavigationController.swift in Sources */,
 				EC24840B1B206EE300FC372C /* NSURLResponse+HTTP.swift in Sources */,
 				83F7037C18571A7C003DABE1 /* SHCOAuthViewController.m in Sources */,
 				EC82ACBE19331A7000952027 /* POSMailbox+Methods.m in Sources */,
@@ -1794,12 +1696,10 @@
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */,
-				EC4146DA1AA75C24003DBF47 /* WhatsNewGuideItem.swift in Sources */,
 				F8AFAE921DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				EC46E65D19F641010085CA82 /* NSManagedObject+Attributes.swift in Sources */,
 				F8AFAE961DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				83D75F681858E5790013F8C9 /* POSRootResource.m in Sources */,
-				AFC1A9331A920BCB00E62F48 /* ExtendedTouchView.swift in Sources */,
 				EC31A6391A07AA990079EAC9 /* UploadMenuDataSource.swift in Sources */,
 				83B6BE9C1897A987006D9B20 /* SHCSplitViewController.m in Sources */,
 				EC31A6351A07AA780079EAC9 /* UploadMenuViewController.swift in Sources */,
@@ -1807,12 +1707,10 @@
 				EC0F2B7819B893350019212E /* POSUploadViewController.m in Sources */,
 				0B5F50601D9BE2F900A8EC05 /* Dictionary.swift in Sources */,
 				EC84DD5019FA4D1E003A0F49 /* UIColor+DigipostColors.swift in Sources */,
-				311779571AAEFCA800229D02 /* PeopleView.swift in Sources */,
 				ECF06D6019239537003BD200 /* UIViewController+Additions.m in Sources */,
 				ECCF7EAF1A0CD088000DF7ED /* NSDate+Extensions.swift in Sources */,
 				ECC9949D1AA898EC006CEE44 /* UIDevice+Extension.swift in Sources */,
 				AFD508BB1AA5E6BB00444D17 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
-				AF199D531AA72EE6001F252A /* OnboardingLoginViewController.swift in Sources */,
 				835C74E518867603006C6F4F /* POSInvoice.m in Sources */,
 				9C5AB27A1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
 				83DB4AF5188D963400515022 /* POSBaseEncryptedModel.m in Sources */,
@@ -1856,14 +1754,12 @@
 				9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */,
-				AF477E021A77B4A900CBD150 /* OnboardingViewController.swift in Sources */,
 				EC23529E1A0BBD3C0071624C /* UIImage+TintColor.swift in Sources */,
 				83D3551B1861CDDD009EABC6 /* SHCAttachmentTableViewCell.m in Sources */,
 				F8A5593B21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				9CFE61611DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				EC93622919393515006E85FA /* NSNumber+JsonParsing.m in Sources */,
 				ECD0B8981A821DFA00DF3296 /* UIAlertController+APIError.swift in Sources */,
-				3117795C1AAEFCA800229D02 /* QCMethod.swift in Sources */,
 				AF00BB5E1A664BD900261E0B /* AccountTableViewDataSource.swift in Sources */,
 				83D2F7ED18755AAA00344644 /* NSString+SHA1String.m in Sources */,
 				EC0C1A18193476F5007CB53E /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -1910,7 +1806,6 @@
 				EC63A8351A6E701D00708A75 /* APIError.swift in Sources */,
 				EC2484171B206F2B00FC372C /* UIImageView+Color.swift in Sources */,
 				F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
-				311779661AAEFCA800229D02 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1948,20 +1843,17 @@
 				F8AE1BFB1CD374B40009B2F9 /* Debug.swift in Sources */,
 				F8AE1BFC1CD374B40009B2F9 /* MainAccountTableViewCell.swift in Sources */,
 				9C8B656E1DE6437100634166 /* APIClient+Banks.swift in Sources */,
-				F8AE1BFF1CD374B40009B2F9 /* NewFeaturesViewController.swift in Sources */,
 				F8AE1C001CD374B40009B2F9 /* UIImage+Size.swift in Sources */,
 				F8AE1C011CD374B40009B2F9 /* SHCDocumentsViewController+NavigationHierarchy.m in Sources */,
 				F8AE1C021CD374B40009B2F9 /* NSFetchedResultsController+Additions.m in Sources */,
 				9CA38AF81F3B39FE00AABD91 /* ExternalLinkView.swift in Sources */,
 				F8AE1C031CD374B40009B2F9 /* APIClient+GCM.swift in Sources */,
-				F8AE1C041CD374B40009B2F9 /* Guide.swift in Sources */,
 				F8AE1C061CD374B40009B2F9 /* POSDocument+Methods.m in Sources */,
 				F8AE1C071CD374B40009B2F9 /* String+URL.swift in Sources */,
 				F8AE1C0A1CD374B40009B2F9 /* POSAttachment.m in Sources */,
 				F8AE1C0B1CD374B40009B2F9 /* UIViewController+NeedsReload.m in Sources */,
 				F8AE1C0D1CD374B40009B2F9 /* POSFileManager.m in Sources */,
 				F8AE1C0F1CD374B40009B2F9 /* UINavigationController+Extensions.swift in Sources */,
-				F8AE1C111CD374B40009B2F9 /* ForceOrientationNavigationController.swift in Sources */,
 				F8AE1C121CD374B40009B2F9 /* NSURLResponse+HTTP.swift in Sources */,
 				F8AE1C131CD374B40009B2F9 /* SHCOAuthViewController.m in Sources */,
 				F8AE1C141CD374B40009B2F9 /* POSMailbox+Methods.m in Sources */,
@@ -1969,30 +1861,25 @@
 				F8AE1C161CD374B40009B2F9 /* UIBarButtonItem+DigipostBarButtonItems.m in Sources */,
 				F8AE1C171CD374B40009B2F9 /* POSDocumentsViewController.m in Sources */,
 				F8AE1C1A1CD374B40009B2F9 /* POSNewFolderCollectionViewDataSource.m in Sources */,
-				F8F8320C208F22FA00B55A4F /* ReceiptView.swift in Sources */,
 				F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */,
 				F8AFAE941DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
 				F8AE1C1F1CD374B40009B2F9 /* Logger.swift in Sources */,
-				F8AE1C201CD374B40009B2F9 /* WhatsNewGuideItem.swift in Sources */,
 				F8AFAE981DBE50EA00C91DB4 /* InvoiceBankTableViewCell.swift in Sources */,
 				F8AE1C241CD374B40009B2F9 /* NSManagedObject+Attributes.swift in Sources */,
 				F8AE1C251CD374B40009B2F9 /* POSRootResource.m in Sources */,
-				F8AE1C281CD374B40009B2F9 /* ExtendedTouchView.swift in Sources */,
 				F8AE1C2C1CD374B40009B2F9 /* UploadMenuDataSource.swift in Sources */,
 				F8AE1C2D1CD374B40009B2F9 /* SHCSplitViewController.m in Sources */,
 				F8AE1C2F1CD374B40009B2F9 /* UploadMenuViewController.swift in Sources */,
 				F8AE1C301CD374B40009B2F9 /* AccountViewController.swift in Sources */,
 				F8AE1C311CD374B40009B2F9 /* POSUploadViewController.m in Sources */,
 				F8AE1C351CD374B40009B2F9 /* UIColor+DigipostColors.swift in Sources */,
-				F8AE1C361CD374B40009B2F9 /* PeopleView.swift in Sources */,
 				F8AE1C381CD374B40009B2F9 /* UIViewController+Additions.m in Sources */,
 				F8AE1C3B1CD374B40009B2F9 /* NSDate+Extensions.swift in Sources */,
 				F8AE1C3C1CD374B40009B2F9 /* UIDevice+Extension.swift in Sources */,
 				0B1520D21DA38E51000027C1 /* Dictionary.swift in Sources */,
 				F8AE1C411CD374B40009B2F9 /* UIStoryboard+deviceSpesificStoryboard.swift in Sources */,
 				9C5AB27C1EEEB5B0007345D3 /* POSMetadataMapper.swift in Sources */,
-				F8AE1C421CD374B40009B2F9 /* OnboardingLoginViewController.swift in Sources */,
 				F8AE1C451CD374B40009B2F9 /* POSBaseEncryptedModel.m in Sources */,
 				F8AE1C461CD374B40009B2F9 /* UIViewController+ValidateOpening.m in Sources */,
 				9CA38B011F3C404100AABD91 /* POSExternalLink.swift in Sources */,
@@ -2034,14 +1921,12 @@
 				9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */,
 				F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */,
 				F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */,
-				F8AE1C721CD374B40009B2F9 /* OnboardingViewController.swift in Sources */,
 				9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,
 				F8AE1C751CD374B40009B2F9 /* UIImage+TintColor.swift in Sources */,
 				F8AE1C761CD374B40009B2F9 /* SHCAttachmentTableViewCell.m in Sources */,
 				F8A5593D21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8AE1C771CD374B40009B2F9 /* NSNumber+JsonParsing.m in Sources */,
 				F8AE1C781CD374B40009B2F9 /* UIAlertController+APIError.swift in Sources */,
-				F8AE1C791CD374B40009B2F9 /* QCMethod.swift in Sources */,
 				F8AE1C7A1CD374B40009B2F9 /* AccountTableViewDataSource.swift in Sources */,
 				F8AE1C7B1CD374B40009B2F9 /* NSString+SHA1String.m in Sources */,
 				F8AE1C7C1CD374B40009B2F9 /* POSNewFolderCollectionViewCell.m in Sources */,
@@ -2089,7 +1974,6 @@
 				F8AE1CAA1CD374B40009B2F9 /* APIError.swift in Sources */,
 				F8AE1CAB1CD374B40009B2F9 /* UIImageView+Color.swift in Sources */,
 				F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */,
-				F8AE1CAC1CD374B40009B2F9 /* UploadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2140,24 +2024,6 @@
 				9C909A9E1EC5D65D00A59417 /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		EC4146CB1AA73CF3003DBF47 /* WhatsNewGuideTexts.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC4146CA1AA73CF3003DBF47 /* nb */,
-				EC4146CC1AA73CF8003DBF47 /* en */,
-			);
-			name = WhatsNewGuideTexts.strings;
-			sourceTree = "<group>";
-		};
-		EC4146F11AA76130003DBF47 /* OnboardingGuideTexts.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EC4146F01AA76130003DBF47 /* nb */,
-				EC4146F21AA76135003DBF47 /* en */,
-			);
-			name = OnboardingGuideTexts.strings;
 			sourceTree = "<group>";
 		};
 		F83616981DCB6F7E004DAD57 /* Invoice.storyboard */ = {
