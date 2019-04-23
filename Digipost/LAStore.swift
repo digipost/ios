@@ -24,8 +24,8 @@ import LUKeychainAccess
     
     @objc static func isAuthenticated() -> Bool {
         if let authenticated = UserDefaults.standard.object(forKey: LA_STATE) as? Bool {
-            if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? String {
-                let diff = Double(Date().timeIntervalSince1970) - Double(timestamp)!
+            if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? Double {
+                let diff = Date().timeIntervalSince1970 - timestamp
                 let tenMinutes = 600
                 return authenticated && Int(diff) < tenMinutes
             }

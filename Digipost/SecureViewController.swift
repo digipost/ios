@@ -55,9 +55,10 @@ class SecureViewController: UIViewController {
             print("Error: canEvaluatePolicy \(String(describing: error))")
             return
         }
-        
         if(!LAStore.isAuthenticated()){
             accessRequest(policy: policy)
+        }else{
+            authenticated()
         }
     }
     
