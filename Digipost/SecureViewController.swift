@@ -19,15 +19,15 @@ import UIKit
 class SecureViewController: UIViewController {
     
     var blurEffectView: UIVisualEffectView = UIVisualEffectView(effect:  UIBlurEffect(style: .light))
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addblurOverlay()
-        setupAuthenticationPolicy()
+        checkLocalAuthentication()
     }
     
     func addblurOverlay() {
@@ -46,7 +46,7 @@ class SecureViewController: UIViewController {
         }
     }
     
-    func setupAuthenticationPolicy() {
+    func checkLocalAuthentication() {
         if(!LAStore.isAuthenticated()){
             LAStore.authenticateUser(completion: { (success, error) -> () in
                 if(success) {
