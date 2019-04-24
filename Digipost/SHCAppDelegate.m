@@ -174,7 +174,6 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-
     [self GAEventLaunchType];
     [[GCMService sharedInstance] connectWithHandler:^(NSError *error) {
         if (error) {
@@ -183,6 +182,30 @@
             self->_connectedToGCM = true;
         }
     }];
+    [self checkLocalAuthentication];
+}
+
+-(void) authenticated {
+    NSLog(@"authenticated: Great Success");
+}
+
+-(void) notAuthenticated {
+    NSLog(@"authenticated: Failed");
+}
+
+-(void) checkLocalAuthentication {
+    if(![LAStore isAuthenticated]   ){
+        [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* error) {
+            NSLog(@"authenticated error %@", error);
+            if(success){
+                [self authenticated];
+            }else{
+                [self notAuthenticated];
+            }
+        }];
+    }else{
+        [self authenticated];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
