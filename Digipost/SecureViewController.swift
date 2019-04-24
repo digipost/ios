@@ -26,11 +26,11 @@ class SecureViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        blurOverlay()
+        addblurOverlay()
         setupAuthenticationPolicy()
     }
     
-    func blurOverlay() {
+    func addblurOverlay() {
         if !UIAccessibilityIsReduceTransparencyEnabled() {
             blurEffectView.frame = self.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -48,20 +48,19 @@ class SecureViewController: UIViewController {
     
     func setupAuthenticationPolicy() {
         if(!LAStore.isAuthenticated()){
-            
             LAStore.authenticateUser(completion: { (success, error) -> () in
                 if(success) {
-                    self.authenticated()
+                    self.showView()
                 }else{
                     self.dismissView()
                 }
             })
         }else{
-            authenticated()
+            showView()
         }
     }
     
-    func authenticated() {
+    func showView() {
         self.removeBlur()
         NotificationCenter.default.addObserver(self, selector: #selector(SecureViewController.dismissView), name: NSNotification.Name.UIApplicationWillResignActive, object: nil)
     }
