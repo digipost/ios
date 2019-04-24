@@ -15,11 +15,9 @@
 //
 
 import UIKit
-import LocalAuthentication
 
 class SecureViewController: UIViewController {
     
-    var context = LAContext()
     var blurEffectView: UIVisualEffectView = UIVisualEffectView(effect:  UIBlurEffect(style: .light))
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,14 +47,15 @@ class SecureViewController: UIViewController {
     }
     
     func setupAuthenticationPolicy() {
-        let policy: LAPolicy = .deviceOwnerAuthentication
-        var error: NSError?
-        guard context.canEvaluatePolicy(policy, error: &error) else {
-            print("Error: canEvaluatePolicy \(String(describing: error))")
-            return
-        }
         if(!LAStore.isAuthenticated()){
-            accessRequest(policy: policy)
+            
+            LAStore.authenticateUser(completion: { (success, error) -> () in
+                if(success) {
+                    self.authenticated()
+                }else{
+                    self.dismissView()
+                }
+            })
         }else{
             authenticated()
         }
@@ -72,32 +71,5 @@ class SecureViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
             self.dismiss(animated: true, completion: nil)
         }
-    }
-    
-    func accessRequest(policy: LAPolicy) {
-        context.evaluatePolicy(policy, localizedReason: NSLocalizedString("settings access request", comment: "settings access request"), reply: { (success, error) in
-            
-            if(success) {
-                LAStore.saveAuthenticationState(authenticated: true)
-                self.authenticated()
-            }else{
-                if let error = error {
-                    switch(error) {
-                    case LAError.touchIDLockout:
-                        print("There were too many failed Touch ID attempts and Touch ID is now locked.")
-                    case LAError.appCancel:
-                        print("Authentication was canceled by application.")
-                    case LAError.invalidContext:
-                        print("LAContext passed to this call has been previously invalidated.")
-                    default:
-                        print("Touch ID may not be configured")
-                    }
-                } else{
-                    print("Error: evaluatePolicy failed without error")
-                }
-                LAStore.saveAuthenticationState(authenticated: false)
-                self.dismissView()
-            }
-        })
     }
 }
