@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (weak, nonatomic) POSLetterViewController *letterViewController;
+@property (nonatomic, readonly, strong) UIView *localAuthenticationOverlayView;
 
 //GCM
 @property(nonatomic, readonly, strong) NSString *registrationKey;

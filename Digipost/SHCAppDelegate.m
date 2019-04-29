@@ -44,6 +44,8 @@
 @property(nonatomic, strong) NSString* registrationToken;
 @property(nonatomic, strong) NSDate* notificationReceived;
 
+@property(nonatomic, strong) UIView *localAuthenticationOverlayView;
+
 @end
 
 @implementation SHCAppDelegate
@@ -182,15 +184,21 @@
             self->_connectedToGCM = true;
         }
     }];
-    [self checkLocalAuthentication];
+    if ([OAuthToken isUserLoggedIn]) {
+        [self checkLocalAuthentication];
+    }
 }
 
 -(void) authenticated {
     NSLog(@"authenticated: Great Success");
+    [self removeAuthOverlayView];
+
 }
 
 -(void) notAuthenticated {
     NSLog(@"authenticated: Failed");
+    [self removeAuthOverlayView];
+
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -202,10 +210,7 @@
 }
 
 -(void) checkLocalAuthentication {
-    UIView *overlayView = [[UIView alloc] initWithFrame:self.window.frame];
-    overlayView.backgroundColor = [UIColor whiteColor];
-    [self.window.rootViewController.view addSubview:overlayView];
-    
+    [self addAuthOverlayView];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
     if(![LAStore isValidAuthenticationAndTimestamp]){
@@ -213,22 +218,25 @@
             NSLog(@"authenticated error %@", error);
             if(success){
                 [self authenticated];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                [overlayView removeFromSuperview];
-                });
             }else{
                 [self notAuthenticated];
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [overlayView removeFromSuperview];
-                });
             }
         }];
     }else{
         [self authenticated];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [overlayView removeFromSuperview];
-        });
     }
+}
+
+-(void) addAuthOverlayView {
+    _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
+    _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
+    [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+}
+
+-(void) removeAuthOverlayView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->_localAuthenticationOverlayView removeFromSuperview];
+    });
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
