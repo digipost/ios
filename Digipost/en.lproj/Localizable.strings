@@ -479,3 +479,4 @@
 
 /* Access request */
 "settings access request" = "Unlock settings";
+"localauthentication_request" = "Unlock Digipost";
