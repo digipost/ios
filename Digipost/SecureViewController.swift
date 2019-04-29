@@ -47,7 +47,7 @@ import UIKit
     
     func checkLocalAuthentication() {
         if(!LAStore.authenticationIsValid()){
-            LAStore.authenticateUser(completion: { (success, error) -> () in
+            LAStore.authenticateUser(completion: { (success, errorText, userCancel) -> () in
                 if(success) {
                     self.showView()
                 }else{

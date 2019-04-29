@@ -58,27 +58,32 @@ import LUKeychainAccess
         UserDefaults.standard.synchronize()
     }
     
-    @objc static func authenticateUser(completion: @escaping (_ success: Bool, _ error: String) -> Void){
+    @objc static func authenticateUser(completion: @escaping (_ success: Bool, _ errorText: String, _ userCancel: Bool) -> Void){
         let policy: LAPolicy = .deviceOwnerAuthentication
         var error: NSError?
         let context = LAContext()
         guard context.canEvaluatePolicy(policy, error: &error) else {
-            completion(false, "Error: canEvaluatePolicy \(String(describing: error))")
+            print(String(describing: error))
+            completion(false, "Error: canEvaluatePolicy \(String(describing: error))", false)
             return
         }
         
         context.evaluatePolicy(policy, localizedReason: NSLocalizedString("localauthentication_request", comment: "localauthentication_request"), reply: { (success, error) in
             if(success) {
                 LAStore.saveAuthenticationState(authenticated: true)
-                completion(true, "")
+                completion(true, "", false)
             }else{
-                var errorText = "Error: evaluatePolicy failed without error";
+                var userCancel = false
+                var errorText = "Error: evaluatePolicy failed without error"
                 if let error = error {
                     switch(error) {
                     case LAError.touchIDLockout:
                         errorText = "There were too many failed Touch ID attempts and Touch ID is now locked."
                     case LAError.appCancel:
                         errorText = "Authentication was canceled by application."
+                    case LAError.userCancel:
+                        errorText = "The user tapped the cancel button in the authentication dialog."
+                        userCancel = true
                     case LAError.invalidContext:
                         errorText = "LAContext passed to this call has been previously invalidated."
                     default:
@@ -86,7 +91,7 @@ import LUKeychainAccess
                     }
                 }
                 LAStore.saveAuthenticationState(authenticated: false)
-                completion(false, errorText)
+                completion(false, errorText, userCancel)
             }
         })
     }

@@ -214,8 +214,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
     if(![LAStore isValidAuthenticationAndTimestamp]){
-        [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* error) {
-            NSLog(@"authenticated error %@", error);
+        [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
+            NSLog(@"authenticated error %@", errorText);
             if(success){
                 [self authenticated];
             }else{
