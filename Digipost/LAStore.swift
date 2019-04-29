@@ -22,20 +22,39 @@ import LUKeychainAccess
     static let LA_STATE = "LocalAuthenticationState"
     static let LA_TIMESTAMP = "LocalAuthenticationTimestamp"
     
-    @objc static func isAuthenticated() -> Bool {
+    @objc static func isValidAuthenticationAndTimestamp() -> Bool {
+        return authenticationIsValid() && timestampIsValid()
+    }
+    
+    @objc static func authenticationIsValid() -> Bool {
         if let authenticated = UserDefaults.standard.object(forKey: LA_STATE) as? Bool {
-            if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? Double {
-                let diff = Date().timeIntervalSince1970 - timestamp
-                let tenMinutes = 600
-                return authenticated && Int(diff) < tenMinutes
-            }
+            return authenticated
         }
         return false
     }
     
+    @objc static func timestampIsValid() -> Bool {
+        if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? Double {
+            let diff = Date().timeIntervalSince1970 - timestamp
+            let timeLimit = 20
+            return Int(diff) < timeLimit
+        }
+        return false
+    }
+    
+    @objc static func deleteAuthenticationAndTimestamp() {
+        UserDefaults.standard.removeObject(forKey: LA_STATE)
+        UserDefaults.standard.removeObject(forKey: LA_TIMESTAMP)
+        UserDefaults.standard.synchronize()
+    }
+    
     @objc static func saveAuthenticationState(authenticated: Bool) {
         UserDefaults.standard.set(authenticated, forKey: LA_STATE)
-        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: LA_TIMESTAMP)
+        UserDefaults.standard.synchronize()
+    }
+    
+    @objc static func saveAuthenticationTimeout(timestamp: TimeInterval) {
+        UserDefaults.standard.set(timestamp,forKey: LA_TIMESTAMP)
         UserDefaults.standard.synchronize()
     }
     
@@ -48,7 +67,7 @@ import LUKeychainAccess
             return
         }
         
-        context.evaluatePolicy(policy, localizedReason: NSLocalizedString("settings access request", comment: "settings access request"), reply: { (success, error) in
+        context.evaluatePolicy(policy, localizedReason: NSLocalizedString("localauthentication_request", comment: "localauthentication_request"), reply: { (success, error) in
             if(success) {
                 LAStore.saveAuthenticationState(authenticated: true)
                 completion(true, "")

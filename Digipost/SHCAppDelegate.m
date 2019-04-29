@@ -193,18 +193,41 @@
     NSLog(@"authenticated: Failed");
 }
 
+-(void) setLocalReAuthenticationTimer {
+    [LAStore saveAuthenticationTimeoutWithTimestamp: [[NSDate date] timeIntervalSince1970]];
+}
+
+-(void) deleteLocalAuthenticationState {
+    [LAStore deleteAuthenticationAndTimestamp];
+}
+
 -(void) checkLocalAuthentication {
-    if(![LAStore isAuthenticated]   ){
+    UIView *overlayView = [[UIView alloc] initWithFrame:self.window.frame];
+    overlayView.backgroundColor = [UIColor whiteColor];
+    [self.window.rootViewController.view addSubview:overlayView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
+    if(![LAStore isValidAuthenticationAndTimestamp]){
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* error) {
             NSLog(@"authenticated error %@", error);
             if(success){
                 [self authenticated];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                [overlayView removeFromSuperview];
+                });
             }else{
                 [self notAuthenticated];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [overlayView removeFromSuperview];
+                });
             }
         }];
     }else{
         [self authenticated];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [overlayView removeFromSuperview];
+        });
     }
 }
 
@@ -212,6 +235,7 @@
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
     [[GCMService sharedInstance] disconnect];
     _connectedToGCM = NO;
+
 }
 
 - (void)onTokenRefresh {
