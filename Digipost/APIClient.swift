@@ -177,11 +177,13 @@ import AFNetworking
         }
     }
 
-    func logoutThenDeleteAllStoredData() {
+    @objc func logoutThenDeleteAllStoredData() {
         cancelAllRunningTasks { () -> Void in
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
+                    print(error.alertTitle)
+                    print(error.altertMessage)
                 // gets run for every failed request
             }
         }

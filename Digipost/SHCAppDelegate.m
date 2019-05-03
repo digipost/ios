@@ -189,10 +189,15 @@
     }
 }
 
+-(void)userCanceledLocalAuthentication {
+    NSLog(@"authenticated: logoutThenDeleteAllStoredData");
+    [self revokeGCMToken];
+    [[APIClient sharedClient] logoutThenDeleteAllStoredData];
+}
+
 -(void) authenticated {
     NSLog(@"authenticated: Great Success");
     [self removeAuthOverlayView];
-
 }
 
 -(void) notAuthenticated {
@@ -220,6 +225,9 @@
                 [self authenticated];
             }else{
                 [self notAuthenticated];
+                if(userCancel){
+                    [self userCanceledLocalAuthentication];
+                }
             }
         }];
     }else{
