@@ -47,11 +47,10 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginIdPortenButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 @property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (strong, nonatomic) UIImageView *titleImageView;
-@property (weak, nonatomic) IBOutlet UIButton *forgotPasswordButton;
-
 @end
 
 @interface SHCLoginViewController () <SFSafariViewControllerDelegate>
@@ -102,8 +101,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", @"Privacy")
                         forState:UIControlStateNormal];
     
-    [self.forgotPasswordButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_FORGOT_PASSWORD_BUTTON", @"Forgot password")
-                               forState:UIControlStateNormal];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if([OAuthToken isUserLoggedIn] == YES ){
@@ -142,7 +139,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]) {
+    if ([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier] || [segue.identifier isEqualToString:@"PresentOAuthIdPortenModally"]) {
         SHCOAuthViewController *oAuthViewController;
         UINavigationController *navigationController = segue.destinationViewController;
         
@@ -152,7 +149,12 @@ NSString *const kLoginViewControllerScreenName = @"Login";
             oAuthViewController = (id)segue.destinationViewController;
         }
         oAuthViewController.delegate = self;
-        oAuthViewController.scope = kOauth2ScopeFull;
+        if([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]){
+            oAuthViewController.scope = kOauth2ScopeFull;
+        }else if([segue.identifier isEqualToString:@"PresentOAuthIdPortenModally"]){
+            oAuthViewController.scope = kOauth2ScopeFull_Idporten4;
+        }
+        
         
         [self performSelector:@selector(showLoginButtonsIfHidden) withObject:nil afterDelay:0.5];
         

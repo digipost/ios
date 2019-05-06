@@ -21,13 +21,13 @@ extension UIStoryboard {
         let device = UIDevice.current.userInterfaceIdiom
         switch device {
         case .phone:
-            return UIStoryboard(name: "Main_iPhone", bundle: nil) 
+            return UIStoryboard(name: "LoginView", bundle: nil) 
         case .pad:
             return UIStoryboard(name: "Main_iPad", bundle: nil)
         case .unspecified:
-            return UIStoryboard(name: "Main_iPhone", bundle: nil)
+            return UIStoryboard(name: "LoginView", bundle: nil)
         default:
-            return UIStoryboard(name: "Main_iPhone", bundle: nil)
+            return UIStoryboard(name: "LoginView", bundle: nil)
         }
     }
 }

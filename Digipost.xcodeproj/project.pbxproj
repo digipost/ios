@@ -205,8 +205,6 @@
 		F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7131217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
-		F81CF70D227C6653009F88D3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CF70C227C6653009F88D3 /* LoginView.swift */; };
-		F81CF70E227C6653009F88D3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81CF70C227C6653009F88D3 /* LoginView.swift */; };
 		F8331156227ADA8600131E6D /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8331155227ADA8600131E6D /* LoginView.storyboard */; };
 		F8331157227ADA8600131E6D /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8331155227ADA8600131E6D /* LoginView.storyboard */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
@@ -692,7 +690,6 @@
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F712F217729EC000D4685 /* ContactView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactView.storyboard; sourceTree = "<group>"; };
 		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
-		F81CF70C227C6653009F88D3 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F8331155227ADA8600131E6D /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -1181,7 +1178,6 @@
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */,
 				F8331155227ADA8600131E6D /* LoginView.storyboard */,
-				F81CF70C227C6653009F88D3 /* LoginView.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1766,7 +1762,6 @@
 				9C7A35831E28D8FB00C8A4F5 /* SingleUseWebViewController.swift in Sources */,
 				EC22CF8C1A6670D2004D66AB /* APIClient+URLSessionTask.swift in Sources */,
 				EC0C1A1D1934A5B3007CB53E /* UIColor+Convenience.m in Sources */,
-				F81CF70D227C6653009F88D3 /* LoginView.swift in Sources */,
 				9C5AB2821EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				83D75F541858E5790013F8C9 /* POSDocument.m in Sources */,
 				9C962A131EE69F2700436DB3 /* POSAppointment.swift in Sources */,
@@ -1937,7 +1932,6 @@
 				9C5AB2831EEFED44007345D3 /* POSMetadataObject.swift in Sources */,
 				F8AE1C6E1CD374B40009B2F9 /* APIClient+URLSessionTask.swift in Sources */,
 				9C962A151EE69F2700436DB3 /* POSAppointment.swift in Sources */,
-				F81CF70E227C6653009F88D3 /* LoginView.swift in Sources */,
 				F8AE1C701CD374B40009B2F9 /* UIColor+Convenience.m in Sources */,
 				F8AE1C711CD374B40009B2F9 /* POSDocument.m in Sources */,
 				9CFE61631DEC58DD0097A53B /* InvoiceBankAgreement.swift in Sources */,

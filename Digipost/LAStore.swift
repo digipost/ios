@@ -36,7 +36,7 @@ import LUKeychainAccess
     @objc static func timestampIsValid() -> Bool {
         if let timestamp = UserDefaults.standard.object(forKey: LA_TIMESTAMP) as? Double {
             let diff = Date().timeIntervalSince1970 - timestamp
-            let timeLimitInSeconds = 10
+            let timeLimitInSeconds = 5
             return Int(diff) < timeLimitInSeconds
         }
         return false
