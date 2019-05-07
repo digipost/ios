@@ -368,7 +368,7 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         storyboard = [UIStoryboard storyboardWithName:@"Main_iPad" bundle:nil];
     } else {
-        storyboard = [UIStoryboard storyboardWithName:@"LoginView" bundle:nil];
+        storyboard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     }
     UINavigationController *uploadNavigationController = (id)[storyboard instantiateViewControllerWithIdentifier:@"uploadNavigationController"];
     

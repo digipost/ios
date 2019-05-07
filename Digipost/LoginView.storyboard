@@ -276,7 +276,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYE-KR-Mhv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-268.125" y="-713.02816901408448"/>
+            <point key="canvasLocation" x="672.79999999999995" y="-713.05418719211821"/>
         </scene>
         <!--RegistrationView-->
         <scene sceneID="qkO-6E-NYL">
@@ -284,7 +284,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="singleUseWebViewController" storyboardName="Main_iPhone" referencedIdentifier="RegistrationView" id="LzJ-4M-HI8" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="InU-yb-ZPl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="674" y="-974"/>
+            <point key="canvasLocation" x="1647.2" y="-749.26108374384239"/>
         </scene>
         <!--OAuthNavController-->
         <scene sceneID="cmi-hJ-38c">
@@ -292,7 +292,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="OAuthNavController" storyboardName="Main_iPhone" referencedIdentifier="OAuthNavController" id="vB2-tg-XFg" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vEE-YW-4D9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="719" y="-673"/>
+            <point key="canvasLocation" x="1662.4000000000001" y="-693.10344827586209"/>
         </scene>
         <!--accountViewController-->
         <scene sceneID="GuB-8c-fng">

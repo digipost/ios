@@ -44,8 +44,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 @interface SHCLoginViewController () <SHCOAuthViewControllerDelegate>
 
-@property (strong, nonatomic) IBOutlet UIView *loginView;
-@property (strong, nonatomic) IBOutlet UIImageView *loginBackgroundImageView;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *loginIdPortenButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
@@ -154,10 +152,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         }else if([segue.identifier isEqualToString:@"PresentOAuthIdPortenModally"]){
             oAuthViewController.scope = kOauth2ScopeFull_Idporten4;
         }
-        
-        
-        [self performSelector:@selector(showLoginButtonsIfHidden) withObject:nil afterDelay:0.5];
-        
     }else if ([segue.identifier isEqualToString:kRegistrationWebViewIdentifier]) {
         [self sendAnalyticsEvent:@"registrering"];
         
@@ -177,13 +171,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         webView.viewTitle = NSLocalizedString(@"forgot password title", "Forgot Password");
         webView.initUrl = @"https://www.digipost.no/app/#/person/glemt";
         
-    }
-}
-
-- (void)showLoginButtonsIfHidden
-{
-    if ([self.loginView isHidden]) {
-        [self.loginView setHidden:NO];
     }
 }
 
@@ -221,10 +208,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     SFSafariViewController *safariVC = [[SFSafariViewController alloc]initWithURL:url];
     safariVC.delegate = self;
     [self presentViewController:safariVC animated:NO completion:nil];
-}
-
-- (IBAction)unwindToLoginViewController:(UIStoryboardSegue *)unwindSegue
-{
 }
 
 -(void) sendAnalyticsEvent: (NSString*) event {
