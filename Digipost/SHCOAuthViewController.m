@@ -66,18 +66,7 @@ Boolean tryToFillUsing1Password = false;
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
 
     [self remove1PasswordButtonIfNotNormalLoginScope];
-    if (self.scope == kOauth2ScopeFull) {
-        [self.webView setKeyboardDisplayRequiresUserAction:NO]; // Må ikke brukes for høyere innlogging fordi den skaper en fokus-bug med innlogging i buypass-webview
-        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-            [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                                alpha:0.8] }
-                                                                 forState:UIControlStateNormal];
-        }
-    } else {
-        [self setupUIForIncreasedAuthenticationLevelVC];
-    }
-
+    [self setupBackButton];
     [self presentAuthenticationWebView];
 }
 
@@ -93,13 +82,10 @@ Boolean tryToFillUsing1Password = false;
     }
 }
 
-- (void)setupUIForIncreasedAuthenticationLevelVC
+- (void)setupBackButton
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                        alpha:0.8] }
-
-                                                         forState:UIControlStateNormal];
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.8] } forState:UIControlStateNormal];
 }
 
 -(void)clearCacheAndCookies{

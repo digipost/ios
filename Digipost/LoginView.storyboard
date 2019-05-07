@@ -300,7 +300,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="accountViewController" storyboardName="Main_iPhone" referencedIdentifier="accountViewController" id="LVq-gQ-Crk" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Weg-Em-5dR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="238" y="-113"/>
+            <point key="canvasLocation" x="1106" y="-113"/>
         </scene>
         <!--documentsViewControllerIdentifier-->
         <scene sceneID="ySx-em-s9E">
@@ -308,7 +308,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="documentsViewControllerIdentifier" storyboardName="Main_iPhone" referencedIdentifier="documentsViewControllerIdentifier" id="tRa-5g-n8H" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtL-H1-tCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-247" y="-113"/>
+            <point key="canvasLocation" x="673" y="-113"/>
         </scene>
         <!--FoldersViewController-->
         <scene sceneID="18K-EW-OPo">
@@ -316,7 +316,7 @@
                 <viewControllerPlaceholder storyboardIdentifier="FoldersViewController" storyboardName="Main_iPhone" referencedIdentifier="FoldersViewController" id="yvi-hM-IY2" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KR-aq-5TB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-740" y="-113"/>
+            <point key="canvasLocation" x="223" y="-113"/>
         </scene>
     </scenes>
     <resources>
