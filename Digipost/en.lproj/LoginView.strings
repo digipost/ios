@@ -9,7 +9,7 @@
 "FLY-u3-LrI.normalTitle" = "Read more here";
 
 /* Class = "UILabel"; text = "Tilgang til å lese all post i Digipost."; ObjectID = "FhE-Nv-ifg"; */
-"FhE-Nv-ifg.text" = "Access to read all mail in Digipost.";
+"FhE-Nv-ifg.text" = "Access to read all messages in Digipost.";
 
 /* Class = "UILabel"; text = "Personvern i Digipost"; ObjectID = "Fkx-Nm-PaJ"; */
 "Fkx-Nm-PaJ.text" = "Privacy in Digipost";
