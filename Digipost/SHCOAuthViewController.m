@@ -238,10 +238,7 @@ Boolean tryToFillUsing1Password = false;
 
 - (void)didTapCloseBarButtonItem:(id)sender
 {
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-
-                             }];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)presentAuthenticationWebView

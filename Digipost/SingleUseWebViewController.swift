@@ -29,6 +29,8 @@ import WebKit
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.title = viewTitle
         
+        let newBackButton = UIBarButtonItem(title: NSLocalizedString("GENERIC_CANCEL_BUTTON_TITLE",comment:"Tilbake"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(SingleUseWebViewController.dismissView))
+        self.navigationItem.leftBarButtonItem = newBackButton
         let myURL = URL(string: initUrl)
         let request = NSMutableURLRequest(url: myURL!)
         webView.loadRequest(request as URLRequest)
@@ -38,5 +40,9 @@ import WebKit
         webView = UIWebView(frame: .zero)
         webView.delegate = self
         view = webView
+    }
+    
+    @objc func dismissView() {
+        dismiss(animated: true, completion: {});
     }
 }
