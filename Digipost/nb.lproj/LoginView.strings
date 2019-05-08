@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Logg inn med elektronisk ID"; ObjectID = "6NS-t9-yYV"; */
+"6NS-t9-yYV.text" = "Logg inn med elektronisk ID";
+
+/* Class = "UILabel"; text = "Velg mellom innloggingsalternativene:"; ObjectID = "Cya-af-FJz"; */
+"Cya-af-FJz.text" = "Velg mellom innloggingsalternativene:";
+
+/* Class = "UIButton"; normalTitle = "Les mer her"; ObjectID = "FLY-u3-LrI"; */
+"FLY-u3-LrI.normalTitle" = "Les mer her";
+
+/* Class = "UILabel"; text = "Tilgang til å lese all post i Digipost."; ObjectID = "FhE-Nv-ifg"; */
+"FhE-Nv-ifg.text" = "Tilgang til å lese all post i Digipost.";
+
+/* Class = "UILabel"; text = "Personvern i Digipost"; ObjectID = "Fkx-Nm-PaJ"; */
+"Fkx-Nm-PaJ.text" = "Personvern i Digipost";
+
+/* Class = "UINavigationItem"; title = "Logg inn"; ObjectID = "H5t-9X-F2H"; */
+"H5t-9X-F2H.title" = "Logg inn";
+
+/* Class = "UILabel"; text = "Passord-innlogging"; ObjectID = "ITd-ev-TEE"; */
+"ITd-ev-TEE.text" = "Passord-innlogging";
+
+/* Class = "UILabel"; text = "Har du ikke Digipost-konto?"; ObjectID = "KOr-Rj-FHb"; */
+"KOr-Rj-FHb.text" = "Har du ikke Digipost-konto?";
+
+/* Class = "UIButton"; normalTitle = "Registrer deg her"; ObjectID = "ZK3-le-B8c"; */
+"ZK3-le-B8c.normalTitle" = "Registrer deg her";
+
+/* Class = "UIButton"; normalTitle = "Fødselsnummer og passord"; ObjectID = "nau-j1-HXE"; */
+"nau-j1-HXE.normalTitle" = "Fødselsnummer og passord";
+
+/* Class = "UILabel"; text = "MinID, BankID (på mobil) og Buypass ID"; ObjectID = "oLR-n1-QS7"; */
+"oLR-n1-QS7.text" = "MinID, BankID (på mobil) og Buypass ID";
+
+/* Class = "UIButton"; normalTitle = "Logg inn"; ObjectID = "vTi-Z1-AlP"; */
+"vTi-Z1-AlP.normalTitle" = "Logg inn";

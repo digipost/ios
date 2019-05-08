@@ -78,8 +78,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [super viewDidLoad];
     
     self.loginButton.accessibilityLabel = @"Login Digipost";
-    
-    
     self.screenName = kLoginViewControllerScreenName;
     
     @try {
@@ -92,18 +90,9 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         //        DDLogWarn(@"Caught an exception: %@", exception);
     }
     
-    [self.loginButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE", @"Sign In")
-                      forState:UIControlStateNormal];
-    [self.registerButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", @"New user")
-                         forState:UIControlStateNormal];
-    [self.privacyButton setTitle:NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE", @"Privacy")
-                        forState:UIControlStateNormal];
-    
-    
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if([OAuthToken isUserLoggedIn] == YES ){
             [self presentAppropriateViewControllerForIPhone];
-            
         }
     }
 }

@@ -205,8 +205,6 @@
 		F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7131217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
-		F8331156227ADA8600131E6D /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8331155227ADA8600131E6D /* LoginView.storyboard */; };
-		F8331157227ADA8600131E6D /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8331155227ADA8600131E6D /* LoginView.storyboard */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
@@ -382,6 +380,8 @@
 		F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
+		F8E5F66A2282C0CF000F9C51 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E5F66D2282C0CF000F9C51 /* LoginView.storyboard */; };
+		F8E5F66B2282C0CF000F9C51 /* LoginView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8E5F66D2282C0CF000F9C51 /* LoginView.storyboard */; };
 		FBC8B9E6C73B77C7C8C7E6CD /* Pods_DigipostQA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC32F3BDC1855C49995462C7 /* Pods_DigipostQA.framework */; };
 /* End PBXBuildFile section */
 
@@ -690,7 +690,6 @@
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F712F217729EC000D4685 /* ContactView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactView.storyboard; sourceTree = "<group>"; };
 		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
-		F8331155227ADA8600131E6D /* LoginView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginView.storyboard; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -720,6 +719,9 @@
 		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
 		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		F8E5F66F2282C0D2000F9C51 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LoginView.strings; sourceTree = "<group>"; };
+		F8E5F6702282C0FE000F9C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginView.storyboard; sourceTree = "<group>"; };
+		F8E5F6712282C3D0000F9C51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LoginView.strings; sourceTree = "<group>"; };
 		F8F44E981DA65F4C003B3306 /* Digipost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Digipost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1177,7 +1179,7 @@
 				83F703641855E9E0003DABE1 /* SHCLoginViewController.h */,
 				83F703651855E9E0003DABE1 /* SHCLoginViewController.m */,
 				9C7A35821E28D8FB00C8A4F5 /* SingleUseWebViewController.swift */,
-				F8331155227ADA8600131E6D /* LoginView.storyboard */,
+				F8E5F66D2282C0CF000F9C51 /* LoginView.storyboard */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1503,7 +1505,7 @@
 				83BAB9261855C0AC004A7BFB /* InfoPlist.strings in Resources */,
 				AF2342351A651F1800CD92E3 /* AccountTableViewCell.xib in Resources */,
 				F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */,
-				F8331156227ADA8600131E6D /* LoginView.storyboard in Resources */,
+				F8E5F66A2282C0CF000F9C51 /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,7 +1554,7 @@
 				F8AE1CD71CD374B40009B2F9 /* InfoPlist.strings in Resources */,
 				F8AE1CD91CD374B40009B2F9 /* AccountTableViewCell.xib in Resources */,
 				F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */,
-				F8331157227ADA8600131E6D /* LoginView.storyboard in Resources */,
+				F8E5F66B2282C0CF000F9C51 /* LoginView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2058,6 +2060,16 @@
 				F8BCF939207F874C00D212A9 /* nb */,
 			);
 			name = UnlockHighAuthenticationLevelView.xib;
+			sourceTree = "<group>";
+		};
+		F8E5F66D2282C0CF000F9C51 /* LoginView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F8E5F66F2282C0D2000F9C51 /* nb */,
+				F8E5F6702282C0FE000F9C51 /* Base */,
+				F8E5F6712282C3D0000F9C51 /* en */,
+			);
+			name = LoginView.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
