@@ -149,17 +149,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         webView = (id)navigationController.topViewController;
         webView.viewTitle = NSLocalizedString(@"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE", "New user");
         webView.initUrl = @"https://www.digipost.no/app/registrering?utm_source=iOS_app&utm_medium=app&utm_campaign=app-link&utm_content=ny_bruker#/";
-        
-        
-    }else if ([segue.identifier isEqualToString:kForgotPasswordWebViewIdentifier]) {
-        
-        [self sendAnalyticsEvent:@"glemt-passord"];
-        SingleUseWebViewController *webView = (SingleUseWebViewController*) segue.destinationViewController;
-        UINavigationController *navigationController = segue.destinationViewController;
-        webView = (id)navigationController.topViewController;
-        webView.viewTitle = NSLocalizedString(@"forgot password title", "Forgot Password");
-        webView.initUrl = @"https://www.digipost.no/app/#/person/glemt";
-        
     }
 }
 
