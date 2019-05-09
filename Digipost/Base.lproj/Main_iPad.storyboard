@@ -9,15 +9,15 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--LoginView-->
+        <!--LoginViewNavController-->
         <scene sceneID="LbK-DW-OLI">
             <objects>
-                <viewControllerPlaceholder storyboardName="LoginView" referencedIdentifier="LoginView" id="ApO-n8-dqT" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="LoginView" referencedIdentifier="LoginViewNavController" id="ApO-n8-dqT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Bhd-mf-vUw"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bGj-gf-a2a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-586" y="-904"/>
+            <point key="canvasLocation" x="-554" y="-910"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="pY4-Hu-kfo">

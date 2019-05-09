@@ -164,9 +164,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
         
-        [self.navigationController dismissViewControllerAnimated:YES
-                                                      completion:^{
-                                                      }];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                             object:@NO];
     } else {
