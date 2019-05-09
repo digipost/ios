@@ -81,7 +81,7 @@ NSString *const kEditingStatusKey = @"editingStatusKey";
     [self.navigationController.toolbar setBarTintColor:[UIColor colorWithRed:64.0 / 255.0
                                                                        green:66.0 / 255.0
                                                                         blue:69.0 / 255.0
-                                                                       alpha:0.95]];
+                                                                       alpha:1]];
     
     self.selectionBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_SELECT_ALL_TITLE", @"Select all");
     self.moveBarButtonItem.title = NSLocalizedString(@"DOCUMENTS_VIEW_CONTROLLER_TOOLBAR_MOVE_TITLE", @"Move");
