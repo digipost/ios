@@ -1462,7 +1462,7 @@
 			};
 			buildConfigurationList = 83BAB9131855C0AC004A7BFB /* Build configuration list for PBXProject "Digipost" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
