@@ -27,6 +27,7 @@ import UIKit
     override func viewDidLoad() {
         super.viewDidLoad()
         addblurOverlay()
+        checkLocalAuthentication()
     }
 
     func addblurOverlay() {
