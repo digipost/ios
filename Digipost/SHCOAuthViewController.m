@@ -125,6 +125,8 @@ Boolean tryToFillUsing1Password = false;
                                                               // The OAuth manager has successfully authenticated with code - which means we've
                                                               // got an access code and a refresh code, and can dismiss this view controller
                                                               // and let the login view controller take over and push the folders view controller.
+                                                              [LAStore saveAuthenticationStateWithAuthenticated:TRUE];
+                                                              [LAStore saveAuthenticationTimeoutWithTimestamp:[[NSDate date] timeIntervalSince1970]];
                                                               [self dismissViewControllerAnimated:YES
                                                                                        completion:^{
                                                                                            if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
