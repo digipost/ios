@@ -43,12 +43,14 @@
 (NSString *registrationToken, NSError *error);
 @property(nonatomic, strong) NSString* registrationToken;
 @property(nonatomic, strong) NSDate* notificationReceived;
-
 @property(nonatomic, strong) UIView *localAuthenticationOverlayView;
+
 
 @end
 
 @implementation SHCAppDelegate
+BOOL addedLocalAuthenticationOverlay = FALSE;
+BOOL showingLogoutModal = FALSE;
 
 #pragma mark - UIApplicationDelegate
 
@@ -58,8 +60,6 @@
     
     [AppVersionManager deleteOldTokensIfReinstall];
     [self setupGoogleAnalytics];
-        
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [SHCAppDelegate setupAppearance];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startUploading:) name:kStartUploadingDocumentNotitification object:nil];
     [InvoiceBankAgreement updateActiveBankAgreementStatus];
@@ -73,11 +73,11 @@
     fetchRequest.resultType = NSDictionaryResultType;
     NSError *error = nil;
     NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:&error];
-
+    
     if (results.count > 0){
         return TRUE;
     }
-
+    
     return FALSE;
 }
 
@@ -86,63 +86,63 @@
     GCMToken *gcmtoken = [NSEntityDescription insertNewObjectForEntityForName:@"GCMToken" inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
     gcmtoken.token = token;
     NSError *error;
-
+    
     [[POSModelManager sharedManager].managedObjectContext save:&error];
 }
 
 - (void)initGCM {
     if([self GCMTokenExist] == NO){
-    _registrationKey = @"onRegistrationCompleted";
-    
-    NSError* configureError;
-    [[GGLContext sharedInstance] configureWithError:&configureError];
-    
-    NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
-    _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
+        _registrationKey = @"onRegistrationCompleted";
         
-    GCMConfig *gcmConfig = [GCMConfig defaultConfig];
-    gcmConfig.receiverDelegate = self;
-    [[GCMService sharedInstance] startWithConfig:gcmConfig];
-    
-    UIUserNotificationType allNotificationTypes =
-    (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
-    UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
-    [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
-    [[UIApplication sharedApplication] registerForRemoteNotifications];
-    
-    __weak typeof(self) weakSelf = self;
-    
-    _registrationHandler = ^(NSString *registrationToken, NSError *error){
-        if (registrationToken != nil) {
-            weakSelf.registrationToken = registrationToken;
-
-            [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken
-                                               success:^{
-                                                   [weakSelf storeGCMToken: registrationToken];
-                                               } failure:^(APIError *error){
-                                               }
-             ];
-            
-            NSDictionary *userInfo = @{@"registrationToken":registrationToken};
-            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
-                                                                object:nil
-                                                              userInfo:userInfo];
-        } else {
-            NSDictionary *userInfo = @{@"error":error.localizedDescription};
-            [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
-                                                                object:nil
-                                                              userInfo:userInfo];
-        }
-    };
+        NSError* configureError;
+        [[GGLContext sharedInstance] configureWithError:&configureError];
+        
+        NSAssert(!configureError, @"Error configuring Google services: %@", configureError);
+        _gcmSenderID = [[[GGLContext sharedInstance] configuration] gcmSenderID];
+        
+        GCMConfig *gcmConfig = [GCMConfig defaultConfig];
+        gcmConfig.receiverDelegate = self;
+        [[GCMService sharedInstance] startWithConfig:gcmConfig];
+        
+        UIUserNotificationType allNotificationTypes =
+        (UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge);
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:allNotificationTypes categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+        
+        __weak typeof(self) weakSelf = self;
+        
+        _registrationHandler = ^(NSString *registrationToken, NSError *error){
+            if (registrationToken != nil) {
+                weakSelf.registrationToken = registrationToken;
+                
+                [[APIClient sharedClient] registerGCMToken:(NSString *)registrationToken
+                                                   success:^{
+                                                       [weakSelf storeGCMToken: registrationToken];
+                                                   } failure:^(APIError *error){
+                                                   }
+                 ];
+                
+                NSDictionary *userInfo = @{@"registrationToken":registrationToken};
+                [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+                                                                    object:nil
+                                                                  userInfo:userInfo];
+            } else {
+                NSDictionary *userInfo = @{@"error":error.localizedDescription};
+                [[NSNotificationCenter defaultCenter] postNotificationName:weakSelf.registrationKey
+                                                                    object:nil
+                                                                  userInfo:userInfo];
+            }
+        };
     }
-
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
     GGLInstanceIDConfig *instanceIDConfig = [GGLInstanceIDConfig defaultConfig];
     instanceIDConfig.delegate = self;
-
+    
     [[GGLInstanceID sharedInstance] startWithConfig:instanceIDConfig];
     
 #ifdef STAGING
@@ -150,9 +150,9 @@
                              kGGLInstanceIDAPNSServerTypeSandboxOption:@YES};
 #else
     _registrationOptions = @{kGGLInstanceIDRegisterAPNSOption:deviceToken,
-                                 kGGLInstanceIDAPNSServerTypeSandboxOption:@NO};
+                             kGGLInstanceIDAPNSServerTypeSandboxOption:@NO};
 #endif
-     
+    
     [[GGLInstanceID sharedInstance] tokenWithAuthorizedEntity:_gcmSenderID
                                                         scope:kGGLInstanceIDScopeGCM
                                                       options:_registrationOptions
@@ -184,26 +184,44 @@
             self->_connectedToGCM = true;
         }
     }];
-    if ([OAuthToken isUserLoggedIn]) {
+    
+    if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
         [self checkLocalAuthentication];
     }
 }
 
 -(void)userCanceledLocalAuthentication {
-    NSLog(@"authenticated: logoutThenDeleteAllStoredData");
+    [self removeAuthOverlayView];
     [self revokeGCMToken];
     [[APIClient sharedClient] logoutThenDeleteAllStoredData];
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        [self showLoginView];
+    }else{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+    }
 }
 
--(void) authenticated {
-    NSLog(@"authenticated: Great Success");
-    [self removeAuthOverlayView];
-}
-
--(void) notAuthenticated {
-    NSLog(@"authenticated: Failed");
-    [self removeAuthOverlayView];
-
+-(void) showLogoutModal {
+    showingLogoutModal = TRUE;
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          showingLogoutModal = FALSE;
+                                                          [self userCanceledLocalAuthentication];
+                                                      }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
+                                                        style:UIAlertActionStyleCancel
+                                                      handler:^(UIAlertAction *action) {
+                                                          showingLogoutModal = FALSE;
+                                                          [self checkLocalAuthentication];
+                                                      }]];
+    
+    UINavigationController *rootNavController = (id)self.window.rootViewController;
+    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+    popPresenter.sourceView = rootNavController.topViewController.view;
+    [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -215,33 +233,41 @@
 }
 
 -(void) checkLocalAuthentication {
-    [self addAuthOverlayView];
+    if(!addedLocalAuthenticationOverlay){
+        [self addAuthOverlayView];
+    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
     if(![LAStore isValidAuthenticationAndTimestamp]){
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
-            NSLog(@"authenticated error %@", errorText);
             if(success){
-                [self authenticated];
+                [self removeAuthOverlayView];
             }else{
-                [self notAuthenticated];
                 if(userCancel){
-                    [self userCanceledLocalAuthentication];
+                    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+                        [self showLogoutModal];
+                    } else{
+                        showingLogoutModal = TRUE;
+                        [self userCanceledLocalAuthentication];
+                    }
                 }
             }
         }];
     }else{
-        [self authenticated];
+        [self removeAuthOverlayView];
     }
 }
 
 -(void) addAuthOverlayView {
+    addedLocalAuthenticationOverlay = TRUE;
     _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
     _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
     [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
 }
 
 -(void) removeAuthOverlayView {
+    addedLocalAuthenticationOverlay = FALSE;
     dispatch_async(dispatch_get_main_queue(), ^{
         [self->_localAuthenticationOverlayView removeFromSuperview];
     });
@@ -251,7 +277,7 @@
     [[POSFileManager sharedFileManager] removeAllDecryptedFiles];
     [[GCMService sharedInstance] disconnect];
     _connectedToGCM = NO;
-
+    
 }
 
 - (void)onTokenRefresh {
@@ -260,7 +286,6 @@
 }
 
 - (void)revokeGCMToken {
-
     GGLInstanceIDDeleteTokenHandler handler = ^void(NSError *error) {
         if (error) {
             NSLog(@"Failed to delete GCM token");
@@ -281,6 +306,19 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(nonnull NSDictionary *)userInfo fetchCompletionHandler:(nonnull void (^)(UIBackgroundFetchResult))completionHandler {
     _notificationReceived = [NSDate date];
     completionHandler(UIBackgroundFetchResultNewData);
+}
+
+-(void) showLoginView
+{
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
+        UINavigationController *navController = [self.window topMasterNavigationController];
+        NSMutableArray *newViewControllerArray = [NSMutableArray array];
+        if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
+            SHCLoginViewController *loginViewController = navController.viewControllers[0];
+            [newViewControllerArray addObject:loginViewController];
+            [navController setViewControllers:newViewControllerArray animated:NO];
+        }
+    }
 }
 
 - (void)startUploading:(NSNotification *)notification {
