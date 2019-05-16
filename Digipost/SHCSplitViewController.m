@@ -77,6 +77,9 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
+    }
 }
 
 #pragma mark - Properties
