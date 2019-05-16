@@ -204,23 +204,18 @@ import AFNetworking
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
         POSModelManager.shared().deleteAllObjects()
         validateFullScope(success: {
-            let task = self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure)
-            task.resume()
-            
-            self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
-            
-            OAuthToken.removeAllTokens()
-            POSModelManager.shared().deleteAllObjects()
-            POSFileManager.shared().removeAllFiles()
-            
+            self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure).resume()
+            self.deleteAllTokensObjectsAndFiles(logoutURI: logoutURI!, success: success, failure: failure)
             }) { (error) -> Void in
-                
-                self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
-                
-                OAuthToken.removeAllTokens()
-                POSModelManager.shared().deleteAllObjects()
-                POSFileManager.shared().removeAllFiles()
+                self.deleteAllTokensObjectsAndFiles(logoutURI: logoutURI!, success: success, failure: failure)
         }
+    }
+    
+    func deleteAllTokensObjectsAndFiles(logoutURI: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
+        self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+        OAuthToken.removeAllTokens()
+        POSModelManager.shared().deleteAllObjects()
+        POSFileManager.shared().removeAllFiles()
     }
 
     fileprivate func logoutHigherLevelTokens(_ logoutUri: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
