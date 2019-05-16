@@ -58,18 +58,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 
 #pragma mark - NSObject
 
-- (void)dealloc
-{
-    
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:kShowLoginViewControllerNotificationName
-                                                      object:nil];
-    }
-    @catch (NSException *exception) {
-        //        DDLogWarn(@"Caught an exception: %@", exception);
-    }
-}
 
 #pragma mark - UIViewController
 
@@ -79,16 +67,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     
     self.loginButton.accessibilityLabel = @"Login Digipost";
     self.screenName = kLoginViewControllerScreenName;
-    
-    @try {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(popToSelf:)
-                                                     name:kShowLoginViewControllerNotificationName
-                                                   object:nil];
-    }
-    @catch (NSException *exception) {
-        //        DDLogWarn(@"Caught an exception: %@", exception);
-    }
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
         if([OAuthToken isUserLoggedIn] == YES ){
