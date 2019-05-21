@@ -48,6 +48,11 @@ import LUKeychainAccess
         UserDefaults.standard.synchronize()
     }
     
+    static func saveSuccessfullAuthentication(){
+        LAStore.saveAuthenticationState(authenticated: true)
+        LAStore.saveAuthenticationTimeout(timestamp: Date().timeIntervalSince1970)
+    }
+    
     @objc static func saveAuthenticationState(authenticated: Bool) {
         UserDefaults.standard.set(authenticated, forKey: LA_STATE)
         UserDefaults.standard.synchronize()
@@ -70,7 +75,7 @@ import LUKeychainAccess
         
         context.evaluatePolicy(policy, localizedReason: NSLocalizedString("localauthentication_request", comment: "localauthentication_request"), reply: { (success, error) in
             if(success) {
-                LAStore.saveAuthenticationState(authenticated: true)
+                LAStore.saveSuccessfullAuthentication()
                 completion(true, "", false)
             }else{
                 var userCancel = false
