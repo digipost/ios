@@ -29,21 +29,6 @@
 
 @implementation SHCSplitViewController
 
-#pragma mark - NSObject
-
-- (void)dealloc
-{
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:kShowLoginViewControllerNotificationName
-                                                      object:nil];
-    }
-    @catch (NSException *exception)
-    {
-        //        DDLogWarn(@"Caught an exception: %@", exception);
-    }
-}
-
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
