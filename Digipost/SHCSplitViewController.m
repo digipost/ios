@@ -105,8 +105,4 @@
     });
 }
 
-- (void)presentLoginViewController
-{
-
-}
 @end
