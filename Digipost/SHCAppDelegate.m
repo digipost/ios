@@ -225,6 +225,7 @@ BOOL showingLogoutModal = FALSE;
 }
 
 -(void) setLocalReAuthenticationTimer {
+    [self addAuthOverlayView];
     [LAStore saveAuthenticationTimeoutWithTimestamp: [[NSDate date] timeIntervalSince1970]];
 }
 
@@ -233,9 +234,7 @@ BOOL showingLogoutModal = FALSE;
 }
 
 -(void) checkLocalAuthentication {
-    if(!addedLocalAuthenticationOverlay){
-        [self addAuthOverlayView];
-    }
+    [self addAuthOverlayView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
@@ -260,10 +259,12 @@ BOOL showingLogoutModal = FALSE;
 }
 
 -(void) addAuthOverlayView {
-    addedLocalAuthenticationOverlay = TRUE;
-    _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
-    _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
-    [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+    if(!addedLocalAuthenticationOverlay){
+        addedLocalAuthenticationOverlay = TRUE;
+        _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
+        _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
+        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+    }
 }
 
 -(void) removeAuthOverlayView {
