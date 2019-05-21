@@ -63,6 +63,10 @@ import LUKeychainAccess
         UserDefaults.standard.synchronize()
     }
     
+    @objc static func devicePasscodeSet() -> Bool {
+        return LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+    }
+    
     @objc static func authenticateUser(completion: @escaping (_ success: Bool, _ errorText: String, _ userCancel: Bool) -> Void){
         let policy: LAPolicy = .deviceOwnerAuthentication
         var error: NSError?
