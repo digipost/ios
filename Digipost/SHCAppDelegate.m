@@ -317,7 +317,7 @@ BOOL showingLogoutModal = FALSE;
         if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
             SHCLoginViewController *loginViewController = navController.viewControllers[0];
             [newViewControllerArray addObject:loginViewController];
-            [navController setViewControllers:newViewControllerArray animated:NO];
+            [navController setViewControllers:newViewControllerArray animated:YES];
         }
     }
 }
