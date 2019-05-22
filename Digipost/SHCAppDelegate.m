@@ -187,6 +187,8 @@ BOOL showingLogoutModal = FALSE;
     
     if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
         [self checkLocalAuthentication];
+    }else if(![OAuthToken isUserLoggedIn]) {
+        [self removeAuthOverlayView];
     }
 }
 
@@ -269,9 +271,14 @@ BOOL showingLogoutModal = FALSE;
 
 -(void) removeAuthOverlayView {
     addedLocalAuthenticationOverlay = FALSE;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->_localAuthenticationOverlayView removeFromSuperview];
-    });
+    @try {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self->_localAuthenticationOverlayView removeFromSuperview];
+        });
+    }
+    @catch (NSException *exception)
+    {
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
