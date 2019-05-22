@@ -69,13 +69,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTi-Z1-AlP">
-                                        <rect key="frame" x="89" y="147" width="164" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vTi-Z1-AlP">
+                                        <rect key="frame" x="21" y="140" width="299" height="50"/>
                                         <color key="backgroundColor" red="0.98101288080215454" green="0.12698796391487122" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="164" id="9OR-5K-Ktn"/>
+                                            <constraint firstAttribute="width" constant="299" id="9OR-5K-Ktn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="Logg inn">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -100,7 +100,7 @@
                                     <constraint firstItem="arl-w8-0pc" firstAttribute="leading" secondItem="nnM-Od-brF" secondAttribute="leading" constant="21" id="oZT-uj-Osi"/>
                                     <constraint firstAttribute="height" constant="209" id="prv-bl-qoQ"/>
                                     <constraint firstItem="vTi-Z1-AlP" firstAttribute="centerX" secondItem="nnM-Od-brF" secondAttribute="centerX" constant="-0.5" id="rLc-tf-6c7" userLabel="Login Id Porten Button.centerX = centerX"/>
-                                    <constraint firstItem="vTi-Z1-AlP" firstAttribute="top" secondItem="oLR-n1-QS7" secondAttribute="bottom" constant="31" id="uXg-R0-s82"/>
+                                    <constraint firstItem="vTi-Z1-AlP" firstAttribute="top" secondItem="oLR-n1-QS7" secondAttribute="bottom" constant="24" id="uXg-R0-s82"/>
                                     <constraint firstItem="FhE-Nv-ifg" firstAttribute="leading" secondItem="arl-w8-0pc" secondAttribute="trailing" constant="8" id="v8J-zr-Ebj"/>
                                     <constraint firstItem="6NS-t9-yYV" firstAttribute="centerX" secondItem="nnM-Od-brF" secondAttribute="centerX" constant="-11.500000000000028" id="wYp-Ic-xW7"/>
                                     <constraint firstItem="FhE-Nv-ifg" firstAttribute="top" secondItem="arl-w8-0pc" secondAttribute="bottom" constant="-25" id="zFl-s4-Ae9"/>
