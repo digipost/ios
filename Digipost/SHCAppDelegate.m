@@ -265,7 +265,7 @@ BOOL showingLogoutModal = FALSE;
         addedLocalAuthenticationOverlay = TRUE;
         _localAuthenticationOverlayView = [[UIView alloc] initWithFrame:self.window.frame];
         _localAuthenticationOverlayView.backgroundColor = [UIColor whiteColor];
-        [self.window.rootViewController.view addSubview:_localAuthenticationOverlayView];
+        [[UIApplication sharedApplication].keyWindow addSubview:_localAuthenticationOverlayView];
     }
 }
 
