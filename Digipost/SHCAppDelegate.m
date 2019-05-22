@@ -193,7 +193,6 @@ BOOL showingLogoutModal = FALSE;
 }
 
 -(void)userCanceledLocalAuthentication {
-    [self removeAuthOverlayView];
     [self revokeGCMToken];
     [[APIClient sharedClient] logoutThenDeleteAllStoredData];
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone) {
@@ -201,6 +200,7 @@ BOOL showingLogoutModal = FALSE;
     }else{
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     }
+    [self removeAuthOverlayView];
 }
 
 -(void) showLogoutModal {
