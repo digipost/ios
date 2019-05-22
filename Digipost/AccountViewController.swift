@@ -216,7 +216,17 @@ class AccountViewController: UIViewController, UIActionSheetDelegate, UIPopoverP
         
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
         dataSource?.stopListeningToCoreDataChanges()
-        NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            NotificationCenter.default.post(name: Notification.Name(rawValue: kShowLoginViewControllerNotificationName), object: nil)
+        }else{
+            var viewControllers: [UIViewController] = []
+            if (navigationController?.viewControllers[0].isKind(of: SHCLoginViewController.self))! {
+                if let loginView = navigationController?.viewControllers[0] {
+                    viewControllers.append(loginView)
+                    navigationController?.setViewControllers(viewControllers, animated: true)
+                }
+            }
+        }
     }
     
     
