@@ -68,19 +68,6 @@ BOOL showingLogoutModal = FALSE;
     return YES;
 }
 
-- (BOOL)GCMTokenExist {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
-    fetchRequest.resultType = NSDictionaryResultType;
-    NSError *error = nil;
-    NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    if (results.count > 0){
-        return TRUE;
-    }
-    
-    return FALSE;
-}
-
 - (void)storeGCMToken: (NSString*) token {
     [[POSModelManager sharedManager] deleteAllGCMTokens];
     GCMToken *gcmtoken = [NSEntityDescription insertNewObjectForEntityForName:@"GCMToken" inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
@@ -91,7 +78,7 @@ BOOL showingLogoutModal = FALSE;
 }
 
 - (void)initGCM {
-    if([self GCMTokenExist] == NO){
+    if(![[POSModelManager sharedManager] GCMTokensExist]){
         _registrationKey = @"onRegistrationCompleted";
         
         NSError* configureError;
@@ -304,8 +291,10 @@ BOOL showingLogoutModal = FALSE;
     GGLInstanceIDDeleteTokenHandler handler = ^void(NSError *error) {
         if (error) {
             NSLog(@"Failed to delete GCM token");
+            [[POSModelManager sharedManager] deleteAllGCMTokens];
         } else {
             NSLog(@"Successfully deleted GCM token");
+            [[POSModelManager sharedManager] deleteAllGCMTokens];
         }
     };
     
