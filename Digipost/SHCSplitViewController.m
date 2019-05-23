@@ -54,9 +54,6 @@
         SHCAppDelegate *appDelegate = (SHCAppDelegate*) [UIApplication sharedApplication].delegate;
         appDelegate.letterViewController = letterViewController;
     }
-    if ([OAuthToken isUserLoggedIn] == NO) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
