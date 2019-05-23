@@ -63,7 +63,7 @@ import LUKeychainAccess
         UserDefaults.standard.synchronize()
     }
     
-    @objc static func devicePasscodeSet() -> Bool {
+    @objc static func devicePasscodeMinimumSet() -> Bool {
         return LAContext().canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
     }
     
