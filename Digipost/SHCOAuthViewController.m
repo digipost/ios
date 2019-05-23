@@ -71,7 +71,7 @@ Boolean tryToFillUsing1Password = false;
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:<#animated#>];
+    [super viewWillAppear:animated];
     [[POSModelManager sharedManager] deleteAllGCMTokens];
 }
 
