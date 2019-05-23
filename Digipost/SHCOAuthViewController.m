@@ -70,6 +70,11 @@ Boolean tryToFillUsing1Password = false;
     [self presentAuthenticationWebView];
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:<#animated#>];
+    [[POSModelManager sharedManager] deleteAllGCMTokens];
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];

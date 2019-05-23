@@ -78,7 +78,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [[POSModelManager sharedManager] deleteAllGCMTokens];
     
     [self.navigationController setToolbarHidden:YES animated:NO];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
