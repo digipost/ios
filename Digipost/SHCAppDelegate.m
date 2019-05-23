@@ -205,25 +205,28 @@ BOOL showingLogoutModal = FALSE;
 
 -(void) showLogoutModal {
     showingLogoutModal = TRUE;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
-                                                        style:UIAlertActionStyleDefault
-                                                      handler:^(UIAlertAction *action) {
-                                                          showingLogoutModal = FALSE;
-                                                          [self userCanceledLocalAuthentication];
-                                                      }]];
-    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
-                                                        style:UIAlertActionStyleCancel
-                                                      handler:^(UIAlertAction *action) {
-                                                          showingLogoutModal = FALSE;
-                                                          [self checkLocalAuthentication];
-                                                      }]];
-    
-    UINavigationController *rootNavController = (id)self.window.rootViewController;
-    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
-    popPresenter.sourceView = rootNavController.topViewController.view;
-    [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE", comment: "You sure you want to sign out?") message:@"" preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE", comment: @"Sign out")
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction *action) {
+                                                              showingLogoutModal = FALSE;
+                                                              [self userCanceledLocalAuthentication];
+                                                          }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(UIAlertAction *action) {
+                                                              showingLogoutModal = FALSE;
+                                                              [self checkLocalAuthentication];
+                                                          }]];
+        
+        UINavigationController *rootNavController = (id)self.window.rootViewController;
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = rootNavController.topViewController.view;
+        
+        [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
+    });
 }
 
 -(void) setLocalReAuthenticationTimer {
@@ -328,7 +331,9 @@ BOOL showingLogoutModal = FALSE;
         if ([navController.viewControllers[0] isKindOfClass:[SHCLoginViewController class]]) {
             SHCLoginViewController *loginViewController = navController.viewControllers[0];
             [newViewControllerArray addObject:loginViewController];
-            [navController setViewControllers:newViewControllerArray animated:YES];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [navController setViewControllers:newViewControllerArray animated:YES];
+            });
         }
     }
 }
