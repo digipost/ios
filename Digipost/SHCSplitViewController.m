@@ -90,8 +90,9 @@
         if (letterViewController) {
             [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
         }
-        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier
-                                  sender:nil];
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
         NSDictionary *userInfo = notification.userInfo;
         if (userInfo) {
             if ([userInfo[@"alert"] isMemberOfClass:[UIAlertController class]]) {
