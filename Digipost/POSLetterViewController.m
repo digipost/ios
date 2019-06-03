@@ -275,11 +275,6 @@ CGFloat extraMetadataConstraintHeight = 0;
     }
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
 - (void)viewWillLayoutSubviews
 {
     NSArray *toolbarItems = [self.navigationController.toolbar setupIconsForLetterViewController:self];
