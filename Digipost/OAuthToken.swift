@@ -246,10 +246,6 @@ struct AuthenticationLevel {
         return true
     }
     
-    func canBeRefreshedByRefreshToken() -> Bool {
-        return scope == kOauth2ScopeFull
-    }
-    
     @objc class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
         if let oAuth4Token = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
             return oAuth4Token
