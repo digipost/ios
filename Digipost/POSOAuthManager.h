@@ -48,6 +48,8 @@ extern NSString *const kOAuth2IDToken;
 extern NSString *const kOAuth2AccessToken;
 extern NSString *const kOAuth2RefreshToken;
 extern NSString *const kOAuth2TokensKey;
+extern NSString *const kOAuth2Token;
+
 
 // Custom NSError consts
 extern NSString *const kOAuth2ErrorDomain;

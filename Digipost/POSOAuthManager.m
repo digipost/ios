@@ -52,6 +52,7 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
+NSString *const kOAuth2Token = @"OAuth2Token";
 
 // Custom NSError consts
 NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
@@ -127,6 +128,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         progress:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
+            NSLog(@"auth responseDict %@", responseDict);
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
               if (oAuthToken != nil) {

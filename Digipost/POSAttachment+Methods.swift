@@ -46,7 +46,7 @@ extension POSAttachment {
                 
                 let highestToken = OAuthToken.highestScopeInStorageForScope(scopeForAttachment)
                 
-                if OAuthToken.oAuthScope(highestToken,isHigherThanOrEqualToScope:scopeForAttachment){
+                if OAuthToken.oAuthScope(highestToken, isHigherThanOrEqualToScope:scopeForAttachment){
                     return false
                 }
                 return true

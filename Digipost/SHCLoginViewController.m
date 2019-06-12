@@ -116,7 +116,7 @@ NSString *const kLoginViewControllerScreenName = @"Login";
         if([segue.identifier isEqualToString:kPresentOAuthModallyIdentifier]){
             oAuthViewController.scope = kOauth2ScopeFull;
         }else if([segue.identifier isEqualToString:@"PresentOAuthIdPortenModally"]){
-            oAuthViewController.scope = kOauth2ScopeFull_Idporten4;
+            oAuthViewController.scope = kOauth2ScopeFull_Idporten3;
         }
     }else if ([segue.identifier isEqualToString:kRegistrationWebViewIdentifier]) {
         [self sendAnalyticsEvent:@"registrering"];
@@ -140,7 +140,6 @@ NSString *const kLoginViewControllerScreenName = @"Login";
     [appDelegate initGCM];
     
     if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
-        
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshDocumentsContentNotificationName
                                                             object:@NO];
