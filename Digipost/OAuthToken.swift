@@ -64,6 +64,70 @@ struct AuthenticationLevel {
         self.accessToken = decoder.decodeObject(forKey: Keys.accessTokenKey) as? String
     }
     
+    // Initializer used when migrating from single scope to multiple scopes - version 2.3
+    convenience init?(refreshToken: String?, scope: String) {
+        //TODO Refaktor
+        self.init(refreshToken: refreshToken, accessToken: nil, scope: scope, expiresInSeconds: 1)
+        if refreshToken == nil {
+            self.removeFromKeychainIfNoAccessToken()
+            return nil
+        }
+        saveToken()
+    }
+    
+    fileprivate init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
+        //TODO Refaktor
+        if let expirationDate = Date().dateByAdding(seconds: expiresInSeconds.intValue) {
+            self.expires = expirationDate
+        } else {
+            self.expires = Date()
+            super.init()
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        if let acutalRefreshToken = refreshToken as String? {
+            self.refreshToken = acutalRefreshToken
+        }
+        
+        if let actualAccessToken = accessToken as String? {
+            self.accessToken = actualAccessToken
+        }
+        self.scope = scope
+        super.init()
+        saveToken()
+    }
+    
+    @objc convenience init?(attributes: Dictionary <String,AnyObject>, scope: String, nonce: String) {
+        //TODO Refaktor
+        var aRefreshToken: String?
+        var anAccessToken: String?
+        aRefreshToken = attributes["refresh_token"] as? String
+        anAccessToken = attributes["access_token"] as? String
+        let idToken = attributes[kOAuth2IDToken] as? String
+        if OAuthToken.isIdTokenValid(idToken, nonce: nonce) == false {
+            self.init(expiryDate: Date())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        
+        if let expiresInSeconds = attributes["expires_in"] as? NSNumber {
+            self.init(refreshToken: aRefreshToken, accessToken: anAccessToken, scope: scope, expiresInSeconds:expiresInSeconds)
+        } else {
+            self.init(expiryDate: Date())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        saveToken()
+    }
+    
+    // bug in swift compiler requires to set all instance variables before returning nil from an initializer
+    fileprivate func setAllInstanceVariablesToNil() {
+        //TODO Refaktor
+        self.refreshToken = nil
+        self.accessToken = nil
+        self.scope = nil
+    }
+    
     func saveToken() {
         LUKeychainAccess.standard().setObject(self, forKey: kOAuth2Token)
     }
@@ -136,21 +200,92 @@ struct AuthenticationLevel {
         return true
     }
     
+    @objc class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
+        //TODO Refaktor
+        return OAuthToken.getToken()
+    }
+    
+    class func oAuthTokens() -> Dictionary<String,AnyObject> {
+        //TODO Refaktor
+        var tokenArray = Dictionary<String,AnyObject>()
+        if let token = getToken() {
+            tokenArray[token.scope!] = token
+        }
+        return tokenArray
+    }
+    
     @objc func removeFromKeychainIfNoAccessToken() {
-        //TODO REVURDER
+        //TODO Refaktor
         if accessToken == nil {
             OAuthToken.removeToken()
         }
     }
     
     @objc class func removeAllTokens() {
-        //TODO REVURDER
+        //TODO Refaktor
         OAuthToken.removeToken()
     }
     
     @objc class func removeAccessTokenForOAuthTokenWithScope(_ scope:String) {
-        //TODO REMOVE
+        //TODO Refaktor
         OAuthToken.removeToken()
+    }
+    
+    @objc func setExpireDate(_ expiresInSeconds: NSNumber?) {
+        //TODO Refaktor
+        if let actualExpirationDate = expiresInSeconds as NSNumber? {
+            if let expirationDate = Date().dateByAdding(seconds: actualExpirationDate.intValue) {
+                self.expires = expirationDate
+                saveToken()
+            }
+        }
+    }
+    
+    @objc func password() -> String? {
+        //TODO Refaktor
+        return scope == kOauth2ScopeFull ? refreshToken : accessToken
+    }
+    
+    class func levelForScope(_ aScope: String)-> Int {
+        //TODO Refaktor
+        switch aScope {
+        case kOauth2ScopeFull:
+            return 1
+        case kOauth2ScopeFullHighAuth:
+            fallthrough
+        case kOauth2ScopeFull_Idporten3:
+            return 2
+        case kOauth2ScopeFull_Idporten4:
+            return 3
+        default:
+            return 1
+        }
+    }
+    
+    @objc class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
+        //TODO Refaktor
+        return getToken()
+    }
+    
+    @objc class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
+        //TODO Refaktor
+        let level = levelForScope(scope)
+        switch level {
+        case 2:
+            if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
+                if higherLevelToken.accessToken != nil {
+                    return higherLevelToken
+                }else {
+                    return oAuthTokenWithScope(scope)
+                }
+            } else {
+                return oAuthTokenWithScope(scope)
+            }
+        case 3:
+            return oAuthTokenWithScope(scope)
+        default:
+            return oAuthTokenWithScope(scope)
+        }
     }
     
 }

@@ -350,10 +350,9 @@ struct LegacyAuthenticationLevel {
     }
     
     class func removeAllTokens() {
-        LUKeychainAccess.standard().deleteObject(forKey: kOAuth2LonglivingTokenKey)
+        LUKeychainAccess.standard().deleteObject(forKey: kOauth2ScopeFull)
     }
     
-    //TODO - Endre hvordan dette blir håndtert
     class func removeAccessTokenForOAuthTokenWithScope(_ scope: String) {
         let oauthToken = OAuthToken.oAuthTokenWithScope(scope)
         oauthToken?.accessToken = nil
