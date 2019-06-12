@@ -37,7 +37,6 @@ import LUKeychainAccess
     
     class func clearTokens() {
         OAuthToken.removeAllTokens()
-        OAuthToken.removeRefreshToken()
     }
     
     //UserDefault - App Versions
