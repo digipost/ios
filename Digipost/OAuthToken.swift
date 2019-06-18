@@ -62,7 +62,14 @@ struct AuthenticationLevel {
     }
     
     required convenience public init(coder decoder: NSCoder) {
-        self.init(expiryDate: decoder.decodeObject(forKey: Keys.expiresKey) as! Date)
+        let expires : Date = {
+            if let expiryDate =  decoder.decodeObject(forKey: Keys.expiresKey) as? Date {
+                return expiryDate
+            } else {
+                return Date()
+            }
+        }()
+        self.init(expiryDate: expires)
         self.scope = decoder.decodeObject(forKey: Keys.scopeKey) as? String
         self.refreshToken = decoder.decodeObject(forKey: Keys.refreshTokenKey) as? String
         self.accessToken = decoder.decodeObject(forKey: Keys.accessTokenKey) as? String
