@@ -32,8 +32,12 @@ struct AuthenticationLevel {
 }
 
 @objc class OAuthToken: NSObject, NSCoding {
-    func encode(with aCoder: NSCoder) {
-        //
+    
+    public func encode(with coder: NSCoder) {
+        coder.encode(self.refreshToken, forKey: Keys.refreshTokenKey)
+        coder.encode(self.accessToken, forKey: Keys.accessTokenKey)
+        coder.encode(self.scope, forKey: Keys.scopeKey)
+        coder.encode(self.expires, forKey: Keys.expiresKey)
     }
     
     @objc var refreshToken: String? {
