@@ -130,7 +130,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
           NSDictionary *responseDict = (NSDictionary *)responseObject;
             NSLog(@"auth responseDict %@", responseDict);
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict nonce:nonce];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.

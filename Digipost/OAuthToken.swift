@@ -107,14 +107,15 @@ struct AuthenticationLevel {
         super.init()
         saveToken()
     }
-    
-    @objc convenience init?(attributes: Dictionary <String,AnyObject>, scope: String, nonce: String) {
+
+    @objc convenience init?(attributes: Dictionary <String,AnyObject>, nonce: String) {
         //TODO Refaktor
         var aRefreshToken: String?
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
         anAccessToken = attributes["access_token"] as? String
         let idToken = attributes[kOAuth2IDToken] as? String
+        let scope = attributes["scope"] as! String
         if OAuthToken.isIdTokenValid(idToken, nonce: nonce) == false {
             self.init(expiryDate: Date())
             self.setAllInstanceVariablesToNil()
