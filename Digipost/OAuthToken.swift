@@ -162,11 +162,31 @@ struct AuthenticationLevel {
     
     @objc class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {
         if let token = OAuthToken.getToken() {
-            if token.scope == scope{
+            if (token.scope == kOauth2ScopeFull_Idporten4){
+                return token
+            }else if (scope == token.scope){
+                return token
+            }else if(scope == kOauth2ScopeFull && token.scope == kOauth2ScopeFull_Idporten3){
                 return token
             }
         }
         return nil
+    }
+
+    @objc class func
+        oAuthTokenWithAuthenticationLevel(_ authenticationLevel: String) -> OAuthToken? {
+        switch authenticationLevel {
+        case AuthenticationLevel.password :
+            return OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        case AuthenticationLevel.twoFactor :
+            return oAuthTokenWithScope(kOauth2ScopeFullHighAuth)
+        case AuthenticationLevel.idPorten3:
+            return oAuthTokenWithScope(kOauth2ScopeFull_Idporten3)
+        case AuthenticationLevel.idPorten4 :
+            return oAuthTokenWithScope(kOauth2ScopeFull_Idporten4)
+        default:
+            return OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
+        }
     }
     
     @objc class func highestScopeInStorageForScope(_ scope:String) -> String {
