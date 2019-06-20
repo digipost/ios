@@ -277,43 +277,4 @@ struct AuthenticationLevel {
         //TODO Refaktor
         return scope == kOauth2ScopeFull ? refreshToken : accessToken
     }
-    
-    class func levelForScope(_ aScope: String)-> Int {
-        //TODO Refaktor
-        switch aScope {
-        case kOauth2ScopeFull:
-            return 1
-        case kOauth2ScopeFullHighAuth:
-            fallthrough
-        case kOauth2ScopeFull_Idporten3:
-            return 2
-        case kOauth2ScopeFull_Idporten4:
-            return 3
-        default:
-            return 1
-        }
-    }
-    
-    
-    @objc class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
-        //TODO Refaktor
-        let level = levelForScope(scope)
-        switch level {
-        case 2:
-            if let higherLevelToken = oAuthTokenWithScope(kOauth2ScopeFull_Idporten4) {
-                if higherLevelToken.accessToken != nil {
-                    return higherLevelToken
-                }else {
-                    return oAuthTokenWithScope(scope)
-                }
-            } else {
-                return oAuthTokenWithScope(scope)
-            }
-        case 3:
-            return oAuthTokenWithScope(scope)
-        default:
-            return oAuthTokenWithScope(scope)
-        }
-    }
-    
 }
