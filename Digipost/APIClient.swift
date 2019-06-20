@@ -136,12 +136,15 @@ import AFNetworking
     }
 
     @objc func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        self.updateAuthorizationHeader(oAuthToken: token!)
-        let rootResource = k__ROOT_RESOURCE_URI__
-        validate(token: token) {
-            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
-            task.resume()
+        if let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull) {
+            self.updateAuthorizationHeader(oAuthToken: token)
+            let rootResource = k__ROOT_RESOURCE_URI__
+            validate(token: token) {
+                let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+                task.resume()
+            }
+        }else{
+            failure(APIError.HasNoOAuthTokenForScopeError("FULL"))
         }
     }
 
