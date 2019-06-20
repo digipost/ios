@@ -39,8 +39,8 @@ NSString *const kOAuth2Nonce = @"nonce";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
-NSString *const kOauth2ScopeFull_Idporten3 = @"IDPORTEN_3";
-NSString *const kOauth2ScopeFull_Idporten4 = @"IDPORTEN_4";
+NSString *const kOauth2ScopeFull_Idporten3 = @"FULL_IDPORTEN3";
+NSString *const kOauth2ScopeFull_Idporten4 = @"FULL_IDPORTEN4";
 
 NSString *const kOauth2ErrorResponse = @"error";
 NSString *const kOauth2InvalidGrant = @"invalid_grant";
