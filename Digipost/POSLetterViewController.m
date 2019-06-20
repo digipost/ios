@@ -623,13 +623,14 @@ CGFloat extraMetadataConstraintHeight = 0;
     if (self.attachment) {
         [self setTitle:self.attachment.subject];
     }
-    NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
-    NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
-
+   
     if ([self isUserKeyEncrypted]) {
         [self showLockedViewCanBeUnlocked:NO];
         return;
     }
+/*
+ NSString *encryptedFilePath = [baseEncryptionModel encryptedFilePath];
+ NSString *decryptedFilePath = [baseEncryptionModel decryptedFilePath];
 
     if ([[NSFileManager defaultManager] fileExistsAtPath:encryptedFilePath]) {
         NSError *error = nil;
@@ -646,6 +647,8 @@ CGFloat extraMetadataConstraintHeight = 0;
     } else {
         [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     }
+ */
+    [self loadContentFromWebWithBaseEncryptionModel:baseEncryptionModel];
     if(self.attachment){
         [self updateCurrentDocument];
     }
@@ -730,6 +733,8 @@ CGFloat extraMetadataConstraintHeight = 0;
         withProgress:self.progress
         success:^{
           NSError *error = nil;
+            
+           /*
           if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:attachment error:&error]) {
               [UIAlertView showWithTitle:error.errorTitle
                                  message:[error localizedDescription]
@@ -737,6 +742,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                        otherButtonTitles:@[ error.okButtonTitle ]
                                 tapBlock:error.tapBlock];
           }
+            */
           if ([self.attachment.fileType isEqualToString:@"html"]) {
               self.view.backgroundColor = [UIColor whiteColor];
           }
@@ -774,6 +780,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     if ([baseEncryptionModel isKindOfClass:[POSAttachment class]]) {
         [UIView animateWithDuration:0.1
                               delay:0.6
+         
                             options:UIViewAnimationOptionCurveEaseInOut
                          animations:^{
                              if ([self needsAuthenticationToOpen] == NO) {
@@ -825,6 +832,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                   withProgress:progress
                   success:^{
                     NSError *error = nil;
+                      /*
                     if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
                         [UIAlertView showWithTitle:error.errorTitle
                                            message:[error localizedDescription]
@@ -832,6 +840,7 @@ CGFloat extraMetadataConstraintHeight = 0;
                                  otherButtonTitles:@[ error.okButtonTitle ]
                                           tapBlock:error.tapBlock];
                     }
+                       */
                     if ([self.attachment.fileType isEqualToString:@"html"]) {
                         self.view.backgroundColor = [UIColor whiteColor];
                     }
@@ -851,7 +860,6 @@ CGFloat extraMetadataConstraintHeight = 0;
             }
             failure:^(APIError *error) {
               // show upload view controller here
-
               [MRProgressOverlayView dismissAllOverlaysForView:self.view animated:YES];
             }];
     } else {
@@ -867,14 +875,17 @@ CGFloat extraMetadataConstraintHeight = 0;
                   changedBaseEncryptionModel = [POSAttachment existingAttachmentWithUri:baseEncryptionModelUri inManagedObjectContext:[POSModelManager sharedManager].managedObjectContext];
               }
 
-              NSError *error = nil;
-              if (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
+                NSError *error = nil;
+                /*
+              if
+                 (![[POSFileManager sharedFileManager] encryptDataForBaseEncryptionModel:changedBaseEncryptionModel error:&error]) {
                   [UIAlertView showWithTitle:error.errorTitle
                                      message:[error localizedDescription]
                            cancelButtonTitle:nil
                            otherButtonTitles:@[ error.okButtonTitle ]
                                     tapBlock:error.tapBlock];
               }
+                                   */
               if (changedBaseEncryptionModel == nil) {
                   return;
               }
