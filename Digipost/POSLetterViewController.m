@@ -1422,7 +1422,7 @@ CGFloat extraMetadataConstraintHeight = 0;
     [[APIClient sharedClient] updateDocumentsInFolderWithName:folderName
         mailboxDigipostAdress:mailboxDigipostAddress
         folderUri:folderUri
-        token:[OAuthToken oAuthTokenWithHighestScopeInStorage]
+        token:[OAuthToken getToken]
         success:^(NSDictionary *responseDictionary) {
           [[POSModelManager sharedManager] updateDocumentsInFolderWithName:folderName
                                                     mailboxDigipostAddress:mailboxDigipostAddress

@@ -144,7 +144,7 @@ struct AuthenticationLevel {
         LUKeychainAccess.standard().setObject(self, forKey: kOAuth2Token)
     }
     
-    class func getToken() -> OAuthToken? {
+    @objc class func getToken() -> OAuthToken? {
         return LUKeychainAccess.standard().object(forKey: kOAuth2Token) as? OAuthToken
     }
     
@@ -294,10 +294,6 @@ struct AuthenticationLevel {
         }
     }
     
-    @objc class func oAuthTokenWithHighestScopeInStorage() -> OAuthToken? {
-        //TODO Refaktor
-        return getToken()
-    }
     
     @objc class func highestOAuthTokenWithScope(_ scope: String) -> OAuthToken? {
         //TODO Refaktor
