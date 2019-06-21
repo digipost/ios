@@ -232,11 +232,6 @@ struct AuthenticationLevel {
         return true
     }
     
-    @objc class func oAuthTokenWithHigestScopeInStorage() -> OAuthToken? {
-        //TODO Refaktor
-        return OAuthToken.getToken()
-    }
-    
     class func oAuthTokens() -> Dictionary<String,AnyObject> {
         //TODO Refaktor
         var tokenArray = Dictionary<String,AnyObject>()
@@ -253,16 +248,6 @@ struct AuthenticationLevel {
         }
     }
     
-    @objc class func removeAllTokens() {
-        //TODO Refaktor
-        OAuthToken.removeToken()
-    }
-    
-    @objc class func removeAccessTokenForOAuthTokenWithScope(_ scope:String) {
-        //TODO Refaktor
-        OAuthToken.removeToken()
-    }
-    
     @objc func setExpireDate(_ expiresInSeconds: NSNumber?) {
         //TODO Refaktor
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
@@ -274,7 +259,6 @@ struct AuthenticationLevel {
     }
     
     @objc func password() -> String? {
-        //TODO Refaktor
-        return scope == kOauth2ScopeFull ? refreshToken : accessToken
+        return refreshToken
     }
 }

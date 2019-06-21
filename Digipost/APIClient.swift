@@ -216,7 +216,7 @@ import AFNetworking
     
     func deleteAllTokensObjectsAndFiles(logoutURI: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
         self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
-        OAuthToken.removeAllTokens()
+        OAuthToken.removeToken()
         POSModelManager.shared().deleteAllObjects()
         POSFileManager.shared().removeAllFiles()
     }

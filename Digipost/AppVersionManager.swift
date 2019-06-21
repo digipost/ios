@@ -24,7 +24,7 @@ import LUKeychainAccess
     @objc static func deleteOldTokensIfReinstall() {
         
         if reInstall() {
-            clearTokens()
+            OAuthToken.removeToken()
         }
         
         updateAppVersionsInUserDefaults()
@@ -33,10 +33,6 @@ import LUKeychainAccess
     
     class func reInstall() -> Bool {        
         return oldVersionsFoundInKeychain() && !oldVersionsFoundInUserDefaults()
-    }
-    
-    class func clearTokens() {
-        OAuthToken.removeAllTokens()
     }
     
     //UserDefault - App Versions
