@@ -490,7 +490,7 @@ import AFNetworking
                 }
             }
             oAuthToken?.removeFromKeychainIfNoAccessToken()
-            let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+            let lowerLevelOAuthToken = OAuthToken.getToken()
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {
