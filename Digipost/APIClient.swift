@@ -144,7 +144,7 @@ import AFNetworking
                 task.resume()
             }
         }else{
-            failure(APIError.HasNoOAuthTokenForScopeError("FULL"))
+            failure(APIError.HasNoOAuthTokenForScopeError(kOauth2ScopeFull))
         }
     }
 
