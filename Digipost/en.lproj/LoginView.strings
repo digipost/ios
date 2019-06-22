@@ -30,7 +30,7 @@
 "nau-j1-HXE.normalTitle" = "National identification number and password";
 
 /* Class = "UILabel"; text = "MinID, BankID (på mobil) og Buypass ID"; ObjectID = "oLR-n1-QS7"; */
-"oLR-n1-QS7.text" = "BankID, BankID (on mobile) and Buypass ID";
+"oLR-n1-QS7.text" = "MinID, BankID, BankID (on mobile) and Buypass ID";
 
 /* Class = "UIButton"; normalTitle = "Logg inn"; ObjectID = "vTi-Z1-AlP"; */
 "vTi-Z1-AlP.normalTitle" = "Logg inn";
