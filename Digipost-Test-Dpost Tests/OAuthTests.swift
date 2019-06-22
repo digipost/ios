@@ -73,12 +73,20 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         XCTAssertTrue(false, "got an error message \(error) from keychain")
     }
     
+    func getTokenArray() -> Dictionary<String,AnyObject> {
+        var allTokens = Dictionary<String,AnyObject>()
+        if let token = OAuthToken.getToken() {
+            allTokens[token.scope!] = token
+        }
+        return allTokens
+    }
+    
     func testKeepTokensWithDifferentScopesInKeychain() {
         _ = mockTokenWithScope(kOauth2ScopeFull)
         // create an invalid token that does not get stored
         let invalidAuthDictionary = jsonDictionaryFromFile("ValidOAuthToken.json")
         _ = OAuthToken(attributes: invalidAuthDictionary, scope: kOauth2ScopeFullHighAuth, nonce: mockNonce)
-        let allTokens = OAuthToken.oAuthTokens()
+        var allTokens = getTokenArray()
         XCTAssertTrue(allTokens.count == 2, "token did not correctly store in database")
     }
     
@@ -87,7 +95,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         _ = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         let idPorten3 = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
         _ = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
-        let allTokens = OAuthToken.oAuthTokens()
+        var allTokens = getTokenArray()
         XCTAssertNil(idPorten3.refreshToken, "idporten3 token should not have refresh token")
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
     }
@@ -97,11 +105,11 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         _ = mockTokenWithScope(kOauth2ScopeFullHighAuth)
         _ = mockTokenWithScope(kOauth2ScopeFull_Idporten3)
         _ = mockTokenWithScope(kOauth2ScopeFull_Idporten4)
-        let allTokens = OAuthToken.oAuthTokens()
+        let allTokens = getTokenArray()
         XCTAssertTrue(allTokens.count == 4, "token did not correctly store in database, should be 4, was \(allTokens.count)")
         
         OAuthToken.removeAllTokens()
-        let allTokensAfterDeletion = OAuthToken.oAuthTokens()
+        let allTokensAfterDeletion = getTokenArray()
         XCTAssertTrue(allTokensAfterDeletion.count == 0, "could not delete token database, should be 0, was \(allTokensAfterDeletion.count)")
     }
     
@@ -126,7 +134,7 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
     
     func testFetchTokensFromList(){
         let _ = mockTokenWithScope(kOauth2ScopeFull)        
-        let tokens = OAuthToken.oAuthTokens()
+        let tokens = getTokenArray()
         XCTAssert(tokens.count == 1, "count should be 1")
         let token = tokens[kOauth2ScopeFull]
         XCTAssertNotNil(token, "should not be nil")
@@ -174,12 +182,12 @@ class OAuthTests: XCTestCase, LUKeychainErrorHandler {
         let newAccessToken = "newAccessToken"
         let _ = mockTokenWithScope(kOauth2ScopeFull)
         
-        let refetchedToken = OAuthToken.oAuthTokens()[kOauth2ScopeFull] as! OAuthToken
+        let refetchedToken = getTokenArray()[kOauth2ScopeFull] as! OAuthToken
         
         XCTAssertNotNil(refetchedToken, "should not be nil")
         refetchedToken.accessToken = newAccessToken
         
-        let alteredToken = OAuthToken.oAuthTokens()[kOauth2ScopeFull] as! OAuthToken
+        let alteredToken = getTokenArray()[kOauth2ScopeFull] as! OAuthToken
         
         XCTAssertTrue(alteredToken.accessToken! == refetchedToken.accessToken!, "\(alteredToken.accessToken!) not similar to \(refetchedToken.accessToken!)")
     }

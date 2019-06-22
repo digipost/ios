@@ -229,8 +229,10 @@ struct AuthenticationLevel {
     }
     
     func removeFromKeyChainIfNotValid() {
-        if accessToken == nil && refreshToken == nil {
-            OAuthToken.removeToken()
+        if let token = OAuthToken.getToken() {
+            if token.accessToken == nil && token.refreshToken == nil {
+                OAuthToken.removeToken()
+            }
         }
     }
     
@@ -244,16 +246,7 @@ struct AuthenticationLevel {
         }
         return true
     }
-    
-    class func oAuthTokens() -> Dictionary<String,AnyObject> {
-        //TODO Refaktor
-        var tokenArray = Dictionary<String,AnyObject>()
-        if let token = getToken() {
-            tokenArray[token.scope!] = token
-        }
-        return tokenArray
-    }
-    
+
     @objc func removeFromKeychainIfNoAccessToken() {
         if accessToken == nil {
             OAuthToken.removeToken()
