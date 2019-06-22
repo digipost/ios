@@ -371,7 +371,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SENDER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfJ-1t-g98" userLabel="Sender Label">
-                                            <rect key="frame" x="43" y="42.666666666666664" width="351" height="13.666666666666664"/>
+                                            <rect key="frame" x="43" y="42.666666666666664" width="351" height="16.333333333333336"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                             <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -432,7 +432,7 @@
                                         <constraint firstItem="HcC-gk-Zok" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" constant="1" id="eTL-IT-ags"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="leading" secondItem="vgs-qF-9a9" secondAttribute="leadingMargin" constant="23" id="gUi-Gf-pYR"/>
                                         <constraint firstItem="kfJ-1t-g98" firstAttribute="top" secondItem="tKe-Yp-E2z" secondAttribute="bottom" constant="1" id="hvp-SP-0FJ"/>
-                                        <constraint firstItem="gXp-qX-oLd" firstAttribute="top" secondItem="kfJ-1t-g98" secondAttribute="bottom" constant="5.3333333333333357" id="rEj-Ag-76t"/>
+                                        <constraint firstItem="gXp-qX-oLd" firstAttribute="top" secondItem="kfJ-1t-g98" secondAttribute="bottom" constant="2.6666666666666572" id="rEj-Ag-76t"/>
                                         <constraint firstItem="uUo-YN-s20" firstAttribute="top" secondItem="vgs-qF-9a9" secondAttribute="topMargin" constant="14" id="uyh-SZ-Byx"/>
                                     </constraints>
                                 </tableViewCellContentView>
