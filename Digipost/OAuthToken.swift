@@ -134,7 +134,6 @@ struct AuthenticationLevel {
     
     // bug in swift compiler requires to set all instance variables before returning nil from an initializer
     fileprivate func setAllInstanceVariablesToNil() {
-        //TODO Refaktor
         self.refreshToken = nil
         self.accessToken = nil
         self.scope = nil
@@ -242,7 +241,6 @@ struct AuthenticationLevel {
     }
     
     @objc func removeFromKeychainIfNoAccessToken() {
-        //TODO Refaktor
         if accessToken == nil {
             OAuthToken.removeToken()
         }

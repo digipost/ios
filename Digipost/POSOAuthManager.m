@@ -128,7 +128,6 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         progress:nil
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
-            NSLog(@"auth responseDict %@", responseDict);
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict nonce:nonce];
               if (oAuthToken != nil) {
