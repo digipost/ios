@@ -79,10 +79,6 @@ struct AuthenticationLevel {
     convenience init?(refreshToken: String?, scope: String) {
         //TODO Refaktor
         self.init(refreshToken: refreshToken, accessToken: nil, scope: scope, expiresInSeconds: 1)
-        if refreshToken == nil {
-            self.removeFromKeychainIfNoAccessToken()
-            return nil
-        }
         saveToken()
     }
     
