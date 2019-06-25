@@ -205,7 +205,7 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     [POSRootResource deleteAllRootResourcesInManagedObjectContext:self.managedObjectContext];
     [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
     [POSMailbox deleteAllMailboxesInManagedObjectContext:self.managedObjectContext];
-    
+    [self deleteAllGCMTokens];
     // Save changes
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {
