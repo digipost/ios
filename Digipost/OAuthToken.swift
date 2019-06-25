@@ -77,13 +77,11 @@ struct AuthenticationLevel {
     
     // Initializer used when migrating from single scope to multiple scopes - version 2.3
     convenience init?(refreshToken: String?, scope: String) {
-        //TODO Refaktor
         self.init(refreshToken: refreshToken, accessToken: nil, scope: scope, expiresInSeconds: 1)
         saveToken()
     }
     
     fileprivate init?(refreshToken: String?, accessToken: String?, scope: String, expiresInSeconds: NSNumber) {
-        //TODO Refaktor
         if let expirationDate = Date().dateByAdding(seconds: expiresInSeconds.intValue) {
             self.expires = expirationDate
         } else {
@@ -105,7 +103,6 @@ struct AuthenticationLevel {
     }
 
     @objc convenience init?(attributes: Dictionary <String,AnyObject>, nonce: String) {
-        //TODO Refaktor
         var aRefreshToken: String?
         var anAccessToken: String?
         aRefreshToken = attributes["refresh_token"] as? String
@@ -250,7 +247,6 @@ struct AuthenticationLevel {
     }
     
     @objc func setExpireDate(_ expiresInSeconds: NSNumber?) {
-        //TODO Refaktor
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
             if let expirationDate = Date().dateByAdding(seconds: actualExpirationDate.intValue) {
                 self.expires = expirationDate
