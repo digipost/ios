@@ -470,7 +470,7 @@ import AFNetworking
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
             POSOAuthManager.shared().refreshAccessToken(withRefreshToken: oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
-                let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
+                let newToken = OAuthToken.getToken()
                 validationSuccess(newToken!)
                 }, failure: { (error) -> Void in
                     if error?._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {

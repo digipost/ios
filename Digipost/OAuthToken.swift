@@ -246,6 +246,13 @@ struct AuthenticationLevel {
         }
     }
     
+    
+    @objc func setAccessTokenAndScope(_ accessToken: NSString, scope: NSString) {
+        self.accessToken = accessToken as String
+        self.scope = scope as String
+        saveToken()
+    }
+    
     @objc func setExpireDate(_ expiresInSeconds: NSNumber?) {
         if let actualExpirationDate = expiresInSeconds as NSNumber? {
             if let expirationDate = Date().dateByAdding(seconds: actualExpirationDate.intValue) {

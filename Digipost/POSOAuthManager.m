@@ -168,11 +168,14 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               NSString *accessToken = responseDict[kOAuth2AccessToken];
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
+              NSString *newScope = responseDict[kOAuth2Scope];
               if ([accessToken isKindOfClass:[NSString class]]) {
-                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:newScope];
                   [oauthToken setExpireDate:expiresInSeconds];
-                  oauthToken.accessToken = accessToken;
-                  [[APIClient sharedClient] updateAuthorizationHeader:scope];
+                  [oauthToken setAccessTokenAndScope:accessToken
+                                               scope:newScope];
+                  
+                  [[APIClient sharedClient] updateAuthorizationHeader:newScope];
                   if (success) {
                       success();
                       return;
