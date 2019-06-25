@@ -480,10 +480,7 @@ import AFNetworking
                     }
             })
         } else {
-            // if oauthoken does not have a refreshtoken, it means its a higher level token
-            // delete the token and "jump" to a higher or lower level based on if you have valid tokens for that scope
-            // for example when refreshing list with idporten 4, then jumping down to full scope if the idporten 4 token was expired
-
+   
             if let actualOAuthToken = oAuthToken {
                 if actualOAuthToken.hasExpired() {
                     actualOAuthToken.accessToken = nil
