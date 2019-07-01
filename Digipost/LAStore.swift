@@ -70,13 +70,7 @@ import LUKeychainAccess
     
     @objc static func authenticateUser(completion: @escaping (_ success: Bool, _ errorText: String, _ userCancel: Bool) -> Void){
         let policy: LAPolicy = .deviceOwnerAuthentication
-        var error: NSError?
         let context = LAContext()
-        guard context.canEvaluatePolicy(policy, error: &error) else {
-            print(String(describing: error))
-            completion(false, "Error: canEvaluatePolicy \(String(describing: error))", false)
-            return
-        }
         
         context.evaluatePolicy(policy, localizedReason: NSLocalizedString("localauthentication_request", comment: "localauthentication_request"), reply: { (success, error) in
             if(success) {
