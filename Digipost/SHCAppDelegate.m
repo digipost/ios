@@ -51,6 +51,8 @@
 @implementation SHCAppDelegate
 BOOL addedLocalAuthenticationOverlay = FALSE;
 BOOL showingLogoutModal = FALSE;
+BOOL appIsActive = FALSE;
+BOOL onGoingAuthentication = FALSE;
 
 #pragma mark - UIApplicationDelegate
 
@@ -172,7 +174,11 @@ BOOL showingLogoutModal = FALSE;
         }
     }];
     
-    if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
+    if(![LAStore devicePasscodeMinimumSet]){
+        [self checkLocalAuthentication];
+    }else if(!appIsActive && [OAuthToken isUserLoggedIn] && !onGoingAuthentication){
+        [self checkLocalAuthentication];
+    }else if ([OAuthToken isUserLoggedIn] && !showingLogoutModal) {
         [self checkLocalAuthentication];
     }else if(![OAuthToken isUserLoggedIn]) {
         [self removeAuthOverlayView];
@@ -199,12 +205,14 @@ BOOL showingLogoutModal = FALSE;
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(UIAlertAction *action) {
                                                               showingLogoutModal = FALSE;
+                                                              onGoingAuthentication = FALSE;
                                                               [self userCanceledLocalAuthentication];
                                                           }]];
         [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", comment: @"Cancel")
                                                             style:UIAlertActionStyleCancel
                                                           handler:^(UIAlertAction *action) {
                                                               showingLogoutModal = FALSE;
+                                                              onGoingAuthentication = FALSE;
                                                               [self checkLocalAuthentication];
                                                           }]];
         
@@ -230,9 +238,12 @@ BOOL showingLogoutModal = FALSE;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLocalReAuthenticationTimer) name:UIApplicationWillResignActiveNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteLocalAuthenticationState) name:UIApplicationWillTerminateNotification object:nil];
-    if(![LAStore isValidAuthenticationAndTimestamp]){
+    onGoingAuthentication = TRUE;
+    if(![LAStore isValidAuthenticationAndTimestamp] || !appIsActive){
         [LAStore authenticateUserWithCompletion:^(BOOL success, NSString* errorText, BOOL userCancel) {
             if(success){
+                appIsActive = TRUE;
+                onGoingAuthentication = FALSE;
                 [self removeAuthOverlayView];
             }else{
                 if(userCancel){
@@ -240,18 +251,18 @@ BOOL showingLogoutModal = FALSE;
                         [self showLogoutModal];
                     } else{
                         showingLogoutModal = TRUE;
+                        onGoingAuthentication = FALSE;
                         [self userCanceledLocalAuthentication];
                     }
-                }else{
-                    if([errorText isEqualToString:@"Passcode not set"]){
+                }else if([errorText isEqualToString:@"Passcode not set"]){
                         [self showSetupLocalAuthenticationModal];
-                    }
                 }
             }
         }];
     }else{
-        NSLog(@"auth IS VALID");
+        //Success
         [self removeAuthOverlayView];
+        onGoingAuthentication = FALSE;
     }
 }
 
@@ -262,6 +273,7 @@ BOOL showingLogoutModal = FALSE;
                                                         style:UIAlertActionStyleDefault
                                                       handler:^(UIAlertAction *action) {
                                                           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                          onGoingAuthentication = FALSE;
                                                       }]];
 
     UINavigationController *rootNavController = (id)self.window.rootViewController;
