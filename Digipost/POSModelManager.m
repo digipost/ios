@@ -182,10 +182,22 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
 
 - (void)deleteAllGCMTokens
 {
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"GCMToken"];
-    NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
-    NSError *deleteError = nil;
-    [self.persistentStoreCoordinator executeRequest:delete withContext:self.managedObjectContext error:&deleteError];    
+    if([self GCMTokensExist]){
+        NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"GCMToken"];
+        NSBatchDeleteRequest *delete = [[NSBatchDeleteRequest alloc] initWithFetchRequest:request];
+        NSError *deleteError = nil;
+        [self.persistentStoreCoordinator executeRequest:delete withContext:self.managedObjectContext error:&deleteError];
+    }
+}
+
+-(BOOL) GCMTokensExist
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"GCMToken"];
+    fetchRequest.resultType = NSDictionaryResultType;
+    NSError *error = nil;
+    NSArray *results = [[POSModelManager sharedManager].managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    return results.count > 0;
 }
 
 - (void)deleteAllObjects
@@ -194,7 +206,6 @@ NSString *const kAccountAccountNumberAPIKey = @"accountNumber";
     [POSDocument deleteAllDocumentsInManagedObjectContext:self.managedObjectContext];
     [POSMailbox deleteAllMailboxesInManagedObjectContext:self.managedObjectContext];
     [self deleteAllGCMTokens];
-    
     // Save changes
     NSError *error = nil;
     if (![self.managedObjectContext save:&error]) {

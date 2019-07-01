@@ -39,8 +39,8 @@ NSString *const kOAuth2Nonce = @"nonce";
 
 NSString *const kOauth2ScopeFull = @"FULL";
 NSString *const kOauth2ScopeFullHighAuth = @"FULL_HIGHAUTH";
-NSString *const kOauth2ScopeFull_Idporten3 = @"IDPORTEN_3";
-NSString *const kOauth2ScopeFull_Idporten4 = @"IDPORTEN_4";
+NSString *const kOauth2ScopeFull_Idporten3 = @"FULL_IDPORTEN3";
+NSString *const kOauth2ScopeFull_Idporten4 = @"FULL_IDPORTEN4";
 
 NSString *const kOauth2ErrorResponse = @"error";
 NSString *const kOauth2InvalidGrant = @"invalid_grant";
@@ -52,6 +52,7 @@ NSString *const kKeychainAccessRefreshTokenKey = @"refresh_token";
 NSString *const kOAuth2ErrorDomain = @"OAuth2ErrorDomain";
 
 NSString *const kOAuth2TokensKey = @"OAuth2Tokens";
+NSString *const kOAuth2Token = @"OAuth2Token";
 
 // Custom NSError consts
 NSString *const kAPIManagerErrorDomain = @"APIManagerErrorDomain";
@@ -128,7 +129,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
         success:^(NSURLSessionDataTask *task, id responseObject) {
           NSDictionary *responseDict = (NSDictionary *)responseObject;
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
-              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict scope:scope nonce:nonce];
+              OAuthToken *oAuthToken = [[OAuthToken alloc] initWithAttributes:responseDict nonce:nonce];
               if (oAuthToken != nil) {
                   // We only call the success block if the access token is set.
                   // The refresh token is not strictly neccesary at this point.
@@ -167,11 +168,14 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
           if ([responseDict isKindOfClass:[NSDictionary class]]) {
               NSString *accessToken = responseDict[kOAuth2AccessToken];
               NSNumber *expiresInSeconds = responseDict[kOAuth2ExpiresIn];
+              NSString *newScope = responseDict[kOAuth2Scope];
               if ([accessToken isKindOfClass:[NSString class]]) {
-                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:scope];
+                  OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:newScope];
                   [oauthToken setExpireDate:expiresInSeconds];
-                  oauthToken.accessToken = accessToken;
-                  [[APIClient sharedClient] updateAuthorizationHeader:scope];
+                  [oauthToken setAccessTokenAndScope:accessToken
+                                               scope:newScope];
+                  
+                  [[APIClient sharedClient] updateAuthorizationHeader:newScope];
                   if (success) {
                       success();
                       return;
@@ -210,7 +214,7 @@ NSString *const kAPIManagerUploadProgressFinishedNotificationName = @"UploadProg
                       // remove token and retry request
                       OAuthToken *oAuthToken = [OAuthToken oAuthTokenWithScope:scope];
                       [oAuthToken removeFromKeychainIfNoAccessToken];
-                      OAuthToken *currentlyHighestOauthToken = [OAuthToken oAuthTokenWithHighestScopeInStorage];
+                      OAuthToken *currentlyHighestOauthToken = [OAuthToken getToken];
                       if (currentlyHighestOauthToken != nil) {
                           [self refreshAccessTokenWithRefreshToken:currentlyHighestOauthToken.refreshToken scope:currentlyHighestOauthToken.scope success:success failure:failure];
                       }

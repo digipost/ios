@@ -41,6 +41,10 @@
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE" = "Sign Out";
 /* Are you sure you want to sign out? */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "Are you sure you want to sign out?";
+
+"SETUP_LOCALAUTH_PIN_HEADER" = "PIN/TouchID/FaceID are required. Please enable this in Settings";
+"SETUP_LOCALAUTH_SETTINGS_LINK"= "Open Settings";
+
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "We have encountered an error. Please sign in again";
 /* Refresh token invalid title */
@@ -175,8 +179,6 @@
 "LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "New account";
 /* Privacy */
 "LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Privacy";
-/* Show information / Watch onboarding again */
-"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Show information";
 /* Archive */
 "FOLDER_NAME_ARCHIVE" = "Archive";
 /* Inbox */
@@ -336,16 +338,6 @@
 /* No comment provided by engineer. */
 "cannot rename document need authentication alert title" = " ";
 "cannot rename document need authentication alert message" = "You cannot rename documents that require a higher security level";
-/* New features onboarding. */
-"new feature navbar title" = "Did you know..?";
-"new feature barbutton title" = "Done";
-"new feature share" = "Share your mailbox with the family";
-"new feature folders" = "Use folders to organize mail";
-"new feature archive" = "Your own archive to fill";
-/* Onboarding. */
-"onboarding button" = "GET STARTED";
-"onboarding welcome" = "Welcome to your\n secure digital mailbox";
-"PUBLIC_ENTITY" = "Public entity";
 /* Document Composer */
 "recipients view navigation bar title" = "Add recipients";
 "recipients view navigation bar right button save" = "Save";
@@ -491,3 +483,4 @@
 
 /* Access request */
 "settings access request" = "Unlock settings";
+"localauthentication_request" = "Unlock Digipost";

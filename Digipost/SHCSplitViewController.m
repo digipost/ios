@@ -29,21 +29,6 @@
 
 @implementation SHCSplitViewController
 
-#pragma mark - NSObject
-
-- (void)dealloc
-{
-    @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:kShowLoginViewControllerNotificationName
-                                                      object:nil];
-    }
-    @catch (NSException *exception)
-    {
-        //        DDLogWarn(@"Caught an exception: %@", exception);
-    }
-}
-
 #pragma mark - UIViewController
 
 - (void)viewDidLoad
@@ -69,23 +54,13 @@
         SHCAppDelegate *appDelegate = (SHCAppDelegate*) [UIApplication sharedApplication].delegate;
         appDelegate.letterViewController = letterViewController;
     }
-    if ([OAuthToken isUserLoggedIn] == NO) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
-    }
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-
-    if ([Guide shouldShowOnboardingGuide] == NO) {
-
-        if ([OAuthToken isUserLoggedIn]) {
-
-            if ([Guide shouldShowWhatsNewGuide]) {
-                [self presentNewFeatures];
-            }
-        }
+    if ([OAuthToken isUserLoggedIn] == NO) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewControllerNotificationName object:nil];
     }
 }
 
@@ -115,8 +90,9 @@
         if (letterViewController) {
             [letterViewController.masterViewControllerPopoverController dismissPopoverAnimated:YES];
         }
-        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier
-                                  sender:nil];
+        
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [self performSegueWithIdentifier:kPresentLoginModallyIdentifier sender:nil];
         NSDictionary *userInfo = notification.userInfo;
         if (userInfo) {
             if ([userInfo[@"alert"] isMemberOfClass:[UIAlertController class]]) {
@@ -127,16 +103,4 @@
     });
 }
 
-- (void)presentNewFeatures
-{
-    [Guide setOnboaringHasBeenWatched];
-    UIStoryboard *newFeaturesStoryboard = [UIStoryboard storyboardWithName:@"NewFeatures" bundle:nil];
-    UINavigationController *navigationController = (id)[newFeaturesStoryboard instantiateInitialViewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
-}
-
-- (void)presentLoginViewController
-{
-
-}
 @end

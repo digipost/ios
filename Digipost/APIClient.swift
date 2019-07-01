@@ -136,12 +136,15 @@ import AFNetworking
     }
 
     @objc func updateRootResource(success: @escaping (Dictionary<String, AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) {
-        let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull)
-        self.updateAuthorizationHeader(oAuthToken: token!)
-        let rootResource = k__ROOT_RESOURCE_URI__
-        validate(token: token) {
-            let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
-            task.resume()
+        if let token = OAuthToken.oAuthTokenWithScope(kOauth2ScopeFull) {
+            self.updateAuthorizationHeader(oAuthToken: token)
+            let rootResource = k__ROOT_RESOURCE_URI__
+            validate(token: token) {
+                let task = self.urlSessionJSONTask(url: rootResource, success: success, failure: failure)
+                task.resume()
+            }
+        }else{
+            failure(APIError.HasNoOAuthTokenForScopeError(kOauth2ScopeFull))
         }
     }
 
@@ -177,11 +180,13 @@ import AFNetworking
         }
     }
 
-    func logoutThenDeleteAllStoredData() {
+    @objc func logoutThenDeleteAllStoredData() {
         cancelAllRunningTasks { () -> Void in
             self.logout(success: { () -> Void in
                 // get run for every time a sucessful scope logs out
                 }) { (error) -> () in
+                    print(error.alertTitle)
+                    print(error.altertMessage)
                 // gets run for every failed request
             }
         }
@@ -202,23 +207,18 @@ import AFNetworking
         // if validation fails, just delete everything to make sure user will get correctly logged out in app
         POSModelManager.shared().deleteAllObjects()
         validateFullScope(success: {
-            let task = self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure)
-            task.resume()
-            
-            self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
-            
-            OAuthToken.removeAllTokens()
-            POSModelManager.shared().deleteAllObjects()
-            POSFileManager.shared().removeAllFiles()
-            
+            self.urlSessionTask(httpMethod.post, url: logoutURI!, success: success, failure: failure).resume()
+            self.deleteAllTokensObjectsAndFiles(logoutURI: logoutURI!, success: success, failure: failure)
             }) { (error) -> Void in
-                
-                self.logoutHigherLevelTokens(logoutURI!, success: success, failure: failure)
-                
-                OAuthToken.removeAllTokens()
-                POSModelManager.shared().deleteAllObjects()
-                POSFileManager.shared().removeAllFiles()
+                self.deleteAllTokensObjectsAndFiles(logoutURI: logoutURI!, success: success, failure: failure)
         }
+    }
+    
+    func deleteAllTokensObjectsAndFiles(logoutURI: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
+        self.logoutHigherLevelTokens(logoutURI, success: success, failure: failure)
+        OAuthToken.removeToken()
+        POSModelManager.shared().deleteAllObjects()
+        POSFileManager.shared().removeAllFiles()
     }
 
     fileprivate func logoutHigherLevelTokens(_ logoutUri: String, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
@@ -470,7 +470,7 @@ import AFNetworking
 
         if (oAuthToken?.refreshToken != nil && oAuthToken?.refreshToken != "") {
             POSOAuthManager.shared().refreshAccessToken(withRefreshToken: oAuthToken?.refreshToken, scope: oAuthToken!.scope, success: {
-                let newToken = OAuthToken.oAuthTokenWithScope(oAuthToken!.scope!)
+                let newToken = OAuthToken.getToken()
                 validationSuccess(newToken!)
                 }, failure: { (error) -> Void in
                     if error?._code == Int(SHCOAuthErrorCode.invalidRefreshTokenResponse.rawValue) {
@@ -480,17 +480,14 @@ import AFNetworking
                     }
             })
         } else {
-            // if oauthoken does not have a refreshtoken, it means its a higher level token
-            // delete the token and "jump" to a higher or lower level based on if you have valid tokens for that scope
-            // for example when refreshing list with idporten 4, then jumping down to full scope if the idporten 4 token was expired
-
+   
             if let actualOAuthToken = oAuthToken {
                 if actualOAuthToken.hasExpired() {
                     actualOAuthToken.accessToken = nil
                 }
             }
             oAuthToken?.removeFromKeychainIfNoAccessToken()
-            let lowerLevelOAuthToken = OAuthToken.oAuthTokenWithHigestScopeInStorage()
+            let lowerLevelOAuthToken = OAuthToken.getToken()
             if (lowerLevelOAuthToken != nil) {
                 validate(oAuthToken: lowerLevelOAuthToken, validationSuccess: validationSuccess, failure: failure)
             } else {

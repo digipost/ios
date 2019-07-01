@@ -28,32 +28,7 @@ extension POSAttachment {
     }
     
     @objc func needsAuthenticationToOpen() -> Bool {
-        if self.authenticationLevel == nil {
-            return false
-        }
-        if self.authenticationLevel == AuthenticationLevel.idPorten4 || self.authenticationLevel == AuthenticationLevel.idPorten3 || self.authenticationLevel == AuthenticationLevel.twoFactor {
-            if authenticationLevel == nil {
-                return false
-            }
-            let scopeForAttachment = OAuthToken.oAuthScopeForAuthenticationLevel(authenticationLevel)
-            if scopeForAttachment == kOauth2ScopeFull {
-                return false
-            } else {
-                let existingToken = OAuthToken.oAuthTokenWithScope(scopeForAttachment)
-                if existingToken?.accessToken != nil {
-                    return false
-                }
-                
-                let highestToken = OAuthToken.highestScopeInStorageForScope(scopeForAttachment)
-                
-                if OAuthToken.oAuthScope(highestToken,isHigherThanOrEqualToScope:scopeForAttachment){
-                    return false
-                }
-                return true
-            }
-        } else {
-            return false
-        }
+        return OAuthToken.oAuthTokenWithAuthenticationLevel(self.authenticationLevel) == nil
     }
 
     func originIsPublicEntity() -> Bool{

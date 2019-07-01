@@ -127,7 +127,7 @@ extension APIClient {
                 if let actualError = error {
                     if (error!._code != NSURLErrorCancelled) {
                         if HTTPURLResponse.isUnathorized(response as? HTTPURLResponse) {
-                            OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                            OAuthToken.removeToken()
                             Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "downloading a file", UI: "User waiting for file to complete download", cause: "might be a problem with clock on users device, or token was revoked")
                             self.validateFullScope {
                                 failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
@@ -180,7 +180,7 @@ extension APIClient {
 
         let task = jsonDataTask(urlRequest as URLRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                OAuthToken.removeToken()
                 Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "somewhere a jsonDataTask is performed, ex: downloading list of documents, list of folders", UI: "User waiting for the request to finish", cause: "might be a problem with clock on users device, or token was revoked")
                 self.validateFullScope {
                     failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
@@ -207,7 +207,7 @@ extension APIClient {
 
         let task = dataTask(urlRequest as URLRequest, success: success) { (error) -> () in
             if error.code == Constants.Error.Code.oAuthUnathorized.rawValue {
-                OAuthToken.removeAccessTokenForOAuthTokenWithScope(kOauth2ScopeFull)
+                OAuthToken.removeToken()
                 Logger.dpostLogWarning("accesstoken was invalid, will try to fetch a new using refresh token", location: "doing a data task, ex renaming file, moving a document or folder", UI: "User is waiting for a data task to finish", cause: "might be a problem with clock on users device, or token was revoked")
                 self.validateFullScope {
                     failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))

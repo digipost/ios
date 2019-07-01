@@ -161,11 +161,11 @@ NSString *const kFileManagerUploadsFolderName = @"uploads";
     POSAttachment *attachment = (id)baseEncryptionModel;
     NSString *password;
     if ([attachment isKindOfClass:[POSAttachment class]]) {
-        OAuthToken *oauthToken = [OAuthToken highestOAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
+        OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:[OAuthToken oAuthScopeForAuthenticationLevel:attachment.authenticationLevel]];
         password = [oauthToken password];
 
     } else {
-        OAuthToken *oauthToken = [OAuthToken highestOAuthTokenWithScope:kOauth2ScopeFull];
+        OAuthToken *oauthToken = [OAuthToken oAuthTokenWithScope:kOauth2ScopeFull];
         password = [oauthToken password];
     }
     if (!password) {

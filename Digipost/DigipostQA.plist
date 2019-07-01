@@ -27,11 +27,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.2</string>
+	<string>3.2.7</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>221</string>
+	<string>236</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -66,6 +66,8 @@
 	<string>Nødvendig for å kunne legge avtaler til i kalender</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Digipost trenger tilgang for at du skal kunne åpne appen.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSRemindersUsageDescription</key>
@@ -77,7 +79,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main_iPhone</string>
+	<string>LoginView</string>
 	<key>UIMainStoryboardFile~ipad</key>
 	<string>Main_iPad</string>
 	<key>UIRequiredDeviceCapabilities</key>

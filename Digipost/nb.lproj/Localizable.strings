@@ -57,6 +57,9 @@
 /* Are you sure you want to sign out? */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "Er du sikker på at du vil logge ut?";
 
+"SETUP_LOCALAUTH_PIN_HEADER" = "PIN/TouchID/FaceID er påkrevd for å bruke appen. Vennligst skru på dette i innstillinger";
+"SETUP_LOCALAUTH_SETTINGS_LINK"= "Åpne Innstillinger";
+
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "Det har oppstått en feil. Logg inn på nytt";
 
@@ -250,16 +253,17 @@
 "APPDELEGATE_UPLOAD_FILE_UPLOAD_BUTTON_TITLE" = "Last opp";
 
 /* Sign In */
-"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE" = "Logg inn i Digipost";
+"LOGIN_VIEW_CONTROLLER_LOGIN_BUTTON_TITLE" = "Fødselsnummer og passord";
+
+/* Sign In ID-Porten*/
+"LOGIN_VIEW_CONTROLLER_LOGIN_IDPORTEN_BUTTON_TITLE" = "Logg inn";
 
 /* New user */
-"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "Ny bruker";
+"LOGIN_VIEW_CONTROLLER_REGISTER_BUTTON_TITLE" = "Registrer deg her";
 
 /* Privacy */
-"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Personvern";
+"LOGIN_VIEW_CONTROLLER_PRIVACY_BUTTON_TITLE" = "Les mer her";
 
-/* Show information / Watch onboarding again */
-"LOGIN_VIEW_CONTROLLER_SHOW_INFORMATION_BUTTON_TITLE" = "Vis informasjon";
 
 /* Archive */
 "FOLDER_NAME_ARCHIVE" = "Arkivet";
@@ -505,24 +509,6 @@
 
 "cannot rename document need authentication alert message" = "Du kan ikke gi nye navn til meldinger fra offentlige virksomheter eller meldinger som krever høyere sikkerhetsnivå.";
 
-/* New features onboarding. */
-"new feature navbar title" = "Visste du at..?";
-
-"new feature barbutton title" = "Ferdig";
-
-"new feature share" = "Del postkassen din med\nandre i familien";
-
-"new feature folders" = "Bruk mapper for å\norganisere dine eposter";
-
-"new feature archive" = "Et helt eget arkiv\ndu kan fylle opp";
-
-/* Onboarding. */
-"onboarding button" = "KOM I GANG";
-
-"onboarding welcome" = "Velkommen til din\nsikre digitale postkasse";
-
-"PUBLIC_ENTITY" = "Offentlig";
-
 /* Document Composer */
 "recipients view navigation bar title" = "Legg til mottakere";
 
@@ -692,3 +678,4 @@
 
 /* Access request */
 "settings access request" = "Lås opp innstillinger";
+"localauthentication_request" = "Lås opp Digipost";

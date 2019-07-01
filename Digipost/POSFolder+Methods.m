@@ -155,7 +155,7 @@ NSString *const kMailboxLinkFolderURIAPIKeySuffix = @"self";
 - (NSString *)highestOAuth2ScopeForContainedDocuments
 {
     __block NSString *highestOAuthScopeInThisFolder = kOauth2ScopeFull;
-    __block NSString *highestStoredScope = [OAuthToken oAuthTokenWithHighestScopeInStorage].scope;
+    __block NSString *highestStoredScope = [OAuthToken getToken].scope;
 
     [self.documents enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
         POSDocument *document = (id) obj;

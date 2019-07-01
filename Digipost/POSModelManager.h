@@ -40,6 +40,7 @@
 - (void)deleteDocument:(POSDocument *)document;
 - (void)deleteAllObjects;
 - (void)deleteAllGCMTokens;
+- (BOOL)GCMTokensExist;
 - (NSEntityDescription *)rootResourceEntity;
 - (NSEntityDescription *)mailboxEntity;
 - (NSEntityDescription *)folderEntity;

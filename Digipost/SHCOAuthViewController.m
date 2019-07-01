@@ -55,36 +55,29 @@ Boolean tryToFillUsing1Password = false;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     [self clearCacheAndCookies];
     self.screenName = kOAuthViewControllerScreenName;
-
+    
     self.navigationItem.title = NSLocalizedString(@"OAUTH_VIEW_CONTROLLER_NAVIGATION_ITEM_TITLE", @"Sign In");
-
+    
     [self.navigationController setNavigationBarHidden:NO animated:NO];
-
+    
     [NSHTTPCookieStorage sharedHTTPCookieStorage].cookieAcceptPolicy = NSHTTPCookieAcceptPolicyAlways;
-
+    
     [self remove1PasswordButtonIfNotNormalLoginScope];
-    if (self.scope == kOauth2ScopeFull) {
-        [self.webView setKeyboardDisplayRequiresUserAction:NO]; // Må ikke brukes for høyere innlogging fordi den skaper en fokus-bug med innlogging i buypass-webview
-        if ([UIDevice currentDevice].userInterfaceIdiom != UIUserInterfaceIdiomPad) {
-            self.navigationItem.leftBarButtonItem.title = NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel");
-            [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                                alpha:0.8] }
-                                                                 forState:UIControlStateNormal];
-        }
-    } else {
-        [self setupUIForIncreasedAuthenticationLevelVC];
-    }
-
+    [self setupBackButton];
     [self presentAuthenticationWebView];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-
+    
     // The existing OAuth implementation will normally nil the oauth-state variabel when this view is not longer visible (normally because a successfull login). But because this method will also be invoked when the app tries to open 1Password, we need to _not_ nil the the state when returning from 1Password. tryToFillUsing1Password is set to true in the fillUsing1Password-method.
     if (tryToFillUsing1Password) {
         tryToFillUsing1Password = false;
@@ -93,13 +86,10 @@ Boolean tryToFillUsing1Password = false;
     }
 }
 
-- (void)setupUIForIncreasedAuthenticationLevelVC
+- (void)setupBackButton
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"GENERIC_CANCEL_BUTTON_TITLE", @"Cancel") style:UIBarButtonItemStyleDone target:self action:@selector(didTapCloseBarButtonItem:)];
-    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0
-                                                                                                                        alpha:0.8] }
-
-                                                         forState:UIControlStateNormal];
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor colorWithWhite:1.0 alpha:0.8] } forState:UIControlStateNormal];
 }
 
 -(void)clearCacheAndCookies{
@@ -115,14 +105,14 @@ Boolean tryToFillUsing1Password = false;
     // Trap requests to the URL used when OAuth authentication dialog finishes
     if ([request.URL.absoluteString hasPrefix:OAUTH_REDIRECT_URI]) {
         NSDictionary *parameters = [request queryParameters];
-
+        
         if (parameters[kOAuth2State]) {
             NSString *state = parameters[kOAuth2State];
             // Copy and reset the state parameter, as we're done checking its value for now
             NSString *currentState = [self.stateParameter copy];
             self.stateParameter = nil;
             if ([state isEqualToString:currentState] == NO) {
-               // [Logger dpostLogError:@"State parameter returned from server differed from what client sent" location:@"Showing OAuth login screen" UI:@"User will get an error and be asked to try logging in again" cause:@"Server is broken or possible man in the middle attack"];
+                // [Logger dpostLogError:@"State parameter returned from server differed from what client sent" location:@"Showing OAuth login screen" UI:@"User will get an error and be asked to try logging in again" cause:@"Server is broken or possible man in the middle attack"];
                 [self informUserThatOauthFailedThenDismissViewController];
                 return NO;
             }
@@ -131,50 +121,52 @@ Boolean tryToFillUsing1Password = false;
             [self informUserThatOauthFailedThenDismissViewController];
             return NO;
         }
-
+        
         if (parameters[kOAuth2Code]) {
             [[POSOAuthManager sharedManager] authenticateWithCode:parameters[kOAuth2Code]
                                                             scope:self.scope
                                                           success:^{
-                  // The OAuth manager has successfully authenticated with code - which means we've
-                  // got an access code and a refresh code, and can dismiss this view controller
-                  // and let the login view controller take over and push the folders view controller.
-                    [self dismissViewControllerAnimated:YES
-                                             completion:^{
-                                                 if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
-                                                     [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
-                                                 }
-                                             }];
-                }
-                failure:^(NSError *error) {
-                  [UIAlertView showWithTitle:error.errorTitle
-                                     message:[error localizedDescription]
-                           cancelButtonTitle:nil
-                           otherButtonTitles:@[ error.okButtonTitle ]
-                                    tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
-                                      [self presentAuthenticationWebView];
-                                    }];
-                }];
+                                                              // The OAuth manager has successfully authenticated with code - which means we've
+                                                              // got an access code and a refresh code, and can dismiss this view controller
+                                                              // and let the login view controller take over and push the folders view controller.
+                                                              [LAStore saveAuthenticationStateWithAuthenticated:TRUE];
+                                                              [LAStore saveAuthenticationTimeoutWithTimestamp:[[NSDate date] timeIntervalSince1970]];
+                                                              [self dismissViewControllerAnimated:YES
+                                                                                       completion:^{
+                                                                                           if ([self.delegate respondsToSelector:@selector(OAuthViewControllerDidAuthenticate:scope:)]) {
+                                                                                               [self.delegate OAuthViewControllerDidAuthenticate:self scope:self.scope];
+                                                                                           }
+                                                                                       }];
+                                                          }
+                                                          failure:^(NSError *error) {
+                                                              [UIAlertView showWithTitle:error.errorTitle
+                                                                                 message:[error localizedDescription]
+                                                                       cancelButtonTitle:nil
+                                                                       otherButtonTitles:@[ error.okButtonTitle ]
+                                                                                tapBlock:^(UIAlertView *alertView, NSInteger buttonIndex) {
+                                                                                    [self presentAuthenticationWebView];
+                                                                                }];
+                                                          }];
         } else {
             // [Logger dpostLogError:@"Could not find OAuth code-paramter in json sent from server" location:@"Shows a modal login view" UI:@"User will get an error message and asked to try logging in again" cause:@"Server has issues or something hijacked the web traffic from app"];
             [self informUserThatOauthFailedThenDismissViewController];
         }
-
+        
         return NO;
     }
-
+    
 #if (ACCEPT_SELF_SIGNED_CERTIFICATES)
-
+    
     if (!self.isAuthenticated) {
         self.failedURLRequest = request;
         __unused NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request
                                                                                delegate:self];
     }
-
+    
     return self.isAuthenticated;
-
+    
 #endif
-
+    
     return YES;
 }
 
@@ -201,7 +193,7 @@ Boolean tryToFillUsing1Password = false;
                                                       handler:^(UIAlertAction *action) {
                                                           [self dismissViewControllerAnimated:YES completion:nil];
                                                       }]];
-
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -224,7 +216,7 @@ Boolean tryToFillUsing1Password = false;
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
     if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
-
+        
         NSURL *baseURL = [NSURL URLWithString:__SERVER_URI__];
         if ([challenge.protectionSpace.host isEqualToString:baseURL.host]) {
             [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust]
@@ -233,16 +225,16 @@ Boolean tryToFillUsing1Password = false;
             //   DDLogError(@"Not trusting connection to host %@", challenge.protectionSpace.host);
         }
     }
-
+    
     [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     self.authenticated = YES;
-
+    
     [connection cancel];
-
+    
     [self.webView loadRequest:self.failedURLRequest];
 }
 
@@ -252,23 +244,20 @@ Boolean tryToFillUsing1Password = false;
 
 - (void)didTapCloseBarButtonItem:(id)sender
 {
-    [self dismissViewControllerAnimated:YES
-                             completion:^{
-
-                             }];
+    [self dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)presentAuthenticationWebView
 {
     NSAssert(self.scope != nil, @"must set scope before asking for authentication");
     self.stateParameter = [NSString secureRandomString];
-
+    
     NSDictionary *parameters = @{kOAuth2ClientID : OAUTH_CLIENT_ID,
                                  kOAuth2RedirectURI : OAUTH_REDIRECT_URI,
                                  kOAuth2ResponseType : kOAuth2Code,
                                  kOAuth2State : self.stateParameter,
                                  kOAuth2Scope : [self parameterForOauth2Scope:self.scope]};
-
+    
     [self authenticateWithParameters:parameters];
 }
 
