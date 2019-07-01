@@ -41,6 +41,10 @@
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_TITLE" = "Sign Out";
 /* Are you sure you want to sign out? */
 "FOLDERS_VIEW_CONTROLLER_LOGOUT_CONFIRMATION_TITLE" = "Are you sure you want to sign out?";
+
+"SETUP_LOCALAUTH_PIN_HEADER" = "PIN/TouchID/FaceID are required. Please enable this in Settings";
+"SETUP_LOCALAUTH_SETTINGS_LINK"= "Open Settings";
+
 /* Missing access token response */
 "OAUTH_MANAGER_MISSING_ACCESS_TOKEN_RESPONSE" = "We have encountered an error. Please sign in again";
 /* Refresh token invalid title */

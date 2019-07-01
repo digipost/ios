@@ -90,6 +90,8 @@ import LUKeychainAccess
                         userCancel = true
                     case LAError.invalidContext:
                         errorText = "LAContext passed to this call has been previously invalidated."
+                    case LAError.passcodeNotSet:
+                        errorText = "Passcode not set"
                     default:
                         errorText = "Touch ID may not be configured"
                     }

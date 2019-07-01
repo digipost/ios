@@ -70,6 +70,8 @@
 	<string>Digipost trenger tilgang for at du skal kunne laste opp bilder i arkivet ditt.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>Nødvendig for å kunne legge avtaler til i kalender</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Digipost trenger tilgang for at du skal kunne åpne appen.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

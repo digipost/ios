@@ -242,12 +242,33 @@ BOOL showingLogoutModal = FALSE;
                         showingLogoutModal = TRUE;
                         [self userCanceledLocalAuthentication];
                     }
+                }else{
+                    if([errorText isEqualToString:@"Passcode not set"]){
+                        [self showSetupLocalAuthenticationModal];
+                    }
                 }
             }
         }];
     }else{
+        NSLog(@"auth IS VALID");
         [self removeAuthOverlayView];
     }
+}
+
+-(void)showSetupLocalAuthenticationModal {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_PIN_HEADER", comment: "PIN/TouchID/FaceID er påkrevd for å bruke appen. Vennligst skru på dette i innstillinger") message:@"" preferredStyle:UIAlertControllerStyleAlert];
+
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"SETUP_LOCALAUTH_SETTINGS_LINK", comment: @"Åpne innstillinger")
+                                                        style:UIAlertActionStyleDefault
+                                                      handler:^(UIAlertAction *action) {
+                                                          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+                                                      }]];
+
+    UINavigationController *rootNavController = (id)self.window.rootViewController;
+    UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+    popPresenter.sourceView = rootNavController.topViewController.view;
+    
+    [rootNavController.topViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 -(void) addAuthOverlayView {
