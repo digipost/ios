@@ -209,6 +209,8 @@
 		F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA922A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
+		F8678F2C22E713EA00E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F2B22E713EA00E9F383 /* EventView.xib */; };
+		F8678F2D22E713EA00E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F2B22E713EA00E9F383 /* EventView.xib */; };
 		F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
@@ -377,6 +379,9 @@
 		F8C292021DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */; };
 		F8C672401DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
 		F8C672421DB9F7060092182E /* InvoiceOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */; };
+		F8D46F4022E6F3C0006A9788 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D46F3F22E6F3C0006A9788 /* EventView.swift */; };
+		F8D46F4122E6F3C1006A9788 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D46F3F22E6F3C0006A9788 /* EventView.swift */; };
+		F8D46F4222E6F3C1006A9788 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D46F3F22E6F3C0006A9788 /* EventView.swift */; };
 		F8DEAF9B2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9C2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
 		F8DEAF9D2178707200B267C0 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DEAF9A2178707200B267C0 /* ContactViewController.swift */; };
@@ -695,6 +700,7 @@
 		F8416EA622A7B69D00C92B03 /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
+		F8678F2B22E713EA00E9F383 /* EventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
 		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
@@ -718,6 +724,7 @@
 		F8BF1B162195BA1300A87C61 /* SecureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureViewController.swift; sourceTree = "<group>"; };
 		F8C291FF1DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceAlertUserDefaults.swift; sourceTree = "<group>"; };
 		F8C6723F1DB9F7050092182E /* InvoiceOptionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvoiceOptionsViewController.swift; sourceTree = "<group>"; };
+		F8D46F3F22E6F3C0006A9788 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		F8DEAF9A2178707200B267C0 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		F8E5F66F2282C0D2000F9C51 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/LoginView.strings; sourceTree = "<group>"; };
 		F8E5F6702282C0FE000F9C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginView.storyboard; sourceTree = "<group>"; };
@@ -1009,6 +1016,7 @@
 		9C25CBDB1F0D1E20005F3645 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				F8D46F3E22E6F319006A9788 /* Event */,
 				9CA38AF51F3B39E600AABD91 /* ExternalLink */,
 				9CA38AF01F3B37CD00AABD91 /* Appointment */,
 				9CA38B021F3C532D00AABD91 /* MetadataView.swift */,
@@ -1346,6 +1354,15 @@
 			name = Invoice;
 			sourceTree = "<group>";
 		};
+		F8D46F3E22E6F319006A9788 /* Event */ = {
+			isa = PBXGroup;
+			children = (
+				F8D46F3F22E6F3C0006A9788 /* EventView.swift */,
+				F8678F2B22E713EA00E9F383 /* EventView.xib */,
+			);
+			name = Event;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1486,6 +1503,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8678F2C22E713EA00E9F383 /* EventView.xib in Resources */,
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
@@ -1535,6 +1553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8678F2D22E713EA00E9F383 /* EventView.xib in Resources */,
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
 				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
@@ -1785,6 +1804,7 @@
 				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
+				F8D46F4022E6F3C0006A9788 /* EventView.swift in Sources */,
 				0B1520CF1D9E53A6000027C1 /* SynchronizationCodeForVCs.swift in Sources */,
 				8364D719185F2286008DE6CB /* SHCBaseTableViewController.m in Sources */,
 				ECB4C65E19B75C9C00C1C748 /* AHKActionSheet+Convenience.m in Sources */,
@@ -1829,6 +1849,7 @@
 			files = (
 				F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
 				9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */,
+				F8D46F4122E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
@@ -1955,6 +1976,7 @@
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
 				F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */,
+				F8D46F4222E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8AE1C861CD374B40009B2F9 /* AHKActionSheet+Convenience.m in Sources */,
 				F8AE1C871CD374B40009B2F9 /* UIView+AutoLayout.m in Sources */,
 				F8AE1C881CD374B40009B2F9 /* POSUploadTableViewCell.m in Sources */,
