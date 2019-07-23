@@ -209,8 +209,8 @@
 		F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA922A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
-		F8678F2C22E713EA00E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F2B22E713EA00E9F383 /* EventView.xib */; };
-		F8678F2D22E713EA00E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F2B22E713EA00E9F383 /* EventView.xib */; };
+		F8678F3222E71C1500E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F3122E71C1500E9F383 /* EventView.xib */; };
+		F8678F3322E71C1500E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F3122E71C1500E9F383 /* EventView.xib */; };
 		F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
@@ -700,7 +700,7 @@
 		F8416EA622A7B69D00C92B03 /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
-		F8678F2B22E713EA00E9F383 /* EventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
+		F8678F3122E71C1500E9F383 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
 		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1357,8 +1357,8 @@
 		F8D46F3E22E6F319006A9788 /* Event */ = {
 			isa = PBXGroup;
 			children = (
+				F8678F3122E71C1500E9F383 /* EventView.xib */,
 				F8D46F3F22E6F3C0006A9788 /* EventView.swift */,
-				F8678F2B22E713EA00E9F383 /* EventView.xib */,
 			);
 			name = Event;
 			sourceTree = "<group>";
@@ -1503,7 +1503,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8678F2C22E713EA00E9F383 /* EventView.xib in Resources */,
+				F8678F3222E71C1500E9F383 /* EventView.xib in Resources */,
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
@@ -1553,7 +1553,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8678F2D22E713EA00E9F383 /* EventView.xib in Resources */,
+				F8678F3322E71C1500E9F383 /* EventView.xib in Resources */,
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
 				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
