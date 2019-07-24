@@ -147,7 +147,8 @@ import EventKit
         ekEvent.startDate = startTime
         ekEvent.endDate = endTime
         ekEvent.location = event.address
-        ekEvent.notes = "\(arrivalTime.text!) \n\(event.subTitle) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) \n\n\(infoTitle3.text!) \n\(infoText3.text!) "
+        
+        ekEvent.notes = "\(infoText.text!)"
                 
         do {
             try self.eventStore.save(ekEvent, span: .thisEvent, commit: true)
