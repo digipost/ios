@@ -38,12 +38,7 @@ import EventKit
     
     @IBOutlet weak var bottomDivider: UIView!
     
-    @IBOutlet weak var infoTitle1: UILabel!
-    @IBOutlet weak var infoText1: UILabel!
-    @IBOutlet weak var infoTitle2: UILabel!
-    @IBOutlet weak var infoText2: UILabel!
-    @IBOutlet weak var infoTitle3: UILabel!
-    @IBOutlet weak var infoText3: UILabel!
+    @IBOutlet weak var infoText: UILabel!
 
     @IBOutlet weak var linkTitle: UILabel!
     @IBOutlet weak var linkURL: UIButton!
