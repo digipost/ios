@@ -16,4 +16,4 @@
 
 #include "Shared.xcconfig"
 
-SERVER_URI = \@\"https:\/\/www.difitest.digipost.no\"
+SERVER_URI = \@\"https:\/\/www.qa.digipost.no\"
