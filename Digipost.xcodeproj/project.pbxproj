@@ -203,6 +203,12 @@
 		F80F7130217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7131217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
 		F80F7132217729EC000D4685 /* ContactView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F80F712F217729EC000D4685 /* ContactView.storyboard */; };
+		F81D61C222E8490C00827289 /* POSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C122E8490C00827289 /* POSEvent.swift */; };
+		F81D61C322E8490C00827289 /* POSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C122E8490C00827289 /* POSEvent.swift */; };
+		F81D61C422E8490C00827289 /* POSEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C122E8490C00827289 /* POSEvent.swift */; };
+		F81D61C622E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
+		F81D61C722E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
+		F81D61C822E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
@@ -694,6 +700,8 @@
 		F80B63591CD380C000AE9DE5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F80F712F217729EC000D4685 /* ContactView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ContactView.storyboard; sourceTree = "<group>"; };
 		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
+		F81D61C122E8490C00827289 /* POSEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSEvent.swift; sourceTree = "<group>"; };
+		F81D61C522E84A7F00827289 /* POSTimeframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTimeframe.swift; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -1027,11 +1035,13 @@
 		9C962A161EE6D8B100436DB3 /* Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				F81D61C122E8490C00827289 /* POSEvent.swift */,
 				9C5AB2811EEFED44007345D3 /* POSMetadataObject.swift */,
 				9C962A0E1EE69F1000436DB3 /* POSMetadata.swift */,
 				9C962A121EE69F2700436DB3 /* POSAppointment.swift */,
 				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
 				9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */,
+				F81D61C522E84A7F00827289 /* POSTimeframe.swift */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -1768,6 +1778,7 @@
 				AF23423B1A651F4900CD92E3 /* AccountTableViewCell.swift in Sources */,
 				ECC08DF91A5BE798004C829D /* APIClient.swift in Sources */,
 				ECA594C619FFAC160064D98D /* POSInvoice+Methods.swift in Sources */,
+				F81D61C622E84A7F00827289 /* POSTimeframe.swift in Sources */,
 				F8C292001DC385DE00BA7BAF /* InvoiceAlertUserDefaults.swift in Sources */,
 				83D75F751859B7250013F8C9 /* POSFolderTableViewCell.m in Sources */,
 				9CBF9F2E1F8E2D6700303C17 /* GAEvents.swift in Sources */,
@@ -1802,6 +1813,7 @@
 				EC5508531958563F00B7B8E8 /* POSNoRotationNavigationController.m in Sources */,
 				9C08C1881F46D39200475782 /* ExternalLinkWebview.swift in Sources */,
 				9C962A0F1EE69F1000436DB3 /* POSMetadata.swift in Sources */,
+				F81D61C222E8490C00827289 /* POSEvent.swift in Sources */,
 				EC29512918BF7FDB00A80C28 /* POSLetterPopoverView.m in Sources */,
 				ECCC5CAB19C81C9200FACAA1 /* UIWindow+Navigation.swift in Sources */,
 				F8D46F4022E6F3C0006A9788 /* EventView.swift in Sources */,
@@ -1848,11 +1860,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8BA4FFD218B245E0045B8BE /* APIClient+MailboxSettings.swift in Sources */,
+				F81D61C322E8490C00827289 /* POSEvent.swift in Sources */,
 				9CDE3AAB1E7833AD00B9C27B /* InvoiceBankAgreementTests.swift in Sources */,
 				F8D46F4122E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
+				F81D61C722E84A7F00827289 /* POSTimeframe.swift in Sources */,
 				F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */,
 				9C30BB761E5B31E600444468 /* NSDate+Extensions.swift in Sources */,
 				F8A5594021904C2900667F27 /* SettingsTextField.swift in Sources */,
@@ -1940,6 +1954,7 @@
 				F8AE1C5D1CD374B40009B2F9 /* AccountTableViewCell.swift in Sources */,
 				F8AE1C5E1CD374B40009B2F9 /* APIClient.swift in Sources */,
 				9CBF9F2F1F8E2D6700303C17 /* GAEvents.swift in Sources */,
+				F81D61C822E84A7F00827289 /* POSTimeframe.swift in Sources */,
 				F8AE1C5F1CD374B40009B2F9 /* POSInvoice+Methods.swift in Sources */,
 				F8AE1C611CD374B40009B2F9 /* POSFolderTableViewCell.m in Sources */,
 				F8AE1C631CD374B40009B2F9 /* NSPredicate+CommonPredicates.m in Sources */,
@@ -1974,6 +1989,7 @@
 				F8AE1C801CD374B40009B2F9 /* POSMailbox.m in Sources */,
 				F8AE1C811CD374B40009B2F9 /* POSNoRotationNavigationController.m in Sources */,
 				F8AE1C821CD374B40009B2F9 /* POSLetterPopoverView.m in Sources */,
+				F81D61C422E8490C00827289 /* POSEvent.swift in Sources */,
 				F8AE1C831CD374B40009B2F9 /* UIWindow+Navigation.swift in Sources */,
 				F8AE1C851CD374B40009B2F9 /* SHCBaseTableViewController.m in Sources */,
 				F8D46F4222E6F3C1006A9788 /* EventView.swift in Sources */,
