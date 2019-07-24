@@ -32,6 +32,8 @@ import EventKit
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
     @IBOutlet weak var infoText2: UILabel!
+    @IBOutlet weak var infoTitle3: UILabel!
+    @IBOutlet weak var infoText3: UILabel!
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var calendarButton: UIButton!
     @IBOutlet weak var infoImage: UIImageView!
@@ -135,8 +137,12 @@ import EventKit
             }
             
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
-                if let calendar = event.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
-                    self.createEventInCalendar(calendar: calendar, title: eventTitle)
+                if let calendar = EventView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
+                    
+                     //TOOD Loop gjennom timeframes og lag events for alle.
+                    let startTime = Date()
+                    let endTime = Date()
+                    self.createEventInCalendar(calendar: calendar, title: eventTitle, startTime: startTime, endTime: endTime)
                 }
             })
         }
@@ -181,15 +187,15 @@ import EventKit
        UIApplication.shared.openURL(mapsUrl!)
     }
     
-    func createEventInCalendar(calendar: EKCalendar, title: String){
+    func createEventInCalendar(calendar: EKCalendar, title: String, startTime: Date, endTime: Date){
         let ekEvent = EKEvent(eventStore: self.eventStore)
     
         ekEvent.calendar = calendar
         ekEvent.title = title
-        ekEvent.startDate = event.startTime
-        ekEvent.endDate = event.endTime
+        ekEvent.startDate = startTime
+        ekEvent.endDate = endTime
         ekEvent.location = event.address
-        ekEvent.notes = "\(arrivalTime.text!) \n\(event.subTitle) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) "
+        ekEvent.notes = "\(arrivalTime.text!) \n\(event.subTitle) \n\n\(infoTitle1.text!) \n\(infoText1.text!) \n\n\(infoTitle2.text!) \n\(infoText2.text!) \n\n\(infoTitle3.text!) \n\(infoText3.text!) "
                 
         do {
             try self.eventStore.save(ekEvent, span: .thisEvent, commit: true)

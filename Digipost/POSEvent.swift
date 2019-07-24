@@ -19,21 +19,28 @@ import Foundation
 class POSEvent : POSMetadataObject {
     
     var title = ""
-    var creatorName = ""
-    var startTime = Date()
-    var endTime = Date()
-    var arrivalTimeDate = Date()
-    var arrivalTime = ""
+    var subTitle = ""
+    var descriptionText = ""
     var place = ""
     var streetAddress = ""
     var postalCode = ""
     var city = ""
     var address = ""
-    var subTitle = ""
+    var timeframes = [POSTimeframe]()
+    
+    var barcodeTitle = ""
+    var barcode = ""
+    var barcodeText = ""
+    
     var infoTitle1 = ""
     var infoText1 = ""
     var infoTitle2 = ""
     var infoText2 = ""
+    var infoTitle3 = ""
+    var infoText3 = ""
+    
+    var linkTitle = ""
+    var linkURL = ""
     
     init() {
         super.init(type: POSMetadata.TYPE.EVENT)
