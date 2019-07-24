@@ -51,66 +51,14 @@ import EventKit
     @objc func instanceWithData(event: POSEvent) -> UIView{
         let view = UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EventView
 
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.event = event
-        view.title.attributedText = attributedString(text: event.title, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
-        
-        if event.subTitle.characters.count > 1 {
-            view.subTitle.attributedText = attributedString(text: event.subTitle, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
-        }
-
-        view.startTimeTitle.text = NSLocalizedString("metadata start time title", comment:"Time:")
-        let timeAndDateString = "kl \(event.startTime.timeOnly())"+"\n"+event.startTime.dateOnly()
-        view.startTime.attributedText = attributedString(text: timeAndDateString, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        
-        view.arrivalTimeTitle.text = NSLocalizedString("metadata arrival time title", comment:"Oppmøte:")
-        if event.arrivalTime.characters.count > 0 {
-            view.arrivalTime.attributedText = attributedString(text: event.arrivalTime,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        }else{
-            view.arrivalTime.text = "kl \(event.arrivalTimeDate.timeOnly())"
-        }
-        
-        view.openMapsButton.setTitle(NSLocalizedString("metadata show maps", comment:"Åpne i Kart"), for: UIControlState.normal)
-        
-        view.placeTitle.text = NSLocalizedString("metadata location title", comment:"Sted:")
-        let placeAndAddress = event.place + "\n" + event.address
-        view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        let calendarButtonTitle = NSLocalizedString("metadata add to calendar", comment:"Legg til i kalender")
-        view.calendarButton.setTitle(calendarButtonTitle, for: UIControlState.normal)
-                
-        var infoTextHeight = CGFloat(0)
-        
-        if event.infoText1.length > 1 {
-            view.infoTitle1.text = event.infoTitle1
-            view.infoText1.attributedText = attributedString(text: event.infoText1,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += positiveHeightAdjustment(text: event.infoTitle1, width: view.infoTitle1.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += positiveHeightAdjustment(text: event.infoText1, width: view.infoText1.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += 50 //spaceBetweenDividerAndfirstInfoTitle
-            view.infoImage.isHidden = false
-            view.buttomDivider.isHidden = false
-        }else{
-            view.infoImage.isHidden = true
-            view.buttomDivider.isHidden = true
-        }
-        
-        if event.infoText2.length > 1 {
-            view.infoTitle2.text = event.infoTitle2
-            view.infoText2.attributedText = attributedString(text: event.infoText2,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += positiveHeightAdjustment(text: event.infoTitle2, width: view.infoTitle2.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += positiveHeightAdjustment(text: event.infoText2, width: view.infoText2.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-            infoTextHeight += 60 //spaceBetweenInfoText1AndInfoText2
-        }
-        
-        infoTextHeight += positiveHeightAdjustment(text: event.title, width: view.title.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
-        infoTextHeight += positiveHeightAdjustment(text: event.subTitle, width: view.subTitle.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
-        
-        view.containerViewHeight.constant += infoTextHeight
-        extraHeight += infoTextHeight
-    
-        calendarPermissionsGranted()
-        calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
+        setupCalendars()
         view.layoutIfNeeded()
         return view
+    }
+    
+    func setupCalendars() {
+        calendarPermissionsGranted()
+        calendars = eventStore.calendars(for: EKEntityType.event).filter { $0.allowsContentModifications}
     }
     
     func addedToCalender() {
