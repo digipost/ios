@@ -86,9 +86,9 @@ import EventKit
             }
             
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
-                if let calendar = EventView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
+                if let calendar = EventView.pickedCalenderIdentifier.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
                     
-                    for timeframe in event.timeframes {
+                    for timeframe in self.event.timeframes {
                         self.createEventInCalendar(calendar: calendar, title: eventTitle, startTime: timeframe.startTime, endTime: timeframe.endTime)
                     }
                 }
