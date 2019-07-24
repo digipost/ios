@@ -23,6 +23,7 @@ import Foundation
         static let RESIDENCE = "Residence"
         static let APPOINTMENT = "Appointment"
         static let EXTERNAL_LINK = "ExternalLink"
+        static let EVENT = "Event"
     }
     
     var type:  String = ""

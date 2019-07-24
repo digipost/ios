@@ -23,6 +23,8 @@ import Foundation
             return parseAppointment(metadata: metadata, creatorName: creatorName)
         }else if metadata.type == POSMetadata.TYPE.EXTERNAL_LINK {
             return parseExternalLink(metadata: metadata)
+        }else if metadata.type == POSMetadata.TYPE.EVENT {
+            return parseEvent(metadata: metadata)
         }
         
         return POSMetadataObject(type: POSMetadata.TYPE.NIL)
@@ -64,6 +66,12 @@ import Foundation
         }
         
         return externalLink        
+    }
+    
+    private static func parseEvent(metadata: POSMetadata) -> POSEvent {
+        let event = POSEvent()
+        
+        return event
     }
     
     private static func parseAppointment(metadata: POSMetadata, creatorName: String) -> POSAppointment {            
