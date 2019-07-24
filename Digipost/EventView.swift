@@ -21,6 +21,7 @@ import EventKit
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
+    
     @IBOutlet weak var startTimeTitle: UILabel!
     @IBOutlet weak var startTime: UILabel!
     @IBOutlet weak var arrivalTimeTitle: UILabel!
@@ -87,10 +88,9 @@ import EventKit
             alertController.addAction(UIAlertAction(title: modalAction, style: .default) { (action) in
                 if let calendar = EventView.pickedCalenderIdentifier.characters.count > 1 && self.calendars.count > 1 ? self.getSelectedCalendar() : self.eventStore.defaultCalendarForNewEvents {
                     
-                     //TOOD Loop gjennom timeframes og lag events for alle.
-                    let startTime = Date()
-                    let endTime = Date()
-                    self.createEventInCalendar(calendar: calendar, title: eventTitle, startTime: startTime, endTime: endTime)
+                    for timeframe in event.timeframes {
+                        self.createEventInCalendar(calendar: calendar, title: eventTitle, startTime: timeframe.startTime, endTime: timeframe.endTime)
+                    }
                 }
             })
         }
