@@ -21,26 +21,35 @@ import EventKit
 
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
+    @IBOutlet weak var descriptionText: UILabel!
     
-    @IBOutlet weak var startTimeTitle: UILabel!
-    @IBOutlet weak var startTime: UILabel!
-    @IBOutlet weak var arrivalTimeTitle: UILabel!
-    @IBOutlet weak var arrivalTime: UILabel!
-    @IBOutlet weak var placeTitle: UILabel!
     @IBOutlet weak var place: UILabel!
-    @IBOutlet weak var addressButton: UIButton!
+    @IBOutlet weak var streetAddress: UILabel!
+    @IBOutlet weak var areaCodeAndName: UILabel!
+    
+    @IBOutlet weak var timeframes: UILabel!
+    @IBOutlet weak var calendarButton: UIButton!
+    
+    @IBOutlet weak var topDivider: UIView!
+    
+    @IBOutlet weak var barcodeTitle: UILabel!
+    @IBOutlet weak var barcode: UIImageView!
+    @IBOutlet weak var barcodeDescription: UILabel!
+    
+    @IBOutlet weak var bottomDivider: UIView!
+    
     @IBOutlet weak var infoTitle1: UILabel!
     @IBOutlet weak var infoText1: UILabel!
     @IBOutlet weak var infoTitle2: UILabel!
     @IBOutlet weak var infoText2: UILabel!
     @IBOutlet weak var infoTitle3: UILabel!
     @IBOutlet weak var infoText3: UILabel!
-    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var calendarButton: UIButton!
-    @IBOutlet weak var infoImage: UIImageView!
-    @IBOutlet weak var buttomDivider: UIView!
-    @IBOutlet weak var openMapsButton: UIButton!
+
+    @IBOutlet weak var linkTitle: UILabel!
+    @IBOutlet weak var linkURL: UIButton!
     
+    @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
+
     var event: POSEvent = POSEvent()
 
     @objc var extraHeight = CGFloat(0)
@@ -149,6 +158,10 @@ import EventKit
             try self.eventStore.save(ekEvent, span: .thisEvent, commit: true)
             self.addedToCalender()
         } catch {}
+    }
+    
+    @IBAction func openLink(_ sender: Any) {
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

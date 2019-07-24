@@ -26,7 +26,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bpu-Ir-FtB" userLabel="bottomDivider">
-                            <rect key="frame" x="0.0" y="635.66666666666663" width="375" height="1"/>
+                            <rect key="frame" x="0.0" y="632.66666666666663" width="375" height="1"/>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Xca-qw-EAF"/>
@@ -45,13 +45,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Info 1 tittel" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9x-a6-asB" userLabel="infoTitle1">
-                            <rect key="frame" x="27" y="648.66666666666652" width="320" height="18"/>
+                            <rect key="frame" x="27" y="645.66666666666663" width="320" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Info 2 tittel" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xax-CV-jM4" userLabel="infoTitle2">
-                            <rect key="frame" x="27" y="701.33333333333348" width="321" height="18"/>
+                            <rect key="frame" x="27" y="698.33333333333337" width="321" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -91,7 +91,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d7-zN-CRb" userLabel="Navn">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sted" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d7-zN-CRb" userLabel="Navn">
                             <rect key="frame" x="27" y="162" width="321" height="17.666666666666657"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
@@ -122,53 +122,56 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Info 2 tekst" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-ZL-MkR" userLabel="infoText2">
-                            <rect key="frame" x="27" y="723.33333333333348" width="320" height="17.666666666666629"/>
+                            <rect key="frame" x="27" y="720.33333333333337" width="320" height="17.666666666666629"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel strekkode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cRG-a1-uv5">
-                            <rect key="frame" x="28" y="389" width="119" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="28" y="389" width="112" height="18"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VAK-oK-zuu">
-                            <rect key="frame" x="51" y="426" width="273" height="128"/>
+                            <rect key="frame" x="51" y="423" width="273" height="128"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="128" id="VPt-JL-BQ2"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Infotekst til strekkode. Maks 80 tegn. Maks 80 tegn. Maks 80 tegn." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8w0-YT-jXl">
-                            <rect key="frame" x="51" y="565" width="273" height="40.666666666666629"/>
+                            <rect key="frame" x="51" y="562" width="273" height="40.666666666666629"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tittel lenke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfT-uq-aap">
-                            <rect key="frame" x="29" y="811.66666666666652" width="309" height="18"/>
+                            <rect key="frame" x="29" y="808.66666666666663" width="309" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TaO-Ec-bCc">
-                            <rect key="frame" x="29" y="829.66666666666652" width="319" height="30"/>
+                            <rect key="frame" x="29" y="826.66666666666663" width="319" height="30"/>
                             <state key="normal" title="URL lenke"/>
+                            <connections>
+                                <action selector="openLink:" destination="iN0-l3-epB" eventType="touchUpInside" id="xQY-Iw-KjV"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Info 1 Tekst" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-Wg-Joe" userLabel="infoText1">
-                            <rect key="frame" x="27" y="670" width="320" height="17.666666666666629"/>
+                            <rect key="frame" x="27" y="667" width="320" height="17.666666666666629"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info 3 tekst" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4V-Ir-06i">
-                            <rect key="frame" x="31" y="779" width="313" height="17.666666666666629"/>
+                            <rect key="frame" x="31" y="776" width="313" height="17.666666666666629"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Info 3 tittel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qz-yD-dy4">
-                            <rect key="frame" x="31" y="755" width="313" height="18"/>
+                            <rect key="frame" x="31" y="752" width="313" height="18"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -260,17 +263,28 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="ContainerViewHeight" destination="Vsg-qz-RF5" id="5R0-1j-wBf"/>
-                <outlet property="addressButton" destination="yHV-eT-7BZ" id="0Aa-G5-zdM"/>
-                <outlet property="buttomDivider" destination="SgY-1N-0gj" id="hMg-C8-S3g"/>
+                <outlet property="areaCodeAndName" destination="LYp-G0-DBW" id="bqX-rq-k0L"/>
+                <outlet property="barcode" destination="VAK-oK-zuu" id="Jou-0n-9HY"/>
+                <outlet property="barcodeDescription" destination="8w0-YT-jXl" id="0hX-rS-EdB"/>
+                <outlet property="barcodeTitle" destination="cRG-a1-uv5" id="MVh-ZJ-pw0"/>
+                <outlet property="bottomDivider" destination="bpu-Ir-FtB" id="Es9-a5-mSg"/>
                 <outlet property="calendarButton" destination="2Kk-2c-s71" id="d4r-QA-Txx"/>
                 <outlet property="containerViewHeight" destination="Vsg-qz-RF5" id="Oio-sR-dfM"/>
+                <outlet property="descriptionText" destination="3tO-EJ-Zc5" id="MTV-Ra-VGW"/>
                 <outlet property="infoText1" destination="vwG-Wg-Joe" id="TEg-1k-h96"/>
                 <outlet property="infoText2" destination="Peg-ZL-MkR" id="QM6-0Z-S5h"/>
+                <outlet property="infoText3" destination="w4V-Ir-06i" id="9ah-22-bDg"/>
                 <outlet property="infoTitle1" destination="x9x-a6-asB" id="q2H-W7-F5f"/>
                 <outlet property="infoTitle2" destination="xax-CV-jM4" id="Vvd-rS-EP5"/>
-                <outlet property="openMapsButton" destination="yHV-eT-7BZ" id="yaN-Qv-nyx"/>
+                <outlet property="infoTitle3" destination="3qz-yD-dy4" id="GbX-xg-x3g"/>
+                <outlet property="linkTitle" destination="IfT-uq-aap" id="w4D-aB-qrG"/>
+                <outlet property="linkURL" destination="TaO-Ec-bCc" id="6us-Ws-iHy"/>
+                <outlet property="place" destination="1d7-zN-CRb" id="qBG-5X-oiQ"/>
+                <outlet property="streetAddress" destination="27z-Ut-lyF" id="0Nb-4D-748"/>
                 <outlet property="subTitle" destination="D2k-oV-TyX" id="hpX-0o-uCn"/>
+                <outlet property="timeframes" destination="yHb-Gi-DMj" id="TUH-Fk-LDJ"/>
                 <outlet property="title" destination="jlF-r1-8sS" id="4zx-jQ-bCq"/>
+                <outlet property="topDivider" destination="SgY-1N-0gj" id="Poi-bf-HNM"/>
             </connections>
             <point key="canvasLocation" x="-739.85507246376812" y="-1477.5815217391305"/>
         </view>
