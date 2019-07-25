@@ -61,6 +61,11 @@ import EventKit
         let placeAndAddress = event.place + "\n" + event.address
         view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
+        var timeframes = ""
+        for timeframe in event.timeframes {
+            timeframes += timeframe.startTime.dateOnly() + " - " + timeframe.startTime.timeOnly()+"\n"
+        }
+        view.timeframes.attributedText = attributedString(text: timeframes, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         setupCalendars()
         
         let boldAttribute = [

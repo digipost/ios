@@ -87,11 +87,23 @@ import Foundation
             }
             event.address = "\(event.streetAddress) \n\(event.postalCode) \(event.city)"
         }
+        
+        if let timeframes = metadata.json["time"] as? [Dictionary<String, Any>]{
+            for timeframe in timeframes {
+                if let startTime = timeframe["startTime"] as? String, let endTime = timeframe["endTime"] as? String {
+                    if let startTimeDate = stringToDate(timeString: startTime), let endTimeDate = stringToDate(timeString: endTime) {
+                        event.timeframes.append(POSTimeframe(startTime: startTimeDate, endTime:endTimeDate ))
+                    }
+                }
+            }
+        }
+        
         if let infoList = metadata.json["info"] as? [[String: Any]] {
             for info in infoList {
                 event.info.append(POSMetadataInfo(title: info["title"] as! String, text: info["text"] as! String))
             }
         }
+        
         
         return event
     }
