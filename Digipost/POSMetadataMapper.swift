@@ -65,6 +65,14 @@ import Foundation
     private static func parseEvent(metadata: POSMetadata) -> POSEvent {
         let event = POSEvent()
         
+        if let subTitle = metadata.json["subTitle"] as? String {
+            event.subTitle = subTitle
+        }
+        
+        if let descriptionText = metadata.json["description"] as? String {
+            event.descriptionText = descriptionText
+        }
+        
         if let place = metadata.json["place"] as? String {
             event.place = place
         }
