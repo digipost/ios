@@ -18,7 +18,6 @@ import Foundation
 
 class POSEvent : POSMetadataObject {
     
-    var title = ""
     var subTitle = ""
     var descriptionText = ""
     var place = ""

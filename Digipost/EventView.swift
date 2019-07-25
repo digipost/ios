@@ -53,7 +53,7 @@ import EventKit
     static var pickedCalenderIdentifier: String = ""
     let permissionsErrorMessage = "For å legge til hendelser i kalenderen din, må du gi Digipost tilgang til Kalendere. Dette kan du endre under Personvern i Innstillinger."
 
-    @objc func instanceWithData(event: POSEvent) -> UIView{
+    @objc func instanceWithData(event: POSEvent, title: String) -> UIView{
         let view = UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EventView
 
         setupCalendars()
