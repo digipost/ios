@@ -55,7 +55,11 @@ import EventKit
 
     @objc func instanceWithData(event: POSEvent, title: String) -> UIView{
         let view = UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EventView
-
+        view.event = event
+        view.title.text = title
+        view.subTitle.text = event.subTitle
+        view.descriptionText.text = event.descriptionText
+        
         setupCalendars()
         view.layoutIfNeeded()
         return view
