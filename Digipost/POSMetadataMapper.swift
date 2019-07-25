@@ -71,6 +71,22 @@ import Foundation
     private static func parseEvent(metadata: POSMetadata) -> POSEvent {
         let event = POSEvent()
         
+        if let place = metadata.json["place"] as? String {
+            event.place = place
+        }
+        
+        if let location = metadata.json["address"] as? Dictionary<String, Any> {
+            if let streetAdress = location["streetAddress"] as? String {
+                event.streetAddress = streetAdress
+            }
+            if let postalCode = location["postalCode"] as? String {
+                event.postalCode = postalCode
+            }
+            if let city = location["city"] as? String {
+                event.city = city
+            }
+            event.address = "\(event.streetAddress) \n\(event.postalCode) \(event.city)"
+        }
         if let infoList = metadata.json["info"] as? [[String: Any]] {
             for info in infoList {
                 event.info.append(POSMetadataInfo(title: info["title"] as! String, text: info["text"] as! String))

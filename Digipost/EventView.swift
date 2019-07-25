@@ -24,8 +24,6 @@ import EventKit
     @IBOutlet weak var descriptionText: UILabel!
     
     @IBOutlet weak var place: UILabel!
-    @IBOutlet weak var streetAddress: UILabel!
-    @IBOutlet weak var areaCodeAndName: UILabel!
     
     @IBOutlet weak var timeframes: UILabel!
     @IBOutlet weak var calendarButton: UIButton!
@@ -59,6 +57,9 @@ import EventKit
         view.title.text = title
         view.subTitle.text = event.subTitle
         view.descriptionText.text = event.descriptionText
+        
+        let placeAndAddress = event.place + "\n" + event.address
+        view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
         setupCalendars()
         
