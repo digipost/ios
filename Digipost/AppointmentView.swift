@@ -101,7 +101,6 @@ import EventKit
         
         infoTextHeight += positiveHeightAdjustment(text: appointment.title, width: view.title.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
         infoTextHeight += positiveHeightAdjustment(text: appointment.subTitle, width: view.subTitle.frame.width, lineSpacing: customTitleLineSpacing, minimumLineHeight: minimumTitleLineHeight)
-        
         view.containerViewHeight.constant += infoTextHeight
         extraHeight += infoTextHeight
     
