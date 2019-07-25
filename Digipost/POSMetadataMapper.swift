@@ -71,6 +71,12 @@ import Foundation
     private static func parseEvent(metadata: POSMetadata) -> POSEvent {
         let event = POSEvent()
         
+        if let infoList = metadata.json["info"] as? [[String: Any]] {
+            for info in infoList {
+                event.info.append(POSMetadataInfo(title: info["title"] as! String, text: info["text"] as! String))
+            }
+        }
+        
         return event
     }
     

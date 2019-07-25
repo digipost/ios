@@ -61,6 +61,22 @@ import EventKit
         view.descriptionText.text = event.descriptionText
         
         setupCalendars()
+        
+        let boldAttribute = [
+            NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 15)!,
+            NSAttributedStringKey.foregroundColor: UIColor.black
+        ]
+        
+        let regularAttribute = [
+            NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 15)!,
+            NSAttributedStringKey.foregroundColor: UIColor.black
+        ]
+        let mutableAttributedString = NSMutableAttributedString()
+        for info in event.info{
+             mutableAttributedString.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
+             mutableAttributedString.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
+        }
+        view.infoText.attributedText = mutableAttributedString
         view.layoutIfNeeded()
         return view
     }

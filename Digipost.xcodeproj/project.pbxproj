@@ -209,14 +209,17 @@
 		F81D61C622E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
 		F81D61C722E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
 		F81D61C822E84A7F00827289 /* POSTimeframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61C522E84A7F00827289 /* POSTimeframe.swift */; };
+		F81D61DE22E9A2DA00827289 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81D61E122E9A2DA00827289 /* EventView.xib */; };
+		F81D61DF22E9A2DA00827289 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F81D61E122E9A2DA00827289 /* EventView.xib */; };
+		F81D61E922E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
+		F81D61EA22E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
+		F81D61EB22E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F8416EA922A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
 		F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84270F31C74634B00F71553 /* NSString+Date.swift */; };
-		F8678F3222E71C1500E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F3122E71C1500E9F383 /* EventView.xib */; };
-		F8678F3322E71C1500E9F383 /* EventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8678F3122E71C1500E9F383 /* EventView.xib */; };
 		F875D56A1CD0E8560085521F /* GCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F875D5691CD0E8560085521F /* GCMToken.swift */; };
 		F885F89F1CC8FE0100ACE62D /* APIClient+GCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */; };
 		F88B7FF11CD8E1DF009CC671 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F88B7FF01CD8E1DF009CC671 /* GoogleService-Info.plist */; };
@@ -702,13 +705,16 @@
 		F816F24B208E8EA90000D9D2 /* Model v2. 1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2. 1.xcdatamodel"; sourceTree = "<group>"; };
 		F81D61C122E8490C00827289 /* POSEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSEvent.swift; sourceTree = "<group>"; };
 		F81D61C522E84A7F00827289 /* POSTimeframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSTimeframe.swift; sourceTree = "<group>"; };
+		F81D61E022E9A2DA00827289 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EventView.xib; sourceTree = "<group>"; };
+		F81D61E522E9A2ED00827289 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EventView.strings; sourceTree = "<group>"; };
+		F81D61E722E9A2F900827289 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/EventView.strings; sourceTree = "<group>"; };
+		F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSMetadataInfo.swift; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F8416EA622A7B69D00C92B03 /* OAuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		F84270F31C74634B00F71553 /* NSString+Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSString+Date.swift"; sourceTree = "<group>"; };
 		F85148371C89B21E0040A734 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = "Pods/../build/Debug-iphoneos/AFNetworking.framework"; sourceTree = "<group>"; };
-		F8678F3122E71C1500E9F383 /* EventView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventView.xib; sourceTree = "<group>"; };
 		F875D5691CD0E8560085521F /* GCMToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCMToken.swift; sourceTree = "<group>"; };
 		F885F89E1CC8FE0100ACE62D /* APIClient+GCM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+GCM.swift"; sourceTree = "<group>"; };
 		F88788AF218729EF00CE42AF /* Model v2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model v2.3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1042,6 +1048,7 @@
 				9C5AB2791EEEB5B0007345D3 /* POSMetadataMapper.swift */,
 				9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */,
 				F81D61C522E84A7F00827289 /* POSTimeframe.swift */,
+				F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -1367,7 +1374,7 @@
 		F8D46F3E22E6F319006A9788 /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				F8678F3122E71C1500E9F383 /* EventView.xib */,
+				F81D61E122E9A2DA00827289 /* EventView.xib */,
 				F8D46F3F22E6F3C0006A9788 /* EventView.swift */,
 			);
 			name = Event;
@@ -1513,7 +1520,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8678F3222E71C1500E9F383 /* EventView.xib in Resources */,
+				F81D61DE22E9A2DA00827289 /* EventView.xib in Resources */,
 				83F7038618573C3A003DABE1 /* Localizable.strings in Resources */,
 				9C25CBE91F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				EC4F546F19CACAE1008E24C1 /* foundmonreg-webfont.ttf in Resources */,
@@ -1563,7 +1570,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F8678F3322E71C1500E9F383 /* EventView.xib in Resources */,
+				F81D61DF22E9A2DA00827289 /* EventView.xib in Resources */,
 				F8AE1CBA1CD374B40009B2F9 /* Localizable.strings in Resources */,
 				9C25CBEA1F0D26F0005F3645 /* AppointmentView.xib in Resources */,
 				F8AE1CC11CD374B40009B2F9 /* foundmonreg-webfont.ttf in Resources */,
@@ -1736,6 +1743,7 @@
 				8364D714185F1EB4008DE6CB /* POSDocumentsViewController.m in Sources */,
 				F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */,
 				EC0C1A1319347388007CB53E /* POSNewFolderCollectionViewDataSource.m in Sources */,
+				F81D61E922E9BFE700827289 /* POSMetadataInfo.swift in Sources */,
 				EC68C07818AA2D1400A94770 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				ECD0B88C1A820EA200DF3296 /* APIClient+Folder.swift in Sources */,
 				ECF1C05D1B1460AF00DCB8A5 /* Logger.swift in Sources */,
@@ -1874,6 +1882,7 @@
 				9CDF87401E68180F003E73FB /* AppVersionManagerTests.swift in Sources */,
 				9C30BB741E5B316D00444468 /* OAuthTests.swift in Sources */,
 				F895AAFB226F2EBE00045834 /* LAStore.swift in Sources */,
+				F81D61EA22E9BFE700827289 /* POSMetadataInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1912,6 +1921,7 @@
 				F8AE1C171CD374B40009B2F9 /* POSDocumentsViewController.m in Sources */,
 				F8416EA922A7B69D00C92B03 /* OAuthToken.swift in Sources */,
 				F8AE1C1A1CD374B40009B2F9 /* POSNewFolderCollectionViewDataSource.m in Sources */,
+				F81D61EB22E9BFE700827289 /* POSMetadataInfo.swift in Sources */,
 				F8AE1C1C1CD374B40009B2F9 /* POSLetterPopoverTableViewMobelObject.m in Sources */,
 				F8AE1C1E1CD374B40009B2F9 /* APIClient+Folder.swift in Sources */,
 				F8AFAE941DBE4E6700C91DB4 /* InvoiceBank.swift in Sources */,
@@ -2078,6 +2088,16 @@
 				9C909A9E1EC5D65D00A59417 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		F81D61E122E9A2DA00827289 /* EventView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F81D61E022E9A2DA00827289 /* Base */,
+				F81D61E522E9A2ED00827289 /* en */,
+				F81D61E722E9A2F900827289 /* nb */,
+			);
+			name = EventView.xib;
 			sourceTree = "<group>";
 		};
 		F83616981DCB6F7E004DAD57 /* Invoice.storyboard */ = {
