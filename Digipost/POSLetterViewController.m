@@ -669,18 +669,16 @@ CGFloat extraMetadataConstraintHeight = 0;
             if([metadataObject isKindOfClass:[POSAppointment class]]) {
                 AppointmentView *appointmentView = [[[AppointmentView alloc] init] instanceWithDataWithAppointment: (POSAppointment *) metadataObject];
                 [_stackView addArrangedSubview:appointmentView];
-                extraHeight += appointmentView.frame.size.height + appointmentView.extraHeight;
-                
+                extraHeight += appointmentView.frame.size.height;
             }else if([metadataObject isKindOfClass:[POSEvent class]]) {
                 EventView *eventView = [[[EventView alloc] init] instanceWithDataWithEvent:(POSEvent*) metadataObject title:_attachment.subject];
                 [_stackView addArrangedSubview:eventView];
-                extraHeight += eventView.frame.size.height + eventView.extraHeight;
-                
+                extraHeight += eventView.frame.size.height;
             }else if([metadataObject isKindOfClass:[POSExternalLink class]]) {
                 ExternalLinkView *externalLinkView = [[[ExternalLinkView alloc] init] instanceWithDataWithExternalLink: (POSExternalLink *) metadataObject];
                 [externalLinkView setParentViewController: self];
                 [_stackView addArrangedSubview:externalLinkView];
-                extraHeight += externalLinkView.frame.size.height + externalLinkView.extraHeight;
+                extraHeight += externalLinkView.frame.size.height;
             }
          }
         
