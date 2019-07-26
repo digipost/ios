@@ -37,10 +37,8 @@ import EventKit
     @IBOutlet weak var bottomDivider: UIView!
     
     @IBOutlet weak var infoText: UILabel!
-
-    @IBOutlet weak var linkTitle: UILabel!
-    @IBOutlet weak var linkURL: UIButton!
     
+    @objc var parentViewController: POSLetterViewController? = nil
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
 
     var event: POSEvent = POSEvent()
@@ -211,5 +209,9 @@ import EventKit
     
     private func instanceFromNib() -> UIView {
         return UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UIView
+    }
+    
+    @objc func setParentViewController(parentViewController: POSLetterViewController) {
+        self.parentViewController = parentViewController
     }
 }
