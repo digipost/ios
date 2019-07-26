@@ -47,6 +47,9 @@
                         <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Kk-2c-s71">
                             <rect key="frame" x="51" y="275.33333333333331" width="273" height="46"/>
                             <color key="backgroundColor" red="0.86840051412582397" green="0.17482030391693115" blue="0.12793275713920593" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="FlP-FO-cQK"/>
+                            </constraints>
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="12" maxX="0.0" maxY="12"/>
                             <inset key="titleEdgeInsets" minX="5" minY="5" maxX="0.0" maxY="6"/>
@@ -172,12 +175,20 @@
                         <constraint firstItem="vwG-Wg-Joe" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="27" id="yHn-kg-AlH"/>
                     </constraints>
                 </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Cqy-4U-Ss6">
+                    <rect key="frame" x="33" y="585" width="309" height="25"/>
+                    <color key="backgroundColor" red="0.98101288080215454" green="0.12698796391487122" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="ElE-hz-PKP" secondAttribute="bottom" id="2hq-sW-jpc"/>
+                <constraint firstItem="Cqy-4U-Ss6" firstAttribute="top" secondItem="vwG-Wg-Joe" secondAttribute="bottom" constant="12" id="4Pt-4E-PfJ"/>
                 <constraint firstItem="ElE-hz-PKP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZTn-K1-ppK"/>
+                <constraint firstAttribute="bottom" secondItem="ElE-hz-PKP" secondAttribute="bottom" id="cLr-fB-z8d"/>
                 <constraint firstAttribute="trailing" secondItem="ElE-hz-PKP" secondAttribute="trailing" id="hxi-sZ-rWN"/>
+                <constraint firstItem="Cqy-4U-Ss6" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="33" id="uQc-Sk-HCG"/>
+                <constraint firstItem="Cqy-4U-Ss6" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="wQP-Oe-hGv"/>
+                <constraint firstAttribute="bottom" secondItem="Cqy-4U-Ss6" secondAttribute="bottom" constant="37" id="xID-2F-7Zj"/>
                 <constraint firstItem="ElE-hz-PKP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xlH-6s-tmf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -190,6 +201,7 @@
                 <outlet property="containerViewHeight" destination="HJV-hv-miJ" id="qzc-qV-L0W"/>
                 <outlet property="descriptionText" destination="3tO-EJ-Zc5" id="MTV-Ra-VGW"/>
                 <outlet property="infoText" destination="vwG-Wg-Joe" id="eUy-nf-BzM"/>
+                <outlet property="linkContainer" destination="Cqy-4U-Ss6" id="xZq-gY-21y"/>
                 <outlet property="place" destination="1d7-zN-CRb" id="qBG-5X-oiQ"/>
                 <outlet property="subTitle" destination="D2k-oV-TyX" id="hpX-0o-uCn"/>
                 <outlet property="timeframes" destination="yHb-Gi-DMj" id="TUH-Fk-LDJ"/>

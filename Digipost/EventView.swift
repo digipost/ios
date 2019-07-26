@@ -18,7 +18,7 @@ import UIKit
 import EventKit
 
 @objc class EventView: MetadataView, UIPickerViewDataSource, UIPickerViewDelegate{
-
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var subTitle: UILabel!
     @IBOutlet weak var descriptionText: UILabel!
@@ -40,53 +40,63 @@ import EventKit
     
     @objc var parentViewController: POSLetterViewController? = nil
     @IBOutlet weak var containerViewHeight: NSLayoutConstraint!
-
+    
+    @IBOutlet weak var linkContainer: UIStackView!
+    
     var event: POSEvent = POSEvent()
-
+    
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
     static var pickedCalenderIdentifier: String = ""
     let permissionsErrorMessage = "For å legge til hendelser i kalenderen din, må du gi Digipost tilgang til Kalendere. Dette kan du endre under Personvern i Innstillinger."
-
+    
+    let boldAttribute = [
+        NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 15)!,
+        NSAttributedStringKey.foregroundColor: UIColor.black
+    ]
+    
+    let regularAttribute = [
+        NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 15)!,
+        NSAttributedStringKey.foregroundColor: UIColor.black
+    ]
+    
     @objc func instanceWithData(event: POSEvent, title: String) -> UIView{
         let view = UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EventView
         view.translatesAutoresizingMaskIntoConstraints = false
         view.event = event
         view.title.text = title
         view.subTitle.text = event.subTitle
+        
         view.descriptionText.text = event.descriptionText
+        var extraTextViewHeight = positiveHeightAdjustment(text: event.descriptionText, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
         let placeAndAddress = event.place + "\n" + event.address
         view.place.attributedText = attributedString(text: placeAndAddress,  lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: placeAndAddress, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         
         var timeframes = ""
         for timeframe in event.timeframes {
             timeframes += timeframe.startTime.dateOnly() + " - " + timeframe.startTime.timeOnly()+"\n"
         }
         view.timeframes.attributedText = attributedString(text: timeframes, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: timeframes, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         setupCalendars()
         
-        let boldAttribute = [
-            NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Bold", size: 15)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-        ]
-        
-        let regularAttribute = [
-            NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 15)!,
-            NSAttributedStringKey.foregroundColor: UIColor.black
-        ]
         let infoTexts = NSMutableAttributedString()
         for info in event.info{
-             infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
-             infoTexts.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
+            infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
+            infoTexts.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
         }
         view.infoText.attributedText = infoTexts
         
+        for link in event.links{
+            let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 10))
+            button.setTitle(link.url, for: .normal)
+            button.setTitleColor(UIColor.blue, for: .normal)
+            button.addTarget(self, action: #selector(openEventLink), for: .touchUpInside)
+            view.linkContainer.addArrangedSubview(button)
+        }
         
-        
-        var extraTextViewHeight = positiveHeightAdjustment(text: event.descriptionText, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        extraTextViewHeight += positiveHeightAdjustment(text: placeAndAddress, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        extraTextViewHeight += positiveHeightAdjustment(text: timeframes, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         extraTextViewHeight += positiveHeightAdjustment(text: infoTexts.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.containerViewHeight.constant += extraTextViewHeight
         
@@ -102,6 +112,10 @@ import EventKit
     func addedToCalender() {
         calendarButton.setImage(UIImage(named: "Kalender-lagt-til")!, for: UIControlState.normal)
         calendarButton.setTitle(NSLocalizedString("metadata addedto calendar", comment:"Lagt til i kalender"), for: UIControlState.normal)
+    }
+    
+    @objc func openEventLink(_ eventLink: UIButton) {
+        parentViewController?.openExternalLink(eventLink.titleLabel?.text!)
     }
     
     @IBAction func addToCalendar(_ sender: Any) {
@@ -168,13 +182,13 @@ import EventKit
     @IBAction func openAddressInMaps(_ sender: UIButton) {
         let addr = event.address.replacingOccurrences(of: " ", with: ",").replacingOccurrences(of: "\n", with: ",")
         let mapsUrl = URL(string: "http://maps.apple.com/?q=\(addr))")
-    
-       UIApplication.shared.openURL(mapsUrl!)
+        
+        UIApplication.shared.openURL(mapsUrl!)
     }
     
     func createEventInCalendar(calendar: EKCalendar, title: String, startTime: Date, endTime: Date){
         let ekEvent = EKEvent(eventStore: self.eventStore)
-    
+        
         ekEvent.calendar = calendar
         ekEvent.title = title
         ekEvent.startDate = startTime
@@ -182,15 +196,11 @@ import EventKit
         ekEvent.location = event.address
         
         ekEvent.notes = "\(infoText.text!)"
-                
+        
         do {
             try self.eventStore.save(ekEvent, span: .thisEvent, commit: true)
             self.addedToCalender()
         } catch {}
-    }
-    
-    @IBAction func openLink(_ sender: Any) {
-        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

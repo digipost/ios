@@ -38,7 +38,7 @@ class POSEvent : POSMetadataObject {
     var infoText2 = ""
     var infoTitle3 = ""
     var infoText3 = ""
-    var links = [POSExLink]()
+    var links = [POSEventLink]()
     
     init() {
         super.init(type: POSMetadata.TYPE.EVENT)

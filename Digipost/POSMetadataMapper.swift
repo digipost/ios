@@ -108,11 +108,10 @@ import Foundation
         
         if let links = metadata.json["links"] as? [[String: Any]] {
             for link in links {
-                event.links.append(POSEventLink(descriptionText: link["description"] as! String, text: link["url"] as! String))
+                event.links.append(POSEventLink(descriptionText: link["description"] as! String, url: link["url"] as! String))
             }
         }
-        
-        
+    
         return event
     }
     
