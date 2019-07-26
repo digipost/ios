@@ -214,6 +214,9 @@
 		F81D61E922E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
 		F81D61EA22E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
 		F81D61EB22E9BFE700827289 /* POSMetadataInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */; };
+		F81D61F122EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
+		F81D61F222EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
+		F81D61F322EB273A00827289 /* POSEventLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D61F022EB273A00827289 /* POSEventLink.swift */; };
 		F83616941DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F83616961DCB6F7E004DAD57 /* Invoice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F83616981DCB6F7E004DAD57 /* Invoice.storyboard */; };
 		F8416EA722A7B69D00C92B03 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8416EA622A7B69D00C92B03 /* OAuthToken.swift */; };
@@ -709,6 +712,7 @@
 		F81D61E522E9A2ED00827289 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/EventView.strings; sourceTree = "<group>"; };
 		F81D61E722E9A2F900827289 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/EventView.strings; sourceTree = "<group>"; };
 		F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSMetadataInfo.swift; sourceTree = "<group>"; };
+		F81D61F022EB273A00827289 /* POSEventLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POSEventLink.swift; sourceTree = "<group>"; };
 		F83616971DCB6F7E004DAD57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Invoice.storyboard; sourceTree = "<group>"; };
 		F836169A1DCB6F89004DAD57 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Invoice.strings; sourceTree = "<group>"; };
 		F836169C1DCB6F8A004DAD57 /* nb */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nb; path = nb.lproj/Invoice.strings; sourceTree = "<group>"; };
@@ -1049,6 +1053,7 @@
 				9CA38AFF1F3C404100AABD91 /* POSExternalLink.swift */,
 				F81D61C522E84A7F00827289 /* POSTimeframe.swift */,
 				F81D61E822E9BFE700827289 /* POSMetadataInfo.swift */,
+				F81D61F022EB273A00827289 /* POSEventLink.swift */,
 			);
 			name = Metadata;
 			sourceTree = "<group>";
@@ -1769,6 +1774,7 @@
 				F84270F41C74634B00F71553 /* NSString+Date.swift in Sources */,
 				9CA38B001F3C404100AABD91 /* POSExternalLink.swift in Sources */,
 				ECD1C20319F91B040022B5D7 /* UIToolbar+Actions.swift in Sources */,
+				F81D61F122EB273A00827289 /* POSEventLink.swift in Sources */,
 				83D355111861C5D3009EABC6 /* SHCAttachmentsViewController.m in Sources */,
 				EC0C19FA19336912007CB53E /* NSString+CoreDataConvenience.m in Sources */,
 				ECFD14AA1A288C5500F99A8B /* UnlockHighAuthenticationLevelView.swift in Sources */,
@@ -1873,6 +1879,7 @@
 				F8D46F4122E6F3C1006A9788 /* EventView.swift in Sources */,
 				F8A5593C21903DD300667F27 /* SettingsValidator.swift in Sources */,
 				F8BF1B182195BA1300A87C61 /* SecureViewController.swift in Sources */,
+				F81D61F222EB273A00827289 /* POSEventLink.swift in Sources */,
 				9C30BB7A1E5B3B2100444468 /* OAuthToken+IDToken.swift in Sources */,
 				F81D61C722E84A7F00827289 /* POSTimeframe.swift in Sources */,
 				F8416EA822A7B69D00C92B03 /* OAuthToken.swift in Sources */,
@@ -1947,6 +1954,7 @@
 				F8AE1C471CD374B40009B2F9 /* NSString+Date.swift in Sources */,
 				F8AE1C4A1CD374B40009B2F9 /* UIToolbar+Actions.swift in Sources */,
 				F8AE1C4C1CD374B40009B2F9 /* SHCAttachmentsViewController.m in Sources */,
+				F81D61F322EB273A00827289 /* POSEventLink.swift in Sources */,
 				F8AE1C4D1CD374B40009B2F9 /* NSString+CoreDataConvenience.m in Sources */,
 				F8AE1C4E1CD374B40009B2F9 /* UnlockHighAuthenticationLevelView.swift in Sources */,
 				F8AE1C4F1CD374B40009B2F9 /* NSString+Hmac.m in Sources */,
