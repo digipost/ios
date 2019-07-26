@@ -75,17 +75,19 @@ import EventKit
             NSAttributedStringKey.font: UIFont(name: "HelveticaNeue", size: 15)!,
             NSAttributedStringKey.foregroundColor: UIColor.black
         ]
-        let mutableAttributedString = NSMutableAttributedString()
+        let infoTexts = NSMutableAttributedString()
         for info in event.info{
-             mutableAttributedString.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
-             mutableAttributedString.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
+             infoTexts.append(NSAttributedString(string: info.title+"\n", attributes: boldAttribute))
+             infoTexts.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
         }
-        view.infoText.attributedText = mutableAttributedString
+        view.infoText.attributedText = infoTexts
+        
+        
         
         var extraTextViewHeight = positiveHeightAdjustment(text: event.descriptionText, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         extraTextViewHeight += positiveHeightAdjustment(text: placeAndAddress, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         extraTextViewHeight += positiveHeightAdjustment(text: timeframes, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
-        extraTextViewHeight += positiveHeightAdjustment(text: mutableAttributedString.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: infoTexts.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
         view.containerViewHeight.constant += extraTextViewHeight
         
         view.layoutIfNeeded()
