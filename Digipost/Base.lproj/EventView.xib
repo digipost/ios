@@ -12,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EventView" customModule="Digipost" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="654"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ElE-hz-PKP" userLabel="ContainerView">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="654"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SgY-1N-0gj" userLabel="topDivider">
                             <rect key="frame" x="0.0" y="344.33333333333331" width="375" height="1"/>
@@ -150,9 +150,9 @@
                         <constraint firstItem="TaO-Ec-bCc" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="28" id="D8e-1v-yvh"/>
                         <constraint firstItem="IfT-uq-aap" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="28" id="Dxe-V2-2u4"/>
                         <constraint firstItem="TaO-Ec-bCc" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="Gu3-pT-ZTe"/>
+                        <constraint firstAttribute="height" constant="647" id="HJV-hv-miJ"/>
                         <constraint firstItem="vwG-Wg-Joe" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" constant="-0.5" id="HqK-Dn-fNk"/>
                         <constraint firstItem="D2k-oV-TyX" firstAttribute="top" secondItem="jlF-r1-8sS" secondAttribute="bottom" constant="16.000000000000213" id="I1q-a3-U2h"/>
-                        <constraint firstAttribute="height" constant="654" id="Ier-NH-OM5"/>
                         <constraint firstItem="jlF-r1-8sS" firstAttribute="centerX" secondItem="ElE-hz-PKP" secondAttribute="centerX" id="JwY-Mk-5wO"/>
                         <constraint firstItem="8w0-YT-jXl" firstAttribute="leading" secondItem="ElE-hz-PKP" secondAttribute="leading" constant="51" id="K4M-ls-dzh"/>
                         <constraint firstItem="SgY-1N-0gj" firstAttribute="top" secondItem="2Kk-2c-s71" secondAttribute="bottom" constant="23" id="N5s-Rg-kKi"/>
@@ -194,10 +194,10 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="ElE-hz-PKP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8Cm-fc-wUu"/>
-                <constraint firstAttribute="trailing" secondItem="ElE-hz-PKP" secondAttribute="trailing" id="jyC-C6-vh8"/>
-                <constraint firstAttribute="bottom" secondItem="ElE-hz-PKP" secondAttribute="bottom" id="lMx-Ac-umC" userLabel="bottom = ContainerView.bottom"/>
-                <constraint firstItem="ElE-hz-PKP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mFh-PV-21r"/>
+                <constraint firstAttribute="bottom" secondItem="ElE-hz-PKP" secondAttribute="bottom" id="2hq-sW-jpc"/>
+                <constraint firstItem="ElE-hz-PKP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZTn-K1-ppK"/>
+                <constraint firstAttribute="trailing" secondItem="ElE-hz-PKP" secondAttribute="trailing" id="hxi-sZ-rWN"/>
+                <constraint firstItem="ElE-hz-PKP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xlH-6s-tmf"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -206,7 +206,7 @@
                 <outlet property="barcodeTitle" destination="cRG-a1-uv5" id="MVh-ZJ-pw0"/>
                 <outlet property="bottomDivider" destination="bpu-Ir-FtB" id="Es9-a5-mSg"/>
                 <outlet property="calendarButton" destination="2Kk-2c-s71" id="d4r-QA-Txx"/>
-                <outlet property="containerViewHeight" destination="Ier-NH-OM5" id="lJW-TG-cmm"/>
+                <outlet property="containerViewHeight" destination="HJV-hv-miJ" id="qzc-qV-L0W"/>
                 <outlet property="descriptionText" destination="3tO-EJ-Zc5" id="MTV-Ra-VGW"/>
                 <outlet property="infoText" destination="vwG-Wg-Joe" id="eUy-nf-BzM"/>
                 <outlet property="linkTitle" destination="IfT-uq-aap" id="w4D-aB-qrG"/>
@@ -217,7 +217,7 @@
                 <outlet property="title" destination="jlF-r1-8sS" id="4zx-jQ-bCq"/>
                 <outlet property="topDivider" destination="SgY-1N-0gj" id="Poi-bf-HNM"/>
             </connections>
-            <point key="canvasLocation" x="-702.17391304347836" y="-1519.5652173913045"/>
+            <point key="canvasLocation" x="-770.28985507246387" y="-1583.5597826086957"/>
         </view>
     </objects>
     <resources>

@@ -45,7 +45,6 @@ import EventKit
 
     var event: POSEvent = POSEvent()
 
-    @objc var extraHeight = CGFloat(0)
     let eventStore = EKEventStore()
     var calendars = [EKCalendar]()
     static var pickedCalenderIdentifier: String = ""
@@ -53,6 +52,7 @@ import EventKit
 
     @objc func instanceWithData(event: POSEvent, title: String) -> UIView{
         let view = UINib(nibName: "EventView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! EventView
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.event = event
         view.title.text = title
         view.subTitle.text = event.subTitle
@@ -83,6 +83,13 @@ import EventKit
              mutableAttributedString.append( NSAttributedString(string: info.text+"\n\n", attributes: regularAttribute))
         }
         view.infoText.attributedText = mutableAttributedString
+        
+        var extraTextViewHeight = positiveHeightAdjustment(text: event.descriptionText, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: placeAndAddress, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: timeframes, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        extraTextViewHeight += positiveHeightAdjustment(text: mutableAttributedString.mutableString as String, width: view.infoText.frame.width, lineSpacing: customTextLineSpacing, minimumLineHeight: minimumTextLineHeight)
+        view.containerViewHeight.constant += extraTextViewHeight
+        
         view.layoutIfNeeded()
         return view
     }
